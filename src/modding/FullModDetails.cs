@@ -23,15 +23,35 @@ public class FullModDetails : IEquatable<FullModDetails>
         Folder = string.Empty;
     }
 
+    public enum VersionCompatibility
+    {
+        Incompatible = -2,
+        NotExplicitlyCompatible,
+        Unknown,
+        Compatible,
+    }
+
     public string InternalName { get; }
     public string Folder { get; set; }
 
     /// <summary>
     ///   Is the mod compatible with the current version of thrive?
     /// </summary>
-
-    // 1 = Compatible, 0 = Unknown, -1 = Might Not Be Compatible, -2 = Not Compatible
-    public int IsCompatibleVersion { get; set; }
+    /// <remarks>
+    ///    <para>
+    ///        1 = Compatible - It has been explicitly stated to be compatible.
+    ///    </para>
+    ///    <para>
+    ///        0 = Unknown - The variable has not been set or no version compatibility has been stated.
+    ///    </para>
+    ///    <para>
+    ///        -1 = Might Not Be Compatible - It has not been explicitly stated to be compatible.
+    ///    </para>
+    ///    <para>
+    ///        -2 = Not Compatible - It has been explicitly stated to be incompatible.
+    ///    </para>
+    /// </remarks>
+    public VersionCompatibility IsCompatibleVersion { get; set; }
 
     /// <summary>
     ///   The index of the mod is loaded in

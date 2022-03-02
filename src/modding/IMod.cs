@@ -45,8 +45,10 @@ public interface IMod
     /// </summary>
     /// <param name="newConfiguration">The new set of configuration the player has set</param>
     /// <remarks>
-    ///   This idealy should have a default implemention as not all mods will have a ConfigMenu.
-    ///   But the current target framework does not support it yet and so will just error at me.
+    ///    <para>
+    ///     This idealy should have a default implemention as not all mods will have a ConfigMenu.
+    ///     But the current target framework does not support it yet and so will just error at me.
+    ///    </para>
     /// </remarks>
     void UpdatedConfiguration(Dictionary<string, object> newConfiguration);
 }

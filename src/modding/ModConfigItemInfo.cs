@@ -10,6 +10,11 @@ using Newtonsoft.Json.Linq;
 /// </summary>
 public class ModConfigItemInfo : HBoxContainer
 {
+    public enum ConfigType
+    {
+        Integer,
+    }
+
     public string? ID { get; set; }
 
     [JsonProperty("Display Name")]
@@ -45,6 +50,7 @@ public class ModConfigItemInfo : HBoxContainer
     /// <summary>
     ///   Updates the Value variable based on the gui element
     /// </summary>
+    /// <returns> Returns the current value of the Config Item. </returns>
     public object UpdateInternalValue()
     {
         var nodeChildren = GetChildren();
@@ -53,58 +59,43 @@ public class ModConfigItemInfo : HBoxContainer
             var childUIElement = GetChild(1);
             switch (Type?.ToLower(CultureInfo.CurrentCulture) ?? string.Empty)
             {
-                case "int":
                 case "integer":
-                case "i":
-                case "int range":
                 case "integer range":
-                case "ir":
                 case "float":
-                case "f":
                 case "float range":
-                case "fr":
                     var numberUIElement = childUIElement as Range;
                     if (numberUIElement != null)
                     {
-                        Value = numberUIElement.Value;
+                        Value = Convert.ChangeType(numberUIElement.Value, typeof(float));
                     }
 
                     break;
                 case "option":
-                case "enum":
-                case "o":
                     var optionUIElement = childUIElement as OptionButton;
                     if (optionUIElement != null)
                     {
-                        Value = optionUIElement.Selected;
+                        Value = Convert.ChangeType(optionUIElement.Selected, typeof(int));
                     }
 
                     break;
-                case "bool":
                 case "boolean":
-                case "b":
                     var buttonUIElement = childUIElement as Button;
                     if (buttonUIElement != null)
                     {
-                        Value = buttonUIElement.Pressed;
+                        Value = Convert.ChangeType(buttonUIElement.Pressed, typeof(bool));
                     }
 
                     break;
                 case "string":
-                case "s":
                     var stringUIElement = childUIElement as LineEdit;
                     if (stringUIElement != null)
                     {
-                        Value = stringUIElement.Text;
+                        Value = Convert.ChangeType(stringUIElement.Text, typeof(string));
                     }
 
                     break;
-                case "color":
                 case "colour":
-                case "c":
-                case "alphacolor":
-                case "alphacolour":
-                case "ac":
+                case "colour with alpha":
                     var colorUIElement = childUIElement as ColorPickerButton;
                     if (colorUIElement != null)
                     {
@@ -131,16 +122,10 @@ public class ModConfigItemInfo : HBoxContainer
         var childUIElement = GetChild(1);
         switch (Type?.ToLower(CultureInfo.CurrentCulture) ?? string.Empty)
         {
-            case "int":
             case "integer":
-            case "i":
-            case "int range":
             case "integer range":
-            case "ir":
             case "float":
-            case "f":
             case "float range":
-            case "fr":
                 var numberUIElement = childUIElement as Range;
                 if (numberUIElement != null)
                 {
@@ -148,9 +133,7 @@ public class ModConfigItemInfo : HBoxContainer
                 }
 
                 break;
-            case "bool":
             case "boolean":
-            case "b":
                 var buttonUIElement = childUIElement as Button;
                 if (buttonUIElement != null)
                 {
@@ -159,7 +142,6 @@ public class ModConfigItemInfo : HBoxContainer
 
                 break;
             case "string":
-            case "s":
                 var stringUIElement = childUIElement as LineEdit;
                 if (stringUIElement != null)
                 {
@@ -168,8 +150,6 @@ public class ModConfigItemInfo : HBoxContainer
 
                 break;
             case "option":
-            case "enum":
-            case "o":
                 var optionUIElement = childUIElement as OptionButton;
                 if (optionUIElement != null)
                 {
@@ -177,16 +157,12 @@ public class ModConfigItemInfo : HBoxContainer
                 }
 
                 break;
-            case "color":
             case "colour":
-            case "c":
-            case "alphacolor":
-            case "alphacolour":
-            case "ac":
+            case "colour with alpha":
                 var colorUIElement = childUIElement as ColorPickerButton;
                 if (colorUIElement != null && Value != null)
                 {
-                    colorUIElement.Color = new Color((string)Value);
+                    colorUIElement.Color = new Color((string)Convert.ChangeType(Value, typeof(string)));
                 }
 
                 break;
@@ -194,13 +170,15 @@ public class ModConfigItemInfo : HBoxContainer
     }
 
     /// <summary>
-    ///   Returns a list of string based on the options the OptionButton can have
+    ///   Gets all the option this Config Item can have if it the mod is a Option type.
     /// </summary>
+    /// <returns> Returns a list of strings of all the options the OptionButton can have </returns>
     public List<string> GetAllOptions()
     {
         var optionsJArray = Options as JArray;
         if (optionsJArray == null)
         {
+            GD.PrintErr("optionsJArray is null, probably not a option type.");
             return new List<string>();
         }
 

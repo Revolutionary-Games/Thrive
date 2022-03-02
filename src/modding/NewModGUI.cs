@@ -299,56 +299,16 @@ public class NewModGUI : Control
         editedInfo.PckToLoad = pckName.Text;
         editedInfo.ModAssembly = modAssembly.Text;
         editedInfo.AssemblyModClass = assemblyModClass.Text;
-
-        if (!string.IsNullOrWhiteSpace(previewImagesFile.Text))
-        {
-            var previewImagesList = new List<string>();
-            Array.ForEach(previewImagesFile.Text.Split(","), s => previewImagesList.Add(s.Trim()));
-            editedInfo.PreviewImages = previewImagesList;
-        }
-
-        if (!string.IsNullOrWhiteSpace(dependencies.Text))
-        {
-            var dependenciesList = new List<string>();
-            Array.ForEach(dependencies.Text.Split(","), s => dependenciesList.Add(s.Trim()));
-            editedInfo.Dependencies = dependenciesList;
-        }
-
-        if (!string.IsNullOrWhiteSpace(requiredMods.Text))
-        {
-            var requiredModsList = new List<string>();
-            Array.ForEach(requiredMods.Text.Split(","), s => requiredModsList.Add(s.Trim()));
-            editedInfo.RequiredMods = requiredModsList;
-        }
-
-        if (!string.IsNullOrWhiteSpace(loadBefore.Text))
-        {
-            var loadBeforeList = new List<string>();
-            Array.ForEach(loadBefore.Text.Split(","), s => loadBeforeList.Add(s.Trim()));
-            editedInfo.LoadBefore = loadBeforeList;
-        }
-
-        if (!string.IsNullOrWhiteSpace(loadAfter.Text))
-        {
-            var loadAfterList = new List<string>();
-            Array.ForEach(loadAfter.Text.Split(","), s => loadAfterList.Add(s.Trim()));
-            editedInfo.LoadAfter = loadAfterList;
-        }
-
-        if (!string.IsNullOrWhiteSpace(incompatibleMods.Text))
-        {
-            var incompatibleModsList = new List<string>();
-            Array.ForEach(incompatibleMods.Text.Split(","), s => incompatibleModsList.Add(s.Trim()));
-            editedInfo.IncompatibleMods = incompatibleModsList;
-        }
+        editedInfo.PreviewImages = SeperateFieldByComma(previewImagesFile.Text);
+        editedInfo.Dependencies = SeperateFieldByComma(dependencies.Text);
+        editedInfo.RequiredMods = SeperateFieldByComma(requiredMods.Text);
+        editedInfo.LoadBefore = SeperateFieldByComma(loadBefore.Text);
+        editedInfo.LoadAfter = SeperateFieldByComma(loadAfter.Text);
+        editedInfo.IncompatibleMods = SeperateFieldByComma(incompatibleMods.Text);
 
         if (enableConfigCheckbox.Pressed && !string.IsNullOrWhiteSpace(modConfig.Text))
         {
             editedInfo.ConfigToLoad = modConfig.Text;
-            if (!modConfig.Text.EndsWith(".json"))
-            {
-                editedInfo.ConfigToLoad += ".json";
-            }
         }
 
         if (string.IsNullOrWhiteSpace(infoUrl.Text))
@@ -371,6 +331,17 @@ public class NewModGUI : Control
         return true;
     }
 
+    private List<string> SeperateFieldByComma(string condensedString)
+    {
+        var seperatedList = new List<string>();
+        if (!string.IsNullOrWhiteSpace(condensedString))
+        {
+            Array.ForEach(condensedString.Split(","), s => seperatedList.Add(s.Trim()));
+        }
+
+        return seperatedList;
+    }
+
     private string? ValidateFormData()
     {
         if (editedInfo == null)
@@ -391,6 +362,12 @@ public class NewModGUI : Control
         if (ModLoader.LoadModInfo(editedInfo.InternalName, false) != null)
         {
             SetError(TranslationServer.Translate("INTERNAL_NAME_IN_USE"));
+            return null;
+        }
+
+        if (enableConfigCheckbox.Pressed && !modConfig.Text.EndsWith(".json"))
+        {
+            SetError(TranslationServer.Translate("FORM_INVALID_CONFIG_FILE"));
             return null;
         }
 

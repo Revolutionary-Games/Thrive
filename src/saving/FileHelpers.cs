@@ -59,12 +59,12 @@ public static class FileHelpers
             return false;
         }
 
-        var globlizedPath = ProjectSettings.GlobalizePath(path);
-        string directoryPath = Path.GetDirectoryName(globlizedPath ?? string.Empty) ?? string.Empty;
-        if (!string.IsNullOrEmpty(directoryPath) && !string.IsNullOrEmpty(globlizedPath))
+        var globalizedPath = ProjectSettings.GlobalizePath(path);
+        string directoryPath = Path.GetDirectoryName(globalizedPath ?? string.Empty) ?? string.Empty;
+        if (!string.IsNullOrEmpty(directoryPath) && !string.IsNullOrEmpty(globalizedPath))
         {
             return Array.Exists(System.IO.Directory.GetFiles(directoryPath),
-                s => s == Path.GetFullPath(globlizedPath ?? string.Empty));
+                s => s == Path.GetFullPath(globalizedPath ?? string.Empty));
         }
 
         return false;

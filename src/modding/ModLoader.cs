@@ -40,15 +40,15 @@ public class ModLoader : Node
     public enum CheckErrorStatus
     {
         RequiredModsNotFound = -7,
-        InvalidLoadOrderAfter = -6,
-        InvalidLoadOrderBefore = -5,
-        IncompatibleMod = -4,
-        InvalidDependencyOrder = -3,
-        DependencyNotFound = -2,
-        IncompatibleVersion = -1,
+        InvalidLoadOrderAfter,
+        InvalidLoadOrderBefore,
+        IncompatibleMod,
+        InvalidDependencyOrder,
+        DependencyNotFound,
+        IncompatibleVersion,
         Unknown = 0,
-        Valid = 1,
-        EmptyList = 2,
+        Valid,
+        EmptyList,
     }
 
     public static ModLoader Instance => instance!;
@@ -236,7 +236,7 @@ public class ModLoader : Node
     {
         var currentModInfo = currentMod.Info;
 
-        if (currentMod.IsCompatibleVersion < -1)
+        if (!currentMod.IsCompatibleVersion.IsCompatible())
         {
             return new[]
             {

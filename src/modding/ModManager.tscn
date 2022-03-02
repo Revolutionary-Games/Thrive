@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/modding/ModManager.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/modding/NewModGUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=8]
@@ -53,14 +54,14 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-LeftArrowPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar/MoveLeftButton")
-RightArrowPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar/MoveRightButton")
-AvailableModsContainerPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/UnloadedContainer/UnloadedItemList")
-EnabledModsContainerPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/LoadedContainer/LoadedItemList")
+LeftArrowPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/CenterBar/MoveLeftButton")
+RightArrowPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/CenterBar/MoveRightButton")
+AvailableModsContainerPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/UnloadedContainer/UnloadedItemList")
+EnabledModsContainerPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/LoadedContainer/LoadedItemList")
 OpenModInfoButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/MoreInfo")
 OpenModUrlButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/ModUrl")
-DisableAllModsButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/ButtonContainer/DisableAll")
-EnableAllModsButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/ButtonContainer/EnableAll")
+DisableAllModsButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer/ButtonContainer/DisableAll")
+EnableAllModsButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer/ButtonContainer/EnableAll")
 SelectedModInfoBoxPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox")
 SelectedModNamePath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/HBoxContainer/ModNameLabel")
 SelectedModIconPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/HBoxContainer/ModIcon")
@@ -77,8 +78,8 @@ RestartRequiredPath = NodePath("RestartRequired")
 ApplyChangesButtonPath = NodePath("MainMarginContainer/VBoxContainer/ButtonContainer/ApplyChanges")
 GalleryLeftButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/PreviewGallery/GalleryControllerContainer/GalleryLeftArrow")
 GalleryRightButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/PreviewGallery/GalleryControllerContainer/GalleryRightArrow")
-MoveModUpButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer/MoveUpButton")
-MoveModDownButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer/MoveDownButton")
+MoveModUpButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer/MoveUpButton")
+MoveModDownButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer/MoveDownButton")
 ResetButtonPath = NodePath("MainMarginContainer/VBoxContainer/ButtonContainer/Reset")
 DependencyButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/HBoxContainer/DependencyButton")
 RequiredModsButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/HBoxContainer/RequiredModsButton")
@@ -123,12 +124,12 @@ SelectedModThriveVersionHSeparatorPath = NodePath("MainMarginContainer/VBoxConta
 ModCheckResultDialogPath = NodePath("ModCheckResult")
 LoadWarningDialogPath = NodePath("LoadWarning")
 OtherModInfoDialogPath = NodePath("OtherModInfo")
-ModErrorsContainerPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer/ErrorModItemList")
-ErrorInfoLabelPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer/ErrorInfoPanel/MarginContainer/ScrollContainer/ErrorLabel")
-OneshotLoadingCheckboxPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/CheckBoxContainer/OneshotLoadingCheckBox")
-ConfigItemListPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer/ModConfigItemList")
-ConfigContainerPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer/ConfigPanel/MarginContainer/ScrollContainer/ConfigContainer")
-ConfigPanelContainerPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer/ConfigPanel/MarginContainer")
+ModErrorsContainerPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_ERRORS_TAB/HSplitContainer/ErrorModItemList")
+ErrorInfoLabelPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_ERRORS_TAB/HSplitContainer/ErrorInfoPanel/MarginContainer/ScrollContainer/ErrorLabel")
+OneshotLoadingCheckboxPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer/CheckBoxContainer/OneshotLoadingCheckBox")
+ConfigItemListPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigSplitContainer/ModConfigItemList")
+ConfigContainerPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigSplitContainer/ConfigPanel/MarginContainer/ScrollContainer/ConfigContainer")
+ConfigPanelContainerPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigSplitContainer/ConfigPanel/MarginContainer")
 ModLoaderContainerPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer")
 ConfigItemScene = ExtResource( 19 )
 
@@ -160,6 +161,7 @@ size_flags_vertical = 3
 margin_right = 1441.0
 margin_bottom = 306.0
 size_flags_vertical = 3
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 custom_colors/font_color_bg = Color( 1, 1, 1, 1 )
 custom_colors/font_color_fg = Color( 0, 0, 0, 1 )
 custom_constants/hseparation = 137
@@ -167,7 +169,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="ModLoader" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
+[node name="MOD_LOADER_TAB" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -179,23 +181,23 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 15
 custom_constants/margin_bottom = 5
 
-[node name="LoaderContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader"]
+[node name="LoaderContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB"]
 margin_left = 15.0
 margin_top = 5.0
 margin_right = 1424.0
 margin_bottom = 264.0
 
-[node name="ItemListContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer"]
+[node name="ItemListContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer"]
 margin_right = 1409.0
 margin_bottom = 200.0
 size_flags_vertical = 3
 
-[node name="UnloadedContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer"]
+[node name="UnloadedContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer"]
 margin_right = 627.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 
-[node name="UnloadedModsLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/UnloadedContainer"]
+[node name="UnloadedModsLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/UnloadedContainer"]
 margin_right = 627.0
 margin_bottom = 25.0
 text = "AVAILABLE_MODS"
@@ -203,7 +205,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="UnloadedItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/UnloadedContainer"]
+[node name="UnloadedItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/UnloadedContainer"]
 margin_top = 29.0
 margin_right = 627.0
 margin_bottom = 200.0
@@ -215,57 +217,61 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_styles/bg = SubResource( 1 )
 fixed_icon_size = Vector2( 32, 32 )
 
-[node name="CenterBar" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer"]
+[node name="CenterBar" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer"]
 margin_left = 631.0
 margin_right = 777.0
 margin_bottom = 200.0
 custom_constants/separation = 15
 alignment = 1
 
-[node name="MoveLeftButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar"]
+[node name="MoveLeftButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/CenterBar"]
 margin_top = 25.0
 margin_right = 146.0
 margin_bottom = 60.0
+hint_tooltip = "LEFT_ARROW_TOOLTIP"
 text = "LEFT_ARROW"
 expand_icon = true
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="OrderButtonContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar"]
+[node name="OrderButtonContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/CenterBar"]
 margin_top = 75.0
 margin_right = 146.0
 margin_bottom = 125.0
 alignment = 1
 
-[node name="MoveUpButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer"]
+[node name="MoveUpButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer"]
 margin_left = 21.0
 margin_right = 71.0
 margin_bottom = 50.0
+hint_tooltip = "UP_ARROW_TOOLTIP"
 icon = ExtResource( 11 )
 
-[node name="MoveDownButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer"]
+[node name="MoveDownButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer"]
 margin_left = 75.0
 margin_right = 125.0
 margin_bottom = 50.0
+hint_tooltip = "DOWN_ARROW_TOOLTIP"
 icon = ExtResource( 9 )
 
-[node name="MoveRightButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar"]
+[node name="MoveRightButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/CenterBar"]
 margin_top = 140.0
 margin_right = 146.0
 margin_bottom = 175.0
+hint_tooltip = "RIGHT_ARROW_TOOLTIP"
 text = "RIGHT_ARROW"
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="LoadedContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer"]
+[node name="LoadedContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer"]
 margin_left = 781.0
 margin_right = 1409.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 
-[node name="LoadedModsLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/LoadedContainer"]
+[node name="LoadedModsLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/LoadedContainer"]
 margin_right = 628.0
 margin_bottom = 25.0
 text = "ENABLED_MODS"
@@ -273,7 +279,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="LoadedItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/LoadedContainer"]
+[node name="LoadedItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/LoadedContainer"]
 margin_top = 29.0
 margin_right = 628.0
 margin_bottom = 200.0
@@ -288,7 +294,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer"]
 margin_top = 204.0
 margin_right = 1409.0
 margin_bottom = 259.0
@@ -296,32 +302,32 @@ mouse_filter = 1
 custom_constants/margin_top = 10
 custom_constants/margin_bottom = 10
 
-[node name="ButtonContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer"]
 margin_top = 10.0
 margin_right = 1409.0
 margin_bottom = 45.0
 custom_constants/separation = 10
 alignment = 1
 
-[node name="EnableAll" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/ButtonContainer"]
+[node name="EnableAll" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer/ButtonContainer"]
 margin_left = 488.0
 margin_right = 618.0
 margin_bottom = 35.0
 text = "ENABLE_ALL"
 
-[node name="OpenFolder" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/ButtonContainer"]
+[node name="OpenFolder" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer/ButtonContainer"]
 margin_left = 628.0
 margin_right = 774.0
 margin_bottom = 35.0
 text = "OPEN_FOLDER"
 
-[node name="DisableAll" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/ButtonContainer"]
+[node name="DisableAll" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer/ButtonContainer"]
 margin_left = 784.0
 margin_right = 920.0
 margin_bottom = 35.0
 text = "DISABLE_ALL"
 
-[node name="CheckBoxContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer"]
+[node name="CheckBoxContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer"]
 margin_top = 10.0
 margin_right = 1409.0
 margin_bottom = 45.0
@@ -329,23 +335,24 @@ mouse_filter = 2
 custom_constants/separation = 8
 alignment = 2
 
-[node name="Label" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/CheckBoxContainer"]
+[node name="Label" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer/CheckBoxContainer"]
 margin_left = 1194.0
 margin_top = 5.0
 margin_right = 1385.0
 margin_bottom = 30.0
 grow_horizontal = 2
+hint_tooltip = "ONESHOT_LOADING_TOOLTIP"
 mouse_filter = 1
 text = "ONESHOT_LOADING"
 align = 2
 
-[node name="OneshotLoadingCheckBox" type="CheckBox" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/CheckBoxContainer"]
+[node name="OneshotLoadingCheckBox" type="CheckBox" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer/CheckBoxContainer"]
 margin_left = 1393.0
 margin_right = 1409.0
 margin_bottom = 35.0
 flat = true
 
-[node name="ModErrors" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
+[node name="MOD_ERRORS_TAB" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -358,13 +365,13 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 
-[node name="HSplitContainer" type="HSplitContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors"]
+[node name="HSplitContainer" type="HSplitContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_ERRORS_TAB"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1434.0
 margin_bottom = 264.0
 
-[node name="ErrorModItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer"]
+[node name="ErrorModItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_ERRORS_TAB/HSplitContainer"]
 margin_right = 708.0
 margin_bottom = 259.0
 size_flags_horizontal = 3
@@ -377,13 +384,13 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="ErrorInfoPanel" type="PanelContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer"]
+[node name="ErrorInfoPanel" type="PanelContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_ERRORS_TAB/HSplitContainer"]
 margin_left = 720.0
 margin_right = 1429.0
 margin_bottom = 259.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer/ErrorInfoPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_ERRORS_TAB/HSplitContainer/ErrorInfoPanel"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 708.0
@@ -393,7 +400,7 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer/ErrorInfoPanel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_ERRORS_TAB/HSplitContainer/ErrorInfoPanel/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 697.0
@@ -401,7 +408,7 @@ margin_bottom = 247.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ErrorLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer/ErrorInfoPanel/MarginContainer/ScrollContainer"]
+[node name="ErrorLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_ERRORS_TAB/HSplitContainer/ErrorInfoPanel/MarginContainer/ScrollContainer"]
 visible = false
 margin_top = 106.0
 margin_right = 687.0
@@ -416,7 +423,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="ModConfiguration" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
+[node name="MOD_CONFIGURATION_TAB" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -432,7 +439,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1434.0
@@ -440,12 +447,12 @@ margin_bottom = 264.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ConfigSplitContainer" type="HSplitContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer"]
+[node name="ConfigSplitContainer" type="HSplitContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer"]
 margin_right = 1353.0
 margin_bottom = 259.0
 size_flags_horizontal = 3
 
-[node name="ModConfigItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer"]
+[node name="ModConfigItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigSplitContainer"]
 margin_right = 670.0
 margin_bottom = 259.0
 size_flags_horizontal = 3
@@ -458,13 +465,13 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="ConfigPanel" type="PanelContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer"]
+[node name="ConfigPanel" type="PanelContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigSplitContainer"]
 margin_left = 682.0
 margin_right = 1353.0
 margin_bottom = 259.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer/ConfigPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigSplitContainer/ConfigPanel"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 670.0
@@ -474,24 +481,24 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer/ConfigPanel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigSplitContainer/ConfigPanel/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 664.0
 margin_bottom = 252.0
 scroll_horizontal_enabled = false
 
-[node name="ConfigContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer/ConfigPanel/MarginContainer/ScrollContainer"]
+[node name="ConfigContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigSplitContainer/ConfigPanel/MarginContainer/ScrollContainer"]
 margin_right = 659.0
 size_flags_horizontal = 3
 
-[node name="ConfigButtonContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer"]
+[node name="ConfigButtonContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer"]
 margin_left = 1357.0
 margin_right = 1429.0
 margin_bottom = 259.0
 alignment = 1
 
-[node name="ApplyButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigButtonContainer"]
+[node name="ApplyButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigButtonContainer"]
 margin_top = 73.0
 margin_right = 72.0
 margin_bottom = 108.0
@@ -500,7 +507,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="ClearConfigButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigButtonContainer"]
+[node name="ClearConfigButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigButtonContainer"]
 margin_top = 112.0
 margin_right = 72.0
 margin_bottom = 147.0
@@ -509,7 +516,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="ResetConfigButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigButtonContainer"]
+[node name="ResetConfigButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigButtonContainer"]
 margin_top = 151.0
 margin_right = 72.0
 margin_bottom = 186.0
@@ -908,40 +915,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ModInfoDescription" type="RichTextLabel" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
+[node name="ModInfoDescription" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer" instance=ExtResource( 5 )]
 margin_top = 216.0
 margin_right = 1415.0
 margin_bottom = 280.0
 focus_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/selection_color = Color( 0.0588235, 0.376471, 0.321569, 0.666667 )
 custom_fonts/bold_font = ExtResource( 8 )
 custom_fonts/normal_font = ExtResource( 16 )
-bbcode_enabled = true
-bbcode_text = "Lorem ipsum [color=red]dolor sit amet[/color], consectetur adipiscing elit. Vivamus at urna elementum, [b]lobortis lorem in[/b], pulvinar eros. Pellentesque varius augue nec enim luctus finibus. Nullam tortor diam, feugiat vitae pellentesque vestibulum, interdum eu mi. Proin porttitor ut ex consectetur viverra. Sed lacinia sollicitudin magna, in pellentesque [color=blue]ligula molestie sed[/color]. Maecenas semper gravida nulla vel volutpat. Proin rutrum semper interdum. Nulla auctor lacus a purus condimentum, nec vestibulum lacus semper. Aliquam interdum in arcu sit amet congue. Duis in semper ex. Nullam ut nibh et lacus imperdiet auctor. Nulla tempor sed mi quis viverra. Aenean laoreet, massa ac elementum gravida, libero urna convallis orci, sollicitudin pharetra odio purus id leo.
+bbcode_text = " Lorem ipsum [color=red]dolor sit amet[/color], consectetur adipiscing elit. Vivamus at urna elementum, [b]lobortis lorem in[/b], pulvinar eros. Pellentesque varius augue nec enim luctus finibus. Nullam tortor diam, feugiat vitae pellentesque vestibulum, interdum eu mi. Proin porttitor ut ex consectetur viverra. Sed lacinia sollicitudin magna, in pellentesque [color=blue]ligula molestie sed[/color]. Maecenas semper gravida nulla vel volutpat. Proin rutrum semper interdum. Nulla auctor lacus a purus condimentum, nec vestibulum lacus semper. Aliquam interdum in arcu sit amet congue. Duis in semper ex. Nullam ut nibh et lacus imperdiet auctor. Nulla tempor sed mi quis viverra. Aenean laoreet, massa ac elementum gravida, libero urna convallis orci, sollicitudin pharetra odio purus id leo.
 
 [url=www.google.com]Mauris[/url] fermentum fermentum[wave amp=50 freq=2] risus eget consequat.[/wave] Fusce scelerisque facilisis sapien in ultrices. Nam rutrum quam vel ante lacinia, efficitur viverra erat posuere. Ut eu dictum urna, ut sollicitudin sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae nulla eu orci lacinia aliquet laoreet vel massa. Praesent at viverra ipsum. Phasellus nec euismod turpis. Curabitur sit amet faucibus ex.
 
 Praesent vitae rhoncus enim. Nulla non lacus libero. Donec ut dapibus ipsum. Ut in dapibus diam. Ut iaculis finibus tincidunt. Maecenas ut dolor at lacus lobortis iaculis. Phasellus diam mauris, efficitur venenatis urna nec, ultricies tincidunt nulla. Donec ultricies molestie enim eget pulvinar. Curabitur ut maximus nisi. In maximus sapien vitae neque ullamcorper, eget posuere quam varius. Cras euismod augue ac odio bibendum condimentum. Pellentesque bibendum cursus elementum. Nulla consequat fringilla libero, eu iaculis tellus bibendum at.
 
-Donec rutrum purus at lorem fringilla, nec consequat lacus suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris a eros luctus, ullamcorper diam sed, condimentum orci. Praesent eget ex eu elit vestibulum maximus. Cras vel interdum tellus. Ut mollis faucibus viverra. Sed lorem dui, tristique at nunc vitae, rutrum facilisis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam rhoncus risus nec bibendum.
-
-Phasellus a arcu a lacus eleifend lacinia vel non orci. Morbi elit leo, porttitor eu tempor eu, ultrices sed est. Nullam egestas lectus et mauris sagittis hendrerit. Integer tortor elit, egestas id enim eu, egestas gravida elit. Praesent ac orci eu metus luctus consequat. Vestibulum venenatis odio molestie turpis feugiat tincidunt. Proin at ligula neque. Nunc eu neque eu augue consequat consectetur. Donec vehicula quam quis metus aliquam, quis rhoncus libero accumsan. Nulla id urna leo. Vivamus ut erat tellus. Integer cursus purus nunc, non suscipit lacus condimentum at. Integer congue magna at semper dictum. Aliquam mi leo, commodo eu tortor et, cursus pretium eros."
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at urna elementum, lobortis lorem in, pulvinar eros. Pellentesque varius augue nec enim luctus finibus. Nullam tortor diam, feugiat vitae pellentesque vestibulum, interdum eu mi. Proin porttitor ut ex consectetur viverra. Sed lacinia sollicitudin magna, in pellentesque ligula molestie sed. Maecenas semper gravida nulla vel volutpat. Proin rutrum semper interdum. Nulla auctor lacus a purus condimentum, nec vestibulum lacus semper. Aliquam interdum in arcu sit amet congue. Duis in semper ex. Nullam ut nibh et lacus imperdiet auctor. Nulla tempor sed mi quis viverra. Aenean laoreet, massa ac elementum gravida, libero urna convallis orci, sollicitudin pharetra odio purus id leo.
+Donec rutrum purus at lorem fringilla, nec consequat lacus suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris a eros luctus, ullamcorper diam sed, condimentum orci. Praesent eget ex eu elit vestibulum maximus. Cras vel interdum tellus. Ut mollis faucibus viverra. Sed lorem dui, tristique at nunc vitae, rutrum facilisis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam rhoncus risus nec bibendum."
+text = " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at urna elementum, lobortis lorem in, pulvinar eros. Pellentesque varius augue nec enim luctus finibus. Nullam tortor diam, feugiat vitae pellentesque vestibulum, interdum eu mi. Proin porttitor ut ex consectetur viverra. Sed lacinia sollicitudin magna, in pellentesque ligula molestie sed. Maecenas semper gravida nulla vel volutpat. Proin rutrum semper interdum. Nulla auctor lacus a purus condimentum, nec vestibulum lacus semper. Aliquam interdum in arcu sit amet congue. Duis in semper ex. Nullam ut nibh et lacus imperdiet auctor. Nulla tempor sed mi quis viverra. Aenean laoreet, massa ac elementum gravida, libero urna convallis orci, sollicitudin pharetra odio purus id leo.
 
 Mauris fermentum fermentum risus eget consequat. Fusce scelerisque facilisis sapien in ultrices. Nam rutrum quam vel ante lacinia, efficitur viverra erat posuere. Ut eu dictum urna, ut sollicitudin sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae nulla eu orci lacinia aliquet laoreet vel massa. Praesent at viverra ipsum. Phasellus nec euismod turpis. Curabitur sit amet faucibus ex.
 
 Praesent vitae rhoncus enim. Nulla non lacus libero. Donec ut dapibus ipsum. Ut in dapibus diam. Ut iaculis finibus tincidunt. Maecenas ut dolor at lacus lobortis iaculis. Phasellus diam mauris, efficitur venenatis urna nec, ultricies tincidunt nulla. Donec ultricies molestie enim eget pulvinar. Curabitur ut maximus nisi. In maximus sapien vitae neque ullamcorper, eget posuere quam varius. Cras euismod augue ac odio bibendum condimentum. Pellentesque bibendum cursus elementum. Nulla consequat fringilla libero, eu iaculis tellus bibendum at.
 
-Donec rutrum purus at lorem fringilla, nec consequat lacus suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris a eros luctus, ullamcorper diam sed, condimentum orci. Praesent eget ex eu elit vestibulum maximus. Cras vel interdum tellus. Ut mollis faucibus viverra. Sed lorem dui, tristique at nunc vitae, rutrum facilisis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam rhoncus risus nec bibendum.
-
-Phasellus a arcu a lacus eleifend lacinia vel non orci. Morbi elit leo, porttitor eu tempor eu, ultrices sed est. Nullam egestas lectus et mauris sagittis hendrerit. Integer tortor elit, egestas id enim eu, egestas gravida elit. Praesent ac orci eu metus luctus consequat. Vestibulum venenatis odio molestie turpis feugiat tincidunt. Proin at ligula neque. Nunc eu neque eu augue consequat consectetur. Donec vehicula quam quis metus aliquam, quis rhoncus libero accumsan. Nulla id urna leo. Vivamus ut erat tellus. Integer cursus purus nunc, non suscipit lacus condimentum at. Integer congue magna at semper dictum. Aliquam mi leo, commodo eu tortor et, cursus pretium eros."
+Donec rutrum purus at lorem fringilla, nec consequat lacus suscipit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris a eros luctus, ullamcorper diam sed, condimentum orci. Praesent eget ex eu elit vestibulum maximus. Cras vel interdum tellus. Ut mollis faucibus viverra. Sed lorem dui, tristique at nunc vitae, rutrum facilisis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam rhoncus risus nec bibendum."
+fit_content_height = false
 selection_enabled = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+ExtendedBbcode = "[thrive:input]g_move_forward[/thrive:input]"
 
 [node name="ButtonContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer"]
 margin_top = 628.0
@@ -1633,20 +1632,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="item_selected" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/UnloadedContainer/UnloadedItemList" to="." method="AvailableModSelected"]
-[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar/MoveLeftButton" to="." method="DisableModPressed"]
-[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer/MoveUpButton" to="." method="MoveButtonPressed" binds= [ true, 1 ]]
-[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer/MoveDownButton" to="." method="MoveButtonPressed" binds= [ false, 1 ]]
-[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar/MoveRightButton" to="." method="EnableModPressed"]
-[connection signal="item_selected" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/LoadedContainer/LoadedItemList" to="." method="EnabledModSelected"]
-[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/ButtonContainer/EnableAll" to="." method="EnableAllPressed"]
-[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/ButtonContainer/OpenFolder" to="." method="OpenModsFolder"]
-[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/ButtonContainer/DisableAll" to="." method="DisableAllPressed"]
-[connection signal="item_selected" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer/ErrorModItemList" to="." method="ErrorModItemListSelected"]
-[connection signal="item_selected" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer/ModConfigItemList" to="." method="ModConfigModSelected"]
-[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigButtonContainer/ApplyButton" to="." method="ApplyModConfig"]
-[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigButtonContainer/ClearConfigButton" to="." method="OnClearConfigButtonPressed"]
-[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigButtonContainer/ResetConfigButton" to="." method="OnResetConfigButtonPressed"]
+[connection signal="item_selected" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/UnloadedContainer/UnloadedItemList" to="." method="AvailableModSelected"]
+[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/CenterBar/MoveLeftButton" to="." method="DisableModPressed"]
+[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer/MoveUpButton" to="." method="MoveButtonPressed" binds= [ true, 1 ]]
+[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer/MoveDownButton" to="." method="MoveButtonPressed" binds= [ false, 1 ]]
+[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/CenterBar/MoveRightButton" to="." method="EnableModPressed"]
+[connection signal="item_selected" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/ItemListContainer/LoadedContainer/LoadedItemList" to="." method="EnabledModSelected"]
+[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer/ButtonContainer/EnableAll" to="." method="EnableAllPressed"]
+[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer/ButtonContainer/OpenFolder" to="." method="OpenModsFolder"]
+[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer/ButtonContainer/DisableAll" to="." method="DisableAllPressed"]
+[connection signal="item_selected" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_ERRORS_TAB/HSplitContainer/ErrorModItemList" to="." method="ErrorModItemListSelected"]
+[connection signal="item_selected" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigSplitContainer/ModConfigItemList" to="." method="ModConfigModSelected"]
+[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigButtonContainer/ApplyButton" to="." method="ApplyModConfig"]
+[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigButtonContainer/ClearConfigButton" to="." method="OnClearConfigButtonPressed"]
+[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_CONFIGURATION_TAB/HBoxContainer/ConfigButtonContainer/ResetConfigButton" to="." method="OnResetConfigButtonPressed"]
 [connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/PreviewGallery/GalleryControllerContainer/GalleryLeftArrow" to="." method="GalleryLeftArrowPressed"]
 [connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/PreviewGallery/GalleryControllerContainer/GalleryRightArrow" to="." method="GalleryRightArrowPressed"]
 [connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/HBoxContainer/DependencyButton" to="." method="OnDependencyPressed"]
