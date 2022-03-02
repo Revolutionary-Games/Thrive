@@ -96,7 +96,7 @@ public class MicrobeColony
 
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;
-        if(microbe != Master)
+        if (microbe != Master)
             Master.Mass -= microbe.Mass;
     }
 
