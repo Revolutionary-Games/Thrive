@@ -187,7 +187,7 @@
                 var colonyMembers = property.Value.Children<JProperty>().First(p => p.Name == "Colony").Value.Children<JProperty>()
                     .First(p => p.Name == "ColonyMembers").Value.Value<JArray>();
                 var colonyMasterMass = property.Value.Children<JProperty>().First(p => p.Name == "Mass");
-                // nu intra pe if
+
                 if (colonyMembers?.Count() > 0)
                 {
                     UpdateColonyMasterMass(colonyMasterMass, colonyMembers);
@@ -208,7 +208,6 @@
             }
 
             property.Value = property.Value.Value<float>() + mass;
-            GD.Print(property.Value.Value<float>());
         }
     }
 
