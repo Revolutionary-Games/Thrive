@@ -62,6 +62,7 @@ public class MicrobeColony
 
     public void RemoveFromColony(Microbe? microbe)
     {
+        GD.Print(Master.Mass," ",microbe.Mass);
         if (microbe?.Colony == null)
             throw new ArgumentException("Microbe null or not a member of a colony");
 
@@ -95,14 +96,15 @@ public class MicrobeColony
 
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;
-        Master.Mass -= microbe.Mass;
+        if(microbe != Master)
+            Master.Mass -= microbe.Mass;
     }
 
     public void AddToColony(Microbe microbe, Microbe master)
     {
         if (microbe == null || master == null || microbe.Colony != null)
             throw new ArgumentException("Microbe or master null or microbe already is in a colony");
-
+        GD.Print(Master.Mass," ",microbe.Mass);
         ColonyMembers.Add(microbe);
         Master.Mass += microbe.Mass;
 
