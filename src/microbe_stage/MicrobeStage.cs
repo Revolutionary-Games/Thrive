@@ -270,7 +270,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         // These need to be created here as well for child property save load to work
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
-        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
+        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned, Clouds);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
@@ -751,25 +751,14 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         int currentLineIndex = 0;
         var position = microbe.GlobalTransform.origin;
 
-        // Update all lines (or create more if we don't have enough) to point to compounds (if found) they look for
-        foreach (var (compound, range, minAmount, colour) in activeCompoundDetections)
+        foreach (var tuple in microbe.GetDetectedCompounds(Clouds))
         {
             var line = GetOrCreateGuidanceLine(currentLineIndex++);
 
-            // TODO: should we use threading to parallelize these compound location finds?
-            var target = Clouds.FindCompoundNearPoint(position, compound, range, minAmount);
-
-            if (target == null)
-            {
-                line.Visible = false;
-            }
-            else
-            {
-                line.Colour = colour;
-                line.LineStart = position;
-                line.LineEnd = target.Value;
-                line.Visible = true;
-            }
+            line.Colour = tuple.Colour;
+            line.LineStart = position;
+            line.LineEnd = tuple.Target;
+            line.Visible = true;
         }
 
         // Remove excess lines
