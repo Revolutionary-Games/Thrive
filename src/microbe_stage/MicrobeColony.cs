@@ -104,6 +104,7 @@ public class MicrobeColony
     {
         if (microbe == null || master == null || microbe.Colony != null)
             throw new ArgumentException("Microbe or master null or microbe already is in a colony");
+
         ColonyMembers.Add(microbe);
         Master.Mass += microbe.Mass;
 

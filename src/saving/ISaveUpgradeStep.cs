@@ -184,11 +184,12 @@
         {
             if (property.Name.Contains("ObjectToFollow"))
             {
-                var colonyMembers = property.Value.Children<JProperty>().First(p => p.Name == "Colony").Value.Children<JProperty>()
+                var colonyMembers = property.Value.Children<JProperty>().First(p => p.Name == "Colony")
+                    .Value.Children<JProperty>()
                     .First(p => p.Name == "ColonyMembers").Value.Value<JArray>();
                 var colonyMasterMass = property.Value.Children<JProperty>().First(p => p.Name == "Mass");
 
-                if (colonyMembers?.Count() > 0)
+                if (colonyMembers?.Count > 0)
                 {
                     UpdateColonyMasterMass(colonyMasterMass, colonyMembers);
                 }
