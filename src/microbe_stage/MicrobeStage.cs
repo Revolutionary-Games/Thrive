@@ -406,7 +406,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             // Show the game lost popup if not already visible
             HUD.ShowExtinctionBox();
 
-            Jukebox.Instance.PlayCategory("Extinction");
             return;
         }
 
@@ -648,6 +647,17 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         GD.Print("The player has died");
 
+        // Decrease the population by the constant for the player dying
+        GameWorld.AlterSpeciesPopulation(
+            GameWorld.PlayerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
+            TranslationServer.Translate("PLAYER_DIED"),
+            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
+
+        if (IsGameOver())
+        {
+            Jukebox.Instance.PlayCategory("Extinction");
+        }
+
         HUD.HideReproductionDialog();
 
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
@@ -690,18 +700,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     /// </summary>
     private void HandlePlayerRespawn()
     {
-        var playerSpecies = GameWorld.PlayerSpecies;
-
-        // Decrease the population by the constant for the player dying
-        GameWorld.AlterSpeciesPopulation(
-            playerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
-            TranslationServer.Translate("PLAYER_DIED"),
-            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
-
         HUD.HintText = string.Empty;
 
         // Respawn if not extinct (or freebuild)
-        if (playerSpecies.Population <= 0 && !CurrentGame!.FreeBuild)
+        if (IsGameOver())
         {
             gameOver = true;
         }
@@ -803,5 +805,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
 
         return chemoreceptionLines[index];
+    }
+
+    private bool IsGameOver()
+    {
+        return GameWorld.PlayerSpecies.Population <= 0 && !CurrentGame!.FreeBuild;
     }
 }
