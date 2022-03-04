@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-18 10:37+0200\n"
-"PO-Revision-Date: 2022-02-11 07:40+0000\n"
+"PO-Revision-Date: 2022-03-03 16:11+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -111,7 +111,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
-"Органели руху\n"
+"Зовнішні органели\n"
 "\n"
 "Джугутики: живлячися прискорюють вашу клітину [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
@@ -242,7 +242,7 @@ msgstr "Керіник звукової команди Thrive написав б�
 
 #: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_23"
-msgstr "Порада: якщо ваша клітина має 150 гексів(шестикутників), то ви можете поглинати великі залізні брили."
+msgstr "Порада: якщо ваша клітина має 150 гексів, то ви можете поглинати великі залізні брили."
 
 #: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_24"
@@ -300,7 +300,7 @@ msgstr "Перемкнути поглинання"
 
 #: ../simulation_parameters/common/input_options.json:46
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr ""
+msgstr "Утримуйте для показу меню пакету команд"
 
 #: ../simulation_parameters/common/input_options.json:50
 #: ../src/microbe_stage/MicrobeStage.tscn:2112
@@ -688,7 +688,7 @@ msgstr "Хижі ворсинки"
 #: ../simulation_parameters/microbe_stage/organelles.json:53
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:672
 msgid "RUSTICYANIN"
-msgstr "Заліокисні білки ( рустиціан)"
+msgstr "Заліокисні білки"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:86
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:769
@@ -777,9 +777,8 @@ msgstr "Хеморецептор"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:666
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2078
-#, fuzzy
 msgid "SIGNALING_AGENT"
-msgstr "З'єднувальний агент"
+msgstr "Сигнальний агент"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
@@ -835,7 +834,7 @@ msgstr "популяція на цих ділянках відокремилас
 
 #: ../src/auto-evo/RunResults.cs:636
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr "має мутацію"
+msgstr "мутував"
 
 #: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
@@ -2074,9 +2073,8 @@ msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "Збереження має іншу версію"
 
 #: ../src/gui_common/RadialMenu.cs:63
-#, fuzzy
 msgid "SELECT_OPTION"
-msgstr "Вибрано:"
+msgstr "Виберіть налаштування"
 
 #: ../src/gui_common/TweakedColourPicker.cs:393
 msgid "COLOUR_PICKER_PICK_COLOUR"
@@ -2141,7 +2139,7 @@ msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
-msgstr "Сирий"
+msgstr "Необроблений"
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2559
@@ -2194,7 +2192,7 @@ msgstr "Відкрити меню"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:53
 msgid "OPEN_HELP_SCREEN"
-msgstr "В"
+msgstr "Відкрити вікно допомоги"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:67
 msgid "WILL_YOU_THRIVE"
@@ -2478,7 +2476,7 @@ msgstr "Продукує [thrive:compound type=\"glucose\"][/thrive:compound]. �
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1589
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "Термопласти– це двохмембранні структури"
+msgstr "Термопласти– це двохмембранні структур, що містить термочутливі пігменти зібрані разом у мішечки. Це прокаріот захоплений для використання еукаріотичним господарем. Пігменти в термопласті здатні використовувати перепад температур в оточені, щоб продукувати глюкозу з води та газуватого вуглекислого газу в процесі, що зветься Термосинтез. Кількість продукованої глюкози залежить від концентрації вуглекислого газу та температури."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1605
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
@@ -2518,14 +2516,12 @@ msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Токсинова вакуоля– це вакуоля модифікована для специфічного продукування– зберігання та секреції окситоцинових токсинів. Більша кількість токсинових вакуоль збільшить швидкість виведення."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2079
-#, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Натисніть [thrive:input]g_toggle_binding[/thrive:input] для переходу до зв'язувального режиму. У ньому ви можете з'єднуватись з іншими клітинами вашого ж виду прермістивши їх до своєї колонії. Щоб покинути її натисніть [thrive:input]g_unbind_all[/thrive:input]."
+msgstr "Натисніть [thrive:input]g_pack_commands[/thrive:input] для відкриття меню надавання команд іншим особам вашого виду."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
-#, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "Дозволяє з'єднуватися з іншими клітинами.Це перший крок до багатоклітинності. Коли ваша клітина– частина колонії, сполуки розподіляються між клітинами. Ти не можеш зайти в редактор, поки є частиною колонії, тому вам необхідно від'єднатися, зібравши необхідну кількість сполук, перед від'єднання."
+msgstr "Сигнальний агент дозволяє клітинам створювати хімікати, на які можуть відреагувати інші клітини. Сигнальні хімікати можуть використовуватись привертання уваги інших клітин, чи попередити про небезпеку спонукаючи їх на втечу."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2176
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -2669,27 +2665,27 @@ msgstr "Спавн ворога"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:447
 msgid "SIGNAL_COMMAND_NONE"
-msgstr ""
+msgstr "Нема команд"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "SIGNAL_COMMAND_FOLLOW"
-msgstr ""
+msgstr "Стежте за мною"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:449
 msgid "SIGNAL_COMMAND_TO_ME"
-msgstr ""
+msgstr "Рухайтесь до мене"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:450
 msgid "SIGNAL_COMMAND_FLEE"
-msgstr ""
+msgstr "Тікайте"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:451
 msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr ""
+msgstr "Зробіться агресивними"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:454
 msgid "SIGNAL_TO_EMIT"
-msgstr ""
+msgstr "Сигнал для виведення"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:770
 msgid "STUFF_AT"
@@ -2918,7 +2914,7 @@ msgstr "Білки"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1020
 msgid "EXTERNAL"
-msgstr "Зовнішній"
+msgstr "Зовнішні"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1079
 msgid "ORGANELLES"
