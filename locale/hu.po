@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-20 15:15+0200\n"
-"PO-Revision-Date: 2022-02-13 08:37+0000\n"
+"PO-Revision-Date: 2022-02-27 23:22+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
@@ -1126,7 +1126,7 @@ msgstr "Média lejátszás"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "MEDIASTOP"
-msgstr ""
+msgstr "Média stop"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
 msgid "MEDIAPREVIOUS"
@@ -2072,9 +2072,8 @@ msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "A mentéseknek különböző változatai vannak"
 
 #: ../src/gui_common/RadialMenu.cs:63
-#, fuzzy
 msgid "SELECT_OPTION"
-msgstr "Kijelölve:"
+msgstr "Válassz ki egy lehetőséget"
 
 #: ../src/gui_common/TweakedColourPicker.cs:393
 msgid "COLOUR_PICKER_PICK_COLOUR"
@@ -2082,7 +2081,7 @@ msgstr "Válassz egy színt a játék ablakából"
 
 #: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Szín beállítása előre beállítottra"
 
 #: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
@@ -2407,8 +2406,9 @@ msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Szúrd le a többi sejtet ezzel."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
+#, fuzzy
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Szúrd le a többi sejtet ezzel."
+msgstr "A pilusok sok mikroorganizmus felületén megtalálhatóak, amik finom szőrszálakhoz hasonlítanak. Több tíz, akár több száz pilus is található egy mikroorganizmuson, feladatuk pedig egy, vagy több is lehet a ragadozást beleértve."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
@@ -2441,8 +2441,9 @@ msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
+#, fuzzy
 msgid "NUCLEUS_DESCRIPTION"
-msgstr ""
+msgstr "Az eukarióta sejtek legmeghatározóbb jellemzője. A sejtmaghoz még hozzá tartozik az endoplazmatikus membránrendszer és a golgi-készülék is."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1420
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
