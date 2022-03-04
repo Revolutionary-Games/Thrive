@@ -266,7 +266,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         Connect("body_shape_entered", this, nameof(OnContactBegin));
         Connect("body_shape_exited", this, nameof(OnContactEnd));
 
-
         if (IsLoadedFromSave)
         {
             if (organelles == null)
