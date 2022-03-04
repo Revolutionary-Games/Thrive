@@ -266,7 +266,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         Connect("body_shape_entered", this, nameof(OnContactBegin));
         Connect("body_shape_exited", this, nameof(OnContactEnd));
 
-        Mass = Constants.MICROBE_BASE_MASS;
 
         if (IsLoadedFromSave)
         {
@@ -305,6 +304,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             SetScaleFromSpecies();
             SetMembraneFromSpecies();
         }
+        else
+            Mass = Constants.MICROBE_BASE_MASS;
 
         onReadyCalled = true;
     }

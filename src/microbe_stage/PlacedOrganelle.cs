@@ -221,6 +221,14 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         FinishAttachToMicrobe();
 
+        // Physics
+        // TODO: shouldn't we also add the mass to the colony master?
+        ParentMicrobe!.Mass += Definition.Mass;
+
+        // Add the mass of the organelles to the colony master
+        if (ParentMicrobe.Colony != null && ParentMicrobe != ParentMicrobe.Colony.Master)
+            ParentMicrobe.Colony.Master.Mass += Definition.Mass;
+
         ResetGrowth();
     }
 
@@ -497,15 +505,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             SetupOrganelleGraphics();
         }
 
-        // Physics
-        // TODO: shouldn't we also add the mass to the colony master?
-        ParentMicrobe!.Mass += Definition.Mass;
 
-        // Add the mass of the organelles to the colony master
-        if (ParentMicrobe.Colony != null && ParentMicrobe != ParentMicrobe.Colony.Master)
-            ParentMicrobe.Colony.Master.Mass += Definition.Mass;
 
-        MakeCollisionShapes(ParentMicrobe.Colony?.Master ?? ParentMicrobe);
+        MakeCollisionShapes(ParentMicrobe!.Colony?.Master ?? ParentMicrobe);
 
         // Components
         components = new List<IOrganelleComponent>();
