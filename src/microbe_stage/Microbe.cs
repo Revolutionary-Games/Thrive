@@ -281,6 +281,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 }
             }
 
+            Mass = Constants.MICROBE_BASE_MASS;
+
             // Need to re-attach our organelles
             foreach (var organelle in organelles)
                 OrganelleParent.AddChild(organelle);
@@ -288,6 +290,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             // Colony children shapes need re-parenting to their master
             // The shapes have to be re-parented to their original microbe then to the master again, maybe engine bug
             // Also re-add to the collision exception and change the mode to static as it should be
+            // And add remake mass for colony master
             if (Colony != null && this != Colony.Master)
             {
                 ReParentShapes(this, Vector3.Zero);
@@ -295,6 +298,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 Colony.Master.AddCollisionExceptionWith(this);
                 AddCollisionExceptionWith(Colony.Master);
                 Mode = ModeEnum.Static;
+                Colony.Master.Mass += Mass;
             }
 
             // And recompute storage
@@ -304,8 +308,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             SetScaleFromSpecies();
             SetMembraneFromSpecies();
         }
-        else
-            Mass = Constants.MICROBE_BASE_MASS;
 
         onReadyCalled = true;
     }
