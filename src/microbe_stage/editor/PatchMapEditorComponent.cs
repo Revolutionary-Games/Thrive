@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Globalization;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
-///   Editor GUI base that adds patch map functionality
+///   Editor patch map component
 /// </summary>
-public abstract class EditorWithPatchesGUIBase<TEditor> : EditorGUIBase<TEditor>, IEditorWithPatchesGUI
+/// <remarks>
+///   <para>
+///     TODO: this is a bit too microbe specific currently so this probably needs a bit more generalization in the
+///     future with more logic being put in <see cref="MicrobeEditorPatchMap"/>
+///   </para>
+/// </remarks>
+public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
     where TEditor : Godot.Object, IEditorWithPatches
 {
     [Export]
@@ -89,6 +96,22 @@ public abstract class EditorWithPatchesGUIBase<TEditor> : EditorGUIBase<TEditor>
     [Export]
     public NodePath PatchPhosphateSituationPath = null!;
 
+    /// <summary>
+    ///   Where the player wants to move after editing
+    /// </summary>
+    [JsonProperty]
+    protected Patch? targetPatch;
+
+    /// <summary>
+    ///   When false the player is no longer allowed to move patches (other than going back to where they were at the
+    ///   start)
+    /// </summary>
+    [JsonProperty]
+    protected bool canStillMove;
+
+    [JsonProperty]
+    protected Patch playerPatchOnEntry = null!;
+
     protected PatchMapDrawer mapDrawer = null!;
 
     private Control patchNothingSelected = null!;
@@ -118,6 +141,29 @@ public abstract class EditorWithPatchesGUIBase<TEditor> : EditorGUIBase<TEditor>
     private TextureRect patchIronSituation = null!;
     private TextureRect patchAmmoniaSituation = null!;
     private TextureRect patchPhosphateSituation = null!;
+
+    private Compound atp = null!;
+    private Compound ammonia = null!;
+    private Compound carbondioxide = null!;
+    private Compound glucose = null!;
+    private Compound hydrogensulfide = null!;
+    private Compound iron = null!;
+    private Compound nitrogen = null!;
+    private Compound oxygen = null!;
+    private Compound phosphates = null!;
+    private Compound sunlight = null!;
+
+    private Texture increaseIcon = null!;
+    private Texture decreaseIcon = null!;
+
+    /// <summary>
+    ///   Returns the current patch the player is in
+    /// </summary>
+    [JsonIgnore]
+    public Patch CurrentPatch => targetPatch ?? playerPatchOnEntry;
+
+    [JsonIgnore]
+    public Patch? SelectedPatch => targetPatch;
 
     public override void _Ready()
     {
@@ -153,6 +199,39 @@ public abstract class EditorWithPatchesGUIBase<TEditor> : EditorGUIBase<TEditor>
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
 
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
+
+        atp = SimulationParameters.Instance.GetCompound("atp");
+        ammonia = SimulationParameters.Instance.GetCompound("ammonia");
+        carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
+        glucose = SimulationParameters.Instance.GetCompound("glucose");
+        hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+        iron = SimulationParameters.Instance.GetCompound("iron");
+        nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
+        oxygen = SimulationParameters.Instance.GetCompound("oxygen");
+        phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
+        increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
+        decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
+    }
+
+    public override void Init(TEditor owningEditor, bool fresh)
+    {
+        base.Init(owningEditor, fresh);
+
+        if (Editor.IsLoadedFromSave)
+        {
+            UpdatePlayerPatch(targetPatch);
+        }
+        else
+        {
+            targetPatch = null;
+
+            playerPatchOnEntry = Editor.CurrentGame.GameWorld.Map.CurrentPatch ??
+                throw new InvalidOperationException("Map current patch needs to be set before entering the editor");
+
+            canStillMove = true;
+        }
     }
 
     public void SetMap(PatchMap map)
@@ -160,12 +239,132 @@ public abstract class EditorWithPatchesGUIBase<TEditor> : EditorGUIBase<TEditor>
         mapDrawer.Map = map;
     }
 
-    public void UpdatePlayerPatch(Patch? patch)
+    public override void OnFinishEditing()
     {
-        if (editor == null)
-            throw new InvalidOperationException("GUI not initialized");
+        // Move patches
+        if (targetPatch != null)
+        {
+            GD.Print(GetType().Name, ": applying player move to patch: ",
+                TranslationServer.Translate(targetPatch.Name));
+            Editor.CurrentGame.GameWorld.Map.CurrentPatch = targetPatch;
 
-        mapDrawer.PlayerPatch = patch ?? editor.CurrentPatch;
+            // Add the edited species to that patch to allow the species to gain population there
+            // TODO: Log player species' migration
+            targetPatch.AddSpecies(Editor.EditedBaseSpecies, 0);
+        }
+    }
+
+    public override void OnMutationPointsChanged(int mutationPoints)
+    {
+    }
+
+    public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
+    {
+    }
+
+    public override void OnInsufficientMP(bool playSound)
+    {
+    }
+
+    public override void OnActionBlockedWhileAnotherIsInProgress()
+    {
+    }
+
+    protected virtual void UpdateShownPatchDetails()
+    {
+        var patch = mapDrawer.SelectedPatch;
+
+        if (patch == null)
+        {
+            patchDetails.Visible = false;
+            patchNothingSelected.Visible = true;
+
+            return;
+        }
+
+        patchDetails.Visible = true;
+        patchNothingSelected.Visible = false;
+
+        UpdatePatchDetails(patch);
+
+        // Enable move to patch button if this is a valid move
+        moveToPatchButton.Disabled = !IsPatchMoveValid(patch);
+    }
+
+    protected float GetCompoundAmount(Patch patch, string compoundName)
+    {
+        return patch.GetCompoundAmount(compoundName);
+    }
+
+    protected override void OnTranslationsChanged()
+    {
+        UpdatePatchDetails(CurrentPatch);
+    }
+
+    /// <summary>
+    ///   Returns true when the player is allowed to move to the specified patch
+    /// </summary>
+    /// <returns>True if the patch move requested is valid. False otherwise</returns>
+    private bool IsPatchMoveValid(Patch? patch)
+    {
+        if (patch == null)
+            return false;
+
+        var from = CurrentPatch;
+
+        // Can't go to the patch you are in
+        if (from == patch)
+            return false;
+
+        // Can return to the patch the player started in, as a way to "undo" the change
+        if (patch == playerPatchOnEntry)
+            return true;
+
+        // If we are freebuilding, check if the target patch is connected by any means, then it is allowed
+        if (Editor.FreeBuilding && CurrentPatch.GetAllConnectedPatches().Contains(patch))
+            return true;
+
+        // Can't move if out of moves
+        if (!canStillMove)
+            return false;
+
+        // Need to have a connection to move
+        foreach (var adjacent in from.Adjacent)
+        {
+            if (adjacent == patch)
+                return true;
+        }
+
+        return false;
+    }
+
+    private void SetPlayerPatch(Patch? patch)
+    {
+        if (!IsPatchMoveValid(patch))
+            throw new ArgumentException("can't move to the specified patch");
+
+        // One move per editor cycle allowed, unless freebuilding
+        if (!Editor.FreeBuilding)
+            canStillMove = false;
+
+        if (patch == playerPatchOnEntry)
+        {
+            targetPatch = null;
+
+            // Undoing the move, restores the move
+            canStillMove = true;
+        }
+        else
+        {
+            targetPatch = patch;
+        }
+
+        Editor.OnCurrentPatchUpdated(targetPatch ?? CurrentPatch);
+    }
+
+    private void UpdatePlayerPatch(Patch? patch)
+    {
+        mapDrawer.PlayerPatch = patch ?? Editor.CurrentPatch;
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
@@ -174,11 +373,8 @@ public abstract class EditorWithPatchesGUIBase<TEditor> : EditorGUIBase<TEditor>
     /// <summary>
     ///   Updates patch-specific GUI elements with data from a patch
     /// </summary>
-    public virtual void UpdatePatchDetails(Patch patch)
+    private void UpdatePatchDetails(Patch patch)
     {
-        if (editor == null)
-            throw new InvalidOperationException("GUI not initialized");
-
         patchName.Text = TranslationServer.Translate(patch.Name);
 
         // Biome: {0}
@@ -190,7 +386,7 @@ public abstract class EditorWithPatchesGUIBase<TEditor> : EditorGUIBase<TEditor>
         patchDepth.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("BELOW_SEA_LEVEL"),
             patch.Depth[0], patch.Depth[1]);
-        patchPlayerHere.Visible = editor.CurrentPatch == patch;
+        patchPlayerHere.Visible = Editor.CurrentPatch == patch;
 
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
 
@@ -232,15 +428,7 @@ public abstract class EditorWithPatchesGUIBase<TEditor> : EditorGUIBase<TEditor>
             speciesListBox.AddItem(speciesLabel);
         }
 
-        UpdateConditionDifferencesBetweenPatches(patch, editor.CurrentPatch);
-    }
-
-    protected void MoveToPatchClicked()
-    {
-        var target = mapDrawer.SelectedPatch;
-
-        if (editor!.IsPatchMoveValid(target))
-            editor.SetPlayerPatch(target);
+        UpdateConditionDifferencesBetweenPatches(patch, Editor.CurrentPatch);
     }
 
     /// <remarks>
@@ -355,52 +543,11 @@ public abstract class EditorWithPatchesGUIBase<TEditor> : EditorGUIBase<TEditor>
         }
     }
 
-    protected virtual void UpdateShownPatchDetails()
+    private void MoveToPatchClicked()
     {
-        var patch = mapDrawer.SelectedPatch;
+        var target = mapDrawer.SelectedPatch;
 
-        if (patch == null)
-        {
-            patchDetails.Visible = false;
-            patchNothingSelected.Visible = true;
-
-            return;
-        }
-
-        patchDetails.Visible = true;
-        patchNothingSelected.Visible = false;
-
-        UpdatePatchDetails(patch);
-
-        // Enable move to patch button if this is a valid move
-        moveToPatchButton.Disabled = !editor!.IsPatchMoveValid(patch);
-    }
-
-    protected float GetCompoundAmount(Patch patch, string compoundName)
-    {
-        return GetCompoundAmount(patch, patch.Biome, compoundName);
-    }
-
-    protected float GetCompoundAmount(Patch patch, BiomeConditions biome, string compoundName)
-    {
-        var compound = SimulationParameters.Instance.GetCompound(compoundName);
-
-        switch (compoundName)
-        {
-            case "sunlight":
-                return biome.Compounds[compound].Dissolved * 100;
-            case "oxygen":
-                return biome.Compounds[compound].Dissolved * 100;
-            case "carbondioxide":
-                return biome.Compounds[compound].Dissolved * 100;
-            case "nitrogen":
-                return biome.Compounds[compound].Dissolved * 100;
-            case "iron":
-                return patch.GetTotalChunkCompoundAmount(compound);
-            default:
-                return biome.Compounds[compound].Density *
-                    biome.Compounds[compound].Amount + patch.GetTotalChunkCompoundAmount(
-                        compound);
-        }
+        if (IsPatchMoveValid(target))
+            SetPlayerPatch(target);
     }
 }

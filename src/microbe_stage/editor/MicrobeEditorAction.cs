@@ -4,9 +4,6 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Done actions are stored here to provide undo/redo functionality
 /// </summary>
-/// <remarks>
-///   TODO: this probably needs to be split into separate classes to make saving work for these
-/// </remarks>
 public class MicrobeEditorAction : ReversibleAction
 {
     // TODO: split this to a separate class / interface (I'm not doing it here due to the open dynamic MP PR

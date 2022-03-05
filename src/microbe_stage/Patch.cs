@@ -208,6 +208,50 @@ public class Patch
         return population;
     }
 
+    public float GetCompoundAmount(string compoundName)
+    {
+        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+
+        switch (compoundName)
+        {
+            case "sunlight":
+                return Biome.Compounds[compound].Dissolved * 100;
+            case "oxygen":
+                return Biome.Compounds[compound].Dissolved * 100;
+            case "carbondioxide":
+                return Biome.Compounds[compound].Dissolved * 100;
+            case "nitrogen":
+                return Biome.Compounds[compound].Dissolved * 100;
+            case "iron":
+                return GetTotalChunkCompoundAmount(compound);
+            default:
+                return Biome.Compounds[compound].Density * Biome.Compounds[compound].Amount +
+                    GetTotalChunkCompoundAmount(compound);
+        }
+    }
+
+    public float GetCompoundAmountInSnapshot(PatchSnapshot snapshot, string compoundName)
+    {
+        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+
+        switch (compoundName)
+        {
+            case "sunlight":
+                return snapshot.Biome.Compounds[compound].Dissolved * 100;
+            case "oxygen":
+                return snapshot.Biome.Compounds[compound].Dissolved * 100;
+            case "carbondioxide":
+                return snapshot.Biome.Compounds[compound].Dissolved * 100;
+            case "nitrogen":
+                return snapshot.Biome.Compounds[compound].Dissolved * 100;
+            case "iron":
+                return GetTotalChunkCompoundAmount(compound);
+            default:
+                return snapshot.Biome.Compounds[compound].Density * snapshot.Biome.Compounds[compound].Amount +
+                    GetTotalChunkCompoundAmount(compound);
+        }
+    }
+
     public float GetTotalChunkCompoundAmount(Compound compound)
     {
         var result = 0.0f;

@@ -4,15 +4,48 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   More specialized editor base type that supports hex based editors. Due to C# not supporting multiple inheritance
-///   this needs to inherit the patch handling.
+///   Editor component that specializes in hex-based stuff editing
 /// </summary>
-public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWithPatchesBase<TGUI, TAction, TStage>, IHexEditor
-    where TGUI : class, IHexEditorGUI, IEditorWithPatchesGUI
+public abstract class
+    HexEditorComponentBase<TEditor, TAction, THexMove> : EditorComponentWithActionsBase<TEditor, TAction>
+    where TEditor : Godot.Object, IHexEditor
+    /*where TGUI : class, IHexEditorGUI*/
     where TAction : MicrobeEditorAction
-    where TStage : Node, IReturnableGameState
     where THexMove : class
 {
+    [Export]
+    public NodePath SymmetryButtonPath = null!;
+
+    [Export]
+    public NodePath SymmetryIconPath = null!;
+
+    [Export]
+    public NodePath CameraPath = null!;
+
+    [Export]
+    public NodePath EditorArrowPath = null!;
+
+    [Export]
+    public NodePath EditorGridPath = null!;
+
+    [Export]
+    public NodePath CameraFollowPath = null!;
+
+    [Export]
+    public NodePath IslandErrorPath = null!;
+
+    private TextureButton symmetryButton = null!;
+    private TextureRect symmetryIcon = null!;
+
+    private Texture symmetryIconDefault = null!;
+    private Texture symmetryIcon2X = null!;
+    private Texture symmetryIcon4X = null!;
+    private Texture symmetryIcon6X = null!;
+
+    private CustomConfirmationDialog islandPopup = null!;
+
+    private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
+
     /// <summary>
     ///   The hexes that are positioned under the cursor to show where the player is about to place something.
     /// </summary>
@@ -62,6 +95,9 @@ public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWit
     protected PackedScene hexScene = null!;
     protected PackedScene modelScene = null!;
 
+    [JsonProperty]
+    protected string? activeActionName;
+
     /// <summary>
     ///   This is a global assessment if the currently being placed thing / action is valid (if not all hover hexes
     ///   will be shown as invalid)
@@ -79,8 +115,6 @@ public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWit
     [JsonProperty]
     protected int organelleRot;
 
-    protected HexEditorSymmetry symmetry = HexEditorSymmetry.None;
-
     /// <summary>
     ///   Where the user started panning with the mouse. Null if the user is not panning with the mouse
     /// </summary>
@@ -89,6 +123,7 @@ public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWit
     /// <summary>
     ///   The symmetry setting of the editor.
     /// </summary>
+    [JsonProperty]
     public HexEditorSymmetry Symmetry
     {
         get => symmetry;
@@ -113,32 +148,110 @@ public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWit
 
     protected abstract bool ForceHideHover { get; }
 
-    protected override bool HasInProgressAction => CanCancelMove;
+    // TODO: remove
+    // protected override bool HasInProgressAction => CanCancelMove;
 
     public override void _Ready()
     {
-        LoadHexMaterials();
-        LoadScenes();
-
         base._Ready();
 
-        if (!IsLoadedFromSave)
-            camera.ObjectToFollow = cameraFollow;
+        symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
+        symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
+
+        symmetryIconDefault = GD.Load<Texture>("res://assets/textures/gui/bevel/1xSymmetry.png");
+        symmetryIcon2X = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
+        symmetryIcon4X = GD.Load<Texture>("res://assets/textures/gui/bevel/4xSymmetry.png");
+        symmetryIcon6X = GD.Load<Texture>("res://assets/textures/gui/bevel/6xSymmetry.png");
+
+        islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
+
+        camera = GetNode<MicrobeCamera>(CameraPath);
+        editorArrow = GetNode<MeshInstance>(EditorArrowPath);
+        editorGrid = GetNode<MeshInstance>(EditorGridPath);
+        cameraFollow = GetNode<Spatial>(CameraFollowPath);
+
+        LoadHexMaterials();
+        LoadScenes();
     }
 
-    public override void SetEditorObjectVisibility(bool shown)
+    public override void Init(TEditor owningEditor, bool fresh)
     {
-        base.SetEditorObjectVisibility(shown);
+        base.Init(owningEditor, fresh);
 
+        if (fresh)
+        {
+            camera.ObjectToFollow = cameraFollow;
+            organelleRot = 0;
+
+            ResetSymmetryButton();
+        }
+
+        UpdateSymmetryIcon();
+
+        // For now we never reuse editors so it isn't worth the trouble to have code to properly clear these
+        if (hoverHexes.Count > 0 || hoverModels.Count > 0 || hoverOverriddenMaterials.Count > 0)
+            throw new InvalidOperationException("This editor has already been initialized (hexes not empty)");
+
+        // Create new hover hexes. See the TODO comment in _Process
+        // This seems really cluttered, there must be a better way.
+        for (int i = 0; i < Constants.MAX_HOVER_HEXES; ++i)
+        {
+            hoverHexes.Add(CreateEditorHex());
+        }
+
+        for (int i = 0; i < Constants.MAX_SYMMETRY; ++i)
+        {
+            hoverModels.Add(CreatePreviewModelHolder());
+        }
+
+        // The world is reset each time so these are gone. We throw an exception if that's not the case as that
+        // indicates a programming bug
+        if (placedHexes.Count > 0 || placedModels.Count > 0)
+            throw new InvalidOperationException("This editor has already been initialized (placed hexes not empty)");
+    }
+
+    public void SetSymmetry(HexEditorSymmetry newSymmetry)
+    {
+        Symmetry = newSymmetry;
+        UpdateSymmetryIcon();
+    }
+
+    public void ResetSymmetryButton()
+    {
+        symmetryIcon.Texture = symmetryIconDefault;
+        symmetry = 0;
+    }
+
+    public void SetEditorWorldGuideObjectVisibility(bool shown)
+    {
         editorArrow.Visible = shown;
         editorGrid.Visible = shown;
     }
 
-    public override void SetPlayerPatch(Patch? patch)
+    /// <summary>
+    ///   Updates the background shown in the editor
+    /// </summary>
+    public void UpdateBackgroundImage(Biome biomeToUseBackgroundFrom)
     {
-        base.SetPlayerPatch(patch);
+        // TODO: make this be loaded in a background thread to avoid a lag spike
+        camera.SetBackground(SimulationParameters.Instance.GetBackground(biomeToUseBackgroundFrom.Background));
+    }
 
-        UpdatePatchBackgroundImage();
+    [RunOnKeyDown("e_primary")]
+    public virtual void PerformPrimaryAction()
+    {
+        if (MovingPlacedHex != null)
+        {
+            GetMouseHex(out int q, out int r);
+            PerformMove(q, r);
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(activeActionName))
+                return;
+
+            PerformActiveAction();
+        }
     }
 
     [RunOnAxisGroup]
@@ -208,7 +321,7 @@ public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWit
     /// </summary>
     /// <returns>True when the input is consumed</returns>
     [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
-    public override bool CancelCurrentAction()
+    public bool CancelCurrentAction()
     {
         if (MovingPlacedHex != null)
         {
@@ -216,7 +329,7 @@ public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWit
             MovingPlacedHex = null;
 
             // Re-enable undo/redo button
-            UpdateUndoRedoButtons();
+            Editor.NotifyUndoRedoStateChanged();
 
             return true;
         }
@@ -233,7 +346,7 @@ public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWit
         // Can't move anything while already moving one
         if (MovingPlacedHex != null)
         {
-            OnActionBlockedWhileMoving();
+            Editor.OnActionBlockedWhileMoving();
             return;
         }
 
@@ -263,7 +376,7 @@ public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWit
         OnMoveActionStarted();
 
         // Disable undo/redo button while moving (enabled after finishing move)
-        UpdateUndoRedoButtons();
+        Editor.NotifyUndoRedoStateChanged();
     }
 
     public void RemoveHex(Hex hex)
@@ -343,19 +456,6 @@ public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWit
         RemoveHex(mouseHex);
     }
 
-    public override void PerformPrimaryAction()
-    {
-        if (MovingPlacedHex != null)
-        {
-            GetMouseHex(out int q, out int r);
-            PerformMove(q, r);
-        }
-        else
-        {
-            base.PerformPrimaryAction();
-        }
-    }
-
     protected virtual void LoadHexMaterials()
     {
         invalidMaterial = GD.Load<Material>("res://src/microbe_stage/editor/InvalidHex.material");
@@ -370,66 +470,87 @@ public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWit
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
     }
 
-    protected override void OnEnterEditor()
+    protected override void RegisterTooltips()
     {
-        base.OnEnterEditor();
-
-        // For now we never reuse editors so it isn't worth the trouble to have code to properly clear these
-        if (hoverHexes.Count > 0 || hoverModels.Count > 0 || hoverOverriddenMaterials.Count > 0)
-            throw new InvalidOperationException("This editor has already been initialized (hexes not empty)");
-
-        // Create new hover hexes. See the TODO comment in _Process
-        // This seems really cluttered, there must be a better way.
-        for (int i = 0; i < Constants.MAX_HOVER_HEXES; ++i)
-        {
-            hoverHexes.Add(CreateEditorHex());
-        }
-
-        for (int i = 0; i < Constants.MAX_SYMMETRY; ++i)
-        {
-            hoverModels.Add(CreatePreviewModelHolder());
-        }
+        base.RegisterTooltips();
+        symmetryButton.RegisterToolTipForControl("symmetryButton", "editor");
     }
 
-    protected override void InitEditor()
+    protected override void EnqueueAction(TAction action)
     {
-        // The world is reset each time so these are gone. We throw an exception if that's not the case as that
-        // indicates a programming bug
-        if (placedHexes.Count > 0 || placedModels.Count > 0)
-            throw new InvalidOperationException("This editor has already been initialized (placed hexes not empty)");
+        if (!Editor.CheckEnoughMPForAction(action.Cost))
+            return;
 
-        base.InitEditor();
-
-        if (!IsLoadedFromSave)
+        if (CanCancelMove)
         {
-            Symmetry = 0;
-            GUI.ResetSymmetryButton();
-        }
-        else
-        {
-            GUI.SetSymmetry(Symmetry);
+            if (!DoesActionEndInProgressAction(action))
+            {
+                // Play sound
+                Editor.OnActionBlockedWhileMoving();
+                return;
+            }
         }
 
-        UpdatePatchBackgroundImage();
+        Editor.EnqueueAction(action);
     }
 
-    protected override void InitEditorFresh()
-    {
-        base.InitEditorFresh();
+    protected abstract void PerformActiveAction();
+    protected abstract bool DoesActionEndInProgressAction(TAction action);
 
-        organelleRot = 0;
+    public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
+    {
+        if (!base.CanFinishEditing(userOverrides))
+            return false;
+
+        // Can't exit the editor with disconnected organelles
+        if (HasIslands)
+        {
+            islandPopup.PopupCenteredShrink();
+            return false;
+        }
+
+        return true;
     }
 
-    protected override void ResolveDerivedTypeNodeReferences()
+    protected void OnSymmetryClicked()
     {
-        camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
-        editorArrow = world.GetNode<MeshInstance>("EditorArrow");
-        editorGrid = world.GetNode<MeshInstance>("Grid");
-        cameraFollow = world.GetNode<Spatial>("CameraLookAt");
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (symmetry == HexEditorSymmetry.SixWaySymmetry)
+        {
+            ResetSymmetryButton();
+        }
+        else if (symmetry == HexEditorSymmetry.None)
+        {
+            symmetry = HexEditorSymmetry.XAxisSymmetry;
+        }
+        else if (symmetry == HexEditorSymmetry.XAxisSymmetry)
+        {
+            symmetry = HexEditorSymmetry.FourWaySymmetry;
+        }
+        else if (symmetry == HexEditorSymmetry.FourWaySymmetry)
+        {
+            symmetry = HexEditorSymmetry.SixWaySymmetry;
+        }
+
+        Symmetry = symmetry;
+        UpdateSymmetryIcon();
     }
 
-    protected override void UpdateEditor(float delta)
+    protected void OnSymmetryHold()
     {
+        symmetryIcon.Modulate = new Color(0, 0, 0);
+    }
+
+    protected void OnSymmetryReleased()
+    {
+        symmetryIcon.Modulate = new Color(1, 1, 1);
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
         // We move all the hexes and the hover hexes to 0,0,0 so that
         // the editor is free to replace them wherever
         // TODO: it would be way better if we didn't have to do this and instead only updated
@@ -461,20 +582,20 @@ public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWit
         usedHoverModel = 0;
 
         editorGrid.Translation = camera.CursorWorldPos;
-        editorGrid.Visible = ShowHover && !ForceHideHover;
+        editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
     }
 
     protected MeshInstance CreateEditorHex()
     {
         var hex = (MeshInstance)hexScene.Instance();
-        rootOfDynamicallySpawned.AddChild(hex);
+        Editor.RootOfDynamicallySpawned.AddChild(hex);
         return hex;
     }
 
     protected SceneDisplayer CreatePreviewModelHolder()
     {
         var node = (SceneDisplayer)modelScene.Instance();
-        rootOfDynamicallySpawned.AddChild(node);
+        Editor.RootOfDynamicallySpawned.AddChild(node);
         return node;
     }
 
@@ -512,19 +633,68 @@ public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWit
     protected abstract void UpdateCancelState();
 
     /// <summary>
-    ///   Updates the background shown in the editor
-    /// </summary>
-    private void UpdatePatchBackgroundImage()
-    {
-        camera.SetBackground(SimulationParameters.Instance.GetBackground(CurrentPatch.BiomeTemplate.Background));
-    }
-
-    /// <summary>
     ///   Moves the ObjectToFollow of the camera in a direction
     /// </summary>
     /// <param name="vector">The direction to move the camera</param>
     private void MoveObjectToFollow(Vector3 vector)
     {
         cameraFollow.Translation += vector;
+    }
+
+    // TODO: rename the next three methods
+    /// <summary>
+    ///   Called once when the mouse enters the background.
+    /// </summary>
+    protected void OnCellEditorMouseEntered()
+    {
+        if (!Visible)
+            return;
+
+        Editor.ShowHover = true;
+        UpdateMutationPointsBar();
+    }
+
+    /// <summary>
+    ///   Called when the mouse is no longer hovering the background.
+    /// </summary>
+    protected void OnCellEditorMouseExited()
+    {
+        Editor.ShowHover = false;
+        UpdateMutationPointsBar();
+    }
+
+    /// <summary>
+    ///   To get MouseEnter/Exit the CellEditor needs MouseFilter != Ignore.
+    ///   Controls with MouseFilter != Ignore always handle mouse events.
+    ///   So to get MouseClicks via the normal InputManager, this must be forwarded.
+    ///   This is needed to respect the current Key Settings.
+    /// </summary>
+    /// <param name="inputEvent">The event the user fired</param>
+    protected void OnCellEditorGuiInput(InputEvent inputEvent)
+    {
+        if (!Editor.ShowHover)
+            return;
+
+        InputManager.ForwardInput(inputEvent);
+    }
+
+    // TODO: make this method trigger automatically on Symmetry assignment
+    private void UpdateSymmetryIcon()
+    {
+        switch (symmetry)
+        {
+            case HexEditorSymmetry.None:
+                symmetryIcon.Texture = symmetryIconDefault;
+                break;
+            case HexEditorSymmetry.XAxisSymmetry:
+                symmetryIcon.Texture = symmetryIcon2X;
+                break;
+            case HexEditorSymmetry.FourWaySymmetry:
+                symmetryIcon.Texture = symmetryIcon4X;
+                break;
+            case HexEditorSymmetry.SixWaySymmetry:
+                symmetryIcon.Texture = symmetryIcon6X;
+                break;
+        }
     }
 }

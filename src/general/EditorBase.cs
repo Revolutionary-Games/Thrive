@@ -1,15 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Base common class with shared editor functionality
+///   Base common class with shared editor functionality. Note that most editor functionality is done by
+///   <see cref="EditorComponentBase{TEditor}"/> derived types.
 /// </summary>
-/// <typeparam name="TGUI">Class of the editor GUI to use</typeparam>
 /// <typeparam name="TAction">Editor action type the action history uses in this editor</typeparam>
 /// <typeparam name="TStage">Class of the stage this editor returns to</typeparam>
 /// <remarks>
+///   <para>
+///     The overall structure of the editor system is such that there is a class derived from this that is attached
+///     to the editor scene root Node. That then contains editor components as children which implement most of the
+///     editing functionality, the editor derived class mostly acts as glue logic and sets things up.
+///   </para>
 ///   <para>
 ///     When inheriting from this class, the inheriting class should have attributes:
 ///     <code>
@@ -18,18 +25,24 @@ using Newtonsoft.Json;
 ///       [DeserializedCallbackTarget]
 ///     </code>
 ///   </para>
+///   <para>
+///     This base class also contains some editor GUI logic (that was in its own class). It turns out that the GUI
+///     class with the editor components refactor wouldn't end up with much of anything in it, as such for convenience
+///     those few operations are merged into this class.
+///   </para>
 /// </remarks>
-public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState,
+public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState,
     IGodotEarlyNodeResolve
-    where TGUI : class, IEditorGUI
     where TAction : MicrobeEditorAction
     where TStage : Node, IReturnableGameState
 {
     [Export]
     public NodePath PauseMenuPath = null!;
 
+    [Export]
+    public NodePath EditorGUIBaseNodePath = null!;
+
     protected Node world = null!;
-    protected Spatial rootOfDynamicallySpawned = null!;
     protected PauseMenu pauseMenu = null!;
 
     /// <summary>
@@ -51,27 +64,43 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
     protected LocalizedStringBuilder? autoEvoExternal;
 
     [JsonProperty]
-    protected string? activeActionName;
+    protected EditorTab selectedEditorTab = EditorTab.Report;
+
+    [JsonProperty]
+    protected bool? autoEvoRunSuccessful;
 
     /// <summary>
     ///   True if auto save should trigger ASAP
     /// </summary>
     protected bool wantsToSave;
 
+    [JsonProperty]
+    private GameProperties? currentGame;
+
+    private Control editorGUIBaseNode = null!;
+
+    /// <summary>
+    ///   Base Node where all dynamically created world Nodes in the editor should go. Optionally grouped under
+    ///   a one more level of parent nodes so that different editor components can have their things visible at
+    ///   different times
+    /// </summary>
+    public Spatial RootOfDynamicallySpawned { get; private set; } = null!;
+
     [JsonIgnore]
     public bool TransitionFinished { get; protected set; }
 
     [JsonProperty]
-    public int MutationPoints { get; protected set; }
+    public int MutationPoints { get; set; }
 
     [JsonProperty]
     public bool FreeBuilding { get; protected set; }
 
-    /// <summary>
-    ///   The main current game object holding various details
-    /// </summary>
-    [JsonProperty]
-    public GameProperties? CurrentGame { get; set; }
+    [JsonIgnore]
+    public GameProperties CurrentGame
+    {
+        get => currentGame ?? throw new InvalidOperationException("Editor not initialized with current game yet");
+        set => currentGame = value;
+    }
 
     /// <summary>
     ///   If set the editor returns to this stage. The CurrentGame
@@ -91,10 +120,6 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
     /// </remarks>
     [JsonProperty]
     public bool ShowHover { get; set; }
-
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    public TGUI GUI { get; protected set; } = null!;
 
     [JsonIgnore]
     public Node GameStateRoot => this;
@@ -117,7 +142,7 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
     [JsonIgnore]
     public abstract bool CanCancelAction { get; }
 
-    protected abstract Species EditedBaseSpecies { get; }
+    public abstract Species EditedBaseSpecies { get; }
 
     protected abstract string MusicCategory { get; }
 
@@ -126,7 +151,7 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
     protected abstract string EditorLoadingMessage { get; }
 
     /// <summary>
-    ///   True when there is an inprogress action that prevents other actions from being done
+    ///   True when there is an inprogress action that prevents other actions from being done (and tab changes)
     /// </summary>
     protected abstract bool HasInProgressAction { get; }
 
@@ -148,8 +173,9 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
         NodeReferencesResolved = true;
 
         world = GetNode("EditorWorld");
-        rootOfDynamicallySpawned = world.GetNode<Spatial>("DynamicallySpawned");
+        RootOfDynamicallySpawned = world.GetNode<Spatial>("DynamicallySpawned");
         pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
+        editorGUIBaseNode = GetNode<Control>(EditorGUIBaseNodePath);
 
         ResolveDerivedTypeNodeReferences();
     }
@@ -183,20 +209,10 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
 
     public void OnFinishLoading(Save save)
     {
-        // // Handle the stage to return to specially, as it also needs to run the code
-        // // for fixing the stuff in order to return there
-        // // TODO: this could be probably moved now to just happen when it enters the scene first time
-
+        // Handle the stage to return to specially, as it also needs to run the code
+        // for fixing the stuff in order to return there
+        // TODO: this could be probably moved now to just happen when it enters the scene first time
         ReturnToStage?.OnFinishLoading(save);
-
-        // Probably shouldn't be needed as the stage object is not orphaned automatically
-        // // We need to not let the objects be deleted before we apply them
-        // TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_MICROBE_EDITOR);
-    }
-
-    public void OnFinishTransitioning()
-    {
-        TransitionFinished = true;
     }
 
     public override void _Process(float delta)
@@ -227,16 +243,77 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
     }
 
     /// <summary>
-    ///   Applies the changes done and exits the editor
+    ///   Tries to start editor apply results and exit
     /// </summary>
-    public virtual void OnFinishEditing()
+    /// <returns>True if started. False if something is not good and editor can't be exited currently.</returns>
+    public bool OnFinishEditing()
     {
-        GD.Print(GetType().Name, ": applying changes to edited Species");
+        // Prevent exiting when the transition hasn't finished
+        if (!TransitionFinished)
+            return false;
+
+        // Can't finish an organism edit if an action is in progress
+        if (CanCancelAction)
+        {
+            OnActionBlockedWhileMoving();
+            return false;
+        }
+
+        var dummyOverrides = Array.Empty<EditorUserOverride>();
+
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            if (!editorComponent.CanFinishEditing(dummyOverrides))
+            {
+                GD.Print(editorComponent.GetType().Name, " editor component is not allowing editing to finish yet");
+                return false;
+            }
+        }
 
         if (EditedBaseSpecies == null)
             throw new InvalidOperationException("Editor not initialized, missing edited species");
 
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
+        TransitionManager.Instance.StartTransitions(this, nameof(MicrobeEditor.OnEditorExitTransitionFinished));
+        return true;
+    }
+
+    /// <summary>
+    ///   Applies the changes done and exits the editor back to <see cref="ReturnToStage"/>
+    /// </summary>
+    private void OnEditorExitTransitionFinished()
+    {
         MakeSureEditorReturnIsGood();
+
+        GD.Print(GetType().Name, ": applying changes to edited Species");
+
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            GD.Print(editorComponent.GetType().Name, ": applying changes of component");
+            editorComponent.OnFinishEditing();
+        }
+
+        var stage = ReturnToStage!;
+
+        // This needs to be reset here to not free this when we exit the tree
+        ReturnToStage = null;
+
+        SceneManager.Instance.SwitchToScene(stage);
+
+        stage.OnReturnFromEditor();
+    }
+
+    private void OnFinishTransitioning()
+    {
+        TransitionFinished = true;
+    }
+
+    public void NotifyUndoRedoStateChanged()
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            editorComponent.UpdateUndoRedoButtons(history.CanUndo(), history.CanRedo());
+        }
     }
 
     /// <summary>
@@ -244,20 +321,7 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
     /// </summary>
     public virtual void SetEditorObjectVisibility(bool shown)
     {
-        rootOfDynamicallySpawned.Visible = shown;
-    }
-
-    [RunOnKeyDown("e_primary")]
-    public virtual void PerformPrimaryAction()
-    {
-        // Derived types should handle this case
-        if (HasInProgressAction)
-            return;
-
-        if (string.IsNullOrEmpty(activeActionName))
-            return;
-
-        PerformActiveAction();
+        RootOfDynamicallySpawned.Visible = shown;
     }
 
     [RunOnKeyDown("e_redo")]
@@ -271,7 +335,7 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
             OnRedoPerformed();
         }
 
-        UpdateUndoRedoButtons();
+        NotifyUndoRedoStateChanged();
     }
 
     [RunOnKeyDown("e_undo")]
@@ -285,7 +349,7 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
             OnUndoPerformed();
         }
 
-        UpdateUndoRedoButtons();
+        NotifyUndoRedoStateChanged();
     }
 
     [RunOnKeyDown("g_quick_save")]
@@ -302,11 +366,42 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
     [RunOnKeyDown("g_toggle_gui")]
     public void ToggleGUI()
     {
-        GUI.Visible = !GUI.Visible;
+        editorGUIBaseNode.Visible = !editorGUIBaseNode.Visible;
     }
 
-    public abstract float CalculateCurrentActionCost();
     public abstract bool CancelCurrentAction();
+
+    protected bool ForwardEditorComponentFinishRequest(List<EditorUserOverride>? userOverrides)
+    {
+        if (userOverrides == null)
+        {
+            return OnFinishEditing();
+        }
+        else
+        {
+            return RequestFinishEditingWithOverride(userOverrides);
+        }
+    }
+
+    public bool RequestFinishEditingWithOverride(List<EditorUserOverride> userOverrides)
+    {
+        if (userOverrides.Count < 1)
+            throw new ArgumentException("empty list of overrides", nameof(userOverrides));
+
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            if (!editorComponent.CanFinishEditing(userOverrides))
+            {
+                GD.Print(editorComponent.GetType().Name,
+                    " editor component is still not allowing editing to finish yet");
+                return false;
+            }
+        }
+
+        return OnFinishEditing();
+    }
+
+    protected abstract IEnumerable<IEditorComponent> GetAllEditorComponents();
 
     /// <summary>
     ///   Changes the number of mutation points left. Should only be called by editor actions
@@ -321,7 +416,7 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
         OnMutationPointsChanged();
     }
 
-    protected abstract void InitConcreteGUI();
+    protected abstract void InitEditorGUI(bool fresh);
 
     /// <summary>
     ///   Sets up the editor when entering
@@ -329,14 +424,14 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
     protected virtual void OnEnterEditor()
     {
         // Clear old stuff in the world
-        rootOfDynamicallySpawned.FreeChildren();
+        RootOfDynamicallySpawned.FreeChildren();
 
         if (!IsLoadedFromSave)
         {
             history = new ActionHistory<TAction>();
 
             // Start a new game if no game has been started
-            if (CurrentGame == null)
+            if (currentGame == null)
             {
                 if (ReturnToStage != null)
                     throw new Exception("stage to return to should have set our current game");
@@ -346,72 +441,69 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
             }
         }
 
-        InitEditor();
+        InitEditor(IsLoadedFromSave);
+        SendFreebuildStatusToComponents();
 
         StartMusic();
     }
 
-    protected virtual void InitEditor()
+    protected virtual void InitEditor(bool fresh)
     {
-        InitConcreteGUI();
+        InitEditorGUI(fresh);
+        NotifyUndoRedoStateChanged();
 
-        if (!IsLoadedFromSave)
+        if (fresh)
         {
+            SetupEditedSpecies();
+
             // Auto save is wanted once possible
             wantsToSave = true;
 
-            InitEditorFresh();
+            MutationPoints = Constants.BASE_MUTATION_POINTS;
+
+            // For now we only show a loading screen if auto-evo is not ready yet
+            if (!CurrentGame.GameWorld.IsAutoEvoFinished())
+            {
+                Ready = false;
+                LoadingScreen.Instance.Show(EditorLoadingMessage, ReturnToState,
+                    CurrentGame.GameWorld.GetAutoEvoRun().Status);
+
+                CurrentGame.GameWorld.FinishAutoEvoRunAtFullSpeed();
+            }
+            else
+            {
+                OnEditorReady();
+            }
+
+            if (CurrentGame.FreeBuild)
+            {
+                GD.Print("Editor going to freebuild mode because player has activated freebuild");
+                FreeBuilding = true;
+            }
+            else
+            {
+                // Make sure freebuilding doesn't get stuck on
+                FreeBuilding = false;
+            }
         }
         else
         {
-            InitEditorSaved();
+            if (Ready != true || CurrentGame == null)
+                throw new InvalidOperationException("loaded editor isn't in the ready state, or missing current game");
+
+            // Make absolutely sure the current game doesn't have an auto-evo run
+            CurrentGame.GameWorld.ResetAutoEvoRun();
+
+            FadeIn();
         }
 
         if (CurrentGame == null)
             throw new Exception($"Editor setup which was just ran didn't setup {nameof(CurrentGame)}");
 
+        if (EditedBaseSpecies == null)
+            throw new Exception($"Editor setup which was just ran didn't setup {nameof(EditedBaseSpecies)}");
+
         pauseMenu.SetNewSaveNameFromSpeciesName();
-    }
-
-    protected virtual void InitEditorFresh()
-    {
-        MutationPoints = Constants.BASE_MUTATION_POINTS;
-
-        // For now we only show a loading screen if auto-evo is not ready yet
-        if (!CurrentGame!.GameWorld.IsAutoEvoFinished())
-        {
-            Ready = false;
-            LoadingScreen.Instance.Show(EditorLoadingMessage, ReturnToState,
-                CurrentGame.GameWorld.GetAutoEvoRun().Status);
-
-            CurrentGame.GameWorld.FinishAutoEvoRunAtFullSpeed();
-        }
-        else
-        {
-            OnEditorReady();
-        }
-
-        if (CurrentGame.FreeBuild)
-        {
-            GD.Print("Editor going to freebuild mode because player has activated freebuild");
-            FreeBuilding = true;
-        }
-        else
-        {
-            // Make sure freebuilding doesn't get stuck on
-            FreeBuilding = false;
-        }
-    }
-
-    protected virtual void InitEditorSaved()
-    {
-        if (Ready != true || CurrentGame == null)
-            throw new InvalidOperationException("loaded editor isn't in the ready state, or missing current game");
-
-        // Make absolutely sure the current game doesn't have an auto-evo run
-        CurrentGame.GameWorld.ResetAutoEvoRun();
-
-        FadeIn();
     }
 
     /// <summary>
@@ -446,32 +538,69 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
         FadeIn();
     }
 
-    /// <summary>
-    ///   Perform all actions through this to make undo and redo work
-    /// </summary>
-    protected void EnqueueAction(TAction action)
+    protected void SetEditorTab(EditorTab tab)
+    {
+        if (HasInProgressAction)
+            return;
+
+        selectedEditorTab = tab;
+
+        ApplyEditorTab();
+    }
+
+    protected abstract void ApplyEditorTab();
+
+    protected void ExitPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        GetTree().Quit();
+    }
+
+    protected IEditorComponent? GetActiveEditorComponent()
+    {
+        // Assume first visible editor component is the active one
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            if (editorComponent.Visible)
+                return editorComponent;
+        }
+
+        return null;
+    }
+
+    public void EnqueueAction(TAction action)
     {
         // A sanity check to not let an action proceed if we don't have enough mutation points
-        if (MutationPoints < action.Cost)
-        {
-            // Flash the MP bar and play sound
-            OnInsufficientMP();
+        if (!CheckEnoughMPForAction(action.Cost))
             return;
-        }
 
         if (HasInProgressAction)
         {
-            if (!DoesActionEndInProgressAction(action))
-            {
-                // Play sound
-                OnActionBlockedWhileMoving();
-                return;
-            }
+            GD.Print("Editor action blocked due to an in-progress action");
+            OnActionBlockedWhileMoving();
+            return;
         }
 
         history.AddAction(action);
 
-        UpdateUndoRedoButtons();
+        NotifyUndoRedoStateChanged();
+    }
+
+    public bool CheckEnoughMPForAction(int cost)
+    {
+        if (MutationPoints < cost)
+        {
+            // Flash the MP bar and play sound
+            OnInsufficientMP();
+            return false;
+        }
+
+        return true;
+    }
+
+    public void EnqueueAction(ReversibleAction action)
+    {
+        EnqueueAction((TAction)action);
     }
 
     protected virtual void OnUndoPerformed()
@@ -482,28 +611,92 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
     {
     }
 
+    protected virtual void UpdateEditor(float delta)
+    {
+    }
+
     protected abstract void ElapseEditorEntryTime();
 
     protected abstract void ResolveDerivedTypeNodeReferences();
-    protected abstract void UpdateEditor(float delta);
 
     protected abstract void PerformAutoSave();
     protected abstract void PerformQuickSave();
 
     protected abstract GameProperties StartNewGameForEditor();
 
-    protected abstract void PerformActiveAction();
-    protected abstract bool DoesActionEndInProgressAction(TAction action);
+    public virtual void OnInsufficientMP(bool playSound = true)
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            if (editorComponent.Visible)
+            {
+                editorComponent.OnInsufficientMP(playSound);
+                break;
+            }
+        }
+    }
 
-    protected abstract void OnInsufficientMP();
-    protected abstract void OnActionBlockedWhileMoving();
+    public virtual void OnActionBlockedWhileMoving()
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            if (editorComponent.Visible)
+            {
+                editorComponent.OnActionBlockedWhileAnotherIsInProgress();
+                break;
+            }
+        }
+    }
 
-    protected abstract void OnMutationPointsChanged();
-    protected abstract void UpdateUndoRedoButtons();
+    public virtual void OnInvalidAction()
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            if (editorComponent.Visible)
+            {
+                editorComponent.OnInvalidAction();
+                break;
+            }
+        }
+    }
+
+    protected virtual void SendFreebuildStatusToComponents()
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            editorComponent.NotifyFreebuild(FreeBuilding);
+        }
+    }
+
+    protected virtual void SetupEditedSpecies()
+    {
+        // Derived types must initialize the species data before calling us
+        var species = EditedBaseSpecies;
+        if (species == null)
+        {
+            throw new InvalidOperationException(
+                $"Derived editor types must setup edited species before calling {nameof(SetupEditedSpecies)}");
+        }
+
+        species.Generation += 1;
+
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            editorComponent.OnEditorSpeciesSetup(species);
+        }
+    }
+
+    protected void OnMutationPointsChanged()
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            editorComponent.OnMutationPointsChanged(MutationPoints);
+        }
+    }
 
     private void MakeSureEditorReturnIsGood()
     {
-        if (CurrentGame == null)
+        if (currentGame == null)
             throw new Exception("Editor must have active game when returning to the stage");
 
         if (ReturnToStage == null)
@@ -519,7 +712,7 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
 
     private void ApplyAutoEvoResults()
     {
-        var run = CurrentGame!.GameWorld.GetAutoEvoRun();
+        var run = CurrentGame.GameWorld.GetAutoEvoRun();
         GD.Print("Applying auto-evo results. Auto-evo run took: ", run.RunDuration);
         run.ApplyExternalEffects();
 
@@ -561,4 +754,6 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
     {
         Jukebox.Instance.PlayCategory(MusicCategory);
     }
+
+    protected abstract void SaveGame(string name);
 }

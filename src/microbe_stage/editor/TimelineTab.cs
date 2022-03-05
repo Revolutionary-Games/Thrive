@@ -68,7 +68,7 @@ public class TimelineTab : PanelContainer
         globalFilterButton = GetNode<Button>(GlobalFilterButtonPath);
     }
 
-    public void UpdateTimeline(MicrobeEditor editor, PatchMapDrawer drawer, Patch? patch = null)
+    public void UpdateTimeline(MicrobeEditor editor, Patch? selectedPatch, Patch? patch = null)
     {
         if (editor.CurrentGame == null)
             throw new ArgumentException($"Editor must be initialized ({nameof(MicrobeEditor.CurrentGame)} is null");
@@ -87,7 +87,7 @@ public class TimelineTab : PanelContainer
             eventsContainer.AddChild(section);
         }
 
-        var targetPatch = patch ?? drawer.SelectedPatch ?? editor.CurrentPatch;
+        var targetPatch = patch ?? selectedPatch ?? editor.CurrentPatch;
 
         for (int i = targetPatch.History.Count - 1; i >= 0; i--)
         {
