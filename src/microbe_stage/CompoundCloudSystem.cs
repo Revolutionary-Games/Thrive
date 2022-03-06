@@ -332,8 +332,8 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
                  radius += 1)
             {
                 for (double theta = 0;
-                     theta <= MathUtils.fullCircle;
-                     theta += MathUtils.searchArc)
+                     theta <= MathUtils.FULL_CIRCLE;
+                     theta += MathUtils.SEARCH_ARC)
                 {
                     int x = cloudRelativeX + (int)Math.Round(Math.Cos(theta) * radius);
                     int y = cloudRelativeY + (int)Math.Round(Math.Sin(theta) * radius);
