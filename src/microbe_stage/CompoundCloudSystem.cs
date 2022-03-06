@@ -332,6 +332,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             // relative origin point is calculated and that is restricted by
             // checking if the point is within the circle before grabbing
 
+            // TODO: pull these to a constant to not constantly recalculate them
             double fullCircle = Math.PI * 2;
             double searchArc = fullCircle / 24.0;
 
