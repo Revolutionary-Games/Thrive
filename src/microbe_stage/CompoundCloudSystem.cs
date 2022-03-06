@@ -332,23 +332,21 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             // relative origin point is calculated and that is restricted by
             // checking if the point is within the circle before grabbing
 
-            // And apparently there isn't an algorithm to generate the points with closest ones first? so
-            // this goes through everything and keeps the closest found point
-
-            int xEnd = (int)Mathf.Round(cloudRelativeX + localRadius);
             int yEnd = (int)Mathf.Round(cloudRelativeY + localRadius);
 
-            for (int x = (int)Mathf.Round(cloudRelativeX - localRadius);
-                 x <= xEnd;
-                 x += 1)
+            double fullCircle = Math.PI * 2;
+            double searchArc = fullCircle / 24.0;
+
+            for (int radious = 1;
+                 radious < localRadius;
+                 radious += 1)
             {
-                for (int y = (int)Mathf.Round(cloudRelativeY - localRadius);
-                     y <= yEnd;
-                     y += 1)
+                for (double theta = 0;
+                     theta <= fullCircle;
+                     theta += searchArc)
                 {
-                    // Negative coordinates are always outside the cloud area
-                    if (x < 0 || y < 0)
-                        continue;
+                    int x = (int)Math.Round(Math.Cos(theta) * radious);
+                    int y = (int)Math.Round(Math.Sin(theta) * radious);
 
                     // Circle check
                     if (Mathf.Pow(x - cloudRelativeX, 2) +
