@@ -362,6 +362,9 @@ public static class Constants
     public const float CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL = 0.25f;
     public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
 
+    // Size, in radians, of the gaps between directions the chemoreceptor checks for compounds
+    public const double CHEMORECEPTOR_ARC_SIZE = Math.PI / 12.0;
+
     /// <summary>
     ///   This should be the max needed hexes (nucleus {10} * 6-way symmetry)
     /// </summary>
