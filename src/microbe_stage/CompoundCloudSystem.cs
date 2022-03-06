@@ -332,8 +332,6 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             // relative origin point is calculated and that is restricted by
             // checking if the point is within the circle before grabbing
 
-            int yEnd = (int)Mathf.Round(cloudRelativeY + localRadius);
-
             double fullCircle = Math.PI * 2;
             double searchArc = fullCircle / 24.0;
 
@@ -345,8 +343,12 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
                      theta <= fullCircle;
                      theta += searchArc)
                 {
-                    int x = (int)Math.Round(Math.Cos(theta) * radious);
-                    int y = (int)Math.Round(Math.Sin(theta) * radious);
+                    int x = cloudRelativeX + (int)Math.Round(Math.Cos(theta) * radious);
+                    int y = cloudRelativeY + (int)Math.Round(Math.Sin(theta) * radious);
+
+                    // Negative coordinates are always outside the cloud area
+                    if (x < 0 || y < 0)
+                        continue;
 
                     // Circle check
                     if (Mathf.Pow(x - cloudRelativeX, 2) +
