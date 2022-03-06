@@ -326,24 +326,17 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
 
             cloud.ConvertToCloudLocal(position, out var cloudRelativeX, out var cloudRelativeY);
 
-            // For simplicity all points within a bounding box around the
-            // relative origin point is calculated and that is restricted by
-            // checking if the point is within the circle before grabbing
-
-            // TODO: pull these to a constant to not constantly recalculate them
-            double fullCircle = Math.PI * 2;
-            double searchArc = fullCircle / 24.0;
-
-            for (int radious = 1;
-                 radious < localRadius;
-                 radious += 1)
+            // Search each angle for nearby compounds
+            for (int radius = 1;
+                 radius < localRadius;
+                 radius += 1)
             {
                 for (double theta = 0;
-                     theta <= fullCircle;
-                     theta += searchArc)
+                     theta <= MathUtils.fullCircle;
+                     theta += MathUtils.searchArc)
                 {
-                    int x = cloudRelativeX + (int)Math.Round(Math.Cos(theta) * radious);
-                    int y = cloudRelativeY + (int)Math.Round(Math.Sin(theta) * radious);
+                    int x = cloudRelativeX + (int)Math.Round(Math.Cos(theta) * radius);
+                    int y = cloudRelativeY + (int)Math.Round(Math.Sin(theta) * radius);
 
                     // Negative coordinates are always outside the cloud area
                     if (x < 0 || y < 0)

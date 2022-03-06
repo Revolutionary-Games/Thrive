@@ -8,6 +8,8 @@ public static class MathUtils
 {
     public const float EPSILON = 0.00000001f;
     public const float DEGREES_TO_RADIANS = Mathf.Pi / 180;
+    public const double fullCircle = Math.PI * 2;
+    public const double searchArc = fullCircle / 24.0;
 
     public static T Clamp<T>(this T val, T min, T max)
         where T : IComparable<T>
