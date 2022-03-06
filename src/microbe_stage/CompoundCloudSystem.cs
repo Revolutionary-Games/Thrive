@@ -310,8 +310,6 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         // This version is used when working with cloud local coordinates
         float localRadius = searchRadius / resolution;
 
-        float localRadiusSquared = Mathf.Pow(searchRadius / resolution, 2);
-
         float nearestDistanceSquared = float.MaxValue;
 
         Vector3? closestPoint = null;
