@@ -350,15 +350,6 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
                     if (x < 0 || y < 0)
                         continue;
 
-                    // Circle check
-                    if (Mathf.Pow(x - cloudRelativeX, 2) +
-                        Mathf.Pow(y - cloudRelativeY, 2) >
-                        localRadiusSquared)
-                    {
-                        // Not in it
-                        continue;
-                    }
-
                     // Then just need to check that it is within the cloud simulation array
                     if (x < cloud.Size && y < cloud.Size)
                     {
