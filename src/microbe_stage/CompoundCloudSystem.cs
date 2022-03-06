@@ -333,7 +333,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             {
                 for (double theta = 0;
                      theta <= MathUtils.FULL_CIRCLE;
-                     theta += MathUtils.SEARCH_ARC)
+                     theta += Constants.CHEMORECEPTOR_ARC_SIZE)
                 {
                     int x = cloudRelativeX + (int)Math.Round(Math.Cos(theta) * radius);
                     int y = cloudRelativeY + (int)Math.Round(Math.Sin(theta) * radius);
