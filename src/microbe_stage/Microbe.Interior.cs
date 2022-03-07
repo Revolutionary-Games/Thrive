@@ -512,7 +512,7 @@ public partial class Microbe
         {
             if (Compounds.GetCompoundAmount(atp) >= 1.0f)
             {
-                Hitpoints += Constants.REGENERATION_RATE * delta;
+                Hitpoints += (Constants.REGENERATION_RATE * Species.MembraneType.HealingRate) * delta;
                 if (Hitpoints > MaxHitpoints)
                 {
                     Hitpoints = MaxHitpoints;

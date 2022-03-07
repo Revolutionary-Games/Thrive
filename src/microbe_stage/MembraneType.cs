@@ -20,8 +20,10 @@ public class MembraneType : IRegistryType
     public float OsmoregulationFactor = 1.0f;
     public float ResourceAbsorptionFactor = 1.0f;
     public int Hitpoints = 100;
+    public float HealingRate = 1.0f;
     public float PhysicalResistance = 1.0f;
     public float ToxinResistance = 1.0f;
+    public float ToxinDamage = 1.0f;
     public int EditorCost = 50;
     public bool CellWall;
     public float BaseWigglyness = 1.0f;
