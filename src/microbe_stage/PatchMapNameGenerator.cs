@@ -16,8 +16,8 @@ public class PatchMapNameGenerator : IRegistryType
     public string InternalName{ get; set; } = null!;
     public PatchMapNameGenerator(int lowerLimit, int higherLimit)
     {
-        syllabelsLowerLimit = lowerLimit;
-        syllabelsHigherLimit = higherLimit;
+        syllablesLowerLimit = lowerLimit;
+        syllablesHigherLimit = higherLimit;
     }
     public string GetContinentName()
     {
