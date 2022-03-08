@@ -363,7 +363,7 @@ public static class Constants
     public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
 
     /// <summary>
-    ///     Size, in radians, of the gaps between directions the chemoreceptor checks for compounds
+    ///   Size, in radians, of the gaps between directions the chemoreceptor checks for compounds
     /// </summary>
     public const double CHEMORECEPTOR_ARC_SIZE = Math.PI / 12.0;
 
