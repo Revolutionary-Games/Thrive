@@ -39,6 +39,7 @@ public class SimulationParameters : Node
     public AutoEvoConfiguration AutoEvoConfiguration => autoEvoConfiguration;
 
     public NameGenerator NameGenerator { get; private set; } = null!;
+    public PatchMapNameGenerator PatcMapNameGenerator { get; private set; } = null!;
 
     /// <summary>
     ///   Loads the simulation configuration parameters from JSON files
