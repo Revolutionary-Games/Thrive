@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-18 10:37+0200\n"
-"PO-Revision-Date: 2022-02-27 23:22+0000\n"
+"PO-Revision-Date: 2022-03-08 19:22+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -32,12 +32,12 @@ msgstr "A sua célula utiliza ATP como sua fonte de energia, se ela se esgotar, 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Para desbloquear o editor e reproduzir você precisa coletar amônia (nuvem laranja) e fosfato (nuvem roxa)."
+msgstr "Para desbloquear o editor e reproduzir você precisa coletar [thrive:compound type=\"ammonia\"][/thrive:compound] (nuvem laranja) e [thrive:compound type=\"phosphates\"][/thrive:compound] (nuvem roxa)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Você também pode engolir células, bactérias, pedaços de ferro e de células menores que você pressionando [thrive:input]g_toggle_engulf[/thrive:input]. Isso custará ATP adicional e sua célula irá se mover mais lentamente. Não esqueça de pressionar [thrive:input]g_toggle_engulf[/thrive:input] uma segunda vez para parar de engolir."
+msgstr "Você também pode engolir células, bactérias, pedaços de ferro e de células menores que você pressionando [thrive:input]g_toggle_engulf[/thrive:input]. Isso custará ATP adicional e sua célula irá se mover mais lentamente. Não se esqueça de pressionar [thrive:input]g_toggle_engulf[/thrive:input] uma segunda vez para parar de engolir."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
@@ -832,7 +832,6 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "a população em algumas regiões se dividiu para formar a nova espécie {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "teve uma mutação"
 
@@ -2508,7 +2507,6 @@ msgid "VACUOLE_DESCRIPTION"
 msgstr "O vacúolo é uma organela membranosa interna usada para o armazenamento da célula. Composta de várias vesículas, estruturas membranosas menores amplamente usadas nas células para o armazenamento que se fundiram. É preenchida com água usada para conter moléculas, enzimas, sólidos, e outras substâncias. Sua forma é fluida e pode variar em cada célula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1982
-#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
 
@@ -3847,9 +3845,8 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Sobrescrever jogo que já existe:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-#, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr "Sobrescrever jogo que já existe?"
+msgstr "Sobrescrever jogo salvo existente?"
 
 #: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
 msgid "SAVING_FAILED_WITH_EXCEPTION"
