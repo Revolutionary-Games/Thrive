@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 public abstract class
     HexEditorComponentBase<TEditor, TAction, THexMove> : EditorComponentWithActionsBase<TEditor, TAction>
     where TEditor : Godot.Object, IHexEditor
-    /*where TGUI : class, IHexEditorGUI*/
     where TAction : MicrobeEditorAction
     where THexMove : class
 {
@@ -641,11 +640,10 @@ public abstract class
         cameraFollow.Translation += vector;
     }
 
-    // TODO: rename the next three methods
     /// <summary>
     ///   Called once when the mouse enters the background.
     /// </summary>
-    protected void OnCellEditorMouseEntered()
+    protected void OnHexEditorMouseEntered()
     {
         if (!Visible)
             return;
@@ -657,7 +655,7 @@ public abstract class
     /// <summary>
     ///   Called when the mouse is no longer hovering the background.
     /// </summary>
-    protected void OnCellEditorMouseExited()
+    protected void OnHexEditorMouseExited()
     {
         Editor.ShowHover = false;
         UpdateMutationPointsBar();
@@ -670,7 +668,7 @@ public abstract class
     ///   This is needed to respect the current Key Settings.
     /// </summary>
     /// <param name="inputEvent">The event the user fired</param>
-    protected void OnCellEditorGuiInput(InputEvent inputEvent)
+    protected void OnHexEditorGuiInput(InputEvent inputEvent)
     {
         if (!Editor.ShowHover)
             return;

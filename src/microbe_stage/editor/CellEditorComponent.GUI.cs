@@ -308,7 +308,7 @@ public partial class CellEditorComponent
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
     }
 
-    private void ConfirmFinishEditingPressed()
+    private void ConfirmFinishEditingWithNegativeATPPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
