@@ -91,7 +91,8 @@ public class InputManager : Node
 
         if (removed < 1)
         {
-            GD.PrintErr("Found no instances to unregister input receiving from");
+            GD.PrintErr("Found no instances to unregister input receiving from (unregistering object of type: ",
+                instance.GetType().Name, ")");
         }
     }
 
