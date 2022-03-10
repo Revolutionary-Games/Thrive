@@ -154,23 +154,30 @@ public abstract class
     {
         base._Ready();
 
-        symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
-        symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
+        ResolveNodeReferences();
 
         symmetryIconDefault = GD.Load<Texture>("res://assets/textures/gui/bevel/1xSymmetry.png");
         symmetryIcon2X = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
         symmetryIcon4X = GD.Load<Texture>("res://assets/textures/gui/bevel/4xSymmetry.png");
         symmetryIcon6X = GD.Load<Texture>("res://assets/textures/gui/bevel/6xSymmetry.png");
 
-        islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
-
-        camera = GetNode<MicrobeCamera>(CameraPath);
-        editorArrow = GetNode<MeshInstance>(EditorArrowPath);
-        editorGrid = GetNode<MeshInstance>(EditorGridPath);
-        cameraFollow = GetNode<Spatial>(CameraFollowPath);
-
         LoadHexMaterials();
         LoadScenes();
+    }
+
+    public virtual void ResolveNodeReferences()
+    {
+        symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
+        symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
+
+
+        islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
+
+        // TODO: put these back
+        /*camera = GetNode<MicrobeCamera>(CameraPath);
+        editorArrow = GetNode<MeshInstance>(EditorArrowPath);
+        editorGrid = GetNode<MeshInstance>(EditorGridPath);
+        cameraFollow = GetNode<Spatial>(CameraFollowPath);*/
     }
 
     public override void Init(TEditor owningEditor, bool fresh)

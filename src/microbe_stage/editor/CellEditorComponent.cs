@@ -459,10 +459,12 @@ public partial class CellEditorComponent :
         UpdateCancelButtonVisibility();
     }
 
-    public void ResolveNodeReferences()
+    public override void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
             return;
+
+        base.ResolveNodeReferences();
 
         NodeReferencesResolved = true;
 

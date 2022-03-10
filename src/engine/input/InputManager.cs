@@ -68,7 +68,8 @@ public class InputManager : Node
 
         if (!registered)
         {
-            GD.PrintErr("Object registered to receive input, but it has no input attributes on its methods");
+            GD.PrintErr("Object registered to receive input, but it has no input attributes on its methods (type: ",
+                instance.GetType().Name, ")");
         }
     }
 
@@ -343,7 +344,8 @@ public class InputManager : Node
                     // Check attributes (duplicate attributes that may be caused by finding duplicates through
                     // inheritance are skipped)
                     var inputAttributes =
-                        ((InputAttribute[])methodInfo.GetCustomAttributes(typeof(InputAttribute), true)).Distinct().ToArray();
+                        ((InputAttribute[])methodInfo.GetCustomAttributes(typeof(InputAttribute), true)).Distinct()
+                        .ToArray();
                     if (inputAttributes.Length == 0)
                         continue;
 
