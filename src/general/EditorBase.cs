@@ -42,8 +42,12 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     [Export]
     public NodePath EditorGUIBaseNodePath = null!;
 
+    [Export]
+    public NodePath? EditorTabSelectorPath;
+
     protected Node world = null!;
     protected PauseMenu pauseMenu = null!;
+    protected MicrobeEditorTabButtons? editorTabSelector;
 
     /// <summary>
     ///   Where all user actions will  be registered
@@ -176,6 +180,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         RootOfDynamicallySpawned = world.GetNode<Spatial>("DynamicallySpawned");
         pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
         editorGUIBaseNode = GetNode<Control>(EditorGUIBaseNodePath);
+
+        if (EditorTabSelectorPath != null)
+            editorTabSelector = GetNode<MicrobeEditorTabButtons>(EditorTabSelectorPath);
 
         ResolveDerivedTypeNodeReferences();
     }
@@ -541,11 +548,16 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     protected void SetEditorTab(EditorTab tab)
     {
         if (HasInProgressAction)
+        {
+            // Make sure button status is reset so that it doesn't look like the wrong tab button is now active
+            editorTabSelector?.SetCurrentTab(selectedEditorTab);
             return;
+        }
 
         selectedEditorTab = tab;
 
         ApplyEditorTab();
+        editorTabSelector?.SetCurrentTab(selectedEditorTab);
     }
 
     protected abstract void ApplyEditorTab();

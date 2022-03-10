@@ -39,6 +39,15 @@ public class MicrobeEditorTabButtons : MarginContainer
         cellTypeTab.Visible = IsForMulticellular;
     }
 
+    public void SetCurrentTab(EditorTab tab)
+    {
+        if (selectedTab == tab)
+            return;
+
+        selectedTab = tab;
+        ApplyButtonStates();
+    }
+
     private void SetEditorTab(string tab)
     {
         var selection = (EditorTab)Enum.Parse(typeof(EditorTab), tab);
@@ -50,11 +59,16 @@ public class MicrobeEditorTabButtons : MarginContainer
 
         selectedTab = selection;
 
+        ApplyButtonStates();
+
+        EmitSignal(nameof(OnTabSelected), selectedTab);
+    }
+
+    private void ApplyButtonStates()
+    {
         reportTabButton.Pressed = selectedTab == EditorTab.Report;
         patchMapButton.Pressed = selectedTab == EditorTab.PatchMap;
         cellEditorButton.Pressed = selectedTab == EditorTab.CellEditor;
         cellTypeTab.Pressed = selectedTab == EditorTab.CellTypeEditor;
-
-        EmitSignal(nameof(OnTabSelected), selectedTab);
     }
 }

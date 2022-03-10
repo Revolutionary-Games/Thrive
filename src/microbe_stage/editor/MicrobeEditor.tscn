@@ -20,6 +20,7 @@ __meta__ = {
 }
 PauseMenuPath = NodePath("PauseMenu")
 EditorGUIBaseNodePath = NodePath("MicrobeEditorGUI")
+EditorTabSelectorPath = NodePath("MicrobeEditorGUI/MicrobeEditorTabButtons")
 ReportTabPath = NodePath("MicrobeEditorGUI/Report")
 PatchMapTabPath = NodePath("MicrobeEditorGUI/PatchMap")
 CellEditorTabPath = NodePath("MicrobeEditorGUI/CellEditor")
@@ -74,7 +75,7 @@ theme = ExtResource( 53 )
 IsEditorPauseMenu = true
 HelpCategory = "MicrobeEditor"
 
-[connection signal="OnTabSelected" from="MicrobeEditorGUI/MicrobeEditorTabButtons" to="MicrobeEditorGUI" method="SetEditorTab"]
+[connection signal="OnTabSelected" from="MicrobeEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
 [connection signal="OnOpenHelp" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenFromEditorToHelp"]
 [connection signal="OnOpenMenu" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenFromEditor"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
