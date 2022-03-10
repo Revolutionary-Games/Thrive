@@ -334,15 +334,16 @@ public class InputManager : Node
             {
                 // Skip abstract classes as those can't be instantiated and their methods will be detected for the
                 // derived types
-                if (type.IsAbstract)
+                if (type.IsAbstract || type.IsInterface)
                     continue;
 
                 // foreach method in the classes
                 foreach (var methodInfo in type.GetMethods())
                 {
-                    // Check attributes
+                    // Check attributes (duplicate attributes that may be caused by finding duplicates through
+                    // inheritance are skipped)
                     var inputAttributes =
-                        (InputAttribute[])methodInfo.GetCustomAttributes(typeof(InputAttribute), true);
+                        ((InputAttribute[])methodInfo.GetCustomAttributes(typeof(InputAttribute), true)).Distinct().ToArray();
                     if (inputAttributes.Length == 0)
                         continue;
 
