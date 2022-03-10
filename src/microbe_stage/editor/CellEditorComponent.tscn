@@ -298,7 +298,7 @@ CurrentMutationPointsLabelPath = NodePath("LeftPanel/MainPanel/VBoxContainer/Mar
 MutationPointsArrowPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/MpArrow")
 ResultingMutationPointsLabelPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/ResultingMp")
 BaseMutationPointsLabelPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/BaseMp")
-MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
+MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain")
 MutationPointsSubtractBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarSubtract")
 UndoButtonPath = NodePath("BottomLeft/HBoxContainer/UndoButton")
 RedoButtonPath = NodePath("BottomLeft/HBoxContainer/RedoButton")
@@ -866,15 +866,15 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 132.0
-margin_top = 157.0
-margin_right = 448.0
-margin_bottom = 747.0
+margin_left = 136.0
+margin_top = 161.0
+margin_right = 452.0
+margin_bottom = 751.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
 visible = false
-FinishOrNextButtonPath = NodePath("../../../../../../BottomRight/HBoxContainer/ConfirmButton")
+FinishOrNextButtonPath = NodePath("")
 
 [node name="RightPanel" type="MarginContainer" parent="."]
 anchor_left = 1.0
@@ -1532,7 +1532,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomRight"]
-margin_right = 186.0
+margin_right = 150.0
 margin_bottom = 40.0
 alignment = 2
 
@@ -1554,14 +1554,14 @@ __meta__ = {
 }
 
 [node name="ConfirmButton" type="Button" parent="BottomRight/HBoxContainer"]
-margin_right = 186.0
+margin_right = 150.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
 mouse_filter = 1
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_styles/hover = SubResource( 26 )
 custom_styles/normal = SubResource( 27 )
-text = "CONFIRM_CAPITAL"
+text = "NEXT_CAPITAL"
 __meta__ = {
 "_edit_use_anchors_": false
 }

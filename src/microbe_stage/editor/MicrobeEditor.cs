@@ -78,6 +78,9 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
         base._Ready();
 
         tutorialGUI.Visible = true;
+
+        // Make starting from the editor work
+        // InitEditor();
     }
 
     protected override IEnumerable<IEditorComponent> GetAllEditorComponents()

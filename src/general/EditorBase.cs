@@ -441,7 +441,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             }
         }
 
-        InitEditor(IsLoadedFromSave);
+        InitEditor(!IsLoadedFromSave);
         SendFreebuildStatusToComponents();
 
         StartMusic();

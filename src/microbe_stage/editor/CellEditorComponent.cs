@@ -436,6 +436,7 @@ public partial class CellEditorComponent :
     public override void Init(MicrobeEditor owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
+        behaviourEditor.Init(owningEditor, fresh);
 
         if (fresh)
         {
@@ -1017,7 +1018,8 @@ public partial class CellEditorComponent :
 
         CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
 
-        var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.EditedSpecies, cachedAutoEvoPredictionSpecies);
+        var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.EditedSpecies,
+            cachedAutoEvoPredictionSpecies);
         run.Start();
 
         UpdateAutoEvoPrediction(run, Editor.EditedSpecies, cachedAutoEvoPredictionSpecies);
@@ -1393,8 +1395,6 @@ public partial class CellEditorComponent :
             element.Selected = element.Name == organelle;
         }
     }
-
-
 
     internal void UpdateMembraneButtons(string membrane)
     {

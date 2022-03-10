@@ -24,11 +24,18 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
 
     /// <summary>
     ///   If this is set then the next / finish button on this tab is the next button.
-    ///   This or <see cref="OnFinish"/> must be set before <see cref="Init"/> is called.
+    ///   This or <see cref="OnFinish"/> must be set before <see cref="Init(TEditor,bool)"/> is called.
     /// </summary>
     public Action? OnNextTab { get; set; }
 
     public Func<List<EditorUserOverride>?, bool>? OnFinish { get; set; }
+
+    /// <summary>
+    ///   Sub editor components don't require all functionality, so they override this to disable some initialization
+    ///   logic
+    /// </summary>
+    [JsonIgnore]
+    public virtual bool IsSubComponent => false;
 
     protected TEditor Editor => editor ?? throw new InvalidOperationException("Editor component not initialized");
 
@@ -36,31 +43,41 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
     {
         base._Ready();
 
-        if (editor == null)
-            throw new InvalidOperationException("Editor component not initialized before _Ready was called");
+        // TODO: redesign this check. This currently fails as the child nodes get _Ready called first and this also
+        // makes it harder to directly run the individual editor component scenes from Godot editor to debug them
+        // if (editor == null)
+        //     throw new InvalidOperationException("Editor component not initialized before _Ready was called");
+
+        if (IsSubComponent)
+            return;
 
         finishOrNextButton = GetNode<Button>(FinishOrNextButtonPath);
     }
 
     public virtual void Init(TEditor owningEditor, bool fresh)
     {
+        editor = owningEditor;
+
+        unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
+
+        if (IsSubComponent)
+            return;
+
         if (OnNextTab != null)
         {
-            // TODO: do we need to do something here?
+            // This is the default state so we don't need to do anything here
         }
         else if (OnFinish != null)
         {
             // Turn the next button into the finish button
-            throw new NotImplementedException();
+            finishOrNextButton.Text = TranslationServer.Translate("CONFIRM_CAPITAL");
+            finishOrNextButton.UnRegisterFirstToolTipForControl();
+            finishOrNextButton.RegisterToolTipForControl("finishButton", "editor");
         }
         else
         {
             throw new InvalidOperationException("Either next tab or finish callback needs to be set");
         }
-
-        editor = owningEditor;
-
-        unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
     }
 
     /// <summary>
@@ -116,8 +133,11 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
     /// </summary>
     protected virtual void RegisterTooltips()
     {
-        // TODO: tooltip probably needs to change whether this is the finish or next button
-        finishOrNextButton.RegisterToolTipForControl("finishButton", "editor");
+        if (IsSubComponent)
+            return;
+
+        // By default this is the next button
+        finishOrNextButton.RegisterToolTipForControl("nextTabButton", "editor");
     }
 
     protected virtual void NextOrFinishClicked()

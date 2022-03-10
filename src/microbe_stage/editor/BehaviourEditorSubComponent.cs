@@ -34,6 +34,9 @@ public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
     [JsonProperty]
     private MicrobeSpecies? editedSpecies;
 
+    [JsonIgnore]
+    public override bool IsSubComponent => true;
+
     [JsonProperty]
     public BehaviourDictionary? Behaviour
     {
