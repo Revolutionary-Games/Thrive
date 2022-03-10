@@ -49,7 +49,7 @@ public class MicrobePartSelection : MarginContainer
     }
 
     /// <summary>
-    ///   User readable name. Note that the node Name property should be an "InternalName".
+    ///   Translatable name. This needs to be the STRING_LIKE_THIS to make this automatically react to language change
     /// </summary>
     [Export]
     public string PartName

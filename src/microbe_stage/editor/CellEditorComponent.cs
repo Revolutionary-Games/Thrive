@@ -33,6 +33,12 @@ public partial class CellEditorComponent :
     public NodePath BehaviourTabPath = null!;
 
     [Export]
+    public NodePath PartsSelectionContainerPath = null!;
+
+    [Export]
+    public NodePath MembraneTypeSelectionPath = null!;
+
+    [Export]
     public NodePath SizeLabelPath = null!;
 
     [Export]
@@ -132,6 +138,9 @@ public partial class CellEditorComponent :
     [AssignOnlyChildItemsOnDeserialize]
     private BehaviourEditorSubComponent behaviourEditor = null!;
 
+    private VBoxContainer partsSelectionContainer = null!;
+    private CollapsibleList membraneTypeSelection = null!;
+
     private Label sizeLabel = null!;
     private Label speedLabel = null!;
     private Label hpLabel = null!;
@@ -172,6 +181,8 @@ public partial class CellEditorComponent :
 
     private Texture increaseIcon = null!;
     private Texture decreaseIcon = null!;
+
+    private PackedScene organelleSelectionButtonScene = null!;
 
     private OrganelleDefinition protoplasm = null!;
     private OrganelleDefinition nucleus = null!;
@@ -426,6 +437,9 @@ public partial class CellEditorComponent :
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
 
+        organelleSelectionButtonScene =
+            GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobePartSelection.tscn");
+
         SetupMicrobePartSelections();
         UpdateMicrobePartSelections();
 
@@ -476,6 +490,9 @@ public partial class CellEditorComponent :
 
         behaviourTabButton = GetNode<Button>(BehaviourTabButtonPath);
         behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
+
+        partsSelectionContainer = GetNode<VBoxContainer>(PartsSelectionContainerPath);
+        membraneTypeSelection = GetNode<CollapsibleList>(MembraneTypeSelectionPath);
 
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
@@ -1626,53 +1643,66 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
-    ///   Associates all existing cell part selections with their respective part types based on their Node names.
+    ///   Creates part and membrane selection buttons
     /// </summary>
     private void SetupMicrobePartSelections()
     {
-        var organelleSelections = GetTree().GetNodesInGroup(
-            "PlaceablePartSelectionElement").Cast<MicrobePartSelection>().ToList();
-        var membraneSelections = GetTree().GetNodesInGroup(
-            "MembraneSelectionElement").Cast<MicrobePartSelection>().ToList();
+        var simulationParameters = SimulationParameters.Instance;
 
-        foreach (var entry in organelleSelections)
+        var organelleButtonGroup = new ButtonGroup();
+        var membraneButtonGroup = new ButtonGroup();
+
+        foreach (var organelle in simulationParameters.GetAllOrganelles().OrderBy(o => o.EditorButtonOrder))
         {
-            // Special case with registering the tooltip here for item with no associated organelle
-            entry.RegisterToolTipForControl(entry.Name, "organelleSelection");
-
-            if (!SimulationParameters.Instance.DoesOrganelleExist(entry.Name))
-            {
-                entry.Locked = true;
+            if (organelle.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Hidden)
                 continue;
+
+            var group = partsSelectionContainer.GetNode<CollapsibleList>(organelle.EditorButtonGroup.ToString());
+
+            if (group == null)
+            {
+                GD.PrintErr("No node found for organelle selection button for ", organelle.InternalName);
+                return;
             }
 
-            var organelle = SimulationParameters.Instance.GetOrganelleType(entry.Name);
+            var control = (MicrobePartSelection)organelleSelectionButtonScene.Instance();
+            control.Locked = organelle.Unimplemented;
+            control.PartIcon = organelle.LoadedIcon ?? throw new Exception("Organelle with no icon");
+            control.PartName = organelle.UntranslatedName;
+            control.SelectionGroup = organelleButtonGroup;
+            control.MPCost = organelle.MPCost;
+            control.Name = organelle.InternalName;
+
+            // Special case with registering the tooltip here for item with no associated organelle
+            control.RegisterToolTipForControl(organelle.InternalName, "organelleSelection");
+
+            group.AddItem(control);
+
+            if (organelle.Unimplemented)
+                continue;
 
             // Only add items with valid organelles to dictionary
-            placeablePartSelectionElements.Add(organelle, entry);
+            placeablePartSelectionElements.Add(organelle, control);
 
-            entry.Connect(
-                nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnOrganelleToPlaceSelected));
+            control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnOrganelleToPlaceSelected));
         }
 
-        foreach (var entry in membraneSelections)
+        foreach (var membraneType in simulationParameters.GetAllMembranes().OrderBy(m => m.EditorButtonOrder))
         {
-            // Special case with registering the tooltip here for item with no associated membrane
-            entry.RegisterToolTipForControl(entry.Name, "membraneSelection");
+            var control = (MicrobePartSelection)organelleSelectionButtonScene.Instance();
+            control.PartIcon = membraneType.LoadedIcon;
+            control.PartName = membraneType.UntranslatedName;
+            control.SelectionGroup = membraneButtonGroup;
+            control.MPCost = membraneType.EditorCost;
+            control.Name = membraneType.InternalName;
 
-            if (!SimulationParameters.Instance.DoesMembraneExist(entry.Name))
-            {
-                entry.Locked = true;
-                continue;
-            }
+            control.RegisterToolTipForControl(membraneType.InternalName, "membraneSelection");
 
-            var membrane = SimulationParameters.Instance.GetMembrane(entry.Name);
+            membraneTypeSelection.AddItem(control);
 
-            // Only add items with valid membranes to dictionary
-            membraneSelectionElements.Add(membrane, entry);
+            membraneSelectionElements.Add(membraneType, control);
 
-            entry.Connect(
-                nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnMembraneSelected));
+            control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnMembraneSelected));
         }
     }
 

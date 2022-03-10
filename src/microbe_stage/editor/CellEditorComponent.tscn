@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -47,10 +47,6 @@
 [ext_resource path="res://src/gui_common/CollapsibleList.tscn" type="PackedScene" id=45]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonActive.png" type="Texture" id=46]
 [ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" type="PackedScene" id=47]
-[ext_resource path="res://src/microbe_stage/editor/MicrobePartSelection.tscn" type="PackedScene" id=48]
-[ext_resource path="res://assets/textures/gui/bevel/parts/ThermoplastIcon.png" type="Texture" id=49]
-[ext_resource path="res://assets/textures/gui/bevel/parts/BioluminescentIcon.png" type="Texture" id=50]
-[ext_resource path="res://assets/textures/gui/bevel/parts/CiliaIcon.png" type="Texture" id=51]
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.294118, 0.152941, 0.356863, 1 )
@@ -172,11 +168,7 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxEmpty" id=14]
 
-[sub_resource type="ButtonGroup" id=38]
-
 [sub_resource type="StyleBoxEmpty" id=16]
-
-[sub_resource type="ButtonGroup" id=39]
 
 [sub_resource type="StyleBoxTexture" id=18]
 texture = ExtResource( 22 )
@@ -320,6 +312,8 @@ BehaviourTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginConta
 StructureTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
 AppearanceTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane")
 BehaviourTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
+PartsSelectionContainerPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection")
+MembraneTypeSelectionPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes")
 SizeLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size/Value")
 OrganismStatisticsPath = NodePath("RightPanel/VBoxContainer/Statistics")
 SpeedLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed/Value")
@@ -677,15 +671,15 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer"]
-margin_right = 312.0
-margin_bottom = 1073.0
+margin_right = 318.0
+margin_bottom = 126.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="PartsSelection" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer"]
-margin_right = 302.0
-margin_bottom = 1073.0
+margin_right = 308.0
+margin_bottom = 126.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 custom_constants/separation = 10
@@ -710,257 +704,37 @@ placeholder_text = "SEARCH_DOT_DOT_DOT"
 [node name="Structural" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 45 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 302.0
-margin_bottom = 127.0
+margin_right = 308.0
+margin_bottom = 24.0
 DisplayName = "STRUCTURAL"
 Columns = 3
-
-[node name="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural" index="0"]
-margin_right = 302.0
-
-[node name="Title" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/HBoxContainer" index="1"]
-margin_top = 0.0
-margin_right = 148.0
-margin_bottom = 20.0
-
-[node name="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/HBoxContainer" index="2"]
-margin_left = 152.0
-margin_right = 302.0
-
-[node name="Clip" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural" index="1"]
-margin_right = 302.0
-margin_bottom = 127.0
-
-[node name="GridContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/Clip" index="0"]
-margin_right = 302.0
-margin_bottom = 103.0
-columns = 3
-
-[node name="cytoplasm" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/Clip/GridContainer" index="0" instance=ExtResource( 48 )]
-margin_right = 100.0
-SelectionGroup = SubResource( 38 )
 
 [node name="Protein" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 45 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 137.0
-margin_right = 302.0
-margin_bottom = 371.0
+margin_top = 34.0
+margin_right = 308.0
+margin_bottom = 58.0
 DisplayName = "PROTEINS"
 Columns = 3
-
-[node name="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein" index="0"]
-margin_right = 302.0
-
-[node name="Title" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/HBoxContainer" index="1"]
-margin_top = 0.0
-margin_right = 148.0
-margin_bottom = 20.0
-
-[node name="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/HBoxContainer" index="2"]
-margin_left = 152.0
-margin_right = 302.0
-
-[node name="Clip" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein" index="1"]
-margin_right = 302.0
-margin_bottom = 234.0
-
-[node name="GridContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip" index="0"]
-margin_right = 302.0
-margin_bottom = 210.0
-columns = 3
-
-[node name="metabolosome" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="0" instance=ExtResource( 48 )]
-margin_right = 98.0
-SelectionGroup = SubResource( 38 )
-
-[node name="chromatophore" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="1" instance=ExtResource( 48 )]
-margin_left = 102.0
-margin_right = 200.0
-SelectionGroup = SubResource( 38 )
-
-[node name="chemoSynthesizingProteins" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="2" instance=ExtResource( 48 )]
-margin_left = 204.0
-margin_right = 302.0
-SelectionGroup = SubResource( 38 )
-
-[node name="rusticyanin" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="3" instance=ExtResource( 48 )]
-margin_top = 107.0
-margin_right = 98.0
-margin_bottom = 210.0
-SelectionGroup = SubResource( 38 )
-
-[node name="nitrogenase" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="4" instance=ExtResource( 48 )]
-margin_left = 102.0
-margin_top = 107.0
-margin_right = 200.0
-margin_bottom = 210.0
-SelectionGroup = SubResource( 38 )
-
-[node name="oxytoxyProteins" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="5" instance=ExtResource( 48 )]
-margin_left = 204.0
-margin_top = 107.0
-margin_right = 302.0
-margin_bottom = 210.0
-SelectionGroup = SubResource( 38 )
 
 [node name="External" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 45 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 381.0
-margin_right = 302.0
-margin_bottom = 615.0
+margin_top = 68.0
+margin_right = 308.0
+margin_bottom = 92.0
 DisplayName = "EXTERNAL"
 Columns = 3
-
-[node name="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External" index="0"]
-margin_right = 302.0
-
-[node name="Title" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/HBoxContainer" index="1"]
-margin_top = 0.0
-margin_right = 148.0
-margin_bottom = 20.0
-
-[node name="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/HBoxContainer" index="2"]
-margin_left = 152.0
-margin_right = 302.0
-
-[node name="Clip" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External" index="1"]
-margin_right = 302.0
-margin_bottom = 234.0
-
-[node name="GridContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip" index="0"]
-margin_right = 302.0
-margin_bottom = 210.0
-columns = 3
-
-[node name="flagellum" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="0" instance=ExtResource( 48 )]
-margin_right = 98.0
-SelectionGroup = SubResource( 38 )
-
-[node name="pilus" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="1" instance=ExtResource( 48 )]
-margin_left = 102.0
-margin_right = 200.0
-SelectionGroup = SubResource( 38 )
-
-[node name="chemoreceptor" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="2" instance=ExtResource( 48 )]
-margin_left = 204.0
-margin_right = 302.0
-SelectionGroup = SubResource( 38 )
-
-[node name="cilia" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="3" instance=ExtResource( 48 )]
-margin_top = 107.0
-margin_right = 98.0
-margin_bottom = 210.0
-MPCost = 40
-PartIcon = ExtResource( 51 )
-PartName = "CILIA"
-Locked = true
-SelectionGroup = SubResource( 38 )
 
 [node name="Organelle" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 45 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 625.0
-margin_right = 302.0
-margin_bottom = 1073.0
+margin_top = 102.0
+margin_right = 308.0
+margin_bottom = 126.0
 DisplayName = "ORGANELLES"
 Columns = 3
-
-[node name="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle" index="0"]
-margin_right = 302.0
-
-[node name="Title" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/HBoxContainer" index="1"]
-margin_top = 0.0
-margin_right = 148.0
-margin_bottom = 20.0
-
-[node name="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/HBoxContainer" index="2"]
-margin_left = 152.0
-margin_right = 302.0
-
-[node name="Clip" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle" index="1"]
-margin_right = 302.0
-margin_bottom = 448.0
-
-[node name="GridContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip" index="0"]
-margin_right = 302.0
-margin_bottom = 424.0
-columns = 3
-
-[node name="nucleus" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="0" instance=ExtResource( 48 )]
-margin_right = 98.0
-SelectionGroup = SubResource( 38 )
-
-[node name="bindingAgent" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="1" instance=ExtResource( 48 )]
-margin_left = 102.0
-margin_right = 200.0
-SelectionGroup = SubResource( 38 )
-
-[node name="mitochondrion" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="2" instance=ExtResource( 48 )]
-margin_left = 204.0
-margin_right = 302.0
-SelectionGroup = SubResource( 38 )
-
-[node name="chloroplast" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="3" instance=ExtResource( 48 )]
-margin_top = 107.0
-margin_right = 98.0
-margin_bottom = 210.0
-SelectionGroup = SubResource( 38 )
-
-[node name="thermoplast" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="4" instance=ExtResource( 48 )]
-margin_left = 102.0
-margin_top = 107.0
-margin_right = 200.0
-margin_bottom = 210.0
-MPCost = 40
-PartIcon = ExtResource( 49 )
-PartName = "THERMOPLAST"
-Locked = true
-SelectionGroup = SubResource( 38 )
-
-[node name="chemoplast" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="5" instance=ExtResource( 48 )]
-margin_left = 204.0
-margin_top = 107.0
-margin_right = 302.0
-margin_bottom = 210.0
-SelectionGroup = SubResource( 38 )
-
-[node name="nitorgenfixingplastid" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="6" instance=ExtResource( 48 )]
-margin_top = 214.0
-margin_right = 98.0
-margin_bottom = 317.0
-SelectionGroup = SubResource( 38 )
-
-[node name="vacuole" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="7" instance=ExtResource( 48 )]
-margin_left = 102.0
-margin_top = 214.0
-margin_right = 200.0
-margin_bottom = 317.0
-SelectionGroup = SubResource( 38 )
-
-[node name="oxytoxy" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="8" instance=ExtResource( 48 )]
-margin_left = 204.0
-margin_top = 214.0
-margin_right = 302.0
-margin_bottom = 317.0
-SelectionGroup = SubResource( 38 )
-
-[node name="signalingAgent" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="9" instance=ExtResource( 48 )]
-margin_top = 321.0
-margin_right = 98.0
-margin_bottom = 424.0
-SelectionGroup = SubResource( 38 )
-
-[node name="bioluminescentVacuole" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="10" instance=ExtResource( 48 )]
-margin_left = 102.0
-margin_top = 321.0
-margin_right = 200.0
-margin_bottom = 424.0
-PartIcon = ExtResource( 50 )
-PartName = "BIOLUMINESCENT_VACUOLE"
-Locked = true
-SelectionGroup = SubResource( 38 )
 
 [node name="Membrane" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false
@@ -982,7 +756,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer"]
 margin_right = 332.0
-margin_bottom = 944.0
+margin_bottom = 734.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
@@ -992,7 +766,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer"]
 margin_right = 322.0
-margin_bottom = 944.0
+margin_bottom = 734.0
 custom_constants/separation = 15
 
 [node name="MembraneTypes" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 45 )]
@@ -1002,45 +776,6 @@ margin_right = 316.0
 margin_bottom = 234.0
 DisplayName = "MEMBRANE_TYPES"
 Columns = 3
-
-[node name="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes" index="0"]
-margin_right = 316.0
-
-[node name="Title" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/HBoxContainer" index="1"]
-margin_top = 0.0
-margin_right = 148.0
-margin_bottom = 20.0
-
-[node name="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/HBoxContainer" index="2"]
-margin_left = 152.0
-margin_right = 316.0
-
-[node name="Clip" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes" index="1"]
-margin_right = 316.0
-margin_bottom = 234.0
-
-[node name="GridContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip" index="0"]
-margin_right = 316.0
-margin_bottom = 210.0
-columns = 3
-
-[node name="single" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="0" instance=ExtResource( 48 )]
-SelectionGroup = SubResource( 39 )
-
-[node name="double" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="1" instance=ExtResource( 48 )]
-SelectionGroup = SubResource( 39 )
-
-[node name="cellulose" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="2" instance=ExtResource( 48 )]
-SelectionGroup = SubResource( 39 )
-
-[node name="chitin" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="3" instance=ExtResource( 48 )]
-SelectionGroup = SubResource( 39 )
-
-[node name="calciumCarbonate" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="4" instance=ExtResource( 48 )]
-SelectionGroup = SubResource( 39 )
-
-[node name="silica" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="5" instance=ExtResource( 48 )]
-SelectionGroup = SubResource( 39 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 249.0
@@ -1950,9 +1685,3 @@ text = "CLOSE"
 [connection signal="ModifyPressed" from="OrganellePopupMenu" to="." method="OnModifyPressed"]
 [connection signal="MovePressed" from="OrganellePopupMenu" to="." method="OnMovePressed"]
 [connection signal="pressed" from="PredictionExplanation/VBoxContainer/Close" to="." method="CloseAutoEvoPrediction"]
-
-[editable path="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural"]
-[editable path="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein"]
-[editable path="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External"]
-[editable path="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle"]
-[editable path="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes"]

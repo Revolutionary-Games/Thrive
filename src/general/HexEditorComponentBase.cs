@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 public abstract class
     HexEditorComponentBase<TEditor, TAction, THexMove> : EditorComponentWithActionsBase<TEditor, TAction>
-    where TEditor : Godot.Object, IHexEditor
+    where TEditor : Godot.Object, IHexEditor, IEditorWithActions
     where TAction : MicrobeEditorAction
     where THexMove : class
 {
@@ -173,20 +173,21 @@ public abstract class
 
         islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
 
-        // TODO: put these back
-        /*camera = GetNode<MicrobeCamera>(CameraPath);
+        camera = GetNode<MicrobeCamera>(CameraPath);
         editorArrow = GetNode<MeshInstance>(EditorArrowPath);
         editorGrid = GetNode<MeshInstance>(EditorGridPath);
-        cameraFollow = GetNode<Spatial>(CameraFollowPath);*/
+        cameraFollow = GetNode<Spatial>(CameraFollowPath);
     }
 
     public override void Init(TEditor owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
 
+        // Set this now always to improve old save compatibility
+        camera.ObjectToFollow = cameraFollow;
+
         if (fresh)
         {
-            camera.ObjectToFollow = cameraFollow;
             organelleRot = 0;
 
             ResetSymmetryButton();

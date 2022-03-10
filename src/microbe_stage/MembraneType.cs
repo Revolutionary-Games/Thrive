@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -12,7 +13,9 @@ public class MembraneType : IRegistryType
     [TranslateFrom("untranslatedName")]
     public string Name = null!;
 
+    [JsonRequired]
     public string IconPath = null!;
+
     public string AlbedoTexture = null!;
     public string NormalTexture = null!;
     public string DamagedTexture = null!;
@@ -26,6 +29,8 @@ public class MembraneType : IRegistryType
     public bool CellWall;
     public float BaseWigglyness = 1.0f;
     public float MovementWigglyness = 1.0f;
+
+    public int EditorButtonOrder;
 
     [JsonIgnore]
     public Texture LoadedAlbedoTexture = null!;
@@ -45,8 +50,17 @@ public class MembraneType : IRegistryType
 
     public string InternalName { get; set; } = null!;
 
+    [JsonIgnore]
+    public string UntranslatedName =>
+        untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
+
     public void Check(string name)
     {
+        if (string.IsNullOrEmpty(IconPath))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Missing IconPath");
+        }
+
         if (string.IsNullOrEmpty(AlbedoTexture) || string.IsNullOrEmpty(NormalTexture)
             || string.IsNullOrEmpty(DamagedTexture))
         {
@@ -81,10 +95,7 @@ public class MembraneType : IRegistryType
         LoadedNormalTexture = GD.Load<Texture>(NormalTexture);
         LoadedDamagedTexture = GD.Load<Texture>(DamagedTexture);
 
-        if (!string.IsNullOrEmpty(IconPath))
-        {
-            LoadedIcon = GD.Load<Texture>(IconPath);
-        }
+        LoadedIcon = GD.Load<Texture>(IconPath);
     }
 
     public void ApplyTranslations()

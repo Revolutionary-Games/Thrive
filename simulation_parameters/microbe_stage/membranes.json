@@ -14,7 +14,8 @@
         "physicalResistance": 1,
         "toxinResistance": 1,
         "editorCost": 50,
-        "iconPath": "res://assets/textures/gui/bevel/parts/membraneStandard.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/membraneStandard.png",
+        "editorButtonOrder": 1
     },
     "double": {
         "name": "DOUBLE",
@@ -31,7 +32,8 @@
         "physicalResistance": 1,
         "toxinResistance": 1,
         "editorCost": 50,
-        "iconPath": "res://assets/textures/gui/bevel/parts/membraneDouble.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/membraneDouble.png",
+        "editorButtonOrder": 2
     },
     "cellulose": {
         "name": "CELLULOSE",
@@ -48,7 +50,8 @@
         "physicalResistance": 1.4,
         "toxinResistance": 1,
         "editorCost": 50,
-        "iconPath": "res://assets/textures/gui/bevel/parts/membraneCellulose.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/membraneCellulose.png",
+        "editorButtonOrder": 3
     },
     "chitin": {
         "name": "CHITIN",
@@ -65,7 +68,8 @@
         "physicalResistance": 1,
         "toxinResistance": 1.4,
         "editorCost": 50,
-        "iconPath": "res://assets/textures/gui/bevel/parts/membraneChitin.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/membraneChitin.png",
+        "editorButtonOrder": 4
     },
     "calciumCarbonate": {
         "name": "CALCIUM_CARBONATE",
@@ -82,7 +86,8 @@
         "physicalResistance": 0.6,
         "toxinResistance": 1.6,
         "editorCost": 50,
-        "iconPath": "res://assets/textures/gui/bevel/parts/membraneCalciumCarbo.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/membraneCalciumCarbo.png",
+        "editorButtonOrder": 5
     },
     "silica": {
         "name": "SILICA",
@@ -99,6 +104,7 @@
         "physicalResistance": 1.6,
         "toxinResistance": 0.6,
         "editorCost": 50,
-        "iconPath": "res://assets/textures/gui/bevel/parts/membraneSilica.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/membraneSilica.png",
+        "editorButtonOrder": 6
     }
 }

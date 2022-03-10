@@ -9,7 +9,7 @@ using Color = Godot.Color;
 /// <typeparam name="TEditor">The type of editor this component is contained in</typeparam>
 /// <typeparam name="TAction">Editor action type the editor this will be used with will use</typeparam>
 public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorComponentBase<TEditor>
-    where TEditor : Godot.Object, IEditor
+    where TEditor : Godot.Object, IEditorWithActions
     where TAction : MicrobeEditorAction
 {
     [Export]
@@ -136,6 +136,16 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     public void UpdateCancelButtonVisibility()
     {
         cancelButton.Visible = Editor.CanCancelAction;
+    }
+
+    protected void Undo()
+    {
+        Editor.Undo();
+    }
+
+    protected void Redo()
+    {
+        Editor.Redo();
     }
 
     protected void OnCancelActionClicked()

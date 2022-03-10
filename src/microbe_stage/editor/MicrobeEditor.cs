@@ -11,7 +11,8 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
 [DeserializedCallbackTarget]
-public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEditorWithPatches, IHexEditor
+public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEditorWithPatches, IHexEditor,
+    IEditorWithActions
 {
     [Export]
     public NodePath ReportTabPath = null!;
