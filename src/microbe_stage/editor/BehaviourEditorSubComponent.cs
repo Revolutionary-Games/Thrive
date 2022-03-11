@@ -3,6 +3,7 @@ using Godot;
 using Newtonsoft.Json;
 
 [DeserializedCallbackTarget]
+[IgnoreNoMethodsTakingInputAttribute]
 public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
 {
     [Export]

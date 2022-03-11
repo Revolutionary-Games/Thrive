@@ -1,6 +1,7 @@
 ﻿/// <summary>
 ///   Microbe patch map GUI
 /// </summary>
+[IgnoreNoMethodsTakingInputAttribute]
 public class MicrobeEditorPatchMap : PatchMapEditorComponent<MicrobeEditor>
 {
     protected override void UpdateShownPatchDetails()

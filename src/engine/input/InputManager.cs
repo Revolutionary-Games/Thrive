@@ -68,6 +68,9 @@ public class InputManager : Node
 
         if (!registered)
         {
+            if (instance.GetType().GetCustomAttribute<IgnoreNoMethodsTakingInputAttribute>() != null)
+                return;
+
             GD.PrintErr("Object registered to receive input, but it has no input attributes on its methods (type: ",
                 instance.GetType().Name, ")");
         }
@@ -91,6 +94,9 @@ public class InputManager : Node
 
         if (removed < 1)
         {
+            if (instance.GetType().GetCustomAttribute<IgnoreNoMethodsTakingInputAttribute>() != null)
+                return;
+
             GD.PrintErr("Found no instances to unregister input receiving from (unregistering object of type: ",
                 instance.GetType().Name, ")");
         }

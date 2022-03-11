@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   The report tab of the microbe editor
 /// </summary>
+[IgnoreNoMethodsTakingInputAttribute]
 public class MicrobeEditorReportComponent : EditorComponentBase<MicrobeEditor>
 {
     [Export]
