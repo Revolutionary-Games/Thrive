@@ -1,15 +1,16 @@
-﻿using Godot;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using AutoEvo;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   The cell editor component combining the organelle and other editing logic with the GUI for it
 /// </summary>
+[SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn")]
 public partial class CellEditorComponent :
     HexEditorComponentBase<MicrobeEditor, MicrobeEditorAction, OrganelleTemplate>,
     IGodotEarlyNodeResolve
@@ -448,14 +449,26 @@ public partial class CellEditorComponent :
         base.Init(owningEditor, fresh);
         behaviourEditor.Init(owningEditor, fresh);
 
+        var newLayout = new OrganelleLayout<OrganelleTemplate>(
+            OnOrganelleAdded, OnOrganelleRemoved);
+
         if (fresh)
         {
-            editedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>(
-                OnOrganelleAdded, OnOrganelleRemoved);
+            editedMicrobeOrganelles = newLayout;
         }
         else
         {
+            // We assume that the loaded save layout did not have anything weird set for the callbacks as we
+            // do this rather than use SaveApplyHelpers
+            foreach (var editedMicrobeOrganelle in editedMicrobeOrganelles)
+            {
+                newLayout.Add(editedMicrobeOrganelle);
+            }
+
+            editedMicrobeOrganelles = newLayout;
+
             UpdateGUIAfterLoadingSpecies(Editor.EditedSpecies);
+            SetupPreviewMicrobe();
             UpdateArrow(false);
         }
 
@@ -552,6 +565,13 @@ public partial class CellEditorComponent :
         UpdateGUIAfterLoadingSpecies(Editor.EditedSpecies);
 
         // Setup the display cell
+        SetupPreviewMicrobe();
+
+        UpdateArrow(false);
+    }
+
+    private void SetupPreviewMicrobe()
+    {
         previewMicrobe = (Microbe)microbeScene.Instance();
         previewMicrobe.IsForPreviewOnly = true;
         Editor.RootOfDynamicallySpawned.AddChild(previewMicrobe);
@@ -559,8 +579,6 @@ public partial class CellEditorComponent :
 
         // Set its initial visibility
         previewMicrobe.Visible = MicrobePreviewMode;
-
-        UpdateArrow(false);
     }
 
     public override void OnFinishEditing()

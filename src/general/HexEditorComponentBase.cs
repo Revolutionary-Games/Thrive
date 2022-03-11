@@ -7,7 +7,8 @@ using Newtonsoft.Json;
 ///   Editor component that specializes in hex-based stuff editing
 /// </summary>
 public abstract class
-    HexEditorComponentBase<TEditor, TAction, THexMove> : EditorComponentWithActionsBase<TEditor, TAction>
+    HexEditorComponentBase<TEditor, TAction, THexMove> : EditorComponentWithActionsBase<TEditor, TAction>,
+        ISaveLoadedTracked, IChildPropertiesLoadCallback
     where TEditor : Godot.Object, IHexEditor, IEditorWithActions
     where TAction : MicrobeEditorAction
     where THexMove : class
@@ -32,18 +33,6 @@ public abstract class
 
     [Export]
     public NodePath IslandErrorPath = null!;
-
-    private TextureButton symmetryButton = null!;
-    private TextureRect symmetryIcon = null!;
-
-    private Texture symmetryIconDefault = null!;
-    private Texture symmetryIcon2X = null!;
-    private Texture symmetryIcon4X = null!;
-    private Texture symmetryIcon6X = null!;
-
-    private CustomConfirmationDialog islandPopup = null!;
-
-    private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
 
     /// <summary>
     ///   The hexes that are positioned under the cursor to show where the player is about to place something.
@@ -71,15 +60,11 @@ public abstract class
     protected readonly List<SceneDisplayer> placedModels = new();
 
     /// <summary>
-    ///   Object camera is over. Needs to be defined before camera for saving to work
+    ///   Object camera is over. Used to mov ethe camera around
     /// </summary>
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     protected Spatial cameraFollow = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    protected MicrobeCamera camera = null!;
+    protected MicrobeCamera? camera;
 
     [JsonIgnore]
     protected MeshInstance editorArrow = null!;
@@ -114,10 +99,24 @@ public abstract class
     [JsonProperty]
     protected int organelleRot;
 
+    private TextureButton symmetryButton = null!;
+    private TextureRect symmetryIcon = null!;
+
+    private Texture symmetryIconDefault = null!;
+    private Texture symmetryIcon2X = null!;
+    private Texture symmetryIcon4X = null!;
+    private Texture symmetryIcon6X = null!;
+
+    private CustomConfirmationDialog islandPopup = null!;
+
+    private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
+
+    private Vector3 cameraPosition;
+
     /// <summary>
     ///   Where the user started panning with the mouse. Null if the user is not panning with the mouse
     /// </summary>
-    protected Vector3? mousePanningStart;
+    private Vector3? mousePanningStart;
 
     /// <summary>
     ///   The symmetry setting of the editor.
@@ -137,6 +136,30 @@ public abstract class
     public THexMove? MovingPlacedHex { get; protected set; }
 
     /// <summary>
+    ///   Camera position. Y-position should always be 0
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is a separate property instead of using <see cref="AssignOnlyChildItemsOnDeserializeAttribute"/>
+    ///     as this component derived scenes don't have the camera paths set (as they are on the higher level).
+    ///     This approach also allows different editor components to remember where they placed the camera.
+    ///   </para>
+    /// </remarks>
+    [JsonProperty]
+    public Vector3 CameraPosition
+    {
+        get => cameraPosition;
+        set
+        {
+            cameraPosition = value;
+            UpdateCamera();
+        }
+    }
+
+    [JsonProperty]
+    public float CameraHeight { get; private set; } = Constants.EDITOR_DEFAULT_CAMERA_HEIGHT;
+
+    /// <summary>
     ///   If true a hex move is in progress and can be canceled
     /// </summary>
     [JsonIgnore]
@@ -144,6 +167,8 @@ public abstract class
 
     [JsonIgnore]
     public abstract bool HasIslands { get; }
+
+    public bool IsLoadedFromSave { get; set; }
 
     protected abstract bool ForceHideHover { get; }
 
@@ -163,6 +188,8 @@ public abstract class
 
         LoadHexMaterials();
         LoadScenes();
+
+        UpdateCamera();
     }
 
     public virtual void ResolveNodeReferences()
@@ -170,20 +197,33 @@ public abstract class
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
         symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
 
-
         islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
+
+        if (IsLoadedFromSave)
+        {
+            // When directly loaded from the base scene (which is done when loading from a save), some of our
+            // node paths are not set so we need to skip them
+            return;
+        }
 
         camera = GetNode<MicrobeCamera>(CameraPath);
         editorArrow = GetNode<MeshInstance>(EditorArrowPath);
         editorGrid = GetNode<MeshInstance>(EditorGridPath);
         cameraFollow = GetNode<Spatial>(CameraFollowPath);
+
+        camera.Connect(nameof(MicrobeCamera.OnZoomChanged), this, nameof(OnZoomChanged));
     }
 
     public override void Init(TEditor owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
 
-        // Set this now always to improve old save compatibility
+        if (camera == null)
+        {
+            throw new InvalidOperationException(
+                "This editor component was loaded from a save and is not fully functional");
+        }
+
         camera.ObjectToFollow = cameraFollow;
 
         if (fresh)
@@ -235,13 +275,22 @@ public abstract class
         editorGrid.Visible = shown;
     }
 
+    public void UpdateCamera()
+    {
+        if (camera == null)
+            return;
+
+        camera.CameraHeight = CameraHeight;
+        cameraFollow.Translation = CameraPosition;
+    }
+
     /// <summary>
     ///   Updates the background shown in the editor
     /// </summary>
     public void UpdateBackgroundImage(Biome biomeToUseBackgroundFrom)
     {
         // TODO: make this be loaded in a background thread to avoid a lag spike
-        camera.SetBackground(SimulationParameters.Instance.GetBackground(biomeToUseBackgroundFrom.Background));
+        camera!.SetBackground(SimulationParameters.Instance.GetBackground(biomeToUseBackgroundFrom.Background));
     }
 
     [RunOnKeyDown("e_primary")]
@@ -270,7 +319,7 @@ public abstract class
             return;
 
         var movement = new Vector3(leftRight, 0, upDown);
-        MoveObjectToFollow(movement.Normalized() * delta * camera.CameraHeight);
+        MoveCamera(movement.Normalized() * delta * CameraHeight);
     }
 
     [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
@@ -278,12 +327,12 @@ public abstract class
     {
         if (mousePanningStart == null)
         {
-            mousePanningStart = camera.CursorWorldPos;
+            mousePanningStart = camera!.CursorWorldPos;
         }
         else
         {
-            var mousePanDirection = mousePanningStart.Value - camera.CursorWorldPos;
-            MoveObjectToFollow(mousePanDirection * delta * 10);
+            var mousePanDirection = mousePanningStart.Value - camera!.CursorWorldPos;
+            MoveCamera(mousePanDirection * delta * 10);
         }
 
         return false;
@@ -298,13 +347,15 @@ public abstract class
     [RunOnKeyDown("e_reset_camera")]
     public void ResetCamera()
     {
-        if (camera.ObjectToFollow == null)
+        if (camera == null)
         {
-            GD.PrintErr("Editor camera doesn't have followed object set");
+            GD.PrintErr("Editor camera isn't set");
             return;
         }
 
-        camera.ObjectToFollow.Translation = new Vector3(0, 0, 0);
+        CameraPosition = new Vector3(0, 0, 0);
+        UpdateCamera();
+
         camera.ResetHeight();
     }
 
@@ -463,6 +514,85 @@ public abstract class
         RemoveHex(mouseHex);
     }
 
+    public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
+    {
+        if (!base.CanFinishEditing(userOverrides))
+            return false;
+
+        // Can't exit the editor with disconnected organelles
+        if (HasIslands)
+        {
+            islandPopup.PopupCenteredShrink();
+            return false;
+        }
+
+        return true;
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        // We move all the hexes and the hover hexes to 0,0,0 so that
+        // the editor is free to replace them wherever
+        // TODO: it would be way better if we didn't have to do this and instead only updated
+        // the hover hexes and models when there is some change to them
+        foreach (var hex in hoverHexes)
+        {
+            hex.Translation = new Vector3(0, 0, 0);
+            hex.Visible = false;
+        }
+
+        foreach (var model in hoverModels)
+        {
+            model.Translation = new Vector3(0, 0, 0);
+            model.Visible = false;
+        }
+
+        // This is also highly non-optimal to update the hex locations
+        // and materials all the time
+
+        // Reset the material of hexes that have been hovered over
+        foreach (var entry in hoverOverriddenMaterials)
+        {
+            entry.Key.MaterialOverride = entry.Value;
+        }
+
+        hoverOverriddenMaterials.Clear();
+
+        usedHoverHex = 0;
+        usedHoverModel = 0;
+
+        editorGrid.Translation = camera!.CursorWorldPos;
+        editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
+    }
+
+    public void OnNoPropertiesLoaded()
+    {
+        // Something is wrong if a hex editor has this method called on it
+        throw new InvalidOperationException();
+    }
+
+    public virtual void OnPropertiesLoaded()
+    {
+        // A bit of a hack to make sure our camera doesn't lose its zoom level
+        camera!.IsLoadedFromSave = true;
+    }
+
+    protected MeshInstance CreateEditorHex()
+    {
+        var hex = (MeshInstance)hexScene.Instance();
+        Editor.RootOfDynamicallySpawned.AddChild(hex);
+        return hex;
+    }
+
+    protected SceneDisplayer CreatePreviewModelHolder()
+    {
+        var node = (SceneDisplayer)modelScene.Instance();
+        Editor.RootOfDynamicallySpawned.AddChild(node);
+        return node;
+    }
+
     protected virtual void LoadHexMaterials()
     {
         invalidMaterial = GD.Load<Material>("res://src/microbe_stage/editor/InvalidHex.material");
@@ -501,24 +631,6 @@ public abstract class
         Editor.EnqueueAction(action);
     }
 
-    protected abstract void PerformActiveAction();
-    protected abstract bool DoesActionEndInProgressAction(TAction action);
-
-    public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
-    {
-        if (!base.CanFinishEditing(userOverrides))
-            return false;
-
-        // Can't exit the editor with disconnected organelles
-        if (HasIslands)
-        {
-            islandPopup.PopupCenteredShrink();
-            return false;
-        }
-
-        return true;
-    }
-
     protected void OnSymmetryClicked()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -552,100 +664,6 @@ public abstract class
     protected void OnSymmetryReleased()
     {
         symmetryIcon.Modulate = new Color(1, 1, 1);
-    }
-
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-
-        // We move all the hexes and the hover hexes to 0,0,0 so that
-        // the editor is free to replace them wherever
-        // TODO: it would be way better if we didn't have to do this and instead only updated
-        // the hover hexes and models when there is some change to them
-        foreach (var hex in hoverHexes)
-        {
-            hex.Translation = new Vector3(0, 0, 0);
-            hex.Visible = false;
-        }
-
-        foreach (var model in hoverModels)
-        {
-            model.Translation = new Vector3(0, 0, 0);
-            model.Visible = false;
-        }
-
-        // This is also highly non-optimal to update the hex locations
-        // and materials all the time
-
-        // Reset the material of hexes that have been hovered over
-        foreach (var entry in hoverOverriddenMaterials)
-        {
-            entry.Key.MaterialOverride = entry.Value;
-        }
-
-        hoverOverriddenMaterials.Clear();
-
-        usedHoverHex = 0;
-        usedHoverModel = 0;
-
-        editorGrid.Translation = camera.CursorWorldPos;
-        editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
-    }
-
-    protected MeshInstance CreateEditorHex()
-    {
-        var hex = (MeshInstance)hexScene.Instance();
-        Editor.RootOfDynamicallySpawned.AddChild(hex);
-        return hex;
-    }
-
-    protected SceneDisplayer CreatePreviewModelHolder()
-    {
-        var node = (SceneDisplayer)modelScene.Instance();
-        Editor.RootOfDynamicallySpawned.AddChild(node);
-        return node;
-    }
-
-    /// <summary>
-    ///   Returns the hex position the mouse is over
-    /// </summary>
-    protected void GetMouseHex(out int q, out int r)
-    {
-        // Get the position of the cursor in the plane that the microbes is floating in
-        var cursorPos = camera.CursorWorldPos;
-
-        // Convert to the hex the cursor is currently located over.
-        var hex = Hex.CartesianToAxial(cursorPos);
-
-        q = hex.Q;
-        r = hex.R;
-    }
-
-    /// <summary>
-    ///   Checks if the target position is valid to place hex.
-    /// </summary>
-    /// <param name="position">Position to check</param>
-    /// <param name="rotation">
-    ///   The rotation to check for the hex (only makes sense when placing a group of hexes)
-    /// </param>
-    /// <param name="hex">The move data to try to move to the position</param>
-    /// <returns>True if valid</returns>
-    protected abstract bool IsMoveTargetValid(Hex position, int rotation, THexMove hex);
-
-    protected abstract void OnCurrentActionCanceled();
-    protected abstract void OnMoveActionStarted();
-    protected abstract void PerformMove(int q, int r);
-    protected abstract THexMove? GetHexAt(Hex position);
-    protected abstract void TryRemoveHexAt(Hex location);
-    protected abstract void UpdateCancelState();
-
-    /// <summary>
-    ///   Moves the ObjectToFollow of the camera in a direction
-    /// </summary>
-    /// <param name="vector">The direction to move the camera</param>
-    private void MoveObjectToFollow(Vector3 vector)
-    {
-        cameraFollow.Translation += vector;
     }
 
     /// <summary>
@@ -682,6 +700,56 @@ public abstract class
             return;
 
         InputManager.ForwardInput(inputEvent);
+    }
+
+    /// <summary>
+    ///   Returns the hex position the mouse is over
+    /// </summary>
+    protected void GetMouseHex(out int q, out int r)
+    {
+        // Get the position of the cursor in the plane that the microbes is floating in
+        var cursorPos = camera!.CursorWorldPos;
+
+        // Convert to the hex the cursor is currently located over.
+        var hex = Hex.CartesianToAxial(cursorPos);
+
+        q = hex.Q;
+        r = hex.R;
+    }
+
+    protected abstract void PerformActiveAction();
+    protected abstract bool DoesActionEndInProgressAction(TAction action);
+
+    /// <summary>
+    ///   Checks if the target position is valid to place hex.
+    /// </summary>
+    /// <param name="position">Position to check</param>
+    /// <param name="rotation">
+    ///   The rotation to check for the hex (only makes sense when placing a group of hexes)
+    /// </param>
+    /// <param name="hex">The move data to try to move to the position</param>
+    /// <returns>True if valid</returns>
+    protected abstract bool IsMoveTargetValid(Hex position, int rotation, THexMove hex);
+
+    protected abstract void OnCurrentActionCanceled();
+    protected abstract void OnMoveActionStarted();
+    protected abstract void PerformMove(int q, int r);
+    protected abstract THexMove? GetHexAt(Hex position);
+    protected abstract void TryRemoveHexAt(Hex location);
+    protected abstract void UpdateCancelState();
+
+    /// <summary>
+    ///   Moves the camera in a direction (note that height (y-axis) should not be used)
+    /// </summary>
+    /// <param name="vector">The direction to move the camera</param>
+    private void MoveCamera(Vector3 vector)
+    {
+        CameraPosition += vector;
+    }
+
+    private void OnZoomChanged(float zoom)
+    {
+        CameraHeight = zoom;
     }
 
     // TODO: make this method trigger automatically on Symmetry assignment

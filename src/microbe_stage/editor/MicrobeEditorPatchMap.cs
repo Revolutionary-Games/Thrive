@@ -2,6 +2,7 @@
 ///   Microbe patch map GUI
 /// </summary>
 [IgnoreNoMethodsTakingInputAttribute]
+[SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn", UsesEarlyResolve = false)]
 public class MicrobeEditorPatchMap : PatchMapEditorComponent<MicrobeEditor>
 {
     protected override void UpdateShownPatchDetails()

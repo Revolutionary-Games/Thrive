@@ -75,8 +75,11 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     /// </summary>
     protected bool wantsToSave;
 
+    /// <summary>
+    ///   This is protected only so that this is loaded from a save. No derived class should modify this
+    /// </summary>
     [JsonProperty]
-    private GameProperties? currentGame;
+    protected GameProperties? currentGame;
 
     private Control editorGUIBaseNode = null!;
 
@@ -444,6 +447,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
                 CurrentGame = StartNewGameForEditor();
             }
         }
+        else
+        {
+            UpdateHistoryCallbackTargets(history);
+        }
 
         InitEditor(!IsLoadedFromSave);
         SendFreebuildStatusToComponents();
@@ -451,11 +458,17 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         StartMusic();
     }
 
+    protected abstract void UpdateHistoryCallbackTargets(ActionHistory<TAction> actionHistory);
+
     protected virtual void InitEditor(bool fresh)
     {
         pauseMenu.GameProperties = CurrentGame;
+
         InitEditorGUI(fresh);
         NotifyUndoRedoStateChanged();
+
+        // Set the right active tab if it isn't the default or we loaded a save
+        ApplyEditorTab();
 
         if (fresh)
         {
@@ -498,6 +511,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
             // Make absolutely sure the current game doesn't have an auto-evo run
             CurrentGame.GameWorld.ResetAutoEvoRun();
+
+            // Make sure non-default tab button is highlighted right if we loaded a save where the tab was changed
+            editorTabSelector?.SetCurrentTab(selectedEditorTab);
 
             FadeIn();
         }

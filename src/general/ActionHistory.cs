@@ -65,4 +65,17 @@ public class ActionHistory<T>
         actions.Add(action);
         ++actionIndex;
     }
+
+    /// <summary>
+    ///   Makes sure all actions in the action history don't point to outdated callback targets (due to loading a save)
+    /// </summary>
+    /// <param name="newTarget">The new target object</param>
+    /// <typeparam name="TTarget">The type of objects in the callbacks to override</typeparam>
+    public void ReTargetCallbacksInHistory<TTarget>(TTarget newTarget)
+    {
+        foreach (var action in actions)
+        {
+            SaveApplyHelper.ReTargetCallbacks(action, newTarget);
+        }
+    }
 }

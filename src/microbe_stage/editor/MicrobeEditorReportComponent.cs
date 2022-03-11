@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 ///   The report tab of the microbe editor
 /// </summary>
 [IgnoreNoMethodsTakingInputAttribute]
+[SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn", UsesEarlyResolve = false)]
 public class MicrobeEditorReportComponent : EditorComponentBase<MicrobeEditor>
 {
     [Export]

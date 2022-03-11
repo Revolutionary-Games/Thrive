@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 
 [DeserializedCallbackTarget]
 [IgnoreNoMethodsTakingInputAttribute]
+[SceneLoadedClass("res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn", UsesEarlyResolve = false)]
 public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
 {
     [Export]

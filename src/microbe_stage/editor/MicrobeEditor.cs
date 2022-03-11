@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
 
@@ -29,7 +27,7 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    private PatchMapEditorComponent<MicrobeEditor> patchMapTab = null!;
+    private MicrobeEditorPatchMap patchMapTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -44,7 +42,7 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
     private MicrobeSpecies? editedSpecies;
 
     [JsonIgnore]
-    public TutorialState TutorialState => CurrentGame?.TutorialState ??
+    public TutorialState TutorialState => CurrentGame.TutorialState ??
         throw new InvalidOperationException("Editor doesn't have current game set yet");
 
     public override bool CanCancelAction => cellEditorTab.Visible && cellEditorTab.CanCancelAction;
@@ -127,6 +125,12 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
     }
 
+    protected override void UpdateHistoryCallbackTargets(ActionHistory<MicrobeEditorAction> actionHistory)
+    {
+        // TODO: figure out why the callbacks are correctly pointing to the cell editor instance even without this
+        // actionHistory.ReTargetCallbacksInHistory(cellEditorTab);
+    }
+
     protected override void InitEditor(bool fresh)
     {
         patchMapTab.SetMap(CurrentGame.GameWorld.Map);
@@ -181,9 +185,6 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
         {
             editorComponent.Init(this, fresh);
         }
-
-        // Set the right tabs if they aren't the defaults
-        ApplyEditorTab();
     }
 
     protected override void OnEditorReady()
@@ -283,6 +284,7 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
             {
                 cellEditorTab.Show();
                 SetEditorObjectVisibility(true);
+                cellEditorTab.UpdateCamera();
                 break;
             }
 
