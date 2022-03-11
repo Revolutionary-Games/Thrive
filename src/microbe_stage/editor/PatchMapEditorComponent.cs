@@ -2,6 +2,7 @@
 using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
+using Object = Godot.Object;
 
 /// <summary>
 ///   Editor patch map component
@@ -13,7 +14,7 @@ using Newtonsoft.Json;
 ///   </para>
 /// </remarks>
 public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
-    where TEditor : Godot.Object, IEditorWithPatches
+    where TEditor : Object, IEditorWithPatches
 {
     [Export]
     public NodePath MapDrawerPath = null!;

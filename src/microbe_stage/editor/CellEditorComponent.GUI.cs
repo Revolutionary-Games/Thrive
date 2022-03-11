@@ -313,7 +313,7 @@ public partial class CellEditorComponent
         GUICommon.Instance.PlayButtonPressSound();
 
         // If we add more things that can be overridden this needs to be updated
-        OnFinish!.Invoke(new List<EditorUserOverride>() { EditorUserOverride.NotProducingEnoughATP });
+        OnFinish!.Invoke(new List<EditorUserOverride> { EditorUserOverride.NotProducingEnoughATP });
     }
 
     private void UpdateGUIAfterLoadingSpecies(MicrobeSpecies species)
@@ -328,7 +328,7 @@ public partial class CellEditorComponent
         OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
 
         SetSpeciesInfo(newName, Membrane, Colour, Rigidity,
-            behaviourEditor.Behaviour ?? throw new Exception($"Editor doesn't have Behaviour setup"));
+            behaviourEditor.Behaviour ?? throw new Exception("Editor doesn't have Behaviour setup"));
         UpdateGeneration(species.Generation);
         UpdateHitpoints(CalculateHitpoints());
     }

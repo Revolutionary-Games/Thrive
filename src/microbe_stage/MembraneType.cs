@@ -44,9 +44,9 @@ public class MembraneType : IRegistryType
     [JsonIgnore]
     public Texture? LoadedIcon;
 
-#pragma warning disable 169 649 // Used through reflection
+#pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
-#pragma warning restore 169 649
+#pragma warning restore 169,649
 
     public string InternalName { get; set; } = null!;
 

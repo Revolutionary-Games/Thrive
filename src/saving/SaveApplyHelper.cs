@@ -138,10 +138,8 @@ public static class SaveApplyHelper
         {
             return method.CreateDelegate(typeof(T), newInstance);
         }
-        else
-        {
-            // Targets something else (or already targets the right object), pass back as is
-            return callback;
-        }
+
+        // Targets something else (or already targets the right object), pass back as is
+        return callback;
     }
 }

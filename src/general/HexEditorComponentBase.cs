@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using Object = Godot.Object;
 
 /// <summary>
 ///   Editor component that specializes in hex-based stuff editing
@@ -9,7 +10,7 @@ using Newtonsoft.Json;
 public abstract class
     HexEditorComponentBase<TEditor, TAction, THexMove> : EditorComponentWithActionsBase<TEditor, TAction>,
         ISaveLoadedTracked, IChildPropertiesLoadCallback
-    where TEditor : Godot.Object, IHexEditor, IEditorWithActions
+    where TEditor : Object, IHexEditor, IEditorWithActions
     where TAction : MicrobeEditorAction
     where THexMove : class
 {

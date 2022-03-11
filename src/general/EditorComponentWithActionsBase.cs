@@ -1,5 +1,4 @@
 ﻿using Godot;
-using Color = Godot.Color;
 
 /// <summary>
 ///   Editor component that contains an MP bar, undo / redo buttons etc. related functions

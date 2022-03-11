@@ -179,9 +179,9 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();
 
-#pragma warning disable 169 649 // Used through reflection
+#pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
-#pragma warning restore 169 649
+#pragma warning restore 169,649
 
     public enum OrganelleGroup
     {

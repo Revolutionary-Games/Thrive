@@ -457,10 +457,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         {
             return OnFinishEditing();
         }
-        else
-        {
-            return RequestFinishEditingWithOverride(userOverrides);
-        }
+
+        return RequestFinishEditingWithOverride(userOverrides);
     }
 
     protected abstract IEnumerable<IEditorComponent> GetAllEditorComponents();
