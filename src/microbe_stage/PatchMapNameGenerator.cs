@@ -25,6 +25,10 @@ public class PatchMapNameGenerator : IRegistryType
     {
         return patchName;
     }
+
+    /// <summary>
+    ///   Generates and returns a new patch name
+    /// </summary>
     public string Next()
     {
         Random random = new Random();
@@ -39,7 +43,7 @@ public class PatchMapNameGenerator : IRegistryType
             int syllabelsIndex = random.Next(0,syllables.Count);
             name += syllables [syllabelsIndex];
         }
-        GD.Print(name);
+
         // Continent name is the name without the genitive
         continentName = name;
 
@@ -54,13 +58,12 @@ public class PatchMapNameGenerator : IRegistryType
         }
 
         name += sufixes[sufixIndex];
-        GD.Print(name);
+
         // Convert first letter to uppercase
         char[] charName = name.ToCharArray();
         charName[0] = Char.ToUpper(name[0]);
         name = new string(charName);
-        patchName = name.ToUpper();
-        GD.Print(name);
+   
         return name;
 
     }

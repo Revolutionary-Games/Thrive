@@ -20,7 +20,7 @@ public static class PatchMapGenerator
         var name = nameGenerator.Next();
 
         // Predefined patches
-        var vents = new Patch("PATCH_"+name+"_VENTS", 0,
+        var vents = new Patch(name+" Vents", 0,
             GetBiomeTemplate("aavolcanic_vent"))
         {
             Depth =
@@ -33,7 +33,7 @@ public static class PatchMapGenerator
         vents.AddSpecies(defaultSpecies);
         map.AddPatch(vents);
 
-        var mesopelagic = new Patch("PATCH_"+name+"_MESOPELAGIC", 1,
+        var mesopelagic = new Patch(name+" Mesopelagic", 1,
             GetBiomeTemplate("mesopelagic"))
         {
             Depth =
@@ -45,7 +45,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(mesopelagic);
 
-        var epipelagic = new Patch("PATCH_"+name+"_EPIPELAGIC", 2,
+        var epipelagic = new Patch(name+" Epipelagic", 2,
             GetBiomeTemplate("default"))
         {
             Depth =
@@ -57,7 +57,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(epipelagic);
 
-        var tidepool = new Patch("PATCH_"+name+"_TIDEPOOL", 3,
+        var tidepool = new Patch(name+" Tidepool", 3,
             GetBiomeTemplate("tidepool"))
         {
             Depth =
@@ -69,7 +69,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(tidepool);
 
-        var bathypelagic = new Patch("PATCH_"+name+"_BATHYPELAGIC", 4,
+        var bathypelagic = new Patch(name+" Bathypelagic", 4,
             GetBiomeTemplate("bathypelagic"))
         {
             Depth =
@@ -81,7 +81,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(bathypelagic);
 
-        var abyssopelagic = new Patch("PATCH_"+name+"_ABYSSOPELAGIC", 5,
+        var abyssopelagic = new Patch(name+" Abyssopelagic", 5,
             GetBiomeTemplate("abyssopelagic"))
         {
             Depth =
@@ -93,7 +93,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(abyssopelagic);
 
-        var coast = new Patch("PATCH_"+name+"_COAST", 6,
+        var coast = new Patch(name+" Coast", 6,
             GetBiomeTemplate("coastal"))
         {
             Depth =
@@ -105,7 +105,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(coast);
 
-        var estuary = new Patch("PATCH_"+name+"_ESTUARY", 7,
+        var estuary = new Patch(name+" Estuary", 7,
             GetBiomeTemplate("estuary"))
         {
             Depth =
@@ -141,7 +141,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(iceShelf);
 
-        var seafloor = new Patch("PATCH_"+name+"_SEAFLOOR", 10,
+        var seafloor = new Patch(name+" Seafloor", 10,
             GetBiomeTemplate("seafloor"))
         {
             Depth =
