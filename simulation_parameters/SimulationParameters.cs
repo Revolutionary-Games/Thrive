@@ -94,6 +94,9 @@ public class SimulationParameters : Node
 
         gameCredits =
             LoadDirectObject<GameCredits>("res://simulation_parameters/common/credits.json");
+        
+        PatchMapNameGenerator = LoadDirectObject<PatchMapNameGenerator>(
+            "res://simulation_parameters/microbe_stage/patch_syllabels.json");
 
         GD.Print("SimulationParameters loading ended");
 
@@ -244,6 +247,11 @@ public class SimulationParameters : Node
         }
 
         return eukaryoticOrganelles[eukaryoticOrganelles.Count - 1];
+    }
+
+    public PatchMapNameGenerator GetPatchMapNameGenerator()
+    {
+        return PatchMapNameGenerator;
     }
 
     /// <summary>
