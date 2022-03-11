@@ -418,6 +418,9 @@ public static class Constants
     // Cooldown for AI for toggling engulfing
     public const float AI_ENGULF_INTERVAL = 300;
 
+    // Average number of calls to think method before doing expensive cloud-finding calculations
+    public const int AI_STEPS_PER_SMELL = 20;
+
     // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
     public const float AI_COMPOUND_BIAS = -10.0f;
 
