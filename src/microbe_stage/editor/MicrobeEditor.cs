@@ -74,6 +74,12 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
     protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MICROBE_EDITOR");
     protected override bool HasInProgressAction { get; }
 
+    [JsonIgnore]
+    public Patch CurrentPatch => patchMapTab.CurrentPatch;
+
+    [JsonIgnore]
+    public Patch? SelectedPatch => patchMapTab.SelectedPatch;
+
     public override void _Ready()
     {
         base._Ready();
@@ -84,30 +90,17 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
         // InitEditor();
     }
 
-    protected override IEnumerable<IEditorComponent> GetAllEditorComponents()
+    public void SendAutoEvoResultsToReportComponent()
     {
-        yield return reportTab;
-        yield return patchMapTab;
-        yield return cellEditorTab;
+        reportTab.UpdateAutoEvoResults(autoEvoSummary?.ToString() ?? "error", autoEvoExternal?.ToString() ?? "error");
     }
 
-    protected override void InitEditorGUI(bool fresh)
+    public override void SetEditorObjectVisibility(bool shown)
     {
-        reportTab.OnNextTab = () => SetEditorTab(EditorTab.PatchMap);
-        patchMapTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
-        cellEditorTab.OnFinish = ForwardEditorComponentFinishRequest;
+        base.SetEditorObjectVisibility(shown);
 
-        foreach (var editorComponent in GetAllEditorComponents())
-        {
-            editorComponent.Init(this, fresh);
-        }
-
-        // Set the right tabs if they aren't the defaults
-        ApplyEditorTab();
+        cellEditorTab.SetEditorWorldGuideObjectVisibility(shown);
     }
-
-    public Patch CurrentPatch => patchMapTab.CurrentPatch;
-    public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
     public void OnCurrentPatchUpdated(Patch patch)
     {
@@ -136,9 +129,9 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
 
     protected override void InitEditor(bool fresh)
     {
-        base.InitEditor(fresh);
-
         patchMapTab.SetMap(CurrentGame.GameWorld.Map);
+
+        base.InitEditor(fresh);
 
         reportTab.UpdateReportTabPatchSelector();
 
@@ -171,9 +164,26 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
         cellEditorTab.SendUndoToTutorial(TutorialState);
     }
 
-    public void SendAutoEvoResultsToReportComponent()
+    protected override IEnumerable<IEditorComponent> GetAllEditorComponents()
     {
-        reportTab.UpdateAutoEvoResults(autoEvoSummary?.ToString() ?? "error", autoEvoExternal?.ToString() ?? "error");
+        yield return reportTab;
+        yield return patchMapTab;
+        yield return cellEditorTab;
+    }
+
+    protected override void InitEditorGUI(bool fresh)
+    {
+        reportTab.OnNextTab = () => SetEditorTab(EditorTab.PatchMap);
+        patchMapTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
+        cellEditorTab.OnFinish = ForwardEditorComponentFinishRequest;
+
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            editorComponent.Init(this, fresh);
+        }
+
+        // Set the right tabs if they aren't the defaults
+        ApplyEditorTab();
     }
 
     protected override void OnEditorReady()

@@ -219,7 +219,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
         base.Init(owningEditor, fresh);
 
-        if (Editor.IsLoadedFromSave)
+        if (!fresh)
         {
             UpdatePlayerPatch(targetPatch);
         }
@@ -227,10 +227,11 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         {
             targetPatch = null;
 
-            playerPatchOnEntry = Editor.CurrentGame.GameWorld.Map.CurrentPatch ??
-                throw new InvalidOperationException("Map current patch needs to be set before entering the editor");
+            playerPatchOnEntry = mapDrawer.Map?.CurrentPatch ??
+                throw new InvalidOperationException("Map current patch needs to be set / SetMap needs to be called");
 
             canStillMove = true;
+            UpdatePlayerPatch(playerPatchOnEntry);
         }
     }
 
@@ -262,7 +263,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
     }
 
-    public override void OnInsufficientMP(bool playSound)
+    public override void OnInsufficientMP(bool playSound = true)
     {
     }
 
@@ -341,7 +342,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     private void SetPlayerPatch(Patch? patch)
     {
         if (!IsPatchMoveValid(patch))
-            throw new ArgumentException("can't move to the specified patch");
+            return;
 
         // One move per editor cycle allowed, unless freebuilding
         if (!Editor.FreeBuilding)
@@ -360,11 +361,12 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         }
 
         Editor.OnCurrentPatchUpdated(targetPatch ?? CurrentPatch);
+        UpdatePlayerPatch(targetPatch);
     }
 
     private void UpdatePlayerPatch(Patch? patch)
     {
-        mapDrawer.PlayerPatch = patch ?? Editor.CurrentPatch;
+        mapDrawer.PlayerPatch = patch ?? playerPatchOnEntry;
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
@@ -545,9 +547,6 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
     private void MoveToPatchClicked()
     {
-        var target = mapDrawer.SelectedPatch;
-
-        if (IsPatchMoveValid(target))
-            SetPlayerPatch(target);
+        SetPlayerPatch(mapDrawer.SelectedPatch);
     }
 }

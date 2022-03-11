@@ -294,7 +294,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
-CurrentMutationPointsLabelPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer/MPLabel")
+CurrentMutationPointsLabelPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/CurrentMp")
 MutationPointsArrowPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/MpArrow")
 ResultingMutationPointsLabelPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/ResultingMp")
 BaseMutationPointsLabelPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/BaseMp")

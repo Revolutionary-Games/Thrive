@@ -9,6 +9,20 @@ using Godot;
 public partial class CellEditorComponent
 {
     [DeserializedCallbackAllowed]
+    private void OnOrganelleAdded(OrganelleTemplate organelle)
+    {
+        organelleDataDirty = true;
+        membraneOrganellePositionsAreDirty = true;
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnOrganelleRemoved(OrganelleTemplate organelle)
+    {
+        organelleDataDirty = true;
+        membraneOrganellePositionsAreDirty = true;
+    }
+
+    [DeserializedCallbackAllowed]
     private void DoOrganellePlaceAction(MicrobeEditorAction action)
     {
         var data = (PlacementActionData?)action.Data ??

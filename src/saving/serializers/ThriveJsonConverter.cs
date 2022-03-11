@@ -73,17 +73,17 @@ public class ThriveJsonConverter : IDisposable
     /// <summary>
     ///   Serializes the specified object to a JSON string using ThriveJsonConverter settings.
     /// </summary>
-    /// <param name="o">Object to serialize</param>
+    /// <param name="object">Object to serialize</param>
     /// <param name="type">
     ///   <para>
     ///     Specifies the type of the object being serialized (optional). The dynamic type will
     ///     get written out if this is set to a base class of the object to serialize.
     ///   </para>
     /// </param>
-    public string SerializeObject(object o, Type? type = null)
+    public string SerializeObject(object @object, Type? type = null)
     {
         return PerformWithSettings(
-            settings => JsonConvert.SerializeObject(o, type, Constants.SAVE_FORMATTING, settings));
+            settings => JsonConvert.SerializeObject(@object, type, Constants.SAVE_FORMATTING, settings));
     }
 
     public T? DeserializeObject<T>(string json)
@@ -152,6 +152,11 @@ public class ThriveJsonConverter : IDisposable
             Converters = thriveConverters,
 
             ReferenceResolverProvider = () => referenceResolver,
+
+            // Even though we have our custom converters the JSON library wants to mess with us so we need to force it
+            // to ignore these. This has the slight downside that if someone forgets to add
+            // UseThriveSerializerAttribute when reference loops exist, this probably causes a stack overflow
+            ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
 
             TraceWriter = GetTraceWriter(Settings.Instance.JSONDebugMode, JSONDebug.ErrorHasOccurred),
         };
@@ -897,6 +902,9 @@ public class UseThriveSerializerAttribute : Attribute
 /// </summary>
 internal class DefaultThriveJSONConverter : BaseThriveConverter
 {
+    private static readonly Type UseSerializerAttribute = typeof(UseThriveSerializerAttribute);
+    private static readonly Type SceneLoadedAttribute = typeof(SceneLoadedClassAttribute);
+
     public DefaultThriveJSONConverter(ISaveContext context) : base(context)
     {
     }
@@ -909,7 +917,6 @@ internal class DefaultThriveJSONConverter : BaseThriveConverter
     {
         // Types with out custom attribute are supported
         return objectType.CustomAttributes.Any(
-            attr => attr.AttributeType == typeof(UseThriveSerializerAttribute) ||
-                attr.AttributeType == typeof(SceneLoadedClassAttribute));
+            attr => attr.AttributeType == UseSerializerAttribute || attr.AttributeType == SceneLoadedAttribute);
     }
 }

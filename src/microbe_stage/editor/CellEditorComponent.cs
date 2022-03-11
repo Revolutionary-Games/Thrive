@@ -198,16 +198,12 @@ public partial class CellEditorComponent :
     [JsonProperty]
     private float initialCellHp;
 
-    [JsonProperty]
     private string? bestPatchName;
 
-    [JsonProperty]
     private long bestPatchPopulation;
 
-    [JsonProperty]
     private string? worstPatchName;
 
-    [JsonProperty]
     private long worstPatchPopulation;
 
     private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements = new();
@@ -462,8 +458,6 @@ public partial class CellEditorComponent :
             UpdateGUIAfterLoadingSpecies(Editor.EditedSpecies);
             UpdateArrow(false);
         }
-
-        UpdateMutationPointsBar(false);
 
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInPatch(Editor.CurrentPatch);
@@ -1391,6 +1385,7 @@ public partial class CellEditorComponent :
     public override void NotifyFreebuild(bool freebuilding)
     {
         newCellButton.Disabled = !freebuilding;
+        UpdateMutationPointsBar(false);
     }
 
     /// <summary>
@@ -1422,20 +1417,6 @@ public partial class CellEditorComponent :
         {
             selection.Selected = selection.Name == membrane;
         }
-    }
-
-    [DeserializedCallbackAllowed]
-    private void OnOrganelleAdded(OrganelleTemplate organelle)
-    {
-        organelleDataDirty = true;
-        membraneOrganellePositionsAreDirty = true;
-    }
-
-    [DeserializedCallbackAllowed]
-    private void OnOrganelleRemoved(OrganelleTemplate organelle)
-    {
-        organelleDataDirty = true;
-        membraneOrganellePositionsAreDirty = true;
     }
 
     private void OnOrganellesChanged()

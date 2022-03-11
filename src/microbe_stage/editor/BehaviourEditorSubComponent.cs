@@ -27,7 +27,6 @@ public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
     private Slider activitySlider = null!;
     private Slider focusSlider = null!;
 
-    [JsonProperty]
     private BehaviourDictionary? behaviour;
 
     // TODO: as this is mostly just to guard against Behaviour being missing (when loading older saves), this field

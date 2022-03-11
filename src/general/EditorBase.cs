@@ -70,9 +70,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     [JsonProperty]
     protected EditorTab selectedEditorTab = EditorTab.Report;
 
-    [JsonProperty]
-    protected bool? autoEvoRunSuccessful;
-
     /// <summary>
     ///   True if auto save should trigger ASAP
     /// </summary>
@@ -456,6 +453,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     protected virtual void InitEditor(bool fresh)
     {
+        pauseMenu.GameProperties = CurrentGame;
         InitEditorGUI(fresh);
         NotifyUndoRedoStateChanged();
 

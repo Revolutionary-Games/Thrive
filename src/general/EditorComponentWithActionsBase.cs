@@ -99,9 +99,7 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
         }
         else
         {
-            // TODO: check if we truly need ShowHover here
-            // if (editor.ShowHover && editor.MutationPoints > 0)
-            if (Editor.MutationPoints > 0 && Editor.MutationPoints != possibleMutationPoints)
+            if (Editor.ShowHover && Editor.MutationPoints > 0)
             {
                 mutationPointsArrow.Show();
                 resultingMutationPointsLabel.Show();
