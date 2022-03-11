@@ -12,5 +12,4 @@ public class AgentProperties
     public Species Species { get; set; }
     public string AgentType { get; set; } = "oxytoxy";
     public Compound Compound { get; set; }
-    public MicrobeSpecies.MembraneType.ToxinDamage ToxinDamage = null!;
 }

@@ -23,7 +23,6 @@ public class MembraneType : IRegistryType
     public float HealingRate = 1.0f;
     public float PhysicalResistance = 1.0f;
     public float ToxinResistance = 1.0f;
-    public float ToxinDamage = 1.0f;
     public int EditorCost = 50;
     public bool CellWall;
     public float BaseWigglyness = 1.0f;
