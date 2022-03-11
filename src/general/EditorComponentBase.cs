@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
 
@@ -15,10 +14,9 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
     [Export]
     public NodePath FinishOrNextButtonPath = null!;
 
-    private Button finishOrNextButton = null!;
+    protected AudioStream unableToPerformActionSound = null!;
 
-    // TODO: rename
-    protected AudioStream unableToPlaceHexSound = null!;
+    private Button finishOrNextButton = null!;
 
     private TEditor? editor;
 
@@ -58,7 +56,8 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
     {
         editor = owningEditor;
 
-        unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
+        unableToPerformActionSound =
+            GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
 
         if (IsSubComponent)
             return;
@@ -118,9 +117,29 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
     /// </summary>
     public abstract void OnFinishEditing();
 
+    public abstract void UpdateUndoRedoButtons(bool canUndo, bool canRedo);
+    public abstract void OnInsufficientMP(bool playSound = true);
+    public abstract void OnActionBlockedWhileAnotherIsInProgress();
+
+    public void OnInvalidAction()
+    {
+        PlayInvalidActionSound();
+    }
+
+    /// <summary>
+    ///   Notify this component about the freebuild status. Many components don't need to react to this, they can
+    ///   instead just check <see cref="IEditor.FreeBuilding"/>
+    /// </summary>
+    /// <param name="freeBuilding">True if freebuild mode is on</param>
+    public virtual void NotifyFreebuild(bool freeBuilding)
+    {
+    }
+
+    public abstract void OnMutationPointsChanged(int mutationPoints);
+
     internal void PlayInvalidActionSound()
     {
-        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound, 0.4f);
+        GUICommon.Instance.PlayCustomSound(unableToPerformActionSound, 0.4f);
     }
 
     /// <summary>
@@ -157,24 +176,4 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
             OnNextTab!.Invoke();
         }
     }
-
-    public abstract void UpdateUndoRedoButtons(bool canUndo, bool canRedo);
-    public abstract void OnInsufficientMP(bool playSound = true);
-    public abstract void OnActionBlockedWhileAnotherIsInProgress();
-
-    public void OnInvalidAction()
-    {
-        PlayInvalidActionSound();
-    }
-
-    /// <summary>
-    ///   Notify this component about the freebuild status. Many components don't need to react to this, they can
-    ///   instead just check <see cref="IEditor.FreeBuilding"/>
-    /// </summary>
-    /// <param name="freeBuilding">True if freebuild mode is on</param>
-    public virtual void NotifyFreebuild(bool freeBuilding)
-    {
-    }
-
-    public abstract void OnMutationPointsChanged(int mutationPoints);
 }

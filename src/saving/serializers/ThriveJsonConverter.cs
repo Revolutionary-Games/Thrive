@@ -864,7 +864,7 @@ public abstract class BaseThriveConverter : JsonConverter
         foreach (var field in FieldsOf(instance))
         {
             if (UsesOnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
-                    out var recursiveChildData))
+                    out _))
             {
                 var value = field.GetValue(instance);
 
@@ -879,7 +879,7 @@ public abstract class BaseThriveConverter : JsonConverter
         foreach (var property in PropertiesOf(instance))
         {
             if (UsesOnlyChildAssign(property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
-                    out var recursiveChildData))
+                    out _))
             {
                 var value = property.GetValue(instance);
 

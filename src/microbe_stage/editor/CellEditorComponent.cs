@@ -227,7 +227,7 @@ public partial class CellEditorComponent :
     ///   </para>
     /// </remarks>
     [JsonProperty]
-    public string NewName = "unset";
+    private string newName = "unset";
 
     /// <summary>
     ///   We're taking advantage of the available membrane and organelle system already present in
@@ -557,7 +557,7 @@ public partial class CellEditorComponent :
             editedMicrobeOrganelles.Add((OrganelleTemplate)organelle.Clone());
         }
 
-        NewName = species.FormattedName;
+        newName = species.FormattedName;
 
         // Only when not loaded from save are these properties fetched (otherwise it won't display changes correctly)
         SetInitialCellStats();
@@ -568,17 +568,6 @@ public partial class CellEditorComponent :
         SetupPreviewMicrobe();
 
         UpdateArrow(false);
-    }
-
-    private void SetupPreviewMicrobe()
-    {
-        previewMicrobe = (Microbe)microbeScene.Instance();
-        previewMicrobe.IsForPreviewOnly = true;
-        Editor.RootOfDynamicallySpawned.AddChild(previewMicrobe);
-        previewMicrobe.ApplySpecies((MicrobeSpecies)Editor.EditedSpecies.Clone());
-
-        // Set its initial visibility
-        previewMicrobe.Visible = MicrobePreviewMode;
     }
 
     public override void OnFinishEditing()
@@ -607,7 +596,7 @@ public partial class CellEditorComponent :
         GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
 
         // Update name, if valid
-        var match = Regex.Match(NewName, Constants.SPECIES_NAME_REGEX);
+        var match = Regex.Match(newName, Constants.SPECIES_NAME_REGEX);
         if (match.Success)
         {
             editedSpecies.Genus = match.Groups["genus"].Value;
@@ -617,7 +606,7 @@ public partial class CellEditorComponent :
         }
         else
         {
-            GD.PrintErr("MicrobeEditor: Invalid newName: ", NewName);
+            GD.PrintErr("MicrobeEditor: Invalid newName: ", newName);
         }
 
         // Update membrane
@@ -709,6 +698,59 @@ public partial class CellEditorComponent :
     {
         UpdateMutationPointsBar();
         UpdateRigiditySliderState(mutationPoints);
+    }
+
+    public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
+    {
+        var editorUserOverrides = userOverrides.ToList();
+        if (!base.CanFinishEditing(editorUserOverrides))
+            return false;
+
+        if (editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
+            return true;
+
+        // Show warning popup if trying to exit with negative atp production
+        if (energyBalanceInfo != null &&
+            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
+        {
+            negativeAtpPopup.PopupCenteredShrink();
+            return false;
+        }
+
+        return true;
+    }
+
+    public void UpdatePatchDependentBalanceData()
+    {
+        // Calculate and send energy balance to the GUI
+        CalculateEnergyBalanceWithOrganellesAndMembraneType(
+            editedMicrobeOrganelles.Organelles, Membrane, Editor.SelectedPatch);
+
+        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, Editor.SelectedPatch);
+    }
+
+    /// <summary>
+    ///   Calculates the effectiveness of organelles in the current or given patch
+    /// </summary>
+    public void CalculateOrganelleEffectivenessInPatch(Patch patch)
+    {
+        var organelles = SimulationParameters.Instance.GetAllOrganelles();
+
+        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
+
+        UpdateOrganelleEfficiencies(result);
+    }
+
+    public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
+    {
+        SetUndoButtonStatus(canUndo && MovingPlacedHex == null);
+        SetRedoButtonStatus(canRedo && MovingPlacedHex == null);
+    }
+
+    public override void NotifyFreebuild(bool freebuilding)
+    {
+        newCellButton.Disabled = !freebuilding;
+        UpdateMutationPointsBar(false);
     }
 
     public void SetSpeciesInfo(string name, MembraneType membrane, Color colour, float rigidity,
@@ -961,15 +1003,20 @@ public partial class CellEditorComponent :
         EnqueueAction(action);
     }
 
-    public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
-    {
-        SetUndoButtonStatus(canUndo && MovingPlacedHex == null);
-        SetRedoButtonStatus(canRedo && MovingPlacedHex == null);
-    }
-
     protected override void UpdateCancelState()
     {
         UpdateCancelButtonVisibility();
+    }
+
+    private void SetupPreviewMicrobe()
+    {
+        previewMicrobe = (Microbe)microbeScene.Instance();
+        previewMicrobe.IsForPreviewOnly = true;
+        Editor.RootOfDynamicallySpawned.AddChild(previewMicrobe);
+        previewMicrobe.ApplySpecies((MicrobeSpecies)Editor.EditedSpecies.Clone());
+
+        // Set its initial visibility
+        previewMicrobe.Visible = MicrobePreviewMode;
     }
 
     private bool HasOrganelle(OrganelleDefinition organelleDefinition)
@@ -1018,16 +1065,32 @@ public partial class CellEditorComponent :
         }
     }
 
-    /// <summary>
-    ///   Calculates the effectiveness of organelles in the current or given patch
-    /// </summary>
-    public void CalculateOrganelleEffectivenessInPatch(Patch patch)
+    private void UpdateRigiditySlider(int value)
     {
-        var organelles = SimulationParameters.Instance.GetAllOrganelles();
+        rigiditySlider.Value = value;
+        SetRigiditySliderTooltip(value);
+    }
 
-        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
+    private void ShowOrganelleMenu(OrganelleTemplate selectedOrganelle)
+    {
+        organelleMenu.SelectedOrganelle = selectedOrganelle;
+        organelleMenu.ShowPopup = true;
 
-        UpdateOrganelleEfficiencies(result);
+        // Disable delete for nucleus or the last organelle.
+        if (MicrobeSize < 2 || selectedOrganelle.Definition == nucleus)
+        {
+            organelleMenu.EnableDeleteOption = false;
+        }
+        else
+        {
+            organelleMenu.EnableDeleteOption = true;
+        }
+
+        // Move enabled only when microbe has more than one organelle
+        organelleMenu.EnableMoveOption = MicrobeSize > 1;
+
+        // Modify / upgrade possible when defined on the organelle definition
+        organelleMenu.EnableModifyOption = !string.IsNullOrEmpty(selectedOrganelle.Definition.UpgradeGUI);
     }
 
     private void StartAutoEvoPrediction()
@@ -1192,7 +1255,8 @@ public partial class CellEditorComponent :
     }
 
     /// <summary>
-    ///   Places an organelle of the specified type under the cursor and also applies symmetry to place multiple at once.
+    ///   Places an organelle of the specified type under the cursor and also applies symmetry to
+    ///   place multiple at once.
     /// </summary>
     /// <returns>True when at least one organelle got placed</returns>
     private bool AddOrganelle(string organelleType)
@@ -1378,38 +1442,10 @@ public partial class CellEditorComponent :
         UpdateHitpoints(CalculateHitpoints());
     }
 
-    public void ShowOrganelleMenu(OrganelleTemplate selectedOrganelle)
-    {
-        organelleMenu.SelectedOrganelle = selectedOrganelle;
-        organelleMenu.ShowPopup = true;
-
-        // Disable delete for nucleus or the last organelle.
-        if (MicrobeSize < 2 || selectedOrganelle.Definition == nucleus)
-        {
-            organelleMenu.EnableDeleteOption = false;
-        }
-        else
-        {
-            organelleMenu.EnableDeleteOption = true;
-        }
-
-        // Move enabled only when microbe has more than one organelle
-        organelleMenu.EnableMoveOption = MicrobeSize > 1;
-
-        // Modify / upgrade possible when defined on the organelle definition
-        organelleMenu.EnableModifyOption = !string.IsNullOrEmpty(selectedOrganelle.Definition.UpgradeGUI);
-    }
-
-    public override void NotifyFreebuild(bool freebuilding)
-    {
-        newCellButton.Disabled = !freebuilding;
-        UpdateMutationPointsBar(false);
-    }
-
     /// <summary>
     ///   Lock / unlock the organelles that need a nucleus
     /// </summary>
-    internal void UpdatePartsAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames)
+    private void UpdatePartsAvailability(List<OrganelleDefinition> placedUniqueOrganelleNames)
     {
         foreach (var organelle in placeablePartSelectionElements.Keys)
         {
@@ -1417,7 +1453,7 @@ public partial class CellEditorComponent :
         }
     }
 
-    internal void OnOrganelleToPlaceSelected(string organelle)
+    private void OnOrganelleToPlaceSelected(string organelle)
     {
         ActiveActionName = organelle;
 
@@ -1428,7 +1464,7 @@ public partial class CellEditorComponent :
         }
     }
 
-    internal void UpdateMembraneButtons(string membrane)
+    private void UpdateMembraneButtons(string membrane)
     {
         // Update the icon highlightings
         foreach (var selection in membraneSelectionElements.Values)
@@ -1578,32 +1614,6 @@ public partial class CellEditorComponent :
         CreateNewMicrobe();
     }
 
-    internal void UpdateRigiditySlider(int value)
-    {
-        rigiditySlider.Value = value;
-        SetRigiditySliderTooltip(value);
-    }
-
-    public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
-    {
-        var editorUserOverrides = userOverrides.ToList();
-        if (!base.CanFinishEditing(editorUserOverrides))
-            return false;
-
-        if (editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
-            return true;
-
-        // Show warning popup if trying to exit with negative atp production
-        if (energyBalanceInfo != null &&
-            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
-        {
-            negativeAtpPopup.PopupCenteredShrink();
-            return false;
-        }
-
-        return true;
-    }
-
     /// <summary>
     ///   Updates the organelle model displayer to have the specified scene in it
     /// </summary>
@@ -1716,13 +1726,13 @@ public partial class CellEditorComponent :
             speciesNameEdit.Set("custom_colors/font_color", new Color(1, 1, 1));
         }
 
-        NewName = newText;
+        newName = newText;
     }
 
     private void OnSpeciesNameTextEntered(string newText)
     {
         // In case the text is not stored
-        NewName = newText;
+        newName = newText;
 
         // Only defocus if the name is valid to indicate invalid namings to the player
         if (Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
@@ -2116,14 +2126,5 @@ public partial class CellEditorComponent :
         }
 
         public bool Finished => AutoEvoRun.Finished;
-    }
-
-    public void UpdatePatchDependentBalanceData()
-    {
-        // Calculate and send energy balance to the GUI
-        CalculateEnergyBalanceWithOrganellesAndMembraneType(
-            editedMicrobeOrganelles.Organelles, Membrane, Editor.SelectedPatch);
-
-        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, Editor.SelectedPatch);
     }
 }

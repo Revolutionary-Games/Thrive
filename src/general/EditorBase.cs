@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
@@ -226,7 +225,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     {
         if (!Ready)
         {
-            if (!CurrentGame!.GameWorld.IsAutoEvoFinished())
+            if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
                 LoadingScreen.Instance.Show(EditorLoadingMessage, ReturnToState,
                     TranslationServer.Translate("WAITING_FOR_AUTO_EVO") + " " +
@@ -240,7 +239,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         // Auto save after editor entry is complete
         if (TransitionFinished && wantsToSave)
         {
-            if (!CurrentGame!.FreeBuild)
+            if (!CurrentGame.FreeBuild)
                 PerformAutoSave();
 
             wantsToSave = false;
@@ -283,36 +282,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(MicrobeEditor.OnEditorExitTransitionFinished));
         return true;
-    }
-
-    /// <summary>
-    ///   Applies the changes done and exits the editor back to <see cref="ReturnToStage"/>
-    /// </summary>
-    private void OnEditorExitTransitionFinished()
-    {
-        MakeSureEditorReturnIsGood();
-
-        GD.Print(GetType().Name, ": applying changes to edited Species");
-
-        foreach (var editorComponent in GetAllEditorComponents())
-        {
-            GD.Print(editorComponent.GetType().Name, ": applying changes of component");
-            editorComponent.OnFinishEditing();
-        }
-
-        var stage = ReturnToStage!;
-
-        // This needs to be reset here to not free this when we exit the tree
-        ReturnToStage = null;
-
-        SceneManager.Instance.SwitchToScene(stage);
-
-        stage.OnReturnFromEditor();
-    }
-
-    private void OnFinishTransitioning()
-    {
-        TransitionFinished = true;
     }
 
     public void NotifyUndoRedoStateChanged()
@@ -378,15 +347,74 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     public abstract bool CancelCurrentAction();
 
-    protected bool ForwardEditorComponentFinishRequest(List<EditorUserOverride>? userOverrides)
+    public void EnqueueAction(TAction action)
     {
-        if (userOverrides == null)
+        // A sanity check to not let an action proceed if we don't have enough mutation points
+        if (!CheckEnoughMPForAction(action.Cost))
+            return;
+
+        if (HasInProgressAction)
         {
-            return OnFinishEditing();
+            GD.Print("Editor action blocked due to an in-progress action");
+            OnActionBlockedWhileMoving();
+            return;
         }
-        else
+
+        history.AddAction(action);
+
+        NotifyUndoRedoStateChanged();
+    }
+
+    public void EnqueueAction(ReversibleAction action)
+    {
+        EnqueueAction((TAction)action);
+    }
+
+    public bool CheckEnoughMPForAction(int cost)
+    {
+        if (MutationPoints < cost)
         {
-            return RequestFinishEditingWithOverride(userOverrides);
+            // Flash the MP bar and play sound
+            OnInsufficientMP();
+            return false;
+        }
+
+        return true;
+    }
+
+    public virtual void OnInsufficientMP(bool playSound = true)
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            if (editorComponent.Visible)
+            {
+                editorComponent.OnInsufficientMP(playSound);
+                break;
+            }
+        }
+    }
+
+    public virtual void OnActionBlockedWhileMoving()
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            if (editorComponent.Visible)
+            {
+                editorComponent.OnActionBlockedWhileAnotherIsInProgress();
+                break;
+            }
+        }
+    }
+
+    public virtual void OnInvalidAction()
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            if (editorComponent.Visible)
+            {
+                editorComponent.OnInvalidAction();
+                break;
+            }
         }
     }
 
@@ -408,8 +436,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         return OnFinishEditing();
     }
 
-    protected abstract IEnumerable<IEditorComponent> GetAllEditorComponents();
-
     /// <summary>
     ///   Changes the number of mutation points left. Should only be called by editor actions
     /// </summary>
@@ -424,6 +450,20 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     }
 
     protected abstract void InitEditorGUI(bool fresh);
+
+    protected bool ForwardEditorComponentFinishRequest(List<EditorUserOverride>? userOverrides)
+    {
+        if (userOverrides == null)
+        {
+            return OnFinishEditing();
+        }
+        else
+        {
+            return RequestFinishEditingWithOverride(userOverrides);
+        }
+    }
+
+    protected abstract IEnumerable<IEditorComponent> GetAllEditorComponents();
 
     /// <summary>
     ///   Sets up the editor when entering
@@ -539,7 +579,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         ElapseEditorEntryTime();
 
         // Get summary before applying results in order to get comparisons to the previous populations
-        var run = CurrentGame!.GameWorld.GetAutoEvoRun();
+        var run = CurrentGame.GameWorld.GetAutoEvoRun();
 
         if (run.Results != null)
         {
@@ -594,41 +634,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         return null;
     }
 
-    public void EnqueueAction(TAction action)
-    {
-        // A sanity check to not let an action proceed if we don't have enough mutation points
-        if (!CheckEnoughMPForAction(action.Cost))
-            return;
-
-        if (HasInProgressAction)
-        {
-            GD.Print("Editor action blocked due to an in-progress action");
-            OnActionBlockedWhileMoving();
-            return;
-        }
-
-        history.AddAction(action);
-
-        NotifyUndoRedoStateChanged();
-    }
-
-    public bool CheckEnoughMPForAction(int cost)
-    {
-        if (MutationPoints < cost)
-        {
-            // Flash the MP bar and play sound
-            OnInsufficientMP();
-            return false;
-        }
-
-        return true;
-    }
-
-    public void EnqueueAction(ReversibleAction action)
-    {
-        EnqueueAction((TAction)action);
-    }
-
     protected virtual void OnUndoPerformed()
     {
     }
@@ -648,43 +653,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     protected abstract void PerformAutoSave();
     protected abstract void PerformQuickSave();
 
+    protected abstract void SaveGame(string name);
+
     protected abstract GameProperties StartNewGameForEditor();
-
-    public virtual void OnInsufficientMP(bool playSound = true)
-    {
-        foreach (var editorComponent in GetAllEditorComponents())
-        {
-            if (editorComponent.Visible)
-            {
-                editorComponent.OnInsufficientMP(playSound);
-                break;
-            }
-        }
-    }
-
-    public virtual void OnActionBlockedWhileMoving()
-    {
-        foreach (var editorComponent in GetAllEditorComponents())
-        {
-            if (editorComponent.Visible)
-            {
-                editorComponent.OnActionBlockedWhileAnotherIsInProgress();
-                break;
-            }
-        }
-    }
-
-    public virtual void OnInvalidAction()
-    {
-        foreach (var editorComponent in GetAllEditorComponents())
-        {
-            if (editorComponent.Visible)
-            {
-                editorComponent.OnInvalidAction();
-                break;
-            }
-        }
-    }
 
     protected virtual void SendFreebuildStatusToComponents()
     {
@@ -718,6 +689,36 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         {
             editorComponent.OnMutationPointsChanged(MutationPoints);
         }
+    }
+
+    /// <summary>
+    ///   Applies the changes done and exits the editor back to <see cref="ReturnToStage"/>
+    /// </summary>
+    private void OnEditorExitTransitionFinished()
+    {
+        MakeSureEditorReturnIsGood();
+
+        GD.Print(GetType().Name, ": applying changes to edited Species");
+
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            GD.Print(editorComponent.GetType().Name, ": applying changes of component");
+            editorComponent.OnFinishEditing();
+        }
+
+        var stage = ReturnToStage!;
+
+        // This needs to be reset here to not free this when we exit the tree
+        ReturnToStage = null;
+
+        SceneManager.Instance.SwitchToScene(stage);
+
+        stage.OnReturnFromEditor();
+    }
+
+    private void OnFinishTransitioning()
+    {
+        TransitionFinished = true;
     }
 
     private void MakeSureEditorReturnIsGood()
@@ -780,6 +781,4 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     {
         Jukebox.Instance.PlayCategory(MusicCategory);
     }
-
-    protected abstract void SaveGame(string name);
 }

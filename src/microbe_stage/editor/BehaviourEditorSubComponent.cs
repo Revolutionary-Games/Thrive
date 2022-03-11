@@ -76,7 +76,7 @@ public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
     {
     }
 
-    public override void OnInsufficientMP(bool playSound)
+    public override void OnInsufficientMP(bool playSound = true)
     {
     }
 
@@ -106,6 +106,12 @@ public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
         Editor.EnqueueAction(action);
     }
 
+    public void UpdateAllBehaviouralSliders(BehaviourDictionary behaviour)
+    {
+        foreach (var pair in behaviour)
+            UpdateBehaviourSlider(pair.Key, pair.Value);
+    }
+
     internal void UpdateBehaviourSlider(BehaviouralValueType type, float value)
     {
         switch (type)
@@ -130,18 +136,27 @@ public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
         }
     }
 
+    protected override void OnTranslationsChanged()
+    {
+    }
+
+    protected override void RegisterTooltips()
+    {
+        base.RegisterTooltips();
+
+        aggressionSlider.RegisterToolTipForControl("aggressionSlider", "editor");
+        opportunismSlider.RegisterToolTipForControl("opportunismSlider", "editor");
+        fearSlider.RegisterToolTipForControl("fearSlider", "editor");
+        activitySlider.RegisterToolTipForControl("activitySlider", "editor");
+        focusSlider.RegisterToolTipForControl("focusSlider", "editor");
+    }
+
     private void OnBehaviourValueChanged(float value, string behaviourName)
     {
         if (!Enum.TryParse(behaviourName, out BehaviouralValueType behaviouralValueType))
             throw new ArgumentException($"{behaviourName} is not a valid BehaviouralValueType");
 
         SetBehaviouralValue(behaviouralValueType, value);
-    }
-
-    public void UpdateAllBehaviouralSliders(BehaviourDictionary behaviour)
-    {
-        foreach (var pair in behaviour)
-            UpdateBehaviourSlider(pair.Key, pair.Value);
     }
 
     [DeserializedCallbackAllowed]
@@ -168,20 +183,5 @@ public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
 
         Behaviour[data.Type] = data.OldValue;
         UpdateBehaviourSlider(data.Type, data.OldValue);
-    }
-
-    protected override void OnTranslationsChanged()
-    {
-    }
-
-    protected virtual void RegisterTooltips()
-    {
-        base.RegisterTooltips();
-
-        aggressionSlider.RegisterToolTipForControl("aggressionSlider", "editor");
-        opportunismSlider.RegisterToolTipForControl("opportunismSlider", "editor");
-        fearSlider.RegisterToolTipForControl("fearSlider", "editor");
-        activitySlider.RegisterToolTipForControl("activitySlider", "editor");
-        focusSlider.RegisterToolTipForControl("focusSlider", "editor");
     }
 }

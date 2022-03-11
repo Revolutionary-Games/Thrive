@@ -17,16 +17,16 @@ public partial class CellEditorComponent
 {
     private Texture questionIcon = null!;
 
-    protected override void OnTranslationsChanged()
+    public void SendUndoToTutorial(TutorialState tutorial)
     {
-        UpdateAutoEvoPredictionTranslations();
-        UpdateAutoEvoPredictionDetailsText();
+        tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
 
-        CalculateOrganelleEffectivenessInPatch(Editor.CurrentPatch);
-        UpdatePatchDependentBalanceData();
+        tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
+    }
 
-        UpdateMicrobePartSelections();
-        UpdateMutationPointsBar();
+    public override void OnActionBlockedWhileAnotherIsInProgress()
+    {
+        throw new NotImplementedException();
     }
 
     protected override void RegisterTooltips()
@@ -38,9 +38,16 @@ public partial class CellEditorComponent
         randomizeSpeciesNameButton.RegisterToolTipForControl("randomizeNameButton", "editor");
     }
 
-    public override void OnActionBlockedWhileAnotherIsInProgress()
+    protected override void OnTranslationsChanged()
     {
-        throw new NotImplementedException();
+        UpdateAutoEvoPredictionTranslations();
+        UpdateAutoEvoPredictionDetailsText();
+
+        CalculateOrganelleEffectivenessInPatch(Editor.CurrentPatch);
+        UpdatePatchDependentBalanceData();
+
+        UpdateMicrobePartSelections();
+        UpdateMutationPointsBar();
     }
 
     private void CheckRunningAutoEvoPrediction()
@@ -301,13 +308,6 @@ public partial class CellEditorComponent
         return bar.OrderBy(i => i.Key, comparer).ToList();
     }
 
-    public void SendUndoToTutorial(TutorialState tutorial)
-    {
-        tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
-
-        tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
-    }
-
     private void ConfirmFinishEditingWithNegativeATPPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -327,7 +327,7 @@ public partial class CellEditorComponent
         // Reset to cytoplasm if nothing is selected
         OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
 
-        SetSpeciesInfo(NewName, Membrane, Colour, Rigidity,
+        SetSpeciesInfo(newName, Membrane, Colour, Rigidity,
             behaviourEditor.Behaviour ?? throw new Exception($"Editor doesn't have Behaviour setup"));
         UpdateGeneration(species.Generation);
         UpdateHitpoints(CalculateHitpoints());

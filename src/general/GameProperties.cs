@@ -40,6 +40,12 @@ public class GameProperties
     [JsonProperty]
     public TutorialState TutorialState { get; private set; }
 
+    // TODO: start using this to prevent saving
+    /// <summary>
+    ///   Set to true when the player has entered the stage prototypes and some extra restrictions apply
+    /// </summary>
+    public bool InPrototypes { get; private set; }
+
     /// <summary>
     ///   Starts a new game in the microbe stage
     /// </summary>

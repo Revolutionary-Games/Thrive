@@ -1,6 +1,4 @@
-﻿using System;
-using System.Drawing;
-using Godot;
+﻿using Godot;
 using Color = Godot.Color;
 
 /// <summary>
@@ -9,7 +7,7 @@ using Color = Godot.Color;
 /// <typeparam name="TEditor">The type of editor this component is contained in</typeparam>
 /// <typeparam name="TAction">Editor action type the editor this will be used with will use</typeparam>
 public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorComponentBase<TEditor>
-    where TEditor : Godot.Object, IEditorWithActions
+    where TEditor : Object, IEditorWithActions
     where TAction : MicrobeEditorAction
 {
     [Export]
@@ -65,6 +63,20 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
         undoButton = GetNode<TextureButton>(UndoButtonPath);
         redoButton = GetNode<TextureButton>(RedoButtonPath);
         cancelButton = GetNode<Button>(CancelButtonPath);
+    }
+
+    public override void OnActionBlockedWhileAnotherIsInProgress()
+    {
+        PlayInvalidActionSound();
+    }
+
+    public override void OnInsufficientMP(bool playSound = true)
+    {
+        var animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
+        animationPlayer.Play("FlashBar");
+
+        if (playSound)
+            PlayInvalidActionSound();
     }
 
     public void UpdateMutationPointsBar(bool tween = true)
@@ -152,28 +164,14 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
         Editor.CancelCurrentAction();
     }
 
-    internal void SetUndoButtonStatus(bool enabled)
+    protected void SetUndoButtonStatus(bool enabled)
     {
         undoButton.Disabled = !enabled;
     }
 
-    internal void SetRedoButtonStatus(bool enabled)
+    protected void SetRedoButtonStatus(bool enabled)
     {
         redoButton.Disabled = !enabled;
-    }
-
-    public override void OnActionBlockedWhileAnotherIsInProgress()
-    {
-        PlayInvalidActionSound();
-    }
-
-    public override void OnInsufficientMP(bool playSound = true)
-    {
-        var animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
-        animationPlayer.Play("FlashBar");
-
-        if (playSound)
-            PlayInvalidActionSound();
     }
 
     /// <summary>

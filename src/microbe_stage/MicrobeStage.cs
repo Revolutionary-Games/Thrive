@@ -544,7 +544,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         var editor = (MicrobeEditor)scene.Instance();
 
-        editor.CurrentGame = CurrentGame;
+        editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
         editor.ReturnToStage = this;
 
         // We don't free this here as the editor will return to this scene
@@ -579,7 +579,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         var editor = (EarlyMulticellularEditor)scene.Instance();
 
-        editor.CurrentGame = CurrentGame;
+        editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
         editor.ReturnToStage = this;
 
         GD.Print("Switching to multicellular editor");

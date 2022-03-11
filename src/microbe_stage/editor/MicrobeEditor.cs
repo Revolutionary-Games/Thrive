@@ -51,32 +51,21 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
     public override Species EditedBaseSpecies =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
-    public override bool CancelCurrentAction()
-    {
-        if (!cellEditorTab.Visible)
-        {
-            GD.PrintErr("No action to cancel");
-            return false;
-        }
-
-        return cellEditorTab.CancelCurrentAction();
-    }
-
     [JsonIgnore]
     public MicrobeSpecies EditedSpecies =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
-
-    protected override string MusicCategory => "MicrobeEditor";
-
-    protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
-    protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MICROBE_EDITOR");
-    protected override bool HasInProgressAction { get; }
 
     [JsonIgnore]
     public Patch CurrentPatch => patchMapTab.CurrentPatch;
 
     [JsonIgnore]
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
+
+    protected override string MusicCategory => "MicrobeEditor";
+
+    protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
+    protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MICROBE_EDITOR");
+    protected override bool HasInProgressAction { get; }
 
     public override void _Ready()
     {
@@ -107,6 +96,17 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
 
         reportTab.UpdateReportTabPatchSelectorSelection(patch.ID);
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
+    }
+
+    public override bool CancelCurrentAction()
+    {
+        if (!cellEditorTab.Visible)
+        {
+            GD.PrintErr("No action to cancel");
+            return false;
+        }
+
+        return cellEditorTab.CancelCurrentAction();
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -190,7 +190,7 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
     protected override void OnEditorReady()
     {
         // The base method stores the data, so we just need to update the GUI here (in case of failure)
-        var run = CurrentGame!.GameWorld.GetAutoEvoRun();
+        var run = CurrentGame.GameWorld.GetAutoEvoRun();
 
         if (run.Results == null)
         {
@@ -214,7 +214,7 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
     protected override void ElapseEditorEntryTime()
     {
         // TODO: select which units will be used for the master elapsed time counter
-        CurrentGame!.GameWorld.OnTimePassed(1);
+        CurrentGame.GameWorld.OnTimePassed(1);
     }
 
     protected override GameProperties StartNewGameForEditor()

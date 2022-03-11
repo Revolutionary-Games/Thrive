@@ -96,7 +96,7 @@ public static class SaveApplyHelper
             if (value == null)
                 continue;
 
-            var newValue = ReTargetCallback<T>(value, newInstance);
+            var newValue = ReTargetCallback(value, newInstance);
 
             if (!value.Equals(newValue))
                 field.SetValue(callbacksContainingObject, value);
@@ -112,7 +112,7 @@ public static class SaveApplyHelper
             var set = property.GetSetMethodOnDeclaringType() ??
                 throw new InvalidOperationException($"Could not find property setter for {property.Name}");
 
-            var newValue = ReTargetCallback<T>(value, newInstance);
+            var newValue = ReTargetCallback(value, newInstance);
 
             if (!value.Equals(newValue))
                 set.Invoke(callbacksContainingObject, new object[] { value });

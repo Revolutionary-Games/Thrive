@@ -145,6 +145,11 @@ public class MicrobeEditorReportComponent : EditorComponentBase<MicrobeEditor>
         reportTabPatchSelector.Select(Editor.CurrentPatch.ID);
     }
 
+    public void UpdateReportTabPatchSelectorSelection(int patchID)
+    {
+        reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(patchID));
+    }
+
     public void UpdatePatchDetails(Patch patch, PatchMapDrawer mapDrawer)
     {
         UpdateReportTabStatistics(patch);
@@ -381,7 +386,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<MicrobeEditor>
             Editor.CurrentGame.GameWorld.TotalPassedTime);
     }
 
-    public override void OnInsufficientMP(bool playSound)
+    public override void OnInsufficientMP(bool playSound = true)
     {
         // This component doesn't use actions
     }
@@ -526,10 +531,5 @@ public class MicrobeEditorReportComponent : EditorComponentBase<MicrobeEditor>
 
             button.Modulate = button.Pressed ? Colors.White : Colors.DarkGray;
         }
-    }
-
-    public void UpdateReportTabPatchSelectorSelection(int patchID)
-    {
-        reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(patchID));
     }
 }
