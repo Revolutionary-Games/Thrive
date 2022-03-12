@@ -46,16 +46,17 @@ public static class FileHelpers
     }
 
     /// <summary>
-    ///   Tests if it is possible to create/write a file on the given path
+    ///   Tests if it is possible to create/write a file at the given path
     /// </summary>
     /// <param name="path">Path to file</param>
     /// <returns>File write access status, <see cref="Error.Ok"/> if successful</returns>
-    public static Error TryCreateWrite(string path)
+    /// <remarks>THIS FUNCTION IS DESTRUCTIVE! MAKE SURE THE FILE TO TEST DOESN'T EXIST!</remarks>
+    public static Error TryWriteFile(string path)
     {
         using var file = new File();
-        var e = file.Open(path, File.ModeFlags.Write);
-        if (e != Error.Ok)
-            return e;
+        var error = file.Open(path, File.ModeFlags.Write);
+        if (error != Error.Ok)
+            return error;
 
         file.Close();
         DeleteFile(path);

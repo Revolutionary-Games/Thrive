@@ -110,7 +110,7 @@ public class NewSaveMenu : Control
         // Verify name is writable
         var name = GetSaveName();
         var path = Path.Combine(Constants.SAVE_FOLDER, name);
-        if (!FileHelpers.Exists(path) && FileHelpers.TryCreateWrite(path) != Error.Ok)
+        if (!FileHelpers.Exists(path) && FileHelpers.TryWriteFile(path) != Error.Ok)
         {
             attemptWriteFailAccept.PopupCenteredShrink();
             return;
