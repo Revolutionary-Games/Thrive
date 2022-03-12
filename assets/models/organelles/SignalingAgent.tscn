@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/textures/DiscoBall.jpg" type="Texture" id=1]
+[ext_resource path="res://shaders/Organelle.shader" type="Shader" id=3]
+[ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/dissolveValue = 0.0
+shader_param/fresnelValue = 1.0
+shader_param/fresnelActive = false
+shader_param/outlineWidth = 0.05
+shader_param/growColor = Color( 0.486275, 0.772549, 0.564706, 1 )
+shader_param/tint = Color( 1, 1, 1, 1 )
+shader_param/texture = ExtResource( 1 )
+shader_param/dissolveTexture = ExtResource( 4 )
+
+[sub_resource type="SphereMesh" id=2]
+
+[node name="SignalingAgent" type="MeshInstance"]
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0 )
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
