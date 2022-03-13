@@ -25,7 +25,7 @@ public class ModConfigItemInfo : HBoxContainer
     public string? Type { get; set; }
 
     // Exclusively for Enums/Option type
-    public object? Options { get; set; }
+    public JArray? Options { get; set; }
 
     public object? Value { get; set; }
 
