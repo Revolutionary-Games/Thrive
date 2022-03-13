@@ -256,11 +256,11 @@ public class ThriveJsonConverter : IDisposable
 /// </summary>
 public abstract class BaseThriveConverter : JsonConverter
 {
-    protected readonly ISaveContext? Context;
-
     // ref handling approach from: https://stackoverflow.com/a/53716866/4371508
-    private const string REF_PROPERTY = "$ref";
-    private const string ID_PROPERTY = "$id";
+    public const string REF_PROPERTY = "$ref";
+    public const string ID_PROPERTY = "$id";
+
+    protected readonly ISaveContext? Context;
 
     // type handling approach from: https://stackoverflow.com/a/29822170/4371508
     // and https://stackoverflow.com/a/29826959/4371508
