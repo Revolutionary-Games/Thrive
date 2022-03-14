@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/engine/PhotoStudio.cs" type="Script" id=1]
+
+[sub_resource type="World" id=1]
+
+[node name="PhotoStudio" type="Viewport"]
+size = Vector2( 480, 640 )
+own_world = true
+world = SubResource( 1 )
+transparent_bg = true
+handle_input_locally = false
+msaa = 1
+render_target_v_flip = true
+render_target_update_mode = 0
+gui_disable_input = true
+shadow_atlas_size = 512
+script = ExtResource( 1 )
+CameraPath = NodePath("Camera")
+RenderedObjectHolderPath = NodePath("RenderedObjectHolder")
+UseBackgroundSceneLoad = true
+UseBackgroundSceneInstance = true
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0 )
+
+[node name="RenderedObjectHolder" type="Spatial" parent="."]
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( 0.975335, -0.145011, 0.166416, -0.0262082, 0.672519, 0.739616, -0.21917, -0.725734, 0.65213, 0, 0, 0 )
+shadow_enabled = true
+directional_shadow_mode = 1

@@ -40,8 +40,10 @@
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\ICacheableData.cs" />
+    <Compile Include="src\engine\ImageTask.cs" />
     <Compile Include="src\engine\input\IgnoreNoMethodsTakingInputAttribute.cs" />
     <Compile Include="src\engine\InstanceNotLoadedYetException.cs" />
+    <Compile Include="src\engine\IPhotographable.cs" />
     <Compile Include="src\engine\LaunchOptions.cs" />
     <Compile Include="src\engine\LocalizedString.cs" />
     <Compile Include="src\engine\LocalizedStringBuilder.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\NodeHelpers.cs" />
+    <Compile Include="src\engine\PhotoStudio.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
     <Compile Include="src\engine\ProceduralDataCache.cs" />
     <Compile Include="src\engine\SceneManager.cs" />
