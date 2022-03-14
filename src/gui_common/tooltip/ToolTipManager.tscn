@@ -2292,7 +2292,41 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="2"]
+[node name="healingRate" type="HBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="2"]
+margin_top = 24.0
+margin_right = 318.0
+margin_bottom = 44.0
+mouse_filter = 2
+script = ExtResource( 21 )
+DisplayName = "HEALING_RATE"
+
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_top = 1.0
+margin_right = 35.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+20%"
+
+[node name="Name" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_left = 39.0
+margin_right = 227.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "HEALING_RATE"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_left = 231.0
+margin_right = 251.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
+
+[node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 48.0
 margin_right = 318.0
 margin_bottom = 68.0
@@ -2326,7 +2360,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="3"]
+[node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="4"]
 margin_top = 72.0
 margin_right = 318.0
 margin_bottom = 92.0
@@ -2458,7 +2492,40 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="2"]
+[node name="healingRate" type="HBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="2"]
+margin_top = 24.0
+margin_right = 318.0
+margin_bottom = 44.0
+mouse_filter = 2
+script = ExtResource( 21 )
+DisplayName = "HEALING_RATE"
+
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_top = 1.0
+margin_right = 16.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 26 )
+text = "+0"
+
+[node name="Name" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_left = 20.0
+margin_right = 208.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "HEALING_RATE"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_left = 212.0
+margin_right = 232.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
+
+[node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 48.0
 margin_right = 318.0
 margin_bottom = 68.0
@@ -2491,7 +2558,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="3"]
+[node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="4"]
 margin_top = 72.0
 margin_right = 318.0
 margin_bottom = 92.0
@@ -2624,7 +2691,41 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="2"]
+[node name="healingRate" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="2"]
+margin_top = 24.0
+margin_right = 318.0
+margin_bottom = 44.0
+mouse_filter = 2
+script = ExtResource( 21 )
+DisplayName = "HEALING_RATE"
+
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_top = 1.0
+margin_right = 32.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-0"
+
+[node name="Name" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_left = 36.0
+margin_right = 224.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "HEALING_RATE"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_left = 228.0
+margin_right = 248.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
+
+[node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 48.0
 margin_right = 318.0
 margin_bottom = 68.0
@@ -2658,7 +2759,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="3"]
+[node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="4"]
 margin_top = 72.0
 margin_right = 318.0
 margin_bottom = 92.0
@@ -2692,7 +2793,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="physicalResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="4"]
+[node name="physicalResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="5"]
 margin_top = 96.0
 margin_right = 318.0
 margin_bottom = 116.0
@@ -2726,7 +2827,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="5"]
+[node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="6"]
 margin_top = 120.0
 margin_right = 318.0
 margin_bottom = 140.0
@@ -2859,7 +2960,41 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="2"]
+[node name="healingRate" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="2"]
+margin_top = 24.0
+margin_right = 318.0
+margin_bottom = 44.0
+mouse_filter = 2
+script = ExtResource( 21 )
+DisplayName = "HEALING_RATE"
+
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_top = 1.0
+margin_right = 32.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-0"
+
+[node name="Name" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_left = 36.0
+margin_right = 224.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "HEALING_RATE"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_left = 228.0
+margin_right = 248.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
+
+[node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 48.0
 margin_right = 318.0
 margin_bottom = 68.0
@@ -2893,7 +3028,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="3"]
+[node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="4"]
 margin_top = 72.0
 margin_right = 318.0
 margin_bottom = 92.0
@@ -2927,7 +3062,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="toxinResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="4"]
+[node name="toxinResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="5"]
 margin_top = 96.0
 margin_right = 318.0
 margin_bottom = 116.0
@@ -2961,7 +3096,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="5"]
+[node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="6"]
 margin_top = 120.0
 margin_right = 318.0
 margin_bottom = 140.0
@@ -3092,7 +3227,41 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="2"]
+[node name="healingRate" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="2"]
+margin_top = 24.0
+margin_right = 318.0
+margin_bottom = 44.0
+mouse_filter = 2
+script = ExtResource( 21 )
+DisplayName = "HEALING_RATE"
+
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_top = 1.0
+margin_right = 32.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-20%"
+
+[node name="Name" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_left = 36.0
+margin_right = 224.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "HEALING_RATE"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_left = 228.0
+margin_right = 248.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
+
+[node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 48.0
 margin_right = 318.0
 margin_bottom = 68.0
@@ -3126,7 +3295,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="3"]
+[node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="4"]
 margin_top = 72.0
 margin_right = 318.0
 margin_bottom = 92.0
@@ -3160,7 +3329,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="physicalResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="4"]
+[node name="physicalResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="5"]
 margin_top = 96.0
 margin_right = 318.0
 margin_bottom = 116.0
@@ -3194,7 +3363,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="toxinResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="5"]
+[node name="toxinResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="6"]
 margin_top = 120.0
 margin_right = 318.0
 margin_bottom = 140.0
@@ -3228,7 +3397,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="6"]
+[node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="7"]
 margin_top = 144.0
 margin_right = 318.0
 margin_bottom = 164.0
@@ -3362,7 +3531,41 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="2"]
+[node name="healingRate" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="2"]
+margin_top = 24.0
+margin_right = 318.0
+margin_bottom = 44.0
+mouse_filter = 2
+script = ExtResource( 21 )
+DisplayName = "HEALING_RATE"
+
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_top = 1.0
+margin_right = 32.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "-40%"
+
+[node name="Name" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_left = 36.0
+margin_right = 224.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "HEALING_RATE"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/healingRate"]
+margin_left = 228.0
+margin_right = 248.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
+
+[node name="resourceAbsorptionSpeed" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="3"]
 margin_top = 48.0
 margin_right = 318.0
 margin_bottom = 68.0
@@ -3396,7 +3599,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="3"]
+[node name="health" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="4"]
 margin_top = 72.0
 margin_right = 318.0
 margin_bottom = 92.0
@@ -3430,7 +3633,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="physicalResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="4"]
+[node name="physicalResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="5"]
 margin_top = 96.0
 margin_right = 318.0
 margin_bottom = 116.0
@@ -3464,7 +3667,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="toxinResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="5"]
+[node name="toxinResistance" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="6"]
 margin_top = 120.0
 margin_right = 318.0
 margin_bottom = 140.0
@@ -3498,7 +3701,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="6"]
+[node name="canEngulf" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="7"]
 margin_top = 144.0
 margin_right = 318.0
 margin_bottom = 164.0

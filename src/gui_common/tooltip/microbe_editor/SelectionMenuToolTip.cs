@@ -206,6 +206,9 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 case "health":
                     deltaValue = membraneType.Hitpoints - referenceMembrane.Hitpoints;
                     break;
+                case "healingRate":
+                    deltaValue = membraneType.HealingRate - referenceMembrane.HealingRate;
+                    break;
                 case "physicalResistance":
                     deltaValue = membraneType.PhysicalResistance - referenceMembrane.PhysicalResistance;
                     break;
