@@ -125,11 +125,6 @@ public class ModInfo
     public string? PckToLoad { get; set; }
 
     /// <summary>
-    ///   Specifies the relative path (from mod root folder) to a config file to load after enabling the mod
-    /// </summary>
-    public string? ConfigToLoad { get; set; }
-
-    /// <summary>
     ///   If set needs to point to a C# compiled DLL file that. Needs to be outside any .pck files
     /// </summary>
     public string? ModAssembly { get; set; }

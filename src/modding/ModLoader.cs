@@ -157,30 +157,6 @@ public class ModLoader : Node
     }
 
     /// <summary>
-    ///   This loads the Mod Settings/Config from a file
-    /// </summary>
-    /// <returns> The SavedConfig on success, null if the file can't be read.</returns>
-    public static Dictionary<string, object> LoadModConfigs(string modName)
-    {
-        try
-        {
-            var fileText = File.ReadAllText(ProjectSettings.GlobalizePath(Constants.MOD_CONFIGURATION_FILE));
-            var savedConfig = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(fileText);
-            if (savedConfig?.ContainsKey(modName) ?? false)
-            {
-                return savedConfig[modName];
-            }
-
-            return null!;
-        }
-        catch
-        {
-            GD.PrintErr("Couldn't open mod configuration file for reading.");
-            return null!;
-        }
-    }
-
-    /// <summary>
     ///   This checks if all of the mod in the list is compatible with each other
     /// </summary>
     /// <returns>
@@ -470,17 +446,6 @@ public class ModLoader : Node
         {
             LoadPckFile(Path.Combine(info.Folder, info.Info.PckToLoad ?? string.Empty));
             loadedSomething = true;
-        }
-
-        // Loads the config file if it exists
-        if (info.Info.ConfigToLoad != null &&
-            FileHelpers.Exists(Path.Combine(info.Folder, info.Info.ConfigToLoad ?? string.Empty)))
-        {
-            var currentConfigList = ModManager.GetModConfigList(info);
-            info.ConfigurationInfoList = currentConfigList;
-
-            var currentConfig = LoadModConfigs(info.InternalName);
-            info.CurrentConfiguration = currentConfig;
         }
 
         if (!string.IsNullOrEmpty(info.Info.ModAssembly))

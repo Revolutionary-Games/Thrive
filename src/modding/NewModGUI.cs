@@ -76,12 +76,6 @@ public class NewModGUI : Control
     public NodePath IncompatibleModsPath = null!;
 
     [Export]
-    public NodePath ModConfigPath = null!;
-
-    [Export]
-    public NodePath EnableConfigCheckboxPath = null!;
-
-    [Export]
     public NodePath IconFileDialogPath = null!;
 
     [Export]
@@ -119,9 +113,6 @@ public class NewModGUI : Control
     private LineEdit loadBefore = null!;
     private LineEdit loadAfter = null!;
     private LineEdit incompatibleMods = null!;
-    private LineEdit modConfig = null!;
-
-    private CheckButton enableConfigCheckbox = null!;
 
     private FileDialog iconFileDialog = null!;
     private FileDialog pckFileDialog = null!;
@@ -166,9 +157,6 @@ public class NewModGUI : Control
         loadBefore = GetNode<LineEdit>(LoadBeforePath);
         loadAfter = GetNode<LineEdit>(LoadAfterPath);
         incompatibleMods = GetNode<LineEdit>(IncompatibleModsPath);
-        modConfig = GetNode<LineEdit>(ModConfigPath);
-
-        enableConfigCheckbox = GetNode<CheckButton>(EnableConfigCheckboxPath);
 
         iconFileDialog = GetNode<FileDialog>(IconFileDialogPath);
         iconFileDialog.CurrentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
@@ -277,10 +265,6 @@ public class NewModGUI : Control
         incompatibleMods.Text = editedInfo.IncompatibleMods == null ?
             string.Empty :
             string.Join(", ", editedInfo.IncompatibleMods);
-
-        enableConfigCheckbox.SetPressedNoSignal(!string.IsNullOrWhiteSpace(editedInfo.ConfigToLoad));
-        modConfig.Editable = enableConfigCheckbox.Pressed;
-        modConfig.Text = string.IsNullOrWhiteSpace(editedInfo.ConfigToLoad) ? string.Empty : editedInfo.ConfigToLoad;
     }
 
     private bool ReadControlsToEditedInfo()
@@ -305,11 +289,6 @@ public class NewModGUI : Control
         editedInfo.LoadBefore = SeperateFieldByComma(loadBefore.Text);
         editedInfo.LoadAfter = SeperateFieldByComma(loadAfter.Text);
         editedInfo.IncompatibleMods = SeperateFieldByComma(incompatibleMods.Text);
-
-        if (enableConfigCheckbox.Pressed && !string.IsNullOrWhiteSpace(modConfig.Text))
-        {
-            editedInfo.ConfigToLoad = modConfig.Text;
-        }
 
         if (string.IsNullOrWhiteSpace(infoUrl.Text))
         {
@@ -362,12 +341,6 @@ public class NewModGUI : Control
         if (ModLoader.LoadModInfo(editedInfo.InternalName, false) != null)
         {
             SetError(TranslationServer.Translate("INTERNAL_NAME_IN_USE"));
-            return null;
-        }
-
-        if (enableConfigCheckbox.Pressed && !modConfig.Text.EndsWith(".json"))
-        {
-            SetError(TranslationServer.Translate("FORM_INVALID_CONFIG_FILE"));
             return null;
         }
 
@@ -466,10 +439,5 @@ public class NewModGUI : Control
         List<string> allFileNames = new List<string>();
         Array.ForEach(paths, currentPath => allFileNames.Add(Path.GetFileName(currentPath)));
         previewImagesFile.Text = string.Join(", ", allFileNames);
-    }
-
-    private void EnableConfigCheckboxToggled(bool enabled)
-    {
-        modConfig.Editable = enabled;
     }
 }

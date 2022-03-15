@@ -39,16 +39,4 @@ public interface IMod
     /// </summary>
     /// <param name="currentScene">The current root scene (should be the MainMenu)</param>
     void CanAttachNodes(Node currentScene);
-
-    /// <summary>
-    ///   Called when the player has updated the configuration for the mod
-    /// </summary>
-    /// <param name="newConfiguration">The new set of configuration the player has set</param>
-    /// <remarks>
-    ///    <para>
-    ///     This idealy should have a default implemention as not all mods will have a ConfigMenu.
-    ///     But the current target framework does not support it yet and so will just error at me.
-    ///    </para>
-    /// </remarks>
-    void UpdatedConfiguration(Dictionary<string, object> newConfiguration);
 }

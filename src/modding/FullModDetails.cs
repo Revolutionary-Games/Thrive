@@ -57,17 +57,7 @@ public class FullModDetails : IEquatable<FullModDetails>
     ///   The index of the mod is loaded in
     /// </summary>
     public int LoadPosition { get; set; }
-
-    /// <summary>
-    ///   List of all the configuration options there are
-    /// </summary>
-    public ModConfigItemInfo[]? ConfigurationInfoList { get; set; }
-
-    public Dictionary<string, object>? CurrentConfiguration { get; set; }
-
     public ModInfo Info { get; set; }
-
-    public Control? ConfigNodes { get; set; }
 
     /// <summary>
     ///   Mod is from the workshop / downloaded

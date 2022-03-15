@@ -186,9 +186,6 @@ public class ModManager : Control
     public NodePath FullInfoIncompatibleModsPath = null!;
 
     [Export]
-    public NodePath FullInfoModConfigPath = null!;
-
-    [Export]
     public NodePath OpenWorkshopButtonPath = null!;
 
     [Export]
@@ -234,19 +231,7 @@ public class ModManager : Control
     public NodePath OneshotLoadingCheckboxPath = null!;
 
     [Export]
-    public NodePath ConfigItemListPath = null!;
-
-    [Export]
-    public NodePath ConfigContainerPath = null!;
-
-    [Export]
-    public NodePath ConfigPanelContainerPath = null!;
-
-    [Export]
     public NodePath ModLoaderContainerPath = null!;
-
-    [Export]
-    public PackedScene ConfigItemScene = null!;
 
     private readonly List<FullModDetails> validMods = new();
 
@@ -259,7 +244,6 @@ public class ModManager : Control
     private ItemList availableModsContainer = null!;
     private ItemList enabledModsContainer = null!;
     private ItemList modErrorsContainer = null!;
-    private ItemList configModContainer = null!;
 
     private Label errorInfoLabel = null!;
 
@@ -326,13 +310,10 @@ public class ModManager : Control
     private Label fullInfoLoadBefore = null!;
     private Label fullInfoLoadAfter = null!;
     private Label fullInfoIncompatibleMods = null!;
-    private Label fullInfoModConfig = null!;
 
     private Button openWorkshopButton = null!;
     private Button modUploaderButton = null!;
 
-    private BoxContainer configContainer = null!;
-    private MarginContainer configPanelContainer = null!;
     private TabContainer modLoaderContainer = null!;
 
     private NewModGUI newModGUI = null!;
@@ -431,30 +412,6 @@ public class ModManager : Control
     }
 
     /// <summary>
-    ///   Tries to read the config file of a mod and returns it.
-    /// </summary>
-    /// <returns> Gets a array of ModConfigItemInfo from a ModInfo, null otherwise</returns>
-    public static ModConfigItemInfo[] GetModConfigList(FullModDetails currentMod)
-    {
-        if (FileHelpers.Exists(Path.Combine(currentMod.Folder, currentMod.Info.ConfigToLoad ?? string.Empty)))
-        {
-            var infoFile = Path.Combine(currentMod.Folder, currentMod.Info.ConfigToLoad ?? string.Empty);
-
-            using var file = new File();
-
-            if (file.Open(infoFile, File.ModeFlags.Read) != Error.Ok)
-            {
-                GD.PrintErr("Can't read config info file at: ", infoFile);
-                return null!;
-            }
-
-            return JsonConvert.DeserializeObject<ModConfigItemInfo[]>(file.GetAsText())!;
-        }
-
-        return null!;
-    }
-
-    /// <summary>
     ///   Checks that ModInfo has no invalid data
     /// </summary>
     /// <param name="info">The mod info to validate</param>
@@ -515,7 +472,6 @@ public class ModManager : Control
         availableModsContainer = GetNode<ItemList>(AvailableModsContainerPath);
         enabledModsContainer = GetNode<ItemList>(EnabledModsContainerPath);
         modErrorsContainer = GetNode<ItemList>(ModErrorsContainerPath);
-        configModContainer = GetNode<ItemList>(ConfigItemListPath);
 
         errorInfoLabel = GetNode<Label>(ErrorInfoLabelPath);
 
@@ -584,11 +540,8 @@ public class ModManager : Control
         fullInfoLoadBefore = GetNode<Label>(FullInfoLoadBeforePath);
         fullInfoLoadAfter = GetNode<Label>(FullInfoLoadAfterPath);
         fullInfoIncompatibleMods = GetNode<Label>(FullInfoIncompatibleModsPath);
-        fullInfoModConfig = GetNode<Label>(FullInfoModConfigPath);
 
         modLoaderContainer = GetNode<TabContainer>(ModLoaderContainerPath);
-        configContainer = GetNode<BoxContainer>(ConfigContainerPath);
-        configPanelContainer = GetNode<MarginContainer>(ConfigPanelContainerPath);
 
         openWorkshopButton = GetNode<Button>(OpenWorkshopButtonPath);
         modUploaderButton = GetNode<Button>(ModUploaderButtonPath);
@@ -646,81 +599,6 @@ public class ModManager : Control
         }
     }
 
-    /// <summary>
-    ///   Gets a List of FullModDetails of all the mods that have a config file
-    /// </summary>
-    /// <returns> A List of FullModDetails that are loaded that have a ConfigFile </returns>
-    public List<FullModDetails> GetAllConfigurableMods()
-    {
-        var resultArray = new List<FullModDetails>();
-        if (enabledMods != null)
-        {
-            foreach (FullModDetails currentMod in enabledMods)
-            {
-                if (currentMod.CurrentConfiguration != null)
-                {
-                    resultArray.Add(currentMod);
-                }
-            }
-        }
-
-        return resultArray;
-    }
-
-    /// <summary>
-    ///   This saves the Mod Settings/Config to a file
-    /// </summary>
-    /// <returns> True on success, false if the file can't be written .</returns>
-    /// <remarks>
-    ///   This was based on the Save method from Settings.cs
-    /// </remarks>
-    public bool SaveAllModsSettings()
-    {
-        using var file = new File();
-        var error = file.Open(Constants.MOD_CONFIGURATION_FILE, File.ModeFlags.Write);
-
-        if (error != Error.Ok)
-        {
-            GD.PrintErr("Couldn't open mod configuration file for writing.");
-            return false;
-        }
-
-        var modConfigList = GetAllConfigurableMods();
-        var savedConfig = new Dictionary<string, Dictionary<string, object>>();
-        foreach (FullModDetails currentMod in modConfigList)
-        {
-            savedConfig.Add(currentMod.InternalName,
-                currentMod.CurrentConfiguration ?? new Dictionary<string, object>());
-        }
-
-        file.StoreString(JsonConvert.SerializeObject(savedConfig, Formatting.Indented));
-        file.Close();
-
-        return true;
-    }
-
-    /// <summary>
-    ///   This loads the all of the Mod Settings/Config from a file
-    /// </summary>
-    /// <returns> The SavedConfig on success, null if the file can't be read.</returns>
-    public Dictionary<string, Dictionary<string, object>> LoadAllModsSettings()
-    {
-        using var file = new File();
-        var error = file.Open(Constants.MOD_CONFIGURATION_FILE, File.ModeFlags.Read);
-
-        if (error != Error.Ok)
-        {
-            GD.PrintErr("Couldn't open mod configuration file for reading.");
-            return null!;
-        }
-
-        var savedConfig =
-            JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(file.GetAsText());
-        file.Close();
-
-        return savedConfig!;
-    }
-
     private static bool IsAllowedModPath(string path)
     {
         if (string.IsNullOrWhiteSpace(path))
@@ -745,7 +623,6 @@ public class ModManager : Control
 
         RefreshAvailableMods();
         RefreshEnabledMods();
-        RefreshConfigList();
 
         if (ModLoader.Instance.GetModErrors().Count > 0)
         {
@@ -835,94 +712,6 @@ public class ModManager : Control
             modErrorsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
             modErrorsContainer.SetItemMetadata(index, currentError.ErrorMessage);
             ++index;
-        }
-    }
-
-    private void RefreshConfigList()
-    {
-        if (enabledMods is null)
-        {
-            return;
-        }
-
-        if (configModContainer.IsAnythingSelected())
-        {
-            selectedMod = null;
-            UpdateSelectedModInfo();
-        }
-
-        configModContainer.Clear();
-
-        var savedConfig = LoadAllModsSettings();
-        if (savedConfig is null)
-        {
-            return;
-        }
-
-        // TODO: It should only load mods that are actually loaded but I am not sure how...
-        foreach (var currentMod in enabledMods)
-        {
-            if (currentMod != null)
-            {
-                VerifyConfigFileExist(currentMod);
-                if (currentMod.CurrentConfiguration != null)
-                {
-                    if (savedConfig.ContainsKey(currentMod.InternalName))
-                    {
-                        currentMod.CurrentConfiguration = savedConfig[currentMod.InternalName];
-                    }
-
-                    configModContainer.AddItem(currentMod.InternalName, LoadModIcon(currentMod));
-                    SetModToolTip(configModContainer, currentMod);
-                }
-            }
-        }
-    }
-
-    private void OnClearConfigButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        foreach (var currentItem in configContainer.GetChild(0).GetChildren())
-        {
-            var currentItemInfo = currentItem as ModConfigItemInfo;
-            currentItemInfo?.UpdateUI();
-        }
-    }
-
-    private void OnResetConfigButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        var configItemArray = configContainer.GetChild(0).GetChildren();
-
-        int index = 0;
-        foreach (ModConfigItemInfo currentItemInfo in configItemArray)
-        {
-            if (selectedMod != null && currentItemInfo != null)
-            {
-                VerifyConfigFileExist(selectedMod);
-                if (selectedMod.ConfigurationInfoList != null)
-                {
-                    currentItemInfo.Value = selectedMod.ConfigurationInfoList[index].Value;
-                    if (selectedMod?.CurrentConfiguration != null)
-                    {
-                        if (currentItemInfo.ID != null && currentItemInfo.Value != null)
-                        {
-                            selectedMod.CurrentConfiguration[currentItemInfo.ID] = currentItemInfo.Value;
-                        }
-                    }
-                }
-
-                currentItemInfo.UpdateUI();
-            }
-
-            ++index;
-        }
-
-        if (selectedMod != null)
-        {
-            SaveAllModsSettings();
         }
     }
 
@@ -1422,7 +1211,6 @@ public class ModManager : Control
             }
         }
 
-        RefreshConfigList();
         RefreshModErrors();
         applyChangesButton.Disabled = true;
     }
@@ -1444,9 +1232,7 @@ public class ModManager : Control
         leftArrow.Disabled = true;
         rightArrow.Disabled = false;
         modErrorsContainer.UnselectAll();
-        configModContainer.UnselectAll();
         errorInfoLabel.Hide();
-        configPanelContainer.Visible = false;
         moveModUpButton.Disabled = availableModsContainer.IsSelected(0);
         moveModDownButton.Disabled = availableModsContainer.IsSelected(availableModsContainer.GetItemCount() - 1);
     }
@@ -1468,9 +1254,7 @@ public class ModManager : Control
         leftArrow.Disabled = false;
         rightArrow.Disabled = true;
         modErrorsContainer.UnselectAll();
-        configModContainer.UnselectAll();
         errorInfoLabel.Hide();
-        configPanelContainer.Visible = false;
         moveModUpButton.Disabled = enabledModsContainer.IsSelected(0);
         moveModDownButton.Disabled = enabledModsContainer.IsSelected(enabledModsContainer.GetItemCount() - 1);
     }
@@ -1494,66 +1278,10 @@ public class ModManager : Control
 
         leftArrow.Disabled = true;
         rightArrow.Disabled = true;
-        configModContainer.UnselectAll();
         errorInfoLabel.Text = (string)modErrorsContainer.GetItemMetadata(index);
         errorInfoLabel.Show();
-        configPanelContainer.Visible = false;
         moveModUpButton.Disabled = true;
         moveModDownButton.Disabled = true;
-    }
-
-    private void ModConfigModSelected(int index)
-    {
-        var newName = enabledModsContainer.GetItemText(index);
-        var newItem = validMods.FirstOrDefault(m => m.InternalName == newName);
-        if (newItem == null)
-        {
-            return;
-        }
-
-        if (!Equals(selectedMod, newItem))
-        {
-            selectedMod = newItem;
-            UpdateSelectedModInfo();
-        }
-
-        if (availableModsContainer.IsAnythingSelected())
-            availableModsContainer.UnselectAll();
-
-        if (enabledModsContainer.IsAnythingSelected())
-            enabledModsContainer.UnselectAll();
-
-        leftArrow.Disabled = true;
-        rightArrow.Disabled = true;
-        modErrorsContainer.UnselectAll();
-        errorInfoLabel.Hide();
-        moveModUpButton.Disabled = true;
-        moveModDownButton.Disabled = true;
-
-        VerifyConfigFileExist(newItem);
-
-        if (newItem.ConfigurationInfoList?.Length > 0)
-        {
-            configPanelContainer.Visible = true;
-            if (configContainer.GetChildCount() > 0)
-            {
-                configContainer.RemoveChild(configContainer.GetChild(0));
-            }
-
-            if (newItem.ConfigNodes == null)
-            {
-                newItem.ConfigNodes = ConfigMenuSetup(newItem.ConfigurationInfoList,
-                    newItem.CurrentConfiguration ?? new Dictionary<string, object>());
-            }
-            else
-            {
-                configContainer.AddChild(newItem.ConfigNodes);
-            }
-        }
-        else
-        {
-            configPanelContainer.Visible = false;
-        }
     }
 
     private void OpenInfoUrlPressed()
@@ -1717,155 +1445,6 @@ public class ModManager : Control
         otherModInfoDialog.PopupCenteredShrink();
     }
 
-    /// <summary>
-    ///   Fills the ConfigContainer with all of ConfigItems
-    /// </summary>
-    private Control ConfigMenuSetup(ModConfigItemInfo[] modConfigList, Dictionary<string, object> modConfigDictionary)
-    {
-        // Holder of all the config item for easier removal
-        VBoxContainer configTreeNode = new VBoxContainer();
-
-        foreach (var currentItemInfo in modConfigList)
-        {
-            HBoxContainer? currentItem;
-            modConfigDictionary.TryGetValue(currentItemInfo.ID ?? string.Empty, out var configValue);
-
-            currentItem = ConfigItemScene.Instance() as HBoxContainer;
-            if (currentItem is null)
-            {
-                continue;
-            }
-
-            var currentItemLabel = currentItem.GetChild(0) as Label;
-
-            // Set the name and tooltip of the item
-            if (currentItemLabel != null)
-            {
-                currentItemLabel.Text = (currentItemInfo.DisplayName ?? currentItemInfo.ID) + ":";
-                currentItem.HintTooltip = currentItemInfo.Description ?? string.Empty;
-            }
-
-            // Setup the UI based on it type
-            switch (currentItemInfo.Type?.ToLower(CultureInfo.CurrentCulture))
-            {
-                case "integer":
-                    var intNumberSpinner = new SpinBox();
-                    intNumberSpinner.Rounded = true;
-                    intNumberSpinner.MinValue = currentItemInfo.MinimumValue;
-                    intNumberSpinner.Value = Convert.ToInt32(configValue ?? default(int),
-                        CultureInfo.CurrentCulture);
-                    intNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
-                    currentItem.AddChild(intNumberSpinner);
-                    break;
-                case "float":
-                    var floatNumberSpinner = new SpinBox();
-                    floatNumberSpinner.Rounded = false;
-                    floatNumberSpinner.Step = 0.1;
-                    floatNumberSpinner.MinValue = currentItemInfo.MinimumValue;
-                    floatNumberSpinner.Value = Convert.ToDouble(configValue ?? default(double),
-                        CultureInfo.CurrentCulture);
-                    floatNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
-                    currentItem.AddChild(floatNumberSpinner);
-                    break;
-                case "integer range":
-                    var intNumberSlider = new HSlider();
-                    intNumberSlider.Rounded = true;
-                    intNumberSlider.MinValue = currentItemInfo.MinimumValue;
-                    intNumberSlider.Value = Convert.ToInt32(configValue ?? default(int),
-                        CultureInfo.CurrentCulture);
-                    intNumberSlider.MaxValue = currentItemInfo.MaximumValue;
-                    intNumberSlider.SizeFlagsHorizontal = 3;
-                    currentItem.AddChild(intNumberSlider);
-                    break;
-                case "float range":
-                    var floatNumberSlider = new HSlider();
-                    floatNumberSlider.Rounded = false;
-                    floatNumberSlider.Step = 0.1;
-                    floatNumberSlider.MinValue = currentItemInfo.MinimumValue;
-                    floatNumberSlider.Value = Convert.ToDouble(configValue ?? default(double),
-                        CultureInfo.CurrentCulture);
-                    floatNumberSlider.MaxValue = currentItemInfo.MaximumValue;
-                    floatNumberSlider.SizeFlagsHorizontal = 3;
-                    currentItem.AddChild(floatNumberSlider);
-                    break;
-                case "boolean":
-                    var booleanCheckbutton = new CheckButton();
-                    booleanCheckbutton.Pressed =
-                        Convert.ToBoolean(configValue ?? default(bool), CultureInfo.CurrentCulture);
-                    booleanCheckbutton.Flat = true;
-                    currentItem.AddChild(booleanCheckbutton);
-                    break;
-                case "string":
-                    var stringLineEdit = new LineEdit();
-                    stringLineEdit.SizeFlagsHorizontal = 3;
-                    stringLineEdit.Text = (string?)(configValue ?? default(string));
-                    stringLineEdit.MaxLength = (int)currentItemInfo.MaximumValue;
-                    currentItem.AddChild(stringLineEdit);
-                    break;
-                case "title":
-                    if (currentItemLabel != null)
-                    {
-                        currentItemLabel.Text = currentItemInfo.DisplayName ?? currentItemInfo.ID ?? string.Empty;
-                        currentItem.Alignment = BoxContainer.AlignMode.Center;
-                    }
-
-                    break;
-                case "option":
-                    var optionButton = new OptionButton();
-                    foreach (var optionItem in currentItemInfo.GetAllOptions())
-                    {
-                        optionButton.AddItem(optionItem);
-                    }
-
-                    optionButton.Selected = Convert.ToInt32(configValue ?? default(int),
-                        CultureInfo.CurrentCulture);
-                    currentItem.AddChild(optionButton);
-                    break;
-                case "colour":
-                    var regularColorPickerButton = new ColorPickerButton();
-                    regularColorPickerButton.EditAlpha = false;
-                    regularColorPickerButton.Color =
-                        new Color(Convert.ToString(configValue));
-                    regularColorPickerButton.Text = "Color";
-                    currentItem.AddChild(regularColorPickerButton);
-                    break;
-                case "colour with alpha":
-                    var colorAlphaPickerButton = new ColorPickerButton();
-                    colorAlphaPickerButton.Color = new Color(Convert.ToString(configValue));
-                    colorAlphaPickerButton.Text = "Color";
-                    currentItem.AddChild(colorAlphaPickerButton);
-                    break;
-            }
-
-            // Get the script from the current item
-            var currentItemNodeInfo = currentItem as ModConfigItemInfo;
-
-            if (currentItemNodeInfo != null)
-            {
-                // Set all of the data from current item to the node
-                if (currentItemInfo.ID != null)
-                {
-                    currentItemNodeInfo.Value = configValue;
-                }
-
-                currentItemNodeInfo.ID = currentItemInfo.ID;
-                currentItemNodeInfo.DisplayName = currentItemInfo.DisplayName;
-                currentItemNodeInfo.Description = currentItemInfo.Description;
-                currentItemNodeInfo.MaximumValue = currentItemInfo.MaximumValue;
-                currentItemNodeInfo.MinimumValue = currentItemInfo.MinimumValue;
-                currentItemNodeInfo.Type = currentItemInfo.Type;
-                currentItemNodeInfo.Options = currentItemInfo.Options;
-            }
-
-            // Add it to the container
-            configTreeNode.AddChild(currentItem);
-        }
-
-        // Finally adds everything to the SceneTree
-        configContainer.AddChild(configTreeNode);
-        return configTreeNode;
-    }
-
     private void GalleryRightArrowPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -2003,7 +1582,6 @@ public class ModManager : Control
         fullInfoPckName.Text = info.PckToLoad;
         fullInfoModAssembly.Text = info.ModAssembly;
         fullInfoAssemblyModClass.Text = info.AssemblyModClass;
-        fullInfoModConfig.Text = info.ConfigToLoad;
         string fullInfoDependenciesText = string.Empty;
         info.Dependencies?.ForEach(s => fullInfoDependenciesText += "* " + s + "\n");
         fullInfoDependencies.Text = fullInfoDependenciesText;
@@ -2114,57 +1692,10 @@ public class ModManager : Control
         file.StoreString(modInfoText);
         file.Close();
 
-        if (!string.IsNullOrWhiteSpace(parsedData.Info.ConfigToLoad))
-        {
-            GD.Print("Creating Config File");
-            if (file.Open(Path.Combine(parsedData.Folder, parsedData.Info.ConfigToLoad ?? string.Empty),
-                    File.ModeFlags.Write) == Error.Ok)
-            {
-                file.StoreString("[\n]");
-            }
-            else
-            {
-                GD.PrintErr("Can't create mod config file: ", file.GetError());
-            }
-
-            file.Close();
-        }
-
         GD.Print("Mod folder created, trying to open: ", parsedData.Folder);
         FolderHelpers.OpenFolder(parsedData.Folder);
 
         RefreshAvailableMods();
-    }
-
-    /// <summary>
-    ///   Make sure the ConfigurationList variable is not null and if it can't find it
-    ///   Then it returns a blank array of ModConfigItemInfo
-    /// </summary>
-    private void VerifyConfigFileExist(FullModDetails checkedModInfo)
-    {
-        // Checks if it null or empty
-        if (checkedModInfo.ConfigurationInfoList == null || checkedModInfo.ConfigurationInfoList.Length < 1)
-        {
-            if (checkedModInfo.Info.ConfigToLoad != null &&
-                FileHelpers.Exists(Path.Combine(checkedModInfo.Folder, checkedModInfo.Info.ConfigToLoad)))
-            {
-                checkedModInfo.ConfigurationInfoList = GetModConfigList(checkedModInfo);
-            }
-
-            ModConfigItemInfo[] currentConfigList =
-                checkedModInfo.ConfigurationInfoList ?? Array.Empty<ModConfigItemInfo>();
-            Dictionary<string, object> tempDictionary = new Dictionary<string, object>();
-            for (int index = 0; index < currentConfigList.Length; ++index)
-            {
-                if (currentConfigList[index].ID != null && currentConfigList[index].Value != null)
-                {
-                    tempDictionary[currentConfigList[index].ID ?? string.Empty] =
-                        currentConfigList[index].Value ?? new Dictionary<string, object>();
-                }
-            }
-
-            checkedModInfo.CurrentConfiguration = tempDictionary;
-        }
     }
 
     private void OpenModUploader()
@@ -2173,44 +1704,6 @@ public class ModManager : Control
 
         // Don't allow uploading workshop mods again
         modUploader.Open(validMods.Where(m => !m.Workshop));
-    }
-
-    private void ApplyModConfig()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        if (selectedMod is null)
-        {
-            return;
-        }
-
-        var configItemArray = configContainer.GetChild(0).GetChildren();
-        for (int i = 0; i < configItemArray.Count; i++)
-        {
-            ModConfigItemInfo currentItemInfo = (ModConfigItemInfo)configItemArray[i];
-            if (currentItemInfo != null)
-            {
-                // Update the values from UI
-                currentItemInfo.UpdateInternalValue();
-
-                if (selectedMod != null && selectedMod.CurrentConfiguration != null && currentItemInfo.ID != null)
-                {
-                    selectedMod.CurrentConfiguration[currentItemInfo.ID] =
-                        currentItemInfo.Value ?? new Dictionary<string, object>();
-                }
-            }
-        }
-
-        if (selectedMod?.CurrentConfiguration != null)
-        {
-            if (ModLoader.Instance.LoadedModAssemblies.ContainsKey(selectedMod?.InternalName ?? string.Empty))
-            {
-                ModLoader.Instance.LoadedModAssemblies[selectedMod?.InternalName ?? string.Empty]
-                    ?.UpdatedConfiguration(selectedMod?.CurrentConfiguration ?? new Dictionary<string, object>());
-            }
-        }
-
-        SaveAllModsSettings();
     }
 
     private void OpenWorkshopSite()
