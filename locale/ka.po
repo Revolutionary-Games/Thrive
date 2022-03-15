@@ -1,7 +1,7 @@
 # Translations template for PROJECT.
-# Copyright (C) 2021 ORGANIZATION
+# Copyright (C) 2022 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 msgid ""
 msgstr ""
@@ -9,11 +9,11 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-20 15:15+0200\n"
 "PO-Revision-Date: 2022-03-14 21:22+0000\n"
-"Last-Translator: Undibundi <andras9334@citromail.hu>\n"
-"Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
-"Language: hu\n"
+"Last-Translator: Lazare Chikhradze <lazaresali@gmail.com>\n"
+"Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
+"Language: ka\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.10.1\n"
@@ -22,280 +22,235 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "A mozgáshoz használd a [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] gombokat, és az egeret a forduláshoz. Használd [thrive:input]g_fire_toxin[/thrive:input] gombot a [thrive:compound type=\"oxytoxy\"][/thrive:compound] lövéséhez, ha rendelkezel mérget tartalmazó sejtnedvüreggel. A [thrive:input]g_toggle_engulf[/thrive:input] gombbal tudod az elnyelést be-, vagy kikapcsolni. Az egér görgőjével tudsz közelíteni a sejtedhez, és távolodni a sejtedtől."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "A sejted ATP-t használ energiaforrásként, ha kifogy belőle, akkor elpusztul."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Ha a szerkesztőhöz hozzá akarsz férni, és szaporodni akarsz, akkor ammóniát (Narancssárga Felhő) és foszfátot (Lila Felhő) kell gyűjtened."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Kisebb sejteket, baktériumokat és vasdarabokat is el tudsz nyelni a [thrive:input]g_toggle_engulf[/thrive:input] lenyomásával. Ezzel több ATP-t használsz, és lassabb is leszel. Ne felejtsd el a [thrive:input]g_toggle_engulf[/thrive:input]-t lenyomni még egyszer az elnyelés befejezéséhez."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Az ozmoreguláció ATP-be kerül, ami azt jelenti, hogy minél nagyobb a sejted, annál több mitokondriumra, metaboloszómára vagy rusticyanin-ra (vagy citoplazmára, mely a glikolízist végzi) van szükséged, hogy minél kevesebb ATP-t veszíts, amikor egy helyhez vagy kötve."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Sok sejtszervecske érhető el a szerkesztőben, ezzel megadva neked a lehetőséget arra, hogy a saját tetszésed szerint játszd a játékot."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
-"A különböző vegyületfelhők lehetnek:\n"
-"\n"
-"Fehérek – [thrive:compound type=\"glucose\"]Glükóz[/thrive:compound]\n"
-"Citromsárgák – [thrive:compound type=\"hydrogensulfide\"]Hidrogén-szulfid[/thrive:compound]\n"
-"Narancssárgák – [thrive:compound type=\"ammonia\"]Ammónia[/thrive:compound]\n"
-"Lilák – [thrive:compound type=\"phosphates\"]Foszfátok[/thrive:compound]\n"
-"Rozsdabarnák – [thrive:compound type=\"iron\"]Vas[/thrive:compound]\n"
-"\n"
-"A glükózból ATP készül."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "A hidrogén-szulfidot glükózzá tudod alakítani kemoplasztiszok és kemoszintetizáló fehérjék segítségével. A vasat rusticyanin segítségével pedig ATP-vé tudod alakítani."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "A szaporodáshoz a sejtszervecskéidnek osztódnia kell. Ammóniára és foszfátra van szüksége ezeknek a szervecskéknek, hogy osztódni tudjanak."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Perpillanat, ha a populációd egyedszáma a nullára esik, akkor ki fogsz halni."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "De ha túlélsz 20 generációt 300 fős egyedszámmal, akkor megnyerted a játékot (a pillanatnyi verziót). Ha nyersz, akkor egy felugró ablak jelenik meg, és utána még addig játszhatsz tovább, ameddig csak akarsz."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Légy óvatos, mert vetélytársaid is haladnak előre az evolúció rögös ösvényén. Amikor belépsz a szerkesztőbe, akkor ők is fejlődnek."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Több sejthez való kapcsolódás által ki tudsz alakítani egy sejtkolóniát, melyek egymással vegyületeket osztanak meg, amiket elnyelnek és előállítanak közösen. Egy másik sejthez való csatlakozáshoz egy kötőszövetre lesz szükséged. Ha ez megvan, akkor át kell váltanod összekapcsolás módba, és neki kell menned a másik sejtnek. Csak a saját fajod egyedeivel tudsz összekapcsolódni. Amíg egy kolóniában vagy, addig nem tudsz osztódni, és belépni a szerkesztőbe (perpillanat). Hogy a szerkesztőbe beléphess, ahhoz először hagyd el a kolóniát akkor, amikor elegendő nyersanyagot gyűjtöttél, és utána lépj be. A nagy sejtkolóniák fognak majd előrevinni a többsejtűség felé (perpillanat még nincs a játékban)."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
-"Prokarióta szerkezetek\n"
-"\n"
-"Metaboloszómák: A gülkózból ATP-t állít elő.\n"
-"\n"
-"Kemoszintetizáló proteinek: A hidrogén-szulfidnak a felét glükózzá alakítja, mint egy kemoplasztisz, és glikolízist is végez. 1 hexagon területet foglal el\n"
-"\n"
-"Thilakoidok: 1/3-adnyi glükózt termel, mint egy normál kloroplasztisz, de glikolízist is végez, és 1 hexagon helyet foglal\n"
-"\n"
-"Rusticyanin: A vasat ATP-vé alakítja át\n"
-"\n"
-"Nitrogenáz: ATP-t és az atmoszférából gyűjtött nitrogént alakítja át ammóniává anaerob módon\n"
-"\n"
-"Citoplazma: Több tárhelyet ad a sejtednek, és glikolízist végez (Kis mennyiségű ATP-t termel)"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
-"Külső sejtszervecskék\n"
-"\n"
-"Ostor: Gyorsabbá teszi a sejtedet ATP-t használva a folyamat során\n"
-"\n"
-"Pilus: Más sejtek megszúrására használható\n"
-"\n"
-"Kemoreceptor: Messzebbi vegyületek észlelésére képes"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Eukarióta sejtszervecskék\n"
-"\n"
-"Sejtmag: 11 hexagonnyi helyet foglal, és a sejtszervecskéket teszi elérhetővé, plusz megduplázza a sejted méretét (ezt csak egyszer teheted meg)\n"
-"\n"
-"Kötőszövet: Ezzel más sejtekhez tudsz kapcsolódni\n"
-"\n"
-"Mitokondrium: Glükózból és oxigénből (O2) állít elő ATP-t, méghozzá sokkal hatékonyabban, mint egy citoplazma\n"
-"\n"
-"Kloroplasztisz: Glükózt állít elő napfény és szén-dioxid (CO2) segítségével\n"
-"\n"
-"Kemoplasztisz: Glükózt állít elő hidrogén-szulfidból\n"
-"\n"
-"Nitrifikáló színtest: Ammóniát állít elő ATP-ből, és az atmoszférából gyűjtött oxigénből és nitrogénből\n"
-"\n"
-"Sejtüreg: 8 egységnyi vegyületet tud raktározni\n"
-"\n"
-"Mérget tartalmazó sejtüreg: Mérget állít elő (Neve [thrive:compound type=\"oxytoxy\"][/thrive:compound]) és lehetővé teszi, hogy ezt a mérget kilőve megsebezz más sejteket a méreg mennyisége alapján"
 
 #: ../simulation_parameters/common/help_texts.json:74
+#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Minden egyes generációban 100 mutáció pont (MP) áll rendelkezésedre, melyet mutációkra, és változtatásokra tudsz elkölteni, amik bizonyos mennyiségű MP-be kerülnek. Viszont ha azt a sejtszervecskét törlöd ki, amit éppen abban a mutációs szekcióban raktál le, akkor annyi pontot kapsz vissza, amennyit ráköltöttél. Áthelyezhetsz, vagy akár teljesen ki is törölhetsz egy sejtszervecskét úgy, hogy a jobb egérgombbal rákattintasz, és kiválasztod a neked megfelelő műveletet a felugró ablakban. Forgathatod is a sejtszervecskéket, miközben lerakod őket a [thrive:input]e_rotate_left[/thrive:input] vagy a [thrive:input]e_rotate_right[/thrive:input] megnyomásával."
+msgstr "ყოველი გენერაცია, შენ გექნება 100 მუტაციის ქულები (მპ) დასახარჯელად, და ყოველი შეცვლა (ან მუტაცია) წაგართმევს რამოდენიმე ქულას. ორგანელების დამატება ან მოშორება მოითხოვს ქულას. მაგრამ თუ მოიშორებ"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Minden egyes alkalommal, amikor osztódsz, a sejtszerkesztőbe fogsz belépni, ahol változtatásokat végezhetsz a fajod setjein (úgy, hogy hozzáadsz, áthelyezel, vagy eltörölsz sejtszervecskéket), hogy növeld túlélési esélyüket. Minden egyes látogatás a szerkesztőben [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millió évnyi fejlődést jelent a fajod számára."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
-msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:126
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "Érdekesség: a Didinium és a Papucsállatka kapcsolata egy tankönyvi példa a ragadozó-zsákmányállat kapcsolatra, amit már évtizedek óta tanulmányoznak. És te hova tartozol? A Didiniumhoz, vagy a Papucsállatkához? A ragadozóhoz, vagy a zsákmányhoz?"
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:129
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Itt egy kis tanács. A mérgek arra is használhatók, hogy más mérgeket üss el magad elől, ha elég gyors vagy."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:132
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Itt egy kis tanács. Az ozmoreguláció másodpercenként 1 ATP-be kerül hexagononként. Mindegyik citoplazma hexagon 5 ATP-t termel, ami azt jelenti, hogy ha az ozmoreguláció során ATP-t veszítesz, akkor csak adj a sejtedhez egy pár hexagonnyi citoplazmát, és távolíts el pár sejtszervecskét."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:135
 msgid "EASTEREGG_MESSAGE_4"
-msgstr "Érdekesség: a valóságban a prokariótáknak vannak úgynevezett biokamráik, melyek sejtszervecskeként viselkednek, és poliéderes sejtszervecskének is hívják ezeket."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "Érdekesség: a metaboloszómát hívják poliéderes sejtszervecskének."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_6"
-msgstr "Itt egy kis tanács. Néha jobb döntés elmenekülni más sejtek elől."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "Itt egy kis tanács. Ha egy sejt a tiédnek a fele, akkor tudod őt elnyelni."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
-msgstr "Itt egy kis tanács. A baktériumok erősebbek is lehetnek, mint ahogy kinéznek. Kicsinek nézhetnek ki, de némelyik beléd tud fúródni, és úgy tud megölni!"
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
-msgstr "Itt egy kis tanács. Ha nem vigyázol, akkor akár fajokat is ki tudsz írtani, viszont ezt ők is megtehetik veled."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_10"
-msgstr "HULLÁMZÓ BIGYUSZOK!!"
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_11"
-msgstr "Égesd a vasat."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_12"
-msgstr "Na azok a kék sejtek."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "Itt egy kis tanács. A biomok kicsivel többek, mint egy csicsás háttér. Bizonyos vegyületek bizonyos biomokban különböző mértékekben találhatóak meg."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Itt egy kis tanács. Minél több ostorod van, annál gyorsabban mész (VuTuTuTu), viszont ez több ATP-t is használ"
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Itt egy kis tanács. Darabkákat is el tudsz nyelni, akár vas, akár más."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "Itt egy kis tanács. Készülj fel, mielőtt egy sejtmaggal gazdagítod a sejtedet. Nagyon drágák azok az izék, és nem könnyű őket fenntartani."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "Érdekesség: Tudtad, hogy a Földön több, mint 8000 csillós faj él?"
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "Érdekesség: A Stentor egy olyan csillós egysejtű, mely képes megnyúlni, és elkapni zsákmányát a trombitaszerű sejtszájával úgy, hogy a sejtszáj körüli csillókkal áramlatot generál."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_19"
-msgstr "Érdekesség: a Didinium egy olyan csillós, mely papucsállatkákra vadászik."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_20"
-msgstr "Érdekesség: Az amőbák műlábakkal vadásznak prédáikra, amiket pseudopodia-nak neveznek. Ezt mindenképpen szeretnénk, hogy a Thrive-ban benne legyen."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
-msgstr "Itt egy kis tanács. Figyelj a nálad nagyobb egysejtűekre és baktériumokra. Nem olyan mókás megemésztődni."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_22"
-msgstr "A Thrive zenei csapatának vezetője (Oliver Lugg) elég sok számot csinált, amik még nem kerültek be a játékba. Meghallgathatod őket, vagy nézhetsz tőle élő adásokat, ahogy ezeket a dalokat készíti."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_23"
-msgstr "Itt egy kis tanács. Ha a sejted 150 hexagon nagyságú, akkor a nagy vasdarabokat is el tudod nyelni."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_24"
-msgstr "A Thrive egy idegen bolygó szimulálását veszi célba, szóval elég sok értelme van annak, hogy a körülötted lévő fajok hasonlítani fognak kicsit más fajokra. Ez főleg az evolúció miatt történik. Lássuk csak, vajon be tudod-e őket azonosítani."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_25"
-msgstr "Érdekesség: a Thrive fejlesztőinek van egy podcast sorozata. Néha ránézhetsz, ha kedved tartja."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:201
 msgid "EASTEREGG_MESSAGE_26"
-msgstr "Érdekesség: a Thrive a nyílt forráskódú Godot motorral készült."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_27"
-msgstr "Érdekesség: a játék egyik legelső játszható prototípusát egyik kedves programozónk, untrustedlife készítette!"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
-msgstr "Mozgás"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:10
 msgid "MOVE_LEFT"
-msgstr "Mozgás balra"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:14
 msgid "MOVE_RIGHT"
-msgstr "Mozgás jobbra"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:18
 msgid "MOVE_FORWARD"
-msgstr "Mozgás előre"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:22
 msgid "MOVE_BACKWARDS"
-msgstr "Mozgás hátra"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:26
 msgid "AUTO_MOVE_FORWARDS"
-msgstr "Automata mozgás előre"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:34
 msgid "ABILITIES"
-msgstr "Képességek"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:38
 #: ../src/microbe_stage/MicrobeStage.tscn:2101
 msgid "FIRE_TOXIN"
-msgstr "Méreg lövése"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:42
 #: ../src/microbe_stage/MicrobeStage.tscn:2089
 msgid "TOGGLE_ENGULF"
-msgstr "Elnyelés be/ki"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:46
 msgid "HOLD_PACK_COMMANDS_MENU"
@@ -304,195 +259,195 @@ msgstr ""
 #: ../simulation_parameters/common/input_options.json:50
 #: ../src/microbe_stage/MicrobeStage.tscn:2112
 msgid "TOGGLE_BINDING"
-msgstr "Összekapcsolás be/ki"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "TOGGLE_UNBINDING"
-msgstr "Szétválás be/ki"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:58
 msgid "UNBIND_ALL"
-msgstr "Összes szétválasztása"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:62
 msgid "PERFORM_UNBINDING"
-msgstr "Szétválasztás végrehajtása"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:71
 msgid "CAMERA"
-msgstr "Kamera"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:75
 msgid "ZOOM_OUT"
-msgstr "Távolodás"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:79
 msgid "ZOOM_IN"
-msgstr "Közelítés"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:87
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4048
 msgid "EDITOR"
-msgstr "Szerkesztő"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:91
 msgid "ROTATE_RIGHT"
-msgstr "Forgatás jobbra"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:95
 msgid "ROTATE_LEFT"
-msgstr "Forgatás balra"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:99
 msgid "UNDO"
-msgstr "Visszavonás"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:103
 msgid "REDO"
-msgstr "Helyrehoz"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:107
 msgid "PLACE_ORGANELLE"
-msgstr "Sejtszervecske elhelyezése"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "Sejtszervecske menü megnyitása"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:115
 msgid "PAN_CAMERA_LEFT"
-msgstr "Pásztázás balra"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:119
 msgid "PAN_CAMERA_RIGHT"
-msgstr "Pásztázás jobbra"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:123
 msgid "PAN_CAMERA_UP"
-msgstr "Pásztázás felfelé"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:127
 msgid "PAN_CAMERA_DOWN"
-msgstr "Pásztázás lefelé"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:131
 msgid "PAN_CAMERA_RESET"
-msgstr "Kamera visszaállítása"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:135
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
-msgstr "Jelenlegi akció visszavonása"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:139
 msgid "DELETE_ORGANELLE"
-msgstr "Sejtszervecske törlése"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:143
 msgid "MOVE_ORGANELLE"
-msgstr "Sejtszervecske áthelyezése"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:151
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:16
 msgid "CHEATS"
-msgstr "Csalások"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:155
 msgid "ENABLE_EDITOR"
-msgstr "Szerkesztő engedélyezése"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "SPAWN_GLUCOSE"
-msgstr "Glükóz létrehozása"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "SPAWN_AMMONIA"
-msgstr "Ammónia létrehozása"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:167
 msgid "SPAWN_PHOSPHATES"
-msgstr "Foszfát létrehozása"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:171
 msgid "CHEAT_MENU"
-msgstr "Csalások menü"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:180
 msgid "MISCELLANEOUS"
-msgstr "Egyéb"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:184
 msgid "TOGGLE_FPS"
-msgstr "FPS mutatása be/ki"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "QUICK_SAVE"
-msgstr "Gyorsmentés"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "QUICK_LOAD"
-msgstr "Gyorstöltés"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:196
 msgid "TAKE_SCREENSHOT"
-msgstr "Képernyőkép készítése"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:200
 msgid "SHOW_HELP"
-msgstr "Segítség mutatása"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:204
 msgid "TOGGLE_FULLSCREEN"
-msgstr "Teljes képernyő be/ki"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:208
 msgid "TOGGLE_HUD_HIDE"
-msgstr "HUD be/ki"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "Aerob légzés"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
-msgstr "Glikolízis"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr "Citoplazma glikolízis"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:112
 msgid "PHOTOSYNTHESIS"
-msgstr "Fotoszintézis"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr "OxyToxy szintézis"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
 msgid "CHEMO_SYNTHESIS"
-msgstr "Kemoszintézis"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Aerob Nitrifikáció"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerob Nitrifikáció"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Vas oxidálása"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
-msgstr "Epipelagikus"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
 #: ../simulation_parameters/microbe_stage/biomes.json:170
@@ -506,7 +461,7 @@ msgstr "Epipelagikus"
 #: ../simulation_parameters/microbe_stage/biomes.json:1665
 #: ../simulation_parameters/microbe_stage/biomes.json:1809
 msgid "FLOATING_HAZARD"
-msgstr "Lebegő akadály"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
 #: ../simulation_parameters/microbe_stage/biomes.json:188
@@ -520,7 +475,7 @@ msgstr "Lebegő akadály"
 #: ../simulation_parameters/microbe_stage/biomes.json:1683
 #: ../simulation_parameters/microbe_stage/biomes.json:1827
 msgid "SMALL_IRON_CHUNK"
-msgstr "Kis vasdarab"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:79
 #: ../simulation_parameters/microbe_stage/biomes.json:303
@@ -534,11 +489,11 @@ msgstr "Kis vasdarab"
 #: ../simulation_parameters/microbe_stage/biomes.json:1718
 #: ../simulation_parameters/microbe_stage/biomes.json:1862
 msgid "BIG_IRON_CHUNK"
-msgstr "Nagy vasdarab"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:148
 msgid "VOLCANIC_VENT"
-msgstr "Vulkanikus szellőzők"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:223
 #: ../simulation_parameters/microbe_stage/biomes.json:615
@@ -546,279 +501,276 @@ msgstr "Vulkanikus szellőzők"
 #: ../simulation_parameters/microbe_stage/biomes.json:1063
 #: ../simulation_parameters/microbe_stage/biomes.json:1885
 msgid "MARINE_SNOW"
-msgstr "Tengeri hó"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:372
 msgid "TIDEPOOL"
-msgstr "Árapály medence"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:517
 msgid "BATHYPELAGIC"
-msgstr "Batipelágikus"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:741
 msgid "ABYSSOPELAGIC"
-msgstr "Abisszopelágikus"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:965
 msgid "MESOPELAGIC"
-msgstr "Mezopelágikus"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1189
 msgid "COASTAL"
-msgstr "Partvidéki"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1334
 msgid "UNDERWATERCAVE"
-msgstr "Víz alatti barlang"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1478
 msgid "ICESHELF"
-msgstr "Selfjég"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1554
 msgid "ICESHARD"
-msgstr "Jégdarab"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1642
 msgid "ESTUARY"
-msgstr "Torkolat"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1787
 msgid "SEA_FLOOR"
-msgstr "Tengerfenék"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 msgid "ATP"
-msgstr "ATP"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1292
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3695
 msgid "AMMONIA"
-msgstr "Ammónia"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1344
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3766
 msgid "PHOSPHATE"
-msgstr "Foszfát"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1396
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3660
 msgid "HYDROGEN_SULFIDE"
-msgstr "Hidrogén-szulfid"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1240
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3730
 msgid "GLUCOSE"
-msgstr "Glükóz"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
 #: ../src/microbe_stage/MicrobeStage.tscn:1578
 msgid "OXYTOXY_NT"
-msgstr "OxyToxy NT"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1448
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3801
 msgid "IRON"
-msgstr "Vas"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3496
 msgid "OXYGEN"
-msgstr "Oxigén"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3550
 msgid "CARBON_DIOXIDE"
-msgstr "Szén-dioxid"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3523
 msgid "NITROGEN"
-msgstr "Nitrogén"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2928
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3376
 msgid "SUNLIGHT"
-msgstr "Napfény"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2205
 msgid "NORMAL"
-msgstr "Normál"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:20
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2373
 msgid "DOUBLE"
-msgstr "Dupla"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:37
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2537
 msgid "CELLULOSE"
-msgstr "Cellulóz"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:54
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2772
 msgid "CHITIN"
-msgstr "Kitin"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:71
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3007
 msgid "CALCIUM_CARBONATE"
-msgstr "Kálcium-karbonát"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:88
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3275
 msgid "SILICA"
-msgstr "Kovasav"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1099
 msgid "PREDATORY_PILUS"
-msgstr "Ragadozói pilus"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:53
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:672
 msgid "RUSTICYANIN"
-msgstr "Rusticyanin"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:86
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:769
 msgid "NITROGENASE"
-msgstr "Nitrogenáz"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:119
 msgid "PROTOPLASM"
-msgstr "Protoplazma"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:149
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:569
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr "Kemoszintetizáló fehérjék"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:186
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:867
 msgid "OXYTOXISOME"
-msgstr "Oxytoxyszóma"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:219
 msgid "THYLAKOIDS"
-msgstr "Thilakoidok"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:251
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:370
 msgid "METABOLOSOMES"
-msgstr "Metaboloszómák"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:287
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1786
 msgid "NITROGEN_FIXING_PLASTID"
-msgstr "Nitrifikáló színtest"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:324
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1702
 msgid "CHEMOPLAST"
-msgstr "Kemoplasztisz"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:356
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:964
 msgid "FLAGELLUM"
-msgstr "Ostor"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:383
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1884
 msgid "VACUOLE"
-msgstr "Vakuólum"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:418
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1419
 msgid "MITOCHONDRION"
-msgstr "Mitokondrium"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:452
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1981
 msgid "TOXIN_VACUOLE"
 msgstr ""
-"Méreganyag\n"
-"Vakuólum"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "BINDING_AGENT"
-msgstr "Kötőszövet"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1503
 msgid "CHLOROPLAST"
-msgstr "Kloroplasztisz"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:553
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:271
 msgid "CYTOPLASM"
-msgstr "Citoplazma"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:618
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
 msgid "NUCLEUS"
-msgstr "Sejtmag"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:642
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
 msgid "CHEMORECEPTOR"
-msgstr "Kemoreceptor"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:666
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2078
-#, fuzzy
 msgid "SIGNALING_AGENT"
-msgstr "Kötőszövet"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
-msgstr "Megszakítva."
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
 msgid "FINISHED_DOT"
-msgstr "Befejezve."
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "NOT_RUNNING_DOT"
-msgstr "Nem fut."
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
 msgid "AUTO-EVO_STEPS_DONE"
-msgstr "{0:F1}% kész. {1:n0}/{2:n0} lépés."
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:142
 msgid "STARTING"
-msgstr "Indítás"
+msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:294
 msgid "AUTO-EVO_POPULATION_CHANGED"
-msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:554
 msgid "POPULATION_COLON"
-msgstr "Populáció:"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
-msgstr "Kihalt: {0}"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:569
 msgid "PREVIOUS_COLON"
-msgstr "Előző:"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr "{0}-ról/-ről vált le"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:600
 msgid "RUN_RESULT_NICHE_FILL"
@@ -834,55 +786,55 @@ msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:636
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr "faj mutálódott"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
-msgstr "gén kód:"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:652
 msgid "SPREAD_TO_PATCHES"
-msgstr "ezen patch-ekben terjed:"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:660
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
-msgstr "{0}, úgy, hogy {1} egyed vándorolt át ebből a patch-ből: {2}"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:679
 msgid "POPULATION_IN_PATCHES"
-msgstr "Populáció a patch-ekben:"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr "kihalt a bolygón"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:843
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr "[u]{0}[/u] kihalt!"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:853 ../src/auto-evo/RunResults.cs:875
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "[u]{0}[/u] egyedszáma növekedett: {1}"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:859 ../src/auto-evo/RunResults.cs:881
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "[u]{0}[/u] egyedszáma csökkent: {1}"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:867
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr "[u]{0}[/u] eltűnt ebből a patch-ből"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:891
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr "[u]{0}[/u] populációjának egy része ebbe a patch-be vándorolt ebből a patch-ből: {1}"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:896
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "[u]{0}[/u] populációjának egy része ide innen: {2}, ide: {1} vándorolt"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:902
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "[u]{0}[/u] populációjának egy része ide vándorolt: {1}"
+msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:921
 msgid "TIMELINE_NICHE_FILL"
@@ -894,15 +846,15 @@ msgstr ""
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "NOT_FOUND_CHUNK"
-msgstr "Hiba: darabka nem található"
+msgstr ""
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
 msgid "CHUNK_FOOD_SOURCE"
-msgstr "{0} fogyasztás"
+msgstr ""
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:42
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr "{0} fogyasztás"
+msgstr ""
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:38
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
@@ -914,11 +866,11 @@ msgstr ""
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
-msgstr "Betöltés"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr "Nyomj le egy gombot..."
+msgstr ""
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:129
 msgid "KEY_BINDING_CHANGE_CONFLICT"
@@ -926,191 +878,191 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
 msgid "KEY_FORWARD"
-msgstr "Forward"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:127
 msgid "KEY_TAB"
-msgstr "Tab"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:128
 msgid "KEY_ENTER"
-msgstr "Enter"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:129
 msgid "KEY_INSERT"
-msgstr "Insert"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:130
 msgid "KEY_DELETE"
-msgstr "Delete"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:131
 msgid "KEY_PAUSE"
-msgstr "Pause"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
-msgstr "Clear"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "KEY_HOME"
-msgstr "Home"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "KEY_END"
-msgstr "End"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 msgid "KEY_LEFT"
-msgstr "Bal"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "KEY_UP"
-msgstr "Fel"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 msgid "KEY_RIGHT"
-msgstr "Jobbra"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "KEY_DOWN"
-msgstr "Le"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
-msgstr "Menu"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KEY_HELP"
-msgstr "Help"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
 msgid "KEY_BACK"
-msgstr "Back"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 msgid "KEY_STOP"
-msgstr "Stop"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "KEY_REFRESH"
-msgstr "Refresh"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "KEY_SEARCH"
-msgstr "Search"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "KEY_STANDBY"
-msgstr "Standby"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "KEY_OPENURL"
-msgstr "Open URL"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "KEY_HOMEPAGE"
-msgstr "Homepage"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
 msgid "KEY_FAVORITES"
-msgstr "Kedvencek"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr "Print Screen"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
-msgstr "Űr"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr "Holtjáték"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "ESCAPE"
-msgstr "Esc"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "BACKSPACE"
-msgstr "Backspace"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "KPENTER"
-msgstr "Num Enter"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
-msgstr "SysRq"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
-msgstr "Page Up"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "PAGEDOWN"
-msgstr "Page Down"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
-msgstr "Caps Lock"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
-msgstr "Num Lock"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
-msgstr "Scroll Lock"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
-msgstr "Super Left"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "SUPERR"
-msgstr "Super Right"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
 msgid "HYPERL"
-msgstr "Hyper Left"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "HYPERR"
-msgstr "Hyper Right"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "DIRECTIONL"
-msgstr "Bal"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
 msgid "DIRECTIONR"
-msgstr "Jobb"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
 msgid "VOLUMEDOWN"
-msgstr "Hangerő csökkentése"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
 msgid "VOLUMEMUTE"
-msgstr "Némítás"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
 msgid "VOLUMEUP"
-msgstr "Hangerő növelése"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
-msgstr "Bassboost"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "BASSUP"
-msgstr "Basszus növelése"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "BASSDOWN"
-msgstr "Basszus csökkentése"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "TREBLEUP"
@@ -1122,219 +1074,219 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
-msgstr "Média lejátszás"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "MEDIASTOP"
-msgstr "Média stop"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
 msgid "MEDIAPREVIOUS"
-msgstr "Média előző"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "MEDIANEXT"
-msgstr "Média következő"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "MEDIARECORD"
-msgstr "Felvétel"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
 msgid "LAUNCHMAIL"
-msgstr "Levél"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:195
 msgid "LAUNCHMEDIA"
-msgstr "Média"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH0"
-msgstr "Indítás 0"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "LAUNCH1"
-msgstr "Indítás 1"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "LAUNCH2"
-msgstr "Indítás 2"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:199
 msgid "LAUNCH3"
-msgstr "Indítás 3"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:200
 msgid "LAUNCH4"
-msgstr "Indítás 4"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:201
 msgid "LAUNCH5"
-msgstr "Indítás 5"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:202
 msgid "LAUNCH6"
-msgstr "Indítás 6"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "LAUNCH7"
-msgstr "Indítás 7"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCH8"
-msgstr "Indítás 8"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCH9"
-msgstr "Indítás 9"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "LAUNCHA"
-msgstr "Indítás A"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "LAUNCHB"
-msgstr "Indítás B"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "LAUNCHC"
-msgstr "Indítás C"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "LAUNCHD"
-msgstr "Indítás D"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "LAUNCHE"
-msgstr "Indítás E"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "LAUNCHF"
-msgstr "Indítás F"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KPMULTIPLY"
-msgstr "Num *"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:213
 msgid "KPDIVIDE"
-msgstr "Num /"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:214
 msgid "KPSUBTRACT"
-msgstr "Num -"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:215
 msgid "KPPERIOD"
-msgstr "Num ."
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:216
 msgid "KPADD"
-msgstr "Num +"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP0"
-msgstr "Num 0"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP1"
-msgstr "Num 1"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:219
 msgid "KP2"
-msgstr "Num 2"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:220
 msgid "KP3"
-msgstr "Num 3"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:221
 msgid "KP4"
-msgstr "Num 4"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:222
 msgid "KP5"
-msgstr "Num 5"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:223
 msgid "KP6"
-msgstr "Num 6"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:224
 msgid "KP7"
-msgstr "Num 7"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:225
 msgid "KP8"
-msgstr "Num 8"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:226
 msgid "KP9"
-msgstr "Num 9"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
-msgstr "Ismeretlen"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
-msgstr "Ctrl"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 msgid "ALT"
-msgstr "Alt"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
-msgstr "Shift"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
 msgid "LEFT_MOUSE"
-msgstr "Bal egérgomb"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "RIGHT_MOUSE"
-msgstr "Jobb egérgomb"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "MIDDLE_MOUSE"
-msgstr "Görgő"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "WHEEL_UP"
-msgstr "Görgetés fel"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_DOWN"
-msgstr "Görgetés le"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_LEFT"
-msgstr "Görgetés balra"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_RIGHT"
-msgstr "Görgetés jobbra"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "SPECIAL_MOUSE_1"
-msgstr "Speciál egér 1"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:75
 msgid "SPECIAL_MOUSE_2"
-msgstr "Speciál egér 2"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "UNKNOWN_MOUSE"
-msgstr "Ismeretlen egér"
+msgstr ""
 
 #: ../src/general/Gallery.cs:73
 msgid "ARTWORK_TITLE"
-msgstr "\"{0}\" - {1}"
+msgstr ""
 
 #: ../src/general/Gallery.cs:77
 msgid "ART_BY"
-msgstr "A rajzot {0} készítette"
+msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/charts/line/LineChart.tscn:261
@@ -1344,7 +1296,7 @@ msgstr "A rajzot {0} készítette"
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
-msgstr "Bezár"
+msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/gui_common/CompoundAmount.cs:171
@@ -1354,7 +1306,7 @@ msgstr "Bezár"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1100
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1322
 msgid "PERCENTAGE_VALUE"
-msgstr "{0}%"
+msgstr ""
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
@@ -1362,48 +1314,48 @@ msgstr ""
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr "A glükóz koncentrációk drasztikusan csökkentek!"
+msgstr ""
 
 #: ../src/general/MainMenu.cs:234
 msgid "STORE_LOGGED_IN_AS"
-msgstr "Belépve mint: {0}"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
-msgstr "Új játék"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 msgid "LOAD_GAME"
-msgstr "Játék betöltése"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
 msgid "OPTIONS"
-msgstr "Beállítások"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:213
 msgid "TOOLS"
-msgstr "Eszközök"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
-msgstr "A forráskód megtekintése"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
-msgstr "Extrák"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:246
 msgid "CREDITS"
-msgstr "Stáblista"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:257
 msgid "QUIT"
-msgstr "Kilépés"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:277
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr "Sejtszerkesztő"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
@@ -1412,468 +1364,462 @@ msgstr "Sejtszerkesztő"
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
-msgstr "Vissza"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:358
 msgid "MODS"
-msgstr "Modok"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:372
 msgid "ART_GALLERY"
-msgstr "Rajz galéria"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:384
 msgid "LICENSES"
-msgstr "Licenszek"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 mód figyelmeztetés"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "A Thrive-ot GLES2 módban futtatod. Ennek a módnak a használata nincs letesztelve, és nagy eséllyel hibákat okozhat. Próbáld meg frissíteni a videókártyád driverét vagy/és kényszerítsd az AMD vagy Nvidia grafikai szoftverét a Thrive futtatására."
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
-msgstr "Mod betöltési hibák"
+msgstr ""
 
 #: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr "Hiba történt a mod/modok betöltése közben. A hibáról több információt találhatsz a logok között."
+msgstr ""
 
 #: ../src/general/OptionsMenu.cs:900
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr "Alap kimeneti eszköz"
+msgstr ""
 
 #: ../src/general/OptionsMenu.cs:932
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
-msgstr "A játék erre a nyelvre még nincs teljesen lefordítva ({0}% kész). Kérünk, hogy segíts nekünk ez ügyben te is!"
+msgstr ""
 
 #: ../src/general/OptionsMenu.cs:936
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr "A játéknak erre a nyelvre való lefordítása még mindig készülőben van ({0}% kész)"
+msgstr ""
 
 #: ../src/general/OptionsMenu.cs:940
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr "Erre a nyelvre való fordítás {0}%-a van elkészülve"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:135
 msgid "GRAPHICS"
-msgstr "Grafika"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:146
 msgid "SOUND"
-msgstr "Hang"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:157
 msgid "PERFORMANCE"
-msgstr "Teljesítmény"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:168
 msgid "INPUTS"
-msgstr "Bemenet"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
-msgstr "Egyéb"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:211
 msgid "VSYNC"
-msgstr "VSync"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:218
 msgid "FULLSCREEN"
-msgstr "Teljes képernyő"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:240
 msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr "Többszörös élsimítás:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:247
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr "(a nagyobb értékek ronthatják a teljesítményt)"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:262 ../src/general/OptionsMenu.tscn:263
 msgid "DISABLED"
-msgstr "Kikapcsolva"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "TWO_TIMES"
-msgstr "2x"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "FOUR_TIMES"
-msgstr "4x"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "EIGHT_TIMES"
-msgstr "8x"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "SIXTEEN_TIMES"
-msgstr "16x"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
-msgstr "Felbontás:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:290
 msgid "AUTO"
-msgstr "Auto"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
-msgstr "Maximum FPS:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:316
 msgid "MAX_FPS_NO_LIMIT"
-msgstr "Végtelen"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:332
 msgid "COLOURBLIND_CORRECTION"
-msgstr "Színvakság javító:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:346 ../src/general/OptionsMenu.tscn:347
 msgid "NONE"
-msgstr "Semmi"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_PROTANOPE"
-msgstr "Protanóp (Piros-Zöld)"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_TRITANOPE"
-msgstr "Tritanóp (Kék-Citrom)"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:363
 msgid "CHROMATIC_ABERRATION"
-msgstr "Kromatikus aberráció:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:389
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr "Képesség sáv megjelenítése"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:397
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr "GUI fényeffektjeinek engedélyezése"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:423
 msgid "MASTER_VOLUME"
-msgstr "Fő hangerő"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:449 ../src/general/OptionsMenu.tscn:489
 #: ../src/general/OptionsMenu.tscn:521 ../src/general/OptionsMenu.tscn:553
 #: ../src/general/OptionsMenu.tscn:585
 msgid "MUTE"
-msgstr "Némítás"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:463
 msgid "MUSIC_VOLUME"
-msgstr "Zene hangereje"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:495
 msgid "AMBIANCE_VOLUME"
-msgstr "Környezeti hangerő"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:527
 msgid "SFX_VOLUME"
-msgstr "SFX hangerő"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:559
 msgid "GUI_VOLUME"
-msgstr "GUI hangerő"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:603
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr "Audio eszköz:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:631
 msgid "LANGUAGE"
-msgstr "Nyelv:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
 msgid "RESET"
-msgstr "Visszaállít"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:667
 msgid "OPEN_TRANSLATION_SITE"
-msgstr "Segíts a játék fordításában"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:693
 msgid "COMPOUND_CLOUDS"
-msgstr "Vegyületfelhők"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:708
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr "Felhőszimuláció minimum intervalluma:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:715 ../src/general/OptionsMenu.tscn:757
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr "(a nagyobb értékek javíthatják a teljesítményt)"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:750
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr "Felhő felbontásának osztója:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:791
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr "Auto-evo futtatása játék alatt"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:811
 msgid "DETECTED_CPU_COUNT"
-msgstr "Észlelt processzorszám:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:828
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Észlelhető szálak:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
-msgstr "A CPU hyperthread engedélyezésének feltételezése"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:850
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr "A háttérben futó szálak számának manuális beállítása"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:860
 msgid "THREADS"
-msgstr "Szálak:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:961
 msgid "RESET_INPUTS"
-msgstr "Bemeneti eszközök visszaállítása"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:988
 msgid "PLAY_INTRO_VIDEO"
-msgstr "Intró videó lejátszása"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:996
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr "Új játék esetén az intró lejátszása"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1004
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr "Automata mentés a játék során"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1015
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr "Megtartható automentések mennyisége:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1043
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr "Megtartható gyorsmentések mennyisége:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1068
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr "Tutoriálok mutatása (új játék esetén)"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1075
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr "Tutoriálok mutatása (jelenlegi játékban)"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1081
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
-msgstr "\"Mentetlen játék\" figyelmeztetés mutatása"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1093
 msgid "CHEAT_KEYS_ENABLED"
-msgstr "Csalások engedélyezve"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1101
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr "Adj meg egy saját felhasználónevet"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1112
 msgid "CUSTOM_USERNAME"
-msgstr "Saját felhasználónév:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1138
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr "Képernyőkép mappa megnyitása"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1146
 msgid "OPEN_LOGS_FOLDER"
-msgstr "Feljegyzés mappa megnyitása"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1156
 msgid "JSON_DEBUG_MODE"
-msgstr "JSON debug mód:"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1170 ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_AUTO"
-msgstr "Automatikusan"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr "Mindig"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_NEVER"
-msgstr "Soha"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
-msgstr "Mentés"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1224
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr "Alapok"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1235
 msgid "RESET_TO_DEFAULTS"
-msgstr "Visszaállítja-e az alap dolgokat?"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1236
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "Biztos MINDEN beállítást vissza akarsz állítani alap értékekre?"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1244
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "Vissza akarod állítani a bemeneteket az alapokra?"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1245
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "Biztos vissza akarod állítani a bemeneti beállításokat az alapokra?"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1254
 msgid "CLOSE_OPTIONS"
-msgstr "Bezárod a beállítás panelt?"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1274
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
-"Mentetlen változtatásaid vannak, melyek el fognak veszni.\n"
-"Biztos, hogy folytatod?"
 
 #: ../src/general/OptionsMenu.tscn:1297
 msgid "SAVE_AND_CONTINUE"
-msgstr "Mentés és folytatás"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1307
 msgid "DISCARD_AND_CONTINUE"
-msgstr "Elvet és folytatás"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
 #: ../src/modding/NewModGUI.tscn:457
 msgid "CANCEL"
-msgstr "Mégse"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1335 ../src/general/OptionsMenu.tscn:1343
 msgid "ERROR"
-msgstr "Hiba"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1345
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr "Hiba: A beállításokat nem sikerült menteni."
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1353
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr "A képernyőképmappa nem található"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1355
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
-msgstr "Próbálj pár képernyőképet készíteni!"
+msgstr ""
 
 #: ../src/general/PauseMenu.cs:271
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
-"Biztos vissza akarsz lépni a főmenübe?\n"
-"Az eddigi teljesítményeid el fognak veszni (hacsak nem mentettél)."
 
 #: ../src/general/PauseMenu.cs:287
 msgid "QUIT_GAME_WARNING"
 msgstr ""
-"Biztos ki akarsz lépni a játékból?\n"
-"A nem mentett játékállásaid el fognak veszni."
 
 #: ../src/general/PauseMenu.tscn:62
 msgid "RESUME"
-msgstr "Folytatás"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:69
 msgid "SAVE_GAME"
-msgstr "Játék mentése"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:84
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2791
 msgid "STATISTICS"
-msgstr "Statisztikák"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:91
 msgid "HELP"
-msgstr "Segítség"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:105
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
 msgid "RETURN_TO_MENU"
-msgstr "Vissza a menübe"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:112
 msgid "EXIT"
-msgstr "Kilépés"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:163
 msgid "CONFIRM_EXIT"
-msgstr "Kilépés elfogadása"
+msgstr ""
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
-msgstr "{0} B"
+msgstr ""
 
 #: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
-msgstr "{0} M"
+msgstr ""
 
 #: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
-msgstr "{0} K"
+msgstr ""
 
 #: ../src/gui_common/ChemicalEquation.cs:141
 #: ../src/gui_common/ChemicalEquation.cs:184
 msgid "PER_SECOND_SLASH"
-msgstr "/másodperc"
+msgstr ""
 
 #: ../src/gui_common/ChemicalEquation.cs:308
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr "@"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:223
 msgid "LEAD_DEVELOPERS"
-msgstr "Fő fejlesztők"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:229
 msgid "LEAD_PROGRAMMER"
-msgstr "Vezető programozó"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:230
 msgid "LEAD_PROGRAMMERS"
-msgstr "Fő programozók"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_THEORIST"
-msgstr "Vezető teoretikus"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:236
 msgid "LEAD_THEORISTS"
-msgstr "Fő teoretikusok"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:241
 msgid "LEAD_ARTIST"
-msgstr "Vezető grafikus"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:242
 msgid "LEAD_ARTISTS"
-msgstr "Fő grafikusok"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:247
 msgid "SOUND_TEAM_LEAD"
-msgstr "A hanggal foglalkozó csapat vezetője"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:248
 msgid "SOUND_TEAM_LEADS"
-msgstr "A hanggal foglalkozó csapat vezetői"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:253
 msgid "LEAD_OUTREACH_PERSON"
@@ -1885,89 +1831,83 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:259
 msgid "LEAD_GAME_DESIGNER"
-msgstr "Vezető játéktervező"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:260
 msgid "LEAD_GAME_DESIGNERS"
-msgstr "Fő játéktervezők"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:265
 msgid "LEAD_TESTER"
-msgstr "Vezető teszter"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:266
 msgid "LEAD_TESTERS"
-msgstr "Fő teszterek"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:271
 msgid "LEAD_PROJECT_MANAGER"
-msgstr "Fő projekt menedzser"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:272
 msgid "LEAD_PROJECT_MANAGERS"
-msgstr "Vezető projekt menedzserek"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:279
 msgid "CURRENT_DEVELOPERS"
-msgstr "Jelenlegi fejlesztők"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:295
 msgid "PAST_DEVELOPERS"
-msgstr "Korábbi Fejlesztők"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:311
 msgid "OUTSIDE_CONTRIBUTORS"
-msgstr "Külső Közreműködők"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:314
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
-"A Thrive egy nyílt forrású project.\n"
-"Hozzájárulhatsz egy pull request-hez a csapatba való jelentkezés nélkül."
 
 #: ../src/gui_common/CreditsScroll.cs:329
 msgid "PATRONS"
-msgstr "Patronok"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:335
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr "A Thrive fejlesztését támogatni is tudod Patreonon."
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:352
 msgid "DONATIONS"
-msgstr "Adományok"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:375
 msgid "TRANSLATORS"
-msgstr "Fordítók"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:389
-#, fuzzy
 msgid "USED_LIBRARIES_LICENSES"
-msgstr "Licenszek"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:484
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
-"Köszönjük, hogy játszottál a játékkal!\n"
-"\n"
-"Ha élvezted a játékot, akkor beszélj a barátaidnak is rólunk."
 
 #: ../src/gui_common/CreditsScroll.cs:493
 msgid "PROGRAMMING_TEAM"
-msgstr "Programozó csapat"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:494
 msgid "THEORY_TEAM"
-msgstr "Elméleti csapat"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:495
 msgid "GRAPHICS_TEAM"
-msgstr "Grafikus csapat"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:496
 msgid "SOUND_TEAM"
-msgstr "Hangokkal foglalkozó csapat"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:497
 msgid "OUTREACH_TEAM"
@@ -1975,11 +1915,11 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:498
 msgid "GAME_DESIGN_TEAM"
-msgstr "Játéktervező csapat"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:499
 msgid "TESTING_TEAM"
-msgstr "Tesztelő csapat"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:500
 msgid "PROJECT_MANAGEMENT_TEAM"
@@ -1987,101 +1927,99 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:501
 msgid "PULL_REQUESTS_PROGRAMMING"
-msgstr "Pull requestek / Programozás"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:502
 msgid "VIP_PATRONS"
-msgstr "VIP támogatók"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:503
 msgid "DEV_BUILD_PATRONS"
-msgstr "Devbuild támogatók"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:504
 msgid "SUPPORTER_PATRONS"
-msgstr "Támogatók"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:505
 msgid "JANUARY"
-msgstr "Január"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:506
 msgid "FEBRUARY"
-msgstr "Február"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:507
 msgid "MARCH"
-msgstr "Március"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:508
 msgid "APRIL"
-msgstr "Április"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:509
 msgid "MAY"
-msgstr "Május"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:510
 msgid "JUNE"
-msgstr "Június"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:511
 msgid "JULY"
-msgstr "Július"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:512
 msgid "AUGUST"
-msgstr "Augusztus"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:513
 msgid "SEPTEMBER"
-msgstr "Szeptember"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:514
 msgid "OCTOBER"
-msgstr "Október"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:515
 msgid "NOVEMBER"
-msgstr "November"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:516
 msgid "DECEMBER"
-msgstr "December"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr "A Revolutionary Games Studio-tól"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr "A játékot a Revolutionary Games Studio ry fejleszti"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
-msgstr "Fejlesztők"
+msgstr ""
 
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"A mentés, amit be akarsz tölteni a játék egy másik verziójához tartozik.\n"
-"A mentést a menüből próbáld betölteni manuálisan."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:22
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr "A mentéseknek különböző változatai vannak"
+msgstr ""
 
 #: ../src/gui_common/RadialMenu.cs:63
 msgid "SELECT_OPTION"
-msgstr "Válassz ki egy lehetőséget"
+msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:393
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr "Válassz egy színt a játék ablakából"
+msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr "Szín beállítása előre beállítottra"
+msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
@@ -2122,9 +2060,6 @@ msgstr ""
 #: ../src/gui_common/TweakedColourPicker.cs:586
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
-"Szín: {0}\n"
-"Bal egérgomb: beállítás használata\n"
-"Jobb egérgomb: beállítás törlése"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
@@ -2137,12 +2072,11 @@ msgstr ""
 #: ../src/gui_common/charts/line/LineChart.cs:636
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2559
 msgid "NO_DATA_TO_SHOW"
-msgstr "Nincs adat"
+msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:640
-#, fuzzy
 msgid "INVALID_DATA_TO_PLOT"
-msgstr "Betöltöd ezt az érvénytelen mentést?"
+msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:1110
 #: ../src/gui_common/charts/line/LineChart.cs:1202
@@ -2156,17 +2090,17 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
-msgstr "Ellenőriz"
+msgstr ""
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr "Hiba másolása vágólapra"
+msgstr ""
 
 #: ../src/gui_common/dialogs/LicensesDisplay.cs:34
 msgid "GPL_LICENSE_HEADING"
@@ -2174,55 +2108,55 @@ msgstr ""
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
 msgid "THRIVE_LICENSES"
-msgstr "Thrive licenszek"
+msgstr ""
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
 msgid "LICENSES_COVERING_THRIVE"
-msgstr "A Thrive egyes részeire vonatkozó licenszek itt láthatóak"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
-msgstr "Nyisd meg a menüt"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:53
 msgid "OPEN_HELP_SCREEN"
-msgstr "Nyisd meg a segítség ablakot"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:67
 msgid "WILL_YOU_THRIVE"
-msgstr "Túl fogsz élni?"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:84
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr "Szerkesztés befejezése és visszatérés a környezetbe"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:90
 msgid "CHANGE_THE_SYMMETRY"
-msgstr "Szimmetria változtatása"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:96
 msgid "UNDO_THE_LAST_ACTION"
-msgstr "Utolsó akció visszavonása"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "REDO_THE_LAST_ACTION"
-msgstr "Vond vissza az előző műveletet"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "CREATE_A_NEW_MICROBE"
-msgstr "Új mikroorganizmus létrehozása"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:113
 msgid "RANDOMIZE_SPECIES_NAME"
-msgstr "Faj nevének randomizálása"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:123
 msgid "MEMBRANE_RIGIDITY"
-msgstr "Membrán merevsége"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:124
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr "Minél merevebb egy sejt membránja, annál ellenállóbb, de nehezebben fog tudni mozogni."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:150
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2232
@@ -2232,7 +2166,7 @@ msgstr "Minél merevebb egy sejt membránja, annál ellenállóbb, de nehezebben
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3032
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3302
 msgid "MOBILITY"
-msgstr "Mozgékonyság"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:185
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2335
@@ -2242,50 +2176,35 @@ msgstr "Mozgékonyság"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3135
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3405
 msgid "HEALTH"
-msgstr "Életerő"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:224
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
-"Az agresszív sejtek a prédáikat távolabbról is le fogják vadászni,\n"
-"és nagyobb eséllyel küzdenek más ragadozók ellen, ha megtámadják őket.\n"
-"A békés sejtek nem kergetnek más prédákat,\n"
-"és kevesebb eséllyel használnak mérgeket ragadozók ellen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:232
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
-"Az opportunista sejtek versengeni fognak riválisaikkal bizonyos nyersanyagokért,\n"
-"és más sejteket is levadásznak mérgek segítségével, ha nem tudják elnyelni őket.\n"
-"A gyanakvó sejtek nem nagyon teszik ki magukat veszélynek nyersanyagokért."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:240
 msgid "FEAR_EXPLANATION"
 msgstr ""
-"A félénk sejtek sok esetben a menekülést választják,\n"
-"így ha ragadozó van a közelben, akkor inkább megfutamodnak.\n"
-"A bátor sejtek nem ijednek meg a ragadozó sejtektől,\n"
-"így nagy eséllyel védekezésképp vissza is támadnak."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:248
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
-"Az aktív sejtek össze-vissza bolyonganak a vizekben, ha semmi érdekes nem történik.\n"
-"A rögzült sejtek inkább egy helyben maradva várnak a környezet változásaira, mielőtt cselekednek."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:256
 msgid "FOCUS_EXPLANATION"
 msgstr ""
-"A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
-"A reszponzív sejtek hamar új célpontokat keresnek."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:272
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:273
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:290
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:394
@@ -2306,7 +2225,7 @@ msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2000
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2097
 msgid "STORAGE"
-msgstr "Tárhely"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:328
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:432
@@ -2335,55 +2254,55 @@ msgstr "Tárhely"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3067
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3337
 msgid "OSMOREGULATION_COST"
-msgstr "Ozmoreguláció ára"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:371
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:372
 msgid "METABOLOSOMES_DESCRIPTION"
-msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:472
 msgid "THYLAKOID"
-msgstr "Thilakoid"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:473
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. A folyamat gyorsasága a [thrive:compound type=\"carbondioxide\"] koncentrációjától és a [thrive:compound type=\"sunlight\"][/thrive:compound] intenzitásától függ."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:474
 msgid "THYLAKOIDS_DESCRIPTION"
-msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:570
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]-ot alakít át [thrive:compound type=\"glucose\"][/thrive:compound]-zá. A folyamat sebessége a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától függ. Továbbá még a [thrive:compound type=\"glucose\"][/thrive:compound]-t alakítja át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:571
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr "A kemoszintetizáló fehérjék kicsi fehérjecsoportosulások a citoplazmában, melyek képesek glükózt előállítani hidrogén-szulfidból, vízből, és szén-dioxidból. Ezt a folyamatot hívjuk hidrogén-szulfid kemoszintézisnek. A glükóz előállításának intenzitása a szén-dioxid koncentrációjától függ. Mivel a kemoszintetizáló fehérjék a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:673
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"iron\"][/thrive:compound]-at alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"carbondioxide\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:674
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:770
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"nitrogen\"][/thrive:compound] koncentrációjától."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:771
 msgid "NITROGENASE_DESCRIPTION"
-msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:868
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
@@ -2391,7 +2310,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:965
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr "Növeli a sejt sebességét, viszont [thrive:compound type=\"atp\"][/thrive:compound]-t használ."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:966
 msgid "FLAGELLUM_DESCRIPTION"
@@ -2399,34 +2318,33 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:983
 msgid "SPEED"
-msgstr "Sebesség"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr "Szúrd le a többi sejtet ezzel."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
-#, fuzzy
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "A pilusok sok mikroorganizmus felületén megtalálhatóak, amik finom szőrszálakhoz hasonlítanak. Több tíz, akár több száz pilus is található egy mikroorganizmuson, feladatuk pedig egy, vagy több is lehet a ragadozást beleértve."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr "A kemoreceptor segítségével messzebbi vegyületeket detektálhatsz. Az elhelyezése után módosítsd a kemoreceptort a vegyület kiválasztásával, és a segédvonal színének beállításával."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1161
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1219
 msgid "CILIA"
-msgstr "Csilló"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1220
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1693
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2177
 msgid "TO_BE_IMPLEMENTED"
-msgstr "Fejlesztés alatt."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1240
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
@@ -2434,20 +2352,19 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1241
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
-#, fuzzy
 msgid "NUCLEUS_DESCRIPTION"
-msgstr "Az eukarióta sejtek legmeghatározóbb jellemzője. A sejtmaghoz még hozzá tartozik az endoplazmatikus membránrendszer és a golgi-készülék is."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1420
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1421
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2455,7 +2372,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1504
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a [thrive:compound type=\"sunlight\"][/thrive:compound] intenzitásától."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2463,11 +2380,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1587
 msgid "THERMOPLAST"
-msgstr "Termoplasztisz"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1588
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a hőmérséklettől."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1589
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2480,7 +2397,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1703
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]-ot alakít át [thrive:compound type=\"glucose\"][/thrive:compound]-zá. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1704
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2488,7 +2405,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1787
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1788
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2496,7 +2413,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1885
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Növeli a sejt tárkapacitását."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1886
 msgid "VACUOLE_DESCRIPTION"
@@ -2504,21 +2421,19 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1982
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1983
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2079
-#, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"iron\"][/thrive:compound]-at alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"carbondioxide\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
-#, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2176
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -2618,7 +2533,7 @@ msgstr ""
 
 #: ../src/microbe_stage/Microbe.Contact.cs:650
 msgid "SUCCESSFUL_KILL"
-msgstr "sikeres ölés"
+msgstr ""
 
 #: ../src/microbe_stage/Microbe.Contact.cs:867
 msgid "ESCAPE_ENGULFING"
@@ -2626,33 +2541,31 @@ msgstr ""
 
 #: ../src/microbe_stage/Microbe.Interior.cs:734
 msgid "REPRODUCED"
-msgstr "reprodukálva"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
 msgid "INFINITE_COMPOUNDS"
-msgstr "Végtelen vegyületek"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
 msgid "GODMODE"
-msgstr "Isten mód"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
 msgid "NO_AI"
-msgstr "Nincs MI"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:63
 msgid "PLAYER_SPEED"
 msgstr ""
-"Játékos\n"
-"Sebesség"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:84
 msgid "PLAYER_DUPLICATE"
-msgstr "A játékos megkettőzése"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
 msgid "SPAWN_ENEMY"
-msgstr "Ellenség spawnolása"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:447
 msgid "SIGNAL_COMMAND_NONE"
@@ -2680,85 +2593,83 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:770
 msgid "STUFF_AT"
-msgstr "Dolgok {0:F1}, {1:F1} környékén:"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:803
 msgid "PLAYER_CELL"
-msgstr "Játékos sejtje"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:820
 msgid "SPECIES_N_TIMES"
-msgstr "{0} (x{1})"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:865
 msgid "CATEGORY_AN_ABUNDANCE"
-msgstr "bőséges mennyiség"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:867
 msgid "CATEGORY_QUITE_A_BIT"
-msgstr "kis mennyiség"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:869
 msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr "elég sok"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:871
 msgid "CATEGORY_SOME"
-msgstr "közepes mennyiség"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:873
-#, fuzzy
 msgid "CATEGORY_LITTLE"
-msgstr "Elméleti csapat"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:875
 msgid "CATEGORY_VERY_LITTLE"
-msgstr "nagyon kicsi mennyiség"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:545
 msgid "PLAYER_REPRODUCED"
-msgstr "játékos szaporodott"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:634
-#, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr "Ellenség spawnolása"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:698
 msgid "PLAYER_DIED"
-msgstr "A játékos meghalt"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:508
 msgid "AT_CURSOR"
-msgstr "A kurzornál:"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:534
 msgid "NOTHING_HERE"
-msgstr "Semmi nincs itt"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:559
 msgid "COMPOUNDS_COLON"
-msgstr "Vegyületek:"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:599
 msgid "SPECIES_COLON"
-msgstr "Fajok:"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:679
 msgid "ENVIRONMENT"
-msgstr "Környezet"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:948
 msgid "TEMPERATURE_SHORT"
-msgstr "Hőm."
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1004
 msgid "LIGHT"
-msgstr "Fény"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1059
 msgid "PRESSURE_SHORT"
-msgstr "Nyomás"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1142
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2981
@@ -2766,55 +2677,55 @@ msgstr "Nyomás"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3620
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1128
 msgid "COMPOUNDS"
-msgstr "Vegyületek"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1518
 msgid "AGENTS"
-msgstr "Ágensek"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1616
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
-msgstr "Menü"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1634
 msgid "PAUSE_TOOLTIP"
-msgstr "Játék szüneteltetése"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1647
 msgid "RESUME_TOOLTIP"
-msgstr "Játék folytatása"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1660
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "A környezet és a vegyületek mutatása / elrejtése"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr "A sejt folyamatainak mutatása/elrejtése"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1712
 msgid "HELP_BUTTON_TOOLTIP"
-msgstr "Segítség"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr "Öngyilkosság"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1775
 msgid "POPULATION_CAPITAL"
-msgstr "POPULÁCIÓ:"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:181
 msgid "PATCH_PANGONIAN_VENTS"
-msgstr "Pangóniai nyílások"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:182
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr "Pangóniai mezopelágikus zóna"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:183
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr "Pangóniai epipelágikus zóna"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:184
 msgid "PATCH_PANGONIAN_TIDEPOOL"
@@ -2838,15 +2749,15 @@ msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_CAVE"
-msgstr "Barlang"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:190
 msgid "PATCH_ICE_SHELF"
-msgstr "Jégtakaró"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:191
 msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr "Pangóniai tengerfenék"
+msgstr ""
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -2854,7 +2765,7 @@ msgstr ""
 
 #: ../src/microbe_stage/ProcessPanel.tscn:16
 msgid "PROCESS_PANEL_TITLE"
-msgstr "Sejtfolyamatok"
+msgstr ""
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
@@ -2863,59 +2774,59 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:626
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1465
 msgid "LOADING_MICROBE_EDITOR"
-msgstr "Sejtszerkesztő betöltése"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:628
 msgid "WAITING_FOR_AUTO_EVO"
-msgstr "Várakozás az auto-evo-ra:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2518
 msgid "AUTO_EVO_FAILED"
-msgstr "Auto-evo futtatása sikertelen"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2519
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr "futtatási státusz:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:672
 msgid "MUTATION_POINTS"
-msgstr "Mutáció pont"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:807
 msgid "STRUCTURE"
-msgstr "Struktúra"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:829
 msgid "MEMBRANE"
-msgstr "Membrán"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:851
 msgid "BEHAVIOUR"
-msgstr "Viselkedés"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:903
 msgid "SEARCH_DOT_DOT_DOT"
-msgstr "Keresés..."
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:910
 msgid "STRUCTURAL"
-msgstr "Strukturális"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:950
 msgid "PROTEINS"
-msgstr "Proteinek"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1020
 msgid "EXTERNAL"
-msgstr "Külső"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1079
 msgid "ORGANELLES"
-msgstr "Sejtszervecskék"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1221
 msgid "MEMBRANE_TYPES"
-msgstr "Membrán típusok"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1300
 msgid "FLUIDITY_RIGIDITY"
@@ -2931,103 +2842,100 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1366
 msgid "COLOUR"
-msgstr "Szín"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1431
 msgid "PEACEFUL"
-msgstr "Békés"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1448
 msgid "AGGRESSIVE"
-msgstr "Agresszív"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1484
 msgid "CAUTIOUS"
-msgstr "Gyanakvó"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1502
 msgid "OPPORTUNISTIC"
-msgstr "Opportunista"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1538
 msgid "BRAVE"
-msgstr "Bátor"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1555
 msgid "FEARFUL"
-msgstr "Félénk"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1591
 msgid "SESSILE"
-msgstr "Rögzült"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1608
 msgid "ACTIVE"
-msgstr "Aktív"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1644
 msgid "RESPONSIVE"
-msgstr "Reszponzív"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1661
 msgid "FOCUSED"
-msgstr "Fókuszált"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1729
 msgid "ORGANISM_STATISTICS"
-msgstr "Organizmus statisztikái"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1791
 msgid "SPEED_COLON"
-msgstr "Sebesség:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1821
 msgid "HP_COLON"
-msgstr "HP:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1851
 msgid "SIZE_COLON"
-msgstr "Méret:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1872
 msgid "GENERATION_COLON"
-msgstr "Generáció:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1914
 msgid "ATP_BALANCE"
-msgstr "ATP egyensúly"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2027
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
-"Ez a panel megmutatja a szerkesztett élőlényeknek az auto-evo által megbecsült populációinak egyedszámait.\n"
-"Az auto-evo egy populáció szimulációt futtat, ami a saját fajod populációját (és a játék teljesítményét) is befolyásolja."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2031
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4145
 msgid "AUTO-EVO_PREDICTION"
-msgstr "Auto-evo előrejelzés"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2039
-#, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr "Játék folytatása"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2109
 msgid "TOTAL_POPULATION_COLON"
-msgstr "Teljes populáció:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2133
 msgid "BEST_PATCH_COLON"
-msgstr "Legjobb patch:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2158
 msgid "WORST_PATCH_COLON"
-msgstr "Legrosszabb patch:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2304
 msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "Faj neve..."
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2358
 msgid "CANCEL_ACTION_CAPITAL"
@@ -3035,47 +2943,43 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2372
 msgid "CONFIRM_CAPITAL"
-msgstr "ELFOGAD"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2381
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr "Negatív ATP egyensúly"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2382
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
-"A sejted nem termel annyi ATP-t, hogy képes legyen túlélni!\n"
-"Biztos folytatni akarod?"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2388
 msgid "DISCONNECTED_ORGANELLES"
-msgstr "Levált sejtszervecskék"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2390
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
-"Vannak olyan sejtszervecskék, melyek nem kötődnek egymáshoz.\n"
-"Kérlek kapcsold össze a sejtszervecskéket egymással, vagy vond vissza eddigi változtatásaidat."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2507
 msgid "AUTO_EVO"
-msgstr "Auto-Evo"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2521
 msgid "FOOD_CHAIN"
-msgstr "Tápláléklánc"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2534
 msgid "TIMELINE"
-msgstr "Idővonal"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2587
 msgid "AUTO_EVO_RESULTS"
-msgstr "Auto-Evo eredmények:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2606
 msgid "EXTERNAL_EFFECTS"
-msgstr "Külső effektek:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2703
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
@@ -3096,70 +3000,69 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2800
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2828
 msgid "SPECIES_POPULATION"
-msgstr "A fajok populációi"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2838
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3272
 msgid "PHYSICAL_CONDITIONS"
-msgstr "Fizikai körülmények"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2938
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2972
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3455
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1121
 msgid "ATMOSPHERIC_GASSES"
-msgstr "Légköri gázok"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3041
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3964
 msgid "NEXT_CAPITAL"
-msgstr "KÖVETKEZŐ"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3154
 msgid "SELECT_A_PATCH"
-msgstr "Válassz ki egy patch-et a további részletek megtekintéséhez"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3189
 msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "JELENLEGI TARTÓZKODÁSI HELY"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3349
 msgid "PRESSURE"
-msgstr "Nyomás"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3880
 msgid "SPECIES_PRESENT"
-msgstr "Jelenlévő fajok"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3937
 msgid "MOVE_TO_THIS_PATCH"
-msgstr "Átvándorlás ebbe a patch-be"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4006
 msgid "REPORT"
-msgstr "Jelentés"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4027
 msgid "PATCH_MAP"
-msgstr "Patch térkép"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4194
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
-msgstr "Végtelen MP"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:757
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "A glükóz mennyisége {0}-ra/-re redukálódott az előző mennyiséghez képest."
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:767
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
-msgstr "Myr"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:775
 msgid "TIME_INDICATOR_TOOLTIP"
@@ -3168,27 +3071,27 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "ATP_PRODUCTION"
-msgstr "ATP előállítás"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:827
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr "AZ ATP TERMELŐDÉSE TÚL ALACSONY!"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}: +{1} ATP"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:876
 msgid "OSMOREGULATION"
-msgstr "Ozmoreguláció"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:882
 msgid "BASE_MOVEMENT"
-msgstr "Alap mozgás"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:894
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
-msgstr "{0}: -{1} ATP"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1118
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1119
@@ -3196,58 +3099,55 @@ msgstr "{0}: -{1} ATP"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1124
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1128
 msgid "YEARS"
-msgstr "évek"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1124
 msgid "SPECIES_LIST"
-msgstr "Fajlista"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1135
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1148
-#, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
-msgstr "kihalt a bolygón"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1136
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1147
-#, fuzzy
 msgid "EXTINCT_FROM_PATCH"
-msgstr "kihalt a bolygón"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1190
 msgid "FREEBUILDING"
-msgstr "Szabad szerkesztés"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1313
 msgid "BIOME_LABEL"
-msgstr "Biom: {0}"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1318
 msgid "BELOW_SEA_LEVEL"
-msgstr "{0}-{1}m-el a tenger alatt"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-#, fuzzy
 msgid "SPECIES_WITH_POPULATION"
-msgstr "A fajok populációi"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
-msgstr "Hiba"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2102
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2114
 msgid "POPULATION_IN_PATCH_SHORT"
-msgstr "{0} ({1})"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2108
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2120
 msgid "N_A"
-msgstr "N/A"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2401
 msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr "A faj nevének be kell tartania a kettős nevezéktan rendszerét (Generikus és Specifikus)!"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2527
 msgid "ENERGY_IN_PATCH_FOR"
@@ -3259,7 +3159,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2538
 msgid "ENERGY_SOURCES"
-msgstr "Energia forrásai:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2544
 msgid "FOOD_SOURCE_ENERGY_INFO"
@@ -3269,63 +3169,63 @@ msgstr ""
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:255
 msgid "MP_COST"
-msgstr "{0} MP"
+msgstr ""
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
-msgstr "Törlés"
+msgstr ""
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 msgid "MOVE"
-msgstr "Mozgás"
+msgstr ""
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:362
 msgid "MODIFY"
-msgstr "Módosít"
+msgstr ""
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
 msgid "EXTINCT_SPECIES"
-msgstr "Kihalt fajok"
+msgstr ""
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
-msgstr "Nincs feljegyzett esemény"
+msgstr ""
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
 msgid "COMPOUND_TO_FIND"
-msgstr "Megtalálható vegyületek:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
 msgid "SEARCH_RADIUS"
-msgstr "Keresési rádiusz:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
 msgid "MINIMUM_AMOUNT_TO_FIND"
-msgstr "Minimális detektálandó mennyiség:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
 msgid "LINE_COLOUR"
-msgstr "Vonal színe:"
+msgstr ""
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 msgid "MODIFY_ORGANELLE"
-msgstr "Sejtalkotó szerkesztése"
+msgstr ""
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
-msgstr "KIHALTÁL"
+msgstr ""
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
 msgid "EXTINCTION_BOX_TEXT"
-msgstr "Mint azon fajok 99%-a, melyek egykor léteztek, kihaltak, mint a te fajod. Pár faj ki fogja tölteni az ürességet, amit fajod veszte okozott, és túl fognak élni, de az nem te leszel. A fajod az evolúció egyik hibás kísérleteként lesz mostantól számontartva, és a feledésbe fog merülni."
+msgstr ""
 
 #: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
-msgstr "TÚLÉLTÉL!"
+msgstr ""
 
 #: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
-msgstr "Gratulálok, a Thrive ezen verzióját végigvitted! Ha akarsz, még játszhatsz tovább, miután ez az ablak bezárul, vagy egy új játékot is kezdhetsz."
+msgstr ""
 
 #: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
 msgid "CANT_LOAD_MOD_INFO"
@@ -3361,7 +3261,7 @@ msgstr ""
 
 #: ../src/modding/ModLoader.cs:394
 msgid "PCK_LOAD_FAILED"
-msgstr "pck fájl ({0}) betöltése sikertelen"
+msgstr ""
 
 #: ../src/modding/ModManager.cs:293
 msgid "INVALID_ICON_PATH"
@@ -3369,7 +3269,7 @@ msgstr ""
 
 #: ../src/modding/ModManager.cs:307
 msgid "INVALID_URL_SCHEME"
-msgstr "Érvénytelen URL séma"
+msgstr ""
 
 #: ../src/modding/ModManager.cs:319
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -3377,166 +3277,166 @@ msgstr ""
 
 #: ../src/modding/ModManager.cs:549
 msgid "NO_SELECTED_MOD"
-msgstr "Egy mod sincs kijelölve"
+msgstr ""
 
 #: ../src/modding/ModManager.cs:885
 msgid "THIS_IS_WORKSHOP_MOD"
-msgstr "Ez a mod a Steam Műhelyből lett letöltve"
+msgstr ""
 
 #: ../src/modding/ModManager.cs:886
 msgid "THIS_IS_LOCAL_MOD"
-msgstr "Ez egy lokálisan letöltött mod"
+msgstr ""
 
 #: ../src/modding/ModManager.cs:940
 msgid "ERROR_CREATING_FOLDER"
-msgstr "Hiba a mod-hoz való mappa létrehozása közben"
+msgstr ""
 
 #: ../src/modding/ModManager.cs:949
 msgid "ERROR_CREATING_INFO_FILE"
-msgstr "Hiba a mod fájllá való átalakítása közben"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:121
 msgid "AVAILABLE_MODS"
-msgstr "Elérhető modok"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
-msgstr "Frissítés"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:152
 msgid "OPEN_FOLDER"
-msgstr "Mappa megnyitása"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:170
 msgid "RIGHT_ARROW"
-msgstr "→"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:183
 msgid "LEFT_ARROW"
-msgstr "←"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:195
 msgid "ENABLED_MODS"
-msgstr "Engedélyezett modok"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:213
 msgid "DISABLE_ALL"
-msgstr "Az összes tiltása"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:250
 msgid "SELECTED_MOD"
-msgstr "Kijelölt mod:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
-msgstr "A mod készítője:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
 #: ../src/modding/NewModGUI.tscn:165
 msgid "MOD_VERSION"
-msgstr "Mod verzió:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:371
 msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr "Ajánlott Thrive verzió:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:415
 msgid "MINIMUM_VERSION"
-msgstr "Minimum:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
 #: ../src/modding/NewModGUI.tscn:188
 msgid "MOD_DESCRIPTION"
-msgstr "Mod leírása:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:474
 msgid "MORE_INFO"
-msgstr "Több infó mutatása"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:482
 msgid "OPEN_MOD_URL"
-msgstr "A mod URL-jének megnyitása"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:505
 msgid "BROWSE_WORKSHOP"
-msgstr "A műhely böngészése"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
-msgstr "Feltöltés"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:519
 msgid "NEW"
-msgstr "Új"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:532
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr "Megjegyzés: sok modnál szükség van a játék újraindítására, hogy betöltsenek, vagy törlődjenek. Csak azokat a modokat töltsd be, melyekben megbízol, mivel ezek futtatható kódokat tartalmazhatnak."
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:559
 msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "Az összes kompatibilis mod engedélyezése"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:568
 msgid "APPLY_CHANGES"
-msgstr "Változtatások elfogadása"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:579
 msgid "UNAPPLIED_MOD_CHANGES"
-msgstr "A modban nem elfogadott változtatások vannak"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:580
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "El kell fogadnod a változtatásaidat ahhoz, hogy be tudj tölteni, vagy törölni modokat."
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:581
 msgid "DISCARD_CHANGES"
-msgstr "Változtatások elvetése"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:588
 msgid "FULL_MOD_INFO"
-msgstr "Teljes mod infó"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
 msgid "MOD_NAME"
-msgstr "Mod neve:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
-msgstr "Mappa neve:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr "Mod hosszú leírása:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
-msgstr "Ikon fájl:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
-msgstr "Mod Infó URL:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
-msgstr "Mod licensze:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
-msgstr "Ajánlott Thrive verzió:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
-msgstr "Minimum szükséges Thrive verzió:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
-msgstr "Maximum támogatott Thrive verzió:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
 msgid "MOD_PCK_NAME"
-msgstr "Mod .pck fájl:"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
@@ -3548,58 +3448,55 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:979
 msgid "MOD_CREATION_FAILED"
-msgstr "Mod létrehozása sikertelen"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:989
-#, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr "Megjegyzés: sok modnál szükség van a játék újraindítására, hogy betöltsenek, vagy törlődjenek. Csak azokat a modokat töltsd be, melyekben megbízol, mivel ezek futtatható kódokat tartalmazhatnak."
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
-msgstr "Újraindítás szükséges"
+msgstr ""
 
 #: ../src/modding/ModManager.tscn:996
 msgid "MOD_LOAD_UNLOAD_RESTART"
-msgstr "Egy vagy több mod miatt a játék újraindítása szükséges, hogy megfelelően betöltsenek/törlődjenek"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
-msgstr "A műhely tartalom ebből a mappából lesz feltöltve: {0}"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:305
 msgid "MISSING_TITLE"
-msgstr "Nincs cím"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:311
 msgid "MISSING_DESCRIPTION"
-msgstr "Nincs leírás"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:319
 msgid "DESCRIPTION_TOO_LONG"
-msgstr "A leírás túl hosszú"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:207
-#, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
-msgstr "A leírás túl hosszú"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:333
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:341
-#, fuzzy
 msgid "INVALID_TAG"
-msgstr "Betöltöd ezt az érvénytelen mentést?"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:355
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
-msgstr "Előzetes kép nem észlelhető"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:362
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
-msgstr "Az előzetes kép fájlja túl hosszú"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:417
 msgid "ID_IS_NOT_A_NUMBER"
@@ -3607,7 +3504,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:460
 msgid "CREATING_DOT_DOT_DOT"
-msgstr "Létrehozás..."
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:474
 msgid "SUCCESS_BUT_MISSING_ID"
@@ -3615,67 +3512,67 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:519
 msgid "UPLOADING_DOT_DOT_DOT"
-msgstr "Feltöltés..."
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:556
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr "A tárgy feltöltése a Steam Műhelybe sikerült, de hozzá kell járulnod a műhely [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement] szolgáltatási feltételeinek [/url][/color], mielőtt láthatóvá válik mások számára"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:560
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
-msgstr "Tárgy(ak) Steam Műhelybe való feltöltése sikeres"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:620
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
-msgstr "E tárgy feltöltésével beleegyezel a Steam Műhely [color=#3796e1]([url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]) szolgáltatás feltételeihez[/url][/color]"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:645
 msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr "Az információ mentése sikertelen a következő ok miatt: {0}"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
 msgid "FORM_ERROR_MESSAGE"
-msgstr "Hiba: {0}"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:44
 msgid "MOD_UPLOADER"
-msgstr "Mod feltöltő"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
-msgstr "Feltöltendő mod:"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:109
 msgid "UNKNOWN_WORKSHOP_ID"
-msgstr "Mod műhely ID-je ismeretlen"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:121
 msgid "CREATE_NEW"
-msgstr "Új létrehozása"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:128
 msgid "ENTER_EXISTING_ID"
-msgstr "Írj be egy létező ID-t"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
-msgstr "Írj be egy létező műhely ID-t"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
-msgstr "ID száma"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
-msgstr "Alkalmaz"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
-msgstr "Tárgy neve:"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:186
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr "Tárgy leírása:"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
@@ -3683,53 +3580,51 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
-msgstr "Látható"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
-msgstr "Tárgy címkéi (vessző \",\" elválasztva):"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
-msgstr "Tárgy előzetes képe:"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
-msgstr "Böngészés"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:284
-#, fuzzy
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
-msgstr "Játék folytatása"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
-msgstr "Helyi adatok törlése"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
-#, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
-msgstr "Tárgy neve:"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:294
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
-msgstr "Tárgy változtatási naplója"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
-msgstr "Előzetes kép kiválasztása"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:336
 msgid "UPLOAD_SUCCEEDED"
-msgstr "Sikeres feltöltés"
+msgstr ""
 
 #: ../src/modding/NewModGUI.cs:175
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
-msgstr "Az én király modom"
+msgstr ""
 
 #: ../src/modding/NewModGUI.cs:232
 msgid "INVALID_URL_FORMAT"
-msgstr "Érvénytelen URL formátum"
+msgstr ""
 
 #: ../src/modding/NewModGUI.cs:247
 msgid "INTERNAL_NAME_REQUIRED"
@@ -3748,38 +3643,37 @@ msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
 #: ../src/modding/NewModGUI.cs:286
-#, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "Auto-evo futtatása sikertelen"
+msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:35
 msgid "CREATE_NEW_MOD"
-msgstr "Új mod létrehozása"
+msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
-msgstr "A modolási instrukciók elérhetők"
+msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:76
 msgid "OUR_WIKI"
-msgstr "Wikipédiánk"
+msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:450
 msgid "CREATE"
-msgstr "Létrehozás"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:79 ../src/saving/InProgressLoad.cs:99
 #: ../src/saving/InProgressLoad.cs:148
 msgid "LOADING_GAME"
-msgstr "A játék betöltése"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:81
 msgid "READING_SAVE_DATA"
-msgstr "Mentési információ olvasása"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:101
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr "Objektumok létrehozása a mentésből"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:110
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
@@ -3787,7 +3681,7 @@ msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:136
 msgid "SAVE_IS_INVALID"
-msgstr "A mentés érvénytelen"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:137
 msgid "SAVE_HAS_INVALID_GAME_STATE"
@@ -3795,7 +3689,7 @@ msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:150
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr "Betöltött objektumok feldolgozása"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:165
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
@@ -3803,137 +3697,127 @@ msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:171
 msgid "LOAD_FINISHED"
-msgstr "Betöltés befejezve"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:196
 msgid "ERROR_LOADING"
-msgstr "Betöltési hiba"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:228
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
-msgstr ". Nem sikerült felszabadítani a már betöltött erőforrásokat: {0}"
+msgstr ""
 
 #: ../src/saving/InProgressSave.cs:189
 msgid "SAVING_DOT_DOT_DOT"
-msgstr "Mentés..."
+msgstr ""
 
 #: ../src/saving/InProgressSave.cs:222
 msgid "SAVE_FAILED"
-msgstr "Mentés sikertelen"
+msgstr ""
 
 #: ../src/saving/InProgressSave.cs:223
 msgid "ERROR_SAVING"
-msgstr "Mentési hiba"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.cs:75
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr "A kiválasztott fájl neve ({0}) már létezik. Lecseréled?"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.cs:173
-#, fuzzy
 msgid "INVALID_SAVE_NAME_POPUP"
-msgstr "Betöltöd ezt az érvénytelen mentést?"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
-msgstr "Új mentés létrehozása"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
-msgstr "Név:"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
-msgstr "Extra opciók"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr "Létező mentés felülírása:"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:116
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr "Felülírod a létező mentést?"
+msgstr ""
 
 #: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr "A mentés sikertelen! Hiba történt"
+msgstr ""
 
 #: ../src/saving/SaveHelper.cs:437
 msgid "SAVING_NOT_POSSIBLE"
-msgstr "A mentés nem sikerült a következő ok(ok)miatt:"
+msgstr ""
 
 #: ../src/saving/SaveHelper.cs:438
 msgid "PLAYER_EXTINCT"
-msgstr "A játékos faja kihalt"
+msgstr ""
 
 #: ../src/saving/SaveHelper.cs:447
 msgid "SAVING_SUCCEEDED"
-msgstr "Sikeres mentés"
+msgstr ""
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
-msgstr "Kézikönyv"
+msgstr ""
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
-msgstr "Automentés"
+msgstr ""
 
 #: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
-msgstr "Gyorsmentés"
+msgstr ""
 
 #: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
-msgstr "Érvénytelen"
+msgstr ""
 
 #: ../src/saving/SaveList.cs:208
 msgid "SAVE_DELETE_WARNING"
-msgstr "Biztos véglegesen akarod törölni a következő mentést: {0}?"
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:53
 msgid "NO_SAVEGAMES_FOUND"
-msgstr "Nincs mentés"
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
-msgstr "Betöltés..."
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
-msgstr "Törlöd ezt a mentést?"
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
-msgstr "Betöltöd ezt az inkompatibilis mentést?"
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:80
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"Ez a mentés a Thrive egyik frissebb verziójából származik, és nagy eséllyel nem kompatibilis.\n"
-"Így is be akarod tölteni a mentést?"
 
 #: ../src/saving/SaveList.tscn:88
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
-"Ez a mentés a Thrive egy régebbi verziójából való, és nem biztos, hogy kompatibilis.\n"
-"Mivel a Thrive még eléggé gyermekcipőben jár, ezért nem elsődleges cél a mentések kompatibilitása.\n"
-"Jelentheted ezeket a hibákat a fejlesztőknek, de ezek nem elsődlegesek.\n"
-"Biztos be akarod tölteni a mentést?"
 
 #: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE_PROMPT"
-msgstr "Betöltöd ezt az érvénytelen mentést?"
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:96
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
-"A mentési információt nem lehet betölteni ebből a fájlból.\n"
-"Ez a mentés nagy eséllyel korruptált, vagy új formátumú, amit a Thrive ezen verziója nem ismer fel.\n"
-"Biztos be akarod tölteni ezt a mentést?"
 
 #: ../src/saving/SaveList.tscn:103
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
-msgstr "A kiválasztott mentés nem kompatibilis"
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:105
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
@@ -3941,114 +3825,105 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:114
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
-msgstr "A kiválasztott mentés frissíthető"
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:115
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"A kijelölt mentés a Thrive egy régebbi verziójából való, de újabb verzióra lehet frissíteni.\n"
-"A játék egy biztonsági mentést fog létrehozni/már létrehozott a frissítés előtt.\n"
-"Ha nem frissíted a mentést, akkor a játék megpróbálja betölteni így is.\n"
-"Frissíted ezt a mentést?"
 
 #: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED"
-msgstr "A mentés frissítése sikertelen"
+msgstr ""
 
 #: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
-"Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
-"{0}"
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
-msgstr "Létrehozva ekkor:"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:139 ../src/saving/SaveListItem.tscn:158
 #: ../src/saving/SaveListItem.tscn:177 ../src/saving/SaveListItem.tscn:200
 #: ../src/saving/SaveListItem.tscn:229 ../src/saving/SaveListItem.tscn:248
 msgid "DOT_DOT_DOT"
-msgstr "..."
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:151
 msgid "TYPE_COLON"
-msgstr "Típus:"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
-msgstr "Leírás:"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:193
 msgid "VERSION_COLON"
-msgstr "Verzió:"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
-msgstr "Származás:"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:241
 msgid "CREATED_ON_PLATFORM"
-msgstr "Ezen platformon létrehozva:"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
-msgstr "Töltés"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
-msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
-msgstr "Biztos végérvényesen törölni akarsz {0} mentést?"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
-"Az összes régi automatikus és gyors mentés törlése nem vonható vissza. Biztos vagy benne, hogy véglegesen törlöd a következőket?\n"
-" - {0} Automatikus mentés(-ek)\n"
-" - {1} Gyors mentés(-ek)"
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
-msgstr "Mentés/-ek törlése"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:87
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr "Régi mentések törlése"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:99
 msgid "OPEN_SAVE_DIRECTORY"
-msgstr "Mentések mappájának megnyitása"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:132
 msgid "TOTAL_SAVES"
-msgstr "Összes mentés:"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:152
 msgid "SAVE_SPACE_USED"
-msgstr "Mérete:"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:172
 msgid "SELECTED_COLON"
-msgstr "Kijelölve:"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:186
 msgid "DELETE_SELECTED_SAVES_PROMPT"
-msgstr "Biztos törlöd a kiválasztott mentést/mentéseket?"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:193
 msgid "DELETE_OLD_SAVES_PROMPT"
-msgstr "Törlöd a régi mentéseket?"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:200
 msgid "NO_SAVE_DIRECTORY"
-msgstr "A mentések mappa nem található"
+msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:202
 msgid "TRY_MAKING_A_SAVE"
-msgstr "Próbálj egy mentést létrehozni!"
+msgstr ""
 
 #: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"
@@ -4060,7 +3935,7 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:464
 msgid "STEAM_ERROR_BANNED"
-msgstr "Nem töltheted fel ezt a tartalmat, mert a Steam fiókod le van tiltva"
+msgstr ""
 
 #: ../src/steam/SteamClient.cs:466
 msgid "STEAM_ERROR_TIMEOUT"
@@ -4068,7 +3943,7 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:468
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
-msgstr "Nem vagy bejelentkezve Steam-re"
+msgstr ""
 
 #: ../src/steam/SteamClient.cs:470
 msgid "STEAM_ERROR_UNAVAILABLE"
@@ -4091,9 +3966,8 @@ msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr ""
 
 #: ../src/steam/SteamClient.cs:480
-#, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
-msgstr "A játékos megkettőzése"
+msgstr ""
 
 #: ../src/steam/SteamClient.cs:482
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
@@ -4101,16 +3975,15 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:484
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
-msgstr "A Steam fiókod nem rendelkezik a Thrive licencével"
+msgstr ""
 
 #: ../src/steam/SteamClient.cs:486
-#, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
-msgstr "A mentés sikertelen! Hiba történt"
+msgstr ""
 
 #: ../src/steam/SteamClient.cs:488
 msgid "STEAM_ERROR_UNKNOWN"
-msgstr "Ismeretlen Steam hiba történt"
+msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
@@ -4129,39 +4002,19 @@ msgstr "Ismeretlen Steam hiba történt"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
 msgid "TUTORIAL"
-msgstr "Tutorial"
+msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Üdvözöllek a Sejtszerkesztőben.\n"
-"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
-"\n"
-"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
-"\n"
-"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Üdvözöllek a Sejtszerkesztőben.\n"
-"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
-"\n"
-"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
-"\n"
-"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Üdvözöllek a Sejtszerkesztőben.\n"
-"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
-"\n"
-"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
-"\n"
-"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
@@ -4172,181 +4025,61 @@ msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Üdvözöllek a Sejtszerkesztőben.\n"
-"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
-"\n"
-"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
-"\n"
-"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
 msgid "GOT_IT"
-msgstr "Rendben"
+msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
-msgstr "Auto-evo előrejelzés"
+msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"Ez itt a sejtszerkesztő, ahol különböző sejtszervecskéket adhatsz hozzá, vagy távolíthatsz el a sejtedről, amik mutáció pontokba (MP) kerülnek.\n"
-"\n"
-"A sejted többi tulajdonságát is megváltoztathatod a sejtszerkesztő többi részében.\n"
-"\n"
-"A folytatáshoz válassz ki egy sejtszervecskét a bal oldali panelről (a citoplazma egy jó választás elsőnek). Ezután a képernyő közepén elhelyezkedő valamelyik hexagonra való bal kattintással helyezd el az adott sejtszervecskét."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"Egy távoli idegen bolygón az évmilliók óta tartó vulkanikus aktivitások és meteoresők miatt egy új csoda jött létre az univerzumban.\n"
-"\n"
-"Élet.\n"
-"\n"
-"Egyszerű baktériumok jelentek meg az óceánok lenti régióiban. A játék elején a te fajod az utolsó univerzális közös ős (más néven LUCA) ezen a planétán.\n"
-"\n"
-"Ahhoz, hogy túléld ezt a kegyetlen világot, annyi vegyületet kell gyűjtened, amennyit csak találsz, és fejlesztened kell fajodat az evolúció során, hogy versenyképesek maradjanak a többi fajjal."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
-msgstr "Tutorial-ok mutatása"
+msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
-msgstr "A túlélés kezdése"
+msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"A sejted irányításához használd azokat a gombokat, amik a sejted közelében vannak (a képernyő közepén), plusz az egeret, hogy irányítsd a sejted irányát.\n"
-"\n"
-"Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
-"Gyűjts glükózt úgy, hogy áthaladsz a fehér felhőkön.\n"
-"A sejtednek szüksége van glükózra, hogy energiát tudjon előállítani és túl tudjon így élni.\n"
-"Kövesd a vonalat, hogy találj egy kis glükózt."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-"Tartsd szemmel az életerő csíkot az ATP mérő mellett (jobb alsó sarok).\n"
-"A sejted meghal, ha elfogy az életereje.\n"
-"Addig regenerálódik a sejted, amíg rendelkezik ATP-vel.\n"
-"Figyelj arra, hogy elegendő glükózt gyűjts az ATP előállításához."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Ahhoz, hogy szaporodni tudj, meg kell dupláznod a sejted sejtszervecskéinek mennyiségét. Ehhez elegendő mennyiségű ammóniát és foszfátot kell gyűjtened.\n"
-"A képernyő jobb alsó sarkában láthatsz egy mérőt, ami mutatja, hogy mennyire van még szükséged ebből a két anyagból."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Elegendő nyersanyagot gyűjtöttél, hogy a sejted osztódni tudjon.\n"
-"\n"
-"Készen állsz mostmár arra, hogy szerkezd a fajod sejtjeit.\n"
-"\n"
-"A szerkesztőbe való belépéshez kattints a villogó szerkesztő gombra a képernyő jobb alsó sarkában."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"A sejted irányításához használd azokat a gombokat, amik a sejted közelében vannak (a képernyő közepén), plusz az egeret, hogy irányítsd a sejted irányát.\n"
-"\n"
-"Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"Hogyha netán bajlódsz a játék mechanikáival, akkor nézd meg a segítség menüt. A bal alsó sarokban található kérdőjel ikonnal tudod megnyitni.\n"
-"\n"
-"Még egy tanács: a görgő segítségével távolodhatsz a kamerával a sejtedtől."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Tutorial"
-
-#~ msgid "LOADING_DOT"
-#~ msgstr "Betöltés..."
-
-#~ msgid "POPULATION"
-#~ msgstr "populáció:"
-
-#~ msgid "PREVIOUS"
-#~ msgstr "előző:"
-
-#~ msgid "RUN_RESULT_POP_IN_PATCHES"
-#~ msgstr "populáció a patch-ekben:"
-
-#~ msgid "SAVING"
-#~ msgstr "Mentés..."
-
-#~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-#~ msgstr "Felülírod a már meglévő mentést?"
-
-#~ msgid "SAVING_FAILED"
-#~ msgstr "A mentés sikertelen! Hiba történt"
-
-#~ msgid "TYPE"
-#~ msgstr "Típus:"
-
-#~ msgid "VERSION"
-#~ msgstr "Verzió:"
-
-#~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
-#~ msgstr ""
-#~ "Ez itt a patch térkép.\n"
-#~ "Itt láthatod a különböző helyeket, ahol a sejtek élhetnek.\n"
-#~ "Ki van külön emelve az a patch, ahol perpillanat tartózkodsz.\n"
-#~ "Az egereddel ki tudod jelölni a különböző patch-eket, hogy a jobb oldalon láthasd róluk az információt.\n"
-#~ "\n"
-#~ "Ha a jelenlegi tartózkodási helyed melletti valamelyik patch-et kiválasztod, akkor a jobb oldalon lévő gomb megnyomásával abba a patch-be vándorolsz át. Ez lehetővé teszi a fajod számára, hogy új patch-ekbe terjedjenek el.\n"
-#~ "\n"
-#~ "Válassz ki egy patch-et a folytatáshoz."
-
-#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
-#~ msgstr ""
-#~ "Ez itt a sejtszerkesztő, ahol különböző sejtszervecskéket adhatsz hozzá, vagy távolíthatsz el a sejtedről, amik mutáció pontokba (MP) kerülnek.\n"
-#~ "\n"
-#~ "A sejted többi tulajdonságát is megváltoztathatod a sejtszerkesztő többi részében.\n"
-#~ "\n"
-#~ "A folytatáshoz válassz ki egy sejtszervecskét a bal oldali panelről (a citoplazma egy jó választás elsőnek). Ezután a képernyő közepén elhelyezkedő valamelyik hexagonra való bal kattintással helyezd el az adott sejtszervecskét."
-
-#, fuzzy
-#~ msgid "TOTAL_EXTINCTION"
-#~ msgstr "Kihalt: {0}"
-
-#, fuzzy
-#~ msgid "LOCAL_EXTINCTION"
-#~ msgstr "A játékos faja kihalt"
-
-#, fuzzy
-#~ msgid "MARINE_SNOW_FOOD_SOURCE"
-#~ msgstr "Tengeri hó"
-
-#, fuzzy
-#~ msgid "OPEN_DETAILS"
-#~ msgstr "Mappa megnyitása"
-
-#~ msgid "Cancel"
-#~ msgstr "Kihagyás"
-
-#~ msgid "SAVING_ERROR"
-#~ msgstr "Mentési hiba"
-
-#~ msgid "BEHAVIOR"
-#~ msgstr "Viselkedés"
+msgstr ""
