@@ -37,8 +37,6 @@ RequiredModsPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxCo
 LoadBeforePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModLoadBefore")
 LoadAfterPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModLoadAfter")
 IncompatibleModsPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModIncompatibleMods")
-ModConfigPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModConfigContainer/ModConfigName")
-EnableConfigCheckboxPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModConfigContainer/EnableConfigCheckbox")
 IconFileDialogPath = NodePath("IconFileDialog")
 PckFileDialogPath = NodePath("PckFileDialog")
 AssemblyFileDialogPath = NodePath("AssemblyFileDialog")
@@ -65,13 +63,13 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="CustomDialog/ScrollContainer"]
 margin_right = 544.0
-margin_bottom = 1751.0
+margin_bottom = 1679.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer"]
 margin_right = 534.0
-margin_bottom = 1751.0
+margin_bottom = 1679.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -101,7 +99,7 @@ size_flags_horizontal = 3
 [node name="Form" type="VBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 38.0
 margin_right = 534.0
-margin_bottom = 1686.0
+margin_bottom = 1614.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -660,58 +658,17 @@ margin_right = 534.0
 margin_bottom = 1576.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label22" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1580.0
-margin_right = 534.0
-margin_bottom = 1602.0
-custom_fonts/font = ExtResource( 3 )
-text = "MOD_CONFIG_FILE"
-
-[node name="ModConfigContainer" type="HBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1606.0
-margin_right = 534.0
-margin_bottom = 1648.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="EnableConfigCheckbox" type="CheckButton" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModConfigContainer"]
-margin_right = 202.0
-margin_bottom = 42.0
-custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-text = "ENABLE_CONFIG"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ModConfigName" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModConfigContainer"]
-margin_left = 206.0
-margin_right = 534.0
-margin_bottom = 42.0
-size_flags_horizontal = 3
-text = "mod_config.json"
-max_length = 200
-editable = false
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
 [node name="Error" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 1690.0
+margin_top = 1618.0
 margin_right = 534.0
-margin_bottom = 1715.0
+margin_bottom = 1643.0
 autowrap = true
 max_lines_visible = 5
 
 [node name="BottomButtons" type="HBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 1719.0
+margin_top = 1647.0
 margin_right = 534.0
-margin_bottom = 1751.0
+margin_bottom = 1679.0
 size_flags_horizontal = 3
 alignment = 1
 
@@ -819,7 +776,6 @@ __meta__ = {
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/PreviewImagesContainer/ChooseImagesButton" to="." method="ChooseImagesButtonPressed"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/PckContainer/ChoosePckButton" to="." method="ChoosePckButtonPressed"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModAssemblyContainer/ChooseAssemblyButton" to="." method="ChooseAssemblyButtonPressed"]
-[connection signal="toggled" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModConfigContainer/EnableConfigCheckbox" to="." method="EnableConfigCheckboxToggled"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons/Create" to="." method="Create"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons/Cancel" to="." method="Cancel"]
 [connection signal="file_selected" from="IconFileDialog" to="." method="IconFileDialogFileSelected"]

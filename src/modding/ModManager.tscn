@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/modding/ModManager.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -17,7 +17,6 @@
 [ext_resource path="res://assets/textures/DiscoBall.jpg" type="Texture" id=15]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=16]
 [ext_resource path="res://src/modding/ModUploader.tscn" type="PackedScene" id=18]
-[ext_resource path="res://src/modding/ModConfigItem.tscn" type="PackedScene" id=19]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -111,7 +110,6 @@ FullInfoRequiredModsPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/V
 FullInfoLoadBeforePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModLoadBefore")
 FullInfoLoadAfterPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModLoadAfter")
 FullInfoIncompatibleModsPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModIncompatibleMods")
-FullInfoModConfigPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModConfigFile")
 OpenWorkshopButtonPath = NodePath("MainMarginContainer/VBoxContainer/ButtonContainer/WorkshopBrowse")
 ModUploaderButtonPath = NodePath("MainMarginContainer/VBoxContainer/ButtonContainer/Upload")
 NewModGUIPath = NodePath("NewModGUI")
@@ -127,11 +125,7 @@ OtherModInfoDialogPath = NodePath("OtherModInfo")
 ModErrorsContainerPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_ERRORS_TAB/HSplitContainer/ErrorModItemList")
 ErrorInfoLabelPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_ERRORS_TAB/HSplitContainer/ErrorInfoPanel/MarginContainer/ScrollContainer/ErrorLabel")
 OneshotLoadingCheckboxPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/MOD_LOADER_TAB/LoaderContainer/MarginContainer/CheckBoxContainer/OneshotLoadingCheckBox")
-ConfigItemListPath = NodePath("")
-ConfigContainerPath = NodePath("")
-ConfigPanelContainerPath = NodePath("")
 ModLoaderContainerPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer")
-ConfigItemScene = ExtResource( 19 )
 
 [node name="MainMarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -959,7 +953,7 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer"]
 margin_right = 550.0
-margin_bottom = 1499.0
+margin_bottom = 1432.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -1432,28 +1426,6 @@ text = "MOD_INCOMPATIBLE_MODS"
 margin_top = 1407.0
 margin_right = 544.0
 margin_bottom = 1432.0
-text = "ModName"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="Spacer20" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 1436.0
-margin_right = 544.0
-margin_bottom = 1441.0
-rect_min_size = Vector2( 0, 5 )
-
-[node name="Label22" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 1445.0
-margin_right = 544.0
-margin_bottom = 1470.0
-text = "MOD_CONFIG_FILE"
-
-[node name="ModConfigFile" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 1474.0
-margin_right = 544.0
-margin_bottom = 1499.0
 text = "ModName"
 autowrap = true
 __meta__ = {
