@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using Godot;
@@ -1044,17 +1043,13 @@ public class ModManager : Control
     private void SetSelectedModToolTip(ItemList selectedContainer)
     {
         selectedContainer.SetItemTooltip(selectedContainer.GetItemCount() - 1,
-                string.IsNullOrEmpty(selectedMod?.Info.Description) ?
-                    selectedMod?.InternalName :
-                    selectedMod?.Info.Description);
+            string.IsNullOrEmpty(selectedMod?.Info.Description) ? selectedMod?.InternalName : selectedMod?.Info.Description);
     }
 
     private void SetModToolTip(ItemList selectedContainer, FullModDetails info)
     {
         selectedContainer.SetItemTooltip(selectedContainer.GetItemCount() - 1,
-                string.IsNullOrEmpty(info.Info.Description) ?
-                    info.InternalName :
-                    info.Info.Description);
+            string.IsNullOrEmpty(info.Info.Description) ? info.InternalName : info.Info.Description);
     }
 
     private void DisableAllPressed()

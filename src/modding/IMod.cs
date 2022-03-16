@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Base interface for all mods to implement

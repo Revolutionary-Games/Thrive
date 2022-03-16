@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-18 10:37+0200\n"
+"POT-Creation-Date: 2022-03-15 19:31-0500\n"
 "PO-Revision-Date: 2022-02-27 23:22+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1342,7 +1342,7 @@ msgstr "От: {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4203
-#: ../src/modding/ModManager.tscn:972
+#: ../src/modding/ModManager.tscn:1441
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Затваряне"
@@ -1365,7 +1365,7 @@ msgstr "Концентрацията на {0} се понижи с {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Концентрацията на глюкозата се понижи драстично!"
 
-#: ../src/general/MainMenu.cs:234
+#: ../src/general/MainMenu.cs:235
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Влезли сте като: {0}"
 
@@ -1410,7 +1410,7 @@ msgstr "Микробен редактор"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:1500 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
@@ -1594,6 +1594,7 @@ msgid "LANGUAGE"
 msgstr "Език:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
+#: ../src/modding/ModManager.tscn:849
 msgid "RESET"
 msgstr "Нулиране"
 
@@ -1757,7 +1758,7 @@ msgstr "Отхвърляне и продължаване"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:687
 msgid "CANCEL"
 msgstr "Отказ"
 
@@ -2725,15 +2726,15 @@ msgstr "в ограничено количество"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "в оскъдно количество"
 
-#: ../src/microbe_stage/MicrobeStage.cs:545
+#: ../src/microbe_stage/MicrobeStage.cs:544
 msgid "PLAYER_REPRODUCED"
 msgstr "възпроизвеждане"
 
-#: ../src/microbe_stage/MicrobeStage.cs:634
+#: ../src/microbe_stage/MicrobeStage.cs:633
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Съперничеството в тази зона е невъзможно, защото няма други създания"
 
-#: ../src/microbe_stage/MicrobeStage.cs:698
+#: ../src/microbe_stage/MicrobeStage.cs:653
 msgid "PLAYER_DIED"
 msgstr "измиране"
 
@@ -3331,240 +3332,453 @@ msgstr "ВАШИТЕ СЪЗДАНИЯ ПРОЦЪФТЯХА!"
 msgid "WIN_TEXT"
 msgstr "Поздравления, Вие победихте в тази версия на „Thrive“! Може да продължите играта след като този прозорец се затвори или да започнете нова игра в нов свят."
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModHelpers.cs:35 ../src/modding/ModHelpers.cs:46
+#: ../src/modding/ModHelpers.cs:69 ../src/modding/ModHelpers.cs:85
+#: ../src/modding/ModHelpers.cs:90
+#, fuzzy
+msgid "UNKNOWN_MOD"
+msgstr "Неизвестен бутон"
+
+#: ../src/modding/ModHelpers.cs:52 ../src/modding/ModManager.cs:1636
+#, fuzzy
+msgid "MOD_LIST_VALID"
+msgstr "Записът е невалиден"
+
+#: ../src/modding/ModHelpers.cs:55
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
+msgstr ""
+"Избраният запис е несъвместим с тази версия на „Thrive“.\n"
+"Надграждането не е възможно.\n"
+"Понеже играта е в начален етап на разработка и съвместимостта не е приоритет, някои записи не могат да бъдат надградени."
+
+#: ../src/modding/ModHelpers.cs:72
+msgid "MOD_ERROR_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:74
+msgid "MOD_ERROR_DEPENDENCIES_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:93
+msgid "MOD_ERROR_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:95
+msgid "MOD_ERROR_REQUIRED_MODS_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:98
+msgid "MOD_ERROR_DEPENDENCIES_ORDER"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:100
+msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:105
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD"
+msgstr "Зареждане на несъвместим запис?"
+
+#: ../src/modding/ModHelpers.cs:107
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
+msgstr ""
+"Избраният запис е несъвместим с тази версия на „Thrive“.\n"
+"Надграждането не е възможно.\n"
+"Понеже играта е в начален етап на разработка и съвместимостта не е приоритет, някои записи не могат да бъдат надградени."
+
+#: ../src/modding/ModHelpers.cs:111
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
+msgstr "Грешка по време на зареждането на модификацията"
+
+#: ../src/modding/ModHelpers.cs:113
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:118
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_AFTER"
+msgstr "Една или повече модификации изискват рестартиране на играта за да функционират правилно"
+
+#: ../src/modding/ModHelpers.cs:120
+msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:437 ../src/modding/ModLoader.cs:494
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Информацията за „{0}“ не може да бъде заредена"
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:462
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "„{0}“: зареждането на програмната библиотека е неуспешно поради следната грешка: {1}"
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:479
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "„{0}“: няма ресурси за зареждане"
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:509
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "„{0}“: изключването на програмната библиотека е неуспешно"
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:517
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "„{0}“: изключването на програмната библиотека е неуспешно поради следната грешка: {1}"
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:585
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "„{0}“: „{1}“ не съществува в програмната библиотека"
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:598
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "„{0}“: стартирането на програмната библиотека е неуспешно"
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:614
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "„{0}“: стартирането на програмната библиотека е неуспешно поради следната грешка: {1}"
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:630
 msgid "PCK_LOAD_FAILED"
 msgstr "Зареждането на основния файл „{0}“ е неуспешно"
 
-#: ../src/modding/ModManager.cs:293
+#: ../src/modding/ModManager.cs:429
 msgid "INVALID_ICON_PATH"
 msgstr "Невалидно местоположение на иконата"
 
-#: ../src/modding/ModManager.cs:307
+#: ../src/modding/ModManager.cs:443
 msgid "INVALID_URL_SCHEME"
 msgstr "Невалидна връзка"
 
-#: ../src/modding/ModManager.cs:319
+#: ../src/modding/ModManager.cs:455
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Изисква се основна програмна библиотека"
 
-#: ../src/modding/ModManager.cs:549
-msgid "NO_SELECTED_MOD"
-msgstr "Няма"
+#: ../src/modding/ModManager.cs:565
+#, fuzzy
+msgid "MOD_LOADER_TAB"
+msgstr "Инструмент за качване на модификации"
 
-#: ../src/modding/ModManager.cs:885
+#: ../src/modding/ModManager.cs:566
+#, fuzzy
+msgid "MOD_ERRORS_TAB"
+msgstr "Грешка по време на зареждането на модификацията"
+
+#: ../src/modding/ModManager.cs:567
+#, fuzzy
+msgid "MOD_CONFIGURATION_TAB"
+msgstr "Създаването на модификацията е неуспешно"
+
+#: ../src/modding/ModManager.cs:764 ../src/modding/ModManager.cs:1571
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Тази модификация е изтеглена от „Steam Workshop“"
 
-#: ../src/modding/ModManager.cs:886
+#: ../src/modding/ModManager.cs:765 ../src/modding/ModManager.cs:1572
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "Тази модификация е от локален източник"
 
-#: ../src/modding/ModManager.cs:940
+#: ../src/modding/ModManager.cs:832
+msgid "NO_SELECTED_MOD"
+msgstr "Няма"
+
+#: ../src/modding/ModManager.cs:1171
+msgid ""
+"MOD_LOAD_ERROR_WARNING\n"
+"\n"
+"\n"
+"\n"
+"ARE_YOU_SURE_TO_LOAD_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1309 ../src/modding/ModManager.tscn:750
+#: ../src/modding/ModManager.tscn:1335 ../src/modding/NewModGUI.tscn:546
+msgid "MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1325
+msgid "NO_MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1340 ../src/modding/ModManager.tscn:1357
+#: ../src/modding/NewModGUI.tscn:570
+msgid "MOD_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1356
+#, fuzzy
+msgid "NO_REQUIRED_MODS"
+msgstr "Няма"
+
+#: ../src/modding/ModManager.cs:1371 ../src/modding/ModManager.tscn:768
+#, fuzzy
+msgid "INCOMPATIBLE_WITH"
+msgstr ""
+"Избраният запис е несъвместим с тази версия на „Thrive“.\n"
+"Надграждането не е възможно.\n"
+"Понеже играта е в начален етап на разработка и съвместимостта не е приоритет, някои записи не могат да бъдат надградени."
+
+#: ../src/modding/ModManager.cs:1387
+#, fuzzy
+msgid "NO_MOD_INCOMPATIBLE"
+msgstr "Включване на съвместимите модификации"
+
+#: ../src/modding/ModManager.cs:1402 ../src/modding/ModManager.tscn:777
+#, fuzzy
+msgid "LOAD_ORDER"
+msgstr "Инструмент за качване на модификации"
+
+#: ../src/modding/ModManager.cs:1411 ../src/modding/ModManager.tscn:1401
+#: ../src/modding/NewModGUI.tscn:618
+#, fuzzy
+msgid "MOD_LOAD_AFTER"
+msgstr "Инструмент за качване на модификации"
+
+#: ../src/modding/ModManager.cs:1429 ../src/modding/ModManager.tscn:1379
+#: ../src/modding/NewModGUI.tscn:594
+#, fuzzy
+msgid "MOD_LOAD_BEFORE"
+msgstr "Грешка по време на зареждането на модификацията"
+
+#: ../src/modding/ModManager.cs:1441
+#, fuzzy
+msgid "MOD_NO_LOAD_ORDER"
+msgstr "Една или повече модификации изискват рестартиране на играта за да функционират правилно"
+
+#: ../src/modding/ModManager.cs:1630
+#, fuzzy
+msgid "MOD_LIST_CONTAIN_ERRORS"
+msgstr "Грешка по време на зареждането на модификацията"
+
+#: ../src/modding/ModManager.cs:1632
+#, fuzzy
+msgid "MOD_CHECK_AGAIN_WARNING"
+msgstr ""
+"Вашите промени не са запазени и ще бъдат отхвърлени.\n"
+"Искате ли да продължите?"
+
+#: ../src/modding/ModManager.cs:1677
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Грешка при създаване на папката на модификацията"
 
-#: ../src/modding/ModManager.cs:949
+#: ../src/modding/ModManager.cs:1686
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Грешка при създаване на информационния файл на модификацията"
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:197
 msgid "AVAILABLE_MODS"
 msgstr "Налични"
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "Опресняване"
+#: ../src/modding/ModManager.tscn:225
+#, fuzzy
+msgid "LEFT_ARROW_TOOLTIP"
+msgstr "←"
 
-#: ../src/modding/ModManager.tscn:152
-msgid "OPEN_FOLDER"
-msgstr "Местоположение"
-
-#: ../src/modding/ModManager.tscn:170
-msgid "RIGHT_ARROW"
-msgstr "→"
-
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:226 ../src/modding/ModManager.tscn:480
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:242
+#, fuzzy
+msgid "UP_ARROW_TOOLTIP"
+msgstr "Прекъсване на играта"
+
+#: ../src/modding/ModManager.tscn:249
+msgid "DOWN_ARROW_TOOLTIP"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:256
+#, fuzzy
+msgid "RIGHT_ARROW_TOOLTIP"
+msgstr "→"
+
+#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:514
+msgid "RIGHT_ARROW"
+msgstr "→"
+
+#: ../src/modding/ModManager.tscn:271
 msgid "ENABLED_MODS"
 msgstr "Включени"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:310
+#, fuzzy
+msgid "ENABLE_ALL"
+msgstr "Изключване на всички"
+
+#: ../src/modding/ModManager.tscn:316
+msgid "OPEN_FOLDER"
+msgstr "Местоположение"
+
+#: ../src/modding/ModManager.tscn:322
 msgid "DISABLE_ALL"
 msgstr "Изключване на всички"
 
-#: ../src/modding/ModManager.tscn:250
-msgid "SELECTED_MOD"
-msgstr "Избрана:"
+#: ../src/modding/ModManager.tscn:338
+#, fuzzy
+msgid "ONESHOT_LOADING_TOOLTIP"
+msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:340
+#, fuzzy
+msgid "ONESHOT_LOADING"
+msgstr "Грешка по време на зареждането"
+
+#: ../src/modding/ModManager.tscn:563 ../src/modding/ModManager.tscn:1011
+#: ../src/modding/NewModGUI.tscn:156
 msgid "MOD_AUTHOR"
 msgstr "Автор:"
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:588 ../src/modding/ModManager.tscn:1033
+#: ../src/modding/NewModGUI.tscn:179
 msgid "MOD_VERSION"
 msgstr "Версия:"
 
-#: ../src/modding/ModManager.tscn:371
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr "Препоръчителна:"
-
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:669
 msgid "MINIMUM_VERSION"
 msgstr "Минимална:"
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
-msgid "MOD_DESCRIPTION"
-msgstr "Описание:"
+#: ../src/modding/ModManager.tscn:703
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr "Препоръчителна:"
 
-#: ../src/modding/ModManager.tscn:474
-msgid "MORE_INFO"
-msgstr "Свойства"
+#: ../src/modding/ModManager.tscn:759
+#, fuzzy
+msgid "REQUIRED_MODS"
+msgstr "Включени"
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:786
 msgid "OPEN_MOD_URL"
 msgstr "Хранилище"
 
-#: ../src/modding/ModManager.tscn:505
-msgid "BROWSE_WORKSHOP"
-msgstr "Работилница"
+#: ../src/modding/ModManager.tscn:795
+msgid "MORE_INFO"
+msgstr "Свойства"
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
-msgid "UPLOAD"
-msgstr "Качване"
+#: ../src/modding/ModManager.tscn:859
+#, fuzzy
+msgid "CHECK_BUTTON_TOOLTIP"
+msgstr "Отваряне на ръководството"
 
-#: ../src/modding/ModManager.tscn:519
-msgid "NEW"
-msgstr "Създаване"
+#: ../src/modding/ModManager.tscn:860
+msgid "CHECK_MOD"
+msgstr ""
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:870 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "Опресняване"
+
+#: ../src/modding/ModManager.tscn:880
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Важно: Повечето модификации се нуждаят от рестартиране на играта за да функционират правилно. Бъдете внимателни, защото някои модификации може да съдържат злонамерен код."
 
-#: ../src/modding/ModManager.tscn:559
-msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "Включване на съвместимите модификации"
-
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:881
 msgid "APPLY_CHANGES"
 msgstr "Прилагане"
 
-#: ../src/modding/ModManager.tscn:579
-msgid "UNAPPLIED_MOD_CHANGES"
-msgstr "Промените не са приложени"
+#: ../src/modding/ModManager.tscn:896
+msgid "BROWSE_WORKSHOP"
+msgstr "Работилница"
 
-#: ../src/modding/ModManager.tscn:580
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "Трябва да приложите Вашите промени за смяна на модификациите."
+#: ../src/modding/ModManager.tscn:907 ../src/modding/ModUploader.tscn:45
+msgid "UPLOAD"
+msgstr "Качване"
 
-#: ../src/modding/ModManager.tscn:581
-msgid "DISCARD_CHANGES"
-msgstr "Отхвърляне на промените"
+#: ../src/modding/ModManager.tscn:918
+msgid "NEW"
+msgstr "Създаване"
 
-#: ../src/modding/ModManager.tscn:588
-msgid "FULL_MOD_INFO"
-msgstr "Подробна информация"
-
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:963 ../src/modding/NewModGUI.tscn:133
 msgid "MOD_NAME"
 msgstr "Наименование:"
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:985 ../src/modding/NewModGUI.tscn:110
 msgid "MOD_INTERNAL_NAME"
 msgstr "Наименование на папката:"
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:1055 ../src/modding/NewModGUI.tscn:202
+msgid "MOD_DESCRIPTION"
+msgstr "Описание:"
+
+#: ../src/modding/ModManager.tscn:1077 ../src/modding/NewModGUI.tscn:225
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Подробно описание:"
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:1115 ../src/modding/NewModGUI.tscn:249
 msgid "MOD_ICON_FILE"
 msgstr "Икона:"
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:1137 ../src/modding/NewModGUI.tscn:289
+#, fuzzy
+msgid "MOD_PREVIEW_IMAGE_FILE"
+msgstr "Изображението е твърде голямо"
+
+#: ../src/modding/ModManager.tscn:1159 ../src/modding/NewModGUI.tscn:328
 msgid "MOD_INFO_URL"
 msgstr "Връзка:"
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:1181 ../src/modding/NewModGUI.tscn:351
 msgid "MOD_LICENSE"
 msgstr "Лиценз:"
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:1203 ../src/modding/NewModGUI.tscn:374
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Препоръчителна версия на „Thrive“:"
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:1225 ../src/modding/NewModGUI.tscn:397
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Минимална версия на „Thrive“:"
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:1247 ../src/modding/NewModGUI.tscn:420
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Максимална версия на „Thrive“:"
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:1269 ../src/modding/NewModGUI.tscn:443
 msgid "MOD_PCK_NAME"
 msgstr "Основен файл:"
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:1291 ../src/modding/NewModGUI.tscn:483
 msgid "MOD_ASSEMBLY"
 msgstr "Програмна библиотека:"
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:1313 ../src/modding/NewModGUI.tscn:523
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Основна програмна библиотека:"
 
-#: ../src/modding/ModManager.tscn:979
-msgid "MOD_CREATION_FAILED"
-msgstr "Създаването на модификацията е неуспешно"
+#: ../src/modding/ModManager.tscn:1423 ../src/modding/NewModGUI.tscn:642
+#, fuzzy
+msgid "MOD_INCOMPATIBLE_MODS"
+msgstr "Зареждане на несъвместим запис?"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1454
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "Възникна грешка по време на зареждането или изключването на една или повече модификации. За повече информация, вижте дневниците на играта."
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1459
 msgid "RESTART_REQUIRED"
 msgstr "Изисква се рестартиране"
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1461
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Една или повече модификации изискват рестартиране на играта за да функционират правилно"
+
+#: ../src/modding/ModManager.tscn:1476
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING_TITLE"
+msgstr "Възникна грешка по време на зареждането на една или повече модификации. За повече информация, вижте дневниците на играта."
+
+#: ../src/modding/ModManager.tscn:1478
+#, fuzzy
+msgid "YES"
+msgstr "години"
+
+#: ../src/modding/ModManager.tscn:1479
+#, fuzzy
+msgid "NO"
+msgstr "Отмяна"
+
+#: ../src/modding/ModManager.tscn:1487 ../src/modding/ModManager.tscn:1490
+msgid "NULL"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -3634,7 +3848,7 @@ msgstr "С публикуването на тази модификация, Ви
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Запазването на информацията е неуспешно поради следната грешка: {0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:384
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Грешка: {0}"
 
@@ -3722,47 +3936,47 @@ msgstr "Избиране на изображение"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Качването е успешно"
 
-#: ../src/modding/NewModGUI.cs:175
+#: ../src/modding/NewModGUI.cs:233
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Моята невероятна модификация"
 
-#: ../src/modding/NewModGUI.cs:232
+#: ../src/modding/NewModGUI.cs:305
 msgid "INVALID_URL_FORMAT"
 msgstr "Невалиден формат на връзката"
 
-#: ../src/modding/NewModGUI.cs:247
+#: ../src/modding/NewModGUI.cs:331
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Изисква се наименование на папката"
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:337
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Наименованието на папката трябва да започва с главна буква"
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:343
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Наименованието на папката вече съществува"
 
-#: ../src/modding/NewModGUI.cs:275
+#: ../src/modding/NewModGUI.cs:359
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Липсващ или невалиден формат на задължително поле: {0}"
 
-#: ../src/modding/NewModGUI.cs:286
+#: ../src/modding/NewModGUI.cs:370
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Допълнителните проверки откриха проблем: {0}"
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:49
 msgid "CREATE_NEW_MOD"
 msgstr "Нова модификация"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:83
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "За повече информация, посетете"
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:90
 msgid "OUR_WIKI"
 msgstr "нашата Уикипедия"
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:680
 msgid "CREATE"
 msgstr "Създаване"
 
@@ -4292,6 +4506,21 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Преглед"
+
+#~ msgid "SELECTED_MOD"
+#~ msgstr "Избрана:"
+
+#~ msgid "UNAPPLIED_MOD_CHANGES"
+#~ msgstr "Промените не са приложени"
+
+#~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+#~ msgstr "Трябва да приложите Вашите промени за смяна на модификациите."
+
+#~ msgid "DISCARD_CHANGES"
+#~ msgstr "Отхвърляне на промените"
+
+#~ msgid "FULL_MOD_INFO"
+#~ msgstr "Подробна информация"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Зареждане..."

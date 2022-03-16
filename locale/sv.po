@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:03-0600\n"
+"POT-Creation-Date: 2022-03-15 19:31-0500\n"
 "PO-Revision-Date: 2021-09-12 07:51+0000\n"
 "Last-Translator: Liam Hallberg <tairuu00@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -1379,7 +1379,7 @@ msgstr "Konst av {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4203
-#: ../src/modding/ModManager.tscn:1566
+#: ../src/modding/ModManager.tscn:1441
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Stäng"
@@ -1447,7 +1447,7 @@ msgstr "Mikrob Fri Byggredigerare"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:1625 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:1500 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Backåt"
@@ -1636,7 +1636,7 @@ msgid "LANGUAGE"
 msgstr "Språk:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
-#: ../src/modding/ModManager.tscn:518 ../src/modding/ModManager.tscn:952
+#: ../src/modding/ModManager.tscn:849
 msgid "RESET"
 msgstr "Nollställ"
 
@@ -1806,7 +1806,7 @@ msgstr "Radera och fortsätt"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:730
+#: ../src/modding/NewModGUI.tscn:687
 msgid "CANCEL"
 msgstr "Avbryt"
 
@@ -2776,15 +2776,15 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:545
+#: ../src/microbe_stage/MicrobeStage.cs:544
 msgid "PLAYER_REPRODUCED"
 msgstr "spelare fortplantad"
 
-#: ../src/microbe_stage/MicrobeStage.cs:634
+#: ../src/microbe_stage/MicrobeStage.cs:633
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:698
+#: ../src/microbe_stage/MicrobeStage.cs:653
 msgid "PLAYER_DIED"
 msgstr "spelare dog"
 
@@ -3400,416 +3400,441 @@ msgstr "DU HAR FRODATS!"
 msgid "WIN_TEXT"
 msgstr "Grattis, du har vunnit denna version av Thrive! Du kan fortsätta spela efter denna skärm stängs ner om du vill, eller starta nytt spel i en annan värld."
 
-#: ../src/modding/ModLoader.cs:461 ../src/modding/ModLoader.cs:529
+#: ../src/modding/ModHelpers.cs:35 ../src/modding/ModHelpers.cs:46
+#: ../src/modding/ModHelpers.cs:69 ../src/modding/ModHelpers.cs:85
+#: ../src/modding/ModHelpers.cs:90
+#, fuzzy
+msgid "UNKNOWN_MOD"
+msgstr "Okänd mus"
+
+#: ../src/modding/ModHelpers.cs:52 ../src/modding/ModManager.cs:1636
+#, fuzzy
+msgid "MOD_LIST_VALID"
+msgstr "Sparfil är ogiltig"
+
+#: ../src/modding/ModHelpers.cs:55
+msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:72
+msgid "MOD_ERROR_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:74
+msgid "MOD_ERROR_DEPENDENCIES_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:93
+msgid "MOD_ERROR_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:95
+msgid "MOD_ERROR_REQUIRED_MODS_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:98
+msgid "MOD_ERROR_DEPENDENCIES_ORDER"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:100
+msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:105
+msgid "MOD_ERROR_INCOMPATIBLE_MOD"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:107
+msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:111
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:113
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:118
+msgid "MOD_ERROR_LOAD_ORDER_AFTER"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:120
+msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:437 ../src/modding/ModLoader.cs:494
 msgid "CANT_LOAD_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:497
+#: ../src/modding/ModLoader.cs:462
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:514
+#: ../src/modding/ModLoader.cs:479
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:544
+#: ../src/modding/ModLoader.cs:509
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:552
+#: ../src/modding/ModLoader.cs:517
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:620
+#: ../src/modding/ModLoader.cs:585
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:633
+#: ../src/modding/ModLoader.cs:598
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:649
+#: ../src/modding/ModLoader.cs:614
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:665
+#: ../src/modding/ModLoader.cs:630
 #, fuzzy
 msgid "PCK_LOAD_FAILED"
 msgstr "Färdigladdat"
 
-#: ../src/modding/ModManager.cs:472
+#: ../src/modding/ModManager.cs:429
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:486
+#: ../src/modding/ModManager.cs:443
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:498
+#: ../src/modding/ModManager.cs:455
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:984 ../src/modding/ModManager.cs:2051
-msgid "THIS_IS_WORKSHOP_MOD"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:985 ../src/modding/ModManager.cs:2052
-msgid "THIS_IS_LOCAL_MOD"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:1052
-msgid "NO_SELECTED_MOD"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:1423
+#: ../src/modding/ModManager.cs:565
 #, fuzzy
-msgid "MOD_LOAD_ERROR_WARNING"
+msgid "MOD_LOADER_TAB"
+msgstr "Ladda Spel"
+
+#: ../src/modding/ModManager.cs:566
+#, fuzzy
+msgid "MOD_ERRORS_TAB"
 msgstr ""
 "Du har osparade ändringar som kommer bli raderade.\n"
 "Vill du fortsätta?"
 
-#: ../src/modding/ModManager.cs:1425
+#: ../src/modding/ModManager.cs:567
+msgid "MOD_CONFIGURATION_TAB"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:764 ../src/modding/ModManager.cs:1571
+msgid "THIS_IS_WORKSHOP_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:765 ../src/modding/ModManager.cs:1572
+msgid "THIS_IS_LOCAL_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:832
+msgid "NO_SELECTED_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1171
 #, fuzzy
-msgid "ARE_YOU_SURE_TO_LOAD_MOD"
+msgid ""
+"MOD_LOAD_ERROR_WARNING\n"
+"\n"
+"\n"
+"\n"
+"ARE_YOU_SURE_TO_LOAD_MOD"
 msgstr "Är du säker på att du vill nollställa ALLA inställningar till default värden?"
 
-#: ../src/modding/ModManager.cs:1624 ../src/modding/ModManager.tscn:853
-#: ../src/modding/ModManager.tscn:1438 ../src/modding/NewModGUI.tscn:548
+#: ../src/modding/ModManager.cs:1309 ../src/modding/ModManager.tscn:750
+#: ../src/modding/ModManager.tscn:1335 ../src/modding/NewModGUI.tscn:546
 msgid "MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1640
+#: ../src/modding/ModManager.cs:1325
 msgid "NO_MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1655 ../src/modding/ModManager.tscn:1460
-#: ../src/modding/NewModGUI.tscn:572
+#: ../src/modding/ModManager.cs:1340 ../src/modding/ModManager.tscn:1357
+#: ../src/modding/NewModGUI.tscn:570
 msgid "MOD_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1671
+#: ../src/modding/ModManager.cs:1356
 msgid "NO_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1686 ../src/modding/ModManager.tscn:871
+#: ../src/modding/ModManager.cs:1371 ../src/modding/ModManager.tscn:768
 msgid "INCOMPATIBLE_WITH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1702
+#: ../src/modding/ModManager.cs:1387
 msgid "NO_MOD_INCOMPATIBLE"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1717 ../src/modding/ModManager.tscn:880
+#: ../src/modding/ModManager.cs:1402 ../src/modding/ModManager.tscn:777
 #, fuzzy
 msgid "LOAD_ORDER"
 msgstr "Ladda Spel"
 
-#: ../src/modding/ModManager.cs:1726 ../src/modding/ModManager.tscn:1504
-#: ../src/modding/NewModGUI.tscn:620
+#: ../src/modding/ModManager.cs:1411 ../src/modding/ModManager.tscn:1401
+#: ../src/modding/NewModGUI.tscn:618
 #, fuzzy
 msgid "MOD_LOAD_AFTER"
 msgstr "Ladda Spel"
 
-#: ../src/modding/ModManager.cs:1744 ../src/modding/ModManager.tscn:1482
-#: ../src/modding/NewModGUI.tscn:596
+#: ../src/modding/ModManager.cs:1429 ../src/modding/ModManager.tscn:1379
+#: ../src/modding/NewModGUI.tscn:594
 msgid "MOD_LOAD_BEFORE"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1756
+#: ../src/modding/ModManager.cs:1441
 msgid "MOD_NO_LOAD_ORDER"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2111
+#: ../src/modding/ModManager.cs:1630
 msgid "MOD_LIST_CONTAIN_ERRORS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2113
+#: ../src/modding/ModManager.cs:1632
 #, fuzzy
 msgid "MOD_CHECK_AGAIN_WARNING"
 msgstr ""
 "Du har osparade ändringar som kommer bli raderade.\n"
 "Vill du fortsätta?"
 
-#: ../src/modding/ModManager.cs:2117 ../src/modding/ModManager.cs:2157
-#, fuzzy
-msgid "MOD_LIST_VALID"
-msgstr "Sparfil är ogiltig"
-
-#: ../src/modding/ModManager.cs:2140 ../src/modding/ModManager.cs:2151
-#: ../src/modding/ModManager.cs:2174 ../src/modding/ModManager.cs:2190
-#: ../src/modding/ModManager.cs:2195
-#, fuzzy
-msgid "UNKNOWN_MOD"
-msgstr "Okänd mus"
-
-#: ../src/modding/ModManager.cs:2160
-msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2177
-msgid "MOD_ERROR_DEPENDENCIES"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2179
-msgid "MOD_ERROR_DEPENDENCIES_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2198
-msgid "MOD_ERROR_REQUIRED_MODS"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2200
-msgid "MOD_ERROR_REQUIRED_MODS_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2203
-msgid "MOD_ERROR_DEPENDENCIES_ORDER"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2205
-msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2210
-msgid "MOD_ERROR_INCOMPATIBLE_MOD"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2212
-msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2216
-msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2218
-msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2223
-msgid "MOD_ERROR_LOAD_ORDER_AFTER"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2225
-msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2267
+#: ../src/modding/ModManager.cs:1677
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Öppna Skärmbildsmapp"
 
-#: ../src/modding/ModManager.cs:2276
+#: ../src/modding/ModManager.cs:1686
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:203
+#: ../src/modding/ModManager.tscn:197
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:231 ../src/modding/ModManager.tscn:583
+#: ../src/modding/ModManager.tscn:225
+#, fuzzy
+msgid "LEFT_ARROW_TOOLTIP"
+msgstr "Vänster musknapp"
+
+#: ../src/modding/ModManager.tscn:226 ../src/modding/ModManager.tscn:480
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Vänster musknapp"
 
-#: ../src/modding/ModManager.tscn:259 ../src/modding/ModManager.tscn:617
+#: ../src/modding/ModManager.tscn:242
+#, fuzzy
+msgid "UP_ARROW_TOOLTIP"
+msgstr "Fortsätt"
+
+#: ../src/modding/ModManager.tscn:249
+msgid "DOWN_ARROW_TOOLTIP"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:256
+#, fuzzy
+msgid "RIGHT_ARROW_TOOLTIP"
+msgstr "Högerklick"
+
+#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:514
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "Högerklick"
 
-#: ../src/modding/ModManager.tscn:273
+#: ../src/modding/ModManager.tscn:271
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Aktivera Cellredigeraren"
 
-#: ../src/modding/ModManager.tscn:312
+#: ../src/modding/ModManager.tscn:310
 #, fuzzy
 msgid "ENABLE_ALL"
 msgstr "Aktivera Cellredigeraren"
 
-#: ../src/modding/ModManager.tscn:318
+#: ../src/modding/ModManager.tscn:316
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Öppna Logmapp"
 
-#: ../src/modding/ModManager.tscn:324
+#: ../src/modding/ModManager.tscn:322
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:341
+#: ../src/modding/ModManager.tscn:338
+#, fuzzy
+msgid "ONESHOT_LOADING_TOOLTIP"
+msgstr "Laddningsfel"
+
+#: ../src/modding/ModManager.tscn:340
 #, fuzzy
 msgid "ONESHOT_LOADING"
 msgstr "Laddningsfel"
 
-#: ../src/modding/ModManager.tscn:500 ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:509
-#, fuzzy
-msgid "CLEAR"
-msgstr "Rensa"
-
-#: ../src/modding/ModManager.tscn:666 ../src/modding/ModManager.tscn:1114
-#: ../src/modding/NewModGUI.tscn:158
+#: ../src/modding/ModManager.tscn:563 ../src/modding/ModManager.tscn:1011
+#: ../src/modding/NewModGUI.tscn:156
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:691 ../src/modding/ModManager.tscn:1136
-#: ../src/modding/NewModGUI.tscn:181
+#: ../src/modding/ModManager.tscn:588 ../src/modding/ModManager.tscn:1033
+#: ../src/modding/NewModGUI.tscn:179
 msgid "MOD_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:772
+#: ../src/modding/ModManager.tscn:669
 msgid "MINIMUM_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:806
+#: ../src/modding/ModManager.tscn:703
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:862
+#: ../src/modding/ModManager.tscn:759
 #, fuzzy
 msgid "REQUIRED_MODS"
 msgstr "Aktivera Cellredigeraren"
 
-#: ../src/modding/ModManager.tscn:889
+#: ../src/modding/ModManager.tscn:786
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Öppen URL"
 
-#: ../src/modding/ModManager.tscn:898
+#: ../src/modding/ModManager.tscn:795
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:962
+#: ../src/modding/ModManager.tscn:859
 msgid "CHECK_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:963
+#: ../src/modding/ModManager.tscn:860
 msgid "CHECK_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:973 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:870 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:983
+#: ../src/modding/ModManager.tscn:880
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:984
+#: ../src/modding/ModManager.tscn:881
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:999
+#: ../src/modding/ModManager.tscn:896
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1010 ../src/modding/ModUploader.tscn:45
+#: ../src/modding/ModManager.tscn:907 ../src/modding/ModUploader.tscn:45
 #, fuzzy
 msgid "UPLOAD"
 msgstr "Snabbladda"
 
-#: ../src/modding/ModManager.tscn:1021
+#: ../src/modding/ModManager.tscn:918
 msgid "NEW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1066 ../src/modding/NewModGUI.tscn:135
+#: ../src/modding/ModManager.tscn:963 ../src/modding/NewModGUI.tscn:133
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Namn:"
 
-#: ../src/modding/ModManager.tscn:1088 ../src/modding/NewModGUI.tscn:112
+#: ../src/modding/ModManager.tscn:985 ../src/modding/NewModGUI.tscn:110
 msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1158 ../src/modding/NewModGUI.tscn:204
+#: ../src/modding/ModManager.tscn:1055 ../src/modding/NewModGUI.tscn:202
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/modding/ModManager.tscn:1180 ../src/modding/NewModGUI.tscn:227
+#: ../src/modding/ModManager.tscn:1077 ../src/modding/NewModGUI.tscn:225
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-#: ../src/modding/ModManager.tscn:1218 ../src/modding/NewModGUI.tscn:251
+#: ../src/modding/ModManager.tscn:1115 ../src/modding/NewModGUI.tscn:249
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1240 ../src/modding/NewModGUI.tscn:291
+#: ../src/modding/ModManager.tscn:1137 ../src/modding/NewModGUI.tscn:289
 msgid "MOD_PREVIEW_IMAGE_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1262 ../src/modding/NewModGUI.tscn:330
+#: ../src/modding/ModManager.tscn:1159 ../src/modding/NewModGUI.tscn:328
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1284 ../src/modding/NewModGUI.tscn:353
+#: ../src/modding/ModManager.tscn:1181 ../src/modding/NewModGUI.tscn:351
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1306 ../src/modding/NewModGUI.tscn:376
+#: ../src/modding/ModManager.tscn:1203 ../src/modding/NewModGUI.tscn:374
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1328 ../src/modding/NewModGUI.tscn:399
+#: ../src/modding/ModManager.tscn:1225 ../src/modding/NewModGUI.tscn:397
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1350 ../src/modding/NewModGUI.tscn:422
+#: ../src/modding/ModManager.tscn:1247 ../src/modding/NewModGUI.tscn:420
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1372 ../src/modding/NewModGUI.tscn:445
+#: ../src/modding/ModManager.tscn:1269 ../src/modding/NewModGUI.tscn:443
 msgid "MOD_PCK_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1394 ../src/modding/NewModGUI.tscn:485
+#: ../src/modding/ModManager.tscn:1291 ../src/modding/NewModGUI.tscn:483
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1416 ../src/modding/NewModGUI.tscn:525
+#: ../src/modding/ModManager.tscn:1313 ../src/modding/NewModGUI.tscn:523
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1526 ../src/modding/NewModGUI.tscn:644
+#: ../src/modding/ModManager.tscn:1423 ../src/modding/NewModGUI.tscn:642
 #, fuzzy
 msgid "MOD_INCOMPATIBLE_MODS"
 msgstr "Aktivera Cellredigeraren"
 
-#: ../src/modding/ModManager.tscn:1548 ../src/modding/NewModGUI.tscn:668
-msgid "MOD_CONFIG_FILE"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:1579
+#: ../src/modding/ModManager.tscn:1454
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1584
+#: ../src/modding/ModManager.tscn:1459
 msgid "RESTART_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1586
+#: ../src/modding/ModManager.tscn:1461
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1601
+#: ../src/modding/ModManager.tscn:1476
 msgid "MOD_LOAD_ERROR_WARNING_TITLE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1603
+#: ../src/modding/ModManager.tscn:1478
 #, fuzzy
 msgid "YES"
 msgstr "år"
 
-#: ../src/modding/ModManager.tscn:1604
+#: ../src/modding/ModManager.tscn:1479
 #, fuzzy
 msgid "NO"
 msgstr "Ångra"
 
-#: ../src/modding/ModManager.tscn:1612 ../src/modding/ModManager.tscn:1615
+#: ../src/modding/ModManager.tscn:1487 ../src/modding/ModManager.tscn:1490
 msgid "NULL"
 msgstr ""
 
@@ -3889,7 +3914,7 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:434
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:384
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -3922,6 +3947,10 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
 msgstr ""
 
 #: ../src/modding/ModUploader.tscn:168
@@ -3981,54 +4010,49 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:245
+#: ../src/modding/NewModGUI.cs:233
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
-#: ../src/modding/NewModGUI.cs:366
+#: ../src/modding/NewModGUI.cs:305
 msgid "INVALID_URL_FORMAT"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:381
+#: ../src/modding/NewModGUI.cs:331
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:387
+#: ../src/modding/NewModGUI.cs:337
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:393
+#: ../src/modding/NewModGUI.cs:343
 msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:409
+#: ../src/modding/NewModGUI.cs:359
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:420
+#: ../src/modding/NewModGUI.cs:370
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:51
+#: ../src/modding/NewModGUI.tscn:49
 #, fuzzy
 msgid "CREATE_NEW_MOD"
 msgstr "Skapa en ny mikrob"
 
-#: ../src/modding/NewModGUI.tscn:85
+#: ../src/modding/NewModGUI.tscn:83
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:92
+#: ../src/modding/NewModGUI.tscn:90
 msgid "OUR_WIKI"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:686
-#, fuzzy
-msgid "ENABLE_CONFIG"
-msgstr "Aktivera Cellredigeraren"
-
-#: ../src/modding/NewModGUI.tscn:723
+#: ../src/modding/NewModGUI.tscn:680
 msgid "CREATE"
 msgstr ""
 
@@ -4489,6 +4513,14 @@ msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
+
+#, fuzzy
+#~ msgid "CLEAR"
+#~ msgstr "Rensa"
+
+#, fuzzy
+#~ msgid "ENABLE_CONFIG"
+#~ msgstr "Aktivera Cellredigeraren"
 
 #, fuzzy
 #~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
