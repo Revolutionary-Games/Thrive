@@ -1165,7 +1165,8 @@ public class ModManager : Control
         }
         else
         {
-            var warningText = new LocalizedString("MOD_LOAD_ERROR_WARNING", ModHelpers.CheckResultToString(checkResult, enabledMods));
+            var warningText = new LocalizedString("MOD_LOAD_ERROR_WARNING",
+                ModHelpers.CheckResultToString(checkResult, enabledMods));
 
             loadWarningDialog.DialogText = warningText.ToString();
             loadWarningDialog.PopupCenteredShrink();
