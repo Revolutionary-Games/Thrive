@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-15 19:31-0500\n"
-"PO-Revision-Date: 2022-02-27 23:22+0000\n"
+"POT-Creation-Date: 2022-03-16 14:03-0500\n"
+"PO-Revision-Date: 2022-03-16 17:50-0500\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Poedit 3.0.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -3329,236 +3329,202 @@ msgstr "YOU HAVE THRIVED!"
 msgid "WIN_TEXT"
 msgstr "Congratulations you have won this version of Thrive! You may continue playing after this screen closes if you wish, or start a new game in a new world."
 
-#: ../src/modding/ModHelpers.cs:35 ../src/modding/ModHelpers.cs:46
-#: ../src/modding/ModHelpers.cs:69 ../src/modding/ModHelpers.cs:85
-#: ../src/modding/ModHelpers.cs:90
-#, fuzzy
+#: ../src/modding/ModHelpers.cs:33 ../src/modding/ModHelpers.cs:44
+#: ../src/modding/ModHelpers.cs:67 ../src/modding/ModHelpers.cs:83
+#: ../src/modding/ModHelpers.cs:88
 msgid "UNKNOWN_MOD"
-msgstr "Unknown mouse"
+msgstr "Unknown Mod"
 
-#: ../src/modding/ModHelpers.cs:52 ../src/modding/ModManager.cs:1636
-#, fuzzy
+#: ../src/modding/ModHelpers.cs:50 ../src/modding/ModManager.cs:1633
 msgid "MOD_LIST_VALID"
-msgstr "Save is invalid"
+msgstr "The mod list has no errors and is valid."
 
-#: ../src/modding/ModHelpers.cs:55
-#, fuzzy
+#: ../src/modding/ModHelpers.cs:53
 msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
-msgstr ""
-"The selected save to be loaded is known to be incompatible with this version of Thrive.\n"
-"And there is no save upgrader to upgrade this save. \n"
-"As Thrive is still early in development save compatibility is not a high priority, as such there aren't save upgraders for all versions."
+msgstr "The '{0}' mod is incompatible with this version of Thrive."
+
+#: ../src/modding/ModHelpers.cs:70
+msgid "MOD_ERROR_DEPENDENCIES"
+msgstr "The '{0}' mod is dependent on the '{1}' mod."
 
 #: ../src/modding/ModHelpers.cs:72
-msgid "MOD_ERROR_DEPENDENCIES"
-msgstr ""
-
-#: ../src/modding/ModHelpers.cs:74
 msgid "MOD_ERROR_DEPENDENCIES_FIX"
-msgstr ""
+msgstr "Add that mod to the mod loader before this one to fix this error."
+
+#: ../src/modding/ModHelpers.cs:91
+msgid "MOD_ERROR_REQUIRED_MODS"
+msgstr "The '{0}' mod needs the '{1}' mod to be loaded"
 
 #: ../src/modding/ModHelpers.cs:93
-msgid "MOD_ERROR_REQUIRED_MODS"
-msgstr ""
-
-#: ../src/modding/ModHelpers.cs:95
 msgid "MOD_ERROR_REQUIRED_MODS_FIX"
-msgstr ""
+msgstr "The '{0}' mod needs the '{1}' mod to be loaded"
+
+#: ../src/modding/ModHelpers.cs:96
+msgid "MOD_ERROR_DEPENDENCIES_ORDER"
+msgstr "The '{0}' mod is dependent on the '{1}' mod."
 
 #: ../src/modding/ModHelpers.cs:98
-msgid "MOD_ERROR_DEPENDENCIES_ORDER"
-msgstr ""
-
-#: ../src/modding/ModHelpers.cs:100
 msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
-msgstr ""
+msgstr " Load the '{0}' mod after the '{1}' mod to fix this error."
+
+#: ../src/modding/ModHelpers.cs:103
+msgid "MOD_ERROR_INCOMPATIBLE_MOD"
+msgstr "The '{0}' mod is incompatible with the '{1}' mod."
 
 #: ../src/modding/ModHelpers.cs:105
-#, fuzzy
-msgid "MOD_ERROR_INCOMPATIBLE_MOD"
-msgstr "Load incompatible save?"
-
-#: ../src/modding/ModHelpers.cs:107
-#, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
-msgstr ""
-"The selected save to be loaded is known to be incompatible with this version of Thrive.\n"
-"And there is no save upgrader to upgrade this save. \n"
-"As Thrive is still early in development save compatibility is not a high priority, as such there aren't save upgraders for all versions."
+msgstr "Remove the '{0}' mod or remove this one to fix this error."
+
+#: ../src/modding/ModHelpers.cs:109
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
+msgstr "The '{0}' mod needs to be loaded before the '{1}' mod."
 
 #: ../src/modding/ModHelpers.cs:111
-#, fuzzy
-msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
-msgstr "Mod Loading Errors"
-
-#: ../src/modding/ModHelpers.cs:113
 msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
-msgstr ""
+msgstr "Load the '{0}' mod before the '{1}' to fix this error."
+
+#: ../src/modding/ModHelpers.cs:116
+msgid "MOD_ERROR_LOAD_ORDER_AFTER"
+msgstr "Load the '{0}' mod before the '{1}' to fix this error."
 
 #: ../src/modding/ModHelpers.cs:118
-#, fuzzy
-msgid "MOD_ERROR_LOAD_ORDER_AFTER"
-msgstr "One or more mods requires a game restart to load or unload properly"
-
-#: ../src/modding/ModHelpers.cs:120
 msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
-msgstr ""
+msgstr " Load the '{0}' mod after the '{1}' to fix this error."
 
-#: ../src/modding/ModLoader.cs:437 ../src/modding/ModLoader.cs:494
+#: ../src/modding/ModLoader.cs:436 ../src/modding/ModLoader.cs:493
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Can't load mod info for {0}"
 
-#: ../src/modding/ModLoader.cs:462
+#: ../src/modding/ModLoader.cs:461
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: assembly loading failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:479
+#: ../src/modding/ModLoader.cs:478
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: has no loadable resources"
 
-#: ../src/modding/ModLoader.cs:509
+#: ../src/modding/ModLoader.cs:508
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: mod's assembly unload method call failed"
 
-#: ../src/modding/ModLoader.cs:517
+#: ../src/modding/ModLoader.cs:516
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod's assembly unload method call failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:585
+#: ../src/modding/ModLoader.cs:584
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: specified mod class \"{1}\" not found in mod's assembly"
 
-#: ../src/modding/ModLoader.cs:598
+#: ../src/modding/ModLoader.cs:597
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: mod's assembly initialize method call failed"
 
-#: ../src/modding/ModLoader.cs:614
+#: ../src/modding/ModLoader.cs:613
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod's assembly initialize method call failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:630
+#: ../src/modding/ModLoader.cs:629
 msgid "PCK_LOAD_FAILED"
 msgstr "Loading of pck file ({0}) failed"
 
-#: ../src/modding/ModManager.cs:429
+#: ../src/modding/ModManager.cs:428
 msgid "INVALID_ICON_PATH"
 msgstr "Invalid mod icon path"
 
-#: ../src/modding/ModManager.cs:443
+#: ../src/modding/ModManager.cs:442
 msgid "INVALID_URL_SCHEME"
 msgstr "Invalid URL scheme"
 
-#: ../src/modding/ModManager.cs:455
+#: ../src/modding/ModManager.cs:454
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Mod assembly class is required when assembly is specified"
 
-#: ../src/modding/ModManager.cs:565
-#, fuzzy
+#: ../src/modding/ModManager.cs:564
 msgid "MOD_LOADER_TAB"
-msgstr "Mod Uploader"
+msgstr "Mod Loader"
 
-#: ../src/modding/ModManager.cs:566
-#, fuzzy
+#: ../src/modding/ModManager.cs:565
 msgid "MOD_ERRORS_TAB"
-msgstr "Mod Loading Errors"
+msgstr "Loading Errors"
 
-#: ../src/modding/ModManager.cs:567
-#, fuzzy
-msgid "MOD_CONFIGURATION_TAB"
-msgstr "Mod Creation Failed"
-
-#: ../src/modding/ModManager.cs:764 ../src/modding/ModManager.cs:1571
+#: ../src/modding/ModManager.cs:762 ../src/modding/ModManager.cs:1568
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "This mod is downloaded from the Steam Workshop"
 
-#: ../src/modding/ModManager.cs:765 ../src/modding/ModManager.cs:1572
+#: ../src/modding/ModManager.cs:763 ../src/modding/ModManager.cs:1569
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "This is a locally installed mod"
 
-#: ../src/modding/ModManager.cs:832
+#: ../src/modding/ModManager.cs:830
 msgid "NO_SELECTED_MOD"
 msgstr "No Selected Mod"
 
-#: ../src/modding/ModManager.cs:1171
-msgid ""
-"MOD_LOAD_ERROR_WARNING\n"
-"\n"
-"\n"
-"\n"
-"ARE_YOU_SURE_TO_LOAD_MOD"
+#: ../src/modding/ModManager.cs:1168
+msgid "MOD_LOAD_ERROR_WARNING"
 msgstr ""
+"The mods you want to load might cause errors.\n"
+"\n"
+"{0}\n"
+"\n"
+"Are you sure you want to load these mods?"
 
-#: ../src/modding/ModManager.cs:1309 ../src/modding/ModManager.tscn:750
+#: ../src/modding/ModManager.cs:1306 ../src/modding/ModManager.tscn:750
 #: ../src/modding/ModManager.tscn:1335 ../src/modding/NewModGUI.tscn:546
 msgid "MOD_DEPENDENCIES"
-msgstr ""
+msgstr "Dependencies"
 
-#: ../src/modding/ModManager.cs:1325
+#: ../src/modding/ModManager.cs:1322
 msgid "NO_MOD_DEPENDENCIES"
-msgstr ""
+msgstr "This mod have no Dependencies."
 
-#: ../src/modding/ModManager.cs:1340 ../src/modding/ModManager.tscn:1357
+#: ../src/modding/ModManager.cs:1337 ../src/modding/ModManager.tscn:1357
 #: ../src/modding/NewModGUI.tscn:570
 msgid "MOD_REQUIRED_MODS"
-msgstr ""
+msgstr "Required Mods:"
 
-#: ../src/modding/ModManager.cs:1356
-#, fuzzy
+#: ../src/modding/ModManager.cs:1353
 msgid "NO_REQUIRED_MODS"
-msgstr "No Selected Mod"
+msgstr "This mod have no Required Mods."
 
-#: ../src/modding/ModManager.cs:1371 ../src/modding/ModManager.tscn:768
-#, fuzzy
+#: ../src/modding/ModManager.cs:1368 ../src/modding/ModManager.tscn:768
 msgid "INCOMPATIBLE_WITH"
-msgstr ""
-"The selected save to be loaded is known to be incompatible with this version of Thrive.\n"
-"And there is no save upgrader to upgrade this save. \n"
-"As Thrive is still early in development save compatibility is not a high priority, as such there aren't save upgraders for all versions."
+msgstr "Incompatible With"
 
-#: ../src/modding/ModManager.cs:1387
-#, fuzzy
+#: ../src/modding/ModManager.cs:1384
 msgid "NO_MOD_INCOMPATIBLE"
-msgstr "Enable All Compatible Mods"
+msgstr "This mod is not incompatible with any other mod."
 
-#: ../src/modding/ModManager.cs:1402 ../src/modding/ModManager.tscn:777
-#, fuzzy
+#: ../src/modding/ModManager.cs:1399 ../src/modding/ModManager.tscn:777
 msgid "LOAD_ORDER"
-msgstr "Mod Uploader"
+msgstr "Load Order"
 
-#: ../src/modding/ModManager.cs:1411 ../src/modding/ModManager.tscn:1401
+#: ../src/modding/ModManager.cs:1408 ../src/modding/ModManager.tscn:1401
 #: ../src/modding/NewModGUI.tscn:618
-#, fuzzy
 msgid "MOD_LOAD_AFTER"
-msgstr "Mod Uploader"
+msgstr "This mod needs to be loaded after the following mods:"
 
-#: ../src/modding/ModManager.cs:1429 ../src/modding/ModManager.tscn:1379
+#: ../src/modding/ModManager.cs:1426 ../src/modding/ModManager.tscn:1379
 #: ../src/modding/NewModGUI.tscn:594
-#, fuzzy
 msgid "MOD_LOAD_BEFORE"
-msgstr "Mod Loading Errors"
+msgstr "This mod needs to be loaded before the following mods:"
 
-#: ../src/modding/ModManager.cs:1441
-#, fuzzy
+#: ../src/modding/ModManager.cs:1438
 msgid "MOD_NO_LOAD_ORDER"
-msgstr "One or more mods requires a game restart to load or unload properly"
+msgstr "This mod have no specified load order."
 
-#: ../src/modding/ModManager.cs:1630
-#, fuzzy
+#: ../src/modding/ModManager.cs:1627
 msgid "MOD_LIST_CONTAIN_ERRORS"
-msgstr "Mod Loading Errors"
+msgstr "The mod list contains an errors:"
 
-#: ../src/modding/ModManager.cs:1632
-#, fuzzy
+#: ../src/modding/ModManager.cs:1629
 msgid "MOD_CHECK_AGAIN_WARNING"
-msgstr ""
-"You have unsaved changes that will be discarded.\n"
-"Do you wish to continue?"
+msgstr "Once you fix that error try checking again to find more errors."
 
-#: ../src/modding/ModManager.cs:1677
+#: ../src/modding/ModManager.cs:1674
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Error creating folder for the mod"
 
-#: ../src/modding/ModManager.cs:1686
+#: ../src/modding/ModManager.cs:1683
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Error creating mod info file"
 
@@ -3567,27 +3533,24 @@ msgid "AVAILABLE_MODS"
 msgstr "Available Mods"
 
 #: ../src/modding/ModManager.tscn:225
-#, fuzzy
 msgid "LEFT_ARROW_TOOLTIP"
-msgstr "←"
+msgstr "Disable the selected mod"
 
 #: ../src/modding/ModManager.tscn:226 ../src/modding/ModManager.tscn:480
 msgid "LEFT_ARROW"
 msgstr "←"
 
 #: ../src/modding/ModManager.tscn:242
-#, fuzzy
 msgid "UP_ARROW_TOOLTIP"
-msgstr "Pause the game"
+msgstr "Moves up the mod in priority, making it load sooner"
 
 #: ../src/modding/ModManager.tscn:249
 msgid "DOWN_ARROW_TOOLTIP"
-msgstr ""
+msgstr "Moves down the mod in priority, making it load later"
 
 #: ../src/modding/ModManager.tscn:256
-#, fuzzy
 msgid "RIGHT_ARROW_TOOLTIP"
-msgstr "→"
+msgstr "Enable the selected mod"
 
 #: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:514
 msgid "RIGHT_ARROW"
@@ -3598,9 +3561,8 @@ msgid "ENABLED_MODS"
 msgstr "Enabled Mods"
 
 #: ../src/modding/ModManager.tscn:310
-#, fuzzy
 msgid "ENABLE_ALL"
-msgstr "Disable All"
+msgstr "Enable All"
 
 #: ../src/modding/ModManager.tscn:316
 msgid "OPEN_FOLDER"
@@ -3611,14 +3573,12 @@ msgid "DISABLE_ALL"
 msgstr "Disable All"
 
 #: ../src/modding/ModManager.tscn:338
-#, fuzzy
 msgid "ONESHOT_LOADING_TOOLTIP"
-msgstr "Press the undo button in the editor to correct a mistake"
+msgstr "Loads the mod once and do not reload on future launches."
 
 #: ../src/modding/ModManager.tscn:340
-#, fuzzy
 msgid "ONESHOT_LOADING"
-msgstr "Error Loading"
+msgstr "One-Shot Loading:"
 
 #: ../src/modding/ModManager.tscn:563 ../src/modding/ModManager.tscn:1011
 #: ../src/modding/NewModGUI.tscn:156
@@ -3639,9 +3599,8 @@ msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Recommended Thrive:"
 
 #: ../src/modding/ModManager.tscn:759
-#, fuzzy
 msgid "REQUIRED_MODS"
-msgstr "Enabled Mods"
+msgstr "Required Mods"
 
 #: ../src/modding/ModManager.tscn:786
 msgid "OPEN_MOD_URL"
@@ -3652,13 +3611,12 @@ msgid "MORE_INFO"
 msgstr "Show More Info"
 
 #: ../src/modding/ModManager.tscn:859
-#, fuzzy
 msgid "CHECK_BUTTON_TOOLTIP"
-msgstr "Help"
+msgstr "Checks if the mods being loaded will not cause errors."
 
 #: ../src/modding/ModManager.tscn:860
 msgid "CHECK_MOD"
-msgstr ""
+msgstr "Check All"
 
 #: ../src/modding/ModManager.tscn:870 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
@@ -3705,9 +3663,8 @@ msgid "MOD_ICON_FILE"
 msgstr "Icon File:"
 
 #: ../src/modding/ModManager.tscn:1137 ../src/modding/NewModGUI.tscn:289
-#, fuzzy
 msgid "MOD_PREVIEW_IMAGE_FILE"
-msgstr "Preview image file is too large"
+msgstr "Preview Image:"
 
 #: ../src/modding/ModManager.tscn:1159 ../src/modding/NewModGUI.tscn:328
 msgid "MOD_INFO_URL"
@@ -3742,9 +3699,8 @@ msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Mod Assembly Main Class:"
 
 #: ../src/modding/ModManager.tscn:1423 ../src/modding/NewModGUI.tscn:642
-#, fuzzy
 msgid "MOD_INCOMPATIBLE_MODS"
-msgstr "Load incompatible save?"
+msgstr "Incompatible Mods:"
 
 #: ../src/modding/ModManager.tscn:1454
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
@@ -3759,23 +3715,20 @@ msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "One or more mods requires a game restart to load or unload properly"
 
 #: ../src/modding/ModManager.tscn:1476
-#, fuzzy
 msgid "MOD_LOAD_ERROR_WARNING_TITLE"
-msgstr "Errors occurred when loading one or more mods. Logs may contain additional information."
+msgstr "Are you sure you want to load?"
 
 #: ../src/modding/ModManager.tscn:1478
-#, fuzzy
 msgid "YES"
-msgstr "years"
+msgstr "Yes"
 
 #: ../src/modding/ModManager.tscn:1479
-#, fuzzy
 msgid "NO"
-msgstr "Undo"
+msgstr "No"
 
 #: ../src/modding/ModManager.tscn:1487 ../src/modding/ModManager.tscn:1490
 msgid "NULL"
-msgstr ""
+msgstr "Null"
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -4503,6 +4456,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "View Now"
+
+#~ msgid "MOD_CONFIGURATION_TAB"
+#~ msgstr "Mod Configuration"
 
 #~ msgid "SELECTED_MOD"
 #~ msgstr "Selected Mod:"

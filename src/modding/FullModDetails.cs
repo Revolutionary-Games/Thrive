@@ -55,6 +55,7 @@ public class FullModDetails : IEquatable<FullModDetails>
     ///   The index of the mod is loaded in
     /// </summary>
     public int LoadPosition { get; set; }
+
     public ModInfo Info { get; set; }
 
     /// <summary>

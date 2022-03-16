@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-15 19:31-0500\n"
+"POT-Creation-Date: 2022-03-16 14:03-0500\n"
 "PO-Revision-Date: 2022-03-06 15:22+0000\n"
 "Last-Translator: Ivan Kurta <ivkurta1@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -3330,19 +3330,19 @@ msgstr "ВИ ПРОЦВІТАЄТЕ!"
 msgid "WIN_TEXT"
 msgstr "Вітаємо, ви виграли в цій версії Thrive! Ви можете продожити грати, після закриття екрану, якщо бажаєте або почніть нову гру в новому світі."
 
-#: ../src/modding/ModHelpers.cs:35 ../src/modding/ModHelpers.cs:46
-#: ../src/modding/ModHelpers.cs:69 ../src/modding/ModHelpers.cs:85
-#: ../src/modding/ModHelpers.cs:90
+#: ../src/modding/ModHelpers.cs:33 ../src/modding/ModHelpers.cs:44
+#: ../src/modding/ModHelpers.cs:67 ../src/modding/ModHelpers.cs:83
+#: ../src/modding/ModHelpers.cs:88
 #, fuzzy
 msgid "UNKNOWN_MOD"
 msgstr "Невідома миша"
 
-#: ../src/modding/ModHelpers.cs:52 ../src/modding/ModManager.cs:1636
+#: ../src/modding/ModHelpers.cs:50 ../src/modding/ModManager.cs:1633
 #, fuzzy
 msgid "MOD_LIST_VALID"
 msgstr "Помилка збереження"
 
-#: ../src/modding/ModHelpers.cs:55
+#: ../src/modding/ModHelpers.cs:53
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
 msgstr ""
@@ -3350,36 +3350,36 @@ msgstr ""
 "Та немає способу оновлення збережень для його оновлень.\n"
 "Оскільки Thrive все ще на початку розробки, то сумісність збереження не є пріоритетною, тому не існує засобу оновлення збережень для всіх версій."
 
-#: ../src/modding/ModHelpers.cs:72
+#: ../src/modding/ModHelpers.cs:70
 msgid "MOD_ERROR_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModHelpers.cs:74
+#: ../src/modding/ModHelpers.cs:72
 msgid "MOD_ERROR_DEPENDENCIES_FIX"
 msgstr ""
 
-#: ../src/modding/ModHelpers.cs:93
+#: ../src/modding/ModHelpers.cs:91
 msgid "MOD_ERROR_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModHelpers.cs:95
+#: ../src/modding/ModHelpers.cs:93
 msgid "MOD_ERROR_REQUIRED_MODS_FIX"
 msgstr ""
 
-#: ../src/modding/ModHelpers.cs:98
+#: ../src/modding/ModHelpers.cs:96
 msgid "MOD_ERROR_DEPENDENCIES_ORDER"
 msgstr ""
 
-#: ../src/modding/ModHelpers.cs:100
+#: ../src/modding/ModHelpers.cs:98
 msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
 msgstr ""
 
-#: ../src/modding/ModHelpers.cs:105
+#: ../src/modding/ModHelpers.cs:103
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_MOD"
 msgstr "Завантажити не сумісне збереження?"
 
-#: ../src/modding/ModHelpers.cs:107
+#: ../src/modding/ModHelpers.cs:105
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
 msgstr ""
@@ -3387,128 +3387,119 @@ msgstr ""
 "Та немає способу оновлення збережень для його оновлень.\n"
 "Оскільки Thrive все ще на початку розробки, то сумісність збереження не є пріоритетною, тому не існує засобу оновлення збережень для всіх версій."
 
-#: ../src/modding/ModHelpers.cs:111
+#: ../src/modding/ModHelpers.cs:109
 #, fuzzy
 msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
 msgstr "Помилка завантаження модифікації"
 
-#: ../src/modding/ModHelpers.cs:113
+#: ../src/modding/ModHelpers.cs:111
 msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
 msgstr ""
 
-#: ../src/modding/ModHelpers.cs:118
+#: ../src/modding/ModHelpers.cs:116
 #, fuzzy
 msgid "MOD_ERROR_LOAD_ORDER_AFTER"
 msgstr "Щоб правильно завантажити чи відвантажити один чи більше модів, потрібно перезавантажити гру"
 
-#: ../src/modding/ModHelpers.cs:120
+#: ../src/modding/ModHelpers.cs:118
 msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:437 ../src/modding/ModLoader.cs:494
+#: ../src/modding/ModLoader.cs:436 ../src/modding/ModLoader.cs:493
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Невдається завантажити інформацію про мод {0}"
 
-#: ../src/modding/ModLoader.cs:462
+#: ../src/modding/ModLoader.cs:461
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: Не вдалося завантажити збірку окрім: {1}"
 
-#: ../src/modding/ModLoader.cs:479
+#: ../src/modding/ModLoader.cs:478
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: не містить ресурсів для завантаження"
 
-#: ../src/modding/ModLoader.cs:509
+#: ../src/modding/ModLoader.cs:508
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: метод відвантаження збірки модів невдалося викликати"
 
-#: ../src/modding/ModLoader.cs:517
+#: ../src/modding/ModLoader.cs:516
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: метод відвантаження збірки модів невдалося викликати, окрім: {1}"
 
-#: ../src/modding/ModLoader.cs:585
+#: ../src/modding/ModLoader.cs:584
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: вказаний клас моду \"{1}\" не знайдено в збірці модів"
 
-#: ../src/modding/ModLoader.cs:598
+#: ../src/modding/ModLoader.cs:597
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: не вдалося викликати метод ініціалізації збірки модів"
 
-#: ../src/modding/ModLoader.cs:614
+#: ../src/modding/ModLoader.cs:613
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: не вдалося викликати метод ініціалізації збірки модів, окрім: {1}"
 
-#: ../src/modding/ModLoader.cs:630
+#: ../src/modding/ModLoader.cs:629
 msgid "PCK_LOAD_FAILED"
 msgstr "Завантаження pck файлу ({0}) невдалося"
 
-#: ../src/modding/ModManager.cs:429
+#: ../src/modding/ModManager.cs:428
 msgid "INVALID_ICON_PATH"
 msgstr "Недійсна доріжка іконки мода"
 
-#: ../src/modding/ModManager.cs:443
+#: ../src/modding/ModManager.cs:442
 msgid "INVALID_URL_SCHEME"
 msgstr "Недійсна схема URL"
 
-#: ../src/modding/ModManager.cs:455
+#: ../src/modding/ModManager.cs:454
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Потрібен клас збірки моду, коли її вказано"
 
-#: ../src/modding/ModManager.cs:565
+#: ../src/modding/ModManager.cs:564
 #, fuzzy
 msgid "MOD_LOADER_TAB"
 msgstr "Мод відвантажений"
 
-#: ../src/modding/ModManager.cs:566
+#: ../src/modding/ModManager.cs:565
 #, fuzzy
 msgid "MOD_ERRORS_TAB"
 msgstr "Помилка завантаження модифікації"
 
-#: ../src/modding/ModManager.cs:567
-#, fuzzy
-msgid "MOD_CONFIGURATION_TAB"
-msgstr "Невдалось створити мод"
-
-#: ../src/modding/ModManager.cs:764 ../src/modding/ModManager.cs:1571
+#: ../src/modding/ModManager.cs:762 ../src/modding/ModManager.cs:1568
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Цей мод завантажений з майстерні Steam"
 
-#: ../src/modding/ModManager.cs:765 ../src/modding/ModManager.cs:1572
+#: ../src/modding/ModManager.cs:763 ../src/modding/ModManager.cs:1569
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "Цей мод локально встановлений"
 
-#: ../src/modding/ModManager.cs:832
+#: ../src/modding/ModManager.cs:830
 msgid "NO_SELECTED_MOD"
 msgstr "Немає вибраного моду"
 
-#: ../src/modding/ModManager.cs:1171
-msgid ""
-"MOD_LOAD_ERROR_WARNING\n"
-"\n"
-"\n"
-"\n"
-"ARE_YOU_SURE_TO_LOAD_MOD"
-msgstr ""
+#: ../src/modding/ModManager.cs:1168
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING"
+msgstr "Виникла помилка коли завантажувалися кілька модифікацій. Додаткова інформація міститься у журналах."
 
-#: ../src/modding/ModManager.cs:1309 ../src/modding/ModManager.tscn:750
+#: ../src/modding/ModManager.cs:1306 ../src/modding/ModManager.tscn:750
 #: ../src/modding/ModManager.tscn:1335 ../src/modding/NewModGUI.tscn:546
 msgid "MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1325
+#: ../src/modding/ModManager.cs:1322
 msgid "NO_MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1340 ../src/modding/ModManager.tscn:1357
+#: ../src/modding/ModManager.cs:1337 ../src/modding/ModManager.tscn:1357
 #: ../src/modding/NewModGUI.tscn:570
 msgid "MOD_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1356
+#: ../src/modding/ModManager.cs:1353
 #, fuzzy
 msgid "NO_REQUIRED_MODS"
 msgstr "Немає вибраного моду"
 
-#: ../src/modding/ModManager.cs:1371 ../src/modding/ModManager.tscn:768
+#: ../src/modding/ModManager.cs:1368 ../src/modding/ModManager.tscn:768
 #, fuzzy
 msgid "INCOMPATIBLE_WITH"
 msgstr ""
@@ -3516,50 +3507,50 @@ msgstr ""
 "Та немає способу оновлення збережень для його оновлень.\n"
 "Оскільки Thrive все ще на початку розробки, то сумісність збереження не є пріоритетною, тому не існує засобу оновлення збережень для всіх версій."
 
-#: ../src/modding/ModManager.cs:1387
+#: ../src/modding/ModManager.cs:1384
 #, fuzzy
 msgid "NO_MOD_INCOMPATIBLE"
 msgstr "Увімкнути всі сумісні моди"
 
-#: ../src/modding/ModManager.cs:1402 ../src/modding/ModManager.tscn:777
+#: ../src/modding/ModManager.cs:1399 ../src/modding/ModManager.tscn:777
 #, fuzzy
 msgid "LOAD_ORDER"
 msgstr "Мод відвантажений"
 
-#: ../src/modding/ModManager.cs:1411 ../src/modding/ModManager.tscn:1401
+#: ../src/modding/ModManager.cs:1408 ../src/modding/ModManager.tscn:1401
 #: ../src/modding/NewModGUI.tscn:618
 #, fuzzy
 msgid "MOD_LOAD_AFTER"
 msgstr "Мод відвантажений"
 
-#: ../src/modding/ModManager.cs:1429 ../src/modding/ModManager.tscn:1379
+#: ../src/modding/ModManager.cs:1426 ../src/modding/ModManager.tscn:1379
 #: ../src/modding/NewModGUI.tscn:594
 #, fuzzy
 msgid "MOD_LOAD_BEFORE"
 msgstr "Помилка завантаження модифікації"
 
-#: ../src/modding/ModManager.cs:1441
+#: ../src/modding/ModManager.cs:1438
 #, fuzzy
 msgid "MOD_NO_LOAD_ORDER"
 msgstr "Щоб правильно завантажити чи відвантажити один чи більше модів, потрібно перезавантажити гру"
 
-#: ../src/modding/ModManager.cs:1630
+#: ../src/modding/ModManager.cs:1627
 #, fuzzy
 msgid "MOD_LIST_CONTAIN_ERRORS"
 msgstr "Помилка завантаження модифікації"
 
-#: ../src/modding/ModManager.cs:1632
+#: ../src/modding/ModManager.cs:1629
 #, fuzzy
 msgid "MOD_CHECK_AGAIN_WARNING"
 msgstr ""
 "Ви маєте незбережені дії які будуть скасовані.\n"
 "Бажаєте продовжити?"
 
-#: ../src/modding/ModManager.cs:1677
+#: ../src/modding/ModManager.cs:1674
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Помилка створення папки для моду"
 
-#: ../src/modding/ModManager.cs:1686
+#: ../src/modding/ModManager.cs:1683
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Помилка створення інформаційного файлу"
 
@@ -4504,6 +4495,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Переглянути зараз"
+
+#, fuzzy
+#~ msgid "MOD_CONFIGURATION_TAB"
+#~ msgstr "Невдалось створити мод"
 
 #~ msgid "SELECTED_MOD"
 #~ msgstr "Вибраний мод:"

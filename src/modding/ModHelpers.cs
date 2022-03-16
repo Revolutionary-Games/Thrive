@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Godot;
 using static FullModDetails;
+
 public static class ModHelpers
 {
     /// <summary>

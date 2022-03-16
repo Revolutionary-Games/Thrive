@@ -563,7 +563,6 @@ public class ModManager : Control
         // Which means they won't be translated at all
         modLoaderContainer.SetTabTitle(0, TranslationServer.Translate("MOD_LOADER_TAB"));
         modLoaderContainer.SetTabTitle(1, TranslationServer.Translate("MOD_ERRORS_TAB"));
-        modLoaderContainer.SetTabTitle(2, TranslationServer.Translate("MOD_CONFIGURATION_TAB"));
 
         if (!SteamHandler.Instance.IsLoaded)
         {
@@ -898,7 +897,8 @@ public class ModManager : Control
                 continue;
             }
 
-            result.Add(new FullModDetails(name, modFolder, info) { IsCompatibleVersion = ModHelpers.GetVersionCompatibility(info) });
+            result.Add(new FullModDetails(name, modFolder, info)
+                { IsCompatibleVersion = ModHelpers.GetVersionCompatibility(info) });
         }
 
         var previousLength = result.Count;
@@ -1043,7 +1043,9 @@ public class ModManager : Control
     private void SetSelectedModToolTip(ItemList selectedContainer)
     {
         selectedContainer.SetItemTooltip(selectedContainer.GetItemCount() - 1,
-            string.IsNullOrEmpty(selectedMod?.Info.Description) ? selectedMod?.InternalName : selectedMod?.Info.Description);
+            string.IsNullOrEmpty(selectedMod?.Info.Description) ?
+                selectedMod?.InternalName :
+                selectedMod?.Info.Description);
     }
 
     private void SetModToolTip(ItemList selectedContainer, FullModDetails info)
@@ -1163,7 +1165,7 @@ public class ModManager : Control
         }
         else
         {
-            var warningText = new LocalizedString("MOD_LOAD_ERROR_WARNING", "\n\n", ModHelpers.CheckResultToString(checkResult, enabledMods), "\n\n", "ARE_YOU_SURE_TO_LOAD_MOD");
+            var warningText = new LocalizedString("MOD_LOAD_ERROR_WARNING", ModHelpers.CheckResultToString(checkResult, enabledMods));
 
             loadWarningDialog.DialogText = warningText.ToString();
             loadWarningDialog.PopupCenteredShrink();
