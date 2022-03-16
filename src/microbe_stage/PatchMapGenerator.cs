@@ -1,7 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Godot;
-using Newtonsoft.Json;
-using File = Godot.File;
 
 /// <summary>
 ///   Contains logic for generating PatchMap objects
@@ -13,7 +11,6 @@ public static class PatchMapGenerator
     {
         // TODO: implement actual generation based on settings
         _ = settings;
-
 
         var map = new PatchMap();
 
@@ -208,6 +205,7 @@ public static class PatchMapGenerator
         _ = TranslationServer.Translate("PATCH_ICE_SHELF");
         _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
     }
+
     private static LocalizedStringBuilder GetPatchLocalizedName(string name, string localizedBiome)
     {
         var localizedNames = new LocalizedStringBuilder();
