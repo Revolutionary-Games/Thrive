@@ -34,8 +34,13 @@
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
+    <Compile Include="src\early_multicellular_stage\CellLayout.cs" />
+    <Compile Include="src\early_multicellular_stage\CellTemplate.cs" />
+    <Compile Include="src\early_multicellular_stage\CellType.cs" />
+    <Compile Include="src\early_multicellular_stage\EarlyMulticellularSpecies.cs" />
     <Compile Include="src\early_multicellular_stage\editor\EarlyMulticellularEditor.cs" />
     <Compile Include="src\early_multicellular_stage\editor\EarlyMulticellularEditorGUI.cs" />
+    <Compile Include="src\early_multicellular_stage\IPositionedCell.cs" />
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
@@ -102,6 +107,8 @@
     <Compile Include="src\general\GameEventDescription.cs" />
     <Compile Include="src\general\HexEditorComponentBase.cs" />
     <Compile Include="src\general\HexEditorSymmetry.cs" />
+    <Compile Include="src\general\HexLayout.cs" />
+    <Compile Include="src\general\HexWithData.cs" />
     <Compile Include="src\general\HybridAudioPlayer.cs" />
     <Compile Include="src\general\IEditor.cs" />
     <Compile Include="src\general\IEditorComponent.cs" />
@@ -180,6 +187,7 @@
     <Compile Include="src\microbe_stage\editor\MicrobeEditorReportComponent.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorTabButtons.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapEditorComponent.cs" />
+    <Compile Include="src\microbe_stage\ICellProperties.cs" />
     <Compile Include="src\microbe_stage\IComputedMembraneData.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
     <Compile Include="src\microbe_stage\editor\SpeciesPopulationDatasetsLegend.cs" />

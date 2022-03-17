@@ -867,7 +867,7 @@ public partial class CellEditorComponent :
 
         GetMouseHex(out int q, out int r);
 
-        var organelle = editedMicrobeOrganelles.GetOrganelleAt(new Hex(q, r));
+        var organelle = editedMicrobeOrganelles.GetElementAt(new Hex(q, r));
 
         if (organelle == null)
             return;
@@ -979,12 +979,12 @@ public partial class CellEditorComponent :
 
     protected override OrganelleTemplate? GetHexAt(Hex position)
     {
-        return editedMicrobeOrganelles.GetOrganelleAt(position);
+        return editedMicrobeOrganelles.GetElementAt(position);
     }
 
     protected override void TryRemoveHexAt(Hex location)
     {
-        var organelleHere = editedMicrobeOrganelles.GetOrganelleAt(location);
+        var organelleHere = editedMicrobeOrganelles.GetElementAt(location);
         if (organelleHere == null)
             return;
 
@@ -1122,7 +1122,7 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Calculates the energy balance for a cell with the given organelles
     /// </summary>
-    private void CalculateEnergyBalanceWithOrganellesAndMembraneType(List<OrganelleTemplate> organelles,
+    private void CalculateEnergyBalanceWithOrganellesAndMembraneType(IReadOnlyCollection<OrganelleTemplate> organelles,
         MembraneType membrane, Patch? patch = null)
     {
         patch ??= Editor.CurrentPatch;
@@ -1130,12 +1130,11 @@ public partial class CellEditorComponent :
         UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, patch.Biome, membrane));
     }
 
-    private void CalculateCompoundBalanceInPatch(List<OrganelleTemplate> organelles, Patch? patch = null)
+    private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles, Patch? patch = null)
     {
         patch ??= Editor.CurrentPatch;
 
-        var result = ProcessSystem
-            .ComputeCompoundBalance(organelles, patch.Biome);
+        var result = ProcessSystem.ComputeCompoundBalance(organelles, patch.Biome);
 
         UpdateCompoundBalances(result);
     }

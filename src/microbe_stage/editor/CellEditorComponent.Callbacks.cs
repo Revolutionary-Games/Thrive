@@ -34,7 +34,7 @@ public partial class CellEditorComponent
         // Check if there is cytoplasm under this organelle.
         foreach (var hex in organelle.RotatedHexes)
         {
-            var organelleHere = editedMicrobeOrganelles.GetOrganelleAt(
+            var organelleHere = editedMicrobeOrganelles.GetElementAt(
                 hex + organelle.Position);
 
             if (organelleHere == null)

@@ -67,7 +67,7 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   This is the genome of the species
     /// </summary>
-    public abstract string StringCode { get; set; }
+    public abstract string StringCode { get; }
 
     /// <summary>
     ///   When true this is the player species
@@ -176,6 +176,12 @@ public abstract class Species : ICloneable
     {
         ID = newId;
     }
+
+    /// <summary>
+    ///   Computes a set of initial compounds to spawn members of this species with based on what this species can
+    ///   use
+    /// </summary>
+    public abstract void UpdateInitialCompounds();
 
     /// <summary>
     ///   Creates a cloned version of the species. This should only

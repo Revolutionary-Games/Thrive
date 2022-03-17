@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -10,7 +9,7 @@ using Newtonsoft.Json;
 [TypeConverter(typeof(ThriveTypeConverter))]
 [JSONDynamicTypeAllowedAttribute]
 [UseThriveConverter]
-public class MicrobeSpecies : Species
+public class MicrobeSpecies : Species, ICellProperties
 {
     public bool IsBacteria;
 
@@ -29,13 +28,7 @@ public class MicrobeSpecies : Species
     public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
 
     [JsonIgnore]
-    public override string StringCode
-    {
-        get => ThriveJsonConverter.Instance.SerializeObject(this);
-
-        // TODO: allow replacing Organelles from value
-        set => throw new NotImplementedException();
-    }
+    public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
 
     [JsonIgnore]
     public float BaseSpeed => MicrobeInternalCalculations.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
@@ -79,7 +72,7 @@ public class MicrobeSpecies : Species
         InitialCompounds.Add(SimulationParameters.Instance.GetCompound("hydrogensulfide"), 10);
     }
 
-    public void UpdateInitialCompounds()
+    public override void UpdateInitialCompounds()
     {
         var simulation = SimulationParameters.Instance;
 
