@@ -215,11 +215,8 @@ public class Patch
         switch (compoundName)
         {
             case "sunlight":
-                return Biome.Compounds[compound].Dissolved * 100;
             case "oxygen":
-                return Biome.Compounds[compound].Dissolved * 100;
             case "carbondioxide":
-                return Biome.Compounds[compound].Dissolved * 100;
             case "nitrogen":
                 return Biome.Compounds[compound].Dissolved * 100;
             case "iron":
@@ -237,11 +234,8 @@ public class Patch
         switch (compoundName)
         {
             case "sunlight":
-                return snapshot.Biome.Compounds[compound].Dissolved * 100;
             case "oxygen":
-                return snapshot.Biome.Compounds[compound].Dissolved * 100;
             case "carbondioxide":
-                return snapshot.Biome.Compounds[compound].Dissolved * 100;
             case "nitrogen":
                 return snapshot.Biome.Compounds[compound].Dissolved * 100;
             case "iron":
