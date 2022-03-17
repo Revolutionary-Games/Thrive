@@ -21,7 +21,6 @@ using Newtonsoft.Json;
 ///     <code>
 ///       [JsonObject(IsReference = true)]
 ///       [SceneLoadedClass("res://PATH/TO/SCENE.tscn")]
-///       [DeserializedCallbackTarget]
 ///     </code>
 ///   </para>
 ///   <para>

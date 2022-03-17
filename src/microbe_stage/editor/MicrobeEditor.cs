@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
-[DeserializedCallbackTarget]
 public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEditorWithPatches, IHexEditor,
     IEditorWithActions
 {
@@ -72,9 +71,6 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
         base._Ready();
 
         tutorialGUI.Visible = true;
-
-        // Make starting from the editor work
-        // InitEditor();
     }
 
     public void SendAutoEvoResultsToReportComponent()
@@ -148,7 +144,6 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
         }
         else
         {
-            // The error conditions here probably shouldn't be able to trigger at all
             SendAutoEvoResultsToReportComponent();
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
