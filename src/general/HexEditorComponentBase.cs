@@ -15,12 +15,6 @@ public abstract class
     where THexMove : class
 {
     [Export]
-    public NodePath SymmetryButtonPath = null!;
-
-    [Export]
-    public NodePath SymmetryIconPath = null!;
-
-    [Export]
     public NodePath CameraPath = null!;
 
     [Export]
@@ -100,14 +94,6 @@ public abstract class
     [JsonProperty]
     protected int organelleRot;
 
-    private TextureButton symmetryButton = null!;
-    private TextureRect symmetryIcon = null!;
-
-    private Texture symmetryIconDefault = null!;
-    private Texture symmetryIcon2X = null!;
-    private Texture symmetryIcon4X = null!;
-    private Texture symmetryIcon6X = null!;
-
     private CustomConfirmationDialog islandPopup = null!;
 
     private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
@@ -182,11 +168,6 @@ public abstract class
 
         ResolveNodeReferences();
 
-        symmetryIconDefault = GD.Load<Texture>("res://assets/textures/gui/bevel/1xSymmetry.png");
-        symmetryIcon2X = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
-        symmetryIcon4X = GD.Load<Texture>("res://assets/textures/gui/bevel/4xSymmetry.png");
-        symmetryIcon6X = GD.Load<Texture>("res://assets/textures/gui/bevel/6xSymmetry.png");
-
         LoadHexMaterials();
         LoadScenes();
 
@@ -195,9 +176,6 @@ public abstract class
 
     public virtual void ResolveNodeReferences()
     {
-        symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
-        symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
-
         islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
 
         if (IsLoadedFromSave)
@@ -258,15 +236,9 @@ public abstract class
             throw new InvalidOperationException("This editor has already been initialized (placed hexes not empty)");
     }
 
-    public void SetSymmetry(HexEditorSymmetry newSymmetry)
-    {
-        Symmetry = newSymmetry;
-        UpdateSymmetryIcon();
-    }
-
     public void ResetSymmetryButton()
     {
-        symmetryIcon.Texture = symmetryIconDefault;
+        componentBottomLeftButtons.ResetSymmetry();
         symmetry = 0;
     }
 
@@ -608,12 +580,6 @@ public abstract class
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
     }
 
-    protected override void RegisterTooltips()
-    {
-        base.RegisterTooltips();
-        symmetryButton.RegisterToolTipForControl("symmetryButton", "editor");
-    }
-
     protected override void EnqueueAction(TAction action)
     {
         if (!Editor.CheckEnoughMPForAction(action.Cost))
@@ -632,10 +598,8 @@ public abstract class
         Editor.EnqueueAction(action);
     }
 
-    protected void OnSymmetryClicked()
+    protected void OnSymmetryPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
         if (symmetry == HexEditorSymmetry.SixWaySymmetry)
         {
             ResetSymmetryButton();
@@ -655,16 +619,6 @@ public abstract class
 
         Symmetry = symmetry;
         UpdateSymmetryIcon();
-    }
-
-    protected void OnSymmetryHold()
-    {
-        symmetryIcon.Modulate = new Color(0, 0, 0);
-    }
-
-    protected void OnSymmetryReleased()
-    {
-        symmetryIcon.Modulate = new Color(1, 1, 1);
     }
 
     /// <summary>
@@ -756,20 +710,6 @@ public abstract class
     // TODO: make this method trigger automatically on Symmetry assignment
     private void UpdateSymmetryIcon()
     {
-        switch (symmetry)
-        {
-            case HexEditorSymmetry.None:
-                symmetryIcon.Texture = symmetryIconDefault;
-                break;
-            case HexEditorSymmetry.XAxisSymmetry:
-                symmetryIcon.Texture = symmetryIcon2X;
-                break;
-            case HexEditorSymmetry.FourWaySymmetry:
-                symmetryIcon.Texture = symmetryIcon4X;
-                break;
-            case HexEditorSymmetry.SixWaySymmetry:
-                symmetryIcon.Texture = symmetryIcon6X;
-                break;
-        }
+        componentBottomLeftButtons.SetSymmetry(symmetry);
     }
 }

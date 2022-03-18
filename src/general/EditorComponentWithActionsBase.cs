@@ -10,41 +10,17 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     where TAction : MicrobeEditorAction
 {
     [Export]
-    public NodePath CurrentMutationPointsLabelPath = null!;
-
-    [Export]
-    public NodePath MutationPointsArrowPath = null!;
-
-    [Export]
-    public NodePath ResultingMutationPointsLabelPath = null!;
-
-    [Export]
-    public NodePath BaseMutationPointsLabelPath = null!;
-
-    [Export]
     public NodePath MutationPointsBarPath = null!;
 
     [Export]
-    public NodePath MutationPointsSubtractBarPath = null!;
-
-    [Export]
-    public NodePath UndoButtonPath = null!;
-
-    [Export]
-    public NodePath RedoButtonPath = null!;
+    public NodePath ComponentBottomLeftButtonsPath = null!;
 
     [Export]
     public NodePath CancelButtonPath = null!;
 
-    protected TextureButton undoButton = null!;
-    protected TextureButton redoButton = null!;
+    protected EditorComponentBottomLeftButtons componentBottomLeftButtons = null!;
 
-    private Label currentMutationPointsLabel = null!;
-    private TextureRect mutationPointsArrow = null!;
-    private Label resultingMutationPointsLabel = null!;
-    private Label baseMutationPointsLabel = null!;
-    private ProgressBar mutationPointsBar = null!;
-    private ProgressBar mutationPointsSubtractBar = null!;
+    private MutationPointsBar mutationPointsBar = null!;
 
     private Button cancelButton = null!;
 
@@ -52,15 +28,9 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     {
         base._Ready();
 
-        currentMutationPointsLabel = GetNode<Label>(CurrentMutationPointsLabelPath);
-        mutationPointsArrow = GetNode<TextureRect>(MutationPointsArrowPath);
-        resultingMutationPointsLabel = GetNode<Label>(ResultingMutationPointsLabelPath);
-        baseMutationPointsLabel = GetNode<Label>(BaseMutationPointsLabelPath);
-        mutationPointsBar = GetNode<ProgressBar>(MutationPointsBarPath);
-        mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
+        mutationPointsBar = GetNode<MutationPointsBar>(MutationPointsBarPath);
+        componentBottomLeftButtons = GetNode<EditorComponentBottomLeftButtons>(ComponentBottomLeftButtonsPath);
 
-        undoButton = GetNode<TextureButton>(UndoButtonPath);
-        redoButton = GetNode<TextureButton>(RedoButtonPath);
         cancelButton = GetNode<Button>(CancelButtonPath);
     }
 
@@ -80,58 +50,14 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
 
     public void UpdateMutationPointsBar(bool tween = true)
     {
-        // Update mutation points
         float possibleMutationPoints = Editor.FreeBuilding ?
             Constants.BASE_MUTATION_POINTS :
             Editor.MutationPoints - CalculateCurrentActionCost();
 
-        if (tween)
-        {
-            GUICommon.Instance.TweenBarValue(
-                mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
-            GUICommon.Instance.TweenBarValue(
-                mutationPointsSubtractBar, Editor.MutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
-        }
-        else
-        {
-            mutationPointsBar.Value = possibleMutationPoints;
-            mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
-            mutationPointsSubtractBar.Value = Editor.MutationPoints;
-            mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
-        }
+        mutationPointsBar.UpdateBar(Editor.MutationPoints, possibleMutationPoints, tween);
 
-        if (Editor.FreeBuilding)
-        {
-            mutationPointsArrow.Hide();
-            resultingMutationPointsLabel.Hide();
-            baseMutationPointsLabel.Hide();
-
-            currentMutationPointsLabel.Text = TranslationServer.Translate("FREEBUILDING");
-        }
-        else
-        {
-            if (Editor.ShowHover && Editor.MutationPoints > 0)
-            {
-                mutationPointsArrow.Show();
-                resultingMutationPointsLabel.Show();
-
-                currentMutationPointsLabel.Text = $"({Editor.MutationPoints:F0}";
-                resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
-            }
-            else
-            {
-                mutationPointsArrow.Hide();
-                resultingMutationPointsLabel.Hide();
-
-                currentMutationPointsLabel.Text = $"{Editor.MutationPoints:F0}";
-                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
-            }
-        }
-
-        mutationPointsSubtractBar.SelfModulate = possibleMutationPoints < 0 ?
-            new Color(0.72f, 0.19f, 0.19f) :
-            new Color(0.72f, 0.72f, 0.72f);
+        mutationPointsBar.UpdateMutationPoints(Editor.FreeBuilding, Editor.ShowHover && Editor.MutationPoints > 0,
+            Editor.MutationPoints, possibleMutationPoints);
     }
 
     public override void OnMutationPointsChanged(int mutationPoints)
@@ -165,12 +91,12 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
 
     protected void SetUndoButtonStatus(bool enabled)
     {
-        undoButton.Disabled = !enabled;
+        componentBottomLeftButtons.UndoEnabled = enabled;
     }
 
     protected void SetRedoButtonStatus(bool enabled)
     {
-        redoButton.Disabled = !enabled;
+        componentBottomLeftButtons.RedoEnabled = enabled;
     }
 
     /// <summary>
@@ -194,8 +120,8 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     {
         base.RegisterTooltips();
 
-        undoButton.RegisterToolTipForControl("undoButton", "editor");
-        redoButton.RegisterToolTipForControl("redoButton", "editor");
+        componentBottomLeftButtons.RegisterTooltips();
+
         cancelButton.RegisterToolTipForControl("cancelButton", "editor");
     }
 }

@@ -19,7 +19,7 @@ public partial class CellEditorComponent
 
     public void SendUndoToTutorial(TutorialState tutorial)
     {
-        tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
+        tutorial.EditorUndoTutorial.EditorUndoButtonControl = componentBottomLeftButtons.UndoButton;
 
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
     }
@@ -34,8 +34,7 @@ public partial class CellEditorComponent
         base.RegisterTooltips();
 
         rigiditySlider.RegisterToolTipForControl("rigiditySlider", "editor");
-        newCellButton.RegisterToolTipForControl("newCellButton", "editor");
-        randomizeSpeciesNameButton.RegisterToolTipForControl("randomizeNameButton", "editor");
+
     }
 
     protected override void OnTranslationsChanged()

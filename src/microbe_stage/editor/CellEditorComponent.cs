@@ -66,18 +66,8 @@ public partial class CellEditorComponent :
     [Export]
     public NodePath BestPatchLabelPath = null!;
 
-    // TODO: rename this (as this is also used for cell type naming)
-    [Export]
-    public NodePath SpeciesNameEditPath = null!;
-
     [Export]
     public NodePath MembraneColorPickerPath = null!;
-
-    [Export]
-    public NodePath NewCellButtonPath = null!;
-
-    [Export]
-    public NodePath RandomizeSpeciesNameButtonPath = null!;
 
     [Export]
     public NodePath ATPBalanceLabelPath = null!;
@@ -154,10 +144,6 @@ public partial class CellEditorComponent :
 
     private Slider rigiditySlider = null!;
     private TweakedColourPicker membraneColorPicker = null!;
-
-    private TextureButton newCellButton = null!;
-    private LineEdit speciesNameEdit = null!;
-    private TextureButton randomizeSpeciesNameButton = null!;
 
     private Label atpBalanceLabel = null!;
     private Label atpProductionLabel = null!;
@@ -514,10 +500,6 @@ public partial class CellEditorComponent :
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
         membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
 
-        newCellButton = GetNode<TextureButton>(NewCellButtonPath);
-        speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
-        randomizeSpeciesNameButton = GetNode<TextureButton>(RandomizeSpeciesNameButtonPath);
-
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
         atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
@@ -749,18 +731,16 @@ public partial class CellEditorComponent :
 
     public override void NotifyFreebuild(bool freebuilding)
     {
-        newCellButton.Disabled = !freebuilding;
+        componentBottomLeftButtons.ShowNewButton = freebuilding;
         UpdateMutationPointsBar(false);
     }
 
     public void SetSpeciesInfo(string name, MembraneType membrane, Color colour, float rigidity,
         BehaviourDictionary behaviour)
     {
-        speciesNameEdit.Text = name;
-        membraneColorPicker.Color = colour;
+        componentBottomLeftButtons.SetNewName(name);
 
-        // Callback is manually called because the function isn't called automatically here
-        OnSpeciesNameTextChanged(name);
+        membraneColorPicker.Color = colour;
 
         UpdateMembraneButtons(membrane.InternalName);
         SetMembraneTooltips(membrane);
@@ -1606,13 +1586,6 @@ public partial class CellEditorComponent :
         organelleUpgradeGUI.OpenForOrganelle(organelleMenu.SelectedOrganelle, upgradeGUI!, Editor);
     }
 
-    private void OnNewCellClicked()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        CreateNewMicrobe();
-    }
-
     /// <summary>
     ///   Updates the organelle model displayer to have the specified scene in it
     /// </summary>
@@ -1714,48 +1687,9 @@ public partial class CellEditorComponent :
         }
     }
 
-    private void OnSpeciesNameTextChanged(string newText)
+    private void OnSpeciesNameChanged(string newText)
     {
-        if (!Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
-        {
-            speciesNameEdit.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
-        }
-        else
-        {
-            speciesNameEdit.Set("custom_colors/font_color", new Color(1, 1, 1));
-        }
-
         newName = newText;
-    }
-
-    private void OnSpeciesNameTextEntered(string newText)
-    {
-        // In case the text is not stored
-        newName = newText;
-
-        // Only defocus if the name is valid to indicate invalid namings to the player
-        if (Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
-        {
-            speciesNameEdit.ReleaseFocus();
-        }
-        else
-        {
-            // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
-            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
-
-            speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
-        }
-    }
-
-    private void OnRandomizeSpeciesNamePressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        var nameGenerator = SimulationParameters.Instance.NameGenerator;
-        var randomizedName = nameGenerator.GenerateNameSection() + " " + nameGenerator.GenerateNameSection();
-
-        speciesNameEdit.Text = randomizedName;
-        OnSpeciesNameTextChanged(randomizedName);
     }
 
     private void OnColorChanged(Color color)

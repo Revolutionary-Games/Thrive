@@ -1,100 +1,31 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
-[ext_resource path="res://assets/textures/gui/bevel/clockButtonActive.png" type="Texture" id=3]
+[ext_resource path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/microbe_stage/editor/CellEditorComponent.cs" type="Script" id=4]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=6]
-[ext_resource path="res://assets/textures/gui/bevel/MP.png" type="Texture" id=7]
+[ext_resource path="res://src/microbe_stage/editor/MutationPointsBar.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=10]
-[ext_resource path="res://assets/textures/gui/bevel/clockButton.png" type="Texture" id=11]
-[ext_resource path="res://src/microbe_stage/editor/MutationPointsTextMaterial.tres" type="Material" id=12]
 [ext_resource path="res://assets/textures/gui/bevel/helpButtonHover.png" type="Texture" id=13]
 [ext_resource path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture" id=15]
-[ext_resource path="res://assets/textures/gui/bevel/redoButton.png" type="Texture" id=16]
 [ext_resource path="res://assets/textures/gui/bevel/helpButtonActive.png" type="Texture" id=17]
 [ext_resource path="res://assets/textures/gui/bevel/helpButton.png" type="Texture" id=18]
-[ext_resource path="res://assets/textures/gui/bevel/randomizeButton.png" type="Texture" id=19]
-[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" type="Texture" id=20]
-[ext_resource path="res://assets/textures/gui/bevel/clockButtonDisabled.png" type="Texture" id=21]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=22]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=23]
-[ext_resource path="res://assets/textures/gui/bevel/1xSymmetry.png" type="Texture" id=24]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=25]
-[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonHover.png" type="Texture" id=26]
-[ext_resource path="res://assets/textures/gui/bevel/undoButtonDisabled.png" type="Texture" id=27]
-[ext_resource path="res://assets/textures/gui/bevel/redoButtonDisabled.png" type="Texture" id=28]
-[ext_resource path="res://assets/textures/gui/bevel/WhiteArrow.png" type="Texture" id=29]
 [ext_resource path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn" type="PackedScene" id=30]
-[ext_resource path="res://assets/textures/gui/bevel/button.png" type="Texture" id=31]
-[ext_resource path="res://assets/textures/gui/bevel/buttonHover.png" type="Texture" id=32]
-[ext_resource path="res://assets/textures/gui/bevel/buttonActive.png" type="Texture" id=33]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=34]
 [ext_resource path="res://assets/textures/gui/bevel/sliderTick.png" type="Texture" id=35]
-[ext_resource path="res://assets/textures/gui/bevel/redoButtonHover.png" type="Texture" id=36]
-[ext_resource path="res://assets/textures/gui/bevel/undoButtonHover.png" type="Texture" id=37]
-[ext_resource path="res://assets/textures/gui/bevel/redoButtonActive.png" type="Texture" id=38]
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=39]
-[ext_resource path="res://assets/textures/gui/bevel/clockButtonHover.png" type="Texture" id=40]
-[ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture" id=41]
 [ext_resource path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" type="PackedScene" id=42]
 [ext_resource path="res://src/gui_common/TweakedColourPicker.tscn" type="PackedScene" id=43]
 [ext_resource path="res://src/gui_common/SegmentedBar.tscn" type="PackedScene" id=44]
 [ext_resource path="res://src/gui_common/CollapsibleList.tscn" type="PackedScene" id=45]
-[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonActive.png" type="Texture" id=46]
 [ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" type="PackedScene" id=47]
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.294118, 0.152941, 0.356863, 1 )
-
-[sub_resource type="StyleBoxEmpty" id=4]
-
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.745098, 0.356863, 0.921569, 1 )
-
-[sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="Animation" id=7]
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 2, 2, 2, 1 ), Color( 1, 1, 1, 1 ), Color( 2, 2, 2, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../Background:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0.54902 ), Color( 0.537255, 0.0823529, 0.0823529, 0.54902 ), Color( 0, 0, 0, 0.54902 ), Color( 0.537255, 0.0823529, 0.0823529, 0.54902 ), Color( 0, 0, 0, 0.54902 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../../MPIcon:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 1 ), Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 1 ) ]
-}
 
 [sub_resource type="StyleBoxTexture" id=8]
 texture = ExtResource( 2 )
@@ -186,21 +117,10 @@ region_rect = Rect2( 0, 0, 429, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=21]
 
-[sub_resource type="Animation" id=22]
-resource_name = "invalidSpeciesNameFlash"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:custom_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 0.301961, 0.301961, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.301961, 0.301961, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.301961, 0.301961, 1 ) ]
-}
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.745098, 0.356863, 0.921569, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=6]
 
 [sub_resource type="StyleBoxFlat" id=23]
 content_margin_left = 5.0
@@ -294,17 +214,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
-CurrentMutationPointsLabelPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/CurrentMp")
-MutationPointsArrowPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/MpArrow")
-ResultingMutationPointsLabelPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/ResultingMp")
-BaseMutationPointsLabelPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/BaseMp")
-MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain")
-MutationPointsSubtractBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarSubtract")
-UndoButtonPath = NodePath("BottomLeft/HBoxContainer/UndoButton")
-RedoButtonPath = NodePath("BottomLeft/HBoxContainer/RedoButton")
+MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
+ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
 CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
-SymmetryButtonPath = NodePath("BottomLeft/HBoxContainer/SymmetryButton")
-SymmetryIconPath = NodePath("BottomLeft/HBoxContainer/SymmetryButton/SymmetryIcon")
 IslandErrorPath = NodePath("IslandError")
 StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Structure")
 AppearanceTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Membrane")
@@ -323,10 +235,7 @@ AutoEvoPredictionPanelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel
 TotalPopulationLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total/Value")
 WorstPatchLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst/Value")
 BestPatchLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best/Value")
-SpeciesNameEditPath = NodePath("BottomLeft/HBoxContainer/SpeciesName")
 MembraneColorPickerPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker")
-NewCellButtonPath = NodePath("BottomLeft/HBoxContainer/NewButton")
-RandomizeSpeciesNameButtonPath = NodePath("BottomLeft/HBoxContainer/RandomizeButton")
 ATPBalanceLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/Label")
 ATPProductionLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/Label")
 ATPConsumptionLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2/Label")
@@ -389,165 +298,7 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 5
 
-[node name="MutationPointsBar" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 328.0
-margin_bottom = 30.0
-custom_constants/separation = -10
-
-[node name="MPIcon" type="TextureRect" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource( 7 )
-expand = true
-
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar"]
-show_behind_parent = true
-margin_left = 10.0
-margin_right = 318.0
-margin_bottom = 20.0
-mouse_filter = 1
-size_flags_horizontal = 3
-
-[node name="Background" type="ColorRect" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer"]
-show_behind_parent = true
-margin_right = 308.0
-margin_bottom = 20.0
-mouse_filter = 1
-size_flags_horizontal = 3
-color = Color( 0, 0, 0, 0.54902 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MPBarSubtract" type="ProgressBar" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer"]
-self_modulate = Color( 0.721569, 0.721569, 0.721569, 1 )
-show_behind_parent = true
-margin_right = 308.0
-margin_bottom = 20.0
-mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 1
-custom_styles/fg = SubResource( 3 )
-custom_styles/bg = SubResource( 4 )
-step = 0.1
-value = 100.0
-percent_visible = false
-
-[node name="MPBarMain" type="ProgressBar" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer"]
-show_behind_parent = true
-margin_right = 308.0
-margin_bottom = 20.0
-mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 1
-custom_styles/fg = SubResource( 5 )
-custom_styles/bg = SubResource( 6 )
-step = 0.1
-value = 100.0
-percent_visible = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer"]
-margin_right = 149.0
-margin_bottom = 20.0
-mouse_filter = 1
-custom_constants/margin_left = 20
-
-[node name="MPLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer"]
-material = ExtResource( 12 )
-margin_left = 20.0
-margin_top = 1.0
-margin_right = 149.0
-margin_bottom = 18.0
-custom_fonts/font = ExtResource( 1 )
-text = "MUTATION_POINTS"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer2" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer"]
-margin_left = 153.0
-margin_right = 308.0
-margin_bottom = 20.0
-mouse_filter = 1
-size_flags_horizontal = 3
-custom_constants/margin_right = 15
-
-[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2"]
-margin_right = 140.0
-margin_bottom = 20.0
-alignment = 2
-
-[node name="CurrentMp" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
-material = ExtResource( 12 )
-margin_left = 80.0
-margin_top = 1.0
-margin_right = 104.0
-margin_bottom = 18.0
-size_flags_horizontal = 0
-custom_fonts/font = ExtResource( 1 )
-text = "100"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="MpArrow" type="TextureRect" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
-visible = false
-material = ExtResource( 12 )
-margin_left = 87.0
-margin_right = 102.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 15, 20 )
-size_flags_vertical = 4
-texture = ExtResource( 29 )
-expand = true
-stretch_mode = 6
-
-[node name="ResultingMp" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
-visible = false
-material = ExtResource( 12 )
-margin_left = 74.0
-margin_top = 1.0
-margin_right = 102.0
-margin_bottom = 18.0
-size_flags_horizontal = 0
-custom_fonts/font = ExtResource( 1 )
-text = "100)"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="BaseMp" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer"]
-material = ExtResource( 12 )
-margin_left = 108.0
-margin_top = 1.0
-margin_right = 140.0
-margin_bottom = 18.0
-size_flags_horizontal = 0
-custom_fonts/font = ExtResource( 1 )
-text = "/ 100"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="FlashAnimation" type="AnimationPlayer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain"]
-anims/FlashBar = SubResource( 7 )
+[node name="MutationPointsBar" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2" instance=ExtResource( 7 )]
 
 [node name="HSeparator" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer"]
 margin_top = 39.0
@@ -870,10 +621,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 144.0
-margin_top = 169.0
-margin_right = 460.0
-margin_bottom = 759.0
+margin_left = 168.0
+margin_top = 193.0
+margin_right = 484.0
+margin_bottom = 783.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
@@ -1387,140 +1138,7 @@ rect_min_size = Vector2( 0, 10 )
 mouse_filter = 1
 custom_styles/separator = SubResource( 6 )
 
-[node name="BottomLeft" type="MarginContainer" parent="."]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -55.0
-margin_right = 605.0
-custom_constants/margin_top = 5
-custom_constants/margin_left = 195
-custom_constants/margin_bottom = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomLeft"]
-margin_left = 195.0
-margin_top = 5.0
-margin_right = 641.0
-margin_bottom = 50.0
-custom_constants/separation = 5
-
-[node name="SymmetryButton" type="TextureButton" parent="BottomLeft/HBoxContainer"]
-margin_top = 5.0
-margin_right = 35.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 35, 35 )
-mouse_filter = 1
-size_flags_vertical = 4
-action_mode = 0
-texture_normal = ExtResource( 31 )
-texture_pressed = ExtResource( 33 )
-texture_hover = ExtResource( 32 )
-expand = true
-
-[node name="SymmetryIcon" type="TextureRect" parent="BottomLeft/HBoxContainer/SymmetryButton"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-texture = ExtResource( 24 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="UndoButton" type="TextureButton" parent="BottomLeft/HBoxContainer"]
-margin_left = 40.0
-margin_top = 5.0
-margin_right = 75.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 35, 35 )
-mouse_filter = 1
-size_flags_vertical = 4
-action_mode = 0
-texture_normal = ExtResource( 15 )
-texture_pressed = ExtResource( 41 )
-texture_hover = ExtResource( 37 )
-texture_disabled = ExtResource( 27 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RedoButton" type="TextureButton" parent="BottomLeft/HBoxContainer"]
-margin_left = 80.0
-margin_top = 5.0
-margin_right = 115.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 35, 35 )
-mouse_filter = 1
-size_flags_vertical = 4
-action_mode = 0
-texture_normal = ExtResource( 16 )
-texture_pressed = ExtResource( 38 )
-texture_hover = ExtResource( 36 )
-texture_disabled = ExtResource( 28 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NewButton" type="TextureButton" parent="BottomLeft/HBoxContainer"]
-margin_left = 120.0
-margin_top = 5.0
-margin_right = 155.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 35, 35 )
-mouse_filter = 1
-size_flags_vertical = 4
-texture_normal = ExtResource( 11 )
-texture_pressed = ExtResource( 3 )
-texture_hover = ExtResource( 40 )
-texture_disabled = ExtResource( 21 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Spacer" type="Control" parent="BottomLeft/HBoxContainer"]
-margin_left = 160.0
-margin_right = 165.0
-margin_bottom = 45.0
-rect_min_size = Vector2( 5, 0 )
-mouse_filter = 1
-
-[node name="SpeciesName" type="LineEdit" parent="BottomLeft/HBoxContainer"]
-margin_left = 170.0
-margin_top = 7.0
-margin_right = 410.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 240, 27 )
-focus_mode = 1
-mouse_filter = 1
-size_flags_vertical = 4
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-max_length = 100
-placeholder_text = "SPECIES_NAME_DOT_DOT_DOT"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomLeft/HBoxContainer/SpeciesName"]
-anims/invalidSpeciesNameFlash = SubResource( 22 )
-
-[node name="RandomizeButton" type="TextureButton" parent="BottomLeft/HBoxContainer"]
-margin_left = 415.0
-margin_top = 7.0
-margin_right = 446.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 31, 31 )
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture_normal = ExtResource( 19 )
-texture_pressed = ExtResource( 46 )
-texture_hover = ExtResource( 26 )
-texture_disabled = ExtResource( 20 )
-expand = true
+[node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource( 3 )]
 
 [node name="BottomRight" type="MarginContainer" parent="."]
 anchor_left = 1.0
@@ -1669,15 +1287,11 @@ text = "CLOSE"
 [connection signal="value_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnRigidityChanged"]
 [connection signal="color_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker" to="." method="OnColorChanged"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header/HBoxContainer/Details" to="." method="OpenAutoEvoPredictionDetails"]
-[connection signal="button_down" from="BottomLeft/HBoxContainer/SymmetryButton" to="." method="OnSymmetryHold"]
-[connection signal="button_up" from="BottomLeft/HBoxContainer/SymmetryButton" to="." method="OnSymmetryReleased"]
-[connection signal="pressed" from="BottomLeft/HBoxContainer/SymmetryButton" to="." method="OnSymmetryClicked"]
-[connection signal="pressed" from="BottomLeft/HBoxContainer/UndoButton" to="." method="Undo"]
-[connection signal="pressed" from="BottomLeft/HBoxContainer/RedoButton" to="." method="Redo"]
-[connection signal="pressed" from="BottomLeft/HBoxContainer/NewButton" to="." method="OnNewCellClicked"]
-[connection signal="text_changed" from="BottomLeft/HBoxContainer/SpeciesName" to="." method="OnSpeciesNameTextChanged"]
-[connection signal="text_entered" from="BottomLeft/HBoxContainer/SpeciesName" to="." method="OnSpeciesNameTextEntered"]
-[connection signal="pressed" from="BottomLeft/HBoxContainer/RandomizeButton" to="." method="OnRandomizeSpeciesNamePressed"]
+[connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
+[connection signal="OnNewClicked" from="EditorComponentBottomLeftButtons" to="." method="CreateNewMicrobe"]
+[connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
+[connection signal="OnSymmetryChanged" from="EditorComponentBottomLeftButtons" to="." method="OnSymmetryPressed"]
+[connection signal="OnUndo" from="EditorComponentBottomLeftButtons" to="." method="Undo"]
 [connection signal="pressed" from="BottomRight/HBoxContainer/CancelButton" to="." method="OnCancelActionClicked"]
 [connection signal="pressed" from="BottomRight/HBoxContainer/ConfirmButton" to="." method="NextOrFinishClicked"]
 [connection signal="Confirmed" from="NegativeAtpWarning" to="." method="ConfirmFinishEditingWithNegativeATPPressed"]

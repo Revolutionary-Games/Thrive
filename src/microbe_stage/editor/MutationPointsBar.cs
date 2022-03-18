@@ -1,0 +1,98 @@
+﻿using Godot;
+
+public class MutationPointsBar : HBoxContainer
+{
+    [Export]
+    public NodePath CurrentMutationPointsLabelPath = null!;
+
+    [Export]
+    public NodePath MutationPointsArrowPath = null!;
+
+    [Export]
+    public NodePath ResultingMutationPointsLabelPath = null!;
+
+    [Export]
+    public NodePath BaseMutationPointsLabelPath = null!;
+
+    [Export]
+    public NodePath MutationPointsBarPath = null!;
+
+    [Export]
+    public NodePath MutationPointsSubtractBarPath = null!;
+
+    private Label currentMutationPointsLabel = null!;
+    private TextureRect mutationPointsArrow = null!;
+    private Label resultingMutationPointsLabel = null!;
+    private Label baseMutationPointsLabel = null!;
+    private ProgressBar mutationPointsBar = null!;
+    private ProgressBar mutationPointsSubtractBar = null!;
+
+    private string freebuildingText = string.Empty;
+
+    public override void _Ready()
+    {
+        currentMutationPointsLabel = GetNode<Label>(CurrentMutationPointsLabelPath);
+        mutationPointsArrow = GetNode<TextureRect>(MutationPointsArrowPath);
+        resultingMutationPointsLabel = GetNode<Label>(ResultingMutationPointsLabelPath);
+        baseMutationPointsLabel = GetNode<Label>(BaseMutationPointsLabelPath);
+        mutationPointsBar = GetNode<ProgressBar>(MutationPointsBarPath);
+        mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
+
+        freebuildingText = TranslationServer.Translate("FREEBUILDING");
+    }
+
+    public void UpdateBar(float currentMutationPoints, float possibleMutationPoints, bool tween = true)
+    {
+        if (tween)
+        {
+            GUICommon.Instance.TweenBarValue(
+                mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
+            GUICommon.Instance.TweenBarValue(
+                mutationPointsSubtractBar, currentMutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
+        }
+        else
+        {
+            mutationPointsBar.Value = possibleMutationPoints;
+            mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+            mutationPointsSubtractBar.Value = currentMutationPoints;
+            mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+        }
+
+        mutationPointsSubtractBar.SelfModulate = possibleMutationPoints < 0 ?
+            new Color(0.72f, 0.19f, 0.19f) :
+            new Color(0.72f, 0.72f, 0.72f);
+    }
+
+    public void UpdateMutationPoints(bool freebuilding, bool showResultingPoints, float currentMutationPoints,
+        float possibleMutationPoints)
+    {
+        if (freebuilding)
+        {
+            mutationPointsArrow.Hide();
+            resultingMutationPointsLabel.Hide();
+            baseMutationPointsLabel.Hide();
+
+            currentMutationPointsLabel.Text = freebuildingText;
+        }
+        else
+        {
+            if (showResultingPoints)
+            {
+                mutationPointsArrow.Show();
+                resultingMutationPointsLabel.Show();
+
+                currentMutationPointsLabel.Text = $"({currentMutationPoints:F0}";
+                resultingMutationPointsLabel.Text = $"{possibleMutationPoints:F0})";
+                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
+            }
+            else
+            {
+                mutationPointsArrow.Hide();
+                resultingMutationPointsLabel.Hide();
+
+                currentMutationPointsLabel.Text = $"{currentMutationPoints:F0}";
+                baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
+            }
+        }
+    }
+}
