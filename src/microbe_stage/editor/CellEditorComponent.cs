@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 /// </summary>
 [SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn")]
 public partial class CellEditorComponent :
-    HexEditorComponentBase<MicrobeEditor, MicrobeEditorAction, OrganelleTemplate>,
+    HexEditorComponentBase<ICellEditorData, CellEditorAction, OrganelleTemplate>,
     IGodotEarlyNodeResolve
 {
     [Export]
@@ -430,7 +430,7 @@ public partial class CellEditorComponent :
         RegisterTooltips();
     }
 
-    public override void Init(MicrobeEditor owningEditor, bool fresh)
+    public override void Init(ICellEditorData owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
         behaviourEditor.Init(owningEditor, fresh);
@@ -453,7 +453,7 @@ public partial class CellEditorComponent :
 
             editedMicrobeOrganelles = newLayout;
 
-            UpdateGUIAfterLoadingSpecies(Editor.EditedSpecies);
+            UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
             SetupPreviewMicrobe();
             UpdateArrow(false);
         }
@@ -527,14 +527,14 @@ public partial class CellEditorComponent :
 
         // We set these here to make sure these are ready in the organelle add callbacks (even though currently
         // that just marks things dirty and we update our stats on the next _Process call)
-        Membrane = Editor.EditedSpecies.MembraneType;
-        Rigidity = Editor.EditedSpecies.MembraneRigidity;
-        Colour = Editor.EditedSpecies.Colour;
+        Membrane = Editor.EditedCellProperties.MembraneType;
+        Rigidity = Editor.EditedCellProperties.MembraneRigidity;
+        Colour = Editor.EditedCellProperties.Colour;
 
         behaviourEditor.OnEditorSpeciesSetup(species);
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
-        foreach (var organelle in Editor.EditedSpecies.Organelles.Organelles)
+        foreach (var organelle in Editor.EditedCellProperties.Organelles.Organelles)
         {
             editedMicrobeOrganelles.Add((OrganelleTemplate)organelle.Clone());
         }
@@ -544,7 +544,7 @@ public partial class CellEditorComponent :
         // Only when not loaded from save are these properties fetched (otherwise it won't display changes correctly)
         SetInitialCellStats();
 
-        UpdateGUIAfterLoadingSpecies(Editor.EditedSpecies);
+        UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
 
         // Setup the display cell
         SetupPreviewMicrobe();
@@ -554,24 +554,25 @@ public partial class CellEditorComponent :
 
     public override void OnFinishEditing()
     {
-        var editedSpecies = Editor.EditedSpecies;
+        var editedSpecies = Editor.EditedBaseSpecies;
+        var editedProperties = Editor.EditedCellProperties;
 
         // Apply changes to the species organelles
         // It is easiest to just replace all
-        editedSpecies.Organelles.Clear();
+        editedProperties.Organelles.Clear();
 
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
             var organelleToAdd = (OrganelleTemplate)organelle.Clone();
             organelleToAdd.PlacedThisSession = false;
             organelleToAdd.NumberOfTimesMoved = 0;
-            editedSpecies.Organelles.Add(organelleToAdd);
+            editedProperties.Organelles.Add(organelleToAdd);
         }
 
         editedSpecies.RepositionToOrigin();
 
         // Update bacteria status
-        editedSpecies.IsBacteria = !HasNucleus;
+        editedProperties.IsBacteria = !HasNucleus;
 
         editedSpecies.UpdateInitialCompounds();
 
@@ -592,9 +593,9 @@ public partial class CellEditorComponent :
         }
 
         // Update membrane
-        editedSpecies.MembraneType = Membrane;
-        editedSpecies.Colour = Colour;
-        editedSpecies.MembraneRigidity = Rigidity;
+        editedProperties.MembraneType = Membrane;
+        editedProperties.Colour = Colour;
+        editedProperties.MembraneRigidity = Rigidity;
 
         behaviourEditor.OnFinishEditing();
     }
@@ -706,9 +707,9 @@ public partial class CellEditorComponent :
     {
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
-            editedMicrobeOrganelles.Organelles, Membrane, Editor.SelectedPatch);
+            editedMicrobeOrganelles.Organelles, Membrane, Editor.CurrentPatch);
 
-        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, Editor.SelectedPatch);
+        CalculateCompoundBalanceInPatch(editedMicrobeOrganelles.Organelles, Editor.CurrentPatch);
     }
 
     /// <summary>
@@ -721,12 +722,6 @@ public partial class CellEditorComponent :
         var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
 
         UpdateOrganelleEfficiencies(result);
-    }
-
-    public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
-    {
-        SetUndoButtonStatus(canUndo && MovingPlacedHex == null);
-        SetRedoButtonStatus(canRedo && MovingPlacedHex == null);
     }
 
     public override void NotifyFreebuild(bool freebuilding)
@@ -770,7 +765,7 @@ public partial class CellEditorComponent :
 
         var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, previousMP, oldMembrane);
 
-        var action = new MicrobeEditorAction(Editor, 0, DoNewMicrobeAction, UndoNewMicrobeAction, data);
+        var action = new CellEditorAction(Editor, 0, DoNewMicrobeAction, UndoNewMicrobeAction, data);
 
         Editor.EnqueueAction(action);
     }
@@ -782,7 +777,7 @@ public partial class CellEditorComponent :
         if (Membrane.Equals(membrane))
             return;
 
-        var action = new MicrobeEditorAction(Editor, membrane.EditorCost, DoMembraneChangeAction,
+        var action = new CellEditorAction(Editor, membrane.EditorCost, DoMembraneChangeAction,
             UndoMembraneChangeAction, new MembraneActionData(Membrane, membrane));
 
         Editor.EnqueueAction(action);
@@ -823,7 +818,7 @@ public partial class CellEditorComponent :
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
         var prevRigidity = Rigidity;
 
-        var action = new MicrobeEditorAction(Editor, cost, DoRigidityChangeAction, UndoRigidityChangeAction,
+        var action = new CellEditorAction(Editor, cost, DoRigidityChangeAction, UndoRigidityChangeAction,
             new RigidityChangeActionData(newRigidity, prevRigidity));
 
         Editor.EnqueueAction(action);
@@ -940,7 +935,7 @@ public partial class CellEditorComponent :
         return editedMicrobeOrganelles.CanPlace(organelle.Definition, position, rotation, false);
     }
 
-    protected override bool DoesActionEndInProgressAction(MicrobeEditorAction action)
+    protected override bool DoesActionEndInProgressAction(CellEditorAction action)
     {
         // Allow only move actions with an in-progress move
         return action.IsMoveAction;
@@ -977,7 +972,7 @@ public partial class CellEditorComponent :
             -organelleHere.Definition.MPCost :
             Constants.ORGANELLE_REMOVE_COST;
 
-        var action = new MicrobeEditorAction(Editor, cost,
+        var action = new CellEditorAction(Editor, cost,
             DoOrganelleRemoveAction, UndoOrganelleRemoveAction, new RemoveActionData(organelleHere));
 
         EnqueueAction(action);
@@ -993,7 +988,7 @@ public partial class CellEditorComponent :
         previewMicrobe = (Microbe)microbeScene.Instance();
         previewMicrobe.IsForPreviewOnly = true;
         Editor.RootOfDynamicallySpawned.AddChild(previewMicrobe);
-        previewMicrobe.ApplySpecies((MicrobeSpecies)Editor.EditedSpecies.Clone());
+        previewMicrobe.ApplySpecies(new MicrobeSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties));
 
         // Set its initial visibility
         previewMicrobe.Visible = MicrobePreviewMode;
@@ -1088,15 +1083,15 @@ public partial class CellEditorComponent :
         // which may cause occasional background task errors
         CancelPreviousAutoEvoPrediction();
 
-        cachedAutoEvoPredictionSpecies ??= (MicrobeSpecies)Editor.EditedSpecies.Clone();
+        cachedAutoEvoPredictionSpecies ??= new MicrobeSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
 
         CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
 
-        var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.EditedSpecies,
+        var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.EditedBaseSpecies,
             cachedAutoEvoPredictionSpecies);
         run.Start();
 
-        UpdateAutoEvoPrediction(run, Editor.EditedSpecies, cachedAutoEvoPredictionSpecies);
+        UpdateAutoEvoPrediction(run, Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
     }
 
     /// <summary>
@@ -1350,7 +1345,7 @@ public partial class CellEditorComponent :
 
         organelle.PlacedThisSession = true;
 
-        var action = new MicrobeEditorAction(Editor, organelle.Definition.MPCost,
+        var action = new CellEditorAction(Editor, organelle.Definition.MPCost,
             DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle));
 
         EnqueueAction(action);
@@ -1392,7 +1387,7 @@ public partial class CellEditorComponent :
             return true;
         }
 
-        var action = new MicrobeEditorAction(Editor, cost,
+        var action = new CellEditorAction(Editor, cost,
             DoOrganelleMoveAction, UndoOrganelleMoveAction,
             new MoveActionData(organelle, oldLocation, newLocation, oldRotation, newRotation));
 

@@ -14,7 +14,7 @@ using Object = Godot.Object;
 ///   </para>
 /// </remarks>
 public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
-    where TEditor : Object, IEditorWithPatches
+    where TEditor : IEditorWithPatches
 {
     [Export]
     public NodePath MapDrawerPath = null!;

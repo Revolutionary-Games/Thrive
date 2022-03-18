@@ -6,8 +6,8 @@
 /// <typeparam name="TEditor">The type of editor this component is contained in</typeparam>
 /// <typeparam name="TAction">Editor action type the editor this will be used with will use</typeparam>
 public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorComponentBase<TEditor>
-    where TEditor : Object, IEditorWithActions
-    where TAction : MicrobeEditorAction
+    where TEditor : IEditorWithActions
+    where TAction : CellEditorAction
 {
     [Export]
     public NodePath MutationPointsBarPath = null!;
@@ -71,6 +71,12 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     public void UpdateCancelButtonVisibility()
     {
         cancelButton.Visible = Editor.CanCancelAction;
+    }
+
+    public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
+    {
+        SetUndoButtonStatus(canUndo && !Editor.CanCancelAction);
+        SetRedoButtonStatus(canRedo && !Editor.CanCancelAction);
     }
 
     protected void Undo()

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
-using Object = Godot.Object;
 
 /// <summary>
 ///   Editor component base class (each editor tab is roughly one component)
@@ -10,7 +9,7 @@ using Object = Godot.Object;
 /// <typeparam name="TEditor">The type of editor this component is contained in</typeparam>
 [JsonObject(MemberSerialization.OptIn)]
 public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorComponent
-    where TEditor : Object, IEditor
+    where TEditor : IEditor
 {
     [Export]
     public NodePath FinishOrNextButtonPath = null!;

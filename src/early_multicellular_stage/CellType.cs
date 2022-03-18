@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Type of a cell in a multicellular species. There can be multiple instances of a cell type placed at once
@@ -31,4 +32,9 @@ public class CellType : ICellProperties
 
     [JsonProperty]
     public OrganelleLayout<OrganelleTemplate> Organelles { get; private set; }
+
+    public MembraneType MembraneType { get; set; }
+    public float MembraneRigidity { get; set; }
+    public Color Colour { get; set; }
+    public bool IsBacteria { get; set; }
 }

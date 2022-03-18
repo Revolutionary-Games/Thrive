@@ -1,10 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-/// <summary>
-///   Done actions are stored here to provide undo/redo functionality
-/// </summary>
-public class MicrobeEditorAction : ReversibleAction
+public class CellEditorAction : ReversibleAction
 {
     // TODO: split this to a separate class / interface (I'm not doing it here due to the open dynamic MP PR
     // -hhyyrylainen)
@@ -18,17 +15,17 @@ public class MicrobeEditorAction : ReversibleAction
     public IMicrobeEditorActionData? Data;
 
     [JsonProperty]
-    private readonly Action<MicrobeEditorAction> redo;
+    private readonly Action<CellEditorAction> redo;
 
     [JsonProperty]
-    private readonly Action<MicrobeEditorAction> undo;
+    private readonly Action<CellEditorAction> undo;
 
     [JsonProperty]
-    private readonly MicrobeEditor editor;
+    private readonly ICellEditorData editor;
 
-    public MicrobeEditorAction(MicrobeEditor editor, int cost,
-        Action<MicrobeEditorAction> redo,
-        Action<MicrobeEditorAction> undo, IMicrobeEditorActionData? data = null)
+    public CellEditorAction(ICellEditorData editor, int cost,
+        Action<CellEditorAction> redo,
+        Action<CellEditorAction> undo, IMicrobeEditorActionData? data = null)
     {
         this.editor = editor;
         Cost = cost;

@@ -3,7 +3,7 @@
 /// </summary>
 [SceneLoadedClass("res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn")]
 public class CellBodyPlanEditorComponent :
-    HexEditorComponentBase<EarlyMulticellularEditor, MicrobeEditorAction, CellTemplate>,
+    HexEditorComponentBase<EarlyMulticellularEditor, CellEditorAction, CellTemplate>,
     IGodotEarlyNodeResolve
 {
     public override bool HasIslands { get; }
@@ -13,11 +13,6 @@ public class CellBodyPlanEditorComponent :
     protected override bool ForceHideHover { get; }
 
     public override void OnFinishEditing()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
     {
         throw new System.NotImplementedException();
     }
@@ -37,7 +32,7 @@ public class CellBodyPlanEditorComponent :
         throw new System.NotImplementedException();
     }
 
-    protected override bool DoesActionEndInProgressAction(MicrobeEditorAction action)
+    protected override bool DoesActionEndInProgressAction(CellEditorAction action)
     {
         throw new System.NotImplementedException();
     }

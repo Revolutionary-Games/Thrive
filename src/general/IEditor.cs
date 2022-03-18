@@ -48,6 +48,11 @@ public interface IEditor : ISaveLoadedTracked
     public Species EditedBaseSpecies { get; }
 
     /// <summary>
+    ///   True once auto-evo (and possibly other stuff) the editor needs to wait for is ready
+    /// </summary>
+    public bool Ready { get; }
+
+    /// <summary>
     ///   Cancels the current editor action if possible
     /// </summary>
     /// <returns>True if canceled</returns>

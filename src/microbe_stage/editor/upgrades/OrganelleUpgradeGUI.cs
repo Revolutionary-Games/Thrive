@@ -15,7 +15,7 @@ public class OrganelleUpgradeGUI : Control
     private Container organelleSpecificContent = null!;
     private ScrollContainer scrollContainer = null!;
 
-    private MicrobeEditor? storedEditor;
+    private ICellEditorData? storedEditor;
     private IOrganelleUpgrader? upgrader;
 
     public override void _Ready()
@@ -25,7 +25,7 @@ public class OrganelleUpgradeGUI : Control
         scrollContainer = GetNode<ScrollContainer>(ScrollContainerPath);
     }
 
-    public void OpenForOrganelle(OrganelleTemplate organelle, string upgraderScene, MicrobeEditor editor)
+    public void OpenForOrganelle(OrganelleTemplate organelle, string upgraderScene, ICellEditorData editor)
     {
         var scene = GD.Load<PackedScene>(upgraderScene);
 

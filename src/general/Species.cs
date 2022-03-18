@@ -14,22 +14,29 @@ using Newtonsoft.Json;
 [UseThriveConverter]
 public abstract class Species : ICloneable
 {
+    protected Species(uint id, string genus, string epithet)
+    {
+        ID = id;
+        Genus = genus;
+        Epithet = epithet;
+    }
+
     /// <summary>
     ///   This is the amount of compounds cells of this type spawn with
     /// </summary>
     [JsonProperty]
-    public readonly Dictionary<Compound, float> InitialCompounds = new();
+    public Dictionary<Compound, float> InitialCompounds { get; private set; } = new();
 
-    public string Genus;
-    public string Epithet;
+    public string Genus { get; set; }
+    public string Epithet { get; set; }
 
-    public Color Colour = new(1, 1, 1);
+    public Color Colour { get; set; } = new(1, 1, 1);
 
     /// <summary>
     ///   This holds all behavioural values and defines how this species will behave in the environment.
     /// </summary>
     [JsonProperty]
-    public BehaviourDictionary Behaviour = new();
+    public BehaviourDictionary Behaviour { get; set; } = new();
 
     /// <summary>
     ///   This is the global population (the sum of population in all patches)
@@ -40,16 +47,9 @@ public abstract class Species : ICloneable
     ///     from the per patch populations.
     ///   </para>
     /// </remarks>
-    public long Population = 1;
+    public long Population { get; set; } = 1;
 
-    public int Generation = 1;
-
-    protected Species(uint id, string genus, string epithet)
-    {
-        ID = id;
-        Genus = genus;
-        Epithet = epithet;
-    }
+    public int Generation { get; set; } = 1;
 
     /// <summary>
     ///   Unique id of this species, used to identity this
@@ -214,7 +214,7 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   Helper for child classes to implement Clone
     /// </summary>
-    protected void ClonePropertiesTo(Species species)
+    internal void ClonePropertiesTo(Species species)
     {
         foreach (var entry in InitialCompounds)
             species.InitialCompounds[entry.Key] = entry.Value;

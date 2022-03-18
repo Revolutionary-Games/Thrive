@@ -8,8 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
-public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEditorWithPatches, IHexEditor,
-    IEditorWithActions
+public class MicrobeEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     [Export]
     public NodePath ReportTabPath = null!;
@@ -51,7 +50,7 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
     [JsonIgnore]
-    public MicrobeSpecies EditedSpecies =>
+    public ICellProperties EditedCellProperties =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
     [JsonIgnore]
@@ -121,7 +120,7 @@ public class MicrobeEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEdi
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
     }
 
-    protected override void UpdateHistoryCallbackTargets(ActionHistory<MicrobeEditorAction> actionHistory)
+    protected override void UpdateHistoryCallbackTargets(ActionHistory<CellEditorAction> actionHistory)
     {
         // TODO: figure out why the callbacks are correctly pointing to the cell editor instance even without this
         // actionHistory.ReTargetCallbacksInHistory(cellEditorTab);

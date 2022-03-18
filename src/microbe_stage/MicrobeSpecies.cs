@@ -11,19 +11,40 @@ using Newtonsoft.Json;
 [UseThriveConverter]
 public class MicrobeSpecies : Species, ICellProperties
 {
-    public bool IsBacteria;
-
-    /// <summary>
-    ///   Needs to be set before using this class
-    /// </summary>
-    public MembraneType MembraneType = null!;
-
-    public float MembraneRigidity;
-
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
         Organelles = new OrganelleLayout<OrganelleTemplate>();
     }
+
+    /// <summary>
+    ///   Creates a wrapper around a cell properties object for use with auto-evo predictions
+    /// </summary>
+    /// <param name="cloneOf">Grabs the ID and species name from here</param>
+    /// <param name="withCellProperties">Properties from here are copied to this (except organelle objects are shared)</param>
+    public MicrobeSpecies(Species cloneOf, ICellProperties withCellProperties) : this(cloneOf.ID, cloneOf.Genus,
+        cloneOf.Epithet)
+    {
+        cloneOf.ClonePropertiesTo(this);
+
+        foreach (var organelle in withCellProperties.Organelles)
+        {
+            Organelles.Add(organelle);
+        }
+
+        MembraneType = withCellProperties.MembraneType;
+        MembraneRigidity = withCellProperties.MembraneRigidity;
+        Colour = withCellProperties.Colour;
+        IsBacteria = withCellProperties.IsBacteria;
+    }
+
+    public bool IsBacteria { get; set; }
+
+    /// <summary>
+    ///   Needs to be set before using this class
+    /// </summary>
+    public MembraneType MembraneType { get; set; } = null!;
+
+    public float MembraneRigidity { get; set; }
 
     public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
 

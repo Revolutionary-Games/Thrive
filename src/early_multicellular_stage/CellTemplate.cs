@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 public class CellTemplate : IPositionedCell, ICloneable
@@ -22,6 +23,18 @@ public class CellTemplate : IPositionedCell, ICloneable
 
     [JsonProperty]
     public CellType CellType { get; private set; }
+
+    [JsonIgnore]
+    public MembraneType MembraneType { get => CellType.MembraneType; set => CellType.MembraneType = value; }
+
+    [JsonIgnore]
+    public float MembraneRigidity { get => CellType.MembraneRigidity; set => CellType.MembraneRigidity = value; }
+
+    [JsonIgnore]
+    public Color Colour { get => CellType.Colour; set => CellType.Colour = value; }
+
+    [JsonIgnore]
+    public bool IsBacteria { get => CellType.IsBacteria; set => CellType.IsBacteria = value; }
 
     [JsonIgnore]
     public OrganelleLayout<OrganelleTemplate> Organelles => CellType.Organelles;

@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 /// </summary>
 [IgnoreNoMethodsTakingInputAttribute]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn", UsesEarlyResolve = false)]
-public class MicrobeEditorReportComponent : EditorComponentBase<MicrobeEditor>
+public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportData>
 {
     [Export]
     public NodePath AutoEvoSubtabButtonPath = null!;

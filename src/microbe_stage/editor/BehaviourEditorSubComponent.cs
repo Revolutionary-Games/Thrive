@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 [DeserializedCallbackTarget]
 [IgnoreNoMethodsTakingInputAttribute]
 [SceneLoadedClass("res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn", UsesEarlyResolve = false)]
-public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
+public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
 {
     [Export]
     public NodePath AggressionSliderPath = null!;
@@ -33,7 +33,7 @@ public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
     // TODO: as this is mostly just to guard against Behaviour being missing (when loading older saves), this field
     // can probably be removed soon
     [JsonProperty]
-    private MicrobeSpecies? editedSpecies;
+    private Species? editedSpecies;
 
     [JsonIgnore]
     public override bool IsSubComponent => true;
@@ -62,14 +62,14 @@ public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
     {
         base.OnEditorSpeciesSetup(species);
 
-        editedSpecies = Editor.EditedSpecies;
+        editedSpecies = Editor.EditedBaseSpecies;
 
-        Behaviour = Editor.EditedSpecies.Behaviour;
+        Behaviour = editedSpecies.Behaviour;
     }
 
     public override void OnFinishEditing()
     {
-        Editor.EditedSpecies.Behaviour = Behaviour ?? throw new Exception("Editor has not created behaviour object");
+        Editor.EditedBaseSpecies.Behaviour = Behaviour ?? throw new Exception("Editor has not created behaviour object");
     }
 
     public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
@@ -100,7 +100,7 @@ public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
         if (Math.Abs(value - oldValue) < MathUtils.EPSILON)
             return;
 
-        var action = new MicrobeEditorAction(Editor, 0, DoBehaviourChangeAction, UndoBehaviourChangeAction,
+        var action = new CellEditorAction(Editor, 0, DoBehaviourChangeAction, UndoBehaviourChangeAction,
             new BehaviourChangeActionData(value, oldValue, type));
 
         Editor.EnqueueAction(action);
@@ -160,7 +160,7 @@ public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
     }
 
     [DeserializedCallbackAllowed]
-    private void DoBehaviourChangeAction(MicrobeEditorAction action)
+    private void DoBehaviourChangeAction(CellEditorAction action)
     {
         var data = (BehaviourChangeActionData?)action.Data ??
             throw new Exception($"{nameof(DoBehaviourChangeAction)} missing action data");
@@ -173,7 +173,7 @@ public class BehaviourEditorSubComponent : EditorComponentBase<MicrobeEditor>
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoBehaviourChangeAction(MicrobeEditorAction action)
+    private void UndoBehaviourChangeAction(CellEditorAction action)
     {
         var data = (BehaviourChangeActionData?)action.Data ??
             throw new Exception($"{nameof(UndoBehaviourChangeAction)} missing action data");

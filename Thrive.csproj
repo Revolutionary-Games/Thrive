@@ -187,6 +187,8 @@
     <Compile Include="src\microbe_stage\editor\EditorCommonBottomLeftButtons.cs" />
     <Compile Include="src\microbe_stage\editor\EditorComponentBottomLeftButtons.cs" />
     <Compile Include="src\microbe_stage\editor\EditorTab.cs" />
+    <Compile Include="src\microbe_stage\editor\ICellEditorData.cs" />
+    <Compile Include="src\microbe_stage\editor\IEditorReportData.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorPatchMap.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorReportComponent.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorTabButtons.cs" />
@@ -215,7 +217,7 @@
     <Compile Include="src\microbe_stage\editor\CompoundBalanceDisplay.cs" />
     <Compile Include="src\microbe_stage\editor\IMicrobeEditorActionData.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditor.cs" />
-    <Compile Include="src\microbe_stage\editor\MicrobeEditorAction.cs" />
+    <Compile Include="src\microbe_stage\editor\CellEditorAction.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobePartSelection.cs" />
     <Compile Include="src\microbe_stage\editor\OrganellePopupMenu.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapDrawer.cs" />

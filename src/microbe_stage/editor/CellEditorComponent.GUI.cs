@@ -242,7 +242,7 @@ public partial class CellEditorComponent
         }
     }
 
-    private void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, MicrobeSpecies playerSpeciesOriginal,
+    private void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, Species playerSpeciesOriginal,
         MicrobeSpecies playerSpeciesNew)
     {
         if (waitingForPrediction != null)
@@ -315,7 +315,7 @@ public partial class CellEditorComponent
         OnFinish!.Invoke(new List<EditorUserOverride> { EditorUserOverride.NotProducingEnoughATP });
     }
 
-    private void UpdateGUIAfterLoadingSpecies(MicrobeSpecies species)
+    private void UpdateGUIAfterLoadingSpecies(Species species, ICellProperties properties)
     {
         GD.Print("Starting microbe editor with: ", editedMicrobeOrganelles.Organelles.Count,
             " organelles in the microbe");

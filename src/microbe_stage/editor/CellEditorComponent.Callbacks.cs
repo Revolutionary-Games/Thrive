@@ -23,7 +23,7 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganellePlaceAction(MicrobeEditorAction action)
+    private void DoOrganellePlaceAction(CellEditorAction action)
     {
         var data = (PlacementActionData?)action.Data ??
             throw new Exception($"{nameof(DoOrganellePlaceAction)} missing action data");
@@ -58,7 +58,7 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganellePlaceAction(MicrobeEditorAction action)
+    private void UndoOrganellePlaceAction(CellEditorAction action)
     {
         var data = (PlacementActionData?)action.Data ??
             throw new Exception($"{nameof(UndoOrganellePlaceAction)} missing action data");
@@ -78,7 +78,7 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganelleRemoveAction(MicrobeEditorAction action)
+    private void DoOrganelleRemoveAction(CellEditorAction action)
     {
         var data = (RemoveActionData?)action.Data ??
             throw new Exception($"{nameof(DoOrganelleRemoveAction)} missing action data");
@@ -86,7 +86,7 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganelleRemoveAction(MicrobeEditorAction action)
+    private void UndoOrganelleRemoveAction(CellEditorAction action)
     {
         var data = (RemoveActionData?)action.Data ??
             throw new Exception($"{nameof(UndoOrganelleRemoveAction)} missing action data");
@@ -94,7 +94,7 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganelleMoveAction(MicrobeEditorAction action)
+    private void DoOrganelleMoveAction(CellEditorAction action)
     {
         var data = (MoveActionData?)action.Data ??
             throw new Exception($"{nameof(DoOrganelleMoveAction)} missing action data");
@@ -117,7 +117,7 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganelleMoveAction(MicrobeEditorAction action)
+    private void UndoOrganelleMoveAction(CellEditorAction action)
     {
         var data = (MoveActionData?)action.Data ??
             throw new Exception($"{nameof(UndoOrganelleMoveAction)} missing action data");
@@ -131,7 +131,7 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoNewMicrobeAction(MicrobeEditorAction action)
+    private void DoNewMicrobeAction(CellEditorAction action)
     {
         // TODO: could maybe grab the current organelles and put them in the action here? This could be more safe
         // against weird situations where it might be possible if the undo / redo system is changed to restore
@@ -147,7 +147,7 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoNewMicrobeAction(MicrobeEditorAction action)
+    private void UndoNewMicrobeAction(CellEditorAction action)
     {
         var data = (NewMicrobeActionData?)action.Data ??
             throw new Exception($"{nameof(UndoNewMicrobeAction)} missing action data");
@@ -165,7 +165,7 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoMembraneChangeAction(MicrobeEditorAction action)
+    private void DoMembraneChangeAction(CellEditorAction action)
     {
         var data = (MembraneActionData?)action.Data ??
             throw new Exception($"{nameof(DoMembraneChangeAction)} missing action data");
@@ -177,7 +177,7 @@ public partial class CellEditorComponent
         UpdateSpeed(CalculateSpeed());
         UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(editedMicrobeOrganelles.Organelles, Membrane,
-            Editor.SelectedPatch);
+            Editor.CurrentPatch);
         SetMembraneTooltips(Membrane);
 
         StartAutoEvoPrediction();
@@ -191,7 +191,7 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoMembraneChangeAction(MicrobeEditorAction action)
+    private void UndoMembraneChangeAction(CellEditorAction action)
     {
         var data = (MembraneActionData?)action.Data ??
             throw new Exception($"{nameof(UndoMembraneChangeAction)} missing action data");
@@ -201,7 +201,7 @@ public partial class CellEditorComponent
         UpdateSpeed(CalculateSpeed());
         UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(editedMicrobeOrganelles.Organelles, Membrane,
-            Editor.SelectedPatch);
+            Editor.CurrentPatch);
         SetMembraneTooltips(Membrane);
 
         StartAutoEvoPrediction();
@@ -215,7 +215,7 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoRigidityChangeAction(MicrobeEditorAction action)
+    private void DoRigidityChangeAction(CellEditorAction action)
     {
         var data = (RigidityChangeActionData?)action.Data ??
             throw new Exception($"{nameof(DoRigidityChangeAction)} missing action data");
@@ -229,7 +229,7 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoRigidityChangeAction(MicrobeEditorAction action)
+    private void UndoRigidityChangeAction(CellEditorAction action)
     {
         var data = (RigidityChangeActionData?)action.Data ??
             throw new Exception($"{nameof(UndoRigidityChangeAction)} missing action data");

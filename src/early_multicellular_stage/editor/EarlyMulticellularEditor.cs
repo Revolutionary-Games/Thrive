@@ -5,8 +5,8 @@ using Newtonsoft.Json;
 
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn")]
-public class EarlyMulticellularEditor : EditorBase<MicrobeEditorAction, MicrobeStage>, IEditorWithPatches, IHexEditor,
-    IEditorWithActions
+public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditorWithPatches, IHexEditor,
+    IEditorWithActions, IEditorReportData, ICellEditorData
 {
     [Export]
     public NodePath ReportTabPath = null!;
@@ -55,6 +55,11 @@ public class EarlyMulticellularEditor : EditorBase<MicrobeEditorAction, MicrobeS
     [JsonIgnore]
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
+
+    // TODO: implement this
+    [JsonIgnore]
+    public ICellProperties EditedCellProperties { get => throw new NotImplementedException(); }
+
     // TODO: add multicellular music tracks
     protected override string MusicCategory => "MicrobeEditor";
 
@@ -102,7 +107,7 @@ public class EarlyMulticellularEditor : EditorBase<MicrobeEditorAction, MicrobeS
         cellEditorTab = GetNode<CellEditorComponent>(CellEditorTabPath);
     }
 
-    protected override void UpdateHistoryCallbackTargets(ActionHistory<MicrobeEditorAction> actionHistory)
+    protected override void UpdateHistoryCallbackTargets(ActionHistory<CellEditorAction> actionHistory)
     {
         // See TODO comment in MicrobeEditor.UpdateHistoryCallbackTargets
     }
@@ -247,6 +252,7 @@ public class EarlyMulticellularEditor : EditorBase<MicrobeEditorAction, MicrobeS
             case EditorTab.CellTypeEditor:
             {
                 // TODO: show the "select a cell type" text if not selected yet instead of the cell editor
+                throw new NotImplementedException();
 
                 cellEditorTab.Show();
                 SetEditorObjectVisibility(true);
@@ -269,4 +275,5 @@ public class EarlyMulticellularEditor : EditorBase<MicrobeEditorAction, MicrobeS
 
         base.SetupEditedSpecies();
     }
+
 }

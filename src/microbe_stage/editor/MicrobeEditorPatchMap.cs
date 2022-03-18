@@ -3,7 +3,7 @@
 /// </summary>
 [IgnoreNoMethodsTakingInputAttribute]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn", UsesEarlyResolve = false)]
-public class MicrobeEditorPatchMap : PatchMapEditorComponent<MicrobeEditor>
+public class MicrobeEditorPatchMap : PatchMapEditorComponent<IEditorWithPatches>
 {
     protected override void UpdateShownPatchDetails()
     {
@@ -14,6 +14,7 @@ public class MicrobeEditorPatchMap : PatchMapEditorComponent<MicrobeEditor>
         if (patch == null)
             return;
 
-        Editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorPatchSelected, new PatchEventArgs(patch), this);
+        Editor.CurrentGame.TutorialState.SendEvent(TutorialEventType.MicrobeEditorPatchSelected,
+            new PatchEventArgs(patch), this);
     }
 }

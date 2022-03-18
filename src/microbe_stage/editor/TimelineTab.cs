@@ -68,10 +68,10 @@ public class TimelineTab : PanelContainer
         globalFilterButton = GetNode<Button>(GlobalFilterButtonPath);
     }
 
-    public void UpdateTimeline(MicrobeEditor editor, Patch? selectedPatch, Patch? patch = null)
+    public void UpdateTimeline(IEditorReportData editor, Patch? selectedPatch, Patch? patch = null)
     {
         if (editor.CurrentGame == null)
-            throw new ArgumentException($"Editor must be initialized ({nameof(MicrobeEditor.CurrentGame)} is null");
+            throw new ArgumentException($"Editor must be initialized ({nameof(IEditorReportData.CurrentGame)} is null");
 
         eventsContainer.FreeChildren();
 

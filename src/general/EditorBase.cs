@@ -31,7 +31,7 @@ using Newtonsoft.Json;
 /// </remarks>
 public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState,
     IGodotEarlyNodeResolve
-    where TAction : MicrobeEditorAction
+    where TAction : CellEditorAction
     where TStage : Node, IReturnableGameState
 {
     [Export]
@@ -53,10 +53,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     [JsonProperty]
     protected ActionHistory<TAction> history = null!;
 
-    /// <summary>
-    ///   True once auto-evo (and possibly other stuff) we need to wait for is ready
-    /// </summary>
-    [JsonProperty]
     protected bool ready;
 
     [JsonProperty]
@@ -130,7 +126,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     public bool NodeReferencesResolved { get; private set; }
 
-    [JsonIgnore]
+    [JsonProperty]
     public bool Ready
     {
         get => ready;
@@ -435,10 +431,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         return OnFinishEditing();
     }
 
-    /// <summary>
-    ///   Changes the number of mutation points left. Should only be called by editor actions
-    /// </summary>
-    internal void ChangeMutationPoints(int change)
+    public void ChangeMutationPoints(int change)
     {
         if (FreeBuilding || CheatManager.InfiniteMP)
             return;

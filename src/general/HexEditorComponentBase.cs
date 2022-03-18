@@ -10,8 +10,8 @@ using Object = Godot.Object;
 public abstract class
     HexEditorComponentBase<TEditor, TAction, THexMove> : EditorComponentWithActionsBase<TEditor, TAction>,
         ISaveLoadedTracked, IChildPropertiesLoadCallback
-    where TEditor : Object, IHexEditor, IEditorWithActions
-    where TAction : MicrobeEditorAction
+    where TEditor : IHexEditor, IEditorWithActions
+    where TAction : CellEditorAction
     where THexMove : class
 {
     [Export]
