@@ -196,6 +196,21 @@ public abstract class Species : ICloneable
         return FormattedIdentifier;
     }
 
+    internal virtual void CopyDataToConvertedSpecies(Species species)
+    {
+        if (ID != species.ID)
+            throw new ArgumentException("ID must be same in the target species (it needs to be a duplicated species)");
+
+        foreach (var entry in Behaviour)
+            species.Behaviour[entry.Key] = entry.Value;
+
+        // Genus and epithet aren't copied as they are required constructor parameters
+        species.Colour = Colour;
+        species.Population = Population;
+        species.Generation = Generation;
+        species.PlayerSpecies = PlayerSpecies;
+    }
+
     /// <summary>
     ///   Helper for child classes to implement Clone
     /// </summary>

@@ -19,6 +19,9 @@ public class EarlyMulticellularSpecies : Species
 
     public CellLayout<CellTemplate> Cells { get; set; }
 
+    [JsonProperty]
+    public List<CellType> CellTypes { get; private set; } = new();
+
     /// <summary>
     ///   All organelles in all of the species' placed cells (there can be a lot of duplicates in this list)
     /// </summary>

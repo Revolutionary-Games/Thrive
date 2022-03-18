@@ -64,6 +64,45 @@ public class GameProperties
     }
 
     /// <summary>
+    ///   Starts a new game in the early multicellular stage
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: add some other species as well to the world to make it not as empty as starting a new microbe game
+    ///     this way
+    ///   </para>
+    /// </remarks>
+    public static GameProperties StartNewEarlyMulticellularGame()
+    {
+        var game = new GameProperties();
+
+        var simulationParameters = SimulationParameters.Instance;
+
+        // Modify the player species to actually make sense to be in the multicellular stage
+        var playerSpecies = (MicrobeSpecies)game.GameWorld.PlayerSpecies;
+
+        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"),
+            new Hex(0, -3), 0));
+
+        var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
+
+        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
+            new Hex(-1, 1), 0));
+
+        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
+            new Hex(1, 0), 0));
+
+        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
+            new Hex(0, 1), 0));
+
+        playerSpecies.RepositionToOrigin();
+
+        game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
+
+        return game;
+    }
+
+    /// <summary>
     ///   Returns whether a key has a true bool set to it
     /// </summary>
     public bool IsBoolSet(string key)

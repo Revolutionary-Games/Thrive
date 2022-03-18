@@ -36,6 +36,8 @@ public class PhotoStudio : Viewport
     private string? loadedTaskScene;
     private bool previousSceneWasCorrect;
 
+    private Image? renderedImage;
+
     private Spatial? instancedScene;
 
     private Camera camera = null!;
@@ -66,6 +68,9 @@ public class PhotoStudio : Viewport
 
         camera = GetNode<Camera>(CameraPath);
         renderedObjectHolder = GetNode<Spatial>(RenderedObjectHolderPath);
+
+        // This doesn't seem to do anything, us reading the image seems to cause the rendering, so we disable this
+        RenderTargetUpdateMode = UpdateMode.Disabled;
     }
 
     public override void _Process(float delta)
@@ -80,8 +85,6 @@ public class PhotoStudio : Viewport
                 previousSceneWasCorrect = false;
             }
         }
-
-        Step? lateSetNextStep = null;
 
         switch (currentTaskStep)
         {
@@ -148,8 +151,9 @@ public class PhotoStudio : Viewport
             {
                 camera.Translation = new Vector3(0,
                     currentTask!.Photographable.CalculatePhotographDistance(instancedScene!), 0);
-                RenderTargetUpdateMode = UpdateMode.Once;
-                lateSetNextStep = Step.Save;
+
+                // Doesn't seem to have an effect
+                // RenderTargetUpdateMode = UpdateMode.Once;
                 break;
             }
 
@@ -163,23 +167,26 @@ public class PhotoStudio : Viewport
 
         if (currentTaskStep == Step.Save)
         {
-            var image = GetTexture().GetData();
-            image.Convert(Image.Format.Rgba8);
+            renderedImage!.Convert(Image.Format.Rgba8);
 
             var texture = new ImageTexture();
-            texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Mipmaps);
+            texture.CreateFromImage(renderedImage, (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Mipmaps);
 
             currentTask!.OnFinished(texture);
 
+            // TODO: debugging code, remove
+            renderedImage.SavePng("/home/hhyyrylainen/Projects/Thrive/test.png");
+
             currentTask = null;
             currentTaskStep = Step.NoTask;
-
-            // TODO: debugging code, remove
-            image.SavePng("/home/hhyyrylainen/Projects/Thrive/test.png");
+            renderedImage = null;
         }
-
-        if (lateSetNextStep != null)
-            currentTaskStep = lateSetNextStep.Value;
+        else if (currentTaskStep == Step.Render)
+        {
+            // This seems to have the effect of triggering a render
+            renderedImage = GetTexture().GetData();
+            currentTaskStep = Step.Save;
+        }
     }
 
     /// <summary>

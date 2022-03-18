@@ -574,6 +574,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         GiveReproductionPopulationBonus();
 
+        GameWorld.ChangeSpeciesToMulticellular(Player.Species);
+
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
         var editor = (EarlyMulticellularEditor)scene.Instance();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=2]
@@ -7,10 +7,20 @@
 [ext_resource path="res://src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs" type="Script" id=5]
 [ext_resource path="res://src/early_multicellular_stage/editor/EarlyMulticellularEditorGUI.cs" type="Script" id=6]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/microbe_stage/editor/CellEditorComponent.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn" type="PackedScene" id=11]
 
 [node name="EarlyMulticellularEditor" type="Node"]
 script = ExtResource( 5 )
-PauseMenuPath = NodePath("EarlyMulticellularEditorGUI/PauseMenu")
+PauseMenuPath = NodePath("PauseMenu")
+EditorGUIBaseNodePath = NodePath("EarlyMulticellularEditorGUI")
+EditorTabSelectorPath = NodePath("EarlyMulticellularEditorGUI/MicrobeEditorTabButtons")
+ReportTabPath = NodePath("EarlyMulticellularEditorGUI/Report")
+PatchMapTabPath = NodePath("EarlyMulticellularEditorGUI/PatchMap")
+BodyPlanEditorTabPath = NodePath("EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent")
+CellEditorTabPath = NodePath("EarlyMulticellularEditorGUI/CellEditor")
 
 [node name="EditorWorld" parent="." instance=ExtResource( 7 )]
 
@@ -23,11 +33,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CellBodyPlanEditorComponent" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 11 )]
+visible = false
+CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
+EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
+EditorGridPath = NodePath("../../EditorWorld/Grid")
+CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
+
+[node name="CellEditor" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 9 )]
+visible = false
+CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
+EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
+EditorGridPath = NodePath("../../EditorWorld/Grid")
+CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
+
+[node name="Report" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 10 )]
+
+[node name="PatchMap" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 8 )]
+visible = false
+
 [node name="MicrobeEditorTabButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 3 )]
 IsForMulticellular = true
 
 [node name="EditorCommonBottomLeftButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 4 )]
 
-[node name="PauseMenu" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 2 )]
+[node name="PauseMenu" parent="." instance=ExtResource( 2 )]
 theme = ExtResource( 1 )
 HelpCategory = "MicrobeEditor"
+
+[editable path="EditorWorld"]
