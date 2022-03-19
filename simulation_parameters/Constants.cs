@@ -365,7 +365,7 @@ public static class Constants
     /// <summary>
     ///   Size, in radians, of the gaps between directions the chemoreceptor checks for compounds
     /// </summary>
-    public const double CHEMORECEPTOR_ARC_SIZE = Math.PI / 12.0;
+    public const double CHEMORECEPTOR_ARC_SIZE = Math.PI / 24.0;
 
     /// <summary>
     ///   This should be the max needed hexes (nucleus {10} * 6-way symmetry)
