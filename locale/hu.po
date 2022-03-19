@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-20 15:15+0200\n"
-"PO-Revision-Date: 2022-02-27 23:22+0000\n"
+"POT-Creation-Date: 2022-03-18 17:48+0200\n"
+"PO-Revision-Date: 2022-03-14 21:22+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
@@ -2715,16 +2715,16 @@ msgstr "Elméleti csapat"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "nagyon kicsi mennyiség"
 
-#: ../src/microbe_stage/MicrobeStage.cs:545
+#: ../src/microbe_stage/MicrobeStage.cs:544
 msgid "PLAYER_REPRODUCED"
 msgstr "játékos szaporodott"
 
-#: ../src/microbe_stage/MicrobeStage.cs:634
+#: ../src/microbe_stage/MicrobeStage.cs:633
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Ellenség spawnolása"
 
-#: ../src/microbe_stage/MicrobeStage.cs:698
+#: ../src/microbe_stage/MicrobeStage.cs:653
 msgid "PLAYER_DIED"
 msgstr "A játékos meghalt"
 
@@ -3247,7 +3247,7 @@ msgstr "N/A"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2401
 msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr ""
+msgstr "A faj nevének be kell tartania a kettős nevezéktan rendszerét (Generikus és Specifikus)!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2527
 msgid "ENERGY_IN_PATCH_FOR"
@@ -3259,7 +3259,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2538
 msgid "ENERGY_SOURCES"
-msgstr ""
+msgstr "Energia forrásai:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2544
 msgid "FOOD_SOURCE_ENERGY_INFO"
@@ -3284,36 +3284,32 @@ msgid "MODIFY"
 msgstr "Módosít"
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
-#, fuzzy
 msgid "EXTINCT_SPECIES"
-msgstr "KIHALTÁL"
+msgstr "Kihalt fajok"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
-msgstr ""
+msgstr "Nincs feljegyzett esemény"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
-#, fuzzy
 msgid "COMPOUND_TO_FIND"
-msgstr "Vegyületfelhők"
+msgstr "Megtalálható vegyületek:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
 msgid "SEARCH_RADIUS"
-msgstr ""
+msgstr "Keresési rádiusz:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
 msgid "MINIMUM_AMOUNT_TO_FIND"
-msgstr ""
+msgstr "Minimális detektálandó mennyiség:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
-#, fuzzy
 msgid "LINE_COLOUR"
-msgstr "Szín"
+msgstr "Vonal színe:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
-#, fuzzy
 msgid "MODIFY_ORGANELLE"
-msgstr "Sejtszervecske áthelyezése"
+msgstr "Sejtalkotó szerkesztése"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
@@ -3364,9 +3360,8 @@ msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 #: ../src/modding/ModLoader.cs:394
-#, fuzzy
 msgid "PCK_LOAD_FAILED"
-msgstr "Betöltés befejezve"
+msgstr "pck fájl ({0}) betöltése sikertelen"
 
 #: ../src/modding/ModManager.cs:293
 msgid "INVALID_ICON_PATH"
@@ -3374,7 +3369,7 @@ msgstr ""
 
 #: ../src/modding/ModManager.cs:307
 msgid "INVALID_URL_SCHEME"
-msgstr ""
+msgstr "Érvénytelen URL séma"
 
 #: ../src/modding/ModManager.cs:319
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -3386,20 +3381,19 @@ msgstr "Egy mod sincs kijelölve"
 
 #: ../src/modding/ModManager.cs:885
 msgid "THIS_IS_WORKSHOP_MOD"
-msgstr ""
+msgstr "Ez a mod a Steam Műhelyből lett letöltve"
 
 #: ../src/modding/ModManager.cs:886
 msgid "THIS_IS_LOCAL_MOD"
-msgstr ""
+msgstr "Ez egy lokálisan letöltött mod"
 
 #: ../src/modding/ModManager.cs:940
-#, fuzzy
 msgid "ERROR_CREATING_FOLDER"
-msgstr "Mentési hiba"
+msgstr "Hiba a mod-hoz való mappa létrehozása közben"
 
 #: ../src/modding/ModManager.cs:949
 msgid "ERROR_CREATING_INFO_FILE"
-msgstr ""
+msgstr "Hiba a mod fájllá való átalakítása közben"
 
 #: ../src/modding/ModManager.tscn:121
 msgid "AVAILABLE_MODS"
@@ -3410,17 +3404,14 @@ msgid "REFRESH"
 msgstr "Frissítés"
 
 #: ../src/modding/ModManager.tscn:152
-#, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Mappa megnyitása"
 
 #: ../src/modding/ModManager.tscn:170
-#, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "→"
 
 #: ../src/modding/ModManager.tscn:183
-#, fuzzy
 msgid "LEFT_ARROW"
 msgstr "←"
 
@@ -3469,7 +3460,7 @@ msgstr "A mod URL-jének megnyitása"
 
 #: ../src/modding/ModManager.tscn:505
 msgid "BROWSE_WORKSHOP"
-msgstr "A Workshop böngészése"
+msgstr "A műhely böngészése"
 
 #: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
@@ -3628,15 +3619,15 @@ msgstr "Feltöltés..."
 
 #: ../src/modding/ModUploader.cs:556
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr ""
+msgstr "A tárgy feltöltése a Steam Műhelybe sikerült, de hozzá kell járulnod a műhely [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement] szolgáltatási feltételeinek [/url][/color], mielőtt láthatóvá válik mások számára"
 
 #: ../src/modding/ModUploader.cs:560
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
-msgstr "Tárgy(ak) Steam Workshop-ba való feltöltése sikeres"
+msgstr "Tárgy(ak) Steam Műhelybe való feltöltése sikeres"
 
 #: ../src/modding/ModUploader.cs:620
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
-msgstr "E tárgy feltöltésével beleegyezel a Steam Workshop [color=#3796e1]([url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]) szolgáltatás feltételeihez[/url][/color]"
+msgstr "E tárgy feltöltésével beleegyezel a Steam Műhely [color=#3796e1]([url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]) szolgáltatás feltételeihez[/url][/color]"
 
 #: ../src/modding/ModUploader.cs:645
 msgid "SAVING_DATA_FAILED_DUE_TO"
@@ -3656,7 +3647,7 @@ msgstr "Feltöltendő mod:"
 
 #: ../src/modding/ModUploader.tscn:109
 msgid "UNKNOWN_WORKSHOP_ID"
-msgstr "Mod Workshop ID-je ismeretlen"
+msgstr "Mod műhely ID-je ismeretlen"
 
 #: ../src/modding/ModUploader.tscn:121
 msgid "CREATE_NEW"
@@ -3668,7 +3659,7 @@ msgstr "Írj be egy létező ID-t"
 
 #: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
-msgstr "Írj be egy létező Workshop ID-t"
+msgstr "Írj be egy létező műhely ID-t"
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
@@ -3721,9 +3712,8 @@ msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 msgstr "Tárgy neve:"
 
 #: ../src/modding/ModUploader.tscn:294
-#, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
-msgstr "Tárgy neve:"
+msgstr "Tárgy változtatási naplója"
 
 #: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
@@ -3763,17 +3753,16 @@ msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Auto-evo futtatása sikertelen"
 
 #: ../src/modding/NewModGUI.tscn:35
-#, fuzzy
 msgid "CREATE_NEW_MOD"
-msgstr "Új mikroorganizmus létrehozása"
+msgstr "Új mod létrehozása"
 
 #: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
-msgstr ""
+msgstr "A modolási instrukciók elérhetők"
 
 #: ../src/modding/NewModGUI.tscn:76
 msgid "OUR_WIKI"
-msgstr ""
+msgstr "Wikipédiánk"
 
 #: ../src/modding/NewModGUI.tscn:450
 msgid "CREATE"
@@ -3866,11 +3855,8 @@ msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Felülírod a létező mentést?"
 
 #: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
-#, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr ""
-"Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
-"{0}"
+msgstr "A mentés sikertelen! Hiba történt"
 
 #: ../src/saving/SaveHelper.cs:437
 msgid "SAVING_NOT_POSSIBLE"
