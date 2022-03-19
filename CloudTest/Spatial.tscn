@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://CloudTest/MEsh.tres" type="QuadMesh" id=1]
 [ext_resource path="res://CloudTest/blur.tres" type="Shader" id=2]
 [ext_resource path="res://CloudTest/MyScene.cs" type="Script" id=3]
+[ext_resource path="res://CloudTest/shader.tres" type="Shader" id=4]
 
 [sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("Viewport")
@@ -16,6 +17,12 @@ shader_param/mesh = SubResource( 4 )
 [sub_resource type="QuadMesh" id=3]
 material = SubResource( 2 )
 size = Vector2( 2, 2 )
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 4 )
+shader_param/MAX_STEPS = 1450
+shader_param/MAX_DIST = 7000.0
+shader_param/MIN_HIT_DIST = 0.001
 
 [node name="Spatial" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0552292, 0.516627, 0.0271912 )
@@ -31,7 +38,7 @@ depth = 64.0898
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84591, -3.8147e-06, 40.9005 )
 extra_cull_margin = 16384.0
 mesh = SubResource( 3 )
-material/0 = null
+material/0 = SubResource( 5 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1024, 1024 )
@@ -42,6 +49,7 @@ render_target_v_flip = true
 
 [node name="MeshInstance" type="MeshInstance" parent="Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 73.6819, 1.0524, 28.0918 )
+visible = false
 extra_cull_margin = 16384.0
 mesh = ExtResource( 1 )
 skeleton = NodePath("../..")
@@ -49,6 +57,7 @@ material/0 = null
 
 [node name="Camera" type="Camera" parent="Viewport"]
 transform = Transform( -0.293839, 0.0882203, 0.951775, 0, 0.995732, -0.0922946, -0.955855, -0.0271198, -0.292585, 61.4565, 0.3894, -20.2201 )
+visible = false
 current = true
 fov = 69.8
 near = 0.03
