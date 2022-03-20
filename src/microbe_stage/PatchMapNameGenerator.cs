@@ -20,7 +20,7 @@ public class PatchMapNameGenerator : IRegistryType
     [JsonRequired]
     private List<string> sufixes = null!;
 
-    private string vowels = "aeiou";
+    private string vowels = "aeiouy";
     public string InternalName { get; set; } = null!;
 
     public string GetContinentName()
