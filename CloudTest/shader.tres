@@ -16,7 +16,7 @@ float gauss(float x)
 {
 	float pi = 3.145;
 	float a = 1f/(sigma * sqrt(2f*pi));
-	return a*exp(-pow((x-b),2)/(2f*sigma*sigma));
+	return a*exp(-pow((x-b),2)/(2f*pow(sigma,2)));
 }
 
 float signedDistance(vec3 center, float radius, vec3 point)
@@ -30,7 +30,7 @@ vec4 sdf(vec3 point)
 	float m = signedDistance(circles[2],30,point);
 	float d;
 	float nrCircles = 0f;
-	vec3 center = vec3(0,0,0);
+	vec3 center = circles[2];
 	for (int i = 0;i<3;i++)
 		{
 			d = signedDistance(circles[i],30,point);
@@ -64,10 +64,13 @@ vec3 raymarch(vec3 rayDir,vec3 cameraPos)
 			if (dstToSphere == 0f)
 				{
 					dstToSphere = depth;
-					dstToExit = 2f*dist*dot(normalize(sdfInfo.xyz - pos),rayDir);
-					density = gauss(dstToExit) * dstToExit ;
+					
 				}
-			//float dstInsideSphere = dot() 
+			vec3 vecToCenter = normalize(sdfInfo.xyz - pos);
+			float cosine = dot(vecToCenter,rayDir)/length(vecToCenter)/length(rayDir);
+			dstToExit = max(2f*30f*cosine,0f);
+
+			density += gauss(dstToExit) * dstToExit ;
         }
         depth += dist;
     }
@@ -103,7 +106,7 @@ void fragment()
 	// Alpha calculation
 	float dist = (abs(distToSphere-distToSphereExit));
 	float density = rayInfo.z;
-	float alpha =  density;//1f-exp(-density/1f);
+	float alpha =  1f-exp(-density/1f);
 //	alpha= min (1f,alpha);
 	ALPHA = alpha;
 
