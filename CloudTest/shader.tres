@@ -2,40 +2,46 @@
 
 [resource]
 code = "shader_type spatial;
-uniform int MAX_STEPS = 145000; // march at most 250 times
+uniform int MAX_STEPS = 1450; // march at most 250 times
 uniform float MAX_DIST = 7000; // don't continue if depth if larger than 20
 uniform float MIN_HIT_DIST = 0.00001f; // hit depth threshold
 uniform sampler3D da;
-
+uniform float b;
+uniform float sigma;
 void vertex() {
   POSITION = vec4(VERTEX, 1.0);
 }
 
-//float gauss()
-//{
-//
-//}
+float gauss(float x)
+{
+	float pi = 3.145;
+	float a = 1f/(sigma * sqrt(2f*pi));
+	return a*exp(-pow((x-b),2)/(2f*sigma*sigma));
+}
 
 float signedDistance(vec3 center, float radius, vec3 point)
 {
 	return length(center - point) - radius;
 	
 }
-vec2 sdf(vec3 point)
+vec4 sdf(vec3 point)
 {
 	vec3 circles[3]= vec3[3] (vec3(1,1,0),vec3(13,73,-10),vec3(-10,-10,11));
 	float m = signedDistance(circles[2],30,point);
 	float d;
 	float nrCircles = 0f;
+	vec3 center = vec3(0,0,0);
 	for (int i = 0;i<3;i++)
 		{
 			d = signedDistance(circles[i],30,point);
 			if (d < 0f)
 				nrCircles += 1f;
-			if(abs(d) < abs(m))
+			if(abs(d) < abs(m)){
 				m = d;
+				center = circles[i];
+			}
 		}
-	return vec2(m,nrCircles);
+	return vec4(center,nrCircles);
 }
 vec3 raymarch(vec3 rayDir,vec3 cameraPos)
 {
@@ -43,24 +49,26 @@ vec3 raymarch(vec3 rayDir,vec3 cameraPos)
 	float dstToExit = 0f;
     float depth = 0.0;
 	float density = 0f;
+	float dist;
+	vec3 pos;
 	//Coordonate pentru 2 puncte de intersectie cu raza
     for (int i=0; depth<MAX_DIST && i<MAX_STEPS; ++i)
     {	
-        vec3 pos = cameraPos + rayDir * depth;
-		vec2 sdfInfo = sdf(pos);
-        float dist = abs(sdfInfo.x);
-		float nrCircles = sdfInfo.y;
+        pos = cameraPos + rayDir * depth;
+		vec4 sdfInfo = sdf(pos);
+		float nrCircles = sdfInfo.w;
+		dist = abs(signedDistance(sdfInfo.xyz,30,pos));
+		
         if (dist < MIN_HIT_DIST) {
 			dist += 0.1f;
 			if (dstToSphere == 0f)
-				{dstToSphere = depth;}
-			else
-			{
-				dstToExit = depth;
-				//break;
-			}
+				{
+					dstToSphere = depth;
+					dstToExit = 2f*dist*dot(normalize(sdfInfo.xyz - pos),rayDir);
+					density = gauss(dstToExit) * dstToExit ;
+				}
+			//float dstInsideSphere = dot() 
         }
-		density += dist/40f * nrCircles;
         depth += dist;
     }
     return vec3 (dstToSphere ,dstToExit, density);
@@ -95,11 +103,11 @@ void fragment()
 	// Alpha calculation
 	float dist = (abs(distToSphere-distToSphereExit));
 	float density = rayInfo.z;
-	float alpha = 1f-exp(-density/1f);
+	float alpha =  density;//1f-exp(-density/1f);
 //	alpha= min (1f,alpha);
 	ALPHA = alpha;
 
-	if (rayColor.xyz == vec3 (0f,0f,0f) || linear_depth < abs(distToSphere)  || density >50f )
+	if (rayColor.xyz == vec3 (0f,0f,0f) || linear_depth < abs(distToSphere)  )//|| density >1.4f )
 		ALPHA = 0f;
 		
 

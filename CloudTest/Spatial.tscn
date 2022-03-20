@@ -23,6 +23,8 @@ shader = ExtResource( 4 )
 shader_param/MAX_STEPS = 1450
 shader_param/MAX_DIST = 7000.0
 shader_param/MIN_HIT_DIST = 0.001
+shader_param/b = 0.0
+shader_param/sigma = 1.0
 
 [node name="Spatial" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0552292, 0.516627, 0.0271912 )
