@@ -57,11 +57,11 @@ public class PatchMapNameGenerator : IRegistryType
         // Choose an apropiate suffix considering last letter
         if (vowels.Contains(name[name.Length - 1]))
         {
-            sufixIndex = 2 * random.Next(0, 2);
+            sufixIndex = 2 * random.Next(0, 3);
         }
         else
         {
-            sufixIndex = 1 + 2 * random.Next(0, 2);
+            sufixIndex = 1 + 2 * random.Next(0, 3);
         }
 
         name += sufixes[sufixIndex];
