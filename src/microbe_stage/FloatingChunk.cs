@@ -117,18 +117,21 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     public bool IsBeingEngulfed { get; set; }
 
     [JsonProperty]
-    public bool IsCompletelyEngulfed { get; set; }
+    public bool IsIngested { get; set; }
 
     [JsonProperty]
     public EntityReference<Microbe> HostileEngulfer { get; private set; } = new();
 
+    /// <summary>
+    ///   This is both the digestion and dissolve effect progress value for now.
+    /// </summary>
     [JsonIgnore]
-    public float DissolveEffectValue
+    public float DigestionProgress
     {
         get => dissolveEffectValue;
         set
         {
-            dissolveEffectValue = value;
+            dissolveEffectValue = Mathf.Clamp(value, 0.0f, 1.0f);
             needsDissolveEffectUpdate = true;
         }
     }
@@ -261,7 +264,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         if (delta <= 0)
             return;
 
-        if (IsCompletelyEngulfed)
+        if (IsIngested)
             return;
 
         VentCompounds(delta);
@@ -392,9 +395,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         CollisionLayer = 0;
         CollisionMask = 0;
 
-        DissolveEffectValue += delta * Constants.FLOATING_CHUNKS_DISSOLVE_SPEED;
+        DigestionProgress += delta * Constants.FLOATING_CHUNKS_DISSOLVE_SPEED;
 
-        if (DissolveEffectValue >= 1)
+        if (DigestionProgress >= 1)
         {
             this.DestroyDetachAndQueueFree();
         }
@@ -403,7 +406,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     private void UpdateDissolveEffect()
     {
         if (chunkMesh == null)
-            throw new InvalidOperationException("Chunk without a mesh can't dissolve");
+            return;
 
         var material = (ShaderMaterial)chunkMesh.MaterialOverride;
         material.SetShaderParam("dissolveValue", dissolveEffectValue);

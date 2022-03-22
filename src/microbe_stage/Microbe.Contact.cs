@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Main script on each cell in the game.
@@ -141,7 +142,7 @@ public partial class Microbe
     public bool IsBeingEngulfed { get; set; }
 
     [JsonProperty]
-    public bool IsCompletelyEngulfed { get; set; }
+    public bool IsIngested { get; set; }
 
     [JsonIgnore]
     public EntityReference<Microbe> HostileEngulfer => hostileEngulfer;
@@ -572,7 +573,7 @@ public partial class Microbe
         CollisionLayer = 0;
         CollisionMask = 0;
 
-        // Some pre-death actions are going to be run now
+        // Post-death handling is done in HandleDeath
     }
 
     public void OnDestroyed()
@@ -859,7 +860,7 @@ public partial class Microbe
 
             wasBeingEngulfed = true;
         }
-        else if (wasBeingEngulfed && !IsBeingEngulfed && !IsCompletelyEngulfed)
+        else if (wasBeingEngulfed && !IsBeingEngulfed && !IsIngested)
         {
             // Else If we were but are no longer, being engulfed
             wasBeingEngulfed = false;
@@ -893,7 +894,7 @@ public partial class Microbe
         if (hostile != null)
         {
             // Dead or engulfed things can't engulf us
-            if (hostile.Dead || hostile.IsCompletelyEngulfed)
+            if (hostile.Dead || hostile.IsIngested)
             {
                 HostileEngulfer.Value = null;
                 IsBeingEngulfed = false;
@@ -929,8 +930,8 @@ public partial class Microbe
         // Apply engulf effect to the objects we are engulfing
         foreach (var engulfable in attemptingToEngulf)
         {
-            if (engulfable.IsCompletelyEngulfed)
-                return;
+            if (engulfable.IsIngested)
+                continue;
 
             if (engulfable is RigidBody body)
             {
@@ -962,7 +963,7 @@ public partial class Microbe
 
     /// <summary>
     ///   Handles the death of this microbe. This queues this object
-    ///   for deletion and handles some pre-death actions.
+    ///   for deletion and handles some post-death actions.
     /// </summary>
     private void HandleDeath(float delta)
     {
@@ -983,6 +984,14 @@ public partial class Microbe
             if (IsBeingEngulfed)
             {
                 cellBurstEffectParticles.Hide();
+            }
+
+            // This loop is placed here (which isn't related to the particles but for convenience)
+            // so this loop is run only once
+            foreach (var engulfed in engulfedObjects.ToList())
+            {
+                if (engulfed.Engulfable.Value != null)
+                    EjectEngulfable(engulfed.Engulfable.Value);
             }
         }
 
@@ -1168,7 +1177,7 @@ public partial class Microbe
     /// </summary>
     private void IngestEngulfable(IEngulfable target)
     {
-        if (target.IsCompletelyEngulfed)
+        if (target.IsIngested)
             return;
 
         var body = target as RigidBody;
@@ -1178,7 +1187,7 @@ public partial class Microbe
             return;
         }
 
-        target.IsCompletelyEngulfed = true;
+        target.IsIngested = true;
         target.IsBeingEngulfed = false;
 
         engulfedSize += target.Size;
@@ -1194,12 +1203,53 @@ public partial class Microbe
         body.GlobalTransform = temp;
 
         var tween = new Tween();
+        tween.Name = "EngulfmentTween";
         body.AddChild(tween);
-        tween.Connect("tween_all_completed", this, nameof(OnIngestAnimationFinished),
-            new Godot.Collections.Array { body });
-
+        tween.Connect("tween_all_completed", this, nameof(OnIngestAnimationFinished), new Array { body });
         tween.InterpolateProperty(body, "scale", null, body.Scale / 2, 2.0f);
+        var finalPosition = new Vector3(
+            random.Next(0.0f, body.Translation.x), body.Translation.y, random.Next(0.0f, body.Translation.z));
+        tween.InterpolateProperty(body, "translation", null, finalPosition, 2.0f);
         tween.Start();
+    }
+
+    /// <summary>
+    ///   Ejects an ingested engulfable from this microbe.
+    /// </summary>
+    private void EjectEngulfable(IEngulfable target)
+    {
+        if (!target.IsIngested)
+            return;
+
+        var engulfedObject = engulfedObjects.Find(e => e.Engulfable == target);
+        if (engulfedObject == null)
+            return;
+
+        engulfedObjects.Remove(engulfedObject);
+
+        var body = target as RigidBody;
+        if (body == null)
+        {
+            // Engulfable must be of rigidbody type to be ejected
+            return;
+        }
+
+        target.IsIngested = false;
+
+        engulfedSize -= target.Size;
+
+        body.Mode = ModeEnum.Rigid;
+
+        // Set to default microbe collision layer and mask values
+        body.CollisionLayer = 3;
+        body.CollisionMask = 3;
+
+        // Reparent to world node
+        var temp = body.GlobalTransform;
+        body.ReParent(GetParent());
+        body.GlobalTransform = temp;
+
+        body.Scale = Vector3.One;
     }
 
     private bool CanBindToMicrobe(IEngulfable other)
@@ -1279,7 +1329,9 @@ public partial class Microbe
         if (State != MicrobeState.Engulf)
             return;
 
-        foreach (var engulfable in touchedEngulfables.Concat(otherEngulfablesInEngulfRange))
+        // In the case that the microbe first comes into engulf range, we don't want to start engulfing yet
+        // foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
+        foreach (var engulfable in touchedEngulfables)
         {
             if (!attemptingToEngulf.Contains(engulfable) && CanEngulf(engulfable))
             {
@@ -1336,17 +1388,25 @@ public partial class Microbe
         attemptingToEngulf.Remove(engulfable);
     }
 
+    /// <summary>
+    ///   Holds cached informations in addition to the engulfed object
+    /// </summary>
     private class EngulfedObject
     {
         public EngulfedObject(IEngulfable engulfable, Dictionary<Compound, float> cachedEngulfableCompounds)
         {
-            Engulfable = engulfable;
+            Engulfable = new EntityReference<IEngulfable>(engulfable);
             CachedEngulfableCompounds = new Dictionary<Compound, float>(cachedEngulfableCompounds);
-            TotalInitialEngulfableCompounds = CachedEngulfableCompounds.Sum(c => c.Value);
+            InitialTotalEngulfableCompounds = CachedEngulfableCompounds.Sum(c => c.Value);
         }
 
-        public IEngulfable Engulfable { get; }
-        public float TotalInitialEngulfableCompounds { get; }
+        /// <summary>
+        ///   The object that has been engulfed.
+        /// </summary>
+        public EntityReference<IEngulfable> Engulfable { get; }
+
+        public float InitialTotalEngulfableCompounds { get; }
+
         public Dictionary<Compound, float> CachedEngulfableCompounds { get; }
     }
 }

@@ -110,12 +110,12 @@ public partial class Microbe
     public float TotalAvailableCompoundsOnEngulfed { get; set; }
 
     [JsonIgnore]
-    public float DissolveEffectValue
+    public float DigestionProgress
     {
         get => dissolveEffectValue;
         set
         {
-            dissolveEffectValue = value;
+            dissolveEffectValue = Mathf.Clamp(value, 0.0f, 1.0f);
             UpdateDissolveEffect();
         }
     }
@@ -475,7 +475,7 @@ public partial class Microbe
     {
         var result = new Dictionary<Compound, float>();
 
-        // TODO: Remove these constants once digestion organelles were added?
+        // TODO: Remove some of the constants once digestion organelles were added?
 
         foreach (var compound in Compounds)
         {
@@ -994,6 +994,8 @@ public partial class Microbe
 
     private void HandleDigestion(float delta)
     {
+        var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+
         for (int i = engulfedObjects.Count - 1; i >= 0; i--)
         {
             var engulfed = engulfedObjects[i];
@@ -1012,18 +1014,46 @@ public partial class Microbe
 
                 var added = Compounds.AddCompound(compound.Key, taken);
                 SpawnEjectedCompound(compound.Key, taken - added);
+
+                if (compound.Key == oxytoxy)
+                    Damage(added * Constants.ENGULF_TOXIC_COMPOUND_ABSORB_DAMAGE_MULTIPLIER, "oxytoxy");
             }
 
+            var microbe = engulfed.Engulfable.Value;
+            if (microbe == null)
+                continue;
+
             var totalAmount = engulfed.CachedEngulfableCompounds.Sum(compound => compound.Value);
-            engulfed.Engulfable.DissolveEffectValue = 1 - (totalAmount / engulfed.TotalInitialEngulfableCompounds);
+            microbe.DigestionProgress = 1 - (totalAmount / engulfed.InitialTotalEngulfableCompounds);
+            GD.Print(microbe.DigestionProgress);
 
-            if (totalAmount <= 0 || engulfed.Engulfable.DissolveEffectValue <= 0)
+            if (totalAmount <= 0 || microbe.DigestionProgress >= 1)
             {
-                engulfedSize -= engulfed.Engulfable.Size;
+                engulfedSize -= microbe.Size;
                 engulfedObjects.RemoveAt(i);
+                microbe.DestroyDetachAndQueueFree();
+            }
 
-                if (engulfed.Engulfable is Node node)
-                    node.DetachAndQueueFree();
+            // Eject the current engulfed object if this cell loses some of its size and its ingestion capacity
+            // is overloaded
+            if (!CanEngulf(microbe))
+                EjectEngulfable(microbe);
+        }
+
+        // Handle ejected cell that has previously been ingested
+        if (!IsIngested)
+        {
+            // Cell is too damaged from digestion, can't live in open environment
+            if (DigestionProgress >= 0.3f)
+            {
+                // TODO: Placeholder damage source
+                Damage(MaxHitpoints * 0.04f, "atpDamage");
+            }
+            // Cell is not too damaged, can heal itself in open environment and continue living
+            else if (DigestionProgress > 0 && DigestionProgress < 0.3f)
+            {
+                DigestionProgress -= delta * Constants.ENGULF_COMPUND_ABSORBING_PER_SECOND;
+                GD.Print(DigestionProgress);
             }
         }
     }
@@ -1036,7 +1066,7 @@ public partial class Microbe
         {
             organelle.DissolveEffectValue = dissolveEffectValue;
 
-            if (IsForPreviewOnly || IsCompletelyEngulfed)
+            if (IsForPreviewOnly || IsIngested)
                 organelle.Update(0);
         }
     }

@@ -421,11 +421,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         // Disable membrane wigglyness if this cell got engulfed
-        if (IsCompletelyEngulfed && Membrane.WigglyNess > 0)
+        if (IsIngested && Membrane.WigglyNess > 0)
             Membrane.WigglyNess = 0;
 
         // The code below starting from here is not needed for a display-only and engulfed cell
-        if (IsForPreviewOnly || IsCompletelyEngulfed)
+        if (IsForPreviewOnly || IsIngested)
             return;
 
         UpdateEngulfableAreaShape();
@@ -517,7 +517,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         linearAcceleration = (LinearVelocity - lastLinearVelocity) / delta;
 
         // Movement
-        if (ColonyParent == null && (!IsForPreviewOnly || !IsCompletelyEngulfed))
+        if (ColonyParent == null && (!IsForPreviewOnly || !IsIngested))
             HandleMovement(delta);
 
         lastLinearVelocity = LinearVelocity;
@@ -543,7 +543,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (IsPlayerMicrobe)
             throw new InvalidOperationException("AI can't run on the player microbe");
 
-        if (Dead || IsForPreviewOnly || IsCompletelyEngulfed)
+        if (Dead || IsForPreviewOnly || IsIngested)
             return;
 
         try

@@ -32,7 +32,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
     private float wigglyNess = 1.0f;
     private float sizeWigglyNessDampeningFactor = 0.22f;
     private float movementWigglyNess = 1.0f;
-    private float sizeMovementWigglyNessDampeningFactor = 0.22f;
+    private float sizeMovementWigglyNessDampeningFactor = 0.32f;
     private Color tint = Colors.White;
     private float dissolveEffectValue;
 
