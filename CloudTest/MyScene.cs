@@ -35,7 +35,7 @@ public class MyScene : Spatial
 		}
 
 	}
-	// Generate the cloud by adding values to its density cube
+	// Generate the cloud by adding values to its density cube according to a gaussian function
 	public void GenerateCloud()
 	{
 		cloud = new float[(int)cloudWidth,(int)cloudHeight,(int)cloudDepth];
@@ -51,13 +51,13 @@ public class MyScene : Spatial
 						Vector3 position = new Vector3(x,y,z);
 						float distanceToEdge =signedDistance(position, shapeCenter, shapeRadius);
 						distanceToEdge = Math.Abs(distanceToEdge);
-						cloud[x,y,z] += GaussianDensity(distanceToEdge);
+						cloud[x,y,z] += GaussianDensity(distanceToEdge) * distanceToEdge * densityMultiplier;
 					}
 		}
 	}
-	public float signedDistance(Vector3 position, Vector3 center, int radius)
+	public float signedDistance(Vector3 point, Vector3 center, int radius)
 	{
-		return (position - center).Length() - radius;
+		return (center - point).Length() - radius;
 	}
 	public float GaussianDensity(float x)
 	{
@@ -65,29 +65,11 @@ public class MyScene : Spatial
 		var result = a * Math.Exp(-Math.Pow(x - b, 2)/(2 * Math.Pow(sigma,2)));
 		return (float)result;
 	}
-	public void GetNodes(Node nodi)
-	{
-		//GD.Print(nodi.Name);
-		var nodes = nodi.GetChildren();
-		if (nodes != null)
-		foreach (Node nod in nodes)
-		{
-			if (nod is Viewport spat){
-				GD.Print("\nViewport:"+spat.Name);
-				if (spat.GetCamera() != null)
-					GD.Print(spat.GetCamera().GetPath()+" Camera:"+spat.GetCamera().GlobalTransform);
-			}
-			else
-				GetNodes(nod);
-		}
-	}
 	public override void _Ready()
 	{
 		if (Engine.EditorHint)
 		{
 
-			GetNodes(GetNode("/root"));
-			GD.Print("GetTree().Root.GetCamera()");
 		}
 	}
 
