@@ -1,14 +1,70 @@
 using Godot;
 using System;
-
+using System.Linq;
+using System.Collections.Generic;
+using Vector3 = Godot.Vector3;
 [Tool]
+
 public class MyScene : Spatial
 {
-	// Declare member variables here. Examples:
-	// private int a = 2;
-	// private string b = "text";
+	public Vector3 cloudPosition;
+	public float cloudWidth = 100;
+	public float cloudHeight = 100;
+	public float cloudDepth = 100;
+	public float[ , , ] cloud;
+	public float sigma;
+	public float b;
+	public float densityMultiplier = 2;
+	// cloud sub-shpaes positions in cloud coordinates
+	public List<Vector3> shapeCenters = new List<Vector3>();
+	public List<int> shapeSizes = new List<int>(); 
+	public int subShapeNumber = 30;
+	public int subShapeMaxRadius = 30;
+	public int subShapeMinRadius = 5;
+	public void GenerateSubShapePositions()
+	{
+		var random = new Random();
+		for (int i = 0; i<subShapeNumber; i++)
+		{
+			var size = random.Next(subShapeMinRadius,subShapeMaxRadius);
+			var x = random.Next(-cloudWidth/2,cloudWidth/2);
+			var y = random.Next(-cloudHeight/2,cloudHeight/2);
+			var z = random.Next(-cloudDepth/2,cloudDepth/2);
+			shapeSizes.Add(size);
+			shapeCenters.Add(new Vector3(x,y,z));
+		}
 
-	// Called when the node enters the scene tree for the first time.
+	}
+	// Generate the cloud by adding values to its density cube
+	public void GenerateCloud()
+	{
+		cloud = new float[(int)cloudWidth,(int)cloudHeight,(int)cloudDepth];
+		for (int i = 0; i<subShapeNumber; i++)
+		{
+			var shapeRadius = shapeSizes[i];
+			var shapeCenter = shapeCenters[i];
+
+			for (int x = (int)shapeCenter.x - shapeRadius; x < (int)shapeCenter.x + shapeRadius; x++)
+				for (int y = (int)shapeCenter.y - shapeRadius; y < (int)shapeCenter.x + shapeRadius; y++)
+					for (int z = (int)shapeCenter.z - shapeRadius; z < (int)shapeCenter.z + shapeRadius; z++)
+					{
+						Vector3 position = new Vector3(x,y,z);
+						float distanceToEdge =signedDistance(position, shapeCenter, shapeRadius);
+						distanceToEdge = Math.Abs(distanceToEdge);
+						cloud[x,y,z] += GaussianDensity(distanceToEdge);
+					}
+		}
+	}
+	public float signedDistance(Vector3 position, Vector3 center, int radius)
+	{
+		return (position - center).Length() - radius;
+	}
+	public float GaussianDensity(float x)
+	{
+		var a = 1/(sigma * Math.Sqrt(2*Math.PI));
+		var result = a * Math.Exp(-Math.Pow(x - b, 2)/(2 * Math.Pow(sigma,2)));
+		return (float)result;
+	}
 	public void GetNodes(Node nodi)
 	{
 		//GD.Print(nodi.Name);
@@ -29,14 +85,7 @@ public class MyScene : Spatial
 	{
 		if (Engine.EditorHint)
 		{
-			// var nodes = GetNode("/root").GetChildren();
-			// foreach (Node nod in nodes)
-			// {
-			// 	if (nod is Spatial spat)
-			// 		GD.Print(spat.Name);
-			// 	else
-			// 		GD.Print(nod.Name);
-			// }
+
 			GetNodes(GetNode("/root"));
 			GD.Print("GetTree().Root.GetCamera()");
 		}
@@ -47,12 +96,7 @@ public class MyScene : Spatial
   {
 	  if (Engine.EditorHint)
 		{
-			Spatial camera =  GetNode<Spatial>("Viewport/Camera");
-			Camera c1= GetNode<Camera>("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6539/@@6346/@@6347/@@6348/@@6366/@@6349/@@6350/@@6352");
-			Camera c2= GetNode<Camera>("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6539/@@6346/@@6347/@@6348/@@6384/@@6367/@@6368/@@6370") ;
-			Camera c3= GetNode<Camera>("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6539/@@6346/@@6347/@@6348/@@6402/@@6385/@@6386/@@6388") ;
-			Camera c4= GetNode<Camera>("/root/EditorNode/@@592/@@593/@@601/@@603/@@607/@@611/@@612/@@613/@@629/@@630/@@639/@@640/@@6539/@@6346/@@6347/@@6348/@@6420/@@6403/@@6404/@@6406") ;
-			camera.GlobalTransform = c1.GlobalTransform;
+
 		}
   }
 }

@@ -2,12 +2,13 @@
 
 [resource]
 code = "shader_type spatial;
-uniform int MAX_STEPS = 1450; // march at most 250 times
-uniform float MAX_DIST = 7000; // don't continue if depth if larger than 20
-uniform float MIN_HIT_DIST = 0.00001f; // hit depth threshold
+uniform int MAX_STEPS = 1450; 
+uniform float MAX_DIST = 7000;
+uniform float MIN_HIT_DIST = 0.001f; // hit depth threshold
 uniform sampler3D da;
 uniform float b;
 uniform float sigma;
+uniform float densityMult= 2f;
 void vertex() {
   POSITION = vec4(VERTEX, 1.0);
 }
@@ -50,31 +51,38 @@ vec3 raymarch(vec3 rayDir,vec3 cameraPos)
     float depth = 0.0;
 	float density = 0f;
 	float dist;
+	float totalDist =0f;
 	vec3 pos;
 	//Coordonate pentru 2 puncte de intersectie cu raza
     for (int i=0; depth<MAX_DIST && i<MAX_STEPS; ++i)
     {	
         pos = cameraPos + rayDir * depth;
+		vec3 npos = cameraPos + rayDir * (depth +0.01f);
 		vec4 sdfInfo = sdf(pos);
 		float nrCircles = sdfInfo.w;
 		dist = abs(signedDistance(sdfInfo.xyz,30,pos));
-		
-        if (dist < MIN_HIT_DIST) {
+		float ndist = signedDistance(sdfInfo.xyz,30,npos);
+        if (dist < MIN_HIT_DIST ) {
 			dist += 0.1f;
-			if (dstToSphere == 0f)
-				{
-					dstToSphere = depth;
-					
+			if (ndist < 0f)
+			{
+				if (dstToSphere == 0f)
+				dstToSphere = depth;
+				vec3 vecToCenter = normalize(sdfInfo.xyz - pos);
+				float cosine = dot(vecToCenter,rayDir)/length(vecToCenter)/length(rayDir);
+				dstToExit = (2f*30f*cosine);
+				vec3 dest;
+				for( float j =1f;j<5f;j++){
+					dest = cameraPos + rayDir * (depth + dstToExit/4f*j);
+					float newDist = abs(signedDistance(sdfInfo.xyz,30f,dest));
+					density += gauss(newDist) *newDist* densityMult;
 				}
-			vec3 vecToCenter = normalize(sdfInfo.xyz - pos);
-			float cosine = dot(vecToCenter,rayDir)/length(vecToCenter)/length(rayDir);
-			dstToExit = max(2f*30f*cosine,0f);
-
-			density += gauss(dstToExit) * dstToExit ;
+				
+			}
         }
         depth += dist;
     }
-    return vec3 (dstToSphere ,dstToExit, density);
+    return vec3 (dstToSphere ,abs(totalDist), density);
 }
 
 void fragment()
@@ -110,7 +118,7 @@ void fragment()
 //	alpha= min (1f,alpha);
 	ALPHA = alpha;
 
-	if (rayColor.xyz == vec3 (0f,0f,0f) || linear_depth < abs(distToSphere)  )//|| density >1.4f )
+	if (rayColor.xyz == vec3 (0f,0f,0f) || linear_depth < abs(distToSphere) )//|| density > 1.2f )
 		ALPHA = 0f;
 		
 

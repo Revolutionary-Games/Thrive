@@ -23,21 +23,22 @@ shader = ExtResource( 4 )
 shader_param/MAX_STEPS = 1450
 shader_param/MAX_DIST = 7000.0
 shader_param/MIN_HIT_DIST = 0.001
-shader_param/b = 60.0
-shader_param/sigma = 10.0
+shader_param/b = 50.0
+shader_param/sigma = 21.0
+shader_param/densityMult = 6.0
 
 [node name="Spatial" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0552292, 0.516627, 0.0271912 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7845, 6.44516, -14.444 )
 script = ExtResource( 3 )
 
 [node name="CSGBox" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6262, 18.7517, -47.3302 )
-width = 11.5113
-height = 27.4316
-depth = 64.0898
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77327, -3.3021, 1.82343 )
+width = 204.718
+height = 202.955
+depth = 203.572
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84591, -3.8147e-06, 40.9005 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4182, 1.461, 88.2662 )
 extra_cull_margin = 16384.0
 mesh = SubResource( 3 )
 material/0 = SubResource( 5 )
