@@ -1138,6 +1138,7 @@ public partial class Microbe
 
     private void OnBodyEnteredEngulfArea(Node body)
     {
+        // ReSharper disable once MergeCastWithTypeCheck
         if (!(body is IEngulfable engulfable) || engulfable == this)
             return;
 

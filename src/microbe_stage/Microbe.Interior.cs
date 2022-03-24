@@ -597,7 +597,7 @@ public partial class Microbe
     {
 #pragma warning restore CA1801
 
-        // Dead or engulfed cells can't reproduce
+        // Dead cells can't reproduce
         if (Dead)
             return;
 
@@ -1042,15 +1042,15 @@ public partial class Microbe
         // Handle ejected cell that has previously been ingested
         if (!IsIngested)
         {
-            // Cell is too damaged from digestion, can't live in open environment
             if (DigestionProgress >= 0.3f)
             {
+                // Cell is too damaged from digestion, can't live in open environment
                 // TODO: Placeholder damage source
                 Damage(MaxHitpoints * 0.04f, "atpDamage");
             }
-            // Cell is not too damaged, can heal itself in open environment and continue living
             else if (DigestionProgress > 0 && DigestionProgress < 0.3f)
             {
+                // Cell is not too damaged, can heal itself in open environment and continue living
                 DigestionProgress -= delta * Constants.ENGULF_COMPUND_ABSORBING_PER_SECOND;
             }
         }

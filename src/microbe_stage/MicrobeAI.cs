@@ -127,10 +127,10 @@ public class MicrobeAI
         // If there are no threats, look for a chunk to eat
         if (!microbe.Species.MembraneType.CellWall)
         {
-            Vector3? targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random)?.Translation;
-            if (targetChunk.HasValue)
+            var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
+            if (targetChunk != null && !targetChunk.IsIngested)
             {
-                PursueAndConsumeChunks(targetChunk.Value, random);
+                PursueAndConsumeChunks(targetChunk.Translation, random);
                 return;
             }
         }
@@ -140,7 +140,7 @@ public class MicrobeAI
         if (possiblePrey != null)
         {
             bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
-                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.Size;
+                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.Size && !possiblePrey.IsIngested;
             Vector3? prey = possiblePrey.GlobalTransform.origin;
 
             EngagePrey(prey.Value, random, engulfPrey);

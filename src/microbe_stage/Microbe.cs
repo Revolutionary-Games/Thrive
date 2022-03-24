@@ -424,7 +424,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (IsIngested && Membrane.WigglyNess > 0)
             Membrane.WigglyNess = 0;
 
-        // The code below starting from here is not needed for a display-only and engulfed cell
+        // The code below starting from here is not needed for a display-only or engulfed cell
         if (IsForPreviewOnly || IsIngested)
             return;
 
