@@ -48,6 +48,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath CheckTheHelpMenuPath = null!;
 
+    [Export]
+    public NodePath EngulfmentFullCapacityPath = null!;
+
     private CustomDialog microbeWelcomeMessage = null!;
     private Control microbeMovementKeyPrompts = null!;
     private Control microbeMovementKeyForward = null!;
@@ -61,6 +64,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomDialog editorButtonTutorial = null!;
     private CustomDialog unbindTutorial = null!;
     private CustomDialog checkTheHelpMenu = null!;
+    private CustomDialog engulfmentFullCapacity = null!;
 
     [Signal]
     public delegate void OnHelpMenuOpenRequested();
@@ -269,6 +273,18 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool EngulfmentFullCapacityVisible
+    {
+        get => engulfmentFullCapacity.Visible;
+        set
+        {
+            if (value == engulfmentFullCapacity.Visible)
+                return;
+
+            engulfmentFullCapacity.Visible = value;
+        }
+    }
+
     public override void _Ready()
     {
         microbeWelcomeMessage = GetNode<CustomDialog>(MicrobeWelcomeMessagePath);
@@ -284,6 +300,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         editorButtonTutorial = GetNode<CustomDialog>(EditorButtonTutorialPath);
         unbindTutorial = GetNode<CustomDialog>(UnbindTutorialPath);
         checkTheHelpMenu = GetNode<CustomDialog>(CheckTheHelpMenuPath);
+        engulfmentFullCapacity = GetNode<CustomDialog>(EngulfmentFullCapacityPath);
     }
 
     public override void _Process(float delta)

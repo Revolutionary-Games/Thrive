@@ -212,6 +212,9 @@ public partial class Microbe
     [JsonProperty]
     public Action<Microbe>? OnUnbound { get; set; }
 
+    [JsonProperty]
+    public Action<Microbe>? OnFullEngulfmentCapacity { get; set; }
+
     /// <summary>
     ///   Updates the intensity of wigglyness of this cell's membrane based on membrane type, taking
     ///   membrane rigidity into account.
@@ -930,6 +933,14 @@ public partial class Microbe
         // Apply engulf effect to the objects we are engulfing
         foreach (var engulfable in attemptingToEngulf)
         {
+            // Ignore non-engulfable objects
+            if (!CanEngulf(engulfable))
+            {
+                StopEngulfingOnTarget(engulfable);
+                engulfable.IsBeingEngulfed = false;
+                continue;
+            }
+
             if (engulfable.IsIngested)
                 continue;
 
@@ -1334,6 +1345,10 @@ public partial class Microbe
             {
                 StartEngulfingTarget(engulfable);
                 attemptingToEngulf.Add(engulfable);
+            }
+            else if (engulfedSize >= Size || engulfedSize + engulfable.Size >= Size)
+            {
+                OnFullEngulfmentCapacity?.Invoke(this);
             }
         }
     }

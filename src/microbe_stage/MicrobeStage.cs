@@ -364,6 +364,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         Player.OnCompoundChemoreceptionInfo = HandlePlayerChemoreceptionDetection;
 
+        Player.OnFullEngulfmentCapacity = OnPlayerEngulfmentLimitReached;
+
         Camera.ObjectToFollow = Player;
 
         if (spawnedPlayer)
@@ -683,6 +685,12 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     private void OnPlayerUnbound(Microbe player)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerEngulfmentLimitReached(Microbe player)
+    {
+        TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this);
     }
 
     /// <summary>

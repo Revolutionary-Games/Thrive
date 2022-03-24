@@ -92,4 +92,9 @@ public enum TutorialEventType
     ///   Player opened the auto-evo prediction details
     /// </summary>
     MicrobeEditorAutoEvoPredictionOpened,
+
+    /// <summary>
+    ///   Player cell has reached full engulfment capacity
+    /// </summary>
+    MicrobePlayerEngulfmentFull,
 }
