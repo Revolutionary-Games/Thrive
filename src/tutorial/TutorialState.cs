@@ -59,7 +59,7 @@ public class TutorialState : ITutorialInput
     public CheckTheHelpMenu CheckTheHelpMenu { get; private set; } = new();
 
     [JsonProperty]
-    public EngulfmentFullCapacity EngulfmentFullCapacity { get; private set; } = new();
+    public MicrobeEngulfmentFullCapacity EngulfmentFullCapacity { get; private set; } = new();
 
     [JsonProperty]
     public EditorWelcome EditorWelcome { get; private set; } = new();

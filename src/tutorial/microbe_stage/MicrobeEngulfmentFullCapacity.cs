@@ -1,11 +1,10 @@
 namespace Tutorial
 {
     using System;
-    using Godot;
 
-    public class EngulfmentFullCapacity : TutorialPhase
+    public class MicrobeEngulfmentFullCapacity : TutorialPhase
     {
-        public override string ClosedByName { get; } = "EngulfmentFullCapacity";
+        public override string ClosedByName { get; } = "MicrobeEngulfmentFullCapacity";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
