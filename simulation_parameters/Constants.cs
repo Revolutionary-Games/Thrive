@@ -113,6 +113,12 @@ public static class Constants
     /// </summary>
     public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
 
+    /// <summary>
+    ///   This is how often the AI microbes look for emitted signaling agent signals from members of their species.
+    ///   This is set pretty high to reduce the performance impact.
+    /// </summary>
+    public const float MICROBE_AI_SIGNAL_REACT_INTERVAL = 1.2f;
+
     public const int MICROBE_AI_OBJECTS_PER_TASK = 15;
 
     public const int INITIAL_SPECIES_POPULATION = 100;
@@ -364,6 +370,11 @@ public static class Constants
     public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
 
     /// <summary>
+    ///   Size, in radians, of the gaps between directions the chemoreceptor checks for compounds
+    /// </summary>
+    public const double CHEMORECEPTOR_ARC_SIZE = Math.PI / 24.0;
+
+    /// <summary>
     ///   This should be the max needed hexes (nucleus {10} * 6-way symmetry)
     /// </summary>
     public const int MAX_HOVER_HEXES = 60;
@@ -419,6 +430,9 @@ public static class Constants
     // Cooldown for AI for toggling engulfing
     public const float AI_ENGULF_INTERVAL = 300;
 
+    // Average number of calls to think method before doing expensive cloud-finding calculations
+    public const int AI_STEPS_PER_SMELL = 20;
+
     // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
     public const float AI_COMPOUND_BIAS = -10.0f;
 
@@ -430,6 +444,9 @@ public static class Constants
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_FOCUSED_MOVEMENT = 1.0f;
     public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
+
+    public const float AI_FOLLOW_DISTANCE_SQUARED = 60 * 60;
+    public const float AI_FLEE_DISTANCE_SQUARED = 85 * 85;
 
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 40.0f;

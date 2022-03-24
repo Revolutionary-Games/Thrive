@@ -54,7 +54,7 @@ public class CustomRichTextLabel : RichTextLabel
             extendedBbcode = value;
 
             // Need to delay this so we can get the correct input controls from settings.
-            Invoke.Instance.Queue(ParseCustomTags);
+            Invoke.Instance.QueueForObject(ParseCustomTags, this);
         }
     }
 
@@ -84,7 +84,7 @@ public class CustomRichTextLabel : RichTextLabel
         // See https://github.com/Revolutionary-Games/Thrive/issues/2236
         // Queue to run on the next frame due to null RID error with some bbcode image display if otherwise
 #pragma warning disable CA2245 // Necessary for workaround
-        Invoke.Instance.Queue(() => BbcodeText = BbcodeText);
+        Invoke.Instance.QueueForObject(() => BbcodeText = BbcodeText, this);
 #pragma warning restore CA2245
     }
 

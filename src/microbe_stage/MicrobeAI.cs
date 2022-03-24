@@ -36,6 +36,9 @@ public class MicrobeAI
     [JsonIgnore]
     private EntityReference<Microbe> focusedPrey = new();
 
+    [JsonIgnore]
+    private Vector3? lastSmelledCompoundPosition;
+
     [JsonProperty]
     private float pursuitThreshold;
 
@@ -53,6 +56,15 @@ public class MicrobeAI
     [JsonIgnore]
     private Dictionary<Compound, float> compoundsSearchWeights;
 
+    [JsonIgnore]
+    private float timeSinceSignalSniffing;
+
+    [JsonIgnore]
+    private EntityReference<Microbe> lastFoundSignalEmitter = new();
+
+    [JsonIgnore]
+    private MicrobeSignalCommand receivedCommand = MicrobeSignalCommand.None;
+
     public MicrobeAI(Microbe microbe)
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
@@ -67,21 +79,42 @@ public class MicrobeAI
         compoundsSearchWeights = new Dictionary<Compound, float>();
     }
 
-    private float SpeciesAggression => microbe.Species.Behaviour.Aggression;
-    private float SpeciesFear => microbe.Species.Behaviour.Fear;
-    private float SpeciesActivity => microbe.Species.Behaviour.Activity;
+    private float SpeciesAggression => microbe.Species.Behaviour.Aggression *
+        (receivedCommand == MicrobeSignalCommand.BecomeAggressive ? 1.5f : 1.0f);
+
+    private float SpeciesFear => microbe.Species.Behaviour.Fear *
+        (receivedCommand == MicrobeSignalCommand.BecomeAggressive ? 0.75f : 1.0f);
+
+    private float SpeciesActivity => microbe.Species.Behaviour.Activity *
+        (receivedCommand == MicrobeSignalCommand.BecomeAggressive ? 1.25f : 1.0f);
+
     private float SpeciesFocus => microbe.Species.Behaviour.Focus;
     private float SpeciesOpportunism => microbe.Species.Behaviour.Opportunism;
 
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
-        _ = delta;
-
         // Disable most AI in a colony
         if (microbe.ColonyParent != null)
             return;
 
-        ChooseActions(random, data);
+        timeSinceSignalSniffing += delta;
+
+        if (timeSinceSignalSniffing > Constants.MICROBE_AI_SIGNAL_REACT_INTERVAL)
+        {
+            timeSinceSignalSniffing = 0;
+
+            if (microbe.HasSignalingAgent)
+                DetectSignalingAgents(data.AllMicrobes.Where(m => m.Species == microbe.Species));
+        }
+
+        var signaler = lastFoundSignalEmitter.Value;
+
+        if (signaler != null)
+        {
+            receivedCommand = signaler.SignalCommand;
+        }
+
+        ChooseActions(random, data, signaler);
 
         // Store the absorbed compounds for run and rumble
         previouslyAbsorbedCompounds.Clear();
@@ -107,7 +140,7 @@ public class MicrobeAI
         microbe.TotalAbsorbedCompounds.Clear();
     }
 
-    private void ChooseActions(Random random, MicrobeAICommonData data)
+    private void ChooseActions(Random random, MicrobeAICommonData data, Microbe? signaler)
     {
         if (microbe.IsBeingEngulfed)
         {
@@ -122,6 +155,43 @@ public class MicrobeAI
         {
             FleeFromPredators(random, predator.Value);
             return;
+        }
+
+        // Follow received commands if we have them
+        // TODO: tweak the balance between following commands and doing normal behaviours
+        // TODO: and also probably we want to add some randomness to the positions and speeds based on distance
+        switch (receivedCommand)
+        {
+            case MicrobeSignalCommand.MoveToMe:
+                if (signaler != null)
+                {
+                    MoveToLocation(signaler.Translation);
+                    return;
+                }
+
+                break;
+            case MicrobeSignalCommand.FollowMe:
+                if (signaler != null && DistanceFromMe(signaler.Translation) > Constants.AI_FOLLOW_DISTANCE_SQUARED)
+                {
+                    MoveToLocation(signaler.Translation);
+                    return;
+                }
+
+                break;
+            case MicrobeSignalCommand.FleeFromMe:
+                if (signaler != null && DistanceFromMe(signaler.Translation) < Constants.AI_FLEE_DISTANCE_SQUARED)
+                {
+                    microbe.State = Microbe.MicrobeState.Normal;
+                    SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+
+                    // Direction is calculated to be the opposite from where we should flee
+                    targetPosition = microbe.Translation + (microbe.Translation - signaler.Translation);
+                    microbe.LookAtPoint = targetPosition;
+                    SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+                    return;
+                }
+
+                break;
         }
 
         // If there are no threats, look for a chunk to eat
@@ -150,7 +220,7 @@ public class MicrobeAI
         // Otherwise just wander around and look for compounds
         if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
         {
-            RunAndTumble(random);
+            SeekCompounds(random, data);
         }
         else
         {
@@ -255,7 +325,7 @@ public class MicrobeAI
                 if (distanceToFocusedPrey < pursuitThreshold)
                 {
                     // Keep chasing, but expect to keep getting closer
-                    pursuitThreshold *= 0.95f;
+                    LowerPursuitThreshold();
                     return focused;
                 }
 
@@ -288,7 +358,12 @@ public class MicrobeAI
         }
 
         focusedPrey.Value = chosenPrey;
-        pursuitThreshold = chosenPrey != null ? DistanceFromMe(chosenPrey.GlobalTransform.origin) * 3.0f : 0.0f;
+
+        if (chosenPrey != null)
+        {
+            pursuitThreshold = DistanceFromMe(chosenPrey.GlobalTransform.origin) * 3.0f;
+        }
+
         return chosenPrey;
     }
 
@@ -395,7 +470,79 @@ public class MicrobeAI
         }
     }
 
+    private void SeekCompounds(Random random, MicrobeAICommonData data)
+    {
+        // If we are still engulfing for some reason, stop
+        microbe.State = Microbe.MicrobeState.Normal;
+
+        // More active species just try to get distance to avoid over-clustering
+        if (RollCheck(SpeciesActivity, Constants.MAX_SPECIES_ACTIVITY + (Constants.MAX_SPECIES_ACTIVITY / 2), random))
+        {
+            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            return;
+        }
+
+        if (random.Next(Constants.AI_STEPS_PER_SMELL) == 0)
+        {
+            SmellForCompounds(data);
+        }
+
+        if (lastSmelledCompoundPosition != null)
+        {
+            var distance = DistanceFromMe(lastSmelledCompoundPosition.Value);
+
+            // If the compound isn't getting closer, either something else has taken it, or we're stuck
+            LowerPursuitThreshold();
+            if (distance > pursuitThreshold)
+            {
+                lastSmelledCompoundPosition = null;
+                RunAndTumble(random);
+                return;
+            }
+
+            if (distance > 3.0f)
+            {
+                targetPosition = lastSmelledCompoundPosition.Value;
+                microbe.LookAtPoint = targetPosition;
+            }
+            else
+            {
+                SetMoveSpeed(0.0f);
+                SmellForCompounds(data);
+            }
+        }
+        else
+        {
+            RunAndTumble(random);
+        }
+    }
+
+    private void SmellForCompounds(MicrobeAICommonData data)
+    {
+        ComputeCompoundsSearchWeights();
+
+        var detections = microbe.GetDetectedCompounds(data.Clouds)
+            .OrderBy(detection => compoundsSearchWeights.ContainsKey(detection.Compound) ?
+                compoundsSearchWeights[detection.Compound] :
+                0).ToList();
+
+        if (detections.Count > 0)
+        {
+            lastSmelledCompoundPosition = detections[0].Target;
+            pursuitThreshold = DistanceFromMe(lastSmelledCompoundPosition.Value)
+                * (1 + (SpeciesFocus / Constants.MAX_SPECIES_FOCUS));
+        }
+        else
+        {
+            lastSmelledCompoundPosition = null;
+        }
+    }
+
     // For doing run and tumble
+    /// <summary>
+    ///   For doing run and tumble
+    /// </summary>
+    /// <param name="random">Random values to use</param>
     private void RunAndTumble(Random random)
     {
         // If this microbe is currently stationary, just initialize by moving in a random direction.
@@ -411,9 +558,6 @@ public class MicrobeAI
         // The scientifically accurate algorithm has been flipped to account for the compound
         // deposits being a lot smaller compared to the microbes
         // https://www.mit.edu/~kardar/teaching/projects/chemotaxis(AndreaSchmidt)/home.htm
-
-        // If we are still engulfing for some reason, stop
-        microbe.State = Microbe.MicrobeState.Normal;
 
         ComputeCompoundsSearchWeights();
 
@@ -542,14 +686,61 @@ public class MicrobeAI
             + new Vector3(Mathf.Cos(previousAngle + turn) * randDist,
                 0,
                 Mathf.Sin(previousAngle + turn) * randDist);
-        previousAngle = previousAngle + turn;
+        previousAngle += turn;
         microbe.LookAtPoint = targetPosition;
         SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+    }
+
+    private void MoveToLocation(Vector3 location)
+    {
+        microbe.State = Microbe.MicrobeState.Normal;
+        targetPosition = location;
+        microbe.LookAtPoint = targetPosition;
+        SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+    }
+
+    private void DetectSignalingAgents(IEnumerable<Microbe> ownSpeciesMicrobes)
+    {
+        // We kind of simulate how strong the "smell" of a signal is by finding the closest active signal
+        float? closestSignalSquared = null;
+        Microbe? selectedMicrobe = null;
+
+        var previous = lastFoundSignalEmitter.Value;
+
+        if (previous != null && previous.SignalCommand != MicrobeSignalCommand.None)
+        {
+            selectedMicrobe = previous;
+            closestSignalSquared = DistanceFromMe(previous.Translation);
+        }
+
+        foreach (var speciesMicrobe in ownSpeciesMicrobes)
+        {
+            if (speciesMicrobe.SignalCommand == MicrobeSignalCommand.None)
+                continue;
+
+            var distance = DistanceFromMe(speciesMicrobe.Translation);
+
+            if (closestSignalSquared == null || distance < closestSignalSquared.Value)
+            {
+                selectedMicrobe = speciesMicrobe;
+                closestSignalSquared = distance;
+            }
+        }
+
+        // TODO: should there be a max distance after which the signaling agent is considered to be so weak that it
+        // is not detected?
+
+        lastFoundSignalEmitter.Value = selectedMicrobe;
     }
 
     private void SetMoveSpeed(float speed)
     {
         microbe.MovementDirection = new Vector3(0, 0, -speed);
+    }
+
+    private void LowerPursuitThreshold()
+    {
+        pursuitThreshold *= 0.95f;
     }
 
     private bool CanTryToEatMicrobe(Microbe targetMicrobe)
