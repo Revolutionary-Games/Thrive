@@ -21,6 +21,7 @@ ReportTabPath = NodePath("EarlyMulticellularEditorGUI/Report")
 PatchMapTabPath = NodePath("EarlyMulticellularEditorGUI/PatchMap")
 BodyPlanEditorTabPath = NodePath("EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent")
 CellEditorTabPath = NodePath("EarlyMulticellularEditorGUI/CellEditor")
+NoCellTypeSelectedPath = NodePath("EarlyMulticellularEditorGUI/NoCellSelected")
 
 [node name="EditorWorld" parent="." instance=ExtResource( 7 )]
 
@@ -57,8 +58,29 @@ IsForMulticellular = true
 
 [node name="EditorCommonBottomLeftButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 4 )]
 
+[node name="NoCellSelected" type="MarginContainer" parent="EarlyMulticellularEditorGUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="EarlyMulticellularEditorGUI/NoCellSelected"]
+margin_top = 347.0
+margin_right = 1280.0
+margin_bottom = 372.0
+text = "SELECT_CELL_TYPE_FROM_EDITOR"
+align = 1
+
 [node name="PauseMenu" parent="." instance=ExtResource( 2 )]
 theme = ExtResource( 1 )
+IsEditorPauseMenu = true
 HelpCategory = "MicrobeEditor"
+
+[connection signal="OnTabSelected" from="EarlyMulticellularEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
+[connection signal="OnOpenHelp" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenFromEditorToHelp"]
+[connection signal="OnOpenMenu" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenFromEditor"]
 
 [editable path="EditorWorld"]

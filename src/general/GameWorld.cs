@@ -329,8 +329,6 @@ public class GameWorld : ISaveLoadable
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
-        GD.Print("Moving species ", species.FormattedIdentifier, " to the early multicellular stage");
-
         var multicellularVersion = new EarlyMulticellularSpecies(species.ID, species.Genus, species.Epithet);
         species.CopyDataToConvertedSpecies(multicellularVersion);
 
@@ -339,8 +337,7 @@ public class GameWorld : ISaveLoadable
         multicellularVersion.Cells.Add(new CellTemplate(stemCellType));
         multicellularVersion.CellTypes.Add(stemCellType);
 
-        RemoveSpecies(species);
-        worldSpecies.Add(species.ID, multicellularVersion);
+        SwitchSpecies(species, multicellularVersion);
     }
 
     /// <summary>
@@ -381,5 +378,19 @@ public class GameWorld : ISaveLoadable
             return;
 
         autoEvo = AutoEvo.AutoEvo.CreateRun(this);
+    }
+
+    private void SwitchSpecies(Species old, Species newSpecies)
+    {
+        GD.Print("Moving species ", old.FormattedIdentifier, " from ", old.GetType().Name, " to ",
+            newSpecies.GetType().Name);
+
+        RemoveSpecies(old);
+        worldSpecies.Add(old.ID, newSpecies);
+
+        Map.ReplaceSpecies(old, newSpecies);
+
+        if (PlayerSpecies == old)
+            PlayerSpecies = newSpecies;
     }
 }

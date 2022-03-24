@@ -453,9 +453,16 @@ public partial class CellEditorComponent :
 
             editedMicrobeOrganelles = newLayout;
 
-            UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
-            SetupPreviewMicrobe();
-            UpdateArrow(false);
+            if (Editor.EditedCellProperties != null)
+            {
+                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
+                SetupPreviewMicrobe();
+                UpdateArrow(false);
+            }
+            else
+            {
+                GD.Print("Loaded cell editor with no cell to edit set");
+            }
         }
 
         // Send info to the GUI about the organelle effectiveness in the current patch
@@ -525,6 +532,11 @@ public partial class CellEditorComponent :
     {
         base.OnEditorSpeciesSetup(species);
 
+        // For multicellular the cell editor is initialized before a cell type to edit is selected so we skip
+        // the logic here the first time this is called too early
+        if (Editor.EditedCellProperties == null)
+            return;
+
         // We set these here to make sure these are ready in the organelle add callbacks (even though currently
         // that just marks things dirty and we update our stats on the next _Process call)
         Membrane = Editor.EditedCellProperties.MembraneType;
@@ -556,6 +568,12 @@ public partial class CellEditorComponent :
     {
         var editedSpecies = Editor.EditedBaseSpecies;
         var editedProperties = Editor.EditedCellProperties;
+
+        if (editedProperties == null)
+        {
+            GD.Print("Cell editor skip applying changes as no target cell properties set");
+            return;
+        }
 
         // Apply changes to the species organelles
         // It is easiest to just replace all
@@ -988,7 +1006,9 @@ public partial class CellEditorComponent :
         previewMicrobe = (Microbe)microbeScene.Instance();
         previewMicrobe.IsForPreviewOnly = true;
         Editor.RootOfDynamicallySpawned.AddChild(previewMicrobe);
-        previewMicrobe.ApplySpecies(new MicrobeSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties));
+        previewMicrobe.ApplySpecies(new MicrobeSpecies(Editor.EditedBaseSpecies,
+            Editor.EditedCellProperties ??
+            throw new InvalidOperationException("can't setup preview before cell properties are known")));
 
         // Set its initial visibility
         previewMicrobe.Visible = MicrobePreviewMode;
@@ -1083,7 +1103,9 @@ public partial class CellEditorComponent :
         // which may cause occasional background task errors
         CancelPreviousAutoEvoPrediction();
 
-        cachedAutoEvoPredictionSpecies ??= new MicrobeSpecies(Editor.EditedBaseSpecies, Editor.EditedCellProperties);
+        cachedAutoEvoPredictionSpecies ??= new MicrobeSpecies(Editor.EditedBaseSpecies,
+            Editor.EditedCellProperties ??
+            throw new InvalidOperationException("can't start auto-evo prediction without current cell properties"));
 
         CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
 
@@ -1859,7 +1881,7 @@ public partial class CellEditorComponent :
 
     private void UpdateAutoEvoPredictionTranslations()
     {
-        if (autoEvoPredictionRunSuccessful.HasValue && autoEvoPredictionRunSuccessful.Value == false)
+        if (autoEvoPredictionRunSuccessful is false)
         {
             totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
         }

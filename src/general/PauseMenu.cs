@@ -239,6 +239,8 @@ public class PauseMenu : CustomDialog
 
     public void OpenFromEditor()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         Show();
         GetTree().Paused = true;
     }
@@ -251,6 +253,8 @@ public class PauseMenu : CustomDialog
 
     public void OpenFromEditorToHelp()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         OpenFromEditor();
         ShowHelpScreen();
     }

@@ -3,5 +3,5 @@
 /// </summary>
 public interface ICellEditorData : IHexEditor, IEditorWithPatches, IEditorWithActions
 {
-    public ICellProperties EditedCellProperties { get; }
+    public ICellProperties? EditedCellProperties { get; }
 }

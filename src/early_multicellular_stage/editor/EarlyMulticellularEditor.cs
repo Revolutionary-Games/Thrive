@@ -20,6 +20,9 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
     [Export]
     public NodePath CellEditorTabPath = null!;
 
+    [Export]
+    public NodePath NoCellTypeSelectedPath = null!;
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeEditorReportComponent reportTab = null!;
@@ -39,6 +42,11 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
     [JsonProperty]
     private EarlyMulticellularSpecies? editedSpecies;
 
+    private Control noCellTypeSelected = null!;
+
+    [JsonProperty]
+    private CellType? selectedCellTypeToEdit;
+
     public override bool CanCancelAction => cellEditorTab.Visible && cellEditorTab.CanCancelAction;
 
     [JsonIgnore]
@@ -55,10 +63,8 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
     [JsonIgnore]
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
-
-    // TODO: implement this
     [JsonIgnore]
-    public ICellProperties EditedCellProperties { get => throw new NotImplementedException(); }
+    public ICellProperties? EditedCellProperties { get => selectedCellTypeToEdit; }
 
     // TODO: add multicellular music tracks
     protected override string MusicCategory => "MicrobeEditor";
@@ -90,13 +96,18 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
 
     public override bool CancelCurrentAction()
     {
-        if (!cellEditorTab.Visible)
+        if (bodyPlanEditorTab.Visible)
         {
-            GD.PrintErr("No action to cancel");
-            return false;
+            return bodyPlanEditorTab.CancelCurrentAction();
         }
 
-        return cellEditorTab.CancelCurrentAction();
+        if (cellEditorTab.Visible)
+        {
+            return cellEditorTab.CancelCurrentAction();
+        }
+
+        GD.PrintErr("No action to cancel");
+        return false;
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -105,6 +116,7 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
         patchMapTab = GetNode<MicrobeEditorPatchMap>(PatchMapTabPath);
         bodyPlanEditorTab = GetNode<CellBodyPlanEditorComponent>(BodyPlanEditorTabPath);
         cellEditorTab = GetNode<CellEditorComponent>(CellEditorTabPath);
+        noCellTypeSelected = GetNode<Control>(NoCellTypeSelectedPath);
     }
 
     protected override void UpdateHistoryCallbackTargets(ActionHistory<CellEditorAction> actionHistory)
@@ -139,6 +151,9 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
         }
 
         cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
+
+        // TODO: as we are a prototype we don't want to auto save
+        wantsToSave = false;
     }
 
     protected override IEnumerable<IEditorComponent> GetAllEditorComponents()
@@ -219,6 +234,7 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
         patchMapTab.Hide();
         bodyPlanEditorTab.Hide();
         cellEditorTab.Hide();
+        noCellTypeSelected.Hide();
 
         // Show selected
         switch (selectedEditorTab)
@@ -233,7 +249,6 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
             case EditorTab.PatchMap:
             {
                 patchMapTab.Show();
-
                 SetEditorObjectVisibility(false);
                 break;
             }
@@ -251,15 +266,22 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
 
             case EditorTab.CellTypeEditor:
             {
-                // TODO: show the "select a cell type" text if not selected yet instead of the cell editor
-                throw new NotImplementedException();
+                if (selectedCellTypeToEdit == null)
+                {
+                    // Show the "select a cell type" text if not selected yet instead of the cell editor
+                    noCellTypeSelected.Show();
+                    SetEditorObjectVisibility(false);
+                }
+                else
+                {
+                    cellEditorTab.Show();
+                    SetEditorObjectVisibility(true);
+                    cellEditorTab.SetEditorWorldGuideObjectVisibility(true);
+                    bodyPlanEditorTab.SetEditorWorldGuideObjectVisibility(false);
 
-                cellEditorTab.Show();
-                SetEditorObjectVisibility(true);
-                cellEditorTab.SetEditorWorldGuideObjectVisibility(true);
-                bodyPlanEditorTab.SetEditorWorldGuideObjectVisibility(false);
+                    cellEditorTab.UpdateCamera();
+                }
 
-                cellEditorTab.UpdateCamera();
                 break;
             }
 
@@ -275,5 +297,4 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
 
         base.SetupEditedSpecies();
     }
-
 }

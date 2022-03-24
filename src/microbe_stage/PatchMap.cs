@@ -307,4 +307,17 @@ public class PatchMap
 
         return false;
     }
+
+    /// <summary>
+    ///   Replaces a species with a different one. This is done when the class of a species needs to change
+    /// </summary>
+    /// <param name="old">The old species to remove</param>
+    /// <param name="newSpecies">The new species to put in place of the old species</param>
+    public void ReplaceSpecies(Species old, Species newSpecies)
+    {
+        foreach (var patch in Patches.Values)
+        {
+            patch.ReplaceSpecies(old, newSpecies);
+        }
+    }
 }

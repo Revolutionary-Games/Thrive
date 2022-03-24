@@ -286,6 +286,21 @@ public class Patch
             currentSnapshot.EventsLog.Clear();
     }
 
+    public void ReplaceSpecies(Species old, Species newSpecies, bool replaceInHistory = true)
+    {
+        currentSnapshot.ReplaceSpecies(old, newSpecies);
+
+        if (!replaceInHistory)
+            return;
+
+        foreach (var snapshot in History)
+        {
+            snapshot.ReplaceSpecies(old, newSpecies);
+        }
+
+        // TODO: can we do something about the game log here?
+    }
+
     /// <summary>
     ///   Logs description of an event into the patch's history.
     /// </summary>
@@ -324,6 +339,23 @@ public class PatchSnapshot : ICloneable
     public PatchSnapshot(BiomeConditions biome)
     {
         Biome = biome;
+    }
+
+    public void ReplaceSpecies(Species old, Species newSpecies)
+    {
+        if (SpeciesInPatch.TryGetValue(old, out var population))
+        {
+            SpeciesInPatch.Remove(old);
+            SpeciesInPatch.Add(newSpecies, population);
+        }
+
+        if (RecordedSpeciesInfo.TryGetValue(old, out var info))
+        {
+            RecordedSpeciesInfo.Remove(old);
+            RecordedSpeciesInfo.Add(newSpecies, info);
+        }
+
+        // TODO: can we handle EventsLog here?
     }
 
     public object Clone()

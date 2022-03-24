@@ -16,7 +16,7 @@ public class InProgressSave : IDisposable
     private readonly Func<InProgressSave, Save> createSaveData;
     private readonly Action<InProgressSave, Save> performSave;
 
-    private readonly Task<string> saveNameTask;
+    private readonly Task<string>? saveNameTask;
 
     private readonly Stopwatch stopwatch;
 
@@ -58,8 +58,11 @@ public class InProgressSave : IDisposable
         stopwatch = Stopwatch.StartNew();
 
         // Start calculating the save name here to save some time
-        saveNameTask = new Task<string>(CalculateNameForSave);
-        TaskExecutor.Instance.AddTask(saveNameTask);
+        if (type != SaveInformation.SaveType.Invalid)
+        {
+            saveNameTask = new Task<string>(CalculateNameForSave);
+            TaskExecutor.Instance.AddTask(saveNameTask);
+        }
     }
 
     private enum State
@@ -105,7 +108,7 @@ public class InProgressSave : IDisposable
         {
             if (disposing)
             {
-                saveNameTask.Dispose();
+                saveNameTask?.Dispose();
             }
 
             disposed = true;
@@ -167,6 +170,18 @@ public class InProgressSave : IDisposable
         switch (state)
         {
             case State.Initial:
+                if (Type == SaveInformation.SaveType.Invalid)
+                {
+                    // If we are just meant to show an error message, we can jump ahead steps
+                    performSave.Invoke(this, new Save());
+
+                    if (string.IsNullOrEmpty(message))
+                        ReportStatus(false, "Error: failure not set for invalid type save");
+
+                    state = State.Finished;
+                    break;
+                }
+
                 // On this frame a pause menu might still be open, wait until next frame for it to close before
                 // taking a screenshot
                 wasColourblindScreenFilterVisible = ColourblindScreenFilter.Instance.Visible;
@@ -196,6 +211,12 @@ public class InProgressSave : IDisposable
 
             case State.SaveData:
             {
+                if (saveNameTask == null)
+                {
+                    throw new InvalidOperationException(
+                        "In progress ave is in invalid state for missing save name generation task");
+                }
+
                 save!.Name = saveNameTask.Result;
 
                 GD.Print("Creating a save with name: ", save.Name);
