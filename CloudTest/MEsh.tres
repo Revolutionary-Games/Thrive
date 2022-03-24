@@ -8,12 +8,6 @@
 render_priority = 1
 next_pass = SubResource( 2 )
 shader = ExtResource( 1 )
-shader_param/MAX_STEPS = 1450
-shader_param/MAX_DIST = 700.0
-shader_param/MIN_HIT_DIST = 1e-05
-shader_param/b = null
-shader_param/sigma = null
-shader_param/densityMult = 2.0
 
 [resource]
 material = SubResource( 1 )

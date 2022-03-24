@@ -21,15 +21,17 @@ public class MyScene : Spatial
 	public int subShapeNumber = 30;
 	public int subShapeMaxRadius = 30;
 	public int subShapeMinRadius = 5;
+
+	// Generate the cloudlets's position and size.
 	public void GenerateSubShapePositions()
 	{
 		var random = new Random();
 		for (int i = 0; i<subShapeNumber; i++)
 		{
 			var size = random.Next(subShapeMinRadius,subShapeMaxRadius);
-			var x = random.Next(-cloudWidth/2,cloudWidth/2);
-			var y = random.Next(-cloudHeight/2,cloudHeight/2);
-			var z = random.Next(-cloudDepth/2,cloudDepth/2);
+			var x = random.Next(0, cloudWidth);
+			var y = random.Next(0, cloudHeight);
+			var z = random.Next(0, cloudDepth);
 			shapeSizes.Add(size);
 			shapeCenters.Add(new Vector3(x,y,z));
 		}
@@ -48,10 +50,17 @@ public class MyScene : Spatial
 				for (int y = (int)shapeCenter.y - shapeRadius; y < (int)shapeCenter.x + shapeRadius; y++)
 					for (int z = (int)shapeCenter.z - shapeRadius; z < (int)shapeCenter.z + shapeRadius; z++)
 					{
-						Vector3 position = new Vector3(x,y,z);
-						float distanceToEdge =signedDistance(position, shapeCenter, shapeRadius);
-						distanceToEdge = Math.Abs(distanceToEdge);
-						cloud[x,y,z] += GaussianDensity(distanceToEdge) * distanceToEdge * densityMultiplier;
+						if (x < 0 || x > cloudWidth || y < 0 || y > cloudHeight
+						|| z < 0 || z > cloudDepth)
+						{
+						}
+						else
+						{
+							Vector3 position = new Vector3(x,y,z);
+							float distanceToEdge =signedDistance(position, shapeCenter, shapeRadius);
+							distanceToEdge = Math.Abs(distanceToEdge);
+							cloud[x,y,z] += GaussianDensity(distanceToEdge) * distanceToEdge * densityMultiplier;
+						}
 					}
 		}
 	}
@@ -69,7 +78,38 @@ public class MyScene : Spatial
 	{
 		if (Engine.EditorHint)
 		{
+			GenerateSubShapePositions();
+			GenerateCloud();
 
+			MeshInstance cameraMesh = (MeshInstance)GetTree().Root.FindNode("MeshInstance2");
+			ShaderMaterial mat = cameraMesh.GetMaterial();
+
+			// We cant pass arrays to the shader so we have to copy the 3d array in a 3dTexture
+			Texture3D texture = new Texture3D();
+			texture.Create((uint)cloudWidth,(uint)cloudHeight,(uint)cloudDepth,Image.Format.Rgba8);
+
+			Image slice = new Image();
+			
+			Color color = new Color(2,0.1f,0.5f,1);
+
+			for (int i = 0;i < cloudDepth;i++)
+			{ 
+				slice.Create((int)cloudWidth,(int)cloudHeight,false,Image.Format.Rgba8);
+				slice.Lock();
+				for (int x = 0; x < cloudWidth; x++)
+					for (int y = 0; y < cloudHeight; y++)
+					{	
+						color.a = cloud[x,y,i];
+						slice.SetPixel(x,y,color);
+					}
+				texture.SetLayerData(slice, i);
+			}
+
+			mat.SetShaderParam("cloudPosition", cloudPosition);
+			mat.SetShaderParam("cloudWidth", cloudWidth);
+			mat.SetShaderParam("cloudHeight", cloudHeight);
+			mat.SetShaderParam("cloudDepth", cloudDepth);
+			mat.SetShaderParam("cloudTex", texture);
 		}
 	}
 

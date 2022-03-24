@@ -5,83 +5,62 @@ code = "shader_type spatial;
 uniform int MAX_STEPS = 1450; 
 uniform float MAX_DIST = 7000;
 uniform float MIN_HIT_DIST = 0.001f; // hit depth threshold
-uniform sampler3D da;
-uniform float b;
-uniform float sigma;
-uniform float densityMult= 2f;
+
+uniform vec3 bound_min;
+uniform vec3 bound_max;
+
+uniform sampler3D cloudTex;
+uniform vec3 cloudPosition;
+uniform float cloudWidth;
+uniform float cloudHeight;
+uniform float cloudDepth;
+
 void vertex() {
   POSITION = vec4(VERTEX, 1.0);
 }
 
-float gauss(float x)
-{
-	float pi = 3.145;
-	float a = 1f/(sigma * sqrt(2f*pi));
-	return a*exp(-pow((x-b),2)/(2f*pow(sigma,2)));
+
+vec2 modified_intersectAABB(vec3 rayOrigin, vec3 rayDir, vec3 boxMin, vec3 boxMax) {
+	vec3 tMin = (boxMin - rayOrigin) / rayDir;
+	vec3 tMax = (boxMax - rayOrigin) / rayDir;
+	vec3 t1 = min(tMin, tMax);
+	vec3 t2 = max(tMin, tMax);
+	float tNear = max(max(t1.x, t1.y), t1.z);
+	float tFar = min(min(t2.x, t2.y), t2.z);
+	// return vec2(tNear, tFar);
+	float dstToBox = max(0, tNear);
+	float dstInsideBox = max(0, tFar - tNear);
+	return vec2(dstToBox, dstInsideBox);
 }
 
-float signedDistance(vec3 center, float radius, vec3 point)
-{
-	return length(center - point) - radius;
-	
-}
-vec4 sdf(vec3 point)
-{
-	vec3 circles[3]= vec3[3] (vec3(1,1,0),vec3(13,73,-10),vec3(-10,-10,11));
-	float m = signedDistance(circles[2],30,point);
-	float d;
-	float nrCircles = 0f;
-	vec3 center = circles[2];
-	for (int i = 0;i<3;i++)
-		{
-			d = signedDistance(circles[i],30,point);
-			if (d < 0f)
-				nrCircles += 1f;
-			if(abs(d) < abs(m)){
-				m = d;
-				center = circles[i];
-			}
-		}
-	return vec4(center,nrCircles);
-}
+// TODO implement for multiple cloud/containers
+//vec4 sdf(vec3 point)
+//{
+//
+//}
+
 vec3 raymarch(vec3 rayDir,vec3 cameraPos)
 {
- 	float dstToSphere = 0f;
-	float dstToExit = 0f;
+ 	float dstToBox = 0f;
+	float dstInsideBox = 0f;
     float depth = 0.0;
 	float density = 0f;
-	float dist;
 	float totalDist =0f;
+	int nrOfSmaples = 4;
+	int stepCount = nrOfSmaples + 1;
+	float stepSize;
 	vec3 pos;
+	
 	//Coordonate pentru 2 puncte de intersectie cu raza
-    for (int i=0; depth<MAX_DIST && i<MAX_STEPS; ++i)
-    {	
-        pos = cameraPos + rayDir * depth;
-		vec3 npos = cameraPos + rayDir * (depth +0.01f);
-		vec4 sdfInfo = sdf(pos);
-		float nrCircles = sdfInfo.w;
-		dist = abs(signedDistance(sdfInfo.xyz,30,pos));
-		float ndist = signedDistance(sdfInfo.xyz,30,npos);
-        if (dist < MIN_HIT_DIST ) {
-			dist += 0.1f;
-			if (ndist < 0f)
-			{
-				if (dstToSphere == 0f)
-				dstToSphere = depth;
-				vec3 vecToCenter = normalize(sdfInfo.xyz - pos);
-				float cosine = dot(vecToCenter,rayDir)/length(vecToCenter)/length(rayDir);
-				dstToExit = (2f*30f*cosine);
-				vec3 dest;
-				for( float j =1f;j<5f;j++){
-					dest = cameraPos + rayDir * (depth + dstToExit/4f*j);
-					float newDist = abs(signedDistance(sdfInfo.xyz,30f,dest));
-					density += gauss(newDist) *newDist* densityMult;
-				}
-				
-			}
-        }
-        depth += dist;
-    }
+    vec2 dist = modified_intersectAABB(cameraPos, rayDir, bound_min, bound_max);
+	dstToBox = dist.x;
+	dstInsideBox = dist.y;
+	stepSize = dstInsideBox / float(stepCount);
+	pos = cameraPos + rayDir * dstToBox;
+	for (int i = 1; i < stepCount; i++)
+	{
+		pos = cameraPos + rayDir * (dstToBox + stepSize * float(i));
+	}
     return vec3 (dstToSphere ,abs(totalDist), density);
 }
 
