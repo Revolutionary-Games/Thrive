@@ -223,10 +223,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (onReadyCalled)
             return;
 
-        atp = SimulationParameters.Instance.GetCompound("atp");
-
         Membrane = GetNode<Membrane>("Membrane");
         OrganelleParent = GetNode<Spatial>("OrganelleParent");
+
+        if (IsForPreviewOnly)
+            return;
+
+        atp = SimulationParameters.Instance.GetCompound("atp");
+
         engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
         bindingAudio = GetNode<AudioStreamPlayer3D>("BindingAudio");
         movementAudio = GetNode<HybridAudioPlayer>("MovementAudio");

@@ -700,6 +700,9 @@ public static class Constants
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 600f;
 
+    public const float PHOTO_STUDIO_CAMERA_FOV = 70;
+    public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
+
     /// <summary>
     ///   Regex for species name validation.
     /// </summary>

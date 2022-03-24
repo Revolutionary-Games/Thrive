@@ -16,7 +16,7 @@ public interface IEditorComponent
     public void Init(IEditor owningEditor, bool fresh);
 
     /// <summary>
-    ///   Called
+    ///   Called when the species data is ready in the editor
     /// </summary>
     /// <param name="species">
     ///   The species that was setup, accessing more specific data through

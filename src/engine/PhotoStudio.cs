@@ -26,6 +26,8 @@ public class PhotoStudio : Viewport
     [Export]
     public bool UseBackgroundSceneInstance;
 
+    private static PhotoStudio? instance;
+
     private readonly Queue<ImageTask> tasks = new();
     private ImageTask? currentTask;
     private Step currentTaskStep = Step.NoTask;
@@ -43,8 +45,6 @@ public class PhotoStudio : Viewport
     private Camera camera = null!;
     private Spatial renderedObjectHolder = null!;
 
-    private PhotoStudio? instance;
-
     private PhotoStudio() { }
 
     private enum Step
@@ -54,11 +54,29 @@ public class PhotoStudio : Viewport
         InstanceScene,
         ApplySceneParameters,
         AttachScene,
+        PositionCamera,
         Render,
+        CaptureImage,
         Save,
     }
 
-    public PhotoStudio Instance => instance ?? throw new InstanceNotLoadedYetException();
+    public static PhotoStudio Instance => instance ?? throw new InstanceNotLoadedYetException();
+
+    /// <summary>
+    ///   Calculates a good camera distance from the radius of an object that is photographed
+    /// </summary>
+    /// <param name="radius">The radius of the object</param>
+    /// <returns>The distance to use</returns>
+    public static float CameraDistanceFromRadiusOfObject(float radius)
+    {
+        if (radius <= 0)
+            throw new ArgumentException("radius needs to be over 0");
+
+        float angle = Constants.PHOTO_STUDIO_CAMERA_HALF_ANGLE;
+
+        // Some right angle triangle math that's hopefully right
+        return Mathf.Tan(MathUtils.DEGREES_TO_RADIANS * angle) / radius;
+    }
 
     public override void _Ready()
     {
@@ -69,8 +87,10 @@ public class PhotoStudio : Viewport
         camera = GetNode<Camera>(CameraPath);
         renderedObjectHolder = GetNode<Spatial>(RenderedObjectHolderPath);
 
-        // This doesn't seem to do anything, us reading the image seems to cause the rendering, so we disable this
+        // We manually trigger rendering when we want
         RenderTargetUpdateMode = UpdateMode.Disabled;
+
+        camera.Fov = Constants.PHOTO_STUDIO_CAMERA_FOV;
     }
 
     public override void _Process(float delta)
@@ -143,49 +163,60 @@ public class PhotoStudio : Viewport
                     renderedObjectHolder.AddChild(instancedScene);
                 }
 
-                currentTaskStep = Step.Render;
+                currentTaskStep = Step.PositionCamera;
+                break;
+            }
+
+            case Step.PositionCamera:
+            {
+                camera.Translation = new Vector3(0,
+                    currentTask!.Photographable.CalculatePhotographDistance(instancedScene!), 0);
                 break;
             }
 
             case Step.Render:
             {
-                camera.Translation = new Vector3(0,
-                    currentTask!.Photographable.CalculatePhotographDistance(instancedScene!), 0);
+                // Cause a render to happen on this frame from our camera
+                RenderTargetUpdateMode = UpdateMode.Once;
+                currentTaskStep = Step.CaptureImage;
+                break;
+            }
 
-                // Doesn't seem to have an effect
-                // RenderTargetUpdateMode = UpdateMode.Once;
+            case Step.CaptureImage:
+            {
+                renderedImage = GetTexture().GetData();
+                currentTaskStep = Step.Save;
                 break;
             }
 
             case Step.Save:
+            {
+                renderedImage!.Convert(Image.Format.Rgba8);
+
+                var texture = new ImageTexture();
+                texture.CreateFromImage(renderedImage,
+                    (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Mipmaps);
+
+                currentTask!.OnFinished(texture);
+                currentTask = null;
+
+                currentTaskStep = Step.NoTask;
+                renderedImage = null;
+
                 break;
+            }
+
             default:
                 throw new ArgumentOutOfRangeException();
         }
 
         base._Process(delta);
 
-        if (currentTaskStep == Step.Save)
+        if (currentTaskStep == Step.PositionCamera)
         {
-            renderedImage!.Convert(Image.Format.Rgba8);
-
-            var texture = new ImageTexture();
-            texture.CreateFromImage(renderedImage, (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Mipmaps);
-
-            currentTask!.OnFinished(texture);
-
-            // TODO: debugging code, remove
-            renderedImage.SavePng("/home/hhyyrylainen/Projects/Thrive/test.png");
-
-            currentTask = null;
-            currentTaskStep = Step.NoTask;
-            renderedImage = null;
-        }
-        else if (currentTaskStep == Step.Render)
-        {
-            // This seems to have the effect of triggering a render
-            renderedImage = GetTexture().GetData();
-            currentTaskStep = Step.Save;
+            // For some reason this needs to be here (instead of in the switch above) to get the rendering
+            // to work correctly
+            currentTaskStep = Step.Render;
         }
     }
 
