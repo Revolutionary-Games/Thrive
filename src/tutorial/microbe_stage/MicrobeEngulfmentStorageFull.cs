@@ -1,10 +1,10 @@
-﻿namespace Tutorial
+namespace Tutorial
 {
     using System;
 
-    public class MicrobeEngulfmentFullCapacity : TutorialPhase
+    public class MicrobeEngulfmentStorageFull : TutorialPhase
     {
-        public override string ClosedByName { get; } = "MicrobeEngulfmentFullCapacity";
+        public override string ClosedByName { get; } = "MicrobeEngulfmentStorageFull";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {

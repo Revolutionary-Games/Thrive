@@ -59,7 +59,7 @@ public class TutorialState : ITutorialInput
     public CheckTheHelpMenu CheckTheHelpMenu { get; private set; } = new();
 
     [JsonProperty]
-    public MicrobeEngulfmentFullCapacity EngulfmentFullCapacity { get; private set; } = new();
+    public MicrobeEngulfmentStorageFull EngulfmentStorageFull { get; private set; } = new();
 
     [JsonProperty]
     public EditorWelcome EditorWelcome { get; private set; } = new();
@@ -339,7 +339,7 @@ public class TutorialState : ITutorialInput
             MicrobePressEditorButton,
             MicrobeUnbind,
             CheckTheHelpMenu,
-            EngulfmentFullCapacity,
+            EngulfmentStorageFull,
             EditorWelcome,
             PatchMap,
             CellEditorIntroduction,

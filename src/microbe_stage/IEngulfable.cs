@@ -19,5 +19,7 @@ public interface IEngulfable : IEntity
     /// </summary>
     float DigestionProgress { get; set; }
 
-    Dictionary<Compound, float> CalculateEngulfableCompounds();
+    Dictionary<Compound, float> CalculateDigestibleCompounds();
+
+    void NotifyEngulfed();
 }

@@ -471,7 +471,7 @@ public partial class Microbe
         return result;
     }
 
-    public Dictionary<Compound, float> CalculateEngulfableCompounds()
+    public Dictionary<Compound, float> CalculateDigestibleCompounds()
     {
         var result = new Dictionary<Compound, float>();
 
@@ -480,7 +480,8 @@ public partial class Microbe
         foreach (var compound in Compounds)
         {
             result.Add(compound.Key, compound.Value * (compound.Key.IsCloud ?
-                Constants.COMPOUND_RELEASE_PERCENTAGE : 1));
+                Constants.COMPOUND_RELEASE_PERCENTAGE :
+                1));
         }
 
         // Add some part of the build cost of all the organelles

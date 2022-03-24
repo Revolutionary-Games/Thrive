@@ -19,7 +19,7 @@ public partial class Microbe
     /// </summary>
     private HashSet<uint> pilusPhysicsShapes = new();
 
-    private uint? engulfedAreaShapeOwner = null;
+    private uint? engulfedAreaShapeOwner;
 
     private bool membraneOrganellePositionsAreDirty = true;
 
@@ -213,7 +213,10 @@ public partial class Microbe
     public Action<Microbe>? OnUnbound { get; set; }
 
     [JsonProperty]
-    public Action<Microbe>? OnFullEngulfmentCapacity { get; set; }
+    public Action<Microbe, Microbe>? OnEngulfed { get; set; }
+
+    [JsonProperty]
+    public Action<Microbe>? OnEngulfmentStorageFull { get; set; }
 
     /// <summary>
     ///   Updates the intensity of wigglyness of this cell's membrane based on membrane type, taking
@@ -357,6 +360,11 @@ public partial class Microbe
 
         // Needs to be big enough to engulf
         return Size >= target.Size * Constants.ENGULF_SIZE_RATIO_REQ;
+    }
+
+    public void NotifyEngulfed()
+    {
+        OnEngulfed?.Invoke(this, HostileEngulfer.Value!);
     }
 
     /// <summary>
@@ -1196,6 +1204,7 @@ public partial class Microbe
         }
 
         target.IsIngested = true;
+        target.NotifyEngulfed();
         target.IsBeingEngulfed = false;
 
         engulfedSize += target.Size;
@@ -1374,7 +1383,7 @@ public partial class Microbe
             }
             else if (engulfedSize >= Size || engulfedSize + engulfable.Size >= Size)
             {
-                OnFullEngulfmentCapacity?.Invoke(this);
+                OnEngulfmentStorageFull?.Invoke(this);
             }
         }
     }
@@ -1419,7 +1428,7 @@ public partial class Microbe
     {
         var engulfable = (IEngulfable)target;
 
-        engulfedObjects.Add(new EngulfedObject(engulfable, engulfable.CalculateEngulfableCompounds()));
+        engulfedObjects.Add(new EngulfedObject(engulfable, engulfable.CalculateDigestibleCompounds()));
 
         otherEngulfablesInEngulfRange.Remove(engulfable);
         touchedEngulfables.Remove(engulfable);

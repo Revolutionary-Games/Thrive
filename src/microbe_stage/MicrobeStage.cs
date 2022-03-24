@@ -356,6 +356,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         Player.OnDeath = OnPlayerDied;
 
+        Player.OnEngulfed = OnPlayerEngulfed;
+
         Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
 
         Player.OnUnbound = OnPlayerUnbound;
@@ -364,7 +366,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         Player.OnCompoundChemoreceptionInfo = HandlePlayerChemoreceptionDetection;
 
-        Player.OnFullEngulfmentCapacity = OnPlayerEngulfmentLimitReached;
+        Player.OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached;
 
         Camera.ObjectToFollow = Player;
 
@@ -666,6 +668,15 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         Player = null;
         Camera.ObjectToFollow = null;
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerEngulfed(Microbe player, Microbe engulfer)
+    {
+        // Count as normal death
+        OnPlayerDied(player);
+
+        Camera.ObjectToFollow = engulfer;
     }
 
     [DeserializedCallbackAllowed]

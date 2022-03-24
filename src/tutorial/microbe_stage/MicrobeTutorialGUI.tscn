@@ -484,5 +484,5 @@ autowrap = true
 [connection signal="hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
 [connection signal="popup_hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
 [connection signal="pressed" from="CheckHelpMenu/ScrollContainer/VBoxContainer/Button" to="." method="CheckHelpMenuPressed"]
-[connection signal="hide" from="EngulfmentFullCapacity" to="." method="OnSpecificCloseClicked" binds= [ "EngulfmentFullCapacity" ]]
-[connection signal="popup_hide" from="EngulfmentFullCapacity" to="." method="OnSpecificCloseClicked" binds= [ "EngulfmentFullCapacity" ]]
+[connection signal="hide" from="EngulfmentFullCapacity" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentStorageFull" ]]
+[connection signal="popup_hide" from="EngulfmentFullCapacity" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentStorageFull" ]]

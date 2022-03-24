@@ -320,7 +320,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         AliveMarker.Alive = false;
     }
 
-    public Dictionary<Compound, float> CalculateEngulfableCompounds()
+    public Dictionary<Compound, float> CalculateDigestibleCompounds()
     {
         var result = new Dictionary<Compound, float>();
 
@@ -333,6 +333,10 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         }
 
         return result;
+    }
+
+    public void NotifyEngulfed()
+    {
     }
 
     /// <summary>
