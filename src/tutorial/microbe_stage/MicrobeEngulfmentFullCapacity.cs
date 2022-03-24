@@ -1,4 +1,4 @@
-namespace Tutorial
+﻿namespace Tutorial
 {
     using System;
 
@@ -18,7 +18,7 @@ namespace Tutorial
             {
                 case TutorialEventType.MicrobePlayerEngulfmentFull:
                 {
-                    if (!HasBeenShown)
+                    if (!HasBeenShown && !overallState.TutorialActive())
                         Show();
 
                     break;
