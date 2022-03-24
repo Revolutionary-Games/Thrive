@@ -59,6 +59,7 @@ RedoButtonPath = NodePath("HBoxContainer/RedoButton")
 NewButtonPath = NodePath("HBoxContainer/NewButton")
 NameEditPath = NodePath("HBoxContainer/SpeciesName")
 RandomizeNameButtonPath = NodePath("HBoxContainer/RandomizeButton")
+NewHiddenAlternativeSpacerPath = NodePath("HBoxContainer/NewInvisibleSpacer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 195.0
@@ -66,6 +67,13 @@ margin_top = 5.0
 margin_right = 641.0
 margin_bottom = 50.0
 custom_constants/separation = 5
+
+[node name="NewInvisibleSpacer" type="Control" parent="HBoxContainer"]
+visible = false
+margin_right = 35.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 35, 35 )
+mouse_filter = 2
 
 [node name="SymmetryButton" type="TextureButton" parent="HBoxContainer"]
 margin_top = 5.0
