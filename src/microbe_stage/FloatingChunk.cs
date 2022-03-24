@@ -36,8 +36,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
 
     private MeshInstance? chunkMesh;
 
-    private bool needsDissolveEffectUpdate = true;
-
     [JsonProperty]
     private bool isDissolving;
 
@@ -132,7 +130,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         set
         {
             dissolveEffectValue = Mathf.Clamp(value, 0.0f, 1.0f);
-            needsDissolveEffectUpdate = true;
+            UpdateDissolveEffect();
         }
     }
 
@@ -272,9 +270,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         if (isDissolving)
             HandleDissolving(delta);
 
-        if (needsDissolveEffectUpdate)
-            UpdateDissolveEffect();
-
         if (UsesDespawnTimer)
             DespawnTimer += delta;
 
@@ -406,12 +401,10 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     private void UpdateDissolveEffect()
     {
         if (chunkMesh == null)
-            return;
+            throw new InvalidOperationException("Chunk without a mesh can't dissolve");
 
         var material = (ShaderMaterial)chunkMesh.MaterialOverride;
         material.SetShaderParam("dissolveValue", dissolveEffectValue);
-
-        needsDissolveEffectUpdate = false;
     }
 
     private void InitPhysics()

@@ -998,11 +998,11 @@ public partial class Microbe
 
         for (int i = engulfedObjects.Count - 1; i >= 0; i--)
         {
-            var engulfed = engulfedObjects[i];
+            var engulfedObject = engulfedObjects[i];
 
-            for (var c = 0; c < engulfed.CachedEngulfableCompounds.Count; ++c)
+            for (var c = 0; c < engulfedObject.CachedEngulfableCompounds.Count; ++c)
             {
-                var compound = engulfed.CachedEngulfableCompounds.ElementAt(c);
+                var compound = engulfedObject.CachedEngulfableCompounds.ElementAt(c);
 
                 if (compound.Value <= 0)
                     continue;
@@ -1010,7 +1010,7 @@ public partial class Microbe
                 var amount = Constants.ENGULF_COMPUND_ABSORBING_PER_SECOND * delta;
 
                 var taken = Math.Min(compound.Value, amount);
-                engulfed.CachedEngulfableCompounds[compound.Key] -= amount;
+                engulfedObject.CachedEngulfableCompounds[compound.Key] -= amount;
 
                 var added = Compounds.AddCompound(compound.Key, taken);
                 SpawnEjectedCompound(compound.Key, taken - added);
@@ -1019,25 +1019,24 @@ public partial class Microbe
                     Damage(added * Constants.ENGULF_TOXIC_COMPOUND_ABSORB_DAMAGE_MULTIPLIER, "oxytoxy");
             }
 
-            var microbe = engulfed.Engulfable.Value;
-            if (microbe == null)
+            var engulfable = engulfedObject.Engulfable.Value;
+            if (engulfable == null)
                 continue;
 
-            var totalAmount = engulfed.CachedEngulfableCompounds.Sum(compound => compound.Value);
-            microbe.DigestionProgress = 1 - (totalAmount / engulfed.InitialTotalEngulfableCompounds);
-            GD.Print(microbe.DigestionProgress);
+            var totalAmount = engulfedObject.CachedEngulfableCompounds.Sum(compound => compound.Value);
+            engulfable.DigestionProgress = 1 - (totalAmount / engulfedObject.InitialTotalEngulfableCompounds);
 
-            if (totalAmount <= 0 || microbe.DigestionProgress >= 1)
+            if (totalAmount <= 0 || engulfable.DigestionProgress >= 1)
             {
-                engulfedSize -= microbe.Size;
+                engulfedSize -= engulfable.Size;
                 engulfedObjects.RemoveAt(i);
-                microbe.DestroyDetachAndQueueFree();
+                engulfable.DestroyDetachAndQueueFree();
             }
 
             // Eject the current engulfed object if this cell loses some of its size and its ingestion capacity
             // is overloaded
-            if (!CanEngulf(microbe))
-                EjectEngulfable(microbe);
+            if (engulfedSize > Size)
+                EjectEngulfable(engulfable);
         }
 
         // Handle ejected cell that has previously been ingested
@@ -1053,7 +1052,6 @@ public partial class Microbe
             else if (DigestionProgress > 0 && DigestionProgress < 0.3f)
             {
                 DigestionProgress -= delta * Constants.ENGULF_COMPUND_ABSORBING_PER_SECOND;
-                GD.Print(DigestionProgress);
             }
         }
     }

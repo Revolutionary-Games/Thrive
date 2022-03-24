@@ -27,7 +27,7 @@ resource_local_to_scene = true
 [node name="Microbe" type="RigidBody"]
 process_priority = 1
 collision_layer = 3
-collision_mask = 3
+collision_mask = 7
 contact_monitor = true
 can_sleep = false
 axis_lock_linear_y = true
@@ -62,11 +62,10 @@ bus = "SFX"
 script = ExtResource( 8 )
 Stream = ExtResource( 7 )
 Volume = 0.0
-Bus = "SFX"
 
 [node name="EngulfDetector" type="Area" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 7
 input_ray_pickable = false
 monitorable = false
 

@@ -4,7 +4,8 @@
 
 [node name="FloatingChunk" type="RigidBody"]
 process_priority = 2
-collision_mask = 3
+collision_layer = 5
+collision_mask = 7
 contact_monitor = true
 axis_lock_linear_y = true
 linear_damp = 2.46

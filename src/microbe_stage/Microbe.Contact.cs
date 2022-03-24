@@ -341,7 +341,7 @@ public partial class Microbe
     public bool CanEngulf(IEngulfable target)
     {
         // Limit amount of things that can be engulfed at once
-        if (engulfedSize >= Size)
+        if (engulfedSize >= Size || engulfedSize + target.Size >= Size)
             return false;
 
         // Disallow cannibalism
@@ -1141,10 +1141,6 @@ public partial class Microbe
         if (!(body is IEngulfable engulfable) || engulfable == this)
             return;
 
-        // TODO: does this need to check for disposed exception?
-        if (body is Microbe microbe && microbe.Dead)
-            return;
-
         if (otherEngulfablesInEngulfRange.Add((IEngulfable)body))
         {
             CheckStartEngulfingOnCandidates();
@@ -1203,9 +1199,9 @@ public partial class Microbe
         body.GlobalTransform = temp;
 
         var tween = new Tween();
-        tween.Name = "EngulfmentTween";
         body.AddChild(tween);
         tween.Connect("tween_all_completed", this, nameof(OnIngestAnimationFinished), new Array { body });
+        tween.Connect("tween_all_completed", tween, "queue_free");
         tween.InterpolateProperty(body, "scale", null, body.Scale / 2, 2.0f);
         var finalPosition = new Vector3(
             random.Next(0.0f, body.Translation.x), body.Translation.y, random.Next(0.0f, body.Translation.z));
