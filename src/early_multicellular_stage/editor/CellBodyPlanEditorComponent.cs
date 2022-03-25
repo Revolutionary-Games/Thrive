@@ -33,7 +33,14 @@ public partial class CellBodyPlanEditorComponent :
     [Export]
     public NodePath CellTypeSelectionListPath = null!;
 
+    private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
+
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
+
+    // Microbe scale applies done with 3 frame delay (that's why there are multiple list variables)
+    private List<Microbe> pendingScaleApplies = new();
+    private List<Microbe> nextFrameScaleApplies = new();
+    private List<Microbe> thisFrameScaleApplies = new();
 
     // Selection menu tab selector buttons
     private Button structureTabButton = null!;
@@ -308,6 +315,25 @@ public partial class CellBodyPlanEditorComponent :
             OnOrganellesChanged();
             organelleDataDirty = false;
         }
+
+        foreach (var microbe in thisFrameScaleApplies)
+        {
+            // This check is here for simplicity's sake as model display nodes can be destroyed on subsequent frames
+            if (!IsInstanceValid(microbe))
+                continue;
+
+            // Scale is computed so that all the cells are the size of 1 hex when placed
+            // TODO: figure out why the extra multiplier to make things smaller is needed
+            microbe.OverrideScaleForPreview(1.0f / microbe.Radius * Constants.DEFAULT_HEX_SIZE *
+                Constants.MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER);
+        }
+
+        thisFrameScaleApplies.Clear();
+
+        var tempList = thisFrameScaleApplies;
+        thisFrameScaleApplies = nextFrameScaleApplies;
+        nextFrameScaleApplies = pendingScaleApplies;
+        pendingScaleApplies = tempList;
 
         // Show the cell that is about to be placed
         if (activeActionName != null && Editor.ShowHover)
@@ -650,6 +676,68 @@ public partial class CellBodyPlanEditorComponent :
         // TODO: implement placed this session flag
         UpdateAlreadyPlacedHexes(
             editedMicrobeOrganelles.Select(o => (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(), false)), islands);
+
+        int nextFreeCell = 0;
+
+        foreach (var hexWithData in editedMicrobeOrganelles)
+        {
+            var pos = Hex.AxialToCartesian(hexWithData.Position) + microbeModelOffset;
+
+            if (nextFreeCell >= placedModels.Count)
+            {
+                placedModels.Add(CreatePreviewModelHolder());
+            }
+
+            var modelHolder = placedModels[nextFreeCell++];
+
+            var rotation = MathUtils.CreateRotationForOrganelle(1 * hexWithData.Data!.Orientation);
+
+            modelHolder.Transform = new Transform(Quat.Identity, pos);
+
+            // Create a new microbe if one is not already in the model holder
+            Microbe microbe;
+
+            if (modelHolder.InstancedNode is Microbe existingMicrobe)
+            {
+                microbe = existingMicrobe;
+            }
+            else
+            {
+                microbe = (Microbe)microbeScene.Instance();
+                microbe.IsForPreviewOnly = true;
+            }
+
+            // Attach to scene to initialize the microbe before the operations that need that
+            modelHolder.LoadFromAlreadyLoadedNode(microbe);
+
+            // TODO: don't reload the species if the species data would be exactly the same as before to save on
+            // performance. This probably causes the bit of weird turning / flicker with placing more cells
+            microbe.ApplySpecies(
+                new MicrobeSpecies(new MicrobeSpecies(0, string.Empty, string.Empty), hexWithData.Data));
+
+            // Set look direction
+            microbe.LookAtPoint = pos + rotation.Xform(Vector3.Forward);
+            microbe.Transform = new Transform(rotation, new Vector3(0, 0, 0));
+
+            // Apply placeholder scale if doesn't have a scale
+            if (microbe.Membrane.Scale == Vector3.One)
+            {
+                microbe.OverrideScaleForPreview(Constants.MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE);
+            }
+
+            // Scale needs to be applied some frames later so that organelle positions are sent
+            pendingScaleApplies.Add(microbe);
+
+            modelHolder.Visible = true;
+
+            // TODO: render order setting for the cells? (similarly to how organelles are handled in the cell editor)
+        }
+
+        while (nextFreeCell < placedModels.Count)
+        {
+            placedModels[placedModels.Count - 1].DetachAndQueueFree();
+            placedModels.RemoveAt(placedModels.Count - 1);
+        }
     }
 
     private void OnSpeciesNameChanged(string newText)

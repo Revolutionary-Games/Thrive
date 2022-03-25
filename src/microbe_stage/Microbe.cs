@@ -227,7 +227,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         OrganelleParent = GetNode<Spatial>("OrganelleParent");
 
         if (IsForPreviewOnly)
+        {
+            // Disable our physics to not cause issues with multiple preview cells bumping into each other
+            Mode = ModeEnum.Kinematic;
             return;
+        }
 
         atp = SimulationParameters.Instance.GetCompound("atp");
 
@@ -637,6 +641,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         return detections;
     }
 
+    public void OverrideScaleForPreview(float scale)
+    {
+        if (!IsForPreviewOnly)
+            throw new InvalidOperationException("Scale can only be overridden for preview microbes");
+
+        ApplyScale(new Vector3(scale, scale, scale));
+    }
+
     /// <summary>
     ///   This method calculates the relative rotation and translation this microbe should have to its microbe parent.
     ///   <a href="https://randomthrivefiles.b-cdn.net/documentation/fixed_colony_rotation_explanation_image.png">
@@ -701,6 +713,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (Species.IsBacteria)
             scale = new Vector3(0.5f, 0.5f, 0.5f);
 
+        ApplyScale(scale);
+    }
+
+    private void ApplyScale(Vector3 scale)
+    {
         // Scale only the graphics parts to not have physics affected
         Membrane.Scale = scale;
         OrganelleParent.Scale = scale;
