@@ -41,7 +41,7 @@ public class MutationPointsBar : HBoxContainer
         baseMutationPointsLabel = GetNode<Label>(BaseMutationPointsLabelPath);
         mutationPointsBar = GetNode<ProgressBar>(MutationPointsBarPath);
         mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
-        animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>(AnimationPlayerPath);
+        animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
 
         freebuildingText = TranslationServer.Translate("FREEBUILDING");
     }
