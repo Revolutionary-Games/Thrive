@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-18 17:48+0200\n"
-"PO-Revision-Date: 2022-03-20 08:31+0000\n"
-"Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
+"PO-Revision-Date: 2022-03-20 15:26+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -1666,10 +1666,12 @@ msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Брой на бързите записи:"
 
 #: ../src/general/OptionsMenu.tscn:1068
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Упътване (при започване на нова игра)"
 
 #: ../src/general/OptionsMenu.tscn:1075
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Упътване (в текущата игра)"
 
@@ -4126,10 +4128,12 @@ msgstr "Неизвестна грешка на „Steam“"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
+#, fuzzy
 msgid "TUTORIAL"
 msgstr "Упътване"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Добре дошли в микробния редактор.\n"
@@ -4140,6 +4144,7 @@ msgstr ""
 "За да преминете в следващия раздел, натиснете бутона „НАПРЕД“, който се намира долу вдясно."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Това е картата на зоните.\n"
@@ -4152,6 +4157,7 @@ msgstr ""
 "Изберете зона за да продължите."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Това е микробният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните мутационни точки (МТ).\n"
@@ -4161,6 +4167,7 @@ msgstr ""
 "За да продължите, изберете органел от панела вляво (например цитоплазмата). След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Премахването на органели също струва МТ, освен ако не са добавени в текущата сесия на редактора.\n"
@@ -4172,6 +4179,7 @@ msgstr ""
 "Натиснете бутона „Отмяна“ за да продължите."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Важно е да разберете какви ефекти има даден органел върху Вашата клетка, преди да го поставите.\n"
@@ -4183,6 +4191,7 @@ msgstr ""
 "Натиснете бутона „Възстановяване“ (до бутона „Отмяна“) за да продължите."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Това е основната информация за микробния редактор. Може да разгледате и останалите раздели в редактора за повече опции.\n"
@@ -4198,6 +4207,7 @@ msgid "GOT_IT"
 msgstr "Разбрах"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Това е прогнозата за бъдещата популация на Вашите създания. Тези стойности са изчислени на база симулацията от автоматичната еволюция.\n"
@@ -4209,6 +4219,7 @@ msgstr ""
 "За да продължите, натиснете бутона с въпросителния знак долу вдясно."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Трябва да се съсредоточите върху един или два източника на енергия, така че да не е необходимо да събирате всички хранителни вещества, за да може Вашата клетка да създава достатъчно АТФ за да оцелее.\n"
@@ -4229,6 +4240,7 @@ msgstr ""
 "За да оцелеете в този враждебен свят, трябва да се приспособите и да еволюирате Вашите създания."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Показване на упътването"
 
@@ -4261,12 +4273,14 @@ msgstr ""
 "Събирайте глюкоза за да произвеждате АТФ."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "За възпроизвеждане, органелите на клетката трябва да се удвоят. За да го направят те се нуждаят от амоняк и фосфат.\n"
 "Наблюдавайте показателите долу вдясно."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Събрахте достатъчно хранителни вещества за възпроизвеждането на Вашата клетка.\n"
@@ -4276,6 +4290,7 @@ msgstr ""
 "Натиснете бутона на редактора, който се намира долу вдясно."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Вие сте в режим на отделяне. В този режим, може да натиснете с мишката върху членовете на клетъчната колония за да ги отделите от нея.\n"
@@ -4283,6 +4298,7 @@ msgstr ""
 "За разпадане на цялата клетъчна колония, може да натиснете с мишката върху Вашата клетка или да натиснете съответния клавиш."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Ако все още изпитвате затруднения, отворете ръководството (въпросителния знак) долу вляво.\n"
@@ -4290,6 +4306,7 @@ msgstr ""
 "Още един съвет — може да промените размера на изгледа с колелцето на мишката."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
+#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Преглед"
 

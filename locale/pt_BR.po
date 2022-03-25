@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-18 17:48+0200\n"
-"PO-Revision-Date: 2022-03-08 19:22+0000\n"
-"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
+"PO-Revision-Date: 2022-03-21 16:22+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -1666,10 +1666,12 @@ msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Quantidade de salvamentos rápidos para manter:"
 
 #: ../src/general/OptionsMenu.tscn:1068
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutoriais (em novos jogos)"
 
 #: ../src/general/OptionsMenu.tscn:1075
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutoriais (no jogo atual)"
 
@@ -4123,10 +4125,12 @@ msgstr "Erro desconhecido da Steam ocorreu"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
+#, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Bem-vindo ao Editor de Micróbios.\n"
@@ -4137,6 +4141,7 @@ msgstr ""
 "Para ir para a próxima aba, aperte o botão “próximo” no canto inferior direito."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Este é o mapa de regiões.\n"
@@ -4149,6 +4154,7 @@ msgstr ""
 "Selecione uma região para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Este é o editor de células onde você pode adicionar ou remover organelas de sua espécie gastando Pontos de Mutação (PM).\n"
@@ -4158,6 +4164,7 @@ msgstr ""
 "Para continuar, selecione uma organela do painel à esquerda (citoplasma é uma boa escolha) e clique com o botão esquerdo próximo ao hexágono no meio da tela para adicioná-la à sua espécie."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Remover organelas também custa PM, já que conta como uma mutação. A menos que tenha colocado na mesma seção de edição. \n"
@@ -4169,6 +4176,7 @@ msgstr ""
 "Clique no botão de desfazer para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Ao escolher quais organelas adicionar, preste atenção nas suas descrições para saber quais processos elas realizam e quais compostos elas usam e produzem.\n"
@@ -4180,6 +4188,7 @@ msgstr ""
 "Aperte o botão de refazer (perto do botão de desfazer) para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Esse é o básico do editor. Você pode checar as outras abas no editor de células para ainda mais opções.\n"
@@ -4195,6 +4204,7 @@ msgid "GOT_IT"
 msgstr "Entendi"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Esse painel mostra uma previsão da sua população futura. Esses números são da simulação populacional da auto-evo.\n"
@@ -4206,6 +4216,7 @@ msgstr ""
 "Você pode ver informações mais detalhadas sobre a previsão clicando no ponto de interrogação no painel. Clique nele para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Você deve focar em uma ou duas fontes de energia para que você não precise de todos os recursos para gerar ATP suficiente para sobreviver.\n"
@@ -4226,6 +4237,7 @@ msgstr ""
 "Para sobreviver neste mundo hostil, você precisará coletar compostos e evoluir por gerações para competir contra outras espécies de micróbios."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Mostrar tutoriais"
 
@@ -4258,6 +4270,7 @@ msgstr ""
 "Certifique-se de conseguir glicose suficiente para produzir ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Para reproduzir você precisa duplicar todas as suas organelas coletando amônia e fosfatos suficientes.\n"
@@ -4273,6 +4286,7 @@ msgstr ""
 "Para entrar no editor, aperte o botão do editor que está piscando no canto inferior direito."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Você entrou no modo de desconexão. Nesse modo você pode clicar nos membros da colônia para desconectá-las.\n"
@@ -4280,6 +4294,7 @@ msgstr ""
 "Para sair da colônia você pode clicar em sua própria célula ou apertar a tecla “desconectar todos”."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Se você estiver com dificuldade nas mecânicas do jogo, leia o manual de ajuda. Você pode abri-lo clicando no ponto de interrogação no canto inferior esquerdo.\n"
@@ -4287,6 +4302,7 @@ msgstr ""
 "Dica: você pode diminuir o zoom usando a roda do mouse."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
+#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Ver Agora"
 

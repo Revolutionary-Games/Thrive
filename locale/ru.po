@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-18 17:48+0200\n"
-"PO-Revision-Date: 2022-03-04 17:32+0000\n"
-"Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
+"PO-Revision-Date: 2022-03-20 21:04+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -1667,10 +1667,12 @@ msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Количество записей быстрого сохранения:"
 
 #: ../src/general/OptionsMenu.tscn:1068
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показывать туториал (в новых играх)"
 
 #: ../src/general/OptionsMenu.tscn:1075
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показать туториал (в текущей игре)"
 
@@ -4125,10 +4127,12 @@ msgstr "Произошла неизвестная ошибка Steam"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
+#, fuzzy
 msgid "TUTORIAL"
 msgstr "Руководство"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Добро пожаловать в Микробный Редактор.\n"
@@ -4139,6 +4143,7 @@ msgstr ""
 "Чтобы перейти на следующий экран создания нажмите кнопку в виде стрелки справа снизу."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Это карта биомов.\n"
@@ -4151,6 +4156,7 @@ msgstr ""
 "Выберите биом, чтобы продолжить."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Это редактор клеток, в котором вы можете добавлять или удалять органеллы из вашего вида, тратя очки мутации (ОМ).\n"
@@ -4160,6 +4166,7 @@ msgstr ""
 "Чтобы продолжить, выберите органеллу на панели слева (цитоплазма - хороший выбор). Затем щелкните левой кнопкой мыши рядом с шестнадцатеричным символом, показанным в середине экрана, чтобы добавить эту органеллу к вашему виду."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Удаление органелл также стоит ОМ, поскольку это мутация для вашего вида, если только они не были помещены в текущую сессию редактора.\n"
@@ -4171,6 +4178,7 @@ msgstr ""
 "Нажмите кнопку Отменить, чтобы продолжить."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "При выборе того, какие органеллы добавлять, обратите внимание на всплывающие подсказки для органелл о том, какие процессы они выполняют и какие соединения они используют и производят.\n"
@@ -4182,6 +4190,7 @@ msgstr ""
 "Нажмите кнопку Повторить (рядом с кнопкой Отмена), чтобы продолжить."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Это основы редактирования вашего вида. Вы можете проверить другие вкладки редактора ячеек для получения еще большего количества опций.\n"
@@ -4197,6 +4206,7 @@ msgid "GOT_IT"
 msgstr "Всё понятно"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "На этой панели отображается прогноз вашей будущей численности населения. Эти цифры взяты из моделирования популяции авто-эво.\n"
@@ -4208,6 +4218,7 @@ msgstr ""
 "Вы можете просмотреть более подробную информацию, лежащую в основе прогноза, нажав кнопку со знаком вопроса на панели. Нажмите ее, чтобы продолжить."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Вы должны сосредоточиться на одном или двух источниках энергии, чтобы вам не нужно было собирать все ресурсы для выработки достаточного количества АТФ для выживания.\n"
@@ -4228,6 +4239,7 @@ msgstr ""
 "Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые соединения, которые вы сможете найти, и эволюционировать на протяжении поколений, чтобы конкурировать с другими видами микробов."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Показать руководство"
 
@@ -4260,6 +4272,7 @@ msgstr ""
 "Убедитесь, что собрано достаточно глюкозы для производства АТФ."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Для размножения вам нужно продублировать все ваши органеллы, собрав достаточное количество аммиака и фосфатов.\n"
@@ -4275,6 +4288,7 @@ msgstr ""
 "Чтобы войти в редактор нажмите на мигающую кнопку редактора справа внизу."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Вы вошли в режим отвязки. В этом режиме вы можете нажимать на членов колонии, чтобы освобождать их.\n"
@@ -4282,6 +4296,7 @@ msgstr ""
 "Чтобы полностью покинуть колонию, вы можете нажать на свою собственную клетку или нажать клавишу \"Отвязать всех\"."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Если вы все еще испытываете трудности с игровой механикой, проверьте меню справки. Вы можете открыть его с помощью кнопки со знаком вопроса в левом нижнем углу.\n"
@@ -4289,6 +4304,7 @@ msgstr ""
 "Еще один совет: вы можете уменьшить масштаб изображения с помощью колеса прокрутки."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
+#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Руководство"
 
