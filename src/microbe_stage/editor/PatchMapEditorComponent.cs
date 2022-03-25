@@ -2,7 +2,6 @@
 using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
-using Object = Godot.Object;
 
 /// <summary>
 ///   Editor patch map component

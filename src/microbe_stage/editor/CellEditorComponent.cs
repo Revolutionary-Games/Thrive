@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
@@ -407,7 +406,7 @@ public partial class CellEditorComponent :
 
         // GUI setup part
 
-        // Hidden in the editor to make selecting other things easier
+        // Hidden in the Godot editor to make selecting other things easier
         organelleUpgradeGUI.Visible = true;
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
@@ -596,19 +595,7 @@ public partial class CellEditorComponent :
 
         GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
 
-        // Update name, if valid
-        var match = Regex.Match(newName, Constants.SPECIES_NAME_REGEX);
-        if (match.Success)
-        {
-            editedSpecies.Genus = match.Groups["genus"].Value;
-            editedSpecies.Epithet = match.Groups["epithet"].Value;
-
-            GD.Print("MicrobeEditor: edited species name is now ", editedSpecies.FormattedName);
-        }
-        else
-        {
-            GD.PrintErr("MicrobeEditor: Invalid newName: ", newName);
-        }
+        editedSpecies.UpdateNameIfValid(newName);
 
         // Update membrane
         editedProperties.MembraneType = Membrane;
@@ -657,47 +644,15 @@ public partial class CellEditorComponent :
                 effectiveSymmetry = HexEditorSymmetry.None;
             }
 
-            switch (effectiveSymmetry)
-            {
-                case HexEditorSymmetry.None:
-                {
-                    RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
-                    break;
-                }
-
-                case HexEditorSymmetry.XAxisSymmetry:
-                {
-                    RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
-                    RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot), shownOrganelle);
-                    break;
-                }
-
-                case HexEditorSymmetry.FourWaySymmetry:
-                {
-                    RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
-                    RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot), shownOrganelle);
-                    RenderHighlightedOrganelle(-1 * q, -1 * r, (organelleRot + 3) % 6, shownOrganelle);
-                    RenderHighlightedOrganelle(q, -1 * (r + q), 9 + (-1 * organelleRot) % 6, shownOrganelle);
-                    break;
-                }
-
-                case HexEditorSymmetry.SixWaySymmetry:
-                {
-                    RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
-                    RenderHighlightedOrganelle(-1 * r, r + q, (organelleRot + 1) % 6, shownOrganelle);
-                    RenderHighlightedOrganelle(-1 * (r + q), q, (organelleRot + 2) % 6, shownOrganelle);
-                    RenderHighlightedOrganelle(-1 * q, -1 * r, (organelleRot + 3) % 6, shownOrganelle);
-                    RenderHighlightedOrganelle(r, -1 * (r + q), (organelleRot + 4) % 6, shownOrganelle);
-                    RenderHighlightedOrganelle(r + q, -1 * q, (organelleRot + 5) % 6, shownOrganelle);
-                    break;
-                }
-            }
+            RunWithSymmetry(q, r,
+                (finalQ, finalR, rotation) => RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle),
+                effectiveSymmetry);
         }
     }
 
     public override void OnMutationPointsChanged(int mutationPoints)
     {
-        UpdateMutationPointsBar();
+        base.OnMutationPointsChanged(mutationPoints);
         UpdateRigiditySliderState(mutationPoints);
     }
 
@@ -740,28 +695,6 @@ public partial class CellEditorComponent :
         var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
 
         UpdateOrganelleEfficiencies(result);
-    }
-
-    public override void NotifyFreebuild(bool freebuilding)
-    {
-        componentBottomLeftButtons.ShowNewButton = freebuilding;
-        UpdateMutationPointsBar(false);
-    }
-
-    public void SetSpeciesInfo(string name, MembraneType membrane, Color colour, float rigidity,
-        BehaviourDictionary behaviour)
-    {
-        componentBottomLeftButtons.SetNewName(name);
-
-        membraneColorPicker.Color = colour;
-
-        UpdateMembraneButtons(membrane.InternalName);
-        SetMembraneTooltips(membrane);
-
-        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
-
-        // TODO: put this call in some better place
-        behaviourEditor.UpdateAllBehaviouralSliders(behaviour);
     }
 
     /// <summary>
@@ -962,7 +895,7 @@ public partial class CellEditorComponent :
     protected override void OnCurrentActionCanceled()
     {
         editedMicrobeOrganelles.Add(MovingPlacedHex!);
-        UpdateCancelButtonVisibility();
+        base.OnCurrentActionCanceled();
     }
 
     protected override void OnMoveActionStarted()
@@ -982,6 +915,7 @@ public partial class CellEditorComponent :
             return;
 
         // Dont allow deletion of nucleus or the last organelle
+        // TODO: when editing multicellular species this needs to prevent removing the binding agents
         if (organelleHere.Definition.InternalName == "nucleus" || MicrobeSize < 2)
             return;
 
@@ -996,34 +930,7 @@ public partial class CellEditorComponent :
         EnqueueAction(action);
     }
 
-    protected override void UpdateCancelState()
-    {
-        UpdateCancelButtonVisibility();
-    }
-
-    private void SetupPreviewMicrobe()
-    {
-        previewMicrobe = (Microbe)microbeScene.Instance();
-        previewMicrobe.IsForPreviewOnly = true;
-        Editor.RootOfDynamicallySpawned.AddChild(previewMicrobe);
-        previewMicrobe.ApplySpecies(new MicrobeSpecies(Editor.EditedBaseSpecies,
-            Editor.EditedCellProperties ??
-            throw new InvalidOperationException("can't setup preview before cell properties are known")));
-
-        // Set its initial visibility
-        previewMicrobe.Visible = MicrobePreviewMode;
-    }
-
-    private bool HasOrganelle(OrganelleDefinition organelleDefinition)
-    {
-        return editedMicrobeOrganelles.Organelles.Any(o => o.Definition == organelleDefinition);
-    }
-
-    /// <summary>
-    ///   Updates the arrowPosition variable to the top most point of the middle 3 rows
-    ///   Should be called on any layout change
-    /// </summary>
-    private void UpdateArrow(bool animateMovement = true)
+    protected override float CalculateEditorArrowZPosition()
     {
         // The calculation falls back to 0 if there are no hexes found in the middle 3 rows
         var highestPointInMiddleRows = 0.0f;
@@ -1047,17 +954,25 @@ public partial class CellEditorComponent :
             }
         }
 
-        if (animateMovement)
-        {
-            GUICommon.Instance.Tween.InterpolateProperty(editorArrow, "translation:z", editorArrow.Translation.z,
-                highestPointInMiddleRows - Constants.EDITOR_ARROW_OFFSET, Constants.EDITOR_ARROW_INTERPOLATE_SPEED,
-                Tween.TransitionType.Expo, Tween.EaseType.Out);
-            GUICommon.Instance.Tween.Start();
-        }
-        else
-        {
-            editorArrow.Translation = new Vector3(0, 0, highestPointInMiddleRows - Constants.EDITOR_ARROW_OFFSET);
-        }
+        return highestPointInMiddleRows - Constants.EDITOR_ARROW_OFFSET;
+    }
+
+    private void SetupPreviewMicrobe()
+    {
+        previewMicrobe = (Microbe)microbeScene.Instance();
+        previewMicrobe.IsForPreviewOnly = true;
+        Editor.RootOfDynamicallySpawned.AddChild(previewMicrobe);
+        previewMicrobe.ApplySpecies(new MicrobeSpecies(Editor.EditedBaseSpecies,
+            Editor.EditedCellProperties ??
+            throw new InvalidOperationException("can't setup preview before cell properties are known")));
+
+        // Set its initial visibility
+        previewMicrobe.Visible = MicrobePreviewMode;
+    }
+
+    private bool HasOrganelle(OrganelleDefinition organelleDefinition)
+    {
+        return editedMicrobeOrganelles.Organelles.Any(o => o.Definition == organelleDefinition);
     }
 
     private void UpdateRigiditySlider(int value)
@@ -1144,67 +1059,10 @@ public partial class CellEditorComponent :
         if (MovingPlacedHex == null && ActiveActionName == null)
             return;
 
-        bool showModel = true;
+        RenderHoveredHex(q, r, shownOrganelle.GetRotatedHexes(rotation), isPlacementProbablyValid,
+            out bool hadDuplicate);
 
-        foreach (var hex in shownOrganelle.GetRotatedHexes(rotation))
-        {
-            int posQ = hex.Q + q;
-            int posR = hex.R + r;
-
-            var pos = Hex.AxialToCartesian(new Hex(posQ, posR));
-
-            // Detect can it be placed there
-            bool canPlace = isPlacementProbablyValid;
-
-            bool duplicate = false;
-
-            // Skip if there is a placed organelle here already
-            foreach (var placed in placedHexes)
-            {
-                if ((pos - placed.Translation).LengthSquared() < 0.001f)
-                {
-                    duplicate = true;
-
-                    if (!canPlace)
-                    {
-                        // This check is here so that if there are multiple hover hexes overlapping this hex, then
-                        // we do actually remember the original material
-                        if (!hoverOverriddenMaterials.ContainsKey(placed))
-                        {
-                            // Store the material to put it back later
-                            hoverOverriddenMaterials[placed] = placed.MaterialOverride;
-                        }
-
-                        // Mark as invalid
-                        placed.MaterialOverride = invalidMaterial;
-
-                        showModel = false;
-                    }
-
-                    break;
-                }
-            }
-
-            // Or if there is already a hover hex at this position
-            for (int i = 0; i < usedHoverHex; ++i)
-            {
-                if ((pos - hoverHexes[i].Translation).LengthSquared() < 0.001f)
-                {
-                    duplicate = true;
-                    break;
-                }
-            }
-
-            if (duplicate)
-                continue;
-
-            var hoverHex = hoverHexes[usedHoverHex++];
-
-            hoverHex.Translation = pos;
-            hoverHex.Visible = true;
-
-            hoverHex.MaterialOverride = canPlace ? validMaterial : invalidMaterial;
-        }
+        bool showModel = !hadDuplicate;
 
         // Model
         if (!string.IsNullOrEmpty(shownOrganelle.DisplayScene) && showModel)
@@ -1261,64 +1119,12 @@ public partial class CellEditorComponent :
 
         bool placedSomething = false;
 
-        switch (Symmetry)
-        {
-            case HexEditorSymmetry.None:
+        RunWithSymmetry(q, r,
+            (attemptQ, attemptR, rotation) =>
             {
-                PlaceIfPossible(organelleType, q, r, organelleRot, ref placedSomething);
-                break;
-            }
-
-            case HexEditorSymmetry.XAxisSymmetry:
-            {
-                PlaceIfPossible(organelleType, q, r, organelleRot, ref placedSomething);
-
-                if (q != -1 * q || r != r + q)
-                {
-                    PlaceIfPossible(organelleType, -1 * q, r + q, 6 + (-1 * organelleRot), ref placedSomething);
-                }
-
-                break;
-            }
-
-            case HexEditorSymmetry.FourWaySymmetry:
-            {
-                PlaceIfPossible(organelleType, q, r, organelleRot, ref placedSomething);
-
-                if (q != -1 * q || r != r + q)
-                {
-                    PlaceIfPossible(organelleType, -1 * q, r + q, 6 + (-1 * organelleRot), ref placedSomething);
-                    PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6, ref placedSomething);
-                    PlaceIfPossible(organelleType, q, -1 * (r + q), (9 + (-1 * organelleRot)) % 6, ref placedSomething);
-                }
-                else
-                {
-                    PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6, ref placedSomething);
-                }
-
-                break;
-            }
-
-            case HexEditorSymmetry.SixWaySymmetry:
-            {
-                PlaceIfPossible(organelleType, q, r, organelleRot, ref placedSomething);
-
-                PlaceIfPossible(organelleType, -1 * r, r + q, (organelleRot + 1) % 6, ref placedSomething);
-                PlaceIfPossible(organelleType, -1 * (r + q), q,
-                    (organelleRot + 2) % 6, ref placedSomething);
-                PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6, ref placedSomething);
-                PlaceIfPossible(organelleType, r, -1 * (r + q),
-                    (organelleRot + 4) % 6, ref placedSomething);
-                PlaceIfPossible(organelleType, r + q, -1 * q, (organelleRot + 5) % 6, ref placedSomething);
-
-                break;
-            }
-
-            default:
-            {
-                throw new Exception("unimplemented symmetry in AddOrganelle");
-            }
-        }
+                if (PlaceIfPossible(organelleType, attemptQ, attemptR, rotation))
+                    placedSomething = true;
+            });
 
         return placedSomething;
     }
@@ -1326,10 +1132,10 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Helper for AddOrganelle
     /// </summary>
-    private void PlaceIfPossible(string organelleType, int q, int r, int rotation, ref bool placed)
+    private bool PlaceIfPossible(string organelleType, int q, int r, int rotation)
     {
         if (MicrobePreviewMode)
-            return;
+            return false;
 
         var organelle = new OrganelleTemplate(GetOrganelleDefinition(organelleType),
             new Hex(q, r), rotation);
@@ -1338,13 +1144,13 @@ public partial class CellEditorComponent :
         {
             // Play Sound
             Editor.OnInvalidAction();
-            return;
+            return false;
         }
 
         if (AddOrganelle(organelle))
-        {
-            placed = true;
-        }
+            return true;
+
+        return false;
     }
 
     private bool IsValidPlacement(OrganelleTemplate organelle)
@@ -1495,46 +1301,18 @@ public partial class CellEditorComponent :
     /// </summary>
     private void UpdateAlreadyPlacedVisuals()
     {
-        int nextFreeHex = 0;
-        int nextFreeOrganelle = 0;
-
         var islands = editedMicrobeOrganelles.GetIslandHexes();
 
         // Build the entities to show the current microbe
-        foreach (var organelle in editedMicrobeOrganelles.Organelles)
+        UpdateAlreadyPlacedHexes(
+            editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes, o.PlacedThisSession)), islands,
+            microbePreviewMode);
+
+        int nextFreeOrganelle = 0;
+
+        foreach (var organelle in editedMicrobeOrganelles)
         {
-            foreach (var hex in organelle.RotatedHexes)
-            {
-                var pos = Hex.AxialToCartesian(hex + organelle.Position);
-
-                if (nextFreeHex >= placedHexes.Count)
-                {
-                    // New hex needed
-                    placedHexes.Add(CreateEditorHex());
-                }
-
-                var hexNode = placedHexes[nextFreeHex++];
-
-                if (islands.Contains(organelle.Position))
-                {
-                    hexNode.MaterialOverride = islandMaterial;
-                }
-                else if (organelle.PlacedThisSession)
-                {
-                    hexNode.MaterialOverride = validMaterial;
-                }
-                else
-                {
-                    hexNode.MaterialOverride = oldMaterial;
-                }
-
-                // As we set the correct material, we don't need to remember to restore it anymore
-                hoverOverriddenMaterials.Remove(hexNode);
-
-                hexNode.Translation = pos;
-
-                hexNode.Visible = !MicrobePreviewMode;
-            }
+            // Hexes are handled by UpdateAlreadyPlacedHexes
 
             // Model of the organelle
             if (organelle.Definition.DisplayScene != null)
@@ -1563,18 +1341,27 @@ public partial class CellEditorComponent :
             }
         }
 
-        // Delete excess entities
-        while (nextFreeHex < placedHexes.Count)
-        {
-            placedHexes[placedHexes.Count - 1].DetachAndQueueFree();
-            placedHexes.RemoveAt(placedHexes.Count - 1);
-        }
-
         while (nextFreeOrganelle < placedModels.Count)
         {
             placedModels[placedModels.Count - 1].DetachAndQueueFree();
             placedModels.RemoveAt(placedModels.Count - 1);
         }
+    }
+
+    private void SetSpeciesInfo(string name, MembraneType membrane, Color colour, float rigidity,
+        BehaviourDictionary behaviour)
+    {
+        componentBottomLeftButtons.SetNewName(name);
+
+        membraneColorPicker.Color = colour;
+
+        UpdateMembraneButtons(membrane.InternalName);
+        SetMembraneTooltips(membrane);
+
+        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+
+        // TODO: put this call in some better place (also in CellBodyPlanEditorComponent)
+        behaviourEditor.UpdateAllBehaviouralSliders(behaviour);
     }
 
     private void OnMovePressed()

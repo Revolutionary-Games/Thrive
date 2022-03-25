@@ -34,7 +34,6 @@ public partial class CellEditorComponent
         base.RegisterTooltips();
 
         rigiditySlider.RegisterToolTipForControl("rigiditySlider", "editor");
-
     }
 
     protected override void OnTranslationsChanged()

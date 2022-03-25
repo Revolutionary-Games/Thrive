@@ -70,6 +70,7 @@ ResultingMutationPointsLabelPath = NodePath("MarginContainer/MPBarMain/HBoxConta
 BaseMutationPointsLabelPath = NodePath("MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/BaseMp")
 MutationPointsBarPath = NodePath("MarginContainer/MPBarMain")
 MutationPointsSubtractBarPath = NodePath("MarginContainer/MPBarSubtract")
+AnimationPlayerPath = NodePath("MarginContainer/MPBarMain/FlashAnimation")
 
 [node name="MPIcon" type="TextureRect" parent="."]
 margin_right = 20.0

@@ -177,6 +177,12 @@ MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContai
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
 CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
 IslandErrorPath = NodePath("IslandError")
+StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Structure")
+ReproductionTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Reproduction")
+BehaviourTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Behaviour")
+StructureTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
+ReproductionTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
+BehaviourTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
 CellTypeSelectionListPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Cells")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
@@ -528,3 +534,8 @@ rect_min_size = Vector2( 600, 0 )
 WindowTitle = "DISCONNECTED_CELLS"
 HideCancelButton = true
 DialogText = "DISCONNECTED_CELLS_TEXT"
+
+[connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
+[connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]
+[connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]

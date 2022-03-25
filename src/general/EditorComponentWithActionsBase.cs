@@ -41,8 +41,7 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
 
     public override void OnInsufficientMP(bool playSound = true)
     {
-        var animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
-        animationPlayer.Play("FlashBar");
+        mutationPointsBar.PlayFlashAnimation();
 
         if (playSound)
             PlayInvalidActionSound();
@@ -63,6 +62,13 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     public override void OnMutationPointsChanged(int mutationPoints)
     {
         UpdateMutationPointsBar(true);
+    }
+
+    public override void NotifyFreebuild(bool freebuilding)
+    {
+        base.NotifyFreebuild(freebuilding);
+        componentBottomLeftButtons.ShowNewButton = freebuilding;
+        UpdateMutationPointsBar(false);
     }
 
     /// <summary>

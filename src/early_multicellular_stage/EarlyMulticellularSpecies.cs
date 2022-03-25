@@ -35,10 +35,10 @@ public class EarlyMulticellularSpecies : Species
     {
         var centerOfMass = Cells.CenterOfMass;
 
-        foreach (var organelle in Cells)
+        foreach (var cell in Cells)
         {
             // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
-            organelle.Position -= centerOfMass;
+            cell.Position -= centerOfMass;
         }
     }
 

@@ -20,12 +20,16 @@ public class MutationPointsBar : HBoxContainer
     [Export]
     public NodePath MutationPointsSubtractBarPath = null!;
 
+    [Export]
+    public NodePath AnimationPlayerPath = null!;
+
     private Label currentMutationPointsLabel = null!;
     private TextureRect mutationPointsArrow = null!;
     private Label resultingMutationPointsLabel = null!;
     private Label baseMutationPointsLabel = null!;
     private ProgressBar mutationPointsBar = null!;
     private ProgressBar mutationPointsSubtractBar = null!;
+    private AnimationPlayer animationPlayer = null!;
 
     private string freebuildingText = string.Empty;
 
@@ -37,6 +41,7 @@ public class MutationPointsBar : HBoxContainer
         baseMutationPointsLabel = GetNode<Label>(BaseMutationPointsLabelPath);
         mutationPointsBar = GetNode<ProgressBar>(MutationPointsBarPath);
         mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
+        animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>(AnimationPlayerPath);
 
         freebuildingText = TranslationServer.Translate("FREEBUILDING");
     }
@@ -94,5 +99,10 @@ public class MutationPointsBar : HBoxContainer
                 baseMutationPointsLabel.Text = $"/ {Constants.BASE_MUTATION_POINTS:F0}";
             }
         }
+    }
+
+    public void PlayFlashAnimation()
+    {
+        animationPlayer.Play("FlashBar");
     }
 }

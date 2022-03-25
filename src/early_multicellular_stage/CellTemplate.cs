@@ -6,6 +6,13 @@ public class CellTemplate : IPositionedCell, ICloneable
 {
     private int orientation;
 
+    public CellTemplate(CellType cellType, Hex position, int orientation)
+    {
+        CellType = cellType;
+        Position = position;
+        Orientation = orientation;
+    }
+
     public CellTemplate(CellType cellType)
     {
         CellType = cellType;

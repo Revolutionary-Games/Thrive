@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
-using Object = Godot.Object;
 
 /// <summary>
 ///   Editor component that specializes in hex-based stuff editing
@@ -10,7 +9,7 @@ using Object = Godot.Object;
 public abstract class
     HexEditorComponentBase<TEditor, TAction, THexMove> : EditorComponentWithActionsBase<TEditor, TAction>,
         ISaveLoadedTracked, IChildPropertiesLoadCallback
-    where TEditor : IHexEditor, IEditorWithActions
+    where TEditor : class, IHexEditor, IEditorWithActions
     where TAction : CellEditorAction
     where THexMove : class
 {
@@ -412,61 +411,7 @@ public abstract class
 
     public void RemoveHex(Hex hex)
     {
-        int q = hex.Q;
-        int r = hex.R;
-
-        switch (Symmetry)
-        {
-            case HexEditorSymmetry.None:
-            {
-                TryRemoveHexAt(new Hex(q, r));
-                break;
-            }
-
-            case HexEditorSymmetry.XAxisSymmetry:
-            {
-                TryRemoveHexAt(new Hex(q, r));
-
-                if (q != -1 * q || r != r + q)
-                {
-                    TryRemoveHexAt(new Hex(-1 * q, r + q));
-                }
-
-                break;
-            }
-
-            case HexEditorSymmetry.FourWaySymmetry:
-            {
-                TryRemoveHexAt(new Hex(q, r));
-
-                if (q != -1 * q || r != r + q)
-                {
-                    TryRemoveHexAt(new Hex(-1 * q, r + q));
-                    TryRemoveHexAt(new Hex(-1 * q, -1 * r));
-                    TryRemoveHexAt(new Hex(q, -1 * (r + q)));
-                }
-                else
-                {
-                    TryRemoveHexAt(new Hex(-1 * q, -1 * r));
-                }
-
-                break;
-            }
-
-            case HexEditorSymmetry.SixWaySymmetry:
-            {
-                TryRemoveHexAt(new Hex(q, r));
-
-                TryRemoveHexAt(new Hex(-1 * r, r + q));
-                TryRemoveHexAt(new Hex(-1 * (r + q), q));
-                TryRemoveHexAt(new Hex(-1 * q, -1 * r));
-                TryRemoveHexAt(new Hex(r, -1 * (r + q)));
-                TryRemoveHexAt(new Hex(r, -1 * (r + q)));
-                TryRemoveHexAt(new Hex(r + q, -1 * q));
-
-                break;
-            }
-        }
+        RunWithSymmetry(hex.Q, hex.R, (q, r, _) => TryRemoveHexAt(new Hex(q, r)));
     }
 
     /// <summary>
@@ -672,6 +617,222 @@ public abstract class
         r = hex.R;
     }
 
+    /// <summary>
+    ///   Runs given callback for all symmetry positions and rotations
+    /// </summary>
+    /// <param name="q">The base q</param>
+    /// <param name="r">The base r value of the coordinate</param>
+    /// <param name="callback">The callback that is called based on symmetry, parameters are: q, r, rotation</param>
+    /// <param name="overrideSymmetry">If set, overrides the current symmetry</param>
+    protected void RunWithSymmetry(int q, int r, Action<int, int, int> callback,
+        HexEditorSymmetry? overrideSymmetry = null)
+    {
+        overrideSymmetry ??= Symmetry;
+
+        switch (overrideSymmetry)
+        {
+            case HexEditorSymmetry.None:
+            {
+                callback(q, r, organelleRot);
+                break;
+            }
+
+            case HexEditorSymmetry.XAxisSymmetry:
+            {
+                callback(q, r, organelleRot);
+
+                if (q != -1 * q || r != r + q)
+                {
+                    callback(-1 * q, r + q, 6 + (-1 * organelleRot));
+                }
+
+                break;
+            }
+
+            case HexEditorSymmetry.FourWaySymmetry:
+            {
+                callback(q, r, organelleRot);
+
+                if (q != -1 * q || r != r + q)
+                {
+                    callback(-1 * q, r + q, 6 + (-1 * organelleRot));
+                    callback(-1 * q, -1 * r, (organelleRot + 3) % 6);
+                    callback(q, -1 * (r + q), 9 + (-1 * organelleRot) % 6);
+                }
+                else
+                {
+                    callback(-1 * q, -1 * r, (organelleRot + 3) % 6);
+                }
+
+                break;
+            }
+
+            case HexEditorSymmetry.SixWaySymmetry:
+            {
+                callback(q, r, organelleRot);
+                callback(-1 * r, r + q, (organelleRot + 1) % 6);
+                callback(-1 * (r + q), q, (organelleRot + 2) % 6);
+                callback(-1 * q, -1 * r, (organelleRot + 3) % 6);
+                callback(r, -1 * (r + q), (organelleRot + 4) % 6);
+                callback(r + q, -1 * q, (organelleRot + 5) % 6);
+                break;
+            }
+        }
+    }
+
+    protected virtual void OnCurrentActionCanceled()
+    {
+        UpdateCancelButtonVisibility();
+    }
+
+    /// <summary>
+    ///   Updates the forward pointing arrow to not overlap the edited species
+    ///   Should be called on any layout change
+    /// </summary>
+    protected void UpdateArrow(bool animateMovement = true)
+    {
+        var arrowPosition = CalculateEditorArrowZPosition();
+
+        if (animateMovement)
+        {
+            GUICommon.Instance.Tween.InterpolateProperty(editorArrow, "translation:z", editorArrow.Translation.z,
+                arrowPosition, Constants.EDITOR_ARROW_INTERPOLATE_SPEED,
+                Tween.TransitionType.Expo, Tween.EaseType.Out);
+            GUICommon.Instance.Tween.Start();
+        }
+        else
+        {
+            editorArrow.Translation = new Vector3(0, 0, arrowPosition - Constants.EDITOR_ARROW_OFFSET);
+        }
+    }
+
+    /// <summary>
+    ///   Handles positioning hover hexes at the coordinates to show what is about to be places. Handles conflicts with
+    ///   already placed hexes. <see cref="isPlacementProbablyValid"/> should be set to an initial good value before
+    ///   calling this.
+    /// </summary>
+    /// <param name="q">Q coordinate</param>
+    /// <param name="r">R coordinate</param>
+    /// <param name="toBePlacedHexes">
+    ///   List of hexes to show at the coordinates, need to have at least one to do anything useful
+    /// </param>
+    /// <param name="canPlace">
+    ///   True if the editor logic thinks this is a valid placement (selects material for used hover hexes)
+    /// </param>
+    /// <param name="hadDuplicate">Set to true if an already placed hex was conflicted with</param>
+    protected void RenderHoveredHex(int q, int r, IEnumerable<Hex> toBePlacedHexes, bool canPlace,
+        out bool hadDuplicate)
+    {
+        hadDuplicate = false;
+
+        foreach (var hex in toBePlacedHexes)
+        {
+            int posQ = hex.Q + q;
+            int posR = hex.R + r;
+
+            var pos = Hex.AxialToCartesian(new Hex(posQ, posR));
+
+            bool duplicate = false;
+
+            // Skip if there is a placed organelle here already
+            foreach (var placed in placedHexes)
+            {
+                if ((pos - placed.Translation).LengthSquared() < 0.001f)
+                {
+                    duplicate = true;
+
+                    if (!canPlace)
+                    {
+                        // This check is here so that if there are multiple hover hexes overlapping this hex, then
+                        // we do actually remember the original material
+                        if (!hoverOverriddenMaterials.ContainsKey(placed))
+                        {
+                            // Store the material to put it back later
+                            hoverOverriddenMaterials[placed] = placed.MaterialOverride;
+                        }
+
+                        // Mark as invalid
+                        placed.MaterialOverride = invalidMaterial;
+
+                        hadDuplicate = true;
+                    }
+
+                    break;
+                }
+            }
+
+            // Or if there is already a hover hex at this position
+            for (int i = 0; i < usedHoverHex; ++i)
+            {
+                if ((pos - hoverHexes[i].Translation).LengthSquared() < 0.001f)
+                {
+                    duplicate = true;
+                    break;
+                }
+            }
+
+            if (duplicate)
+                continue;
+
+            var hoverHex = hoverHexes[usedHoverHex++];
+
+            hoverHex.Translation = pos;
+            hoverHex.Visible = true;
+
+            hoverHex.MaterialOverride = canPlace ? validMaterial : invalidMaterial;
+        }
+    }
+
+    protected void UpdateAlreadyPlacedHexes(
+        IEnumerable<(Hex BasePosition, IEnumerable<Hex> Hexes, bool PlacedThisSession)> hexes, List<Hex> islands,
+        bool forceHide = false)
+    {
+        int nextFreeHex = 0;
+
+        foreach (var (position, itemHexes, placedThisSession) in hexes)
+        {
+            foreach (var hex in itemHexes)
+            {
+                var pos = Hex.AxialToCartesian(hex + position);
+
+                if (nextFreeHex >= placedHexes.Count)
+                {
+                    // New hex needed
+                    placedHexes.Add(CreateEditorHex());
+                }
+
+                var hexNode = placedHexes[nextFreeHex++];
+
+                if (islands.Contains(position))
+                {
+                    hexNode.MaterialOverride = islandMaterial;
+                }
+                else if (placedThisSession)
+                {
+                    hexNode.MaterialOverride = validMaterial;
+                }
+                else
+                {
+                    hexNode.MaterialOverride = oldMaterial;
+                }
+
+                // As we set the correct material, we don't need to remember to restore it anymore
+                hoverOverriddenMaterials.Remove(hexNode);
+
+                hexNode.Translation = pos;
+
+                hexNode.Visible = !forceHide;
+            }
+        }
+
+        // Delete excess entities
+        while (nextFreeHex < placedHexes.Count)
+        {
+            placedHexes[placedHexes.Count - 1].DetachAndQueueFree();
+            placedHexes.RemoveAt(placedHexes.Count - 1);
+        }
+    }
+
     protected abstract void PerformActiveAction();
     protected abstract bool DoesActionEndInProgressAction(TAction action);
 
@@ -686,12 +847,17 @@ public abstract class
     /// <returns>True if valid</returns>
     protected abstract bool IsMoveTargetValid(Hex position, int rotation, THexMove hex);
 
-    protected abstract void OnCurrentActionCanceled();
     protected abstract void OnMoveActionStarted();
     protected abstract void PerformMove(int q, int r);
     protected abstract THexMove? GetHexAt(Hex position);
     protected abstract void TryRemoveHexAt(Hex location);
-    protected abstract void UpdateCancelState();
+
+    protected abstract float CalculateEditorArrowZPosition();
+
+    protected virtual void UpdateCancelState()
+    {
+        UpdateCancelButtonVisibility();
+    }
 
     /// <summary>
     ///   Moves the camera in a direction (note that height (y-axis) should not be used)

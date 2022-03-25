@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
 
@@ -182,6 +183,26 @@ public abstract class Species : ICloneable
     ///   use
     /// </summary>
     public abstract void UpdateInitialCompounds();
+
+    /// <summary>
+    ///   Updates the name of this species if the new name is valid
+    /// </summary>
+    /// <param name="newName">The new name to try to switch to</param>
+    public void UpdateNameIfValid(string newName)
+    {
+        var match = Regex.Match(newName, Constants.SPECIES_NAME_REGEX);
+        if (match.Success)
+        {
+            Genus = match.Groups["genus"].Value;
+            Epithet = match.Groups["epithet"].Value;
+
+            GD.Print("Edited species name is now ", FormattedName);
+        }
+        else
+        {
+            GD.PrintErr("Invalid newName for species: ", newName);
+        }
+    }
 
     /// <summary>
     ///   Creates a cloned version of the species. This should only

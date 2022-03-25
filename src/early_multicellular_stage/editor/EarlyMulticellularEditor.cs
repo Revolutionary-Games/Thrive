@@ -5,8 +5,7 @@ using Newtonsoft.Json;
 
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn")]
-public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditorWithPatches, IHexEditor,
-    IEditorWithActions, IEditorReportData, ICellEditorData
+public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     [Export]
     public NodePath ReportTabPath = null!;

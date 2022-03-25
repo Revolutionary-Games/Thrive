@@ -21,7 +21,8 @@ public class MicrobePartSelection : MarginContainer
     private bool selected;
 
     /// <summary>
-    ///   Emitted whenever the button is selected.
+    ///   Emitted whenever the button is selected. Note that this sends the Node's Name as the parameter
+    ///   (and not PartName)
     /// </summary>
     [Signal]
     public delegate void OnPartSelected(string name);

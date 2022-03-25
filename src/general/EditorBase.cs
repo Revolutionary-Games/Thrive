@@ -494,6 +494,14 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     {
         pauseMenu.GameProperties = CurrentGame;
 
+        if (fresh)
+        {
+            // Auto save is wanted once possible
+            wantsToSave = true;
+
+            MutationPoints = Constants.BASE_MUTATION_POINTS;
+        }
+
         InitEditorGUI(fresh);
         NotifyUndoRedoStateChanged();
 
@@ -503,11 +511,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         if (fresh)
         {
             SetupEditedSpecies();
-
-            // Auto save is wanted once possible
-            wantsToSave = true;
-
-            MutationPoints = Constants.BASE_MUTATION_POINTS;
 
             // For now we only show a loading screen if auto-evo is not ready yet
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
