@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-18 17:48+0200\n"
-"PO-Revision-Date: 2022-02-27 23:22+0000\n"
+"PO-Revision-Date: 2022-03-24 15:08+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -3138,7 +3138,7 @@ msgstr "Specie Presenti"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3937
 msgid "MOVE_TO_THIS_PATCH"
-msgstr "Trasferisciti in Questa Zona"
+msgstr "Trasferisciti in questa zona"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4006
 msgid "REPORT"
@@ -4085,7 +4085,7 @@ msgstr "File non trovato"
 
 #: ../src/steam/SteamClient.cs:478
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
-msgstr "Secondo Steam il file è già stato caricato, aggiorna la pagina"
+msgstr "Steam riporta il file come già caricato, aggiorna la pagina"
 
 #: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_DUPLICATE_NAME"
@@ -4093,7 +4093,7 @@ msgstr "Steam ha riportato un errore: nome duplicato"
 
 #: ../src/steam/SteamClient.cs:482
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
-msgstr "Il tuo account Steam è temporaneamente in modalità di sola lettura per via di una modifica recente"
+msgstr "Il tuo account Steam è temporaneamente in modalità di sola lettura per via di una modifica recente a esso"
 
 #: ../src/steam/SteamClient.cs:484
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
@@ -4130,37 +4130,37 @@ msgstr "Tutorial"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Benvenuto nell'Editor Microbico.\n"
-"Qui puoi vedere cosa è successo dall'inizio del gioco o dall'ultima volta che eri qui, e poi modificare la tua specie.\n"
 "\n"
-"In questo pannello trovi un resoconto su quali specie esistono, dove, e la loro popolazione. In alto, trovi anche i cambiamenti all'ambiente.\n"
+"Qui puoi osservare cosa è successo alle generazioni precendenti, e poi modificare la tua specie.\n"
 "\n"
-"Per andare al prossimo pannello, clicca il pulsante in basso a destra."
+"In questo pannello trovi un resoconto delle zone che la tua specie occupa al momento. Prova i vari strumenti a tua disposizione per sapere di più sugli eventi nel tuo mondo!\n"
+"\n"
+"Quando ti ritieni pronto, premi il pulsante \"AVANTI\" in basso a destra per continuare."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Questa è la mappa delle zone.\n"
-"Qui puoi vedere i vari habitat disponibili ai microbi.\n"
-"La zona in cui ti trovi attualmente è evidenziata.\n"
-"Puoi vedere i dettagli di una zona cliccandola.\n"
 "\n"
-"Se selezioni una zona adiacente alla tua, puoi trasferirtici premendo il pulsante sulla destra. Ciò permette di spargere la tua specie in nuove zone.\n"
+"Ciascuna icona rappresenta un habitat che puoi abitare. Il pannello a destra ti mostra informazioni aggiuntive sulla zona attualmente selezionata.\n"
 "\n"
-"Seleziona una zona per continuare."
+"Se selezioni una zona adiacente a quella dove ti trovi attualmente, la quale è evidenziata da un bordino azzurro, avrai l'opzione di migrarci premendo il pulsante \"Trasferisciti in questa zona\" in basso a destra.\n"
+"\n"
+"Prova a selezionare una zona per continuare."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Questo è l'editor delle cellule. Qui puoi aggiungere o rimuovere organuli spendendo punti mutazione (PM).\n"
+"Questo è l'editor delle cellule. Qui puoi evolvere la tua specie spendendo punti mutazione (PM). A ogni generazione avrai a disposizione esattamente 100 PM, quindi non preoccuparti di risparmiare!\n"
 "\n"
-"Non solo: ci sono altre proprietà che puoi cambiare usando gli appositi pannelli.\n"
+"L'esagono al centro dello schermo è la tua cellula. Per ora, è composta di una sola parte di citoplasma.\n"
 "\n"
-"Per continuare, scegli un organulo dal pannello a sinistra (ti consiglio il citoplasma). Poi, aggiungilo alla tua specie, facendo clic sinistro a fianco all'esagono al centro dello schermo."
+"Per continuare, seleziona una parte dal pannello a sinistra. Poi, fai clic sinistro vicino all'esagono per posizionarla. Puoi ruotare le parti con A e D (di default)."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Anche rimuovere organuli costa PM, visto che si tratta di una mutazione, a meno che tu li abbia posizionati in questa sessione di modifica.\n"
+"Anche rimuovere organuli costa PM, visto che si tratta di una mutazione alla tua specie, a meno che tu li abbia posizionati in questa sessione di modifica.\n"
 "\n"
 "Puoi fare click destro su di un organulo qualsiasi per aprire il menù a tendina, e selezionare l'opzione per rimuoverlo.\n"
 "\n"
@@ -4169,6 +4169,7 @@ msgstr ""
 "Clicca il pulsante \"Annulla l'ultima azione\" per continuare."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Quando selezioni gli organuli da aggiungere, presta attenzione ai suggerimenti riguardanti quali processi eseguono e quali composti usano e producono.\n"
@@ -4182,11 +4183,11 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Questi sono i concetti base per la modifica della tua specie. Puoi controllare gli altri pannelli per opzioni ulteriori.\n"
+"Questi sono i concetti base per la modifica della tua specie; ma come ciliegina sulla torta, puoi rinominarla. Per farlo, fai clic sul suo nome attuale in basso a sinistra e modifica il testo.\n"
 "\n"
-"Puoi rinominare la tua specie. Per farlo, clicca sul nome attuale e modifica il testo.\n"
+"Prova a eplorare gli altri pannelli sotto la barra dei PM, per vedere in che altri modi puoi personalizzare la tua cellula.\n"
 "\n"
-"All'inizio, ti sarà opportuno mantenere la tua cellula piccola, e muoverti verso le zone di superficie.\n"
+"Per sopravvivere in questo mondo crudele, è imperativo che tu trovi una risorsa di energia affidabile, o la tua scorta di glucosio finirà presto.\n"
 "\n"
 "Buona fortuna!"
 
@@ -4195,6 +4196,7 @@ msgid "GOT_IT"
 msgstr "Ho capito"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Questo pannello mostra una previsione sulla tua popolazione futura. Questi numeri arrivano dalla simulazione di popolazione dell'auto-evo.\n"
@@ -4206,6 +4208,7 @@ msgstr ""
 "Puoi vedere informazioni più dettagliate premendo il punto di domanda all'interno del pannello. Premilo per continuare."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Dovresti concentrarti su una o due fonti di energia; così, non avrai bisogno di raccogliere troppe risorse diverse per produrre abbastanza ATP e sopravvivere.\n"
@@ -4231,7 +4234,7 @@ msgstr "Mostra i tutorial"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
-msgstr "Inizia a Prosperare"
+msgstr "Inizia a prosperare"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
 msgid "MICROBE_STAGE_CONTROL_TEXT"
@@ -4258,21 +4261,24 @@ msgstr ""
 "Assicurati di raccogliere abbastanza glucosio per produrre ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Per riprodurti, devi duplicare tutti i tuoi organuli. Per farlo, devi raccogliere abbastanza ammoniaca e fosfati.\n"
 "Guarda l'indicatore in basso per vedere di quanto ancora ne hai bisogno."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Hai raccolto abbastanza risorse per far dividere la tua cellula.\n"
+"Hai raccolto abbastanza risorse perché la tua cellula si riproduca.\n"
 "\n"
-"Ora sei pronto a modificare la tua specie.\n"
+"Ogni volta che ti riproduci, sarai portato all'editor.\n"
 "\n"
 "Per accedere all'editor, premi il pulsante lampeggiante in basso a destra."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Sei in modalità di slegatura: clicca sui membri della tua colonia per separartene.\n"
@@ -4280,6 +4286,7 @@ msgstr ""
 "Per abbandonarla interamente, clicca sulla tua stessa cellula, oppure premi il tasto per slegare tutti (U di default)."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Se dovessi ancora far fatica a capire le meccaniche di gioco, dai un'occhiata al menù di aiuto. Lo puoi aprire premendo il pulsante col punto di domanda in basso a sinistra.\n"
@@ -4288,7 +4295,7 @@ msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Vedi Ora"
+msgstr "Vedi ora"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Caricamento..."
