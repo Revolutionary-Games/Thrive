@@ -103,7 +103,9 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
                 cachedVertices3D = new Vector3[vertices2D.Count];
                 for (var i = 0; i < vertices2D.Count; ++i)
+                {
                     cachedVertices3D[i] = new Vector3(vertices2D[i].x, height / 2, vertices2D[i].y);
+                }
 
                 vertices3dIsDirty = false;
             }

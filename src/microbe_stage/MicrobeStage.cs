@@ -673,9 +673,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [DeserializedCallbackAllowed]
     private void OnPlayerEngulfed(Microbe player, Microbe engulfer)
     {
-        // Count as normal death
+        // Counted as normal death
         OnPlayerDied(player);
 
+        // To avoid camera position being reset to world origin
         Camera.ObjectToFollow = engulfer;
     }
 
