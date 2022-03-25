@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-18 17:48+0200\n"
-"PO-Revision-Date: 2022-03-06 15:22+0000\n"
-"Last-Translator: Ivan Kurta <ivkurta1@gmail.com>\n"
+"PO-Revision-Date: 2022-03-21 05:17+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -1667,10 +1667,12 @@ msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Кількість можливих швидких збережень:"
 
 #: ../src/general/OptionsMenu.tscn:1068
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Програти туторіали (в новій грі)"
 
 #: ../src/general/OptionsMenu.tscn:1075
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Програти туторіал (в поточній грі)"
 
@@ -4124,10 +4126,12 @@ msgstr "Сталася невідома помилка Steam"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
+#, fuzzy
 msgid "TUTORIAL"
 msgstr "Туторіал"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Ласкаво просимо до мікробного редактору.\n"
@@ -4138,6 +4142,7 @@ msgstr ""
 "Перейдіть в наступну вкладку редактора, натиснувши кнопку \"Далі\" справа знизу."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Це мапа ділянок.\n"
@@ -4150,6 +4155,7 @@ msgstr ""
 "Виберіть ділянку, щоб продовжити."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Це клітинний редактор, де ви можете додавати або видаляти органели вашого виду використовуючи очки мутуції (ОМ).\n"
@@ -4159,6 +4165,7 @@ msgstr ""
 "Щоб продовжити, оберіть органелу на панелі зліва (цитоплазма є гарним вибором).Потім клацніть ЛКМ поруч із гексом(шестикутником), показаним посередині екрану, щоб додати цю органелу до вашого виду."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Переміщення органел також коштує ОМ, бо це мутація вашого виду, якщо вони не були в цьому місці редактора.\n"
@@ -4170,6 +4177,7 @@ msgstr ""
 "Натисніть кнопку скасування, щоб продовжити."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Коли обираєте органелу для додавання, зверніть увагу на підказки для органел, які процеси вони виконують, які сполуки споживають та продукують.\n"
@@ -4181,6 +4189,7 @@ msgstr ""
 "Натисніть кнопку повтору продовжити(поруч з кнопкою скасувати), аби продовжити."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Це основи редагування вашого виду. Ви можете глянути інші вкладки панелі клітинного редактора, щоб мати більше налаштувань.\n"
@@ -4196,6 +4205,7 @@ msgid "GOT_IT"
 msgstr "Зрозуміло"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Ця панель показує прогноз майбутнього вашої популяції. Ці цифри отримані з моделювання населення авто-ево.\n"
@@ -4207,6 +4217,7 @@ msgstr ""
 "Ви можете переглянути більш детальну інформацію про прогноз, натиснувши кнопку зі знаком питання на панелі. Натисніть її, щоб продовжити."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Ви повинні зосередитися на одному-двох джерелах енергії, щоб вам не потрібно було мати всі ресурси для вироблення достатньої кількості АТФ для виживання.\n"
@@ -4227,6 +4238,7 @@ msgstr ""
 "Щоб вижити в цьому суворуму світі, ви маєте збирати сполуки, які лише знайдете, та еволюціонувати протягом поколінь, аби конкурувати з іншими видами мікробів."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Показати туторіал"
 
@@ -4259,6 +4271,7 @@ msgstr ""
 "Переконайтесь, що збираєте достатню кількість глюкози для продукування АТФ."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Для розмноження потрібно подвоїти кожну свою органелу зібравши достатньо аміаку та фосфатів.\n"
@@ -4274,6 +4287,7 @@ msgstr ""
 "Для переходу в радактор натисніть блимаючу кнопку редактора знизу справа."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Ви перейшли до розв'язувального режиму. В цьому режимі ви можете натиснути на членів колонії для розв'язування з ними.\n"
@@ -4281,6 +4295,7 @@ msgstr ""
 "Аби повністю покинути колонію ви можете клікнути на свою клітину або натиснути клавішу для розв'язування."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
+#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Якщо ви, все ще, маєте складності з ігровими механіками, загляньте до меню допомоги. Ви можете відкрити його за допомогою кнопки із знаком питання знизу зліва.\n"
@@ -4288,6 +4303,7 @@ msgstr ""
 "Ще одна підказка: Ви можете міняти масштаб за допомогою колесика миші."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
+#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Переглянути зараз"
 
