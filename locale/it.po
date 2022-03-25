@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-18 17:48+0200\n"
-"PO-Revision-Date: 2022-02-27 23:22+0000\n"
+"PO-Revision-Date: 2022-03-20 08:31+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -4127,9 +4127,11 @@ msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Benvenuto nell'Editor Microbico.\n"
+"\n"
 "Qui puoi vedere cosa è successo dall'inizio del gioco o dall'ultima volta che eri qui, e poi modificare la tua specie.\n"
 "\n"
 "In questo pannello trovi un resoconto su quali specie esistono, dove, e la loro popolazione. In alto, trovi anche i cambiamenti all'ambiente.\n"
@@ -4137,6 +4139,7 @@ msgstr ""
 "Per andare al prossimo pannello, clicca il pulsante in basso a destra."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Questa è la mappa delle zone.\n"
@@ -4169,6 +4172,7 @@ msgstr ""
 "Clicca il pulsante \"Annulla l'ultima azione\" per continuare."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Quando selezioni gli organuli da aggiungere, presta attenzione ai suggerimenti riguardanti quali processi eseguono e quali composti usano e producono.\n"
@@ -4266,9 +4270,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Hai raccolto abbastanza risorse per far dividere la tua cellula.\n"
+"Hai raccolto abbastanza risorse perché la tua cellula si riproduca.\n"
 "\n"
-"Ora sei pronto a modificare la tua specie.\n"
+"Ogni volta che ti riproduci, sarai portato all'editor.\n"
 "\n"
 "Per accedere all'editor, premi il pulsante lampeggiante in basso a destra."
 
