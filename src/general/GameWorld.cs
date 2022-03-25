@@ -329,6 +329,9 @@ public class GameWorld : ISaveLoadable
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
+        if (microbeSpecies.IsBacteria)
+            throw new ArgumentException("bacteria can't turn multicellular");
+
         var multicellularVersion = new EarlyMulticellularSpecies(species.ID, species.Genus, species.Epithet);
         species.CopyDataToConvertedSpecies(multicellularVersion);
 

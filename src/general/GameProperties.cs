@@ -83,6 +83,7 @@ public class GameProperties
 
         playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"),
             new Hex(0, -3), 0));
+        playerSpecies.IsBacteria = false;
 
         var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
 

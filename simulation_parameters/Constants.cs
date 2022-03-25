@@ -20,8 +20,7 @@ public static class Constants
     public const float MAX_SPAWN_DISTANCE = 5000.0f;
 
     /// <summary>
-    ///   The (default) size of the hexagons, used in
-    ///   calculations. Don't change this.
+    ///   The (default) size of the hexagons, used in calculations. Don't change this.
     /// </summary>
     public const float DEFAULT_HEX_SIZE = 0.75f;
 
