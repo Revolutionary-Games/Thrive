@@ -67,9 +67,6 @@ public partial class CellBodyPlanEditorComponent :
     private bool organelleDataDirty = true;
 
     [JsonProperty]
-    private CellType? activeActionCell;
-
-    [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     public enum SelectionMenuTab
@@ -313,7 +310,7 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         // Show the cell that is about to be placed
-        if (activeActionCell != null && Editor.ShowHover)
+        if (activeActionName != null && Editor.ShowHover)
         {
             GetMouseHex(out int q, out int r);
 
@@ -324,7 +321,7 @@ public partial class CellBodyPlanEditorComponent :
                 // Can place stuff at all?
                 // TODO: should organelleRot be used here in some way?
                 isPlacementProbablyValid = IsValidPlacement(
-                    new HexWithData<CellTemplate>(new CellTemplate(activeActionCell))
+                    new HexWithData<CellTemplate>(new CellTemplate(CellTypeFromName(activeActionName)))
                     {
                         Position = new Hex(q, r),
                     });
@@ -354,16 +351,21 @@ public partial class CellBodyPlanEditorComponent :
         return true;
     }
 
+    protected CellType CellTypeFromName(string name)
+    {
+        return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
+    }
+
     protected override void OnTranslationsChanged()
     {
     }
 
     protected override int CalculateCurrentActionCost()
     {
-        if (activeActionCell == null || !Editor.ShowHover)
+        if (activeActionName == null || !Editor.ShowHover)
             return 0;
 
-        var cost = activeActionCell.MPCost;
+        var cost = CellTypeFromName(activeActionName).MPCost;
 
         switch (Symmetry)
         {
@@ -390,7 +392,7 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override void PerformActiveAction()
     {
-        throw new NotImplementedException();
+        AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active")));
     }
 
     protected override bool DoesActionEndInProgressAction(CellEditorAction action)
@@ -497,7 +499,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void RenderHighlightedCell(int q, int r, int rotation)
     {
-        if (MovingPlacedHex == null && activeActionCell == null)
+        if (MovingPlacedHex == null && activeActionName == null)
             return;
 
         // For now a single hex represents entire cells
@@ -618,7 +620,7 @@ public partial class CellBodyPlanEditorComponent :
             return;
         }
 
-        activeActionCell = cellTypeButton.CellType;
+        activeActionName = cellTypeName;
 
         // Update the icon highlightings
         foreach (var element in cellTypeSelectionButtons.Values)
@@ -647,7 +649,7 @@ public partial class CellBodyPlanEditorComponent :
         // Build the entities to show the current microbe
         // TODO: implement placed this session flag
         UpdateAlreadyPlacedHexes(
-            editedMicrobeOrganelles.Select(o => (o.Position, new[] { o.Position }.AsEnumerable(), false)), islands);
+            editedMicrobeOrganelles.Select(o => (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(), false)), islands);
     }
 
     private void OnSpeciesNameChanged(string newText)
