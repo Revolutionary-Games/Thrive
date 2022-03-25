@@ -67,6 +67,7 @@ public class CellType : ICellProperties, IPhotographable
 
     public float CalculatePhotographDistance(Spatial instancedScene)
     {
-        return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius);
+        return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
+            Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
     }
 }

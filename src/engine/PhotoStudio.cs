@@ -54,6 +54,7 @@ public class PhotoStudio : Viewport
         InstanceScene,
         ApplySceneParameters,
         AttachScene,
+        WaitSceneStabilize,
         PositionCamera,
         Render,
         CaptureImage,
@@ -72,10 +73,11 @@ public class PhotoStudio : Viewport
         if (radius <= 0)
             throw new ArgumentException("radius needs to be over 0");
 
-        float angle = Constants.PHOTO_STUDIO_CAMERA_HALF_ANGLE;
+        // TODO: figure out if the camera FOV or FOV / 2 is the right thing to use here
+        float angle = Constants.PHOTO_STUDIO_CAMERA_FOV;
 
         // Some right angle triangle math that's hopefully right
-        return Mathf.Tan(MathUtils.DEGREES_TO_RADIANS * angle) / radius;
+        return Mathf.Tan(MathUtils.DEGREES_TO_RADIANS * angle) * radius;
     }
 
     public override void _Ready()
@@ -91,6 +93,8 @@ public class PhotoStudio : Viewport
         RenderTargetUpdateMode = UpdateMode.Disabled;
 
         camera.Fov = Constants.PHOTO_STUDIO_CAMERA_FOV;
+
+        PauseMode = PauseModeEnum.Process;
     }
 
     public override void _Process(float delta)
@@ -163,6 +167,13 @@ public class PhotoStudio : Viewport
                     renderedObjectHolder.AddChild(instancedScene);
                 }
 
+                currentTaskStep = Step.WaitSceneStabilize;
+                break;
+            }
+
+            case Step.WaitSceneStabilize:
+            {
+                // Need to wait one frame for the objects to initialize
                 currentTaskStep = Step.PositionCamera;
                 break;
             }
@@ -171,6 +182,7 @@ public class PhotoStudio : Viewport
             {
                 camera.Translation = new Vector3(0,
                     currentTask!.Photographable.CalculatePhotographDistance(instancedScene!), 0);
+                currentTaskStep = Step.Render;
                 break;
             }
 
@@ -211,13 +223,6 @@ public class PhotoStudio : Viewport
         }
 
         base._Process(delta);
-
-        if (currentTaskStep == Step.PositionCamera)
-        {
-            // For some reason this needs to be here (instead of in the switch above) to get the rendering
-            // to work correctly
-            currentTaskStep = Step.Render;
-        }
     }
 
     /// <summary>

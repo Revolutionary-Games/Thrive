@@ -702,6 +702,7 @@ public static class Constants
 
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
+    public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 0.80f;
 
     /// <summary>
     ///   Regex for species name validation.
