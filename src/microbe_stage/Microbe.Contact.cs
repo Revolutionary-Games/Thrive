@@ -1070,17 +1070,20 @@ public partial class Microbe
     {
         _ = bodyID;
 
+        var thisOwnerId = ShapeFindOwner(localShape);
+        var thisMicrobe = GetMicrobeFromShape(localShape);
+
+        // localShape is invalid. This can happen during re-parenting
+        if (thisMicrobe == null)
+            return;
+
         if (body is Microbe colonyLeader)
         {
             var touchedOwnerId = colonyLeader.ShapeFindOwner(bodyShape);
-            var thisOwnerId = ShapeFindOwner(localShape);
-
             var touchedMicrobe = colonyLeader.GetMicrobeFromShape(bodyShape);
 
-            var thisMicrobe = GetMicrobeFromShape(localShape);
-
-            // bodyShape or localShape are invalid. This can happen during re-parenting
-            if (touchedMicrobe == null || thisMicrobe == null)
+            // bodyShape is invalid. This can happen during re-parenting
+            if (touchedMicrobe == null)
                 return;
 
             // TODO: does this need to check for disposed exception?
@@ -1127,9 +1130,9 @@ public partial class Microbe
         }
         else if (body is IEngulfable engulfable)
         {
-            if (touchedEngulfables.Add(engulfable))
+            if (thisMicrobe.touchedEngulfables.Add(engulfable))
             {
-                CheckStartEngulfingOnCandidates();
+                thisMicrobe.CheckStartEngulfingOnCandidates();
             }
         }
     }
@@ -1139,7 +1142,7 @@ public partial class Microbe
         _ = bodyID;
         _ = bodyShape;
 
-        if (body is Microbe microbe)
+        if (body is IEngulfable engulfable)
         {
             // GetMicrobeFromShape returns null when it was provided an invalid shape id.
             // This can happen when re-parenting is in progress.
@@ -1147,18 +1150,14 @@ public partial class Microbe
             var hitMicrobe = GetMicrobeFromShape(localShape) ?? this;
 
             // TODO: should this also check for pilus before removing the collision?
-            hitMicrobe.touchedEngulfables.Remove(microbe);
-        }
-        else if (body is IEngulfable engulfable)
-        {
-            touchedEngulfables.Remove(engulfable);
+            hitMicrobe.touchedEngulfables.Remove(engulfable);
         }
     }
 
     private void OnBodyEnteredEngulfArea(Node body)
     {
         // ReSharper disable once MergeCastWithTypeCheck
-        if (!(body is IEngulfable engulfable) || engulfable == this)
+        if (body is not IEngulfable engulfable || engulfable == this)
             return;
 
         if (otherEngulfablesInEngulfRange.Add((IEngulfable)body))
@@ -1202,6 +1201,8 @@ public partial class Microbe
             // Engulfable must be of rigidbody type to be ingested
             return;
         }
+
+        touchedEngulfables.Remove(target);
 
         target.IsIngested = true;
         target.NotifyEngulfed();
@@ -1376,10 +1377,9 @@ public partial class Microbe
         // foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
         foreach (var engulfable in touchedEngulfables)
         {
-            if (!attemptingToEngulf.Contains(engulfable) && CanEngulf(engulfable))
+            if (attemptingToEngulf.Add(engulfable) && CanEngulf(engulfable))
             {
                 StartEngulfingTarget(engulfable);
-                attemptingToEngulf.Add(engulfable);
             }
             else if (engulfedSize >= Size || engulfedSize + engulfable.Size >= Size)
             {
@@ -1399,11 +1399,26 @@ public partial class Microbe
 
     private void StartEngulfingTarget(IEngulfable target)
     {
-        if (target is RigidBody body)
+        if (target is not RigidBody body)
+            return;
+
+        try
         {
             target.IsBeingEngulfed = true;
             target.HostileEngulfer.Value = this;
-            AddCollisionExceptionWith(body);
+
+            if (Colony != null)
+            {
+                Colony.Master.AddCollisionExceptionWith(body);
+            }
+            else
+            {
+                AddCollisionExceptionWith(body);
+            }
+        }
+        catch (ObjectDisposedException)
+        {
+            GD.Print("Touched eligible engulfable has been disposed before engulfing could start");
         }
     }
 
@@ -1411,16 +1426,37 @@ public partial class Microbe
     {
         target.HostileEngulfer.Value = null;
 
-        if (target is RigidBody body && IsInstanceValid(body))
+        if (target is not RigidBody body)
+            return;
+
+        try
         {
             if (body is Microbe microbe && (Colony == null || Colony != microbe.Colony))
             {
-                RemoveCollisionExceptionWith(microbe);
+                if (Colony != null)
+                {
+                    Colony.Master.RemoveCollisionExceptionWith(microbe);
+                }
+                else
+                {
+                    RemoveCollisionExceptionWith(microbe);
+                }
             }
-            else if (!(body is Microbe))
+            else if (body is not Microbe)
             {
-                RemoveCollisionExceptionWith(body);
+                if (Colony != null)
+                {
+                    Colony.Master.RemoveCollisionExceptionWith(body);
+                }
+                else
+                {
+                    RemoveCollisionExceptionWith(body);
+                }
             }
+        }
+        catch (ObjectDisposedException)
+        {
+            GD.Print("Engulfed object has been disposed before engulfing could stop");
         }
     }
 
