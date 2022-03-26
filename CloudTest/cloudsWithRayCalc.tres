@@ -9,12 +9,19 @@ uniform float MIN_HIT_DIST = 0.001f; // hit depth threshold
 uniform vec3 bound_min;
 uniform vec3 bound_max;
 
-uniform sampler3D cloudTex;
 uniform vec3 cloudPosition;
 uniform float cloudWidth;
 uniform float cloudHeight;
 uniform float cloudDepth;
 
+
+uniform sampler2D subshapes;
+uniform float maxSubshapeRad;
+uniform int subshapeNumber;
+
+uniform float sigma;
+uniform float b;
+uniform float cloudDensMult;
 void vertex() {
   POSITION = vec4(VERTEX, 1.0);
 }
@@ -33,11 +40,45 @@ vec2 modified_intersectAABB(vec3 rayOrigin, vec3 rayDir, vec3 boxMin, vec3 boxMa
 	return vec2(dstToBox, dstInsideBox);
 }
 
+float signedDistance(vec3 center, float radius, vec3 point)
+{
+	return length(center - point) - radius;
+	
+}
+
+float gauss(float x)
+{
+	float pi = 3.145;
+	float a = 1f/(sigma * sqrt(2f*pi));
+	return a*exp(-pow((x-b),2)/(2f*pow(sigma,2)));
+}
+
+float sample_density(vec3 x)
+{
+	float localDens = 0f;
+	float dist;
+	for (int i = 1; i <= subshapeNumber; i++)
+	{
+		float index = float(i)/float(subshapeNumber);
+		vec4 subshape= texture(subshapes,vec2(index,0));
+		vec3 shapeCent = subshape.xyz * 200f;
+		float shapeRad = subshape.a * float(maxSubshapeRad);
+		dist = signedDistance(shapeCent,shapeRad,x);
+		if (dist < 0f)
+		{	
+			dist = abs(dist);
+			localDens += gauss(dist) * dist * cloudDensMult; 
+		}
+	}
+	return localDens;
+}
 // TODO implement for multiple cloud/containers
 //vec4 sdf(vec3 point)
 //{
 //
 //}
+
+
 
 vec3 raymarch(vec3 rayDir,vec3 cameraPos)
 {
@@ -46,7 +87,7 @@ vec3 raymarch(vec3 rayDir,vec3 cameraPos)
     float depth = 0.0;
 	float density = 0f;
 	float totalDist =0f;
-	int nrOfSmaples = 4;
+	int nrOfSmaples = 20;
 	int stepCount = nrOfSmaples + 1;
 	float stepSize;
 	vec3 pos;
@@ -56,16 +97,21 @@ vec3 raymarch(vec3 rayDir,vec3 cameraPos)
 	dstToBox = dist.x;
 	dstInsideBox = dist.y;
 	stepSize = dstInsideBox / float(stepCount);
-	pos = cameraPos + rayDir * dstToBox;
-	for (int i = 1; i < stepCount; i++)
-	{
-		pos = cameraPos + rayDir * (dstToBox + stepSize * float(i));
+	if(dstInsideBox > 0f ){
+		pos = cameraPos + rayDir * dstToBox;
+		for (int i = 1; i < stepCount; i++)
+		{
+			pos = cameraPos + rayDir * (dstToBox + stepSize * float(i));
+			vec3 localPos = pos - cloudPosition;
+			density += sample_density(localPos);
+		}
 	}
-    return vec3 (dstToSphere ,abs(totalDist), density);
+    return vec3 (dstToBox ,dstInsideBox, density);
 }
 
 void fragment()
 {
+	///////////////////// RAY DIR and CAMERAPOS this shouldnt be touched
 	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).x;
 	vec3 ndc = vec3(SCREEN_UV, depth) * 2.0 - 1.0;
 	vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
@@ -75,29 +121,25 @@ void fragment()
 	vec3 worldCamera = (CAMERA_MATRIX * vec4(0f,0f,0f,1f)).xyz;
 	vec4 world = CAMERA_MATRIX * view;
     vec3 world_position = world.xyz / world.w;
-	
+	////////////////////////////
 	
 	vec3 rayDir = normalize(world_position - worldCamera);
 	vec3 rayInfo = raymarch(rayDir, worldCamera);
-	float distToSphere = rayInfo.x;
-	float distToSphereExit = rayInfo.y;
-
-	if (distToSphereExit == 0f)
-		distToSphereExit = distToSphere;
+	float distToCloud = rayInfo.x;
+	float distInsideCloud = rayInfo.y;
 	vec3 rayColor = vec3(0f,0f,0f);
-	if (rayInfo.x != 0f)
-		rayColor = vec3(2f,0.1f,0.5f);
+	if (distInsideCloud != 0f)
+	rayColor = vec3(2f,0.1f,0.5f);
 
-	ALBEDO = rayColor.xyz;
+	ALBEDO = rayColor.rgb;
 	
 	// Alpha calculation
-	float dist = (abs(distToSphere-distToSphereExit));
 	float density = rayInfo.z;
-	float alpha =  1f-exp(-density/1f);
-//	alpha= min (1f,alpha);
+	float alpha = 1f-exp(-density);
+
 	ALPHA = alpha;
 
-	if (rayColor.xyz == vec3 (0f,0f,0f) || linear_depth < abs(distToSphere) )//|| density > 1.2f )
+	if (rayColor.xyz == vec3 (0f,0f,0f)  || linear_depth < abs(distToCloud))
 		ALPHA = 0f;
 		
 

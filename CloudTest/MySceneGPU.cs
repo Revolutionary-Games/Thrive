@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Vector3 = Godot.Vector3;
 
 [Tool]
-public class MyScene : Spatial
+public class MySceneGPU : Spatial
 {
 	public CSGBox cloudbox;
 	public Vector3 cloudPosition;
@@ -21,11 +21,11 @@ public class MyScene : Spatial
 	public List<Vector3> shapeCenters = new List<Vector3>();
 	public List<int> shapeSizes = new List<int>(); 
 	public int subShapeNumber = 30;
-	public int subShapeMaxRadius = 50;
+	public int subShapeMaxRadius = 40;
 	public int subShapeMinRadius = 20;
 
 	// Generate the cloudlets's position and size.
-	public void GenerateSubShapePositions()
+	public void GenerateSubShapes()
 	{
 		var random = new Random();
 		for (int i = 0; i<subShapeNumber; i++)
@@ -97,45 +97,37 @@ public class MyScene : Spatial
 		if (Engine.EditorHint)
 		{
 			
-
+			
 			cloudbox =  (CSGBox)GetTree().Root.FindNode("CSGBox",true, false);
 			cloudWidth = (int)cloudbox.Width;
 			cloudHeight = (int)cloudbox.Height;
 			cloudDepth = (int)cloudbox.Depth;
-
-			GenerateSubShapePositions();
-			GenerateCloud();
-
-
+			GenerateSubShapes();
 			MeshInstance cameraMesh = (MeshInstance)GetTree().Root.FindNode("MeshInstance2",true, false);
 			ShaderMaterial mat = (ShaderMaterial)cameraMesh.GetSurfaceMaterial(0);
 			material = mat;
 
-			// We cant pass arrays to the shader so we have to copy the 3d array in a 3dTexture
-			Texture3D texture = new Texture3D();
-			texture.Create((uint)cloudWidth,(uint)cloudHeight,(uint)cloudDepth,Image.Format.Rgba8);
-			
-			Color color = new Color(2,0.1f,0.5f,0);
 
-			for (int i = 0;i < cloudDepth;i++)
-			{ 
-				Image slice = new Image();
-				slice.Create((int)cloudWidth,(int)cloudHeight,false,Image.Format.Rgba8);
-				slice.Lock();
+			Image texture = new Image();
+			var w = subShapeNumber;
+			texture.Create(w,1,false,Image.Format.Rgba8);
+			texture.Lock();
+			GD.Print(shapeCenters[0],shapeCenters[2]);
+			for (int i = 0;i < w; i++)
+			{
+				GD.Print(shapeCenters[i]);
+				Color col = new Color(shapeCenters[i].x/cloudWidth, (float)shapeCenters[i].y/cloudHeight, 
+				(float)shapeCenters[i].z/cloudDepth,
+				(float)shapeSizes[i]/subShapeMaxRadius);
+				texture.SetPixel(i,0,col);
 				
-				for (int x = 0; x < cloudWidth; x++){
-					for (int y = 0; y < cloudHeight; y++)
-					{	
-						color.a = cloud[x,y,i];
-						slice.SetPixel(x,y,color);
-					}
-
-				}
-				
-				texture.SetLayerData(slice, i);
 			}
+			var subshapes = new ImageTexture();
+			subshapes.CreateFromImage(texture);
 
 
+
+			
 			var cloudaabb = (createCloudAABB(cloudbox));
 			cloudPosition = cloudaabb.Position;
 			mat.SetShaderParam("bound_min",cloudaabb.Position);
@@ -144,7 +136,9 @@ public class MyScene : Spatial
 			mat.SetShaderParam("cloudWidth", cloudWidth);
 			mat.SetShaderParam("cloudHeight", cloudHeight);
 			mat.SetShaderParam("cloudDepth", cloudDepth);
-			mat.SetShaderParam("cloudTex", texture);
+			mat.SetShaderParam("subshapes", subshapes);
+			mat.SetShaderParam("maxSubshapeRad", subShapeMaxRadius);
+			mat.SetShaderParam("subshapeNumber", w);
 		}
 	}
 

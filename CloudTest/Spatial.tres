@@ -1,0 +1,34 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://CloudTest/cloudsWithRayCalc.tres" type="Shader" id=1]
+
+[sub_resource type="Image" id=1]
+data = {
+"data": PoolByteArray( 121, 121, 63, 204, 124, 187, 186, 184, 80, 92, 82, 127, 146, 143, 166, 210, 112, 211, 84, 172, 124, 74, 169, 191, 115, 36, 63, 146, 94, 141, 89, 133, 211, 218, 226, 153, 202, 62, 124, 191, 109, 43, 72, 172, 83, 206, 50, 191, 170, 125, 126, 191, 147, 199, 56, 235, 173, 29, 36, 153, 145, 173, 173, 178, 41, 34, 163, 210, 144, 54, 111, 210, 115, 211, 49, 153, 40, 66, 216, 172, 201, 161, 89, 191, 52, 117, 153, 229, 177, 179, 185, 140, 61, 36, 185, 242, 104, 142, 126, 210, 77, 121, 216, 153, 52, 80, 114, 204, 166, 181, 69, 216, 56, 131, 128, 197, 111, 209, 146, 242 ),
+"format": "RGBA8",
+"height": 1,
+"mipmaps": false,
+"width": 30
+}
+
+[sub_resource type="ImageTexture" id=2]
+image = SubResource( 1 )
+size = Vector2( 30, 1 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/MAX_STEPS = 1450
+shader_param/MAX_DIST = 7000.0
+shader_param/MIN_HIT_DIST = 0.001
+shader_param/bound_min = Vector3( -251.31, 226.689, -141.481 )
+shader_param/bound_max = Vector3( -51.3103, 426.689, 58.5187 )
+shader_param/cloudPosition = Vector3( -251.31, 226.689, -141.481 )
+shader_param/cloudWidth = 254.0
+shader_param/cloudHeight = 404.0
+shader_param/cloudDepth = 430.0
+shader_param/maxSubshapeRad = 40
+shader_param/subshapeNumber = 30
+shader_param/sigma = 20.0
+shader_param/b = 50.0
+shader_param/cloudDensMult = 2.0
+shader_param/subshapes = SubResource( 2 )

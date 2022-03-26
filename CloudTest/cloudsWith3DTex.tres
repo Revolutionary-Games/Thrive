@@ -1,0 +1,117 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type spatial;
+uniform int MAX_STEPS = 1450; 
+uniform float MAX_DIST = 7000;
+uniform float MIN_HIT_DIST = 0.001f; // hit depth threshold
+
+uniform vec3 bound_min;
+uniform vec3 bound_max;
+
+uniform sampler3D cloudTex;
+uniform vec3 cloudPosition;
+uniform float cloudWidth;
+uniform float cloudHeight;
+uniform float cloudDepth;
+
+void vertex() {
+  POSITION = vec4(VERTEX, 1.0);
+}
+
+
+vec2 modified_intersectAABB(vec3 rayOrigin, vec3 rayDir, vec3 boxMin, vec3 boxMax) {
+	vec3 tMin = (boxMin - rayOrigin) / rayDir;
+	vec3 tMax = (boxMax - rayOrigin) / rayDir;
+	vec3 t1 = min(tMin, tMax);
+	vec3 t2 = max(tMin, tMax);
+	float tNear = max(max(t1.x, t1.y), t1.z);
+	float tFar = min(min(t2.x, t2.y), t2.z);
+	// return vec2(tNear, tFar);
+	float dstToBox = max(0, tNear);
+	float dstInsideBox = max(0, tFar - tNear);
+	return vec2(dstToBox, dstInsideBox);
+}
+
+
+// TODO implement for multiple cloud/containers
+//vec4 sdf(vec3 point)
+//{
+//
+//}
+
+float sample_density(vec3 position)
+{
+	vec3 uvw = position;
+	vec4 density = texture(cloudTex,uvw);
+	return density.a;
+}
+
+vec3 raymarch(vec3 rayDir,vec3 cameraPos)
+{
+ 	float dstToBox = 0f;
+	float dstInsideBox = 0f;
+    float depth = 0.0;
+	float density = 0f;
+	float totalDist =0f;
+	int nrOfSmaples = 10;
+	int stepCount = nrOfSmaples + 1;
+	float stepSize;
+	vec3 pos;
+	
+	//Coordonate pentru 2 puncte de intersectie cu raza
+    vec2 dist = modified_intersectAABB(cameraPos, rayDir, bound_min, bound_max);
+	dstToBox = dist.x;
+	dstInsideBox = dist.y;
+	stepSize = dstInsideBox / float(stepCount);
+	if(dstInsideBox > 0f ){//&& dstToBox !=0f){
+		pos = cameraPos + rayDir * dstToBox;
+		for (int i = 1; i < stepCount; i++)
+		{
+			pos = cameraPos + rayDir * (dstToBox + stepSize * float(i));
+			vec3 localPos = pos - cloudPosition;
+			localPos.x /= cloudWidth;
+			localPos.y /= cloudHeight;
+			localPos.z /= cloudDepth;
+			float posDensity = sample_density(localPos);
+			density += posDensity;
+		}
+	}
+    return vec3 (dstToBox ,dstInsideBox, density);
+}
+
+void fragment()
+{
+	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).x;
+	vec3 ndc = vec3(SCREEN_UV, depth) * 2.0 - 1.0;
+	vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
+	view.xyz /= view.w;
+	float linear_depth = -view.z;
+	
+	vec3 worldCamera = (CAMERA_MATRIX * vec4(0f,0f,0f,1f)).xyz;
+	vec4 world = CAMERA_MATRIX * view;
+    vec3 world_position = world.xyz / world.w;
+	
+	
+	vec3 rayDir = normalize(world_position - worldCamera);
+	vec3 rayInfo = raymarch(rayDir, worldCamera);
+	float distToCloud = rayInfo.x;
+	float distInsideCloud = rayInfo.y;
+	vec3 rayColor = vec3(0f,0f,0f);
+	if (distInsideCloud != 0f)
+	rayColor = vec3(2f,0.1f,0.5f);
+
+	ALBEDO = rayColor.rgb;
+	
+	// Alpha calculation
+	float density = rayInfo.z;
+	float alpha = 1f-exp(-density);
+
+	ALPHA = alpha;
+
+	if (rayColor.xyz == vec3 (0f,0f,0f)  || linear_depth < abs(distToCloud))
+		ALPHA = 0f;
+		
+
+
+}"
