@@ -94,7 +94,6 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         if (shownChoices == null)
         {
-            GD.PrintErr("Shown choices are not set up correctly");
             return;
         }
 
