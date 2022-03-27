@@ -28,8 +28,8 @@ vec2 modified_intersectAABB(vec3 rayOrigin, vec3 rayDir, vec3 boxMin, vec3 boxMa
 	float tNear = max(max(t1.x, t1.y), t1.z);
 	float tFar = min(min(t2.x, t2.y), t2.z);
 	// return vec2(tNear, tFar);
-	float dstToBox = max(0, tNear);
-	float dstInsideBox = max(0, tFar - tNear);
+	float dstToBox = max(0f, tNear);
+	float dstInsideBox = max(0f, tFar - tNear);
 	return vec2(dstToBox, dstInsideBox);
 }
 
@@ -64,12 +64,14 @@ vec3 raymarch(vec3 rayDir,vec3 cameraPos)
 	dstToBox = dist.x;
 	dstInsideBox = dist.y;
 	stepSize = dstInsideBox / float(stepCount);
-	if(dstInsideBox >0f && dstToBox >0f){
+	if(dstInsideBox >0f ){
 		pos = cameraPos + rayDir * dstToBox;
 		for (int i = 1; i < stepCount; i++)
 		{
 			pos = cameraPos + rayDir * (dstToBox + stepSize * float(i));
 			vec3 localPos = pos - cloudPosition;
+			if(localPos.z < 0f || localPos.z > cloudDepth)
+				break;
 			localPos.x /= cloudWidth;
 			localPos.y /= cloudHeight;
 			localPos.z /= cloudDepth;
