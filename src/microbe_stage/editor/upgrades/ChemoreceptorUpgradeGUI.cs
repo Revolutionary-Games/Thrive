@@ -49,7 +49,6 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         foreach (var choice in shownChoices)
         {
             compounds.AddItem(choice.Name);
-                
         }
 
         // Select glucose by default
