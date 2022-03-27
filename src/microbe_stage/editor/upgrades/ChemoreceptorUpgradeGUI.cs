@@ -92,22 +92,25 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public void CompoundChanged(int index)
     {
-        if (shownChoices?[index] != null)
+        if (shownChoices == null)
         {
-            // If the color is in the shownChoices list don't change the color
-            bool isColorInCompundList = false;
-            foreach (Compound compound in shownChoices)
-            {
-                if (colour.Color == compound.Colour || colour.Color == Colors.White)
-                {
-                    isColorInCompundList = true;
-                }
-            }
+            GD.PrintErr("Shown choices are not set up correctly");
+            return;
+        }
 
-            if (isColorInCompundList)
+        // If the color is in the shownChoices list don't change the color
+        bool isColorInCompundList = false;
+        foreach (Compound compound in shownChoices)
+        {
+            if (colour.Color == compound.Colour || colour.Color == Colors.White)
             {
-                colour.Color = shownChoices[index].Colour;
+                isColorInCompundList = true;
             }
+        }
+
+        if (isColorInCompundList)
+        {
+            colour.Color = shownChoices[index].Colour;
         }
     }
 }
