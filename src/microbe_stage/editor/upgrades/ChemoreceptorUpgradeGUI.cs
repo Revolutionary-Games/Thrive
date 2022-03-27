@@ -95,7 +95,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     public void CompoundChanged(int index)
     {
         if (shownChoices[index] != null)
-
+        { 
             colour.Color = shownChoices[index].Colour; // when the color changes then it changes it to match the color
         }
     }
