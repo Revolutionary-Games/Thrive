@@ -642,5 +642,30 @@
         "name": "CHEMORECEPTOR",
         "iconPath": "res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png",
         "upgradeGUI": "res://src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn"
+    },
+    "signalingAgent": {
+        "mpCost": 45,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {},
+        "components": {
+            "signalingAgent": {}
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 0.4,
+        "mass": 0.25,
+        "displayScene": "res://assets/models/organelles/SignalingAgent.tscn",
+        "name": "SIGNALING_AGENT",
+        "iconPath": "res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png",
+        "requiresNucleus": true,
+        "unique": true
     }
 }

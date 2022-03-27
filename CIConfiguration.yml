@@ -7,7 +7,7 @@ jobs:
       loadFrom:
         - v3-{Branch}-build
         - v3-master-build
-      writeTo: v2-{Branch}-build
+      writeTo: v3-{Branch}-build
       shared:
         .git/lfs: v2-lfs
         .import: v4-import

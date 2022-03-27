@@ -59,7 +59,10 @@ Code style rules
   named the same as the class in them are named with all lowercase
   with underscores separating the words.
 
-- Use British English, unless something like Godot requires to use American spelling.
+- Use British English, unless something like Godot requires you to use
+  American spelling, for code comments, variables and in-game text. An
+  exception to this is "meter" and other words that would end in
+  "tre", spell those as "ter".
 
 - C# file lines should have a maximum width of 120 columns.
 

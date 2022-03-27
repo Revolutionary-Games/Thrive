@@ -113,6 +113,12 @@ public static class Constants
     /// </summary>
     public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
 
+    /// <summary>
+    ///   This is how often the AI microbes look for emitted signaling agent signals from members of their species.
+    ///   This is set pretty high to reduce the performance impact.
+    /// </summary>
+    public const float MICROBE_AI_SIGNAL_REACT_INTERVAL = 1.2f;
+
     public const int MICROBE_AI_OBJECTS_PER_TASK = 15;
 
     public const int INITIAL_SPECIES_POPULATION = 100;
@@ -357,6 +363,11 @@ public static class Constants
     public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
 
     /// <summary>
+    ///   Size, in radians, of the gaps between directions the chemoreceptor checks for compounds
+    /// </summary>
+    public const double CHEMORECEPTOR_ARC_SIZE = Math.PI / 24.0;
+
+    /// <summary>
     ///   This should be the max needed hexes (nucleus {10} * 6-way symmetry)
     /// </summary>
     public const int MAX_HOVER_HEXES = 60;
@@ -412,6 +423,9 @@ public static class Constants
     // Cooldown for AI for toggling engulfing
     public const float AI_ENGULF_INTERVAL = 300;
 
+    // Average number of calls to think method before doing expensive cloud-finding calculations
+    public const int AI_STEPS_PER_SMELL = 20;
+
     // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
     public const float AI_COMPOUND_BIAS = -10.0f;
 
@@ -423,6 +437,9 @@ public static class Constants
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_FOCUSED_MOVEMENT = 1.0f;
     public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
+
+    public const float AI_FOLLOW_DISTANCE_SQUARED = 60 * 60;
+    public const float AI_FLEE_DISTANCE_SQUARED = 85 * 85;
 
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 40.0f;
@@ -480,9 +497,14 @@ public static class Constants
     public const float PATCH_CONSTANT_CARBON_DIOXYDE_INPUT = 0.05f;
     public const float PATCH_CONSTANT_NITROGEN_INPUT = 0.01f;
 
+    // These control how many game entities can exist at once and how fast they are allowed to spawn / despawn
     // TODO: bump this back up once we resolve the performance bottleneck
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 90;
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 150;
     public const int MAX_SPAWNS_PER_FRAME = 1;
+
+    /// <summary>
+    ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
+    /// </summary>
     public const int MAX_DESPAWNS_PER_FRAME = 1;
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
@@ -549,6 +571,9 @@ public static class Constants
     ///   Specifically for use with LengthSquared.
     /// </summary>
     public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED = 2 * 2;
+
+    public const float PROCEDURAL_CACHE_CLEAN_INTERVAL = 9.3f;
+    public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning

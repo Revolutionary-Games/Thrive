@@ -140,6 +140,27 @@ public class PlayerMicrobeInput : NodeWithInput
         return true;
     }
 
+    [RunOnKeyDown("g_pack_commands")]
+    public bool ShowSignalingCommandsMenu()
+    {
+        if (stage.Player?.HasSignalingAgent != true)
+            return false;
+
+        stage.HUD.ShowSignalingCommandsMenu(stage.Player);
+
+        // We need to not consume the input, otherwise the key up for this will not run
+        return false;
+    }
+
+    [RunOnKeyUp("g_pack_commands")]
+    public void CloseSignalingCommandsMenu()
+    {
+        var command = stage.HUD.SelectSignalCommandIfOpen();
+
+        if (stage.Player != null)
+            stage.HUD.ApplySignalCommand(command, stage.Player);
+    }
+
     [RunOnKeyDown("g_cheat_editor")]
     public void CheatEditor()
     {
