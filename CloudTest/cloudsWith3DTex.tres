@@ -54,7 +54,7 @@ vec3 raymarch(vec3 rayDir,vec3 cameraPos)
     float depth = 0.0;
 	float density = 0f;
 	float totalDist =0f;
-	int nrOfSmaples = 10;
+	int nrOfSmaples = 20;
 	int stepCount = nrOfSmaples + 1;
 	float stepSize;
 	vec3 pos;
@@ -64,7 +64,7 @@ vec3 raymarch(vec3 rayDir,vec3 cameraPos)
 	dstToBox = dist.x;
 	dstInsideBox = dist.y;
 	stepSize = dstInsideBox / float(stepCount);
-	if(dstInsideBox > 0f ){//&& dstToBox !=0f){
+	if(dstInsideBox >0f && dstToBox >0f){
 		pos = cameraPos + rayDir * dstToBox;
 		for (int i = 1; i < stepCount; i++)
 		{
@@ -105,7 +105,7 @@ void fragment()
 	
 	// Alpha calculation
 	float density = rayInfo.z;
-	float alpha = 1f-exp(-density);
+	float alpha = 1f-exp(-density/2f);
 
 	ALPHA = alpha;
 

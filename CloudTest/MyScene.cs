@@ -21,7 +21,7 @@ public class MyScene : Spatial
 	public List<Vector3> shapeCenters = new List<Vector3>();
 	public List<int> shapeSizes = new List<int>(); 
 	public int subShapeNumber = 30;
-	public int subShapeMaxRadius = 50;
+	public int subShapeMaxRadius = 45;
 	public int subShapeMinRadius = 20;
 
 	// Generate the cloudlets's position and size.
@@ -135,7 +135,7 @@ public class MyScene : Spatial
 				texture.SetLayerData(slice, i);
 			}
 
-
+			
 			var cloudaabb = (createCloudAABB(cloudbox));
 			cloudPosition = cloudaabb.Position;
 			mat.SetShaderParam("bound_min",cloudaabb.Position);
