@@ -30,7 +30,6 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         minimumAmount = GetNode<Slider>(MinimumAmountPath);
         colour = GetNode<TweakedColourPicker>(ColourPath);
 
-
         compounds.Clear();
 
         maximumDistance.MinValue = Constants.CHEMORECEPTOR_RANGE_MIN;
@@ -44,8 +43,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         storedOrganelle = organelle;
         shownChoices = SimulationParameters.Instance.GetCloudCompounds();
-        
-        
+
         foreach (var choice in shownChoices)
         {
             compounds.AddItem(choice.Name);
@@ -94,8 +92,8 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public void CompoundChanged(int index)
     {
-        if (shownChoices[index] != null)
-        { 
+        if (shownChoices != null)
+        {
             colour.Color = shownChoices[index].Colour; // when the color changes then it changes it to match the color
         }
     }
