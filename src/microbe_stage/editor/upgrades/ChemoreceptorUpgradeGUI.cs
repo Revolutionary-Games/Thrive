@@ -91,6 +91,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         storedOrganelle.SetCustomUpgradeObject(new ChemoreceptorUpgrades(shownChoices[compounds.Selected],
             (float)maximumDistance.Value, (float)minimumAmount.Value, colour.Color));
     }
+
     public void CompoundChanged(int index)
     {
         if (shownChoices[index] != null)
