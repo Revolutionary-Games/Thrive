@@ -94,7 +94,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         if (shownChoices?[index] != null)
         {
-        // If the color is in the shownChoices list don't change the color
+            // If the color is in the shownChoices list don't change the color
             bool isColorInCompundList = false;
             foreach (Compound compound in shownChoices)
             {
