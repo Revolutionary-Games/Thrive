@@ -22,13 +22,15 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     private List<Compound>? shownChoices;
     private OrganelleTemplate? storedOrganelle;
-
+    //setting list for saved colors
+    private List<Color> shownSavedColour;
     public override void _Ready()
     {
         compounds = GetNode<OptionButton>(CompoundsPath);
         maximumDistance = GetNode<Slider>(MaximumDistancePath);
         minimumAmount = GetNode<Slider>(MinimumAmountPath);
         colour = GetNode<TweakedColourPicker>(ColourPath);
+
 
         compounds.Clear();
 
@@ -43,10 +45,12 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         storedOrganelle = organelle;
         shownChoices = SimulationParameters.Instance.GetCloudCompounds();
-
+        
+        
         foreach (var choice in shownChoices)
         {
             compounds.AddItem(choice.Name);
+                
         }
 
         // Select glucose by default
@@ -88,5 +92,12 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         // TODO: make an undoable action
         storedOrganelle.SetCustomUpgradeObject(new ChemoreceptorUpgrades(shownChoices[compounds.Selected],
             (float)maximumDistance.Value, (float)minimumAmount.Value, colour.Color));
+    }
+    public void CompoundChanged(int index)
+    {
+        if (shownChoices[index] != null)
+
+            colour.Color = shownChoices[index].Colour; // when the color changes then it changes it to match the color
+        }
     }
 }
