@@ -22,8 +22,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     private List<Compound>? shownChoices;
     private OrganelleTemplate? storedOrganelle;
-    //setting list for saved colors
-    private List<Color> shownSavedColour;
+
     public override void _Ready()
     {
         compounds = GetNode<OptionButton>(CompoundsPath);
