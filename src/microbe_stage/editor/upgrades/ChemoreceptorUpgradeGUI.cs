@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
@@ -69,7 +70,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             compounds.Selected = defaultCompoundIndex;
             maximumDistance.Value = Constants.CHEMORECEPTOR_RANGE_DEFAULT;
             minimumAmount.Value = Constants.CHEMORECEPTOR_AMOUNT_DEFAULT;
-            colour.Color = Colors.White;
+            colour.Color = SimulationParameters.Instance.GetCompound("glucose").Colour;
         }
     }
 
@@ -94,16 +95,8 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         if (shownChoices?[index] != null && shownChoices != null)
         {
-            // If the color is in the shownChoices list don't change the color
-            bool isColorInCompundList = false;
-            foreach (Compound compound in shownChoices)
-            {
-                if (colour.Color == compound.Colour || colour.Color == Colors.White)
-                {
-                    isColorInCompundList = true;
-                }
-            }
-
+            // If the color is in the shownChoices list change the color
+            bool isColorInCompundList = shownChoices.Any(c => c.Colour == colour.Color);
             if (isColorInCompundList)
             {
                 colour.Color = shownChoices[index].Colour;
