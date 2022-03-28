@@ -10,9 +10,6 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 CompoundsPath = NodePath("Compound")
 MaximumDistancePath = NodePath("Distance")
 MinimumAmountPath = NodePath("Amount")
@@ -88,5 +85,7 @@ text = "LINE_COLOUR"
 margin_left = 0.0
 margin_top = 200.0
 margin_right = 1280.0
-margin_bottom = 794.0
+margin_bottom = 759.0
 edit_alpha = false
+
+[connection signal="item_selected" from="Compound" to="." method="CompoundChanged"]
