@@ -70,7 +70,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             compounds.Selected = defaultCompoundIndex;
             maximumDistance.Value = Constants.CHEMORECEPTOR_RANGE_DEFAULT;
             minimumAmount.Value = Constants.CHEMORECEPTOR_AMOUNT_DEFAULT;
-            colour.Color = SimulationParameters.Instance.GetCompound("glucose").Colour;
+            colour.Color = shownChoices[defaultCompoundIndex].Colour;
         }
     }
 
@@ -96,8 +96,8 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         if (shownChoices?[index] != null && shownChoices != null)
         {
             // If the color is in the shownChoices list change the color
-            bool isColorInCompundList = shownChoices.Any(c => c.Colour == colour.Color);
-            if (isColorInCompundList)
+            bool isColorInCompoundList = shownChoices.Any(c => c.Colour == colour.Color);
+            if (isColorInCompoundList)
             {
                 colour.Color = shownChoices[index].Colour;
             }
