@@ -93,14 +93,16 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public void CompoundChanged(int index)
     {
-        if (shownChoices != null)
+
+        if (shownChoices?[index] == null)
         {
-            // If the color is in the shownChoices list change the color
-            bool isColourInCompoundList = shownChoices.Any(c => c.Colour == colour.Color);
-            if (isColourInCompoundList)
-            {
-                colour.Color = shownChoices[index].Colour;
-            }
+            return;
+        }
+        // If the color is in the shownChoices list change the color
+        bool isColourInCompoundList = shownChoices.Any(c => c.Colour == colour.Color);
+        if (isColourInCompoundList)
+        {
+            colour.Color = shownChoices[index].Colour;
         }
     }
 }
