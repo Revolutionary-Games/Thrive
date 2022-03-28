@@ -70,7 +70,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             compounds.Selected = defaultCompoundIndex;
             maximumDistance.Value = Constants.CHEMORECEPTOR_RANGE_DEFAULT;
             minimumAmount.Value = Constants.CHEMORECEPTOR_AMOUNT_DEFAULT;
-            colour.Color = SimulationParameters.Instance.GetCompound("Glucose").Colour;
+            colour.Color = shownChoices[defaultCompoundIndex].Colour;
         }
     }
 
