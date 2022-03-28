@@ -21,7 +21,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private Slider minimumAmount = null!;
     private TweakedColourPicker colour = null!;
 
-    private List<Compound>? shownChoices;
+    private List<Compound>? shownChoices = null!;
     private OrganelleTemplate? storedOrganelle;
 
     public override void _Ready()
