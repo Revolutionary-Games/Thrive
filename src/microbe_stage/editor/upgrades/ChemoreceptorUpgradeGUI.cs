@@ -21,7 +21,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private Slider minimumAmount = null!;
     private TweakedColourPicker colour = null!;
 
-    private List<Compound>? shownChoices = null!;
+    private List<Compound>? shownChoices;
     private OrganelleTemplate? storedOrganelle;
 
     public override void _Ready()
@@ -70,7 +70,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             compounds.Selected = defaultCompoundIndex;
             maximumDistance.Value = Constants.CHEMORECEPTOR_RANGE_DEFAULT;
             minimumAmount.Value = Constants.CHEMORECEPTOR_AMOUNT_DEFAULT;
-            colour.Color = shownChoices[defaultCompoundIndex].Colour;
+            colour.Color = SimulationParameters.Instance.GetCompound("Glucose").Colour;
         }
     }
 
@@ -93,16 +93,15 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public void CompoundChanged(int index)
     {
+        if (shownChoices?[index] != null && shownChoices?.Any() == true)
+        {
+            // If the color is in the shownChoices list  change the color
+            bool isColorInCompundList = shownChoices.Any(c => c.Colour == colour.Color);
 
-        if (shownChoices?[index] == null)
-        {
-            return;
-        }
-        // If the color is in the shownChoices list change the color
-        bool isColourInCompoundList = shownChoices.Any(c => c.Colour == colour.Color);
-        if (isColourInCompoundList)
-        {
-            colour.Color = shownChoices[index].Colour;
+            if (isColorInCompundList)
+            {
+                colour.Color = shownChoices[index].Colour;
+            }
         }
     }
 }
