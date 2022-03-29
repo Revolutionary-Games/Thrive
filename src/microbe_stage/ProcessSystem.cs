@@ -259,7 +259,7 @@ public class ProcessSystem
     ///   Calculates the maximum speed a process can run at in a biome
     ///   based on the environmental compounds.
     /// </summary>
-    private static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
+    public static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
         BiomeConditions biome)
     {
         var result = new ProcessSpeedInformation(process.Process);
@@ -267,25 +267,25 @@ public class ProcessSystem
         float speedFactor = 1.0f;
 
         // Environmental inputs need to be processed first
-        foreach (var entry in process.Process.Inputs)
+        foreach (var input in process.Process.Inputs)
         {
-            if (!entry.Key.IsEnvironmental)
+            if (!input.Key.IsEnvironmental)
                 continue;
 
             // Environmental compound that can limit the rate
 
-            var availableInEnvironment = GetDissolvedInBiome(entry.Key, biome);
+            var availableInEnvironment = GetDissolvedInBiome(input.Key, biome);
 
-            var availableRate = availableInEnvironment / entry.Value;
+            var availableRate = availableInEnvironment / input.Value;
 
-            result.AvailableAmounts[entry.Key] = availableInEnvironment;
+            result.AvailableAmounts[input.Key] = availableInEnvironment;
 
             // More than needed environment value boosts the effectiveness
-            result.AvailableRates[entry.Key] = availableRate;
+            result.AvailableRates[input.Key] = availableRate;
 
             speedFactor *= availableRate;
 
-            result.WritableInputs[entry.Key] = entry.Value;
+            result.WritableInputs[input.Key] = input.Value;
         }
 
         speedFactor *= process.Rate;
