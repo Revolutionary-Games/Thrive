@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using Godot;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   This is the first autoloaded class. Used to perform some actions that should happen
@@ -22,7 +23,7 @@ public class StartupActions : Node
         GD.Print("user:// directory is: ", userDir);
 
         // Print the logs folder to see in the output where they are stored
-        GD.Print("Game logs are written to: ", PathUtils.Join(userDir, Constants.LOGS_FOLDER_NAME),
+        GD.Print("Game logs are written to: ", Path.Combine(userDir, Constants.LOGS_FOLDER_NAME),
             " latest log is 'log.txt'");
 
         // Load settings here, to make sure locales etc. are applied to the main loaded and autoloaded scenes

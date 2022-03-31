@@ -1164,7 +1164,14 @@ margin_right = 302.0
 margin_bottom = 317.0
 SelectionGroup = SubResource( 15 )
 
-[node name="bioluminescentVacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="9" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
+[node name="signalingAgent" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="9" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
+margin_left = 204.0
+margin_top = 214.0
+margin_right = 302.0
+margin_bottom = 317.0
+SelectionGroup = SubResource( 15 )
+
+[node name="bioluminescentVacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="10" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_top = 321.0
 margin_right = 98.0
 margin_bottom = 424.0
@@ -1368,10 +1375,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 40.0
-margin_top = 65.0
-margin_right = 356.0
-margin_bottom = 655.0
+margin_left = 44.0
+margin_top = 69.0
+margin_right = 360.0
+margin_bottom = 659.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
@@ -2407,6 +2414,7 @@ margin_left = 10.0
 margin_top = 45.0
 margin_right = 1270.0
 margin_bottom = 665.0
+collapsed = true
 
 [node name="PanelContainer" type="PanelContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer"]
 margin_right = 908.0
@@ -4205,7 +4213,6 @@ CellEditorRedoPath = NodePath("../TutorialGUI/RedoTutorial")
 CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
 
 [node name="PauseMenu" parent="." instance=ExtResource( 52 )]
-visible = false
 theme = ExtResource( 53 )
 HelpCategory = "MicrobeEditor"
 

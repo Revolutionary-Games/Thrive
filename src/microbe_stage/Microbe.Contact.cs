@@ -1152,9 +1152,35 @@ public partial class Microbe
         }
 
         touchedMicrobes.Remove(other);
-        other.touchedMicrobes.Remove(this);
 
-        other.MovementDirection = Vector3.Zero;
+        try
+        {
+            other.touchedMicrobes.Remove(this);
+
+            other.MovementDirection = Vector3.Zero;
+
+            // This should ensure that Godot side will not throw disposed exception in an unexpected place causing
+            // binding problems
+            _ = other.GlobalTransform;
+        }
+        catch (ObjectDisposedException)
+        {
+            GD.PrintErr("Touched eligible microbe has been disposed before binding could start");
+            return;
+        }
+
+        // This is probably unnecessary, but I'd like to make sure we have proper logging if this condition is ever
+        // reached -hhyyrylainen
+        try
+        {
+            _ = GlobalTransform;
+        }
+        catch (ObjectDisposedException e)
+        {
+            GD.PrintErr("Microbe that should be bound to is disposed. This should never happen. Please report this. ",
+                e);
+            return;
+        }
 
         // Create a colony if there isn't one yet
         if (Colony == null)

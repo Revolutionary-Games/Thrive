@@ -96,8 +96,10 @@ When updating Godot import settings (meaning changing the settings for
 an existing asset, if you just added a new one, you don't need to do
 this), or adding new C# dependencies, you should update the cache
 versions for CI. To do this you need to increment the relevant numbers
-by 1 in `CIConfiguration.yml`. If you are unsure which cache names to
-increment, please ask.
+by 1 in `CIConfiguration.yml`. When updating the caches you must also
+remember to update the `writeTo` cache. Otherwise caching will not
+work correctly. If you are unsure which cache names to increment,
+please ask.
 
 ## Getting help
 

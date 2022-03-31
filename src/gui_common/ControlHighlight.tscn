@@ -22,23 +22,23 @@ BottomPlanePath = NodePath("BottomPlanking")
 [node name="LeftBlanking" type="ColorRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-color = Color( 0.14902, 0.137255, 0.137255, 0.705882 )
+color = Color( 0.14902, 0.137255, 0.137255, 0.882353 )
 
 [node name="RightBlanking" type="ColorRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 1520, -62 )
-color = Color( 0.14902, 0.137255, 0.137255, 0.705882 )
+color = Color( 0.14902, 0.137255, 0.137255, 0.882353 )
 
 [node name="TopBlanking" type="ColorRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-color = Color( 0.14902, 0.137255, 0.137255, 0.705882 )
+color = Color( 0.14902, 0.137255, 0.137255, 0.882353 )
 
 [node name="BottomPlanking" type="ColorRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-color = Color( 0.14902, 0.137255, 0.137255, 0.705882 )
+color = Color( 0.14902, 0.137255, 0.137255, 0.882353 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

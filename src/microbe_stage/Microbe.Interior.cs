@@ -839,6 +839,7 @@ public partial class Microbe
         processesDirty = true;
         cachedHexCountDirty = true;
         membraneOrganellePositionsAreDirty = true;
+        hasSignalingAgent = null;
 
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount += 1;
@@ -863,6 +864,7 @@ public partial class Microbe
         processesDirty = true;
         cachedHexCountDirty = true;
         membraneOrganellePositionsAreDirty = true;
+        hasSignalingAgent = null;
 
         Compounds.Capacity = organellesCapacity;
     }
@@ -874,6 +876,15 @@ public partial class Microbe
     {
         organellesCapacity = organelles!.Sum(o => o.StorageCapacity);
         Compounds.Capacity = organellesCapacity;
+    }
+
+    private bool CheckHasSignalingAgent()
+    {
+        if (hasSignalingAgent != null)
+            return hasSignalingAgent.Value;
+
+        hasSignalingAgent = organelles!.Any(o => o.HasComponent<SignalingAgentComponent>());
+        return hasSignalingAgent.Value;
     }
 
     /// <summary>

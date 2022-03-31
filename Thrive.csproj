@@ -46,6 +46,7 @@
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\ICacheableData.cs" />
     <Compile Include="src\engine\InstanceNotLoadedYetException.cs" />
     <Compile Include="src\engine\LaunchOptions.cs" />
     <Compile Include="src\engine\LocalizedString.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\NodeHelpers.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
+    <Compile Include="src\engine\ProceduralDataCache.cs" />
     <Compile Include="src\engine\SceneManager.cs" />
     <Compile Include="src\engine\SceneTreeAttachRequired.cs" />
     <Compile Include="src\engine\ScreenShotTaker.cs" />
@@ -101,7 +103,6 @@
     <Compile Include="src\general\IEntity.cs" />
     <Compile Include="src\general\InitFix.cs" />
     <Compile Include="src\general\JSONHelpers.cs" />
-    <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
@@ -130,6 +131,8 @@
     <Compile Include="src\gui_common\dialogs\CustomConfirmationDialog.cs" />
     <Compile Include="src\gui_common\dialogs\ErrorDialog.cs" />
     <Compile Include="src\gui_common\dialogs\LicensesDisplay.cs" />
+    <Compile Include="src\gui_common\RadialMenu.cs" />
+    <Compile Include="src\gui_common\RadialPopup.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\microbe_editor\ModifierInfoLabel.cs" />
@@ -160,6 +163,7 @@
     <Compile Include="src\general\SceneDisplayer.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
+    <Compile Include="src\microbe_stage\IComputedMembraneData.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
     <Compile Include="src\microbe_stage\editor\SpeciesPopulationDatasetsLegend.cs" />
     <Compile Include="src\microbe_stage\editor\TimelineTab.cs" />
@@ -196,11 +200,13 @@
     <Compile Include="src\microbe_stage\MicrobeHUD.cs" />
     <Compile Include="src\microbe_stage\MicrobeInternalCalculations.cs" />
     <Compile Include="src\general\SpeciesInfo.cs" />
+    <Compile Include="src\microbe_stage\MicrobeSignalCommand.cs" />
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
     <Compile Include="src\microbe_stage\OrganelleMeshWithChildren.cs" />
     <Compile Include="src\microbe_stage\OrganelleUpgrades.cs" />
     <Compile Include="src\microbe_stage\organelle_components\BindingAgentComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\ChemoreceptorComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\SignalingAgentComponent.cs" />
     <Compile Include="src\microbe_stage\particles\CellBurstEffect.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
     <Compile Include="src\microbe_stage\PlayerHoverInfo.cs" />
@@ -412,7 +418,7 @@
       <Version>1.1.1</Version>
     </PackageReference>
     <PackageReference Include="StyleCop.Analyzers">
-      <Version>1.2.0-beta.354</Version>
+      <Version>1.2.0-beta.406</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
