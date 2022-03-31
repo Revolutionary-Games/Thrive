@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 [UseThriveConverter]
 public class MicrobeSpecies : Species, ICellProperties
 {
+    [JsonConstructor]
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
         Organelles = new OrganelleLayout<OrganelleTemplate>();
