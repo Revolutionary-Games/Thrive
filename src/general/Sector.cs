@@ -1,6 +1,15 @@
 ﻿using System;
 using Godot;
 
+/// <summary>
+///   A sector is a region that will be loaded if the player
+///   gets near one and gets unloaded whenever they get far away.
+/// </summary>
+/// <remarks>
+///   <para>
+///     A sector has a fixed width and height.
+///   </para>
+/// </remarks>
 public readonly struct Sector : IEquatable<Sector>
 {
     public Sector(Int2 pos)
