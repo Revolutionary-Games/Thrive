@@ -175,6 +175,7 @@ public partial class CellEditorComponent :
 
     private OrganelleDefinition protoplasm = null!;
     private OrganelleDefinition nucleus = null!;
+    private OrganelleDefinition bindingAgent = null!;
 
     private EnergyBalanceInfo? energyBalanceInfo;
 
@@ -353,7 +354,7 @@ public partial class CellEditorComponent :
     }
 
     [JsonIgnore]
-    public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d.InternalName == "nucleus");
+    public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d == nucleus);
 
     [JsonIgnore]
     public override bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
@@ -418,6 +419,7 @@ public partial class CellEditorComponent :
 
         protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
         nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+        bindingAgent = SimulationParameters.Instance.GetOrganelleType("bindingAgent");
         questionIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/helpButton.png");
         increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
@@ -958,8 +960,11 @@ public partial class CellEditorComponent :
             return;
 
         // Dont allow deletion of nucleus or the last organelle
-        // TODO: when editing multicellular species this needs to prevent removing the binding agents
-        if (organelleHere.Definition.InternalName == "nucleus" || MicrobeSize < 2)
+        if (organelleHere.Definition == nucleus || MicrobeSize < 2)
+            return;
+
+        // In multicellular binding agents can't be removed
+        if (IsMulticellularEditor && organelleHere.Definition == bindingAgent)
             return;
 
         // If it was placed this session, just refund the cost of adding it.
@@ -1043,7 +1048,15 @@ public partial class CellEditorComponent :
         }
         else
         {
-            organelleMenu.EnableDeleteOption = true;
+            // Additionally in multicellular binding agents can't be removed
+            if (IsMulticellularEditor && selectedOrganelle.Definition == bindingAgent)
+            {
+                organelleMenu.EnableDeleteOption = false;
+            }
+            else
+            {
+                organelleMenu.EnableDeleteOption = true;
+            }
         }
 
         // Move enabled only when microbe has more than one organelle
@@ -1623,7 +1636,7 @@ public partial class CellEditorComponent :
         // in, perhaps by sharing the entire Organelles object
         foreach (var entry in editedMicrobeOrganelles.Organelles)
         {
-            if (entry.Definition.InternalName == "nucleus")
+            if (entry.Definition == nucleus)
                 target.IsBacteria = false;
 
             target.Organelles.Add(entry);
