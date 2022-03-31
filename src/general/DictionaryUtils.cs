@@ -75,4 +75,20 @@ public static class DictionaryUtils
             dictionary[key] /= divisor;
         }
     }
+
+    /// <summary>
+    ///   Deconstruct a KevValuePair into key and value.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Implemented so that one can iterate over a dictionary like this:
+    ///     <code>foreach (var (key, value) in dict)</code>
+    ///     <a href="https://gist.github.com/artikq/8f4f1a9c1bf9e0fbe3d69fbf8ae70f7d">Found here</a>
+    ///   </para>
+    /// </remarks>
+    public static void Deconstruct<TK, TV>(this KeyValuePair<TK, TV> pair, out TK key, out TV val)
+    {
+        key = pair.Key;
+        val = pair.Value;
+    }
 }

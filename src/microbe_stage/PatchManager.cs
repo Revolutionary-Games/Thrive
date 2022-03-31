@@ -151,14 +151,11 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         GD.Print("Number of species in this patch = ", patch.SpeciesInPatch.Count);
 
-        foreach (var entry in patch.SpeciesInPatch)
+        foreach (var (species, populationHere) in patch.SpeciesInPatch)
         {
-            var species = entry.Key;
-            var populationHere = entry.Value;
-
             if (populationHere <= 0)
             {
-                GD.Print(entry.Key.FormattedName, " population <= 0. Skipping Cell Spawn in patch.");
+                GD.Print(species.FormattedName, " population <= 0. Skipping Cell Spawn in patch.");
                 continue;
             }
 
