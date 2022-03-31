@@ -19,6 +19,7 @@ public abstract class Spawner
     ///   </para>
     /// </remarks>
     public virtual int BinomialN => 0;
+
     /// <summary>
     ///   The success probability for each trial
     /// </summary>
@@ -94,7 +95,9 @@ public abstract class Spawner
         var randomNumber = random.NextFloat() * sectorDensity;
 
         var i = 0;
-        for (var sum = 0f; sum < randomNumber; sum += BinomialValues[i++]) {}
+        for (var sum = 0f; sum < randomNumber; sum += BinomialValues[i++])
+        {
+        }
 
         return i - 1;
     }
