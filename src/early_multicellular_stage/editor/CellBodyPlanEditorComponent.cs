@@ -33,14 +33,27 @@ public partial class CellBodyPlanEditorComponent :
     [Export]
     public NodePath CellTypeSelectionListPath = null!;
 
+    [Export]
+    public NodePath ModifyTypeButtonPath = null!;
+
+    [Export]
+    public NodePath DeleteTypeButtonPath = null!;
+
+    [Export]
+    public NodePath DuplicateTypeButtonPath = null!;
+
+    [Export]
+    public NodePath CannotDeleteInUseTypeDialogPath = null!;
+
+    [Export]
+    public NodePath DuplicateCellTypeDialogPath = null!;
+
+    [Export]
+    public NodePath DuplicateCellTypeNamePath = null!;
+
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
-
-    // Microbe scale applies done with 3 frame delay (that's why there are multiple list variables)
-    private List<Microbe> pendingScaleApplies = new();
-    private List<Microbe> nextFrameScaleApplies = new();
-    private List<Microbe> thisFrameScaleApplies = new();
 
     // Selection menu tab selector buttons
     private Button structureTabButton = null!;
@@ -56,17 +69,34 @@ public partial class CellBodyPlanEditorComponent :
 
     private CollapsibleList cellTypeSelectionList = null!;
 
+    private Button modifyTypeButton = null!;
+
+    private Button deleteTypeButton = null!;
+
+    private Button duplicateTypeButton = null!;
+
+    private CustomDialog cannotDeleteInUseTypeDialog = null!;
+
+    private CustomDialog duplicateCellTypeDialog = null!;
+
+    private LineEdit duplicateCellTypeName = null!;
+
     private PackedScene cellTypeSelectionButtonScene = null!;
 
     private ButtonGroup cellTypeButtonGroup = new();
 
     private PackedScene microbeScene = null!;
 
+    // Microbe scale applies done with 3 frame delay (that's why there are multiple list variables)
+    private List<Microbe> pendingScaleApplies = new();
+    private List<Microbe> nextFrameScaleApplies = new();
+    private List<Microbe> thisFrameScaleApplies = new();
+
     [JsonProperty]
     private string newName = "unset";
 
     [JsonProperty]
-    private IndividualHexLayout<CellTemplate> editedMicrobeOrganelles = null!;
+    private IndividualHexLayout<CellTemplate> editedMicrobeCells = null!;
 
     /// <summary>
     ///   True when visuals of already placed things need to be updated
@@ -84,7 +114,7 @@ public partial class CellBodyPlanEditorComponent :
     }
 
     [JsonIgnore]
-    public override bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
+    public override bool HasIslands => editedMicrobeCells.GetIslandHexes().Count > 0;
 
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
@@ -114,18 +144,18 @@ public partial class CellBodyPlanEditorComponent :
 
         if (fresh)
         {
-            editedMicrobeOrganelles = newLayout;
+            editedMicrobeCells = newLayout;
         }
         else
         {
             // We assume that the loaded save layout did not have anything weird set for the callbacks as we
             // do this rather than use SaveApplyHelpers
-            foreach (var editedMicrobeOrganelle in editedMicrobeOrganelles)
+            foreach (var editedMicrobeOrganelle in editedMicrobeCells)
             {
                 newLayout.Add(editedMicrobeOrganelle);
             }
 
-            editedMicrobeOrganelles = newLayout;
+            editedMicrobeCells = newLayout;
 
             if (Editor.EditedCellProperties != null)
             {
@@ -160,11 +190,23 @@ public partial class CellBodyPlanEditorComponent :
         behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
 
         cellTypeSelectionList = GetNode<CollapsibleList>(CellTypeSelectionListPath);
+
+        modifyTypeButton = GetNode<Button>(ModifyTypeButtonPath);
+
+        deleteTypeButton = GetNode<Button>(DeleteTypeButtonPath);
+
+        duplicateTypeButton = GetNode<Button>(DuplicateTypeButtonPath);
+
+        cannotDeleteInUseTypeDialog = GetNode<CustomDialog>(CannotDeleteInUseTypeDialogPath);
+
+        duplicateCellTypeDialog = GetNode<CustomDialog>(DuplicateCellTypeDialogPath);
+
+        duplicateCellTypeName = GetNode<LineEdit>(DuplicateCellTypeNamePath);
     }
 
     public override void OnEditorSpeciesSetup(Species species)
     {
-        SetupCellTypeSelections();
+        UpdateCellTypeSelections();
 
         behaviourEditor.OnEditorSpeciesSetup(species);
 
@@ -266,7 +308,7 @@ public partial class CellBodyPlanEditorComponent :
         // editor so this step can be skipped
         editedSpecies.Cells.Clear();
 
-        foreach (var hexWithData in editedMicrobeOrganelles)
+        foreach (var hexWithData in editedMicrobeCells)
         {
             var direction = new Vector2(1, 0);
 
@@ -443,17 +485,17 @@ public partial class CellBodyPlanEditorComponent :
 
     protected override CellTemplate? GetHexAt(Hex position)
     {
-        return editedMicrobeOrganelles.GetElementAt(position)?.Data;
+        return editedMicrobeCells.GetElementAt(position)?.Data;
     }
 
     protected override void TryRemoveHexAt(Hex location)
     {
-        var hexHere = editedMicrobeOrganelles.GetElementAt(location);
+        var hexHere = editedMicrobeCells.GetElementAt(location);
         if (hexHere == null)
             return;
 
         // Dont allow deletion of last cell
-        if (editedMicrobeOrganelles.Count < 2)
+        if (editedMicrobeCells.Count < 2)
             return;
 
         // If it was placed this session, just refund the cost of adding it.
@@ -463,7 +505,7 @@ public partial class CellBodyPlanEditorComponent :
 
         // TODO: move to using actions
         Editor.ChangeMutationPoints(-cost);
-        editedMicrobeOrganelles.Remove(hexHere);
+        editedMicrobeCells.Remove(hexHere);
 
         /*
         var action = new CellEditorAction(Editor, cost,
@@ -478,7 +520,7 @@ public partial class CellBodyPlanEditorComponent :
         var highestPointInMiddleRows = 0.0f;
 
         // Iterate through all hexes
-        foreach (var hex in editedMicrobeOrganelles)
+        foreach (var hex in editedMicrobeCells)
         {
             // Only consider the middle 3 rows
             if (hex.Position.Q is < -1 or > 1)
@@ -495,7 +537,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void UpdateGUIAfterLoadingSpecies(Species species)
     {
-        GD.Print("Starting early multicellular editor with: ", editedMicrobeOrganelles.Count,
+        GD.Print("Starting early multicellular editor with: ", editedMicrobeCells.Count,
             " cells in the microbe");
 
         SetSpeciesInfo(newName,
@@ -513,9 +555,9 @@ public partial class CellBodyPlanEditorComponent :
     private bool TryAddHexToEditedLayout(HexWithData<CellTemplate> hex, int q, int r)
     {
         hex.Position = new Hex(q, r);
-        if (editedMicrobeOrganelles.CanPlace(hex))
+        if (editedMicrobeCells.CanPlace(hex))
         {
-            editedMicrobeOrganelles.Add(hex);
+            editedMicrobeCells.Add(hex);
 
             return true;
         }
@@ -599,14 +641,14 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool IsValidPlacement(HexWithData<CellTemplate> cell)
     {
-        return editedMicrobeOrganelles.CanPlaceAndIsTouching(cell);
+        return editedMicrobeCells.CanPlaceAndIsTouching(cell);
     }
 
     private bool AddCell(HexWithData<CellTemplate> cell)
     {
         // TODO: editor actions
         Editor.ChangeMutationPoints(-cell.Data!.CellType.MPCost);
-        editedMicrobeOrganelles.Add(cell);
+        editedMicrobeCells.Add(cell);
 
         /*var action = new CellEditorAction(Editor, organelle.Definition.MPCost,
             DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle));
@@ -616,26 +658,54 @@ public partial class CellBodyPlanEditorComponent :
         return true;
     }
 
-    private void SetupCellTypeSelections()
+    /// <summary>
+    ///   Sets up or updates the list of buttons to select cell types to place
+    /// </summary>
+    private void UpdateCellTypeSelections()
     {
-        // TODO: generalize this method to allow creating / destroying buttons as cell types are added / removed
-
-        foreach (var cellType in Editor.EditedSpecies.CellTypes)
+        // Re-use / create more buttons to hold all the cell types
+        foreach (var cellType in Editor.EditedSpecies.CellTypes.OrderBy(t => t.TypeName, StringComparer.Ordinal))
         {
-            var control = (CellTypeSelection)cellTypeSelectionButtonScene.Instance();
-            control.PartName = cellType.TypeName;
-            control.SelectionGroup = cellTypeButtonGroup;
+            if (!cellTypeSelectionButtons.TryGetValue(cellType.TypeName, out var control))
+            {
+                // Need new button
+                control = (CellTypeSelection)cellTypeSelectionButtonScene.Instance();
+                control.SelectionGroup = cellTypeButtonGroup;
+
+                control.PartName = cellType.TypeName;
+                control.CellType = cellType;
+                control.Name = cellType.TypeName;
+
+                cellTypeSelectionList.AddItem(control);
+                cellTypeSelectionButtons.Add(cellType.TypeName, control);
+
+                control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnCellToPlaceSelected));
+            }
+
             control.MPCost = cellType.MPCost;
-            control.CellType = cellType;
-            control.Name = cellType.TypeName;
 
             // TODO: tooltips for these
-
-            cellTypeSelectionList.AddItem(control);
-            cellTypeSelectionButtons.Add(cellType.TypeName, control);
-
-            control.Connect(nameof(MicrobePartSelection.OnPartSelected), this, nameof(OnCellToPlaceSelected));
         }
+
+        bool clearSelection = false;
+
+        // Delete no longer needed buttons
+        foreach (var key in cellTypeSelectionButtons.Keys.ToList())
+        {
+            if (Editor.EditedSpecies.CellTypes.All(t => t.TypeName != key))
+            {
+                var control = cellTypeSelectionButtons[key];
+                cellTypeSelectionButtons.Remove(key);
+
+                control.DetachAndQueueFree();
+
+                if (activeActionName == key)
+                    clearSelection = true;
+            }
+        }
+
+        if (clearSelection)
+            ClearSelectedAction();
     }
 
     private void OnCellToPlaceSelected(string cellTypeName)
@@ -648,13 +718,44 @@ public partial class CellBodyPlanEditorComponent :
 
         activeActionName = cellTypeName;
 
-        // Update the icon highlightings
-        foreach (var element in cellTypeSelectionButtons.Values)
-        {
-            element.Selected = element == cellTypeButton;
-        }
+        OnCurrentActionChanged();
+    }
 
-        // TODO: handle the duplicate, delete, edit buttons for the cell type
+    private void OnCurrentActionChanged()
+    {
+        // Enable the duplicate, delete, edit buttons for the cell type
+        if (!string.IsNullOrEmpty(activeActionName))
+        {
+            modifyTypeButton.Disabled = false;
+            deleteTypeButton.Disabled = false;
+            duplicateTypeButton.Disabled = false;
+
+            if (!cellTypeSelectionButtons.TryGetValue(activeActionName!, out var cellTypeButton))
+            {
+                GD.PrintErr("Invalid active action for highlight update");
+                return;
+            }
+
+            // Update the icon highlightings
+            foreach (var element in cellTypeSelectionButtons.Values)
+            {
+                element.Selected = element == cellTypeButton;
+            }
+        }
+        else
+        {
+            // Clear all highlights
+            foreach (var element in cellTypeSelectionButtons.Values)
+            {
+                element.Selected = false;
+            }
+        }
+    }
+
+    private void ClearSelectedAction()
+    {
+        activeActionName = null;
+        OnCurrentActionChanged();
     }
 
     private void OnOrganellesChanged()
@@ -666,20 +767,20 @@ public partial class CellBodyPlanEditorComponent :
 
     /// <summary>
     ///   This destroys and creates again entities to represent all the currently placed cells. Call this whenever
-    ///   editedMicrobeOrganelles is changed.
+    ///   editedMicrobeCells is changed.
     /// </summary>
     private void UpdateAlreadyPlacedVisuals()
     {
-        var islands = editedMicrobeOrganelles.GetIslandHexes();
+        var islands = editedMicrobeCells.GetIslandHexes();
 
         // Build the entities to show the current microbe
         // TODO: implement placed this session flag
         UpdateAlreadyPlacedHexes(
-            editedMicrobeOrganelles.Select(o => (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(), false)), islands);
+            editedMicrobeCells.Select(o => (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(), false)), islands);
 
         int nextFreeCell = 0;
 
-        foreach (var hexWithData in editedMicrobeOrganelles)
+        foreach (var hexWithData in editedMicrobeCells)
         {
             var pos = Hex.AxialToCartesian(hexWithData.Position) + microbeModelOffset;
 
@@ -743,6 +844,119 @@ public partial class CellBodyPlanEditorComponent :
     private void OnSpeciesNameChanged(string newText)
     {
         newName = newText;
+    }
+
+    private void OnTypeDuplicateStartPressed()
+    {
+        if (string.IsNullOrEmpty(activeActionName))
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        var type = CellTypeFromName(activeActionName!);
+
+        duplicateCellTypeName.Text = type.TypeName;
+
+        // Make sure it's shown in red initially as it is a duplicate name
+        OnNewCellTypeNameChanged(type.TypeName);
+
+        duplicateCellTypeDialog.PopupCenteredShrink();
+
+        duplicateCellTypeName.GrabFocus();
+        duplicateCellTypeName.SelectAll();
+        duplicateCellTypeName.CaretPosition = type.TypeName.Length;
+    }
+
+    private void OnNewCellTypeNameChanged(string newText)
+    {
+        if (!IsNewCellTypeNameValid(newText))
+        {
+            GUICommon.MarkInputAsInvalid(duplicateCellTypeName);
+        }
+        else
+        {
+            GUICommon.MarkInputAsValid(duplicateCellTypeName);
+        }
+    }
+
+    private bool IsNewCellTypeNameValid(string text)
+    {
+        // Name is invalid if it is empty or a duplicate
+        // TODO: should this ensure the name doesn't have trailing whitespace?
+        return !string.IsNullOrWhiteSpace(text) && !Editor.EditedSpecies.CellTypes.Any(c =>
+            c.TypeName.Equals(text, StringComparison.InvariantCultureIgnoreCase));
+    }
+
+    private void OnNewCellTextAccepted(string text)
+    {
+        // Just to make sure the latest text is already available to us
+        if (duplicateCellTypeName.Text != text)
+            GD.PrintErr("Text not updated");
+
+        OnNewCellTypeConfirmed();
+    }
+
+    private void OnNewCellTypeConfirmed()
+    {
+        var newTypeName = duplicateCellTypeName.Text;
+
+        if (!IsNewCellTypeNameValid(newTypeName))
+        {
+            GD.Print("Bad name for new cell type");
+            Editor.OnInvalidAction();
+            return;
+        }
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        var type = CellTypeFromName(activeActionName!);
+
+        // TODO: make this a reversible action
+        var newType = (CellType)type.Clone();
+        newType.TypeName = newTypeName;
+
+        Editor.EditedSpecies.CellTypes.Add(newType);
+        GD.Print("New cell type created: ", newType.TypeName);
+
+        UpdateCellTypeSelections();
+
+        duplicateCellTypeDialog.Hide();
+    }
+
+    private void OnDeleteCellTypePressed()
+    {
+        if (string.IsNullOrEmpty(activeActionName))
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        var type = CellTypeFromName(activeActionName!);
+
+        // Disallow deleting a type that is in use currently
+        if (editedMicrobeCells.Any(c => c.Data!.CellType == type))
+        {
+            GD.Print("Can't delete in use cell type");
+            cannotDeleteInUseTypeDialog.PopupCenteredShrink();
+            return;
+        }
+
+        // TODO: make a reversible action
+        if (!Editor.EditedSpecies.CellTypes.Remove(type))
+        {
+            GD.PrintErr("Failed to delete cell type from species");
+        }
+
+        UpdateCellTypeSelections();
+    }
+
+    private void OnModifyCurrentCellTypePressed()
+    {
+        if (string.IsNullOrEmpty(activeActionName))
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        throw new NotImplementedException();
     }
 
     private void SetSelectionMenuTab(string tab)

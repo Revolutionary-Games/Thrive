@@ -33,6 +33,9 @@ public class MicrobePartSelection : MarginContainer
         get => mpCost;
         set
         {
+            if (mpCost == value)
+                return;
+
             mpCost = value;
             UpdateLabels();
         }
@@ -58,6 +61,9 @@ public class MicrobePartSelection : MarginContainer
         get => name;
         set
         {
+            if (name == value)
+                return;
+
             name = value;
             UpdateLabels();
         }

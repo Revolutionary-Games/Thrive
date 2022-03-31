@@ -184,6 +184,12 @@ StructureTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/E
 ReproductionTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
 BehaviourTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
 CellTypeSelectionListPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Cells")
+ModifyTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify")
+DeleteTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete")
+DuplicateTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate")
+CannotDeleteInUseTypeDialogPath = NodePath("CannotDeleteInUseType")
+DuplicateCellTypeDialogPath = NodePath("NewCellTypeSetup")
+DuplicateCellTypeNamePath = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 anchor_bottom = 1.0
@@ -388,7 +394,7 @@ margin_bottom = 108.0
 margin_right = 308.0
 margin_bottom = 35.0
 
-[node name="Button" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer"]
+[node name="Modify" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer"]
 margin_right = 139.0
 margin_bottom = 35.0
 disabled = true
@@ -535,7 +541,61 @@ WindowTitle = "DISCONNECTED_CELLS"
 HideCancelButton = true
 DialogText = "DISCONNECTED_CELLS_TEXT"
 
+[node name="CannotDeleteInUseType" parent="." instance=ExtResource( 7 )]
+WindowTitle = "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
+HideCancelButton = true
+DialogText = "CANNOT_DELETE_USED_CELL_TYPE"
+
+[node name="NewCellTypeSetup" parent="." instance=ExtResource( 7 )]
+rect_min_size = Vector2( 200, 90 )
+WindowTitle = "CREATE_NEW_CELL_TYPE"
+HideOnOk = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="NewCellTypeSetup"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="NewCellTypeSetup/VBoxContainer2"]
+margin_right = 381.0
+margin_bottom = 25.0
+text = "CREATE_NEW_CELL_TYPE_DESCRIPTION"
+
+[node name="Spacer" type="Control" parent="NewCellTypeSetup/VBoxContainer2"]
+margin_top = 29.0
+margin_right = 381.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="NewNameLabel" type="Label" parent="NewCellTypeSetup/VBoxContainer2"]
+margin_top = 38.0
+margin_right = 381.0
+margin_bottom = 63.0
+text = "NEW_NAME_COLON"
+
+[node name="NewName" type="LineEdit" parent="NewCellTypeSetup/VBoxContainer2"]
+margin_top = 67.0
+margin_right = 381.0
+margin_bottom = 98.0
+max_length = 100
+placeholder_text = "NEW_NAME"
+
+[node name="BottomButtonSpacer" type="Control" parent="NewCellTypeSetup/VBoxContainer2"]
+margin_top = 102.0
+margin_bottom = 147.0
+rect_min_size = Vector2( 0, 45 )
+mouse_filter = 2
+
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify" to="." method="OnModifyCurrentCellTypePressed"]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete" to="." method="OnDeleteCellTypePressed"]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/Duplicate" to="." method="OnTypeDuplicateStartPressed"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
+[connection signal="Confirmed" from="NewCellTypeSetup" to="." method="OnNewCellTypeConfirmed"]
+[connection signal="text_changed" from="NewCellTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTypeNameChanged"]
+[connection signal="text_entered" from="NewCellTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTextAccepted"]

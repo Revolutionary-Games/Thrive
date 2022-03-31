@@ -18,6 +18,9 @@ public class CellTypeSelection : MicrobePartSelection
         get => cellType ?? throw new InvalidOperationException("No cell type set");
         set
         {
+            if (cellType == value)
+                return;
+
             ReportTypeChanged();
             cellType = value;
         }

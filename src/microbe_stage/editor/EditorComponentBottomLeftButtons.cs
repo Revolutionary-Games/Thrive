@@ -190,11 +190,11 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         {
             if (!Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
             {
-                speciesNameEdit.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
+                GUICommon.MarkInputAsInvalid(speciesNameEdit);
             }
             else
             {
-                speciesNameEdit.Set("custom_colors/font_color", new Color(1, 1, 1));
+                GUICommon.MarkInputAsValid(speciesNameEdit);
             }
         }
 

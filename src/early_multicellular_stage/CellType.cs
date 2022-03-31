@@ -1,10 +1,11 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   Type of a cell in a multicellular species. There can be multiple instances of a cell type placed at once
 /// </summary>
-public class CellType : ICellProperties, IPhotographable
+public class CellType : ICellProperties, IPhotographable, ICloneable
 {
     [JsonConstructor]
     public CellType(OrganelleLayout<OrganelleTemplate> organelles, MembraneType membraneType)
@@ -69,5 +70,24 @@ public class CellType : ICellProperties, IPhotographable
     {
         return PhotoStudio.CameraDistanceFromRadiusOfObject(((Microbe)instancedScene).Radius *
             Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER);
+    }
+
+    public object Clone()
+    {
+        var result = new CellType(MembraneType)
+        {
+            TypeName = TypeName,
+            MPCost = MPCost,
+            MembraneRigidity = MembraneRigidity,
+            Colour = Colour,
+            IsBacteria = IsBacteria,
+        };
+
+        foreach (var organelle in Organelles)
+        {
+            result.Organelles.Add((OrganelleTemplate)organelle.Clone());
+        }
+
+        return result;
     }
 }
