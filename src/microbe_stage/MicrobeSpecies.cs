@@ -65,13 +65,7 @@ public class MicrobeSpecies : Species, ICellProperties
 
     public override void RepositionToOrigin()
     {
-        var centerOfMass = Organelles.CenterOfMass;
-
-        foreach (var organelle in Organelles)
-        {
-            // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
-            organelle.Position -= centerOfMass;
-        }
+        Organelles.RepositionToOrigin();
     }
 
     public void SetInitialCompoundsForDefault()

@@ -48,7 +48,21 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public bool IsBacteria { get; set; }
 
     [JsonIgnore]
+    public string FormattedName => TypeName;
+
+    [JsonIgnore]
     public string SceneToPhotographPath => "res://src/microbe_stage/Microbe.tscn";
+
+    public void RepositionToOrigin()
+    {
+        Organelles.RepositionToOrigin();
+    }
+
+    public void UpdateNameIfValid(string newName)
+    {
+        if (!string.IsNullOrWhiteSpace(newName))
+            TypeName = newName;
+    }
 
     public void ApplySceneParameters(Spatial instancedScene)
     {

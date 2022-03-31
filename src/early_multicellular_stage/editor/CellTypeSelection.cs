@@ -65,6 +65,9 @@ public class CellTypeSelection : MicrobePartSelection
 
     public void ReportTypeChanged()
     {
+        // TODO: should this change to using a hash code for the cell type to determine when we actually need to
+        // recreate the image (caching layer should probably maybe go into PhotoStudio)
         cellImage = null;
+        imageTask = null;
     }
 }

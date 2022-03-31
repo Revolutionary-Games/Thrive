@@ -44,7 +44,20 @@ public class CellTemplate : IPositionedCell, ICloneable
     public bool IsBacteria { get => CellType.IsBacteria; set => CellType.IsBacteria = value; }
 
     [JsonIgnore]
+    public string FormattedName => CellType.TypeName;
+
+    [JsonIgnore]
     public OrganelleLayout<OrganelleTemplate> Organelles => CellType.Organelles;
+
+    public void RepositionToOrigin()
+    {
+        CellType.RepositionToOrigin();
+    }
+
+    public void UpdateNameIfValid(string newName)
+    {
+        CellType.UpdateNameIfValid(newName);
+    }
 
     public object Clone()
     {

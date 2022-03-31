@@ -87,6 +87,17 @@ public class OrganelleLayout<T> : HexLayout<T>
         return IsTouchingExistingHex(organelle) || (allowReplacingLastCytoplasm && IsReplacingLast(organelle));
     }
 
+    public void RepositionToOrigin()
+    {
+        var centerOfMass = CenterOfMass;
+
+        foreach (var organelle in Organelles)
+        {
+            // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
+            organelle.Position -= centerOfMass;
+        }
+    }
+
     protected override IEnumerable<Hex> GetHexComponentPositions(T hex)
     {
         return hex.Definition.GetRotatedHexes(hex.Orientation);

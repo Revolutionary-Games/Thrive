@@ -241,6 +241,38 @@ public abstract class
         symmetry = 0;
     }
 
+    /// <summary>
+    ///   Set tab specific editor world object visibility
+    /// </summary>
+    /// <param name="shown">True if they should be visible</param>
+    public virtual void SetEditorWorldTabSpecificObjectVisibility(bool shown)
+    {
+        SetEditorWorldGuideObjectVisibility(shown);
+
+        if (!shown)
+        {
+            foreach (var hoverHex in hoverHexes)
+            {
+                hoverHex.Visible = false;
+            }
+
+            foreach (var hoverModel in hoverModels)
+            {
+                hoverModel.Visible = false;
+            }
+        }
+
+        foreach (var placedHex in placedHexes)
+        {
+            placedHex.Visible = shown;
+        }
+
+        foreach (var placedModel in placedModels)
+        {
+            placedModel.Visible = shown;
+        }
+    }
+
     public void SetEditorWorldGuideObjectVisibility(bool shown)
     {
         editorArrow.Visible = shown;
@@ -266,8 +298,11 @@ public abstract class
     }
 
     [RunOnKeyDown("e_primary")]
-    public virtual void PerformPrimaryAction()
+    public virtual bool PerformPrimaryAction()
     {
+        if (!Visible)
+            return false;
+        
         if (MovingPlacedHex != null)
         {
             GetMouseHex(out int q, out int r);
@@ -276,27 +311,36 @@ public abstract class
         else
         {
             if (string.IsNullOrEmpty(activeActionName))
-                return;
+                return true;
 
             PerformActiveAction();
         }
+
+        return true;
     }
 
     [RunOnAxisGroup]
     [RunOnAxis(new[] { "e_pan_up", "e_pan_down" }, new[] { -1.0f, 1.0f })]
     [RunOnAxis(new[] { "e_pan_left", "e_pan_right" }, new[] { -1.0f, 1.0f })]
-    public void PanCameraWithKeys(float delta, float upDown, float leftRight)
+    public bool PanCameraWithKeys(float delta, float upDown, float leftRight)
     {
+        if (!Visible)
+            return false;
+        
         if (mousePanningStart != null)
-            return;
+            return true;
 
         var movement = new Vector3(leftRight, 0, upDown);
         MoveCamera(movement.Normalized() * delta * CameraHeight);
+        return true;
     }
 
     [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
     public bool PanCameraWithMouse(float delta)
     {
+        if (!Visible)
+            return false;
+        
         if (mousePanningStart == null)
         {
             mousePanningStart = camera!.CursorWorldPos;
@@ -311,39 +355,56 @@ public abstract class
     }
 
     [RunOnKeyUp("e_pan_mouse")]
-    public void ReleasePanCameraWithMouse()
+    public bool ReleasePanCameraWithMouse()
     {
+        if (!Visible)
+            return false;
+        
         mousePanningStart = null;
+        return true;
     }
 
     [RunOnKeyDown("e_reset_camera")]
-    public void ResetCamera()
+    public bool ResetCamera()
     {
+        if (!Visible)
+            return false;
+        
         if (camera == null)
         {
             GD.PrintErr("Editor camera isn't set");
-            return;
+            return false;
         }
 
         CameraPosition = new Vector3(0, 0, 0);
         UpdateCamera();
 
         camera.ResetHeight();
+        return true;
     }
 
     [RunOnKeyDown("e_rotate_right")]
-    public void RotateRight()
+    public bool RotateRight()
     {
+        if (!Visible)
+            return false;
+
         organelleRot = (organelleRot + 1) % 6;
+        return true;
     }
 
     [RunOnKeyDown("e_rotate_left")]
-    public void RotateLeft()
+    public bool RotateLeft()
     {
+        if (!Visible)
+            return false;
+
         --organelleRot;
 
         if (organelleRot < 0)
             organelleRot = 5;
+
+        return true;
     }
 
     /// <summary>
@@ -353,6 +414,9 @@ public abstract class
     [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
     public bool CancelCurrentAction()
     {
+        if (!Visible)
+            return false;
+
         if (MovingPlacedHex != null)
         {
             OnCurrentActionCanceled();
@@ -371,13 +435,16 @@ public abstract class
     ///   Begin hex movement under the cursor
     /// </summary>
     [RunOnKeyDown("e_move")]
-    public void StartHexMoveAtCursor()
+    public bool StartHexMoveAtCursor()
     {
+        if (!Visible)
+            return false;
+
         // Can't move anything while already moving one
         if (MovingPlacedHex != null)
         {
             Editor.OnActionBlockedWhileMoving();
-            return;
+            return true;
         }
 
         GetMouseHex(out int q, out int r);
@@ -385,12 +452,13 @@ public abstract class
         var hex = GetHexAt(new Hex(q, r));
 
         if (hex == null)
-            return;
+            return true;
 
         StartHexMove(hex);
 
         // Once a move has begun, the button visibility should be updated so it becomes visible
         UpdateCancelState();
+        return true;
     }
 
     public void StartHexMove(THexMove selectedHex)

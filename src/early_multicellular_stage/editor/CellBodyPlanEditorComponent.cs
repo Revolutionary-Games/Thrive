@@ -106,6 +106,9 @@ public partial class CellBodyPlanEditorComponent :
     [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
+    [Signal]
+    public delegate void OnCellTypeToEditSelected(string name);
+
     public enum SelectionMenuTab
     {
         Structure,
@@ -417,6 +420,15 @@ public partial class CellBodyPlanEditorComponent :
         // TODO: warning about not producing enough ATP
 
         return true;
+    }
+
+    public void OnCellTypeEdited(CellType changedType)
+    {
+        UpdateAlreadyPlacedVisuals();
+
+        UpdateCellTypeSelections();
+
+        RegenerateCellTypeIcon(changedType);
     }
 
     protected CellType CellTypeFromName(string name)
@@ -956,7 +968,18 @@ public partial class CellBodyPlanEditorComponent :
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        throw new NotImplementedException();
+        EmitSignal(nameof(OnCellTypeToEditSelected), activeActionName);
+    }
+
+    private void RegenerateCellTypeIcon(CellType type)
+    {
+        foreach (var entry in cellTypeSelectionButtons)
+        {
+            if (entry.Value.CellType == type)
+            {
+                entry.Value.ReportTypeChanged();
+            }
+        }
     }
 
     private void SetSelectionMenuTab(string tab)

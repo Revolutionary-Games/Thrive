@@ -288,8 +288,15 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     }
 
     /// <summary>
-    ///   Sets the visibility of placed cell parts, editor forward arrow, etc.
+    ///   Sets the visibility of placed cell parts, editor forward arrow, etc. for all editor components
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Individual editor parts may have a
+    ///     <see cref="HexEditorComponentBase{TEditor,TAction,THexMove}.SetEditorWorldTabSpecificObjectVisibility"/>
+    ///     method to be able to set the visibility per editor component
+    ///   </para>
+    /// </remarks>
     public virtual void SetEditorObjectVisibility(bool shown)
     {
         RootOfDynamicallySpawned.Visible = shown;

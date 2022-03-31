@@ -10,4 +10,9 @@ public interface ICellProperties
     public float MembraneRigidity { get; set; }
     public Color Colour { get; set; }
     bool IsBacteria { get; set; }
+
+    string FormattedName { get; }
+
+    void RepositionToOrigin();
+    void UpdateNameIfValid(string newName);
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -77,5 +78,15 @@ public class ActionHistory<T>
         {
             SaveApplyHelper.ReTargetCallbacks(action, newTarget);
         }
+    }
+
+    /// <summary>
+    ///   Deletes the entire action history. Used for now to work with editors that have partially done undo history
+    /// </summary>
+    internal void Nuke()
+    {
+        GD.Print("Action history nuked");
+        actions.Clear();
+        actionIndex = 0;
     }
 }

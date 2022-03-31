@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -81,6 +82,7 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
     {
         base.SetEditorObjectVisibility(shown);
 
+        bodyPlanEditorTab.SetEditorWorldGuideObjectVisibility(shown);
         cellEditorTab.SetEditorWorldGuideObjectVisibility(shown);
     }
 
@@ -256,10 +258,16 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
             {
                 bodyPlanEditorTab.Show();
                 SetEditorObjectVisibility(true);
-                cellEditorTab.SetEditorWorldGuideObjectVisibility(false);
-                bodyPlanEditorTab.SetEditorWorldGuideObjectVisibility(true);
+                cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
+                bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
 
                 bodyPlanEditorTab.UpdateCamera();
+
+                // If we have an edited cell type, then we can apply those changes when we go back to the main editor
+                // tab as that's the only exit point and the point where we actually need to use the edited cell
+                // type information
+                CheckAndApplyCellTypeEdit();
+
                 break;
             }
 
@@ -275,8 +283,8 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
                 {
                     cellEditorTab.Show();
                     SetEditorObjectVisibility(true);
-                    cellEditorTab.SetEditorWorldGuideObjectVisibility(true);
-                    bodyPlanEditorTab.SetEditorWorldGuideObjectVisibility(false);
+                    cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
+                    bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
 
                     cellEditorTab.UpdateCamera();
                 }
@@ -295,5 +303,50 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
         editedSpecies = species ?? throw new NullReferenceException("didn't find edited species");
 
         base.SetupEditedSpecies();
+    }
+
+    private void OnStartEditingCellType(string name)
+    {
+        selectedCellTypeToEdit = EditedSpecies.CellTypes.First(c => c.TypeName == name);
+
+        GD.Print("Start editing cell type: ", selectedCellTypeToEdit.TypeName);
+
+        SetEditorTab(EditorTab.CellTypeEditor);
+
+        // Reinitialize the cell editor to be able to edit the new cell type
+        cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+    }
+
+    private void CheckAndApplyCellTypeEdit()
+    {
+        if (selectedCellTypeToEdit == null)
+            return;
+
+        // TODO: only apply if there were changes
+        GD.Print("Applying changes to cell type: ", selectedCellTypeToEdit.TypeName);
+
+        // We need to handle the renaming here as the cell editor doesn't really know what other cell types exist
+        // so it can't check if the name is unique or not
+        // TODO: would be nice to re-architecture this so that the cell editor could show if the new name is valid
+        // or not
+        var oldName = selectedCellTypeToEdit.TypeName;
+
+        // TODO: this should be converted to be an editor action to not crash when undoing / redoing organelle
+        // placements after re-entering the cell editor
+        // For now just nuke the history
+        history.Nuke();
+        NotifyUndoRedoStateChanged();
+
+        cellEditorTab.OnFinishEditing();
+
+        // Revert to old name if the name is a duplicate
+        if (EditedSpecies.CellTypes.Any(c =>
+                c != selectedCellTypeToEdit && c.TypeName == selectedCellTypeToEdit.TypeName))
+        {
+            GD.Print("Cell editor renamed a cell type to a duplicate name, reverting");
+            selectedCellTypeToEdit.TypeName = oldName;
+        }
+
+        bodyPlanEditorTab.OnCellTypeEdited(selectedCellTypeToEdit);
     }
 }

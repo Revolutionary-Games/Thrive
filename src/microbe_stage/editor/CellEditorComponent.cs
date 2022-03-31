@@ -15,6 +15,9 @@ public partial class CellEditorComponent :
     IGodotEarlyNodeResolve
 {
     [Export]
+    public bool IsMulticellularEditor;
+
+    [Export]
     public NodePath StructureTabButtonPath = null!;
 
     [Export]
@@ -470,6 +473,17 @@ public partial class CellEditorComponent :
         UpdateRigiditySliderState(Editor.MutationPoints);
 
         UpdateCancelButtonVisibility();
+
+        if (IsMulticellularEditor)
+        {
+            componentBottomLeftButtons.HandleRandomSpeciesName = false;
+            componentBottomLeftButtons.UseSpeciesNameValidation = false;
+
+            // TODO: implement random cell type name generator
+            componentBottomLeftButtons.ShowRandomizeButton = false;
+
+            componentBottomLeftButtons.SetNamePlaceholder(TranslationServer.Translate("CELL_TYPE_NAME"));
+        }
     }
 
     public override void ResolveNodeReferences()
@@ -533,12 +547,22 @@ public partial class CellEditorComponent :
 
         // For multicellular the cell editor is initialized before a cell type to edit is selected so we skip
         // the logic here the first time this is called too early
-        if (Editor.EditedCellProperties == null)
+        if (Editor.EditedCellProperties == null && IsMulticellularEditor)
             return;
+
+        if (IsMulticellularEditor)
+        {
+            // Prepare for second use in multicellular editor
+            editedMicrobeOrganelles.Clear();
+        }
+        else if (editedMicrobeOrganelles.Count > 0)
+        {
+            GD.PrintErr("Reusing cell editor without marking it for multicellular is not meant to be done");
+        }
 
         // We set these here to make sure these are ready in the organelle add callbacks (even though currently
         // that just marks things dirty and we update our stats on the next _Process call)
-        Membrane = Editor.EditedCellProperties.MembraneType;
+        Membrane = Editor.EditedCellProperties!.MembraneType;
         Rigidity = Editor.EditedCellProperties.MembraneRigidity;
         Colour = Editor.EditedCellProperties.Colour;
 
@@ -550,7 +574,7 @@ public partial class CellEditorComponent :
             editedMicrobeOrganelles.Add((OrganelleTemplate)organelle.Clone());
         }
 
-        newName = species.FormattedName;
+        newName = Editor.EditedCellProperties.FormattedName;
 
         // Only when not loaded from save are these properties fetched (otherwise it won't display changes correctly)
         SetInitialCellStats();
@@ -586,16 +610,23 @@ public partial class CellEditorComponent :
             editedProperties.Organelles.Add(organelleToAdd);
         }
 
-        editedSpecies.RepositionToOrigin();
+        editedProperties.RepositionToOrigin();
 
         // Update bacteria status
         editedProperties.IsBacteria = !HasNucleus;
 
-        editedSpecies.UpdateInitialCompounds();
+        editedProperties.UpdateNameIfValid(newName);
 
-        GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
+        if (!IsMulticellularEditor)
+        {
+            editedSpecies.UpdateInitialCompounds();
 
-        editedSpecies.UpdateNameIfValid(newName);
+            GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
+        }
+        else
+        {
+            GD.Print("MicrobeEditor: updated organelles for cell: ", editedProperties.FormattedName);
+        }
 
         // Update membrane
         editedProperties.MembraneType = Membrane;
@@ -647,6 +678,16 @@ public partial class CellEditorComponent :
             RunWithSymmetry(q, r,
                 (finalQ, finalR, rotation) => RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle),
                 effectiveSymmetry);
+        }
+    }
+
+    public override void SetEditorWorldTabSpecificObjectVisibility(bool shown)
+    {
+        base.SetEditorWorldTabSpecificObjectVisibility(shown);
+
+        if (previewMicrobe != null)
+        {
+            previewMicrobe.Visible = shown && MicrobePreviewMode;
         }
     }
 
@@ -959,6 +1000,13 @@ public partial class CellEditorComponent :
 
     private void SetupPreviewMicrobe()
     {
+        if (previewMicrobe != null)
+        {
+            GD.Print("Preview microbe already setup");
+            previewMicrobe.Visible = MicrobePreviewMode;
+            return;
+        }
+
         previewMicrobe = (Microbe)microbeScene.Instance();
         previewMicrobe.IsForPreviewOnly = true;
         Editor.RootOfDynamicallySpawned.AddChild(previewMicrobe);
@@ -1349,7 +1397,7 @@ public partial class CellEditorComponent :
     }
 
     private void SetSpeciesInfo(string name, MembraneType membrane, Color colour, float rigidity,
-        BehaviourDictionary behaviour)
+        BehaviourDictionary? behaviour)
     {
         componentBottomLeftButtons.SetNewName(name);
 
@@ -1361,7 +1409,11 @@ public partial class CellEditorComponent :
         UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
 
         // TODO: put this call in some better place (also in CellBodyPlanEditorComponent)
-        behaviourEditor.UpdateAllBehaviouralSliders(behaviour);
+        if (!IsMulticellularEditor)
+        {
+            behaviourEditor.UpdateAllBehaviouralSliders(behaviour ??
+                throw new ArgumentNullException(nameof(behaviour)));
+        }
     }
 
     private void OnMovePressed()
@@ -1494,6 +1546,12 @@ public partial class CellEditorComponent :
     private void OnSpeciesNameChanged(string newText)
     {
         newName = newText;
+
+        if (IsMulticellularEditor)
+        {
+            // TODO: somehow update the architecture so that we can know here if the name conflicts with another type
+            componentBottomLeftButtons.ReportValidityOfName(!string.IsNullOrWhiteSpace(newText));
+        }
     }
 
     private void OnColorChanged(Color color)

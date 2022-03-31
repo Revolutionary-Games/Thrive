@@ -47,6 +47,7 @@ CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
 EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
 EditorGridPath = NodePath("../../EditorWorld/Grid")
 CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
+IsMulticellularEditor = true
 
 [node name="Report" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 10 )]
 
@@ -79,6 +80,7 @@ theme = ExtResource( 1 )
 IsEditorPauseMenu = true
 HelpCategory = "MicrobeEditor"
 
+[connection signal="OnCellTypeToEditSelected" from="EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent" to="." method="OnStartEditingCellType"]
 [connection signal="OnTabSelected" from="EarlyMulticellularEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
 [connection signal="OnOpenHelp" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenFromEditorToHelp"]
 [connection signal="OnOpenMenu" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenFromEditor"]

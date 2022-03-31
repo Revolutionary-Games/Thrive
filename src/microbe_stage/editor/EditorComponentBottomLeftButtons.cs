@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mime;
 using System.Text.RegularExpressions;
 using Godot;
 
@@ -41,7 +42,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
 
     private TextureButton? newButton;
     private LineEdit speciesNameEdit = null!;
-    private TextureButton randomizeNameButton = null!;
+    private TextureButton? randomizeNameButton;
 
     private TextureButton symmetryButton = null!;
     private TextureRect symmetryIcon = null!;
@@ -54,6 +55,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     private Texture symmetryIcon6X = null!;
 
     private bool showNewButton = true;
+    private bool showRandomizeButton = true;
 
     [Signal]
     public delegate void OnNewClicked();
@@ -84,6 +86,17 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         }
     }
 
+    [Export]
+    public bool ShowRandomizeButton
+    {
+        get => showRandomizeButton = true;
+        set
+        {
+            showRandomizeButton = value;
+            UpdateRandomButtonVisibility();
+        }
+    }
+
     public TextureButton UndoButton { get; private set; } = null!;
 
     public bool UndoEnabled { get => !UndoButton.Disabled; set => UndoButton.Disabled = !value; }
@@ -109,6 +122,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         symmetryIcon6X = GD.Load<Texture>("res://assets/textures/gui/bevel/6xSymmetry.png");
 
         UpdateNewButtonVisibility();
+        UpdateRandomButtonVisibility();
 
         if (!ShowSymmetryButton)
             symmetryButton.Visible = false;
@@ -122,7 +136,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         symmetryButton.RegisterToolTipForControl("symmetryButton", "editor");
 
         newButton!.RegisterToolTipForControl("newCellButton", "editor");
-        randomizeNameButton.RegisterToolTipForControl("randomizeNameButton", "editor");
+        randomizeNameButton!.RegisterToolTipForControl("randomizeNameButton", "editor");
     }
 
     public void SetNewName(string name)
@@ -148,6 +162,23 @@ public class EditorComponentBottomLeftButtons : MarginContainer
             HexEditorSymmetry.SixWaySymmetry => symmetryIcon6X,
             _ => throw new ArgumentException("unknown symmetry value"),
         };
+    }
+
+    public void ReportValidityOfName(bool valid)
+    {
+        if (valid)
+        {
+            GUICommon.MarkInputAsValid(speciesNameEdit);
+        }
+        else
+        {
+            GUICommon.MarkInputAsInvalid(speciesNameEdit);
+        }
+    }
+
+    public void SetNamePlaceholder(string placeholder)
+    {
+        speciesNameEdit.PlaceholderText = placeholder;
     }
 
     private void OnSymmetryHold()
@@ -188,14 +219,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     {
         if (UseSpeciesNameValidation)
         {
-            if (!Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
-            {
-                GUICommon.MarkInputAsInvalid(speciesNameEdit);
-            }
-            else
-            {
-                GUICommon.MarkInputAsValid(speciesNameEdit);
-            }
+            ReportValidityOfName(Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX));
         }
 
         EmitSignal(nameof(OnNameSet), newText);
@@ -246,6 +270,14 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         {
             newButton.Visible = ShowNewButton;
             newHiddenAlternativeSpacer.Visible = !ShowNewButton;
+        }
+    }
+
+    private void UpdateRandomButtonVisibility()
+    {
+        if (randomizeNameButton != null)
+        {
+            randomizeNameButton.Visible = showRandomizeButton;
         }
     }
 }

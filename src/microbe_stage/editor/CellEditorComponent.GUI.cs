@@ -325,8 +325,7 @@ public partial class CellEditorComponent
         // Reset to cytoplasm if nothing is selected
         OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
 
-        SetSpeciesInfo(newName, Membrane, Colour, Rigidity,
-            behaviourEditor.Behaviour ?? throw new Exception("Editor doesn't have Behaviour setup"));
+        SetSpeciesInfo(newName, Membrane, Colour, Rigidity, behaviourEditor.Behaviour);
         UpdateGeneration(species.Generation);
         UpdateHitpoints(CalculateHitpoints());
     }
