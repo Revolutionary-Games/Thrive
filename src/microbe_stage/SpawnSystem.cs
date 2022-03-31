@@ -67,11 +67,11 @@ public class SpawnSystem
         var sectorsToLoad = newLoadedSectors.Except(loadedSectors).ToList();
 
         // List of sectors that are in the non-unload radius
-        var sectorsToKeep = GetSectorsInRadius(newSector.Pos, Constants.SECTOR_UNLOAD_RADIUS);
-        var sectorsToUnload = loadedSectors.Except(sectorsToKeep).ToList();
+        var sectorsToKeep = GetSectorsInRadius(newSector.Pos, Constants.SECTOR_UNLOAD_RADIUS).ToList();
+        var sectorsToUnload = loadedSectors.Except(sectorsToKeep);
 
         LoadSectors(sectorsToLoad);
-        UnloadSectors(sectorsToUnload);
+        UnloadSectors(sectorsToKeep);
 
         loadedSectors = loadedSectors.Concat(sectorsToLoad).Except(sectorsToUnload).ToList();
     }
@@ -192,17 +192,17 @@ public class SpawnSystem
     }
 
     /// <summary>
-    ///   Despawns the stuff in these sectors
+    ///   Despawns the stuff outside these sectors
     /// </summary>
-    private void UnloadSectors(List<Sector> sectors)
+    private void UnloadSectors(List<Sector> sectorsToKeep)
     {
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
         foreach (SpawnedRigidBody entity in spawnedEntities)
         {
-            if (sectors.Contains(entity.CurrentSector))
-            {
-                DespawnEntity(entity);
-            }
+            if (sectorsToKeep.Contains(entity.CurrentSector))
+                continue;
+
+            DespawnEntity(entity);
         }
     }
 

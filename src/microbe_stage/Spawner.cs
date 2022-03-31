@@ -91,14 +91,10 @@ public abstract class Spawner
         if (BinomialP < MathUtils.EPSILON)
             return 0;
 
-        var nextRandom = random.NextFloat() * sectorDensity;
-        var binomialSum = 0f;
+        var randomNumber = random.NextFloat() * sectorDensity;
+
         var i = 0;
-        do
-        {
-            binomialSum += BinomialValues[i++];
-        }
-        while (nextRandom >= binomialSum);
+        for (var sum = 0f; sum < randomNumber; sum += BinomialValues[i++]) {}
 
         return i - 1;
     }
