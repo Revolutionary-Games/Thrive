@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-18 17:48+0200\n"
-"PO-Revision-Date: 2022-03-22 18:22+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"PO-Revision-Date: 2022-03-31 05:02+0000\n"
+"Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -815,9 +815,8 @@ msgid "WENT_EXTINCT_IN"
 msgstr "wurde in {0} ausgelöscht"
 
 #: ../src/auto-evo/RunResults.cs:569
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "Speizes:"
+msgstr "Spezies:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -836,9 +835,8 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "die Population in einigen Gebieten spaltete sich ab und bildete eine neue Spezies {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr "hat eine Mutation"
+msgstr "ist mutiert"
 
 #: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
@@ -899,9 +897,8 @@ msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] spaltet sich von [u]{1}[/u] als neue Art ab aufgrund dem unterschiedlichen Selektionsdrucks"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
-#, fuzzy
 msgid "NOT_FOUND_CHUNK"
-msgstr "Großer Eisenbrocken"
+msgstr "Fehler: Chunk nicht gefunden"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
 msgid "CHUNK_FOOD_SOURCE"
@@ -2677,23 +2674,23 @@ msgstr "Gegner spawnen"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:447
 msgid "SIGNAL_COMMAND_NONE"
-msgstr ""
+msgstr "Kein Befehl"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "SIGNAL_COMMAND_FOLLOW"
-msgstr ""
+msgstr "Folge mir"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:449
 msgid "SIGNAL_COMMAND_TO_ME"
-msgstr ""
+msgstr "Bewege dich zu mir"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:450
 msgid "SIGNAL_COMMAND_FLEE"
-msgstr ""
+msgstr "Fliehe"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:451
 msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr ""
+msgstr "Werde aggressiv"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:454
 msgid "SIGNAL_TO_EMIT"
@@ -3242,9 +3239,8 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m unter dem Meeresspiegel"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-#, fuzzy
 msgid "SPECIES_WITH_POPULATION"
-msgstr "Spezienpopulation"
+msgstr "{0} mit Bevölkerung: {1}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
@@ -3623,7 +3619,7 @@ msgstr "Erstelle..."
 
 #: ../src/modding/ModUploader.cs:474
 msgid "SUCCESS_BUT_MISSING_ID"
-msgstr ""
+msgstr "Das Ergebnis deutete auf Erfolg hin, aber es wurde keine ID zurückgegeben"
 
 #: ../src/modding/ModUploader.cs:519
 msgid "UPLOADING_DOT_DOT_DOT"
@@ -3791,9 +3787,8 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objekte aus Speicherstand erstellen"
 
 #: ../src/saving/InProgressLoad.cs:110
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr "Beim Laden der Speicherdaten ist eine Ausnahme aufgetreten"
+msgstr "Beim Laden der Speicherdaten ist ein Fehler aufgetreten"
 
 #: ../src/saving/InProgressLoad.cs:136
 msgid "SAVE_IS_INVALID"
@@ -3808,9 +3803,8 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Verarbeitung geladener Objekte"
 
 #: ../src/saving/InProgressLoad.cs:165
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
-msgstr "Während der Verarbeitung geladener Objekte trat eine Ausnahme auf"
+msgstr "Während der Verarbeitung geladener Objekte trat ein Fehler auf"
 
 #: ../src/saving/InProgressLoad.cs:171
 msgid "LOAD_FINISHED"
@@ -3825,9 +3819,8 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Die bereits geladenen Ressourcen konnten nicht freigegeben werden: {0}"
 
 #: ../src/saving/InProgressSave.cs:189
-#, fuzzy
 msgid "SAVING_DOT_DOT_DOT"
-msgstr "Erstelle..."
+msgstr "Speichert..."
 
 #: ../src/saving/InProgressSave.cs:222
 msgid "SAVE_FAILED"
@@ -3863,9 +3856,8 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Vorhandenen Speicherstand überschreiben:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-#, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr "Vorhandenen Speicherstand überschreiben:"
+msgstr "Vorhandenen Speicherstand überschreiben?"
 
 #: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
 #, fuzzy
@@ -3911,19 +3903,16 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "keine Speicherstände gefunden"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-#, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
-msgstr "Lade hoch..."
+msgstr "Lädt..."
 
 #: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
-#, fuzzy
 msgid "DELETE_THIS_SAVE_PROMPT"
-msgstr "Löschen dieses Speicherstandes?"
+msgstr "Diesen Spielstand wirklich löschen?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
-msgstr "Inkompatibler Speicherstand laden?"
+msgstr "Inkompatiblen Speicherstand laden?"
 
 #: ../src/saving/SaveList.tscn:80
 msgid "NEWER_VERSION_LOADING_WARNING"
@@ -3940,9 +3929,8 @@ msgstr ""
 "Möchtest du trotzdem versuchen, den Spielstand zu laden?"
 
 #: ../src/saving/SaveList.tscn:95
-#, fuzzy
 msgid "LOAD_INVALID_SAVE_PROMPT"
-msgstr "Ungültiger Speicherstand laden?"
+msgstr "Ungültigen Speicherstand laden?"
 
 #: ../src/saving/SaveList.tscn:96
 msgid "LOAD_INVALID_SAVE_WARNING"
@@ -3952,9 +3940,8 @@ msgstr ""
 "Möchtest du trotzdem versuchen, den Spielstand zu laden?"
 
 #: ../src/saving/SaveList.tscn:103
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
-msgstr "Ausgewählter Speicherstand ist inkompatibel"
+msgstr "Der ausgewählte Speicherstand ist inkompatibel"
 
 #: ../src/saving/SaveList.tscn:105
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
@@ -3997,18 +3984,16 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-#, fuzzy
 msgid "TYPE_COLON"
-msgstr "HP:"
+msgstr "Typ:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Beschreibung:"
 
 #: ../src/saving/SaveListItem.tscn:193
-#, fuzzy
 msgid "VERSION_COLON"
-msgstr "Generation:"
+msgstr "Version:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -4062,14 +4047,12 @@ msgid "SELECTED_COLON"
 msgstr "Ausgewählt:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-#, fuzzy
 msgid "DELETE_SELECTED_SAVES_PROMPT"
-msgstr "Ausgewählte(r) Spielstand/Spielstände löschen?"
+msgstr "Ausgewählte(n) Spielstand/Spielstände wirklich löschen?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-#, fuzzy
 msgid "DELETE_OLD_SAVES_PROMPT"
-msgstr "Alte Speicherstände löschen?"
+msgstr "Alte Spieltände löschen?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
 msgid "NO_SAVE_DIRECTORY"
@@ -4160,45 +4143,42 @@ msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
-#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Willkommen beim Mikrobeneditor.\n"
-"Hier kannst du nachschauen, was seit dem Start des Spiels geschehen ist oder wenn du zuletzt im Editor warst und dann Änderungen an deiner Spezies vornehmen.\n"
+"Willkommen bei dem Mikrobeneditor.\n"
 "\n"
-"In dieser Registerkarte können Sie einen Bericht darüber sehen, welche Arten es wo gibt und was deine Populationen sind. Oben können Sie auch Umweltveränderungen sehen.\n"
+"Hier kannst du die Geschehnisse der vorigen Generationen einsehen und Änderungen an deiner Spezies vornehmen.\n"
 "\n"
-"Um zur nächsten Registerkarte des Editors zu gelangen, drücke die Nächste-Schaltfläche unten rechts."
+"In dieser Registerkarte ist eine Übersicht der Änderungen in deinem Gebiet. Probiere die verschiedenen Werkzeuge aus, um mehr über Ereignisse in deiner Welt zu lernen.\n"
+"\n"
+"Wenn du bereit bist, drücke die Nächste-Schaltfläche unten rechts."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Willkommen beim Mikrobeneditor.\n"
-"Hier kannst du nachschauen, was seit dem Start des Spiels geschehen ist oder wenn du zuletzt im Editor warst und dann Änderungen an deiner Spezies vornehmen.\n"
+"Dies ist die Gebietskarte.\n"
 "\n"
-"In dieser Registerkarte können Sie einen Bericht darüber sehen, welche Arten es wo gibt und was deine Populationen sind. Oben können Sie auch Umweltveränderungen sehen.\n"
+"Jedes Symbol repräsentiert eine einzigartige Umgebung, in der du leben kannst. Das Fenster rechts beschreibt den Zustand des momentan ausgewählten Gebiets.\n"
 "\n"
-"Um zur nächsten Registerkarte des Editors zu gelangen, drücke die Nächste-Schaltfläche unten rechts."
+"Wenn du ein Gebiet auswählst, das an das deines angrenzt (erkennbar durch die türkisfarbene Umrandung), kannst du \"Zu diesem Gebiet bewegen\" auswählen, um dahin zu migrieren.\n"
+"\n"
+"Versuche, ein Gebiet auszuwählen, um fortzufahren."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Willkommen beim Mikrobeneditor.\n"
-"Hier kannst du nachschauen, was seit dem Start des Spiels geschehen ist oder wenn du zuletzt im Editor warst und dann Änderungen an deiner Spezies vornehmen.\n"
+"Dies ist der Zelleneditor, in dem du deine Spezies durch Ausgeben von Mutationspunkten (MP) entwickeln kannst. Du wirst in jeder Generation 100 MP ausgeben können, also ist aufsparen unnötig.\n"
 "\n"
-"In dieser Registerkarte können Sie einen Bericht darüber sehen, welche Arten es wo gibt und was deine Populationen sind. Oben können Sie auch Umweltveränderungen sehen.\n"
+"Das Hexagon in der Mitte deines Bildschirms ist deine Zelle, die aus einem einzigen Cytoplasma-Teil besteht.\n"
 "\n"
-"Um zur nächsten Registerkarte des Editors zu gelangen, drücke die Nächste-Schaltfläche unten rechts."
+"Wähle ein Teil aus dem Linken Fenster aus und klicke (links) neben dem Hexagon, um es zu platzieren, um fortzufahren. Du kannst Teile mit A und D drehen."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Das Entfernen von Organellen kostet ebenfalls MP, da es sich um eine Mutation deiner Spezies handelt, es sei denn, sie wurden in der aktuellen Editor-Sitzung platziert.\n"
+"Das Entfernen von Organellen kostet ebenfalls MP, da es sich um eine Mutation deiner Spezies handelt; es sei denn, sie wurden in der aktuellen Editor-Sitzung platziert.\n"
 "\n"
-"Du kannst mit der rechten Maustaste auf Organellen klicken, um das Organellenmenü aufzurufen und die Option \"Löschen\" auszuwählen, um sie zu entfernen.\n"
+"Du kannst mit der rechten Maustaste auf Organellen klicken, um das Organellenmenü aufzurufen und die Option \"Löschen\" auszuwählen, um diese zu entfernen.\n"
 "\n"
 "Wenn du einen Fehler gemacht hast, kannst du jede Änderung im Editor rückgängig machen.\n"
 "\n"
