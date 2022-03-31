@@ -97,10 +97,15 @@ public static class MathUtils
 
     public static int NCr(int n, int r)
     {
-        return NCr(n, Factorial(n), r);
+        return NCr(n, r, Factorial(n));
     }
 
-    public static int NCr(int n, int nFactorial, int r)
+    /// <remarks>
+    ///   <para>
+    ///     Use this overload if you have already calculated the factorial of n
+    ///   </para>
+    /// </remarks>
+    public static int NCr(int n, int r, int nFactorial)
     {
         return nFactorial / (Factorial(r) * Factorial(n - r));
     }

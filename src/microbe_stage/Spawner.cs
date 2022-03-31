@@ -38,7 +38,7 @@ public abstract class Spawner
 
             // nCr(BinomialN, r) * BinomialP^r * (1 - BinomialP)^(BinomialN - r)
             binomialValuesCache = Enumerable.Range(0, BinomialN).Select(r =>
-                MathUtils.NCr(BinomialN, nFactorial, r) * Mathf.Pow(BinomialP, r) *
+                MathUtils.NCr(BinomialN, r, nFactorial) * Mathf.Pow(BinomialP, r) *
                 Mathf.Pow(1 - BinomialP, BinomialN - r)).ToArray();
             return binomialValuesCache;
         }
