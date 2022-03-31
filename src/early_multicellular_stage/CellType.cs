@@ -104,4 +104,20 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
 
         return result;
     }
+
+    public override int GetHashCode()
+    {
+        var hash = (TypeName.GetHashCode() * 131) ^ (MPCost * 2797) ^ (MembraneType.GetHashCode() * 2801) ^
+            (MembraneRigidity.GetHashCode() * 2803) ^ (Colour.GetHashCode() * 587) ^ ((IsBacteria ? 1 : 0) * 5171) ^
+            (Organelles.Count * 127);
+
+        int counter = 0;
+
+        foreach (var organelle in Organelles)
+        {
+            hash ^= counter++ * 11 * organelle.GetHashCode();
+        }
+
+        return hash;
+    }
 }
