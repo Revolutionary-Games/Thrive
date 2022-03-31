@@ -302,7 +302,7 @@ public abstract class
     {
         if (!Visible)
             return false;
-        
+
         if (MovingPlacedHex != null)
         {
             GetMouseHex(out int q, out int r);
@@ -326,7 +326,7 @@ public abstract class
     {
         if (!Visible)
             return false;
-        
+
         if (mousePanningStart != null)
             return true;
 
@@ -340,7 +340,7 @@ public abstract class
     {
         if (!Visible)
             return false;
-        
+
         if (mousePanningStart == null)
         {
             mousePanningStart = camera!.CursorWorldPos;
@@ -359,7 +359,7 @@ public abstract class
     {
         if (!Visible)
             return false;
-        
+
         mousePanningStart = null;
         return true;
     }
@@ -369,7 +369,7 @@ public abstract class
     {
         if (!Visible)
             return false;
-        
+
         if (camera == null)
         {
             GD.PrintErr("Editor camera isn't set");

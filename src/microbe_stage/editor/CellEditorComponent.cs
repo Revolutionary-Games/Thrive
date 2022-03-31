@@ -483,6 +483,8 @@ public partial class CellEditorComponent :
             componentBottomLeftButtons.ShowRandomizeButton = false;
 
             componentBottomLeftButtons.SetNamePlaceholder(TranslationServer.Translate("CELL_TYPE_NAME"));
+
+            autoEvoPredictionPanel.Visible = false;
         }
     }
 
@@ -1053,6 +1055,10 @@ public partial class CellEditorComponent :
 
     private void StartAutoEvoPrediction()
     {
+        // For now disabled in the multicellular editor as the microbe logic being used there doesn't make sense
+        if (IsMulticellularEditor)
+            return;
+
         // First prediction can be made only after population numbers from previous run are applied
         // so this is just here to guard against that potential programming mistake that may happen when code is
         // changed
