@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -108,5 +109,20 @@ public static class MathUtils
     public static int NCr(int n, int r, int nFactorial)
     {
         return nFactorial / (Factorial(r) * Factorial(n - r));
+    }
+
+    public static float[] BinomialValues(int n, float p)
+    {
+        var nFactorial = Factorial(n);
+
+        return Enumerable.Range(0, n).Select(k =>
+            {
+                // Pr(X = k) = nCr(n, k) * p^k * (1 - p)^(n - k)
+                float result = NCr(n, k, nFactorial);
+                result *= Mathf.Pow(p, k);
+                result *= Mathf.Pow(1 - p, n - k);
+                return result;
+            })
+            .ToArray();
     }
 }

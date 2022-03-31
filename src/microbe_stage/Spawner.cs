@@ -27,22 +27,7 @@ public abstract class Spawner
     /// <summary>
     ///   The calculated binomial values. Should add up to roughly 1f. Lazily calculated.
     /// </summary>
-    private float[] BinomialValues
-    {
-        get
-        {
-            if (binomialValuesCache != null)
-                return binomialValuesCache;
-
-            var nFactorial = MathUtils.Factorial(BinomialN);
-
-            // nCr(BinomialN, r) * BinomialP^r * (1 - BinomialP)^(BinomialN - r)
-            binomialValuesCache = Enumerable.Range(0, BinomialN).Select(r =>
-                MathUtils.NCr(BinomialN, r, nFactorial) * Mathf.Pow(BinomialP, r) *
-                Mathf.Pow(1 - BinomialP, BinomialN - r)).ToArray();
-            return binomialValuesCache;
-        }
-    }
+    private float[] BinomialValues => binomialValuesCache ??= MathUtils.BinomialValues(BinomialN, BinomialP);
 
     /// <summary>
     ///   Evenly distributes the spawns in a sector.

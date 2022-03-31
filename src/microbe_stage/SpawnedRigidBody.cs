@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   All nodes that can be spawned with the spawn system must derivative from this class
+///   All nodes that can be spawned with the spawn system must inherit this class
 /// </summary>
 public abstract class SpawnedRigidBody : RigidBody, IEntity
 {
