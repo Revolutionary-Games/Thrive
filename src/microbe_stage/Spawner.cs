@@ -10,7 +10,23 @@ public abstract class Spawner
 {
     private float[]? binomialValuesCache;
 
+    /// <summary>
+    ///   The number of trials
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     You can try out values <a href="https://homepage.divms.uiowa.edu/~mbognar/applets/bin.html">here</a>
+    ///   </para>
+    /// </remarks>
     public virtual int BinomialN => 0;
+    /// <summary>
+    ///   The success probability for each trial
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     You can try out values <a href="https://homepage.divms.uiowa.edu/~mbognar/applets/bin.html">here</a>
+    ///   </para>
+    /// </remarks>
     public virtual float BinomialP => 0;
 
     /// <summary>
@@ -25,7 +41,7 @@ public abstract class Spawner
     public bool DestroyQueued { get; set; }
 
     /// <summary>
-    ///   The calculated binomial values. Should add up to roughly 1f. Lazily calculated.
+    ///   The calculated binomial values. Lazily calculated.
     /// </summary>
     private float[] BinomialValues => binomialValuesCache ??= MathUtils.BinomialValues(BinomialN, BinomialP);
 
@@ -72,7 +88,7 @@ public abstract class Spawner
     /// <returns>Returns the amount of spawns in a sector.</returns>
     protected virtual int GetSpawnsInASector(float sectorDensity, Random random)
     {
-        if (BinomialP == 0)
+        if (BinomialP < MathUtils.EPSILON)
             return 0;
 
         var nextRandom = random.NextFloat() * sectorDensity;

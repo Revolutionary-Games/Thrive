@@ -111,6 +111,23 @@ public static class MathUtils
         return nFactorial / (Factorial(r) * Factorial(n - r));
     }
 
+    /// <summary>
+    ///   Calculates binomial values.
+    /// </summary>
+    /// <param name="n">number of trials</param>
+    /// <param name="p">success probability for each trial</param>
+    /// <returns>An array of the binomial values of length n</returns>
+    /// <remarks>
+    ///   <para>
+    ///     Learn about the binomial distribution
+    ///     <a href="https://www.investopedia.com/terms/b/binomialdistribution.asp">here</a>.
+    ///     Tl;dr: Binomial values are a series of numbers calculated from an amount "n" and a probability "p".
+    ///     n defines the amount of possible outcomes and p defines the "probability" of a higher result.
+    ///     A n of 4 and a p of 0.5 produces these values: [0.0625, 0.25, 0.375, 0.25, 0.0625].
+    ///     The array means that there is a 6.25% chance of the result 0, 25% of the result 1, etc...
+    ///     The numbers calculate up to 1.
+    ///   </para>
+    /// </remarks>
     public static float[] BinomialValues(int n, float p)
     {
         var nFactorial = Factorial(n);
