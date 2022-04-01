@@ -260,6 +260,9 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
                 cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
                 bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
 
+                // TODO: fix the arrow positioning when switching tabs (it fixes itself only when placing something)
+                // This line (and also in CellTypeEditor) doesn't help:
+                bodyPlanEditorTab.UpdateArrow(false);
                 bodyPlanEditorTab.UpdateCamera();
 
                 // If we have an edited cell type, then we can apply those changes when we go back to the main editor
@@ -285,6 +288,7 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
                     cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
                     bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
 
+                    cellEditorTab.UpdateArrow(false);
                     cellEditorTab.UpdateCamera();
                 }
 
