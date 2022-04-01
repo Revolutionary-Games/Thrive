@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-01 15:58+0300\n"
-"PO-Revision-Date: 2022-04-01 16:07+0300\n"
+"PO-Revision-Date: 2022-04-01 16:59+0300\n"
 "Last-Translator: Buckly <Kormur@protonmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -963,7 +963,7 @@ msgstr "Duplicate Type"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:463
 msgid "REPRODUCTION_METHOD"
-msgstr "Reproduction Method:"
+msgstr "Reproduction:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:476
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
@@ -3446,7 +3446,7 @@ msgstr "YOU HAVE THRIVED!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
-msgstr "Congratulations you have won this version of Thrive! You may continue playing after this screen closes if you wish, or start a new game in a new world."
+msgstr "Congratulations you have won this version of Thrive! You may continue playing after this screen closes if you wish, or start a new game in a new world. You may also add binding agents to build a cell colony and check the later game prototypes."
 
 #: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
 msgid "CANT_LOAD_MOD_INFO"
@@ -3982,7 +3982,10 @@ msgstr "Player is extinct"
 
 #: ../src/saving/SaveHelper.cs:470
 msgid "IN_PROTOTYPE"
-msgstr "You are playing the later stage prototypes that are included with the game. These may be very incomplete, use placeholder graphics, and be very rough in general. As such saving is not currently possible."
+msgstr ""
+"You are playing the later stage prototypes that are included with the game. \n"
+"These may be very incomplete, use placeholder graphics, and be very rough in general. \n"
+"As such saving is not currently possible."
 
 #: ../src/saving/SaveHelper.cs:478
 msgid "SAVING_SUCCEEDED"
