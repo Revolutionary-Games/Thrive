@@ -738,9 +738,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [DeserializedCallbackAllowed]
     private void OnPlayerReproductionStatusChanged(Microbe player, bool ready)
     {
-        if (ready && player.Colony == null)
+        if (ready && (player.Colony == null || player.IsMulticellular))
         {
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
+            if (!player.IsMulticellular)
+                TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
 
             // This is to prevent the editor button being able to be clicked multiple times in freebuild mode
             if (!MovingToEditor)

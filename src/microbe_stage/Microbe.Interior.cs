@@ -747,7 +747,7 @@ public partial class Microbe
                     Constants.CREATURE_REPRODUCE_POPULATION_GAIN, TranslationServer.Translate("REPRODUCED"));
             }
 
-            if (IsMulticellular)
+            if (!IsMulticellular)
             {
                 // Return the first cell to its normal, non duplicated cell arrangement and spawn a daughter cell
                 ResetOrganelleLayout();
