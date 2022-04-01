@@ -247,7 +247,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     ///   Tries to start editor apply results and exit
     /// </summary>
     /// <returns>True if started. False if something is not good and editor can't be exited currently.</returns>
-    public bool OnFinishEditing()
+    public bool OnFinishEditing(List<EditorUserOverride>? overrides = null)
     {
         // Prevent exiting when the transition hasn't finished
         if (!TransitionFinished)
@@ -260,11 +260,11 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             return false;
         }
 
-        var dummyOverrides = Array.Empty<EditorUserOverride>();
+        overrides ??= new List<EditorUserOverride>();
 
         foreach (var editorComponent in GetAllEditorComponents())
         {
-            if (!editorComponent.CanFinishEditing(dummyOverrides))
+            if (!editorComponent.CanFinishEditing(overrides))
             {
                 GD.Print(editorComponent.GetType().Name, " editor component is not allowing editing to finish yet");
                 return false;
@@ -435,7 +435,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             }
         }
 
-        return OnFinishEditing();
+        return OnFinishEditing(userOverrides);
     }
 
     public void ChangeMutationPoints(int change)
