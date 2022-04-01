@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://CloudTest/MyScene.cs" type="Script" id=1]
+[ext_resource path="res://CloudTest/MySceneGPU.cs" type="Script" id=1]
 [ext_resource path="res://CloudTest/blur.tres" type="Shader" id=2]
 [ext_resource path="res://CloudTest/Spatial.tres" type="Material" id=3]
 
@@ -20,12 +20,12 @@ size = Vector2( 2, 2 )
 [node name="Spatial" type="Spatial"]
 
 [node name="CSGBox" type="CSGBox" parent="."]
-transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 1, -151.575, 317.731, -95.3271 )
+transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 1, -151.575, 317.731, -79.1448 )
 visible = false
 layers = 0
 width = 200.0
 height = 200.0
-depth = 182.868
+depth = 200.0
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
 transform = Transform( 0.807661, 0, 0.589648, 0, 1, 0, -0.589648, 0, 0.807661, -246.796, 98.8271, 88.0841 )
@@ -38,5 +38,5 @@ visible = false
 script = ExtResource( 1 )
 
 [node name="CSGSphere" type="CSGSphere" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -295.944, 349.13, -111.946 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -196.557, 349.13, -199.004 )
 radius = 36.7412

@@ -2,33 +2,35 @@
 
 [ext_resource path="res://CloudTest/cloudsWithRayCalc.tres" type="Shader" id=1]
 
-[sub_resource type="Image" id=1]
+[sub_resource type="Image" id=3]
 data = {
-"data": PoolByteArray( 121, 121, 63, 204, 124, 187, 186, 184, 80, 92, 82, 127, 146, 143, 166, 210, 112, 211, 84, 172, 124, 74, 169, 191, 115, 36, 63, 146, 94, 141, 89, 133, 211, 218, 226, 153, 202, 62, 124, 191, 109, 43, 72, 172, 83, 206, 50, 191, 170, 125, 126, 191, 147, 199, 56, 235, 173, 29, 36, 153, 145, 173, 173, 178, 41, 34, 163, 210, 144, 54, 111, 210, 115, 211, 49, 153, 40, 66, 216, 172, 201, 161, 89, 191, 52, 117, 153, 229, 177, 179, 185, 140, 61, 36, 185, 242, 104, 142, 126, 210, 77, 121, 216, 153, 52, 80, 114, 204, 166, 181, 69, 216, 56, 131, 128, 197, 111, 209, 146, 242 ),
+"data": PoolByteArray( 83, 146, 159, 145, 136, 76, 177, 160, 122, 125, 132, 189, 99, 118, 77, 204, 154, 95, 119, 131, 161, 88, 91, 189, 160, 123, 180, 225, 90, 176, 133, 204, 171, 81, 126, 123, 101, 133, 134, 167, 111, 127, 144, 233, 132, 84, 141, 247, 125, 71, 133, 167, 160, 152, 122, 247, 124, 179, 139, 247, 79, 100, 118, 123, 176, 117, 162, 182, 177, 143, 171, 131, 145, 135, 94, 131, 129, 96, 103, 153, 166, 134, 92, 204, 112, 136, 109, 131, 143, 130, 179, 131, 178, 120, 158, 153, 79, 82, 73, 116, 107, 123, 124, 123, 84, 112, 106, 225, 128, 88, 120, 138, 145, 178, 101, 138, 77, 99, 88, 182, 77, 143, 129, 160, 148, 133, 97, 167, 162, 82, 95, 138, 93, 87, 109, 167, 80, 110, 74, 160, 99, 84, 145, 247, 80, 151, 146, 174, 89, 98, 73, 109, 178, 147, 77, 225, 179, 77, 88, 204, 85, 81, 117, 189, 177, 74, 75, 167, 138, 173, 119, 182, 95, 89, 80, 211, 182, 73, 106, 240, 172, 97, 75, 247, 79, 115, 122, 189, 80, 145, 118, 182, 91, 123, 169, 109, 151, 98, 133, 131, 146, 88, 116, 109, 164, 106, 139, 145, 137, 84, 151, 218, 156, 90, 148, 240, 76, 169, 107, 233, 137, 129, 117, 182, 124, 116, 130, 240, 105, 177, 96, 218, 125, 100, 106, 211, 165, 158, 153, 211, 161, 147, 178, 218, 179, 127, 101, 247, 159, 180, 82, 109, 176, 70, 123, 225, 155, 123, 162, 123, 160, 167, 124, 167, 172, 181, 120, 196, 169, 179, 78, 174, 85, 134, 156, 145, 136, 122, 184, 240 ),
 "format": "RGBA8",
 "height": 1,
 "mipmaps": false,
-"width": 30
+"width": 70
 }
 
 [sub_resource type="ImageTexture" id=2]
-image = SubResource( 1 )
-size = Vector2( 30, 1 )
+image = SubResource( 3 )
+size = Vector2( 70, 1 )
 
 [resource]
 shader = ExtResource( 1 )
 shader_param/MAX_STEPS = 1450
 shader_param/MAX_DIST = 7000.0
 shader_param/MIN_HIT_DIST = 0.001
-shader_param/bound_min = Vector3( -251.31, 226.689, -141.481 )
-shader_param/bound_max = Vector3( -51.3103, 426.689, 58.5187 )
-shader_param/cloudPosition = Vector3( -251.31, 226.689, -141.481 )
-shader_param/cloudWidth = 254.0
-shader_param/cloudHeight = 404.0
-shader_param/cloudDepth = 430.0
-shader_param/maxSubshapeRad = 40
-shader_param/subshapeNumber = 30
-shader_param/sigma = 20.0
+shader_param/bound_min = Vector3( -251.575, 217.731, -179.145 )
+shader_param/bound_max = Vector3( -51.5752, 417.731, 20.8552 )
+shader_param/cloudPosition = Vector3( -251.575, 217.731, -179.145 )
+shader_param/cloudWidth = 200.0
+shader_param/cloudHeight = 200.0
+shader_param/cloudDepth = 200.0
+shader_param/maxSubshapeRad = 35
+shader_param/subshapeNumber = 70
+shader_param/sigma = 22.0
 shader_param/b = 50.0
-shader_param/cloudDensMult = 2.0
+shader_param/c = 0.998967
+shader_param/d = 3881.66
+shader_param/cloudDensMult = 4.0
 shader_param/subshapes = SubResource( 2 )

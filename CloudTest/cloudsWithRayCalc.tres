@@ -21,6 +21,8 @@ uniform int subshapeNumber;
 
 uniform float sigma;
 uniform float b;
+uniform float c;
+uniform float d;
 uniform float cloudDensMult;
 void vertex() {
   POSITION = vec4(VERTEX, 1.0);
@@ -34,7 +36,6 @@ vec2 modified_intersectAABB(vec3 rayOrigin, vec3 rayDir, vec3 boxMin, vec3 boxMa
 	vec3 t2 = max(tMin, tMax);
 	float tNear = max(max(t1.x, t1.y), t1.z);
 	float tFar = min(min(t2.x, t2.y), t2.z);
-	// return vec2(tNear, tFar);
 	float dstToBox = max(0, tNear);
 	float dstInsideBox = max(0, tFar - tNear);
 	return vec2(dstToBox, dstInsideBox);
@@ -48,16 +49,14 @@ float signedDistance(vec3 center, float radius, vec3 point)
 
 float gauss(float x)
 {
-	float pi = 3.145;
-	float a = 1f/(sigma * sqrt(2f*pi));
-	return a*exp(-pow((x-b),2)/(2f*pow(sigma,2)));
+	return pow(c,pow(x-b,2) + d);
 }
 
 float sample_density(vec3 x)
 {
 	float localDens = 0f;
 	float dist;
-	for (int i = 1; i <= subshapeNumber; i++)
+	for (int i = 0; i <= subshapeNumber; i++)
 	{
 		float index = float(i)/float(subshapeNumber);
 		vec4 subshape= texture(subshapes,vec2(index,0));
@@ -87,7 +86,7 @@ vec3 raymarch(vec3 rayDir,vec3 cameraPos)
     float depth = 0.0;
 	float density = 0f;
 	float totalDist =0f;
-	int nrOfSmaples = 20;
+	int nrOfSmaples = 19;
 	int stepCount = nrOfSmaples + 1;
 	float stepSize;
 	vec3 pos;
@@ -98,6 +97,7 @@ vec3 raymarch(vec3 rayDir,vec3 cameraPos)
 	dstInsideBox = dist.y;
 	stepSize = dstInsideBox / float(stepCount);
 	if(dstInsideBox > 0f ){
+		
 		pos = cameraPos + rayDir * dstToBox;
 		for (int i = 1; i < stepCount; i++)
 		{

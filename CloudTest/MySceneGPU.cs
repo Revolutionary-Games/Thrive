@@ -16,13 +16,14 @@ public class MySceneGPU : Spatial
 	public float[ , , ] cloud;
 	public float sigma = 20;
 	public float b = 50;
+	public float pi = (float)Math.PI;
 	public float densityMultiplier = 4;
 	// cloud sub-shpaes positions in cloud coordinates
 	public List<Vector3> shapeCenters = new List<Vector3>();
 	public List<int> shapeSizes = new List<int>(); 
-	public int subShapeNumber = 30;
-	public int subShapeMaxRadius = 40;
-	public int subShapeMinRadius = 20;
+	public int subShapeNumber = 70;
+	public int subShapeMaxRadius = 35;
+	public int subShapeMinRadius = 15;
 
 	// Generate the cloudlets's position and size.
 	public void GenerateSubShapes()
@@ -31,9 +32,9 @@ public class MySceneGPU : Spatial
 		for (int i = 0; i<subShapeNumber; i++)
 		{
 			var size = random.Next(subShapeMinRadius,subShapeMaxRadius);
-			var x = random.Next(subShapeMaxRadius, cloudWidth - subShapeMaxRadius);
-			var y = random.Next(subShapeMaxRadius, cloudHeight - subShapeMaxRadius);
-			var z = random.Next(subShapeMaxRadius, cloudDepth - subShapeMaxRadius);
+			var x = random.Next(subShapeMaxRadius+ 20, cloudWidth - subShapeMaxRadius - 20);
+			var y = random.Next(subShapeMaxRadius+ 20, cloudHeight - subShapeMaxRadius - 20);
+			var z = random.Next(subShapeMaxRadius+ 20, cloudDepth - subShapeMaxRadius- 20);
 			shapeSizes.Add(size);
 			shapeCenters.Add(new Vector3(x,y,z));
 		}
@@ -152,6 +153,14 @@ public class MySceneGPU : Spatial
 			material.SetShaderParam("bound_min",cloudaabb.Position);
 			material.SetShaderParam("bound_max",cloudaabb.End);
 			material.SetShaderParam("cloudPosition", cloudPosition);
+
+			float sigma = (float)material.GetShaderParam("sigma");
+			var b = (float)material.GetShaderParam("b");
+			var a =  1/(sigma * Math.Sqrt(2 * pi));
+			var c = Math.Exp(-1/(2*Math.Pow(sigma,2)));
+			var d = Math.Log(a,c);
+			material.SetShaderParam("d",d);
+			material.SetShaderParam("c",c);
 		}
   }
 }
