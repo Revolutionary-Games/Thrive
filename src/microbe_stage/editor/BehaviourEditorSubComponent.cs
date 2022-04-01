@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Godot;
 using Newtonsoft.Json;
 
@@ -69,7 +69,8 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
 
     public override void OnFinishEditing()
     {
-        Editor.EditedBaseSpecies.Behaviour = Behaviour ?? throw new Exception("Editor has not created behaviour object");
+        Editor.EditedBaseSpecies.Behaviour =
+            Behaviour ?? throw new Exception("Editor has not created behaviour object");
     }
 
     public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)

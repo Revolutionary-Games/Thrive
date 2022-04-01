@@ -64,7 +64,7 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
     [JsonIgnore]
-    public ICellProperties? EditedCellProperties { get => selectedCellTypeToEdit; }
+    public ICellProperties? EditedCellProperties => selectedCellTypeToEdit;
 
     // TODO: add multicellular music tracks
     protected override string MusicCategory => "MicrobeEditor";
