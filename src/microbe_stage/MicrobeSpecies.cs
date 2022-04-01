@@ -21,7 +21,9 @@ public class MicrobeSpecies : Species, ICellProperties
     ///   Creates a wrapper around a cell properties object for use with auto-evo predictions
     /// </summary>
     /// <param name="cloneOf">Grabs the ID and species name from here</param>
-    /// <param name="withCellProperties">Properties from here are copied to this (except organelle objects are shared)</param>
+    /// <param name="withCellProperties">
+    ///   Properties from here are copied to this (except organelle objects are shared)
+    /// </param>
     public MicrobeSpecies(Species cloneOf, ICellProperties withCellProperties) : this(cloneOf.ID, cloneOf.Genus,
         cloneOf.Epithet)
     {
