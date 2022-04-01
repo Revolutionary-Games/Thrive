@@ -33,7 +33,11 @@ public class EarlyMulticellularSpecies : Species
 
     public override void RepositionToOrigin()
     {
-        var centerOfMass = Cells.CenterOfMass;
+        // TODO: should this actually reposition things as the cell at index 0 is always the colony leader so if it
+        // isn't centered, that'll cause issues?
+        // var centerOfMass = Cells.CenterOfMass;
+
+        var centerOfMass = Cells[0].Position;
 
         foreach (var cell in Cells)
         {

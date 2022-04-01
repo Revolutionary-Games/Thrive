@@ -46,7 +46,16 @@ public class CellLayout<T> : HexLayout<T>
 
     protected override IEnumerable<Hex> GetHexComponentPositions(T hex)
     {
-        return hex.Organelles.SelectMany(o => o.Definition.GetRotatedHexes(o.Orientation))
-            .Select(h => Hex.RotateAxialNTimes(h, hex.Orientation) + hex.Position);
+        foreach (var organelle in hex.Organelles)
+        {
+            foreach (var organelleHex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
+            {
+                var rotated = Hex.RotateAxialNTimes(organelleHex, hex.Orientation);
+
+                var positionedHex = rotated + organelle.Position;
+
+                yield return positionedHex;
+            }
+        }
     }
 }

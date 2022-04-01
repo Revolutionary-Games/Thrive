@@ -537,7 +537,7 @@ public static class Constants
     /// </summary>
     public const float MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE = 0.18f;
 
-    public const float MULTICELLULAR_CELL_ATTACH_DISTANCE_MULTIPLIER = 1.5f;
+    public const float MULTICELLULAR_CELL_ATTACH_DISTANCE_MULTIPLIER = 1.1f;
 
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 

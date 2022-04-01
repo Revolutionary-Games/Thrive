@@ -314,7 +314,7 @@ public partial class CellBodyPlanEditorComponent :
 
         foreach (var hexWithData in editedMicrobeCells)
         {
-            var direction = new Vector2(1, 0);
+            var direction = new Vector2(0, -1);
 
             if (hexWithData.Position != new Hex(0, 0))
             {

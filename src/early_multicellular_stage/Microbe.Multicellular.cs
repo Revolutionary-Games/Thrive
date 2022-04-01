@@ -71,7 +71,7 @@ public partial class Microbe
         // If we don't adjust like this the cells overlap way too much
         attachVector *= Constants.MULTICELLULAR_CELL_ATTACH_DISTANCE_MULTIPLIER;
 
-        cell.Transform = new Transform(
+        cell.GlobalTransform = new Transform(
             MathUtils.CreateRotationForOrganelle(template.Orientation) * ourTransform.basis.Quat(),
             ourTransform.basis.Xform(attachVector));
 
