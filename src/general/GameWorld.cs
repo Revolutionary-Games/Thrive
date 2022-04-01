@@ -325,7 +325,7 @@ public class GameWorld : ISaveLoadable
     ///   The species to convert to an early multicellular one. No checks are done to make sure the species is
     ///   actually a valid multicellular one.
     /// </param>
-    public void ChangeSpeciesToMulticellular(Species species)
+    public EarlyMulticellularSpecies ChangeSpeciesToMulticellular(Species species)
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
@@ -341,6 +341,7 @@ public class GameWorld : ISaveLoadable
         multicellularVersion.CellTypes.Add(stemCellType);
 
         SwitchSpecies(species, multicellularVersion);
+        return multicellularVersion;
     }
 
     /// <summary>

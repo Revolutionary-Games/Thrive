@@ -547,8 +547,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         else
         {
             // Might be related to saving but somehow the editor button can be enabled while in a colony
-            // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button becoming
-            // disabled properly
+            // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button
+            // becoming disabled properly
             // https://github.com/Revolutionary-Games/Thrive/issues/2504
             if (Player.Colony != null)
             {
@@ -596,7 +596,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         GiveReproductionPopulationBonus();
 
         CurrentGame!.EnterPrototypes();
-        GameWorld.ChangeSpeciesToMulticellular(Player.Species);
+        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(Player.Species);
+
+        // Re-apply species here so that the player cell knows it is multicellular after this
+        Player.ApplySpecies(multicellularSpecies);
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
