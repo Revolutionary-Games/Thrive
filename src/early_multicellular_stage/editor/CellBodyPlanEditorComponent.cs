@@ -217,9 +217,10 @@ public partial class CellBodyPlanEditorComponent :
         // representing each cell in the layout
         foreach (var cell in Editor.EditedSpecies.Cells)
         {
+            // This doesn't copy the position to the hex yet but TryAddHexToEditedLayout does it so we are good
             var hex = new HexWithData<CellTemplate>((CellTemplate)cell.Clone());
 
-            var originalPos = hex.Position;
+            var originalPos = cell.Position;
 
             // This is a bit dirty but I couldn't figure out any other way to make these nested loops count either up
             // or down depending on the originalPos coordinate sign
@@ -570,7 +571,6 @@ public partial class CellBodyPlanEditorComponent :
         if (editedMicrobeCells.CanPlace(hex))
         {
             editedMicrobeCells.Add(hex);
-
             return true;
         }
 
