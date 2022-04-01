@@ -35,12 +35,13 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
         MembraneRigidity = microbeSpecies.MembraneRigidity;
         Colour = microbeSpecies.Colour;
         IsBacteria = microbeSpecies.IsBacteria;
+        TypeName = TranslationServer.Translate("STEM_CELL_NAME");
     }
 
     [JsonProperty]
     public OrganelleLayout<OrganelleTemplate> Organelles { get; private set; }
 
-    public string TypeName { get; set; } = "Stem";
+    public string TypeName { get; set; } = "error";
     public int MPCost { get; set; } = 25;
 
     public MembraneType MembraneType { get; set; }
