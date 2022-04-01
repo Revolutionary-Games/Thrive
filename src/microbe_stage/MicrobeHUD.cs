@@ -1116,7 +1116,7 @@ public class MicrobeHUD : Control
         if (stage == null)
             throw new InvalidOperationException("Can't update multicellular button without stage set");
 
-        if (player.Colony == null || player.IsMulticellular)
+        if (player.Colony == null || player.IsMulticellular || stage.CurrentGame!.FreeBuild)
         {
             multicellularButton.Visible = false;
             return;
@@ -1162,7 +1162,7 @@ public class MicrobeHUD : Control
         if (stage == null)
             throw new InvalidOperationException("Can't update macroscopic button without stage set");
 
-        if (player.Colony == null || !player.IsMulticellular)
+        if (player.Colony == null || !player.IsMulticellular || stage.CurrentGame!.FreeBuild)
         {
             macroscopicButton.Visible = false;
             return;
