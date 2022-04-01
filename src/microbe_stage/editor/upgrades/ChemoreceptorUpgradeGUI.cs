@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
@@ -69,7 +70,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             compounds.Selected = defaultCompoundIndex;
             maximumDistance.Value = Constants.CHEMORECEPTOR_RANGE_DEFAULT;
             minimumAmount.Value = Constants.CHEMORECEPTOR_AMOUNT_DEFAULT;
-            colour.Color = Colors.White;
+            colour.Color = shownChoices[defaultCompoundIndex].Colour;
         }
     }
 
@@ -88,5 +89,15 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         // TODO: make an undoable action
         storedOrganelle.SetCustomUpgradeObject(new ChemoreceptorUpgrades(shownChoices[compounds.Selected],
             (float)maximumDistance.Value, (float)minimumAmount.Value, colour.Color));
+    }
+
+    public void CompoundChanged(int index)
+    {
+        // If the currently selected colour is in the shownChoices list change the colour to the colour of the newly
+        // selected compound to make setting up chemoreceptors easier
+        if (shownChoices?.Any(c => c.Colour == colour.Color) == true)
+        {
+            colour.Color = shownChoices[index].Colour;
+        }
     }
 }
