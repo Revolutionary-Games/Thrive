@@ -565,6 +565,32 @@ public abstract class
         camera!.IsLoadedFromSave = true;
     }
 
+    /// <summary>
+    ///   Updates the forward pointing arrow to not overlap the edited species
+    ///   Should be called on any layout change
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is public so that editors with multiple tabs can make the arrow fix itself after switching tabs
+    ///   </para>
+    /// </remarks>
+    public void UpdateArrow(bool animateMovement = true)
+    {
+        var arrowPosition = CalculateEditorArrowZPosition();
+
+        if (animateMovement)
+        {
+            GUICommon.Instance.Tween.InterpolateProperty(editorArrow, "translation:z", editorArrow.Translation.z,
+                arrowPosition, Constants.EDITOR_ARROW_INTERPOLATE_SPEED,
+                Tween.TransitionType.Expo, Tween.EaseType.Out);
+            GUICommon.Instance.Tween.Start();
+        }
+        else
+        {
+            editorArrow.Translation = new Vector3(0, 0, arrowPosition - Constants.EDITOR_ARROW_OFFSET);
+        }
+    }
+
     protected MeshInstance CreateEditorHex()
     {
         var hex = (MeshInstance)hexScene.Instance();
@@ -751,27 +777,6 @@ public abstract class
     protected virtual void OnCurrentActionCanceled()
     {
         UpdateCancelButtonVisibility();
-    }
-
-    /// <summary>
-    ///   Updates the forward pointing arrow to not overlap the edited species
-    ///   Should be called on any layout change
-    /// </summary>
-    protected void UpdateArrow(bool animateMovement = true)
-    {
-        var arrowPosition = CalculateEditorArrowZPosition();
-
-        if (animateMovement)
-        {
-            GUICommon.Instance.Tween.InterpolateProperty(editorArrow, "translation:z", editorArrow.Translation.z,
-                arrowPosition, Constants.EDITOR_ARROW_INTERPOLATE_SPEED,
-                Tween.TransitionType.Expo, Tween.EaseType.Out);
-            GUICommon.Instance.Tween.Start();
-        }
-        else
-        {
-            editorArrow.Translation = new Vector3(0, 0, arrowPosition - Constants.EDITOR_ARROW_OFFSET);
-        }
     }
 
     /// <summary>

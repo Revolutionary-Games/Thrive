@@ -722,7 +722,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnCellToPlaceSelected(string cellTypeName)
     {
-        if (!cellTypeSelectionButtons.TryGetValue(cellTypeName, out var cellTypeButton))
+        if (!cellTypeSelectionButtons.TryGetValue(cellTypeName, out _))
         {
             GD.PrintErr("Attempted to select an unknown cell type");
             return;

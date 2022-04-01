@@ -129,8 +129,7 @@ public class OrganelleDefinition : IRegistryType
     public List<Hex> Hexes = null!;
 
     /// <summary>
-    ///   The compounds this organelle consists of (how many resources
-    ///   are needed to duplicate this)
+    ///   The compounds this organelle consists of (how many resources are needed to duplicate this)
     /// </summary>
     public Dictionary<Compound, float> InitialComposition = null!;
 

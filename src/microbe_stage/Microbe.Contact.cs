@@ -170,7 +170,7 @@ public partial class Microbe
     {
         get
         {
-            if (Species.IsBacteria)
+            if (CellTypeProperties.IsBacteria)
             {
                 return HexCount * 0.5f;
             }
@@ -180,9 +180,14 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Returns true when this microbe can enable binding mode
+    ///   Returns true when this microbe can enable binding mode. Multicellular species can't attach random cells
+    ///   to themselves anymore
     /// </summary>
-    public bool CanBind => organelles?.Any(p => p.IsBindingAgent) == true || Colony != null;
+    [JsonIgnore]
+    public bool CanBind => !IsMulticellular && (organelles?.Any(p => p.IsBindingAgent) == true || Colony != null);
+
+    [JsonIgnore]
+    public bool CanUnbind => !IsMulticellular && Colony != null;
 
     /// <summary>
     ///   Called when this Microbe dies
@@ -202,9 +207,9 @@ public partial class Microbe
     /// </summary>
     public void ApplyMembraneWigglyness()
     {
-        Membrane.WigglyNess = Membrane.Type.BaseWigglyness - (Species.MembraneRigidity /
+        Membrane.WigglyNess = Membrane.Type.BaseWigglyness - (CellTypeProperties.MembraneRigidity /
             Membrane.Type.BaseWigglyness) * 0.2f;
-        Membrane.MovementWigglyNess = Membrane.Type.MovementWigglyness - (Species.MembraneRigidity /
+        Membrane.MovementWigglyNess = Membrane.Type.MovementWigglyness - (CellTypeProperties.MembraneRigidity /
             Membrane.Type.MovementWigglyness) * 0.2f;
     }
 
@@ -269,7 +274,7 @@ public partial class Microbe
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
 
             // Divide damage by toxin resistance
-            amount /= Species.MembraneType.ToxinResistance;
+            amount /= CellTypeProperties.MembraneType.ToxinResistance;
         }
         else if (source == "pilus")
         {
@@ -279,7 +284,7 @@ public partial class Microbe
             // TODO: this may get triggered a lot more than the toxin
             // so this might need to be rate limited or something
             // Divide damage by physical resistance
-            amount /= Species.MembraneType.PhysicalResistance;
+            amount /= CellTypeProperties.MembraneType.PhysicalResistance;
         }
         else if (source == "chunk")
         {
@@ -288,7 +293,7 @@ public partial class Microbe
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
 
             // Divide damage by physical resistance
-            amount /= Species.MembraneType.PhysicalResistance;
+            amount /= CellTypeProperties.MembraneType.PhysicalResistance;
         }
         else if (source == "atpDamage")
         {
@@ -301,7 +306,7 @@ public partial class Microbe
             PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-ice-damage.ogg", 0.5f);
 
             // Divide damage by physical resistance
-            amount /= Species.MembraneType.PhysicalResistance;
+            amount /= CellTypeProperties.MembraneType.PhysicalResistance;
         }
 
         Hitpoints -= amount;
@@ -576,9 +581,12 @@ public partial class Microbe
         if (State is MicrobeState.Unbinding or MicrobeState.Binding)
             State = MicrobeState.Normal;
 
+        if (!CanUnbind)
+            return;
+
         // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should keep the
         // disband entire colony functionality
-        Colony?.RemoveFromColony(this);
+        Colony!.RemoveFromColony(this);
     }
 
     internal void OnColonyMemberRemoved(Microbe microbe)
@@ -687,7 +695,7 @@ public partial class Microbe
 
     private void SetMembraneFromSpecies()
     {
-        Membrane.Type = Species.MembraneType;
+        Membrane.Type = CellTypeProperties.MembraneType;
         Membrane.Tint = Species.Colour;
         Membrane.Dirty = true;
         ApplyMembraneWigglyness();

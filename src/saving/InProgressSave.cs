@@ -25,7 +25,7 @@ public class InProgressSave : IDisposable
     /// </summary>
     private readonly string? saveName;
 
-    private readonly bool returnToPauseState;
+    private bool returnToPauseState;
 
     private State state = State.Initial;
     private Save? save;
@@ -53,7 +53,6 @@ public class InProgressSave : IDisposable
         this.performSave = performSave;
         this.saveName = saveName;
         Type = type;
-        returnToPauseState = currentGameRoot.Invoke().GetTree().Paused;
 
         stopwatch = Stopwatch.StartNew();
 
@@ -82,6 +81,7 @@ public class InProgressSave : IDisposable
 
     public void Start()
     {
+        returnToPauseState = currentGameRoot.Invoke().GetTree().Paused;
         currentGameRoot.Invoke().GetTree().Paused = true;
 
         IsSaving = true;

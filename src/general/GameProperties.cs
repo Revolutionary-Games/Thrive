@@ -100,6 +100,8 @@ public class GameProperties
 
         game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
 
+        game.EnterPrototypes();
+
         return game;
     }
 
@@ -127,5 +129,11 @@ public class GameProperties
     {
         GD.Print("Entering freebuild mode");
         freeBuild = true;
+    }
+
+    public void EnterPrototypes()
+    {
+        GD.Print("Game is in now in prototypes. EXPECT MAJOR BUGS!");
+        InPrototypes = true;
     }
 }

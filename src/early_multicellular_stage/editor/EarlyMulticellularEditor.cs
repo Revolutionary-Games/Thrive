@@ -142,7 +142,6 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
         }
         else
         {
-            // The error conditions here probably shouldn't be able to trigger at all
             SendAutoEvoResultsToReportComponent();
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);

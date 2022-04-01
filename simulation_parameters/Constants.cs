@@ -244,7 +244,12 @@ public static class Constants
     /// <summary>
     ///   Organelles won't take compounds if there is less available than this amount
     /// </summary>
-    public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0f;
+    /// <remarks>
+    ///   <para>
+    ///     This is no longer zero as rounding can otherwise make compounds just disappear
+    ///   </para>
+    /// </remarks>
+    public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0001f;
 
     /// <summary>
     ///   Cost of moving the rigidity slider by one step in the microbe editor
@@ -532,12 +537,15 @@ public static class Constants
     /// </summary>
     public const float MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE = 0.18f;
 
+    public const float MULTICELLULAR_CELL_ATTACH_DISTANCE_MULTIPLIER = 1.5f;
+
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
     public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
 
     public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
+    public const int COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC = 20;
 
     /// <summary>
     ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs

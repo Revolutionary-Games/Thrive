@@ -1769,6 +1769,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Macroscopic" type="Button" parent="MicrobeHUD/BottomRight"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -263.0
+margin_top = -320.0
+margin_right = -5.0
+margin_bottom = -285.0
+grow_horizontal = 0
+grow_vertical = 0
+hint_tooltip = "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
+text = "BECOME_MACROSCOPIC"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PopulationData" type="HBoxContainer" parent="MicrobeHUD/BottomRight"]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -2221,6 +2238,7 @@ anims/FadeInOut = SubResource( 37 )
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/QuestionMarkButton" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/SuicideButton" to="MicrobeHUD" method="OnSuicide"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/Multicellular" to="MicrobeHUD" method="OnBecomeMulticellularPressed"]
+[connection signal="pressed" from="MicrobeHUD/BottomRight/Macroscopic" to="MicrobeHUD" method="OnBecomeMacroscopicPressed"]
 [connection signal="mouse_entered" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]

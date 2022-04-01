@@ -527,27 +527,48 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             return;
         }
 
-        // Might be related to saving but somehow the editor button can be enabled while in a colony
-        // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button becoming
-        // disabled properly
-        // https://github.com/Revolutionary-Games/Thrive/issues/2504
-        if (Player.Colony != null)
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Stage has no current game");
+
+        Node sceneInstance;
+
+        if (Player.IsMulticellular)
         {
-            GD.PrintErr("Editor button was enabled and pressed while the player is in a colony");
-            return;
+            // Player is a multicellular species, go to multicellular editor
+
+            var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
+
+            sceneInstance = scene.Instance();
+            var editor = (EarlyMulticellularEditor)sceneInstance;
+
+            editor.CurrentGame = CurrentGame;
+            editor.ReturnToStage = this;
+        }
+        else
+        {
+            // Might be related to saving but somehow the editor button can be enabled while in a colony
+            // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button becoming
+            // disabled properly
+            // https://github.com/Revolutionary-Games/Thrive/issues/2504
+            if (Player.Colony != null)
+            {
+                GD.PrintErr("Editor button was enabled and pressed while the player is in a colony");
+                return;
+            }
+
+            var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
+
+            sceneInstance = scene.Instance();
+            var editor = (MicrobeEditor)sceneInstance;
+
+            editor.CurrentGame = CurrentGame;
+            editor.ReturnToStage = this;
         }
 
         GiveReproductionPopulationBonus();
 
-        var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
-
-        var editor = (MicrobeEditor)scene.Instance();
-
-        editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
-        editor.ReturnToStage = this;
-
         // We don't free this here as the editor will return to this scene
-        if (SceneManager.Instance.SwitchToScene(editor, true) != this)
+        if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
         {
             throw new Exception("failed to keep the current scene root");
         }
@@ -574,6 +595,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         GiveReproductionPopulationBonus();
 
+        CurrentGame!.EnterPrototypes();
         GameWorld.ChangeSpeciesToMulticellular(Player.Species);
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
@@ -641,8 +663,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // changed while in the editor, it doesn't update this stage's translation cache.
         TranslationServer.SetLocale(TranslationServer.GetLocale());
 
-        // Auto save is wanted once possible
-        wantsToSave = true;
+        // Auto save is wanted once possible (unless we are in prototypes)
+        if (!CurrentGame.InPrototypes)
+            wantsToSave = true;
 
         pauseMenu.SetNewSaveNameFromSpeciesName();
     }

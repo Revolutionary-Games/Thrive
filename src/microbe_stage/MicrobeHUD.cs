@@ -64,6 +64,9 @@ public class MicrobeHUD : Control
     public NodePath MulticellularConfirmPopupPath = null!;
 
     [Export]
+    public NodePath MacroscopicButtonPath = null!;
+
+    [Export]
     public NodePath EnvironmentPanelPath = null!;
 
     [Export]
@@ -252,6 +255,7 @@ public class MicrobeHUD : Control
     private TextureButton editorButton = null!;
     private Button multicellularButton = null!;
     private CustomDialog multicellularConfirmPopup = null!;
+    private Button macroscopicButton = null!;
 
     private CustomDialog? extinctionBox;
     private CustomDialog? winBox;
@@ -360,6 +364,7 @@ public class MicrobeHUD : Control
         editorButton = GetNode<TextureButton>(EditorButtonPath);
         multicellularButton = GetNode<Button>(MulticellularButtonPath);
         multicellularConfirmPopup = GetNode<CustomDialog>(MulticellularConfirmPopupPath);
+        macroscopicButton = GetNode<Button>(MacroscopicButtonPath);
         hintText = GetNode<Label>(HintTextPath);
         hotBar = GetNode<HBoxContainer>(HotBarPath);
 
@@ -398,6 +403,7 @@ public class MicrobeHUD : Control
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
         multicellularButton.Visible = false;
+        macroscopicButton.Visible = false;
     }
 
     public void OnEnterStageTransition(bool longerDuration)
@@ -423,10 +429,12 @@ public class MicrobeHUD : Control
             UpdateReproductionProgress(stage.Player);
             UpdateAbilitiesHotBar(stage.Player);
             UpdateMulticellularButton(stage.Player);
+            UpdateMacroscopicButton(stage.Player);
         }
         else
         {
             multicellularButton.Visible = false;
+            macroscopicButton.Visible = false;
         }
 
         UpdateATP(delta);
@@ -453,6 +461,7 @@ public class MicrobeHUD : Control
             }
 
             UpdateColonySizeForMulticellular();
+            UpdateColonySizeForMacroscopic();
         }
     }
 
@@ -1093,7 +1102,7 @@ public class MicrobeHUD : Control
 
     private void UpdateAbilitiesHotBar(Microbe player)
     {
-        engulfHotkey.Visible = !player.Species.MembraneType.CellWall;
+        engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall;
         bindingModeHotkey.Visible = player.CanBind;
         fireToxinHotkey.Visible = player.AgentVacuoleCount > 0;
 
@@ -1107,7 +1116,7 @@ public class MicrobeHUD : Control
         if (stage == null)
             throw new InvalidOperationException("Can't update multicellular button without stage set");
 
-        if (player.Colony == null)
+        if (player.Colony == null || player.IsMulticellular)
         {
             multicellularButton.Visible = false;
             return;
@@ -1126,10 +1135,16 @@ public class MicrobeHUD : Control
             multicellularButton.Disabled = newColonySize < Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR;
         }
 
+        UpdateColonySize(newColonySize);
+    }
+
+    private void UpdateColonySize(int newColonySize)
+    {
         if (newColonySize != playerColonySize)
         {
             playerColonySize = newColonySize;
             UpdateColonySizeForMulticellular();
+            UpdateColonySizeForMacroscopic();
         }
     }
 
@@ -1140,6 +1155,42 @@ public class MicrobeHUD : Control
 
         multicellularButton.Text = string.Format(TranslationServer.Translate("BECOME_MULTICELLULAR"), playerColonySize,
             Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR);
+    }
+
+    private void UpdateMacroscopicButton(Microbe player)
+    {
+        if (stage == null)
+            throw new InvalidOperationException("Can't update macroscopic button without stage set");
+
+        if (player.Colony == null || !player.IsMulticellular)
+        {
+            macroscopicButton.Visible = false;
+            return;
+        }
+
+        macroscopicButton.Visible = true;
+
+        var newColonySize = player.Colony.ColonyMembers.Count;
+
+        if (stage.MovingToEditor)
+        {
+            macroscopicButton.Disabled = true;
+        }
+        else
+        {
+            macroscopicButton.Disabled = newColonySize < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC;
+        }
+
+        UpdateColonySize(newColonySize);
+    }
+
+    private void UpdateColonySizeForMacroscopic()
+    {
+        if (playerColonySize == null)
+            return;
+
+        macroscopicButton.Text = string.Format(TranslationServer.Translate("BECOME_MACROSCOPIC"), playerColonySize,
+            Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC);
     }
 
     /// <summary>
@@ -1301,6 +1352,14 @@ public class MicrobeHUD : Control
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToMulticellular));
 
         stage.MovingToEditor = true;
+    }
+
+    private void OnBecomeMacroscopicPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // TODO: late multicellular not done yet
+        ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("TO_BE_IMPLEMENTED"), 2.5f);
     }
 
     private class HoveredCompoundControl : HBoxContainer

@@ -224,6 +224,8 @@ public partial class CellEditorComponent :
     /// </summary>
     private Microbe? previewMicrobe;
 
+    private MicrobeSpecies? previewMicrobeSpecies;
+
     private PackedScene microbeScene = null!;
 
     [JsonProperty]
@@ -279,10 +281,10 @@ public partial class CellEditorComponent :
         {
             rigidity = value;
 
-            if (previewMicrobe?.Species != null)
+            if (previewMicrobeSpecies != null)
             {
-                previewMicrobe.Species.MembraneRigidity = value;
-                previewMicrobe.ApplyMembraneWigglyness();
+                previewMicrobeSpecies.MembraneRigidity = value;
+                previewMicrobe!.ApplyMembraneWigglyness();
             }
         }
     }
@@ -1017,9 +1019,10 @@ public partial class CellEditorComponent :
         previewMicrobe = (Microbe)microbeScene.Instance();
         previewMicrobe.IsForPreviewOnly = true;
         Editor.RootOfDynamicallySpawned.AddChild(previewMicrobe);
-        previewMicrobe.ApplySpecies(new MicrobeSpecies(Editor.EditedBaseSpecies,
+        previewMicrobeSpecies = new MicrobeSpecies(Editor.EditedBaseSpecies,
             Editor.EditedCellProperties ??
-            throw new InvalidOperationException("can't setup preview before cell properties are known")));
+            throw new InvalidOperationException("can't setup preview before cell properties are known"));
+        previewMicrobe.ApplySpecies(previewMicrobeSpecies);
 
         // Set its initial visibility
         previewMicrobe.Visible = MicrobePreviewMode;
@@ -1164,13 +1167,13 @@ public partial class CellEditorComponent :
         if (!MicrobePreviewMode || !membraneOrganellePositionsAreDirty)
             return;
 
-        CopyEditedPropertiesToSpecies(previewMicrobe.Species);
+        CopyEditedPropertiesToSpecies(previewMicrobeSpecies!);
 
         // Intentionally force it to not be bacteria to show it at full size
-        previewMicrobe.Species.IsBacteria = false;
+        previewMicrobeSpecies!.IsBacteria = false;
 
         // This is now just for applying changes in the species to the preview cell
-        previewMicrobe.ApplySpecies(previewMicrobe.Species);
+        previewMicrobe.ApplySpecies(previewMicrobeSpecies);
 
         membraneOrganellePositionsAreDirty = false;
     }
