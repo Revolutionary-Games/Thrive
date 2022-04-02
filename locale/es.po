@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-18 17:48+0200\n"
+"POT-Creation-Date: 2022-04-02 19:50+0800\n"
 "PO-Revision-Date: 2022-03-29 16:22+0000\n"
 "Last-Translator: Jessy Amelie Nishimura Lara <jessy8nishimura@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -1420,7 +1420,7 @@ msgstr "Editor libre de microbios"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Atrás"
@@ -1725,7 +1725,7 @@ msgstr "Siempre"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nunca"
 
-#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Guardar"
 
@@ -3312,19 +3312,19 @@ msgstr "EXTINCIÓN"
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
 msgid "COMPOUND_TO_FIND"
 msgstr "Compuestos a encontrar:"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "SEARCH_RADIUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "Cantidad mínima para detectar:"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
 msgid "LINE_COLOUR"
 msgstr "Color de la línea:"
 
@@ -3844,34 +3844,44 @@ msgstr "Guardado fallido"
 msgid "ERROR_SAVING"
 msgstr "Error al guardar"
 
-#: ../src/saving/NewSaveMenu.cs:75
+#: ../src/saving/NewSaveMenu.cs:80
 #, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "El nombre de archivo ({0}) ya existe. ¿Deseas sobreescribir?"
 
-#: ../src/saving/NewSaveMenu.cs:173
+#: ../src/saving/NewSaveMenu.cs:185
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "El nombre del archivo no puede contener caracteres especiales (<>:\"/\\|?*)"
 
-#: ../src/saving/NewSaveMenu.tscn:31
+#: ../src/saving/NewSaveMenu.tscn:32
 msgid "CREATE_NEW_SAVE"
 msgstr "Crear Nueva Partida"
 
-#: ../src/saving/NewSaveMenu.tscn:48
+#: ../src/saving/NewSaveMenu.tscn:49
 msgid "NAME"
 msgstr "Nombre:"
 
-#: ../src/saving/NewSaveMenu.tscn:66
+#: ../src/saving/NewSaveMenu.tscn:67
 msgid "EXTRA_OPTIONS"
 msgstr "Ajustes Extra"
 
-#: ../src/saving/NewSaveMenu.tscn:84
+#: ../src/saving/NewSaveMenu.tscn:85
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Sobrescribir partida existente:"
 
-#: ../src/saving/NewSaveMenu.tscn:116
+#: ../src/saving/NewSaveMenu.tscn:117
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "¿Deseas sobrescribir la partida existente?"
+
+#: ../src/saving/NewSaveMenu.tscn:121
+#, fuzzy
+msgid "CANNOT_WRITE_SAVE"
+msgstr "No puede engullir"
+
+#: ../src/saving/NewSaveMenu.tscn:125
+#, fuzzy
+msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
+msgstr "Auto-evo falló"
 
 #: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
 #, fuzzy

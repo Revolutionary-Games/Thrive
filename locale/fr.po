@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-18 17:48+0200\n"
+"POT-Creation-Date: 2022-04-02 19:50+0800\n"
 "PO-Revision-Date: 2022-03-28 15:36+0000\n"
 "Last-Translator: Ebi Sadeghi <gfmc_gorged@aleeas.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -1424,7 +1424,7 @@ msgstr "Éditeur Libre de Microbe"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Revenir"
@@ -1738,7 +1738,7 @@ msgstr "Toujours"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Jamais"
 
-#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Sauvegarder"
 
@@ -3358,20 +3358,20 @@ msgstr "Espèces disparues"
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
 msgstr "Nuages de composés"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "SEARCH_RADIUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
 #, fuzzy
 msgid "LINE_COLOUR"
 msgstr "Couleur"
@@ -3949,36 +3949,46 @@ msgstr "Sauvegarde Échouée"
 msgid "ERROR_SAVING"
 msgstr "Erreur de Sauvegarde"
 
-#: ../src/saving/NewSaveMenu.cs:75
+#: ../src/saving/NewSaveMenu.cs:80
 #, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "La sauvegarde sélectionnée ({0}) existe déjà. Réécrire par dessus?"
 
-#: ../src/saving/NewSaveMenu.cs:173
+#: ../src/saving/NewSaveMenu.cs:185
 #, fuzzy
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Charger la sauvegarde invalide ?"
 
-#: ../src/saving/NewSaveMenu.tscn:31
+#: ../src/saving/NewSaveMenu.tscn:32
 msgid "CREATE_NEW_SAVE"
 msgstr "Créer une Nouvelle Sauvegarde"
 
-#: ../src/saving/NewSaveMenu.tscn:48
+#: ../src/saving/NewSaveMenu.tscn:49
 msgid "NAME"
 msgstr "Nom :"
 
-#: ../src/saving/NewSaveMenu.tscn:66
+#: ../src/saving/NewSaveMenu.tscn:67
 msgid "EXTRA_OPTIONS"
 msgstr "Autres Options"
 
-#: ../src/saving/NewSaveMenu.tscn:84
+#: ../src/saving/NewSaveMenu.tscn:85
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Réécriture sur la sauvegarde existante :"
 
-#: ../src/saving/NewSaveMenu.tscn:116
+#: ../src/saving/NewSaveMenu.tscn:117
 #, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Réécriture sur la sauvegarde existante :"
+
+#: ../src/saving/NewSaveMenu.tscn:121
+#, fuzzy
+msgid "CANNOT_WRITE_SAVE"
+msgstr "Ne peut pas absorber"
+
+#: ../src/saving/NewSaveMenu.tscn:125
+#, fuzzy
+msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
+msgstr "L'Auto-évo n'a pas pu se lancer"
 
 #: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
 #, fuzzy
