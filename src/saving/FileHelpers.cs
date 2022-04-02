@@ -58,11 +58,12 @@ public static class FileHelpers
     public static Error TryWriteFile(string path)
     {
         using var file = new File();
-        var error = file.Open(path, File.ModeFlags.ReadWrite);
+        var error = file.Open(path, File.ModeFlags.Write);
         if (error != Error.Ok)
             return error;
 
         file.Close();
+        DeleteFile(path);
 
         return Error.Ok;
     }
