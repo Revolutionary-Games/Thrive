@@ -50,16 +50,19 @@ public static class FileHelpers
     /// </summary>
     /// <param name="path">Path to file</param>
     /// <returns>File write access status, <see cref="Error.Ok"/> if successful</returns>
-    /// <remarks>THIS FUNCTION IS DESTRUCTIVE! MAKE SURE THE FILE TO TEST DOESN'T EXIST!</remarks>
+    /// <remarks>
+    ///   <para>
+    ///     THIS FUNCTION IS DESTRUCTIVE! MAKE SURE THE FILE TO TEST DOESN'T EXIST!
+    ///   </para>
+    /// </remarks>
     public static Error TryWriteFile(string path)
     {
         using var file = new File();
-        var error = file.Open(path, File.ModeFlags.Write);
+        var error = file.Open(path, File.ModeFlags.ReadWrite);
         if (error != Error.Ok)
             return error;
 
         file.Close();
-        DeleteFile(path);
 
         return Error.Ok;
     }
