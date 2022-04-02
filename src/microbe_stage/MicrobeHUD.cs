@@ -168,6 +168,9 @@ public class MicrobeHUD : Control
     [Export]
     public NodePath BindingModeHotkeyPath = null!;
 
+    [Export]
+    public NodePath MicrobeControlRadialPath = null!;
+
     // Formatter and code checks disagree here
     // ReSharper disable RedundantNameQualifier
     private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts = new();
@@ -249,6 +252,8 @@ public class MicrobeHUD : Control
     private Control winExtinctBoxHolder = null!;
     private Label hintText = null!;
 
+    private RadialPopup microbeControlRadial = null!;
+
     private Array compoundBars = null!;
 
     private ProcessPanel processPanel = null!;
@@ -282,6 +287,11 @@ public class MicrobeHUD : Control
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
     /// </summary>
     private float hoverInfoTimeElapsed;
+
+    /// <summary>
+    ///   If not null the signaling agent radial menu is open for the given microbe, which should be the player
+    /// </summary>
+    private Microbe? signalingAgentMenuOpenForMicrobe;
 
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
@@ -343,6 +353,8 @@ public class MicrobeHUD : Control
         editorButton = GetNode<TextureButton>(EditorButtonPath);
         hintText = GetNode<Label>(HintTextPath);
         hotBar = GetNode<HBoxContainer>(HotBarPath);
+
+        microbeControlRadial = GetNode<RadialPopup>(MicrobeControlRadialPath);
 
         engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
         fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
@@ -424,6 +436,56 @@ public class MicrobeHUD : Control
                 hoveredCompoundControl.Value.UpdateTranslation();
             }
         }
+    }
+
+    public void ShowSignalingCommandsMenu(Microbe player)
+    {
+        if (microbeControlRadial.Visible)
+        {
+            GD.PrintErr("Radial menu is already open for signaling commands");
+            return;
+        }
+
+        var choices = new List<(string Text, int Id)>
+        {
+            (TranslationServer.Translate("SIGNAL_COMMAND_NONE"), (int)MicrobeSignalCommand.None),
+            (TranslationServer.Translate("SIGNAL_COMMAND_FOLLOW"), (int)MicrobeSignalCommand.FollowMe),
+            (TranslationServer.Translate("SIGNAL_COMMAND_TO_ME"), (int)MicrobeSignalCommand.MoveToMe),
+            (TranslationServer.Translate("SIGNAL_COMMAND_FLEE"), (int)MicrobeSignalCommand.FleeFromMe),
+            (TranslationServer.Translate("SIGNAL_COMMAND_AGGRESSION"), (int)MicrobeSignalCommand.BecomeAggressive),
+        };
+
+        microbeControlRadial.Radial.CenterText = TranslationServer.Translate("SIGNAL_TO_EMIT");
+
+        signalingAgentMenuOpenForMicrobe = player;
+        microbeControlRadial.ShowWithItems(choices);
+    }
+
+    public MicrobeSignalCommand? SelectSignalCommandIfOpen()
+    {
+        // Return nothing if not open
+        if (!microbeControlRadial.Visible)
+            return null;
+
+        var item = microbeControlRadial.Radial.HoveredItem;
+
+        microbeControlRadial.Hide();
+
+        if (item == null)
+            return null;
+
+        return (MicrobeSignalCommand)item.Value;
+    }
+
+    /// <summary>
+    ///   Applies a signaling command to microbe. This is here as the user can actively select a radial menu item
+    /// </summary>
+    /// <param name="command">The command to apply</param>
+    /// <param name="microbe">The target microbe</param>
+    public void ApplySignalCommand(MicrobeSignalCommand? command, Microbe microbe)
+    {
+        microbe.QueuedSignalingCommand = command;
+        signalingAgentMenuOpenForMicrobe = null;
     }
 
     public void ResizeEnvironmentPanel(string mode)
@@ -1161,6 +1223,17 @@ public class MicrobeHUD : Control
     private void OnAbilitiesHotBarDisplayChanged(bool displayed)
     {
         hotBar.Visible = displayed;
+    }
+
+    private void OnRadialItemSelected(int itemId)
+    {
+        if (signalingAgentMenuOpenForMicrobe != null)
+        {
+            ApplySignalCommand((MicrobeSignalCommand)itemId, signalingAgentMenuOpenForMicrobe);
+            return;
+        }
+
+        GD.PrintErr("Unexpected radial menu item selection signal");
     }
 
     private class HoveredCompoundControl : HBoxContainer

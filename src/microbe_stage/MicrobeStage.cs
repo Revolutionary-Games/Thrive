@@ -276,7 +276,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         // These need to be created here as well for child property save load to work
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
-        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
+        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned, Clouds);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
@@ -412,7 +412,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             // Show the game lost popup if not already visible
             HUD.ShowExtinctionBox();
 
-            Jukebox.Instance.PlayCategory("Extinction");
             return;
         }
 
@@ -680,6 +679,17 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         GD.Print("The player has died");
 
+        // Decrease the population by the constant for the player dying
+        GameWorld.AlterSpeciesPopulation(
+            GameWorld.PlayerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
+            TranslationServer.Translate("PLAYER_DIED"),
+            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
+
+        if (IsGameOver())
+        {
+            Jukebox.Instance.PlayCategory("Extinction");
+        }
+
         HUD.HideReproductionDialog();
 
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
@@ -794,25 +804,14 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         int currentLineIndex = 0;
         var position = microbe.GlobalTransform.origin;
 
-        // Update all lines (or create more if we don't have enough) to point to compounds (if found) they look for
-        foreach (var (compound, range, minAmount, colour) in activeCompoundDetections)
+        foreach (var tuple in microbe.GetDetectedCompounds(Clouds))
         {
             var line = GetOrCreateGuidanceLine(currentLineIndex++);
 
-            // TODO: should we use threading to parallelize these compound location finds?
-            var target = Clouds.FindCompoundNearPoint(position, compound, range, minAmount);
-
-            if (target == null)
-            {
-                line.Visible = false;
-            }
-            else
-            {
-                line.Colour = colour;
-                line.LineStart = position;
-                line.LineEnd = target.Value;
-                line.Visible = true;
-            }
+            line.Colour = tuple.Colour;
+            line.LineStart = position;
+            line.LineEnd = tuple.Target;
+            line.Visible = true;
         }
 
         // Remove excess lines
@@ -857,5 +856,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
 
         return chemoreceptionLines[index];
+    }
+
+    private bool IsGameOver()
+    {
+        return GameWorld.PlayerSpecies.Population <= 0 && !CurrentGame!.FreeBuild;
     }
 }
