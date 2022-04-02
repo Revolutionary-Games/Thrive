@@ -30,6 +30,8 @@ public class PatchMapDrawer : Control
 
     private PatchMap? map;
 
+    private bool dirty = true;
+
     private PackedScene nodeScene = null!;
 
     private Patch? selectedPatch;
@@ -41,12 +43,11 @@ public class PatchMapDrawer : Control
         get => map;
         set
         {
-            map = value ?? throw new ArgumentNullException();
+            map = value ?? throw new ArgumentNullException(nameof(value), "setting to null not allowed");
+
+            RebuildNextFrame();
 
             playerPatch ??= map.CurrentPatch;
-
-            RebuildMapNodes();
-            Update();
         }
     }
 
@@ -92,6 +93,16 @@ public class PatchMapDrawer : Control
             GD.Print("Generating and showing a new patch map for testing in PatchMapDrawer");
             Map = new GameWorld(new WorldGenerationSettings()).Map;
         }
+    }
+
+    public override void _Process(float delta)
+    {
+        if (!dirty)
+            return;
+
+        RebuildMapNodes();
+        Update();
+        dirty = false;
     }
 
     /// <summary>
@@ -193,5 +204,10 @@ public class PatchMapDrawer : Control
     private void NotifySelectionChanged()
     {
         OnSelectedPatchChanged?.Invoke(this);
+    }
+
+    private void RebuildNextFrame()
+    {
+        dirty = true;
     }
 }
