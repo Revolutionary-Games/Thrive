@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Combines multiple <see cref="MicrobeEditorAction"/>s into one singular action
 /// </summary>
-public class MultiMicrobeEditorAction : MicrobeEditorAction
+public class CombinedMicrobeEditorAction : MicrobeEditorAction
 {
-    public MultiMicrobeEditorAction(params MicrobeEditorAction[] actions)
+    public CombinedMicrobeEditorAction(params MicrobeEditorAction[] actions)
     {
         Actions = actions;
     }

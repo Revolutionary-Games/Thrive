@@ -1034,7 +1034,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         var hexes = GetDistinctHexesWithSymmetryMode(q, r);
         var action =
-            new MultiMicrobeEditorAction(
+            new CombinedMicrobeEditorAction(
                 hexes.Select(pos => RemoveOrganelleAt(pos.Hex)).Where(a => a != null).ToArray()!);
         EnqueueAction(action);
     }
@@ -1605,7 +1605,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         return organellePositions;
     }
 
-    private MultiMicrobeEditorAction GetMultiActionWithOccupancies(List<(Hex Hex, int Orientation)> hexes,
+    private CombinedMicrobeEditorAction GetMultiActionWithOccupancies(List<(Hex Hex, int Orientation)> hexes,
         List<OrganelleTemplate?> organelles, bool moving)
     {
         var moveActionData = new List<MicrobeEditorAction>();
@@ -1648,7 +1648,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             moveActionData.Add(action);
         }
 
-        return new MultiMicrobeEditorAction(moveActionData.ToArray());
+        return new CombinedMicrobeEditorAction(moveActionData.ToArray());
     }
 
     private void UpdateEditor(float delta)
@@ -1981,7 +1981,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var organelleTemplates = hexes
             .Select(hex => new OrganelleTemplate(organelleDefinition, hex.Hex, hex.Orientation)).ToList();
 
-        var multiAction = new MultiMicrobeEditorAction(organelleTemplates.Select(PlaceIfPossible).Where(a => a != null)
+        var multiAction = new CombinedMicrobeEditorAction(organelleTemplates.Select(PlaceIfPossible).Where(a => a != null)
             .Select(a => (MicrobeEditorAction)a!).ToArray());
 
         return EnqueueAction(multiAction);
@@ -2017,7 +2017,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Helper for AddOrganelle
     /// </summary>
-    private MultiMicrobeEditorAction? PlaceIfPossible(OrganelleTemplate organelle)
+    private CombinedMicrobeEditorAction? PlaceIfPossible(OrganelleTemplate organelle)
     {
         if (MicrobePreviewMode)
             return null;
@@ -2108,7 +2108,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
     }
 
-    private MultiMicrobeEditorAction? AddOrganelle(OrganelleTemplate organelle)
+    private CombinedMicrobeEditorAction? AddOrganelle(OrganelleTemplate organelle)
     {
         // 1 - you put a unique organelle (means only one instance allowed) but you already have it
         // 2 - you put an organelle that requires nucleus but you don't have one
@@ -2123,7 +2123,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             UndoOrganellePlaceAction, new PlacementActionData(organelle, organelle.Position, organelle.Orientation));
 
         replacedCytoplasmActions.Add(action);
-        return new MultiMicrobeEditorAction(replacedCytoplasmActions.ToArray());
+        return new CombinedMicrobeEditorAction(replacedCytoplasmActions.ToArray());
     }
 
     [DeserializedCallbackAllowed]
