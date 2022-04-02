@@ -283,7 +283,7 @@ public class GameWorld : ISaveLoadable
     ///   If true applied immediately. Should only be used for the player dying
     /// </param>
     /// <param name="coefficient">Change amount (coefficient part)</param>
-    /// <param name="patch">The patch where this happened. Null to apply everywhere.</param>
+    /// <param name="patch">The patch this effect affects or null for a global event.</param>
     public void AlterSpeciesPopulation(Species species, int constant, string description,
         bool immediate = false, float coefficient = 1, Patch? patch = null)
     {

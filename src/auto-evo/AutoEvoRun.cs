@@ -257,7 +257,7 @@ public class AutoEvoRun
     /// <param name="constant">The population change amount (constant part).</param>
     /// <param name="coefficient">The population change amount (coefficient part).</param>
     /// <param name="eventType">The external event type.</param>
-    /// <param name="patch">The patch where this effect happened or null for a global event.</param>
+    /// <param name="patch">The patch this effect affects or null for a global event.</param>
     public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType,
         Patch? patch)
     {

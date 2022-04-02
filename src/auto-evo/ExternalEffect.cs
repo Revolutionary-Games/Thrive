@@ -27,7 +27,7 @@ public class ExternalEffect
     public string EventType { get; set; }
 
     /// <summary>
-    ///   Patch where this occured. Null if global.
+    ///   The patch this effect affects. Null if this affects all patches.
     /// </summary>
     [JsonProperty]
     public Patch? Patch { get; set; }
