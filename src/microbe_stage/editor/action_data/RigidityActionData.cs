@@ -12,22 +12,22 @@ public class RigidityActionData : MicrobeEditorCombinableActionData
         PreviousRigidity = previousRigidity;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
         if (other is RigidityActionData rigidityChangeActionData)
         {
             // If the value has been changed back to a previous value
             if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON &&
                 Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
-                return MicrobeActionInterferenceMode.CancelsOut;
+                return ActionInterferenceMode.CancelsOut;
 
             // If the value has been changed twice
             if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON ||
                 Math.Abs(rigidityChangeActionData.NewRigidity - PreviousRigidity) < MathUtils.EPSILON)
-                return MicrobeActionInterferenceMode.Combinable;
+                return ActionInterferenceMode.Combinable;
         }
 
-        return MicrobeActionInterferenceMode.NoInterference;
+        return ActionInterferenceMode.NoInterference;
     }
 
     public override int CalculateCost()

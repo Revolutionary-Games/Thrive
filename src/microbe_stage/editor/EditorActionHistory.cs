@@ -32,20 +32,20 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
         {
             switch (combinableAction.GetInterferenceModeWith(History[i]))
             {
-                case MicrobeActionInterferenceMode.Combinable:
+                case ActionInterferenceMode.Combinable:
                 {
                     result -= History[i].CalculateCost();
                     combinableAction = (MicrobeEditorCombinableActionData)combinableAction.Combine(History[i]);
                     break;
                 }
 
-                case MicrobeActionInterferenceMode.CancelsOut:
+                case ActionInterferenceMode.CancelsOut:
                 {
                     result -= History[i].CalculateCost();
                     return result;
                 }
 
-                case MicrobeActionInterferenceMode.ReplacesOther:
+                case ActionInterferenceMode.ReplacesOther:
                 {
                     result -= History[i].CalculateCost();
                     break;
@@ -69,10 +69,10 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
             {
                 switch (History[compareIndex].GetInterferenceModeWith(History[compareToIndex]))
                 {
-                    case MicrobeActionInterferenceMode.NoInterference:
+                    case ActionInterferenceMode.NoInterference:
                         break;
 
-                    case MicrobeActionInterferenceMode.Combinable:
+                    case ActionInterferenceMode.Combinable:
                     {
                         var combinedValue =
                             (MicrobeEditorCombinableActionData)History[compareIndex].Combine(History[compareToIndex]);
@@ -84,7 +84,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
                         break;
                     }
 
-                    case MicrobeActionInterferenceMode.ReplacesOther:
+                    case ActionInterferenceMode.ReplacesOther:
                     {
                         History.RemoveAt(compareToIndex);
                         copyLength--;
@@ -92,7 +92,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
                         break;
                     }
 
-                    case MicrobeActionInterferenceMode.CancelsOut:
+                    case ActionInterferenceMode.CancelsOut:
                     {
                         History.RemoveAt(compareIndex);
                         History.RemoveAt(compareToIndex);

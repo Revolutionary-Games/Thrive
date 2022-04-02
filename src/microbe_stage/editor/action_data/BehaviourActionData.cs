@@ -14,22 +14,22 @@ public class BehaviourActionData : MicrobeEditorCombinableActionData
         Type = type;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
         if (other is BehaviourActionData behaviourChangeActionData && behaviourChangeActionData.Type == Type)
         {
             // If the value has been changed back to a previous value
             if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON &&
                 Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
-                return MicrobeActionInterferenceMode.CancelsOut;
+                return ActionInterferenceMode.CancelsOut;
 
             // If the value has been changed twice
             if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON ||
                 Math.Abs(behaviourChangeActionData.NewValue - OldValue) < MathUtils.EPSILON)
-                return MicrobeActionInterferenceMode.Combinable;
+                return ActionInterferenceMode.Combinable;
         }
 
-        return MicrobeActionInterferenceMode.NoInterference;
+        return ActionInterferenceMode.NoInterference;
     }
 
     public override int CalculateCost()

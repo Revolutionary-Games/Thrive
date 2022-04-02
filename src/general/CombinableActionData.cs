@@ -20,19 +20,19 @@ public abstract class CombinableActionData
     ///   Returns the interference mode with <paramref name="other"/>
     /// </returns>
     /// <para>Do not call with itself</para>
-    public abstract MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other);
+    public abstract ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other);
 
     /// <summary>
     ///   Combines two actions to one if possible.
     ///   Call <see cref="GetInterferenceModeWith"/> first and check if it returns
-    ///   <see cref="MicrobeActionInterferenceMode.Combinable"/>
+    ///   <see cref="ActionInterferenceMode.Combinable"/>
     /// </summary>
     /// <param name="other">The action this should be combined with</param>
     /// <returns>Returns the combined action</returns>
     /// <exception cref="NotSupportedException">Thrown when combination is not possible</exception>
     public CombinableActionData Combine(CombinableActionData other)
     {
-        if (GetInterferenceModeWith(other) != MicrobeActionInterferenceMode.Combinable)
+        if (GetInterferenceModeWith(other) != ActionInterferenceMode.Combinable)
             throw new NotSupportedException();
 
         return CombineGuaranteed(other);

@@ -10,20 +10,20 @@ public class MembraneActionData : MicrobeEditorCombinableActionData
         NewMembrane = newMembrane;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
         if (other is MembraneActionData membraneActionData)
         {
             // If changed back to the old membrane
             if (membraneActionData.NewMembrane == OldMembrane && NewMembrane == membraneActionData.OldMembrane)
-                return MicrobeActionInterferenceMode.CancelsOut;
+                return ActionInterferenceMode.CancelsOut;
 
             // If changed membrane twice
             if (membraneActionData.NewMembrane == OldMembrane || NewMembrane == membraneActionData.OldMembrane)
-                return MicrobeActionInterferenceMode.Combinable;
+                return ActionInterferenceMode.Combinable;
         }
 
-        return MicrobeActionInterferenceMode.NoInterference;
+        return ActionInterferenceMode.NoInterference;
     }
 
     public override int CalculateCost()

@@ -15,33 +15,33 @@ public class PlacementActionData : MicrobeEditorCombinableActionData
         Orientation = orientation;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
         // If this organelle got removed in this session
         if (other is RemoveActionData removeActionData && removeActionData.Organelle.Definition == Organelle.Definition)
         {
             // If the placed organelle has been placed on the same position where it got removed before
             if (removeActionData.Location == Location)
-                return MicrobeActionInterferenceMode.CancelsOut;
+                return ActionInterferenceMode.CancelsOut;
 
             // Removing and placing an organelle is a move operation
-            return MicrobeActionInterferenceMode.Combinable;
+            return ActionInterferenceMode.Combinable;
         }
 
         if (other is MoveActionData moveActionData && moveActionData.Organelle.Definition == Organelle.Definition)
         {
             if (moveActionData.OldLocation == Location)
-                return MicrobeActionInterferenceMode.Combinable;
+                return ActionInterferenceMode.Combinable;
 
             if (ReplacedCytoplasm?.Contains(moveActionData.Organelle) == true)
-                return MicrobeActionInterferenceMode.ReplacesOther;
+                return ActionInterferenceMode.ReplacesOther;
         }
 
         if (other is PlacementActionData placementActionData &&
             ReplacedCytoplasm?.Contains(placementActionData.Organelle) == true)
-            return MicrobeActionInterferenceMode.ReplacesOther;
+            return ActionInterferenceMode.ReplacesOther;
 
-        return MicrobeActionInterferenceMode.NoInterference;
+        return ActionInterferenceMode.NoInterference;
     }
 
     public override int CalculateCost()

@@ -1,12 +1,12 @@
 ﻿/// <summary>
-///   Describes how two microbe actions interference with each other.
+///   Describes how two actions interference with each other.
 /// </summary>
 /// <remarks>
 ///   <para>
-///     Used for MP calculation
+///     Currently used for optimized MP calculation
 ///   </para>
 /// </remarks>
-public enum MicrobeActionInterferenceMode
+public enum ActionInterferenceMode
 {
     /// <summary>
     ///   The two actions are completely independent

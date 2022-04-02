@@ -19,7 +19,7 @@ public class MoveActionData : MicrobeEditorCombinableActionData
         NewRotation = newRotation;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
         // If this organelle got moved in the same session again
         if (other is MoveActionData moveActionData && moveActionData.Organelle.Definition == Organelle.Definition)
@@ -27,12 +27,12 @@ public class MoveActionData : MicrobeEditorCombinableActionData
             // If this organelle got moved back and forth
             if (OldLocation == moveActionData.NewLocation && NewLocation == moveActionData.OldLocation &&
                 OldRotation == moveActionData.NewRotation && NewRotation == moveActionData.OldRotation)
-                return MicrobeActionInterferenceMode.CancelsOut;
+                return ActionInterferenceMode.CancelsOut;
 
             // If this organelle got moved twice
             if ((moveActionData.NewLocation == OldLocation && moveActionData.NewRotation == OldRotation) ||
                 (NewLocation == moveActionData.OldLocation && NewRotation == moveActionData.OldRotation))
-                return MicrobeActionInterferenceMode.Combinable;
+                return ActionInterferenceMode.Combinable;
         }
 
         // If this organelle got placed in this session
@@ -40,15 +40,15 @@ public class MoveActionData : MicrobeEditorCombinableActionData
             placementActionData.Organelle.Definition == Organelle.Definition &&
             placementActionData.Location == OldLocation &&
             placementActionData.Orientation == OldRotation)
-            return MicrobeActionInterferenceMode.Combinable;
+            return ActionInterferenceMode.Combinable;
 
         // If this organelle got removed in this session
         if (other is RemoveActionData removeActionData &&
             removeActionData.Organelle.Definition == Organelle.Definition &&
             removeActionData.Location == NewLocation)
-            return MicrobeActionInterferenceMode.ReplacesOther;
+            return ActionInterferenceMode.ReplacesOther;
 
-        return MicrobeActionInterferenceMode.NoInterference;
+        return ActionInterferenceMode.NoInterference;
     }
 
     public override int CalculateCost()

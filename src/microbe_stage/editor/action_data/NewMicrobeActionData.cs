@@ -14,9 +14,9 @@ public class NewMicrobeActionData : MicrobeEditorCombinableActionData
 
     public override bool ResetsHistory => true;
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
-        return MicrobeActionInterferenceMode.NoInterference;
+        return ActionInterferenceMode.NoInterference;
     }
 
     public override int CalculateCost()
