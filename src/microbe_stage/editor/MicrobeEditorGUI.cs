@@ -1609,7 +1609,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private void OnMovePressed()
     {
         if (organelleMenu.MainOrganelle == null)
-            throw new ArgumentException("No Organelle selected when trying to move");
+            throw new InvalidOperationException("No Organelle selected when trying to move");
 
         editor!.StartOrganelleMove(organelleMenu.MainOrganelle.Position);
 
