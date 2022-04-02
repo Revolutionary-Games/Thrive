@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-02 18:10+0800\n"
+"POT-Creation-Date: 2022-04-02 19:29+0800\n"
 "PO-Revision-Date: 2022-03-22 17:04+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -3922,8 +3922,9 @@ msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:121
-msgid "CANNOT_WRITE"
-msgstr ""
+#, fuzzy
+msgid "CANNOT_WRITE_SAVE"
+msgstr ". Beoordelingsschaal"
 
 #: ../src/saving/NewSaveMenu.tscn:125
 msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
@@ -4331,9 +4332,6 @@ msgstr ""
 
 #~ msgid "INTO"
 #~ msgstr "naar"
-
-#~ msgid "DOT_RATE_SCALES"
-#~ msgstr ". Beoordelingsschaal"
 
 #~ msgid "WITH_CONCENTRATION_OF"
 #~ msgstr "met een concentratie van"

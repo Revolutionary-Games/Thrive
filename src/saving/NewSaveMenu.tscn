@@ -118,7 +118,7 @@ WindowTitle = "OVERWRITE_EXISTING_SAVE_PROMPT"
 
 [node name="AttemptWriteFailAccept" parent="." instance=ExtResource( 3 )]
 rect_min_size = Vector2( 500, 0 )
-WindowTitle = "CANNOT_WRITE"
+WindowTitle = "CANNOT_WRITE_SAVE"
 Movable = false
 ShowCloseButton = false
 HideCancelButton = true
