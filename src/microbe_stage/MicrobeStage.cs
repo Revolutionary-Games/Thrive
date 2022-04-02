@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -683,7 +684,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         GameWorld.AlterSpeciesPopulation(
             GameWorld.PlayerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
-            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
+            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT, GameWorld.Map.CurrentPatch);
 
         if (IsGameOver())
         {
