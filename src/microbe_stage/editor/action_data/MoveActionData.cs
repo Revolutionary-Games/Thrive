@@ -19,7 +19,15 @@ public class MoveActionData : MicrobeEditorCombinableActionData
         NewRotation = newRotation;
     }
 
-    public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    public override int CalculateCost()
+    {
+        if (OldLocation == NewLocation && OldRotation == NewRotation)
+            return 0;
+
+        return Constants.ORGANELLE_MOVE_COST;
+    }
+
+    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
         // If this organelle got moved in the same session again
         if (other is MoveActionData moveActionData && moveActionData.Organelle.Definition == Organelle.Definition)
@@ -49,14 +57,6 @@ public class MoveActionData : MicrobeEditorCombinableActionData
             return ActionInterferenceMode.ReplacesOther;
 
         return ActionInterferenceMode.NoInterference;
-    }
-
-    public override int CalculateCost()
-    {
-        if (OldLocation == NewLocation && OldRotation == NewRotation)
-            return 0;
-
-        return Constants.ORGANELLE_MOVE_COST;
     }
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)

@@ -12,7 +12,13 @@ public class RigidityActionData : MicrobeEditorCombinableActionData
         PreviousRigidity = previousRigidity;
     }
 
-    public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    public override int CalculateCost()
+    {
+        return (int)Math.Abs((NewRigidity - PreviousRigidity) * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO) *
+            Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+    }
+
+    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
         if (other is RigidityActionData rigidityChangeActionData)
         {
@@ -28,12 +34,6 @@ public class RigidityActionData : MicrobeEditorCombinableActionData
         }
 
         return ActionInterferenceMode.NoInterference;
-    }
-
-    public override int CalculateCost()
-    {
-        return (int)Math.Abs((NewRigidity - PreviousRigidity) * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO) *
-            Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
     }
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)

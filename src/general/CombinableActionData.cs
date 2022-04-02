@@ -19,8 +19,14 @@ public abstract class CombinableActionData
     /// <returns>
     ///   Returns the interference mode with <paramref name="other"/>
     /// </returns>
-    /// <para>Do not call with itself</para>
-    public abstract ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other);
+    /// <exception cref="ArgumentException">Thrown when called with itself</exception>
+    public ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    {
+        if (Equals(other))
+            throw new ArgumentException("Do not call with itself", nameof(other));
+
+        return GetInterferenceModeWithGuaranteed(other);
+    }
 
     /// <summary>
     ///   Combines two actions to one if possible.
@@ -37,6 +43,8 @@ public abstract class CombinableActionData
 
         return CombineGuaranteed(other);
     }
+
+    protected abstract ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other);
 
     /// <summary>
     ///   Combines two actions to one

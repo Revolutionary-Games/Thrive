@@ -14,14 +14,14 @@ public class NewMicrobeActionData : MicrobeEditorCombinableActionData
 
     public override bool ResetsHistory => true;
 
-    public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
-    {
-        return ActionInterferenceMode.NoInterference;
-    }
-
     public override int CalculateCost()
     {
         return -Constants.BASE_MUTATION_POINTS;
+    }
+
+    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    {
+        return ActionInterferenceMode.NoInterference;
     }
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)

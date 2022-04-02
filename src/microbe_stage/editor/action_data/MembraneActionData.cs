@@ -10,7 +10,12 @@ public class MembraneActionData : MicrobeEditorCombinableActionData
         NewMembrane = newMembrane;
     }
 
-    public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    public override int CalculateCost()
+    {
+        return NewMembrane.EditorCost;
+    }
+
+    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
         if (other is MembraneActionData membraneActionData)
         {
@@ -24,11 +29,6 @@ public class MembraneActionData : MicrobeEditorCombinableActionData
         }
 
         return ActionInterferenceMode.NoInterference;
-    }
-
-    public override int CalculateCost()
-    {
-        return NewMembrane.EditorCost;
     }
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)

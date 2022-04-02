@@ -14,7 +14,13 @@ public class BehaviourActionData : MicrobeEditorCombinableActionData
         Type = type;
     }
 
-    public override ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
+    public override int CalculateCost()
+    {
+        // TODO: should this be free?
+        return 0;
+    }
+
+    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
         if (other is BehaviourActionData behaviourChangeActionData && behaviourChangeActionData.Type == Type)
         {
@@ -30,12 +36,6 @@ public class BehaviourActionData : MicrobeEditorCombinableActionData
         }
 
         return ActionInterferenceMode.NoInterference;
-    }
-
-    public override int CalculateCost()
-    {
-        // TODO: should this be free?
-        return 0;
     }
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
