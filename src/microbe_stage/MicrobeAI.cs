@@ -48,7 +48,7 @@ public class MicrobeAI
     ///   before resuming motion.
     /// </summary>
     [JsonProperty]
-    private float atpTreshold = 0.0f;
+    private float atpTreshold;
 
     /// <summary>
     ///   Stores the value of microbe.totalAbsorbedCompound at tick t-1 before it is cleared and updated at tick t.
@@ -181,10 +181,8 @@ public class MicrobeAI
                 SetMoveSpeed(0.0f);
                 return;
             }
-            else
-            {
-                atpTreshold = 0.0f;
-            }
+
+            atpTreshold = 0.0f;
         }
 
         // Follow received commands if we have them
