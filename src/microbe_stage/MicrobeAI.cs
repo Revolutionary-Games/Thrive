@@ -169,7 +169,7 @@ public class MicrobeAI
         // If this microbe is out of ATP, pick an amount of time to rest
         if (microbe.Compounds.GetCompoundAmount(atp) < 1.0f)
         {
-            atpTreshold = 0.5f;
+            atpTreshold = SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
         }
 
         if (atpTreshold > 0.0f)
