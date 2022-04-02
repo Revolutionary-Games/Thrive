@@ -196,5 +196,7 @@ public class PatchMapNode : MarginContainer
     {
         if (iconRect != null)
             iconRect.Material = Enabled ? null : MonochromeShader;
+
+        grayscaleDirty = false;
     }
 }
