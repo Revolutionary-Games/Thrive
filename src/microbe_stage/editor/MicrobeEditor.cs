@@ -1169,8 +1169,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     internal void DirtyMutationPointsCache()
     {
         mutationPointsCache = null;
-        gui.UpdateMutationPointsBar();
-        gui.UpdateRigiditySliderState(MutationPoints);
     }
 
     private bool HasOrganelle(OrganelleDefinition organelleDefinition)
@@ -1726,6 +1724,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             }
 
             gui.MouseHoverHexes = distinctHexes;
+        }
+
+        if (mutationPointsCache == null)
+        {
+            gui.UpdateMutationPointsBar();
+            gui.UpdateRigiditySliderState(MutationPoints);
         }
     }
 
