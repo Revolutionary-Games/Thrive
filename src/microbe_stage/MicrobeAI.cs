@@ -18,6 +18,7 @@ using Newtonsoft.Json;
 /// </remarks>
 public class MicrobeAI
 {
+    private readonly Compound atp;
     private readonly Compound glucose;
     private readonly Compound iron;
     private readonly Compound oxytoxy;
@@ -41,6 +42,13 @@ public class MicrobeAI
 
     [JsonProperty]
     private float pursuitThreshold;
+
+    /// <summary>
+    ///   A value between 0.0f and 1.0f, this is the portion of the microbe's atp bar that needs to refill
+    ///   before resuming motion.
+    /// </summary>
+    [JsonProperty]
+    private float atpTreshold = 0.0f;
 
     /// <summary>
     ///   Stores the value of microbe.totalAbsorbedCompound at tick t-1 before it is cleared and updated at tick t.
@@ -69,6 +77,7 @@ public class MicrobeAI
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
 
+        atp = SimulationParameters.Instance.GetCompound("atp");
         glucose = SimulationParameters.Instance.GetCompound("glucose");
         iron = SimulationParameters.Instance.GetCompound("iron");
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
@@ -155,6 +164,25 @@ public class MicrobeAI
         {
             FleeFromPredators(random, predator.Value);
             return;
+        }
+
+        // If this microbe is out of ATP, pick an amount of time to rest
+        if (microbe.Compounds.GetCompoundAmount(atp) < 1.0f)
+        {
+            atpTreshold = 0.5f;
+        }
+
+        if (atpTreshold > 0.0f)
+        {
+            if(microbe.Compounds.GetCompoundAmount(atp) < microbe.Compounds.Capacity * atpTreshold)
+            {
+                SetMoveSpeed(0.0f);
+                return;
+            }
+            else
+            {
+                atpTreshold = 0.0f;
+            }
         }
 
         // Follow received commands if we have them
