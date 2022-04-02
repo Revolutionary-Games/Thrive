@@ -2,7 +2,9 @@
 ///   Describes how two microbe actions interference with each other.
 /// </summary>
 /// <remarks>
-///   <para>Used for MP calculation</para>
+///   <para>
+///     Used for MP calculation
+///   </para>
 /// </remarks>
 public enum MicrobeActionInterferenceMode
 {

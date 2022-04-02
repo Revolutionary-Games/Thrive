@@ -14,7 +14,7 @@ public abstract class CombinableActionData
     public virtual bool ResetsHistory => false;
 
     /// <summary>
-    ///   Does this action cancel out with the <paramref name="other"/> action?
+    ///   How does this action interfere with the <paramref name="other"/> action?
     /// </summary>
     /// <returns>
     ///   Returns the interference mode with <paramref name="other"/>
