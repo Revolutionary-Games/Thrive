@@ -77,9 +77,10 @@ public class OrganellePopupMenu : PopupPanel
     /// <summary>
     ///   The placed organelles to be shown options of.
     /// </summary>
-    public List<OrganelleTemplate>? SelectedOrganelles
+    public List<OrganelleTemplate> SelectedOrganelles
     {
-        get => selectedOrganelles;
+        get => selectedOrganelles ??
+            throw new InvalidOperationException("OrganellePopup was not opened with organelle set");
         set
         {
             selectedOrganelles = value;
@@ -231,12 +232,6 @@ public class OrganellePopupMenu : PopupPanel
         if (selectedOrganelleNameLabel == null)
             return;
 
-        if (SelectedOrganelles == null)
-        {
-            selectedOrganelleNameLabel.Text = null;
-            return;
-        }
-
         var names = SelectedOrganelles.Where(p => p != null).Select(p => p!.Definition.Name).Distinct().ToList();
 
         if (names.Count == 1)
@@ -254,18 +249,10 @@ public class OrganellePopupMenu : PopupPanel
         if (deleteButton == null)
             return;
 
-        float mpCost;
-        if (SelectedOrganelles == null)
-        {
-            mpCost = 0;
-        }
-        else
-        {
-            mpCost = GetActionPrice?.Invoke(
-                SelectedOrganelles.Where(o => o != null)
-                    .Select(o => (MicrobeEditorCombinableActionData)new RemoveActionData(o!, o!.Position, o.Orientation))
-                    .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
-        }
+        float mpCost = GetActionPrice?.Invoke(
+            SelectedOrganelles.Where(o => o != null)
+                .Select(o => (MicrobeEditorCombinableActionData)new RemoveActionData(o!, o!.Position, o.Orientation))
+                .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 
@@ -280,18 +267,10 @@ public class OrganellePopupMenu : PopupPanel
         if (moveButton == null)
             return;
 
-        float mpCost;
-        if (SelectedOrganelles == null)
-        {
-            mpCost = 0;
-        }
-        else
-        {
-            mpCost = GetActionPrice?.Invoke(SelectedOrganelles.Where(o => o != null).Select(o =>
-                    (MicrobeEditorCombinableActionData)new MoveActionData(o!, o!.Position, o.Position, o.Orientation,
-                        o.Orientation))
-                .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
-        }
+        float mpCost = GetActionPrice?.Invoke(SelectedOrganelles.Where(o => o != null).Select(o =>
+                (MicrobeEditorCombinableActionData)new MoveActionData(o!, o!.Position, o.Position, o.Orientation,
+                    o.Orientation))
+            .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 
