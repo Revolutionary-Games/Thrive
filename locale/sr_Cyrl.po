@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-02 19:50+0800\n"
+"POT-Creation-Date: 2022-04-02 18:23+0200\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -289,12 +289,12 @@ msgid "ABILITIES"
 msgstr "Способности"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2101
+#: ../src/microbe_stage/MicrobeStage.tscn:2096
 msgid "FIRE_TOXIN"
 msgstr "Ватрени токсин"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2089
+#: ../src/microbe_stage/MicrobeStage.tscn:2084
 msgid "TOGGLE_ENGULF"
 msgstr "Укључите гутање"
 
@@ -303,7 +303,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Држи да покажеш мени команди групе"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2112
+#: ../src/microbe_stage/MicrobeStage.tscn:2107
 msgid "TOGGLE_BINDING"
 msgstr "Укључи повезивање"
 
@@ -332,7 +332,7 @@ msgid "ZOOM_IN"
 msgstr "Зумирати"
 
 #: ../simulation_parameters/common/input_options.json:87
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4048
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3176
 msgid "EDITOR"
 msgstr "Уређивач"
 
@@ -596,25 +596,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1292
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3695
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:661
 msgid "AMMONIA"
 msgstr "Амонијак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1344
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3766
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:732
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1396
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3660
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:626
 msgid "HYDROGEN_SULFIDE"
 msgstr "Водоник Сулфид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1240
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3730
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:696
 msgid "GLUCOSE"
 msgstr "Глукоза"
 
@@ -625,29 +625,29 @@ msgstr "ОксиТокси НТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1448
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3801
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:767
 msgid "IRON"
 msgstr "Гвожђе"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3496
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:463
 msgid "OXYGEN"
 msgstr "Кисеоник"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3550
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:517
 msgid "CARBON_DIOXIDE"
 msgstr "Угљен Диоксид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3523
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:490
 msgid "NITROGEN"
 msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2928
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3376
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2901
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
 msgstr "Сунчева Светлост"
 
@@ -810,7 +810,12 @@ msgstr "{0:F1}% завршено. {1:n0}/{2:n0} корака."
 msgid "STARTING"
 msgstr "Почиње"
 
-#: ../src/auto-evo/AutoEvoRun.cs:294
+#: ../src/auto-evo/AutoEvoRun.cs:298
+#, fuzzy
+msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
+
+#: ../src/auto-evo/AutoEvoRun.cs:305
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
@@ -1382,7 +1387,7 @@ msgstr ""
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4203
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3331
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
@@ -1391,10 +1396,10 @@ msgstr "Затвори"
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:691
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:751
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1100
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1322
+#: ../src/microbe_stage/MicrobeHUD.cs:710
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:626
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:975
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:217
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -1850,7 +1855,7 @@ msgid "SAVE_GAME"
 msgstr "Сачувај Игру"
 
 #: ../src/general/PauseMenu.tscn:84
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2791
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2764
 msgid "STATISTICS"
 msgstr "Статистика"
 
@@ -2196,7 +2201,7 @@ msgid "RAW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2559
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2245
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -2672,9 +2677,9 @@ msgstr ""
 "Да ли желите да наставите?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3690
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2917
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3313
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:982
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2890
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:857
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:281
 msgid "TEMPERATURE"
 msgstr "Температура"
 
@@ -2731,85 +2736,92 @@ msgstr "играч је умро"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:447
+#: ../src/microbe_stage/MicrobeHUD.cs:451
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:448
+#: ../src/microbe_stage/MicrobeHUD.cs:452
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:449
+#: ../src/microbe_stage/MicrobeHUD.cs:453
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:450
+#: ../src/microbe_stage/MicrobeHUD.cs:454
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:451
+#: ../src/microbe_stage/MicrobeHUD.cs:455
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 "Постоји сукоб са {0}.\n"
 "Да ли желите да уклоните унос из {1}?"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:454
+#: ../src/microbe_stage/MicrobeHUD.cs:458
 #, fuzzy
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 "Постоји сукоб са {0}.\n"
 "Да ли желите да уклоните унос из {1}?"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:770
+#: ../src/microbe_stage/MicrobeHUD.cs:800
 msgid "STUFF_AT"
 msgstr "Ствари у {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:803
+#: ../src/microbe_stage/MicrobeHUD.cs:833
 #, fuzzy
 msgid "PLAYER_CELL"
 msgstr "играч је умро"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:820
+#: ../src/microbe_stage/MicrobeHUD.cs:850
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Врсте Присутне"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:865
+#: ../src/microbe_stage/MicrobeHUD.cs:895
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:867
+#: ../src/microbe_stage/MicrobeHUD.cs:897
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:869
+#: ../src/microbe_stage/MicrobeHUD.cs:899
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:871
+#: ../src/microbe_stage/MicrobeHUD.cs:901
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:873
+#: ../src/microbe_stage/MicrobeHUD.cs:903
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:875
+#: ../src/microbe_stage/MicrobeHUD.cs:905
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:544
+#: ../src/microbe_stage/MicrobeStage.cs:576
 msgid "PLAYER_REPRODUCED"
 msgstr "Играч се репродуковао"
 
-#: ../src/microbe_stage/MicrobeStage.cs:633
+#: ../src/microbe_stage/MicrobeStage.cs:665
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:653
+#: ../src/microbe_stage/MicrobeStage.cs:685
+#: ../src/microbe_stage/MicrobeStage.cs:740
 msgid "PLAYER_DIED"
 msgstr "играч је умро"
+
+#: ../src/microbe_stage/MicrobeStage.cs:752
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
+#, fuzzy
+msgid "PATCH_EXTINCTION"
+msgstr "Број популације од {0} променио се за {1} због: {2}"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:508
 msgid "AT_CURSOR"
@@ -2844,10 +2856,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Прити."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1142
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2981
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3015
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3620
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1128
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2954
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2988
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1003
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:586
 msgid "COMPOUNDS"
 msgstr "Једињење"
 
@@ -2966,281 +2978,260 @@ msgstr "Аутоматска-еволуција није успела"
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус покретања:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:672
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:645
 msgid "MUTATION_POINTS"
 msgstr "Мутације Поени"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:807
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:780
 msgid "STRUCTURE"
 msgstr "Структура"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:829
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:802
 #, fuzzy
 msgid "MEMBRANE"
 msgstr "Врсте Мембрана"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:851
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:824
 #, fuzzy
 msgid "BEHAVIOUR"
 msgstr "Понашање"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:903
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:876
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Тражи..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:910
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:883
 msgid "STRUCTURAL"
 msgstr "Структурни"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:950
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:923
 msgid "PROTEINS"
 msgstr "Протеини"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1020
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:993
 msgid "EXTERNAL"
 msgstr "Спољни"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1079
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1052
 msgid "ORGANELLES"
 msgstr "Органеле"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1221
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1194
 msgid "MEMBRANE_TYPES"
 msgstr "Врсте Мембрана"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1300
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1273
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Течност / Ригидност"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1320
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1293
 msgid "FLUID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1333
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1306
 msgid "RIGID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1366
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1339
 msgid "COLOUR"
 msgstr "Боја"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1431
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1404
 msgid "PEACEFUL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1448
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1421
 msgid "AGGRESSIVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1484
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1457
 msgid "CAUTIOUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1502
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1475
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1538
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1511
 msgid "BRAVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1555
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1528
 msgid "FEARFUL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1591
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1564
 msgid "SESSILE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1608
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1581
 msgid "ACTIVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1644
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1617
 msgid "RESPONSIVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1661
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1634
 msgid "FOCUSED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1729
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1702
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Организма"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1791
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1764
 msgid "SPEED_COLON"
 msgstr "Брзина:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1821
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1794
 msgid "HP_COLON"
 msgstr "Здрав.:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1851
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1824
 msgid "SIZE_COLON"
 msgstr "Величина:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1872
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1845
 msgid "GENERATION_COLON"
 msgstr "Генерација:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1914
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1887
 msgid "ATP_BALANCE"
 msgstr "ATP Равнотежа"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2027
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2000
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "Моћ ћелије. Митохондрион (множина: митохондрије) је двострука мембранска структура испуњена протеинима и ензимима. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. У стању је да претвори глукозу у ATP са много већом ефикасношћу него што се то може учинити у цитоплазми у процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2031
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4145
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2004
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3273
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION"
 msgstr "{0:F1}% завршено. {1:n0}/{2:n0} корака."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2039
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2012
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Наставити"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2109
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2082
 #, fuzzy
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2133
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2106
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "Врсте:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2158
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2131
 #, fuzzy
 msgid "WORST_PATCH_COLON"
 msgstr "Врсте:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2304
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2277
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Име врсте..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2358
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2331
 #, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ПОТВРДИ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2372
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2345
 msgid "CONFIRM_CAPITAL"
 msgstr "ПОТВРДИ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2381
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2354
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Негативан ATP Биланс"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2382
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2355
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Ваш микроб не производи довољно ATP-а да би преживео!\n"
 "Да ли желите да наставите?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2388
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2362
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Искључене Органеле"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2390
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2363
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Постоје постављене органеле, које нису повезане са осталим.\n"
 "Повежите све постављене органеле једни са другима или поништите промене."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2507
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2480
 msgid "AUTO_EVO"
 msgstr "Аутоматска-Еволуција"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2521
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2494
 msgid "FOOD_CHAIN"
 msgstr "Ланац Исхране"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2534
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2507
 msgid "TIMELINE"
 msgstr "Временска линија"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2587
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2560
 msgid "AUTO_EVO_RESULTS"
 msgstr "Резултати аутоматске-еволуције:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2606
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2579
 msgid "EXTERNAL_EFFECTS"
 msgstr "Спољни ефекти:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2703
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2676
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2709
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2682
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2716
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2689
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2723
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2696
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2800
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2828
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2773
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2801
 #, fuzzy
 msgid "SPECIES_POPULATION"
 msgstr "Врсте:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2838
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3272
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2811
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:240
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Физички Услови"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2938
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2972
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3455
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1121
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2911
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2945
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:996
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:422
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферски Гасови"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3041
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3964
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3014
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3092
 msgid "NEXT_CAPITAL"
 msgstr "СЛЕДЕЋИ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3154
-msgid "SELECT_A_PATCH"
-msgstr "Изаберите зону да бисте овде приказали детаље"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3189
-msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "ТРЕНУТНА ЛОКАЦИЈА"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3349
-#, fuzzy
-msgid "PRESSURE"
-msgstr "Прити."
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3880
-msgid "SPECIES_PRESENT"
-msgstr "Врсте Присутне"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3937
-msgid "MOVE_TO_THIS_PATCH"
-msgstr "Пређите у Ову Зону"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4006
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3134
 msgid "REPORT"
 msgstr "Извештај"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4027
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3155
 msgid "PATCH_MAP"
 msgstr "Карта Зоне"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4194
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3322
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
@@ -3249,120 +3240,107 @@ msgstr "Број популације од {0} променио се за {1} з
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:757
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:632
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Количина глукозе је смањена на {0} од претходне количине."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:767
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:642
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
 msgstr "ма"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:775
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:650
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:701
 msgid "ATP_PRODUCTION"
 msgstr "ATP Производња"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:827
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:702
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP ПРОИЗВОДЊА ПРЕНИЗАК!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:731
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:876
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:751
 msgid "OSMOREGULATION"
 msgstr "Осморегулација"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:882
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:757
 msgid "BASE_MOVEMENT"
 msgstr "Подразумевано Кретање"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:894
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:769
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1118
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1119
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1121
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1124
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1128
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:993
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:994
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:996
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:999
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1003
 msgid "YEARS"
 msgstr "године"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1124
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:999
 #, fuzzy
 msgid "SPECIES_LIST"
 msgstr "Врсте Присутне"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1135
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1148
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1010
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1023
 #, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Баш као и 99% свих врста које су икада постојале, и ваша врста је изумрла. Други ће наставити да попуњавају вашу нишу и просперирати, али то нећете бити ви. Бићете заборављени, неуспели експеримент у еволуцији."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1136
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1147
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1011
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1022
 #, fuzzy
 msgid "EXTINCT_FROM_PATCH"
 msgstr "Изаберите зону да бисте овде приказали детаље"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1190
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1065
 msgid "FREEBUILDING"
 msgstr "Слободна-Градећи"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1313
-msgid "BIOME_LABEL"
-msgstr "Биом: {0}"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1318
-msgid "BELOW_SEA_LEVEL"
-msgstr "{0}-{1}м испод нивоа мора"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-#, fuzzy
-msgid "SPECIES_WITH_POPULATION"
-msgstr "Врсте:"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1906
 #, fuzzy
 msgid "FAILED"
 msgstr "Сачување није успело"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2102
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2114
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1912
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1924
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "ПОПУЛАЦИЈА:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2108
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2120
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1918
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1930
 #, fuzzy
 msgid "N_A"
 msgstr "- МП"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2401
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2087
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2527
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2213
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2531
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2217
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2538
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2224
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2544
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2230
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3423,6 +3401,44 @@ msgstr "ИЗУМИРАЊЕ"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
 msgid "EXTINCTION_BOX_TEXT"
+msgstr "Баш као и 99% свих врста које су икада постојале, и ваша врста је изумрла. Други ће наставити да попуњавају вашу нишу и просперирати, али то нећете бити ви. Бићете заборављени, неуспели експеримент у еволуцији."
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:208
+msgid "BIOME_LABEL"
+msgstr "Биом: {0}"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:213
+msgid "BELOW_SEA_LEVEL"
+msgstr "{0}-{1}м испод нивоа мора"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:252
+msgid "WITH_POPULATION"
+msgstr "{0} са популацијом: {1}"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:123
+msgid "SELECT_A_PATCH"
+msgstr "Изаберите зону да бисте овде приказали детаље"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:158
+msgid "CURRENT_LOCATION_CAPITAL"
+msgstr "ТРЕНУТНА ЛОКАЦИЈА"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:317
+#, fuzzy
+msgid "PRESSURE"
+msgstr "Прити."
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:845
+msgid "SPECIES_PRESENT"
+msgstr "Врсте Присутне"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:902
+msgid "MOVE_TO_THIS_PATCH"
+msgstr "Пређите у Ову Зону"
+
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:80
+#, fuzzy
+msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr "Баш као и 99% свих врста које су икада постојале, и ваша врста је изумрла. Други ће наставити да попуњавају вашу нишу и просперирати, али то нећете бити ви. Бићете заборављени, неуспели експеримент у еволуцији."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:56
@@ -4474,6 +4490,10 @@ msgstr "W, A, S, D и миш за кретање. Е да пуцате Окси�
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Погледај сад"
 
+#, fuzzy
+#~ msgid "SPECIES_WITH_POPULATION"
+#~ msgstr "Врсте:"
+
 #~ msgid "LOADING_DOT"
 #~ msgstr "Учитавање..."
 
@@ -4485,9 +4505,6 @@ msgstr "Погледај сад"
 
 #~ msgid "RUN_RESULT_POP_IN_PATCHES"
 #~ msgstr "популација у зонама:"
-
-#~ msgid "WITH_POPULATION"
-#~ msgstr "{0} са популацијом: {1}"
 
 #~ msgid "SAVING"
 #~ msgstr "Сачуване..."
@@ -4522,10 +4539,6 @@ msgstr "Погледај сад"
 #~ "Такође можете променити друга својства своје врсте на другим картицама уређивача ћелија.\n"
 #~ "\n"
 #~ "Да бисте наставили, одаберите органелу са табле са леве стране (цитоплазма је добар избор). Затим кликните левим тастером миша поред шестерокута приказаног у средини екрана да бисте додали ту органелу својој врсти."
-
-#, fuzzy
-#~ msgid "TOTAL_EXTINCTION"
-#~ msgstr "Број популације од {0} променио се за {1} због: {2}"
 
 #, fuzzy
 #~ msgid "LOCAL_EXTINCTION"
