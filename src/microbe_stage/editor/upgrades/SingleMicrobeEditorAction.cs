@@ -21,9 +21,11 @@ public class SingleMicrobeEditorAction<T> : MicrobeEditorAction
     public T SingleData { get; }
     public override IEnumerable<MicrobeEditorCombinableActionData> Data => new[] { SingleData };
 
-    public static implicit operator SingleMicrobeEditorAction<MicrobeEditorCombinableActionData>(SingleMicrobeEditorAction<T> x)
+    public static implicit operator SingleMicrobeEditorAction<MicrobeEditorCombinableActionData>(
+        SingleMicrobeEditorAction<T> x)
     {
-        return new SingleMicrobeEditorAction<MicrobeEditorCombinableActionData>(data => x.redo((T)data), data => x.undo((T)data),
+        return new SingleMicrobeEditorAction<MicrobeEditorCombinableActionData>(data => x.redo((T)data),
+            data => x.undo((T)data),
             x.SingleData);
     }
 

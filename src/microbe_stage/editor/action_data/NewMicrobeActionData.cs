@@ -12,6 +12,8 @@ public class NewMicrobeActionData : MicrobeEditorCombinableActionData
         OldMembrane = oldMembrane;
     }
 
+    public override bool ResetsHistory => true;
+
     public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
         return MicrobeActionInterferenceMode.NoInterference;

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ICSharpCode.SharpZipLib;
 
 /// <summary>
 ///   Holds the action history for the microbe editor.
@@ -75,7 +74,8 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
 
                     case MicrobeActionInterferenceMode.Combinable:
                     {
-                        var combinedValue = (MicrobeEditorCombinableActionData)History[compareIndex].Combine(History[compareToIndex]);
+                        var combinedValue =
+                            (MicrobeEditorCombinableActionData)History[compareIndex].Combine(History[compareToIndex]);
                         History.RemoveAt(compareIndex);
                         History.RemoveAt(compareToIndex);
                         History.Insert(compareToIndex, combinedValue);
@@ -126,19 +126,13 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
 
     public override void AddAction(MicrobeEditorAction action)
     {
-        switch (action)
+        if (action.Data.Any(d => d.ResetsHistory))
         {
-            case SingleMicrobeEditorAction<NewMicrobeActionData>:
-            {
-                History.Clear();
-                break;
-            }
-
-            default:
-            {
-                History.AddRange(action.Data);
-                break;
-            }
+            History.Clear();
+        }
+        else
+        {
+            History.AddRange(action.Data);
         }
 
         base.AddAction(action);

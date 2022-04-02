@@ -3,6 +3,11 @@
 public abstract class CombinableActionData
 {
     /// <summary>
+    ///   Does this action reset every action that happened before it?
+    /// </summary>
+    public virtual bool ResetsHistory => false;
+
+    /// <summary>
     ///   Does this action cancel out with the <paramref name="other"/> action?
     /// </summary>
     /// <returns>
