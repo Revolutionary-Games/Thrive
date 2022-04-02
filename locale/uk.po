@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-02 18:23+0200\n"
+"POT-Creation-Date: 2022-04-02 19:40+0200\n"
 "PO-Revision-Date: 2022-03-25 15:20+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -332,7 +332,7 @@ msgid "ZOOM_IN"
 msgstr "Приблизитись"
 
 #: ../simulation_parameters/common/input_options.json:87
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3176
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3165
 msgid "EDITOR"
 msgstr "Редактор"
 
@@ -645,7 +645,7 @@ msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2901
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2876
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
 msgstr "Сонячне світло"
@@ -1347,7 +1347,7 @@ msgstr "Малюнок від {0}"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3331
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3320
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
@@ -1804,7 +1804,7 @@ msgid "SAVE_GAME"
 msgstr "Зберегти гру"
 
 #: ../src/general/PauseMenu.tscn:84
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2764
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2739
 msgid "STATISTICS"
 msgstr "Статистика"
 
@@ -2611,7 +2611,7 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Вмикає / вимикає спливаюче вікно з попередженням про незбережений прогрес, як гравець намагається покинути гру."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3690
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2890
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2865
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:857
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:281
 msgid "TEMPERATURE"
@@ -2737,11 +2737,10 @@ msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Неможливо використати спавн ворога тому що в цій ділянці немає ворожих видів"
 
 #: ../src/microbe_stage/MicrobeStage.cs:685
-#: ../src/microbe_stage/MicrobeStage.cs:740
 msgid "PLAYER_DIED"
 msgstr "гравець помер"
 
-#: ../src/microbe_stage/MicrobeStage.cs:752
+#: ../src/microbe_stage/MicrobeStage.cs:746
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
 #, fuzzy
 msgid "PATCH_EXTINCTION"
@@ -2780,8 +2779,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Тиск."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1142
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2954
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2988
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2929
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2963
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1003
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:586
 msgid "COMPOUNDS"
@@ -2896,252 +2895,252 @@ msgstr "Авто-ево не почалась"
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус виконання:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:645
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:619
 msgid "MUTATION_POINTS"
 msgstr "Очки мутації"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:780
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:754
 msgid "STRUCTURE"
 msgstr "Структури"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:802
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:776
 msgid "MEMBRANE"
 msgstr "Мембрани"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:824
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:798
 msgid "BEHAVIOUR"
 msgstr "Поведінка"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:876
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:850
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Пошук..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:883
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:857
 msgid "STRUCTURAL"
 msgstr "Структурний"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:923
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:897
 msgid "PROTEINS"
 msgstr "Білки"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:993
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:967
 msgid "EXTERNAL"
 msgstr "Зовнішні"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1052
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1027
 msgid "ORGANELLES"
 msgstr "Органели"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1194
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1169
 msgid "MEMBRANE_TYPES"
 msgstr "Типи Мембрани"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1273
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1248
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Рідкуватість / Жорсткість"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1293
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1268
 msgid "FLUID"
 msgstr "Рідкуватість"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1306
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1281
 msgid "RIGID"
 msgstr "Жорсткість"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1339
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1314
 msgid "COLOUR"
 msgstr "Колір"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1404
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1379
 msgid "PEACEFUL"
 msgstr "Мирність"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1421
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1396
 msgid "AGGRESSIVE"
 msgstr "Агресивність"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1457
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1432
 msgid "CAUTIOUS"
 msgstr "Обережність"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1475
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1450
 msgid "OPPORTUNISTIC"
 msgstr "Упереджені"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1511
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1486
 msgid "BRAVE"
 msgstr "Хоробрі"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1528
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1503
 msgid "FEARFUL"
 msgstr "Боязкі"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1564
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1539
 msgid "SESSILE"
 msgstr "Пасивні"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1581
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1556
 msgid "ACTIVE"
 msgstr "Рухливі"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1617
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1592
 msgid "RESPONSIVE"
 msgstr "Розсіяні"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1634
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1609
 msgid "FOCUSED"
 msgstr "Зосереджені"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1702
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1677
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Організму"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1764
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1739
 msgid "SPEED_COLON"
 msgstr "Швидкість:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1794
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1769
 msgid "HP_COLON"
 msgstr "Здоров'я:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1824
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1799
 msgid "SIZE_COLON"
 msgstr "Розмір:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1845
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1820
 msgid "GENERATION_COLON"
 msgstr "Генерація:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1887
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1862
 msgid "ATP_BALANCE"
 msgstr "АТФ баланс"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2000
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1975
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Ця панель показує очікувану чисельність популяції через авто-ево(атоматичну еволюцію) для відредагованого виду.\n"
 "Авто-ево запускає симуляцію популяцій, яка є іншою частину ( окрім вашого власного виконання) яка впливає на вашу популяцію."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2004
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3273
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1979
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3262
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Прогноз авто-ево"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2012
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1987
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Перегляньте детальну інформацію про прогноз"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2082
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2057
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Загальна популяція:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2106
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2081
 msgid "BEST_PATCH_COLON"
 msgstr "Найкраща ділянка:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2131
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2106
 msgid "WORST_PATCH_COLON"
 msgstr "Найгірша ділянка:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2277
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2252
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Назва виду..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2331
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2306
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "Скасувати дію"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2345
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2320
 msgid "CONFIRM_CAPITAL"
 msgstr "Підтвердити"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2354
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2329
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Негативний АТФ баланс"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2355
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2330
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Ваш мікроб не виробляє недостатню кілбкість АТф для виживання.\n"
 "Ви справді бажаєте продовжити?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2362
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2336
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Від'єднати органели"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2363
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2338
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Тут розміщені органели, які не з'єднання з рештою.\n"
 "Будь-ласка приєднайте одна з одною всі розміщені органели, або скасуйте зміни."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2480
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2455
 msgid "AUTO_EVO"
 msgstr "Авто-ево"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2494
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2469
 msgid "FOOD_CHAIN"
 msgstr "Ланцюг живлення"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2507
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2482
 msgid "TIMELINE"
 msgstr "Хронологія"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2560
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2535
 msgid "AUTO_EVO_RESULTS"
 msgstr "Результати авто-ево:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2579
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2554
 msgid "EXTERNAL_EFFECTS"
 msgstr "Внутрішні ефекти:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2676
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2651
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "Показ глобальних подій"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2682
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2657
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2689
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2664
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Показ локальних подій"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2696
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2671
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2773
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2801
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2748
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2776
 msgid "SPECIES_POPULATION"
 msgstr "Видова Популяція"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2811
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2786
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:240
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Фізичні умови"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2911
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2945
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2886
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2920
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:996
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:422
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферні гази"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3014
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3092
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2989
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3081
 msgid "NEXT_CAPITAL"
 msgstr "ДАЛІ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3134
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3123
 msgid "REPORT"
 msgstr "Звіт"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3155
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3144
 msgid "PATCH_MAP"
 msgstr "Мапа Ділянок"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3322
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3311
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Ця панель відображає числа, за якими передбачено авто-ево. Загальна енергії, яку ви може поглинути і вартість особини виду– визначають фінальну популяцію. Автоеволюція використовує спрощену модель реальності для обчислення продуктивності видів на основі енергії, яку ті здатні отримати. Для кожного джерела їжі показано хвеличину енергії, яку вид отримує від нього. Додатково загальна енергія доступна з цього джерела показується. Частка, яку види отримують базується на тому, яка величина пристосованості в порівнянні із загальною пристосованістю. Пристосованість– це величина, що показує на скільки добре вид засвоює джерело їжі."
 
