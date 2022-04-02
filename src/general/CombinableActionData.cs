@@ -1,5 +1,11 @@
 ﻿using System;
 
+/// <summary>
+///   A combinable action data can be combined with other actions.
+///   For example two separate movements of the same object can be combined into one larger movement action.
+///   This is implemented as an aid for the player so that they do not have to think about optimizing their actions
+///   to cost the least amount of MP.
+/// </summary>
 public abstract class CombinableActionData
 {
     /// <summary>
