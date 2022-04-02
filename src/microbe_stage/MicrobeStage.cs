@@ -680,10 +680,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         GD.Print("The player has died");
 
         // Decrease the population by the constant for the player dying
-        GameWorld.AlterSpeciesPopulation(
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
             GameWorld.PlayerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
-            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT, GameWorld.Map.CurrentPatch);
+            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
 
         if (IsGameOver())
         {
@@ -733,12 +733,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     private void HandlePlayerRespawn()
     {
         var playerSpecies = GameWorld.PlayerSpecies;
-
-        // Decrease the population by the constant for the player dying
-        GameWorld.AlterSpeciesPopulationInCurrentPatch(
-            playerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
-            TranslationServer.Translate("PLAYER_DIED"),
-            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
 
         HUD.HintText = string.Empty;
 

@@ -22,8 +22,14 @@ public class PatchMapNode : MarginContainer
     private bool highlighted;
     private bool selected;
     private bool marked;
+    private bool enabled = true;
 
     private Texture? patchIcon;
+
+    private bool selectHighlightRingDirty = true;
+    private bool iconDirty = true;
+    private bool markRingDirty = true;
+    private bool grayscaleDirty = true;
 
     /// <summary>
     ///   This object does nothing with this, this is stored here to make other code simpler
@@ -38,15 +44,14 @@ public class PatchMapNode : MarginContainer
     /// </summary>
     public bool Enabled
     {
-        get => iconRect?.Material == null;
+        get => enabled;
         set
         {
-            if (iconRect != null)
-                iconRect.Material = value ? null : MonochromeShader;
-
             if (!value)
                 Selected = false;
-            UpdateSelectHighlightRing();
+            enabled = value;
+            selectHighlightRingDirty = true;
+            grayscaleDirty = true;
         }
     }
 
@@ -61,7 +66,7 @@ public class PatchMapNode : MarginContainer
                 return;
 
             patchIcon = value;
-            UpdateIcon();
+            iconDirty = true;
         }
     }
 
@@ -71,7 +76,7 @@ public class PatchMapNode : MarginContainer
         set
         {
             highlighted = value;
-            UpdateSelectHighlightRing();
+            selectHighlightRingDirty = true;
         }
     }
 
@@ -81,7 +86,7 @@ public class PatchMapNode : MarginContainer
         set
         {
             selected = value;
-            UpdateSelectHighlightRing();
+            selectHighlightRingDirty = true;
         }
     }
 
@@ -91,7 +96,7 @@ public class PatchMapNode : MarginContainer
         set
         {
             marked = value;
-            UpdateMarkRing();
+            markRingDirty = true;
         }
     }
 
@@ -103,10 +108,21 @@ public class PatchMapNode : MarginContainer
         iconRect = GetNode<TextureRect>(IconPath);
         highlightPanel = GetNode<Panel>(HighlightPanelPath);
         markPanel = GetNode<Panel>(MarkPanelPath);
+    }
 
-        UpdateSelectHighlightRing();
-        UpdateMarkRing();
-        UpdateIcon();
+    public override void _Process(float delta)
+    {
+        if (selectHighlightRingDirty)
+            UpdateSelectHighlightRing();
+
+        if (iconDirty)
+            UpdateIcon();
+
+        if (markRingDirty)
+            UpdateMarkRing();
+
+        if (grayscaleDirty)
+            UpdateGrayscale();
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -154,6 +170,8 @@ public class PatchMapNode : MarginContainer
         {
             highlightPanel.Visible = false;
         }
+
+        selectHighlightRingDirty = false;
     }
 
     private void UpdateMarkRing()
@@ -162,6 +180,7 @@ public class PatchMapNode : MarginContainer
             return;
 
         markPanel.Visible = Marked;
+        markRingDirty = false;
     }
 
     private void UpdateIcon()
@@ -170,5 +189,12 @@ public class PatchMapNode : MarginContainer
             return;
 
         iconRect.Texture = PatchIcon;
+        iconDirty = false;
+    }
+
+    private void UpdateGrayscale()
+    {
+        if (iconRect != null)
+            iconRect.Material = Enabled ? null : MonochromeShader;
     }
 }

@@ -32,6 +32,8 @@ public class PatchMapDrawer : Control
 
     private bool dirty = true;
 
+    private Dictionary<Patch, bool>? statusesToBeApplied;
+
     private PackedScene nodeScene = null!;
 
     private Patch? selectedPatch;
@@ -126,26 +128,14 @@ public class PatchMapDrawer : Control
         }
     }
 
-    /// <summary>
-    ///   Makes a patch monochrome and not selectable.
-    /// </summary>
-    public void SetPatchEnabledStatus(Patch patch, bool enabled)
-    {
-        var node = nodes.First(p => p.Patch?.ID == patch.ID);
-        node.Enabled = enabled;
-        if (SelectedPatch == patch && !enabled)
-            SelectedPatch = null;
-    }
-
     public void SetPatchEnabledStatuses(Dictionary<Patch, bool> statuses)
     {
-        SetPatchEnabledStatuses(statuses.Keys, p => statuses[p]);
+        statusesToBeApplied = statuses;
     }
 
     public void SetPatchEnabledStatuses(IEnumerable<Patch> patches, Func<Patch, bool> func)
     {
-        foreach (var patch in patches)
-            SetPatchEnabledStatus(patch, func(patch));
+        SetPatchEnabledStatuses(patches.ToDictionary(x => x, func));
     }
 
     private Vector2 Center(Vector2 pos)
@@ -183,6 +173,8 @@ public class PatchMapDrawer : Control
             node.MonochromeShader = MonochromeMaterial;
 
             node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
+
+            node.Enabled = statusesToBeApplied?[entry.Value] ?? true;
 
             AddChild(node);
             nodes.Add(node);
