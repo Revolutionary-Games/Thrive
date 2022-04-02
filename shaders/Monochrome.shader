@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform vec3 rgbMultipliers = vec3(1, 1, 1);
+uniform vec3 rgbMultipliers = vec3(0.30, 0.59, 0.11);
 
 void fragment() {
     COLOR = texture(TEXTURE, UV) * vec4(rgbMultipliers, 1);
