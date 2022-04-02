@@ -945,9 +945,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return;
 
         var hexes = GetDistinctHexesWithSymmetryMode(q, r);
-        var organelles = hexes.Select(p => editedMicrobeOrganelles.GetOrganelleAt(p.Hex)).ToList();
+        var organelles = hexes.Select(p => editedMicrobeOrganelles.GetOrganelleAt(p.Hex)).Where(p => p != null)
+            .ToList();
 
-        gui.ShowOrganelleMenu(organelle, organelles);
+        gui.ShowOrganelleMenu(organelle, organelles!);
     }
 
     public void StartOrganelleMove(Hex hex)
@@ -2531,13 +2532,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void UpdateUndoRedoButtons()
     {
-        gui.SetUndoButtonStatus(History.CanUndo() && MovingOrganelles == null);
-        gui.SetRedoButtonStatus(History.CanRedo() && MovingOrganelles == null);
+        gui.SetUndoButtonEnabled(History.CanUndo() && MovingOrganelles == null);
+        gui.SetRedoButtonEnabled(History.CanRedo() && MovingOrganelles == null);
     }
 
     private void UpdateSymmetryButton()
     {
-        gui.SetSymmetryButtonStatus(MovingOrganelles == null);
+        gui.SetSymmetryButtonEnabled(MovingOrganelles == null);
     }
 
     /// <summary>

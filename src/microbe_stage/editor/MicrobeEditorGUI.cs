@@ -1427,7 +1427,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
     }
 
-    public void ShowOrganelleMenu(OrganelleTemplate main, List<OrganelleTemplate?> selectedOrganelles)
+    public void ShowOrganelleMenu(OrganelleTemplate main, List<OrganelleTemplate> selectedOrganelles)
     {
         if (editor == null)
             throw new InvalidOperationException("GUI not initialized");
@@ -1437,28 +1437,30 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         selectedOrganelles.Insert(0, main);
 
         organelleMenu.GetActionPrice = editor.History.WhatWouldActionsCost;
-        organelleMenu.SelectedOrganelles = selectedOrganelles.Where(p => p != null).ToList()!;
+        organelleMenu.SelectedOrganelles = selectedOrganelles.ToList();
         organelleMenu.ShowPopup = true;
 
+        var count = selectedOrganelles.Count;
+
         // Disable delete for nucleus or the last organelle.
-        organelleMenu.EnableDeleteOption = editor.MicrobeSize > selectedOrganelles.Count(p => p != null) &&
+        organelleMenu.EnableDeleteOption = editor.MicrobeSize > count &&
             selectedOrganelles.All(o => o?.Definition != nucleus);
 
         // Move enabled only when microbe has more than one organelle
-        organelleMenu.EnableMoveOption = editor.MicrobeSize > selectedOrganelles.Count(o => o != null);
+        organelleMenu.EnableMoveOption = editor.MicrobeSize > count;
     }
 
-    internal void SetSymmetryButtonStatus(bool enabled)
+    internal void SetSymmetryButtonEnabled(bool enabled)
     {
         symmetryButton.Disabled = !enabled;
     }
 
-    internal void SetUndoButtonStatus(bool enabled)
+    internal void SetUndoButtonEnabled(bool enabled)
     {
         undoButton.Disabled = !enabled;
     }
 
-    internal void SetRedoButtonStatus(bool enabled)
+    internal void SetRedoButtonEnabled(bool enabled)
     {
         redoButton.Disabled = !enabled;
     }
