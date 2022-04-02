@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-02 19:29+0800\n"
+"POT-Creation-Date: 2022-04-02 19:50+0800\n"
 "PO-Revision-Date: 2022-02-27 23:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -3853,8 +3853,8 @@ msgid "CANNOT_WRITE_SAVE"
 msgstr "Cannot Write Save"
 
 #: ../src/saving/NewSaveMenu.tscn:125
-msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
-msgstr "Attempt to write this save file has failed. The save name may be too long or you may not have write access to the save folder."
+msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
+msgstr "The attempt to write this save file has failed. The save name may be too long or you may not have write access to the save folder."
 
 #: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
 msgid "SAVING_FAILED_WITH_EXCEPTION"

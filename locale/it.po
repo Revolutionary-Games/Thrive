@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-02 19:29+0800\n"
+"POT-Creation-Date: 2022-04-02 19:50+0800\n"
 "PO-Revision-Date: 2022-03-24 15:08+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -3854,8 +3854,9 @@ msgid "CANNOT_WRITE_SAVE"
 msgstr "Impedisce la fagocitazione"
 
 #: ../src/saving/NewSaveMenu.tscn:125
-msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
-msgstr ""
+#, fuzzy
+msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
+msgstr "Esecuzione dell'Auto-evo non riuscita"
 
 #: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
 msgid "SAVING_FAILED_WITH_EXCEPTION"
