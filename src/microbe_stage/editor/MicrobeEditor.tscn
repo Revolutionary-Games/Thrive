@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=2]
+[gd_scene load_steps=113 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -349,6 +349,8 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="ButtonGroup" id=31]
 
+[sub_resource type="ButtonGroup" id=35]
+
 [node name="MicrobeEditor" type="Node"]
 process_priority = -1
 script = ExtResource( 2 )
@@ -457,33 +459,6 @@ ExternalEffectsLabelPath = NodePath("Report/MarginContainer/HSplitContainer/Pane
 MapDrawerPath = NodePath("PatchMap/MarginContainer/HSplitContainer/MapPanel/MarginContainer/ScrollContainer/PatchMapDrawer")
 ReportTabPatchNamePath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchName")
 ReportTabPatchSelectorPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
-SpeedIndicatorPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed/Indicator")
-HpIndicatorPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HP/Indicator")
-SizeIndicatorPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size/Indicator")
-TotalPopulationIndicatorPath = NodePath("CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total/Indicator")
-PatchPlayerHerePath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PlayerHereLabel")
-PatchBiomePath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Biome")
-PatchDepthPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Depth")
-PatchTemperaturePath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature/TemperatureLabel")
-PatchPressurePath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Pressure/PressureLabel")
-PatchLightPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/LightLabel")
-PatchOxygenPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Oxygen/OxygenLabel")
-PatchNitrogenPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Nitrogen/NitrogenLabel")
-PatchCO2Path = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/CO2/CO2Label")
-PatchHydrogenSulfidePath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide/HydrogenSulfideLabel")
-PatchAmmoniaPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia/AmmoniaLabel")
-PatchGlucosePath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose/GlucoseLabel")
-PatchPhosphatePath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate/PhosphateLabel")
-PatchIronPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron/IronLabel")
-SpeciesCollapsibleBoxPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox")
-MoveToPatchButtonPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer2/MoveToPatchButton")
-PatchTemperatureSituationPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature/Situation")
-PatchLightSituationPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/Situation")
-PatchHydrogenSulfideSituationPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide/Situation")
-PatchGlucoseSituationPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose/Situation")
-PatchIronSituationPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron/Situation")
-PatchAmmoniaSituationPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia/Situation")
-PatchPhosphateSituationPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate/Situation")
 SpeedIndicatorPath = NodePath("CellEditor/RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed/Indicator")
 HpIndicatorPath = NodePath("CellEditor/RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HP/Indicator")
 SizeIndicatorPath = NodePath("CellEditor/RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size/Indicator")
@@ -493,13 +468,12 @@ AggressionSliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/Ma
 OpportunismSliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Opportunism/OpportunismSlider")
 FearSliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Fear/FearSlider")
 ActivitySliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Activity/ActivitySlider")
+PatchDetailsPanelPath = NodePath("PatchMap/MarginContainer/HSplitContainer/PatchDetailsPanel")
 FocusSliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Focus/FocusSlider")
 NegativeAtpPopupPath = NodePath("CellEditor/NegativeAtpWarning")
 IslandErrorPath = NodePath("CellEditor/IslandError")
 OrganelleMenuPath = NodePath("OrganellePopupMenu")
 SymmetryIconPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SymmetryButton/SymmetryIcon")
-CompoundBalancePath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
-PatchDetailsPanelPath = NodePath("PatchMap/MarginContainer/HSplitContainer/PatchDetailsPanel")
 CompoundBalancePath = NodePath("CellEditor/RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
 AutoEvoPredictionExplanationPopupPath = NodePath("PredictionExplanation")
 AutoEvoPredictionExplanationLabelPath = NodePath("PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ExplanationText")
@@ -989,7 +963,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 381.0
 margin_right = 302.0
-margin_bottom = 508.0
+margin_bottom = 615.0
 DisplayName = "EXTERNAL"
 Columns = 3
 TitleLabelPath = NodePath("../External/HBoxContainer/Title")
@@ -1013,7 +987,7 @@ margin_right = 302.0
 
 [node name="Clip" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External" index="1"]
 margin_right = 302.0
-margin_bottom = 127.0
+margin_bottom = 234.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip" index="0"]
 margin_right = 302.0
@@ -1030,13 +1004,14 @@ margin_right = 200.0
 SelectionGroup = SubResource( 15 )
 
 [node name="chemoreceptor" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="2" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
-margin_left = 102.0
-margin_right = 200.0
+margin_left = 204.0
+margin_right = 302.0
 SelectionGroup = SubResource( 15 )
 
 [node name="cilia" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="3" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
-margin_left = 204.0
-margin_right = 302.0
+margin_top = 107.0
+margin_right = 98.0
+margin_bottom = 210.0
 MPCost = 40
 PartIcon = ExtResource( 9 )
 PartName = "CILIA"
@@ -1046,9 +1021,9 @@ SelectionGroup = SubResource( 15 )
 [node name="Organelle" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 518.0
+margin_top = 625.0
 margin_right = 302.0
-margin_bottom = 966.0
+margin_bottom = 1073.0
 DisplayName = "ORGANELLES"
 Columns = 3
 TitleLabelPath = NodePath("../Organelle/HBoxContainer/Title")
@@ -1138,15 +1113,15 @@ margin_bottom = 317.0
 SelectionGroup = SubResource( 15 )
 
 [node name="signalingAgent" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="9" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
-margin_left = 204.0
-margin_top = 214.0
-margin_right = 302.0
-margin_bottom = 317.0
+margin_top = 321.0
+margin_right = 98.0
+margin_bottom = 424.0
 SelectionGroup = SubResource( 15 )
 
 [node name="bioluminescentVacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="10" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
+margin_left = 102.0
 margin_top = 321.0
-margin_right = 98.0
+margin_right = 200.0
 margin_bottom = 424.0
 PartIcon = ExtResource( 10 )
 PartName = "BIOLUMINESCENT_VACUOLE"
@@ -1348,10 +1323,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 44.0
-margin_top = 69.0
-margin_right = 360.0
-margin_bottom = 659.0
+margin_left = 48.0
+margin_top = 73.0
+margin_right = 364.0
+margin_bottom = 663.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
@@ -2358,8 +2333,8 @@ DialogText = "NEGATIVE_ATP_BALANCE_TEXT"
 margin_right = 600.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 600, 0 )
-HideCancelButton = true
 WindowTitle = "DISCONNECTED_ORGANELLES"
+HideCancelButton = true
 DialogText = "DISCONNECTED_ORGANELLES_TEXT"
 
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
@@ -3074,13 +3049,27 @@ anchor_bottom = 0.0
 margin_right = 886.0
 margin_bottom = 598.0
 DrawDefaultMapIfEmpty = false
-MonochromeMaterial = null
 
 [node name="PatchDetailsPanel" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer" instance=ExtResource( 108 )]
 margin_left = 920.0
 margin_top = 0.0
 margin_right = 1260.0
 margin_bottom = 620.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="MicrobeEditorGUI/PatchMap"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -150.0
+margin_top = -50.0
+grow_horizontal = 0
+rect_min_size = Vector2( 150, 0 )
+custom_constants/margin_right = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NextTabButton" type="Button" parent="MicrobeEditorGUI/PatchMap/MarginContainer2"]
 margin_right = 150.0
@@ -3130,7 +3119,7 @@ custom_styles/normal = SubResource( 12 )
 toggle_mode = true
 pressed = true
 action_mode = 0
-group = SubResource( 31 )
+group = SubResource( 35 )
 text = "REPORT"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3151,7 +3140,7 @@ custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
 toggle_mode = true
 action_mode = 0
-group = SubResource( 31 )
+group = SubResource( 35 )
 text = "PATCH_MAP"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3172,7 +3161,7 @@ custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
 toggle_mode = true
 action_mode = 0
-group = SubResource( 31 )
+group = SubResource( 35 )
 text = "EDITOR"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3383,6 +3372,7 @@ HelpCategory = "MicrobeEditor"
 [connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/sunlight" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendMoused" binds= [ "sunlight", false ]]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/sunlight" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendPressed" binds= [ "sunlight" ]]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/NextTabButton/Button" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "PatchMap" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MarginContainer2/NextTabButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "CellEditor" ]]
 [connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "Report" ]]
 [connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/PatchMapButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "PatchMap" ]]
 [connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "CellEditor" ]]
