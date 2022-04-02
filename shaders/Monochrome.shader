@@ -4,6 +4,6 @@ uniform vec3 rgbMultipliers = vec3(1, 1, 1);
 
 void fragment() {
     COLOR = texture(TEXTURE, UV) * vec4(rgbMultipliers, 1);
-    float avg = (COLOR.r + COLOR.g + COLOR.b) / 3.0;
+    float avg = (COLOR.r + COLOR.g + COLOR.b) / (rgbMultipliers.r + rgbMultipliers.g + rgbMultipliers.b);
     COLOR.rgb = vec3(avg);
 }
