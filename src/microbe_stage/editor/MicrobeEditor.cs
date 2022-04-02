@@ -2513,7 +2513,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return false;
         }
 
-        // Or if they are in the process of moving an organelle
+        // Block creating a new microbe when moving an organelle
         if (MovingOrganelles != null && actionData.OfType<NewMicrobeActionData>().Any())
         {
             // Play sound
