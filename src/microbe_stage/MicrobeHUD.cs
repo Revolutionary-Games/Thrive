@@ -244,9 +244,9 @@ public class MicrobeHUD : Control
     private Label patchLabel = null!;
     private AnimationPlayer patchOverlayAnimator = null!;
     private TextureButton editorButton = null!;
+    private CustomDialog? winBox;
     private CustomDialog? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
-    private CustomDialog? winBox;
     private PackedScene patchExtinctionBoxScene = null!;
     private Tween panelsTween = null!;
     private Control winExtinctBoxHolder = null!;
