@@ -1620,7 +1620,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private void OnDeletePressed()
     {
         if (organelleMenu.MainOrganelle == null)
-            throw new ArgumentException("No Organelle selected when trying to delete");
+            throw new InvalidOperationException("No Organelle selected when trying to delete");
 
         editor!.RemoveOrganelle(organelleMenu.MainOrganelle.Position);
     }
@@ -1628,7 +1628,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private void OnModifyPressed()
     {
         if (organelleMenu.MainOrganelle == null)
-            throw new ArgumentException("No Organelle selected when trying to modify");
+            throw new InvalidOperationException("No Organelle selected when trying to modify");
 
         var upgradeGUI = organelleMenu.MainOrganelle.Definition.UpgradeGUI;
 
