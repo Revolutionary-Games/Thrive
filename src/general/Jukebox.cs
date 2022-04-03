@@ -69,8 +69,7 @@ public class Jukebox : Node
     }
 
     private List<string> PlayingTracks => audioPlayers.Where(player => player.Playing)
-        .Select(player => player.CurrentTrack)
-        .DiscardNulls().ToList()!;
+        .Select(player => player.CurrentTrack).DiscardNulls().ToList();
 
     public override void _Ready()
     {
