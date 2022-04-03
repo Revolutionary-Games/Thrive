@@ -48,7 +48,7 @@ public class MicrobeAI
     ///   before resuming motion.
     /// </summary>
     [JsonProperty]
-    private float atpTreshold;
+    private float atpThreshold;
 
     /// <summary>
     ///   Stores the value of microbe.totalAbsorbedCompound at tick t-1 before it is cleared and updated at tick t.
@@ -169,12 +169,12 @@ public class MicrobeAI
         // If this microbe is out of ATP, pick an amount of time to rest
         if (microbe.Compounds.GetCompoundAmount(atp) < 1.0f)
         {
-            atpTreshold = SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
+            atpThreshold = SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
         }
 
-        if (atpTreshold > 0.0f)
+        if (atpThreshold > 0.0f)
         {
-            if (microbe.Compounds.GetCompoundAmount(atp) < microbe.Compounds.Capacity * atpTreshold
+            if (microbe.Compounds.GetCompoundAmount(atp) < microbe.Compounds.Capacity * atpThreshold
                 && microbe.Compounds.Where(compound => IsVitalCompound(compound.Key) && compound.Value > 0.0f)
                     .Count() > 0)
             {
@@ -182,7 +182,7 @@ public class MicrobeAI
                 return;
             }
 
-            atpTreshold = 0.0f;
+            atpThreshold = 0.0f;
         }
 
         // Follow received commands if we have them
