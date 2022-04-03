@@ -1613,7 +1613,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (organelleMenu.MainOrganelle == null)
             throw new InvalidOperationException("No Organelle selected when trying to move");
 
-        editor!.StartOrganelleMove(organelleMenu.MainOrganelle.Position);
+        editor!.StartOrganelleMoveAtHexWithSymmetryMode(organelleMenu.MainOrganelle.Position);
 
         // Once an organelle move has begun, the button visibility should be updated so it becomes visible
         UpdateCancelButtonVisibility();
@@ -1624,7 +1624,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (organelleMenu.MainOrganelle == null)
             throw new InvalidOperationException("No Organelle selected when trying to delete");
 
-        editor!.RemoveOrganelle(organelleMenu.MainOrganelle.Position);
+        editor!.RemoveOrganelleAtHexWithSymmetryMode(organelleMenu.MainOrganelle.Position);
     }
 
     private void OnModifyPressed()

@@ -955,7 +955,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.ShowOrganelleMenu(organelles);
     }
 
-    public void StartOrganelleMove(Hex hex)
+    public void StartOrganelleMoveAtHexWithSymmetryMode(Hex hex)
     {
         if (MovingOrganelles != null)
         {
@@ -1000,7 +1000,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         GetMouseHex(out int q, out int r);
 
-        StartOrganelleMove(new Hex(q, r));
+        StartOrganelleMoveAtHexWithSymmetryMode(new Hex(q, r));
 
         // Once an organelle move has begun, the button visibility should be updated so it becomes visible
         gui.UpdateCancelButtonVisibility();
@@ -1031,7 +1031,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         return false;
     }
 
-    public void RemoveOrganelle(Hex hex)
+    public void RemoveOrganelleAtHexWithSymmetryMode(Hex hex)
     {
         int q = hex.Q;
         int r = hex.R;
@@ -1058,7 +1058,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (organelle == null)
             return;
 
-        RemoveOrganelle(mouseHex);
+        RemoveOrganelleAtHexWithSymmetryMode(mouseHex);
     }
 
     public float CalculateSpeed()
