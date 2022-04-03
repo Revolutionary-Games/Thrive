@@ -960,7 +960,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         MovingOrganelles = new List<OrganelleTemplate?>();
-        var hexes = GetDistinctHexesWithSymmetryMode(hex.Q, hex.R);
+        var hexes = GetHexesWithSymmetryMode(hex.Q, hex.R);
         foreach (var (symmetryHex, _) in hexes)
         {
             var organelle = editedMicrobeOrganelles.GetOrganelleAt(symmetryHex);
@@ -2191,11 +2191,20 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <returns>True if the organelle move succeeded.</returns>
     private bool MoveOrganelle(List<OrganelleTemplate?> organelles, Hex newLocation, int newRotation)
     {
-        // Make sure placement is valid
-        if (organelles.Any(o => o != null && !IsMoveTargetValid(newLocation, newRotation, o)))
-            return false;
-
         var hexes = GetHexesWithSymmetryMode(newLocation.Q, newLocation.R);
+
+        // Make sure placement is valid
+        for (var i = 0; i < organelles.Count; i++)
+        {
+            var o = organelles[i];
+            if (o == null)
+                continue;
+
+            var (hex, orientation) = hexes[i];
+            if (!IsMoveTargetValid(hex, orientation, o))
+                return false;
+        }
+
         var multiAction = GetMultiActionWithOccupancies(hexes, organelles, true);
 
         // Too low mutation points, cancel move
