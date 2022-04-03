@@ -955,7 +955,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.ShowOrganelleMenu(organelles);
     }
 
-    public void StartOrganelleMoveAtHexWithSymmetryMode(Hex hex)
+    public void StartOrganelleMoveAtHexWithSymmetryMode(IEnumerable<OrganelleTemplate?> selectedOrganelles)
     {
         if (MovingOrganelles != null)
         {
@@ -964,11 +964,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         MovingOrganelles = new List<OrganelleTemplate?>();
-        var hexes = GetHexesWithSymmetryMode(hex.Q, hex.R);
-        foreach (var (symmetryHex, _) in hexes)
-        {
-            var organelle = editedMicrobeOrganelles.GetOrganelleAt(symmetryHex);
 
+        foreach (var organelle in selectedOrganelles)
+        {
             MovingOrganelles.Add(organelle);
             if (organelle != null)
                 editedMicrobeOrganelles.Remove(organelle);
@@ -999,8 +997,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         GetMouseHex(out int q, out int r);
+        var hexes = GetHexesWithSymmetryMode(q, r).Select(h => editedMicrobeOrganelles.GetOrganelleAt(h.Hex));
 
-        StartOrganelleMoveAtHexWithSymmetryMode(new Hex(q, r));
+        StartOrganelleMoveAtHexWithSymmetryMode(hexes);
 
         // Once an organelle move has begun, the button visibility should be updated so it becomes visible
         gui.UpdateCancelButtonVisibility();
@@ -1031,15 +1030,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         return false;
     }
 
-    public void RemoveOrganelleAtHexWithSymmetryMode(Hex hex)
+    public void RemoveOrganelleAtHexWithSymmetryMode(IEnumerable<OrganelleTemplate> selectedOrganelles)
     {
-        int q = hex.Q;
-        int r = hex.R;
-
-        var hexes = GetDistinctHexesWithSymmetryMode(q, r);
         var action =
-            new CombinedMicrobeEditorAction(
-                hexes.Select(pos => RemoveOrganelleAt(pos.Hex)).DiscardNulls().ToArray());
+            new CombinedMicrobeEditorAction(selectedOrganelles.Select(RemoveOrganelleAt).DiscardNulls().ToArray());
         EnqueueAction(action);
     }
 
@@ -1051,14 +1045,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         GetMouseHex(out int q, out int r);
 
-        Hex mouseHex = new Hex(q, r);
+        var hexes =
+            GetHexesWithSymmetryMode(q, r).Select(h => editedMicrobeOrganelles.GetOrganelleAt(h.Hex)).DiscardNulls();
 
-        var organelle = editedMicrobeOrganelles.GetOrganelleAt(mouseHex);
-
-        if (organelle == null)
-            return;
-
-        RemoveOrganelleAtHexWithSymmetryMode(mouseHex);
+        RemoveOrganelleAtHexWithSymmetryMode(hexes);
     }
 
     public float CalculateSpeed()
@@ -2142,18 +2132,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         editedMicrobeOrganelles.Add(data.Organelle);
     }
 
-    private MicrobeEditorAction? RemoveOrganelleAt(Hex location)
+    private MicrobeEditorAction? RemoveOrganelleAt(OrganelleTemplate organelle)
     {
-        var organelleHere = editedMicrobeOrganelles.GetOrganelleAt(location);
-        if (organelleHere == null)
-            return null;
-
         // Dont allow deletion of nucleus or the last organelle
-        if (organelleHere.Definition.InternalName == "nucleus" || MicrobeSize < 2)
+        if (organelle.Definition.InternalName == "nucleus" || MicrobeSize < 2)
             return null;
 
         return new SingleMicrobeEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
-            new RemoveActionData(organelleHere, location, organelleHere.Orientation));
+            new RemoveActionData(organelle, organelle.Position, organelle.Orientation));
     }
 
     [DeserializedCallbackAllowed]
