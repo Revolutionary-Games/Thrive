@@ -945,8 +945,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return;
 
         var hexes = GetDistinctHexesWithSymmetryMode(q, r);
-        List<OrganelleTemplate> organelles = hexes.Select(p => editedMicrobeOrganelles.GetOrganelleAt(p.Hex))
-            .Where(p => p != null).ToList()!;
+        var organelles = hexes.Select(p => editedMicrobeOrganelles.GetOrganelleAt(p.Hex))
+            .DiscardNulls().ToList();
 
         // Put main organelle to the beginning
         organelles.Remove(organelle);
@@ -1039,7 +1039,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var hexes = GetDistinctHexesWithSymmetryMode(q, r);
         var action =
             new CombinedMicrobeEditorAction(
-                hexes.Select(pos => RemoveOrganelleAt(pos.Hex)).Where(a => a != null).ToArray()!);
+                hexes.Select(pos => RemoveOrganelleAt(pos.Hex)).DiscardNulls().ToArray());
         EnqueueAction(action);
     }
 
@@ -1985,8 +1985,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var organelleTemplates = hexes
             .Select(hex => new OrganelleTemplate(organelleDefinition, hex.Hex, hex.Orientation)).ToList();
 
-        var multiAction = new CombinedMicrobeEditorAction(organelleTemplates.Select(PlaceIfPossible).Where(a => a != null)
-            .Select(a => (MicrobeEditorAction)a!).ToArray());
+        var multiAction = new CombinedMicrobeEditorAction(organelleTemplates.Select(PlaceIfPossible).DiscardNulls()
+            .Select(a => (MicrobeEditorAction)a).ToArray());
 
         return EnqueueAction(multiAction);
     }

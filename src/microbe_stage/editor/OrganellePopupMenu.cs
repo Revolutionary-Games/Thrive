@@ -232,7 +232,7 @@ public class OrganellePopupMenu : PopupPanel
         if (selectedOrganelleNameLabel == null)
             return;
 
-        var names = SelectedOrganelles.Where(p => p != null).Select(p => p!.Definition.Name).Distinct().ToList();
+        var names = SelectedOrganelles.DiscardNulls().Select(p => p.Definition.Name).Distinct().ToList();
 
         if (names.Count == 1)
         {
@@ -250,8 +250,8 @@ public class OrganellePopupMenu : PopupPanel
             return;
 
         var mpCost = GetActionPrice?.Invoke(
-            SelectedOrganelles.Where(o => o != null)
-                .Select(o => (MicrobeEditorCombinableActionData)new RemoveActionData(o!, o!.Position, o.Orientation))
+            SelectedOrganelles.DiscardNulls()
+                .Select(o => (MicrobeEditorCombinableActionData)new RemoveActionData(o, o.Position, o.Orientation))
                 .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
@@ -267,8 +267,8 @@ public class OrganellePopupMenu : PopupPanel
         if (moveButton == null)
             return;
 
-        var mpCost = GetActionPrice?.Invoke(SelectedOrganelles.Where(o => o != null).Select(o =>
-                (MicrobeEditorCombinableActionData)new MoveActionData(o!, o!.Position, o.Position, o.Orientation,
+        var mpCost = GetActionPrice?.Invoke(SelectedOrganelles.DiscardNulls().Select(o =>
+                (MicrobeEditorCombinableActionData)new MoveActionData(o, o.Position, o.Position, o.Orientation,
                     o.Orientation))
             .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 

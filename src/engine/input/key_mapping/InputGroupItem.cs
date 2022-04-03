@@ -89,7 +89,7 @@ public class InputGroupItem : VBoxContainer
 
         // Build child objects
         result.Actions = data.Actions
-            .Select(x => InputActionItem.BuildGUI(result, x, inputData[x.InputName].Where(i => i != null)!)).ToList();
+            .Select(x => InputActionItem.BuildGUI(result, x, inputData[x.InputName].DiscardNulls())).ToList();
 
         // When the result is attached to the scene tree it attaches the child objects. So it *must* be attached
         // at least one otherwise the child objects leak

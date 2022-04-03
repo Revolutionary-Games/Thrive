@@ -70,7 +70,7 @@ public class Jukebox : Node
 
     private List<string> PlayingTracks => audioPlayers.Where(player => player.Playing)
         .Select(player => player.CurrentTrack)
-        .Where(t => t != null).ToList()!;
+        .DiscardNulls().ToList()!;
 
     public override void _Ready()
     {
