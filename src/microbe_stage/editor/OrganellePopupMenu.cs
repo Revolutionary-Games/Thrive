@@ -232,7 +232,7 @@ public class OrganellePopupMenu : PopupPanel
         if (selectedOrganelleNameLabel == null)
             return;
 
-        var names = SelectedOrganelles.DiscardNulls().Select(p => p.Definition.Name).Distinct().ToList();
+        var names = SelectedOrganelles.Select(p => p.Definition.Name).Distinct().ToList();
 
         if (names.Count == 1)
         {
@@ -250,7 +250,7 @@ public class OrganellePopupMenu : PopupPanel
             return;
 
         var mpCost = GetActionPrice?.Invoke(
-            SelectedOrganelles.DiscardNulls()
+            SelectedOrganelles
                 .Select(o => (MicrobeEditorCombinableActionData)new RemoveActionData(o, o.Position, o.Orientation))
                 .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
@@ -267,7 +267,7 @@ public class OrganellePopupMenu : PopupPanel
         if (moveButton == null)
             return;
 
-        var mpCost = GetActionPrice?.Invoke(SelectedOrganelles.DiscardNulls().Select(o =>
+        var mpCost = GetActionPrice?.Invoke(SelectedOrganelles.Select(o =>
                 (MicrobeEditorCombinableActionData)new MoveActionData(o, o.Position, o.Position, o.Orientation,
                     o.Orientation))
             .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
