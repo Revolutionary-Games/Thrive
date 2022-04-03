@@ -19,9 +19,8 @@ public static class PatchMapGenerator
         var name = nameGenerator.Next();
 
         // Predefined patches
-        var localizedName = GetPatchLocalizedName(name, "VOLCANIC_VENT");
-        GD.Print(localizedName.ToString());
-        var vents = new Patch(GetPatchLocalizedName(name, "VOLCANIC_VENT"), 0,
+        string localizedName = GetPatchLocalizedName(name, "VOLCANIC_VENT").ToString();
+        var vents = new Patch(localizedName, 0,
             GetBiomeTemplate("aavolcanic_vent"))
         {
             Depth =
@@ -34,7 +33,8 @@ public static class PatchMapGenerator
         vents.AddSpecies(defaultSpecies);
         map.AddPatch(vents);
 
-        var mesopelagic = new Patch(GetPatchLocalizedName(name, "MESOPELAGIC"), 1,
+        localizedName = GetPatchLocalizedName(name, "MESOPELAGIC").ToString();
+        var mesopelagic = new Patch(localizedName, 1,
             GetBiomeTemplate("mesopelagic"))
         {
             Depth =
@@ -46,8 +46,8 @@ public static class PatchMapGenerator
         };
         map.AddPatch(mesopelagic);
 
-
-        var epipelagic = new Patch(GetPatchLocalizedName(name, "EPIPELAGIC"), 2,
+        localizedName = GetPatchLocalizedName(name, "EPIPELAGIC").ToString();
+        var epipelagic = new Patch(localizedName, 2,
             GetBiomeTemplate("default"))
         {
             Depth =
@@ -59,8 +59,8 @@ public static class PatchMapGenerator
         };
         map.AddPatch(epipelagic);
 
-
-        var tidepool = new Patch(GetPatchLocalizedName(name, "TIDEPOOL"), 3,
+        localizedName = GetPatchLocalizedName(name, "TIDEPOOL").ToString();
+        var tidepool = new Patch(localizedName, 3,
             GetBiomeTemplate("tidepool"))
         {
             Depth =
@@ -72,8 +72,8 @@ public static class PatchMapGenerator
         };
         map.AddPatch(tidepool);
 
-
-        var bathypelagic = new Patch(GetPatchLocalizedName(name, "BATHYPELAGIC"), 4,
+        localizedName = GetPatchLocalizedName(name, "BATHYPELAGIC").ToString();
+        var bathypelagic = new Patch(localizedName, 4,
             GetBiomeTemplate("bathypelagic"))
         {
             Depth =
@@ -85,7 +85,8 @@ public static class PatchMapGenerator
         };
         map.AddPatch(bathypelagic);
 
-        var abyssopelagic = new Patch(GetPatchLocalizedName(name, "ABYSSOPELAGIC"), 5,
+        localizedName = GetPatchLocalizedName(name, "ABYSSOPELAGIC").ToString();
+        var abyssopelagic = new Patch(localizedName, 5,
             GetBiomeTemplate("abyssopelagic"))
         {
             Depth =
@@ -97,7 +98,8 @@ public static class PatchMapGenerator
         };
         map.AddPatch(abyssopelagic);
 
-        var coast = new Patch(GetPatchLocalizedName(name, "COASTAL"), 6,
+        localizedName = GetPatchLocalizedName(name, "COASTAL").ToString();
+        var coast = new Patch(localizedName, 6,
             GetBiomeTemplate("coastal"))
         {
             Depth =
@@ -109,7 +111,8 @@ public static class PatchMapGenerator
         };
         map.AddPatch(coast);
 
-        var estuary = new Patch(GetPatchLocalizedName(name, "ESTUARY"), 7,
+        localizedName = GetPatchLocalizedName(name, "ESTUARY").ToString();
+        var estuary = new Patch(localizedName, 7,
             GetBiomeTemplate("estuary"))
         {
             Depth =
@@ -121,7 +124,8 @@ public static class PatchMapGenerator
         };
         map.AddPatch(estuary);
 
-        var cave = new Patch(GetPatchLocalizedName(name, "UNDERWATERCAVE"), 8,
+        localizedName = GetPatchLocalizedName(name, "UNDERWATERCAVE").ToString();
+        var cave = new Patch(localizedName, 8,
             GetBiomeTemplate("underwater_cave"))
         {
             Depth =
@@ -133,7 +137,8 @@ public static class PatchMapGenerator
         };
         map.AddPatch(cave);
 
-        var iceShelf = new Patch(GetPatchLocalizedName(name, "ICESHELF"), 9,
+        localizedName = GetPatchLocalizedName(name, "ICESHELF").ToString();
+        var iceShelf = new Patch(localizedName, 9,
             GetBiomeTemplate("ice_shelf"))
         {
             Depth =
@@ -145,8 +150,8 @@ public static class PatchMapGenerator
         };
         map.AddPatch(iceShelf);
 
-
-        var seafloor = new Patch(GetPatchLocalizedName(name, "SEA_FLOOR"), 10,
+        localizedName = GetPatchLocalizedName(name, "SEA_FLOOR").ToString();
+        var seafloor = new Patch(localizedName, 10,
             GetBiomeTemplate("seafloor"))
         {
             Depth =
@@ -201,12 +206,13 @@ public static class PatchMapGenerator
         _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
     }
 
-    private static LocalizedStringBuilder GetPatchLocalizedName(string name, string biomeKey)
+    private static LocalizedStringBuilder GetPatchLocalizedName(string name, string localizedBiome)
     {
-        LocalizedStringBuilder localizedName = new LocalizedStringBuilder();
-        localizedName.Append(name);
-        localizedName.Append(" ");
-        localizedName.Append(new LocalizedString(biomeKey));
-        return localizedName;
+        var localizedNames = new LocalizedStringBuilder();
+        localizedNames.Append(name);
+        localizedNames.Append(" ");
+        localizedNames.Append(new LocalizedString(localizedBiome));
+
+        return localizedNames;
     }
 }

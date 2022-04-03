@@ -246,7 +246,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
                 throw new InvalidOperationException("Stage not initialized properly");
 
-            HUD.UpdatePatchInfo(TranslationServer.Translate(CurrentGame.GameWorld.Map.CurrentPatch.Name.ToString()));
+            HUD.UpdatePatchInfo(TranslationServer.Translate(CurrentGame.GameWorld.Map.CurrentPatch.Name));
         }
     }
 
@@ -723,7 +723,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             HUD.PopupPatchInfo();
         }
 
-        HUD.UpdatePatchInfo(TranslationServer.Translate(GameWorld.Map.CurrentPatch!.Name.ToString()));
+        HUD.UpdatePatchInfo(TranslationServer.Translate(GameWorld.Map.CurrentPatch!.Name));
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
 
         UpdateBackground();

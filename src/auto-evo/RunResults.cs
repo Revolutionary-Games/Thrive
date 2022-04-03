@@ -537,7 +537,7 @@
                 }
 
                 builder2.Append(' ');
-                builder2.Append(new LocalizedString(patch.Name.ToString()));
+                builder2.Append(new LocalizedString(patch.Name));
 
                 return builder2;
             }
@@ -625,7 +625,7 @@
                     {
                         builder.Append("   ");
 
-                        builder.Append(new LocalizedString(patch.Name.ToString()));
+                        builder.Append(new LocalizedString(patch.Name));
                         builder.Append('\n');
                     }
                 }
@@ -658,17 +658,17 @@
                         {
                             builder.Append("  ");
                             builder.Append(new LocalizedString("RUN_RESULT_BY_SENDING_POPULATION",
-                                new LocalizedString(spreadEntry.To.Name.ToString()), spreadEntry.Population,
-                                new LocalizedString(spreadEntry.From.Name.ToString())));
+                                new LocalizedString(spreadEntry.To.Name), spreadEntry.Population,
+                                new LocalizedString(spreadEntry.From.Name)));
                         }
                         else
                         {
                             builder.Append("  ");
-                            builder.Append(new LocalizedString(spreadEntry.To.Name.ToString()));
+                            builder.Append(new LocalizedString(spreadEntry.To.Name));
                             builder.Append(" pop: ");
                             builder.Append(spreadEntry.Population);
                             builder.Append(" from: ");
-                            builder.Append(new LocalizedString(spreadEntry.From.Name.ToString()));
+                            builder.Append(new LocalizedString(spreadEntry.From.Name));
                         }
 
                         builder.Append('\n');
@@ -889,18 +889,18 @@
                 {
                     // Log to destination patch
                     patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_FROM", migration.Key.FormattedName,
-                            new LocalizedString(migration.Value.From.Name.ToString())),
+                            new LocalizedString(migration.Value.From.Name)),
                         migration.Key.PlayerSpecies, "newSpecies.png");
 
                     // Log to game world
                     world.LogEvent(new LocalizedString("GLOBAL_TIMELINE_SPECIES_MIGRATED_TO",
-                            migration.Key.FormattedName, new LocalizedString(migration.Value.To.Name.ToString()),
-                            new LocalizedString(migration.Value.From.Name.ToString())),
+                            migration.Key.FormattedName, new LocalizedString(migration.Value.To.Name),
+                            new LocalizedString(migration.Value.From.Name)),
                         migration.Key.PlayerSpecies, "newSpecies.png");
 
                     // Log to origin patch
                     migration.Value.From.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO",
-                            migration.Key.FormattedName, new LocalizedString(migration.Value.To.Name.ToString())),
+                            migration.Key.FormattedName, new LocalizedString(migration.Value.To.Name)),
                         migration.Key.PlayerSpecies, "newSpecies.png");
                 }
 

@@ -63,8 +63,8 @@ public class PatchManager : IChildPropertiesLoadCallback
         {
             if (previousPatch != null)
             {
-                GD.Print("Previous patch (", TranslationServer.Translate(previousPatch.Name.ToString()), ") different to " +
-                    "current patch (", TranslationServer.Translate(currentPatch.Name.ToString()), ") despawning all entities.");
+                GD.Print("Previous patch (", TranslationServer.Translate(previousPatch.Name), ") different to " +
+                    "current patch (", TranslationServer.Translate(currentPatch.Name), ") despawning all entities.");
             }
             else
             {
@@ -86,7 +86,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         previousPatch = currentPatch;
         skipDespawn = false;
 
-        GD.Print("Applying patch (", TranslationServer.Translate(currentPatch.Name.ToString()), ") settings");
+        GD.Print("Applying patch (", TranslationServer.Translate(currentPatch.Name), ") settings");
 
         // Update environment for process system
         processSystem.SetBiome(currentPatch.Biome);

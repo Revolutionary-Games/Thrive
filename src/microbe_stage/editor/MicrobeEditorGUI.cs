@@ -1263,7 +1263,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     public void UpdateReportTabPatchName(Patch patch)
     {
-        reportTabPatchName.Text = TranslationServer.Translate(patch.Name.ToString());
+        reportTabPatchName.Text = TranslationServer.Translate(patch.Name);
     }
 
     public void UpdateReportTabPatchSelector()
@@ -1277,7 +1277,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         foreach (var patch in editor.CurrentPatch.GetClosestConnectedPatches())
         {
-            reportTabPatchSelector.AddItem(TranslationServer.Translate(patch.Name.ToString()), patch.ID);
+            reportTabPatchSelector.AddItem(TranslationServer.Translate(patch.Name), patch.ID);
         }
 
         reportTabPatchSelector.Select(editor.CurrentPatch.ID);
@@ -1306,7 +1306,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (editor == null)
             throw new InvalidOperationException("GUI not initialized");
 
-        patchName.Text = TranslationServer.Translate(patch.Name.ToString());
+        patchName.Text = TranslationServer.Translate(patch.Name);
 
         // Biome: {0}
         patchBiome.Text = string.Format(CultureInfo.CurrentCulture,
@@ -2159,7 +2159,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (sorted.Count > 0)
         {
             var patch = sorted[0];
-            bestPatchName = patch.Key.Name.ToString();
+            bestPatchName = patch.Key.Name;
             bestPatchPopulation = patch.Value;
         }
         else
@@ -2171,7 +2171,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (sorted.Count > 1)
         {
             var patch = sorted[sorted.Count - 1];
-            worstPatchName = patch.Key.Name.ToString();
+            worstPatchName = patch.Key.Name;
             worstPatchPopulation = patch.Value;
         }
         else
@@ -2525,7 +2525,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         foreach (var energyResult in energyResults)
         {
             predictionDetailsText.Append(new LocalizedString("ENERGY_IN_PATCH_FOR",
-                new LocalizedString(energyResult.Key.Name.ToString()), playerSpeciesName));
+                new LocalizedString(energyResult.Key.Name), playerSpeciesName));
             predictionDetailsText.Append('\n');
 
             predictionDetailsText.Append(new LocalizedString("ENERGY_SUMMARY_LINE",
