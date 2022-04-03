@@ -547,7 +547,7 @@ HideCancelButton = true
 DialogText = "CANNOT_DELETE_USED_CELL_TYPE"
 
 [node name="NewCellTypeSetup" parent="." instance=ExtResource( 7 )]
-rect_min_size = Vector2( 200, 90 )
+rect_min_size = Vector2( 550, 90 )
 WindowTitle = "CREATE_NEW_CELL_TYPE"
 HideOnOk = false
 
@@ -563,6 +563,7 @@ __meta__ = {
 margin_right = 381.0
 margin_bottom = 25.0
 text = "CREATE_NEW_CELL_TYPE_DESCRIPTION"
+autowrap = true
 
 [node name="Spacer" type="Control" parent="NewCellTypeSetup/VBoxContainer2"]
 margin_top = 29.0
@@ -585,6 +586,7 @@ placeholder_text = "NEW_NAME"
 
 [node name="BottomButtonSpacer" type="Control" parent="NewCellTypeSetup/VBoxContainer2"]
 margin_top = 102.0
+margin_right = 381.0
 margin_bottom = 147.0
 rect_min_size = Vector2( 0, 45 )
 mouse_filter = 2

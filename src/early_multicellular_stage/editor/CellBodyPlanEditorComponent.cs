@@ -919,8 +919,6 @@ public partial class CellBodyPlanEditorComponent :
             return;
         }
 
-        GUICommon.Instance.PlayButtonPressSound();
-
         var type = CellTypeFromName(activeActionName!);
 
         // TODO: make this a reversible action
