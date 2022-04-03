@@ -945,10 +945,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return;
 
         var hexes = GetDistinctHexesWithSymmetryMode(q, r);
-        var organelles = hexes.Select(p => editedMicrobeOrganelles.GetOrganelleAt(p.Hex)).Where(p => p != null)
-            .ToList();
+        List<OrganelleTemplate> organelles = hexes.Select(p => editedMicrobeOrganelles.GetOrganelleAt(p.Hex))
+            .Where(p => p != null).ToList()!;
 
-        gui.ShowOrganelleMenu(organelle, organelles!);
+        // Put main organelle to the beginning
+        organelles.Remove(organelle);
+        organelles.Insert(0, organelle);
+
+        gui.ShowOrganelleMenu(organelles);
     }
 
     public void StartOrganelleMove(Hex hex)

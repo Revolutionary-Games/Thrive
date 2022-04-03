@@ -1427,14 +1427,16 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
     }
 
-    public void ShowOrganelleMenu(OrganelleTemplate main, List<OrganelleTemplate> selectedOrganelles)
+    /// <summary>
+    ///   Show the organelle popup
+    /// </summary>
+    /// <param name="selectedOrganelles">
+    ///     A list with the selected organelles. The first element should be the main element.
+    /// </param>
+    public void ShowOrganelleMenu(List<OrganelleTemplate> selectedOrganelles)
     {
         if (editor == null)
             throw new InvalidOperationException("GUI not initialized");
-
-        // Put main organelle to the beginning
-        selectedOrganelles.Remove(main);
-        selectedOrganelles.Insert(0, main);
 
         organelleMenu.GetActionPrice = editor.History.WhatWouldActionsCost;
         organelleMenu.SelectedOrganelles = selectedOrganelles.ToList();
