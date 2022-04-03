@@ -826,16 +826,17 @@ public partial class CellEditorComponent :
     ///   Show options for the organelle under the cursor
     /// </summary>
     [RunOnKeyDown("e_secondary")]
-    public void ShowOrganelleOptions()
+    public bool ShowOrganelleOptions()
     {
-        if (MicrobePreviewMode)
-            return;
+        // Need to prevent this from running when not visible to not conflict in an editor with multiple tabs
+        if (MicrobePreviewMode || !Visible)
+            return false;
 
         // Can't open organelle popup menu while moving something
         if (MovingPlacedHex != null)
         {
             Editor.OnActionBlockedWhileMoving();
-            return;
+            return true;
         }
 
         GetMouseHex(out int q, out int r);
@@ -843,9 +844,10 @@ public partial class CellEditorComponent :
         var organelle = editedMicrobeOrganelles.GetElementAt(new Hex(q, r));
 
         if (organelle == null)
-            return;
+            return true;
 
         ShowOrganelleMenu(organelle);
+        return true;
     }
 
     public float CalculateSpeed()
