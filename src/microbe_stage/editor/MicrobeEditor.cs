@@ -2192,6 +2192,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private bool MoveOrganelle(List<OrganelleTemplate?> organelles, Hex newLocation, int newRotation)
     {
         var hexes = GetHexesWithSymmetryMode(newLocation.Q, newLocation.R);
+        var occupiedHexes = new HashSet<Hex>();
 
         // Make sure placement is valid
         for (var i = 0; i < organelles.Count; i++)
@@ -2202,6 +2203,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
             var (hex, orientation) = hexes[i];
             if (!IsMoveTargetValid(hex, orientation, o))
+                return false;
+
+            var oHexes = o.Definition.GetRotatedHexes(orientation).Select(h => h + hex);
+            if (oHexes.Any(h => !occupiedHexes.Add(h)))
                 return false;
         }
 
