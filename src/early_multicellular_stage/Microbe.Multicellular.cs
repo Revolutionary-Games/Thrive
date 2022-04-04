@@ -65,15 +65,16 @@ public partial class Microbe
         // Attach the created cell to the right spot in our colony
         var ourTransform = GlobalTransform;
 
-        var attachVector = ourTransform.origin + Hex.AxialToCartesian(template.Position);
-
         // TODO: figure out the actually right math for the cell position attach
         // If we don't adjust like this the cells overlap way too much
-        attachVector *= Constants.MULTICELLULAR_CELL_ATTACH_DISTANCE_MULTIPLIER;
+        var attachVector = ourTransform.origin + ourTransform.basis.Xform(Hex.AxialToCartesian(template.Position) *
+            Constants.MULTICELLULAR_CELL_ATTACH_DISTANCE_MULTIPLIER);
+
+        GD.Print("attach vector: ", attachVector);
 
         cell.GlobalTransform = new Transform(
             MathUtils.CreateRotationForOrganelle(template.Orientation) * ourTransform.basis.Quat(),
-            ourTransform.basis.Xform(attachVector));
+            attachVector);
 
         Colony.AddToColony(cell, this);
 
