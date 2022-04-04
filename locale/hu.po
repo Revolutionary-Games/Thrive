@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-20 15:15+0200\n"
-"PO-Revision-Date: 2022-02-13 08:37+0000\n"
-"Last-Translator: Undibundi <andras9334@citromail.hu>\n"
+"POT-Creation-Date: 2022-04-02 19:50+0800\n"
+"PO-Revision-Date: 2022-03-22 18:22+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.1\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -1126,7 +1126,7 @@ msgstr "Média lejátszás"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "MEDIASTOP"
-msgstr ""
+msgstr "Média stop"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
 msgid "MEDIAPREVIOUS"
@@ -1409,7 +1409,7 @@ msgstr "Sejtszerkesztő"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Vissza"
@@ -1665,10 +1665,12 @@ msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Megtartható gyorsmentések mennyisége:"
 
 #: ../src/general/OptionsMenu.tscn:1068
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutoriálok mutatása (új játék esetén)"
 
 #: ../src/general/OptionsMenu.tscn:1075
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tutoriálok mutatása (jelenlegi játékban)"
 
@@ -1712,7 +1714,7 @@ msgstr "Mindig"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Soha"
 
-#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Mentés"
 
@@ -2072,9 +2074,8 @@ msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "A mentéseknek különböző változatai vannak"
 
 #: ../src/gui_common/RadialMenu.cs:63
-#, fuzzy
 msgid "SELECT_OPTION"
-msgstr "Kijelölve:"
+msgstr "Válassz ki egy lehetőséget"
 
 #: ../src/gui_common/TweakedColourPicker.cs:393
 msgid "COLOUR_PICKER_PICK_COLOUR"
@@ -2082,7 +2083,7 @@ msgstr "Válassz egy színt a játék ablakából"
 
 #: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Szín beállítása előre beállítottra"
 
 #: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
@@ -2407,8 +2408,9 @@ msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Szúrd le a többi sejtet ezzel."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
+#, fuzzy
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Szúrd le a többi sejtet ezzel."
+msgstr "A pilusok sok mikroorganizmus felületén megtalálhatóak, amik finom szőrszálakhoz hasonlítanak. Több tíz, akár több száz pilus is található egy mikroorganizmuson, feladatuk pedig egy, vagy több is lehet a ragadozást beleértve."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
@@ -2441,8 +2443,9 @@ msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
+#, fuzzy
 msgid "NUCLEUS_DESCRIPTION"
-msgstr ""
+msgstr "Az eukarióta sejtek legmeghatározóbb jellemzője. A sejtmaghoz még hozzá tartozik az endoplazmatikus membránrendszer és a golgi-készülék is."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1420
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
@@ -2714,16 +2717,16 @@ msgstr "Elméleti csapat"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "nagyon kicsi mennyiség"
 
-#: ../src/microbe_stage/MicrobeStage.cs:545
+#: ../src/microbe_stage/MicrobeStage.cs:544
 msgid "PLAYER_REPRODUCED"
 msgstr "játékos szaporodott"
 
-#: ../src/microbe_stage/MicrobeStage.cs:634
+#: ../src/microbe_stage/MicrobeStage.cs:633
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Ellenség spawnolása"
 
-#: ../src/microbe_stage/MicrobeStage.cs:698
+#: ../src/microbe_stage/MicrobeStage.cs:653
 msgid "PLAYER_DIED"
 msgstr "A játékos meghalt"
 
@@ -3246,7 +3249,7 @@ msgstr "N/A"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2401
 msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr ""
+msgstr "A faj nevének be kell tartania a kettős nevezéktan rendszerét (Generikus és Specifikus)!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2527
 msgid "ENERGY_IN_PATCH_FOR"
@@ -3258,7 +3261,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2538
 msgid "ENERGY_SOURCES"
-msgstr ""
+msgstr "Energia forrásai:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2544
 msgid "FOOD_SOURCE_ENERGY_INFO"
@@ -3283,36 +3286,32 @@ msgid "MODIFY"
 msgstr "Módosít"
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
-#, fuzzy
 msgid "EXTINCT_SPECIES"
-msgstr "KIHALTÁL"
+msgstr "Kihalt fajok"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
-msgstr ""
+msgstr "Nincs feljegyzett esemény"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
-#, fuzzy
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
 msgid "COMPOUND_TO_FIND"
-msgstr "Vegyületfelhők"
+msgstr "Megtalálható vegyületek:"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "SEARCH_RADIUS"
-msgstr ""
+msgstr "Keresési rádiusz:"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
 msgid "MINIMUM_AMOUNT_TO_FIND"
-msgstr ""
+msgstr "Minimális detektálandó mennyiség:"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
-#, fuzzy
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
 msgid "LINE_COLOUR"
-msgstr "Szín"
+msgstr "Vonal színe:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
-#, fuzzy
 msgid "MODIFY_ORGANELLE"
-msgstr "Sejtszervecske áthelyezése"
+msgstr "Sejtalkotó szerkesztése"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
@@ -3363,9 +3362,8 @@ msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 #: ../src/modding/ModLoader.cs:394
-#, fuzzy
 msgid "PCK_LOAD_FAILED"
-msgstr "Betöltés befejezve"
+msgstr "pck fájl ({0}) betöltése sikertelen"
 
 #: ../src/modding/ModManager.cs:293
 msgid "INVALID_ICON_PATH"
@@ -3373,7 +3371,7 @@ msgstr ""
 
 #: ../src/modding/ModManager.cs:307
 msgid "INVALID_URL_SCHEME"
-msgstr ""
+msgstr "Érvénytelen URL séma"
 
 #: ../src/modding/ModManager.cs:319
 msgid "ASSEMBLY_CLASS_REQUIRED"
@@ -3385,20 +3383,19 @@ msgstr "Egy mod sincs kijelölve"
 
 #: ../src/modding/ModManager.cs:885
 msgid "THIS_IS_WORKSHOP_MOD"
-msgstr ""
+msgstr "Ez a mod a Steam Műhelyből lett letöltve"
 
 #: ../src/modding/ModManager.cs:886
 msgid "THIS_IS_LOCAL_MOD"
-msgstr ""
+msgstr "Ez egy lokálisan letöltött mod"
 
 #: ../src/modding/ModManager.cs:940
-#, fuzzy
 msgid "ERROR_CREATING_FOLDER"
-msgstr "Mentési hiba"
+msgstr "Hiba a mod-hoz való mappa létrehozása közben"
 
 #: ../src/modding/ModManager.cs:949
 msgid "ERROR_CREATING_INFO_FILE"
-msgstr ""
+msgstr "Hiba a mod fájllá való átalakítása közben"
 
 #: ../src/modding/ModManager.tscn:121
 msgid "AVAILABLE_MODS"
@@ -3409,17 +3406,14 @@ msgid "REFRESH"
 msgstr "Frissítés"
 
 #: ../src/modding/ModManager.tscn:152
-#, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Mappa megnyitása"
 
 #: ../src/modding/ModManager.tscn:170
-#, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "→"
 
 #: ../src/modding/ModManager.tscn:183
-#, fuzzy
 msgid "LEFT_ARROW"
 msgstr "←"
 
@@ -3468,7 +3462,7 @@ msgstr "A mod URL-jének megnyitása"
 
 #: ../src/modding/ModManager.tscn:505
 msgid "BROWSE_WORKSHOP"
-msgstr "A Workshop böngészése"
+msgstr "A műhely böngészése"
 
 #: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
@@ -3627,15 +3621,15 @@ msgstr "Feltöltés..."
 
 #: ../src/modding/ModUploader.cs:556
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr ""
+msgstr "A tárgy feltöltése a Steam Műhelybe sikerült, de hozzá kell járulnod a műhely [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement] szolgáltatási feltételeinek [/url][/color], mielőtt láthatóvá válik mások számára"
 
 #: ../src/modding/ModUploader.cs:560
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
-msgstr "Tárgy(ak) Steam Workshop-ba való feltöltése sikeres"
+msgstr "Tárgy(ak) Steam Műhelybe való feltöltése sikeres"
 
 #: ../src/modding/ModUploader.cs:620
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
-msgstr "E tárgy feltöltésével beleegyezel a Steam Workshop [color=#3796e1]([url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]) szolgáltatás feltételeihez[/url][/color]"
+msgstr "E tárgy feltöltésével beleegyezel a Steam Műhely [color=#3796e1]([url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]) szolgáltatás feltételeihez[/url][/color]"
 
 #: ../src/modding/ModUploader.cs:645
 msgid "SAVING_DATA_FAILED_DUE_TO"
@@ -3655,7 +3649,7 @@ msgstr "Feltöltendő mod:"
 
 #: ../src/modding/ModUploader.tscn:109
 msgid "UNKNOWN_WORKSHOP_ID"
-msgstr "Mod Workshop ID-je ismeretlen"
+msgstr "Mod műhely ID-je ismeretlen"
 
 #: ../src/modding/ModUploader.tscn:121
 msgid "CREATE_NEW"
@@ -3667,7 +3661,7 @@ msgstr "Írj be egy létező ID-t"
 
 #: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
-msgstr "Írj be egy létező Workshop ID-t"
+msgstr "Írj be egy létező műhely ID-t"
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
@@ -3720,9 +3714,8 @@ msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 msgstr "Tárgy neve:"
 
 #: ../src/modding/ModUploader.tscn:294
-#, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
-msgstr "Tárgy neve:"
+msgstr "Tárgy változtatási naplója"
 
 #: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
@@ -3762,17 +3755,16 @@ msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Auto-evo futtatása sikertelen"
 
 #: ../src/modding/NewModGUI.tscn:35
-#, fuzzy
 msgid "CREATE_NEW_MOD"
-msgstr "Új mikroorganizmus létrehozása"
+msgstr "Új mod létrehozása"
 
 #: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
-msgstr ""
+msgstr "A modolási instrukciók elérhetők"
 
 #: ../src/modding/NewModGUI.tscn:76
 msgid "OUR_WIKI"
-msgstr ""
+msgstr "Wikipédiánk"
 
 #: ../src/modding/NewModGUI.tscn:450
 msgid "CREATE"
@@ -3835,41 +3827,48 @@ msgstr "Mentés sikertelen"
 msgid "ERROR_SAVING"
 msgstr "Mentési hiba"
 
-#: ../src/saving/NewSaveMenu.cs:75
+#: ../src/saving/NewSaveMenu.cs:80
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "A kiválasztott fájl neve ({0}) már létezik. Lecseréled?"
 
-#: ../src/saving/NewSaveMenu.cs:173
+#: ../src/saving/NewSaveMenu.cs:185
 #, fuzzy
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Betöltöd ezt az érvénytelen mentést?"
 
-#: ../src/saving/NewSaveMenu.tscn:31
+#: ../src/saving/NewSaveMenu.tscn:32
 msgid "CREATE_NEW_SAVE"
 msgstr "Új mentés létrehozása"
 
-#: ../src/saving/NewSaveMenu.tscn:48
+#: ../src/saving/NewSaveMenu.tscn:49
 msgid "NAME"
 msgstr "Név:"
 
-#: ../src/saving/NewSaveMenu.tscn:66
+#: ../src/saving/NewSaveMenu.tscn:67
 msgid "EXTRA_OPTIONS"
 msgstr "Extra opciók"
 
-#: ../src/saving/NewSaveMenu.tscn:84
+#: ../src/saving/NewSaveMenu.tscn:85
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Létező mentés felülírása:"
 
-#: ../src/saving/NewSaveMenu.tscn:116
+#: ../src/saving/NewSaveMenu.tscn:117
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Felülírod a létező mentést?"
 
-#: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
+#: ../src/saving/NewSaveMenu.tscn:121
 #, fuzzy
+msgid "CANNOT_WRITE_SAVE"
+msgstr "Új mentés létrehozása"
+
+#: ../src/saving/NewSaveMenu.tscn:125
+#, fuzzy
+msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
+msgstr "Auto-evo futtatása sikertelen"
+
+#: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr ""
-"Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
-"{0}"
+msgstr "A mentés sikertelen! Hiba történt"
 
 #: ../src/saving/SaveHelper.cs:437
 msgid "SAVING_NOT_POSSIBLE"
@@ -4141,10 +4140,12 @@ msgstr "Ismeretlen Steam hiba történt"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
+#, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Üdvözöllek a Sejtszerkesztőben.\n"
@@ -4226,6 +4227,7 @@ msgstr ""
 "Ahhoz, hogy túléld ezt a kegyetlen világot, annyi vegyületet kell gyűjtened, amennyit csak találsz, és fejlesztened kell fajodat az evolúció során, hogy versenyképesek maradjanak a többi fajjal."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Tutorial-ok mutatása"
 

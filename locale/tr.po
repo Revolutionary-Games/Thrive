@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-18 10:37+0200\n"
-"PO-Revision-Date: 2022-02-11 07:40+0000\n"
+"POT-Creation-Date: 2022-04-02 19:50+0800\n"
+"PO-Revision-Date: 2022-03-21 04:28+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -88,7 +88,7 @@ msgstr "Dikkatli ol çünkü rakiplerin seninle birlikte gelişiyor. Editöre gi
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve birbiriyle üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. Başka bir hücre ile bağ kurmak için, bağlayıcı madde organeline sahip olman ve bağlanma moduna girdikten sonra o hücreye yaklaşman gerekir. Yalnızca kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni bölemez ve editöre giremezsin (şimdilik). Editöre girmek için, ilk önce, yeterli bileşik toplamalı ve koloniden ayrılmalısın. Böylece editöre girebilirsin. Büyük hücre kolonileri çok hücreliliğe doğru giden yoldur (henüz oyunda değil)."
+msgstr "Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve birbiriyle üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. Başka bir hücre ile bağ kurmak için, bağlayıcı ajan organeline sahip olman ve bağlanma moduna girdikten sonra o hücreye yaklaşman gerekir. Yalnızca kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni bölemez ve editöre giremezsin (şimdilik). Editöre girmek için, ilk önce, yeterli bileşik toplamalı ve koloniden ayrılmalısın. Böylece editöre girebilirsin. Büyük hücre kolonileri çok hücreliliğe doğru giden yoldur (henüz oyunda değil)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -125,7 +125,7 @@ msgstr ""
 "\n"
 "Çekirdek: 11 altıgenlik yer kaplar ve zarlı organellerin evrimini sağlar. Ayrıca hücrenin büyüklüğünü iki katına çıkarır. (Yalnızca bir kez evrimleşilir)\n"
 "\n"
-"Bağlayıcı Madde: Diğer hücrelerle bağ kurmaya izin verir\n"
+"Bağlayıcı Ajan: Diğer hücrelerle bağ kurmaya izin verir\n"
 "\n"
 "Mitokondri: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] ve atmosferdeki O2 gazından [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Sitoplazmadan çok daha verimli şekilde yapar.\n"
 "\n"
@@ -299,7 +299,7 @@ msgstr "Yutma modunu aç"
 
 #: ../simulation_parameters/common/input_options.json:46
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr ""
+msgstr "Komut takımı menüsünü göstermek için basılı tut"
 
 #: ../simulation_parameters/common/input_options.json:50
 #: ../src/microbe_stage/MicrobeStage.tscn:2112
@@ -752,7 +752,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "BINDING_AGENT"
-msgstr "Bağlayıcı Madde"
+msgstr "Bağlayıcı Ajan"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1503
@@ -776,9 +776,8 @@ msgstr "Kemoreseptör"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:666
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2078
-#, fuzzy
 msgid "SIGNALING_AGENT"
-msgstr "Bağlayıcı Madde"
+msgstr "Sinyal Verici Ajan"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
@@ -834,7 +833,7 @@ msgstr "bazı arazilerdeki popülasyonlar, yeni türler oluşturmak için ayrıl
 
 #: ../src/auto-evo/RunResults.cs:636
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr "mutasyona sahip"
+msgstr "mutasyona uğradı"
 
 #: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
@@ -1411,7 +1410,7 @@ msgstr "Mikrop Editörü Serbest Modu"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Geri"
@@ -1714,7 +1713,7 @@ msgstr "Her zaman"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Hiçbir zaman"
 
-#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Kaydet"
 
@@ -2073,9 +2072,8 @@ msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "Kayıt farklı bir sürüme sahip"
 
 #: ../src/gui_common/RadialMenu.cs:63
-#, fuzzy
 msgid "SELECT_OPTION"
-msgstr "Seçilen:"
+msgstr "Bir Seçenek Seç"
 
 #: ../src/gui_common/TweakedColourPicker.cs:393
 msgid "COLOUR_PICKER_PICK_COLOUR"
@@ -2395,7 +2393,7 @@ msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound 
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
-msgstr "OksiToksi NT zehir maddesinin basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozom."
+msgstr "OksiToksi NT toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozom."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:965
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -2517,14 +2515,12 @@ msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Toksin kofulu, oksitoksi toksinlerinin özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2079
-#, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Bağlanma modunu açmak için [thrive:input]g_toggle_binding[/thrive:input] tuşuna bas. Bağlanma modundayken, kendi türüne ait diğer hücrelere yaklaşarak onları kolonine ekleyebilirsin. Bir koloniden ayrılmak için [thrive:input]g_unbind_all[/thrive:input] tuşuna bas."
+msgstr "Türünün diğer üyelerine komut vermede kullanılan menüyü açmak için [thrive:input]g_pack_commands[/thrive:input] tuşunu basılı tut."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
-#, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu, çok hücrelilikte ilk adımdır. Hücren bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken editöre giremezsin. O yüzden hücreni bölmek için önce yeterli bileşik toplaman sonra koloniyle bağını koparman gerekir."
+msgstr "Sinyal verici ajanlar; hücrelerin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar. Sinyal veren kimyasallar, diğer hücrelerin dikkatini çekmek ya da onları tehlikeye karşı uyararak kaçırmak için kullanılabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2176
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -2668,27 +2664,27 @@ msgstr "Düşman Oluştur"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:447
 msgid "SIGNAL_COMMAND_NONE"
-msgstr ""
+msgstr "Komut Yok"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "SIGNAL_COMMAND_FOLLOW"
-msgstr ""
+msgstr "Beni Takip Et"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:449
 msgid "SIGNAL_COMMAND_TO_ME"
-msgstr ""
+msgstr "Bana Gel"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:450
 msgid "SIGNAL_COMMAND_FLEE"
-msgstr ""
+msgstr "Kaç"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:451
 msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr ""
+msgstr "Agresif Ol"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:454
 msgid "SIGNAL_TO_EMIT"
-msgstr ""
+msgstr "Yollanacak Sinyal"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:770
 msgid "STUFF_AT"
@@ -2726,15 +2722,15 @@ msgstr "az miktarda"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "çok az miktarda"
 
-#: ../src/microbe_stage/MicrobeStage.cs:545
+#: ../src/microbe_stage/MicrobeStage.cs:544
 msgid "PLAYER_REPRODUCED"
 msgstr "oyuncu çoğaldı"
 
-#: ../src/microbe_stage/MicrobeStage.cs:634
+#: ../src/microbe_stage/MicrobeStage.cs:633
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Düşman oluşturma hilesi kullanılamaz çünkü bu arazi herhangi bir düşman tür içermiyor"
 
-#: ../src/microbe_stage/MicrobeStage.cs:698
+#: ../src/microbe_stage/MicrobeStage.cs:653
 msgid "PLAYER_DIED"
 msgstr "oyuncu öldü"
 
@@ -2780,7 +2776,7 @@ msgstr "Bileşikler"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1518
 msgid "AGENTS"
-msgstr "Maddeler"
+msgstr "Ajanlar"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1616
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
@@ -3296,19 +3292,19 @@ msgstr "Nesli Tükenen Tür"
 msgid "NO_EVENTS_RECORDED"
 msgstr "Hiçbir olay görülmedi"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
 msgid "COMPOUND_TO_FIND"
 msgstr "Aranacak Bileşik:"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "SEARCH_RADIUS"
 msgstr "Arama Yarıçapı:"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "Tespit Edilecek Minimum Miktar:"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
 msgid "LINE_COLOUR"
 msgstr "Çizgi Rengi:"
 
@@ -3824,33 +3820,43 @@ msgstr "Kaydetme başarısız"
 msgid "ERROR_SAVING"
 msgstr "Kaydetme Hatası"
 
-#: ../src/saving/NewSaveMenu.cs:75
+#: ../src/saving/NewSaveMenu.cs:80
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Seçili dosya adı ({0}) zaten mevcut. Üzerine yazılsın mı?"
 
-#: ../src/saving/NewSaveMenu.cs:173
+#: ../src/saving/NewSaveMenu.cs:185
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Kayıt adı özel karakterler içeremez (<>:\"/\\|?*)"
 
-#: ../src/saving/NewSaveMenu.tscn:31
+#: ../src/saving/NewSaveMenu.tscn:32
 msgid "CREATE_NEW_SAVE"
 msgstr "Yeni Kayıt Oluştur"
 
-#: ../src/saving/NewSaveMenu.tscn:48
+#: ../src/saving/NewSaveMenu.tscn:49
 msgid "NAME"
 msgstr "Ad:"
 
-#: ../src/saving/NewSaveMenu.tscn:66
+#: ../src/saving/NewSaveMenu.tscn:67
 msgid "EXTRA_OPTIONS"
 msgstr "Ek Seçenekler"
 
-#: ../src/saving/NewSaveMenu.tscn:84
+#: ../src/saving/NewSaveMenu.tscn:85
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Mevcut kaydın üzerine yaz:"
 
-#: ../src/saving/NewSaveMenu.tscn:116
+#: ../src/saving/NewSaveMenu.tscn:117
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Mevcut kaydın üzerine yazılsın mı?"
+
+#: ../src/saving/NewSaveMenu.tscn:121
+#, fuzzy
+msgid "CANNOT_WRITE_SAVE"
+msgstr "Yutamaz"
+
+#: ../src/saving/NewSaveMenu.tscn:125
+#, fuzzy
+msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
+msgstr "Oto-evrim çalıştırılamadı"
 
 #: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
 msgid "SAVING_FAILED_WITH_EXCEPTION"
@@ -4134,37 +4140,37 @@ msgstr "Oyun Rehberi"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Mikrop Editörü'ne hoşgeldin.\n"
-"Burada oyunun başından beri neler olduğunu ve editörü en son ne zaman kullandığını görebilirsin. Sonrasında türünde değişiklikler yapabilirsin.\n"
 "\n"
-"Bu sekmede ne türlerin var olduğunu, nerede olduklarını ve popülasyonlarının ne olduğunu gösteren bir rapor görebilirsin. Ayrıca üstte çevresel değişiklikleri görebilirsin.\n"
+"Burada, geçmiş kuşaklardan beri neler olduğunu inceleyebilir ve sonrasında türünde değişiklikler yapabilirsin.\n"
 "\n"
-"Bir sonraki editör sekmesine gitmek için sağ alttaki sonraki butonuna bas."
+"Mevcut sekme, şu an bulunduğun arazideki değişikliklerin listesini verir. Dünyandaki olaylarla ilgili daha fazla şeyler öğrenmek için dilediğinde çeşitli araçları keşfetmeyi deneyebilirsin!\n"
+"\n"
+"Hazır olunca, sağ alttaki \"sonraki\" butonuna bas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Bu arazi haritası.\n"
-"Burada mikropların yaşayabileceği farklı arazileri görebilirsin.\n"
-"Şu an bulunduğun arazi vurgulanmış halde.\n"
-"Arazileri seçmek ve sağ tarafta arazilerin detaylarını görmek için faren ile arazilerin üzerine tıklayabilirsin.\n"
 "\n"
-"Eğer şu an bulunduğun arazinin yanındaki bir araziyi seçersen, sağdaki butona basarak oraya gidebilirsin. Bu, türünün popülasyonunun yeni arazilere yayılmasını sağlar.\n"
+"Her simge yaşayabileceğin eşsiz bir ortamı temsil eder. Sağ tarafta bulunan panelde ise mevcut seçili arazinin şartları tarif edilmekte.\n"
+"\n"
+"Eğer şu an bulunduğun arazinin (ince ve açık mavi bir kenarlık ile vurgulanmış) yanındaki bir araziyi seçersen, sağdaki \"Bu Araziye Git\" butonuna basarak oraya gidebilirsin.\n"
 "\n"
 "Devam etmek için bir arazi seç."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Bu hücre editörü. Burada mutasyon puanları harcayarak (MP) türüne organeller ekleyebilir veya onları kaldırabilirsin.\n"
+"Bu hücre editörü. Burada mutasyon puanları (MP) harcayarak türünü evrimleştirebilirsin. Her kuşak için en fazla 100 MP harcayabilirsin, bu yüzden kalanları biriktirmene gerek yok.\n"
 "\n"
-"Ayrıca hücre editörünün diğer sekmelerinde, türünün diğer özelliklerini değiştirebilirsin.\n"
+"Ekranın ortasındaki altıgen senin hücren. Hücren bir tek sitoplazma parçasından oluşmakta.\n"
 "\n"
-"Devam etmek için soldaki panelden bir organel seç (sitoplazma iyi bir seçim). Daha sonra organeli türüne eklemek için ekranın ortasındaki altıgenin yanına sol tıkla."
+"Devam etmek için soldaki panelden bir parça seç. Daha sonra, onu yerleştirmek için altıgenin yanına sol tıkla. A ve D tuşları (varsayılan) ile parçaları döndürebilirsin."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Organeller mevcut mutasyon sürecinde yerleştirilmediyse, onları kaldırmak MP'ye mal olur çünkü bu, türünde mutasyona neden olur.\n"
+"Organeller mevcut mutasyon sürecinde yerleştirilmediyse, onları kaldırmak MP'ye mal olur. Çünkü bu, türünde mutasyona neden olur.\n"
 "\n"
 "Organel menüsünü göstermek için organellere sağ tıklayabilir ve organelleri kaldırmak için silme seçeneğini seçebilirsin.\n"
 "\n"
@@ -4175,22 +4181,20 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Hangi organelleri ekleyeceğini seçerken, organellerin ne tür işlemler yaptığını, ne tür bileşikler kullandığını ve ürettiğini gösteren araç ipuçlarına dikkat et.\n"
+"Menüde parçalar seçerken, onların ne yaptığını anlamak için sağda beliren araç ipuçlarına dikkat et. Eğer onların işlevlerine dikkat etmezsen, parçaların faydadan çok zararı olur.\n"
 "\n"
-"Ayrıca hücrenin hayatta kalabileceğinden emin olmak için sağ üstteki ATP dengesi çubuğuna dikkat et.\n"
+"Sağda bulunan \"ATP Üretimi\" çubuğu, tükettiğin enerjiye kıyasla ne kadar enerji ürettiğini belirtir. Eğer; üstteki çubuk, alttaki çubuktan daha kısa ise, bu yeterli enerji üretmediğin anlamına gelir.\n"
 "\n"
-"Organelleri yerleştirmeden önce A ve D (varsayılan tuşlar) ile döndürebilirsin.\n"
-"\n"
-"Devam etmek için yinele butonuna (geri al butonuna yakın) bas."
+"Devam etmek için yinele butonuna (geri al butonunun yanında) bas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Bunlar türünü düzenlerken bilmen gereken önemli noktalar. Daha fazlası için hücre editörünün diğer sekmelerini inceleyebilirsin.\n"
+"Bunlar türünü düzenlerken bilmen gereken temel noktalar. Son olarak, sol alttaki isme tıklayıp metni düzenleyerek türünü yeniden adlandırabilirsin.\n"
 "\n"
-"Mevcut türünün adına tıklayarak ve metnini düzenleyerek türünü yeniden adlandırabilirsin.\n"
+"Hücreni başka türlü nasıl özelleştirebileceğini görmek için MP çubuğunun altındaki diğer sekmeleri keşfetmeyi dene.\n"
 "\n"
-"İlk başlarda hücreni küçük tutmalısın ve su yüzeyinde bulunan arazilere doğru ilerlemelisin.\n"
+"Doğal glukoz miktarı süratle azalacağı için, bu haşin dünyada hayatta kalmak için güvenilir bir enerji kaynağı bulmaya ihtiyacın olacak.\n"
 "\n"
 "Bol şans!"
 
@@ -4201,9 +4205,9 @@ msgstr "Anladım"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"Bu panel, senin gelecek popülasyonunun tahminini gösterir. Bu rakamlar, oto-evrimin popülasyon simülasyonundan gelir.\n"
+"Bu panel, senin gelecekteki popülasyonuna ait tahminleri gösterir. Bu rakamlar, oto-evrimin popülasyon simülasyonundan gelir.\n"
 "\n"
-"Bunlar, senin bireysel performansını hesaba katmaz. Böylece editöre girdiğinde, bulunduğun arazide daha iyi performans sergileyebilirsin.\n"
+"Bu tahminler, senin bireysel performansını hesaba katmaz. Böylece editöre girdiğinde, bulunduğun arazide daha iyi performans sergileyebilirsin.\n"
 "\n"
 "Ama doğrudan dahil olmasan bile, kendi popülasyonunu yukarıda tutmaya çalışmalısın.\n"
 "\n"
@@ -4212,11 +4216,11 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"Bir ya da iki enerji kaynağına odaklanmalısın. Böylece hayatta kalmak için, bütün kaynaklara ihtiyaç duymadan, yeterli ATP üretebilirsin.\n"
+"Bir ya da iki enerji kaynağına odaklanmalısın. Böylece hayatta kalmak için, bütün kaynaklara birden ihtiyaç duymadan, yeterli ATP üretebilirsin.\n"
 "\n"
-"Ayrıca bir organeli eklemenin yararlı olup olmadığını dikkatli bir şekilde göz önünde bulundur. Her parçayı sürdürmek ATP'ye mal olduğu ve bölünmeye daha fazla kaynak gerektiği için, genellikle, herhangi bir değişiklik yapmamak iyi bir seçimdir.\n"
+"Ayrıca bir organeli eklemenin gerçekten yararlı olup olmadığını dikkatli bir şekilde göz önünde bulundur. Her parçayı sürdürmek ATP'ye mal olduğu için ve çoğalmak için daha fazla kaynak gerektiği için, genellikle herhangi bir değişiklik yapmamak iyi bir seçimdir.\n"
 "\n"
-"Olası bir strateji, tek altıgenlik sitoplazma olarak kalmak ve fotosentez organellerini almadan önce, ilk olarak yüzey arazilerine varmak."
+"Olası bir strateji, bir tek altıgen sitoplazma olarak kalmak ve fotosentez organellerini almadan önce, ilk olarak yüzey arazilerine varmak."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
@@ -4265,16 +4269,16 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Hücreni çoğaltmak için yeterli miktarda amonyak ve fosfat toplayarak bütün organellerini ikiye katlaman gerekir.\n"
-"Ne kadarına ihtiyacın olduğunu görmek için sağ alttaki göstergeye bak."
+"Ne kadarına ihtiyacın olduğunu görmek için sağ alttaki büyük butonu saran çubuklara bak. Bu çubuklar dolduğunda beyaz hale gelir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Hücrenin bölünmesi için yeterince kaynak topladın.\n"
 "\n"
-"Türünü düzenlemek için şimdi hazırsın.\n"
+"Hücren her çoğaldığında, editöre yönlendirilirsin.\n"
 "\n"
-"Editöre girmek için sağ altta yanıp sönen editör butonuna bas."
+"Hazır olunca, editöre girmek için sağ altta yanıp sönen büyük butona bas."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
@@ -4286,9 +4290,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"Eğer hala oyun mekaniği ile ilgili sıkıntı yaşıyorsan, yardım menüsünü incele. Bu menüyü sol alttaki soru işaretli butona basarak açabilirsin.\n"
+"Zorlanıyor musun? Yardım menüsünü incele. Bu menüyü sol alttaki soru işaretli butona basarak açabilirsin.\n"
 "\n"
-"Bir ipucu daha: Fare tekeri ile görüş alanını uzaklaştırabilirsin."
+"Bir ipucu daha: Fare tekeri ile görüş alanını arttırabilirsin."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
