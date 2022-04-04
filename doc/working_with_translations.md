@@ -93,6 +93,71 @@ cases, so we don't use that to reduce cases where translations are
 automatically changed back and forth to different line wrapping
 lengths.
 
+### How the translations work
+
+This section is a brief overview on how the Godot translation system works, for more
+info you can read Godot's documentation on it. This section also briefly covers our
+extensions to Godot regarding translations. Read this to save your and code reviewer's
+time if you are working on code that has an impact on translations.
+
+As mentioned earlier in this document the key concept in working with translations
+are the translation keys, for example `PLAY_MUSIC`. When `TranslationServer.Translate(string)`
+is called it will look through the loaded translations (`project.godot` file 
+defines the translation files to load) to find if there exists a translation for the
+currently active language with the specified key. If such translation is not found
+(or it is marked as "fuzzy" / needing changes) then a translation is searched in the
+English locale with that key. 
+
+If a translation is found then the call to `Translate`
+returns that translation. However, if nothing is found the key is returned as is.
+This is usually bad and points to translations not being up to date / the English
+translation missing a translation for something. In some cases though strings that
+are already translated or don't contain translatable content may be passed through
+the translation system, but this should be usually avoided as unnecessary work. There
+may be some places where translatable and untranslatable content can be shown in the same
+place with complicated logic where the simplest solution is to pass all text through the
+translation system so that the things that need translating get translated and other strings
+just pass through.
+
+Our custom extensions to the Godot translation system consist of two classes:
+`LocalizedString` and `LocalizedStringBuilder`. `LocalizedString` is a special
+type of string that allows passing in the translation key to it. For example:
+`new LocalizedString("PLAY_MUSIC")`. When the `LocalizedString` is converted to a
+normal string, that is when it automatically passes the key it was passed to
+the translation system. This means that `LocalizedString` and the builder variant
+(for building strings out of segments) **should not** be converted to a string any
+earlier than just when passing to the GUI for display. Otherwise the string can no
+longer react to translation changes. For example auto-evo results text goes as far
+as to even write the `LocalizedStringBuilder` object to the game saves so that language
+can be changed after loading a save and the results text will still update correctly.
+
+A more advanced use case of `LocalizedString` is when placeholders are used. Placeholders
+in strings are `{0}`, `{1}`, etc. which will be replaced with other text when the localized
+string is converted to a normal string. Note that as the key of a translation is passed to
+the `LocalizedString` constructor, you need to have a normal key for the text and *then*
+in the English *translation* you need to write text like `This thing: {0}`. `LocalizedString`
+can also be nested (also works with `LocalizedStringBuilder`) as string placeholders. For
+example here's a complex use example:
+```csharp
+var localized = new LocalizedString("MY_KEY", 1234, new LocalizedString("MY_OTHER_THING"));
+GD.Print(localized);
+```
+
+And if the English translation file has:
+```
+msgid "MY_KEY"
+msgstr "My things are {0} and {1}"
+
+msgid "MY_OTHER_THING"
+msgstr "important stuff"
+```
+
+the code example will print to Godot logs: `My things are 1234 and important stuff`. And
+as long as the localized string instance is kept around the final text can be generated
+again and again when the game language changes and it will function properly. So doing
+something like (and storing the result for use later): 
+`var myVariable = localized.ToString();` is bad.
+
 Translating the game into a new language
 ----------------------------------------
 
