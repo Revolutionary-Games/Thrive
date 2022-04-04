@@ -36,9 +36,9 @@ public class PatchMapNameGenerator : IRegistryType
     /// <summary>
     ///   Generates and returns a new patch name
     /// </summary>
-    public string Next()
+    public string Next(int seed)
     {
-        Random random = new Random();
+        Random random = new Random(seed);
 
         int nameLength = random.Next(syllablesLowerLimit, syllablesHigherLimit + 1);
         if (nameLength == 4)

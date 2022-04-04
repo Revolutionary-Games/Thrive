@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Godot;
 
 /// <summary>
@@ -14,9 +15,10 @@ public static class PatchMapGenerator
 
         var map = new PatchMap();
 
-        // Generate random name for patch
+        // Generate random name and seed for patch
+        var seed = new Random().Next();
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
-        var name = nameGenerator.Next();
+        var name = nameGenerator.Next(seed);
 
         // Predefined patches
         var vents = new Patch(GetPatchLocalizedName(name, "VOLCANIC_VENT"), 0,
