@@ -127,8 +127,11 @@ normal string, that is when it automatically passes the key it was passed to
 the translation system. This means that `LocalizedString` and the builder variant
 (for building strings out of segments) **should not** be converted to a string any
 earlier than just when passing to the GUI for display. Otherwise the string can no
-longer react to translation changes. For example auto-evo results text goes as far
-as to even write the `LocalizedStringBuilder` object to the game saves so that language
+longer react to translation changes. The GUI handling class should react to 
+`NotificationTranslationChanged` events in their `_Notification` method, and reapply
+the text to the GUI from the `LocalizedString` objects. This way the game can immediately
+react to the user changing the selected language. For example auto-evo results text goes 
+as far as to even write the `LocalizedStringBuilder` object to the game saves so that language
 can be changed after loading a save and the results text will still update correctly.
 
 A more advanced use case of `LocalizedString` is when placeholders are used. Placeholders
@@ -156,7 +159,8 @@ the code example will print to Godot logs: `My things are 1234 and important stu
 as long as the localized string instance is kept around the final text can be generated
 again and again when the game language changes and it will function properly. So doing
 something like (and storing the result for use later): 
-`var myVariable = localized.ToString();` is bad.
+`var myVariable = localized.ToString();` is bad as the text can no longer react to language
+changes.
 
 Translating the game into a new language
 ----------------------------------------
