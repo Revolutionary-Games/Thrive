@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-18 10:37+0200\n"
+"POT-Creation-Date: 2022-04-04 14:02+0300\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -542,6 +542,7 @@ msgid "BIG_IRON_CHUNK"
 msgstr "큰 철 덩어리"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:148
+#: ../src/microbe_stage/PatchMapGenerator.cs:25
 msgid "VOLCANIC_VENT"
 msgstr "화산 분출구"
 
@@ -2808,15 +2809,15 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:545
+#: ../src/microbe_stage/MicrobeStage.cs:544
 msgid "PLAYER_REPRODUCED"
 msgstr "플레이어 복제됨"
 
-#: ../src/microbe_stage/MicrobeStage.cs:634
+#: ../src/microbe_stage/MicrobeStage.cs:633
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:698
+#: ../src/microbe_stage/MicrobeStage.cs:653
 msgid "PLAYER_DIED"
 msgstr "플레이어 사망함"
 
@@ -2902,54 +2903,59 @@ msgstr "새로운 키 배치 추가"
 msgid "POPULATION_CAPITAL"
 msgstr "개체수:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:181
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
+#, fuzzy
+msgid "PATCH_NAME"
+msgstr "동굴"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
 #, fuzzy
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Pangonian 분출구"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:182
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
 #, fuzzy
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Pangonian 중해수층"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:183
+#: ../src/microbe_stage/PatchMapGenerator.cs:197
 #, fuzzy
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Pangonian 표해수층"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:184
+#: ../src/microbe_stage/PatchMapGenerator.cs:198
 #, fuzzy
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Pangonian 웅덩이"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:185
+#: ../src/microbe_stage/PatchMapGenerator.cs:199
 #, fuzzy
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Pangonian 심해수층"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:186
+#: ../src/microbe_stage/PatchMapGenerator.cs:200
 #, fuzzy
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Pangonian 심해원양성"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:187
+#: ../src/microbe_stage/PatchMapGenerator.cs:201
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Pangonian 연안"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:188
+#: ../src/microbe_stage/PatchMapGenerator.cs:202
 #, fuzzy
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Pangonian 어귀"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:189
+#: ../src/microbe_stage/PatchMapGenerator.cs:203
 msgid "PATCH_CAVE"
 msgstr "동굴"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:190
+#: ../src/microbe_stage/PatchMapGenerator.cs:204
 msgid "PATCH_ICE_SHELF"
 msgstr "빙붕"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:191
+#: ../src/microbe_stage/PatchMapGenerator.cs:205
 #, fuzzy
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonian 해저"

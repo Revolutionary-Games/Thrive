@@ -19,8 +19,6 @@ public static class PatchMapGenerator
         var name = nameGenerator.Next();
 
         // Predefined patches
-        var localizedName = GetPatchLocalizedName(name, "VOLCANIC_VENT");
-        GD.Print(localizedName.ToString());
         var vents = new Patch(GetPatchLocalizedName(name, "VOLCANIC_VENT"), 0,
             GetBiomeTemplate("aavolcanic_vent"))
         {
@@ -46,7 +44,6 @@ public static class PatchMapGenerator
         };
         map.AddPatch(mesopelagic);
 
-
         var epipelagic = new Patch(GetPatchLocalizedName(name, "EPIPELAGIC"), 2,
             GetBiomeTemplate("default"))
         {
@@ -59,7 +56,6 @@ public static class PatchMapGenerator
         };
         map.AddPatch(epipelagic);
 
-
         var tidepool = new Patch(GetPatchLocalizedName(name, "TIDEPOOL"), 3,
             GetBiomeTemplate("tidepool"))
         {
@@ -71,7 +67,6 @@ public static class PatchMapGenerator
             ScreenCoordinates = new Vector2(300, 100),
         };
         map.AddPatch(tidepool);
-
 
         var bathypelagic = new Patch(GetPatchLocalizedName(name, "BATHYPELAGIC"), 4,
             GetBiomeTemplate("bathypelagic"))
@@ -145,7 +140,6 @@ public static class PatchMapGenerator
         };
         map.AddPatch(iceShelf);
 
-
         var seafloor = new Patch(GetPatchLocalizedName(name, "SEA_FLOOR"), 10,
             GetBiomeTemplate("seafloor"))
         {
@@ -188,6 +182,7 @@ public static class PatchMapGenerator
 
     private static void TranslatePatchNames()
     {
+        _ = TranslationServer.Translate("PATCH_NAME");
         _ = TranslationServer.Translate("PATCH_PANGONIAN_VENTS");
         _ = TranslationServer.Translate("PATCH_PANGONIAN_MESOPELAGIC");
         _ = TranslationServer.Translate("PATCH_PANGONIAN_EPIPELAGIC");
@@ -201,12 +196,8 @@ public static class PatchMapGenerator
         _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
     }
 
-    private static LocalizedStringBuilder GetPatchLocalizedName(string name, string biomeKey)
+    private static LocalizedString GetPatchLocalizedName(string name, string biomeKey)
     {
-        LocalizedStringBuilder localizedName = new LocalizedStringBuilder();
-        localizedName.Append(name);
-        localizedName.Append(" ");
-        localizedName.Append(new LocalizedString(biomeKey));
-        return localizedName;
+        return new LocalizedString("PATCH_NAME", name, new LocalizedString(biomeKey));
     }
 }

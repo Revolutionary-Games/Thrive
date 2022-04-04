@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-18 10:37+0200\n"
+"POT-Creation-Date: 2022-04-04 14:02+0300\n"
 "PO-Revision-Date: 2022-02-27 23:22+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -537,6 +537,7 @@ msgid "BIG_IRON_CHUNK"
 msgstr "Pedaço de ferro grande"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:148
+#: ../src/microbe_stage/PatchMapGenerator.cs:25
 msgid "VOLCANIC_VENT"
 msgstr "Respiradouro vulcânico"
 
@@ -2724,15 +2725,15 @@ msgstr "pouco"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "muito pouco"
 
-#: ../src/microbe_stage/MicrobeStage.cs:545
+#: ../src/microbe_stage/MicrobeStage.cs:544
 msgid "PLAYER_REPRODUCED"
 msgstr "jogador reproduziu"
 
-#: ../src/microbe_stage/MicrobeStage.cs:634
+#: ../src/microbe_stage/MicrobeStage.cs:633
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Impossível usar comando para gerar inimigo pois essa região não contém nenhuma espécie inimiga"
 
-#: ../src/microbe_stage/MicrobeStage.cs:698
+#: ../src/microbe_stage/MicrobeStage.cs:653
 msgid "PLAYER_DIED"
 msgstr "jogador morreu"
 
@@ -2812,47 +2813,52 @@ msgstr "Suicídio"
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAÇÃO:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:181
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
+#, fuzzy
+msgid "PATCH_NAME"
+msgstr "Caverna"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Respiradouros Pangonianos"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:182
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Mesopelágico Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:183
+#: ../src/microbe_stage/PatchMapGenerator.cs:197
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Epipelágico Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:184
+#: ../src/microbe_stage/PatchMapGenerator.cs:198
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Poça de Maré Pangoniana"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:185
+#: ../src/microbe_stage/PatchMapGenerator.cs:199
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Batipelágico Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:186
+#: ../src/microbe_stage/PatchMapGenerator.cs:200
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Abissopelágico Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:187
+#: ../src/microbe_stage/PatchMapGenerator.cs:201
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Costa Pangoniana"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:188
+#: ../src/microbe_stage/PatchMapGenerator.cs:202
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Estuário Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:189
+#: ../src/microbe_stage/PatchMapGenerator.cs:203
 msgid "PATCH_CAVE"
 msgstr "Caverna"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:190
+#: ../src/microbe_stage/PatchMapGenerator.cs:204
 msgid "PATCH_ICE_SHELF"
 msgstr "Plataforma de Gelo"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:191
+#: ../src/microbe_stage/PatchMapGenerator.cs:205
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Relevo Oceânico Pangoniano"
 

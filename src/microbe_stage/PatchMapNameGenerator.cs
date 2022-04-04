@@ -18,7 +18,7 @@ public class PatchMapNameGenerator : IRegistryType
     private List<string> syllables = null!;
 
     [JsonRequired]
-    private List<string> sufixes = null!;
+    private List<string> suffixes = null!;
 
     private string vowels = "aeiouy";
     public string InternalName { get; set; } = null!;
@@ -41,6 +41,12 @@ public class PatchMapNameGenerator : IRegistryType
         Random random = new Random();
 
         int nameLength = random.Next(syllablesLowerLimit, syllablesHigherLimit + 1);
+        if (nameLength == 4)
+        {
+            if (random.Next() % 2 == 0)
+                nameLength -= 1;
+        }
+
         string name = string.Empty;
         int sufixIndex;
 
@@ -57,14 +63,14 @@ public class PatchMapNameGenerator : IRegistryType
         // Choose an apropiate suffix considering last letter
         if (vowels.Contains(name[name.Length - 1]))
         {
-            sufixIndex = 2 * random.Next(0, 3);
+            sufixIndex = 2 * random.Next(0, 4);
         }
         else
         {
-            sufixIndex = 1 + 2 * random.Next(0, 3);
+            sufixIndex = 1 + 2 * random.Next(0, 4);
         }
 
-        name += sufixes[sufixIndex];
+        name += suffixes[sufixIndex];
 
         // Convert first letter to uppercase
         char[] charName = name.ToCharArray();
@@ -74,9 +80,13 @@ public class PatchMapNameGenerator : IRegistryType
         return name;
     }
 
-    // TODO
     public void Check(string name)
     {
+        if (syllablesLowerLimit >= syllablesHigherLimit)
+        {
+            throw new InvalidRegistryDataException(nameof(PatchMapGenerator), GetType().Name,
+                "Syllable count lower limit is higher or equal to the higher limit");
+        }
     }
 
     // TODO
