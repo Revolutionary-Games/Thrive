@@ -82,6 +82,16 @@ Once you are done adding content into the game, go into the scripts folder and
 run `update_localization.rb`. This will extract the strings from the game files,
 and also update the .po files if the template (.pot) has changed.
 
+gettext automatically "guesses" some text which might be right when a new translation
+key appears in a file. This is fine as the texts are marked as needing changes (fuzzy),
+meaning that the texts won't appear in the game and on Weblate they will appear as
+needing changes to translators to fix. If you do not speak a language (or you can't
+be bothered) you can skip editing the translations for other languages than English.
+If you don't speak a language, **do not** remove the fuzzy marking for that language,
+otherwise the text won't show up as needing changes and the incorrect text may end up
+staying in the game for a long time. English translation is required for a pull request 
+to be accepted, see the next paragraph for more info.
+
 The final step is to open en.po in the locale folder (you can use a text editor
 or Poedit), search for your keys, and add your strings as translation. Once done,
 you can launch the game and make sure everything works as expected.
