@@ -36,10 +36,8 @@ public class PatchMapNameGenerator : IRegistryType
     /// <summary>
     ///   Generates and returns a new patch name
     /// </summary>
-    public string Next(int seed)
+    public string Next(Random random)
     {
-        Random random = new Random(seed);
-
         int nameLength = random.Next(syllablesLowerLimit, syllablesHigherLimit + 1);
         if (nameLength == 4)
         {
@@ -76,6 +74,7 @@ public class PatchMapNameGenerator : IRegistryType
         char[] charName = name.ToCharArray();
         charName[0] = char.ToUpper(name[0]);
         name = new string(charName);
+        patchName = name;
 
         return name;
     }

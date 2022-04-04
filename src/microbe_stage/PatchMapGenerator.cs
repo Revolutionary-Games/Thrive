@@ -17,8 +17,9 @@ public static class PatchMapGenerator
 
         // Generate random name and seed for patch
         var seed = new Random().Next();
+        var random = new Random(seed);
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
-        var name = nameGenerator.Next(seed);
+        var name = nameGenerator.Next(random);
 
         // Predefined patches
         var vents = new Patch(GetPatchLocalizedName(name, "VOLCANIC_VENT"), 0,
