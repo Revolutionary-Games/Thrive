@@ -376,6 +376,7 @@ public class SimulationParameters : Node
         CheckRegistryType(gallery);
 
         NameGenerator.Check(string.Empty);
+        PatchMapNameGenerator.Check(string.Empty);
         autoEvoConfiguration.Check(string.Empty);
         translationsInfo.Check(string.Empty);
         gameCredits.Check(string.Empty);
