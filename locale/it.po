@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-04 14:02+0300\n"
+"POT-Creation-Date: 2022-04-05 17:57+0300\n"
 "PO-Revision-Date: 2022-02-27 23:22+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -537,7 +537,6 @@ msgid "BIG_IRON_CHUNK"
 msgstr "Frammento di ferro grande"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:148
-#: ../src/microbe_stage/PatchMapGenerator.cs:25
 msgid "VOLCANIC_VENT"
 msgstr "Camino vulcanico"
 
@@ -2811,54 +2810,54 @@ msgstr "Suicidio"
 msgid "POPULATION_CAPITAL"
 msgstr "POPOLAZIONE:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:194
-#, fuzzy
-msgid "PATCH_NAME"
-msgstr "Grotta"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:195
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Camini Pangoniani"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:196
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Mesopelagico Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:197
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Epipelagico Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:198
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Pozza di Marea Pangoniana"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:199
+#: ../src/microbe_stage/PatchMapGenerator.cs:192
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Batipelagico Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:200
+#: ../src/microbe_stage/PatchMapGenerator.cs:193
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Abissopelagico Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:201
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Costa Pangoniana"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:202
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Estuario Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:203
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
 msgid "PATCH_CAVE"
 msgstr "Grotta"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:204
+#: ../src/microbe_stage/PatchMapGenerator.cs:197
 msgid "PATCH_ICE_SHELF"
 msgstr "Banchina Glaciale"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:205
+#: ../src/microbe_stage/PatchMapGenerator.cs:198
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Fondale Marino Pangoniano"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:203
+#, fuzzy
+msgid "PATCH_NAME"
+msgstr "Grotta"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-04 14:02+0300\n"
+"POT-Creation-Date: 2022-04-05 17:57+0300\n"
 "PO-Revision-Date: 2022-02-27 23:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -537,7 +537,6 @@ msgid "BIG_IRON_CHUNK"
 msgstr "Big Iron Chunk"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:148
-#: ../src/microbe_stage/PatchMapGenerator.cs:25
 msgid "VOLCANIC_VENT"
 msgstr "Volcanic Vent"
 
@@ -2811,53 +2810,53 @@ msgstr "Suicide"
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:194
-msgid "PATCH_NAME"
-msgstr "{0} {1}"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:195
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Pangonian Vents"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:196
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Pangonian Mesopelagic"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:197
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Pangonian Epipelagic"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:198
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Pangonian Tidepool"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:199
+#: ../src/microbe_stage/PatchMapGenerator.cs:192
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Pangonian Bathypelagic"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:200
+#: ../src/microbe_stage/PatchMapGenerator.cs:193
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Pangonian Abyssopelagic"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:201
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Pangonian Coast"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:202
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Pangonian Estuary"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:203
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
 msgid "PATCH_CAVE"
 msgstr "Cave"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:204
+#: ../src/microbe_stage/PatchMapGenerator.cs:197
 msgid "PATCH_ICE_SHELF"
 msgstr "Ice Shelf"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:205
+#: ../src/microbe_stage/PatchMapGenerator.cs:198
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonian Sea Floor"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:203
+msgid "PATCH_NAME"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"

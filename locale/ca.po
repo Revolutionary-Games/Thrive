@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-04 14:02+0300\n"
+"POT-Creation-Date: 2022-04-05 17:57+0300\n"
 "PO-Revision-Date: 2022-02-04 17:52+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -537,7 +537,6 @@ msgid "BIG_IRON_CHUNK"
 msgstr "Gran tros de Ferro"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:148
-#: ../src/microbe_stage/PatchMapGenerator.cs:25
 msgid "VOLCANIC_VENT"
 msgstr "Fissura volcànica"
 
@@ -2826,54 +2825,54 @@ msgstr "Suicidi"
 msgid "POPULATION_CAPITAL"
 msgstr "POBLACIÓ:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:194
-#, fuzzy
-msgid "PATCH_NAME"
-msgstr "Cova submarina"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:195
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Fumeroles volcàniques de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:196
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Zona Mesopelàgica de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:197
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Zona Epipelàgica de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:198
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Toll o Bassa de Marea de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:199
+#: ../src/microbe_stage/PatchMapGenerator.cs:192
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Zona Batipelàgica de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:200
+#: ../src/microbe_stage/PatchMapGenerator.cs:193
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Zona Abissopelàgica de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:201
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Zona Costanera de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:202
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Estuari de Pangònia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:203
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
 msgid "PATCH_CAVE"
 msgstr "Cova submarina"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:204
+#: ../src/microbe_stage/PatchMapGenerator.cs:197
 msgid "PATCH_ICE_SHELF"
 msgstr "Plataforma de Gel"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:205
+#: ../src/microbe_stage/PatchMapGenerator.cs:198
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Llit Marí de Pangònia"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:203
+#, fuzzy
+msgid "PATCH_NAME"
+msgstr "Cova submarina"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"

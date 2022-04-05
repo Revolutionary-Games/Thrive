@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-04 14:02+0300\n"
+"POT-Creation-Date: 2022-04-05 17:57+0300\n"
 "PO-Revision-Date: 2022-02-03 10:36+0000\n"
 "Last-Translator: Nicholas Stephens <jestrab.007.spy@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -537,7 +537,6 @@ msgid "BIG_IRON_CHUNK"
 msgstr "Velký kus železa"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:148
-#: ../src/microbe_stage/PatchMapGenerator.cs:25
 msgid "VOLCANIC_VENT"
 msgstr "Vulkanický průduch"
 
@@ -2827,54 +2826,54 @@ msgstr "Spáchat sebevraždu"
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACE:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:194
-#, fuzzy
-msgid "PATCH_NAME"
-msgstr "Jeskyně"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:195
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Pangoniánské hydrotermální průduchy"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:196
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Pangoniánský Mezopelagiál"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:197
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Pangoniánský Epipelagiál"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:198
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Pangoniánská přílivová jezírka"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:199
+#: ../src/microbe_stage/PatchMapGenerator.cs:192
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Pangoniánský Batypelagiál"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:200
+#: ../src/microbe_stage/PatchMapGenerator.cs:193
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Pangoniánský Abysopelagiál"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:201
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Pangoniánské pobřeží"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:202
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Pangoniánské ústí"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:203
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
 msgid "PATCH_CAVE"
 msgstr "Jeskyně"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:204
+#: ../src/microbe_stage/PatchMapGenerator.cs:197
 msgid "PATCH_ICE_SHELF"
 msgstr "Šelfový ledovec"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:205
+#: ../src/microbe_stage/PatchMapGenerator.cs:198
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangoniánské mořské dno"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:203
+#, fuzzy
+msgid "PATCH_NAME"
+msgstr "Jeskyně"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
