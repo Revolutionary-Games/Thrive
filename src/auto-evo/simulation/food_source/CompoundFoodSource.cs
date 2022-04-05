@@ -26,7 +26,7 @@
         {
             var microbeSpecies = (MicrobeSpecies)species;
 
-            var compoundUseScore = EnergyGenerationScore(microbeSpecies, compound);
+            var compoundUseScore = EnergyGenerationScore(microbeSpecies, compound, patch);
 
             var energyCost = simulationCache
                 .GetEnergyBalanceForSpecies(microbeSpecies, patch)

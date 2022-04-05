@@ -265,6 +265,7 @@ public class ProcessSystem
         var result = new ProcessSpeedInformation(process.Process);
 
         float speedFactor = 1.0f;
+        float efficiency = 1.0f;
 
         // Environmental inputs need to be processed first
         foreach (var input in process.Process.Inputs)
@@ -280,6 +281,8 @@ public class ProcessSystem
 
             result.AvailableAmounts[input.Key] = availableInEnvironment;
 
+            efficiency *= availableInEnvironment;
+
             // More than needed environment value boosts the effectiveness
             result.AvailableRates[input.Key] = availableRate;
 
@@ -287,6 +290,8 @@ public class ProcessSystem
 
             result.WritableInputs[input.Key] = input.Value;
         }
+
+        result.Efficiency = efficiency;
 
         speedFactor *= process.Rate;
 
