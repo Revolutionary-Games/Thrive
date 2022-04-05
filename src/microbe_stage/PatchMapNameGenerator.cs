@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using Newtonsoft.Json;
 
 public class PatchMapNameGenerator : IRegistryType
@@ -11,27 +13,31 @@ public class PatchMapNameGenerator : IRegistryType
     [JsonRequired]
     private int syllablesHigherLimit = 5;
 
-    private string continentName = null!;
-    private string patchName = null!;
-
     [JsonRequired]
     private List<string> syllables = null!;
 
     [JsonRequired]
     private List<string> suffixes = null!;
 
+    // ReSharper disable once StringLiteralTypo
     private string vowels = "aeiouy";
+
+    private string? continentName;
+    private string? patchName;
+
+    public string ContinentName
+    {
+        get => continentName ?? throw new InvalidOperationException("Value not generated yet");
+        private set => continentName = value;
+    }
+
+    public string PatchName
+    {
+        get => patchName ?? throw new InvalidOperationException("Value not generated yet");
+        private set => patchName = value;
+    }
+
     public string InternalName { get; set; } = null!;
-
-    public string GetContinentName()
-    {
-        return continentName;
-    }
-
-    public string GetPatchName()
-    {
-        return patchName;
-    }
 
     /// <summary>
     ///   Generates and returns a new patch name
@@ -45,38 +51,39 @@ public class PatchMapNameGenerator : IRegistryType
                 nameLength -= 1;
         }
 
-        string name = string.Empty;
-        int sufixIndex;
+        var name = new StringBuilder(50);
+        int suffixIndex;
 
-        // Contruct the word with syllables
+        // Construct the word with syllables
         for (int i = 0; i < nameLength; i++)
         {
-            int syllabelsIndex = random.Next(0, syllables.Count);
-            name += syllables[syllabelsIndex];
+            int syllablesIndex = random.Next(0, syllables.Count);
+
+            // First letter is upper case
+            name.Append(syllables[syllablesIndex]);
         }
 
-        // Continent name is the name without the genitive
-        continentName = name;
+        // Convert first letter to uppercase
+        name[0] = char.ToUpper(name[0], CultureInfo.InvariantCulture);
 
-        // Choose an apropiate suffix considering last letter
+        // Continent name is the name without the genitive
+        ContinentName = name.ToString();
+
+        // Choose an appropriate suffix considering last letter
         if (vowels.Contains(name[name.Length - 1]))
         {
-            sufixIndex = 2 * random.Next(0, 4);
+            suffixIndex = 2 * random.Next(0, 4);
         }
         else
         {
-            sufixIndex = 1 + 2 * random.Next(0, 4);
+            suffixIndex = 1 + 2 * random.Next(0, 4);
         }
 
-        name += suffixes[sufixIndex];
+        name.Append(suffixes[suffixIndex]);
 
-        // Convert first letter to uppercase
-        char[] charName = name.ToCharArray();
-        charName[0] = char.ToUpper(name[0]);
-        name = new string(charName);
-        patchName = name;
+        PatchName = name.ToString();
 
-        return name;
+        return PatchName;
     }
 
     public void Check(string name)
@@ -86,10 +93,20 @@ public class PatchMapNameGenerator : IRegistryType
             throw new InvalidRegistryDataException(nameof(PatchMapGenerator), GetType().Name,
                 "Syllable count lower limit is higher or equal to the higher limit");
         }
+
+        if (syllables.Count < 1)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name, "No syllables specified");
+        }
+
+        if (suffixes.Count < 1)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name, "No suffixes specified");
+        }
     }
 
-    // TODO
     public void ApplyTranslations()
     {
+        // Our data is currently not language specific
     }
 }
