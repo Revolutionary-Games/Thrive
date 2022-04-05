@@ -266,6 +266,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         Connect("body_shape_entered", this, nameof(OnContactBegin));
         Connect("body_shape_exited", this, nameof(OnContactEnd));
 
+        Mass = Constants.MICROBE_BASE_MASS;
+
         if (IsLoadedFromSave)
         {
             if (organelles == null)
@@ -279,8 +281,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                     AddChild(child);
                 }
             }
-
-            Mass = Constants.MICROBE_BASE_MASS;
 
             // Need to re-attach our organelles
             foreach (var organelle in organelles)
