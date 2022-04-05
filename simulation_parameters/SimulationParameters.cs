@@ -96,7 +96,7 @@ public class SimulationParameters : Node
             LoadDirectObject<GameCredits>("res://simulation_parameters/common/credits.json");
 
         PatchMapNameGenerator = LoadDirectObject<PatchMapNameGenerator>(
-            "res://simulation_parameters/microbe_stage/patch_syllabels.json");
+            "res://simulation_parameters/microbe_stage/patch_syllables.json");
 
         GD.Print("SimulationParameters loading ended");
 
