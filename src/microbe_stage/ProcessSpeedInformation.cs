@@ -45,7 +45,7 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     It is computed as the product of the available amounts of environmental compounds 
+    ///     It is computed as the product of the available amounts of environmental compounds
     ///     at instanciation and stored here.
     ///   </para>
     /// </remarks>

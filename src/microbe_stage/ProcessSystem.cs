@@ -247,14 +247,6 @@ public class ProcessSystem
         return GetDissolvedInBiome(compound, biome);
     }
 
-    private static float GetDissolvedInBiome(Compound compound, BiomeConditions biome)
-    {
-        if (!biome.Compounds.ContainsKey(compound))
-            return 0;
-
-        return biome.Compounds[compound].Dissolved;
-    }
-
     /// <summary>
     ///   Calculates the maximum speed a process can run at in a biome
     ///   based on the environmental compounds.
@@ -321,6 +313,14 @@ public class ProcessSystem
         result.CurrentSpeed = speedFactor;
 
         return result;
+    }
+
+    private static float GetDissolvedInBiome(Compound compound, BiomeConditions biome)
+    {
+        if (!biome.Compounds.ContainsKey(compound))
+            return 0;
+
+        return biome.Compounds[compound].Dissolved;
     }
 
     private void ProcessNode(IProcessable? processor, float delta, float inverseDelta)
