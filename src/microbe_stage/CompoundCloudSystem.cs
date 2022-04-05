@@ -310,8 +310,6 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         // This version is used when working with cloud local coordinates
         float localRadius = searchRadius / resolution;
 
-        float localRadiusSquared = Mathf.Pow(searchRadius / resolution, 2);
-
         float nearestDistanceSquared = float.MaxValue;
 
         Vector3? closestPoint = null;
@@ -328,36 +326,21 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
 
             cloud.ConvertToCloudLocal(position, out var cloudRelativeX, out var cloudRelativeY);
 
-            // For simplicity all points within a bounding box around the
-            // relative origin point is calculated and that is restricted by
-            // checking if the point is within the circle before grabbing
-
-            // And apparently there isn't an algorithm to generate the points with closest ones first? so
-            // this goes through everything and keeps the closest found point
-
-            int xEnd = (int)Mathf.Round(cloudRelativeX + localRadius);
-            int yEnd = (int)Mathf.Round(cloudRelativeY + localRadius);
-
-            for (int x = (int)Mathf.Round(cloudRelativeX - localRadius);
-                 x <= xEnd;
-                 x += 1)
+            // Search each angle for nearby compounds
+            for (int radius = 1;
+                 radius < localRadius;
+                 radius += 1)
             {
-                for (int y = (int)Mathf.Round(cloudRelativeY - localRadius);
-                     y <= yEnd;
-                     y += 1)
+                for (double theta = 0;
+                     theta <= MathUtils.FULL_CIRCLE;
+                     theta += Constants.CHEMORECEPTOR_ARC_SIZE)
                 {
+                    int x = cloudRelativeX + (int)Math.Round(Math.Cos(theta) * radius);
+                    int y = cloudRelativeY + (int)Math.Round(Math.Sin(theta) * radius);
+
                     // Negative coordinates are always outside the cloud area
                     if (x < 0 || y < 0)
                         continue;
-
-                    // Circle check
-                    if (Mathf.Pow(x - cloudRelativeX, 2) +
-                        Mathf.Pow(y - cloudRelativeY, 2) >
-                        localRadiusSquared)
-                    {
-                        // Not in it
-                        continue;
-                    }
 
                     // Then just need to check that it is within the cloud simulation array
                     if (x < cloud.Size && y < cloud.Size)
