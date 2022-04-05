@@ -500,9 +500,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         // Physics
         ParentMicrobe!.Mass += Definition.Mass;
 
+        //TODO: if organelles can grow while cells are in a colony this will be needed
         // Add the mass of the organelles to the colony master
-        if (ParentMicrobe.Colony != null && ParentMicrobe != ParentMicrobe.Colony.Master)
-            ParentMicrobe.Colony.Master.Mass += Definition.Mass;
+        // if (ParentMicrobe.Colony != null && ParentMicrobe != ParentMicrobe.Colony.Master &&
+        //     !IsLoadedFromSave)
+        //     ParentMicrobe.Colony.Master.Mass += Definition.Mass;
 
         MakeCollisionShapes(ParentMicrobe!.Colony?.Master ?? ParentMicrobe);
 
