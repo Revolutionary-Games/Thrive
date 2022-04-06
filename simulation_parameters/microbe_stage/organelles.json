@@ -422,7 +422,7 @@
         "requiresNucleus": true
     },
     "oxytoxy": {
-        "mpCost": 70,
+        "mpCost": 55,
         "initialComposition": {
             "ammonia": 1,
             "phosphates": 1
@@ -516,7 +516,7 @@
         },
         "prokaryoteChance": 0,
         "chanceToCreate": 1,
-        "mass": 0.4,
+        "mass": 0.3,
         "displayScene": "res://assets/models/organelles/Chloroplast.tscn",
         "name": "CHLOROPLAST",
         "iconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png",
@@ -556,7 +556,7 @@
         "iconPath": "res://assets/textures/gui/bevel/parts/CytoplasmIcon.png"
     },
     "nucleus": {
-        "mpCost": 100,
+        "mpCost": 70,
         "initialComposition": {
             "ammonia": 2,
             "phosphates": 2
@@ -637,7 +637,7 @@
         },
         "prokaryoteChance": 0.2,
         "chanceToCreate": 0.2,
-        "mass": 0.2,
+        "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Chemoreceptor.tscn",
         "name": "CHEMORECEPTOR",
         "iconPath": "res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png",
@@ -661,7 +661,7 @@
         },
         "prokaryoteChance": 0,
         "chanceToCreate": 0.4,
-        "mass": 0.25,
+        "mass": 0.1,
         "displayScene": "res://assets/models/organelles/SignalingAgent.tscn",
         "name": "SIGNALING_AGENT",
         "iconPath": "res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png",
