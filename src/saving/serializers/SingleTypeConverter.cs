@@ -7,13 +7,15 @@ using Newtonsoft.Json;
 /// <typeparam name="T">The converted type</typeparam>
 public class SingleTypeConverter<T> : BaseThriveConverter
 {
+    private static readonly Type SupportedType = typeof(T);
+
     protected SingleTypeConverter(ISaveContext context) : base(context)
     {
     }
 
     public override bool CanConvert(Type objectType)
     {
-        return objectType == typeof(T);
+        return objectType == SupportedType;
     }
 
     protected override bool WriteCustomJson(JsonWriter writer, object value, JsonSerializer serializer)
