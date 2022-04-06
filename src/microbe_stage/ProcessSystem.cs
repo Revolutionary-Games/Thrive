@@ -187,66 +187,6 @@ public class ProcessSystem
         return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
     }
 
-    public void Process(float delta)
-    {
-        // Guard against Godot delta problems. https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        if (biome == null)
-        {
-            GD.PrintErr("ProcessSystem has no biome set");
-            return;
-        }
-
-        var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.PROCESS_GROUP);
-
-        // Used to go from the calculated compound values to per second values for reporting statistics
-        float inverseDelta = 1.0f / delta;
-
-        // The objects are processed here in order to take advantage of threading
-        var executor = TaskExecutor.Instance;
-
-        for (int i = 0; i < nodes.Count; i += Constants.PROCESS_OBJECTS_PER_TASK)
-        {
-            int start = i;
-
-            var task = new Task(() =>
-            {
-                for (int a = start;
-                     a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodes.Count; ++a)
-                {
-                    ProcessNode(nodes[a] as IProcessable, delta, inverseDelta);
-                }
-            });
-
-            tasks.Add(task);
-        }
-
-        // Start and wait for tasks to finish
-        executor.RunTasks(tasks);
-        tasks.Clear();
-    }
-
-    /// <summary>
-    ///   Sets the biome whose environmental values affect processes
-    /// </summary>
-    public void SetBiome(BiomeConditions newBiome)
-    {
-        biome = newBiome;
-    }
-
-    /// <summary>
-    ///   Get the amount of environmental compound
-    /// </summary>
-    public float GetDissolved(Compound compound)
-    {
-        if (biome == null)
-            throw new InvalidOperationException("Biome needs to be set before getting dissolved compounds");
-
-        return GetDissolvedInBiome(compound, biome);
-    }
-
     /// <summary>
     ///   Calculates the maximum speed a process can run at in a biome
     ///   based on the environmental compounds.
@@ -313,6 +253,66 @@ public class ProcessSystem
         result.CurrentSpeed = speedFactor;
 
         return result;
+    }
+
+    public void Process(float delta)
+    {
+        // Guard against Godot delta problems. https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
+        if (biome == null)
+        {
+            GD.PrintErr("ProcessSystem has no biome set");
+            return;
+        }
+
+        var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.PROCESS_GROUP);
+
+        // Used to go from the calculated compound values to per second values for reporting statistics
+        float inverseDelta = 1.0f / delta;
+
+        // The objects are processed here in order to take advantage of threading
+        var executor = TaskExecutor.Instance;
+
+        for (int i = 0; i < nodes.Count; i += Constants.PROCESS_OBJECTS_PER_TASK)
+        {
+            int start = i;
+
+            var task = new Task(() =>
+            {
+                for (int a = start;
+                     a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodes.Count; ++a)
+                {
+                    ProcessNode(nodes[a] as IProcessable, delta, inverseDelta);
+                }
+            });
+
+            tasks.Add(task);
+        }
+
+        // Start and wait for tasks to finish
+        executor.RunTasks(tasks);
+        tasks.Clear();
+    }
+
+    /// <summary>
+    ///   Sets the biome whose environmental values affect processes
+    /// </summary>
+    public void SetBiome(BiomeConditions newBiome)
+    {
+        biome = newBiome;
+    }
+
+    /// <summary>
+    ///   Get the amount of environmental compound
+    /// </summary>
+    public float GetDissolved(Compound compound)
+    {
+        if (biome == null)
+            throw new InvalidOperationException("Biome needs to be set before getting dissolved compounds");
+
+        return GetDissolvedInBiome(compound, biome);
     }
 
     private static float GetDissolvedInBiome(Compound compound, BiomeConditions biome)
