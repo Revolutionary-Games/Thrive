@@ -599,7 +599,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Move patches
         if (targetPatch != null)
         {
-            GD.Print("MicrobeEditor: applying player move to patch: ", TranslationServer.Translate(targetPatch.Name));
+            GD.Print("MicrobeEditor: applying player move to patch: ", targetPatch.Name);
             CurrentGame.GameWorld.Map.CurrentPatch = targetPatch;
 
             // Add the edited species to that patch to allow the species to gain population there

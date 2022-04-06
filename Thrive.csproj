@@ -170,6 +170,7 @@
     <Compile Include="src\microbe_stage\MicrobeColony.cs" />
     <Compile Include="src\microbe_stage\CompoundBalance.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
+    <Compile Include="src\microbe_stage\PatchMapNameGenerator.cs" />
     <Compile Include="src\microbe_stage\editor\BarHelper.cs" />
     <Compile Include="src\microbe_stage\editor\CompoundBalanceDisplay.cs" />
     <Compile Include="src\microbe_stage\editor\IMicrobeEditorActionData.cs" />
@@ -330,6 +331,7 @@
     <Compile Include="src\saving\serializers\EntityReferenceConverter.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
     <Compile Include="src\saving\serializers\GodotBasisConverter.cs" />
+    <Compile Include="src\saving\serializers\LocalizedStringTypeConverter.cs" />
     <Compile Include="src\saving\serializers\NodeConverter.cs" />
     <Compile Include="src\saving\serializers\NodeGroupSaveHelper.cs" />
     <Compile Include="src\saving\serializers\PackedSceneConverter.cs" />
@@ -425,6 +427,7 @@
     <Content Include="simulation_parameters\microbe_stage\compounds.json" />
     <Content Include="simulation_parameters\microbe_stage\membranes.json" />
     <Content Include="simulation_parameters\microbe_stage\organelles.json" />
+    <Content Include="simulation_parameters\microbe_stage\patch_syllables.json" />
     <Content Include="simulation_parameters\microbe_stage\species_names.json" />
   </ItemGroup>
   <ItemGroup>
