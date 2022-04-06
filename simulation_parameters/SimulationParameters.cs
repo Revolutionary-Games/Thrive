@@ -39,6 +39,7 @@ public class SimulationParameters : Node
     public AutoEvoConfiguration AutoEvoConfiguration => autoEvoConfiguration;
 
     public NameGenerator NameGenerator { get; private set; } = null!;
+    public PatchMapNameGenerator PatchMapNameGenerator { get; private set; } = null!;
 
     /// <summary>
     ///   Loads the simulation configuration parameters from JSON files
@@ -93,6 +94,9 @@ public class SimulationParameters : Node
 
         gameCredits =
             LoadDirectObject<GameCredits>("res://simulation_parameters/common/credits.json");
+
+        PatchMapNameGenerator = LoadDirectObject<PatchMapNameGenerator>(
+            "res://simulation_parameters/microbe_stage/patch_syllables.json");
 
         GD.Print("SimulationParameters loading ended");
 
@@ -245,6 +249,11 @@ public class SimulationParameters : Node
         return eukaryoticOrganelles[eukaryoticOrganelles.Count - 1];
     }
 
+    public PatchMapNameGenerator GetPatchMapNameGenerator()
+    {
+        return PatchMapNameGenerator;
+    }
+
     /// <summary>
     ///   Applies translations to all registry loaded types. Called whenever the locale is changed
     /// </summary>
@@ -367,6 +376,7 @@ public class SimulationParameters : Node
         CheckRegistryType(gallery);
 
         NameGenerator.Check(string.Empty);
+        PatchMapNameGenerator.Check(string.Empty);
         autoEvoConfiguration.Check(string.Empty);
         translationsInfo.Check(string.Empty);
         gameCredits.Check(string.Empty);

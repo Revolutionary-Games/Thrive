@@ -68,9 +68,12 @@ loadable) you should include a save upgrader in your PR. Note that you
 may need to introduce a new sub version / bump the version number to
 make it possible to trigger the save upgrader.
 
+If your PR requires new translations or touches a part that uses translations,
+please read the translations documentation linked in the next section.
+
 ## Translating the game
 
-You can find the necessary informations about how to translate the game [here](doc/working_with_translations.md).
+You can find the necessary information about how to translate the game [here](doc/working_with_translations.md).
 
 ## Planning Board
 
