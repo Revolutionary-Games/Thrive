@@ -5,7 +5,6 @@ using Directory = Godot.Directory;
 using File = Godot.File;
 using Path = System.IO.Path;
 
-
 /// <summary>
 ///   Helpers regarding file operations
 /// </summary>
