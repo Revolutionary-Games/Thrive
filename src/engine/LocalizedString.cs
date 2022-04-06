@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using Godot;
@@ -14,6 +15,7 @@ using Newtonsoft.Json;
 ///   This class can be used on its own, but was designed for the use within LocalizedStringBuilder.
 /// </remarks>
 [JSONDynamicTypeAllowed]
+[TypeConverter(typeof(LocalizedStringTypeConverter))]
 public class LocalizedString : IFormattable, IEquatable<LocalizedString>
 {
     [JsonProperty]
