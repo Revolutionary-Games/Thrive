@@ -2,8 +2,9 @@
 using System.IO;
 using Godot;
 using Directory = Godot.Directory;
-using Path = System.IO.Path;
 using File = Godot.File;
+using Path = System.IO.Path;
+
 
 /// <summary>
 ///   Helpers regarding file operations
