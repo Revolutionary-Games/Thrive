@@ -363,6 +363,11 @@ public static class Constants
     public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
 
     /// <summary>
+    ///   Size, in radians, of the gaps between directions the chemoreceptor checks for compounds
+    /// </summary>
+    public const double CHEMORECEPTOR_ARC_SIZE = Math.PI / 24.0;
+
+    /// <summary>
     ///   This should be the max needed hexes (nucleus {10} * 6-way symmetry)
     /// </summary>
     public const int MAX_HOVER_HEXES = 60;
@@ -707,6 +712,8 @@ public static class Constants
     ///   Minimum hex distance before the same render priority.
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
+
+    public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
     public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
 

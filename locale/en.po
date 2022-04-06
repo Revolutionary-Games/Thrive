@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-16 14:03-0500\n"
-"PO-Revision-Date: 2022-03-16 17:50-0500\n"
+"POT-Creation-Date: 2022-04-05 19:02+0300\n"
+"PO-Revision-Date: 2022-02-27 23:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -538,7 +538,7 @@ msgstr "Big Iron Chunk"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:148
 msgid "VOLCANIC_VENT"
-msgstr "Volcanic vent"
+msgstr "Volcanic Vent"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:223
 #: ../simulation_parameters/microbe_stage/biomes.json:615
@@ -570,7 +570,7 @@ msgstr "Coastal"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1334
 msgid "UNDERWATERCAVE"
-msgstr "Underwater Cave"
+msgstr "Underwater cave"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1478
 msgid "ICESHELF"
@@ -1342,7 +1342,7 @@ msgstr "Art by {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4203
-#: ../src/modding/ModManager.tscn:1441
+#: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Close"
@@ -1365,7 +1365,7 @@ msgstr "{0} concentrations have decreased by {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Glucose concentrations have drastically dropped!"
 
-#: ../src/general/MainMenu.cs:235
+#: ../src/general/MainMenu.cs:234
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logged in as: {0}"
 
@@ -1410,7 +1410,7 @@ msgstr "Microbe Freebuild Editor"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:1500 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Back"
@@ -1594,7 +1594,6 @@ msgid "LANGUAGE"
 msgstr "Language:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
-#: ../src/modding/ModManager.tscn:849
 msgid "RESET"
 msgstr "Reset"
 
@@ -1714,7 +1713,7 @@ msgstr "Always"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Never"
 
-#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Save"
 
@@ -1758,7 +1757,7 @@ msgstr "Discard and continue"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:687
+#: ../src/modding/NewModGUI.tscn:457
 msgid "CANCEL"
 msgstr "Cancel"
 
@@ -2076,21 +2075,21 @@ msgstr "Save has different version"
 msgid "SELECT_OPTION"
 msgstr "Select An Option"
 
-#: ../src/gui_common/TweakedColourPicker.cs:393
+#: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "Pick a colour from the game window"
 
-#: ../src/gui_common/TweakedColourPicker.cs:394
+#: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr "Add current colour as a preset"
 
-#: ../src/gui_common/TweakedColourPicker.cs:395
+#: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 "Switch HSV (Hue, Saturation, Value) mode on or off.\n"
 "Can't be turned on when in raw mode."
 
-#: ../src/gui_common/TweakedColourPicker.cs:396
+#: ../src/gui_common/TweakedColourPicker.cs:397
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 "Switch raw mode on or off.\n"
@@ -2098,35 +2097,35 @@ msgstr ""
 "colour values to go beyond 1.0.\n"
 "Can't be turned on in HSV mode."
 
-#: ../src/gui_common/TweakedColourPicker.cs:400
+#: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Hue value, portion of colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:401
+#: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Saturation value, the amount of gray in a particular colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:402
+#: ../src/gui_common/TweakedColourPicker.cs:403
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Value (brightness) value, brightness or intensity of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:406
+#: ../src/gui_common/TweakedColourPicker.cs:407
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Red channel value of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:407
+#: ../src/gui_common/TweakedColourPicker.cs:408
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Green channel value of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:408
+#: ../src/gui_common/TweakedColourPicker.cs:409
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Blue channel value of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:411
+#: ../src/gui_common/TweakedColourPicker.cs:412
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Alpha channel value of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:586
+#: ../src/gui_common/TweakedColourPicker.cs:587
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 "Colour: {0}\n"
@@ -2811,49 +2810,53 @@ msgstr "Suicide"
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:181
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Pangonian Vents"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:182
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Pangonian Mesopelagic"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:183
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Pangonian Epipelagic"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:184
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Pangonian Tidepool"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:185
+#: ../src/microbe_stage/PatchMapGenerator.cs:192
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Pangonian Bathypelagic"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:186
+#: ../src/microbe_stage/PatchMapGenerator.cs:193
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Pangonian Abyssopelagic"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:187
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Pangonian Coast"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:188
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Pangonian Estuary"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:189
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
 msgid "PATCH_CAVE"
 msgstr "Cave"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:190
+#: ../src/microbe_stage/PatchMapGenerator.cs:197
 msgid "PATCH_ICE_SHELF"
 msgstr "Ice Shelf"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:191
+#: ../src/microbe_stage/PatchMapGenerator.cs:198
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonian Sea Floor"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:203
+msgid "PATCH_NAME"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3293,19 +3296,19 @@ msgstr "Extinct Species"
 msgid "NO_EVENTS_RECORDED"
 msgstr "No events recorded"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
 msgid "COMPOUND_TO_FIND"
 msgstr "Compound to Find:"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "SEARCH_RADIUS"
 msgstr "Search Radius:"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr "Minimum Amount to Detect:"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
 msgid "LINE_COLOUR"
 msgstr "Line Colour:"
 
@@ -3329,406 +3332,240 @@ msgstr "YOU HAVE THRIVED!"
 msgid "WIN_TEXT"
 msgstr "Congratulations you have won this version of Thrive! You may continue playing after this screen closes if you wish, or start a new game in a new world."
 
-#: ../src/modding/ModHelpers.cs:33 ../src/modding/ModHelpers.cs:44
-#: ../src/modding/ModHelpers.cs:67 ../src/modding/ModHelpers.cs:83
-#: ../src/modding/ModHelpers.cs:88
-msgid "UNKNOWN_MOD"
-msgstr "Unknown Mod"
-
-#: ../src/modding/ModHelpers.cs:50 ../src/modding/ModManager.cs:1633
-msgid "MOD_LIST_VALID"
-msgstr "The mod list has no errors and is valid."
-
-#: ../src/modding/ModHelpers.cs:53
-msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
-msgstr "The '{0}' mod is incompatible with this version of Thrive."
-
-#: ../src/modding/ModHelpers.cs:70
-msgid "MOD_ERROR_DEPENDENCIES"
-msgstr "The '{0}' mod is dependent on the '{1}' mod."
-
-#: ../src/modding/ModHelpers.cs:72
-msgid "MOD_ERROR_DEPENDENCIES_FIX"
-msgstr "Add that mod to the mod loader before this one to fix this error."
-
-#: ../src/modding/ModHelpers.cs:91
-msgid "MOD_ERROR_REQUIRED_MODS"
-msgstr "The '{0}' mod needs the '{1}' mod to be loaded"
-
-#: ../src/modding/ModHelpers.cs:93
-msgid "MOD_ERROR_REQUIRED_MODS_FIX"
-msgstr "The '{0}' mod needs the '{1}' mod to be loaded"
-
-#: ../src/modding/ModHelpers.cs:96
-msgid "MOD_ERROR_DEPENDENCIES_ORDER"
-msgstr "The '{0}' mod is dependent on the '{1}' mod."
-
-#: ../src/modding/ModHelpers.cs:98
-msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
-msgstr " Load the '{0}' mod after the '{1}' mod to fix this error."
-
-#: ../src/modding/ModHelpers.cs:103
-msgid "MOD_ERROR_INCOMPATIBLE_MOD"
-msgstr "The '{0}' mod is incompatible with the '{1}' mod."
-
-#: ../src/modding/ModHelpers.cs:105
-msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
-msgstr "Remove the '{0}' mod or remove this one to fix this error."
-
-#: ../src/modding/ModHelpers.cs:109
-msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
-msgstr "The '{0}' mod needs to be loaded before the '{1}' mod."
-
-#: ../src/modding/ModHelpers.cs:111
-msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
-msgstr "Load the '{0}' mod before the '{1}' to fix this error."
-
-#: ../src/modding/ModHelpers.cs:116
-msgid "MOD_ERROR_LOAD_ORDER_AFTER"
-msgstr "Load the '{0}' mod before the '{1}' to fix this error."
-
-#: ../src/modding/ModHelpers.cs:118
-msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
-msgstr " Load the '{0}' mod after the '{1}' to fix this error."
-
-#: ../src/modding/ModLoader.cs:436 ../src/modding/ModLoader.cs:493
+#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Can't load mod info for {0}"
 
-#: ../src/modding/ModLoader.cs:461
+#: ../src/modding/ModLoader.cs:235
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: assembly loading failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:478
+#: ../src/modding/ModLoader.cs:252
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: has no loadable resources"
 
-#: ../src/modding/ModLoader.cs:508
+#: ../src/modding/ModLoader.cs:279
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: mod's assembly unload method call failed"
 
-#: ../src/modding/ModLoader.cs:516
+#: ../src/modding/ModLoader.cs:287
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod's assembly unload method call failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:584
+#: ../src/modding/ModLoader.cs:351
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: specified mod class \"{1}\" not found in mod's assembly"
 
-#: ../src/modding/ModLoader.cs:597
+#: ../src/modding/ModLoader.cs:364
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: mod's assembly initialize method call failed"
 
-#: ../src/modding/ModLoader.cs:613
+#: ../src/modding/ModLoader.cs:380
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod's assembly initialize method call failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:629
+#: ../src/modding/ModLoader.cs:394
 msgid "PCK_LOAD_FAILED"
 msgstr "Loading of pck file ({0}) failed"
 
-#: ../src/modding/ModManager.cs:428
+#: ../src/modding/ModManager.cs:293
 msgid "INVALID_ICON_PATH"
 msgstr "Invalid mod icon path"
 
-#: ../src/modding/ModManager.cs:442
+#: ../src/modding/ModManager.cs:307
 msgid "INVALID_URL_SCHEME"
 msgstr "Invalid URL scheme"
 
-#: ../src/modding/ModManager.cs:454
+#: ../src/modding/ModManager.cs:319
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Mod assembly class is required when assembly is specified"
 
-#: ../src/modding/ModManager.cs:564
-msgid "MOD_LOADER_TAB"
-msgstr "Mod Loader"
-
-#: ../src/modding/ModManager.cs:565
-msgid "MOD_ERRORS_TAB"
-msgstr "Loading Errors"
-
-#: ../src/modding/ModManager.cs:762 ../src/modding/ModManager.cs:1568
-msgid "THIS_IS_WORKSHOP_MOD"
-msgstr "This mod is downloaded from the Steam Workshop"
-
-#: ../src/modding/ModManager.cs:763 ../src/modding/ModManager.cs:1569
-msgid "THIS_IS_LOCAL_MOD"
-msgstr "This is a locally installed mod"
-
-#: ../src/modding/ModManager.cs:830
+#: ../src/modding/ModManager.cs:549
 msgid "NO_SELECTED_MOD"
 msgstr "No Selected Mod"
 
-#: ../src/modding/ModManager.cs:1168
-msgid "MOD_LOAD_ERROR_WARNING"
-msgstr ""
-"The mods you want to load might cause errors.\n"
-"\n"
-"{0}\n"
-"\n"
-"Are you sure you want to load these mods?"
+#: ../src/modding/ModManager.cs:885
+msgid "THIS_IS_WORKSHOP_MOD"
+msgstr "This mod is downloaded from the Steam Workshop"
 
-#: ../src/modding/ModManager.cs:1306 ../src/modding/ModManager.tscn:750
-#: ../src/modding/ModManager.tscn:1335 ../src/modding/NewModGUI.tscn:546
-msgid "MOD_DEPENDENCIES"
-msgstr "Dependencies"
+#: ../src/modding/ModManager.cs:886
+msgid "THIS_IS_LOCAL_MOD"
+msgstr "This is a locally installed mod"
 
-#: ../src/modding/ModManager.cs:1322
-msgid "NO_MOD_DEPENDENCIES"
-msgstr "This mod have no Dependencies."
-
-#: ../src/modding/ModManager.cs:1337 ../src/modding/ModManager.tscn:1357
-#: ../src/modding/NewModGUI.tscn:570
-msgid "MOD_REQUIRED_MODS"
-msgstr "Required Mods:"
-
-#: ../src/modding/ModManager.cs:1353
-msgid "NO_REQUIRED_MODS"
-msgstr "This mod have no Required Mods."
-
-#: ../src/modding/ModManager.cs:1368 ../src/modding/ModManager.tscn:768
-msgid "INCOMPATIBLE_WITH"
-msgstr "Incompatible With"
-
-#: ../src/modding/ModManager.cs:1384
-msgid "NO_MOD_INCOMPATIBLE"
-msgstr "This mod is not incompatible with any other mod."
-
-#: ../src/modding/ModManager.cs:1399 ../src/modding/ModManager.tscn:777
-msgid "LOAD_ORDER"
-msgstr "Load Order"
-
-#: ../src/modding/ModManager.cs:1408 ../src/modding/ModManager.tscn:1401
-#: ../src/modding/NewModGUI.tscn:618
-msgid "MOD_LOAD_AFTER"
-msgstr "This mod needs to be loaded after the following mods:"
-
-#: ../src/modding/ModManager.cs:1426 ../src/modding/ModManager.tscn:1379
-#: ../src/modding/NewModGUI.tscn:594
-msgid "MOD_LOAD_BEFORE"
-msgstr "This mod needs to be loaded before the following mods:"
-
-#: ../src/modding/ModManager.cs:1438
-msgid "MOD_NO_LOAD_ORDER"
-msgstr "This mod have no specified load order."
-
-#: ../src/modding/ModManager.cs:1627
-msgid "MOD_LIST_CONTAIN_ERRORS"
-msgstr "The mod list contains an errors:"
-
-#: ../src/modding/ModManager.cs:1629
-msgid "MOD_CHECK_AGAIN_WARNING"
-msgstr "Once you fix that error try checking again to find more errors."
-
-#: ../src/modding/ModManager.cs:1674
+#: ../src/modding/ModManager.cs:940
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Error creating folder for the mod"
 
-#: ../src/modding/ModManager.cs:1683
+#: ../src/modding/ModManager.cs:949
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Error creating mod info file"
 
-#: ../src/modding/ModManager.tscn:197
+#: ../src/modding/ModManager.tscn:121
 msgid "AVAILABLE_MODS"
 msgstr "Available Mods"
 
-#: ../src/modding/ModManager.tscn:225
-msgid "LEFT_ARROW_TOOLTIP"
-msgstr "Disable the selected mod"
-
-#: ../src/modding/ModManager.tscn:226 ../src/modding/ModManager.tscn:480
-msgid "LEFT_ARROW"
-msgstr "←"
-
-#: ../src/modding/ModManager.tscn:242
-msgid "UP_ARROW_TOOLTIP"
-msgstr "Moves up the mod in priority, making it load sooner"
-
-#: ../src/modding/ModManager.tscn:249
-msgid "DOWN_ARROW_TOOLTIP"
-msgstr "Moves down the mod in priority, making it load later"
-
-#: ../src/modding/ModManager.tscn:256
-msgid "RIGHT_ARROW_TOOLTIP"
-msgstr "Enable the selected mod"
-
-#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:514
-msgid "RIGHT_ARROW"
-msgstr "→"
-
-#: ../src/modding/ModManager.tscn:271
-msgid "ENABLED_MODS"
-msgstr "Enabled Mods"
-
-#: ../src/modding/ModManager.tscn:310
-msgid "ENABLE_ALL"
-msgstr "Enable All"
-
-#: ../src/modding/ModManager.tscn:316
-msgid "OPEN_FOLDER"
-msgstr "Open Folder"
-
-#: ../src/modding/ModManager.tscn:322
-msgid "DISABLE_ALL"
-msgstr "Disable All"
-
-#: ../src/modding/ModManager.tscn:338
-msgid "ONESHOT_LOADING_TOOLTIP"
-msgstr "Loads the mod once and do not reload on future launches."
-
-#: ../src/modding/ModManager.tscn:340
-msgid "ONESHOT_LOADING"
-msgstr "One-Shot Loading:"
-
-#: ../src/modding/ModManager.tscn:563 ../src/modding/ModManager.tscn:1011
-#: ../src/modding/NewModGUI.tscn:156
-msgid "MOD_AUTHOR"
-msgstr "Mod Author:"
-
-#: ../src/modding/ModManager.tscn:588 ../src/modding/ModManager.tscn:1033
-#: ../src/modding/NewModGUI.tscn:179
-msgid "MOD_VERSION"
-msgstr "Mod Version:"
-
-#: ../src/modding/ModManager.tscn:669
-msgid "MINIMUM_VERSION"
-msgstr "Minimum:"
-
-#: ../src/modding/ModManager.tscn:703
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr "Recommended Thrive:"
-
-#: ../src/modding/ModManager.tscn:759
-msgid "REQUIRED_MODS"
-msgstr "Required Mods"
-
-#: ../src/modding/ModManager.tscn:786
-msgid "OPEN_MOD_URL"
-msgstr "Open Info URL"
-
-#: ../src/modding/ModManager.tscn:795
-msgid "MORE_INFO"
-msgstr "Show More Info"
-
-#: ../src/modding/ModManager.tscn:859
-msgid "CHECK_BUTTON_TOOLTIP"
-msgstr "Checks if the mods being loaded will not cause errors."
-
-#: ../src/modding/ModManager.tscn:860
-msgid "CHECK_MOD"
-msgstr "Check All"
-
-#: ../src/modding/ModManager.tscn:870 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Refresh"
 
-#: ../src/modding/ModManager.tscn:880
-msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr "Note: many mods require game restart to load or unload properly. Only load mods you trust as they may contain executable code."
+#: ../src/modding/ModManager.tscn:152
+msgid "OPEN_FOLDER"
+msgstr "Open Folder"
 
-#: ../src/modding/ModManager.tscn:881
-msgid "APPLY_CHANGES"
-msgstr "Apply Changes"
+#: ../src/modding/ModManager.tscn:170
+msgid "RIGHT_ARROW"
+msgstr "→"
 
-#: ../src/modding/ModManager.tscn:896
-msgid "BROWSE_WORKSHOP"
-msgstr "Browse Workshop"
+#: ../src/modding/ModManager.tscn:183
+msgid "LEFT_ARROW"
+msgstr "←"
 
-#: ../src/modding/ModManager.tscn:907 ../src/modding/ModUploader.tscn:45
-msgid "UPLOAD"
-msgstr "Upload"
+#: ../src/modding/ModManager.tscn:195
+msgid "ENABLED_MODS"
+msgstr "Enabled Mods"
 
-#: ../src/modding/ModManager.tscn:918
-msgid "NEW"
-msgstr "New"
+#: ../src/modding/ModManager.tscn:213
+msgid "DISABLE_ALL"
+msgstr "Disable All"
 
-#: ../src/modding/ModManager.tscn:963 ../src/modding/NewModGUI.tscn:133
-msgid "MOD_NAME"
-msgstr "Mod Name:"
+#: ../src/modding/ModManager.tscn:250
+msgid "SELECTED_MOD"
+msgstr "Selected Mod:"
 
-#: ../src/modding/ModManager.tscn:985 ../src/modding/NewModGUI.tscn:110
-msgid "MOD_INTERNAL_NAME"
-msgstr "Internal (Folder) Name:"
+#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
+#: ../src/modding/NewModGUI.tscn:142
+msgid "MOD_AUTHOR"
+msgstr "Mod Author:"
 
-#: ../src/modding/ModManager.tscn:1055 ../src/modding/NewModGUI.tscn:202
+#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
+#: ../src/modding/NewModGUI.tscn:165
+msgid "MOD_VERSION"
+msgstr "Mod Version:"
+
+#: ../src/modding/ModManager.tscn:371
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr "Recommended Thrive:"
+
+#: ../src/modding/ModManager.tscn:415
+msgid "MINIMUM_VERSION"
+msgstr "Minimum:"
+
+#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
+#: ../src/modding/NewModGUI.tscn:188
 msgid "MOD_DESCRIPTION"
 msgstr "Mod Description:"
 
-#: ../src/modding/ModManager.tscn:1077 ../src/modding/NewModGUI.tscn:225
+#: ../src/modding/ModManager.tscn:474
+msgid "MORE_INFO"
+msgstr "Show More Info"
+
+#: ../src/modding/ModManager.tscn:482
+msgid "OPEN_MOD_URL"
+msgstr "Open Info URL"
+
+#: ../src/modding/ModManager.tscn:505
+msgid "BROWSE_WORKSHOP"
+msgstr "Browse Workshop"
+
+#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
+msgid "UPLOAD"
+msgstr "Upload"
+
+#: ../src/modding/ModManager.tscn:519
+msgid "NEW"
+msgstr "New"
+
+#: ../src/modding/ModManager.tscn:532
+msgid "MOD_LOAD_UNLOAD_CAVEATS"
+msgstr "Note: many mods require game restart to load or unload properly. Only load mods you trust as they may contain executable code."
+
+#: ../src/modding/ModManager.tscn:559
+msgid "ENABLE_ALL_COMPATIBLE"
+msgstr "Enable All Compatible Mods"
+
+#: ../src/modding/ModManager.tscn:568
+msgid "APPLY_CHANGES"
+msgstr "Apply Changes"
+
+#: ../src/modding/ModManager.tscn:579
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr "There are unapplied changes"
+
+#: ../src/modding/ModManager.tscn:580
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr "You need to apply your changes to load or unload any mods."
+
+#: ../src/modding/ModManager.tscn:581
+msgid "DISCARD_CHANGES"
+msgstr "Discard Changes"
+
+#: ../src/modding/ModManager.tscn:588
+msgid "FULL_MOD_INFO"
+msgstr "Full Mod Info"
+
+#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+msgid "MOD_NAME"
+msgstr "Mod Name:"
+
+#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+msgid "MOD_INTERNAL_NAME"
+msgstr "Internal (Folder) Name:"
+
+#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Mod Long Description:"
 
-#: ../src/modding/ModManager.tscn:1115 ../src/modding/NewModGUI.tscn:249
+#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr "Icon File:"
 
-#: ../src/modding/ModManager.tscn:1137 ../src/modding/NewModGUI.tscn:289
-msgid "MOD_PREVIEW_IMAGE_FILE"
-msgstr "Preview Image:"
-
-#: ../src/modding/ModManager.tscn:1159 ../src/modding/NewModGUI.tscn:328
+#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr "Mod Info URL:"
 
-#: ../src/modding/ModManager.tscn:1181 ../src/modding/NewModGUI.tscn:351
+#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
 msgstr "Mod License:"
 
-#: ../src/modding/ModManager.tscn:1203 ../src/modding/NewModGUI.tscn:374
+#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Recommended Thrive Version:"
 
-#: ../src/modding/ModManager.tscn:1225 ../src/modding/NewModGUI.tscn:397
+#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Minimum Required Thrive Version:"
 
-#: ../src/modding/ModManager.tscn:1247 ../src/modding/NewModGUI.tscn:420
+#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Maximum Supported Thrive Version:"
 
-#: ../src/modding/ModManager.tscn:1269 ../src/modding/NewModGUI.tscn:443
+#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
 msgid "MOD_PCK_NAME"
 msgstr "Mod .pck File:"
 
-#: ../src/modding/ModManager.tscn:1291 ../src/modding/NewModGUI.tscn:483
+#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr "Mod Assembly:"
 
-#: ../src/modding/ModManager.tscn:1313 ../src/modding/NewModGUI.tscn:523
+#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Mod Assembly Main Class:"
 
-#: ../src/modding/ModManager.tscn:1423 ../src/modding/NewModGUI.tscn:642
-msgid "MOD_INCOMPATIBLE_MODS"
-msgstr "Incompatible Mods:"
+#: ../src/modding/ModManager.tscn:979
+msgid "MOD_CREATION_FAILED"
+msgstr "Mod Creation Failed"
 
-#: ../src/modding/ModManager.tscn:1454
+#: ../src/modding/ModManager.tscn:989
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "Errors occurred when loading or unloading one or more mods. Logs may contain additional information."
 
-#: ../src/modding/ModManager.tscn:1459
+#: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
 msgstr "Restart Required"
 
-#: ../src/modding/ModManager.tscn:1461
+#: ../src/modding/ModManager.tscn:996
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "One or more mods requires a game restart to load or unload properly"
-
-#: ../src/modding/ModManager.tscn:1476
-msgid "MOD_LOAD_ERROR_WARNING_TITLE"
-msgstr "Are you sure you want to load?"
-
-#: ../src/modding/ModManager.tscn:1478
-msgid "YES"
-msgstr "Yes"
-
-#: ../src/modding/ModManager.tscn:1479
-msgid "NO"
-msgstr "No"
-
-#: ../src/modding/ModManager.tscn:1487 ../src/modding/ModManager.tscn:1490
-msgid "NULL"
-msgstr "Null"
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -3798,7 +3635,7 @@ msgstr "By submitting this item, you agree to Steam Workshop's [color=#3796e1][u
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Saving information failed due to exception: {0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:384
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error: {0}"
 
@@ -3886,47 +3723,47 @@ msgstr "Select Preview Image"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Upload Succeeded"
 
-#: ../src/modding/NewModGUI.cs:233
+#: ../src/modding/NewModGUI.cs:175
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "My Awesome Mod"
 
-#: ../src/modding/NewModGUI.cs:305
+#: ../src/modding/NewModGUI.cs:232
 msgid "INVALID_URL_FORMAT"
 msgstr "Invalid URL format"
 
-#: ../src/modding/NewModGUI.cs:331
+#: ../src/modding/NewModGUI.cs:247
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Internal name is required"
 
-#: ../src/modding/NewModGUI.cs:337
+#: ../src/modding/NewModGUI.cs:253
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Internal name should begin with a capital letter"
 
-#: ../src/modding/NewModGUI.cs:343
+#: ../src/modding/NewModGUI.cs:259
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "There is already a mod with the specified internal name"
 
-#: ../src/modding/NewModGUI.cs:359
+#: ../src/modding/NewModGUI.cs:275
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Missing or invalid format of a required field: {0}"
 
-#: ../src/modding/NewModGUI.cs:370
+#: ../src/modding/NewModGUI.cs:286
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Additional validations detected an issue: {0}"
 
-#: ../src/modding/NewModGUI.tscn:49
+#: ../src/modding/NewModGUI.tscn:35
 msgid "CREATE_NEW_MOD"
 msgstr "Create New Mod"
 
-#: ../src/modding/NewModGUI.tscn:83
+#: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "Modding instructions are available on"
 
-#: ../src/modding/NewModGUI.tscn:90
+#: ../src/modding/NewModGUI.tscn:76
 msgid "OUR_WIKI"
 msgstr "our Wiki"
 
-#: ../src/modding/NewModGUI.tscn:680
+#: ../src/modding/NewModGUI.tscn:450
 msgid "CREATE"
 msgstr "Create"
 
@@ -3987,33 +3824,41 @@ msgstr "Save failed"
 msgid "ERROR_SAVING"
 msgstr "Error Saving"
 
-#: ../src/saving/NewSaveMenu.cs:75
+#: ../src/saving/NewSaveMenu.cs:80
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "The chosen filename ({0}) already exists. Overwrite?"
 
-#: ../src/saving/NewSaveMenu.cs:173
+#: ../src/saving/NewSaveMenu.cs:185
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Save name may not contain special characters (<>:\"/\\|?*)"
 
-#: ../src/saving/NewSaveMenu.tscn:31
+#: ../src/saving/NewSaveMenu.tscn:32
 msgid "CREATE_NEW_SAVE"
 msgstr "Create New Save"
 
-#: ../src/saving/NewSaveMenu.tscn:48
+#: ../src/saving/NewSaveMenu.tscn:49
 msgid "NAME"
 msgstr "Name:"
 
-#: ../src/saving/NewSaveMenu.tscn:66
+#: ../src/saving/NewSaveMenu.tscn:67
 msgid "EXTRA_OPTIONS"
 msgstr "Extra Options"
 
-#: ../src/saving/NewSaveMenu.tscn:84
+#: ../src/saving/NewSaveMenu.tscn:85
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Overwrite existing save:"
 
-#: ../src/saving/NewSaveMenu.tscn:116
+#: ../src/saving/NewSaveMenu.tscn:117
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Overwrite existing save?"
+
+#: ../src/saving/NewSaveMenu.tscn:121
+msgid "CANNOT_WRITE_SAVE"
+msgstr "Cannot Write Save"
+
+#: ../src/saving/NewSaveMenu.tscn:125
+msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
+msgstr "The attempt to write this save file has failed. The save name may be too long or you may not have write access to the save folder."
 
 #: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
 msgid "SAVING_FAILED_WITH_EXCEPTION"
@@ -4297,32 +4142,32 @@ msgstr "Tutorial"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Welcome to the Microbe Editor.\n"
-"Here you can review what has happened since start of the game or when you were last in the editor. And then make changes to your species.\n"
 "\n"
-"In this tab you can see a report on what species exist, where, and what their populations are. You can also see environmental changes at the top.\n"
+"Here you can review what has happened during previous generations, and then make changes to your species.\n"
 "\n"
-"To go to the next editor tab, press the next button in the bottom right."
+"This tab gives you a list of changes in the patch you currently occupy. Try exploring the various tools at your disposal to learn more about events in your world!\n"
+"\n"
+"When you are ready, press the \"next\" button in the bottom right to continue."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "This is the patch map.\n"
-"Here you can see the different patches microbes can live in.\n"
-"Your current patch is highlighted.\n"
-"You can click on the patches with your mouse to select them to see their details on the right side.\n"
 "\n"
-"If you select a patch next to the one you are currently in, you can press the button on the right to move there. This allows your population to spread to new patches.\n"
+"Each icon represents a unique environment that you can inhabit, with the panel on your right describing the conditions of the currently selected patch.\n"
 "\n"
-"Select a patch to continue."
+"If you select a patch connected to the one you occupy, which is highlighted with a thin cyan border, you can press the \"Move to this patch\" button on the right to migrate there.\n"
+"\n"
+"Try selecting a patch to continue."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"This is the cell editor where you can add or remove organelles from your species by spending mutation points (MP).\n"
+"This is the cell editor where you can evolve your species by spending mutation points (MP). Each generation you will always have 100 MP to spend, so don't bother saving up!\n"
 "\n"
-"You can also change other properties of your species in the other tabs of the cell editor.\n"
+"The hex in the center of your screen is your cell, which is composed of a single cytoplasm part.\n"
 "\n"
-"To continue, select an organelle from the panel on the left (cytoplasm is a good choice). Then left click next to the hex shown middle of the screen to add that organelle to your species."
+"To continue, select a part from the left panel. Then left-click next to the hex to place it. You can rotate parts with A and D (default keys)."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
@@ -4338,22 +4183,20 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"When selecting which organelles to add, pay attention to the tooltips for the organelles on which processes they do and what compounds they use and produce.\n"
+"When selecting parts in the menu, pay close attention to the tooltips that pop up to understand what they do. Parts can do more harm than good if you are not considerate of their function.\n"
 "\n"
-"Also pay attention to the ATP balance bar in the top right to make sure your cell can survive.\n"
+"The \"ATP Production\" bar on your right indicates how much energy you produce compared to how much is consumed. If the top bar is shorter than the bottom, then you are not producing enough energy.\n"
 "\n"
-"You can rotate organelles with A and D (default keys) before placing them.\n"
-"\n"
-"Press the redo button (close to the undo button) to continue."
+"Press the redo button (next to the undo button) to continue."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Those are the basics of editing your species. You can check the other cell editor tabs for even more options.\n"
+"Those are the basics of editing your species. As a finishing touch, you can rename your species by clicking on the name on the bottom left and editing the text.\n"
 "\n"
-"You can rename your species by clicking on your current species name and editing the text.\n"
+"Try exploring the other tabs under the MP bar to see how else you can customize your cell.\n"
 "\n"
-"Initially you should keep your cell small and head for the surface patches.\n"
+"To survive in this harsh world, you will need to find a reliable source of energy since natural glucose will rapidly decline.\n"
 "\n"
 "Good luck!"
 
@@ -4375,9 +4218,9 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"You should focus on one or two energy sources so that you don't need to have all resources to generate enough ATP to survive.\n"
+"You should focus on specialization to survive on one or two energy sources so that you don't require many different resources at once to sustain yourself.\n"
 "\n"
-"Also carefully consider if adding an organelle is beneficial, often not making any changes is a good choice, as each part costs ATP to maintain and requires more resources to divide.\n"
+"Also carefully consider if adding a part is truly beneficial, you don't always need to change what already works, as each part costs ATP to maintain and requires more resources to reproduce.\n"
 "\n"
 "One possible strategy is to stay a single hex of cytoplasm and just head to the surface patches first before getting photosynthesis organelles."
 
@@ -4428,16 +4271,16 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "In order to reproduce you need to duplicate all of your organelles by collecting enough ammonia and phosphates.\n"
-"Look at the indicator in the bottom right to see how much more you need."
+"Look at the bars encircling the large button in the bottom right to see how much more you need. These bars become white when filled."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"You have collected enough resources for your cell to divide.\n"
+"You have collected enough resources for your cell to reproduce.\n"
 "\n"
-"You are now ready to edit your species.\n"
+"Each time you reproduce, you will be taken to the editor.\n"
 "\n"
-"To enter the editor press the flashing editor button in the bottom right."
+"To enter the editor press the large flashing button in the bottom right when you are ready."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
@@ -4449,31 +4292,13 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"If you are still struggling with game mechanics, check the help menu. You can open it with the question mark button in the bottom left.\n"
+"Struggling? Check the help menu. You can open it with the question mark button in the bottom left.\n"
 "\n"
 "One more tip: you can zoom out your view with the scroll wheel."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "View Now"
-
-#~ msgid "MOD_CONFIGURATION_TAB"
-#~ msgstr "Mod Configuration"
-
-#~ msgid "SELECTED_MOD"
-#~ msgstr "Selected Mod:"
-
-#~ msgid "UNAPPLIED_MOD_CHANGES"
-#~ msgstr "There are unapplied changes"
-
-#~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-#~ msgstr "You need to apply your changes to load or unload any mods."
-
-#~ msgid "DISCARD_CHANGES"
-#~ msgstr "Discard Changes"
-
-#~ msgid "FULL_MOD_INFO"
-#~ msgstr "Full Mod Info"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Loading..."
