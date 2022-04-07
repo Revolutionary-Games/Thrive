@@ -433,7 +433,7 @@ msgstr "Alternar engullir"
 
 #: ../simulation_parameters/common/input_options.json:46
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr ""
+msgstr "Mantener pulsado para abrir el menú de comandos"
 
 #: ../simulation_parameters/common/input_options.json:50
 #: ../src/microbe_stage/MicrobeStage.tscn:2150
@@ -995,12 +995,10 @@ msgid "CILIA"
 msgstr "Cilios"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-#, fuzzy
 msgid "ABORTED_DOT"
 msgstr "Abortado."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-#, fuzzy
 msgid "FINISHED_DOT"
 msgstr "Terminado."
 
@@ -1022,7 +1020,6 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "La población de {0} cambión en {1} debido a: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-#, fuzzy
 msgid "POPULATION_COLON"
 msgstr "Población Total:"
 
@@ -1060,7 +1057,6 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "Código Genético:"
 
 #: ../src/auto-evo/RunResults.cs:652
-#, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "Migró a:"
 
@@ -2048,14 +2044,12 @@ msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Cantidad de guardados rápidos a almacenar:"
 
 #: ../src/general/OptionsMenu.tscn:1068
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr "Mostrar tutoriales (en nuevos juegos)"
+msgstr "Mostrar tutoriales (en nuevas partidas)"
 
 #: ../src/general/OptionsMenu.tscn:1075
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr "Mostrar tutoriales (en juego actual)"
+msgstr "Mostrar tutoriales (en la partida actual)"
 
 #: ../src/general/OptionsMenu.tscn:1081
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -3003,7 +2997,7 @@ msgstr "Ataca a otras células con esto."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
-"El quimioreceptor permite detectar compuestos desde más lejos.  Modifícalo "
+"El quimioreceptor permite detectar compuestos desde más lejos. Modifícalo "
 "una vez colocado para seleccionar el tipo de compuesto y el color de la "
 "línea de guía."
 
