@@ -8,7 +8,7 @@
     /// </summary>
     public abstract class EditorEntryCountingTutorial : TutorialPhase
     {
-        private readonly string cellEditorTab = MicrobeEditorGUI.EditorTab.CellEditor.ToString();
+        private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
         [JsonProperty]
         public int NumberOfEditorEntries { get; set; }

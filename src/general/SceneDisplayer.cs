@@ -21,6 +21,8 @@ public class SceneDisplayer : Spatial
         }
     }
 
+    public Node? InstancedNode => currentlyShown;
+
     /// <summary>
     ///   Get the material of this scene's model.
     /// </summary>
@@ -31,14 +33,23 @@ public class SceneDisplayer : Spatial
         return currentlyShown?.GetMaterial(modelPath);
     }
 
+    public void LoadFromAlreadyLoadedNode(Node sceneToShow)
+    {
+        if (sceneToShow == InstancedNode)
+            return;
+
+        RemovePreviousScene();
+
+        // We don't know the scene name now
+        currentScene = null;
+
+        currentlyShown = sceneToShow;
+        AddChild(currentlyShown);
+    }
+
     private void LoadNewScene()
     {
-        if (currentlyShown != null)
-        {
-            RemoveChild(currentlyShown);
-            currentlyShown.QueueFree();
-            currentlyShown = null;
-        }
+        RemovePreviousScene();
 
         if (string.IsNullOrEmpty(currentScene))
             return;
@@ -47,5 +58,15 @@ public class SceneDisplayer : Spatial
 
         currentlyShown = scene.Instance();
         AddChild(currentlyShown);
+    }
+
+    private void RemovePreviousScene()
+    {
+        if (currentlyShown != null)
+        {
+            RemoveChild(currentlyShown);
+            currentlyShown.QueueFree();
+            currentlyShown = null;
+        }
     }
 }

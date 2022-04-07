@@ -7,7 +7,7 @@
     /// </summary>
     public class EditorWelcome : TutorialPhase
     {
-        private readonly string reportTab = MicrobeEditorGUI.EditorTab.Report.ToString();
+        private readonly string reportTab = EditorTab.Report.ToString();
 
         public override string ClosedByName { get; } = "MicrobeEditorReport";
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
 
@@ -14,22 +15,29 @@ using Newtonsoft.Json;
 [UseThriveConverter]
 public abstract class Species : ICloneable
 {
+    protected Species(uint id, string genus, string epithet)
+    {
+        ID = id;
+        Genus = genus;
+        Epithet = epithet;
+    }
+
     /// <summary>
     ///   This is the amount of compounds cells of this type spawn with
     /// </summary>
     [JsonProperty]
-    public readonly Dictionary<Compound, float> InitialCompounds = new();
+    public Dictionary<Compound, float> InitialCompounds { get; private set; } = new();
 
-    public string Genus;
-    public string Epithet;
+    public string Genus { get; set; }
+    public string Epithet { get; set; }
 
-    public Color Colour = new(1, 1, 1);
+    public Color Colour { get; set; } = new(1, 1, 1);
 
     /// <summary>
     ///   This holds all behavioural values and defines how this species will behave in the environment.
     /// </summary>
     [JsonProperty]
-    public BehaviourDictionary Behaviour = new();
+    public BehaviourDictionary Behaviour { get; set; } = new();
 
     /// <summary>
     ///   This is the global population (the sum of population in all patches)
@@ -40,16 +48,9 @@ public abstract class Species : ICloneable
     ///     from the per patch populations.
     ///   </para>
     /// </remarks>
-    public long Population = 1;
+    public long Population { get; set; } = 1;
 
-    public int Generation = 1;
-
-    protected Species(uint id, string genus, string epithet)
-    {
-        ID = id;
-        Genus = genus;
-        Epithet = epithet;
-    }
+    public int Generation { get; set; } = 1;
 
     /// <summary>
     ///   Unique id of this species, used to identity this
@@ -67,7 +68,7 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   This is the genome of the species
     /// </summary>
-    public abstract string StringCode { get; set; }
+    public abstract string StringCode { get; }
 
     /// <summary>
     ///   When true this is the player species
@@ -178,6 +179,32 @@ public abstract class Species : ICloneable
     }
 
     /// <summary>
+    ///   Computes a set of initial compounds to spawn members of this species with based on what this species can
+    ///   use
+    /// </summary>
+    public abstract void UpdateInitialCompounds();
+
+    /// <summary>
+    ///   Updates the name of this species if the new name is valid
+    /// </summary>
+    /// <param name="newName">The new name to try to switch to</param>
+    public void UpdateNameIfValid(string newName)
+    {
+        var match = Regex.Match(newName, Constants.SPECIES_NAME_REGEX);
+        if (match.Success)
+        {
+            Genus = match.Groups["genus"].Value;
+            Epithet = match.Groups["epithet"].Value;
+
+            GD.Print("Edited species name is now ", FormattedName);
+        }
+        else
+        {
+            GD.PrintErr("Invalid newName for species: ", newName);
+        }
+    }
+
+    /// <summary>
     ///   Creates a cloned version of the species. This should only
     ///   really be used if you need to modify a species while
     ///   referring to the old data. In for example the Mutations
@@ -190,10 +217,25 @@ public abstract class Species : ICloneable
         return FormattedIdentifier;
     }
 
+    internal virtual void CopyDataToConvertedSpecies(Species species)
+    {
+        if (ID != species.ID)
+            throw new ArgumentException("ID must be same in the target species (it needs to be a duplicated species)");
+
+        foreach (var entry in Behaviour)
+            species.Behaviour[entry.Key] = entry.Value;
+
+        // Genus and epithet aren't copied as they are required constructor parameters
+        species.Colour = Colour;
+        species.Population = Population;
+        species.Generation = Generation;
+        species.PlayerSpecies = PlayerSpecies;
+    }
+
     /// <summary>
     ///   Helper for child classes to implement Clone
     /// </summary>
-    protected void ClonePropertiesTo(Species species)
+    internal void ClonePropertiesTo(Species species)
     {
         foreach (var entry in InitialCompounds)
             species.InitialCompounds[entry.Key] = entry.Value;

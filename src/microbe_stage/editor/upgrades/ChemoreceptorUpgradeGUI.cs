@@ -74,7 +74,7 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         }
     }
 
-    public void ApplyChanges(MicrobeEditor editor)
+    public void ApplyChanges(ICellEditorData editor)
     {
         if (storedOrganelle == null || shownChoices == null)
         {
