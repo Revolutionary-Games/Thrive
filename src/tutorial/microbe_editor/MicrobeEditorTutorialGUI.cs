@@ -219,6 +219,8 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
         AutoEvoPredictionHighlight = GetNode<ControlHighlight>(AutoEvoPredictionHighlightPath);
+
+        PauseMode = PauseModeEnum.Process;
     }
 
     public override void _Process(float delta)

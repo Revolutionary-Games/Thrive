@@ -20,8 +20,7 @@ public static class Constants
     public const float MAX_SPAWN_DISTANCE = 5000.0f;
 
     /// <summary>
-    ///   The (default) size of the hexagons, used in
-    ///   calculations. Don't change this.
+    ///   The (default) size of the hexagons, used in calculations. Don't change this.
     /// </summary>
     public const float DEFAULT_HEX_SIZE = 0.75f;
 
@@ -245,7 +244,12 @@ public static class Constants
     /// <summary>
     ///   Organelles won't take compounds if there is less available than this amount
     /// </summary>
-    public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0f;
+    /// <remarks>
+    ///   <para>
+    ///     This is no longer zero as rounding can otherwise make compounds just disappear
+    ///   </para>
+    /// </remarks>
+    public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0001f;
 
     /// <summary>
     ///   Cost of moving the rigidity slider by one step in the microbe editor
@@ -524,10 +528,22 @@ public static class Constants
     public const float EDITOR_ARROW_OFFSET = 3.5f;
     public const float EDITOR_ARROW_INTERPOLATE_SPEED = 0.5f;
 
+    public const float EDITOR_DEFAULT_CAMERA_HEIGHT = 10;
+
+    public const float MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER = 0.80f;
+
+    /// <summary>
+    ///   Scale used for one frame while membrane data is not ready yet
+    /// </summary>
+    public const float MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE = 0.18f;
+
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
     public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
+
+    public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
+    public const int COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC = 20;
 
     /// <summary>
     ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs
@@ -700,6 +716,10 @@ public static class Constants
     ///   Minimum amount for the an abundance category in the hover info.
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 600f;
+
+    public const float PHOTO_STUDIO_CAMERA_FOV = 70;
+    public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
+    public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 0.80f;
 
     /// <summary>
     ///   Regex for species name validation.

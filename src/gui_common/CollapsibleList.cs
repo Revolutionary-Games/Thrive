@@ -87,6 +87,7 @@ public class CollapsibleList : VBoxContainer
 
         cachedTopMarginValue = clipBox.GetConstant("margin_top");
 
+        UpdateItemContainer();
         UpdateTitle();
         UpdateLists();
     }
@@ -174,7 +175,7 @@ public class CollapsibleList : VBoxContainer
 
     private void UpdateItemContainer()
     {
-        if (itemContainer == null)
+        if (itemContainer == null || columns < 1)
             return;
 
         itemContainer.Columns = columns;

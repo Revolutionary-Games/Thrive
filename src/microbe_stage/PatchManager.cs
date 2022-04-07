@@ -47,6 +47,10 @@ public class PatchManager : IChildPropertiesLoadCallback
         skipDespawn = true;
     }
 
+    public void OnPropertiesLoaded()
+    {
+    }
+
     /// <summary>
     ///   Applies all patch related settings that are needed to be
     ///   set. Like different spawners, despawning old entities if the
