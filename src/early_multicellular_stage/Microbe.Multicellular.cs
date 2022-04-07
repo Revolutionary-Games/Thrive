@@ -115,7 +115,6 @@ public partial class Microbe
                 // We have completed our body plan and can (once enough resources) reproduce
                 if (enoughResourcesForBudding)
                 {
-                    allOrganellesDivided = true;
                     ReadyToReproduce();
                 }
                 else
