@@ -696,7 +696,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     /// <summary>
     ///   Applies the changes done and exits the editor back to <see cref="ReturnToStage"/>
     /// </summary>
-    private void OnEditorExitTransitionFinished()
+    protected virtual void OnEditorExitTransitionFinished()
     {
         MakeSureEditorReturnIsGood();
 

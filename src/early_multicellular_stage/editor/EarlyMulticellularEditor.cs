@@ -308,6 +308,14 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
         base.SetupEditedSpecies();
     }
 
+    protected override void OnEditorExitTransitionFinished()
+    {
+        // Clear the edited cell type to avoid the cell editor applying the changes unnecessarily
+        selectedCellTypeToEdit = null;
+
+        base.OnEditorExitTransitionFinished();
+    }
+
     private void OnStartEditingCellType(string name)
     {
         selectedCellTypeToEdit = EditedSpecies.CellTypes.First(c => c.TypeName == name);
