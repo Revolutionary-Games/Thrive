@@ -66,8 +66,7 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
     [JsonIgnore]
     public ICellProperties? EditedCellProperties => selectedCellTypeToEdit;
 
-    // TODO: add multicellular music tracks
-    protected override string MusicCategory => "MicrobeEditor";
+    protected override string MusicCategory => "EarlyMulticellularEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
     protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MICROBE_EDITOR");

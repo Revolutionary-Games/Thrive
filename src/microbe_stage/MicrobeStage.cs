@@ -339,7 +339,14 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public void StartMusic()
     {
-        Jukebox.Instance.PlayCategory("MicrobeStage");
+        if (GameWorld.PlayerSpecies is EarlyMulticellularSpecies)
+        {
+            Jukebox.Instance.PlayCategory("EarlyMulticellularStage");
+        }
+        else
+        {
+            Jukebox.Instance.PlayCategory("MicrobeStage");
+        }
     }
 
     /// <summary>
