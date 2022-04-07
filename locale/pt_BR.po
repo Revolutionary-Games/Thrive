@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-01 15:58+0300\n"
+"POT-Creation-Date: 2022-04-07 09:16+0300\n"
 "PO-Revision-Date: 2022-03-26 14:06+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -288,12 +288,12 @@ msgid "ABILITIES"
 msgstr "Habilidades"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2138
+#: ../src/microbe_stage/MicrobeStage.tscn:2139
 msgid "FIRE_TOXIN"
 msgstr "Disparar toxina"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2126
+#: ../src/microbe_stage/MicrobeStage.tscn:2127
 msgid "TOGGLE_ENGULF"
 msgstr "Engolir"
 
@@ -302,7 +302,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Segure para mostrar o menu de comandos do pacote"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2149
+#: ../src/microbe_stage/MicrobeStage.tscn:2150
 msgid "TOGGLE_BINDING"
 msgstr "Ativar modo de ligação"
 
@@ -593,36 +593,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1295
+#: ../src/microbe_stage/MicrobeStage.tscn:1296
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:750
 msgid "AMMONIA"
 msgstr "Amônia"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1347
+#: ../src/microbe_stage/MicrobeStage.tscn:1348
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:821
 msgid "PHOSPHATE"
 msgstr "Fosfato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1399
+#: ../src/microbe_stage/MicrobeStage.tscn:1400
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:715
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfeto de Hidrogênio"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1243
+#: ../src/microbe_stage/MicrobeStage.tscn:1244
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:785
 msgid "GLUCOSE"
 msgstr "Glicose"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1581
+#: ../src/microbe_stage/MicrobeStage.tscn:1582
 msgid "OXYTOXY_NT"
 msgstr "Oxitoxina"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1451
+#: ../src/microbe_stage/MicrobeStage.tscn:1452
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:856
 msgid "IRON"
 msgstr "Ferro"
@@ -870,39 +870,39 @@ msgstr "população nas regiões:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "foi extinto do planeta"
 
-#: ../src/auto-evo/RunResults.cs:843
+#: ../src/auto-evo/RunResults.cs:860
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "A espécie [u]{0}[/u] foi extinta!"
 
-#: ../src/auto-evo/RunResults.cs:853 ../src/auto-evo/RunResults.cs:875
+#: ../src/auto-evo/RunResults.cs:870 ../src/auto-evo/RunResults.cs:892
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "A população de [u]{0}[/u] aumentou para {1}"
 
-#: ../src/auto-evo/RunResults.cs:859 ../src/auto-evo/RunResults.cs:881
+#: ../src/auto-evo/RunResults.cs:876 ../src/auto-evo/RunResults.cs:898
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "A população de [u]{0}[/u] diminuiu para {1}"
 
-#: ../src/auto-evo/RunResults.cs:867
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "A espécie [u]{0}[/u] desapareceu dessa região"
 
-#: ../src/auto-evo/RunResults.cs:891
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Parte da população de [u]{0}[/u] migrou para essa região a partir de {1}"
 
-#: ../src/auto-evo/RunResults.cs:896
+#: ../src/auto-evo/RunResults.cs:913
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Parte da população de [u]{0}[/u] migrou de {1} para {2}"
 
-#: ../src/auto-evo/RunResults.cs:902
+#: ../src/auto-evo/RunResults.cs:919
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Parte da população de [u]{0}[/u] migrou para {1}"
 
-#: ../src/auto-evo/RunResults.cs:921
+#: ../src/auto-evo/RunResults.cs:938
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Nova espécie: [u]{0}[/u] ramificou-se de [u]{1}[/u] para preencher um nicho"
 
-#: ../src/auto-evo/RunResults.cs:927
+#: ../src/auto-evo/RunResults.cs:944
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "Nova espécie: [u]{0}[/u] ramificou-se de [u]{1}[/u] devido a diferentes pressões seletivas"
 
@@ -1019,12 +1019,12 @@ msgstr "Criar Novo Jogo"
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Meu Mod Maneirasso"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:577
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
 #, fuzzy
 msgid "NEW_NAME_COLON"
 msgstr "Velocidade:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:584
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:585
 #, fuzzy
 msgid "NEW_NAME"
 msgstr "Novo Jogo"
@@ -1555,7 +1555,7 @@ msgstr "Editor de Micróbio Livre"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Voltar"
@@ -1858,7 +1858,7 @@ msgstr "Sempre"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Nunca"
 
-#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Salvar"
 
@@ -2220,21 +2220,21 @@ msgstr "O arquivo salvo não corresponde à versão atual do jogo"
 msgid "SELECT_OPTION"
 msgstr "Selecione uma Opção"
 
-#: ../src/gui_common/TweakedColourPicker.cs:393
+#: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "Escolher uma cor da janela do jogo"
 
-#: ../src/gui_common/TweakedColourPicker.cs:394
+#: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr "Adicionar cor atual como uma predefinição"
 
-#: ../src/gui_common/TweakedColourPicker.cs:395
+#: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 "Alternar o modo HSV (Matiz, Saturação, Valor) entre ligado ou desligado.\n"
 "Não pode ser ligado no modo bruto."
 
-#: ../src/gui_common/TweakedColourPicker.cs:396
+#: ../src/gui_common/TweakedColourPicker.cs:397
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 "Alternar o modo bruto entre ligado e desligado.\n"
@@ -2242,35 +2242,35 @@ msgstr ""
 "de cor R, G, B ultrapassarem 1.0.\n"
 "Não pode ser ligado no modo HSV."
 
-#: ../src/gui_common/TweakedColourPicker.cs:400
+#: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Valor de matiz, porção de cor"
 
-#: ../src/gui_common/TweakedColourPicker.cs:401
+#: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Valor de saturação, a quantidade de cinza em uma cor específica"
 
-#: ../src/gui_common/TweakedColourPicker.cs:402
+#: ../src/gui_common/TweakedColourPicker.cs:403
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Valor de valor (brilho), brilho ou intensidade da cor"
 
-#: ../src/gui_common/TweakedColourPicker.cs:406
+#: ../src/gui_common/TweakedColourPicker.cs:407
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Valor do canal vermelho da cor"
 
-#: ../src/gui_common/TweakedColourPicker.cs:407
+#: ../src/gui_common/TweakedColourPicker.cs:408
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Valor do canal verde da cor"
 
-#: ../src/gui_common/TweakedColourPicker.cs:408
+#: ../src/gui_common/TweakedColourPicker.cs:409
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Valor do canal azul da cor"
 
-#: ../src/gui_common/TweakedColourPicker.cs:411
+#: ../src/gui_common/TweakedColourPicker.cs:412
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Valor do canal alfa da cor"
 
-#: ../src/gui_common/TweakedColourPicker.cs:586
+#: ../src/gui_common/TweakedColourPicker.cs:587
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 "Cor:{0}\n"
@@ -2286,7 +2286,7 @@ msgid "RAW"
 msgstr "Bruto"
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1917
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
 msgid "NO_DATA_TO_SHOW"
 msgstr "Nenhum Dado a Exibir"
 
@@ -2871,60 +2871,60 @@ msgid "CATEGORY_VERY_LITTLE"
 msgstr "muito pouco"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1156
-#: ../src/microbe_stage/MicrobeStage.tscn:1767
+#: ../src/microbe_stage/MicrobeStage.tscn:1768
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1192
-#: ../src/microbe_stage/MicrobeStage.tscn:1784
+#: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:688
+#: ../src/microbe_stage/MicrobeStage.cs:691
 msgid "PLAYER_REPRODUCED"
 msgstr "jogador reproduziu"
 
-#: ../src/microbe_stage/MicrobeStage.cs:702
+#: ../src/microbe_stage/MicrobeStage.cs:705
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Impossível usar comando para gerar inimigo pois essa região não contém nenhuma espécie inimiga"
 
-#: ../src/microbe_stage/MicrobeStage.cs:722
+#: ../src/microbe_stage/MicrobeStage.cs:725
 msgid "PLAYER_DIED"
 msgstr "jogador morreu"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:511
+#: ../src/microbe_stage/MicrobeStage.tscn:512
 msgid "AT_CURSOR"
 msgstr "No cursor:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:537
+#: ../src/microbe_stage/MicrobeStage.tscn:538
 msgid "NOTHING_HERE"
 msgstr "Não há nada aqui"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:562
+#: ../src/microbe_stage/MicrobeStage.tscn:563
 msgid "COMPOUNDS_COLON"
 msgstr "Compostos:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:602
+#: ../src/microbe_stage/MicrobeStage.tscn:603
 msgid "SPECIES_COLON"
 msgstr "Espécies:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:682
+#: ../src/microbe_stage/MicrobeStage.tscn:683
 msgid "ENVIRONMENT"
 msgstr "Ambiente"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:951
+#: ../src/microbe_stage/MicrobeStage.tscn:952
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1007
+#: ../src/microbe_stage/MicrobeStage.tscn:1008
 msgid "LIGHT"
 msgstr "Luz"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1062
+#: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "PRESSURE_SHORT"
 msgstr "Pressão"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1145
+#: ../src/microbe_stage/MicrobeStage.tscn:1146
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
@@ -2932,90 +2932,95 @@ msgstr "Pressão"
 msgid "COMPOUNDS"
 msgstr "Compostos"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1521
+#: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "AGENTS"
 msgstr "Agentes"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1619
+#: ../src/microbe_stage/MicrobeStage.tscn:1620
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pausa"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1637
+#: ../src/microbe_stage/MicrobeStage.tscn:1638
 msgid "PAUSE_TOOLTIP"
 msgstr "Pausar o jogo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1650
+#: ../src/microbe_stage/MicrobeStage.tscn:1651
 msgid "RESUME_TOOLTIP"
 msgstr "Retomar o jogo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1663
+#: ../src/microbe_stage/MicrobeStage.tscn:1664
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar/esconder ambiente e compostos"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1678
+#: ../src/microbe_stage/MicrobeStage.tscn:1679
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar/esconder processos da célula"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1715
+#: ../src/microbe_stage/MicrobeStage.tscn:1716
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ajuda"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1727
+#: ../src/microbe_stage/MicrobeStage.tscn:1728
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Suicídio"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1766
-#: ../src/microbe_stage/MicrobeStage.tscn:1783
+#: ../src/microbe_stage/MicrobeStage.tscn:1767
+#: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1812
+#: ../src/microbe_stage/MicrobeStage.tscn:1813
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAÇÃO:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:181
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Respiradouros Pangonianos"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:182
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Mesopelágico Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:183
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Epipelágico Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:184
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Poça de Maré Pangoniana"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:185
+#: ../src/microbe_stage/PatchMapGenerator.cs:192
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Batipelágico Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:186
+#: ../src/microbe_stage/PatchMapGenerator.cs:193
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Abissopelágico Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:187
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Costa Pangoniana"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:188
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Estuário Pangoniano"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:189
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
 msgid "PATCH_CAVE"
 msgstr "Caverna"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:190
+#: ../src/microbe_stage/PatchMapGenerator.cs:197
 msgid "PATCH_ICE_SHELF"
 msgstr "Plataforma de Gelo"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:191
+#: ../src/microbe_stage/PatchMapGenerator.cs:198
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Relevo Oceânico Pangoniano"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:203
+#, fuzzy
+msgid "PATCH_NAME"
+msgstr "Caverna"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3094,33 +3099,33 @@ msgstr "{0}: -{1} ATP"
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1753
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1755
 msgid "FAILED"
 msgstr "Falhou"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1759
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1771
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1761
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1773
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1765
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1777
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1767
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1779
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1885
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1887
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia em {0} para {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1889
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1891
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "A energia total coletada é {0}, a um custo de {1} por indivíduo, resultando em uma população (não ajustada) de {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1898
 msgid "ENERGY_SOURCES"
 msgstr "Fontes de Energia:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1902
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1904
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} de energia: {1} (adaptação: {2}) energia total disponível: {3} (adaptação total: {4})"
 
@@ -3950,33 +3955,43 @@ msgstr "Falha ao Salvar"
 msgid "ERROR_SAVING"
 msgstr "Erro ao salvar"
 
-#: ../src/saving/NewSaveMenu.cs:75
+#: ../src/saving/NewSaveMenu.cs:80
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "O nome do arquivo ({0}) já existe. Sobrescrever?"
 
-#: ../src/saving/NewSaveMenu.cs:173
+#: ../src/saving/NewSaveMenu.cs:185
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Nome salvo não pode conter caractéres especiais (<>:\"/\\|?*)"
 
-#: ../src/saving/NewSaveMenu.tscn:31
+#: ../src/saving/NewSaveMenu.tscn:32
 msgid "CREATE_NEW_SAVE"
 msgstr "Criar Novo Jogo"
 
-#: ../src/saving/NewSaveMenu.tscn:48
+#: ../src/saving/NewSaveMenu.tscn:49
 msgid "NAME"
 msgstr "Nome:"
 
-#: ../src/saving/NewSaveMenu.tscn:66
+#: ../src/saving/NewSaveMenu.tscn:67
 msgid "EXTRA_OPTIONS"
 msgstr "Opções Extra"
 
-#: ../src/saving/NewSaveMenu.tscn:84
+#: ../src/saving/NewSaveMenu.tscn:85
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Sobrescrever jogo que já existe:"
 
-#: ../src/saving/NewSaveMenu.tscn:116
+#: ../src/saving/NewSaveMenu.tscn:117
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Sobrescrever jogo salvo existente?"
+
+#: ../src/saving/NewSaveMenu.tscn:121
+#, fuzzy
+msgid "CANNOT_WRITE_SAVE"
+msgstr "Não pode engolir"
+
+#: ../src/saving/NewSaveMenu.tscn:125
+#, fuzzy
+msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
+msgstr "A auto-evo falhou"
 
 #: ../src/saving/SaveHelper.cs:444 ../src/saving/SaveHelper.cs:488
 msgid "SAVING_FAILED_WITH_EXCEPTION"

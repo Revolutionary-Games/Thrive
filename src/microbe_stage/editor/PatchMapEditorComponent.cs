@@ -245,8 +245,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         // Move patches
         if (targetPatch != null)
         {
-            GD.Print(GetType().Name, ": applying player move to patch: ",
-                TranslationServer.Translate(targetPatch.Name));
+            GD.Print(GetType().Name, ": applying player move to patch: ", targetPatch.Name);
             Editor.CurrentGame.GameWorld.Map.CurrentPatch = targetPatch;
 
             // Add the edited species to that patch to allow the species to gain population there
@@ -377,7 +376,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     /// </summary>
     private void UpdatePatchDetails(Patch patch)
     {
-        patchName.Text = TranslationServer.Translate(patch.Name);
+        patchName.Text = patch.Name.ToString();
 
         // Biome: {0}
         patchBiome.Text = string.Format(CultureInfo.CurrentCulture,

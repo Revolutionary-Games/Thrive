@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Godot;
 using Directory = Godot.Directory;
+using File = Godot.File;
 
 /// <summary>
 ///   Helpers regarding file operations
@@ -42,5 +43,28 @@ public static class FileHelpers
     {
         using var directory = new Directory();
         return directory.FileExists(path);
+    }
+
+    /// <summary>
+    ///   Tests if it is possible to create/write a file at the given path
+    /// </summary>
+    /// <param name="path">Path to file</param>
+    /// <returns>File write access status, <see cref="Error.Ok"/> if successful</returns>
+    /// <remarks>
+    ///   <para>
+    ///     THIS FUNCTION IS DESTRUCTIVE! MAKE SURE THE FILE TO TEST DOESN'T EXIST!
+    ///   </para>
+    /// </remarks>
+    public static Error TryWriteFile(string path)
+    {
+        using var file = new File();
+        var error = file.Open(path, File.ModeFlags.Write);
+        if (error != Error.Ok)
+            return error;
+
+        file.Close();
+        DeleteFile(path);
+
+        return Error.Ok;
     }
 }

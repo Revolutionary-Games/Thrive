@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-01 15:58+0300\n"
+"POT-Creation-Date: 2022-04-07 09:16+0300\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -289,12 +289,12 @@ msgid "ABILITIES"
 msgstr "Способности"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2138
+#: ../src/microbe_stage/MicrobeStage.tscn:2139
 msgid "FIRE_TOXIN"
 msgstr "Ватрени токсин"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2126
+#: ../src/microbe_stage/MicrobeStage.tscn:2127
 msgid "TOGGLE_ENGULF"
 msgstr "Укључите гутање"
 
@@ -303,7 +303,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Држи да покажеш мени команди групе"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2149
+#: ../src/microbe_stage/MicrobeStage.tscn:2150
 msgid "TOGGLE_BINDING"
 msgstr "Укључи повезивање"
 
@@ -595,36 +595,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1295
+#: ../src/microbe_stage/MicrobeStage.tscn:1296
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:750
 msgid "AMMONIA"
 msgstr "Амонијак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1347
+#: ../src/microbe_stage/MicrobeStage.tscn:1348
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:821
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1399
+#: ../src/microbe_stage/MicrobeStage.tscn:1400
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:715
 msgid "HYDROGEN_SULFIDE"
 msgstr "Водоник Сулфид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1243
+#: ../src/microbe_stage/MicrobeStage.tscn:1244
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:785
 msgid "GLUCOSE"
 msgstr "Глукоза"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1581
+#: ../src/microbe_stage/MicrobeStage.tscn:1582
 msgid "OXYTOXY_NT"
 msgstr "ОксиТокси НТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1451
+#: ../src/microbe_stage/MicrobeStage.tscn:1452
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:856
 msgid "IRON"
 msgstr "Гвожђе"
@@ -885,42 +885,42 @@ msgstr "ПОПУЛАЦИЈА:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "изумро на планети"
 
-#: ../src/auto-evo/RunResults.cs:843
+#: ../src/auto-evo/RunResults.cs:860
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:853 ../src/auto-evo/RunResults.cs:875
+#: ../src/auto-evo/RunResults.cs:870 ../src/auto-evo/RunResults.cs:892
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Врсте:"
 
-#: ../src/auto-evo/RunResults.cs:859 ../src/auto-evo/RunResults.cs:881
+#: ../src/auto-evo/RunResults.cs:876 ../src/auto-evo/RunResults.cs:898
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Врсте:"
 
-#: ../src/auto-evo/RunResults.cs:867
+#: ../src/auto-evo/RunResults.cs:884
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:891
+#: ../src/auto-evo/RunResults.cs:908
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:896
+#: ../src/auto-evo/RunResults.cs:913
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:902
+#: ../src/auto-evo/RunResults.cs:919
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:921
+#: ../src/auto-evo/RunResults.cs:938
 #, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "генетски код:"
 
-#: ../src/auto-evo/RunResults.cs:927
+#: ../src/auto-evo/RunResults.cs:944
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "се проширила на зоне:"
@@ -1042,12 +1042,12 @@ msgstr "Направите Нови Чување"
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Хемопласт је двострука мембранска структура која садржи протеине који су способни да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу у процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове производње глукозе скалира се са концентрацијом воде и угљен-диоксида."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:577
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
 #, fuzzy
 msgid "NEW_NAME_COLON"
 msgstr "Брзина:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:584
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:585
 #, fuzzy
 msgid "NEW_NAME"
 msgstr "Нова игра"
@@ -1597,7 +1597,7 @@ msgstr "Слободна-Градња Уређивач Микроба"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
@@ -1911,7 +1911,7 @@ msgstr ""
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Сачувати"
 
@@ -2275,60 +2275,60 @@ msgstr "Сачувај има другачију верзију"
 msgid "SELECT_OPTION"
 msgstr "Одабрано:"
 
-#: ../src/gui_common/TweakedColourPicker.cs:393
+#: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:394
+#: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:395
+#: ../src/gui_common/TweakedColourPicker.cs:396
 #, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:396
+#: ../src/gui_common/TweakedColourPicker.cs:397
 #, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:400
+#: ../src/gui_common/TweakedColourPicker.cs:401
 #, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:401
+#: ../src/gui_common/TweakedColourPicker.cs:402
 #, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:402
+#: ../src/gui_common/TweakedColourPicker.cs:403
 #, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:406
+#: ../src/gui_common/TweakedColourPicker.cs:407
 #, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:407
+#: ../src/gui_common/TweakedColourPicker.cs:408
 #, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:408
+#: ../src/gui_common/TweakedColourPicker.cs:409
 #, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:411
+#: ../src/gui_common/TweakedColourPicker.cs:412
 #, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:586
+#: ../src/gui_common/TweakedColourPicker.cs:587
 #, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -2342,7 +2342,7 @@ msgid "RAW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1917
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -2948,60 +2948,60 @@ msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1156
-#: ../src/microbe_stage/MicrobeStage.tscn:1767
+#: ../src/microbe_stage/MicrobeStage.tscn:1768
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1192
-#: ../src/microbe_stage/MicrobeStage.tscn:1784
+#: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:688
+#: ../src/microbe_stage/MicrobeStage.cs:691
 msgid "PLAYER_REPRODUCED"
 msgstr "Играч се репродуковао"
 
-#: ../src/microbe_stage/MicrobeStage.cs:702
+#: ../src/microbe_stage/MicrobeStage.cs:705
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:722
+#: ../src/microbe_stage/MicrobeStage.cs:725
 msgid "PLAYER_DIED"
 msgstr "играч је умро"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:511
+#: ../src/microbe_stage/MicrobeStage.tscn:512
 msgid "AT_CURSOR"
 msgstr "На Курсору:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:537
+#: ../src/microbe_stage/MicrobeStage.tscn:538
 msgid "NOTHING_HERE"
 msgstr "Ништа овде"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:562
+#: ../src/microbe_stage/MicrobeStage.tscn:563
 msgid "COMPOUNDS_COLON"
 msgstr "Једињења:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:602
+#: ../src/microbe_stage/MicrobeStage.tscn:603
 msgid "SPECIES_COLON"
 msgstr "Врсте:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:682
+#: ../src/microbe_stage/MicrobeStage.tscn:683
 msgid "ENVIRONMENT"
 msgstr "Животна средина"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:951
+#: ../src/microbe_stage/MicrobeStage.tscn:952
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1007
+#: ../src/microbe_stage/MicrobeStage.tscn:1008
 msgid "LIGHT"
 msgstr "Светлост"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1062
+#: ../src/microbe_stage/MicrobeStage.tscn:1063
 msgid "PRESSURE_SHORT"
 msgstr "Прити."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1145
+#: ../src/microbe_stage/MicrobeStage.tscn:1146
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
@@ -3009,96 +3009,101 @@ msgstr "Прити."
 msgid "COMPOUNDS"
 msgstr "Једињење"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1521
+#: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "AGENTS"
 msgstr "Агенси"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1619
+#: ../src/microbe_stage/MicrobeStage.tscn:1620
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1637
+#: ../src/microbe_stage/MicrobeStage.tscn:1638
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1650
+#: ../src/microbe_stage/MicrobeStage.tscn:1651
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "Наставити"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1663
+#: ../src/microbe_stage/MicrobeStage.tscn:1664
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1678
+#: ../src/microbe_stage/MicrobeStage.tscn:1679
 #, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1715
+#: ../src/microbe_stage/MicrobeStage.tscn:1716
 #, fuzzy
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1727
+#: ../src/microbe_stage/MicrobeStage.tscn:1728
 #, fuzzy
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1766
-#: ../src/microbe_stage/MicrobeStage.tscn:1783
+#: ../src/microbe_stage/MicrobeStage.tscn:1767
+#: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1812
+#: ../src/microbe_stage/MicrobeStage.tscn:1813
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛАЦИЈА:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:181
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Пангонски Отвори"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:182
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Пангонски Мезопелагијски"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:183
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Пангонски Епипелагијски"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:184
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Пангонски Плима и Осека"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:185
+#: ../src/microbe_stage/PatchMapGenerator.cs:192
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Пангонски Батипелагиц"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:186
+#: ../src/microbe_stage/PatchMapGenerator.cs:193
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Пангонски Абисопелагијски"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:187
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Пангонска Обала"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:188
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Пангонско Ушће"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:189
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
 msgid "PATCH_CAVE"
 msgstr "Пећина"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:190
+#: ../src/microbe_stage/PatchMapGenerator.cs:197
 msgid "PATCH_ICE_SHELF"
 msgstr "Ледена Полица"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:191
+#: ../src/microbe_stage/PatchMapGenerator.cs:198
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Дно Пангонског Мора"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:203
+#, fuzzy
+msgid "PATCH_NAME"
+msgstr "Пећина"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3177,36 +3182,36 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1753
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1755
 #, fuzzy
 msgid "FAILED"
 msgstr "Сачување није успело"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1759
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1771
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1761
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1773
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "ПОПУЛАЦИЈА:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1765
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1777
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1767
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1779
 #, fuzzy
 msgid "N_A"
 msgstr "- МП"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1885
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1887
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1889
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1891
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1898
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1902
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1904
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -4099,36 +4104,46 @@ msgstr "Сачување није успело"
 msgid "ERROR_SAVING"
 msgstr "Грешка при чувању"
 
-#: ../src/saving/NewSaveMenu.cs:75
+#: ../src/saving/NewSaveMenu.cs:80
 #, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Изабрано име датотеке ({0}) већ постоји. Преписати?"
 
-#: ../src/saving/NewSaveMenu.cs:173
+#: ../src/saving/NewSaveMenu.cs:185
 #, fuzzy
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "Учитати неважеће чување?"
 
-#: ../src/saving/NewSaveMenu.tscn:31
+#: ../src/saving/NewSaveMenu.tscn:32
 msgid "CREATE_NEW_SAVE"
 msgstr "Направите Нови Чување"
 
-#: ../src/saving/NewSaveMenu.tscn:48
+#: ../src/saving/NewSaveMenu.tscn:49
 msgid "NAME"
 msgstr "Име:"
 
-#: ../src/saving/NewSaveMenu.tscn:66
+#: ../src/saving/NewSaveMenu.tscn:67
 msgid "EXTRA_OPTIONS"
 msgstr "Додатне Опције"
 
-#: ../src/saving/NewSaveMenu.tscn:84
+#: ../src/saving/NewSaveMenu.tscn:85
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Препиши постојеће чување:"
 
-#: ../src/saving/NewSaveMenu.tscn:116
+#: ../src/saving/NewSaveMenu.tscn:117
 #, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Препиши постојеће чување:"
+
+#: ../src/saving/NewSaveMenu.tscn:121
+#, fuzzy
+msgid "CANNOT_WRITE_SAVE"
+msgstr "Не може да гута"
+
+#: ../src/saving/NewSaveMenu.tscn:125
+#, fuzzy
+msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
+msgstr "Аутоматска-еволуција није успела"
 
 #: ../src/saving/SaveHelper.cs:444 ../src/saving/SaveHelper.cs:488
 #, fuzzy

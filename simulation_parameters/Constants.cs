@@ -735,6 +735,8 @@ public static class Constants
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
 
+    public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
+
     public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
 
     /// <summary>

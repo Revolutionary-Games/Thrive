@@ -243,7 +243,7 @@ public class PatchMap
                 patch.Value.RemoveSpecies(speciesEntry.Key);
 
                 GD.Print("Species ", speciesEntry.Key.FormattedName, " has gone extinct in ",
-                    TranslationServer.Translate(patch.Value.Name));
+                    patch.Value.Name);
 
                 if (!nonExtinctSpecies.Contains(speciesEntry.Key))
                 {

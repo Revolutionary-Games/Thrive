@@ -139,7 +139,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
         foreach (var patch in Editor.CurrentPatch.GetClosestConnectedPatches())
         {
-            reportTabPatchSelector.AddItem(TranslationServer.Translate(patch.Name), patch.ID);
+            reportTabPatchSelector.AddItem(patch.Name.ToString(), patch.ID);
         }
 
         reportTabPatchSelector.Select(Editor.CurrentPatch.ID);
@@ -167,7 +167,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
     public void UpdateReportTabPatchName(Patch patch)
     {
-        reportTabPatchName.Text = TranslationServer.Translate(patch.Name);
+        reportTabPatchName.Text = patch.Name.ToString();
     }
 
     public void UpdateReportTabStatistics(Patch patch)

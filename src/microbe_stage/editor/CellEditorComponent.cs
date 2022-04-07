@@ -1835,7 +1835,7 @@ public partial class CellEditorComponent :
         if (sorted.Count > 0)
         {
             var patch = sorted[0];
-            bestPatchName = patch.Key.Name;
+            bestPatchName = patch.Key.Name.ToString();
             bestPatchPopulation = patch.Value;
         }
         else
@@ -1847,7 +1847,7 @@ public partial class CellEditorComponent :
         if (sorted.Count > 1)
         {
             var patch = sorted[sorted.Count - 1];
-            worstPatchName = patch.Key.Name;
+            worstPatchName = patch.Key.Name.ToString();
             worstPatchPopulation = patch.Value;
         }
         else
@@ -1885,7 +1885,7 @@ public partial class CellEditorComponent :
         foreach (var energyResult in energyResults)
         {
             predictionDetailsText.Append(new LocalizedString("ENERGY_IN_PATCH_FOR",
-                new LocalizedString(energyResult.Key.Name), playerSpeciesName));
+                energyResult.Key.Name, playerSpeciesName));
             predictionDetailsText.Append('\n');
 
             predictionDetailsText.Append(new LocalizedString("ENERGY_SUMMARY_LINE",

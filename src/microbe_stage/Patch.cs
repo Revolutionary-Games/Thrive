@@ -33,7 +33,7 @@ public class Patch
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
-    public Patch(string name, int id, Biome biomeTemplate)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate)
     {
         Name = name;
         ID = id;
@@ -42,7 +42,7 @@ public class Patch
     }
 
     [JsonProperty]
-    public string Name { get; private set; }
+    public LocalizedString Name { get; private set; }
 
     /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI
