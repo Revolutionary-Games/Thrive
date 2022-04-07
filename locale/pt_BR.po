@@ -4775,9 +4775,10 @@ msgid "CANNOT_WRITE_SAVE"
 msgstr "Não pode engolir"
 
 #: ../src/saving/NewSaveMenu.tscn:125
-#, fuzzy
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "A auto-evo falhou"
+msgstr ""
+"A tentativa de salvar falhou. O nome do save pode ser longo demais ou você "
+"não ter acesso a pasta."
 
 #: ../src/saving/SaveHelper.cs:444 ../src/saving/SaveHelper.cs:488
 #: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
@@ -5084,15 +5085,16 @@ msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
-#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Bem-vindo ao Editor de Micróbios.\n"
+"\n"
 "Aqui você poderá rever o que aconteceu desde o início do jogo ou desde a "
 "última vez que esteve no editor, e fazer mudanças a sua espécie.\n"
 "\n"
-"Nessa aba você pode ver um relatório de quais espécies existem, onde, e qual "
-"são suas populações. Você também pode ver mudanças ambientais no topo.\n"
+"Nessa aba você pode ver a lista de mudanças ocorridas no ambiente que você "
+"ocupa atualmente. Tente explorar as varias ferramentas a sua disposição para "
+"aprender mais sobre os eventos do seu mundo!\n"
 "\n"
 "Para ir para a próxima aba, aperte o botão “próximo” no canto inferior "
 "direito."
@@ -5153,16 +5155,16 @@ msgstr ""
 "Aperte o botão de refazer (perto do botão de desfazer) para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Esse é o básico do editor. Você pode checar as outras abas no editor de "
-"células para ainda mais opções.\n"
+"Esse é o básico do editor. Como toque final, você pode renomear sua espécie "
+"clicando no canto inferior esquerdo e editando o texto.\n"
 "\n"
-"Você pode renomear sua espécie clicando no nome dela e editando o texto.\n"
+"Tente explorar as outras abas embaixo da barra de PM para ver como pode "
+"customizar sua célula.\n"
 "\n"
-"Inicialmente, você deve manter sua célula pequena e ir para as regiões da "
-"superfície.\n"
+"Para sobreviver nesse mundo difícil você vai precisa encontrar fontes de "
+"energia confiáveis já que a glicose é consumida rapidamente.\n"
 "\n"
 "Boa sorte!"
 
