@@ -37,6 +37,10 @@ public partial class Microbe
         Species = species;
 
         FinishSpeciesSetup();
+
+        // We have to force our membrane to be setup here so that the attach logic will have valid membrane data
+        // to work with
+        SendOrganellePositionsToMembrane();
     }
 
     /// <summary>
@@ -67,16 +71,38 @@ public partial class Microbe
 
         // TODO: figure out the actually right math for the cell position attach
         // If we don't adjust like this the cells overlap way too much
-        var attachVector = ourTransform.origin + ourTransform.basis.Xform(Hex.AxialToCartesian(template.Position) *
-            Constants.MULTICELLULAR_CELL_ATTACH_DISTANCE_MULTIPLIER);
+        var attachVector = ourTransform.origin + ourTransform.basis.Xform(Hex.AxialToCartesian(template.Position));
 
-        GD.Print("attach vector: ", attachVector);
+        // Ensure no tiny y component exists here
+        attachVector.y = 0;
 
-        cell.GlobalTransform = new Transform(
+        var newCellTransform = new Transform(
             MathUtils.CreateRotationForOrganelle(template.Orientation) * ourTransform.basis.Quat(),
             attachVector);
+        cell.GlobalTransform = newCellTransform;
 
-        Colony.AddToColony(cell, this);
+        var newCellPosition = newCellTransform.origin;
+
+        // Adding a cell to a colony snaps it close to its colony parent so we need to find the closes existing
+        // cell in the colony to use as that here
+        var parent = this;
+        var currentDistanceSquared = (newCellPosition - ourTransform.origin).LengthSquared();
+
+        foreach (var colonyMember in Colony.ColonyMembers)
+        {
+            if (colonyMember == this)
+                continue;
+
+            var distance = (colonyMember.GlobalTransform.origin - newCellPosition).LengthSquared();
+
+            if (distance < currentDistanceSquared)
+            {
+                parent = colonyMember;
+                currentDistanceSquared = distance;
+            }
+        }
+
+        Colony.AddToColony(cell, parent);
 
         ++nextBodyPlanCellToGrowIndex;
         compoundsNeededForNextCell = null;
