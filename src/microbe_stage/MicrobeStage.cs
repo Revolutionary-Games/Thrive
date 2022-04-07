@@ -660,7 +660,15 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         Player.ResetOrganelleLayout();
 
         // Spawn another cell from the player species
-        Player.Divide();
+        var daughter = Player.Divide();
+
+        // If multicellular, we want that other cell colony to be fully grown to show budding in action
+        if (Player.IsMulticellular)
+        {
+            daughter.BecomeFullyGrownMulticellularColony();
+
+            // TODO: add more extra offset between the player and the divided cell
+        }
 
         HUD.OnEnterStageTransition(false);
         HUD.HideReproductionDialog();

@@ -105,6 +105,14 @@ public partial class Microbe
         compoundsNeededForNextCell = null;
     }
 
+    public void BecomeFullyGrownMulticellularColony()
+    {
+        while (!IsFullyGrownMulticellular)
+        {
+            AddMulticellularGrowthCell();
+        }
+    }
+
     private void HandleMulticellularReproduction()
     {
         if (compoundsNeededForNextCell == null)
