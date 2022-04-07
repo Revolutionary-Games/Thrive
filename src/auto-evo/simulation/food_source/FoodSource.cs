@@ -28,7 +28,7 @@
         /// <returns>A formattable that has the description in it</returns>
         public abstract IFormattable GetDescription();
 
-        protected float EnergyGenerationScore(MicrobeSpecies species, Compound compound)
+        protected float EnergyGenerationScore(MicrobeSpecies species, Compound compound, Patch patch)
         {
             var energyCreationScore = 0.0f;
             foreach (var organelle in species.Organelles)
@@ -37,16 +37,19 @@
                 {
                     if (process.Process.Inputs.ContainsKey(compound))
                     {
+                        var processEfficiency = ProcessSystem.CalculateProcessMaximumSpeed(
+                            process, patch.Biome).Efficiency;
+
                         if (process.Process.Outputs.ContainsKey(glucose))
                         {
-                            energyCreationScore += process.Process.Outputs[glucose]
-                                / process.Process.Inputs[compound] * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
+                            energyCreationScore += process.Process.Outputs[glucose] / process.Process.Inputs[compound]
+                                * processEfficiency * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
                         }
 
                         if (process.Process.Outputs.ContainsKey(atp))
                         {
-                            energyCreationScore += process.Process.Outputs[atp]
-                                / process.Process.Inputs[compound] * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
+                            energyCreationScore += process.Process.Outputs[atp] / process.Process.Inputs[compound]
+                                * processEfficiency * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
                         }
                     }
                 }
