@@ -402,7 +402,7 @@
             var populationResults = new Dictionary<Patch, long>();
 
             if (!results.TryGetValue(species, out var speciesResult))
-                throw new ArgumentException("Species " + species.FormattedName + "not found in results.");
+                throw new ArgumentException("Species " + species.FormattedName + " not found in results.");
 
             // Get natural variations
             foreach (var patchPopulationEntry in speciesResult.NewPopulationInPatches)
@@ -808,7 +808,24 @@
             {
                 foreach (var species in patch.SpeciesInPatch.Keys)
                 {
-                    var globalPopulation = GetGlobalPopulation(species, true, true);
+                    // TODO: handle species turning multicellular properly here
+                    long globalPopulation;
+
+                    try
+                    {
+                        globalPopulation = GetGlobalPopulation(species, true, true);
+                    }
+                    catch (ArgumentException)
+                    {
+                        if (species is EarlyMulticellularSpecies)
+                        {
+                            GD.Print("Ignore problem logging early multicellular species to timeline");
+                            continue;
+                        }
+
+                        throw;
+                    }
+
                     var previousGlobalPopulation = world.Map.GetSpeciesGlobalPopulation(species);
 
                     var finalPatchPopulation = GetPopulationInPatch(species, patch);

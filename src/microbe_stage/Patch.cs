@@ -208,6 +208,44 @@ public class Patch
         return population;
     }
 
+    public float GetCompoundAmount(string compoundName)
+    {
+        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+
+        switch (compoundName)
+        {
+            case "sunlight":
+            case "oxygen":
+            case "carbondioxide":
+            case "nitrogen":
+                return Biome.Compounds[compound].Dissolved * 100;
+            case "iron":
+                return GetTotalChunkCompoundAmount(compound);
+            default:
+                return Biome.Compounds[compound].Density * Biome.Compounds[compound].Amount +
+                    GetTotalChunkCompoundAmount(compound);
+        }
+    }
+
+    public float GetCompoundAmountInSnapshot(PatchSnapshot snapshot, string compoundName)
+    {
+        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+
+        switch (compoundName)
+        {
+            case "sunlight":
+            case "oxygen":
+            case "carbondioxide":
+            case "nitrogen":
+                return snapshot.Biome.Compounds[compound].Dissolved * 100;
+            case "iron":
+                return GetTotalChunkCompoundAmount(compound);
+            default:
+                return snapshot.Biome.Compounds[compound].Density * snapshot.Biome.Compounds[compound].Amount +
+                    GetTotalChunkCompoundAmount(compound);
+        }
+    }
+
     public float GetTotalChunkCompoundAmount(Compound compound)
     {
         var result = 0.0f;
@@ -248,6 +286,21 @@ public class Patch
             currentSnapshot.EventsLog.Clear();
     }
 
+    public void ReplaceSpecies(Species old, Species newSpecies, bool replaceInHistory = true)
+    {
+        currentSnapshot.ReplaceSpecies(old, newSpecies);
+
+        if (!replaceInHistory)
+            return;
+
+        foreach (var snapshot in History)
+        {
+            snapshot.ReplaceSpecies(old, newSpecies);
+        }
+
+        // TODO: can we do something about the game log here?
+    }
+
     /// <summary>
     ///   Logs description of an event into the patch's history.
     /// </summary>
@@ -286,6 +339,23 @@ public class PatchSnapshot : ICloneable
     public PatchSnapshot(BiomeConditions biome)
     {
         Biome = biome;
+    }
+
+    public void ReplaceSpecies(Species old, Species newSpecies)
+    {
+        if (SpeciesInPatch.TryGetValue(old, out var population))
+        {
+            SpeciesInPatch.Remove(old);
+            SpeciesInPatch.Add(newSpecies, population);
+        }
+
+        if (RecordedSpeciesInfo.TryGetValue(old, out var info))
+        {
+            RecordedSpeciesInfo.Remove(old);
+            RecordedSpeciesInfo.Add(newSpecies, info);
+        }
+
+        // TODO: can we handle EventsLog here?
     }
 
     public object Clone()

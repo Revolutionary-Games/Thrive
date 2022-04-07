@@ -84,6 +84,11 @@ visible = false
 Description = "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 DescriptionLabelPath = NodePath("../../../GroupHolder/editor/finishButton/MarginContainer/VBoxContainer/Description")
 
+[node name="nextTabButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+visible = false
+Description = "NEXT_EDITOR_TAB"
+DescriptionLabelPath = NodePath("../finishButton/MarginContainer/VBoxContainer/Description")
+
 [node name="symmetryButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )

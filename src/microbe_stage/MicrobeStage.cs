@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
-public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeResolve
+public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath GuidanceLinePath = null!;
@@ -527,29 +527,88 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             return;
         }
 
-        // Might be related to saving but somehow the editor button can be enabled while in a colony
-        // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button becoming
-        // disabled properly
-        // https://github.com/Revolutionary-Games/Thrive/issues/2504
-        if (Player.Colony != null)
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Stage has no current game");
+
+        Node sceneInstance;
+
+        if (Player.IsMulticellular)
         {
-            GD.PrintErr("Editor button was enabled and pressed while the player is in a colony");
+            // Player is a multicellular species, go to multicellular editor
+
+            var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
+
+            sceneInstance = scene.Instance();
+            var editor = (EarlyMulticellularEditor)sceneInstance;
+
+            editor.CurrentGame = CurrentGame;
+            editor.ReturnToStage = this;
+        }
+        else
+        {
+            // Might be related to saving but somehow the editor button can be enabled while in a colony
+            // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button
+            // becoming disabled properly
+            // https://github.com/Revolutionary-Games/Thrive/issues/2504
+            if (Player.Colony != null)
+            {
+                GD.PrintErr("Editor button was enabled and pressed while the player is in a colony");
+                return;
+            }
+
+            var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
+
+            sceneInstance = scene.Instance();
+            var editor = (MicrobeEditor)sceneInstance;
+
+            editor.CurrentGame = CurrentGame;
+            editor.ReturnToStage = this;
+        }
+
+        GiveReproductionPopulationBonus();
+
+        // We don't free this here as the editor will return to this scene
+        if (SceneManager.Instance.SwitchToScene(sceneInstance, true) != this)
+        {
+            throw new Exception("failed to keep the current scene root");
+        }
+
+        MovingToEditor = false;
+    }
+
+    /// <summary>
+    ///   Moves to the multicellular editor (the first time)
+    /// </summary>
+    public void MoveToMulticellular()
+    {
+        if (Player?.Dead != false || Player.Colony == null)
+        {
+            GD.PrintErr("Player object disappeared or died (or not in a colony) while trying to become multicellular");
             return;
         }
 
-        // Increase the population by the constant for the player reproducing
-        var playerSpecies = GameWorld.PlayerSpecies;
-        GameWorld.AlterSpeciesPopulation(
-            playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
-            TranslationServer.Translate("PLAYER_REPRODUCED"),
-            false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
+        GD.Print("Disbanding colony and becoming multicellular");
 
-        var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
+        // Move to multicellular always happens when the player is in a colony, so we force disband that here before
+        // proceeding
+        Player.UnbindAll();
 
-        var editor = (MicrobeEditor)scene.Instance();
+        GiveReproductionPopulationBonus();
 
-        editor.CurrentGame = CurrentGame;
+        CurrentGame!.EnterPrototypes();
+        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(Player.Species);
+
+        // Re-apply species here so that the player cell knows it is multicellular after this
+        Player.ApplySpecies(multicellularSpecies);
+
+        var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
+
+        var editor = (EarlyMulticellularEditor)scene.Instance();
+
+        editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
         editor.ReturnToStage = this;
+
+        GD.Print("Switching to multicellular editor");
 
         // We don't free this here as the editor will return to this scene
         if (SceneManager.Instance.SwitchToScene(editor, true) != this)
@@ -607,8 +666,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         // changed while in the editor, it doesn't update this stage's translation cache.
         TranslationServer.SetLocale(TranslationServer.GetLocale());
 
-        // Auto save is wanted once possible
-        wantsToSave = true;
+        // Auto save is wanted once possible (unless we are in prototypes)
+        if (!CurrentGame.InPrototypes)
+            wantsToSave = true;
 
         pauseMenu.SetNewSaveNameFromSpeciesName();
     }
@@ -618,6 +678,18 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         TransitionFinished = true;
         TutorialState.SendEvent(
             TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
+    }
+
+    /// <summary>
+    ///   Increases the population by the constant for the player reproducing
+    /// </summary>
+    private void GiveReproductionPopulationBonus()
+    {
+        var playerSpecies = GameWorld.PlayerSpecies;
+        GameWorld.AlterSpeciesPopulation(
+            playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
+            TranslationServer.Translate("PLAYER_REPRODUCED"),
+            false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
     }
 
     private void OnSpawnEnemyCheatUsed(object sender, EventArgs e)
@@ -669,9 +741,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [DeserializedCallbackAllowed]
     private void OnPlayerReproductionStatusChanged(Microbe player, bool ready)
     {
-        if (ready && player.Colony == null)
+        if (ready && (player.Colony == null || player.IsMulticellular))
         {
-            TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
+            if (!player.IsMulticellular)
+                TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
 
             // This is to prevent the editor button being able to be clicked multiple times in freebuild mode
             if (!MovingToEditor)

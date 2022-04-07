@@ -42,7 +42,7 @@ public static class SpawnHelpers
 {
     public static Microbe SpawnMicrobe(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, bool aiControlled,
-        CompoundCloudSystem cloudSystem, GameProperties currentGame)
+        CompoundCloudSystem cloudSystem, GameProperties currentGame, CellType? multicellularCellType = null)
     {
         var microbe = (Microbe)microbeScene.Instance();
 
@@ -59,7 +59,20 @@ public static class SpawnHelpers
         if (aiControlled)
             microbe.AddToGroup(Constants.AI_GROUP);
 
-        microbe.ApplySpecies(species);
+        if (multicellularCellType != null)
+        {
+            microbe.ApplyMulticellularNonFirstCellSpecies((EarlyMulticellularSpecies)species, multicellularCellType);
+        }
+        else
+        {
+            microbe.ApplySpecies(species);
+
+            if (species is EarlyMulticellularSpecies)
+            {
+                // TODO: sometimes spawn fully formed (or partially complete) body plan colonies
+            }
+        }
+
         microbe.SetInitialCompounds();
         return microbe;
     }
@@ -337,7 +350,7 @@ public class MicrobeSpawner : Spawner
 
         ModLoader.ModInterface.TriggerOnMicrobeSpawned(first);
 
-        if (first.Species.IsBacteria)
+        if (first.CellTypeProperties.IsBacteria)
         {
             foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
                          cloudSystem, currentGame, random))

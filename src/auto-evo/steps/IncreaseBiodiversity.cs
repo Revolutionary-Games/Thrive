@@ -112,12 +112,16 @@
 
         private MicrobeSpecies? TryBiodiversitySplit(Species splitFrom, bool inCurrentPatch)
         {
+            // TODO: multicellular handling
+            if (splitFrom is not MicrobeSpecies fromMicrobe)
+                return null;
+
             var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
-            var split = (MicrobeSpecies)splitFrom.Clone();
+            var split = (MicrobeSpecies)fromMicrobe.Clone();
 
             if (configuration.BiodiversitySplitIsMutated)
-                mutations.CreateMutatedSpecies((MicrobeSpecies)splitFrom, split);
+                mutations.CreateMutatedSpecies(fromMicrobe, split);
 
             // Set the starting population in the patch
             split.Population = configuration.NewBiodiversityIncreasingSpeciesPopulation;
