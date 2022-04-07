@@ -811,6 +811,13 @@ public partial class Microbe
     {
         if (MovementDirection != Vector3.Zero || queuedMovementForce != Vector3.Zero)
         {
+            if (IsIngested)
+            {
+                // Reset movement
+                MovementDirection = Vector3.Zero;
+                queuedMovementForce = Vector3.Zero;
+            }
+
             // Movement direction should not be normalized to allow different speeds
             Vector3 totalMovement = Vector3.Zero;
 

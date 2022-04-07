@@ -293,9 +293,9 @@ public static class Constants
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
     /// <summary>
-    ///   How much compounds a cell can absorb per second from engulfables.
+    ///   How much compounds a cell can absorb per second from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_COMPUND_ABSORBING_PER_SECOND = 0.3f;
+    public const float ENGULF_COMPUND_ABSORBING_PER_SECOND = 1.3f;
 
     public const float ENGULF_TOXIC_COMPOUND_ABSORB_DAMAGE_MULTIPLIER = 5.0f;
 

@@ -558,7 +558,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         linearAcceleration = (LinearVelocity - lastLinearVelocity) / delta;
 
         // Movement
-        if (ColonyParent == null && (!IsForPreviewOnly || !IsIngested))
+        if (ColonyParent == null && !IsForPreviewOnly)
             HandleMovement(delta);
 
         lastLinearVelocity = LinearVelocity;
