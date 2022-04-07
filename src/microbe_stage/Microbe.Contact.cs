@@ -696,7 +696,7 @@ public partial class Microbe
     private void SetMembraneFromSpecies()
     {
         Membrane.Type = CellTypeProperties.MembraneType;
-        Membrane.Tint = Species.Colour;
+        Membrane.Tint = CellTypeProperties.Colour;
         Membrane.Dirty = true;
         ApplyMembraneWigglyness();
     }
