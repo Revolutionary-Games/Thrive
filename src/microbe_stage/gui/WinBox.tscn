@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Humongous.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=3]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.196078 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "FadeIn"
@@ -21,11 +24,10 @@ tracks/0/keys = {
 }
 
 [node name="WinBox" instance=ExtResource( 3 )]
-modulate = Color( 1, 1, 1, 0 )
-anchor_top = 0.277778
 anchor_right = 1.0
-anchor_bottom = 0.694444
-margin_bottom = 3.05176e-05
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
 mouse_filter = 2
 popup_exclusive = true
 FullRect = true
@@ -35,20 +37,44 @@ ShowCloseButton = false
 Decorate = false
 
 [node name="MarginContainer" type="MarginContainer" parent="." index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" index="0"]
+margin_top = 210.0
+margin_right = 1280.0
+margin_bottom = 510.0
+rect_min_size = Vector2( 0, 300 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" index="0"]
 margin_right = 1280.0
 margin_bottom = 300.0
 mouse_filter = 2
 custom_constants/margin_right = 150
 custom_constants/margin_left = 150
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" index="0"]
 margin_left = 150.0
 margin_right = 1130.0
 margin_bottom = 300.0
 mouse_filter = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" index="0"]
+[node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
 margin_top = 100.0
 margin_right = 980.0
 margin_bottom = 166.0
@@ -57,7 +83,7 @@ text = "WIN_BOX_TITLE"
 align = 1
 valign = 1
 
-[node name="Message" type="Label" parent="MarginContainer/VBoxContainer" index="1"]
+[node name="Message" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
 margin_top = 170.0
 margin_right = 980.0
 margin_bottom = 199.0
