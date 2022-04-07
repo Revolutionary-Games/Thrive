@@ -30,8 +30,8 @@ msgstr ""
 "input]g_fire_toxin[/thrive:input] drücken um [thrive:compound type=\"oxytoxy"
 "\"][/thrive:compound] zu schießen, falls eine Giftvakuole vorhanden ist. "
 "[thrive:input]g_toggle_engulf[/thrive:input] drücken um den "
-"Verschlingungsmodus umzuschalten. Mit dem Mausrad kannst du rein- und "
-"rauszoomen."
+"Verschlingungsmodus umzuschalten. Mit dem Mausrad kannst du herein- und "
+"herauszoomen."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -990,7 +990,7 @@ msgstr "Chemorezeptor"
 #: ../simulation_parameters/microbe_stage/organelles.json:666
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2078
 msgid "SIGNALING_AGENT"
-msgstr "Bindemittel"
+msgstr "Signalorganelle"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2181
@@ -1044,7 +1044,7 @@ msgstr "wurde in {0} ausgelöscht"
 
 #: ../src/auto-evo/RunResults.cs:569
 msgid "PREVIOUS_COLON"
-msgstr "Spezies:"
+msgstr "Vorige:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -1081,9 +1081,8 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} durch Senden: {1} Population aus dem Gebiet: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "{0} ({1})"
+msgstr "Bevölkerung in Gebieten:"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -1476,7 +1475,7 @@ msgstr "Lautstärke hoch"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
-msgstr "Bassboost"
+msgstr "Bass-boost"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "BASSUP"
@@ -2062,7 +2061,6 @@ msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Anzahl der Schnellspeicherungen:"
 
 #: ../src/general/OptionsMenu.tscn:1068
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutorials anzeigen (in neuen Spielen)"
 
@@ -2949,7 +2947,7 @@ msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 "Rusticyanin ist ein Protein, das in der Lage ist, gasförmiges Kohlendioxid "
 "und Sauerstoff zu nutzen, um Eisen zu oxidieren. Dieser Prozess, der "
-"Eisenatmung genannt wird, setzt Energie frei, die die Zelle dann sammeln "
+"Eisenatmung genannt wird, setzt Energie frei, welche die Zelle dann sammeln "
 "kann."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:775
@@ -2979,7 +2977,7 @@ msgstr ""
 "type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der Konzentration "
 "von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. Kann durch "
 "Drücken von [thrive:input]g_fire_toxin[/thrive:input] Giftstoffe freisetzen. "
-"Wenn die [thrive:compound type=\"oxytoxy\"][/thrive:compound]konzentration "
+"Wenn die [thrive:compound type=\"oxytoxy\"][/thrive:compound]-Konzentration "
 "niedrig ist, ist das Schießen immer noch möglich, aber der Schaden ist "
 "geringer."
 
@@ -3254,16 +3252,12 @@ msgstr ""
 "Drücke [thrive:input]g_pack_commands[/thrive:input], um ein Menü zu öffnen "
 "mit dem du anderen Mitgliedern deiner Spezies Befehle erteilen kannst."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2085
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
-#, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr ""
-"Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur "
-"Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die "
-"Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, "
-"solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, "
-"sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+"Ermöglicht das Erstellen von Stoffen, auf die andere Zellen reagieren "
+"können. Diese Signalmittel können benutzt werden, um andere Zellen "
+"anzuziehen oder sie vor Gefahren zu warnen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2211
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2206
@@ -4819,7 +4813,6 @@ msgid "ERROR_SAVING"
 msgstr "Fehler beim Speichern"
 
 #: ../src/saving/NewSaveMenu.cs:80 ../src/saving/NewSaveMenu.cs:75
-#, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Der gewählte Dateiname ({0}) existiert bereits. Überschreiben?"
 
@@ -4848,23 +4841,18 @@ msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Vorhandenen Speicherstand überschreiben?"
 
 #: ../src/saving/NewSaveMenu.tscn:121
-#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr "Kann nicht verschlingen"
+msgstr "Kann nicht speichern"
 
 #: ../src/saving/NewSaveMenu.tscn:125
-#, fuzzy
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "Auto-evo fehlgeschlagen"
-
-#: ../src/saving/SaveHelper.cs:444 ../src/saving/SaveHelper.cs:488
-#: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
-#, fuzzy
-msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr ""
-"Die Aktualisierung des zu speicherndem Speicherstands ist aufgrund des "
-"folgenden Fehlers fehlgeschlagen:\n"
-"{0}"
+"Der Versuch zu speichern ist missglückt. Möglicherweise ist der Speichername "
+"zu lang oder du hast keinen Zugang zum Speicherordner."
+
+#: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
+msgid "SAVING_FAILED_WITH_EXCEPTION"
+msgstr "Speichern fehlgeschlagen. Ein Fehler ist aufgetreten."
 
 #: ../src/saving/SaveHelper.cs:453 ../src/saving/SaveHelper.cs:469
 #: ../src/saving/SaveHelper.cs:437
@@ -4964,8 +4952,8 @@ msgstr ""
 "Es gibt keinen Spielstand-Konverter um diesen Speicherstand zu "
 "aktualisieren.\n"
 "Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die "
-"Kompatibilität von Saves keine hohe Priorität, da es nicht für alle "
-"Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
+"Kompatibilität von Speicherständen keine hohe Priorität, weil es nicht für "
+"alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
 
 #: ../src/saving/SaveList.tscn:114
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
@@ -5330,9 +5318,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
-"Sammel Glukose (weiße Wolken), indem du dich über sie bewegst.\n"
+"Sammle Glukose (weiße Wolken), indem du dich über sie bewegst.\n"
+"\n"
 "Deine Zelle braucht Glukose, um Energie zu produzieren und am Leben zu "
 "bleiben.\n"
+"\n"
 "Folge der Linie von deiner Zelle bis zur einer nahe gelegenen Glukosewolke."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
@@ -5361,29 +5351,26 @@ msgstr ""
 "Um den Editor zu öffnen, drücke auf die blinkende Schaltfläche unten rechts."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Du hast den Modus \"Bindung aufheben\" aufgerufen. In diesem Modus kannst du "
-"auf die Mitglieder der Kolonie klicken, um sie zu entbinden.\n"
+"Du hast den \"Bindung aufheben\"-Modus aufgerufen. In diesem Modus kannst du "
+"auf die Mitglieder deiner Kolonie klicken, um deren Verbindung zu lösen.\n"
 "\n"
-"Um die Kolonie ganz zu verlassen, können Sie auf Ihre eigene Zelle klicken "
+"Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken "
 "oder [thrive:input]g_unbind_all[/thrive:input] drücken."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Solltest du Probleme mit den Spielmechaniken haben, kannst du jederzeit das "
 "Hilfemenü aufrufen. Dieses findest du, indem du auf das Fragezeichen in der "
-"unteren, linken Ecke klickst.\n"
+"unteren linken Ecke klickst.\n"
 "\n"
-"Ein weiterer Tipp: Du kannst mit dem Mausraus herauszoomen."
+"Ein weiterer Tipp: Du kannst mit dem Mausrad herein- und herauszoomen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Tutorial"
+msgstr "Tutorial ansehen"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Lade..."
