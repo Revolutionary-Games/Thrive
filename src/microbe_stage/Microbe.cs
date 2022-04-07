@@ -295,6 +295,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             // Colony children shapes need re-parenting to their master
             // The shapes have to be re-parented to their original microbe then to the master again, maybe engine bug
             // Also re-add to the collision exception and change the mode to static as it should be
+            // And add remake mass for colony master
             if (Colony != null && this != Colony.Master)
             {
                 ReParentShapes(this, Vector3.Zero);
@@ -302,6 +303,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 Colony.Master.AddCollisionExceptionWith(this);
                 AddCollisionExceptionWith(Colony.Master);
                 Mode = ModeEnum.Static;
+                Colony.Master.Mass += Mass;
             }
 
             // And recompute storage
@@ -506,6 +508,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         HandleOsmoregulation(delta);
 
+        // Colony members have their movement update before organelle update,
+        // so that the movement organelles see the direction
+        // The colony master should be updated first, if not, theres an engine bug
+        // because the master is the parent node of the members.
+        if (Colony != null && Colony.Master != this)
+            MovementDirection = Colony.Master.MovementDirection;
+
         // Let organelles do stuff (this for example gets the movement force from flagella)
         foreach (var organelle in organelles!.Organelles)
         {
@@ -559,7 +568,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         // Movement
         if (ColonyParent == null && !IsForPreviewOnly)
+        {
             HandleMovement(delta);
+        }
+        else
+        {
+            Colony?.Master.AddMovementForce(queuedMovementForce);
+        }
 
         lastLinearVelocity = LinearVelocity;
         lastLinearAcceleration = linearAcceleration;
@@ -749,6 +764,17 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         var got = Compounds.TakeCompound(atp, cost);
 
         float force = Constants.CELL_BASE_THRUST;
+        float appliedFactor = MovementFactor;
+        if (Colony != null && Colony.Master == this)
+        {
+            // Multiplies the movement factor as if the colony has the normal microbe speed
+            // Then it subtracts movement speed from 100% up to 75%(soft cap),
+            // using a series that converges to 1 , value = (1/2 + 1/4 + 1/8 +.....) = 1 - 1/2^n
+            // when specialized cells become a reality the cap could be lowered to encourage cell specialization
+            appliedFactor *= Colony.ColonyMembers.Count;
+            var seriesValue = 1 - 1 / (float)Math.Pow(2, Colony.ColonyMembers.Count - 1);
+            appliedFactor -= (appliedFactor * 0.25f) * seriesValue;
+        }
 
         // Halve speed if out of ATP
         if (got < cost)
@@ -760,7 +786,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (IsPlayerMicrobe)
             force *= Mass * CheatManager.Speed;
 
-        return Transform.basis.Xform(MovementDirection * force) * MovementFactor *
+        return Transform.basis.Xform(MovementDirection * force) * appliedFactor *
             (Species.MembraneType.MovementFactor -
                 (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
     }

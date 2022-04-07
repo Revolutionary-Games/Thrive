@@ -1,141 +1,130 @@
 # Translations template for PROJECT.
-# Copyright (C) 2020 ORGANIZATION
+# Copyright (C) 2022 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-07 13:09+0700\n"
-"PO-Revision-Date: 2021-01-03 09:13+0000\n"
-"Last-Translator: Azuriem <darkpitthe@hotmail.fr>\n"
-"Language-Team: Latin <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/la/>\n"
-"Language: la\n"
+"POT-Creation-Date: 2022-03-18 17:48+0200\n"
+"PO-Revision-Date: 2022-03-31 05:02+0000\n"
+"Last-Translator: Apostolos Paschidis <tolissius@gmail.com>\n"
+"Language-Team: Greek <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/el/>\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
-"Generated-By: Babel 2.9.0\n"
+"X-Generator: Weblate 4.11.2\n"
+"Generated-By: Babel 2.9.1\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Το κύτταρό σας χρησιμοποιεί [thrive:compound type=\"atp\"][/thrive:compound] ως πηγή ενέργειας· εάν τελειώσει, το κύτταρο πεθαίνει."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Για να ξεκλειδώσετε τον επεξεργαστή και να αναπαραχθείτε πρέπει να συλλέξετε [thrive:compound type=\"ammonia\"][/thrive:compound] (πορτοκαλί νέφος) και [thrive:compound type=\"phosphates\"][/thrive:compound] (μωβ νέφος)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Μπορείτε επίσης να απορροφήσετε κύτταρα, βακτήρια, θραύσματα σιδήρου ή άλλων κυττάρων που είναι μικρότερα από εσάς πατώντας το [thrive:input]g_toggle_engulf[/thrive:input]. Αυτό κοστίζει επιπλέον [thrive:compound type=\"atp\"][/thrive:compound] και σας επιβραδύνει. Μη ξεχνάτε να πατάτε πάλι το [thrive:input]g_toggle_engulf[/thrive:input] για να σταματάτε να απορροφάτε."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Υπάρχουν πολλά Οργανίδια στον επεξεργαστή για να εξελιχθείτε, επιτρέποντας ποικιλία διαφορετικών τρόπων να παίξετε."
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
+"Τα διάφορα νέφη ενώσεων είναι:\n"
+"\n"
+"Λευκό - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Κίτρινο - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Πορτοκαλί - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Μωβ - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"Καφέ - [thrive:compound type=\"iron\"][/thrive:compound]\n"
+"\n"
+"Η [thrive:compound type=\"glucose\"][/thrive:compound] παράγει [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Για να αναπαραχθείτε πρέπει να διαιρεθούν πρώτα τα οργανίδιά σας. Η διαίρεση των οργανιδίων απαιτεί αμμωνία και φωσφορικά."
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Για τώρα, εάν ο πληθυσμός τού είδους σας πέσει στο μηδέν, αφανίζεσθε."
 
 #: ../simulation_parameters/common/help_texts.json:46
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Εάν όμως επιβιώσετε επί είκοσι γενεές με πληθυσμό 300, θεωρείται ότι νικήσατε το τρέχον παιχνίδι. Μετά την νίκη ενημερώνεστε και μπορείτε να συνεχίσετε το παιχνίδι όπως επιθυμείτε."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:112
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Προσέχετε, καθ' ότι οι ανταγωνιστές σας εξελίσσονται παραλλήλως. Κάθε φορά που εισέρχεστε στον επεξεργαστή, εξελίσσονται και εκείνοι."
 
 #: ../simulation_parameters/common/help_texts.json:54
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Συνδεόμενοι με άλλα κύτταρα, μπορείτε να φτιάξετε αποικία, όπου τα κύτταρα μοιράζονται τις ενώσεις που απορροφούν και παράγουν μαζί. Για να μπορέσετε να συνδεθείτε με άλλα κύτταρα, χρειάζεται να έχετε οργανίδιο σύνδεσης και να κινηθείτε προς αυτά, αφού εισέλθετε στην λειτουργία σύνδεσης. Είναι δυνατόν να συνδέεστε μόνον με κύτταρα τού ιδίου είδους. Συνδεδεμένοι σε αποικία, δεν μπορείτε να διαιρεθείτε και να εισέλθετε στον επεξεργαστή (προς το παρόν). Για να εισέλθετε στον επεξεργαστή, πρώτα αποχωρήστε από την αποικία αφού έχετε συλλέξει αρκετές ενώσεις και έπειτα εισέλθετε στον επεξεργαστή. Οι μεγάλες αποικίες κυττάρων είναι ο δρόμος προς τους πολυκύτταρους οργανισμούς (δεν διατίθενται ακόμη στο παιχνίδι)."
 
 #: ../simulation_parameters/common/help_texts.json:62
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:66
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:70
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:74
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Κάθε φορά που αναπαράγεσθε, εισέρχεσθε στον Επεξεργαστή Μικροβίων, όπου μπορείτε να πραγματοποιήσετε αλλαγές στο είδος σας (προσθέτοντας, μετακινώντας ή αφαιρώντας οργανίδια) για να αυξήσετε την επιτυχία τού είδους σας. Κάθε επίσκεψη στον επεξεργαστή κατά το Στάδιο Μικροβίων αντιστοιχεί σε [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]εκατομμύρια έτη εξέλιξης."
 
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
-msgstr ""
+msgstr "Πατήστε το πλήκτρο αναίρεσης στον επεξεργαστή για να διορθώσετε σφάλματα"
 
 #: ../simulation_parameters/common/help_texts.json:126
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:129
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
+msgstr "Συμβουλή: δικές σας τοξίνες μπορούν να χρησιμοποιηθούν για να απομακρύνετε άλλες τοξίνες εάν είστε αρκετά γρήγοροι."
 
 #: ../simulation_parameters/common/help_texts.json:132
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:135
 msgid "EASTEREGG_MESSAGE_4"
@@ -147,11 +136,11 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
+msgstr "Συμβουλή: μερικές φορές είναι καλύτερο να αποφεύγετε άλλα κύτταρα."
 
 #: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
+msgstr "Συμβουλή: εάν ένα κύτταρο είναι περίπου το μισό από το δικό σας, τότε μπορείτε να το απορροφήσετε."
 
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
@@ -159,75 +148,63 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
+msgstr "Σύμβουλή: είναι δυνατόν να κυνηγήσετε άλλο είδος μέχρι αφανισμού εάν δεν προσέχετε αρκετά. Άλλα είδη μπορούν το κάνουν επίσης."
 
 #: ../simulation_parameters/common/help_texts.json:153
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_10"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:156
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_11"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:159
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_12"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:162
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:165
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:168
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:171
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Συμβουλή: ετοιμασθείτε προτού προσθέσετε πυρήνα. Αυτά τα πράγματα είναι ακριβά! Σε συντήρηση και αρχική αγορά."
 
 #: ../simulation_parameters/common/help_texts.json:174
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:177
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:180
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_19"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:186
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_21"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr "Συμβουλή: προέχετε τα μεγαλύτερα κύτταρα και τα μεγάλα βακτήρια, δεν είναι ευχάριστο να σας τρώνε (και θα σας φάνε)."
 
 #: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:192
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_23"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_24"
@@ -247,7 +224,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
-msgstr ""
+msgstr "Κίνηση"
 
 #: ../simulation_parameters/common/input_options.json:10
 msgid "MOVE_LEFT"
@@ -1392,7 +1369,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr ""
@@ -1695,7 +1672,7 @@ msgstr ""
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
 msgstr ""
 
@@ -2044,51 +2021,51 @@ msgstr ""
 msgid "SELECT_OPTION"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:394
+#: ../src/gui_common/TweakedColourPicker.cs:393
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:395
+#: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:396
+#: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:397
+#: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:401
+#: ../src/gui_common/TweakedColourPicker.cs:400
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:402
+#: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:403
+#: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:407
+#: ../src/gui_common/TweakedColourPicker.cs:406
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:408
+#: ../src/gui_common/TweakedColourPicker.cs:407
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:409
+#: ../src/gui_common/TweakedColourPicker.cs:408
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:412
+#: ../src/gui_common/TweakedColourPicker.cs:411
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:587
+#: ../src/gui_common/TweakedColourPicker.cs:586
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 
@@ -2554,23 +2531,23 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:563
+#: ../src/microbe_stage/Microbe.Contact.cs:532
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:674
+#: ../src/microbe_stage/Microbe.Contact.cs:643
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:681
+#: ../src/microbe_stage/Microbe.Contact.cs:650
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:899
+#: ../src/microbe_stage/Microbe.Contact.cs:867
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:781
+#: ../src/microbe_stage/Microbe.Interior.cs:734
 msgid "REPRODUCED"
 msgstr ""
 
@@ -2658,15 +2635,15 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:548
+#: ../src/microbe_stage/MicrobeStage.cs:544
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:637
+#: ../src/microbe_stage/MicrobeStage.cs:633
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:657
+#: ../src/microbe_stage/MicrobeStage.cs:653
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -2746,52 +2723,48 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:188
+#: ../src/microbe_stage/PatchMapGenerator.cs:181
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:189
+#: ../src/microbe_stage/PatchMapGenerator.cs:182
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:190
+#: ../src/microbe_stage/PatchMapGenerator.cs:183
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:191
+#: ../src/microbe_stage/PatchMapGenerator.cs:184
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:192
+#: ../src/microbe_stage/PatchMapGenerator.cs:185
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:193
+#: ../src/microbe_stage/PatchMapGenerator.cs:186
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:194
+#: ../src/microbe_stage/PatchMapGenerator.cs:187
 msgid "PATCH_PANGONIAN_COAST"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:195
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:196
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_CAVE"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:197
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
 msgid "PATCH_ICE_SHELF"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:198
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
 msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:203
-msgid "PATCH_NAME"
 msgstr ""
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
@@ -3226,19 +3199,19 @@ msgstr ""
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
 msgid "COMPOUND_TO_FIND"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
 msgid "SEARCH_RADIUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
 msgid "LINE_COLOUR"
 msgstr ""
 
@@ -3754,40 +3727,32 @@ msgstr ""
 msgid "ERROR_SAVING"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.cs:80
+#: ../src/saving/NewSaveMenu.cs:75
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.cs:185
+#: ../src/saving/NewSaveMenu.cs:173
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:32
+#: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:49
+#: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:67
+#: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:85
+#: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:117
+#: ../src/saving/NewSaveMenu.tscn:116
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr ""
-
-#: ../src/saving/NewSaveMenu.tscn:121
-msgid "CANNOT_WRITE_SAVE"
-msgstr ""
-
-#: ../src/saving/NewSaveMenu.tscn:125
-msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr ""
 
 #: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
@@ -4036,15 +4001,14 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:238
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:301
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:346
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:50
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:136
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:218
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:252
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:326
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:362
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:396
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:449
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
 msgid "TUTORIAL"
 msgstr ""
 
@@ -4057,9 +4021,8 @@ msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
@@ -4070,9 +4033,8 @@ msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
 msgid "GOT_IT"
@@ -4086,55 +4048,46 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:81
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:106
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:115
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:156
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:272
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
-#, fuzzy
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:348
-#, fuzzy
-msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:382
-#, fuzzy
-msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:423
-#, fuzzy
-msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:436
-msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:466
-#, fuzzy
-msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
-msgstr "W,A,S,D et mus computatrum ut mŏvĕor. E ut iacio telum OxyToxy NT si vos have toxicum vacuole. G ut devorare habilito."
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
+msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
+msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
+msgid "TUTORIAL_VIEW_NOW"
+msgstr ""

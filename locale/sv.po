@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-24 20:12+0700\n"
-"PO-Revision-Date: 2021-09-12 07:51+0000\n"
-"Last-Translator: Liam Hallberg <tairuu00@gmail.com>\n"
+"POT-Creation-Date: 2022-04-07 13:09+0700\n"
+"PO-Revision-Date: 2022-03-22 18:22+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -87,9 +87,8 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr "Var alltid försiktig, dina konkurrenter utvecklas vid sidan av dig. Varje gång du öppnar Cellredigeraren utvecklas de också."
 
 #: ../simulation_parameters/common/help_texts.json:54
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en giftvakuol. G för att växla av och på upslukarläge."
+msgstr "Genom att binda dig till andra celler, kan du bygga en cell koloni där cellerna delar de resurser dem absorberar och producerar med varandra. För att kunna binda dig till en annan cell, behöver du ha bindemedels organellen och flytta dig över dom efter att ha aktiverat bindnings-läge. Du kan bara binda med celler av din egen art. Medans du är i en koloni, kan du inte dela din cell och komma åt redigeraren (för nu). För att komma åt redigeraren, först lämna din koloni när du har samlat nog med resurser, och gå sen in i redigeraren. Stora cell kolonier är vägen mot multicellularitet (inte i spelet än)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -296,7 +295,7 @@ msgstr "Växla uppslukarläge av och på"
 
 #: ../simulation_parameters/common/input_options.json:46
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr ""
+msgstr "Håll för att visa grupp commando menyn"
 
 #: ../simulation_parameters/common/input_options.json:50
 #: ../src/microbe_stage/MicrobeStage.tscn:2112
@@ -355,9 +354,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Placera organell"
 
 #: ../simulation_parameters/common/input_options.json:111
-#, fuzzy
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "Ta bort organell"
+msgstr "Öppna organell meny"
 
 #: ../simulation_parameters/common/input_options.json:115
 msgid "PAN_CAMERA_LEFT"
@@ -385,14 +383,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Avbryt denna handling"
 
 #: ../simulation_parameters/common/input_options.json:139
-#, fuzzy
 msgid "DELETE_ORGANELLE"
-msgstr "Placera organell"
+msgstr "Ta bort organell"
 
 #: ../simulation_parameters/common/input_options.json:143
-#, fuzzy
 msgid "MOVE_ORGANELLE"
-msgstr "Ta bort organell"
+msgstr "Flytta organell"
 
 #: ../simulation_parameters/common/input_options.json:151
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -417,9 +413,8 @@ msgid "SPAWN_PHOSPHATES"
 msgstr "Spawna fosfat"
 
 #: ../simulation_parameters/common/input_options.json:171
-#, fuzzy
 msgid "CHEAT_MENU"
-msgstr "Fusk"
+msgstr "Fusk meny"
 
 #: ../simulation_parameters/common/input_options.json:180
 msgid "MISCELLANEOUS"
@@ -450,9 +445,8 @@ msgid "TOGGLE_FULLSCREEN"
 msgstr "Växla fullskärm av och på"
 
 #: ../simulation_parameters/common/input_options.json:208
-#, fuzzy
 msgid "TOGGLE_HUD_HIDE"
-msgstr "Växla uppslukarläge av och på"
+msgstr "Växla HUD av och på"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -755,11 +749,8 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
-#, fuzzy
 msgid "BINDING_AGENT"
-msgstr ""
-"There is a conflict with {0}.\n"
-"Vill du ta bort inputen från {1}?"
+msgstr "Bindemedel"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1503
@@ -778,30 +769,23 @@ msgstr "Kärna"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:642
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
-#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr "Kemoplast"
+msgstr "Kemoreceptor"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:666
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2078
-#, fuzzy
 msgid "SIGNALING_AGENT"
-msgstr ""
-"There is a conflict with {0}.\n"
-"Vill du ta bort inputen från {1}?"
+msgstr "Signaleringsmedel"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-#, fuzzy
 msgid "ABORTED_DOT"
 msgstr "Avbruten."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-#, fuzzy
 msgid "FINISHED_DOT"
 msgstr "Färdig."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-#, fuzzy
 msgid "NOT_RUNNING_DOT"
 msgstr "Körs inte."
 
@@ -818,9 +802,8 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-#, fuzzy
 msgid "POPULATION_COLON"
-msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+msgstr "befolkning:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
@@ -832,36 +815,30 @@ msgid "PREVIOUS_COLON"
 msgstr "tidigare:"
 
 #: ../src/auto-evo/RunResults.cs:587
-#, fuzzy
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr "genkod:"
+msgstr "avvek från {0}"
 
 #: ../src/auto-evo/RunResults.cs:600
-#, fuzzy
 msgid "RUN_RESULT_NICHE_FILL"
-msgstr "genkod:"
+msgstr "uppstod för att fylla en nisch"
 
 #: ../src/auto-evo/RunResults.cs:603
-#, fuzzy
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
-msgstr "sprid till platser:"
+msgstr "dök up på grund av olika urvalstryck"
 
 #: ../src/auto-evo/RunResults.cs:620
-#, fuzzy
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr "sprid till platser:"
+msgstr "befolkning på vissa platser avvek och forma en ny art {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr "har en mutation"
+msgstr "har muterat"
 
 #: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "genkod:"
 
 #: ../src/auto-evo/RunResults.cs:652
-#, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "sprid till platser:"
 
@@ -870,9 +847,8 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} av att skicka: {1} befolkning från plats: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "INVÅNARE:"
+msgstr "befolkning på platser:"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -880,66 +856,59 @@ msgstr "dog ut på planeten"
 
 #: ../src/auto-evo/RunResults.cs:843
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr ""
+msgstr "[u]{0}[/u] har gått utdöd!"
 
 #: ../src/auto-evo/RunResults.cs:853 ../src/auto-evo/RunResults.cs:875
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "Artbefolkning"
+msgstr "[u]{0}[/u] befolkning har ökat till {1}"
 
 #: ../src/auto-evo/RunResults.cs:859 ../src/auto-evo/RunResults.cs:881
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "Artbefolkning"
+msgstr "[u]{0}[/u] befolkning har minskat till {1}"
 
 #: ../src/auto-evo/RunResults.cs:867
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr ""
+msgstr "[u]{0}[/u] har lämnat denna platsen"
 
 #: ../src/auto-evo/RunResults.cs:891
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr ""
+msgstr "En del av [u]{0}[/u] befolkningen har migrerat till denna plats från {1}"
 
 #: ../src/auto-evo/RunResults.cs:896
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1} från {2}"
 
 #: ../src/auto-evo/RunResults.cs:902
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1}"
 
 #: ../src/auto-evo/RunResults.cs:921
-#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
-msgstr "genkod:"
+msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art för att fylla nisch"
 
 #: ../src/auto-evo/RunResults.cs:927
-#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "sprid till platser:"
+msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art på grund av olika urvalstryck"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
-#, fuzzy
 msgid "NOT_FOUND_CHUNK"
-msgstr "Stor järnbit"
+msgstr "Fel: sektor hittades inte"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
-#, fuzzy
 msgid "CHUNK_FOOD_SOURCE"
-msgstr "Molekylmoln"
+msgstr "{0} konsumtion"
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:42
-#, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr "Molekylmoln"
+msgstr "{0} konsumtion"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:38
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "Jämnt spridd miljömatkälla av {0}"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
 msgid "PREDATION_FOOD_SOURCE"
-msgstr ""
+msgstr "Plundring av {0}"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1000,26 +969,22 @@ msgid "KEY_UP"
 msgstr "Upp"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
-#, fuzzy
 msgid "KEY_RIGHT"
-msgstr "Rör dig höger"
+msgstr "Höger"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
-#, fuzzy
 msgid "KEY_DOWN"
-msgstr "Scrolla ner"
+msgstr "Ner"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
 msgstr "Meny"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
-#, fuzzy
 msgid "KEY_HELP"
 msgstr "Hjälp"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
-#, fuzzy
 msgid "KEY_BACK"
 msgstr "Backåt"
 
@@ -1036,8 +1001,9 @@ msgid "KEY_SEARCH"
 msgstr "Sök"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
+#, fuzzy
 msgid "KEY_STANDBY"
-msgstr ""
+msgstr "Standby"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "KEY_OPENURL"
@@ -1045,33 +1011,32 @@ msgstr "Öppen URL"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "KEY_HOMEPAGE"
-msgstr ""
+msgstr "Startsida"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
 msgid "KEY_FAVORITES"
 msgstr "Favoriter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
+#, fuzzy
 msgid "KEY_PRINT"
-msgstr ""
+msgstr "Print Screen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
 msgstr "Blanksteg"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
-#, fuzzy
 msgid "BACKSLASH"
-msgstr "Backåt"
+msgstr "Omvänt snedstreck"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "ESCAPE"
 msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
-#, fuzzy
 msgid "BACKSPACE"
-msgstr "Backåt"
+msgstr "Backa"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "KPENTER"
@@ -1103,19 +1068,19 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
-msgstr ""
+msgstr "Super Vänster"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "SUPERR"
-msgstr ""
+msgstr "Super Höger"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
 msgid "HYPERL"
-msgstr ""
+msgstr "Hyper Vänster"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "HYPERR"
-msgstr ""
+msgstr "Hyper Höger"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "DIRECTIONL"
@@ -1188,67 +1153,67 @@ msgstr "Media"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH0"
-msgstr ""
+msgstr "Avfyra 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "LAUNCH1"
-msgstr ""
+msgstr "Avfyra 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "LAUNCH2"
-msgstr ""
+msgstr "Avfyra 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:199
 msgid "LAUNCH3"
-msgstr ""
+msgstr "Avfyra 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:200
 msgid "LAUNCH4"
-msgstr ""
+msgstr "Avfyra 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:201
 msgid "LAUNCH5"
-msgstr ""
+msgstr "Avfyra 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:202
 msgid "LAUNCH6"
-msgstr ""
+msgstr "Avfyra 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "LAUNCH7"
-msgstr ""
+msgstr "Avfyra 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCH8"
-msgstr ""
+msgstr "Avfyra 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCH9"
-msgstr ""
+msgstr "Avfyra 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "LAUNCHA"
-msgstr ""
+msgstr "Avfyra A"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "LAUNCHB"
-msgstr ""
+msgstr "Avfyra B"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "LAUNCHC"
-msgstr ""
+msgstr "Avfyra C"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "LAUNCHD"
-msgstr ""
+msgstr "Avfyra D"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "LAUNCHE"
-msgstr ""
+msgstr "Avfyra E"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "LAUNCHF"
-msgstr ""
+msgstr "Avfyra F"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KPMULTIPLY"
@@ -1392,19 +1357,19 @@ msgstr "Stäng"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1100
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1322
 msgid "PERCENTAGE_VALUE"
-msgstr ""
+msgstr "{0}%"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "{0} koncentrationer har minskat med {1}"
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "Glukoskoncentrationerna har sjunkit drastiskt!"
 
 #: ../src/general/MainMenu.cs:234
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
+msgstr "Inloggad som: {0}"
 
 #: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
@@ -1447,22 +1412,22 @@ msgstr "Mikrob Fri Byggredigerare"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Backåt"
 
 #: ../src/general/MainMenu.tscn:358
 msgid "MODS"
-msgstr ""
+msgstr "Mod"
 
 #: ../src/general/MainMenu.tscn:372
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "Konst Galleri"
 
 #: ../src/general/MainMenu.tscn:384
 msgid "LICENSES"
-msgstr ""
+msgstr "Licenser"
 
 #: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING"
@@ -1474,28 +1439,27 @@ msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer 
 
 #: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
-msgstr ""
+msgstr "Mod Inladdningsfel"
 
 #: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr ""
+msgstr "Fel uppstod när en eller flera mod laddades. Loggen kan innehålla ytterligare information."
 
 #: ../src/general/OptionsMenu.cs:900
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Standard utgångsenhet"
 
 #: ../src/general/OptionsMenu.cs:932
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
-msgstr ""
+msgstr "Den här översättningen är mycket ofullständig ({0}% klar) snälla hjälp oss med den!"
 
 #: ../src/general/OptionsMenu.cs:936
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr ""
+msgstr "Det här språket jobbas fortfarande på ({0}% klart)"
 
 #: ../src/general/OptionsMenu.cs:940
-#, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr "Hjälp Översätta Spelet"
+msgstr "Detta språk är {0}% komplett"
 
 #: ../src/general/OptionsMenu.tscn:135
 msgid "GRAPHICS"
@@ -1535,24 +1499,23 @@ msgstr "(högre värden försämrar spelhastighet)"
 
 #: ../src/general/OptionsMenu.tscn:262 ../src/general/OptionsMenu.tscn:263
 msgid "DISABLED"
-msgstr ""
+msgstr "Avstängt"
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "TWO_TIMES"
-msgstr ""
+msgstr "2x"
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "FOUR_TIMES"
-msgstr ""
+msgstr "4x"
 
 #: ../src/general/OptionsMenu.tscn:263
-#, fuzzy
 msgid "EIGHT_TIMES"
-msgstr "Högerklick"
+msgstr "8x"
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "SIXTEEN_TIMES"
-msgstr ""
+msgstr "16x"
 
 #: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
@@ -1567,9 +1530,8 @@ msgid "MAX_FPS"
 msgstr "Max Frames Per Sekund:"
 
 #: ../src/general/OptionsMenu.tscn:316
-#, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
-msgstr "Max Frames Per Sekund:"
+msgstr "Obegränsad"
 
 #: ../src/general/OptionsMenu.tscn:332
 msgid "COLOURBLIND_CORRECTION"
@@ -1577,29 +1539,27 @@ msgstr "Färgblindhets Rättning:"
 
 #: ../src/general/OptionsMenu.tscn:346 ../src/general/OptionsMenu.tscn:347
 msgid "NONE"
-msgstr ""
+msgstr "Ingen"
 
 #: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_PROTANOPE"
-msgstr ""
+msgstr "Protanope (Röd-Grön)"
 
 #: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_TRITANOPE"
-msgstr ""
+msgstr "Tritanope (Blå-Gul)"
 
 #: ../src/general/OptionsMenu.tscn:363
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromatisk Aberration:"
 
 #: ../src/general/OptionsMenu.tscn:389
-#, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr "Förmågor"
+msgstr "Visa förmågor"
 
 #: ../src/general/OptionsMenu.tscn:397
-#, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr "Externa effekter:"
+msgstr "Aktivera GUI ljus effecter"
 
 #: ../src/general/OptionsMenu.tscn:423
 msgid "MASTER_VOLUME"
@@ -1629,7 +1589,7 @@ msgstr "GUI-volym"
 
 #: ../src/general/OptionsMenu.tscn:603
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Ljudutgångsenhet:"
 
 #: ../src/general/OptionsMenu.tscn:631
 msgid "LANGUAGE"
@@ -1667,24 +1627,24 @@ msgstr "Kör auto-evo under spelgång"
 
 #: ../src/general/OptionsMenu.tscn:811
 msgid "DETECTED_CPU_COUNT"
-msgstr ""
+msgstr "Upptäckt CPU-antal:"
 
 #: ../src/general/OptionsMenu.tscn:828
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Spara och fortsätt"
+msgstr "Använda trådar:"
 
 #: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Anta att CPUn har hyperthreading aktiverad"
 
 #: ../src/general/OptionsMenu.tscn:850
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr ""
+msgstr "Sätt antalet bakgrundstrådar manuellt"
 
 #: ../src/general/OptionsMenu.tscn:860
 msgid "THREADS"
-msgstr ""
+msgstr "Trådar:"
 
 #: ../src/general/OptionsMenu.tscn:961
 msgid "RESET_INPUTS"
@@ -1711,19 +1671,18 @@ msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Mängd snabbsparningar att behålla:"
 
 #: ../src/general/OptionsMenu.tscn:1068
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Visa hjälp (i nya spel)"
 
 #: ../src/general/OptionsMenu.tscn:1075
+#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Visa hjälp (i nuvarande spel)"
 
 #: ../src/general/OptionsMenu.tscn:1081
-#, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
-msgstr ""
-"Du har osparade ändringar som kommer bli raderade.\n"
-"Vill du fortsätta?"
+msgstr "Visa osparade framstegsvarning"
 
 #: ../src/general/OptionsMenu.tscn:1093
 msgid "CHEAT_KEYS_ENABLED"
@@ -1747,21 +1706,21 @@ msgstr "Öppna Logmapp"
 
 #: ../src/general/OptionsMenu.tscn:1156
 msgid "JSON_DEBUG_MODE"
-msgstr ""
+msgstr "JSON debug läge:"
 
 #: ../src/general/OptionsMenu.tscn:1170 ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
+msgstr "Automatiskt"
 
 #: ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
+msgstr "Alltid"
 
 #: ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_NEVER"
-msgstr ""
+msgstr "Aldrig"
 
-#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
 msgstr "Spara"
 
@@ -1818,24 +1777,24 @@ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Misslyckades att spara nya intällningar till konfigurationsfil."
 
 #: ../src/general/OptionsMenu.tscn:1353
-#, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr "Öppna Skärmbildsmapp"
+msgstr "Hittade ingen screenshots mapp"
 
 #: ../src/general/OptionsMenu.tscn:1355
-#, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
-msgstr "Ta ett screenshot"
+msgstr "Testa att ta några screenshots!"
 
 #: ../src/general/PauseMenu.cs:271
-#, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
-msgstr "Tillbaka till Menyn"
+msgstr ""
+"Är du säker på att du vill tillbaka till huvudmenyn?\n"
+"Du kommer att förlora alla osparade framsteg."
 
 #: ../src/general/PauseMenu.cs:287
-#, fuzzy
 msgid "QUIT_GAME_WARNING"
-msgstr "GLES2 Läges Varning"
+msgstr ""
+"Är du säker på att du vill avsluta spelet?\n"
+"Du kommer att förlora alla osparade framsteg."
 
 #: ../src/general/PauseMenu.tscn:62
 msgid "RESUME"
@@ -1866,7 +1825,7 @@ msgstr "Lämna"
 #: ../src/general/PauseMenu.tscn:163
 #, fuzzy
 msgid "CONFIRM_EXIT"
-msgstr "BEKRÄFTA"
+msgstr "Bekräfta Stängning"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -1887,43 +1846,43 @@ msgstr "/sekund"
 
 #: ../src/gui_common/ChemicalEquation.cs:308
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr ""
+msgstr "@"
 
 #: ../src/gui_common/CreditsScroll.cs:223
 msgid "LEAD_DEVELOPERS"
-msgstr ""
+msgstr "Ledande Utvecklare"
 
 #: ../src/gui_common/CreditsScroll.cs:229
 msgid "LEAD_PROGRAMMER"
-msgstr ""
+msgstr "Ledande Programmerare"
 
 #: ../src/gui_common/CreditsScroll.cs:230
 msgid "LEAD_PROGRAMMERS"
-msgstr ""
+msgstr "Ledande programmerare"
 
 #: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_THEORIST"
-msgstr ""
+msgstr "Ledande Teoretiker"
 
 #: ../src/gui_common/CreditsScroll.cs:236
 msgid "LEAD_THEORISTS"
-msgstr ""
+msgstr "Ledande Teoretiker"
 
 #: ../src/gui_common/CreditsScroll.cs:241
 msgid "LEAD_ARTIST"
-msgstr ""
+msgstr "Ledande Artist"
 
 #: ../src/gui_common/CreditsScroll.cs:242
 msgid "LEAD_ARTISTS"
-msgstr ""
+msgstr "Ledande Artister"
 
 #: ../src/gui_common/CreditsScroll.cs:247
 msgid "SOUND_TEAM_LEAD"
-msgstr ""
+msgstr "Ljud Team Ledare"
 
 #: ../src/gui_common/CreditsScroll.cs:248
 msgid "SOUND_TEAM_LEADS"
-msgstr ""
+msgstr "Ljud Team Ledare"
 
 #: ../src/gui_common/CreditsScroll.cs:253
 msgid "LEAD_OUTREACH_PERSON"
@@ -1935,35 +1894,35 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:259
 msgid "LEAD_GAME_DESIGNER"
-msgstr ""
+msgstr "Ledande speldesigner"
 
 #: ../src/gui_common/CreditsScroll.cs:260
 msgid "LEAD_GAME_DESIGNERS"
-msgstr ""
+msgstr "Ledande speldesigners"
 
 #: ../src/gui_common/CreditsScroll.cs:265
 msgid "LEAD_TESTER"
-msgstr ""
+msgstr "Ledande Testare"
 
 #: ../src/gui_common/CreditsScroll.cs:266
 msgid "LEAD_TESTERS"
-msgstr ""
+msgstr "Ledande Testare"
 
 #: ../src/gui_common/CreditsScroll.cs:271
 msgid "LEAD_PROJECT_MANAGER"
-msgstr ""
+msgstr "Projektledare"
 
 #: ../src/gui_common/CreditsScroll.cs:272
 msgid "LEAD_PROJECT_MANAGERS"
-msgstr ""
+msgstr "Projektledare"
 
 #: ../src/gui_common/CreditsScroll.cs:279
 msgid "CURRENT_DEVELOPERS"
-msgstr ""
+msgstr "Nuvarande utvecklare"
 
 #: ../src/gui_common/CreditsScroll.cs:295
 msgid "PAST_DEVELOPERS"
-msgstr ""
+msgstr "Tidigare utvecklare"
 
 #: ../src/gui_common/CreditsScroll.cs:311
 msgid "OUTSIDE_CONTRIBUTORS"
@@ -1972,6 +1931,8 @@ msgstr ""
 #: ../src/gui_common/CreditsScroll.cs:314
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
+"Thrive är ett open source projekt.\n"
+"Du kan bidra med ett pull request utan att ansöka till teamet."
 
 #: ../src/gui_common/CreditsScroll.cs:329
 msgid "PATRONS"
@@ -1979,41 +1940,40 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:335
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr ""
+msgstr "Du kan stödja den fortsatta utvecklingen av Thrive på Patreon."
 
 #: ../src/gui_common/CreditsScroll.cs:352
-#, fuzzy
 msgid "DONATIONS"
-msgstr "Inställningar"
+msgstr "Donationer"
 
 #: ../src/gui_common/CreditsScroll.cs:375
-#, fuzzy
 msgid "TRANSLATORS"
-msgstr "Hjälp Översätta Spelet"
+msgstr "Översättare"
 
 #: ../src/gui_common/CreditsScroll.cs:389
 msgid "USED_LIBRARIES_LICENSES"
-msgstr ""
+msgstr "Licenser Och Använda Bibliotek"
 
 #: ../src/gui_common/CreditsScroll.cs:484
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
+"Tack för att du spelade!\n"
+"\n"
+"Om du gillade spelet, berätta om oss för dina vänner."
 
 #: ../src/gui_common/CreditsScroll.cs:493
 msgid "PROGRAMMING_TEAM"
-msgstr ""
+msgstr "Programmering"
 
 #: ../src/gui_common/CreditsScroll.cs:494
 msgid "THEORY_TEAM"
-msgstr ""
+msgstr "Teori"
 
 #: ../src/gui_common/CreditsScroll.cs:495
-#, fuzzy
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik"
 
 #: ../src/gui_common/CreditsScroll.cs:496
-#, fuzzy
 msgid "SOUND_TEAM"
 msgstr "Ljud"
 
@@ -2023,19 +1983,19 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:498
 msgid "GAME_DESIGN_TEAM"
-msgstr ""
+msgstr "Spel Design"
 
 #: ../src/gui_common/CreditsScroll.cs:499
 msgid "TESTING_TEAM"
-msgstr ""
+msgstr "Testning"
 
 #: ../src/gui_common/CreditsScroll.cs:500
 msgid "PROJECT_MANAGEMENT_TEAM"
-msgstr ""
+msgstr "Projektledning"
 
 #: ../src/gui_common/CreditsScroll.cs:501
 msgid "PULL_REQUESTS_PROGRAMMING"
-msgstr ""
+msgstr "Pull Requests / Programmering"
 
 #: ../src/gui_common/CreditsScroll.cs:502
 msgid "VIP_PATRONS"
@@ -2051,57 +2011,55 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:505
 msgid "JANUARY"
-msgstr ""
+msgstr "Januari"
 
 #: ../src/gui_common/CreditsScroll.cs:506
-#, fuzzy
 msgid "FEBRUARY"
-msgstr "Flodmynning"
+msgstr "Februari"
 
 #: ../src/gui_common/CreditsScroll.cs:507
 msgid "MARCH"
-msgstr ""
+msgstr "Mars"
 
 #: ../src/gui_common/CreditsScroll.cs:508
 msgid "APRIL"
-msgstr ""
+msgstr "April"
 
 #: ../src/gui_common/CreditsScroll.cs:509
 msgid "MAY"
-msgstr ""
+msgstr "Maj"
 
 #: ../src/gui_common/CreditsScroll.cs:510
 msgid "JUNE"
-msgstr ""
+msgstr "Juni"
 
 #: ../src/gui_common/CreditsScroll.cs:511
 msgid "JULY"
-msgstr ""
+msgstr "Juli"
 
 #: ../src/gui_common/CreditsScroll.cs:512
 msgid "AUGUST"
-msgstr ""
+msgstr "Augusti"
 
 #: ../src/gui_common/CreditsScroll.cs:513
 msgid "SEPTEMBER"
-msgstr ""
+msgstr "September"
 
 #: ../src/gui_common/CreditsScroll.cs:514
 msgid "OCTOBER"
-msgstr ""
+msgstr "Oktober"
 
 #: ../src/gui_common/CreditsScroll.cs:515
-#, fuzzy
 msgid "NOVEMBER"
-msgstr "Rörelse"
+msgstr "November"
 
 #: ../src/gui_common/CreditsScroll.cs:516
 msgid "DECEMBER"
-msgstr ""
+msgstr "December"
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "Av Revolutionary Games Studio"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
@@ -2109,7 +2067,7 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "Utvecklare"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
@@ -2122,85 +2080,94 @@ msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "Sparning har en annan version"
 
 #: ../src/gui_common/RadialMenu.cs:63
-#, fuzzy
 msgid "SELECT_OPTION"
-msgstr "Stäng inställningar?"
-
-#: ../src/gui_common/TweakedColourPicker.cs:393
-msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Välj Ett Alternativ"
 
 #: ../src/gui_common/TweakedColourPicker.cs:394
-msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgid "COLOUR_PICKER_PICK_COLOUR"
+msgstr "Välj en färg från spel fönstret"
 
 #: ../src/gui_common/TweakedColourPicker.cs:395
-msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr ""
+#, fuzzy
+msgid "COLOUR_PICKER_ADD_PRESET"
+msgstr "Lägg till aktuell färg till paletten"
 
 #: ../src/gui_common/TweakedColourPicker.cs:396
+msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr ""
+"Slå på eller av HSV-läge (Hue, Saturation, Value).\n"
+"Kan inte slås på i rå-läge."
+
+#: ../src/gui_common/TweakedColourPicker.cs:397
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
-
-#: ../src/gui_common/TweakedColourPicker.cs:400
-msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr ""
+"Slå på eller av rå-läget.\n"
+"I rå-läge kan du tvinga R, G, B\n"
+"färgvärdena att överskrida 1.0.\n"
+"Kan inte slås på i HSV-läge."
 
 #: ../src/gui_common/TweakedColourPicker.cs:401
-msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr ""
+msgid "COLOUR_PICKER_H_TOOLTIP"
+msgstr "Nyansvärde, del av färgen"
 
 #: ../src/gui_common/TweakedColourPicker.cs:402
-msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr ""
+msgid "COLOUR_PICKER_S_TOOLTIP"
+msgstr "Mättnadsvärde, mängden grått i en viss färg"
 
-#: ../src/gui_common/TweakedColourPicker.cs:406
-msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr ""
+#: ../src/gui_common/TweakedColourPicker.cs:403
+msgid "COLOUR_PICKER_V_TOOLTIP"
+msgstr "Värde (ljusstyrka) värde, ljusstyrka eller intensitet för färgen"
 
 #: ../src/gui_common/TweakedColourPicker.cs:407
-msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr ""
+msgid "COLOUR_PICKER_R_TOOLTIP"
+msgstr "Röda kanal värdet för färgen"
 
 #: ../src/gui_common/TweakedColourPicker.cs:408
+msgid "COLOUR_PICKER_G_TOOLTIP"
+msgstr "Gröna kanal värdet för färgen"
+
+#: ../src/gui_common/TweakedColourPicker.cs:409
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr ""
+msgstr "Blåa kanal värdet för färgen"
 
-#: ../src/gui_common/TweakedColourPicker.cs:411
+#: ../src/gui_common/TweakedColourPicker.cs:412
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr ""
+msgstr "Alpha kanal värdet för färgen"
 
-#: ../src/gui_common/TweakedColourPicker.cs:586
+#: ../src/gui_common/TweakedColourPicker.cs:587
+#, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
+"Färg: {0}\n"
+"Vänster musknapp: Använd denna palette\n"
+"Höger musknapp: Ta bort denna palette"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
-msgstr ""
+msgstr "Rå"
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2559
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Inga Data att Visa"
 
 #: ../src/gui_common/charts/line/LineChart.cs:640
-#, fuzzy
 msgid "INVALID_DATA_TO_PLOT"
-msgstr "Ogiltig"
+msgstr "Ogiltig Data att Plotta"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1110
 #: ../src/gui_common/charts/line/LineChart.cs:1202
 msgid "MAX_VISIBLE_DATASET_WARNING"
-msgstr ""
+msgstr "Det är inte tillåtet att visa fler än {0} datauppsättningar!"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1116
 #: ../src/gui_common/charts/line/LineChart.cs:1207
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr ""
+msgstr "Inte tillåtet att visa mindre än {0} datauppsättning(ar)!"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
@@ -2663,23 +2630,23 @@ msgstr "Temperatur"
 msgid "N_A_MP"
 msgstr "N/A MutationsPoäng"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:555
+#: ../src/microbe_stage/Microbe.Contact.cs:563
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:666
+#: ../src/microbe_stage/Microbe.Contact.cs:674
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:673
+#: ../src/microbe_stage/Microbe.Contact.cs:681
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:891
+#: ../src/microbe_stage/Microbe.Contact.cs:899
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:780
+#: ../src/microbe_stage/Microbe.Interior.cs:781
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Producerar"
@@ -2775,15 +2742,15 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:546
+#: ../src/microbe_stage/MicrobeStage.cs:548
 msgid "PLAYER_REPRODUCED"
 msgstr "spelare fortplantad"
 
-#: ../src/microbe_stage/MicrobeStage.cs:635
+#: ../src/microbe_stage/MicrobeStage.cs:637
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:655
+#: ../src/microbe_stage/MicrobeStage.cs:657
 msgid "PLAYER_DIED"
 msgstr "spelare dog"
 
@@ -2864,49 +2831,54 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr "INVÅNARE:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:181
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:182
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:183
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:184
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:185
+#: ../src/microbe_stage/PatchMapGenerator.cs:192
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:186
+#: ../src/microbe_stage/PatchMapGenerator.cs:193
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:187
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
 msgid "PATCH_PANGONIAN_COAST"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:188
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:189
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
 msgid "PATCH_CAVE"
 msgstr "Grotta"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:190
+#: ../src/microbe_stage/PatchMapGenerator.cs:197
 msgid "PATCH_ICE_SHELF"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:191
+#: ../src/microbe_stage/PatchMapGenerator.cs:198
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:203
+#, fuzzy
+msgid "PATCH_NAME"
+msgstr "Grotta"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3360,20 +3332,20 @@ msgstr "UTROTNING"
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
 #, fuzzy
 msgid "COMPOUND_TO_FIND"
 msgstr "Molekylmoln"
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "SEARCH_RADIUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
 msgid "MINIMUM_AMOUNT_TO_FIND"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
 #, fuzzy
 msgid "LINE_COLOUR"
 msgstr "Färg"
@@ -3925,34 +3897,43 @@ msgstr "Sparande misslyckades"
 msgid "ERROR_SAVING"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.cs:75
+#: ../src/saving/NewSaveMenu.cs:80
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.cs:173
+#: ../src/saving/NewSaveMenu.cs:185
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:31
+#: ../src/saving/NewSaveMenu.tscn:32
 msgid "CREATE_NEW_SAVE"
 msgstr "Skapa Ny Sparfil"
 
-#: ../src/saving/NewSaveMenu.tscn:48
+#: ../src/saving/NewSaveMenu.tscn:49
 msgid "NAME"
 msgstr "Namn:"
 
-#: ../src/saving/NewSaveMenu.tscn:66
+#: ../src/saving/NewSaveMenu.tscn:67
 msgid "EXTRA_OPTIONS"
 msgstr "Extra Inställningar"
 
-#: ../src/saving/NewSaveMenu.tscn:84
+#: ../src/saving/NewSaveMenu.tscn:85
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Skriv över aktuell sparfil:"
 
-#: ../src/saving/NewSaveMenu.tscn:116
+#: ../src/saving/NewSaveMenu.tscn:117
 #, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Skriv över aktuell sparfil:"
+
+#: ../src/saving/NewSaveMenu.tscn:121
+#, fuzzy
+msgid "CANNOT_WRITE_SAVE"
+msgstr "Skapa Ny Sparfil"
+
+#: ../src/saving/NewSaveMenu.tscn:125
+msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
+msgstr ""
 
 #: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
 #, fuzzy

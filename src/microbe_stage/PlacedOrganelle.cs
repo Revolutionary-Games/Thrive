@@ -439,6 +439,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
                 parent = parent.ColonyParent;
             }
         }
+        else
+        {
+            return shapePosition;
+        }
 
         rotation = rotation.Normalized();
 
@@ -512,10 +516,15 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
 
         // Physics
-        // TODO: shouldn't we also add the mass to the colony master?
         ParentMicrobe!.Mass += Definition.Mass;
 
-        MakeCollisionShapes(ParentMicrobe.Colony?.Master ?? ParentMicrobe);
+        // TODO: if organelles can grow while cells are in a colony this will be needed
+        // Add the mass of the organelles to the colony master
+        // if (ParentMicrobe.Colony != null && ParentMicrobe != ParentMicrobe.Colony.Master &&
+        //     !IsLoadedFromSave)
+        //     ParentMicrobe.Colony.Master.Mass += Definition.Mass;
+
+        MakeCollisionShapes(ParentMicrobe!.Colony?.Master ?? ParentMicrobe);
 
         // Components
         components = new List<IOrganelleComponent>();
