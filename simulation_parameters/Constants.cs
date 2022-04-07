@@ -504,6 +504,10 @@ public static class Constants
     /// </summary>
     public const int MAX_DESPAWNS_PER_FRAME = 1;
 
+    public const float CHANCE_MULTICELLULAR_SPAWNS_GROWN = 0.1f;
+    public const float CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN = 0.3f;
+    public const float CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE = 0.4f;
+
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 17.0f;
