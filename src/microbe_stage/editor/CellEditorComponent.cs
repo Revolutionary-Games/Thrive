@@ -439,7 +439,11 @@ public partial class CellEditorComponent :
     public override void Init(ICellEditorData owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
-        behaviourEditor.Init(owningEditor, fresh);
+
+        if (!IsMulticellularEditor)
+        {
+            behaviourEditor.Init(owningEditor, fresh);
+        }
 
         var newLayout = new OrganelleLayout<OrganelleTemplate>(
             OnOrganelleAdded, OnOrganelleRemoved);
@@ -489,6 +493,10 @@ public partial class CellEditorComponent :
             componentBottomLeftButtons.SetNamePlaceholder(TranslationServer.Translate("CELL_TYPE_NAME"));
 
             autoEvoPredictionPanel.Visible = false;
+
+            // In multicellular the body plan editor handles this
+            behaviourTabButton.Visible = false;
+            behaviourEditor.Visible = false;
         }
     }
 
@@ -572,7 +580,8 @@ public partial class CellEditorComponent :
         Rigidity = Editor.EditedCellProperties.MembraneRigidity;
         Colour = Editor.EditedCellProperties.Colour;
 
-        behaviourEditor.OnEditorSpeciesSetup(species);
+        if (!IsMulticellularEditor)
+            behaviourEditor.OnEditorSpeciesSetup(species);
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in Editor.EditedCellProperties.Organelles.Organelles)
@@ -628,6 +637,8 @@ public partial class CellEditorComponent :
             editedSpecies.UpdateInitialCompounds();
 
             GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
+
+            behaviourEditor.OnFinishEditing();
         }
         else
         {
@@ -638,8 +649,6 @@ public partial class CellEditorComponent :
         editedProperties.MembraneType = Membrane;
         editedProperties.Colour = Colour;
         editedProperties.MembraneRigidity = Rigidity;
-
-        behaviourEditor.OnFinishEditing();
     }
 
     public override void _Process(float delta)

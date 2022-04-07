@@ -63,7 +63,6 @@ public partial class Microbe
         var cell = CreateMulticellularColonyMemberCell(template.CellType);
 
         // We don't reset our state here in case we want to be in engulf mode
-
         cell.State = State;
 
         // Attach the created cell to the right spot in our colony

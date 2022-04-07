@@ -85,6 +85,9 @@ public class ActionHistory<T>
     /// </summary>
     internal void Nuke()
     {
+        if (actions.Count < 1)
+            return;
+
         GD.Print("Action history nuked");
         actions.Clear();
         actionIndex = 0;
