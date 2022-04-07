@@ -608,6 +608,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // Re-apply species here so that the player cell knows it is multicellular after this
         Player.ApplySpecies(multicellularSpecies);
 
+        GD.Print("Canceling and restarting auto-evo to have player species multicellular version in it");
+        GameWorld.ResetAutoEvoRun();
+        GameWorld.IsAutoEvoFinished();
+
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
         var editor = (EarlyMulticellularEditor)scene.Instance();
