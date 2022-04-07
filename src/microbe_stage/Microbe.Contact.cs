@@ -240,7 +240,7 @@ public partial class Microbe
         flashDuration = 0;
         flashColour = new Color(0, 0, 0, 0);
         flashPriority = 0;
-        Membrane.Tint = Species.Colour;
+        Membrane.Tint = CellTypeProperties.Colour;
     }
 
     /// <summary>
@@ -727,7 +727,7 @@ public partial class Microbe
             else
             {
                 // Restore colour
-                Membrane.Tint = Species.Colour;
+                Membrane.Tint = CellTypeProperties.Colour;
             }
 
             // Flashing ended
@@ -736,7 +736,7 @@ public partial class Microbe
                 flashDuration = 0;
 
                 // Restore colour
-                Membrane.Tint = Species.Colour;
+                Membrane.Tint = CellTypeProperties.Colour;
             }
         }
     }
