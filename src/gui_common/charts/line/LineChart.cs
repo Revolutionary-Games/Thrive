@@ -134,8 +134,8 @@ public class LineChart : VBoxContainer
     /// </summary>
     private LineChart? parentChart;
 
-    private string xAxisName = "x";
-    private string yAxisName = "y";
+    private string xAxisName = string.Empty;
+    private string yAxisName = string.Empty;
 
     /// <summary>
     ///   If true this means that this chart is part of another parent chart.
