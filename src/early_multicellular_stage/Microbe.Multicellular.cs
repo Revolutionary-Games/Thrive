@@ -69,8 +69,6 @@ public partial class Microbe
         // Attach the created cell to the right spot in our colony
         var ourTransform = GlobalTransform;
 
-        // TODO: figure out the actually right math for the cell position attach
-        // If we don't adjust like this the cells overlap way too much
         var attachVector = ourTransform.origin + ourTransform.basis.Xform(Hex.AxialToCartesian(template.Position));
 
         // Ensure no tiny y component exists here
