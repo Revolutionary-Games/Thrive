@@ -222,78 +222,27 @@ public partial class CellBodyPlanEditorComponent :
 
             var originalPos = cell.Position;
 
-            // This is a bit dirty but I couldn't figure out any other way to make these nested loops count either up
-            // or down depending on the originalPos coordinate sign
+            var direction = new Vector2(0, -1);
 
-            // Start at 0,0 and move towards the real position (loop is selected based on which direction the
-            // original position is in)
-            // TODO: should this also move to a vector direction approach as in OnFinishEditing?
-            if (originalPos.Q < 0 && originalPos.R >= 0)
+            if (originalPos != new Hex(0, 0))
             {
-                for (int q = 0; q >= originalPos.Q; --q)
-                {
-                    for (int r = 0; r <= originalPos.R; ++r)
-                    {
-                        if (TryAddHexToEditedLayout(hex, q, r))
-                        {
-                            goto successfulPlace;
-                        }
-                    }
-                }
-            }
-            else if (originalPos.Q < 0 && originalPos.R < 0)
-            {
-                for (int q = 0; q >= originalPos.Q; --q)
-                {
-                    for (int r = 0; r >= originalPos.R; --r)
-                    {
-                        if (TryAddHexToEditedLayout(hex, q, r))
-                        {
-                            goto successfulPlace;
-                        }
-                    }
-                }
-            }
-            else if (originalPos.Q >= 0 && originalPos.R >= 0)
-            {
-                for (int q = 0; q <= originalPos.Q; ++q)
-                {
-                    for (int r = 0; r <= originalPos.R; ++r)
-                    {
-                        if (TryAddHexToEditedLayout(hex, q, r))
-                        {
-                            goto successfulPlace;
-                        }
-                    }
-                }
-            }
-            else if (originalPos.Q >= 0 && originalPos.R < 0)
-            {
-                for (int q = 0; q <= originalPos.Q; ++q)
-                {
-                    for (int r = 0; r >= originalPos.R; --r)
-                    {
-                        if (TryAddHexToEditedLayout(hex, q, r))
-                        {
-                            goto successfulPlace;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                throw new Exception(
-                    "execution should not reach here (incorrect Q and R negativity combination checks)");
+                direction = new Vector2(originalPos.Q, originalPos.R).Normalized();
             }
 
-            // We only get here if we didn't find a valid position to put the thing in
-            throw new Exception("could not find position to put cell placeholder hex");
+            float distance = 0;
 
-        successfulPlace:
+            // Start at 0,0 and move towards the real position until an empty spot is found
+            // TODO: need to make sure that this can't cause holes that the player would need to fix
+            // distance is a float here to try to make the above TODO problem less likely
+            while (true)
+            {
+                var positionVector = direction * distance;
 
-            // This is needed to make code checks happy as with empty statement a different code check is unhappy
-            // ReSharper disable once RedundantJumpStatement
-            continue;
+                if (TryAddHexToEditedLayout(hex, (int)positionVector.x, (int)positionVector.y))
+                    break;
+
+                distance += 0.8f;
+            }
         }
 
         newName = species.FormattedName;
