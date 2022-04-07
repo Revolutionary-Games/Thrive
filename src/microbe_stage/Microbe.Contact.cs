@@ -1083,6 +1083,7 @@ public partial class Microbe
             var touchedMicrobe = colonyLeader.GetMicrobeFromShape(bodyShape);
 
             // bodyShape is invalid. This can happen during re-parenting
+            // ReSharper disable once UseNullPropagationWhenPossible
             if (touchedMicrobe == null)
                 return;
 
