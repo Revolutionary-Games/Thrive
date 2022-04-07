@@ -321,6 +321,19 @@ public static class SaveHelper
         return savesDeleted;
     }
 
+    public static void ShowErrorAboutPrototypeSaving(Node currentNode)
+    {
+        if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
+        {
+            GD.PrintErr("Can't show message about being in a prototype while loading or saving");
+            return;
+        }
+
+        new InProgressSave(SaveInformation.SaveType.Invalid, () => currentNode, _ =>
+                new Save(),
+            (inProgress, _) => { SetMessageAboutPrototypeSaving(inProgress); }, "invalid_prototype").Start();
+    }
+
     /// <summary>
     ///   Returns true if the specified version is known to be incompatible
     ///   from list in KnownSaveIncompatibilityPoints
@@ -400,6 +413,9 @@ public static class SaveHelper
                 if (PreventSavingIfExtinct(inProgress, save))
                     return;
 
+                if (PreventSavingIfInPrototype(inProgress, save))
+                    return;
+
                 PerformSave(inProgress, save);
             }, saveName).Start();
     }
@@ -437,6 +453,21 @@ public static class SaveHelper
         inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
             TranslationServer.Translate("PLAYER_EXTINCT"), false);
         return true;
+    }
+
+    private static bool PreventSavingIfInPrototype(InProgressSave inProgress, Save save)
+    {
+        if (!save.SavedProperties!.InPrototypes)
+            return false;
+
+        SetMessageAboutPrototypeSaving(inProgress);
+        return true;
+    }
+
+    private static void SetMessageAboutPrototypeSaving(InProgressSave inProgressSave)
+    {
+        inProgressSave.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
+            TranslationServer.Translate("IN_PROTOTYPE"), false);
     }
 
     private static void PerformSave(InProgressSave inProgress, Save save)

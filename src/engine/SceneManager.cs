@@ -117,6 +117,8 @@ public class SceneManager : Node
                 return LoadScene("res://src/microbe_stage/MicrobeStage.tscn");
             case MainGameState.MicrobeEditor:
                 return LoadScene("res://src/microbe_stage/editor/MicrobeEditor.tscn");
+            case MainGameState.EarlyMulticellularEditor:
+                return LoadScene("res://src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn");
             default:
                 throw new ArgumentException("unknown scene path for given game state");
         }
@@ -125,5 +127,16 @@ public class SceneManager : Node
     public PackedScene LoadScene(string scenePath)
     {
         return GD.Load<PackedScene>(scenePath);
+    }
+
+    public PackedScene LoadScene(SceneLoadedClassAttribute? sceneLoaded)
+    {
+        if (string.IsNullOrEmpty(sceneLoaded?.ScenePath))
+        {
+            throw new ArgumentException(
+                "The specified class to load a scene for didn't have SceneLoadedClassAttribute");
+        }
+
+        return LoadScene(sceneLoaded!.ScenePath);
     }
 }

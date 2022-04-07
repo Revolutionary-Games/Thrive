@@ -108,14 +108,13 @@ public partial class Microbe
     /// </summary>
     public void ResetOrganelleLayout()
     {
-        // TODO: It would be much better if only organelles that need
-        // to be removed where removed, instead of everything.
+        // TODO: It would be much better if only organelles that need to be removed where removed,
+        // instead of everything.
         // When doing that all organelles will need to be re-added anyway if this turned from a prokaryote to eukaryote
 
         if (organelles == null)
         {
-            organelles = new OrganelleLayout<PlacedOrganelle>(OnOrganelleAdded,
-                OnOrganelleRemoved);
+            organelles = new OrganelleLayout<PlacedOrganelle>(OnOrganelleAdded, OnOrganelleRemoved);
         }
         else
         {
@@ -123,7 +122,7 @@ public partial class Microbe
             organelles.Clear();
         }
 
-        foreach (var entry in Species.Organelles.Organelles)
+        foreach (var entry in CellTypeProperties.Organelles.Organelles)
         {
             var placed = new PlacedOrganelle(entry.Definition, entry.Position, entry.Orientation)
             {
@@ -143,6 +142,9 @@ public partial class Microbe
         // Make chemoreception update happen immediately in case the settings changed so that new information is
         // used earlier
         timeUntilChemoreceptionUpdate = 0;
+
+        if (IsMulticellular)
+            ResetMulticellularProgress();
     }
 
     /// <summary>
@@ -192,7 +194,7 @@ public partial class Microbe
         float ejectionDistance = Membrane.EncompassingCircleRadius +
             Constants.AGENT_EMISSION_DISTANCE_OFFSET;
 
-        if (Species.IsBacteria)
+        if (CellTypeProperties.IsBacteria)
             ejectionDistance *= 0.5f;
 
         var props = new AgentProperties(Species, agentType);
@@ -278,6 +280,7 @@ public partial class Microbe
     public void ForceDivide()
     {
         // Separate the two cells.
+        // TODO: separation needs to be increased for multicellular
         var separation = new Vector3(Radius, 0, 0);
 
         // Create the one daughter cell.
@@ -404,13 +407,16 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Calculates total compounds needed for a cell to reproduce,
-    /// used by calculateReproductionProgress to calculate the
-    /// fraction done.  </summary>
+    ///   Calculates total compounds needed for a cell to reproduce, used by calculateReproductionProgress to calculate
+    ///   the fraction done.
+    /// </summary>
     public Dictionary<Compound, float> CalculateTotalCompounds()
     {
         if (organelles == null)
             throw new InvalidOperationException("Microbe must be initialized first");
+
+        if (IsMulticellular)
+            return CalculateTotalBodyPlanCompounds();
 
         var result = new Dictionary<Compound, float>();
 
@@ -450,6 +456,9 @@ public partial class Microbe
 
             organelle.CalculateAbsorbedCompounds(result);
         }
+
+        if (compoundsUsedForMulticellularGrowth != null)
+            result.Merge(compoundsUsedForMulticellularGrowth);
 
         return result;
     }
@@ -528,28 +537,26 @@ public partial class Microbe
     {
         float currentHealth = Hitpoints / MaxHitpoints;
 
-        MaxHitpoints = Species.MembraneType.Hitpoints +
-            (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
+        MaxHitpoints = CellTypeProperties.MembraneType.Hitpoints +
+            (CellTypeProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
 
         Hitpoints = MaxHitpoints * currentHealth;
     }
 
     /// <summary>
-    ///   Handles feeding the organelles in this microbe in order for
-    ///   them to split. After all are split this is ready to
-    ///   reproduce.
+    ///   Handles feeding the organelles in this microbe in order for them to split. After all are split this is
+    ///   ready to reproduce.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     AI cells will immediately reproduce when they can. On the
-    ///     player cell the editor is unlocked when reproducing is
-    ///     possible.
+    ///     AI cells will immediately reproduce when they can. On the player cell the editor is unlocked when
+    ///     reproducing is possible.
     ///   </para>
     /// </remarks>
-#pragma warning disable CA1801 // TODO: implement handling delta
     private void HandleReproduction(float delta)
     {
-#pragma warning restore CA1801
+        // TODO: implement handling delta
+        _ = delta;
 
         // Dead cells can't reproduce
         if (Dead)
@@ -557,8 +564,17 @@ public partial class Microbe
 
         if (allOrganellesDivided)
         {
-            // Ready to reproduce already. Only the player gets here
-            // as other cells split and reset automatically
+            // Ready to reproduce already. Only the player gets here as other cells split and reset automatically
+            return;
+        }
+
+        // TODO: should we make it so that reproduction progress is only checked about max of 20 times per second?
+        // might make a lot of cells use less CPU power
+
+        // Multicellular microbes in a colony still run reproduction logic as long as they are the colony leader
+        if (IsMulticellular && ColonyParent == null)
+        {
+            HandleMulticellularReproduction();
             return;
         }
 
@@ -626,8 +642,7 @@ public partial class Microbe
                 if (organelle.Definition.InternalName != "nucleus")
                     continue;
 
-                // The nucleus hasn't finished replicating
-                // its DNA, give it some compounds.
+                // The nucleus hasn't finished replicating its DNA, give it some compounds.
                 organelle.GrowOrganelle(Compounds);
 
                 if (organelle.GrowthValue < 1.0f)
@@ -643,8 +658,7 @@ public partial class Microbe
             // Nucleus is also now ready to reproduce
             allOrganellesDivided = true;
 
-            // For NPC cells this immediately splits them and the
-            // allOrganellesDivided flag is reset
+            // For NPC cells this immediately splits them and the allOrganellesDivided flag is reset
             ReadyToReproduce();
         }
     }
@@ -723,20 +737,28 @@ public partial class Microbe
             // The player doesn't split automatically
             allOrganellesDivided = true;
 
-            OnReproductionStatus?.Invoke(this, Colony == null);
+            OnReproductionStatus?.Invoke(this, Colony == null || IsMulticellular);
         }
         else
         {
-            // Return the first cell to its normal, non duplicated cell arrangement.
             if (!Species.PlayerSpecies)
             {
                 GameWorld.AlterSpeciesPopulation(Species,
                     Constants.CREATURE_REPRODUCE_POPULATION_GAIN, TranslationServer.Translate("REPRODUCED"));
             }
 
-            ResetOrganelleLayout();
+            if (!IsMulticellular)
+            {
+                // Return the first cell to its normal, non duplicated cell arrangement and spawn a daughter cell
+                ResetOrganelleLayout();
 
-            Divide();
+                Divide();
+            }
+            else
+            {
+                ForceDivide();
+                enoughResourcesForBudding = false;
+            }
         }
     }
 
@@ -754,7 +776,7 @@ public partial class Microbe
 
     private void HandleOsmoregulation(float delta)
     {
-        var osmoregulationCost = (HexCount * Species.MembraneType.OsmoregulationFactor *
+        var osmoregulationCost = (HexCount * CellTypeProperties.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
 
         Compounds.TakeCompound(atp, osmoregulationCost);
@@ -915,7 +937,7 @@ public partial class Microbe
         var ejectionDistance = Membrane.EncompassingCircleRadius;
 
         // The membrane radius doesn't take being bacteria into account
-        if (Species.IsBacteria)
+        if (CellTypeProperties.IsBacteria)
             ejectionDistance *= 0.5f;
 
         float angle = 180;

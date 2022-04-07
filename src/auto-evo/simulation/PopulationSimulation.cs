@@ -152,7 +152,9 @@
             bool trackEnergy = simulationConfiguration.CollectEnergyInformation;
 
             // This algorithm version is for microbe species
-            var species = genericSpecies.Select(s => (MicrobeSpecies)s).ToList();
+            // TODO: add simulation for multicellular
+            var species = genericSpecies.Select(s => s as MicrobeSpecies).Where(s => s != null).Select(s => s!)
+                .ToList();
 
             // Skip if there aren't any species in this patch
             if (species.Count < 1)
