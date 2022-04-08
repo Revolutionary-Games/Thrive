@@ -73,8 +73,6 @@ public partial class Microbe
 
             if (Colony == null)
                 throw new Exception("An issue occured during colony creation!");
-
-            GD.Print("Created a new colony for multicellular cell");
         }
 
         var template = CastedMulticellularSpecies.Cells[nextBodyPlanCellToGrowIndex];
