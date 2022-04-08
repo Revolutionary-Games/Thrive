@@ -614,8 +614,10 @@ public class OptionsMenu : ControlWithInput
     {
         if (resolution != null)
         {
-            resolution.Text = "AUTO" + "(" + (string)GetViewportRect().Size.x.ToString()
-                + "x" + (string)GetViewportRect().Size.y.ToString() + ")";
+            System.Threading.Thread.CurrentThread.CurrentCulture =
+                System.Globalization.CultureInfo.CreateSpecificCulture("en-UK");
+            resolution.Text = "AUTO" + "(" + GetViewportRect().Size.x.ToString()
+                + "x" + GetViewportRect().Size.y.ToString() + ")";
         }
     }
 
