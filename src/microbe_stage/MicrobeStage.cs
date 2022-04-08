@@ -356,7 +356,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         Player.OnDeath = OnPlayerDied;
 
-        Player.OnEngulfed = OnPlayerEngulfed;
+        Player.OnIngested = OnPlayerEngulfed;
 
         Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
 

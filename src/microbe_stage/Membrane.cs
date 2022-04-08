@@ -85,9 +85,14 @@ public class Membrane : MeshInstance, IComputedMembraneData
     public List<Vector2> OrganellePositions { get; set; } = PreviewMembraneOrganellePositions;
 
     /// <summary>
-    ///   Returns a 3-Dimensional array from the generated <see cref="vertices2D"/>.
+    ///   Returns a convex shaped 3-Dimensional array of vertices from the generated <see cref="vertices2D"/>.
     /// </summary>
-    public Vector3[] Vertices3D
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: This is not the same as the 3D vertices used for the visuals.
+    ///   </para>
+    /// </remarks>
+    public Vector3[] ConvexShape
     {
         get
         {

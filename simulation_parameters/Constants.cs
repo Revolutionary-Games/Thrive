@@ -50,7 +50,7 @@ public static class Constants
     // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
     public const float CLOUD_NOISE_UV_OFFSET_MULTIPLIER = 2.5f;
 
-    public const float CLOUD_CHEAT_DENSITY = 1600000.0f;
+    public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
     public const int MEMBRANE_RESOLUTION = 10;
 
@@ -299,7 +299,7 @@ public static class Constants
     /// <summary>
     ///   How much compounds a cell can absorb per second from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_COMPUND_ABSORBING_PER_SECOND = 1.3f;
+    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 1.3f;
 
     public const float ENGULF_TOXIC_COMPOUND_ABSORB_DAMAGE_MULTIPLIER = 5.0f;
 

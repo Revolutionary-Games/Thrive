@@ -218,7 +218,7 @@ public partial class Microbe
     public Action<Microbe>? OnUnbound { get; set; }
 
     [JsonProperty]
-    public Action<Microbe, Microbe>? OnEngulfed { get; set; }
+    public Action<Microbe, Microbe>? OnIngested { get; set; }
 
     [JsonProperty]
     public Action<Microbe>? OnEngulfmentStorageFull { get; set; }
@@ -367,9 +367,9 @@ public partial class Microbe
         return Size >= target.Size * Constants.ENGULF_SIZE_RATIO_REQ;
     }
 
-    public void NotifyEngulfed()
+    public void OnEngulfed()
     {
-        OnEngulfed?.Invoke(this, HostileEngulfer.Value!);
+        OnIngested?.Invoke(this, HostileEngulfer.Value!);
     }
 
     /// <summary>
@@ -1216,7 +1216,7 @@ public partial class Microbe
         touchedEngulfables.Remove(target);
 
         target.IsIngested = true;
-        target.NotifyEngulfed();
+        target.OnEngulfed();
         target.IsBeingEngulfed = false;
 
         engulfedSize += target.Size;

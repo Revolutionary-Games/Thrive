@@ -335,7 +335,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         return result;
     }
 
-    public void NotifyEngulfed()
+    public void OnEngulfed()
     {
     }
 

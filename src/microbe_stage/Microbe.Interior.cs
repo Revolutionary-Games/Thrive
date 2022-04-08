@@ -1048,7 +1048,7 @@ public partial class Microbe
                 if (compound.Value <= 0)
                     continue;
 
-                var amount = Constants.ENGULF_COMPUND_ABSORBING_PER_SECOND * delta;
+                var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND * delta;
 
                 var taken = Math.Min(compound.Value, amount);
                 engulfedObject.CachedEngulfableCompounds[compound.Key] -= amount;
@@ -1092,7 +1092,7 @@ public partial class Microbe
             else if (DigestionProgress > 0 && DigestionProgress < 0.3f)
             {
                 // Cell is not too damaged, can heal itself in open environment and continue living
-                DigestionProgress -= delta * Constants.ENGULF_COMPUND_ABSORBING_PER_SECOND;
+                DigestionProgress -= delta * Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
             }
         }
     }

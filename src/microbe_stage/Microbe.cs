@@ -836,7 +836,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         var existingShape = (ConvexPolygonShape)engulfableArea.ShapeOwnerGetShape(engulfedAreaShapeOwner.Value, 0);
 
-        var wanted = Membrane.Vertices3D;
+        var wanted = Membrane.ConvexShape;
         if (!existingShape.Points.SequenceEqual(wanted))
         {
             existingShape.Points = wanted;
