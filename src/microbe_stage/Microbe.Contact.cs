@@ -693,7 +693,12 @@ public partial class Microbe
 
     private void OnIGotAddedToColony()
     {
-        State = MicrobeState.Normal;
+        // Multicellular creature can stay in engulf mode when growing things
+        if (!IsMulticellular || State != MicrobeState.Engulf)
+        {
+            State = MicrobeState.Normal;
+        }
+
         UnreadyToReproduce();
 
         if (ColonyParent == null)
