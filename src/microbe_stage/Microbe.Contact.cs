@@ -748,8 +748,14 @@ public partial class Microbe
     {
         if (State != MicrobeState.Binding)
         {
-            if (bindingAudio.Playing)
-                bindingAudio.Stop();
+            if (bindingAudio.Playing && bindingAudio.Volume > 0)
+            {
+                bindingAudio.Volume -= delta;
+
+                if (bindingAudio.Volume <= 0)
+                    bindingAudio.Stop();
+            }
+
             return;
         }
 
@@ -763,6 +769,16 @@ public partial class Microbe
 
         if (!bindingAudio.Playing)
             bindingAudio.Play();
+
+        // To balance loudness, here the binding audio's max volume is reduced to 0.6 in linear volume
+        if (bindingAudio.Volume < 0.6f)
+        {
+            bindingAudio.Volume += delta;
+        }
+        else if (bindingAudio.Volume >= 0.6f)
+        {
+            bindingAudio.Volume = 0.6f;
+        }
 
         Flash(1, new Color(0.2f, 0.5f, 0.0f, 0.5f));
     }
