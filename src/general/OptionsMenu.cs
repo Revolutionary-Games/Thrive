@@ -52,6 +52,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath MSAAResolutionPath = null!;
 
     [Export]
+    public NodePath ResolutionPath = null!;
+
+    [Export]
     public NodePath MaxFramesPerSecondPath = null!;
 
     [Export]
@@ -227,6 +230,7 @@ public class OptionsMenu : ControlWithInput
     private Control graphicsTab = null!;
     private CustomCheckBox vsync = null!;
     private CustomCheckBox fullScreen = null!;
+    private Label resolution = null!;
     private OptionButton msaaResolution = null!;
     private OptionButton maxFramesPerSecond = null!;
     private OptionButton colourblindSetting = null!;
@@ -350,6 +354,7 @@ public class OptionsMenu : ControlWithInput
         vsync = GetNode<CustomCheckBox>(VSyncPath);
         fullScreen = GetNode<CustomCheckBox>(FullScreenPath);
         msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
+        resolution = GetNode<Label>(ResolutionPath);
         maxFramesPerSecond = GetNode<OptionButton>(MaxFramesPerSecondPath);
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
@@ -420,6 +425,9 @@ public class OptionsMenu : ControlWithInput
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
         assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options");
         unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options");
+
+        // Makes it so that when the viewport changes size it automatically displays
+        GetViewport().Connect("size_changed", this, "DisplayResolution");
     }
 
     public override void _Notification(int what)
@@ -498,6 +506,7 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
         displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
+        DisplayResolution();
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -577,27 +586,34 @@ public class OptionsMenu : ControlWithInput
         switch (mode)
         {
             case OptionsMode.MainMenu:
-            {
-                tutorialsEnabled.Hide();
-                optionsMode = OptionsMode.MainMenu;
-                break;
-            }
+                {
+                    tutorialsEnabled.Hide();
+                    optionsMode = OptionsMode.MainMenu;
+                    break;
+                }
 
             case OptionsMode.InGame:
-            {
-                // Current game tutorial option shouldn't be visible in freebuild mode.
-                if (!gameProperties!.FreeBuild)
-                    tutorialsEnabled.Show();
-                else
-                    tutorialsEnabled.Hide();
+                {
+                    // Current game tutorial option shouldn't be visible in freebuild mode.
+                    if (!gameProperties!.FreeBuild)
+                        tutorialsEnabled.Show();
+                    else
+                        tutorialsEnabled.Hide();
 
-                optionsMode = OptionsMode.InGame;
-                break;
-            }
+                    optionsMode = OptionsMode.InGame;
+                    break;
+                }
 
             default:
                 throw new ArgumentException("Options menu SwitchMode called with an invalid mode argument");
         }
+    }
+
+    // Displays the current Resolution in options.
+    private void DisplayResolution()
+    {
+        if (resolution != null)
+            resolution.Text = "AUTO" + "(" + GetViewportRect().Size.x.ToString() + "x" + GetViewportRect().Size.y.ToString() + ")";
     }
 
     /// <summary>
