@@ -224,7 +224,7 @@ public class MicrobeAI
         }
 
         // If there are no threats, look for a chunk to eat
-        if (!microbe.Species.MembraneType.CellWall)
+        if (!microbe.CellTypeProperties.MembraneType.CellWall)
         {
             var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
             if (targetChunk != null && !targetChunk.IsIngested)

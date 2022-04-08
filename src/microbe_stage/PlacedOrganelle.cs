@@ -299,9 +299,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     public void GrowOrganelle(CompoundBag compounds)
     {
         float totalTaken = 0;
-        var keys = new List<Compound>(compoundsLeft.Keys);
 
-        foreach (var key in keys)
+        // TODO: should we just check a single type per frame (and remove once done) so we can skip creating a bunch
+        // of extra lists
+        foreach (var key in compoundsLeft.Keys.ToArray())
         {
             var amountNeeded = compoundsLeft[key];
 
@@ -315,7 +316,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             var amountAvailable = compounds.GetCompoundAmount(key)
                 - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
 
-            if (amountAvailable <= 0.0f)
+            if (amountAvailable <= MathUtils.EPSILON)
                 continue;
 
             // We can take some
@@ -324,7 +325,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             var amount = compounds.TakeCompound(key, amountToTake);
             var left = amountNeeded - amount;
 
-            if (left < 0.0001)
+            if (left < 0.0001f)
                 left = 0;
 
             compoundsLeft[key] = left;
@@ -476,7 +477,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             shapePosition = RotatedPositionInsideColony(shapePosition);
 
             // Scale for bacteria physics.
-            if (ParentMicrobe.Species.IsBacteria)
+            if (ParentMicrobe.CellTypeProperties.IsBacteria)
                 shapePosition *= 0.5f;
 
             shapePosition += offset;
@@ -566,7 +567,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         float hexSize = Constants.DEFAULT_HEX_SIZE;
 
         // Scale the physics hex size down for bacteria
-        if (ParentMicrobe!.Species.IsBacteria)
+        if (ParentMicrobe!.CellTypeProperties.IsBacteria)
             hexSize *= 0.5f;
 
         // Add hex collision shapes
@@ -580,7 +581,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             Vector3 shapePosition = ShapeTruePosition(hex);
 
             // Scale for bacteria physics.
-            if (ParentMicrobe.Species.IsBacteria)
+            if (ParentMicrobe.CellTypeProperties.IsBacteria)
                 shapePosition *= 0.5f;
 
             // Create a transform for a shape position

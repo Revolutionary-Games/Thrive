@@ -107,6 +107,16 @@ public class GUICommon : NodeWithInput
         return GD.Load(file) as Texture;
     }
 
+    public static void MarkInputAsInvalid(LineEdit control)
+    {
+        control.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
+    }
+
+    public static void MarkInputAsValid(LineEdit control)
+    {
+        control.Set("custom_colors/font_color", new Color(1, 1, 1));
+    }
+
     /// <summary>
     ///   Closes any currently active exclusive modal popups.
     /// </summary>

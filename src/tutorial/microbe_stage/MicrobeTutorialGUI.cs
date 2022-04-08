@@ -301,6 +301,8 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         unbindTutorial = GetNode<CustomDialog>(UnbindTutorialPath);
         checkTheHelpMenu = GetNode<CustomDialog>(CheckTheHelpMenuPath);
         engulfmentFullCapacity = GetNode<CustomDialog>(EngulfmentFullCapacityPath);
+
+        PauseMode = PauseModeEnum.Process;
     }
 
     public override void _Process(float delta)

@@ -319,6 +319,32 @@ public class GameWorld : ISaveLoadable
     }
 
     /// <summary>
+    ///   Moves a species to the multicellular stage
+    /// </summary>
+    /// <param name="species">
+    ///   The species to convert to an early multicellular one. No checks are done to make sure the species is
+    ///   actually a valid multicellular one.
+    /// </param>
+    public EarlyMulticellularSpecies ChangeSpeciesToMulticellular(Species species)
+    {
+        var microbeSpecies = (MicrobeSpecies)species;
+
+        if (microbeSpecies.IsBacteria)
+            throw new ArgumentException("bacteria can't turn multicellular");
+
+        var multicellularVersion = new EarlyMulticellularSpecies(species.ID, species.Genus, species.Epithet);
+        species.CopyDataToConvertedSpecies(multicellularVersion);
+
+        var stemCellType = new CellType(microbeSpecies);
+
+        multicellularVersion.Cells.Add(new CellTemplate(stemCellType));
+        multicellularVersion.CellTypes.Add(stemCellType);
+
+        SwitchSpecies(species, multicellularVersion);
+        return multicellularVersion;
+    }
+
+    /// <summary>
     ///   Stores a description of a global event into the game world records.
     /// </summary>
     /// <param name="description">The event's description</param>
@@ -356,5 +382,19 @@ public class GameWorld : ISaveLoadable
             return;
 
         autoEvo = AutoEvo.AutoEvo.CreateRun(this);
+    }
+
+    private void SwitchSpecies(Species old, Species newSpecies)
+    {
+        GD.Print("Moving species ", old.FormattedIdentifier, " from ", old.GetType().Name, " to ",
+            newSpecies.GetType().Name);
+
+        RemoveSpecies(old);
+        worldSpecies.Add(old.ID, newSpecies);
+
+        Map.ReplaceSpecies(old, newSpecies);
+
+        if (PlayerSpecies == old)
+            PlayerSpecies = newSpecies;
     }
 }

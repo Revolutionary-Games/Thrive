@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -64,5 +65,31 @@ public class ActionHistory<T>
         action.Perform();
         actions.Add(action);
         ++actionIndex;
+    }
+
+    /// <summary>
+    ///   Makes sure all actions in the action history don't point to outdated callback targets (due to loading a save)
+    /// </summary>
+    /// <param name="newTarget">The new target object</param>
+    /// <typeparam name="TTarget">The type of objects in the callbacks to override</typeparam>
+    public void ReTargetCallbacksInHistory<TTarget>(TTarget newTarget)
+    {
+        foreach (var action in actions)
+        {
+            SaveApplyHelper.ReTargetCallbacks(action, newTarget);
+        }
+    }
+
+    /// <summary>
+    ///   Deletes the entire action history. Used for now to work with editors that have partially done undo history
+    /// </summary>
+    internal void Nuke()
+    {
+        if (actions.Count < 1)
+            return;
+
+        GD.Print("Action history nuked");
+        actions.Clear();
+        actionIndex = 0;
     }
 }

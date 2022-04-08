@@ -80,7 +80,7 @@ public class PilusComponent : ExternallyPositionedComponent
 
         membraneCoords += membranePointDirection * Constants.DEFAULT_HEX_SIZE * 2;
 
-        if (organelle.ParentMicrobe!.Species.IsBacteria)
+        if (organelle.ParentMicrobe!.CellTypeProperties.IsBacteria)
         {
             membraneCoords *= 0.5f;
         }
@@ -107,7 +107,7 @@ public class PilusComponent : ExternallyPositionedComponent
         float pilusSize = 4.6f;
 
         // Scale the size down for bacteria
-        if (organelle!.ParentMicrobe!.Species.IsBacteria)
+        if (organelle!.ParentMicrobe!.CellTypeProperties.IsBacteria)
         {
             pilusSize *= 0.5f;
         }
