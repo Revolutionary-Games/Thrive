@@ -37,7 +37,6 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     [Export]
     public NodePath NewHiddenAlternativeSpacerPath = null!;
 
-
     private TextureButton? newButton;
     private LineEdit speciesNameEdit = null!;
     private TextureButton? randomizeNameButton;
@@ -98,7 +97,6 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     public TextureButton UndoButton { get; private set; } = null!;
 
     public TextureButton RedoButton { get; private set; } = null!;
-
 
     public bool UndoEnabled { get => !UndoButton.Disabled; set => UndoButton.Disabled = !value; }
     public bool RedoEnabled { get => !RedoButton.Disabled; set => RedoButton.Disabled = !value; }
