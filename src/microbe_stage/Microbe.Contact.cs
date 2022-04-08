@@ -20,6 +20,8 @@ public partial class Microbe
 
     private bool membraneOrganellePositionsAreDirty = true;
 
+    private bool destroyed;
+
     // variables for engulfing
     [JsonProperty]
     private bool previousEngulfMode;
@@ -563,6 +565,12 @@ public partial class Microbe
 
     public void OnDestroyed()
     {
+        if (destroyed)
+            return;
+
+        destroyed = true;
+
+        // TODO: find out a way to cleanly despawn colonies without having to run the reproduction progress lost logic
         Colony?.RemoveFromColony(this);
 
         AliveMarker.Alive = false;
@@ -601,6 +609,12 @@ public partial class Microbe
             Mode = ModeEnum.Rigid;
 
             return;
+        }
+
+        if (IsMulticellular && Colony?.Master == this)
+        {
+            // Lost a member of the multicellular organism
+            OnMulticellularColonyCellLost(microbe);
         }
 
         if (hostileEngulfer != microbe)

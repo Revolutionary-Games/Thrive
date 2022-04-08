@@ -13,6 +13,18 @@ public partial class Microbe
     [JsonProperty]
     private int nextBodyPlanCellToGrowIndex = -1;
 
+    /// <summary>
+    ///   List of cells that need to be regrown after being lost in <see cref="AddMulticellularGrowthCell"/>
+    /// </summary>
+    [JsonProperty]
+    private List<int>? lostPartsOfBodyPlan;
+
+    /// <summary>
+    ///   Once all lost body plan parts have been grown, this is the index the growing resumes at
+    /// </summary>
+    [JsonProperty]
+    private int? resumeBodyPlanAfterReplacingLost;
+
     [JsonProperty]
     private bool enoughResourcesForBudding;
 
@@ -27,6 +39,13 @@ public partial class Microbe
 
     [JsonIgnore]
     public bool IsFullyGrownMulticellular => nextBodyPlanCellToGrowIndex >= CastedMulticellularSpecies.Cells.Count;
+
+    /// <summary>
+    ///   Used to keep track of which part of a body plan a non-first cell in a multicellular colony is.
+    ///   This is required for regrowing after losing a cell.
+    /// </summary>
+    [JsonProperty]
+    public int MulticellularBodyPlanPartIndex { get; set; }
 
     public void ApplyMulticellularNonFirstCellSpecies(EarlyMulticellularSpecies species, CellType cellType)
     {
@@ -61,6 +80,7 @@ public partial class Microbe
         var template = CastedMulticellularSpecies.Cells[nextBodyPlanCellToGrowIndex];
 
         var cell = CreateMulticellularColonyMemberCell(template.CellType);
+        cell.MulticellularBodyPlanPartIndex = nextBodyPlanCellToGrowIndex;
 
         // We don't reset our state here in case we want to be in engulf mode
         cell.State = State;
@@ -117,6 +137,23 @@ public partial class Microbe
     {
         if (compoundsNeededForNextCell == null)
         {
+            // Regrow lost cells
+            if (lostPartsOfBodyPlan is { Count: > 0 })
+            {
+                // Store where we will resume from
+                resumeBodyPlanAfterReplacingLost ??= nextBodyPlanCellToGrowIndex;
+
+                // Grow from the first cell to grow back, in the body plan grow order
+                nextBodyPlanCellToGrowIndex = lostPartsOfBodyPlan.Min();
+                lostPartsOfBodyPlan.Remove(nextBodyPlanCellToGrowIndex);
+            }
+            else if (resumeBodyPlanAfterReplacingLost != null)
+            {
+                // Done regrowing, resume where we were
+                nextBodyPlanCellToGrowIndex = resumeBodyPlanAfterReplacingLost.Value;
+                resumeBodyPlanAfterReplacingLost = null;
+            }
+
             // Need to setup the next cell to be grown in our body plan
             if (IsFullyGrownMulticellular)
             {
@@ -127,15 +164,13 @@ public partial class Microbe
                 }
                 else
                 {
-                    compoundsNeededForNextCell = CastedMulticellularSpecies.Cells[0].CellType
-                        .CalculateTotalComposition();
+                    compoundsNeededForNextCell = GetCompoundsNeededForNextCell();
                 }
 
                 return;
             }
 
-            compoundsNeededForNextCell = CastedMulticellularSpecies.Cells[nextBodyPlanCellToGrowIndex].CellType
-                .CalculateTotalComposition();
+            compoundsNeededForNextCell = GetCompoundsNeededForNextCell();
         }
 
         bool stillNeedsSomething = false;
@@ -196,6 +231,12 @@ public partial class Microbe
         }
     }
 
+    private Dictionary<Compound, float> GetCompoundsNeededForNextCell()
+    {
+        return CastedMulticellularSpecies.Cells[IsFullyGrownMulticellular ? 0 : nextBodyPlanCellToGrowIndex].CellType
+            .CalculateTotalComposition();
+    }
+
     private void ResetMulticellularProgress()
     {
         // Clear variables
@@ -239,6 +280,95 @@ public partial class Microbe
         PlaySoundEffect("res://assets/sounds/soundeffects/reproduction.ogg");
 
         return newCell;
+    }
+
+    private void OnMulticellularColonyCellLost(Microbe cell)
+    {
+        // Don't bother if this cell is being destroyed
+        if (destroyed)
+            return;
+
+        // We need to reset our growth towards the next cell and instead replace the cell we just lost
+        lostPartsOfBodyPlan ??= new List<int>();
+
+        // TODO: figure out why these duplicate calls come from colonies, we ignore them for now
+        if (lostPartsOfBodyPlan.Contains(cell.MulticellularBodyPlanPartIndex))
+            return;
+
+        lostPartsOfBodyPlan.Add(cell.MulticellularBodyPlanPartIndex);
+        allOrganellesDivided = false;
+
+        if (resumeBodyPlanAfterReplacingLost != null)
+        {
+            // We are already regrowing something, so we need to remember that by adding it back to the list
+            lostPartsOfBodyPlan.Add(nextBodyPlanCellToGrowIndex);
+        }
+
+        var usedForProgress = new Dictionary<Compound, float>();
+
+        if (compoundsNeededForNextCell != null)
+        {
+            var totalNeededForCurrentlyGrowingCell = GetCompoundsNeededForNextCell();
+
+            foreach (var entry in totalNeededForCurrentlyGrowingCell)
+            {
+                var compound = entry.Key;
+                var neededAmount = entry.Value;
+
+                if (compoundsNeededForNextCell.TryGetValue(compound, out var left))
+                {
+                    var alreadyUsed = neededAmount - left;
+
+                    if (alreadyUsed > 0)
+                        usedForProgress.Add(compound, alreadyUsed);
+                }
+            }
+
+            compoundsNeededForNextCell = null;
+        }
+        else if (enoughResourcesForBudding)
+        {
+            // Refund the budding cost
+            usedForProgress = GetCompoundsNeededForNextCell();
+        }
+
+        enoughResourcesForBudding = false;
+
+        // TODO: maybe we should use a separate store for the used compounds for the next cell progress, for now
+        // just add those to our storage (even with the risk of us losing some compounds due to too little storage)
+        foreach (var entry in usedForProgress)
+        {
+            if (entry.Value > MathUtils.EPSILON)
+                Compounds.AddCompound(entry.Key, entry.Value);
+        }
+
+        // Adjust the already used compound amount to lose the progress we made for the current cell and also towards
+        // the lost cell, this we the total progress bar should be correct
+        if (compoundsUsedForMulticellularGrowth != null)
+        {
+            var totalNeededForLostCell = CastedMulticellularSpecies.Cells[cell.MulticellularBodyPlanPartIndex].CellType
+                .CalculateTotalComposition();
+
+            foreach (var compound in compoundsUsedForMulticellularGrowth.Keys.ToArray())
+            {
+                var totalUsed = compoundsUsedForMulticellularGrowth[compound];
+
+                if (usedForProgress.TryGetValue(compound, out var wasted))
+                {
+                    totalUsed -= wasted;
+                }
+
+                if (totalNeededForLostCell.TryGetValue(compound, out wasted))
+                {
+                    totalUsed -= wasted;
+                }
+
+                if (totalUsed < 0)
+                    totalUsed = 0;
+
+                compoundsUsedForMulticellularGrowth[compound] = totalUsed;
+            }
+        }
     }
 
     private Dictionary<Compound, float> CalculateTotalBodyPlanCompounds()
