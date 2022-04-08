@@ -217,6 +217,12 @@ public abstract class Species : ICloneable
         return FormattedIdentifier;
     }
 
+    public override int GetHashCode()
+    {
+        return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607) ^
+            (ID.GetHashCode() * 613) ^ (Colour.GetHashCode() * 617);
+    }
+
     internal virtual void CopyDataToConvertedSpecies(Species species)
     {
         if (ID != species.ID)
