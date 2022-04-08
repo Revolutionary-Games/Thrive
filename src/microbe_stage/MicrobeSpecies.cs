@@ -149,9 +149,9 @@ public class MicrobeSpecies : Species, ICellProperties
         return result;
     }
 
-    public override int GetHashCode()
+    public override int GetVisualHashCode()
     {
-        var hash = base.GetHashCode();
+        var hash = base.GetVisualHashCode();
 
         hash ^= (MembraneType.GetHashCode() * 5743) ^ (MembraneRigidity.GetHashCode() * 5749) ^
             ((IsBacteria ? 1 : 0) * 5779) ^

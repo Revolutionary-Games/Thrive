@@ -797,8 +797,11 @@ public partial class CellBodyPlanEditorComponent :
         microbe.Transform = new Transform(rotation, new Vector3(0, 0, 0));
 
         // Skip if it is already displaying the type
-        if (wasExisting && !forceUpdateCellGraphics && microbe.Species.GetHashCode() == newSpecies.GetHashCode())
+        if (wasExisting && !forceUpdateCellGraphics &&
+            microbe.Species.GetVisualHashCode() == newSpecies.GetVisualHashCode())
+        {
             return;
+        }
 
         // Attach to scene to initialize the microbe before the operations that need that
         modelHolder.LoadFromAlreadyLoadedNode(microbe);
