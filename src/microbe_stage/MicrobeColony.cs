@@ -16,6 +16,9 @@ public class MicrobeColony
         master.ColonyChildren = new List<Microbe>();
         ColonyMembers = new List<Microbe> { master };
         ColonyCompounds = new ColonyCompoundBag(this);
+
+        // Grab initial state from microbe to preserve that (only really important for multicellular)
+        state = master.State;
     }
 
     [JsonProperty]

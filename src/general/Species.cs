@@ -217,6 +217,17 @@ public abstract class Species : ICloneable
         return FormattedIdentifier;
     }
 
+    /// <summary>
+    ///   Instead of overriding the GetHashCode method this is provided to make checking
+    ///   "is this species visually the same as this other one" possible by comparing the hashes.
+    /// </summary>
+    /// <returns>The visual hash code</returns>
+    public virtual int GetVisualHashCode()
+    {
+        return (Genus.GetHashCode() * 599) ^ (Epithet.GetHashCode() * 601) ^ (Colour.GetHashCode() * 607)
+            ^ (Colour.GetHashCode() * 617);
+    }
+
     internal virtual void CopyDataToConvertedSpecies(Species species)
     {
         if (ID != species.ID)
