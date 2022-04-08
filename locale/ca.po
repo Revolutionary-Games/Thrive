@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-07 09:16+0300\n"
+"POT-Creation-Date: 2022-04-07 17:13+0300\n"
 "PO-Revision-Date: 2022-03-21 21:55+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -795,17 +795,14 @@ msgid "CILIA"
 msgstr "Cilis"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-#, fuzzy
 msgid "ABORTED_DOT"
 msgstr "Avortat."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-#, fuzzy
 msgid "FINISHED_DOT"
 msgstr "Acabat."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-#, fuzzy
 msgid "NOT_RUNNING_DOT"
 msgstr "No està en marxa."
 
@@ -822,18 +819,16 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "Població de l'espècie {0} canviada per una quantitat {1} degut a aquest efecte: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-#, fuzzy
 msgid "POPULATION_COLON"
-msgstr "Població Total:"
+msgstr "població:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "s'ha extingit en {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "Espècies:"
+msgstr "previ:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -852,16 +847,14 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "la població en algunes zones es divideix per formar noves espècies {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr "ha patit una mutació"
+msgstr "ha mutat"
 
 #: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "codi genètic:"
 
 #: ../src/auto-evo/RunResults.cs:652
-#, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "s'ha escampat a les zones:"
 
@@ -870,9 +863,8 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} enviant-hi: {1} membres de l'espècie des de la zona: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "{0} ({1})"
+msgstr "població a les zones:"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -915,9 +907,8 @@ msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] s'ha dividit de [u]{1}[/u] com a noves espècies degut a diferents pressions selectives"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
-#, fuzzy
 msgid "NOT_FOUND_CHUNK"
-msgstr "Gran tros de Ferro"
+msgstr "Error: tros no trobat"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
 msgid "CHUNK_FOOD_SOURCE"
@@ -1507,7 +1498,7 @@ msgstr "Tancar"
 #: ../src/microbe_stage/MicrobeHUD.cs:722
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:393
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1528,7 +1519,7 @@ msgid "NEW_GAME"
 msgstr "Nova partida"
 
 #: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Carregar una partida"
 
@@ -1563,7 +1554,7 @@ msgstr "Editor Lliure de Microbi"
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1820,12 +1811,10 @@ msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Màxim nombre d'arxius de guardat ràpid:"
 
 #: ../src/general/OptionsMenu.tscn:1068
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutorials (en noves partides)"
 
 #: ../src/general/OptionsMenu.tscn:1075
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutorials (a la partida actual)"
 
@@ -1963,7 +1952,7 @@ msgid "HELP"
 msgstr "Ajuda"
 
 #: ../src/general/PauseMenu.tscn:105
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Tornar al Menú"
 
@@ -2228,9 +2217,8 @@ msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "Aquest arxiu de guardat pertany a una versió diferent del joc"
 
 #: ../src/gui_common/RadialMenu.cs:63
-#, fuzzy
 msgid "SELECT_OPTION"
-msgstr "Seleccionat:"
+msgstr "Seleccionar Una Opció"
 
 #: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_PICK_COLOUR"
@@ -2298,7 +2286,7 @@ msgid "RAW"
 msgstr "\"Raw\""
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1928
 msgid "NO_DATA_TO_SHOW"
 msgstr "No hi ha dades a mostrar"
 
@@ -2679,9 +2667,8 @@ msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2084
-#, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Pressiona la tecla [thrive:input]g_toggle_binding[/thrive:input] per entrar al mode d'unió. Quan siguis en aquest mode, et pots unir a altres cèl·lules de la teva espècie entrant-hi en contacte. Per abandonar una colònia, pressiona la tecla [thrive:input]g_unbind_all[/thrive:input]."
+msgstr "Mantingues [thrive:input]g_pack_commands[/thrive:input] premut per obrir un menú que et permet donar ordres a altres membres de la teva espècie."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2085
 #, fuzzy
@@ -3111,37 +3098,37 @@ msgstr "Capacitat de moviment"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:489
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1755
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1764
 msgid "FAILED"
 msgstr "Error"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1761
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1773
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1767
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1779
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1887
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia a {0} per {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1891
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1900
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "L'energia total recol·lectada és {0} amb un cost individual de {1} resultant en una població no ajustada de {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1898
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1907
 msgid "ENERGY_SOURCES"
 msgstr "Fonts d'energia:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1904
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (rendiment: {2}) energia total disponible: {3} (rendiment total: {4})"
 
@@ -3423,15 +3410,15 @@ msgstr "Moure"
 msgid "MODIFY"
 msgstr "Modificar"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:384
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:383
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:389
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sota el nivell del mar"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:428
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Població de les Espècies"
@@ -3464,19 +3451,19 @@ msgstr "Color de la línia:"
 msgid "MODIFY_ORGANELLE"
 msgstr "Modificar orgànul"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
 msgstr "EXTINCIÓ"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Com tantes i tantes altres espècies al llarg dels eons i de les edats d'aquest planeta, els teus petits organismes s'han extingit. A partir d'ara, altres espècies ocuparan el seu nínxol en les cadenes tròfiques dels diferents biomes i, potser, evolucionaran fins a esdevenir éssers intel·ligents que navegaran conscientment cap a planetes i estrelles llunyanes. No obstant, la teva línia evolutiva s'ha tallat, ha esdevingut un experiment fallit en el llarg procés de l'evolució."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:56
+#: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
 msgstr "HAS ACONSEGUIT PROSPERAR!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:65
+#: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr "Enhorabona, has guanyat en la versió actual del joc! Si ho vols, un cop aquesta finestreta es tanqui, pots continuar jugant i fent evolucionar la teva espècie, o bé començar una nova partida en un nou món."
 

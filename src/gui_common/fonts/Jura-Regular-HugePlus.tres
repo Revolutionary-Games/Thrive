@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/fonts/NotoEmoji-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/fonts/NotoSansCJKsc-Regular.otf" type="DynamicFontData" id=7]
 [ext_resource path="res://assets/fonts/NotoSansSinhala-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/fonts/NotoSansGeorgian-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/fonts/NotoSansArabic-Regular.ttf" type="DynamicFontData" id=10]
 
 [resource]
 size = 55
@@ -21,3 +23,5 @@ fallback/3 = ExtResource( 3 )
 fallback/4 = ExtResource( 2 )
 fallback/5 = ExtResource( 4 )
 fallback/6 = ExtResource( 8 )
+fallback/7 = ExtResource( 9 )
+fallback/8 = ExtResource( 10 )

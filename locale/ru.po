@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-07 09:16+0300\n"
+"POT-Creation-Date: 2022-04-07 17:13+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1499,7 +1499,7 @@ msgstr "Закрыть"
 #: ../src/microbe_stage/MicrobeHUD.cs:722
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:393
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1520,7 +1520,7 @@ msgid "NEW_GAME"
 msgstr "Новая Игра"
 
 #: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Загрузить игру"
 
@@ -1555,7 +1555,7 @@ msgstr "Микробный Креативный Редактор"
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1953,7 +1953,7 @@ msgid "HELP"
 msgstr "Помощь"
 
 #: ../src/general/PauseMenu.tscn:105
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Вернуться в Меню"
 
@@ -2287,7 +2287,7 @@ msgid "RAW"
 msgstr "\"Raw\""
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1928
 msgid "NO_DATA_TO_SHOW"
 msgstr "Нет данных для отображения"
 
@@ -3020,9 +3020,8 @@ msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Пангонское Морское Дно"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:203
-#, fuzzy
 msgid "PATCH_NAME"
-msgstr "Пещера"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3097,37 +3096,37 @@ msgstr "Базовое Передвижение"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:489
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1755
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1764
 msgid "FAILED"
 msgstr "Неудачно"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1761
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1773
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1767
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1779
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
 msgid "N_A"
 msgstr "Нет данных"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1887
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Энергия в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1891
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1900
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Общая собранная энергия равна {0} с индивидуальными затратами {1}, что приводит к нескорректированному населению {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1898
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1907
 msgid "ENERGY_SOURCES"
 msgstr "Источники Энергии:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1904
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} энергия: {1} (пригодность: {2}) общая доступная энергия: {3} (общая пригодность: {4})"
 
@@ -3409,15 +3408,15 @@ msgstr "Передвижение"
 msgid "MODIFY"
 msgstr "Модифицировать"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:384
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:383
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:389
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м ниже уровня моря"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:428
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} с численностью: {1}"
 
@@ -3449,19 +3448,19 @@ msgstr "Цвет Линии:"
 msgid "MODIFY_ORGANELLE"
 msgstr "Модифицировать Органеллу"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
 msgstr "ВЫМИРАНИЕ"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Точно так же, как 99% всех видов, которые когда-либо существовали, ваш вид вымер. Другие виды заполнят вашу нишу и будут процветать, но это будете не вы. Вы будете забыты, как неудачный эксперимент в эволюции."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:56
+#: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
 msgstr "ВЫ РАСЦВЕЛИ!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:65
+#: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr "Поздравляем, вы выиграли эту версию Thrive! Вы можете продолжить игру после закрытия этого экрана, если хотите, или начать новую игру в новом мире."
 

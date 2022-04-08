@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-07 09:16+0300\n"
-"PO-Revision-Date: 2022-03-22 17:04+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2022-04-07 17:13+0300\n"
+"PO-Revision-Date: 2022-04-07 14:12+0000\n"
+"Last-Translator: DannyNohuman <damianbouras@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -314,7 +314,7 @@ msgstr "Ontbind al"
 
 #: ../simulation_parameters/common/input_options.json:62
 msgid "PERFORM_UNBINDING"
-msgstr ""
+msgstr "Ontbinden uitvoeren"
 
 #: ../simulation_parameters/common/input_options.json:71
 msgid "CAMERA"
@@ -354,9 +354,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Plaats organellen"
 
 #: ../simulation_parameters/common/input_options.json:111
-#, fuzzy
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "Verwijder organellen"
+msgstr "Open organel menu"
 
 #: ../simulation_parameters/common/input_options.json:115
 msgid "PAN_CAMERA_LEFT"
@@ -771,9 +770,8 @@ msgstr "Kern"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:678
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1164
-#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr "Chemoplast"
+msgstr "Chemoreceptor"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:704
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2083
@@ -789,17 +787,16 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1592
 msgid "THERMOPLAST"
-msgstr ""
+msgstr "Thermoplast"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:773
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1224
 msgid "CILIA"
-msgstr ""
+msgstr "Cilia"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-#, fuzzy
 msgid "ABORTED_DOT"
-msgstr "Onderbroken."
+msgstr "Afgebroken."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
 #, fuzzy
@@ -1517,7 +1514,7 @@ msgstr "Sluiten"
 #: ../src/microbe_stage/MicrobeHUD.cs:722
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:393
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1538,7 +1535,7 @@ msgid "NEW_GAME"
 msgstr "Nieuw spel"
 
 #: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Laad spel"
 
@@ -1573,7 +1570,7 @@ msgstr "Microbe vrij bouwen bewerker"
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1978,7 +1975,7 @@ msgid "HELP"
 msgstr "Hulp"
 
 #: ../src/general/PauseMenu.tscn:105
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Terug naar menu"
 
@@ -2306,7 +2303,7 @@ msgid "RAW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1928
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -3119,39 +3116,39 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:489
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1755
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1764
 msgid "FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1761
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1773
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULATIE:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1767
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1779
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
 #, fuzzy
 msgid "N_A"
 msgstr "Geen AI"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1887
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1891
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1900
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1898
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1907
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1904
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3439,15 +3436,15 @@ msgstr ""
 msgid "MODIFY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:384
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:383
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:389
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:428
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Soorten:"
@@ -3484,19 +3481,19 @@ msgstr "Kleur"
 msgid "MODIFY_ORGANELLE"
 msgstr "Verplaats organellen"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/WinBox.tscn:56
+#: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/WinBox.tscn:65
+#: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr ""
 

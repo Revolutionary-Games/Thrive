@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-07 09:16+0300\n"
+"POT-Creation-Date: 2022-04-07 17:13+0300\n"
 "PO-Revision-Date: 2022-03-31 05:02+0000\n"
 "Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] und Maus zum Bewegen. [thrive:input]g_fire_toxin[/thrive:input] drücken um [thrive:compound type=\"oxytoxy\"][/thrive:compound] zu schießen, falls eine Giftvakuole vorhanden ist. [thrive:input]g_toggle_engulf[/thrive:input] drücken um den Verschlingungsmodus umzuschalten. Mit dem Mausrad kannst du rein- und rauszoomen."
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] und Maus zum Bewegen. [thrive:input]g_fire_toxin[/thrive:input] drücken um [thrive:compound type=\"oxytoxy\"][/thrive:compound] zu schießen, falls eine Giftvakuole vorhanden ist. [thrive:input]g_toggle_engulf[/thrive:input] drücken um den Verschlingungsmodus umzuschalten. Mit dem Mausrad kannst du herein- und herauszoomen."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -776,9 +776,8 @@ msgstr "Chemorezeptor"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:704
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2083
-#, fuzzy
 msgid "SIGNALING_AGENT"
-msgstr "Bindemittel"
+msgstr "Signalorganelle"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2181
@@ -804,7 +803,6 @@ msgid "FINISHED_DOT"
 msgstr "Abgeschlossen."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-#, fuzzy
 msgid "NOT_RUNNING_DOT"
 msgstr "Nicht laufend."
 
@@ -821,7 +819,6 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} Population verändert um {1}, weil: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-#, fuzzy
 msgid "POPULATION_COLON"
 msgstr "Gesamtbevölkerung:"
 
@@ -831,7 +828,7 @@ msgstr "wurde in {0} ausgelöscht"
 
 #: ../src/auto-evo/RunResults.cs:569
 msgid "PREVIOUS_COLON"
-msgstr "Spezies:"
+msgstr "Vorige:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -858,7 +855,6 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "Gencode:"
 
 #: ../src/auto-evo/RunResults.cs:652
-#, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "Ausbreitung auf Gebiete:"
 
@@ -867,9 +863,8 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} durch Senden: {1} Population aus dem Gebiet: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "{0} ({1})"
+msgstr "Bevölkerung in Gebieten:"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -1245,7 +1240,7 @@ msgstr "Lautstärke hoch"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
-msgstr "Bassboost"
+msgstr "Bass-boost"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "BASSUP"
@@ -1503,7 +1498,7 @@ msgstr "Schließen"
 #: ../src/microbe_stage/MicrobeHUD.cs:722
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:393
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1524,7 +1519,7 @@ msgid "NEW_GAME"
 msgstr "Neues Spiel"
 
 #: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Spiel laden"
 
@@ -1559,7 +1554,7 @@ msgstr "Mikroben-Sandboxeditor"
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1816,12 +1811,10 @@ msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Anzahl der Schnellspeicherungen:"
 
 #: ../src/general/OptionsMenu.tscn:1068
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutorials anzeigen (in neuen Spielen)"
 
 #: ../src/general/OptionsMenu.tscn:1075
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tutorials anzeigen (im aktuellen Spiel)"
 
@@ -1959,7 +1952,7 @@ msgid "HELP"
 msgstr "Hilfe"
 
 #: ../src/general/PauseMenu.tscn:105
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Zurück zum Hauptmenü"
 
@@ -2224,9 +2217,8 @@ msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "Speicherstände haben verschiedene Versionen"
 
 #: ../src/gui_common/RadialMenu.cs:63
-#, fuzzy
 msgid "SELECT_OPTION"
-msgstr "Ausgewählt:"
+msgstr "Eine Option auswählen"
 
 #: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_PICK_COLOUR"
@@ -2294,7 +2286,7 @@ msgid "RAW"
 msgstr "Roh"
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1928
 msgid "NO_DATA_TO_SHOW"
 msgstr "Keine Daten zu zeigen"
 
@@ -2544,7 +2536,7 @@ msgstr "Wandelt [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:com
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:679
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Rusticyanin ist ein Protein, das in der Lage ist, gasförmiges Kohlendioxid und Sauerstoff zu nutzen, um Eisen zu oxidieren. Dieser Prozess, der Eisenatmung genannt wird, setzt Energie frei, die die Zelle dann sammeln kann."
+msgstr "Rusticyanin ist ein Protein, das in der Lage ist, gasförmiges Kohlendioxid und Sauerstoff zu nutzen, um Eisen zu oxidieren. Dieser Prozess, der Eisenatmung genannt wird, setzt Energie frei, welche die Zelle dann sammeln kann."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:775
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
@@ -2556,7 +2548,7 @@ msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstof
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:873
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. Kann durch Drücken von [thrive:input]g_fire_toxin[/thrive:input] Giftstoffe freisetzen. Wenn die [thrive:compound type=\"oxytoxy\"][/thrive:compound]konzentration niedrig ist, ist das Schießen immer noch möglich, aber der Schaden ist geringer."
+msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. Kann durch Drücken von [thrive:input]g_fire_toxin[/thrive:input] Giftstoffe freisetzen. Wenn die [thrive:compound type=\"oxytoxy\"][/thrive:compound]-Konzentration niedrig ist, ist das Schießen immer noch möglich, aber der Schaden ist geringer."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:874
 msgid "OXYTOXISOME_DESC"
@@ -2675,14 +2667,12 @@ msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2084
-#, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Drücke [thrive:input]g_toggle_binding[/thrive:input], um den Bindungsmodus umzuschalten. Im Bindungsmodus kannst du andere Zellen deiner Spezies mit deiner Kolonie verbinden, indem du dich in sie hineinbewegst. Um eine Kolonie zu verlassen, drücke [thrive:input]g_unbind_all[/thrive:input]."
+msgstr "Drücke [thrive:input]g_pack_commands[/thrive:input], um ein Menü zu öffnen mit dem du anderen Mitgliedern deiner Spezies Befehle erteilen kannst."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2085
-#, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu spalten."
+msgstr "Ermöglicht das Erstellen von Stoffen, auf die andere Zellen reagieren können. Diese Signalmittel können benutzt werden, um andere Zellen anzuziehen oder sie vor Gefahren zu warnen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2211
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -2842,7 +2832,7 @@ msgstr "Werde aggressiv"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:485
 msgid "SIGNAL_TO_EMIT"
-msgstr ""
+msgstr "Signal zum aussenden"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:801
 msgid "STUFF_AT"
@@ -3028,9 +3018,8 @@ msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonischer Meeresboden"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:203
-#, fuzzy
 msgid "PATCH_NAME"
-msgstr "Höhle"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3105,37 +3094,37 @@ msgstr "Basisbewegung"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:489
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1755
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1764
 msgid "FAILED"
 msgstr "Gescheitert"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1761
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1773
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1767
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1779
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
 msgid "N_A"
 msgstr "N/V"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1887
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie in {0} für {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1891
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1900
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Die gesammelte Gesamtenergie beträgt {0} mit individuellen Kosten von {1}, was zu einer unbereinigten Bevölkerung von {2} führt"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1898
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1907
 msgid "ENERGY_SOURCES"
 msgstr "Energiequellen:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1904
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}Energie:{1}(Fitness:{2})insgesamt verfügbare Energie:{3} (gesamte Fitness:{4})"
 
@@ -3417,15 +3406,15 @@ msgstr "Bewegen"
 msgid "MODIFY"
 msgstr "Verändern"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:384
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:383
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:389
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m unter dem Meeresspiegel"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:428
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} mit Bevölkerung: {1}"
 
@@ -3457,19 +3446,19 @@ msgstr "Linienfarbe:"
 msgid "MODIFY_ORGANELLE"
 msgstr "Organelle modifizieren"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
 msgstr "AUSSTERBEN"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Genau wie 99% aller Arten, die jemals existiert haben, ist auch deine Art ausgestorben. Andere werden weiterhin deine Nische ausfüllen und gedeihen, aber das wirst nicht du sein. Du wirst vergessen werden, ein fehlgeschlagenes Experiment der Evolution."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:56
+#: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:65
+#: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr "Herzlichen Glückwunsch, du hast diese Version von Thrive gewonnen! Wenn du möchtest, kannst du das Spiel nach dem Schließen dieses Fensters fortsetzen oder ein neues Spiel in einer neuen Welt beginnen."
 
@@ -3966,7 +3955,6 @@ msgid "ERROR_SAVING"
 msgstr "Fehler beim Speichern"
 
 #: ../src/saving/NewSaveMenu.cs:80
-#, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Der gewählte Dateiname ({0}) existiert bereits. Überschreiben?"
 
@@ -3995,21 +3983,16 @@ msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Vorhandenen Speicherstand überschreiben?"
 
 #: ../src/saving/NewSaveMenu.tscn:121
-#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr "Kann nicht verschlingen"
+msgstr "Kann nicht speichern"
 
 #: ../src/saving/NewSaveMenu.tscn:125
-#, fuzzy
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "Auto-evo fehlgeschlagen"
+msgstr "Der Versuch zu speichern ist missglückt. Möglicherweise ist der Speichername zu lang oder du hast keinen Zugang zum Speicherordner."
 
 #: ../src/saving/SaveHelper.cs:444 ../src/saving/SaveHelper.cs:488
-#, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr ""
-"Die Aktualisierung der angegebenen Sicherung ist aufgrund des folgenden Fehlers fehlgeschlagen:\n"
-"{0}"
+msgstr "Speichern fehlgeschlagen. Ein Fehler ist aufgetreten."
 
 #: ../src/saving/SaveHelper.cs:453 ../src/saving/SaveHelper.cs:469
 msgid "SAVING_NOT_POSSIBLE"
@@ -4098,12 +4081,11 @@ msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Es ist bekannt, dass der ausgewählte Speicherstand mit dieser Version von Thrive inkompatibel ist.\n"
 "Es gibt keinen Spielstand-Konverter um diesen Speicherstand zu aktualisieren.\n"
-"Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die Kompatibilität von Saves keine hohe Priorität, da es nicht für alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
+"Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die Kompatibilität von Speicherständen keine hohe Priorität, weil es nicht für alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
 
 #: ../src/saving/SaveList.tscn:114
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
-msgstr "Ausgewählter Speicherstand ist upgradebar"
+msgstr "Der ausgewählte Speicherstand ist aktualisierbar"
 
 #: ../src/saving/SaveList.tscn:115
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
@@ -4288,9 +4270,8 @@ msgstr "Unbekannter Steam-Fehler ist aufgetreten"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
-#, fuzzy
 msgid "TUTORIAL"
-msgstr "Tutorial"
+msgstr "Anleitung"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
@@ -4335,52 +4316,46 @@ msgstr ""
 "Klicke auf die Rückgängig-Schaltfläche, um fortzufahren."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Achte bei der Auswahl der hinzuzufügenden Organellen auf die Tooltipps der Organellen, welche Prozesse sie ausführen und welche Substanzen sie verwenden und herstellen.\n"
+"Achte bei der Auswahl der hinzuzufügenden Organellen auf die Tooltipps der Organellen, um zu sehen was diese machen. Organellen können mehr Nachteile als Vorteile bringen, wenn man sich deren Funktionen nicht bewusst ist.\n"
 "\n"
-"Achte auch auf den ATP-Balance-Balken oben rechts, um sicherzustellen, dass deine Zelle überleben kann.\n"
-"\n"
-"Du kannst die Organellen mit A und D (Standardtasten) drehen, bevor du sie platzierst.\n"
+"Achte auch auf den ATP-Balance-Balken oben rechts, um sicherzustellen, dass deine Zelle überleben kann. Wenn die obere Anzeige kürzer als die untere ist produziert deine Zelle nicht genügend Energie.\n"
 "\n"
 "Drücke die Wiederherstellen-Taste (in der Nähe der Rückgängig-Taste), um fortzufahren."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Das sind die Grundlagen der Bearbeitung deiner Art. In den anderen Registerkarten des Zelleneditors findest du noch mehr Optionen.\n"
+"Das sind die Grundlagen der Bearbeitung deiner Spezies. In den anderen Registerkarten des Zelleneditors findest du noch mehr Optionen.\n"
 "\n"
-"Du können deine Spezies umbenennen, indem du auf den aktuellen Artnamen klickst und den Text bearbeiten.\n"
+"Sieh dir auch die anderen Felder unter der MP Zeile an, um zu sehen wie du deine Zelle Anpassen kannst.\n"
 "\n"
-"Zu Beginn solltest du deine Zelle klein halten und auf die Oberflächengebiete zugehen.\n"
+"Um in dieser Lebensfeindlichen Welt zu überleben musst du eine Nachhaltige Energiequelle finden, da Natürliche Glucose stark abnehmen wird.\n"
 "\n"
-"Viel Erfolg!"
+"Viel Glück!"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
 msgid "GOT_IT"
 msgstr "Verstanden"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Dieses Feld zeigt eine Vorhersage deiner zukünftigen Bevölkerung. Diese Zahlen stammen aus der Bevölkerungssimulation von Auto-Evo.\n"
 "\n"
 "Diese berücksichtigen nicht deine aktuelle Leistung. In deinem aktuellen Gebiet wirst du also besser abschneiden, wenn du den Editor betrittst.\n"
 "\n"
-"Du solltest aber versuchen, deine Population hoch zu halten, auch wenn du nicht direkt beteiligt bist.\n"
+"Du solltest aber versuchen, deine Gesamtbevölkerung hoch zu halten, auch wenn du nicht direkt beteiligt bist.\n"
 "\n"
-"Du kannst dir detailliertere Informationen zur Vorhersage ansehen, indem du auf das Fragezeichen in dem Panel klickst. Klicken zum fortfahren."
+"Du kannst dir detailliertere Informationen zur Vorhersage ansehen, indem du auf das Fragezeichen in dem Feld klickst. Drücke es um fortzufahren."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"Du solltest dich auf ein oder zwei Energiequellen fokussieren, damit du nicht alle Resourcen benötigst um genügend ATP zum überleben zu erzeugen.\n"
+"Du solltest dich auf ein oder zwei Energiequellen fokussieren, damit du nicht zu viele Stoffe benötigst um genügend ATP zum überleben zu erzeugen.\n"
 "\n"
-"Außerdem solltest du auch überlegen, ob du wirklich eine neue Organelle hinzufügen solltest. Manchmal ist keine Änderung, auch eine gute Änderung, da jede Organelle die Kosten an ATP zum Überleben und die Kosten der Zellteilung erhöht.\n"
+"Außerdem solltest du auch überlegen, ob du wirklich eine neue Organelle hinzufügen solltest. Manchmal ist keine Änderung, auch eine gute Idee, da jede Organelle die Kosten an ATP zum Überleben und die Kosten der Zellteilung erhöht.\n"
 "\n"
 "Eine mögliche Strategie ist es, ein einzelnes Hexagon an Cytoplasma zu bleiben um zu den Gebieten an der Oberfläche zu wandern, bevor du Organellen mit Photosynthese hinzufügst."
 
@@ -4396,9 +4371,8 @@ msgstr ""
 "Um in dieser lebensfeindlichen Welt zu überleben, musst du jegliche Substanzen sammeln, die du finden kannst, und dich über Generationen hinweg weiterentwickeln, um gegen die anderen Arten von Mikroben zu bestehen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
-#, fuzzy
 msgid "SHOW_TUTORIALS"
-msgstr "Tutorials anzeigen"
+msgstr "Einführung anzeigen"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
@@ -4414,8 +4388,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
-"Sammel Glukose (weiße Wolken), indem du dich über sie bewegst.\n"
+"Sammle Glukose (weiße Wolken), indem du dich über sie bewegst.\n"
+"\n"
 "Deine Zelle braucht Glukose, um Energie zu produzieren und am Leben zu bleiben.\n"
+"\n"
 "Folge der Linie von deiner Zelle bis zur einer nahe gelegenen Glukosewolke."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
@@ -4427,42 +4403,37 @@ msgstr ""
 "Achten darauf, dass du genügend Glukose sammelst, um ATP zu produzieren."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Um sich zu vermehren, müssen Sie alle deiner Organellen duplizieren, indem Sie genügend Ammoniak und Phosphat sammeln.\n"
-"Schauen Sie auf den Indikator unten rechts, um zu sehen, wie viel mehr Sie benötigen."
+"Schauen Sie auf die Indikatoren unten rechts, um zu sehen, wie viel mehr Sie benötigen. Diese Indikatoren werden weiß, wenn sie gefüllt sind."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Du hast genügend Ressourcen gesammelt, damit sich deine Zelle teilen kann.\n"
 "\n"
-"Du können nun deine Spezies bearbeiten.\n"
+"Jedes mal wenn du dich vermehrst, wirst du in den Editor gebracht.\n"
 "\n"
 "Um den Editor zu öffnen, drücke auf die blinkende Schaltfläche unten rechts."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Du hast den Modus \"Bindung aufheben\" aufgerufen. In diesem Modus kannst du auf die Mitglieder der Kolonie klicken, um sie zu entbinden.\n"
+"Du hast den \"Bindung aufheben\"-Modus aufgerufen. In diesem Modus kannst du auf die Mitglieder deiner Kolonie klicken, um deren Verbindung zu lösen.\n"
 "\n"
-"Um die Kolonie ganz zu verlassen, können Sie auf Ihre eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
+"Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"Solltest du Probleme mit den Spielmechaniken haben, kannst du jederzeit das Hilfemenü aufrufen. Dieses findest du, indem du auf das Fragezeichen in der unteren, linken Ecke klickst.\n"
+"Solltest du Probleme mit den Spielmechaniken haben, kannst du jederzeit das Hilfemenü aufrufen. Dieses findest du, indem du auf das Fragezeichen in der unteren linken Ecke klickst.\n"
 "\n"
-"Ein weiterer Tipp: Du kannst mit dem Mausraus herauszoomen."
+"Ein weiterer Tipp: Du kannst mit dem Mausrad herein- und herauszoomen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Tutorial"
+msgstr "Tutorial ansehen"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Lade..."

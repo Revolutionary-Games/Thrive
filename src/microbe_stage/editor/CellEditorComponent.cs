@@ -734,6 +734,10 @@ public partial class CellEditorComponent :
 
     public void UpdatePatchDependentBalanceData()
     {
+        // Skip if not opened in the multicellular editor
+        if (IsMulticellularEditor && editedMicrobeOrganelles.Organelles.Count < 1)
+            return;
+
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, Editor.CurrentPatch);

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-07 09:16+0300\n"
+"POT-Creation-Date: 2022-04-07 17:13+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -299,7 +299,7 @@ msgstr "Elnyelés be/ki"
 
 #: ../simulation_parameters/common/input_options.json:46
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr ""
+msgstr "Tartsd lenyomva a csoport parancsok menü megjelenítéséhez"
 
 #: ../simulation_parameters/common/input_options.json:50
 #: ../src/microbe_stage/MicrobeStage.tscn:2150
@@ -837,15 +837,15 @@ msgstr "{0}-ról/-ről vált le"
 
 #: ../src/auto-evo/RunResults.cs:600
 msgid "RUN_RESULT_NICHE_FILL"
-msgstr ""
+msgstr "megjelent, hogy betöltsön egy ökológiai niche-t"
 
 #: ../src/auto-evo/RunResults.cs:603
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
-msgstr ""
+msgstr "különböző kiválasztódási nyomások miatt megjelent"
 
 #: ../src/auto-evo/RunResults.cs:620
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr ""
+msgstr "néhány patch-ben populáció vált le, hogy új fajt alakítson {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
 msgid "SPECIES_HAS_A_MUTATION"
@@ -901,11 +901,11 @@ msgstr "[u]{0}[/u] populációjának egy része ide vándorolt: {1}"
 
 #: ../src/auto-evo/RunResults.cs:938
 msgid "TIMELINE_NICHE_FILL"
-msgstr ""
+msgstr "[u]{0}[/u] egy új fajként vált le [u]{1}[/u]-tól/től, hogy betöltsön egy ökológiai niche-t"
 
 #: ../src/auto-evo/RunResults.cs:944
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr ""
+msgstr "kölönböző kiválasztódási nyomások miatt, [u]{0}[/u] egy új fajként vált le [u]{1}[/u]-tól/től"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "NOT_FOUND_CHUNK"
@@ -921,11 +921,11 @@ msgstr "{0} fogyasztás"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:38
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "{0} egyenletesen elterjedt környezeti táplálékforrása"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
 msgid "PREDATION_FOOD_SOURCE"
-msgstr ""
+msgstr "{0} ragadozása"
 
 #: ../src/early_multicellular_stage/CellType.cs:38
 #, fuzzy
@@ -1060,6 +1060,8 @@ msgstr "Nyomj le egy gombot..."
 #: ../src/engine/input/key_mapping/InputGroupList.cs:129
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"Összeütközés van ezzel: {0}\n"
+"Szeretnéd eltávolítani a bemenetet innen: {1} ?"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
 msgid "KEY_FORWARD"
@@ -1251,11 +1253,11 @@ msgstr "Basszus csökkentése"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "TREBLEUP"
-msgstr ""
+msgstr "Magas hangok növelése"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
 msgid "TREBLEDOWN"
-msgstr ""
+msgstr "Magas hangok csökkentése"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
@@ -1497,13 +1499,13 @@ msgstr "Bezár"
 #: ../src/microbe_stage/MicrobeHUD.cs:722
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:393
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "{0} töménysége ennyivel csökkent: {1}"
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
@@ -1518,7 +1520,7 @@ msgid "NEW_GAME"
 msgstr "Új játék"
 
 #: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Játék betöltése"
 
@@ -1553,7 +1555,7 @@ msgstr "Sejtszerkesztő"
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1953,7 +1955,7 @@ msgid "HELP"
 msgstr "Segítség"
 
 #: ../src/general/PauseMenu.tscn:105
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Vissza a menübe"
 
@@ -2024,11 +2026,11 @@ msgstr "A hanggal foglalkozó csapat vezetői"
 
 #: ../src/gui_common/CreditsScroll.cs:253
 msgid "LEAD_OUTREACH_PERSON"
-msgstr ""
+msgstr "Vezető Megkereső"
 
 #: ../src/gui_common/CreditsScroll.cs:254
 msgid "LEAD_OUTREACH_PEOPLE"
-msgstr ""
+msgstr "Fő Megkeresők"
 
 #: ../src/gui_common/CreditsScroll.cs:259
 msgid "LEAD_GAME_DESIGNER"
@@ -2118,7 +2120,7 @@ msgstr "Hangokkal foglalkozó csapat"
 
 #: ../src/gui_common/CreditsScroll.cs:497
 msgid "OUTREACH_TEAM"
-msgstr ""
+msgstr "Megkereső Csapat"
 
 #: ../src/gui_common/CreditsScroll.cs:498
 msgid "GAME_DESIGN_TEAM"
@@ -2130,7 +2132,7 @@ msgstr "Tesztelő csapat"
 
 #: ../src/gui_common/CreditsScroll.cs:500
 msgid "PROJECT_MANAGEMENT_TEAM"
-msgstr ""
+msgstr "Projekt Menedzsment Csapat"
 
 #: ../src/gui_common/CreditsScroll.cs:501
 msgid "PULL_REQUESTS_PROGRAMMING"
@@ -2282,7 +2284,7 @@ msgid "RAW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1928
 msgid "NO_DATA_TO_SHOW"
 msgstr "Nincs adat"
 
@@ -3091,37 +3093,37 @@ msgstr "Alap mozgás"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:489
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1755
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1764
 msgid "FAILED"
 msgstr "Hiba"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1761
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1773
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1767
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1779
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1887
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1891
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1900
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1898
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1907
 msgid "ENERGY_SOURCES"
 msgstr "Energia forrásai:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1904
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3407,15 +3409,15 @@ msgstr "Mozgás"
 msgid "MODIFY"
 msgstr "Módosít"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:384
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:383
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:389
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m-el a tenger alatt"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:428
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "A fajok populációi"
@@ -3448,19 +3450,19 @@ msgstr "Vonal színe:"
 msgid "MODIFY_ORGANELLE"
 msgstr "Sejtalkotó szerkesztése"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
 msgstr "KIHALTÁL"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Mint azon fajok 99%-a, melyek egykor léteztek, kihaltak, mint a te fajod. Pár faj ki fogja tölteni az ürességet, amit fajod veszte okozott, és túl fognak élni, de az nem te leszel. A fajod az evolúció egyik hibás kísérleteként lesz mostantól számontartva, és a feledésbe fog merülni."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:56
+#: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
 msgstr "TÚLÉLTÉL!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:65
+#: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr "Gratulálok, a Thrive ezen verzióját végigvitted! Ha akarsz, még játszhatsz tovább, miután ez az ablak bezárul, vagy egy új játékot is kezdhetsz."
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-07 09:16+0300\n"
+"POT-Creation-Date: 2022-04-07 17:13+0300\n"
 "PO-Revision-Date: 2022-03-21 04:28+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -137,7 +137,9 @@ msgstr ""
 "\n"
 "Koful: Toplanan 8 bileşiği depolar\n"
 "\n"
-"Toksin Kofulları: Toksinler üretir ([thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] diye adlandırılır) ve mevcut oksitoksi miktarına bağlı olarak zarar veren bu toksinleri salmana izin verir"
+"Toksin Kofulları: Toksinler üretir ([thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] diye adlandırılır) ve mevcut oksitoksi miktarına bağlı olarak zarar veren bu toksinleri salmana izin verir\n"
+"\n"
+"Sinyal Verici Ajan: Belli hücrenin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -1498,7 +1500,7 @@ msgstr "Kapat"
 #: ../src/microbe_stage/MicrobeHUD.cs:722
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:393
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
 msgid "PERCENTAGE_VALUE"
 msgstr "%{0}"
 
@@ -1519,7 +1521,7 @@ msgid "NEW_GAME"
 msgstr "Yeni Oyun"
 
 #: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Oyun Yükle"
 
@@ -1554,7 +1556,7 @@ msgstr "Mikrop Editörü Serbest Modu"
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1952,7 +1954,7 @@ msgid "HELP"
 msgstr "Yardım"
 
 #: ../src/general/PauseMenu.tscn:105
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Menüye Dön"
 
@@ -2286,7 +2288,7 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1928
 msgid "NO_DATA_TO_SHOW"
 msgstr "Gösterilecek Veri Yok"
 
@@ -2672,7 +2674,7 @@ msgstr "Türünün diğer üyelerine komut vermede kullanılan menüyü açmak i
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2085
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "Sinyal verici ajanlar; hücrelerin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar. Sinyal veren kimyasallar, diğer hücrelerin dikkatini çekmek ya da onları tehlikeye karşı uyararak kaçırmak için kullanılabilir."
+msgstr "Sinyal verici ajanlar; belli hücrenin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar. Sinyal veren kimyasallar, diğer hücrelerin dikkatini çekmek ya da onları tehlikeye karşı uyararak kaçırmak için kullanılabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2211
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -3018,9 +3020,8 @@ msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonik Deniz Tabanı"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:203
-#, fuzzy
 msgid "PATCH_NAME"
-msgstr "Mağara"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3095,37 +3096,37 @@ msgstr "Ana Hareket"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:489
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1755
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1764
 msgid "FAILED"
 msgstr "Başarısız"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1761
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1773
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1767
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1779
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
 msgid "N_A"
 msgstr "Bilinmeyen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1887
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1} için {0} arazisinde bulunan enerji"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1891
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1900
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Birey başına {1} maliyet ile kazanılan toplam enerji {0} ve dengelenmemiş {2} popülasyonla sonuçlanıyor"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1898
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1907
 msgid "ENERGY_SOURCES"
 msgstr "Enerji Kaynakları:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1904
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} ile açığa çıkan enerji: {1} (uyum başarısı: {2}) mevcut toplam enerji: {3} (toplam uyum başarısı: {4})"
 
@@ -3407,15 +3408,15 @@ msgstr "Taşı"
 msgid "MODIFY"
 msgstr "Değişiklik Yap"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:384
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:383
 msgid "BIOME_LABEL"
 msgstr "Biyom: {0}"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:389
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
 msgid "BELOW_SEA_LEVEL"
 msgstr "Deniz seviyesinin {0}-{1}m altı"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:428
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} türü {1} popülasyonla"
 
@@ -3447,19 +3448,19 @@ msgstr "Çizgi Rengi:"
 msgid "MODIFY_ORGANELLE"
 msgstr "Organelde Değişiklik Yap"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
 msgstr "SOYUN TÜKENDİ"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Varolmuş bütün türlerin %99'u gibi senin türünün de nesli tükendi. Diğerleri senin alanını doldurmaya ve gelişmeye devam edecek ama bu sen olmayacaksın. Evrimde başarısız bir deney olarak kalacaksın."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:56
+#: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
 msgstr "BAŞARDIN!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:65
+#: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr "Tebrikler, Thrive'ın bu sürümünü kazanmayı başardın! İstersen, bu bildiri gittikten sonra da oynamaya devam edebilirsin veya yeni bir konumda, yeni bir oyun başlatabilirsin."
 
@@ -3984,14 +3985,12 @@ msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Mevcut kaydın üzerine yazılsın mı?"
 
 #: ../src/saving/NewSaveMenu.tscn:121
-#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr "Yutamaz"
+msgstr "Kayıt Yazılamadı"
 
 #: ../src/saving/NewSaveMenu.tscn:125
-#, fuzzy
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "Oto-evrim çalıştırılamadı"
+msgstr "Kayıt dosyası yazma girişimi başarısız oldu. Girilen kayıt ismi fazla uzun ya da kayıt klasörüne yazma erişimin yok."
 
 #: ../src/saving/SaveHelper.cs:444 ../src/saving/SaveHelper.cs:488
 msgid "SAVING_FAILED_WITH_EXCEPTION"

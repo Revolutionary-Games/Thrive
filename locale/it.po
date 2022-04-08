@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-07 09:16+0300\n"
+"POT-Creation-Date: 2022-04-07 17:13+0300\n"
 "PO-Revision-Date: 2022-03-24 15:08+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -1498,7 +1498,7 @@ msgstr "Chiudi"
 #: ../src/microbe_stage/MicrobeHUD.cs:722
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:393
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1519,7 +1519,7 @@ msgid "NEW_GAME"
 msgstr "Nuova partita"
 
 #: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Carica partita"
 
@@ -1554,7 +1554,7 @@ msgstr "Editor Microbico Libero"
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1952,7 +1952,7 @@ msgid "HELP"
 msgstr "Aiuto"
 
 #: ../src/general/PauseMenu.tscn:105
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Ritorna al menù"
 
@@ -2286,7 +2286,7 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1928
 msgid "NO_DATA_TO_SHOW"
 msgstr "Nessun dato da mostrare"
 
@@ -3095,37 +3095,37 @@ msgstr "Movimento di Base"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:489
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1755
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1764
 msgid "FAILED"
 msgstr "Errore"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1761
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1773
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1767
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1779
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1887
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia in {0} per {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1891
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1900
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "L'energia totale accumulata è {0}, con un costo individuale di {1}, risultante in una popolazione (non calibrata) di {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1898
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1907
 msgid "ENERGY_SOURCES"
 msgstr "Fonti di energia:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1904
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} -> energia: {1} (idoneità: {2}) energia totale disponibile: {3} (idoneità totale: {4})"
 
@@ -3407,15 +3407,15 @@ msgstr "Sposta"
 msgid "MODIFY"
 msgstr "Modifica"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:384
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:383
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:389
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sotto il livello del mare"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:428
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} con popolazione: {1}"
 
@@ -3447,19 +3447,19 @@ msgstr "Colore linea:"
 msgid "MODIFY_ORGANELLE"
 msgstr "Modifica organulo"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
 msgstr "ESTINZIONE"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Proprio come il 99% delle specie mai esistite, la tua si è estinta. Altri andranno a occupare nicchie e prosperare, ma non tu. Sarai dimenticato. Sei un esperimento fallito dell'evoluzione."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:56
+#: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
 msgstr "HAI PROSPERATO!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:65
+#: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr "Congratulazioni! Hai vinto questa versione di Thrive! Se vuoi, puoi continuare a giocare dopo la chiusura di questo messaggio, oppure avviare una nuova partita in un nuovo mondo."
 
@@ -3984,14 +3984,12 @@ msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Sovrascrivere il salvataggio esistente?"
 
 #: ../src/saving/NewSaveMenu.tscn:121
-#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr "Impedisce la fagocitazione"
+msgstr "Scrittura del salvataggio fallita"
 
 #: ../src/saving/NewSaveMenu.tscn:125
-#, fuzzy
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "Esecuzione dell'Auto-evo non riuscita"
+msgstr "Il tentativo di scrittura di questo file di salvataggio è fallito. È possibile che il nome sia troppo lungo, oppure che non hai l'autorizzazione alla scrittura nella cartella di salvataggio."
 
 #: ../src/saving/SaveHelper.cs:444 ../src/saving/SaveHelper.cs:488
 msgid "SAVING_FAILED_WITH_EXCEPTION"
@@ -4346,7 +4344,6 @@ msgid "GOT_IT"
 msgstr "Ho capito"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Questo pannello mostra una previsione sulla tua popolazione futura. Questi numeri arrivano dalla simulazione di popolazione dell'auto-evo.\n"
@@ -4358,14 +4355,13 @@ msgstr ""
 "Puoi vedere informazioni più dettagliate premendo il punto di domanda all'interno del pannello. Premilo per continuare."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Dovresti concentrarti su una o due fonti di energia; così, non avrai bisogno di raccogliere troppe risorse diverse per produrre abbastanza ATP e sopravvivere.\n"
 "\n"
 "Inoltre, prima di aggiungere un organulo, considera attentamente se serve veramente. Spesso non apporre modifiche è una buona scelta: ciascuna parte richiede ATP e comporta un costo maggiore al momento della tua divisione cellulare.\n"
 "\n"
-"Ecco una strategia possibile: finché non raggiungi le zone di superficie, potresti rimanere un singolo esagono di citoplasma; una volta lì, potresti investire in organuli fotosintetici."
+"Ecco una strategia possibile: finché non raggiungi le zone di superficie, rimani un singolo esagono di citoplasma; una volta lì, investi in organuli fotosintetici."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
@@ -4411,14 +4407,12 @@ msgstr ""
 "Assicurati di raccogliere abbastanza glucosio per produrre ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Per riprodurti, devi duplicare tutti i tuoi organuli. Per farlo, devi raccogliere abbastanza ammoniaca e fosfati.\n"
-"Guarda l'indicatore in basso per vedere di quanto ancora ne hai bisogno."
+"Guarda le barre attorno al pulsante in basso a destra per capire di quanto ancora ne hai bisogno. Diventano bianche quando sono piene."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Hai raccolto abbastanza risorse perché la tua cellula si riproduca.\n"
@@ -4428,7 +4422,6 @@ msgstr ""
 "Per accedere all'editor, premi il pulsante lampeggiante in basso a destra."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Sei in modalità di slegatura: clicca sui membri della tua colonia per separartene.\n"
