@@ -611,6 +611,12 @@ public partial class CellBodyPlanEditorComponent :
     private bool AddCell(HexWithData<CellTemplate> cell)
     {
         // TODO: editor actions
+        if (Editor.MutationPoints <= 0)
+        {
+            Editor.OnInsufficientMP();
+            return false;
+        }
+
         Editor.ChangeMutationPoints(-cell.Data!.CellType.MPCost);
         editedMicrobeCells.Add(cell);
 
