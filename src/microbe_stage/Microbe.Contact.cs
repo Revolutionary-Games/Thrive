@@ -755,6 +755,7 @@ public partial class Microbe
                 if (bindingAudio.Volume <= 0)
                     bindingAudio.Stop();
             }
+
             return;
         }
 
@@ -770,7 +771,6 @@ public partial class Microbe
             bindingAudio.Play();
 
         // To balance loudness, here the binding audio's max volume is reduced to 0.6 in linear volume
-
         if (bindingAudio.Volume < 0.6f)
         {
             bindingAudio.Volume += delta;
