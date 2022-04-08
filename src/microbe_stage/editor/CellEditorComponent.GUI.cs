@@ -24,6 +24,13 @@ public partial class CellEditorComponent
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
     }
 
+    public void SendRedoToTutorial(TutorialState tutorial)
+    {
+        tutorial.EditorRedoTutorial.EditorRedoButtonControl = componentBottomLeftButtons.RedoButton;
+
+        tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
+    }
+
     public override void OnActionBlockedWhileAnotherIsInProgress()
     {
         throw new NotImplementedException();

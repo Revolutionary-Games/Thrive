@@ -160,6 +160,8 @@ public class MicrobeEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditor
 
         // Send undo button to the tutorial system
         cellEditorTab.SendUndoToTutorial(TutorialState);
+
+        cellEditorTab.SendRedoToTutorial(TutorialState);
     }
 
     protected override IEnumerable<IEditorComponent> GetAllEditorComponents()
