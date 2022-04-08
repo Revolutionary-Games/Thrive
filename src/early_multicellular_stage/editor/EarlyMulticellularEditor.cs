@@ -66,8 +66,7 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
     [JsonIgnore]
     public ICellProperties? EditedCellProperties => selectedCellTypeToEdit;
 
-    // TODO: add multicellular music tracks
-    protected override string MusicCategory => "MicrobeEditor";
+    protected override string MusicCategory => "EarlyMulticellularEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
     protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MICROBE_EDITOR");
@@ -262,7 +261,7 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
 
                 // TODO: fix the arrow positioning when switching tabs (it fixes itself only when placing something)
                 // This line (and also in CellTypeEditor) doesn't help:
-                bodyPlanEditorTab.UpdateArrow(false);
+                bodyPlanEditorTab.UpdateArrow();
                 bodyPlanEditorTab.UpdateCamera();
 
                 // If we have an edited cell type, then we can apply those changes when we go back to the main editor
@@ -285,10 +284,9 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
                 {
                     cellEditorTab.Show();
                     SetEditorObjectVisibility(true);
-                    cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
                     bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
+                    cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
 
-                    cellEditorTab.UpdateArrow(false);
                     cellEditorTab.UpdateCamera();
                 }
 

@@ -808,23 +808,7 @@
             {
                 foreach (var species in patch.SpeciesInPatch.Keys)
                 {
-                    // TODO: handle species turning multicellular properly here
-                    long globalPopulation;
-
-                    try
-                    {
-                        globalPopulation = GetGlobalPopulation(species, true, true);
-                    }
-                    catch (ArgumentException)
-                    {
-                        if (species is EarlyMulticellularSpecies)
-                        {
-                            GD.Print("Ignore problem logging early multicellular species to timeline");
-                            continue;
-                        }
-
-                        throw;
-                    }
+                    long globalPopulation = GetGlobalPopulation(species, true, true);
 
                     var previousGlobalPopulation = world.Map.GetSpeciesGlobalPopulation(species);
 

@@ -160,7 +160,7 @@ public partial class Microbe
 
         foreach (var entry in organelles.Organelles)
         {
-            entry.Colour = Species.Colour;
+            entry.Colour = CellTypeProperties.Colour;
             entry.Update(0);
         }
     }
@@ -265,19 +265,19 @@ public partial class Microbe
     ///   Triggers reproduction on this cell (even if not ready)
     /// </summary>
     /// <exception cref="NotSupportedException">Thrown when this microbe is in a colony</exception>
-    public void Divide()
+    public Microbe Divide()
     {
         if (Colony != null)
             throw new NotSupportedException("Cannot divide a microbe while in a colony");
 
-        ForceDivide();
+        return ForceDivide();
     }
 
     /// <summary>
     ///   Triggers reproduction on this cell (even if not ready)
     ///   Ignores security checks. If you want those checks, use <see cref="Divide"/>
     /// </summary>
-    public void ForceDivide()
+    public Microbe ForceDivide()
     {
         // Separate the two cells.
         // TODO: separation needs to be increased for multicellular
@@ -346,6 +346,8 @@ public partial class Microbe
 
         // Play the split sound
         PlaySoundEffect("res://assets/sounds/soundeffects/reproduction.ogg");
+
+        return copyEntity;
     }
 
     /// <summary>

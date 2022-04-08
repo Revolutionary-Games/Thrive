@@ -215,7 +215,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         ParentMicrobe = microbe;
 
         // Grab the species colour for us
-        Colour = microbe.Species.Colour;
+        Colour = microbe.CellTypeProperties.Colour;
 
         ParentMicrobe.OrganelleParent.AddChild(this);
 
