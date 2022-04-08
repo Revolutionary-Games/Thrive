@@ -23,7 +23,6 @@
 
             gui.CellEditorRedoVisible = ShownCurrently;
             gui.CellEditorRedoHighlight.Visible = ShownCurrently;
-
         }
 
         public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
