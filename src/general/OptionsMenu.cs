@@ -426,8 +426,7 @@ public class OptionsMenu : ControlWithInput
         assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options");
         unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options");
 
-        // Makes it so that when the viewport changes size it automatically displays
-        GetViewport().Connect("size_changed", this, "DisplayResolution");
+
     }
 
     public override void _Notification(int what)
@@ -436,6 +435,11 @@ public class OptionsMenu : ControlWithInput
         {
             BuildInputRebindControls();
             UpdateDefaultAudioOutputDeviceText();
+            DisplayResolution();
+        }
+        else if (what == NotificationResized)
+        {
+            DisplayResolution();
         }
     }
 
@@ -614,10 +618,9 @@ public class OptionsMenu : ControlWithInput
     {
         if (resolution != null)
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture =
-                System.Globalization.CultureInfo.CreateSpecificCulture("en-UK");
-            resolution.Text = "AUTO" + "(" + GetViewportRect().Size.x.ToString()
-                + "x" + GetViewportRect().Size.y.ToString() + ")";
+            var autoResolution = new LocalizedString("AUTO_RESOLUTION",
+                GetViewportRect().Size.x.ToString(),
+                GetViewportRect().Size.y.ToString());
         }
     }
 
