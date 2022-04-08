@@ -614,8 +614,8 @@ public class OptionsMenu : ControlWithInput
     {
         if (resolution != null)
         {
-            resolution.Text = "AUTO" + "(" + GetViewportRect().Size.x.ToString()
-                + "x" + GetViewportRect().Size.y.ToString() + ")";
+            resolution.Text = "AUTO" + "(" + (string)GetViewportRect().Size.x.ToString()
+                + "x" + (string)GetViewportRect().Size.y.ToString() + ")";
         }
     }
 
