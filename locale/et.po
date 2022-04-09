@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-07 17:13+0300\n"
-"PO-Revision-Date: 2021-03-31 14:40+0000\n"
-"Last-Translator: Thor Andreas Laan <thor.a.laan@gmail.com>\n"
+"PO-Revision-Date: 2022-04-07 21:08+0000\n"
+"Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4\n"
+"X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -27,7 +27,7 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Su rakk kasutab ATP-d energiaallikana, kui see saab otsa, siis su rakk sureb."
+msgstr "Teie rakk kasutab energiaallikana [thrive: ühendi tüüp = \"atp\"] [/ thrive: ühend], kui see saab otsa, surete."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
@@ -930,7 +930,7 @@ msgstr "{0} rööv"
 
 #: ../src/early_multicellular_stage/CellType.cs:38
 msgid "STEM_CELL_NAME"
-msgstr ""
+msgstr "tüvirakk"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
@@ -938,9 +938,8 @@ msgid "STRUCTURE"
 msgstr "Struktuur"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
-#, fuzzy
 msgid "REPRODUCTION"
-msgstr "Toodab"
+msgstr "Paljundamine"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
@@ -949,11 +948,11 @@ msgstr "Käitumine"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
 msgid "CELLS"
-msgstr ""
+msgstr "Rakud"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 msgid "MODIFY_TYPE"
-msgstr ""
+msgstr "Muuda tüüp"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:414
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
@@ -962,16 +961,16 @@ msgstr "Kustuta"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:421
 msgid "DUPLICATE_TYPE"
-msgstr ""
+msgstr "Duplikaadi tüüp"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:463
 msgid "REPRODUCTION_METHOD"
-msgstr ""
+msgstr "Paljundamine:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:476
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 msgid "REPRODUCTION_BUDDING"
-msgstr ""
+msgstr "lootustandev"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
@@ -987,36 +986,37 @@ msgstr "JÄRGMINE"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
 msgid "DISCONNECTED_CELLS"
-msgstr ""
+msgstr "Lahtiühendatud rakud"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
+"Seal on paigutatud rakud, mis ei ole ülejäänud osadega ühendatud.\n"
+"Jätkamiseks ühendage kõik paigutatud lahtrid üksteisega."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "Kasutatud lahtritüüpi ei saa kustutada"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "Praegu teie kehaplaanis kasutatavat rakutüüpi ei saa kustutada"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr ""
+msgstr "Looge uus lahtritüüp"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "Jäigem membraan teeb su raku vastupidavamaks vigastustele, aga raskendab liikumist."
+msgstr "Saate luua uusi lahtritüüpe, dubleerides olemasolevad ja andes neile uue nime. Lahtritüüpe saab muuta, et spetsialiseeruda erinevatele rollidele. Lahtritüübi muutmisel värskendatakse kõiki seda tüüpi paigutatud lahtreid."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
 msgid "NEW_NAME_COLON"
-msgstr ""
+msgstr "Uus nimi:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:585
 msgid "NEW_NAME"
-msgstr ""
+msgstr "Uus nimi"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:73
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
@@ -1035,7 +1035,7 @@ msgstr "käitamise olek:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "Valige redigeerija vahekaardil lahtri tüüp, mida siin redigeerida"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -2321,11 +2321,17 @@ msgstr "Siin kuvatakse Thrive'i osi hõlmavad litsentsid"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "Kas jätkata prototüüpide lavastamist?"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
+"Olete jõudnud Thrive'i \"täieliku\" osa lõpuni.\n"
+"Soovi korral saate jätkata mänguga kaasas olevate hilisemate prototüüpidega. Need võivad olla väga puudulikud, kasutada kohatäitegraafikat ja olla üldiselt väga karmid. Need on lisatud mängu osana, et näidata mängu potentsiaalset tulevikusuunda ja meie üldist nägemust etappide ühendamisest.\n"
+"\n"
+"Te ei saa salvestada, kui jätkate, ega pärast jätkamist tagasi pöörduda. Kui soovite sellesse etappi naasta, salvestage kohe enne jätkamist.\n"
+"\n"
+"Kui otsustate jätkata, siis mõistke, et hilisemad etapid on prototüübid ja ärge kurtke nende ebatäielikkuse üle."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2345,7 +2351,7 @@ msgstr "Lõpetage toimetamine ja naaske keskkonda"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
 msgid "NEXT_EDITOR_TAB"
-msgstr ""
+msgstr "Minge järgmisele redaktori vahekaardile"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
@@ -2860,12 +2866,12 @@ msgstr "väga vähe"
 #: ../src/microbe_stage/MicrobeHUD.cs:1156
 #: ../src/microbe_stage/MicrobeStage.tscn:1768
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Hakka mitmerakuliseks ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1192
 #: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Muuta makroskoopiliseks ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeStage.cs:691
 msgid "PLAYER_REPRODUCED"
@@ -2954,7 +2960,7 @@ msgstr "vabasurm"
 #: ../src/microbe_stage/MicrobeStage.tscn:1767
 #: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr ""
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1813
 msgid "POPULATION_CAPITAL"
@@ -3083,7 +3089,7 @@ msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Lahtri tüübi nimi"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1764
 msgid "FAILED"
@@ -3368,7 +3374,7 @@ msgstr "Plaastri kaart"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
 msgid "CELL"
-msgstr ""
+msgstr "rakk"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
@@ -3991,6 +3997,9 @@ msgstr "Mängija on välja surnud"
 #: ../src/saving/SaveHelper.cs:470
 msgid "IN_PROTOTYPE"
 msgstr ""
+"Mängite hilisema etapi prototüüpe, mis on mänguga kaasas.\n"
+"Need võivad olla väga puudulikud, kasutada kohatäitegraafikat ja olla üldiselt väga karmid.\n"
+"Kuna selline salvestamine ei ole hetkel võimalik."
 
 #: ../src/saving/SaveHelper.cs:478
 msgid "SAVING_SUCCEEDED"
