@@ -347,6 +347,19 @@ public partial class Microbe
     /// </summary>
     public bool CanEngulf(Microbe target)
     {
+        // Log error if trying to engulf something that is disposed, we got a crash log trace with an error with that
+        // TODO: find out why disposed microbes can be attempted to be engulfed
+        try
+        {
+            // Access a Godot property to throw disposed exception
+            _ = target.GlobalTransform;
+        }
+        catch (ObjectDisposedException)
+        {
+            GD.PrintErr("Touched microbe has been disposed before engulfing could start");
+            return false;
+        }
+
         // Disallow cannibalism
         if (target.Species == Species)
             return false;
