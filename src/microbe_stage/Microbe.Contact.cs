@@ -142,7 +142,19 @@ public partial class Microbe
     [JsonIgnore]
     public MicrobeState State
     {
-        get => Colony?.State ?? state;
+        get
+        {
+            if (Colony == null)
+                return state;
+
+            var colonyState = Colony.State;
+
+            // Override engulf mode in colony cells that can't engulf
+            if (colonyState == MicrobeState.Engulf && Membrane.Type.CellWall)
+                return MicrobeState.Normal;
+
+            return colonyState;
+        }
         set
         {
             if (state == value)
@@ -151,6 +163,10 @@ public partial class Microbe
             // Engulfing is not legal for microbes will cell walls
             if (value == MicrobeState.Engulf && Membrane.Type.CellWall)
             {
+                // Don't warn when in a multicellular colony as the other cells there can enter engulf mode
+                if (ColonyParent != null && IsMulticellular)
+                    return;
+
                 GD.PrintErr("Illegal Action: microbe attempting to engulf with a membrane that does not allow it!");
                 return;
             }
