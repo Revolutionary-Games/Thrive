@@ -17,15 +17,9 @@ public partial class CellEditorComponent
 {
     private Texture questionIcon = null!;
 
-    public void SendUndoToTutorial(TutorialState tutorial)
+    public void SendUndoRedoToTutorial(TutorialState tutorial)
     {
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = componentBottomLeftButtons.UndoButton;
-
-        tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
-    }
-
-    public void SendRedoToTutorial(TutorialState tutorial)
-    {
         tutorial.EditorRedoTutorial.EditorRedoButtonControl = componentBottomLeftButtons.RedoButton;
 
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;

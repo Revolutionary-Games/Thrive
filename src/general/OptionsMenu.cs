@@ -618,9 +618,8 @@ public class OptionsMenu : ControlWithInput
     {
         if (resolution != null)
         {
-            var autoResolution = new LocalizedString("AUTO_RESOLUTION",
-                GetViewportRect().Size.x.ToString(),
-                GetViewportRect().Size.y.ToString());
+            var autoResolution = new LocalizedString("AUTO_RESOLUTION", GetViewportRect().Size.x.ToString(), GetViewportRect().Size.y.ToString());
+            resolution.Text = autoResolution.ToString();
         }
     }
 
