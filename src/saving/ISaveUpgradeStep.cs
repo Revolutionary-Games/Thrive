@@ -58,6 +58,7 @@
                 { "0.5.6.1", new UpgradeStep0561To057() },
                 { "0.5.7.0-rc1", new UpgradeJustVersionNumber("0.5.7.0") },
                 { "0.5.7.0", new UpgradeStep057To058() },
+                { "0.5.8.0-alpha", new UpgradeJustVersionNumber("0.5.8.0-rc1") },
             };
         }
     }
@@ -176,12 +177,14 @@
         }
     }
 
-    internal class UpgradeStep057To058 : BaseJSONUpgradeStep
+    internal class UpgradeStep057To058 : BaseRecursiveJSONWalkerStep
     {
         protected override string VersionAfter => "0.5.8.0-alpha";
 
         protected override void PerformUpgradeOnJSON(JObject saveData)
         {
+            base.PerformUpgradeOnJSON(saveData);
+
             // We are just interested in updating the microbe editor properties (if it is present)
             var editor = saveData.GetValue("MicrobeEditor") as JObject;
 
@@ -257,6 +260,25 @@
                 ["actions"] = new JArray(),
                 ["actionIndex"] = 0,
             };
+        }
+
+        protected override void CheckAndUpdateProperty(JProperty property)
+        {
+            if (property.Name is "organelles" or "Organelles" or "editedMicrobeOrganelles" &&
+                property.Value.Type == JTokenType.Object)
+            {
+                var asObject = (JObject)property.Value;
+
+                // Organelle layout has Organelles key which we want to update to the new hex layout
+                if (asObject.TryGetValue("Organelles", out var organelleList))
+                {
+                    if (organelleList.Type != JTokenType.Array)
+                        return;
+
+                    asObject.Remove("Organelles");
+                    asObject["existingHexes"] = organelleList;
+                }
+            }
         }
     }
 
