@@ -2,9 +2,9 @@
 
 [resource]
 code = "shader_type spatial;
-uniform int MAX_STEPS = 1450; 
-uniform float MAX_DIST = 7000;
-uniform float MIN_HIT_DIST = 0.001f; // hit depth threshold
+uniform int MAX_RAY_STEPS = 21;
+uniform int LIGHT_MARCH_STEPS = 0;
+uniform sampler3D cloud;
 
 uniform vec3 bound_min;
 uniform vec3 bound_max;
@@ -13,7 +13,6 @@ uniform vec3 cloudPosition;
 uniform float cloudWidth;
 uniform float cloudHeight;
 uniform float cloudDepth;
-
 
 uniform sampler2D subshapes;
 uniform float maxSubshapeRad;
@@ -24,10 +23,19 @@ uniform float b;
 uniform float c;
 uniform float d;
 uniform float cloudDensMult;
+
+uniform vec3 sunPosition;
+uniform float light_absorbed_towards_sun;
+uniform float darkness_threshold;
+
+uniform vec3 cloudColor;
 void vertex() {
   POSITION = vec4(VERTEX, 1.0);
 }
 
+ float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
 
 vec2 modified_intersectAABB(vec3 rayOrigin, vec3 rayDir, vec3 boxMin, vec3 boxMax) {
 	vec3 tMin = (boxMin - rayOrigin) / rayDir;
@@ -36,10 +44,36 @@ vec2 modified_intersectAABB(vec3 rayOrigin, vec3 rayDir, vec3 boxMin, vec3 boxMa
 	vec3 t2 = max(tMin, tMax);
 	float tNear = max(max(t1.x, t1.y), t1.z);
 	float tFar = min(min(t2.x, t2.y), t2.z);
+	float tr = 0f;
+
+
+	// Smoothing the marching steps at the edges of the box, at least i tried
+	// by containing them in a sphere
+	if(tNear < 0f)
+	{
+		vec3 center = vec3 (0f, 0f, 0f);
+		float radius = 170f;
+		vec3 distVec = (center - rayOrigin);
+		float dott = dot(distVec,rayDir);
+		float dist = length(distVec);
+		float projDist = abs(dott);
+		float dr = sqrt(dist*dist - projDist * projDist);
+		float t = sqrt(radius*radius - dr*dr);
+		if (dott < 0f)
+			tr = t - projDist;
+		else 
+			tr = t + projDist;
+		
+	}
+	
 	float dstToBox = max(0, tNear);
-	float dstInsideBox = max(0, tFar - tNear);
+	float dstInsideBox = max(0, tFar - dstToBox);
+	if(tr != 0f)
+		dstInsideBox =max(tr,dstInsideBox);
 	return vec2(dstToBox, dstInsideBox);
 }
+
+
 
 float signedDistance(vec3 center, float radius, vec3 point)
 {
@@ -69,49 +103,90 @@ float sample_density(vec3 x)
 			localDens += gauss(dist) * dist * cloudDensMult; 
 		}
 	}
-	return localDens;
+	return max(0,localDens-0.01);
 }
+
+float light_march(vec3 pos) {
+	vec3 sun_direction = normalize(sunPosition - pos);
+	vec2 _dst = modified_intersectAABB(pos, sun_direction, bound_min, bound_max);
+	float distance_to_box = _dst.x;
+	float distance_inside_box = _dst.y;
+
+	float distance_travelled = 0.;
+	float step_size = distance_inside_box / float(LIGHT_MARCH_STEPS);
+
+	float total_density = 0.;
+	
+	while(distance_travelled < distance_inside_box) {
+		vec3 ray_pos = pos + sun_direction * distance_travelled;
+		vec3 localPos = ray_pos - cloudPosition;
+		float localDens = sample_density(localPos);
+		if(localDens != 0f)
+			total_density += localDens;
+		else
+			break;
+		distance_travelled += step_size;
+	}
+	float transmittance = exp(- total_density * light_absorbed_towards_sun);
+	return darkness_threshold + transmittance * (1. - darkness_threshold);
+}
+
+
 // TODO implement for multiple cloud/containers
 //vec4 sdf(vec3 point)
 //{
 //
 //}
+// TO DO 
+//      add adaptive sampling
 
 
-
-vec3 raymarch(vec3 rayDir,vec3 cameraPos)
+vec4 raymarch(vec3 rayDir,vec3 cameraPos)
 {
  	float dstToBox = 0f;
 	float dstInsideBox = 0f;
-    float depth = 0.0;
-	float density = 0f;
-	float totalDist =0f;
-	int nrOfSmaples = 19;
-	int stepCount = nrOfSmaples + 1;
+	int stepCount = MAX_RAY_STEPS + 1;
 	float stepSize;
 	vec3 pos;
 	
+	float density = 0f;
+	float lightEnergy = 0f;
 	//Coordonate pentru 2 puncte de intersectie cu raza
     vec2 dist = modified_intersectAABB(cameraPos, rayDir, bound_min, bound_max);
 	dstToBox = dist.x;
 	dstInsideBox = dist.y;
-	stepSize = dstInsideBox / float(stepCount);
-	if(dstInsideBox > 0f ){
+	stepSize = dstInsideBox/ float(stepCount);
+	
+	if(dstInsideBox > 0f){
+		
+		// Add some noise offset to the starting sampling position
+		float noiseBias = 3f;
+		dstToBox += noiseBias * rand(vec2(dstInsideBox,dstToBox)) ;
 		
 		pos = cameraPos + rayDir * dstToBox;
 		for (int i = 1; i < stepCount; i++)
-		{
+		{	
 			pos = cameraPos + rayDir * (dstToBox + stepSize * float(i));
 			vec3 localPos = pos - cloudPosition;
-			density += sample_density(localPos);
+			float localDensity = sample_density(localPos);
+			
+			if(localDensity > 0f && LIGHT_MARCH_STEPS > 0)
+			{
+				float lightTransmittance = light_march(pos);
+				lightEnergy += lightTransmittance * exp(-density) * localDensity ;
+				
+			}
+			density += localDensity;
+			
 		}
 	}
-    return vec3 (dstToBox ,dstInsideBox, density);
+    return vec4 (dstToBox ,dstInsideBox, density, lightEnergy);
 }
+
 
 void fragment()
 {
-	///////////////////// RAY DIR and CAMERAPOS this shouldnt be touched
+	///////////////////// RAY DIR and CAMERAPOS, this shouldnt be touched
 	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).x;
 	vec3 ndc = vec3(SCREEN_UV, depth) * 2.0 - 1.0;
 	vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
@@ -121,23 +196,33 @@ void fragment()
 	vec3 worldCamera = (CAMERA_MATRIX * vec4(0f,0f,0f,1f)).xyz;
 	vec4 world = CAMERA_MATRIX * view;
     vec3 world_position = world.xyz / world.w;
-	////////////////////////////
+	//////////////////////////// 
+
 	
 	vec3 rayDir = normalize(world_position - worldCamera);
-	vec3 rayInfo = raymarch(rayDir, worldCamera);
+	
+	//Splitting the ray info
+	vec4 rayInfo = raymarch(rayDir, worldCamera);
 	float distToCloud = rayInfo.x;
 	float distInsideCloud = rayInfo.y;
+	float density = rayInfo.z;
+	float lightEnergy = rayInfo.w;
+	
+	// Check if ray hits box
 	vec3 rayColor = vec3(0f,0f,0f);
 	if (distInsideCloud != 0f)
-	rayColor = vec3(2f,0.1f,0.5f);
-
-	ALBEDO = rayColor.rgb;
+		rayColor = cloudColor;
 	
 	// Alpha calculation
-	float density = rayInfo.z;
 	float alpha = 1f-exp(-density);
-
 	ALPHA = alpha;
+	
+	// Albedo calculation
+	ALBEDO = rayColor.rgb;
+	lightEnergy = min(1.2f,lightEnergy);
+	if (LIGHT_MARCH_STEPS > 0)
+	ALBEDO *= lightEnergy;
+	
 
 	if (rayColor.xyz == vec3 (0f,0f,0f)  || linear_depth < abs(distToCloud))
 		ALPHA = 0f;
