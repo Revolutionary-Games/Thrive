@@ -299,9 +299,7 @@ public partial class Microbe
         }
         else if (source == "atpDamage")
         {
-            // TODO: Replace this take damage sound with a more appropriate one.
-
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg", 0.8f);
         }
         else if (source == "ice")
         {
