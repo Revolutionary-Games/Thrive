@@ -46,7 +46,7 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     /// <remarks>
     ///   <para>
     ///     It is computed as the product of the available amounts of environmental compounds
-    ///     at instanciation and stored here.
+    ///     at instantiation and stored here.
     ///   </para>
     /// </remarks>
     public float Efficiency { get; set; }

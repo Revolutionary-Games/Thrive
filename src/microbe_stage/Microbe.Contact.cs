@@ -142,7 +142,19 @@ public partial class Microbe
     [JsonIgnore]
     public MicrobeState State
     {
-        get => Colony?.State ?? state;
+        get
+        {
+            if (Colony == null)
+                return state;
+
+            var colonyState = Colony.State;
+
+            // Override engulf mode in colony cells that can't engulf
+            if (colonyState == MicrobeState.Engulf && Membrane.Type.CellWall)
+                return MicrobeState.Normal;
+
+            return colonyState;
+        }
         set
         {
             if (state == value)
@@ -151,6 +163,10 @@ public partial class Microbe
             // Engulfing is not legal for microbes will cell walls
             if (value == MicrobeState.Engulf && Membrane.Type.CellWall)
             {
+                // Don't warn when in a multicellular colony as the other cells there can enter engulf mode
+                if (ColonyParent != null && IsMulticellular)
+                    return;
+
                 GD.PrintErr("Illegal Action: microbe attempting to engulf with a membrane that does not allow it!");
                 return;
             }
@@ -329,6 +345,19 @@ public partial class Microbe
     /// </summary>
     public bool CanEngulf(Microbe target)
     {
+        // Log error if trying to engulf something that is disposed, we got a crash log trace with an error with that
+        // TODO: find out why disposed microbes can be attempted to be engulfed
+        try
+        {
+            // Access a Godot property to throw disposed exception
+            _ = target.GlobalTransform;
+        }
+        catch (ObjectDisposedException)
+        {
+            GD.PrintErr("Touched microbe has been disposed before engulfing could start");
+            return false;
+        }
+
         // Disallow cannibalism
         if (target.Species == Species)
             return false;
