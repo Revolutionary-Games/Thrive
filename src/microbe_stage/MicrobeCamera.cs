@@ -65,6 +65,9 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     private Vector3 cursorWorldPos = new(0, 0, 0);
     private bool cursorDirty = true;
 
+    [Signal]
+    public delegate void OnZoomChanged(float zoom);
+
     /// <summary>
     ///   How high the camera is above the followed object
     /// </summary>
@@ -102,6 +105,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     public void ResetHeight()
     {
         CameraHeight = DefaultCameraHeight;
+        EmitSignal(nameof(OnZoomChanged), CameraHeight);
     }
 
     public override void _Ready()
@@ -147,6 +151,8 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true)]
     public void Zoom(float delta, float value)
     {
+        var old = CameraHeight;
+
         if (FramerateAdjustZoomSpeed)
         {
             // The constant on next line is for converting from delta corrected value to a good zooming speed.
@@ -159,6 +165,10 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         }
 
         CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
+
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (CameraHeight != old)
+            EmitSignal(nameof(OnZoomChanged), CameraHeight);
     }
 
     /// <summary>

@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs" type="Script" id=5]
+[ext_resource path="res://src/early_multicellular_stage/editor/EarlyMulticellularEditorGUI.cs" type="Script" id=6]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/microbe_stage/editor/CellEditorComponent.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn" type="PackedScene" id=11]
+
+[node name="EarlyMulticellularEditor" type="Node"]
+script = ExtResource( 5 )
+PauseMenuPath = NodePath("PauseMenu")
+EditorGUIBaseNodePath = NodePath("EarlyMulticellularEditorGUI")
+EditorTabSelectorPath = NodePath("EarlyMulticellularEditorGUI/MicrobeEditorTabButtons")
+ReportTabPath = NodePath("EarlyMulticellularEditorGUI/Report")
+PatchMapTabPath = NodePath("EarlyMulticellularEditorGUI/PatchMap")
+BodyPlanEditorTabPath = NodePath("EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent")
+CellEditorTabPath = NodePath("EarlyMulticellularEditorGUI/CellEditor")
+NoCellTypeSelectedPath = NodePath("EarlyMulticellularEditorGUI/NoCellSelected")
+
+[node name="EditorWorld" parent="." instance=ExtResource( 7 )]
+
+[node name="EarlyMulticellularEditorGUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CellBodyPlanEditorComponent" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 11 )]
+visible = false
+CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
+EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
+EditorGridPath = NodePath("../../EditorWorld/Grid")
+CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
+
+[node name="CellEditor" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 9 )]
+visible = false
+CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
+EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
+EditorGridPath = NodePath("../../EditorWorld/Grid")
+CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
+IsMulticellularEditor = true
+
+[node name="Report" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 10 )]
+
+[node name="PatchMap" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 8 )]
+visible = false
+
+[node name="MicrobeEditorTabButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 3 )]
+IsForMulticellular = true
+
+[node name="EditorCommonBottomLeftButtons" parent="EarlyMulticellularEditorGUI" instance=ExtResource( 4 )]
+
+[node name="NoCellSelected" type="MarginContainer" parent="EarlyMulticellularEditorGUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="EarlyMulticellularEditorGUI/NoCellSelected"]
+margin_top = 347.0
+margin_right = 1280.0
+margin_bottom = 372.0
+text = "SELECT_CELL_TYPE_FROM_EDITOR"
+align = 1
+
+[node name="PauseMenu" parent="." instance=ExtResource( 2 )]
+theme = ExtResource( 1 )
+IsEditorPauseMenu = true
+HelpCategory = "MicrobeEditor"
+
+[connection signal="OnCellTypeToEditSelected" from="EarlyMulticellularEditorGUI/CellBodyPlanEditorComponent" to="." method="OnStartEditingCellType"]
+[connection signal="OnTabSelected" from="EarlyMulticellularEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
+[connection signal="OnOpenHelp" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenFromEditorToHelp"]
+[connection signal="OnOpenMenu" from="EarlyMulticellularEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenFromEditor"]
+
+[editable path="EditorWorld"]

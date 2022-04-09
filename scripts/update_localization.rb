@@ -2,8 +2,9 @@
 # frozen_string_literal: true
 
 # List of locales, edit this to add new ones:
-LOCALES = %w[af bg ca cs da de en eo es_AR es et fi fr frm he hu id ko la lb_LU it nl nl_BE
-             pl pt_BR pt_PT ro ru si_LK sr_Cyrl sr_Latn sv th_TH tr uk lt lv zh_CN zh_TW].freeze
+LOCALES = %w[ar af bg ca cs da de el en eo es_AR es et fi fr frm he hu id ka ko
+             la lb_LU it nl nl_BE pl pt_BR pt_PT ro ru si_LK sr_Cyrl sr_Latn sv
+             th_TH tr uk lt lv zh_CN zh_TW].freeze
 
 # Weblate disagrees with gettext tools regarding where to wrap, so we have to disable it
 # https://github.com/WeblateOrg/weblate/issues/6350

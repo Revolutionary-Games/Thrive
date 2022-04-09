@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -10,32 +9,50 @@ using Newtonsoft.Json;
 [TypeConverter(typeof(ThriveTypeConverter))]
 [JSONDynamicTypeAllowedAttribute]
 [UseThriveConverter]
-public class MicrobeSpecies : Species
+public class MicrobeSpecies : Species, ICellProperties
 {
-    public bool IsBacteria;
-
-    /// <summary>
-    ///   Needs to be set before using this class
-    /// </summary>
-    public MembraneType MembraneType = null!;
-
-    public float MembraneRigidity;
-
+    [JsonConstructor]
     public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
         Organelles = new OrganelleLayout<OrganelleTemplate>();
     }
 
+    /// <summary>
+    ///   Creates a wrapper around a cell properties object for use with auto-evo predictions
+    /// </summary>
+    /// <param name="cloneOf">Grabs the ID and species name from here</param>
+    /// <param name="withCellProperties">
+    ///   Properties from here are copied to this (except organelle objects are shared)
+    /// </param>
+    public MicrobeSpecies(Species cloneOf, ICellProperties withCellProperties) : this(cloneOf.ID, cloneOf.Genus,
+        cloneOf.Epithet)
+    {
+        cloneOf.ClonePropertiesTo(this);
+
+        foreach (var organelle in withCellProperties.Organelles)
+        {
+            Organelles.Add(organelle);
+        }
+
+        MembraneType = withCellProperties.MembraneType;
+        MembraneRigidity = withCellProperties.MembraneRigidity;
+        Colour = withCellProperties.Colour;
+        IsBacteria = withCellProperties.IsBacteria;
+    }
+
+    public bool IsBacteria { get; set; }
+
+    /// <summary>
+    ///   Needs to be set before using this class
+    /// </summary>
+    public MembraneType MembraneType { get; set; } = null!;
+
+    public float MembraneRigidity { get; set; }
+
     public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
 
     [JsonIgnore]
-    public override string StringCode
-    {
-        get => ThriveJsonConverter.Instance.SerializeObject(this);
-
-        // TODO: allow replacing Organelles from value
-        set => throw new NotImplementedException();
-    }
+    public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
 
     [JsonIgnore]
     public float BaseSpeed => MicrobeInternalCalculations.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
@@ -51,13 +68,7 @@ public class MicrobeSpecies : Species
 
     public override void RepositionToOrigin()
     {
-        var centerOfMass = Organelles.CenterOfMass;
-
-        foreach (var organelle in Organelles)
-        {
-            // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
-            organelle.Position -= centerOfMass;
-        }
+        Organelles.RepositionToOrigin();
     }
 
     public void SetInitialCompoundsForDefault()
@@ -79,7 +90,7 @@ public class MicrobeSpecies : Species
         InitialCompounds.Add(SimulationParameters.Instance.GetCompound("hydrogensulfide"), 10);
     }
 
-    public void UpdateInitialCompounds()
+    public override void UpdateInitialCompounds()
     {
         var simulation = SimulationParameters.Instance;
 
@@ -136,5 +147,23 @@ public class MicrobeSpecies : Species
         }
 
         return result;
+    }
+
+    public override int GetVisualHashCode()
+    {
+        var hash = base.GetVisualHashCode();
+
+        hash ^= (MembraneType.GetHashCode() * 5743) ^ (MembraneRigidity.GetHashCode() * 5749) ^
+            ((IsBacteria ? 1 : 0) * 5779) ^
+            (Organelles.Count * 131);
+
+        int counter = 0;
+
+        foreach (var organelle in Organelles)
+        {
+            hash ^= counter++ * 13 * organelle.GetHashCode();
+        }
+
+        return hash;
     }
 }

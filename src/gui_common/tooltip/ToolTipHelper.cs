@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -71,6 +72,23 @@ public static class ToolTipHelper
         ToolTipCallbacks.Remove(data);
     }
 
+    /// <summary>
+    ///   Disconnects the first registered tooltip for a <see cref="Control"/>
+    /// </summary>
+    public static void UnRegisterFirstToolTipForControl(this Control control)
+    {
+        foreach (var toolTipCallbackData in GetAllToolTipsForControl(control))
+        {
+            // Not the most efficient as we've already looked up the data, but this isn't used that much so the extra
+            // slowness shouldn't matter
+            UnRegisterToolTipForControl(control, toolTipCallbackData.ToolTip);
+
+            // If this is converted to unregister all, then the list of things to unregister needs to be enumerated
+            // first. Here we can get by with a return;
+            return;
+        }
+    }
+
     public static bool IsToolTipRegistered(this Control control, ICustomToolTip tooltip)
     {
         return ToolTipCallbacks.Contains(GetToolTipCallbackData(control, tooltip));
@@ -115,5 +133,10 @@ public static class ToolTipHelper
     private static ToolTipCallbackData GetToolTipCallbackData(Control control, ICustomToolTip tooltip)
     {
         return ToolTipCallbacks.Find(match => match.ToolTipable == control && match.ToolTip == tooltip);
+    }
+
+    private static IEnumerable<ToolTipCallbackData> GetAllToolTipsForControl(Control control)
+    {
+        return ToolTipCallbacks.Where(match => match.ToolTipable == control);
     }
 }

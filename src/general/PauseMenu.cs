@@ -6,6 +6,12 @@ using Godot;
 /// </summary>
 public class PauseMenu : CustomDialog
 {
+    /// <summary>
+    ///   Causes various things to automatically happen to reduce the code duplication needed for the various editors
+    /// </summary>
+    [Export]
+    public bool IsEditorPauseMenu;
+
     [Export]
     public string HelpCategory = null!;
 
@@ -190,6 +196,9 @@ public class PauseMenu : CustomDialog
 
             EmitSignal(nameof(OnClosed));
 
+            if (IsEditorPauseMenu)
+                CloseFromEditor();
+
             return true;
         }
 
@@ -197,6 +206,10 @@ public class PauseMenu : CustomDialog
             return false;
 
         EmitSignal(nameof(OnOpenWithKeyPress));
+
+        if (IsEditorPauseMenu)
+            OpenFromEditor();
+
         return true;
     }
 
@@ -207,6 +220,10 @@ public class PauseMenu : CustomDialog
             return false;
 
         EmitSignal(nameof(OnOpenWithKeyPress));
+
+        if (IsEditorPauseMenu)
+            OpenFromEditor();
+
         ShowHelpScreen();
         return true;
     }
@@ -218,6 +235,28 @@ public class PauseMenu : CustomDialog
 
         ActiveMenu = ActiveMenuType.Help;
         helpScreen.RandomizeEasterEgg();
+    }
+
+    public void OpenFromEditor()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        Show();
+        GetTree().Paused = true;
+    }
+
+    public void CloseFromEditor()
+    {
+        Hide();
+        GetTree().Paused = false;
+    }
+
+    public void OpenFromEditorToHelp()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        OpenFromEditor();
+        ShowHelpScreen();
     }
 
     public void SetNewSaveName(string name)
@@ -254,6 +293,9 @@ public class PauseMenu : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnClosed));
+
+        if (IsEditorPauseMenu)
+            CloseFromEditor();
     }
 
     private void ReturnToMenuPressed()

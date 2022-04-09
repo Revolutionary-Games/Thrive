@@ -111,7 +111,7 @@ public class PlayerMicrobeInput : NodeWithInput
             stage.HUD.HintText = string.Empty;
             stage.Player.State = Microbe.MicrobeState.Normal;
         }
-        else if (stage.Player.Colony != null)
+        else if (stage.Player.Colony != null && !stage.Player.IsMulticellular)
         {
             stage.HUD.HintText = TranslationServer.Translate("UNBIND_HELP_TEXT");
             stage.Player.State = Microbe.MicrobeState.Unbinding;
@@ -210,7 +210,13 @@ public class PlayerMicrobeInput : NodeWithInput
 
     private void SpawnCheatCloud(string name, float delta)
     {
+        float multiplier = 1.0f;
+
+        // To make cheating easier in multicellular with large cell layouts
+        if (stage.Player?.IsMulticellular == true)
+            multiplier = 4;
+
         stage.Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
-            Constants.CLOUD_CHEAT_DENSITY * delta, stage.Camera.CursorWorldPos);
+            Constants.CLOUD_CHEAT_DENSITY * delta * multiplier, stage.Camera.CursorWorldPos);
     }
 }

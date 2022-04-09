@@ -25,7 +25,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public Vector3 MovementDirection = new(0, 0, 0);
 
     private HybridAudioPlayer engulfAudio = null!;
-    private AudioStreamPlayer3D bindingAudio = null!;
+    private HybridAudioPlayer bindingAudio = null!;
     private HybridAudioPlayer movementAudio = null!;
     private List<AudioStreamPlayer3D> otherAudioPlayers = new();
     private List<AudioStreamPlayer> nonPositionalAudioPlayers = new();
@@ -68,12 +68,18 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     private Listener? listener;
 
+    private MicrobeSpecies? cachedMicrobeSpecies;
+    private EarlyMulticellularSpecies? cachedMulticellularSpecies;
+
     /// <summary>
     ///   The species of this microbe. It's mandatory to initialize this with <see cref="ApplySpecies"/> otherwise
     ///   random stuff in this instance won't work
     /// </summary>
     [JsonProperty]
-    public MicrobeSpecies Species { get; private set; } = null!;
+    public Species Species { get; private set; } = null!;
+
+    [JsonProperty]
+    public CellType? MulticellularCellType { get; private set; }
 
     /// <summary>
     ///    True when this is the player's microbe
@@ -89,6 +95,23 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     [JsonProperty]
     public float MovementFactor { get; private set; } = 1.0f;
+
+    [JsonIgnore]
+    public bool IsMulticellular => MulticellularCellType != null;
+
+    [JsonIgnore]
+    public ICellProperties CellTypeProperties
+    {
+        get
+        {
+            if (MulticellularCellType != null)
+            {
+                return MulticellularCellType;
+            }
+
+            return CastedMicrobeSpecies;
+        }
+    }
 
     [JsonIgnore]
     public int HexCount
@@ -109,7 +132,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         {
             var radius = Membrane.EncompassingCircleRadius;
 
-            if (Species.IsBacteria)
+            if (CellTypeProperties.IsBacteria)
                 radius *= 0.5f;
 
             return radius;
@@ -199,6 +222,30 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     public bool IsLoadedFromSave { get; set; }
 
+    protected MicrobeSpecies CastedMicrobeSpecies
+    {
+        get
+        {
+            if (cachedMicrobeSpecies != null)
+                return cachedMicrobeSpecies;
+
+            cachedMicrobeSpecies = (MicrobeSpecies)Species;
+            return cachedMicrobeSpecies;
+        }
+    }
+
+    protected EarlyMulticellularSpecies CastedMulticellularSpecies
+    {
+        get
+        {
+            if (cachedMulticellularSpecies != null)
+                return cachedMulticellularSpecies;
+
+            cachedMulticellularSpecies = (EarlyMulticellularSpecies)Species;
+            return cachedMulticellularSpecies;
+        }
+    }
+
     /// <summary>
     ///   Must be called when spawned to provide access to the needed systems
     /// </summary>
@@ -223,17 +270,25 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (onReadyCalled)
             return;
 
-        atp = SimulationParameters.Instance.GetCompound("atp");
-
         Membrane = GetNode<Membrane>("Membrane");
         OrganelleParent = GetNode<Spatial>("OrganelleParent");
+
+        if (IsForPreviewOnly)
+        {
+            // Disable our physics to not cause issues with multiple preview cells bumping into each other
+            Mode = ModeEnum.Kinematic;
+            return;
+        }
+
+        atp = SimulationParameters.Instance.GetCompound("atp");
+
         engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
-        bindingAudio = GetNode<AudioStreamPlayer3D>("BindingAudio");
+        bindingAudio = GetNode<HybridAudioPlayer>("BindingAudio");
         movementAudio = GetNode<HybridAudioPlayer>("MovementAudio");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
 
-        engulfAudio.Positional = movementAudio.Positional = !IsPlayerMicrobe;
+        engulfAudio.Positional = movementAudio.Positional = bindingAudio.Positional = !IsPlayerMicrobe;
 
         // You may notice that there are two separate ways that an audio is played in this class:
         // using pre-existing audio node e.g "bindingAudio", "movementAudio" and through method e.g "PlaySoundEffect",
@@ -316,25 +371,31 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     public void ApplySpecies(Species species)
     {
-        Species = (MicrobeSpecies)species;
+        cachedMicrobeSpecies = null;
+        cachedMulticellularSpecies = null;
 
-        if (Species.Organelles.Count < 1)
-            throw new ArgumentException("Species with no organelles is not valid");
+        Species = species;
 
-        SetScaleFromSpecies();
-
-        ResetOrganelleLayout();
-
-        SetMembraneFromSpecies();
-
-        if (Membrane.Type.CellWall)
+        if (species is MicrobeSpecies microbeSpecies)
         {
-            // Reset engulf mode if the new membrane doesn't allow it
-            if (State == MicrobeState.Engulf)
-                State = MicrobeState.Normal;
+            // We might as well store this here as we already casted it. This property is not saved to make working
+            // with earlier saves easier
+            cachedMicrobeSpecies = microbeSpecies;
+        }
+        else if (species is EarlyMulticellularSpecies earlyMulticellularSpecies)
+        {
+            // The first cell of a species is the first cell of the multicellular species, others are created with
+            // ApplyMulticellularNonFirstCellSpecies
+            MulticellularCellType = earlyMulticellularSpecies.Cells[0].CellType;
+
+            cachedMulticellularSpecies = earlyMulticellularSpecies;
+        }
+        else
+        {
+            throw new ArgumentException("Microbe can only be a microbe or early multicellular species");
         }
 
-        SetupMicrobeHitpoints();
+        FinishSpeciesSetup();
     }
 
     /// <summary>
@@ -648,6 +709,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         return detections;
     }
 
+    public void OverrideScaleForPreview(float scale)
+    {
+        if (!IsForPreviewOnly)
+            throw new InvalidOperationException("Scale can only be overridden for preview microbes");
+
+        ApplyScale(new Vector3(scale, scale, scale));
+    }
+
     /// <summary>
     ///   This method calculates the relative rotation and translation this microbe should have to its microbe parent.
     ///   <a href="https://randomthrivefiles.b-cdn.net/documentation/fixed_colony_rotation_explanation_image.png">
@@ -704,14 +773,40 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         return (newTranslation, Rotation - globalParentRotation);
     }
 
+    private void FinishSpeciesSetup()
+    {
+        if (CellTypeProperties.Organelles.Count < 1)
+            throw new ArgumentException("Species with no organelles is not valid");
+
+        SetScaleFromSpecies();
+
+        ResetOrganelleLayout();
+
+        SetMembraneFromSpecies();
+
+        if (Membrane.Type.CellWall)
+        {
+            // Reset engulf mode if the new membrane doesn't allow it
+            if (State == MicrobeState.Engulf)
+                State = MicrobeState.Normal;
+        }
+
+        SetupMicrobeHitpoints();
+    }
+
     private void SetScaleFromSpecies()
     {
         var scale = new Vector3(1.0f, 1.0f, 1.0f);
 
         // Bacteria are 50% the size of other cells
-        if (Species.IsBacteria)
+        if (CellTypeProperties.IsBacteria)
             scale = new Vector3(0.5f, 0.5f, 0.5f);
 
+        ApplyScale(scale);
+    }
+
+    private void ApplyScale(Vector3 scale)
+    {
         // Scale only the graphics parts to not have physics affected
         Membrane.Scale = scale;
         OrganelleParent.Scale = scale;
@@ -755,8 +850,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             force *= CheatManager.Speed;
 
         return Transform.basis.Xform(MovementDirection * force) * appliedFactor *
-            (Species.MembraneType.MovementFactor -
-                (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
+            (CellTypeProperties.MembraneType.MovementFactor -
+                (CellTypeProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
     }
 
     private void ApplyMovementImpulse(Vector3 movement, float delta)
