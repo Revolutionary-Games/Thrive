@@ -78,13 +78,19 @@ Dir.chdir(LOCALE_FOLDER) do
   end
 
   # Remove trailing space
-  OS.windows?
-    info "Windows detected. Removing trailing space..."
+  info "Removing trailing space..."
 
-    LOCALES.each do |locale|
-      target = locale + @options[:po_suffix]
-      File.write(target, File.read(target).gsub(/# \n/,"#\n"))
-    end
+  LOCALES.each do |locale|
+    target = locale + @options[:po_suffix]
+    content = File.read(target, :encoding => "utf-8")
+    trimmed = content.gsub(/ \n/,"\n")
+
+    # Babel generates identically formatted files. So when the first one doesn't have trailing space, nor will the others.
+    if content == trimmed then break; end
+
+    File.write(target, trimmed, :encoding => "utf-8")
+    puts target
+  end
 end
 
 success 'Done extracting .po files'
