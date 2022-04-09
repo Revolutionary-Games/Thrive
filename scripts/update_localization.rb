@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+
 # List of locales, edit this to add new ones:
 LOCALES = %w[ar af bg ca cs da de el en eo es_AR es et fi fr frm he hu id ka ko
              la lb_LU it nl nl_BE pl pt_BR pt_PT ro ru si_LK sr_Cyrl sr_Latn sv
@@ -12,6 +13,7 @@ LOCALES = %w[ar af bg ca cs da de el en eo es_AR es et fi fr frm he hu id ka ko
 LINE_WRAP_SETTINGS = ['--no-wrap'].freeze
 
 require 'optparse'
+require "os"
 require_relative '../bootstrap_rubysetupsystem'
 require_relative '../RubySetupSystem/RubyCommon'
 
@@ -62,6 +64,7 @@ Dir.chdir(LOCALE_FOLDER) do
 
     if File.exist? target
       puts "Extracting #{locale}.po"
+
       runOpen3Checked 'msgmerge', '--update', '--backup=none', *LINE_WRAP_SETTINGS,
                       target,
                       "messages#{@options[:pot_suffix]}"
@@ -73,6 +76,15 @@ Dir.chdir(LOCALE_FOLDER) do
                       "messages#{@options[:pot_suffix]}"
     end
   end
+
+  # Remove trailing space
+  OS.windows?
+    info "Windows detected. Removing trailing space..."
+
+    LOCALES.each do |locale|
+      target = locale + @options[:po_suffix]
+      File.write(target, File.read(target).gsub(/# \n/,"#\n"))
+    end
 end
 
 success 'Done extracting .po files'
