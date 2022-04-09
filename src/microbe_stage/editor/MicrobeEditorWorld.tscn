@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/models/EditorArrow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=3]
+[ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://shaders/EditorHexGrid.shader" type="Shader" id=6]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 0.129412, 0.141176, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+albedo_color = Color( 0.0666667, 1, 0.835294, 0.337255 )
+
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 15, 15 )
+
+[sub_resource type="ShaderMaterial" id=4]
+render_priority = -2
+shader = ExtResource( 6 )
+shader_param/color = Color( 0.745098, 0.745098, 0.745098, 1 )
+shader_param/lineWidth = 0.02
+shader_param/edgeLength = 1.299
+shader_param/maskTexture = ExtResource( 3 )
+
+[node name="MicrobeEditorWorld" type="Node"]
+
+[node name="PrimaryCamera" parent="." instance=ExtResource( 5 )]
+DefaultCameraHeight = 10.0
+MaxCameraHeight = 40.0
+DisableBackgroundParticles = true
+InterpolateSpeed = 1.0
+
+[node name="CameraLookAt" type="Spatial" parent="."]
+__meta__ = {
+"_editor_description_": "Just something to make the microbe camera look at the right place"
+}
+
+[node name="EditorArrow" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 0, 0.2, 0 )
+material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )
+
+[node name="Grid" type="MeshInstance" parent="."]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="EditorLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 100.0
+omni_attenuation = 0.420448
+
+[node name="DynamicallySpawned" type="Spatial" parent="."]
