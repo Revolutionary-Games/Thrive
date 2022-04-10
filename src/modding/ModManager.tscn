@@ -928,11 +928,15 @@ visible = false
 margin_top = 28.0
 margin_right = 308.0
 margin_bottom = 171.0
+WindowTitle = "UNAPPLIED_MOD_CHANGES"
+DialogText = "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+ConfirmText = "DISCARD_CHANGES"
 
 [node name="ModFullInfo" parent="." instance=ExtResource( 4 )]
 margin_top = 28.0
 margin_right = 580.0
 margin_bottom = 447.0
+WindowTitle = "FULL_MOD_INFO"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo"]
 margin_left = 15.0

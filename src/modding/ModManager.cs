@@ -558,11 +558,7 @@ public class ModManager : Control
         modCreateErrorDialog = GetNode<ErrorDialog>(ModCreateErrorDialogPath);
 
         UpdateSelectedModInfo();
-
-        // The tab title has to be set here as they are normally set by node name in TabContainer
-        // Which means they won't be translated at all
-        modLoaderContainer.SetTabTitle(0, TranslationServer.Translate("MOD_LOADER_TAB"));
-        modLoaderContainer.SetTabTitle(1, TranslationServer.Translate("MOD_ERRORS_TAB"));
+        UpdateTabTitles();
 
         if (!SteamHandler.Instance.IsLoaded)
         {
@@ -586,6 +582,14 @@ public class ModManager : Control
         wasVisible = isCurrentlyVisible;
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateTabTitles();
+        }
+    }
+
     public void UpdateLoadPosition(int startIndex = 0)
     {
         if (enabledMods != null)
@@ -606,6 +610,14 @@ public class ModManager : Control
             return false;
 
         return true;
+    }
+
+    private void UpdateTabTitles()
+    {
+        // The tab title has to be set here as they are normally set by node name in TabContainer
+        // Which means they won't be translated at all
+        modLoaderContainer.SetTabTitle(0, TranslationServer.Translate("MOD_LOADER_TAB"));
+        modLoaderContainer.SetTabTitle(1, TranslationServer.Translate("MOD_ERRORS_TAB"));
     }
 
     /// <summary>
@@ -703,13 +715,12 @@ public class ModManager : Control
         modErrorsContainer.Clear();
 
         var modErrors = ModLoader.Instance.GetAndClearModErrors();
-        var index = 0;
-        foreach (var currentError in modErrors)
+
+        for (int index = 0; index < modErrors.Count; index++)
         {
-            var mod = currentError.Mod;
+            var mod = modErrors[index].Mod;
             modErrorsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
-            modErrorsContainer.SetItemMetadata(index, currentError.ErrorMessage);
-            ++index;
+            modErrorsContainer.SetItemMetadata(index, modErrors[index].ErrorMessage);
         }
     }
 

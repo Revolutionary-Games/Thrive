@@ -44,16 +44,16 @@ public static class ModHelpers
             otherMod.Name = TranslationServer.Translate("UNKNOWN_MOD");
         }
 
-        switch (checkResult.ErrorType)
+        switch ((ModLoader.CheckErrorStatus) checkResult.ErrorType)
         {
             default:
                 result = TranslationServer.Translate("MOD_LIST_VALID");
                 break;
-            case (int)ModLoader.CheckErrorStatus.IncompatibleVersion:
+            case ModLoader.CheckErrorStatus.IncompatibleVersion:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_VERSION"),
                     offendingMod.Name);
                 break;
-            case (int)ModLoader.CheckErrorStatus.DependencyNotFound:
+            case ModLoader.CheckErrorStatus.DependencyNotFound:
                 string? otherModName = string.Empty;
                 if (checkResult.OtherModIndex <= (offendingMod.Dependencies?.Count ?? default(int)))
                 {
@@ -71,7 +71,7 @@ public static class ModHelpers
                     otherModName) + "\n";
                 result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_FIX");
                 break;
-            case (int)ModLoader.CheckErrorStatus.RequiredModsNotFound:
+            case ModLoader.CheckErrorStatus.RequiredModsNotFound:
                 if (checkResult.OtherModIndex <= (offendingMod.RequiredMods?.Count ?? default(int)))
                 {
                     if (offendingMod.RequiredMods != null)
@@ -92,27 +92,27 @@ public static class ModHelpers
                     otherModName) + "\n";
                 result += TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS_FIX");
                 break;
-            case (int)ModLoader.CheckErrorStatus.InvalidDependencyOrder:
+            case ModLoader.CheckErrorStatus.InvalidDependencyOrder:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER"), offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER_FIX"),
                     offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name);
                 break;
-            case (int)ModLoader.CheckErrorStatus.IncompatibleMod:
+            case ModLoader.CheckErrorStatus.IncompatibleMod:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD"), offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD_FIX"),
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name);
                 break;
-            case (int)ModLoader.CheckErrorStatus.InvalidLoadOrderBefore:
+            case ModLoader.CheckErrorStatus.InvalidLoadOrderBefore:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE"), offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE_FIX"),
                     offendingMod.Name,
                     string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name);
                 break;
-            case (int)ModLoader.CheckErrorStatus.InvalidLoadOrderAfter:
+            case ModLoader.CheckErrorStatus.InvalidLoadOrderAfter:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER"), offendingMod.Name,
                     otherMod.Name) + "\n";
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER_FIX"),
@@ -162,5 +162,10 @@ public static class ModHelpers
         }
 
         return (VersionCompatibility)isCompatibleVersion;
+    }
+
+    public static VersionCompatibility Get_VersionCompatibility(ModInfo info)
+    {
+        return GetVersionCompatibility(info);
     }
 }
