@@ -7,11 +7,11 @@
 [node name="CustomRichTextLabel" type="RichTextLabel"]
 margin_right = 22.0
 margin_bottom = 22.0
-custom_fonts/bold_font = ExtResource( 1 )
-custom_fonts/normal_font = ExtResource( 2 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
 custom_constants/line_separation = 5
+custom_fonts/bold_font = ExtResource( 1 )
+custom_fonts/normal_font = ExtResource( 2 )
 bbcode_enabled = true
 fit_content_height = true
 script = ExtResource( 3 )
