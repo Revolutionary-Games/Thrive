@@ -252,6 +252,10 @@ public class EditorComponentBottomLeftButtons : MarginContainer
                 speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
             }
         }
+        else
+        {
+            speciesNameEdit.ReleaseFocus();
+        }
     }
 
     private void OnRandomizeNamePressed()
