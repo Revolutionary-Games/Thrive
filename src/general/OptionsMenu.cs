@@ -588,23 +588,23 @@ public class OptionsMenu : ControlWithInput
         switch (mode)
         {
             case OptionsMode.MainMenu:
-                {
-                    tutorialsEnabled.Hide();
-                    optionsMode = OptionsMode.MainMenu;
-                    break;
-                }
+            {
+                tutorialsEnabled.Hide();
+                optionsMode = OptionsMode.MainMenu;
+                break;
+             }
 
             case OptionsMode.InGame:
-                {
-                    // Current game tutorial option shouldn't be visible in freebuild mode.
-                    if (!gameProperties!.FreeBuild)
-                        tutorialsEnabled.Show();
-                    else
-                        tutorialsEnabled.Hide();
+            {
+                // Current game tutorial option shouldn't be visible in freebuild mode.
+                if (!gameProperties!.FreeBuild)
+                    tutorialsEnabled.Show();
+                else
+                    tutorialsEnabled.Hide();
 
-                    optionsMode = OptionsMode.InGame;
-                    break;
-                }
+                optionsMode = OptionsMode.InGame;
+                break;
+            }
 
             default:
                 throw new ArgumentException("Options menu SwitchMode called with an invalid mode argument");
