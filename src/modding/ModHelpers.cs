@@ -125,47 +125,34 @@ public static class ModHelpers
 
     public static VersionCompatibility GetVersionCompatibility(ModInfo info)
     {
-        var isCompatibleVersion = 0;
-        var compatibleVersionTest = 0;
+        var isVersionAboveMin = false;
+        var isVersionBelowMax = false;
 
-        if (!string.IsNullOrEmpty(info.MinimumThriveVersion) &&
-            VersionUtils.Compare(Constants.Version, info.MinimumThriveVersion ?? string.Empty) >= 0)
+        var isVersionMinDefined = !string.IsNullOrEmpty(info.MinimumThriveVersion);
+        var isVersionMaxDefined = !string.IsNullOrEmpty(info.MaximumThriveVersion);
+
+        if (isVersionMinDefined)
         {
-            ++compatibleVersionTest;
-        }
-        else if (!string.IsNullOrEmpty(info.MinimumThriveVersion))
-        {
-            compatibleVersionTest--;
+            isVersionAboveMin = VersionUtils.Compare(Constants.Version, info.MinimumThriveVersion ?? string.Empty) >= 0;
         }
 
-        if (!string.IsNullOrEmpty(info.MaximumThriveVersion) &&
-            VersionUtils.Compare(Constants.Version, info.MaximumThriveVersion ?? string.Empty) >= 0)
+        if (isVersionMaxDefined)
         {
-            ++isCompatibleVersion;
-        }
-        else if (!string.IsNullOrEmpty(info.MaximumThriveVersion))
-        {
-            compatibleVersionTest--;
+            isVersionBelowMax = VersionUtils.Compare(Constants.Version, info.MaximumThriveVersion ?? string.Empty) <= 0;
         }
 
-        if (compatibleVersionTest >= 1)
+        if (isVersionAboveMin && isVersionBelowMax)
         {
-            isCompatibleVersion = 1;
+            return VersionCompatibility.Compatible;
         }
-        else if (compatibleVersionTest == 0)
+        else if (!isVersionMinDefined || !isVersionMaxDefined)
         {
-            isCompatibleVersion = -1;
+            return VersionCompatibility.NotExplicitlyCompatible;
         }
         else
         {
-            isCompatibleVersion = -2;
+            return VersionCompatibility.Incompatible;
         }
-
-        return (VersionCompatibility)isCompatibleVersion;
-    }
-
-    public static VersionCompatibility Get_VersionCompatibility(ModInfo info)
-    {
-        return GetVersionCompatibility(info);
+        
     }
 }
