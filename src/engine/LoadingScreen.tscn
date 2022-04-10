@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/textures/gui/planet.png" type="Texture" id=2]
 [ext_resource path="res://assets/misc/icon.png" type="Texture" id=3]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://shaders/UVFlipper.shader" type="Shader" id=6]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=7]
 
@@ -35,11 +35,11 @@ __meta__ = {
 }
 ArtworkPath = NodePath("CoolArt")
 ArtDescriptionPath = NodePath("CenterContainer/ArtDescription")
-LoadingMessagePath = NodePath("HBoxContainer/VBoxContainer/LoadingMessage")
-LoadingDescriptionPath = NodePath("HBoxContainer/VBoxContainer/LoadingDescription")
-TipLabelPath = NodePath("TipLabel")
+LoadingMessagePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/LoadingMessage")
+LoadingDescriptionPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/LoadingDescription")
+TipLabelPath = NodePath("MarginContainer/HBoxContainer/TipLabel")
 RandomizeTipTimerPath = NodePath("TipTimer")
-SpinnerPath = NodePath("HBoxContainer/Spinner/TextureRect")
+SpinnerPath = NodePath("MarginContainer/HBoxContainer/Spinner/TextureRect")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -102,15 +102,25 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_left = 1.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -152.0
-margin_top = -70.0
-margin_right = -5.0
-margin_bottom = -6.0
+margin_top = -84.0
+grow_vertical = 0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1270.0
+margin_bottom = 74.0
 grow_horizontal = 0
 custom_constants/separation = 15
 alignment = 2
@@ -118,18 +128,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 86.0
-margin_bottom = 56.0
+[node name="TipLabel" parent="MarginContainer/HBoxContainer" instance=ExtResource( 5 )]
+margin_top = 42.0
+margin_right = 1088.0
+margin_bottom = 64.0
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "TIP: not set"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 1103.0
+margin_top = 16.0
+margin_right = 1181.0
+margin_bottom = 64.0
 grow_horizontal = 0
-size_flags_vertical = 4
+size_flags_vertical = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LoadingMessage" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="LoadingMessage" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_right = 78.0
 margin_bottom = 22.0
 grow_horizontal = 0
@@ -137,7 +157,7 @@ custom_fonts/font = ExtResource( 7 )
 text = "LOADING"
 align = 2
 
-[node name="LoadingDescription" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="LoadingDescription" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 26.0
 margin_right = 78.0
 margin_bottom = 48.0
@@ -145,16 +165,17 @@ grow_horizontal = 0
 custom_fonts/font = ExtResource( 7 )
 align = 2
 
-[node name="Spinner" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 101.0
-margin_right = 165.0
+[node name="Spinner" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 1196.0
+margin_right = 1260.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
+size_flags_vertical = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Spinner"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Spinner"]
 margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
@@ -164,26 +185,6 @@ expand = true
 stretch_mode = 6
 __meta__ = {
 "_editor_description_": "This also doesn't resize"
-}
-
-[node name="TipLabel" type="Label" parent="."]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = -25.0
-margin_right = -5.0
-margin_bottom = -7.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-custom_fonts/font = ExtResource( 5 )
-text = "TIP: not set"
-valign = 2
-autowrap = true
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="TipTimer" type="Timer" parent="."]
