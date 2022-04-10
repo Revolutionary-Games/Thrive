@@ -592,7 +592,7 @@ public class OptionsMenu : ControlWithInput
                 tutorialsEnabled.Hide();
                 optionsMode = OptionsMode.MainMenu;
                 break;
-             }
+            }
 
             case OptionsMode.InGame:
             {
@@ -611,13 +611,18 @@ public class OptionsMenu : ControlWithInput
         }
     }
 
-    // Displays the current Resolution in options.
+    /// <summary>
+    /// Displays the current viewport resolutuion
+    /// </summary>
     private void DisplayResolution()
     {
+        if(resolution != null)
+        {
             var autoResolution = new LocalizedString("AUTO_RESOLUTION",
                 GetViewportRect().Size.x.ToString(CultureInfo.CurrentCulture),
                 GetViewportRect().Size.y.ToString(CultureInfo.CurrentCulture));
             resolution.Text = autoResolution.ToString();
+        }
     }
 
     /// <summary>
