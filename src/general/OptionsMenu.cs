@@ -425,8 +425,6 @@ public class OptionsMenu : ControlWithInput
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
         assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options");
         unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options");
-
-
     }
 
     public override void _Notification(int what)
