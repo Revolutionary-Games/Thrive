@@ -18,7 +18,7 @@ shader_param/texture = ExtResource( 2 )
 shader_param/dissolveTexture = ExtResource( 4 )
 
 [node name="SignalingAgent" type="MeshInstance"]
-transform = Transform( -0.75, 0, -6.55671e-08, 0, 0.75, 0, 6.55671e-08, 0, -0.75, 0, 0, 0 )
+transform = Transform( 0.75, 0, 0, 0, -3.27835e-08, 0.75, 0, -0.75, -3.27835e-08, 0, 0, 0 )
 material_override = SubResource( 1 )
 mesh = ExtResource( 1 )
 material/0 = null
