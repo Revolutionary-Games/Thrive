@@ -618,8 +618,8 @@ public class OptionsMenu : ControlWithInput
     {
         if (resolution == null)
             return;
-        var screen_resolution = GetViewportRect().Size;
-        resolution.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("AUTO_RESOLUTION"), screen_resolution.x, screen_resolution.y);
+        var screenResolution = GetViewportRect().Size;
+        resolution.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("AUTO_RESOLUTION"), screenResolution.x, screenResolution.y);
     }
 
     /// <summary>
