@@ -705,7 +705,7 @@ public partial class CellEditorComponent :
         {
             if (buttonEvent.Pressed)
             {
-                EmitSignal("Clicked");
+                EmitSignal(nameof(Clicked));
             }
         }
     }
