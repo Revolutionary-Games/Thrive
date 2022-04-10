@@ -616,13 +616,10 @@ public class OptionsMenu : ControlWithInput
     /// </summary>
     private void DisplayResolution()
     {
-        if(resolution != null)
-        {
-            var autoResolution = new LocalizedString("AUTO_RESOLUTION",
-                GetViewportRect().Size.x.ToString(CultureInfo.CurrentCulture),
-                GetViewportRect().Size.y.ToString(CultureInfo.CurrentCulture));
-            resolution.Text = autoResolution.ToString();
-        }
+        if (resolution == null)
+            return;
+        var screen_resolution = GetViewportRect().Size;
+        resolution.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("AUTO_RESOLUTION"), screen_resolution.x, screen_resolution.y);
     }
 
     /// <summary>
