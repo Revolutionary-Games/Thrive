@@ -433,13 +433,11 @@ public class OptionsMenu : ControlWithInput
         {
             BuildInputRebindControls();
             UpdateDefaultAudioOutputDeviceText();
-            if (resolution != null)
-                DisplayResolution();
+            DisplayResolution();
         }
         else if (what == NotificationResized)
         {
-            if (resolution != null)
-                DisplayResolution();
+            DisplayResolution();
         }
     }
 
@@ -614,12 +612,16 @@ public class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
-    /// Displays the current viewport resolutuion
+    /// Displays the current viewport resolution
     /// </summary>
     private void DisplayResolution()
     {
-        var screenResolution = GetViewportRect().Size;
-        resolution.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("AUTO_RESOLUTION"), screenResolution.x, screenResolution.y);
+        if (resolution == null)
+            return;
+
+        Vector2 screenResolution = GetViewportRect().Size;
+        resolution.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("AUTO_RESOLUTION"),
+            screenResolution.x, screenResolution.y);
     }
 
     /// <summary>
