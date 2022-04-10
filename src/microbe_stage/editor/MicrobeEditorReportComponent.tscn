@@ -73,6 +73,9 @@ anchor_bottom = 1.0
 margin_top = -0.200001
 theme = ExtResource( 9 )
 script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 FinishOrNextButtonPath = NodePath("NextTabButton/Button")
 AutoEvoSubtabButtonPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton")
 TimelineSubtabButtonPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton")
