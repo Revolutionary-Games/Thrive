@@ -226,10 +226,21 @@ public class EditorComponentBottomLeftButtons : MarginContainer
 
     private void OnNameTextEntered(string newText)
     {
+        ValidationPopup(newText);
+        EmitSignal(nameof(OnNameSet), newText);
+    }
+
+    private void OnClickedOffName()
+    {
+        ValidationPopup(speciesNameEdit.Text);
+    }
+
+    private void ValidationPopup(string text)
+    {
         if (UseSpeciesNameValidation)
         {
             // Only defocus if the name is valid to indicate invalid namings to the player
-            if (Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
+            if (Regex.IsMatch(text, Constants.SPECIES_NAME_REGEX))
             {
                 speciesNameEdit.ReleaseFocus();
             }
@@ -241,8 +252,6 @@ public class EditorComponentBottomLeftButtons : MarginContainer
                 speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
             }
         }
-
-        EmitSignal(nameof(OnNameSet), newText);
     }
 
     private void OnRandomizeNamePressed()
