@@ -614,13 +614,10 @@ public class OptionsMenu : ControlWithInput
     // Displays the current Resolution in options.
     private void DisplayResolution()
     {
-        if (resolution != null)
-        {
             var autoResolution = new LocalizedString("AUTO_RESOLUTION",
                 GetViewportRect().Size.x.ToString(CultureInfo.CurrentCulture),
                 GetViewportRect().Size.y.ToString(CultureInfo.CurrentCulture));
             resolution.Text = autoResolution.ToString();
-        }
     }
 
     /// <summary>
