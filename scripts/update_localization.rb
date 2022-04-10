@@ -44,7 +44,7 @@ puts "Detected Thrive root folder: #{ROOT_FOLDER}"
 
 Dir.chdir(LOCALE_FOLDER) do
   puts 'Extracting .pot file'
-=begin
+
   runOpen3Checked 'pybabel', 'extract', '-F', File.join(LOCALE_FOLDER, 'babelrc'), '-k',
                   'LineEdit', '-k', 'text', '-k', 'DisplayName', '-k', 'Description', '-k',
                   'ProcessesDescription', '-k', 'window_title', '-k', 'dialog_text', '-k',
@@ -76,22 +76,24 @@ Dir.chdir(LOCALE_FOLDER) do
                       "messages#{@options[:pot_suffix]}"
     end
   end
-=end
+
   # Remove trailing space
   info "Removing trailing space..."
 
   LOCALES.each do |locale|
     target = locale + @options[:po_suffix]
-    content = File.read(target, :encoding => "utf-8")
-    trimmed = ""
-    content.split("\n").each do |line|
-      trimmed += line.rstrip() + "\n"
+    trimmedtext = ""
+    changed = false
+    File.readlines(target, :encoding => "utf-8").each do |line|
+      trimmed = line.rstrip() + "\n"
+      if line != trimmed then changed = true; end
+      trimmedtext += trimmed
     end
 
     # Babel generates identically formatted files. So when the first one doesn't have trailing space, nor will the others.
-    if content == trimmed then break; end
+    if !changed then break; end
 
-    File.write(target, trimmed, :encoding => "utf-8")
+    File.write(target, trimmedtext, :encoding => "utf-8")
     puts target
   end
 end
