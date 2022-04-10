@@ -243,7 +243,7 @@
 
                 // Modify populations based on energy
                 var newPopulation = (long)(energyBySpecies[currentSpecies]
-                    / energyBalanceInfo.FinalBalanceStationary);
+                    / (energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement * currentSpecies.Behaviour.Activity));
 
                 if (trackEnergy)
                 {
