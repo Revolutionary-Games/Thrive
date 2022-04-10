@@ -26,7 +26,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/minusButton.png" type="Texture" id=24]
 [ext_resource path="res://assets/textures/gui/bevel/glucose.png" type="Texture" id=25]
 [ext_resource path="res://assets/textures/gui/bevel/minusButtonHover.png" type="Texture" id=26]
-[ext_resource path="res://assets/textures/gui/bevel/Phosphate.png" type="Texture" id=27]
+[ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=27]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.cs" type="Script" id=28]
 
 [sub_resource type="StyleBoxTexture" id=32]
@@ -77,9 +77,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 14 )
 script = ExtResource( 28 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 FinishOrNextButtonPath = NodePath("MarginContainer2/NextTabButton")
 MapDrawerPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/ScrollContainer/PatchMapDrawer")
 PatchNothingSelectedPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected")
