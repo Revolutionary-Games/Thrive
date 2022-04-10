@@ -226,16 +226,16 @@ public class EditorComponentBottomLeftButtons : MarginContainer
 
     private void OnNameTextEntered(string newText)
     {
-        ValidationPopup(newText);
+        PreformValidation(newText);
         EmitSignal(nameof(OnNameSet), newText);
     }
 
     private void OnClickedOffName()
     {
-        ValidationPopup(speciesNameEdit.Text);
+        PreformValidation(speciesNameEdit.Text);
     }
 
-    private void ValidationPopup(string text)
+    private void PreformValidation(string text)
     {
         if (UseSpeciesNameValidation)
         {
