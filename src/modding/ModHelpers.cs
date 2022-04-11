@@ -141,17 +141,16 @@ public static class ModHelpers
             isVersionBelowMax = VersionUtils.Compare(Constants.Version, info.MaximumThriveVersion ?? string.Empty) <= 0;
         }
 
-        if (isVersionAboveMin && isVersionBelowMax)
+        if ((isVersionAboveMin && isVersionMinDefined) || (isVersionBelowMax && isVersionMaxDefined))
         {
             return VersionCompatibility.Compatible;
         }
-        else if (!isVersionMinDefined || !isVersionMaxDefined)
+
+        if (!isVersionMinDefined && !isVersionMaxDefined)
         {
             return VersionCompatibility.NotExplicitlyCompatible;
         }
-        else
-        {
-            return VersionCompatibility.Incompatible;
-        }
+
+        return VersionCompatibility.Incompatible;
     }
 }
