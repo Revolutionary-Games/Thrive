@@ -1327,7 +1327,7 @@ visible = false
 DisplayName = "NUCLEUS"
 ProcessesDescription = "NUCLEUS_SMALL_DESCRIPTION"
 Description = "NUCLEUS_DESCRIPTION"
-MutationPointCost = 100
+MutationPointCost = 70
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/nucleus" index="0"]
 margin_bottom = 216.0
@@ -1986,7 +1986,7 @@ visible = false
 DisplayName = "TOXIN_VACUOLE"
 ProcessesDescription = "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 Description = "TOXIN_VACUOLE_DESCRIPTION"
-MutationPointCost = 70
+MutationPointCost = 55
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/oxytoxy" index="0"]
 margin_bottom = 216.0
