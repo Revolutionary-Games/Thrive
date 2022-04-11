@@ -230,7 +230,7 @@ public class OptionsMenu : ControlWithInput
     private Control graphicsTab = null!;
     private CustomCheckBox vsync = null!;
     private CustomCheckBox fullScreen = null!;
-    private Label? resolution = null!;
+    private Label? resolution;
     private OptionButton msaaResolution = null!;
     private OptionButton maxFramesPerSecond = null!;
     private OptionButton colourblindSetting = null!;
