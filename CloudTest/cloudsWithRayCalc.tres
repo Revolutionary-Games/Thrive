@@ -14,12 +14,16 @@ uniform float cloudWidth;
 uniform float cloudHeight;
 uniform float cloudDepth;
 
+// cloudlets data basically
 uniform sampler2D subshapes;
 uniform float maxSubshapeRad;
 uniform int subshapeNumber;
 
+// paramaeters for the density function precalculated by the CPU
+// only b and sigma are to be set from editor
 uniform float sigma;
 uniform float b;
+//////////////////
 uniform float c;
 uniform float d;
 uniform float cloudDensMult;
@@ -29,6 +33,7 @@ uniform float light_absorbed_towards_sun;
 uniform float darkness_threshold;
 
 uniform vec3 cloudColor;
+
 void vertex() {
   POSITION = vec4(VERTEX, 1.0);
 }
@@ -46,9 +51,8 @@ vec2 modified_intersectAABB(vec3 rayOrigin, vec3 rayDir, vec3 boxMin, vec3 boxMa
 	float tFar = min(min(t2.x, t2.y), t2.z);
 	float tr = 0f;
 
-
 	// Smoothing the marching steps at the edges of the box, at least i tried
-	// by containing them in a sphere
+	// by containing them in a sphere bigger than the box itself
 	if(tNear < 0f)
 	{
 		vec3 center = vec3 (0f, 0f, 0f);
@@ -63,22 +67,18 @@ vec2 modified_intersectAABB(vec3 rayOrigin, vec3 rayDir, vec3 boxMin, vec3 boxMa
 			tr = t - projDist;
 		else 
 			tr = t + projDist;
-		
 	}
 	
 	float dstToBox = max(0, tNear);
 	float dstInsideBox = max(0, tFar - dstToBox);
 	if(tr != 0f)
-		dstInsideBox =max(tr,dstInsideBox);
+		dstInsideBox = max(tr,dstInsideBox);
 	return vec2(dstToBox, dstInsideBox);
 }
-
-
 
 float signedDistance(vec3 center, float radius, vec3 point)
 {
 	return length(center - point) - radius;
-	
 }
 
 float gauss(float x)
@@ -98,7 +98,7 @@ float sample_density(vec3 x)
 		float shapeRad = subshape.a * float(maxSubshapeRad);
 		dist = signedDistance(shapeCent,shapeRad,x);
 		if (dist < 0f)
-		{	
+		{
 			dist = abs(dist);
 			localDens += gauss(dist) * dist * cloudDensMult; 
 		}
@@ -121,8 +121,9 @@ float light_march(vec3 pos) {
 		vec3 ray_pos = pos + sun_direction * distance_travelled;
 		vec3 localPos = ray_pos - cloudPosition;
 		float localDens = sample_density(localPos);
-		if(localDens != 0f)
-			total_density += localDens;
+		if(localDens != 0f){
+				total_density += localDens;
+				}
 		else
 			break;
 		distance_travelled += step_size;
@@ -137,8 +138,9 @@ float light_march(vec3 pos) {
 //{
 //
 //}
-// TO DO 
-//      add adaptive sampling
+
+
+// TO DO  add adaptive sampling
 
 
 vec4 raymarch(vec3 rayDir,vec3 cameraPos)
@@ -148,10 +150,11 @@ vec4 raymarch(vec3 rayDir,vec3 cameraPos)
 	int stepCount = MAX_RAY_STEPS + 1;
 	float stepSize;
 	vec3 pos;
-	
+
 	float density = 0f;
 	float lightEnergy = 0f;
-	//Coordonate pentru 2 puncte de intersectie cu raza
+
+	// Ray intersection
     vec2 dist = modified_intersectAABB(cameraPos, rayDir, bound_min, bound_max);
 	dstToBox = dist.x;
 	dstInsideBox = dist.y;
@@ -173,11 +176,11 @@ vec4 raymarch(vec3 rayDir,vec3 cameraPos)
 			if(localDensity > 0f && LIGHT_MARCH_STEPS > 0)
 			{
 				float lightTransmittance = light_march(pos);
-				lightEnergy += lightTransmittance * exp(-density) * localDensity ;
-				
+				lightEnergy += lightTransmittance * exp(-density) * localDensity;
 			}
 			density += localDensity;
-			
+			if(localDensity == 0f && density != 0f)
+				break
 		}
 	}
     return vec4 (dstToBox ,dstInsideBox, density, lightEnergy);
@@ -214,7 +217,7 @@ void fragment()
 		rayColor = cloudColor;
 	
 	// Alpha calculation
-	float alpha = 1f-exp(-density);
+	float alpha = 1f - exp(-density);
 	ALPHA = alpha;
 	
 	// Albedo calculation
@@ -223,7 +226,6 @@ void fragment()
 	if (LIGHT_MARCH_STEPS > 0)
 	ALBEDO *= lightEnergy;
 	
-
 	if (rayColor.xyz == vec3 (0f,0f,0f)  || linear_depth < abs(distToCloud))
 		ALPHA = 0f;
 		

@@ -98,8 +98,6 @@ public class MySceneGPU : Spatial
             subshapes.CreateFromImage(texture);
 
 
-
-
             var cloudaabb = (createCloudAABB(cloudbox));
             cloudPosition = cloudaabb.Position;
             mat.SetShaderParam("bound_min", cloudaabb.Position);
