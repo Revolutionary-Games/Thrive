@@ -264,24 +264,40 @@ public partial class Microbe
     /// <summary>
     ///   Triggers reproduction on this cell (even if not ready)
     /// </summary>
-    /// <exception cref="NotSupportedException">Thrown when this microbe is in a colony</exception>
+    /// <remarks>
+    ///   <para>
+    ///     Now with multicellular colonies are also allowed to divide so there's no longer a check against that
+    ///   </para>
+    /// </remarks>
     public Microbe Divide()
     {
-        if (Colony != null)
-            throw new NotSupportedException("Cannot divide a microbe while in a colony");
-
-        return ForceDivide();
-    }
-
-    /// <summary>
-    ///   Triggers reproduction on this cell (even if not ready)
-    ///   Ignores security checks. If you want those checks, use <see cref="Divide"/>
-    /// </summary>
-    public Microbe ForceDivide()
-    {
         // Separate the two cells.
-        // TODO: separation needs to be increased for multicellular
         var separation = new Vector3(Radius, 0, 0);
+
+        if (Colony != null)
+        {
+            // When in a colony we approximate a much higher separation distance
+            var colonyRadius = separation.x;
+
+            foreach (var colonyMember in Colony.ColonyMembers)
+            {
+                if (colonyMember == this)
+                    continue;
+
+                var radius = colonyMember.Radius;
+                var positionInColony = colonyMember.Translation;
+
+                var outerRadius =
+                    Math.Max(
+                        Math.Max(positionInColony.x + radius, Math.Abs(positionInColony.x - radius)),
+                        Math.Max(positionInColony.z + radius, Math.Abs(positionInColony.z - radius)));
+
+                if (outerRadius > colonyRadius)
+                    colonyRadius = outerRadius;
+            }
+
+            separation = new Vector3(colonyRadius, 0, 0);
+        }
 
         // Create the one daughter cell.
         var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation + separation,
@@ -669,7 +685,7 @@ public partial class Microbe
     {
         allOrganellesDivided = true;
 
-        ForceDivide();
+        Divide();
     }
 
     private PlacedOrganelle SplitOrganelle(PlacedOrganelle organelle)
@@ -758,7 +774,7 @@ public partial class Microbe
             }
             else
             {
-                ForceDivide();
+                Divide();
                 enoughResourcesForBudding = false;
             }
         }
