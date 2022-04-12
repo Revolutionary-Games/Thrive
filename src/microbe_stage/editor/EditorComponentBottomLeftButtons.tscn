@@ -191,6 +191,9 @@ texture_pressed = ExtResource( 15 )
 texture_hover = ExtResource( 13 )
 texture_disabled = ExtResource( 4 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="button_down" from="HBoxContainer/SymmetryButton" to="." method="OnSymmetryHold"]
 [connection signal="button_up" from="HBoxContainer/SymmetryButton" to="." method="OnSymmetryReleased"]
@@ -198,6 +201,10 @@ expand = true
 [connection signal="pressed" from="HBoxContainer/UndoButton" to="." method="UndoPressed"]
 [connection signal="pressed" from="HBoxContainer/RedoButton" to="." method="RedoPressed"]
 [connection signal="pressed" from="HBoxContainer/NewButton" to="." method="OnNewButtonClicked"]
+[connection signal="mouse_entered" from="HBoxContainer/SpeciesName" to="." method="OnControlMouseEntered"]
+[connection signal="mouse_exited" from="HBoxContainer/SpeciesName" to="." method="OnControlMouseExited"]
 [connection signal="text_changed" from="HBoxContainer/SpeciesName" to="." method="OnNameTextChanged"]
 [connection signal="text_entered" from="HBoxContainer/SpeciesName" to="." method="OnNameTextEntered"]
+[connection signal="mouse_entered" from="HBoxContainer/RandomizeButton" to="." method="OnControlMouseEntered"]
+[connection signal="mouse_exited" from="HBoxContainer/RandomizeButton" to="." method="OnControlMouseExited"]
 [connection signal="pressed" from="HBoxContainer/RandomizeButton" to="." method="OnRandomizeNamePressed"]

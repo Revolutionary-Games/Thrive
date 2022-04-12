@@ -56,6 +56,8 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     private bool showNewButton = true;
     private bool showRandomizeButton = true;
 
+    private bool controlsHoveredOver;
+
     [Signal]
     public delegate void OnNewClicked();
 
@@ -237,7 +239,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
 
     private void PerformValidation(string text)
     {
-        if (UseSpeciesNameValidation)
+        if (UseSpeciesNameValidation && !controlsHoveredOver)
         {
             // Only defocus if the name is valid to indicate invalid namings to the player
             if (Regex.IsMatch(text, Constants.SPECIES_NAME_REGEX))
@@ -246,6 +248,9 @@ public class EditorComponentBottomLeftButtons : MarginContainer
             }
             else
             {
+                // Prevents user from doing other actions with an invalid name
+                GetTree().SetInputAsHandled();
+
                 // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
                 ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
 
@@ -291,5 +296,15 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         {
             randomizeNameButton.Visible = showRandomizeButton;
         }
+    }
+
+    private void OnControlMouseEntered()
+    {
+        controlsHoveredOver = true;
+    }
+
+    private void OnControlMouseExited()
+    {
+        controlsHoveredOver = false;
     }
 }
