@@ -1080,15 +1080,9 @@ margin_right = 544.0
 margin_bottom = 360.0
 text = "MOD_EXTENDED_DESCRIPTION"
 
-[node name="LongDescription" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="LongDescription" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
 margin_top = 364.0
-margin_right = 544.0
-margin_bottom = 389.0
-text = "Longer mod description"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+margin_bottom = 386.0
 
 [node name="Spacer5" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 393.0

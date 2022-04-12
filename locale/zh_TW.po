@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-07 17:13+0300\n"
+"POT-Creation-Date: 2022-04-11 18:44-0500\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -594,25 +594,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1296
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:750
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "AMMONIA"
 msgstr "氨"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1348
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:821
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
 msgid "PHOSPHATE"
 msgstr "磷酸鹽"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1400
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:715
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氫"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1244
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:785
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
@@ -623,28 +623,28 @@ msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1452
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:856
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "IRON"
 msgstr "鐵"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:552
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:549
 msgid "OXYGEN"
 msgstr "氧"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:606
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:603
 msgid "CARBON_DIOXIDE"
 msgstr "二氧化碳"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:579
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:576
 msgid "NITROGEN"
 msgstr "氮"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:433
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
 msgstr "陽光"
@@ -879,39 +879,39 @@ msgstr "{0} ({1})"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "從這個星球上滅絕了"
 
-#: ../src/auto-evo/RunResults.cs:860
+#: ../src/auto-evo/RunResults.cs:844
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] 已經滅絕了！"
 
-#: ../src/auto-evo/RunResults.cs:870 ../src/auto-evo/RunResults.cs:892
+#: ../src/auto-evo/RunResults.cs:854 ../src/auto-evo/RunResults.cs:876
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] 人口已經增加到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:876 ../src/auto-evo/RunResults.cs:898
+#: ../src/auto-evo/RunResults.cs:860 ../src/auto-evo/RunResults.cs:882
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] 人口已经減少到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:884
+#: ../src/auto-evo/RunResults.cs:868
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] 已經從這個區域消失"
 
-#: ../src/auto-evo/RunResults.cs:908
+#: ../src/auto-evo/RunResults.cs:892
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "部分 [u]{0}[/u] 人口已從 {1} 遷移到此補丁"
 
-#: ../src/auto-evo/RunResults.cs:913
+#: ../src/auto-evo/RunResults.cs:897
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[u]{0}[/u] 人口的一部分已從 {2} 遷移到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:919
+#: ../src/auto-evo/RunResults.cs:903
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[u]{0}[/u] 人口的一部分已遷移到 {1}"
 
-#: ../src/auto-evo/RunResults.cs:938
+#: ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] 從 [u]{1}[/u] 中分離出來，作為一個新物種來填補生態位"
 
-#: ../src/auto-evo/RunResults.cs:944
+#: ../src/auto-evo/RunResults.cs:928
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] 由於不同的演化壓力，從 [u]{1}[/u] 作為一個新物種分離出來"
 
@@ -994,7 +994,7 @@ msgstr "取消"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1186
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1018
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr "下一頁"
@@ -1039,17 +1039,17 @@ msgstr "速度："
 msgid "NEW_NAME"
 msgstr "新遊戲"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:73
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:72
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "在加載微生物編輯器"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:187
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:186
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:191
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo啟動失敗"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:188
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:187
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:192
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "運行狀態："
@@ -1058,7 +1058,7 @@ msgstr "運行狀態："
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr ""
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
 msgid "LOADING"
 msgstr "加載中"
 
@@ -1497,7 +1497,7 @@ msgstr "由{0}創作"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1278
-#: ../src/modding/ModManager.tscn:972
+#: ../src/modding/ModManager.tscn:1445
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "關閉"
@@ -1520,7 +1520,7 @@ msgstr "{0} 濃度降低了 {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "葡萄糖濃度急劇下降！"
 
-#: ../src/general/MainMenu.cs:234
+#: ../src/general/MainMenu.cs:235
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登錄為：{0}"
 
@@ -1565,7 +1565,7 @@ msgstr "微生物階段自由編輯器"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/modding/ModManager.tscn:1504 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "返回"
@@ -1749,6 +1749,7 @@ msgid "LANGUAGE"
 msgstr "語言："
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
+#: ../src/modding/ModManager.tscn:849
 msgid "RESET"
 msgstr "重置"
 
@@ -1914,7 +1915,7 @@ msgstr "取消並繼續"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:687
 msgid "CANCEL"
 msgstr "取消"
 
@@ -2299,7 +2300,7 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1928
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1932
 msgid "NO_DATA_TO_SHOW"
 msgstr "沒有數據可顯示"
 
@@ -2768,7 +2769,7 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "當玩家試圖退出遊戲時，啟用/禁用未保存的進度警告彈出框。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:370
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
 msgid "TEMPERATURE"
@@ -2779,23 +2780,23 @@ msgstr "溫度"
 msgid "N_A_MP"
 msgstr "N/A 變異點"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:537
+#: ../src/microbe_stage/Microbe.Contact.cs:566
 msgid "DEATH"
 msgstr "死亡"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:651
+#: ../src/microbe_stage/Microbe.Contact.cs:692
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功覓食"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:658
+#: ../src/microbe_stage/Microbe.Contact.cs:699
 msgid "SUCCESSFUL_KILL"
 msgstr "成功殺死"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:875
+#: ../src/microbe_stage/Microbe.Contact.cs:937
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脫吞噬"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:747
+#: ../src/microbe_stage/Microbe.Interior.cs:749
 msgid "REPRODUCED"
 msgstr "繁殖"
 
@@ -2897,15 +2898,15 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:691
+#: ../src/microbe_stage/MicrobeStage.cs:710
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
-#: ../src/microbe_stage/MicrobeStage.cs:705
+#: ../src/microbe_stage/MicrobeStage.cs:724
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "無法使用生成敵人作弊，因為這個地區沒有任何敵對物種"
 
-#: ../src/microbe_stage/MicrobeStage.cs:725
+#: ../src/microbe_stage/MicrobeStage.cs:744
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
@@ -2942,7 +2943,7 @@ msgid "PRESSURE_SHORT"
 msgstr "壓強"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1146
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:675
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:712
@@ -3116,33 +3117,33 @@ msgstr "{0}: -{1} ATP"
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1764
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1768
 msgid "FAILED"
 msgstr "失敗"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1774
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1786
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1780
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1792
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1900
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1}在{0}的能量"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1900
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1904
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的總能量為{0}，每個體的成本為{1}，在修正前的種群數量為{2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1907
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1911
 msgid "ENERGY_SOURCES"
 msgstr "能量來源："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1917
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}能量：{1}（適應性：{2}）總可用能量：{3}（總適應性：{4}）"
 
@@ -3281,35 +3282,35 @@ msgstr "物種名..."
 msgid "INFINITE_MP"
 msgstr "無限變異點"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:212
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:209
 msgid "SELECT_A_PATCH"
 msgstr "選擇一個區域以在此處顯示詳細信息"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:247
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "當前位置"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:329
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
 msgid "PHYSICAL_CONDITIONS"
 msgstr "物理條件"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:406
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:403
 msgid "PRESSURE"
 msgstr "壓強"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:511
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:508
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:669
 msgid "ATMOSPHERIC_GASSES"
 msgstr "大氣氣體"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:934
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:931
 msgid "SPECIES_PRESENT"
 msgstr "存在的物種"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:991
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:988
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移動到這個區域"
 
@@ -3481,240 +3482,460 @@ msgstr "你已經茁壯繁盛了!"
 msgid "WIN_TEXT"
 msgstr "恭喜你贏得了這個版本的 \"茁壯成長\"! 如果你願意，你可以在這個屏幕關閉後繼續遊戲，或者在一個新的世界開始新的遊戲。"
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModHelpers.cs:33 ../src/modding/ModHelpers.cs:44
+#: ../src/modding/ModHelpers.cs:67 ../src/modding/ModHelpers.cs:83
+#: ../src/modding/ModHelpers.cs:88
+#, fuzzy
+msgid "UNKNOWN_MOD"
+msgstr "鼠標未知鍵"
+
+#: ../src/modding/ModHelpers.cs:50 ../src/modding/ModManager.cs:1645
+#, fuzzy
+msgid "MOD_LIST_VALID"
+msgstr "存檔無效"
+
+#: ../src/modding/ModHelpers.cs:53
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
+msgstr ""
+"選取的存檔已知會跟這個版本的Thrive不兼容。\n"
+"而且也沒有適用的存檔更新器。\n"
+"由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
+
+#: ../src/modding/ModHelpers.cs:70
+msgid "MOD_ERROR_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:72
+msgid "MOD_ERROR_DEPENDENCIES_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:91
+msgid "MOD_ERROR_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:93
+msgid "MOD_ERROR_REQUIRED_MODS_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:96
+msgid "MOD_ERROR_DEPENDENCIES_ORDER"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:98
+msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:103
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD"
+msgstr "載入不兼容的存檔？"
+
+#: ../src/modding/ModHelpers.cs:105
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
+msgstr ""
+"選取的存檔已知會跟這個版本的Thrive不兼容。\n"
+"而且也沒有適用的存檔更新器。\n"
+"由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
+
+#: ../src/modding/ModHelpers.cs:109
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
+msgstr "Mod加載錯誤"
+
+#: ../src/modding/ModHelpers.cs:111
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:116
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_AFTER"
+msgstr "一個或多個mod需要重新啟動遊戲才能正常加載或卸載"
+
+#: ../src/modding/ModHelpers.cs:118
+msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:436 ../src/modding/ModLoader.cs:493
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "無法加載{0}的mod信息"
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:461
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}：彙編加載失敗，出現異常。 {1}"
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:478
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}：沒有可加載的資源"
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:508
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: mod的裝配卸載方法調用失敗"
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:516
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod的裝配卸載方法調用失敗，出現異常。 {1}"
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:584
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}：在mod的裝配中沒有找到指定的mod類\"{1}\""
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:597
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: mod的裝配初始化方法調用失敗"
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:613
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod的裝配初始化方法調用失敗，出現異常。 {1}"
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:629
 msgid "PCK_LOAD_FAILED"
 msgstr "加载pck文件（{0}）失败"
 
-#: ../src/modding/ModManager.cs:293
+#: ../src/modding/ModManager.cs:428
 msgid "INVALID_ICON_PATH"
 msgstr "無效的MOD圖標路徑"
 
-#: ../src/modding/ModManager.cs:307
+#: ../src/modding/ModManager.cs:442
 msgid "INVALID_URL_SCHEME"
 msgstr "無效的URL方案"
 
-#: ../src/modding/ModManager.cs:319
+#: ../src/modding/ModManager.cs:454
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "當指定裝配時，需要Mod裝配類"
 
-#: ../src/modding/ModManager.cs:549
-msgid "NO_SELECTED_MOD"
-msgstr "沒有被選取的MOD"
+#: ../src/modding/ModManager.cs:619
+#, fuzzy
+msgid "MOD_LOADER_TAB"
+msgstr "Mod上傳工具"
 
-#: ../src/modding/ModManager.cs:885
+#: ../src/modding/ModManager.cs:620
+#, fuzzy
+msgid "MOD_ERRORS_TAB"
+msgstr "Mod加載錯誤"
+
+#: ../src/modding/ModManager.cs:773 ../src/modding/ModManager.cs:1580
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "這個MOD是在Steam工作坊下載的"
 
-#: ../src/modding/ModManager.cs:886
+#: ../src/modding/ModManager.cs:774 ../src/modding/ModManager.cs:1581
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "這是一個本地安裝的MOD"
 
-#: ../src/modding/ModManager.cs:940
+#: ../src/modding/ModManager.cs:841
+msgid "NO_SELECTED_MOD"
+msgstr "沒有被選取的MOD"
+
+#: ../src/modding/ModManager.cs:1179
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING"
+msgstr "Mod加載錯誤"
+
+#: ../src/modding/ModManager.cs:1318 ../src/modding/ModManager.tscn:750
+#: ../src/modding/ModManager.tscn:1339 ../src/modding/NewModGUI.tscn:546
+msgid "MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1334
+msgid "NO_MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1349 ../src/modding/ModManager.tscn:1361
+#: ../src/modding/NewModGUI.tscn:570
+msgid "MOD_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1365
+#, fuzzy
+msgid "NO_REQUIRED_MODS"
+msgstr "沒有被選取的MOD"
+
+#: ../src/modding/ModManager.cs:1380 ../src/modding/ModManager.tscn:768
+#, fuzzy
+msgid "INCOMPATIBLE_WITH"
+msgstr ""
+"選取的存檔已知會跟這個版本的Thrive不兼容。\n"
+"而且也沒有適用的存檔更新器。\n"
+"由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
+
+#: ../src/modding/ModManager.cs:1396
+#, fuzzy
+msgid "NO_MOD_INCOMPATIBLE"
+msgstr "啟用所有兼容Mods"
+
+#: ../src/modding/ModManager.cs:1411 ../src/modding/ModManager.tscn:777
+#, fuzzy
+msgid "LOAD_ORDER"
+msgstr "Mod上傳工具"
+
+#: ../src/modding/ModManager.cs:1420 ../src/modding/ModManager.tscn:1405
+#: ../src/modding/NewModGUI.tscn:618
+#, fuzzy
+msgid "MOD_LOAD_AFTER"
+msgstr "Mod上傳工具"
+
+#: ../src/modding/ModManager.cs:1438 ../src/modding/ModManager.tscn:1383
+#: ../src/modding/NewModGUI.tscn:594
+#, fuzzy
+msgid "MOD_LOAD_BEFORE"
+msgstr "Mod加載錯誤"
+
+#: ../src/modding/ModManager.cs:1450
+#, fuzzy
+msgid "MOD_NO_LOAD_ORDER"
+msgstr "一個或多個mod需要重新啟動遊戲才能正常加載或卸載"
+
+#: ../src/modding/ModManager.cs:1639
+#, fuzzy
+msgid "MOD_LIST_CONTAIN_ERRORS"
+msgstr "Mod加載錯誤"
+
+#: ../src/modding/ModManager.cs:1641
+#, fuzzy
+msgid "MOD_CHECK_AGAIN_WARNING"
+msgstr ""
+"未保存的更改將被丟棄。\n"
+"你想繼續嗎？"
+
+#: ../src/modding/ModManager.cs:1686
 msgid "ERROR_CREATING_FOLDER"
 msgstr "為mod創建文件夾時出錯"
 
-#: ../src/modding/ModManager.cs:949
+#: ../src/modding/ModManager.cs:1695
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "創建MOD信息文件出錯"
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:197
 msgid "AVAILABLE_MODS"
 msgstr "可用的MOD"
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "刷新"
+#: ../src/modding/ModManager.tscn:225
+#, fuzzy
+msgid "LEFT_ARROW_TOOLTIP"
+msgstr "←"
 
-#: ../src/modding/ModManager.tscn:152
-msgid "OPEN_FOLDER"
-msgstr "打開文件夾"
-
-#: ../src/modding/ModManager.tscn:170
-msgid "RIGHT_ARROW"
-msgstr "→"
-
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:226 ../src/modding/ModManager.tscn:480
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:242
+#, fuzzy
+msgid "UP_ARROW_TOOLTIP"
+msgstr "暫停遊戲"
+
+#: ../src/modding/ModManager.tscn:249
+msgid "DOWN_ARROW_TOOLTIP"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:256
+#, fuzzy
+msgid "RIGHT_ARROW_TOOLTIP"
+msgstr "→"
+
+#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:514
+msgid "RIGHT_ARROW"
+msgstr "→"
+
+#: ../src/modding/ModManager.tscn:271
 msgid "ENABLED_MODS"
 msgstr "啟用MODs"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:310
+#, fuzzy
+msgid "ENABLE_ALL"
+msgstr "禁用所有"
+
+#: ../src/modding/ModManager.tscn:316
+msgid "OPEN_FOLDER"
+msgstr "打開文件夾"
+
+#: ../src/modding/ModManager.tscn:322
 msgid "DISABLE_ALL"
 msgstr "禁用所有"
 
-#: ../src/modding/ModManager.tscn:250
-msgid "SELECTED_MOD"
-msgstr "被選取Mod："
+#: ../src/modding/ModManager.tscn:338
+#, fuzzy
+msgid "ONESHOT_LOADING_TOOLTIP"
+msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:340
+#, fuzzy
+msgid "ONESHOT_LOADING"
+msgstr "加載時出錯"
+
+#: ../src/modding/ModManager.tscn:563 ../src/modding/ModManager.tscn:1015
+#: ../src/modding/NewModGUI.tscn:156
 msgid "MOD_AUTHOR"
 msgstr "MOD作者："
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:588 ../src/modding/ModManager.tscn:1037
+#: ../src/modding/NewModGUI.tscn:179
 msgid "MOD_VERSION"
 msgstr "MOD版本："
 
-#: ../src/modding/ModManager.tscn:371
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr "推薦Thrive："
-
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:669
 msgid "MINIMUM_VERSION"
 msgstr "最低："
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
-msgid "MOD_DESCRIPTION"
-msgstr "Mod 描述："
+#: ../src/modding/ModManager.tscn:703
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr "推薦Thrive："
 
-#: ../src/modding/ModManager.tscn:474
-msgid "MORE_INFO"
-msgstr "顯示更多信息"
+#: ../src/modding/ModManager.tscn:759
+#, fuzzy
+msgid "REQUIRED_MODS"
+msgstr "啟用MODs"
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:786
 msgid "OPEN_MOD_URL"
 msgstr "打開信息網址"
 
-#: ../src/modding/ModManager.tscn:505
-msgid "BROWSE_WORKSHOP"
-msgstr "瀏覽工作坊"
+#: ../src/modding/ModManager.tscn:795
+msgid "MORE_INFO"
+msgstr "顯示更多信息"
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
-msgid "UPLOAD"
-msgstr "上傳"
+#: ../src/modding/ModManager.tscn:859
+#, fuzzy
+msgid "CHECK_BUTTON_TOOLTIP"
+msgstr "幫助"
 
-#: ../src/modding/ModManager.tscn:519
-msgid "NEW"
-msgstr "新增"
+#: ../src/modding/ModManager.tscn:860
+msgid "CHECK_MOD"
+msgstr ""
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:870 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "刷新"
+
+#: ../src/modding/ModManager.tscn:880
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "注意：許多mods需要重新啟動遊戲才能正常加載或卸載。只加載你信任的mods，因為它們可能包含可執行的問題代碼。"
 
-#: ../src/modding/ModManager.tscn:559
-msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "啟用所有兼容Mods"
-
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:881
 msgid "APPLY_CHANGES"
 msgstr "應用變更"
 
-#: ../src/modding/ModManager.tscn:579
+#: ../src/modding/ModManager.tscn:896
+msgid "BROWSE_WORKSHOP"
+msgstr "瀏覽工作坊"
+
+#: ../src/modding/ModManager.tscn:907 ../src/modding/ModUploader.tscn:45
+msgid "UPLOAD"
+msgstr "上傳"
+
+#: ../src/modding/ModManager.tscn:918
+msgid "NEW"
+msgstr "新增"
+
+#: ../src/modding/ModManager.tscn:931
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "有未應用的變更"
 
-#: ../src/modding/ModManager.tscn:580
+#: ../src/modding/ModManager.tscn:932
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "你需要應用你的變更來加載或卸載任何mods。"
 
-#: ../src/modding/ModManager.tscn:581
+#: ../src/modding/ModManager.tscn:933
 msgid "DISCARD_CHANGES"
 msgstr "放棄變更"
 
-#: ../src/modding/ModManager.tscn:588
+#: ../src/modding/ModManager.tscn:939
 msgid "FULL_MOD_INFO"
 msgstr "完整的Mod信息"
 
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:967 ../src/modding/NewModGUI.tscn:133
 msgid "MOD_NAME"
 msgstr "Mod名字："
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:989 ../src/modding/NewModGUI.tscn:110
 msgid "MOD_INTERNAL_NAME"
 msgstr "內部（文件夾）名稱："
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:1059 ../src/modding/NewModGUI.tscn:202
+msgid "MOD_DESCRIPTION"
+msgstr "Mod 描述："
+
+#: ../src/modding/ModManager.tscn:1081 ../src/modding/NewModGUI.tscn:225
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Mod的完整描述："
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:1119 ../src/modding/NewModGUI.tscn:249
 msgid "MOD_ICON_FILE"
 msgstr "圖標文件："
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:1141 ../src/modding/NewModGUI.tscn:289
+#, fuzzy
+msgid "MOD_PREVIEW_IMAGE_FILE"
+msgstr "預覽圖像文件太大"
+
+#: ../src/modding/ModManager.tscn:1163 ../src/modding/NewModGUI.tscn:328
 msgid "MOD_INFO_URL"
 msgstr "Mod信息URL："
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:1185 ../src/modding/NewModGUI.tscn:351
 msgid "MOD_LICENSE"
 msgstr "Mod許可："
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:1207 ../src/modding/NewModGUI.tscn:374
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "推薦的Thrive 版本："
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:1229 ../src/modding/NewModGUI.tscn:397
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "最低要求的Thrive版本："
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:1251 ../src/modding/NewModGUI.tscn:420
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "最高要求的Thrive 版本："
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:1273 ../src/modding/NewModGUI.tscn:443
 msgid "MOD_PCK_NAME"
 msgstr "Mod .pck 文件："
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:1295 ../src/modding/NewModGUI.tscn:483
 msgid "MOD_ASSEMBLY"
 msgstr "Mod組裝："
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:1317 ../src/modding/NewModGUI.tscn:523
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Mod Assembly Main Class:"
 
-#: ../src/modding/ModManager.tscn:979
-msgid "MOD_CREATION_FAILED"
-msgstr "Mod創建失敗"
+#: ../src/modding/ModManager.tscn:1427 ../src/modding/NewModGUI.tscn:642
+#, fuzzy
+msgid "MOD_INCOMPATIBLE_MODS"
+msgstr "載入不兼容的存檔？"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1458
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "在加載或卸載一個或多個mod時發生錯誤。日誌可能包含其他信息。"
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1463
 msgid "RESTART_REQUIRED"
 msgstr "需要重新啟動"
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1465
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "一個或多個mod需要重新啟動遊戲才能正常加載或卸載"
+
+#: ../src/modding/ModManager.tscn:1480
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING_TITLE"
+msgstr "在加載一個或多個mods時發生錯誤。日誌可能包含其他信息。"
+
+#: ../src/modding/ModManager.tscn:1482
+#, fuzzy
+msgid "YES"
+msgstr "年"
+
+#: ../src/modding/ModManager.tscn:1483
+#, fuzzy
+msgid "NO"
+msgstr "撤回"
+
+#: ../src/modding/ModManager.tscn:1491 ../src/modding/ModManager.tscn:1494
+msgid "NULL"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -3784,7 +4005,7 @@ msgstr "通過提交此項目，你表示你同意Steam創意工坊的[color=#37
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "由於異常，保存信息失敗：{0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:384
 msgid "FORM_ERROR_MESSAGE"
 msgstr "錯誤：{0}"
 
@@ -3872,47 +4093,47 @@ msgstr "選擇預覽圖像"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "上傳成功"
 
-#: ../src/modding/NewModGUI.cs:175
+#: ../src/modding/NewModGUI.cs:233
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "我極好的Mod"
 
-#: ../src/modding/NewModGUI.cs:232
+#: ../src/modding/NewModGUI.cs:305
 msgid "INVALID_URL_FORMAT"
 msgstr "無效的網址格式"
 
-#: ../src/modding/NewModGUI.cs:247
+#: ../src/modding/NewModGUI.cs:331
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "需要內部名稱"
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:337
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "內部名稱應以大寫字母開頭"
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:343
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "已經有一個內部名稱相同的mod了"
 
-#: ../src/modding/NewModGUI.cs:275
+#: ../src/modding/NewModGUI.cs:359
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "缺少或無效的必填字段的格式：{0}"
 
-#: ../src/modding/NewModGUI.cs:286
+#: ../src/modding/NewModGUI.cs:370
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "額外驗證檢測到了一個問題：{0}"
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:49
 msgid "CREATE_NEW_MOD"
 msgstr "創建新Mod"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:83
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "Mod製作說明在"
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:90
 msgid "OUR_WIKI"
 msgstr "我們的Wiki"
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:680
 msgid "CREATE"
 msgstr "創建"
 
@@ -4487,6 +4708,12 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "教學"
+
+#~ msgid "SELECTED_MOD"
+#~ msgstr "被選取Mod："
+
+#~ msgid "MOD_CREATION_FAILED"
+#~ msgstr "Mod創建失敗"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "加載中..."

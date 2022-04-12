@@ -292,7 +292,7 @@ public class ModManager : Control
     private Label fullInfoAuthor = null!;
     private Label fullInfoVersion = null!;
     private Label fullInfoDescription = null!;
-    private Label fullInfoLongDescription = null!;
+    private CustomRichTextLabel fullInfoLongDescription = null!;
     private Label fullInfoFromWorkshop = null!;
     private Label fullInfoIconFile = null!;
     private Label fullInfoPreviewImagesFile = null!;
@@ -522,7 +522,7 @@ public class ModManager : Control
         fullInfoAuthor = GetNode<Label>(FullInfoAuthorPath);
         fullInfoVersion = GetNode<Label>(FullInfoVersionPath);
         fullInfoDescription = GetNode<Label>(FullInfoDescriptionPath);
-        fullInfoLongDescription = GetNode<Label>(FullInfoLongDescriptionPath);
+        fullInfoLongDescription = GetNode<CustomRichTextLabel>(FullInfoLongDescriptionPath);
         fullInfoIconFile = GetNode<Label>(FullInfoIconFilePath);
         fullInfoPreviewImagesFile = GetNode<Label>(FullInfoPreviewImagesFilePath);
         fullInfoFromWorkshop = GetNode<Label>(FullInfoFromWorkshopPath);
@@ -1575,7 +1575,7 @@ public class ModManager : Control
         fullInfoAuthor.Text = info.Author;
         fullInfoVersion.Text = info.Version;
         fullInfoDescription.Text = info.Description;
-        fullInfoLongDescription.Text = info.LongDescription;
+        fullInfoLongDescription.ExtendedBbcode = info.LongDescription;
         fullInfoFromWorkshop.Text = selectedMod!.Workshop ?
             TranslationServer.Translate("THIS_IS_WORKSHOP_MOD") :
             TranslationServer.Translate("THIS_IS_LOCAL_MOD");
