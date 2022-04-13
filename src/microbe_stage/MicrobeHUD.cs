@@ -178,6 +178,12 @@ public class MicrobeHUD : Control
     public NodePath BindingModeHotkeyPath = null!;
 
     [Export]
+    public NodePath UnbindAllHotkeyPath = null!;
+
+    [Export]
+    public NodePath SignallingAgentsHotkeyPath = null!;
+
+    [Export]
     public NodePath MicrobeControlRadialPath = null!;
 
     // Formatter and code checks disagree here
@@ -213,6 +219,8 @@ public class MicrobeHUD : Control
     private ActionButton engulfHotkey = null!;
     private ActionButton fireToxinHotkey = null!;
     private ActionButton bindingModeHotkey = null!;
+    private ActionButton unbindAllHotkey = null!;
+    private ActionButton signallingAgentsHotkey = null!;
 
     // Store these statefully for after player death
     private float maxHP = 1.0f;
@@ -373,6 +381,8 @@ public class MicrobeHUD : Control
         engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
         fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
         bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
+        unbindAllHotkey = GetNode<ActionButton>(UnbindAllHotkeyPath);
+        signallingAgentsHotkey = GetNode<ActionButton>(SignallingAgentsHotkeyPath);
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
@@ -1105,10 +1115,14 @@ public class MicrobeHUD : Control
         engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall;
         bindingModeHotkey.Visible = player.CanBind;
         fireToxinHotkey.Visible = player.AgentVacuoleCount > 0;
+        unbindAllHotkey.Visible = player.Colony != null;
+        signallingAgentsHotkey.Visible = player.HasSignalingAgent;
 
         engulfHotkey.Pressed = player.State == Microbe.MicrobeState.Engulf;
         bindingModeHotkey.Pressed = player.State == Microbe.MicrobeState.Binding;
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
+        unbindAllHotkey.Pressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
+        signallingAgentsHotkey.Pressed = Input.IsActionPressed(signallingAgentsHotkey.ActionName);
     }
 
     private void UpdateMulticellularButton(Microbe player)

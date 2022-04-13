@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=2]
+[gd_scene load_steps=127 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -88,6 +88,7 @@
 [ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=86]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
 [ext_resource path="res://src/gui_common/dialogs/StagePrototypeConfirm.tscn" type="PackedScene" id=88]
+[ext_resource path="res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png" type="Texture" id=89]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -459,6 +460,8 @@ HotBarPath = NodePath("ScrollContainer/HotBar")
 EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Engulfment")
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
 BindingModeHotkeyPath = NodePath("ScrollContainer/HotBar/BindingMode")
+UnbindAllHotkeyPath = NodePath("ScrollContainer/HotBar/UnbindAll")
+SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
 MicrobeControlRadialPath = NodePath("../RadialPopup")
 
 [node name="MouseHoverPanel" type="MarginContainer" parent="MicrobeHUD"]
@@ -2137,6 +2140,7 @@ margin_left = 277.0
 margin_right = 323.0
 margin_bottom = 51.0
 hint_tooltip = "FIRE_TOXIN"
+toggle_mode = true
 ActionIcon = ExtResource( 15 )
 ActionName = "g_fire_toxin"
 
@@ -2151,6 +2155,29 @@ hint_tooltip = "TOGGLE_BINDING"
 toggle_mode = true
 ActionIcon = ExtResource( 82 )
 ActionName = "g_toggle_binding"
+
+[node name="UnbindAll" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 225.0
+margin_right = 271.0
+margin_bottom = 51.0
+toggle_mode = true
+ActionIcon = ExtResource( 82 )
+ActionName = "g_unbind_all"
+
+[node name="SignalingAgents" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 277.0
+margin_right = 323.0
+margin_bottom = 51.0
+focus_mode = 2
+toggle_mode = true
+ActionIcon = ExtResource( 89 )
+ActionName = "g_pack_commands"
 
 [node name="HintText" type="Label" parent="MicrobeHUD"]
 anchor_right = 1.0
