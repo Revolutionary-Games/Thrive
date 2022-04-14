@@ -42,7 +42,7 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public OrganelleLayout<OrganelleTemplate> Organelles { get; private set; }
 
     public string TypeName { get; set; } = "error";
-    public int MPCost { get; set; } = 25;
+    public int MPCost { get; set; } = 15;
 
     public MembraneType MembraneType { get; set; }
     public float MembraneRigidity { get; set; }

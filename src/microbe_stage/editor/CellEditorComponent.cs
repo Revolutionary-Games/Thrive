@@ -722,7 +722,8 @@ public partial class CellEditorComponent :
             return true;
 
         // Show warning popup if trying to exit with negative atp production
-        if (energyBalanceInfo != null &&
+        // Not shown in multicellular as the popup happens in kind of a weird place
+        if (!IsMulticellularEditor && energyBalanceInfo != null &&
             energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
         {
             negativeAtpPopup.PopupCenteredShrink();

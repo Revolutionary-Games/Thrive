@@ -27,14 +27,14 @@ public class MicrobeAISystem
         if (CheatManager.NoAI)
             return;
 
-        var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.AI_GROUP);
+        var nodes = worldRoot.GetChildrenToProcess<IMicrobeAI>(Constants.AI_GROUP).ToList();
 
         // TODO: it would be nice to only rebuild these lists if some AI think interval has elapsed and these are needed
         var allMicrobes = worldRoot.GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
-        var allChunks = worldRoot.GetTree().GetNodesInGroup(Constants.AI_TAG_CHUNK);
+        var allChunks = worldRoot.GetChildrenToProcess<FloatingChunk>(Constants.AI_TAG_CHUNK);
 
         var data = new MicrobeAICommonData(allMicrobes.Cast<Microbe>().ToList(),
-            allChunks.Cast<FloatingChunk>().ToList(), clouds);
+            allChunks.ToList(), clouds);
 
         // The objects are processed here in order to take advantage of threading
         var executor = TaskExecutor.Instance;
@@ -50,7 +50,7 @@ public class MicrobeAISystem
                      a < start + Constants.MICROBE_AI_OBJECTS_PER_TASK && a < nodes.Count;
                      ++a)
                 {
-                    RunAIFor(nodes[a] as IMicrobeAI, delta, random, data);
+                    RunAIFor(nodes[a], delta, random, data);
                 }
             });
 
