@@ -1115,7 +1115,7 @@ public class MicrobeHUD : Control
         engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall;
         bindingModeHotkey.Visible = player.CanBind;
         fireToxinHotkey.Visible = player.AgentVacuoleCount > 0;
-        unbindAllHotkey.Visible = player.Colony != null;
+        unbindAllHotkey.Visible = player.CanUnbind;
         signallingAgentsHotkey.Visible = player.HasSignalingAgent;
 
         engulfHotkey.Pressed = player.State == Microbe.MicrobeState.Engulf;
