@@ -2125,8 +2125,8 @@ __meta__ = {
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 225.0
-margin_right = 271.0
+margin_left = 277.0
+margin_right = 323.0
 margin_bottom = 51.0
 hint_tooltip = "TOGGLE_ENGULF"
 toggle_mode = true
@@ -2275,6 +2275,7 @@ anims/FadeInOut = SubResource( 37 )
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/Engulfment" to="PlayerMicrobeInput" method="ToggleEngulf"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/FireToxin" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/BindingMode" to="PlayerMicrobeInput" method="ToggleBinding"]
+[connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/UnbindAll" to="PlayerMicrobeInput" method="UnbindAll"]
 [connection signal="Confirmed" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularConfirmed"]
 [connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="MicrobeHUD" method="OnRadialItemSelected"]
