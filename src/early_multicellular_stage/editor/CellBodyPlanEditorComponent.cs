@@ -374,7 +374,7 @@ public partial class CellBodyPlanEditorComponent :
         if (editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
             return true;
 
-        // TODO: warning about not producing enough ATP
+        // TODO: warning about not producing enough ATP if entire body plan would be negative
 
         return true;
     }

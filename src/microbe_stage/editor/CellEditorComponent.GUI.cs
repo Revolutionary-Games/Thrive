@@ -308,10 +308,16 @@ public partial class CellEditorComponent
 
     private void ConfirmFinishEditingWithNegativeATPPressed()
     {
+        if (OnFinish == null)
+        {
+            GD.PrintErr("Confirmed editing for cell editor when finish callback is not set");
+            return;
+        }
+
         GUICommon.Instance.PlayButtonPressSound();
 
         // If we add more things that can be overridden this needs to be updated
-        OnFinish!.Invoke(new List<EditorUserOverride> { EditorUserOverride.NotProducingEnoughATP });
+        OnFinish.Invoke(new List<EditorUserOverride> { EditorUserOverride.NotProducingEnoughATP });
     }
 
     private void UpdateGUIAfterLoadingSpecies(Species species, ICellProperties properties)

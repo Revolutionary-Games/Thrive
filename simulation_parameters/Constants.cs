@@ -75,7 +75,7 @@ public static class Constants
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
-    public const int PROCESS_OBJECTS_PER_TASK = 50;
+    public const int PROCESS_OBJECTS_PER_TASK = 30;
 
     public const int MICROBE_SPAWN_RADIUS = 170;
     public const int CLOUD_SPAWN_RADIUS = 170;
@@ -338,6 +338,8 @@ public static class Constants
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
 
+    public const float COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET = 1;
+
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;
@@ -496,7 +498,7 @@ public static class Constants
 
     // These control how many game entities can exist at once and how fast they are allowed to spawn / despawn
     // TODO: bump this back up once we resolve the performance bottleneck
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 150;
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 140;
     public const int MAX_SPAWNS_PER_FRAME = 1;
 
     /// <summary>
