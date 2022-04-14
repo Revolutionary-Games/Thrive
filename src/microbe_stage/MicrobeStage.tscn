@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=2]
+[gd_scene load_steps=128 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -89,6 +89,7 @@
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
 [ext_resource path="res://src/gui_common/dialogs/StagePrototypeConfirm.tscn" type="PackedScene" id=88]
 [ext_resource path="res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png" type="Texture" id=89]
+[ext_resource path="res://assets/textures/gui/bevel/unbind.png" type="Texture" id=90]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -2148,8 +2149,8 @@ ActionName = "g_fire_toxin"
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 329.0
-margin_right = 375.0
+margin_left = 277.0
+margin_right = 323.0
 margin_bottom = 51.0
 hint_tooltip = "TOGGLE_BINDING"
 toggle_mode = true
@@ -2160,11 +2161,11 @@ ActionName = "g_toggle_binding"
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 225.0
-margin_right = 271.0
+margin_left = 277.0
+margin_right = 323.0
 margin_bottom = 51.0
-toggle_mode = true
-ActionIcon = ExtResource( 82 )
+hint_tooltip = "UNBIND_ALL"
+ActionIcon = ExtResource( 90 )
 ActionName = "g_unbind_all"
 
 [node name="SignalingAgents" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
