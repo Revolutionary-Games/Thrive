@@ -101,7 +101,7 @@ public partial class Microbe
     /// </summary>
     [JsonProperty]
     public Action<Microbe, IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>>?
-        OnCompoundChemoreceptionInfo { get; set; }
+    OnCompoundChemoreceptionInfo { get; set; }
 
     /// <summary>
     ///   Resets the organelles in this microbe to match the species definition
@@ -801,6 +801,12 @@ public partial class Microbe
     {
         var osmoregulationCost = (HexCount * CellTypeProperties.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
+
+        // 5% osmoregulation bonus per colony member
+        if (Colony != null)
+        {
+            osmoregulationCost *= 20 / (20 + Colony.ColonyMembers.Count);
+        }
 
         Compounds.TakeCompound(atp, osmoregulationCost);
     }
