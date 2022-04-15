@@ -263,9 +263,6 @@ public partial class CellEditorComponent :
 
     private bool microbePreviewMode;
 
-    [Signal]
-    public delegate void Clicked();
-
     public enum SelectionMenuTab
     {
         Structure,
@@ -696,17 +693,6 @@ public partial class CellEditorComponent :
             RunWithSymmetry(q, r,
                 (finalQ, finalR, rotation) => RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle),
                 effectiveSymmetry);
-        }
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        if (@event is InputEventMouseButton buttonEvent)
-        {
-            if (buttonEvent.Pressed)
-            {
-                EmitSignal(nameof(Clicked));
-            }
         }
     }
 
