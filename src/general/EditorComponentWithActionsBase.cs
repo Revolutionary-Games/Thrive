@@ -98,7 +98,9 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     protected void OnCancelActionClicked()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        Editor.CancelCurrentAction();
+
+        if (Editor.CancelCurrentAction())
+            UpdateCancelButtonVisibility();
     }
 
     protected void SetUndoButtonStatus(bool enabled)
