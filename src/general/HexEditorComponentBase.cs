@@ -419,7 +419,6 @@ public abstract class
 
         if (MovingPlacedHex != null)
         {
-            MovingPlacedHex = null;
             OnCurrentActionCanceled();
 
             // Re-enable undo/redo button
