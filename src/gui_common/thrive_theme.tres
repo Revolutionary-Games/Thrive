@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=61 format=2]
+[gd_resource type="Theme" load_steps=65 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture" id=2]
@@ -6,15 +6,19 @@
 [ext_resource path="res://assets/textures/gui/bevel/checkAhover.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/checkBclick.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/checkB.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=7]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/grabhover.png" type="Texture" id=12]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=13]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Normal.tres" type="DynamicFont" id=14]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=15]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=16]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=17]
+[ext_resource path="res://assets/textures/gui/bevel/grabdisabled.png" type="Texture" id=18]
+[ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=19]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -575,9 +579,9 @@ HScrollBar/styles/scroll = SubResource( 15 )
 HScrollBar/styles/scroll_focus = null
 HSeparator/constants/separation = 4
 HSeparator/styles/separator = SubResource( 16 )
-HSlider/icons/grabber = null
-HSlider/icons/grabber_disabled = null
-HSlider/icons/grabber_highlight = null
+HSlider/icons/grabber = ExtResource( 7 )
+HSlider/icons/grabber_disabled = ExtResource( 18 )
+HSlider/icons/grabber_highlight = ExtResource( 12 )
 HSlider/icons/tick = null
 HSlider/styles/grabber_area = SubResource( 17 )
 HSlider/styles/grabber_area_highlight = SubResource( 18 )
@@ -668,11 +672,11 @@ PopupMenu/colors/font_color_hover = Color( 1, 1, 1, 1 )
 PopupMenu/constants/hseparation = 2
 PopupMenu/constants/vseparation = 4
 PopupMenu/fonts/font = ExtResource( 10 )
-PopupMenu/icons/checked = null
-PopupMenu/icons/radio_checked = null
-PopupMenu/icons/radio_unchecked = null
+PopupMenu/icons/checked = ExtResource( 6 )
+PopupMenu/icons/radio_checked = ExtResource( 6 )
+PopupMenu/icons/radio_unchecked = ExtResource( 2 )
 PopupMenu/icons/submenu = null
-PopupMenu/icons/unchecked = null
+PopupMenu/icons/unchecked = ExtResource( 2 )
 PopupMenu/styles/hover = SubResource( 28 )
 PopupMenu/styles/labeled_separator_left = SubResource( 43 )
 PopupMenu/styles/labeled_separator_right = SubResource( 44 )
@@ -874,7 +878,7 @@ WindowDialog/fonts/custom_title_font = ExtResource( 15 )
 WindowDialog/fonts/title_font = ExtResource( 11 )
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
-WindowDialog/icons/custom_close = null
+WindowDialog/icons/custom_close = ExtResource( 19 )
 WindowDialog/styles/custom_close_highlight = SubResource( 39 )
 WindowDialog/styles/custom_panel = SubResource( 40 )
 WindowDialog/styles/custom_titlebar = SubResource( 41 )
