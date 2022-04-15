@@ -17,6 +17,27 @@ public partial class CellEditorComponent
 {
     private Texture questionIcon = null!;
 
+    [Signal]
+    public delegate void Clicked();
+
+    /// <summary>
+    ///   Detects presses anywhere to notify the name input to unfocus
+    /// </summary>
+    /// <param name="event">The input event</param>
+    /// <remarks>
+    ///   <para>
+    ///     This doesn't use <see cref="Control._GuiInput"/> as this needs to always see events, even ones that are
+    ///     handled elsewhere
+    ///   </para>
+    /// </remarks>
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton { Pressed: true })
+        {
+            EmitSignal(nameof(Clicked));
+        }
+    }
+
     public void SendUndoToTutorial(TutorialState tutorial)
     {
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = componentBottomLeftButtons.UndoButton;
