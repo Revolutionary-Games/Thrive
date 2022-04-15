@@ -56,6 +56,10 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     private bool showNewButton = true;
     private bool showRandomizeButton = true;
 
+    /// <summary>
+    ///   True when one of our (name related) Controls is hovered. This needs to be known to know if a click happened
+    ///   outside the name editing controls, for detecting when the name needs to be validated.
+    /// </summary>
     private bool controlsHoveredOver;
 
     [Signal]
@@ -182,6 +186,17 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         speciesNameEdit.PlaceholderText = placeholder;
     }
 
+    public void OnClickedOffName()
+    {
+        var focused = GetFocusOwner();
+
+        // Ignore if the species name line edit wasn't focused or if one of our controls is hovered
+        if (focused != speciesNameEdit || controlsHoveredOver)
+            return;
+
+        PerformValidation(speciesNameEdit.Text);
+    }
+
     private void OnSymmetryHold()
     {
         symmetryIcon.Modulate = new Color(0, 0, 0);
@@ -232,14 +247,9 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         EmitSignal(nameof(OnNameSet), newText);
     }
 
-    private void OnClickedOffName()
-    {
-        PerformValidation(speciesNameEdit.Text);
-    }
-
     private void PerformValidation(string text)
     {
-        if (UseSpeciesNameValidation && !controlsHoveredOver)
+        if (UseSpeciesNameValidation)
         {
             // Only defocus if the name is valid to indicate invalid namings to the player
             if (Regex.IsMatch(text, Constants.SPECIES_NAME_REGEX))
