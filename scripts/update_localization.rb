@@ -62,6 +62,7 @@ Dir.chdir(LOCALE_FOLDER) do
 
     if File.exist? target
       puts "Extracting #{locale}.po"
+
       runOpen3Checked 'msgmerge', '--update', '--backup=none', *LINE_WRAP_SETTINGS,
                       target,
                       "messages#{@options[:pot_suffix]}"
@@ -72,6 +73,28 @@ Dir.chdir(LOCALE_FOLDER) do
                       '-o', target, '-i',
                       "messages#{@options[:pot_suffix]}"
     end
+  end
+
+  # Remove trailing whitespace
+  info 'Removing trailing whitespace in .po files...'
+
+  LOCALES.each do |locale|
+    target = locale + @options[:po_suffix]
+    trimmedtext = ''
+    changed = false
+
+    File.readlines(target, encoding: 'utf-8').each do |line|
+      trimmed = "#{line.rstrip}\n"
+      changed = true if line != trimmed
+      trimmedtext += trimmed
+    end
+
+    # Babel generates identically formatted files. So when the first
+    # one doesn't have trailing spaces, nor will the others.
+    break unless changed
+
+    File.write(target, trimmedtext, encoding: 'utf-8')
+    puts "Removed trailing whitespace in #{target}"
   end
 end
 
