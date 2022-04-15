@@ -618,8 +618,7 @@ public class OptionsMenu : ControlWithInput
     {
         if (resolution == null)
             return;
-
-        Vector2 screenResolution = GetViewportRect().Size;
+        var screenResolution = OS.GetScreenSize();
         resolution.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("AUTO_RESOLUTION"),
             screenResolution.x, screenResolution.y);
     }
