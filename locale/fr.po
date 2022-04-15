@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-07 17:13+0300\n"
 "PO-Revision-Date: 2022-04-15 08:28+0000\n"
-"Last-Translator: SegaiDFC <natbasic@free.fr>\n"
+"Last-Translator: Louison Wouts <wouts.louison@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,6 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr "En vous liant à d'autres cellules, vous pouvez construire une colonie cellulaire où les cellules partagent les composés qu'elles absorbent et produisent les unes avec les autres. Afin de pouvoir se lier à une autre cellule, vous devez disposer des agents de liaison organelle et vous y déplacer après être entré en mode de liaison. Vous ne pouvez vous lier qu'avec des cellules de votre propre espèce. En colonie, vous ne pouvez pas diviser votre cellule et entrer dans l'éditeur (pour l'instant). Pour entrer dans l'éditeur, quittez d'abord la colonie une fois que vous avez collecté suffisamment de composés, puis entrez dans l'éditeur. Les grandes colonies cellulaires sont la voie vers la multicellularité (pas encore dans le jeu)."
 
 #: ../simulation_parameters/common/help_texts.json:62
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Structures procaryotes\n"
@@ -104,7 +103,7 @@ msgstr ""
 "\n"
 "Rusticyanine : convertit le [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Nitrogénase : convertit l'azote environnant et l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] en anaérobie\n"
+"Nitrogénèse : convertit l'azote environnant et l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] en anaérobie\n"
 "\n"
 "Cytoplasme : offre un espace de stockage et réalise la glycolyse (qui produit une faible quantité d'[thrive:compound type=\"atp\"][/thrive:compound])"
 
@@ -1540,7 +1539,7 @@ msgstr "la concentration de {0} a diminué de {1}"
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "La concentration de glucose a baissé drastiquement !"
 
 #: ../src/general/MainMenu.cs:234
 msgid "STORE_LOGGED_IN_AS"
@@ -3049,7 +3048,7 @@ msgstr "Suicide"
 #: ../src/microbe_stage/MicrobeStage.tscn:1767
 #: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr ""
+msgstr "Passer à l'étape suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1813
 msgid "POPULATION_CAPITAL"
@@ -3057,7 +3056,7 @@ msgstr "POPULATION :"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:188
 msgid "PATCH_PANGONIAN_VENTS"
-msgstr "Vents pangoniens"
+msgstr "Cheminées pangoniennes"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
@@ -3249,11 +3248,11 @@ msgstr "Fluidité / Rigidité"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:566
 msgid "FLUID"
-msgstr ""
+msgstr "Fluide"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:579
 msgid "RIGID"
-msgstr ""
+msgstr "Rigide"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:612
 msgid "COLOUR"
