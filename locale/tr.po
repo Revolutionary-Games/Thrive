@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-07 17:13+0300\n"
-"PO-Revision-Date: 2022-03-21 04:28+0000\n"
+"PO-Revision-Date: 2022-04-12 16:14+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -929,9 +929,8 @@ msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0} türünün yenmesi"
 
 #: ../src/early_multicellular_stage/CellType.cs:38
-#, fuzzy
 msgid "STEM_CELL_NAME"
-msgstr "Özel kullanıcı adı:"
+msgstr "Kök"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
@@ -939,9 +938,8 @@ msgid "STRUCTURE"
 msgstr "Yapı"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
-#, fuzzy
 msgid "REPRODUCTION"
-msgstr "ATP Üretimi"
+msgstr "Üreme"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
@@ -949,14 +947,12 @@ msgid "BEHAVIOUR"
 msgstr "Davranış"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
-#, fuzzy
 msgid "CELLS"
-msgstr "Selüloz"
+msgstr "Hücreler"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
-#, fuzzy
 msgid "MODIFY_TYPE"
-msgstr "Değişiklik Yap"
+msgstr "Türde Değişiklik Yap"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:414
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
@@ -964,20 +960,17 @@ msgid "DELETE"
 msgstr "Sil"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:421
-#, fuzzy
 msgid "DUPLICATE_TYPE"
-msgstr "Oyuncuyu Çoğalt"
+msgstr "Türü Kopyala"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:463
-#, fuzzy
 msgid "REPRODUCTION_METHOD"
-msgstr "çoğaldı"
+msgstr "Üreme:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:476
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
-#, fuzzy
 msgid "REPRODUCTION_BUDDING"
-msgstr "çoğaldı"
+msgstr "Tomurcuklanma"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
@@ -992,44 +985,38 @@ msgid "NEXT_CAPITAL"
 msgstr "SONRAKİ"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
-#, fuzzy
 msgid "DISCONNECTED_CELLS"
-msgstr "Bağlı Olmayan Organeller"
+msgstr "Bağlı Olmayan Hücreler"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
-#, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
-"Diğerlerine bağlı olmayan, eklenmiş organeller var.\n"
-"Lütfen yerleştirdiğin bütün organelleri birbiriyle bağla veya değişikliklerini geri al."
+"Diğerlerine bağlı olmayan, yerleştirilmiş hücreler var.\n"
+"Devam etmek için lütfen yerleştirdiğin bütün hücreleri birbiriyle bağla."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "Kullanılan Hücre Türü Silinemez"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "Beden planında mevcut olarak kullanılan bir hücre türü silinemez"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr "Yeni Kayıt Oluştur"
+msgstr "Yeni Hücre Türü Oluştur"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "Benim Harika Modum"
+msgstr "Mevcut hücreleri kopyalayarak ve onlara yeni bir isim vererek yeni hücre türleri oluşturabilirsin. Hücre türlerinde, farklı görevlerde özelleştirmek amacıyla değişiklik yapılabilir. Bir hücre türü değiştirildiğinde, bu türe ait yerleştirilmiş bütün hücreler güncellenir."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
-#, fuzzy
 msgid "NEW_NAME_COLON"
-msgstr "Hız:"
+msgstr "Yeni İsim:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:585
-#, fuzzy
 msgid "NEW_NAME"
-msgstr "Yeni Oyun"
+msgstr "Yeni İsim"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:73
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
@@ -1048,7 +1035,7 @@ msgstr "çalışma durumu:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "Burayı düzenlemek için editör sekmesinden bir hücre türü seç"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -2334,12 +2321,17 @@ msgstr "Thrive'ın bir bölümünü kapsayan lisanslar burada gösterilmektedir"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "Prototip evreye devam edilsin mi?"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
-msgstr "Protanop (Kırmızı-Yeşil)"
+msgstr ""
+"Thrive'ın \"tamamlanmış\" kısmının sonuna geldin.\n"
+"Eğer istersen, oyuna dahil edilen sonraki evrelerin prototipleri ile devam edebilirsin. Bu prototipler eksik tamamlanmış olabilir, yer tutucu grafikler kullanıyor olabilir ve genel olarak çok kaba görünebilir. Bunlar, oyunun gelecekteki gidişatını ve evrelerin nasıl bağlandığına dair genel vizyonumuzu göstermek için oyunun bir parçası olarak eklenmektedir.\n"
+"\n"
+"Eğer devam eder veya devam ettikten sonra geri dönersen, bu aşamadan sonra oyunu kaydedemeyeceksin. Eğer bu evreye geri dönmek istersen, lütfen ilerlemeden önce bir kayıt oluştur.\n"
+"\n"
+"Eğer devam etmeyi seçersen, sonraki evrelerin prototip olduğunu lütfen anlayışla karşıla ve onların ne kadar eksik oldukları konusunda lütfen şikayetçi olma."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2358,9 +2350,8 @@ msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Düzenlemeyi bitir ve ortama dön"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
-#, fuzzy
 msgid "NEXT_EDITOR_TAB"
-msgstr "Editörü aç"
+msgstr "Sonraki editör sekmesine git"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
@@ -2875,12 +2866,12 @@ msgstr "çok az miktarda"
 #: ../src/microbe_stage/MicrobeHUD.cs:1156
 #: ../src/microbe_stage/MicrobeStage.tscn:1768
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Çok Hücreli Ol ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1192
 #: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Makroskopik Ol ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeStage.cs:691
 msgid "PLAYER_REPRODUCED"
@@ -2969,7 +2960,7 @@ msgstr "İntihar"
 #: ../src/microbe_stage/MicrobeStage.tscn:1767
 #: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr ""
+msgstr "Oyunun sonraki evresine git (çok hücreli). Yeterince büyük bir hücre kolonin olduğunda açılır."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1813
 msgid "POPULATION_CAPITAL"
@@ -3098,7 +3089,7 @@ msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Hücre Türü İsmi"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1764
 msgid "FAILED"
@@ -3242,7 +3233,7 @@ msgstr "Bağlı Olmayan Organeller"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1204
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
-"Diğerlerine bağlı olmayan, eklenmiş organeller var.\n"
+"Diğerlerine bağlı olmayan, yerleştirilmiş organeller var.\n"
 "Lütfen yerleştirdiğin bütün organelleri birbiriyle bağla veya değişikliklerini geri al."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1269
@@ -3382,9 +3373,8 @@ msgid "PATCH_MAP"
 msgstr "Arazi Haritası"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
-#, fuzzy
 msgid "CELL"
-msgstr "Selüloz"
+msgstr "Hücre"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
@@ -4005,9 +3995,11 @@ msgid "PLAYER_EXTINCT"
 msgstr "Oyuncunun nesli tükendi"
 
 #: ../src/saving/SaveHelper.cs:470
-#, fuzzy
 msgid "IN_PROTOTYPE"
-msgstr "Protanop (Kırmızı-Yeşil)"
+msgstr ""
+"Oyuna dahil edilen sonraki evrelerin prototiplerini oynamaktasın.\n"
+"Bu prototipler eksik tamamlanmış olabilir, yer tutucu grafikler kullanıyor olabilir ve genel olarak çok kaba görünebilir.\n"
+"Bu bakımdan oyunu kaydetmek şu an için mümkün değil."
 
 #: ../src/saving/SaveHelper.cs:478
 msgid "SAVING_SUCCEEDED"
