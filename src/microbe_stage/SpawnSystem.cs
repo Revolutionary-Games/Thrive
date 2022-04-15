@@ -144,20 +144,11 @@ public class SpawnSystem
     public void DespawnAll()
     {
         queuedSpawns = null;
-        var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
-        foreach (Node entity in spawnedEntities)
+        foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
         {
-            if (!entity.IsQueuedForDeletion())
+            if (!spawned.EntityNode.IsQueuedForDeletion())
             {
-                var spawned = entity as ISpawned;
-
-                if (spawned == null)
-                {
-                    GD.PrintErr("A node has been put in the spawned group but it isn't derived from ISpawned");
-                    continue;
-                }
-
                 spawned.DestroyDetachAndQueueFree();
             }
         }
@@ -382,23 +373,17 @@ public class SpawnSystem
         int entitiesDeleted = 0;
 
         // Despawn entities
-        var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
+        int spawnedCount = 0;
 
-        foreach (Node entity in spawnedEntities)
+        foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
         {
-            var spawned = entity as ISpawned;
-
-            if (spawned == null)
-            {
-                GD.PrintErr("A node has been put in the spawned group but it isn't derived from ISpawned");
-                continue;
-            }
+            ++spawnedCount;
 
             // Global position must be used here as otherwise colony members are despawned
             // TODO: check if it would be better to remove the spawned group tag from colony members (and add it back
             // when leaving the colony) or this could only get direct descendants of the world root and ignore nested
             // nodes in the spawned group
-            var entityPosition = ((Spatial)entity).GlobalTransform.origin;
+            var entityPosition = ((Spatial)spawned).GlobalTransform.origin;
             var squaredDistance = (playerPosition - entityPosition).LengthSquared();
 
             // If the entity is too far away from the player, despawn it.
@@ -412,7 +397,7 @@ public class SpawnSystem
             }
         }
 
-        return spawnedEntities.Count - entitiesDeleted;
+        return spawnedCount - entitiesDeleted;
     }
 
     /// <summary>

@@ -264,27 +264,48 @@ public partial class Microbe
     /// <summary>
     ///   Triggers reproduction on this cell (even if not ready)
     /// </summary>
-    /// <exception cref="NotSupportedException">Thrown when this microbe is in a colony</exception>
+    /// <remarks>
+    ///   <para>
+    ///     Now with multicellular colonies are also allowed to divide so there's no longer a check against that
+    ///   </para>
+    /// </remarks>
     public Microbe Divide()
     {
-        if (Colony != null)
-            throw new NotSupportedException("Cannot divide a microbe while in a colony");
+        if (ColonyParent != null)
+            throw new ArgumentException("Cell that is a colony member (non-leader) can't divide");
 
-        return ForceDivide();
-    }
+        var currentPosition = GlobalTransform.origin;
 
-    /// <summary>
-    ///   Triggers reproduction on this cell (even if not ready)
-    ///   Ignores security checks. If you want those checks, use <see cref="Divide"/>
-    /// </summary>
-    public Microbe ForceDivide()
-    {
         // Separate the two cells.
-        // TODO: separation needs to be increased for multicellular
         var separation = new Vector3(Radius, 0, 0);
 
+        if (Colony != null)
+        {
+            // When in a colony we approximate a much higher separation distance
+            var colonyRadius = separation.x;
+
+            foreach (var colonyMember in Colony.ColonyMembers)
+            {
+                if (colonyMember == this)
+                    continue;
+
+                var radius = colonyMember.Radius + Constants.COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET;
+
+                // TODO: switch this to something else if this is too slow for large colonies
+                var positionInColony = colonyMember.GlobalTransform.origin - currentPosition;
+
+                var outerRadius = Math.Max(Math.Abs(positionInColony.x) + radius,
+                    Math.Abs(positionInColony.z) + radius);
+
+                if (outerRadius > colonyRadius)
+                    colonyRadius = outerRadius;
+            }
+
+            separation = new Vector3(colonyRadius + Constants.COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET, 0, 0);
+        }
+
         // Create the one daughter cell.
-        var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation + separation,
+        var copyEntity = SpawnHelpers.SpawnMicrobe(Species, currentPosition + separation,
             GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, CurrentGame);
 
         // Make it despawn like normal
@@ -669,7 +690,7 @@ public partial class Microbe
     {
         allOrganellesDivided = true;
 
-        ForceDivide();
+        Divide();
     }
 
     private PlacedOrganelle SplitOrganelle(PlacedOrganelle organelle)
@@ -758,7 +779,7 @@ public partial class Microbe
             }
             else
             {
-                ForceDivide();
+                Divide();
                 enoughResourcesForBudding = false;
             }
         }
