@@ -653,14 +653,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             wonOnce = true;
         }
 
-        // Update the player's cell
-        Player!.ApplySpecies(Player.Species);
-
-        // Reset all the duplicates organelles of the player
-        Player.ResetOrganelleLayout();
-
         // Spawn another cell from the player species
-        var daughter = Player.Divide();
+        // This is done first to ensure that the player colony is still intact for spawn separation calculation
+        var daughter = Player!.Divide();
 
         // If multicellular, we want that other cell colony to be fully grown to show budding in action
         if (Player.IsMulticellular)
@@ -669,6 +664,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             // TODO: add more extra offset between the player and the divided cell
         }
+
+        // Update the player's cell
+        Player.ApplySpecies(Player.Species);
+
+        // Reset all the duplicates organelles of the player
+        Player.ResetOrganelleLayout();
 
         HUD.OnEnterStageTransition(false);
         HUD.HideReproductionDialog();

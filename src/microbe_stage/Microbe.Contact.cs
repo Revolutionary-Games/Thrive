@@ -315,7 +315,7 @@ public partial class Microbe
         }
         else if (source == "atpDamage")
         {
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg", 0.8f);
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg");
         }
         else if (source == "ice")
         {
