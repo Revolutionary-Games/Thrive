@@ -805,7 +805,7 @@ public partial class Microbe
         // 5% osmoregulation bonus per colony member
         if (Colony != null)
         {
-            osmoregulationCost *= 20 / (20 + Colony.ColonyMembers.Count);
+            osmoregulationCost *= 20f / (20f + Colony.ColonyMembers.Count);
         }
 
         Compounds.TakeCompound(atp, osmoregulationCost);
