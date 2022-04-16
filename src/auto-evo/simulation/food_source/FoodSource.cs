@@ -43,13 +43,15 @@
                         if (process.Process.Outputs.ContainsKey(glucose))
                         {
                             energyCreationScore += process.Process.Outputs[glucose] / process.Process.Inputs[compound]
-                                * processEfficiency * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
+                                * process.Process.Outputs[glucose] * processEfficiency
+                                * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
                         }
 
                         if (process.Process.Outputs.ContainsKey(atp))
                         {
                             energyCreationScore += process.Process.Outputs[atp] / process.Process.Inputs[compound]
-                                * processEfficiency * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
+                                * process.Process.Outputs[atp] * processEfficiency
+                                * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
                         }
                     }
                 }
