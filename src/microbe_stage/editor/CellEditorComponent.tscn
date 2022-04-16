@@ -1277,6 +1277,7 @@ size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 34 )
 text = "CLOSE"
 
+[connection signal="Clicked" from="." to="EditorComponentBottomLeftButtons" method="OnClickedOffName"]
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]

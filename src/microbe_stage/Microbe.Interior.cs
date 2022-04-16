@@ -802,6 +802,12 @@ public partial class Microbe
         var osmoregulationCost = (HexCount * CellTypeProperties.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
 
+        // 5% osmoregulation bonus per colony member
+        if (Colony != null)
+        {
+            osmoregulationCost *= 20f / (20f + Colony.ColonyMembers.Count);
+        }
+
         Compounds.TakeCompound(atp, osmoregulationCost);
     }
 
