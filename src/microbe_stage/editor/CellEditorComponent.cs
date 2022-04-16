@@ -958,6 +958,7 @@ public partial class CellEditorComponent :
     protected override void OnCurrentActionCanceled()
     {
         editedMicrobeOrganelles.Add(MovingPlacedHex!);
+        MovingPlacedHex = null;
         base.OnCurrentActionCanceled();
     }
 

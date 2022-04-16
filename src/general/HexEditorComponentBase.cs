@@ -420,7 +420,6 @@ public abstract class
         if (MovingPlacedHex != null)
         {
             OnCurrentActionCanceled();
-            MovingPlacedHex = null;
 
             // Re-enable undo/redo button
             Editor.NotifyUndoRedoStateChanged();
