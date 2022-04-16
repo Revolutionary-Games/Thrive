@@ -240,15 +240,17 @@
             foreach (var currentSpecies in species)
             {
                 var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(currentSpecies, patch);
+                var individualCost = energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
+                    * currentSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
 
                 // Modify populations based on energy
                 var newPopulation = (long)(energyBySpecies[currentSpecies]
-                    / (energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement * (currentSpecies.Behaviour.Activity / 100)));
+                    / individualCost);
 
                 if (trackEnergy)
                 {
                     populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch, newPopulation,
-                        energyBySpecies[currentSpecies], energyBalanceInfo.FinalBalanceStationary);
+                        energyBySpecies[currentSpecies], individualCost);
                 }
 
                 // TODO: this is a hack for now to make the player experience better, try to get the same rules working
