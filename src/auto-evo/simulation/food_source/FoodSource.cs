@@ -43,7 +43,10 @@
 
                         if (process.Process.Outputs.ContainsKey(glucose))
                         {
+                            // Better ratio means that we transform stuff more efficiently and need less input
                             var compoundRatio = process.Process.Outputs[glucose] / process.Process.Inputs[compound];
+
+                            // Better output is a proxy for more time dedicated to reproduction than energy production
                             var absoluteOutput = process.Process.Outputs[glucose] * processEfficiency;
 
                             energyCreationScore += (float)(
@@ -54,7 +57,10 @@
 
                         if (process.Process.Outputs.ContainsKey(atp))
                         {
+                            // Better ratio means that we transform stuff more efficiently and need less input
                             var compoundRatio = process.Process.Outputs[atp] / process.Process.Inputs[compound];
+
+                            // Better output is a proxy for more time dedicated to reproduction than energy production
                             var absoluteOutput = process.Process.Outputs[atp] * processEfficiency;
 
                             energyCreationScore += (float)(
