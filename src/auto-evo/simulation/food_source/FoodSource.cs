@@ -31,6 +31,7 @@
         protected float EnergyGenerationScore(MicrobeSpecies species, Compound compound, Patch patch)
         {
             var energyCreationScore = 0.0f;
+
             foreach (var organelle in species.Organelles)
             {
                 foreach (var process in organelle.Definition.RunnableProcesses)
@@ -42,16 +43,24 @@
 
                         if (process.Process.Outputs.ContainsKey(glucose))
                         {
-                            energyCreationScore += process.Process.Outputs[glucose] / process.Process.Inputs[compound]
-                                * process.Process.Outputs[glucose] * processEfficiency
-                                * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
+                            var compoundRatio = process.Process.Outputs[glucose] / process.Process.Inputs[compound];
+                            var absoluteOutput = process.Process.Outputs[glucose] * processEfficiency;
+
+                            energyCreationScore += (float)(
+                                Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
+                                * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
+                                * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER);
                         }
 
                         if (process.Process.Outputs.ContainsKey(atp))
                         {
-                            energyCreationScore += process.Process.Outputs[atp] / process.Process.Inputs[compound]
-                                * process.Process.Outputs[atp] * processEfficiency
-                                * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
+                            var compoundRatio = process.Process.Outputs[atp] / process.Process.Inputs[compound];
+                            var absoluteOutput = process.Process.Outputs[atp] * processEfficiency;
+
+                            energyCreationScore += (float)(
+                                Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
+                                * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
+                                * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER);
                         }
                     }
                 }

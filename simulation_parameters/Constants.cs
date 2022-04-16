@@ -484,6 +484,9 @@ public static class Constants
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
 
+    public const double AUTO_EVO_COMPOUND_RATIO_POWER_BIAS = 1;
+    public const double AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS = 0.5;
+
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
     /// </summary>
