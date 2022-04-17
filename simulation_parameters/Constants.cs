@@ -81,7 +81,7 @@ public static class Constants
     public const int PROCESS_OBJECTS_PER_TASK = 30;
 
     public const int MICROBE_SPAWN_RADIUS = 170;
-    public const int CLOUD_SPAWN_RADIUS = 170;
+    public const int CLOUD_SPAWN_RADIUS = 350;
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
@@ -363,7 +363,7 @@ public static class Constants
     public const float CELL_REQUIRED_DRAG_BEFORE_APPLY = 0.0033f;
 
     public const float CHEMORECEPTOR_RANGE_MIN = 2;
-    public const float CHEMORECEPTOR_RANGE_MAX = 700;
+    public const float CHEMORECEPTOR_RANGE_MAX = CLOUD_SPAWN_RADIUS;
     public const float CHEMORECEPTOR_RANGE_DEFAULT = 350;
     public const float CHEMORECEPTOR_AMOUNT_MIN = 1;
     public const float CHEMORECEPTOR_AMOUNT_MAX = 5000;
