@@ -220,8 +220,8 @@ public class SpawnSystem
         if (existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
             return;
 
-        var playerCoordinatePoint = new Tuple<int, int>(Mathf.RoundToInt(playerPosition.x / (Constants.SPAWN_SECTOR_SIZE * 2)),
-            Mathf.RoundToInt(playerPosition.z / (Constants.SPAWN_SECTOR_SIZE * 2)));
+        var playerCoordinatePoint = new Tuple<int, int>(Mathf.RoundToInt(playerPosition.x / Constants.SPAWN_SECTOR_SIZE),
+            Mathf.RoundToInt(playerPosition.z / Constants.SPAWN_SECTOR_SIZE));
 
         for (int x = playerCoordinatePoint.Item1 - 1; x <= playerCoordinatePoint.Item1 + 1; x++)
         {
@@ -266,12 +266,13 @@ public class SpawnSystem
             {
                 if (random.Next(0, numAttempts + 1) < spawnType.SpawnFrequency)
                 {
-                    Vector3 sectorCenter = new Vector3(sector.Item1 * Constants.SPAWN_SECTOR_SIZE, 0, sector.Item2 * Constants.SPAWN_SECTOR_SIZE);
+                    Vector3 sectorCenter = new Vector3(sector.Item1 * Constants.SPAWN_SECTOR_SIZE * 1.5f, 0,
+                        sector.Item2 * Constants.SPAWN_SECTOR_SIZE * 1.5f);
 
                     // Distance from the player.
-                    Vector3 displacement = new Vector3(random.NextFloat() * Constants.SPAWN_SECTOR_SIZE * 2 - Constants.SPAWN_SECTOR_SIZE,
+                    Vector3 displacement = new Vector3(random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2),
                         0,
-                        random.NextFloat() * Constants.SPAWN_SECTOR_SIZE * 2 - Constants.SPAWN_SECTOR_SIZE);
+                        random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
                     float squaredDistance = displacement.LengthSquared();
 
                     if (squaredDistance <= spawnType.SpawnRadiusSquared &&
