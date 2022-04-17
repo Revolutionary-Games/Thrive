@@ -227,6 +227,11 @@ public class SpawnSystem
         {
             for (int y = playerCoordinatePoint.Item2 - 1; y <= playerCoordinatePoint.Item2 + 1; y++)
             {
+                if (x == 0 && y == 0)
+                {
+                    continue;
+                }
+
                 var newSector = new Tuple<int, int>(x, y);
                 if (!coordinatesSpawned.Contains(newSector)){
                     coordinatesSpawned.Add(newSector);
