@@ -260,7 +260,7 @@ public class SpawnSystem
             numAttempts stores how many times the SpawnSystem attempts
             to spawn the given entity.
             */
-            int numAttempts = Mathf.Clamp(spawnType!.SpawnFrequency * 2, 1, maxTriesPerSpawner);
+            int numAttempts = 1;// Mathf.Clamp(spawnType!.SpawnFrequency * 2, 1, maxTriesPerSpawner);
 
             for (int i = 0; i < numAttempts; i++)
             {
@@ -273,12 +273,8 @@ public class SpawnSystem
                     random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
                 float squaredDistance = displacement.LengthSquared();
 
-                if (squaredDistance <= spawnType.SpawnRadiusSquared &&
-                    squaredDistance >= spawnType.MinSpawnRadiusSquared)
-                {
-                    // Second condition passed. Spawn the entity.
-                    SpawnWithSpawner(spawnType, sectorCenter + displacement);
-                }
+                // Second condition passed. Spawn the entity.
+                SpawnWithSpawner(spawnType, sectorCenter + displacement);
             }
         }
     }
