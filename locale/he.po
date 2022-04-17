@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-16 12:51-0500\n"
+"POT-Creation-Date: 2022-04-17 15:21-0500\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -1571,7 +1571,7 @@ msgstr "עורך ארגז חול המיקרובי"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:1498 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/modding/ModManager.tscn:1499 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "חזור"
@@ -3957,21 +3957,26 @@ msgstr ""
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "לטעון שמירה לא תקפה?"
 
-#: ../src/modding/ModManager.tscn:1474
+#: ../src/modding/ModManager.tscn:1467
+#, fuzzy
+msgid "MOD_CHECK_RESULT"
+msgstr "תוצאות מפתח אוטומטי:"
+
+#: ../src/modding/ModManager.tscn:1475
 msgid "MOD_LOAD_ERROR_WARNING_TITLE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1476
+#: ../src/modding/ModManager.tscn:1477
 #, fuzzy
 msgid "YES"
 msgstr "שנים"
 
-#: ../src/modding/ModManager.tscn:1477
+#: ../src/modding/ModManager.tscn:1478
 #, fuzzy
 msgid "NO"
 msgstr "בטל"
 
-#: ../src/modding/ModManager.tscn:1485 ../src/modding/ModManager.tscn:1488
+#: ../src/modding/ModManager.tscn:1486 ../src/modding/ModManager.tscn:1489
 msgid "NULL"
 msgstr ""
 

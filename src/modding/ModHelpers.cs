@@ -90,7 +90,7 @@ public static class ModHelpers
 
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS"), offendingMod.Name,
                     otherModName) + "\n";
-                result += TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS_FIX");
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS_FIX"), otherModName);
                 break;
             case ModLoader.CheckErrorStatus.InvalidDependencyOrder:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER"), offendingMod.Name,

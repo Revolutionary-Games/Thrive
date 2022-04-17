@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-16 12:51-0500\n"
+"POT-Creation-Date: 2022-04-17 15:21-0500\n"
 "PO-Revision-Date: 2022-03-29 16:22+0000\n"
 "Last-Translator: Jessy Amelie Nishimura Lara <jessy8nishimura@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -1557,7 +1557,7 @@ msgstr "Editor libre de microbios"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:1498 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/modding/ModManager.tscn:1499 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Atrás"
@@ -3904,22 +3904,27 @@ msgstr "Reinicio requerido"
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Uno o más mods requieren reiniciar el juego para cargarse o descargarse adecuadamente"
 
-#: ../src/modding/ModManager.tscn:1474
+#: ../src/modding/ModManager.tscn:1467
+#, fuzzy
+msgid "MOD_CHECK_RESULT"
+msgstr "Resultados de auto-evo:"
+
+#: ../src/modding/ModManager.tscn:1475
 #, fuzzy
 msgid "MOD_LOAD_ERROR_WARNING_TITLE"
 msgstr "Se produjeron errores al cargar uno o más mods. Los registros pueden contener información adicional."
 
-#: ../src/modding/ModManager.tscn:1476
+#: ../src/modding/ModManager.tscn:1477
 #, fuzzy
 msgid "YES"
 msgstr "años"
 
-#: ../src/modding/ModManager.tscn:1477
+#: ../src/modding/ModManager.tscn:1478
 #, fuzzy
 msgid "NO"
 msgstr "Deshacer"
 
-#: ../src/modding/ModManager.tscn:1485 ../src/modding/ModManager.tscn:1488
+#: ../src/modding/ModManager.tscn:1486 ../src/modding/ModManager.tscn:1489
 msgid "NULL"
 msgstr ""
 

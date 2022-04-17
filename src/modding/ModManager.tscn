@@ -1463,14 +1463,15 @@ margin_left = 647.706
 margin_top = 365.088
 margin_right = 810.706
 margin_bottom = 462.088
-rect_min_size = Vector2( 200, 100 )
+rect_min_size = Vector2( 500, 100 )
+WindowTitle = "MOD_CHECK_RESULT"
 
 [node name="LoadWarning" parent="." instance=ExtResource( 3 )]
 margin_left = 647.706
 margin_top = 365.088
 margin_right = 810.706
 margin_bottom = 462.088
-rect_min_size = Vector2( 200, 100 )
+rect_min_size = Vector2( 500, 100 )
 WindowTitle = "MOD_LOAD_ERROR_WARNING_TITLE"
 ShowCloseButton = false
 ConfirmText = "YES"
@@ -1481,7 +1482,7 @@ margin_left = 647.706
 margin_top = 365.088
 margin_right = 810.706
 margin_bottom = 462.088
-rect_min_size = Vector2( 200, 100 )
+rect_min_size = Vector2( 500, 100 )
 WindowTitle = "NULL"
 Resizable = true
 HideCancelButton = true
