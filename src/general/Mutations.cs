@@ -149,14 +149,10 @@ public class Mutations
         var part1 = newName.ToString(index - 1, 2);
         var part2 = newName.ToString(index - 2, 2);
         var part3 = newName.ToString(index, 2);
-        if (PronounceablePermutation.Contains(part1) ||
-            PronounceablePermutation.Contains(part2) ||
-            PronounceablePermutation.Contains(part3))
-        {
-            return true;
-        }
 
-        return false;
+        return PronounceablePermutation.Contains(part1) ||
+            PronounceablePermutation.Contains(part2) ||
+            PronounceablePermutation.Contains(part3);
     }
 
     private void MutateBehaviour(Species parent, Species mutated)

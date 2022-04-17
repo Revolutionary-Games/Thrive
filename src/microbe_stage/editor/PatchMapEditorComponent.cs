@@ -384,9 +384,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             patch.BiomeTemplate.Name);
 
         // {0}-{1}m below sea level
-        patchDepth.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("BELOW_SEA_LEVEL"),
-            patch.Depth[0], patch.Depth[1]);
+        patchDepth.Text = new LocalizedString("BELOW_SEA_LEVEL", patch.Depth[0], patch.Depth[1]).ToString();
         patchPlayerHere.Visible = Editor.CurrentPatch == patch;
 
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
