@@ -19,6 +19,9 @@ public static class Constants
     public const float MIN_SPAWN_DISTANCE = -5000.0f;
     public const float MAX_SPAWN_DISTANCE = 5000.0f;
 
+    // Size of "chunks" used for spawning entities
+    public const float SPAWN_SECTOR_SIZE = 150.0f;
+
     /// <summary>
     ///   The (default) size of the hexagons, used in calculations. Don't change this.
     /// </summary>
