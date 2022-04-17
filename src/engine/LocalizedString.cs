@@ -48,8 +48,17 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
             return format ?? TranslationServer.Translate(translationKey);
         }
 
-        return string.Format(formatProvider ?? CultureInfo.CurrentCulture,
-            format ?? TranslationServer.Translate(translationKey), formatStringArgs);
+        try
+        {
+            return string.Format(formatProvider ?? CultureInfo.CurrentCulture,
+                format ?? TranslationServer.Translate(translationKey), formatStringArgs);
+        }
+        catch (FormatException e)
+        {
+            GD.PrintErr("Invalid translation format in string ", translationKey, " for current language, exception: ",
+                e);
+            return TranslationServer.Translate(translationKey);
+        }
     }
 
     public override bool Equals(object? obj)
