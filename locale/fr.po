@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-07 17:13+0300\n"
+"POT-Creation-Date: 2022-04-16 12:51-0500\n"
 "PO-Revision-Date: 2022-04-15 08:28+0000\n"
 "Last-Translator: Louison Wouts <wouts.louison@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -293,12 +293,12 @@ msgid "ABILITIES"
 msgstr "Capacités"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2139
+#: ../src/microbe_stage/MicrobeStage.tscn:2142
 msgid "FIRE_TOXIN"
 msgstr "Tirer des toxines"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2127
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "TOGGLE_ENGULF"
 msgstr "Activer/désactiver Engloutir"
 
@@ -308,7 +308,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Maintenir pour faire apparaitre le menu des commandes de paquet"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2150
+#: ../src/microbe_stage/MicrobeStage.tscn:2153
 msgid "TOGGLE_BINDING"
 msgstr "Activer relieur"
 
@@ -317,6 +317,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Activer/désactiver la liaison"
 
 #: ../simulation_parameters/common/input_options.json:58
+#: ../src/microbe_stage/MicrobeStage.tscn:2165
 msgid "UNBIND_ALL"
 msgstr "Dissocier tout"
 
@@ -600,58 +601,58 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1296
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:750
+#: ../src/microbe_stage/MicrobeStage.tscn:1300
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "AMMONIA"
 msgstr "Ammoniaque"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1348
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:821
+#: ../src/microbe_stage/MicrobeStage.tscn:1352
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
 msgid "PHOSPHATE"
 msgstr "Phosphate"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1400
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:715
+#: ../src/microbe_stage/MicrobeStage.tscn:1404
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfure d'Hydrogène"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1244
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:785
+#: ../src/microbe_stage/MicrobeStage.tscn:1248
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "GLUCOSE"
 msgstr "Glucose"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1582
+#: ../src/microbe_stage/MicrobeStage.tscn:1586
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1452
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:856
+#: ../src/microbe_stage/MicrobeStage.tscn:1456
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "IRON"
 msgstr "Fer"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:552
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:549
 msgid "OXYGEN"
 msgstr "Oxygène"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:606
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:603
 msgid "CARBON_DIOXIDE"
 msgstr "Gaz carbonique"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:579
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:576
 msgid "NITROGEN"
 msgstr "Azote"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:433
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
 msgstr "Lumière du soleil"
@@ -886,47 +887,47 @@ msgstr "population dans les parcelles:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "a disparu de la planète"
 
-#: ../src/auto-evo/RunResults.cs:860
+#: ../src/auto-evo/RunResults.cs:844
 #, fuzzy
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] s'est éteint!"
 
-#: ../src/auto-evo/RunResults.cs:870 ../src/auto-evo/RunResults.cs:892
+#: ../src/auto-evo/RunResults.cs:854 ../src/auto-evo/RunResults.cs:876
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "La population de [u]{0}[/u] a grimpé à {1}"
 
-#: ../src/auto-evo/RunResults.cs:876 ../src/auto-evo/RunResults.cs:898
+#: ../src/auto-evo/RunResults.cs:860 ../src/auto-evo/RunResults.cs:882
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "la population de [u]{0}[/u] est descendue à {1}"
 
-#: ../src/auto-evo/RunResults.cs:884
+#: ../src/auto-evo/RunResults.cs:868
 #, fuzzy
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] a disparu de cette parcelle"
 
-#: ../src/auto-evo/RunResults.cs:908
+#: ../src/auto-evo/RunResults.cs:892
 #, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Une partie de la population de [u]{0}[/u] a migré vers cette parcelle depuis {1}"
 
-#: ../src/auto-evo/RunResults.cs:913
+#: ../src/auto-evo/RunResults.cs:897
 #, fuzzy
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Une partie de la population de [u]{0}[/u] a migré vers {1} depuis {2}"
 
-#: ../src/auto-evo/RunResults.cs:919
+#: ../src/auto-evo/RunResults.cs:903
 #, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Une partie de la population de [u]{0}[/u] a migré vers {1}"
 
-#: ../src/auto-evo/RunResults.cs:938
+#: ../src/auto-evo/RunResults.cs:922
 #, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] s'est séparé de [u]{1}[/u] en tant que nouvelle espèce pour remplir une niche"
 
-#: ../src/auto-evo/RunResults.cs:944
+#: ../src/auto-evo/RunResults.cs:928
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] s'est séparé de [u]{1}[/u] en tant que nouvelle espèce en raison de différentes pressions sélectives"
@@ -1011,7 +1012,7 @@ msgstr "ANNULER L'ACTION"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1186
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1018
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr "SUIVANT"
@@ -1058,17 +1059,17 @@ msgstr "Vitesse :"
 msgid "NEW_NAME"
 msgstr "Nouvelle partie"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:73
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:72
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Chargement de l'Éditeur de Microbes"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:187
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:186
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:191
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-évo n'a pas pu se lancer"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:188
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:187
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:192
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "état de lancement :"
@@ -1078,7 +1079,7 @@ msgstr "état de lancement :"
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Sélectionnez un type de cellule à éditer ici depuis l'onglet de l'éditeur"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
 msgid "LOADING"
 msgstr "Chargement"
 
@@ -1517,7 +1518,7 @@ msgstr "Œuvre de {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1278
-#: ../src/modding/ModManager.tscn:972
+#: ../src/modding/ModManager.tscn:1439
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Fermer"
@@ -1525,7 +1526,7 @@ msgstr "Fermer"
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:722
+#: ../src/microbe_stage/MicrobeHUD.cs:732
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
@@ -1541,7 +1542,7 @@ msgstr "la concentration de {0} a diminué de {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "La concentration de glucose a baissé drastiquement !"
 
-#: ../src/general/MainMenu.cs:234
+#: ../src/general/MainMenu.cs:235
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Connecté sous le nom de : {0}"
 
@@ -1586,7 +1587,7 @@ msgstr "Éditeur Libre de Microbe"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/modding/ModManager.tscn:1498 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Revenir"
@@ -1774,6 +1775,7 @@ msgid "LANGUAGE"
 msgstr "Langue :"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
+#: ../src/modding/ModManager.tscn:849
 msgid "RESET"
 msgstr "Recommencer"
 
@@ -1943,7 +1945,7 @@ msgstr "Annuler et continuer"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:687
 msgid "CANCEL"
 msgstr "Annuler"
 
@@ -2344,7 +2346,7 @@ msgid "RAW"
 msgstr "Brut"
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1928
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1934
 msgid "NO_DATA_TO_SHOW"
 msgstr "Aucune donnée à afficher"
 
@@ -2653,7 +2655,7 @@ msgstr "Le chimioplaste est une structure à double membrane contenant des prot�
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2182
-#: ../src/microbe_stage/MicrobeHUD.cs:1362
+#: ../src/microbe_stage/MicrobeHUD.cs:1376
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Doit être implémenté."
 
@@ -2825,7 +2827,7 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Active / désactive les popup d'avertissement de progrès non sauvegardés lorsque le joueur essayer de quitter le jeu."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:370
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
 msgid "TEMPERATURE"
@@ -2836,23 +2838,23 @@ msgstr "Température"
 msgid "N_A_MP"
 msgstr "N/A PM"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:537
+#: ../src/microbe_stage/Microbe.Contact.cs:566
 msgid "DEATH"
 msgstr "mort"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:651
+#: ../src/microbe_stage/Microbe.Contact.cs:692
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "récupération réussie"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:658
+#: ../src/microbe_stage/Microbe.Contact.cs:699
 msgid "SUCCESSFUL_KILL"
 msgstr "élimination réussie"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:875
+#: ../src/microbe_stage/Microbe.Contact.cs:937
 msgid "ESCAPE_ENGULFING"
 msgstr "échapper à l'engloutissement"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:747
+#: ../src/microbe_stage/Microbe.Interior.cs:770
 msgid "REPRODUCED"
 msgstr "reproduit"
 
@@ -2880,177 +2882,176 @@ msgstr "joueur en double"
 msgid "SPAWN_ENEMY"
 msgstr "Invoquer un ennemi"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:478
+#: ../src/microbe_stage/MicrobeHUD.cs:488
 #, fuzzy
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Aucune Commande"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:479
+#: ../src/microbe_stage/MicrobeHUD.cs:489
 #, fuzzy
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Suivez Moi"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:480
+#: ../src/microbe_stage/MicrobeHUD.cs:490
 #, fuzzy
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Rejoignez Moi"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:481
+#: ../src/microbe_stage/MicrobeHUD.cs:491
 #, fuzzy
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Fuyez"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:482
+#: ../src/microbe_stage/MicrobeHUD.cs:492
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "relieur"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:485
+#: ../src/microbe_stage/MicrobeHUD.cs:495
 #, fuzzy
 msgid "SIGNAL_TO_EMIT"
 msgstr "relieur"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:801
+#: ../src/microbe_stage/MicrobeHUD.cs:811
 msgid "STUFF_AT"
 msgstr "Matériel à {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:834
+#: ../src/microbe_stage/MicrobeHUD.cs:844
 msgid "PLAYER_CELL"
 msgstr "Cellule du joueur"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:851
+#: ../src/microbe_stage/MicrobeHUD.cs:861
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:896
+#: ../src/microbe_stage/MicrobeHUD.cs:906
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "en abondance"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:898
+#: ../src/microbe_stage/MicrobeHUD.cs:908
 #, fuzzy
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "en grande quantité"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:900
+#: ../src/microbe_stage/MicrobeHUD.cs:910
 #, fuzzy
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "en bonne quantité"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:902
+#: ../src/microbe_stage/MicrobeHUD.cs:912
 msgid "CATEGORY_SOME"
 msgstr "en moyenne quantité"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:904
+#: ../src/microbe_stage/MicrobeHUD.cs:914
 msgid "CATEGORY_LITTLE"
 msgstr "en faible quantité"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:906
+#: ../src/microbe_stage/MicrobeHUD.cs:916
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "en très faible quantité"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1156
-#: ../src/microbe_stage/MicrobeStage.tscn:1768
+#: ../src/microbe_stage/MicrobeHUD.cs:1170
+#: ../src/microbe_stage/MicrobeStage.tscn:1772
 #, fuzzy
 msgid "BECOME_MULTICELLULAR"
 msgstr "Devenez Multicellulaires ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1192
-#: ../src/microbe_stage/MicrobeStage.tscn:1785
+#: ../src/microbe_stage/MicrobeHUD.cs:1206
+#: ../src/microbe_stage/MicrobeStage.tscn:1788
 #, fuzzy
 msgid "BECOME_MACROSCOPIC"
 msgstr "Devenez Macroscopiques ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:691
+#: ../src/microbe_stage/MicrobeStage.cs:711
 msgid "PLAYER_REPRODUCED"
 msgstr "le joueur s'est reproduit"
 
-#: ../src/microbe_stage/MicrobeStage.cs:705
+#: ../src/microbe_stage/MicrobeStage.cs:725
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Impossible d'invoquer une espèce ennemie, car ce milieu ne contient que la vôtre"
 
-#: ../src/microbe_stage/MicrobeStage.cs:725
+#: ../src/microbe_stage/MicrobeStage.cs:745
 msgid "PLAYER_DIED"
 msgstr "le joueur est mort"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:512
+#: ../src/microbe_stage/MicrobeStage.tscn:516
 msgid "AT_CURSOR"
 msgstr "Au pointeur :"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:538
+#: ../src/microbe_stage/MicrobeStage.tscn:542
 msgid "NOTHING_HERE"
 msgstr "Rien ici"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:563
+#: ../src/microbe_stage/MicrobeStage.tscn:567
 msgid "COMPOUNDS_COLON"
 msgstr "Composés :"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:603
+#: ../src/microbe_stage/MicrobeStage.tscn:607
 msgid "SPECIES_COLON"
 msgstr "Espèces :"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:683
+#: ../src/microbe_stage/MicrobeStage.tscn:687
 msgid "ENVIRONMENT"
 msgstr "Environnement"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:952
+#: ../src/microbe_stage/MicrobeStage.tscn:956
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1008
+#: ../src/microbe_stage/MicrobeStage.tscn:1012
 msgid "LIGHT"
 msgstr "Lumière"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
+#: ../src/microbe_stage/MicrobeStage.tscn:1067
 msgid "PRESSURE_SHORT"
 msgstr "Press."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1146
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:675
+#: ../src/microbe_stage/MicrobeStage.tscn:1150
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:712
 msgid "COMPOUNDS"
 msgstr "Composés"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1522
+#: ../src/microbe_stage/MicrobeStage.tscn:1526
 msgid "AGENTS"
 msgstr "Agents"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1620
+#: ../src/microbe_stage/MicrobeStage.tscn:1624
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1638
+#: ../src/microbe_stage/MicrobeStage.tscn:1642
 msgid "PAUSE_TOOLTIP"
 msgstr "Mettre le jeu en pause"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1651
+#: ../src/microbe_stage/MicrobeStage.tscn:1655
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "Reprendre"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1664
+#: ../src/microbe_stage/MicrobeStage.tscn:1668
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher l'environnement et les composés"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1679
+#: ../src/microbe_stage/MicrobeStage.tscn:1683
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher les processus cellulaires"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1716
+#: ../src/microbe_stage/MicrobeStage.tscn:1720
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Aide"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1728
+#: ../src/microbe_stage/MicrobeStage.tscn:1732
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Suicide"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1767
-#: ../src/microbe_stage/MicrobeStage.tscn:1784
+#: ../src/microbe_stage/MicrobeStage.tscn:1771
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Passer à l'étape suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1813
+#: ../src/microbe_stage/MicrobeStage.tscn:1816
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION :"
 
@@ -3154,28 +3155,28 @@ msgstr "Réactif"
 msgid "FOCUSED"
 msgstr "Monomaniaque"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:187
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
 msgid "ATP_PRODUCTION"
 msgstr "Production d'ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:193
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "LA PRODUCTION D'ATP EST TROP FAIBLE!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:201
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:222
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:221
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:242
 msgid "OSMOREGULATION"
 msgstr "Osmorégulation"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:227
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:248
 msgid "BASE_MOVEMENT"
 msgstr "Mouvement de Base"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:239
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:260
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -3184,33 +3185,33 @@ msgstr "{0}: -{1} ATP"
 msgid "CELL_TYPE_NAME"
 msgstr "Nom du Type de Cellule"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1764
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
 msgid "FAILED"
 msgstr "Échec"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1794
 msgid "N_A"
 msgstr "Aucun"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1902
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Énergie du biome {0} pour la source : {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1900
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1906
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "{0} unités d'énergie ont été récoltées au total, avec un coût de {1} par individu, résultant en une population non-ajustée de {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1907
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
 msgid "ENERGY_SOURCES"
 msgstr "Sources d'énergie :"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "Unités d'énergie pour la source « {0} » : {1} (valeur sélective : {2}) énergie totale disponible : {3} (valeur totale : {4})"
 
@@ -3339,7 +3340,7 @@ msgstr "Ce panneau affiche les données qu'utilise l'auto-évo pour sa prédicti
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Équilibre des composants"
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:239
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:265
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Le nom d'espèce doit respecter la nomenclature binomiale (genre et épithète) !"
 
@@ -3351,35 +3352,35 @@ msgstr "Nom de l’espèce..."
 msgid "INFINITE_MP"
 msgstr "MP illimités"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:212
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:209
 msgid "SELECT_A_PATCH"
 msgstr "Choisir une parcelle pour voir ses détails ici"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:247
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POSITION ACTUELLE"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:329
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Conditions Physique"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:406
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:403
 msgid "PRESSURE"
 msgstr "Pression"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:511
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:508
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:669
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gaz Atmosphériques"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:934
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:931
 msgid "SPECIES_PRESENT"
 msgstr "Espèces Présentes"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:991
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:988
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Se Déplacer vers Cette Parcelle"
 
@@ -3565,278 +3566,492 @@ msgstr "VOUS AVEZ PROSPÉRÉ !"
 msgid "WIN_TEXT"
 msgstr "Bravo, vous avez gagné cette version de Thrive! vous pouvez continuer à jouer après que cet écran se soit fermé si vous le souhaitez, ou démarrer une nouvelle partie dans un autre monde."
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModHelpers.cs:33 ../src/modding/ModHelpers.cs:44
+#: ../src/modding/ModHelpers.cs:67 ../src/modding/ModHelpers.cs:83
+#: ../src/modding/ModHelpers.cs:88
+#, fuzzy
+msgid "UNKNOWN_MOD"
+msgstr "Souris inconnue"
+
+#: ../src/modding/ModHelpers.cs:50 ../src/modding/ModManager.cs:1645
+#, fuzzy
+msgid "MOD_LIST_VALID"
+msgstr "La sauvegarde est invalide"
+
+#: ../src/modding/ModHelpers.cs:53
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
+msgstr ""
+"La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
+"Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
+
+#: ../src/modding/ModHelpers.cs:70
+msgid "MOD_ERROR_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:72
+msgid "MOD_ERROR_DEPENDENCIES_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:91
+msgid "MOD_ERROR_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:93
+msgid "MOD_ERROR_REQUIRED_MODS_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:96
+msgid "MOD_ERROR_DEPENDENCIES_ORDER"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:98
+msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:103
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD"
+msgstr "Charger une sauvegarde incompatible?"
+
+#: ../src/modding/ModHelpers.cs:105
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
+msgstr ""
+"La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
+"Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
+
+#: ../src/modding/ModHelpers.cs:109
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
+msgstr "Erreurs liées au Chargement de Mods"
+
+#: ../src/modding/ModHelpers.cs:111
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
+msgstr ""
+
+#: ../src/modding/ModHelpers.cs:116
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_AFTER"
+msgstr "Un ou plusieurs mods requièrent un redémarrage du jeu pour se charger ou se décharger correctement"
+
+#: ../src/modding/ModHelpers.cs:118
+msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:436 ../src/modding/ModLoader.cs:493
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Impossible de charger les informations pour la modification « {0} »"
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:461
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: échec de chargement de l'assemblage avec une exception:{1}"
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:478
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "Impossible de charger des ressources de {0}"
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:508
 #, fuzzy
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: l'appel de la méthode de déchargement pour l'assemblage des mods a échoué"
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:516
 #, fuzzy
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0} : l'appel de la méthode de déchargement pour l'assemblage des mods a échoué avec une exception : {1}"
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:584
 #, fuzzy
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: le mode de classe spécifié \"{1}\" n'a pas été trouvé dans l'assemblage des mods"
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:597
 #, fuzzy
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: l'appel de la méthode d'initialisation pour l'assemblage des mods a échoué"
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:613
 #, fuzzy
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: l'appel de la méthode d'initialisation pour l'assemblage des mods a échoué avec une exception : {1}"
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:629
 msgid "PCK_LOAD_FAILED"
 msgstr "Échec du chargement du ficher pck ({0})"
 
-#: ../src/modding/ModManager.cs:293
+#: ../src/modding/ModManager.cs:428
 msgid "INVALID_ICON_PATH"
 msgstr "Chemin d'accès à l'icône invalide pour cette modification"
 
-#: ../src/modding/ModManager.cs:307
+#: ../src/modding/ModManager.cs:442
 msgid "INVALID_URL_SCHEME"
 msgstr "Schéma d'URL invalide"
 
-#: ../src/modding/ModManager.cs:319
+#: ../src/modding/ModManager.cs:454
 #, fuzzy
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "La classe de l'assemblage des Mods est requise lorsque l'assemblage est spécifié"
 
-#: ../src/modding/ModManager.cs:549
-msgid "NO_SELECTED_MOD"
-msgstr "Aucune modification sélectionnée"
+#: ../src/modding/ModManager.cs:619
+#, fuzzy
+msgid "MOD_LOADER_TAB"
+msgstr "Téléverseur de modifications"
 
-#: ../src/modding/ModManager.cs:885
+#: ../src/modding/ModManager.cs:620
+#, fuzzy
+msgid "MOD_ERRORS_TAB"
+msgstr "Erreurs liées au Chargement de Mods"
+
+#: ../src/modding/ModManager.cs:773 ../src/modding/ModManager.cs:1580
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Cette modification a été téléchargée depuis l'atelier Steam"
 
-#: ../src/modding/ModManager.cs:886
+#: ../src/modding/ModManager.cs:774 ../src/modding/ModManager.cs:1581
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "Cette modification est installée localement"
 
-#: ../src/modding/ModManager.cs:940
+#: ../src/modding/ModManager.cs:841
+msgid "NO_SELECTED_MOD"
+msgstr "Aucune modification sélectionnée"
+
+#: ../src/modding/ModManager.cs:1179
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING"
+msgstr "Erreurs liées au Chargement de Mods"
+
+#: ../src/modding/ModManager.cs:1318 ../src/modding/ModManager.tscn:750
+#: ../src/modding/ModManager.tscn:1333 ../src/modding/NewModGUI.tscn:546
+msgid "MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1334
+msgid "NO_MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1349 ../src/modding/ModManager.tscn:1355
+#: ../src/modding/NewModGUI.tscn:570
+msgid "MOD_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1365
+#, fuzzy
+msgid "NO_REQUIRED_MODS"
+msgstr "Aucune modification sélectionnée"
+
+#: ../src/modding/ModManager.cs:1380 ../src/modding/ModManager.tscn:768
+#, fuzzy
+msgid "INCOMPATIBLE_WITH"
+msgstr ""
+"La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
+"Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
+
+#: ../src/modding/ModManager.cs:1396
+#, fuzzy
+msgid "NO_MOD_INCOMPATIBLE"
+msgstr "La sauvegarde sélectionnée est incompatible"
+
+#: ../src/modding/ModManager.cs:1411 ../src/modding/ModManager.tscn:777
+#, fuzzy
+msgid "LOAD_ORDER"
+msgstr "Téléverseur de modifications"
+
+#: ../src/modding/ModManager.cs:1420 ../src/modding/ModManager.tscn:1399
+#: ../src/modding/NewModGUI.tscn:618
+#, fuzzy
+msgid "MOD_LOAD_AFTER"
+msgstr "Téléverseur de modifications"
+
+#: ../src/modding/ModManager.cs:1438 ../src/modding/ModManager.tscn:1377
+#: ../src/modding/NewModGUI.tscn:594
+#, fuzzy
+msgid "MOD_LOAD_BEFORE"
+msgstr "Erreurs liées au Chargement de Mods"
+
+#: ../src/modding/ModManager.cs:1450
+#, fuzzy
+msgid "MOD_NO_LOAD_ORDER"
+msgstr "Un ou plusieurs mods requièrent un redémarrage du jeu pour se charger ou se décharger correctement"
+
+#: ../src/modding/ModManager.cs:1639
+#, fuzzy
+msgid "MOD_LIST_CONTAIN_ERRORS"
+msgstr "Erreurs liées au Chargement de Mods"
+
+#: ../src/modding/ModManager.cs:1641
+#, fuzzy
+msgid "MOD_CHECK_AGAIN_WARNING"
+msgstr ""
+"Des changements non sauvegardés vont être abandonnés.\n"
+"Voulez-vous continuer ?"
+
+#: ../src/modding/ModManager.cs:1686
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Erreur de création du dossier pour la modification"
 
-#: ../src/modding/ModManager.cs:949
+#: ../src/modding/ModManager.cs:1695
 #, fuzzy
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Erreur de création du fichier d'information pour la modification"
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:197
 #, fuzzy
 msgid "AVAILABLE_MODS"
 msgstr "Modifications disponibles"
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "Rafraîchir"
-
-#: ../src/modding/ModManager.tscn:152
+#: ../src/modding/ModManager.tscn:225
 #, fuzzy
-msgid "OPEN_FOLDER"
-msgstr "Ouvrir le dossier des Logs"
+msgid "LEFT_ARROW_TOOLTIP"
+msgstr "Clic gauche"
 
-#: ../src/modding/ModManager.tscn:170
-#, fuzzy
-msgid "RIGHT_ARROW"
-msgstr "Clic droit"
-
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:226 ../src/modding/ModManager.tscn:480
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Clic gauche"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:242
+#, fuzzy
+msgid "UP_ARROW_TOOLTIP"
+msgstr "Mettre le jeu en pause"
+
+#: ../src/modding/ModManager.tscn:249
+msgid "DOWN_ARROW_TOOLTIP"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:256
+#, fuzzy
+msgid "RIGHT_ARROW_TOOLTIP"
+msgstr "Clic droit"
+
+#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:514
+#, fuzzy
+msgid "RIGHT_ARROW"
+msgstr "Clic droit"
+
+#: ../src/modding/ModManager.tscn:271
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Activer l'éditeur"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:310
+#, fuzzy
+msgid "ENABLE_ALL"
+msgstr "Tout désactiver"
+
+#: ../src/modding/ModManager.tscn:316
+#, fuzzy
+msgid "OPEN_FOLDER"
+msgstr "Ouvrir le dossier des Logs"
+
+#: ../src/modding/ModManager.tscn:322
 msgid "DISABLE_ALL"
 msgstr "Tout désactiver"
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:338
 #, fuzzy
-msgid "SELECTED_MOD"
-msgstr "Sélectionné :"
+msgid "ONESHOT_LOADING_TOOLTIP"
+msgstr "Appuyez sur le bouton Revenir en Arrière dans l'éditeur pour corriger une erreur"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:340
+#, fuzzy
+msgid "ONESHOT_LOADING"
+msgstr "Erreur de Chargement"
+
+#: ../src/modding/ModManager.tscn:563 ../src/modding/ModManager.tscn:1015
+#: ../src/modding/NewModGUI.tscn:156
 #, fuzzy
 msgid "MOD_AUTHOR"
 msgstr "Créateur :"
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:588 ../src/modding/ModManager.tscn:1037
+#: ../src/modding/NewModGUI.tscn:179
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Version :"
 
-#: ../src/modding/ModManager.tscn:371
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr "Version de Thrive recommandée :"
-
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:669
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "Version :"
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
+#: ../src/modding/ModManager.tscn:703
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr "Version de Thrive recommandée :"
+
+#: ../src/modding/ModManager.tscn:759
 #, fuzzy
-msgid "MOD_DESCRIPTION"
-msgstr "Description :"
+msgid "REQUIRED_MODS"
+msgstr "Activer l'éditeur"
 
-#: ../src/modding/ModManager.tscn:474
-msgid "MORE_INFO"
-msgstr "Plus d'informations"
-
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:786
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Ouvre l'URL"
 
-#: ../src/modding/ModManager.tscn:505
+#: ../src/modding/ModManager.tscn:795
+msgid "MORE_INFO"
+msgstr "Plus d'informations"
+
+#: ../src/modding/ModManager.tscn:859
 #, fuzzy
-msgid "BROWSE_WORKSHOP"
-msgstr "Parcourir l'atelier Steam"
+msgid "CHECK_BUTTON_TOOLTIP"
+msgstr "Aide"
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
-#, fuzzy
-msgid "UPLOAD"
-msgstr "Charger"
+#: ../src/modding/ModManager.tscn:860
+msgid "CHECK_MOD"
+msgstr ""
 
-#: ../src/modding/ModManager.tscn:519
-msgid "NEW"
-msgstr "Nouveau"
+#: ../src/modding/ModManager.tscn:870 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "Rafraîchir"
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:880
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Attention: de nombreux mods requièrent une redémarrage du jeu pour se charger ou se décharger correctement. Chargez seulement les mods en lesquelles vous avez confiance car ils pourraient contenir du code exécutable."
 
-#: ../src/modding/ModManager.tscn:559
-#, fuzzy
-msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "La sauvegarde sélectionnée est incompatible"
-
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:881
 msgid "APPLY_CHANGES"
 msgstr "appliquer les changements"
 
-#: ../src/modding/ModManager.tscn:579
+#: ../src/modding/ModManager.tscn:896
+#, fuzzy
+msgid "BROWSE_WORKSHOP"
+msgstr "Parcourir l'atelier Steam"
+
+#: ../src/modding/ModManager.tscn:907 ../src/modding/ModUploader.tscn:45
+#, fuzzy
+msgid "UPLOAD"
+msgstr "Charger"
+
+#: ../src/modding/ModManager.tscn:918
+msgid "NEW"
+msgstr "Nouveau"
+
+#: ../src/modding/ModManager.tscn:931
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Certains changements n'ont pas été appliqués"
 
-#: ../src/modding/ModManager.tscn:580
+#: ../src/modding/ModManager.tscn:932
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Étant la forme de membrane la plus simple, elle n'offre que très peu de protection et demande plus d'énergie pour ne pas se déformer. Par contre, elle permet à une cellule de se déplacer et se nourrir plus rapidement."
 
-#: ../src/modding/ModManager.tscn:581
+#: ../src/modding/ModManager.tscn:933
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Annuler et continuer"
 
-#: ../src/modding/ModManager.tscn:588
+#: ../src/modding/ModManager.tscn:939
 #, fuzzy
 msgid "FULL_MOD_INFO"
 msgstr "Informations complètes"
 
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:967 ../src/modding/NewModGUI.tscn:133
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Nom :"
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:989 ../src/modding/NewModGUI.tscn:110
 #, fuzzy
 msgid "MOD_INTERNAL_NAME"
 msgstr "Nom de dossier interne :"
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:1059 ../src/modding/NewModGUI.tscn:202
+#, fuzzy
+msgid "MOD_DESCRIPTION"
+msgstr "Description :"
+
+#: ../src/modding/ModManager.tscn:1081 ../src/modding/NewModGUI.tscn:225
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "L'Azotéase est une protéine capable d'utiliser l'azote gazeux et l'énergie de la cellule sous forme d'ATP pour produire de l'ammoniaque, un nutriment de croissance clé pour une cellule. C'est un processus nommé la Fixation Anaérobique d'Azote. Puisque l'azotéase est suspendu directement dans le cytoplasme, les fluides l'entourant réalisent un peu la glycolyse."
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:1113 ../src/modding/NewModGUI.tscn:249
 msgid "MOD_ICON_FILE"
 msgstr "Fichier d'icône :"
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:1135 ../src/modding/NewModGUI.tscn:289
+#, fuzzy
+msgid "MOD_PREVIEW_IMAGE_FILE"
+msgstr "Le fichier contenant l'image de prévisualisation est trop volumineux"
+
+#: ../src/modding/ModManager.tscn:1157 ../src/modding/NewModGUI.tscn:328
 #, fuzzy
 msgid "MOD_INFO_URL"
 msgstr "Lien d'information :"
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:1179 ../src/modding/NewModGUI.tscn:351
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "Licences et bibliothèques utilisés"
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:1201 ../src/modding/NewModGUI.tscn:374
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Version de Thrive recommandée :"
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:1223 ../src/modding/NewModGUI.tscn:397
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Version minimale de Thrive requise :"
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:1245 ../src/modding/NewModGUI.tscn:420
 #, fuzzy
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Version maximale de Thrive supportée :"
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:1267 ../src/modding/NewModGUI.tscn:443
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Nom de la Parcelle"
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:1289 ../src/modding/NewModGUI.tscn:483
 #, fuzzy
 msgid "MOD_ASSEMBLY"
 msgstr "Assemblage des Mods:"
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:1311 ../src/modding/NewModGUI.tscn:523
 #, fuzzy
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Classe Principale de l'Assemblée des Mods:"
 
-#: ../src/modding/ModManager.tscn:979
+#: ../src/modding/ModManager.tscn:1421 ../src/modding/NewModGUI.tscn:642
 #, fuzzy
-msgid "MOD_CREATION_FAILED"
-msgstr "L'Auto-évo n'a pas pu se lancer"
+msgid "MOD_INCOMPATIBLE_MODS"
+msgstr "Charger une sauvegarde incompatible?"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1452
 #, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "Des erreurs sont survenues lors du chargement ou du déchargement d'un ou plusieurs mods. Le registre du jeu devrait contenir d'avantage d'informations."
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1457
 msgid "RESTART_REQUIRED"
 msgstr "Redémarrage nécessaire"
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1459
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Un ou plusieurs mods requièrent un redémarrage du jeu pour se charger ou se décharger correctement"
+
+#: ../src/modding/ModManager.tscn:1474
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING_TITLE"
+msgstr "Des erreurs sont apparues lors du chargement d'un ou plusieurs mods. Les registres de jeu pourraient contenir des informations supplémentaires."
+
+#: ../src/modding/ModManager.tscn:1476
+#, fuzzy
+msgid "YES"
+msgstr "années"
+
+#: ../src/modding/ModManager.tscn:1477
+#, fuzzy
+msgid "NO"
+msgstr "Annuler"
+
+#: ../src/modding/ModManager.tscn:1485 ../src/modding/ModManager.tscn:1488
+msgid "NULL"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -3918,7 +4133,7 @@ msgstr "En proposant cet objet, vous acceptez le [color=#3796e1][url=https://ste
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "La sauvegarde d'information a échoué en raison d'une exception: {0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:384
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Erreur: {0}"
@@ -4018,52 +4233,52 @@ msgstr "Sélectionner l'image de prévisualisation"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Sauvegarde réussi"
 
-#: ../src/modding/NewModGUI.cs:175
+#: ../src/modding/NewModGUI.cs:233
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Le chimioplaste est une structure à double membrane contenant des protéines capable de convertir le sulfure d'hydrogène, l'eau et le dioxyde de carbone gazeux en glucose avec un processus nommé Chimiosynthèse de Sulfure d'Hydrogène. Le taux de glucose produit varie en fonction de la concentration en dioxyde de carbone."
 
-#: ../src/modding/NewModGUI.cs:232
+#: ../src/modding/NewModGUI.cs:305
 msgid "INVALID_URL_FORMAT"
 msgstr "Format d'URL invalide"
 
-#: ../src/modding/NewModGUI.cs:247
+#: ../src/modding/NewModGUI.cs:331
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Un nom interne est nécessaire"
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:337
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Les noms internes doivent commencer par une majuscule"
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:343
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Une modification porte déjà ce nom interne"
 
-#: ../src/modding/NewModGUI.cs:275
+#: ../src/modding/NewModGUI.cs:359
 #, fuzzy
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Le champ suivant est manquant ou a un format invalide : {0}"
 
-#: ../src/modding/NewModGUI.cs:286
+#: ../src/modding/NewModGUI.cs:370
 #, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Des validations supplémentaires ont détectés un problème: {0}"
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:49
 #, fuzzy
 msgid "CREATE_NEW_MOD"
 msgstr "Créer un nouveau microbe"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:83
 #, fuzzy
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "Les instructions pour créer de nouvelles modifications sont accessibles depuis"
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:90
 msgid "OUR_WIKI"
 msgstr "notre Wiki"
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:680
 #, fuzzy
 msgid "CREATE"
 msgstr "Créé à :"
@@ -4640,6 +4855,14 @@ msgstr "W,A,S,D et souris pour bouger. E pour tirer des OxyToxy NT si vous avez 
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutoriel"
+
+#, fuzzy
+#~ msgid "SELECTED_MOD"
+#~ msgstr "Sélectionné :"
+
+#, fuzzy
+#~ msgid "MOD_CREATION_FAILED"
+#~ msgstr "L'Auto-évo n'a pas pu se lancer"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Chargement..."

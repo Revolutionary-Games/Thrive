@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-11 18:44-0500\n"
+"POT-Creation-Date: 2022-04-16 12:51-0500\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -288,12 +288,12 @@ msgid "ABILITIES"
 msgstr "Schopnosti"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2139
+#: ../src/microbe_stage/MicrobeStage.tscn:2142
 msgid "FIRE_TOXIN"
 msgstr "Ohnivé toxiny"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2127
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "TOGGLE_ENGULF"
 msgstr "Přepnout pohlcování"
 
@@ -302,7 +302,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2150
+#: ../src/microbe_stage/MicrobeStage.tscn:2153
 msgid "TOGGLE_BINDING"
 msgstr "Přepnout spojování"
 
@@ -311,6 +311,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Přepnout rozpojování"
 
 #: ../simulation_parameters/common/input_options.json:58
+#: ../src/microbe_stage/MicrobeStage.tscn:2165
 msgid "UNBIND_ALL"
 msgstr "Rozpojit všechny"
 
@@ -593,36 +594,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1296
+#: ../src/microbe_stage/MicrobeStage.tscn:1300
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "AMMONIA"
 msgstr "Amoniak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1348
+#: ../src/microbe_stage/MicrobeStage.tscn:1352
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
 msgid "PHOSPHATE"
 msgstr "Fosfát"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1400
+#: ../src/microbe_stage/MicrobeStage.tscn:1404
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sirovodík"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1244
+#: ../src/microbe_stage/MicrobeStage.tscn:1248
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "GLUCOSE"
 msgstr "Glukóza"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1582
+#: ../src/microbe_stage/MicrobeStage.tscn:1586
 msgid "OXYTOXY_NT"
 msgstr "OxyToxyn NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1452
+#: ../src/microbe_stage/MicrobeStage.tscn:1456
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "IRON"
 msgstr "Železo"
@@ -1497,7 +1498,7 @@ msgstr "Ilustraci vytvořil(a) {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1278
-#: ../src/modding/ModManager.tscn:1445
+#: ../src/modding/ModManager.tscn:1439
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Zavřít"
@@ -1505,7 +1506,7 @@ msgstr "Zavřít"
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:722
+#: ../src/microbe_stage/MicrobeHUD.cs:732
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
@@ -1565,7 +1566,7 @@ msgstr "Editor mikrobů"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:1504 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/modding/ModManager.tscn:1498 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Zpět"
@@ -2300,7 +2301,7 @@ msgid "RAW"
 msgstr "RAW"
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1932
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1934
 msgid "NO_DATA_TO_SHOW"
 msgstr "Žádná data k zobrazení"
 
@@ -2600,7 +2601,7 @@ msgstr "Všechny buňky \"vidí\" pouze prostřednictvím chemorecepce. Tímto z
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2182
-#: ../src/microbe_stage/MicrobeHUD.cs:1362
+#: ../src/microbe_stage/MicrobeHUD.cs:1376
 msgid "TO_BE_IMPLEMENTED"
 msgstr "K implementaci."
 
@@ -2797,7 +2798,7 @@ msgstr "úspěšné zabití"
 msgid "ESCAPE_ENGULFING"
 msgstr "uniknout pohlcení"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:749
+#: ../src/microbe_stage/Microbe.Interior.cs:770
 msgid "REPRODUCED"
 msgstr "reprodukováno"
 
@@ -2827,123 +2828,123 @@ msgstr "Duplicitní hráč"
 msgid "SPAWN_ENEMY"
 msgstr "Spawni nepřítele"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:478
+#: ../src/microbe_stage/MicrobeHUD.cs:488
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:479
+#: ../src/microbe_stage/MicrobeHUD.cs:489
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:480
+#: ../src/microbe_stage/MicrobeHUD.cs:490
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:481
+#: ../src/microbe_stage/MicrobeHUD.cs:491
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:482
+#: ../src/microbe_stage/MicrobeHUD.cs:492
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Pojící médium"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:485
+#: ../src/microbe_stage/MicrobeHUD.cs:495
 #, fuzzy
 msgid "SIGNAL_TO_EMIT"
 msgstr "Pojící médium"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:801
+#: ../src/microbe_stage/MicrobeHUD.cs:811
 msgid "STUFF_AT"
 msgstr "Věc v {0: F1}, {1: F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:834
+#: ../src/microbe_stage/MicrobeHUD.cs:844
 msgid "PLAYER_CELL"
 msgstr "Hráčská buňka"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:851
+#: ../src/microbe_stage/MicrobeHUD.cs:861
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:896
+#: ../src/microbe_stage/MicrobeHUD.cs:906
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "hojnost"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:898
+#: ../src/microbe_stage/MicrobeHUD.cs:908
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "docela dost"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:900
+#: ../src/microbe_stage/MicrobeHUD.cs:910
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "dostatečné množství"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:902
+#: ../src/microbe_stage/MicrobeHUD.cs:912
 msgid "CATEGORY_SOME"
 msgstr "něco"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:904
+#: ../src/microbe_stage/MicrobeHUD.cs:914
 msgid "CATEGORY_LITTLE"
 msgstr "málo"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:906
+#: ../src/microbe_stage/MicrobeHUD.cs:916
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "velmi málo"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1156
-#: ../src/microbe_stage/MicrobeStage.tscn:1768
+#: ../src/microbe_stage/MicrobeHUD.cs:1170
+#: ../src/microbe_stage/MicrobeStage.tscn:1772
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1192
-#: ../src/microbe_stage/MicrobeStage.tscn:1785
+#: ../src/microbe_stage/MicrobeHUD.cs:1206
+#: ../src/microbe_stage/MicrobeStage.tscn:1788
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:710
+#: ../src/microbe_stage/MicrobeStage.cs:711
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč se rozmnožil"
 
-#: ../src/microbe_stage/MicrobeStage.cs:724
+#: ../src/microbe_stage/MicrobeStage.cs:725
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Nemůžete použít cheat spawnout nepřítele, protože se v této oblasti se nevyskytují nepřátelské druhy"
 
-#: ../src/microbe_stage/MicrobeStage.cs:744
+#: ../src/microbe_stage/MicrobeStage.cs:745
 msgid "PLAYER_DIED"
 msgstr "hráč zemřel"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:512
+#: ../src/microbe_stage/MicrobeStage.tscn:516
 msgid "AT_CURSOR"
 msgstr "Na kurzoru:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:538
+#: ../src/microbe_stage/MicrobeStage.tscn:542
 msgid "NOTHING_HERE"
 msgstr "Nic zde není"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:563
+#: ../src/microbe_stage/MicrobeStage.tscn:567
 msgid "COMPOUNDS_COLON"
 msgstr "Sloučeniny:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:603
+#: ../src/microbe_stage/MicrobeStage.tscn:607
 msgid "SPECIES_COLON"
 msgstr "Druh:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:683
+#: ../src/microbe_stage/MicrobeStage.tscn:687
 msgid "ENVIRONMENT"
 msgstr "Životní prostředí"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:952
+#: ../src/microbe_stage/MicrobeStage.tscn:956
 msgid "TEMPERATURE_SHORT"
 msgstr "Teplota."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1008
+#: ../src/microbe_stage/MicrobeStage.tscn:1012
 msgid "LIGHT"
 msgstr "Světlo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1063
+#: ../src/microbe_stage/MicrobeStage.tscn:1067
 msgid "PRESSURE_SHORT"
 msgstr "Tlak"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1146
+#: ../src/microbe_stage/MicrobeStage.tscn:1150
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
@@ -2951,44 +2952,43 @@ msgstr "Tlak"
 msgid "COMPOUNDS"
 msgstr "Sloučeniny"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1522
+#: ../src/microbe_stage/MicrobeStage.tscn:1526
 msgid "AGENTS"
 msgstr "Činidlo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1620
+#: ../src/microbe_stage/MicrobeStage.tscn:1624
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1638
+#: ../src/microbe_stage/MicrobeStage.tscn:1642
 msgid "PAUSE_TOOLTIP"
 msgstr "Pozastavit hru"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1651
+#: ../src/microbe_stage/MicrobeStage.tscn:1655
 msgid "RESUME_TOOLTIP"
 msgstr "Pokračovat"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1664
+#: ../src/microbe_stage/MicrobeStage.tscn:1668
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt prostředí a sloučeniny"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1679
+#: ../src/microbe_stage/MicrobeStage.tscn:1683
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt procesy buňky"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1716
+#: ../src/microbe_stage/MicrobeStage.tscn:1720
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Nápověda"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1728
+#: ../src/microbe_stage/MicrobeStage.tscn:1732
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Spáchat sebevraždu"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1767
-#: ../src/microbe_stage/MicrobeStage.tscn:1784
+#: ../src/microbe_stage/MicrobeStage.tscn:1771
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1813
+#: ../src/microbe_stage/MicrobeStage.tscn:1816
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACE:"
 
@@ -3089,28 +3089,28 @@ msgstr "Reagující"
 msgid "FOCUSED"
 msgstr "Soustředěnost"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:187
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
 msgid "ATP_PRODUCTION"
 msgstr "Produkce ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:193
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "VÝROBA ATP JE PŘÍLIŠ NÍZKÁ!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:201
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:222
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:221
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:242
 msgid "OSMOREGULATION"
 msgstr "Osmoregulace"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:227
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:248
 msgid "BASE_MOVEMENT"
 msgstr "Základní pohyb"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:239
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:260
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -3118,34 +3118,34 @@ msgstr "{0}: -{1} ATP"
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1768
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
 #, fuzzy
 msgid "FAILED"
 msgstr "Chyba ukládání"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1774
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1786
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1780
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1792
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1794
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1900
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1902
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie v {0} pro {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1904
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1906
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Celková získaná energie je {0} s individuálními náklady {1}, což vede k nekorigované populaci {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1911
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
 msgid "ENERGY_SOURCES"
 msgstr "Zdroje energie:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1917
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energie: {1} (fitness: {2}) celková dostupná energie: {3} (celková zdatnost: {4})"
 
@@ -3272,7 +3272,7 @@ msgstr "Na tomto panelu jsou zobrazena čísla, na jejichž základě funguje pr
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balanc sloučenin"
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:239
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:265
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Název druhu musí odpovídat binomickému systému pojmenování (rod a epiteton)!"
 
@@ -3635,7 +3635,7 @@ msgid "MOD_LOAD_ERROR_WARNING"
 msgstr "Chyby načítání módu"
 
 #: ../src/modding/ModManager.cs:1318 ../src/modding/ModManager.tscn:750
-#: ../src/modding/ModManager.tscn:1339 ../src/modding/NewModGUI.tscn:546
+#: ../src/modding/ModManager.tscn:1333 ../src/modding/NewModGUI.tscn:546
 msgid "MOD_DEPENDENCIES"
 msgstr ""
 
@@ -3643,7 +3643,7 @@ msgstr ""
 msgid "NO_MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1349 ../src/modding/ModManager.tscn:1361
+#: ../src/modding/ModManager.cs:1349 ../src/modding/ModManager.tscn:1355
 #: ../src/modding/NewModGUI.tscn:570
 msgid "MOD_REQUIRED_MODS"
 msgstr ""
@@ -3671,13 +3671,13 @@ msgstr "Povolit všechny kompatibilní mody"
 msgid "LOAD_ORDER"
 msgstr "Nahrávač módů"
 
-#: ../src/modding/ModManager.cs:1420 ../src/modding/ModManager.tscn:1405
+#: ../src/modding/ModManager.cs:1420 ../src/modding/ModManager.tscn:1399
 #: ../src/modding/NewModGUI.tscn:618
 #, fuzzy
 msgid "MOD_LOAD_AFTER"
 msgstr "Nahrávač módů"
 
-#: ../src/modding/ModManager.cs:1438 ../src/modding/ModManager.tscn:1383
+#: ../src/modding/ModManager.cs:1438 ../src/modding/ModManager.tscn:1377
 #: ../src/modding/NewModGUI.tscn:594
 #, fuzzy
 msgid "MOD_LOAD_BEFORE"
@@ -3862,80 +3862,80 @@ msgstr "Popis módu:"
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Dlouhý popis módu:"
 
-#: ../src/modding/ModManager.tscn:1119 ../src/modding/NewModGUI.tscn:249
+#: ../src/modding/ModManager.tscn:1113 ../src/modding/NewModGUI.tscn:249
 msgid "MOD_ICON_FILE"
 msgstr "Soubor s ikonou:"
 
-#: ../src/modding/ModManager.tscn:1141 ../src/modding/NewModGUI.tscn:289
+#: ../src/modding/ModManager.tscn:1135 ../src/modding/NewModGUI.tscn:289
 #, fuzzy
 msgid "MOD_PREVIEW_IMAGE_FILE"
 msgstr "Soubor náhledu obrázku je příliš velký"
 
-#: ../src/modding/ModManager.tscn:1163 ../src/modding/NewModGUI.tscn:328
+#: ../src/modding/ModManager.tscn:1157 ../src/modding/NewModGUI.tscn:328
 msgid "MOD_INFO_URL"
 msgstr "Mod info URL:"
 
-#: ../src/modding/ModManager.tscn:1185 ../src/modding/NewModGUI.tscn:351
+#: ../src/modding/ModManager.tscn:1179 ../src/modding/NewModGUI.tscn:351
 msgid "MOD_LICENSE"
 msgstr "Licence módu:"
 
-#: ../src/modding/ModManager.tscn:1207 ../src/modding/NewModGUI.tscn:374
+#: ../src/modding/ModManager.tscn:1201 ../src/modding/NewModGUI.tscn:374
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Doporučená verze Thrive:"
 
-#: ../src/modding/ModManager.tscn:1229 ../src/modding/NewModGUI.tscn:397
+#: ../src/modding/ModManager.tscn:1223 ../src/modding/NewModGUI.tscn:397
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Požadované minimum verze Thrive:"
 
-#: ../src/modding/ModManager.tscn:1251 ../src/modding/NewModGUI.tscn:420
+#: ../src/modding/ModManager.tscn:1245 ../src/modding/NewModGUI.tscn:420
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Maximální podporovaná verze Thrive:"
 
-#: ../src/modding/ModManager.tscn:1273 ../src/modding/NewModGUI.tscn:443
+#: ../src/modding/ModManager.tscn:1267 ../src/modding/NewModGUI.tscn:443
 msgid "MOD_PCK_NAME"
 msgstr "Mod .pck soubor:"
 
-#: ../src/modding/ModManager.tscn:1295 ../src/modding/NewModGUI.tscn:483
+#: ../src/modding/ModManager.tscn:1289 ../src/modding/NewModGUI.tscn:483
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1317 ../src/modding/NewModGUI.tscn:523
+#: ../src/modding/ModManager.tscn:1311 ../src/modding/NewModGUI.tscn:523
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1427 ../src/modding/NewModGUI.tscn:642
+#: ../src/modding/ModManager.tscn:1421 ../src/modding/NewModGUI.tscn:642
 #, fuzzy
 msgid "MOD_INCOMPATIBLE_MODS"
 msgstr "Načíst nekompatibilní uloženou pozici?"
 
-#: ../src/modding/ModManager.tscn:1458
+#: ../src/modding/ModManager.tscn:1452
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "Při načítání nebo vykládání jednoho nebo více módů došlo k chybám. Protokoly mohou obsahovat další informace."
 
-#: ../src/modding/ModManager.tscn:1463
+#: ../src/modding/ModManager.tscn:1457
 msgid "RESTART_REQUIRED"
 msgstr "Požadovaný restart"
 
-#: ../src/modding/ModManager.tscn:1465
+#: ../src/modding/ModManager.tscn:1459
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Jeden nebo více módů vyžaduje restart pro správné načtení nebo vyložení"
 
-#: ../src/modding/ModManager.tscn:1480
+#: ../src/modding/ModManager.tscn:1474
 #, fuzzy
 msgid "MOD_LOAD_ERROR_WARNING_TITLE"
 msgstr "Při načítání jednoho nebo více módů došlo k chybám. Protokoly mohou obsahovat další informace."
 
-#: ../src/modding/ModManager.tscn:1482
+#: ../src/modding/ModManager.tscn:1476
 #, fuzzy
 msgid "YES"
 msgstr "roky"
 
-#: ../src/modding/ModManager.tscn:1483
+#: ../src/modding/ModManager.tscn:1477
 #, fuzzy
 msgid "NO"
 msgstr "Vrátit"
 
-#: ../src/modding/ModManager.tscn:1491 ../src/modding/ModManager.tscn:1494
+#: ../src/modding/ModManager.tscn:1485 ../src/modding/ModManager.tscn:1488
 msgid "NULL"
 msgstr ""
 
