@@ -150,9 +150,9 @@ public class Mutations
         var part2 = newName.ToString(index - 2, 2);
         var part3 = newName.ToString(index, 2);
 
-        return (PronounceablePermutation.Contains(part1) ||
+        return PronounceablePermutation.Contains(part1) ||
             PronounceablePermutation.Contains(part2) ||
-            PronounceablePermutation.Contains(part3));
+            PronounceablePermutation.Contains(part3);
     }
 
     private void MutateBehaviour(Species parent, Species mutated)
