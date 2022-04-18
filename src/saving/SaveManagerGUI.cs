@@ -225,7 +225,7 @@ public class SaveManagerGUI : Control
     {
         int autoSavesToDeleteCount = (currentAutoSaveCount - 1).Clamp(0, Settings.Instance.MaxAutoSaves);
         int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
-        int oldBackupsToDeleteCount = (currentOldBackupCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
+        int oldBackupsToDeleteCount = currentOldBackupCount.Clamp(0, Settings.Instance.MaxQuickSaves);
 
         deleteOldConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
