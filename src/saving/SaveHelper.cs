@@ -266,7 +266,8 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Counts the total number of saves that have an older version than the current version of Thrive and are a backup and how many bytes they take up
+    ///   Counts the total number of saves that have an older version than the
+    ///   current version of Thrive and are a backup and how many bytes they take up
     /// </summary>
     public static (int Count, ulong DiskSpace) CountOldBackupSaves()
     {
@@ -325,7 +326,8 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Deletes all saves with the given prefix except the latest one and returns the list of saves deleted
+    ///   Deletes all saves with the given prefix except
+    ///   the latest one and returns the list of saves deleted
     /// </summary>
     public static List<string> CleanUpOldSavesOfType(string nameStartsWith)
     {
