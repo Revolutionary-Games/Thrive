@@ -210,31 +210,6 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
     }
 
-    private static IEnumerable<Microbe> MicrobeColonySpawnHelper(ColonySpawnInfo colony, Vector3 location)
-    {
-        for (int c = 0; c < colony.Random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-                 Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
-        {
-            // Dont spawn them on top of each other because
-            // It causes them to bounce around and lag
-            // And add a little organicness to the look
-
-            if (colony.Horizontal)
-            {
-                colony.CurSpawn.x += colony.Random.Next(5, 8);
-                colony.CurSpawn.z += colony.Random.Next(-2, 3);
-            }
-            else
-            {
-                colony.CurSpawn.z += colony.Random.Next(5, 8);
-                colony.CurSpawn.x += colony.Random.Next(-2, 3);
-            }
-
-            yield return SpawnMicrobe(colony.Species, location + colony.CurSpawn, colony.WorldRoot,
-                colony.MicrobeScene, true, colony.CloudSystem, colony.CurrentGame);
-        }
-    }
-
     private class ColonySpawnInfo
     {
         public Species Species;
