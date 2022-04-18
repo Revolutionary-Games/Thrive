@@ -281,7 +281,7 @@ public class SpawnSystem
     }
 
     /// <summary>
-    ///   Does a single spawn with a spawner, or enqueues a spawn if over the frame limit
+    ///   Does a single spawn with a spawner
     /// </summary>
     private void SpawnWithSpawner(Spawner spawnType, Vector3 location)
     {
