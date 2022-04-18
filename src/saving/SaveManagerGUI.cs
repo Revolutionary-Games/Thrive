@@ -121,11 +121,11 @@ public class SaveManagerGUI : Control
         getTotalSaveCountTask.Dispose();
         getAutoSaveCountTask.Dispose();
         getQuickSaveCountTask.Dispose();
-        getOldBackupCount.Dispose();
+        getOldBackupCountTask.Dispose();
         getTotalSaveCountTask = null;
         getAutoSaveCountTask = null;
         getQuickSaveCountTask = null;
-        getOldBackupCount = null;
+        getOldBackupCountTask = null;
 
         totalSaveCount.Text = info.Count.ToString(CultureInfo.CurrentCulture);
         totalSaveSize.Text =
@@ -167,7 +167,7 @@ public class SaveManagerGUI : Control
         getTotalSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves());
         getAutoSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves("auto_save"));
         getQuickSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves("quick_save"));
-        getQuickSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountOldBackupSaves());
+        getOldBackupCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountOldBackupSaves());
 
         TaskExecutor.Instance.AddTask(getTotalSaveCountTask);
         TaskExecutor.Instance.AddTask(getAutoSaveCountTask);
