@@ -618,6 +618,7 @@ public class OptionsMenu : ControlWithInput
     {
         if (resolution == null)
             return;
+
         var screenResolution = OS.WindowSize * OS.GetScreenScale();
         resolution.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("AUTO_RESOLUTION"),
             screenResolution.x, screenResolution.y);
