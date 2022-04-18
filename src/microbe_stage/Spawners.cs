@@ -109,7 +109,7 @@ public static class SpawnHelpers
         var curSpawn = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
         var clumpSize = random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
-                 Constants.MAX_BACTERIAL_COLONY_SIZE + 1);
+            Constants.MAX_BACTERIAL_COLONY_SIZE + 1);
         for (int i = 0; i < clumpSize; i++)
         {
             // Dont spawn them on top of each other because it
@@ -208,31 +208,6 @@ public static class SpawnHelpers
     public static PackedScene LoadAgentScene()
     {
         return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
-    }
-
-    private class ColonySpawnInfo
-    {
-        public Species Species;
-        public Node WorldRoot;
-        public PackedScene MicrobeScene;
-        public Vector3 CurSpawn;
-        public bool Horizontal;
-        public Random Random;
-        public CompoundCloudSystem CloudSystem;
-        public GameProperties CurrentGame;
-
-        public ColonySpawnInfo(bool horizontal, Random random, Species species, CompoundCloudSystem cloudSystem,
-            GameProperties currentGame, Vector3 curSpawn, PackedScene microbeScene, Node worldRoot)
-        {
-            Horizontal = horizontal;
-            Random = random;
-            Species = species;
-            CloudSystem = cloudSystem;
-            CurrentGame = currentGame;
-            CurSpawn = curSpawn;
-            MicrobeScene = microbeScene;
-            WorldRoot = worldRoot;
-        }
     }
 }
 
