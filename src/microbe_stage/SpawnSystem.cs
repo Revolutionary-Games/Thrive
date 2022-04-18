@@ -295,18 +295,17 @@ public class SpawnSystem
         if (enumerable == null)
             return;
 
-        var spawner = enumerable.GetEnumerator();
-
-        while (spawner.MoveNext())
+        using (var spawner = enumerable.GetEnumerator())
         {
-            if (spawner.Current == null)
-                throw new NullReferenceException("spawn enumerator is not allowed to return null");
+            while (spawner.MoveNext())
+            {
+                if (spawner.Current == null)
+                    throw new NullReferenceException("spawn enumerator is not allowed to return null");
 
-            // Spawned something
-            ProcessSpawnedEntity(spawner.Current, spawnType);
+                // Spawned something
+                ProcessSpawnedEntity(spawner.Current, spawnType);
+            }
         }
-
-        spawner.Dispose();
     }
 
     /// <summary>
