@@ -225,11 +225,12 @@ public class SaveManagerGUI : Control
     {
         int autoSavesToDeleteCount = (currentAutoSaveCount - 1).Clamp(0, Settings.Instance.MaxAutoSaves);
         int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
+        int oldBackupsToDeleteCount = (currentOldBackupCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
 
         deleteOldConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING"),
-                autoSavesToDeleteCount, quickSavesToDeleteCount);
+                TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING2"),
+                autoSavesToDeleteCount, quickSavesToDeleteCount, oldBackupsToDeleteCount);
         deleteOldConfirmDialog.PopupCenteredShrink();
     }
 
