@@ -127,7 +127,7 @@ public class PatchManager : IChildPropertiesLoadCallback
                     var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value,
                         compoundCloudSystem));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
+                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * 50000,
                         Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 });
@@ -146,7 +146,7 @@ public class PatchManager : IChildPropertiesLoadCallback
                     var spawner = new CreatedSpawner(entry.Key.InternalName,
                         Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
+                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * 50000,
                         Constants.CLOUD_SPAWN_RADIUS);
                     return spawner;
                 });
@@ -170,9 +170,7 @@ public class PatchManager : IChildPropertiesLoadCallback
                 continue;
             }
 
-            var density = 1.0f / (Constants.STARTING_SPAWN_DENSITY -
-                Math.Min(Constants.MAX_SPAWN_DENSITY,
-                    species.Population * 5));
+            var density = Mathf.Log(species.Population) * 0.01f;
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
