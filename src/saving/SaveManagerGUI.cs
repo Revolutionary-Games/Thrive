@@ -116,7 +116,7 @@ public class SaveManagerGUI : Control
         var info = getTotalSaveCountTask.Result;
         currentAutoSaveCount = getAutoSaveCountTask!.Result.Count;
         currentQuickSaveCount = getQuickSaveCountTask!.Result.Count;
-        currentOldBackupCount = currentOldBackupCount!.Result.Count;
+        currentOldBackupCount = getOldBackupCountTask!.Result.Count;
 
         getTotalSaveCountTask.Dispose();
         getAutoSaveCountTask.Dispose();
