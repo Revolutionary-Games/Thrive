@@ -224,10 +224,14 @@ public class MicrobeAI
         }
 
         // If I'm very far from the player, get on stage
-        var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).First();
-        if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 2)
+        var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).FirstOrDefault();
+        if (player != null)
         {
-            MoveToLocation(player.GlobalTransform.origin);
+            if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 2)
+            {
+                MoveToLocation(player.GlobalTransform.origin);
+                return;
+            }
         }
 
         // If there are no threats, look for a chunk to eat
