@@ -214,8 +214,7 @@ public class SpawnSystem
             return;
 
         var playerCoordinatePoint = new Tuple<int, int>(Mathf.RoundToInt(playerPosition.x /
-            Constants.SPAWN_SECTOR_SIZE),
-            Mathf.RoundToInt(playerPosition.z / Constants.SPAWN_SECTOR_SIZE));
+            Constants.SPAWN_SECTOR_SIZE), Mathf.RoundToInt(playerPosition.z / Constants.SPAWN_SECTOR_SIZE));
 
         // Spawn for all sectors immediately outside a 3x3 box around the player
         var sectorsToSpawn = new List<Tuple<int, int>>();
@@ -259,7 +258,7 @@ public class SpawnSystem
             // Distance from the sector center.
             Vector3 displacement = new Vector3(random.NextFloat() * Constants.SPAWN_SECTOR_SIZE -
                 (Constants.SPAWN_SECTOR_SIZE / 2), 0,
-                random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
+                    random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
 
             // Second condition passed. Spawn the entity.
             SpawnWithSpawner(spawnType, sectorCenter + displacement);
@@ -306,6 +305,8 @@ public class SpawnSystem
             // Spawned something
             ProcessSpawnedEntity(spawner.Current, spawnType);
         }
+
+        spawner.Dispose();
     }
 
     /// <summary>
