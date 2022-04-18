@@ -258,7 +258,7 @@ public class SpawnSystem
             // Distance from the sector center.
             Vector3 displacement = new Vector3(random.NextFloat() * Constants.SPAWN_SECTOR_SIZE -
                 (Constants.SPAWN_SECTOR_SIZE / 2), 0,
-                    random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
+                random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
 
             // Second condition passed. Spawn the entity.
             SpawnWithSpawner(spawnType, sectorCenter + displacement);
