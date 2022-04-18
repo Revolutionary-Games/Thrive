@@ -288,6 +288,8 @@ public static class SaveHelper
                 totalSize += file.GetLen();
             }
         }
+
+        return (count, totalSize);
     }
 
     /// <summary>
