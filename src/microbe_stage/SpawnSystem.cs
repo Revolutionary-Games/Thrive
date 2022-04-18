@@ -28,12 +28,6 @@ public class SpawnSystem
     private Random random = new();
 
     /// <summary>
-    ///   Max tries per spawner to avoid very high spawn densities lagging
-    /// </summary>
-    [JsonProperty]
-    private int maxTriesPerSpawner = 500;
-
-    /// <summary>
     ///   This is used to spawn only a few entities per frame with minimal changes needed to code that wants to
     ///   spawn a bunch of stuff at once
     /// </summary>
@@ -258,36 +252,16 @@ public class SpawnSystem
     {
         foreach (var spawnType in spawnTypes)
         {
-            /*
-            To actually spawn a given entity for a given attempt, two
-            conditions should be met. The first condition is a random
-            chance that adjusts the spawn frequency to the appropriate
-            amount. The second condition is whether the entity will
-            spawn in a valid position. It is checked when the first
-            condition is met and a position for the entity has been
-            decided.
+            Vector3 sectorCenter = new Vector3(sector.Item1 * Constants.SPAWN_SECTOR_SIZE, 0,
+                sector.Item2 * Constants.SPAWN_SECTOR_SIZE);
 
-            To allow more than one entity of each type to spawn per
-            spawn cycle, the SpawnSystem attempts to spawn each given
-            entity multiple times depending on the spawnFrequency.
-            numAttempts stores how many times the SpawnSystem attempts
-            to spawn the given entity.
-            */
-            int numAttempts = 1;// Mathf.Clamp(spawnType!.SpawnFrequency * 2, 1, maxTriesPerSpawner);
+            // Distance from the sector center.
+            Vector3 displacement = new Vector3(random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2),
+                0,
+                random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
 
-            for (int i = 0; i < numAttempts; i++)
-            {
-                Vector3 sectorCenter = new Vector3(sector.Item1 * Constants.SPAWN_SECTOR_SIZE, 0,
-                    sector.Item2 * Constants.SPAWN_SECTOR_SIZE);
-
-                // Distance from the sector center.
-                Vector3 displacement = new Vector3(random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2),
-                    0,
-                    random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
-
-                // Second condition passed. Spawn the entity.
-                SpawnWithSpawner(spawnType, sectorCenter + displacement);
-            }
+            // Second condition passed. Spawn the entity.
+            SpawnWithSpawner(spawnType, sectorCenter + displacement);
         }
     }
 
