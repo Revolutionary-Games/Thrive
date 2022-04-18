@@ -265,6 +265,9 @@ public static class SaveHelper
         return (count, totalSize);
     }
 
+    /// <summary>
+    ///   Counts the total number of saves that have an older version than the current version of Thrive and are a backup and how many bytes they take up
+    /// </summary>
     public static (int Count, ulong DiskSpace) CountOldBackupSaves()
     {
         int count = 0;
