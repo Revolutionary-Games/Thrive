@@ -245,6 +245,8 @@ public class SpawnSystem
                 SpawnInSector(newSector);
             }
         }
+
+        SpawnMicrobesAroundPlayer(playerPosition);
     }
 
     /// <summary>
@@ -285,6 +287,21 @@ public class SpawnSystem
 
                 // Second condition passed. Spawn the entity.
                 SpawnWithSpawner(spawnType, sectorCenter + displacement);
+            }
+        }
+    }
+
+    private void SpawnMicrobesAroundPlayer(Vector3 playerLocation)
+    {
+        var angle = random.NextFloat() * 2 * Mathf.Pi;
+
+        foreach (var spawnType in spawnTypes)
+        {
+            if (spawnType is MicrobeSpawner)
+            {
+                SpawnWithSpawner(spawnType,
+                    playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
+                    Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2));
             }
         }
     }
