@@ -179,7 +179,7 @@ public class SaveManagerGUI : Control
     {
         loadButton.Disabled = Selected.Count != 1;
         deleteSelectedButton.Disabled = Selected.Count == 0;
-        deleteOldButton.Disabled = (currentAutoSaveCount <= 1) && (currentQuickSaveCount <= 1) && (currentOldBackupCount <= 1);
+        deleteOldButton.Disabled = (currentAutoSaveCount < 1) && (currentQuickSaveCount < 1) && (currentOldBackupCount < 1);
     }
 
     private void LoadFirstSelectedSave()
