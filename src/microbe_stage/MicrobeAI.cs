@@ -223,6 +223,13 @@ public class MicrobeAI
                 break;
         }
 
+        // If I'm very far from the player, get on stage
+        var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).First();
+        if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 2)
+        {
+            MoveToLocation(player.GlobalTransform.origin);
+        }
+
         // If there are no threats, look for a chunk to eat
         if (!microbe.CellTypeProperties.MembraneType.CellWall)
         {

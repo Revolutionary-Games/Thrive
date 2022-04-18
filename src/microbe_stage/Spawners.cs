@@ -108,96 +108,16 @@ public static class SpawnHelpers
     {
         var curSpawn = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
-        // Three kinds of colonies are supported, line colonies and clump colonies and Networks
-        if (random.Next(0, 5) < 2)
+        var clumpSize = random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
+                 Constants.MAX_BACTERIAL_COLONY_SIZE + 1);
+        for (int i = 0; i < clumpSize; i++)
         {
-            // Clump
-            for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
-                     Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
-            {
-                // Dont spawn them on top of each other because it
-                // causes them to bounce around and lag
-                yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                    cloudSystem, currentGame);
+            // Dont spawn them on top of each other because it
+            // causes them to bounce around and lag
+            yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                cloudSystem, currentGame);
 
-                curSpawn = curSpawn + new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
-            }
-        }
-        else if (random.Next(0, 31) > 2)
-        {
-            // Line
-            // Allow for many types of line
-            // (I combined the lineX and lineZ here because they have the same values)
-            var line = random.Next(-5, 6) + random.Next(-5, 6);
-
-            for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-                     Constants.MAX_BACTERIAL_LINE_SIZE + 1); i++)
-            {
-                // Dont spawn them on top of each other because it
-                // Causes them to bounce around and lag
-                yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                    cloudSystem, currentGame);
-
-                curSpawn = curSpawn + new Vector3(line + random.Next(-2, 3), 0, line + random.Next(-2, 3));
-            }
-        }
-        else
-        {
-            // Network
-            // Allows for "jungles of cyanobacteria"
-            // Network is extremely rare
-
-            // To prevent bacteria being spawned on top of each other
-            var vertical = false;
-
-            var colony = new ColonySpawnInfo(false, random, species, cloudSystem, currentGame, curSpawn, microbeScene,
-                worldRoot);
-
-            for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
-                     Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
-            {
-                if (random.Next(0, 5) < 2 && !colony.Horizontal)
-                {
-                    colony.Horizontal = true;
-                    vertical = false;
-
-                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location))
-                        yield return microbe;
-                }
-                else if (random.Next(0, 5) < 2 && !vertical)
-                {
-                    colony.Horizontal = false;
-                    vertical = true;
-
-                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location))
-                        yield return microbe;
-                }
-                else if (random.Next(0, 5) < 2 && !colony.Horizontal)
-                {
-                    colony.Horizontal = true;
-                    vertical = false;
-
-                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location))
-                        yield return microbe;
-                }
-                else if (random.Next(0, 5) < 2 && !vertical)
-                {
-                    colony.Horizontal = false;
-                    vertical = true;
-
-                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location))
-                        yield return microbe;
-                }
-                else
-                {
-                    // Diagonal
-                    colony.Horizontal = false;
-                    vertical = false;
-
-                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location))
-                        yield return microbe;
-                }
-            }
+            curSpawn = curSpawn + new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
         }
     }
 
