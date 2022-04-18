@@ -90,13 +90,12 @@ public class SpawnSystem
     public void AddSpawnType(Spawner spawner, float spawnDensity, int spawnRadius)
     {
         spawner.SpawnRadius = spawnRadius;
-        spawner.SpawnFrequency = 122;
         spawner.SpawnRadiusSquared = spawnRadius * spawnRadius;
 
         float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
         spawner.MinSpawnRadiusSquared = minSpawnRadius * minSpawnRadius;
+        spawner.Denstity = spawnDensity;
 
-        spawner.SetFrequencyFromDensity(spawnDensity);
         spawnTypes.Add(spawner);
     }
 
@@ -295,6 +294,11 @@ public class SpawnSystem
     /// </summary>
     private void SpawnWithSpawner(Spawner spawnType, Vector3 location)
     {
+        if (random.NextFloat() > spawnType.Denstity)
+        {
+            return;
+        }
+
         var enumerable = spawnType.Spawn(worldRoot, location);
 
         if (enumerable == null)

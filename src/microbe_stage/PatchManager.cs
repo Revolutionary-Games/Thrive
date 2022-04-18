@@ -203,15 +203,6 @@ public class PatchManager : IChildPropertiesLoadCallback
         if (existing != null)
         {
             existing.Marked = true;
-
-            float oldFrequency = existing.Spawner.SpawnFrequency;
-            existing.Spawner.SetFrequencyFromDensity(density);
-
-            if (oldFrequency != existing.Spawner.SpawnFrequency)
-            {
-                GD.Print("Spawn frequency of ", existing.Name, " changed from ",
-                    oldFrequency, " to ", existing.Spawner.SpawnFrequency);
-            }
         }
         else
         {
