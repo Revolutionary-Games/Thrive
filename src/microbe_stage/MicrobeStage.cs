@@ -22,6 +22,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     public NodePath HUDRootPath = null!;
 
     private Compound glucose = null!;
+    private Compound phosphate = null!;
 
     private Node world = null!;
     private Node rootOfDynamicallySpawned = null!;
@@ -218,6 +219,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         ResolveNodeReferences();
 
         glucose = SimulationParameters.Instance.GetCompound("glucose");
+        phosphate = SimulationParameters.Instance.GetCompound("phosphates");
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
@@ -298,6 +300,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         tutorialGUI.EventReceiver = TutorialState;
 
         Clouds.Init(FluidSystem);
+
+        // If this is a new game, place some phosphates as a learning tool
+        if (!IsLoadedFromSave)
+        {
+            Clouds.AddCloud(phosphate, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+        }
 
         patchManager.CurrentGame = CurrentGame;
 
