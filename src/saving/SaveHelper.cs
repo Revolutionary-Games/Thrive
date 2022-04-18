@@ -321,6 +321,25 @@ public static class SaveHelper
         return savesDeleted;
     }
 
+    public static List<string> CleanUpOldBackupSaves()
+    {
+        var savesDeleted = new List<string>();
+
+        foreach (var save in CreateListOfSaves())
+        {
+            var saveInfo = global::Save.LoadJustInfoFromSave(save);
+
+            if (SaveUpgrader.IsSaveABackup(save) &&
+                VersionUtils.Compare(saveInfo.ThriveVersion, Constants.Version) < 0)
+            {
+                savesDeleted.Add(save);
+                DeleteSave(save);
+            }
+        }
+
+        return savesDeleted;
+    }
+
     public static void ShowErrorAboutPrototypeSaving(Node currentNode)
     {
         if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
