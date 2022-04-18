@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-18 19:32+0100\n"
+"POT-Creation-Date: 2022-04-18 23:21+0100\n"
 "PO-Revision-Date: 2022-04-15 08:28+0000\n"
 "Last-Translator: Louison Wouts <wouts.louison@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -4169,25 +4169,25 @@ msgstr "Ne peut pas absorber"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "L'Auto-évo n'a pas pu se lancer"
 
-#: ../src/saving/SaveHelper.cs:490 ../src/saving/SaveHelper.cs:534
+#: ../src/saving/SaveHelper.cs:498 ../src/saving/SaveHelper.cs:542
 #, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "La sauvegarde a échoué! Une exception est survenue"
 
-#: ../src/saving/SaveHelper.cs:499 ../src/saving/SaveHelper.cs:515
+#: ../src/saving/SaveHelper.cs:507 ../src/saving/SaveHelper.cs:523
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Sauvegarde actuellement impossible à cause de :"
 
-#: ../src/saving/SaveHelper.cs:500
+#: ../src/saving/SaveHelper.cs:508
 msgid "PLAYER_EXTINCT"
 msgstr "Le joueur est éteint"
 
-#: ../src/saving/SaveHelper.cs:516
+#: ../src/saving/SaveHelper.cs:524
 #, fuzzy
 msgid "IN_PROTOTYPE"
 msgstr "Protanopie (Rouge-Vert)"
 
-#: ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:532
 msgid "SAVING_SUCCEEDED"
 msgstr "Sauvegarde réussi"
 
@@ -4330,11 +4330,11 @@ msgstr "Charger"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Supprimer cette sauvegarde est définitif, êtes-vous sûr de vouloir la supprimer définitivement ?"
 
-#: ../src/saving/SaveManagerGUI.cs:219
+#: ../src/saving/SaveManagerGUI.cs:221
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Supprimer la(les) sauvegarde(s) sélectionnée(s) ne peut pas être défait, êtes-vous sûr que vous voulez supprimer {0} sauvegarde(s) de manière permanente?"
 
-#: ../src/saving/SaveManagerGUI.cs:232
+#: ../src/saving/SaveManagerGUI.cs:234
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING2"
 msgstr ""

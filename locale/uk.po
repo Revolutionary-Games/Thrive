@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-18 19:32+0100\n"
+"POT-Creation-Date: 2022-04-18 23:21+0100\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -3981,23 +3981,23 @@ msgstr "Неможливо записати збереження"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Спроба записати збереження провалилась. Збереження має надто довгу назву або ви не маєте доступу до запису папки збереженнь."
 
-#: ../src/saving/SaveHelper.cs:490 ../src/saving/SaveHelper.cs:534
+#: ../src/saving/SaveHelper.cs:498 ../src/saving/SaveHelper.cs:542
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Невдалось збереження! Сталося заперечення"
 
-#: ../src/saving/SaveHelper.cs:499 ../src/saving/SaveHelper.cs:515
+#: ../src/saving/SaveHelper.cs:507 ../src/saving/SaveHelper.cs:523
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Наразі збернження неможливе через:"
 
-#: ../src/saving/SaveHelper.cs:500
+#: ../src/saving/SaveHelper.cs:508
 msgid "PLAYER_EXTINCT"
 msgstr "Гравець вимер"
 
-#: ../src/saving/SaveHelper.cs:516
+#: ../src/saving/SaveHelper.cs:524
 msgid "IN_PROTOTYPE"
 msgstr "Ви граєте в прототип пізньої стадії гри."
 
-#: ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:532
 msgid "SAVING_SUCCEEDED"
 msgstr "Вдале збереження"
 
@@ -4133,11 +4133,11 @@ msgstr "Завантажено"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Видалення збереження– необоротне, ви точно хочете видалити його назавжди?"
 
-#: ../src/saving/SaveManagerGUI.cs:219
+#: ../src/saving/SaveManagerGUI.cs:221
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Видалення обраного(их) збереження(нь) не можна скасувати, ви точно хочете видалити {0} збереження назавжди?"
 
-#: ../src/saving/SaveManagerGUI.cs:232
+#: ../src/saving/SaveManagerGUI.cs:234
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING2"
 msgstr ""

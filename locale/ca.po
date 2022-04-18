@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-18 19:32+0100\n"
+"POT-Creation-Date: 2022-04-18 23:21+0100\n"
 "PO-Revision-Date: 2022-04-15 14:50+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -3982,26 +3982,26 @@ msgstr "No pot Escriure Guardat"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "L'intent d'escriure aquest arxiu de guardat ha fallat. És possible que el nom de guardat sigui massa llarg, o pot ser que no tinguis accés a la carpeta de guardat."
 
-#: ../src/saving/SaveHelper.cs:490 ../src/saving/SaveHelper.cs:534
+#: ../src/saving/SaveHelper.cs:498 ../src/saving/SaveHelper.cs:542
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "No s'ha pogut guardar! S'ha produït una excepció"
 
-#: ../src/saving/SaveHelper.cs:499 ../src/saving/SaveHelper.cs:515
+#: ../src/saving/SaveHelper.cs:507 ../src/saving/SaveHelper.cs:523
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "No és possible guardar actualment degut a:"
 
-#: ../src/saving/SaveHelper.cs:500
+#: ../src/saving/SaveHelper.cs:508
 msgid "PLAYER_EXTINCT"
 msgstr "Jugador extingit"
 
-#: ../src/saving/SaveHelper.cs:516
+#: ../src/saving/SaveHelper.cs:524
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Estàs jugant els prototips d'estadis futurs, inclosos en el joc actual.\n"
 "Aquests poden ser molt incomplerts, fer servir gràfics temporals i ser molt \"matussers\" en general.\n"
 "Per tant, actualment no s'hi pot guardar la partida."
 
-#: ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:532
 msgid "SAVING_SUCCEEDED"
 msgstr "Acció de guardat exitosa"
 
@@ -4137,11 +4137,11 @@ msgstr "Carregar"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible. Esteu segur que el voleu eliminar permanentment?"
 
-#: ../src/saving/SaveManagerGUI.cs:219
+#: ../src/saving/SaveManagerGUI.cs:221
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "L'acció d'eliminar els arxius de guardat seleccionats és irreversible. Esteu segur que voleu eliminar permanentment el següent nombre d'arxius: {0}?"
 
-#: ../src/saving/SaveManagerGUI.cs:232
+#: ../src/saving/SaveManagerGUI.cs:234
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING2"
 msgstr ""

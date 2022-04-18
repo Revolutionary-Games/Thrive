@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-18 19:32+0100\n"
+"POT-Creation-Date: 2022-04-18 23:21+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -4018,27 +4018,27 @@ msgstr "Nedokáže pohlcovat"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Automatickou evoluci se nepodařilo spustit"
 
-#: ../src/saving/SaveHelper.cs:490 ../src/saving/SaveHelper.cs:534
+#: ../src/saving/SaveHelper.cs:498 ../src/saving/SaveHelper.cs:542
 #, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr ""
 "Převod uložené pozice na novější verzi selhal kvůli následující chybě:\n"
 "{0}"
 
-#: ../src/saving/SaveHelper.cs:499 ../src/saving/SaveHelper.cs:515
+#: ../src/saving/SaveHelper.cs:507 ../src/saving/SaveHelper.cs:523
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Uložení není momentálně k dispozici z důvodu:"
 
-#: ../src/saving/SaveHelper.cs:500
+#: ../src/saving/SaveHelper.cs:508
 msgid "PLAYER_EXTINCT"
 msgstr "Hráč vyhynul"
 
-#: ../src/saving/SaveHelper.cs:516
+#: ../src/saving/SaveHelper.cs:524
 #, fuzzy
 msgid "IN_PROTOTYPE"
 msgstr "Protanopie (Červená-Zelená)"
 
-#: ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:532
 msgid "SAVING_SUCCEEDED"
 msgstr "Ukládání provedeno"
 
@@ -4182,11 +4182,11 @@ msgstr "Načíst"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
 
-#: ../src/saving/SaveManagerGUI.cs:219
+#: ../src/saving/SaveManagerGUI.cs:221
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Smazání vybraných uložení nelze vrátit zpět. Opravdu chceš trvale smazat {0} ?"
 
-#: ../src/saving/SaveManagerGUI.cs:232
+#: ../src/saving/SaveManagerGUI.cs:234
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING2"
 msgstr ""

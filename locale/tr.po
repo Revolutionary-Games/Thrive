@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-18 19:32+0100\n"
+"POT-Creation-Date: 2022-04-18 23:21+0100\n"
 "PO-Revision-Date: 2022-04-12 16:14+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -3982,26 +3982,26 @@ msgstr "Kayıt Yazılamadı"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Kayıt dosyası yazma girişimi başarısız oldu. Girilen kayıt ismi fazla uzun ya da kayıt klasörüne yazma erişimin yok."
 
-#: ../src/saving/SaveHelper.cs:490 ../src/saving/SaveHelper.cs:534
+#: ../src/saving/SaveHelper.cs:498 ../src/saving/SaveHelper.cs:542
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Kaydetme başarısız! Bir sorun oluştu"
 
-#: ../src/saving/SaveHelper.cs:499 ../src/saving/SaveHelper.cs:515
+#: ../src/saving/SaveHelper.cs:507 ../src/saving/SaveHelper.cs:523
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Kaydetmek şu an mümkün değil çünkü:"
 
-#: ../src/saving/SaveHelper.cs:500
+#: ../src/saving/SaveHelper.cs:508
 msgid "PLAYER_EXTINCT"
 msgstr "Oyuncunun nesli tükendi"
 
-#: ../src/saving/SaveHelper.cs:516
+#: ../src/saving/SaveHelper.cs:524
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Oyuna dahil edilen sonraki evrelerin prototiplerini oynamaktasın.\n"
 "Bu prototipler eksik tamamlanmış olabilir, yer tutucu grafikler kullanıyor olabilir ve genel olarak çok kaba görünebilir.\n"
 "Bu bakımdan oyunu kaydetmek şu an için mümkün değil."
 
-#: ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:532
 msgid "SAVING_SUCCEEDED"
 msgstr "Kaydetme başarılı"
 
@@ -4137,11 +4137,11 @@ msgstr "Yükle"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Bu kaydı silme işlemi geri alınamaz, kaydı kalıcı olarak silmek istediğinden emin misin?"
 
-#: ../src/saving/SaveManagerGUI.cs:219
+#: ../src/saving/SaveManagerGUI.cs:221
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Seçili kayıtları silme işlemi geri alınamaz, {0} kaydı kalıcı olarak silmek istediğinden emin misin?"
 
-#: ../src/saving/SaveManagerGUI.cs:232
+#: ../src/saving/SaveManagerGUI.cs:234
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING2"
 msgstr ""

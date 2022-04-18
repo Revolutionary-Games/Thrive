@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-18 19:32+0100\n"
+"POT-Creation-Date: 2022-04-18 23:21+0100\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -3982,26 +3982,26 @@ msgstr "Ei saa kirjutada Salvesta"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Selle salvestusfaili kirjutamise katse ebaõnnestus. Salvestusnimi võib olla liiga pikk või teil ei ole salvestuskaustale kirjutamisõigust."
 
-#: ../src/saving/SaveHelper.cs:490 ../src/saving/SaveHelper.cs:534
+#: ../src/saving/SaveHelper.cs:498 ../src/saving/SaveHelper.cs:542
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Salvestamine ebaõnnestus! Juhtus erand"
 
-#: ../src/saving/SaveHelper.cs:499 ../src/saving/SaveHelper.cs:515
+#: ../src/saving/SaveHelper.cs:507 ../src/saving/SaveHelper.cs:523
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Salvestamine ei ole praegu võimalik järgmistel põhjustel:"
 
-#: ../src/saving/SaveHelper.cs:500
+#: ../src/saving/SaveHelper.cs:508
 msgid "PLAYER_EXTINCT"
 msgstr "Mängija on välja surnud"
 
-#: ../src/saving/SaveHelper.cs:516
+#: ../src/saving/SaveHelper.cs:524
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Mängite hilisema etapi prototüüpe, mis on mänguga kaasas.\n"
 "Need võivad olla väga puudulikud, kasutada kohatäitegraafikat ja olla üldiselt väga karmid.\n"
 "Kuna selline salvestamine ei ole hetkel võimalik."
 
-#: ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:532
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvestamine õnnestus"
 
@@ -4137,11 +4137,11 @@ msgstr "Laadige"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
 
-#: ../src/saving/SaveManagerGUI.cs:219
+#: ../src/saving/SaveManagerGUI.cs:221
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Valitud salvestus(t)e kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite {0} salvestus(t) jäädavalt kustutada?"
 
-#: ../src/saving/SaveManagerGUI.cs:232
+#: ../src/saving/SaveManagerGUI.cs:234
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING2"
 msgstr ""
