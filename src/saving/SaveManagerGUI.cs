@@ -248,6 +248,11 @@ public class SaveManagerGUI : Control
 
         message += string.Join(", ", SaveHelper.CleanUpOldSavesOfType("quick_save"));
 
+        if (message.Length > 0)
+            message += ", ";
+
+        message += string.Join(", ", SaveHelper.CleanUpOldBackupSaves());
+
         GD.Print("Deleted save(s): ", message);
 
         RefreshList();
