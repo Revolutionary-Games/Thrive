@@ -348,6 +348,9 @@ public static class SaveHelper
         return savesDeleted;
     }
 
+    /// <summary>
+    ///   Deletes all saves that are older than the current Thrive version and are a backup and returns the list of saves deleted
+    /// </summary>
     public static List<string> CleanUpOldBackupSaves()
     {
         var savesDeleted = new List<string>();
