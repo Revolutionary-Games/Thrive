@@ -167,7 +167,7 @@ public class SpawnSystem
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
-            SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
+            SpawnEntities(playerPosition, estimateEntityCount);
         }
     }
 
@@ -207,7 +207,7 @@ public class SpawnSystem
         return spawnsLeftThisFrame;
     }
 
-    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame)
+    private void SpawnEntities(Vector3 playerPosition, int existing)
     {
         // If  there are already too many entities, don't spawn more
         if (existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
@@ -275,7 +275,7 @@ public class SpawnSystem
             {
                 SpawnWithSpawner(spawnType,
                     playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
-                    Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2));
+                        Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2));
             }
         }
     }
@@ -295,16 +295,14 @@ public class SpawnSystem
         if (enumerable == null)
             return;
 
-        using (var spawner = enumerable.GetEnumerator())
+        using var spawner = enumerable.GetEnumerator();
+        while (spawner.MoveNext())
         {
-            while (spawner.MoveNext())
-            {
-                if (spawner.Current == null)
-                    throw new NullReferenceException("spawn enumerator is not allowed to return null");
+            if (spawner.Current == null)
+                throw new NullReferenceException("spawn enumerator is not allowed to return null");
 
-                // Spawned something
-                ProcessSpawnedEntity(spawner.Current, spawnType);
-            }
+            // Spawned something
+            ProcessSpawnedEntity(spawner.Current, spawnType);
         }
     }
 
