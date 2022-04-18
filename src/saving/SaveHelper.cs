@@ -265,6 +265,31 @@ public static class SaveHelper
         return (count, totalSize);
     }
 
+    public static (int Count, ulong DiskSpace) CountOldBackupSaves()
+    {
+        int count = 0;
+        ulong totalSize = 0;
+
+        using var file = new File();
+        foreach (var save in CreateListOfSaves())
+        {
+            var saveInfo = global::Save.LoadJustInfoFromSave(save);
+
+            if (SaveUpgrader.IsSaveABackup(save) &&
+                VersionUtils.Compare(saveInfo.ThriveVersion, Constants.Version) < 0)
+            {
+                if (file.Open(Path.Combine(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
+                {
+                    GD.PrintErr("Can't read size of save file: ", save);
+                    continue;
+                }
+
+                ++count;
+                totalSize += file.GetLen();
+            }
+        }
+    }
+
     /// <summary>
     ///   Deletes a save with the given name
     /// </summary>

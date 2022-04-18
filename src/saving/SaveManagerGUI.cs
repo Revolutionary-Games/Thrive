@@ -59,10 +59,12 @@ public class SaveManagerGUI : Control
 
     private int currentAutoSaveCount;
     private int currentQuickSaveCount;
+    private int currentOldBackupCount;
 
     private Task<(int Count, ulong DiskSpace)>? getTotalSaveCountTask;
     private Task<(int Count, ulong DiskSpace)>? getAutoSaveCountTask;
     private Task<(int Count, ulong DiskSpace)>? getQuickSaveCountTask;
+    private Task<(int Count, ulong DiskSpace)>? getOldBackupCountTask;
 
     [Signal]
     public delegate void OnBackPressed();
@@ -114,13 +116,16 @@ public class SaveManagerGUI : Control
         var info = getTotalSaveCountTask.Result;
         currentAutoSaveCount = getAutoSaveCountTask!.Result.Count;
         currentQuickSaveCount = getQuickSaveCountTask!.Result.Count;
+        currentOldBackupCount = currentOldBackupCount!.Result.Count;
 
         getTotalSaveCountTask.Dispose();
         getAutoSaveCountTask.Dispose();
         getQuickSaveCountTask.Dispose();
+        getOldBackupCount.Dispose();
         getTotalSaveCountTask = null;
         getAutoSaveCountTask = null;
         getQuickSaveCountTask = null;
+        getOldBackupCount = null;
 
         totalSaveCount.Text = info.Count.ToString(CultureInfo.CurrentCulture);
         totalSaveSize.Text =
@@ -162,17 +167,19 @@ public class SaveManagerGUI : Control
         getTotalSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves());
         getAutoSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves("auto_save"));
         getQuickSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves("quick_save"));
+        getQuickSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountOldBackupSaves());
 
         TaskExecutor.Instance.AddTask(getTotalSaveCountTask);
         TaskExecutor.Instance.AddTask(getAutoSaveCountTask);
         TaskExecutor.Instance.AddTask(getQuickSaveCountTask);
+        TaskExecutor.Instance.AddTask(getOldBackupCountTask);
     }
 
     private void UpdateButtonsStatus()
     {
         loadButton.Disabled = Selected.Count != 1;
         deleteSelectedButton.Disabled = Selected.Count == 0;
-        deleteOldButton.Disabled = (currentAutoSaveCount <= 1) && (currentQuickSaveCount <= 1);
+        deleteOldButton.Disabled = (currentAutoSaveCount <= 1) && (currentQuickSaveCount <= 1) && (currentOldBackupCount <= 1);
     }
 
     private void LoadFirstSelectedSave()
