@@ -127,8 +127,8 @@ public class PatchManager : IChildPropertiesLoadCallback
                     var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value,
                         compoundCloudSystem));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * 50000,
-                        Constants.MICROBE_SPAWN_RADIUS);
+                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
+                        Constants.MICROBE_SPAWN_RADIUS); ;
                     return spawner;
                 });
         }
@@ -146,7 +146,7 @@ public class PatchManager : IChildPropertiesLoadCallback
                     var spawner = new CreatedSpawner(entry.Key.InternalName,
                         Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * 50000,
+                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
                         Constants.CLOUD_SPAWN_RADIUS);
                     return spawner;
                 });
