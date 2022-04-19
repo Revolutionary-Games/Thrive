@@ -128,7 +128,7 @@ public class PatchManager : IChildPropertiesLoadCallback
                         compoundCloudSystem));
 
                     spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
-                        Constants.MICROBE_SPAWN_RADIUS); ;
+                        Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 });
         }
