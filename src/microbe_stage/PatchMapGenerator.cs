@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Godot;
+using Vector2 = Godot.Vector2;
 
 /// <summary>
 ///   Contains logic for generating PatchMap objects
@@ -20,7 +22,103 @@ public static class PatchMapGenerator
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
         var areaName = nameGenerator.Next(random);
 
-        // Predefined patches
+        var patchCoords = new List<Vector2>();
+        int [,] graph = new int [100,100];
+        int vertexNr = random.Next(6,10);
+        int edgeNr = random.Next(vertexNr, 2*vertexNr - 4);
+        int minDistance = 80;
+        for(int i = 0;i < vertexNr; i++)
+        {
+            int x = random.Next(30,770);
+            int y = random.Next(30,770);
+            var coord = new Vector2(x,y);
+            bool check = true;
+
+            check = CheckPatchDistance(coord, patchCoords, minDistance);
+
+
+            while (!check)
+            {
+                x = random.Next(30,770);
+                y = random.Next(30,770);
+                coord = new Vector2(x,y);
+                check = CheckPatchDistance(coord, patchCoords, minDistance);
+            }
+
+            patchCoords.Add(coord);
+
+            GD.Print(coord);
+            var patch = new Patch(GetPatchLocalizedName(areaName, "VOLCANIC_VENT"), i,
+            GetBiomeTemplate("aavolcanic_vent"))
+            {
+                Depth =
+                {
+                    [0] = 2500,
+                    [1] = 3000,
+                },
+                ScreenCoordinates = coord,
+            };
+
+            map.AddPatch(patch);
+            map.CurrentPatch = patch;
+        }
+
+        for (int k = 0; k < vertexNr; k++)
+            if (map.Patches[k].Adjacent.Count == 0)
+                for (int l = 0; l < vertexNr; l++)
+                    if(l != k)
+                        LinkPatches(map.Patches[k], map.Patches[l]);
+
+        return map;
+    }
+
+    private static Biome GetBiomeTemplate(string name)
+    {
+        return SimulationParameters.Instance.GetBiome(name);
+    }
+
+    private static void LinkPatches(Patch patch1, Patch patch2)
+    {
+        patch1.AddNeighbour(patch2);
+        patch2.AddNeighbour(patch1);
+    }
+
+    private static void TranslatePatchNames()
+    {
+        // TODO: remove this entire method, see: https://github.com/Revolutionary-Games/Thrive/issues/3146
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_VENTS");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_MESOPELAGIC");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_EPIPELAGIC");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_TIDEPOOL");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_BATHYPELAGIC");
+        _ = TranslationServer.Translate("PATHCH_PANGONIAN_ABYSSOPELAGIC");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_COAST");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_ESTUARY");
+        _ = TranslationServer.Translate("PATCH_CAVE");
+        _ = TranslationServer.Translate("PATCH_ICE_SHELF");
+        _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
+    }
+
+    private static bool CheckPatchDistance(Vector2 patchCoord, List<Vector2> allPatchesCoords, int minDistance)
+    {
+        if (allPatchesCoords.Count == 0)
+            return true;
+
+        for (int i = 0;i< allPatchesCoords.Count; i++)
+        {
+            var dist = (int)patchCoord.DistanceTo(allPatchesCoords[i]);
+            GD.Print(dist);
+            if (dist < minDistance)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static PatchMap PredefinedMap(PatchMap map, string areaName, Species defaultSpecies)
+    {
+                // Predefined patches
         var vents = new Patch(GetPatchLocalizedName(areaName, "VOLCANIC_VENT"), 0,
             GetBiomeTemplate("aavolcanic_vent"))
         {
@@ -169,33 +267,6 @@ public static class PatchMapGenerator
 
         map.CurrentPatch = vents;
         return map;
-    }
-
-    private static Biome GetBiomeTemplate(string name)
-    {
-        return SimulationParameters.Instance.GetBiome(name);
-    }
-
-    private static void LinkPatches(Patch patch1, Patch patch2)
-    {
-        patch1.AddNeighbour(patch2);
-        patch2.AddNeighbour(patch1);
-    }
-
-    private static void TranslatePatchNames()
-    {
-        // TODO: remove this entire method, see: https://github.com/Revolutionary-Games/Thrive/issues/3146
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_VENTS");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_MESOPELAGIC");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_EPIPELAGIC");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_TIDEPOOL");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_BATHYPELAGIC");
-        _ = TranslationServer.Translate("PATHCH_PANGONIAN_ABYSSOPELAGIC");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_COAST");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_ESTUARY");
-        _ = TranslationServer.Translate("PATCH_CAVE");
-        _ = TranslationServer.Translate("PATCH_ICE_SHELF");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
     }
 
     private static LocalizedString GetPatchLocalizedName(string name, string biomeKey)
