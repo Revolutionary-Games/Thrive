@@ -26,11 +26,12 @@ public static class PatchMapGenerator
         int [,] graph = new int [100,100];
         int vertexNr = random.Next(6,10);
         int edgeNr = random.Next(vertexNr, 2*vertexNr - 4);
-        int minDistance = 80;
+        int minDistance = 240;
+        
         for(int i = 0;i < vertexNr; i++)
         {
-            int x = random.Next(30,770);
-            int y = random.Next(30,770);
+            int x = random.Next(50,770);
+            int y = random.Next(50,770);
             var coord = new Vector2(x,y);
             bool check = true;
 
