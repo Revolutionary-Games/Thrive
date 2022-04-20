@@ -165,7 +165,8 @@ Thrive. During the installation process, make sure MSBuild tools is
 listed under the installation details.
 
 Go back to where you downloaded the .NET SDK from and find _All .NET
-Framework Downloads_ Choose version 4.7 and select the Developer Pack.
+Framework Downloads_ Choose version 4.7 and select the Developer Pack.    
+If you can't find it you can download the 4.7.2 .NET developer pack from here: https://dotnet.microsoft.com/en-us/download/dotnet-framework/net472
 
 Open Visual Studio Code and go to the Extensions tab. Get the extensions
 _C#_, _Mono Debug_, and _C# Tools for Godot_.
