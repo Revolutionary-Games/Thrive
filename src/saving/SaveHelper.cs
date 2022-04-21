@@ -295,16 +295,16 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Deletes all saves with the given prefix except the latest one and returns the list of saves deleted
+    ///   Deletes all saves with the given string except the latest one and returns the list of saves deleted
     /// </summary>
-    public static List<string> CleanUpOldSavesOfType(string nameStartsWith)
+    public static List<string> CleanUpOldSavesOfType(string nameContains)
     {
         bool isLatestSave = true;
         var savesDeleted = new List<string>();
 
         foreach (var save in CreateListOfSaves())
         {
-            if (save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
+            if (save.Contains(nameContains))
             {
                 if (isLatestSave)
                 {
@@ -315,26 +315,6 @@ public static class SaveHelper
                     savesDeleted.Add(save);
                     DeleteSave(save);
                 }
-            }
-        }
-
-        return savesDeleted;
-    }
-
-    /// <summary>
-    ///   Deletes all saves that are older than the current Thrive version
-    ///   and are a backup and returns the list of saves deleted
-    /// </summary>
-    public static List<string> CleanUpOldBackupSaves()
-    {
-        var savesDeleted = new List<string>();
-
-        foreach (var save in CreateListOfSaves())
-        {
-            if (SaveUpgrader.IsSaveABackup(save))
-            {
-                savesDeleted.Add(save);
-                DeleteSave(save);
             }
         }
 
