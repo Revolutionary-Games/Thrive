@@ -17,6 +17,9 @@ public class SpawnSystem
     [JsonProperty]
     private float elapsed;
 
+    [JsonProperty]
+    private float despawnElapsed;
+
     /// <summary>
     ///   Root node to parent all spawned things to
     /// </summary>
@@ -136,6 +139,7 @@ public class SpawnSystem
         spawnTypes.Clear();
         queuedSpawns = null;
         elapsed = 0;
+        despawnElapsed = 0;
     }
 
     /// <summary>
@@ -168,6 +172,7 @@ public class SpawnSystem
     public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation)
     {
         elapsed += delta;
+        despawnElapsed += delta;
 
         // Remove the y-position from player position
         playerPosition.y = 0;
@@ -194,6 +199,12 @@ public class SpawnSystem
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
             SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
+        }
+        else if (despawnElapsed > Constants.DESPAWN_INTERVAL)
+        {
+            despawnElapsed = 0;
+
+            DespawnEntities(playerPosition);
         }
     }
 
