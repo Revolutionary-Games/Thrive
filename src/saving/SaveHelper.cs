@@ -241,7 +241,7 @@ public static class SaveHelper
     /// <summary>
     ///   Counts the total number of saves and how many bytes they take up
     /// </summary>
-    public static (int Count, ulong DiskSpace) CountSaves(string? nameStartsWith = null)
+    public static (int Count, ulong DiskSpace) CountSaves(string? nameContains = null)
     {
         int count = 0;
         ulong totalSize = 0;
@@ -249,38 +249,7 @@ public static class SaveHelper
         using var file = new File();
         foreach (var save in CreateListOfSaves())
         {
-            if (nameStartsWith == null || save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
-            {
-                if (file.Open(Path.Combine(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
-                {
-                    GD.PrintErr("Can't read size of save file: ", save);
-                    continue;
-                }
-
-                ++count;
-                totalSize += file.GetLen();
-            }
-        }
-
-        return (count, totalSize);
-    }
-
-    /// <summary>
-    ///   Counts the total number of saves that have an older version than the
-    ///   current version of Thrive and are a backup and how many bytes they take up
-    /// </summary>
-    public static (int Count, ulong DiskSpace) CountOldBackupSaves()
-    {
-        int count = 0;
-        ulong totalSize = 0;
-
-        using var file = new File();
-        foreach (var save in CreateListOfSaves())
-        {
-            var saveInfo = global::Save.LoadJustInfoFromSave(save);
-
-            if (SaveUpgrader.IsSaveABackup(save) &&
-                VersionUtils.Compare(saveInfo.ThriveVersion, Constants.Version) < 0)
+            if (nameContains == null || save.Contains(nameContains))
             {
                 if (file.Open(Path.Combine(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
                 {
