@@ -84,7 +84,7 @@ public static class Constants
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
     ///   without causing them to despawn instantly
     /// </summary>
-    public const int DESPAWN_RADIUS_OFFSET_SQUARED = 150;
+    public const int DESPAWN_RADIUS_OFFSET_SQUARED = 2500;
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
