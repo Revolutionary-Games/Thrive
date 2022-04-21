@@ -331,10 +331,7 @@ public static class SaveHelper
 
         foreach (var save in CreateListOfSaves())
         {
-            var saveInfo = global::Save.LoadJustInfoFromSave(save);
-
-            if (SaveUpgrader.IsSaveABackup(save) &&
-                VersionUtils.Compare(saveInfo.ThriveVersion, Constants.Version) < 0)
+            if (SaveUpgrader.IsSaveABackup(save))
             {
                 savesDeleted.Add(save);
                 DeleteSave(save);
