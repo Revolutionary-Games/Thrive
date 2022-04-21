@@ -145,13 +145,21 @@ public class SpawnSystem
     {
         queuedSpawns = null;
 
+        int despawned = 0;
+
         foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
         {
             if (!spawned.EntityNode.IsQueuedForDeletion())
             {
                 spawned.DestroyDetachAndQueueFree();
+                ++despawned;
             }
         }
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportDespawns(despawned);
     }
 
     /// <summary>
@@ -191,6 +199,8 @@ public class SpawnSystem
 
     private int HandleQueuedSpawns(int spawnsLeftThisFrame)
     {
+        int initialSpawns = spawnsLeftThisFrame;
+
         if (queuedSpawns == null)
             return spawnsLeftThisFrame;
 
@@ -222,12 +232,20 @@ public class SpawnSystem
             --spawnsLeftThisFrame;
         }
 
+        if (initialSpawns != spawnsLeftThisFrame)
+        {
+            var metrics = PerformanceMetrics.Instance;
+
+            if (metrics.Visible)
+                metrics.ReportSpawns(initialSpawns - spawnsLeftThisFrame);
+        }
+
         return spawnsLeftThisFrame;
     }
 
     private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame)
     {
-        // If  there are already too many entities, don't spawn more
+        // If there are already too many entities, don't spawn more
         if (existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
             return;
 
@@ -316,6 +334,11 @@ public class SpawnSystem
         }
 
         estimateEntityCountInSpawnRadius += spawned;
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportSpawns(spawned);
     }
 
     /// <summary>
@@ -396,6 +419,11 @@ public class SpawnSystem
                     break;
             }
         }
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportDespawns(entitiesDeleted);
 
         return spawnedCount - entitiesDeleted;
     }

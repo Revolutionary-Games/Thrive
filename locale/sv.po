@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:47+0300\n"
+"POT-Creation-Date: 2022-04-21 11:00+0300\n"
 "PO-Revision-Date: 2022-04-12 16:14+0000\n"
 "Last-Translator: swedneck <github@swedneck.xyz>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -1051,8 +1051,8 @@ msgstr ""
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Välj en celltyp att redigera här från redigerarfliken"
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:35
-#: ../src/engine/PerformanceMetrics.tscn:48
+#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:53
+#: ../src/engine/PerformanceMetrics.tscn:50
 #, fuzzy
 msgid "FPS"
 msgstr "Max Frames Per Sekund:"
@@ -1061,12 +1061,16 @@ msgstr "Max Frames Per Sekund:"
 msgid "LOADING"
 msgstr "Laddar"
 
-#: ../src/engine/PerformanceMetrics.cs:49
-#: ../src/engine/PerformanceMetrics.tscn:54
+#: ../src/engine/PerformanceMetrics.cs:54
+msgid "FRAME_DELTA"
+msgstr ""
+
+#: ../src/engine/PerformanceMetrics.cs:68
+#: ../src/engine/PerformanceMetrics.tscn:56
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.tscn:24
+#: ../src/engine/PerformanceMetrics.tscn:26
 #, fuzzy
 msgid "METRICS"
 msgstr "Växla FPS display"
