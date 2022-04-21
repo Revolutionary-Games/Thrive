@@ -92,7 +92,7 @@ public class SpawnSystem
     public static void AddEntityToTrack(ISpawned entity,
         float radius = Constants.MICROBE_SPAWN_RADIUS)
     {
-        entity.DespawnRadiusSquared = (int)(radius * radius);
+        entity.DespawnRadiusSquared = (int)(radius * radius) + Constants.DESPAWN_RADIUS_OFFSET_SQUARED;
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
@@ -444,11 +444,7 @@ public class SpawnSystem
     /// </summary>
     private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
     {
-        // I don't understand why the same
-        // value is used for spawning and
-        // despawning, but apparently it works
-        // just fine
-        entity.DespawnRadiusSquared = spawnType.SpawnRadiusSquared;
+        entity.DespawnRadiusSquared = spawnType.SpawnRadiusSquared + Constants.DESPAWN_RADIUS_OFFSET_SQUARED;
 
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
