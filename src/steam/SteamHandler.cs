@@ -192,28 +192,28 @@ public class SteamHandler : Node, ISteamSignalReceiver
         steamClient?.OverlayStatusChanged(active);
     }
 
-    public void CurrentUserStatsReceived(int game, int result, int user)
+    public void CurrentUserStatsReceived(ulong game, int result, ulong user)
     {
         steamClient?.CurrentUserStatsReceived(game, result, user);
     }
 
-    public void UserStatsReceived(int game, int result, int user)
+    public void UserStatsReceived(ulong game, int result, ulong user)
     {
         steamClient?.UserStatsReceived(game, result, user);
     }
 
-    public void UserStatsStored(int game, int result)
+    public void UserStatsStored(ulong game, int result)
     {
         steamClient?.UserStatsStored(game, result);
     }
 
-    public void LowPower(int power)
+    public void LowPower(int batteryLeftMinutes)
     {
         // TODO: show a warning popup (once)
-        steamClient?.LowPower(power);
+        steamClient?.LowPower(batteryLeftMinutes);
     }
 
-    public void APICallComplete(int asyncCall, int callback, int parameter)
+    public void APICallComplete(ulong asyncCall, int callback, uint parameter)
     {
         steamClient?.APICallComplete(asyncCall, callback, parameter);
     }
@@ -231,12 +231,12 @@ public class SteamHandler : Node, ISteamSignalReceiver
         steamClient?.WorkshopItemCreated(result, fileId, acceptTermsOfService);
     }
 
-    public void WorkshopItemDownloadedLocally(int result, ulong fileId, int appId)
+    public void WorkshopItemDownloadedLocally(int result, ulong fileId, ulong appId)
     {
         steamClient?.WorkshopItemDownloadedLocally(result, fileId, appId);
     }
 
-    public void WorkshopItemInstalledOrUpdatedLocally(int appId, ulong fileId)
+    public void WorkshopItemInstalledOrUpdatedLocally(ulong appId, ulong fileId)
     {
         if (appId != steamClient?.AppId)
             return;

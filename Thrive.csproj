@@ -17,6 +17,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Steamworks.NET">
+      <HintPath>third_party\linux\Steamworks.NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -429,6 +432,7 @@
     <Compile Include="src\tutorial\TutorialPhase.cs" />
     <Compile Include="src\tutorial\TutorialState.cs" />
     <Compile Include="src\saving\serializers\RandomConverter.cs" />
+    <Compile Include="src\steam\SteamClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />

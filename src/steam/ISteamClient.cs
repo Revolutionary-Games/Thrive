@@ -14,7 +14,7 @@ public interface ISteamClient : ISteamSignalReceiver
 
     string DisplayName { get; }
 
-    public uint AppId { get; }
+    public ulong AppId { get; }
 
     void Init();
 

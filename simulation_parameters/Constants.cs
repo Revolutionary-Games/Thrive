@@ -636,6 +636,8 @@ public static class Constants
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 
+    public const int MAX_PATH_LENGTH = 1024;
+
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
     public const string LOGS_FOLDER_NAME = "logs";
