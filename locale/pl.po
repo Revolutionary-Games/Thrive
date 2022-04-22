@@ -96,9 +96,9 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] może zostać "
 "przetworzony w [thrive:compound type=\"glucose\"][/thrive:compound] przez "
-"chemoplasty i proteiny chemosyntezujące. [thrive:compound type=\"iron\"][/"
-"thrive:compound] może zostać utlenione przez rustycyjaninę wydzielając "
-"[thrive:compound type=\"atp\"][/thrive:compound]."
+"chemoplasty i białka chemosyntezy. [thrive:compound type=\"iron\"][/thrive:"
+"compound] może zostać utlenione przez rustycyjaninę wydzielając [thrive:"
+"compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
@@ -837,7 +837,7 @@ msgstr "Protoplazma"
 #: ../simulation_parameters/microbe_stage/organelles.json:157
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:574
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr "Białka Chemosyntezujące"
+msgstr "Białka Chemosyntezy"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:196
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:872
@@ -912,7 +912,6 @@ msgstr "Chemoreceptor"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:704
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2083
-#, fuzzy
 msgid "SIGNALING_AGENT"
 msgstr "Czynnik Sygnalizacyjny"
 
@@ -967,9 +966,8 @@ msgid "WENT_EXTINCT_IN"
 msgstr "wyginął w {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "Gatunek:"
+msgstr "poprzedni:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -989,9 +987,8 @@ msgstr ""
 "populacja w niektórych środowiskach rozdzieliła się tworząc nowy gatunek {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr "Zmutował się"
+msgstr "zmutował"
 
 #: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
@@ -1007,9 +1004,8 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} wysyłając: {1} populacji z biomu: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "{0} ({1})"
+msgstr "populacja w biomach:"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -1025,7 +1021,7 @@ msgstr "Populacja gatunku [u]{0}[/u] się zwiększyła do {1}"
 
 #: ../src/auto-evo/RunResults.cs:860 ../src/auto-evo/RunResults.cs:882
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "[u]{0}[/u] populacja się zmniejszyła do {1}"
+msgstr "populacja gatunku [u]{0}[/u] zmniejszyła się do {1}"
 
 #: ../src/auto-evo/RunResults.cs:868
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
@@ -1049,11 +1045,10 @@ msgstr ""
 "[u]{0}[/u] oddzielił się od [u]{1}[/u] jako nowy gatunek by zapełnić niszę"
 
 #: ../src/auto-evo/RunResults.cs:928
-#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 "[u]{0}[/u] oddzielił się od [u]{1}[/u] jako nowy gatunek ze względu na "
-"zróżnicowane ciśnienia selekcyjne"
+"zróżnicowane naciski selekcyjne"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 #, fuzzy
@@ -1077,9 +1072,8 @@ msgid "PREDATION_FOOD_SOURCE"
 msgstr "Drapieżnictwo {0}"
 
 #: ../src/early_multicellular_stage/CellType.cs:38
-#, fuzzy
 msgid "STEM_CELL_NAME"
-msgstr "Własna nazwa użytkownika:"
+msgstr "Komórka Macierzysta"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:358
@@ -1089,7 +1083,7 @@ msgstr "Struktura"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
 msgid "REPRODUCTION"
-msgstr "Reprodukcja"
+msgstr "Rozmnażanie"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:400
@@ -1111,20 +1105,17 @@ msgid "DELETE"
 msgstr "Usuń"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:421
-#, fuzzy
 msgid "DUPLICATE_TYPE"
-msgstr "Powiel Gracza"
+msgstr "Powiel Typ"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:463
-#, fuzzy
 msgid "REPRODUCTION_METHOD"
-msgstr "Rozmnóż się"
+msgstr "Metoda Rozmnażania:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:476
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
-#, fuzzy
 msgid "REPRODUCTION_BUDDING"
-msgstr "Rozmnóż się"
+msgstr "Pączkowanie"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
@@ -1142,9 +1133,8 @@ msgid "NEXT_CAPITAL"
 msgstr "DALEJ"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
-#, fuzzy
 msgid "DISCONNECTED_CELLS"
-msgstr "Niepołączone Organelle"
+msgstr "Niepołączone Komórki"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 #, fuzzy
@@ -1155,31 +1145,31 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "Nie Można Usunąć Użytego Typu Komórki"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr "Stwórz Nowy Zapis"
+msgstr "Stwórz Nowy Typ Komórki"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "Mój Wspaniały Mod"
+msgstr ""
+"Możesz tworzyć nowe typy komórek poprzez duplikację istniejących i nadanie "
+"im nowej nazwy. Typy komórek mogą być modyfikowane by wyspecjalizować je w "
+"innych zadaniach. Gdy zmodyfikujesz typ komórki, wszystkie umieszczone "
+"komórki tego typu zostaną zaktualizowane."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
-#, fuzzy
 msgid "NEW_NAME_COLON"
-msgstr "Szybkość:"
+msgstr "Nowe imię:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:585
-#, fuzzy
 msgid "NEW_NAME"
-msgstr "Nowa Gra"
+msgstr "Nowa Nazwa"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:72
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
@@ -1198,7 +1188,7 @@ msgstr "Status działania:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "Wybierz typ komórki do edytowania"
 
 #: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
 #: ../src/engine/PerformanceMetrics.tscn:60
@@ -1221,9 +1211,8 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 #: ../src/engine/PerformanceMetrics.tscn:31
-#, fuzzy
 msgid "METRICS"
-msgstr "Przełącz wyświetlacz FPS"
+msgstr "Wskaźniki Wydajności"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1681,11 +1670,11 @@ msgstr "{0}%"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "Stężenie {0} zmniejszyło się o {1}"
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "Stężenie glukozy drastycznie spadło!"
 
 #: ../src/general/MainMenu.cs:234
 msgid "STORE_LOGGED_IN_AS"
@@ -2791,8 +2780,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:575
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Przekształca [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] w "
-"[thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze "
+"Przekształcają [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] "
+"w [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze "
 "stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]. "
 "Zmienia też [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:"
 "compound type=\"atp\"][/thrive:compound]."
@@ -3960,17 +3949,16 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
 msgid "MINIMUM_AMOUNT_TO_FIND"
-msgstr ""
+msgstr "Minimalna Ilość do Wykrycia:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
-#, fuzzy
 msgid "LINE_COLOUR"
-msgstr "Kolor"
+msgstr "Kolor Lini:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 #, fuzzy
 msgid "MODIFY_ORGANELLE"
-msgstr "Przemieść organellę"
+msgstr "Modyfikuj Organellę"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
