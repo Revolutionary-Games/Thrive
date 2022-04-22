@@ -59,12 +59,12 @@ public class SaveManagerGUI : Control
 
     private int currentAutoSaveCount;
     private int currentQuickSaveCount;
-    private int currentOldBackupCount;
+    private int currentBackupCount;
 
     private Task<(int Count, ulong DiskSpace)>? getTotalSaveCountTask;
     private Task<(int Count, ulong DiskSpace)>? getAutoSaveCountTask;
     private Task<(int Count, ulong DiskSpace)>? getQuickSaveCountTask;
-    private Task<(int Count, ulong DiskSpace)>? getOldBackupCountTask;
+    private Task<(int Count, ulong DiskSpace)>? getBackupCountTask;
 
     [Signal]
     public delegate void OnBackPressed();
@@ -116,16 +116,16 @@ public class SaveManagerGUI : Control
         var info = getTotalSaveCountTask.Result;
         currentAutoSaveCount = getAutoSaveCountTask!.Result.Count;
         currentQuickSaveCount = getQuickSaveCountTask!.Result.Count;
-        currentOldBackupCount = getOldBackupCountTask!.Result.Count;
+        currentBackupCount = getBackupCountTask!.Result.Count;
 
         getTotalSaveCountTask.Dispose();
         getAutoSaveCountTask.Dispose();
         getQuickSaveCountTask.Dispose();
-        getOldBackupCountTask.Dispose();
+        getBackupCountTask.Dispose();
         getTotalSaveCountTask = null;
         getAutoSaveCountTask = null;
         getQuickSaveCountTask = null;
-        getOldBackupCountTask = null;
+        getBackupCountTask = null;
 
         totalSaveCount.Text = info.Count.ToString(CultureInfo.CurrentCulture);
         totalSaveSize.Text =
@@ -167,12 +167,12 @@ public class SaveManagerGUI : Control
         getTotalSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves());
         getAutoSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves("auto_save"));
         getQuickSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves("quick_save"));
-        getOldBackupCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountOldBackupSaves());
+        getBackupCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.SAVE_BACKUP_SUFFIX));
 
         TaskExecutor.Instance.AddTask(getTotalSaveCountTask);
         TaskExecutor.Instance.AddTask(getAutoSaveCountTask);
         TaskExecutor.Instance.AddTask(getQuickSaveCountTask);
-        TaskExecutor.Instance.AddTask(getOldBackupCountTask);
+        TaskExecutor.Instance.AddTask(getBackupCountTask);
     }
 
     private void UpdateButtonsStatus()
@@ -181,7 +181,7 @@ public class SaveManagerGUI : Control
         deleteSelectedButton.Disabled = Selected.Count == 0;
         deleteOldButton.Disabled = (currentAutoSaveCount < 1) &&
             (currentQuickSaveCount < 1) &&
-            (currentOldBackupCount < 1);
+            (currentBackupCount < 1);
     }
 
     private void LoadFirstSelectedSave()
@@ -227,7 +227,7 @@ public class SaveManagerGUI : Control
     {
         int autoSavesToDeleteCount = (currentAutoSaveCount - 1).Clamp(0, Settings.Instance.MaxAutoSaves);
         int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
-        int oldBackupsToDeleteCount = currentOldBackupCount.Clamp(0, Settings.Instance.MaxQuickSaves);
+        int oldBackupsToDeleteCount = currentBackupCount.Clamp(0, Settings.Instance.MaxQuickSaves);
 
         deleteOldConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
@@ -261,7 +261,7 @@ public class SaveManagerGUI : Control
         if (message.Length > 0)
             message += ", ";
 
-        message += string.Join(", ", SaveHelper.CleanUpOldBackupSaves());
+        message += string.Join(", ", SaveHelper.CleanUpOldSavesOfType(".backup.thrivesave"));
 
         GD.Print("Deleted save(s): ", message);
 
