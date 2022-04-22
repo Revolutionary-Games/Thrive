@@ -66,15 +66,38 @@ public static class SpawnHelpers
         else
         {
             microbe.ApplySpecies(species);
-
-            if (species is EarlyMulticellularSpecies)
-            {
-                // TODO: sometimes spawn fully formed (or partially complete) body plan colonies
-            }
         }
 
         microbe.SetInitialCompounds();
         return microbe;
+    }
+
+    /// <summary>
+    ///   Gives a random chance for a multicellular cell colony to spawn partially or fully grown
+    /// </summary>
+    /// <param name="microbe">The multicellular microbe</param>
+    /// <param name="random">Random to use for the randomness</param>
+    /// <exception cref="ArgumentException">If the microbe is not multicellular</exception>
+    public static void GiveFullyGrownChanceForMulticellular(Microbe microbe, Random random)
+    {
+        if (!microbe.IsMulticellular)
+            throw new ArgumentException("must be multicellular");
+
+        // Chance to spawn fully grown or partially grown
+        if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_GROWN)
+        {
+            microbe.BecomeFullyGrownMulticellularColony();
+        }
+        else if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN)
+        {
+            while (!microbe.IsFullyGrownMulticellular)
+            {
+                microbe.AddMulticellularGrowthCell();
+
+                if (random.NextDouble() > Constants.CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE)
+                    break;
+            }
+        }
     }
 
     // TODO: this is likely a huge cause of lag. Would be nice to be able
@@ -346,11 +369,17 @@ public class MicrobeSpawner : Spawner
         var first = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene, true, cloudSystem,
             currentGame);
 
+        if (first.IsMulticellular)
+        {
+            SpawnHelpers.GiveFullyGrownChanceForMulticellular(first, random);
+        }
+
         yield return first;
 
         ModLoader.ModInterface.TriggerOnMicrobeSpawned(first);
 
-        if (first.CellTypeProperties.IsBacteria)
+        // Just in case the is bacteria flag is not correct in a multicellular cell type, here's an extra safety check
+        if (first.CellTypeProperties.IsBacteria && !first.IsMulticellular)
         {
             foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
                          cloudSystem, currentGame, random))

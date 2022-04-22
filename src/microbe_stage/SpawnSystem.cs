@@ -17,6 +17,9 @@ public class SpawnSystem
     [JsonProperty]
     private float elapsed;
 
+    [JsonProperty]
+    private float despawnElapsed;
+
     /// <summary>
     ///   Root node to parent all spawned things to
     /// </summary>
@@ -89,7 +92,7 @@ public class SpawnSystem
     public static void AddEntityToTrack(ISpawned entity,
         float radius = Constants.MICROBE_SPAWN_RADIUS)
     {
-        entity.DespawnRadiusSquared = (int)(radius * radius);
+        entity.DespawnRadiusSquared = (int)(radius * radius) + Constants.DESPAWN_RADIUS_OFFSET_SQUARED;
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
@@ -136,6 +139,7 @@ public class SpawnSystem
         spawnTypes.Clear();
         queuedSpawns = null;
         elapsed = 0;
+        despawnElapsed = 0;
     }
 
     /// <summary>
@@ -144,23 +148,22 @@ public class SpawnSystem
     public void DespawnAll()
     {
         queuedSpawns = null;
-        var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
-        foreach (Node entity in spawnedEntities)
+        int despawned = 0;
+
+        foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
         {
-            if (!entity.IsQueuedForDeletion())
+            if (!spawned.EntityNode.IsQueuedForDeletion())
             {
-                var spawned = entity as ISpawned;
-
-                if (spawned == null)
-                {
-                    GD.PrintErr("A node has been put in the spawned group but it isn't derived from ISpawned");
-                    continue;
-                }
-
                 spawned.DestroyDetachAndQueueFree();
+                ++despawned;
             }
         }
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportDespawns(despawned);
     }
 
     /// <summary>
@@ -169,6 +172,7 @@ public class SpawnSystem
     public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation)
     {
         elapsed += delta;
+        despawnElapsed += delta;
 
         // Remove the y-position from player position
         playerPosition.y = 0;
@@ -196,10 +200,18 @@ public class SpawnSystem
 
             SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
         }
+        else if (despawnElapsed > Constants.DESPAWN_INTERVAL)
+        {
+            despawnElapsed = 0;
+
+            DespawnEntities(playerPosition);
+        }
     }
 
     private int HandleQueuedSpawns(int spawnsLeftThisFrame)
     {
+        int initialSpawns = spawnsLeftThisFrame;
+
         if (queuedSpawns == null)
             return spawnsLeftThisFrame;
 
@@ -231,12 +243,20 @@ public class SpawnSystem
             --spawnsLeftThisFrame;
         }
 
+        if (initialSpawns != spawnsLeftThisFrame)
+        {
+            var metrics = PerformanceMetrics.Instance;
+
+            if (metrics.Visible)
+                metrics.ReportSpawns(initialSpawns - spawnsLeftThisFrame);
+        }
+
         return spawnsLeftThisFrame;
     }
 
     private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame)
     {
-        // If  there are already too many entities, don't spawn more
+        // If there are already too many entities, don't spawn more
         if (existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
             return;
 
@@ -325,6 +345,11 @@ public class SpawnSystem
         }
 
         estimateEntityCountInSpawnRadius += spawned;
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportSpawns(spawned);
     }
 
     /// <summary>
@@ -382,23 +407,17 @@ public class SpawnSystem
         int entitiesDeleted = 0;
 
         // Despawn entities
-        var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
+        int spawnedCount = 0;
 
-        foreach (Node entity in spawnedEntities)
+        foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
         {
-            var spawned = entity as ISpawned;
-
-            if (spawned == null)
-            {
-                GD.PrintErr("A node has been put in the spawned group but it isn't derived from ISpawned");
-                continue;
-            }
+            ++spawnedCount;
 
             // Global position must be used here as otherwise colony members are despawned
             // TODO: check if it would be better to remove the spawned group tag from colony members (and add it back
             // when leaving the colony) or this could only get direct descendants of the world root and ignore nested
             // nodes in the spawned group
-            var entityPosition = ((Spatial)entity).GlobalTransform.origin;
+            var entityPosition = ((Spatial)spawned).GlobalTransform.origin;
             var squaredDistance = (playerPosition - entityPosition).LengthSquared();
 
             // If the entity is too far away from the player, despawn it.
@@ -412,7 +431,12 @@ public class SpawnSystem
             }
         }
 
-        return spawnedEntities.Count - entitiesDeleted;
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportDespawns(entitiesDeleted);
+
+        return spawnedCount - entitiesDeleted;
     }
 
     /// <summary>
@@ -420,11 +444,7 @@ public class SpawnSystem
     /// </summary>
     private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
     {
-        // I don't understand why the same
-        // value is used for spawning and
-        // despawning, but apparently it works
-        // just fine
-        entity.DespawnRadiusSquared = spawnType.SpawnRadiusSquared;
+        entity.DespawnRadiusSquared = spawnType.SpawnRadiusSquared + Constants.DESPAWN_RADIUS_OFFSET_SQUARED;
 
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }

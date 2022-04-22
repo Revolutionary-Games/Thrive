@@ -339,7 +339,14 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public void StartMusic()
     {
-        Jukebox.Instance.PlayCategory("MicrobeStage");
+        if (GameWorld.PlayerSpecies is EarlyMulticellularSpecies)
+        {
+            Jukebox.Instance.PlayCategory("EarlyMulticellularStage");
+        }
+        else
+        {
+            Jukebox.Instance.PlayCategory("MicrobeStage");
+        }
     }
 
     /// <summary>
@@ -499,6 +506,15 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             wantsToSave = false;
         }
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+        {
+            var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP).Count();
+            var childCount = rootOfDynamicallySpawned.GetChildCount();
+            metrics.ReportEntities(entities, childCount - entities);
+        }
     }
 
     [RunOnKeyDown("g_quick_save")]
@@ -605,6 +621,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // Re-apply species here so that the player cell knows it is multicellular after this
         Player.ApplySpecies(multicellularSpecies);
 
+        GD.Print("Canceling and restarting auto-evo to have player species multicellular version in it");
+        GameWorld.ResetAutoEvoRun();
+        GameWorld.IsAutoEvoFinished();
+
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
         var editor = (EarlyMulticellularEditor)scene.Instance();
@@ -646,14 +666,23 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             wonOnce = true;
         }
 
+        // Spawn another cell from the player species
+        // This is done first to ensure that the player colony is still intact for spawn separation calculation
+        var daughter = Player!.Divide();
+
+        // If multicellular, we want that other cell colony to be fully grown to show budding in action
+        if (Player.IsMulticellular)
+        {
+            daughter.BecomeFullyGrownMulticellularColony();
+
+            // TODO: add more extra offset between the player and the divided cell
+        }
+
         // Update the player's cell
-        Player!.ApplySpecies(Player.Species);
+        Player.ApplySpecies(Player.Species);
 
         // Reset all the duplicates organelles of the player
         Player.ResetOrganelleLayout();
-
-        // Spawn another cell from the player species
-        Player.Divide();
 
         HUD.OnEnterStageTransition(false);
         HUD.HideReproductionDialog();
@@ -713,9 +742,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         var randomSpecies = species.Random(random);
 
-        SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
+        var copyEntity = SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
             rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
             CurrentGame!);
+
+        // Make the cell despawn like normal
+        SpawnSystem.AddEntityToTrack(copyEntity);
     }
 
     [DeserializedCallbackAllowed]

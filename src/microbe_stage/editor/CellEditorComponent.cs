@@ -658,6 +658,14 @@ public partial class CellEditorComponent :
         if (!Visible)
             return;
 
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+        {
+            var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
+            metrics.ReportEntities(roughCount, 0);
+        }
+
         CheckRunningAutoEvoPrediction();
 
         if (organelleDataDirty)
@@ -722,7 +730,8 @@ public partial class CellEditorComponent :
             return true;
 
         // Show warning popup if trying to exit with negative atp production
-        if (energyBalanceInfo != null &&
+        // Not shown in multicellular as the popup happens in kind of a weird place
+        if (!IsMulticellularEditor && energyBalanceInfo != null &&
             energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
         {
             negativeAtpPopup.PopupCenteredShrink();
@@ -957,6 +966,7 @@ public partial class CellEditorComponent :
     protected override void OnCurrentActionCanceled()
     {
         editedMicrobeOrganelles.Add(MovingPlacedHex!);
+        MovingPlacedHex = null;
         base.OnCurrentActionCanceled();
     }
 

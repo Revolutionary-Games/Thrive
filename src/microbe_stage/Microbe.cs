@@ -26,7 +26,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public Vector3 MovementDirection = new(0, 0, 0);
 
     private HybridAudioPlayer engulfAudio = null!;
-    private AudioStreamPlayer3D bindingAudio = null!;
+    private HybridAudioPlayer bindingAudio = null!;
     private HybridAudioPlayer movementAudio = null!;
     private List<AudioStreamPlayer3D> otherAudioPlayers = new();
     private List<AudioStreamPlayer> nonPositionalAudioPlayers = new();
@@ -286,12 +286,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         atp = SimulationParameters.Instance.GetCompound("atp");
 
         engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
-        bindingAudio = GetNode<AudioStreamPlayer3D>("BindingAudio");
+        bindingAudio = GetNode<HybridAudioPlayer>("BindingAudio");
         movementAudio = GetNode<HybridAudioPlayer>("MovementAudio");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
 
-        engulfAudio.Positional = movementAudio.Positional = !IsPlayerMicrobe;
+        engulfAudio.Positional = movementAudio.Positional = bindingAudio.Positional = !IsPlayerMicrobe;
 
         // You may notice that there are two separate ways that an audio is played in this class:
         // using pre-existing audio node e.g "bindingAudio", "movementAudio" and through method e.g "PlaySoundEffect",
@@ -868,7 +868,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             // when specialized cells become a reality the cap could be lowered to encourage cell specialization
             appliedFactor *= Colony.ColonyMembers.Count;
             var seriesValue = 1 - 1 / (float)Math.Pow(2, Colony.ColonyMembers.Count - 1);
-            appliedFactor -= (appliedFactor * 0.25f) * seriesValue;
+            appliedFactor -= (appliedFactor * 0.15f) * seriesValue;
         }
 
         // Halve speed if out of ATP

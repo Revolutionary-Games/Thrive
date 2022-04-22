@@ -24,7 +24,7 @@ Prerequisites
 Godot mono version
 ------------------
 
-The currently used Godot version is __3.4.2 mono__. The regular version
+The currently used Godot version is __3.4.4 mono__. The regular version
 will not work. You can download Godot here: https://godotengine.org/download/
 if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
@@ -165,7 +165,8 @@ Thrive. During the installation process, make sure MSBuild tools is
 listed under the installation details.
 
 Go back to where you downloaded the .NET SDK from and find _All .NET
-Framework Downloads_ Choose version 4.7 and select the Developer Pack.
+Framework Downloads_ Choose version 4.7 and select the Developer Pack.    
+If you can't find it you can download the 4.7.2 .NET developer pack from here: https://dotnet.microsoft.com/en-us/download/dotnet-framework/net472
 
 Open Visual Studio Code and go to the Extensions tab. Get the extensions
 _C#_, _Mono Debug_, and _C# Tools for Godot_.

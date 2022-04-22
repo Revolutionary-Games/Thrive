@@ -111,7 +111,7 @@ public class PlayerMicrobeInput : NodeWithInput
             stage.HUD.HintText = string.Empty;
             stage.Player.State = Microbe.MicrobeState.Normal;
         }
-        else if (stage.Player.Colony != null)
+        else if (stage.Player.Colony != null && !stage.Player.IsMulticellular)
         {
             stage.HUD.HintText = TranslationServer.Translate("UNBIND_HELP_TEXT");
             stage.Player.State = Microbe.MicrobeState.Unbinding;

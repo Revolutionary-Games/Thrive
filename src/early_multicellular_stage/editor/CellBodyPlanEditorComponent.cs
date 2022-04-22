@@ -106,6 +106,8 @@ public partial class CellBodyPlanEditorComponent :
     [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
+    private bool forceUpdateCellGraphics;
+
     [Signal]
     public delegate void OnCellTypeToEditSelected(string name);
 
@@ -305,6 +307,14 @@ public partial class CellBodyPlanEditorComponent :
         if (!Visible)
             return;
 
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+        {
+            var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
+            metrics.ReportEntities(roughCount, 0);
+        }
+
         if (organelleDataDirty)
         {
             OnOrganellesChanged();
@@ -337,12 +347,14 @@ public partial class CellBodyPlanEditorComponent :
 
             var effectiveSymmetry = Symmetry;
 
+            var cellType = CellTypeFromName(activeActionName);
+
             if (MovingPlacedHex == null)
             {
                 // Can place stuff at all?
                 // TODO: should organelleRot be used here in some way?
                 isPlacementProbablyValid = IsValidPlacement(
-                    new HexWithData<CellTemplate>(new CellTemplate(CellTypeFromName(activeActionName)))
+                    new HexWithData<CellTemplate>(new CellTemplate(cellType))
                     {
                         Position = new Hex(q, r),
                     });
@@ -353,9 +365,12 @@ public partial class CellBodyPlanEditorComponent :
                 effectiveSymmetry = HexEditorSymmetry.None;
             }
 
-            // TODO: show the cell graphics that is about to be placed
-            RunWithSymmetry(q, r, RenderHighlightedCell, effectiveSymmetry);
+            RunWithSymmetry(q, r,
+                (finalQ, finalR, rotation) => RenderHighlightedCell(finalQ, finalR, rotation, cellType),
+                effectiveSymmetry);
         }
+
+        forceUpdateCellGraphics = false;
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
@@ -367,7 +382,7 @@ public partial class CellBodyPlanEditorComponent :
         if (editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
             return true;
 
-        // TODO: warning about not producing enough ATP
+        // TODO: warning about not producing enough ATP if entire body plan would be negative
 
         return true;
     }
@@ -379,6 +394,9 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCellTypeSelections();
 
         RegenerateCellTypeIcon(changedType);
+
+        // Update all cell graphics holders
+        forceUpdateCellGraphics = true;
     }
 
     protected CellType CellTypeFromName(string name)
@@ -526,34 +544,27 @@ public partial class CellBodyPlanEditorComponent :
         return false;
     }
 
-    private void RenderHighlightedCell(int q, int r, int rotation)
+    private void RenderHighlightedCell(int q, int r, int rotation, CellType cellToPlace)
     {
         if (MovingPlacedHex == null && activeActionName == null)
             return;
 
         // For now a single hex represents entire cells
         RenderHoveredHex(q, r, new[] { new Hex(0, 0) }, isPlacementProbablyValid,
-            out bool _);
+            out bool hadDuplicate);
 
-        // TODO: to be placed cell visuals showing
-        /*if (!string.IsNullOrEmpty(shownOrganelle.DisplayScene) && showModel)
+        bool showModel = !hadDuplicate;
+
+        if (showModel)
         {
             var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
 
-            var organelleModel = hoverModels[usedHoverModel++];
+            var modelHolder = hoverModels[usedHoverModel++];
 
-            organelleModel.Transform = new Transform(
-                MathUtils.CreateRotationForOrganelle(rotation),
-                cartesianPosition + shownOrganelle.CalculateModelOffset());
+            ShowCellTypeInModelHolder(modelHolder, cellToPlace, cartesianPosition, rotation);
 
-            organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                Constants.DEFAULT_HEX_SIZE);
-
-            organelleModel.Visible = true;
-
-            UpdateOrganellePlaceHolderScene(organelleModel, shownOrganelle.DisplayScene!,
-                shownOrganelle, Hex.GetRenderPriority(new Hex(q, r)));
-        }*/
+            modelHolder.Visible = true;
+        }
     }
 
     /// <summary>
@@ -608,6 +619,12 @@ public partial class CellBodyPlanEditorComponent :
     private bool AddCell(HexWithData<CellTemplate> cell)
     {
         // TODO: editor actions
+        if (Editor.MutationPoints <= 0)
+        {
+            Editor.OnInsufficientMP();
+            return false;
+        }
+
         Editor.ChangeMutationPoints(-cell.Data!.CellType.MPCost);
         editedMicrobeCells.Add(cell);
 
@@ -752,47 +769,9 @@ public partial class CellBodyPlanEditorComponent :
 
             var modelHolder = placedModels[nextFreeCell++];
 
-            var rotation = MathUtils.CreateRotationForOrganelle(1 * hexWithData.Data!.Orientation);
-
-            modelHolder.Transform = new Transform(Quat.Identity, pos);
-
-            // Create a new microbe if one is not already in the model holder
-            Microbe microbe;
-
-            if (modelHolder.InstancedNode is Microbe existingMicrobe)
-            {
-                microbe = existingMicrobe;
-            }
-            else
-            {
-                microbe = (Microbe)microbeScene.Instance();
-                microbe.IsForPreviewOnly = true;
-            }
-
-            // Attach to scene to initialize the microbe before the operations that need that
-            modelHolder.LoadFromAlreadyLoadedNode(microbe);
-
-            // TODO: don't reload the species if the species data would be exactly the same as before to save on
-            // performance. This probably causes the bit of weird turning / flicker with placing more cells
-            microbe.ApplySpecies(
-                new MicrobeSpecies(new MicrobeSpecies(0, string.Empty, string.Empty), hexWithData.Data));
-
-            // Set look direction
-            microbe.LookAtPoint = pos + rotation.Xform(Vector3.Forward);
-            microbe.Transform = new Transform(rotation, new Vector3(0, 0, 0));
-
-            // Apply placeholder scale if doesn't have a scale
-            if (microbe.Membrane.Scale == Vector3.One)
-            {
-                microbe.OverrideScaleForPreview(Constants.MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE);
-            }
-
-            // Scale needs to be applied some frames later so that organelle positions are sent
-            pendingScaleApplies.Add(microbe);
+            ShowCellTypeInModelHolder(modelHolder, hexWithData.Data!.CellType, pos, hexWithData.Data!.Orientation);
 
             modelHolder.Visible = true;
-
-            // TODO: render order setting for the cells? (similarly to how organelles are handled in the cell editor)
         }
 
         while (nextFreeCell < placedModels.Count)
@@ -800,6 +779,61 @@ public partial class CellBodyPlanEditorComponent :
             placedModels[placedModels.Count - 1].DetachAndQueueFree();
             placedModels.RemoveAt(placedModels.Count - 1);
         }
+    }
+
+    private void ShowCellTypeInModelHolder(SceneDisplayer modelHolder, CellType cell, Vector3 position, int orientation)
+    {
+        modelHolder.Transform = new Transform(Quat.Identity, position);
+
+        var rotation = MathUtils.CreateRotationForOrganelle(1 * orientation);
+
+        // Create a new microbe if one is not already in the model holder
+        Microbe microbe;
+
+        var newSpecies = new MicrobeSpecies(new MicrobeSpecies(0, string.Empty, string.Empty), cell);
+
+        bool wasExisting = false;
+
+        if (modelHolder.InstancedNode is Microbe existingMicrobe)
+        {
+            microbe = existingMicrobe;
+
+            wasExisting = true;
+        }
+        else
+        {
+            microbe = (Microbe)microbeScene.Instance();
+            microbe.IsForPreviewOnly = true;
+        }
+
+        // Set look direction
+        microbe.LookAtPoint = position + rotation.Xform(Vector3.Forward);
+        microbe.Transform = new Transform(rotation, new Vector3(0, 0, 0));
+
+        // Skip if it is already displaying the type
+        if (wasExisting && !forceUpdateCellGraphics &&
+            microbe.Species.GetVisualHashCode() == newSpecies.GetVisualHashCode())
+        {
+            return;
+        }
+
+        // Attach to scene to initialize the microbe before the operations that need that
+        modelHolder.LoadFromAlreadyLoadedNode(microbe);
+
+        // TODO: don't reload the species if the species data would be exactly the same as before to save on
+        // performance. This probably causes the bit of weird turning / flicker with placing more cells
+        microbe.ApplySpecies(newSpecies);
+
+        // Apply placeholder scale if doesn't have a scale
+        if (microbe.Membrane.Scale == Vector3.One)
+        {
+            microbe.OverrideScaleForPreview(Constants.MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE);
+        }
+
+        // Scale needs to be applied some frames later so that organelle positions are sent
+        pendingScaleApplies.Add(microbe);
+
+        // TODO: render order setting for the cells? (similarly to how organelles are handled in the cell editor)
     }
 
     private void OnSpeciesNameChanged(string newText)

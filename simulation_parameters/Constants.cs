@@ -75,10 +75,16 @@ public static class Constants
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
-    public const int PROCESS_OBJECTS_PER_TASK = 50;
+    public const int PROCESS_OBJECTS_PER_TASK = 30;
 
     public const int MICROBE_SPAWN_RADIUS = 170;
     public const int CLOUD_SPAWN_RADIUS = 170;
+
+    /// <summary>
+    ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
+    ///   without causing them to despawn instantly
+    /// </summary>
+    public const int DESPAWN_RADIUS_OFFSET_SQUARED = 2500;
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
@@ -345,6 +351,8 @@ public static class Constants
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
 
+    public const float COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET = 1;
+
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;
@@ -503,13 +511,22 @@ public static class Constants
 
     // These control how many game entities can exist at once and how fast they are allowed to spawn / despawn
     // TODO: bump this back up once we resolve the performance bottleneck
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 150;
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 140;
     public const int MAX_SPAWNS_PER_FRAME = 1;
 
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
     /// </summary>
-    public const int MAX_DESPAWNS_PER_FRAME = 1;
+    public const int MAX_DESPAWNS_PER_FRAME = 2;
+
+    /// <summary>
+    ///   How often despawns happen on top of the normal despawns that are part of the spawn cycle
+    /// </summary>
+    public const float DESPAWN_INTERVAL = 0.08f;
+
+    public const float CHANCE_MULTICELLULAR_SPAWNS_GROWN = 0.1f;
+    public const float CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN = 0.3f;
+    public const float CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE = 0.4f;
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
