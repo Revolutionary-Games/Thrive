@@ -502,6 +502,15 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             wantsToSave = false;
         }
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+        {
+            var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP).Count();
+            var childCount = rootOfDynamicallySpawned.GetChildCount();
+            metrics.ReportEntities(entities, childCount - entities);
+        }
     }
 
     [RunOnKeyDown("g_quick_save")]

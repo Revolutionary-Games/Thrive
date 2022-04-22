@@ -80,6 +80,12 @@ public static class Constants
     public const int MICROBE_SPAWN_RADIUS = 170;
     public const int CLOUD_SPAWN_RADIUS = 170;
 
+    /// <summary>
+    ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
+    ///   without causing them to despawn instantly
+    /// </summary>
+    public const int DESPAWN_RADIUS_OFFSET_SQUARED = 2500;
+
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
     public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
@@ -504,7 +510,12 @@ public static class Constants
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
     /// </summary>
-    public const int MAX_DESPAWNS_PER_FRAME = 1;
+    public const int MAX_DESPAWNS_PER_FRAME = 2;
+
+    /// <summary>
+    ///   How often despawns happen on top of the normal despawns that are part of the spawn cycle
+    /// </summary>
+    public const float DESPAWN_INTERVAL = 0.08f;
 
     public const float CHANCE_MULTICELLULAR_SPAWNS_GROWN = 0.1f;
     public const float CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN = 0.3f;
