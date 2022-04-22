@@ -26,9 +26,9 @@ public static class PatchMapGenerator
         // Initialize the graphs random parameters
         var patchCoords = new List<Vector2>();
         int [,] graph = new int [100,100];
-        int vertexNr = random.Next(6,10);
+        int vertexNr = random.Next(8,14);
         int edgeNr = random.Next(vertexNr + 1, 2*vertexNr - 4);
-        int minDistance = 240;
+        int minDistance = 200;
         
         // Create the graphs random points
         for (int i = 0;i < vertexNr; i++)
