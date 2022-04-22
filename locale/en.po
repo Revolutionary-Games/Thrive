@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 11:00+0300\n"
+"POT-Creation-Date: 2022-04-22 14:18+0300\n"
 "PO-Revision-Date: 2022-04-21 11:13+0300\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -1042,8 +1042,8 @@ msgstr "run status:"
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Select a cell type to edit here from the editor tab"
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:53
-#: ../src/engine/PerformanceMetrics.tscn:50
+#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
+#: ../src/engine/PerformanceMetrics.tscn:60
 msgid "FPS"
 msgstr "FPS: {0}"
 
@@ -1051,12 +1051,13 @@ msgstr "FPS: {0}"
 msgid "LOADING"
 msgstr "Loading"
 
-#: ../src/engine/PerformanceMetrics.cs:54
+#: ../src/engine/PerformanceMetrics.cs:63
+#: ../src/engine/PerformanceMetrics.tscn:66
 msgid "FRAME_DELTA"
 msgstr "Delta: {0}"
 
-#: ../src/engine/PerformanceMetrics.cs:68
-#: ../src/engine/PerformanceMetrics.tscn:56
+#: ../src/engine/PerformanceMetrics.cs:77
+#: ../src/engine/PerformanceMetrics.tscn:73
 msgid "METRICS_CONTENT"
 msgstr ""
 "Process Time: {0} s\n"
@@ -1077,7 +1078,7 @@ msgstr ""
 "Total CPU Time:\n"
 "{18}"
 
-#: ../src/engine/PerformanceMetrics.tscn:26
+#: ../src/engine/PerformanceMetrics.tscn:31
 msgid "METRICS"
 msgstr "Performance Metrics"
 
@@ -2315,7 +2316,7 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1934
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1942
 msgid "NO_DATA_TO_SHOW"
 msgstr "No Data to Show"
 
@@ -2913,15 +2914,15 @@ msgstr "Become Multicellular ({0}/{1})"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Become Macroscopic ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:711
+#: ../src/microbe_stage/MicrobeStage.cs:720
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
-#: ../src/microbe_stage/MicrobeStage.cs:725
+#: ../src/microbe_stage/MicrobeStage.cs:734
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Can't use spawn enemy cheat because this patch does not contain any enemy species"
 
-#: ../src/microbe_stage/MicrobeStage.cs:748
+#: ../src/microbe_stage/MicrobeStage.cs:757
 msgid "PLAYER_DIED"
 msgstr "player died"
 
@@ -3130,33 +3131,33 @@ msgstr "{0}: -{1} ATP"
 msgid "CELL_TYPE_NAME"
 msgstr "Cell Type Name"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1778
 msgid "FAILED"
 msgstr "Failed"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1784
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1796
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1794
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1790
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1802
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1902
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1910
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energy in {0} for {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1906
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1914
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Total energy gathered is {0} with individual cost of {1} resulting in unadjusted population of {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1921
 msgid "ENERGY_SOURCES"
 msgstr "Energy Sources:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1927
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energy: {1} (fitness: {2}) total available energy: {3} (total fitness: {4})"
 

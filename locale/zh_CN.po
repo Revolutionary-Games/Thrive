@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 11:00+0300\n"
+"POT-Creation-Date: 2022-04-22 14:18+0300\n"
 "PO-Revision-Date: 2022-03-26 14:06+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -135,9 +135,11 @@ msgstr ""
 "\n"
 "固氮质体：用大气中的氧气，氮和[thrive:compound type=\"atp\"][/thrive:compound]生产[thrive:compound type=\"ammonia\"][/thrive:compound]。\n"
 "\n"
-"液泡：储存15单位收集的化合物\n"
+"液泡：储存8单位收集的化合物\n"
 "\n"
-"毒素液泡：生产毒素（[thrive:compound type=\"oxytoxy\"][/thrive:compound]）并释放它，根据可用的氧化毒素量造成伤害"
+"毒素液泡：生产毒素（[thrive:compound type=\"oxytoxy\"][/thrive:compound]）并释放它，根据可用的氧化毒素量造成伤害\n"
+"\n"
+"信号剂：让细胞可以生产其它细胞可以响应其的化学物质"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -931,9 +933,8 @@ msgid "PREDATION_FOOD_SOURCE"
 msgstr "捕食{0}"
 
 #: ../src/early_multicellular_stage/CellType.cs:38
-#, fuzzy
 msgid "STEM_CELL_NAME"
-msgstr "自定义用户名："
+msgstr "干"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
@@ -941,9 +942,8 @@ msgid "STRUCTURE"
 msgstr "结构"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
-#, fuzzy
 msgid "REPRODUCTION"
-msgstr "ATP产出"
+msgstr "繁殖"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
@@ -951,14 +951,12 @@ msgid "BEHAVIOUR"
 msgstr "行为"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
-#, fuzzy
 msgid "CELLS"
-msgstr "纤维素"
+msgstr "细胞"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
-#, fuzzy
 msgid "MODIFY_TYPE"
-msgstr "修改"
+msgstr "修改类型"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:414
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
@@ -966,20 +964,17 @@ msgid "DELETE"
 msgstr "删除"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:421
-#, fuzzy
 msgid "DUPLICATE_TYPE"
-msgstr "玩家分裂"
+msgstr "复制类型"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:463
-#, fuzzy
 msgid "REPRODUCTION_METHOD"
-msgstr "繁殖次数"
+msgstr "繁殖："
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:476
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
-#, fuzzy
 msgid "REPRODUCTION_BUDDING"
-msgstr "繁殖次数"
+msgstr "出芽"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
@@ -994,44 +989,38 @@ msgid "NEXT_CAPITAL"
 msgstr "下一个"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
-#, fuzzy
 msgid "DISCONNECTED_CELLS"
-msgstr "未连接的细胞器"
+msgstr "未连接的细胞"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
-#, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
-"有一些细胞器没有连接到其它细胞器上。\n"
-"请把所有细胞器连接起来，或者删掉未连接的细胞器。"
+"有一些细胞没有连接到其它细胞上。\n"
+"请把所有细胞连接起来以继续。"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "无法删除已使用的细胞类型"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "在你的躯体设计中正被使用的细胞类型无法被删除"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr "创建新存档"
+msgstr "创建新细胞类型"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "我的绝棒的Mod"
+msgstr "你可以通过复制现有的细胞类型并给它们一个新的名字来创建新的细胞类型。细胞类型可以被修改以使其专门用于不同的目的。当修改一个细胞类型时，所有该类型的已放置的细胞都会被更新。"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
-#, fuzzy
 msgid "NEW_NAME_COLON"
-msgstr "速度："
+msgstr "新名称："
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:585
-#, fuzzy
 msgid "NEW_NAME"
-msgstr "新游戏"
+msgstr "新名称"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:72
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
@@ -1050,10 +1039,10 @@ msgstr "运行状态："
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "从编辑器选项卡中选择要在此处编辑的细胞类型"
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:53
-#: ../src/engine/PerformanceMetrics.tscn:50
+#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
+#: ../src/engine/PerformanceMetrics.tscn:60
 #, fuzzy
 msgid "FPS"
 msgstr "最高FPS："
@@ -1062,16 +1051,17 @@ msgstr "最高FPS："
 msgid "LOADING"
 msgstr "载入中"
 
-#: ../src/engine/PerformanceMetrics.cs:54
+#: ../src/engine/PerformanceMetrics.cs:63
+#: ../src/engine/PerformanceMetrics.tscn:66
 msgid "FRAME_DELTA"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.cs:68
-#: ../src/engine/PerformanceMetrics.tscn:56
+#: ../src/engine/PerformanceMetrics.cs:77
+#: ../src/engine/PerformanceMetrics.tscn:73
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.tscn:26
+#: ../src/engine/PerformanceMetrics.tscn:31
 #, fuzzy
 msgid "METRICS"
 msgstr "切换帧数显示"
@@ -2310,7 +2300,7 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1934
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1942
 msgid "NO_DATA_TO_SHOW"
 msgstr "没有数据可显示"
 
@@ -2356,12 +2346,17 @@ msgstr "此处是涵盖Thrive各部分内容的许可证"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "进入尚在开发中的阶段？"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
-msgstr "红绿色盲"
+msgstr ""
+"你已经达到了Thrive的 \"完整 \"部分的终点。\n"
+"如果你愿意，你可以继续游戏的后期阶段原型。这些可能是非常不完整的，使用占位符的图形，而且总体上非常粗糙。这些是游戏的一部分，以显示游戏未来的潜在方向和我们对各阶段如何连接的总体设想。\n"
+"\n"
+"如果你继续下去，你将无法保存或返回。如果你想返回这个阶段，请在继续之前现在进行保存。\n"
+"\n"
+"如果你选择继续，请理解后面的阶段是原型，请不要抱怨它们是多么不完整。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2380,9 +2375,8 @@ msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "完成编辑并返回游戏世界"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
-#, fuzzy
 msgid "NEXT_EDITOR_TAB"
-msgstr "启用编辑器"
+msgstr "进入下一个编辑器标签"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
@@ -2899,22 +2893,22 @@ msgstr "很少"
 #: ../src/microbe_stage/MicrobeHUD.cs:1170
 #: ../src/microbe_stage/MicrobeStage.tscn:1772
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "成为多细胞（{0}/{1}）"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1206
 #: ../src/microbe_stage/MicrobeStage.tscn:1788
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "成为宏观生物（{0}/{1}）"
 
-#: ../src/microbe_stage/MicrobeStage.cs:711
+#: ../src/microbe_stage/MicrobeStage.cs:720
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
-#: ../src/microbe_stage/MicrobeStage.cs:725
+#: ../src/microbe_stage/MicrobeStage.cs:734
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "无法使用生成敌人作弊，因为这个地区没有任何敌对物种"
 
-#: ../src/microbe_stage/MicrobeStage.cs:748
+#: ../src/microbe_stage/MicrobeStage.cs:757
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
@@ -2992,7 +2986,7 @@ msgstr "自杀"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1771
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr ""
+msgstr "进入游戏的下一个阶段（多细胞）。在你有一个足够大的细胞群后就可以使用。"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1816
 msgid "POPULATION_CAPITAL"
@@ -3043,9 +3037,8 @@ msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "远古海床"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:203
-#, fuzzy
 msgid "PATCH_NAME"
-msgstr "洞穴"
+msgstr "{0}{1}"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3122,35 +3115,35 @@ msgstr "{0}：-{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "细胞类型名称"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1778
 msgid "FAILED"
 msgstr "失败"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1784
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1796
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} （{1}）"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1794
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1790
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1802
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1902
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1910
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1}在{0}的能量"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1906
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1914
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的总能量为{0}，每个体的成本为{1}，在修正前的种群数量为{2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1921
 msgid "ENERGY_SOURCES"
 msgstr "能量来源："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1927
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}能量：{1}（适应性：{2}）总可用能量：{3}（总适应性：{4}）"
 
@@ -3406,9 +3399,8 @@ msgid "PATCH_MAP"
 msgstr "地区图"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
-#, fuzzy
 msgid "CELL"
-msgstr "纤维素"
+msgstr "细胞"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
@@ -4029,9 +4021,11 @@ msgid "PLAYER_EXTINCT"
 msgstr "玩家已灭绝"
 
 #: ../src/saving/SaveHelper.cs:470
-#, fuzzy
 msgid "IN_PROTOTYPE"
-msgstr "红绿色盲"
+msgstr ""
+"你正在玩的是游戏中包含的后期原型。\n"
+"这些原型可能非常不完整，使用占位图形，而且一般来说非常粗糙。\n"
+"因此，目前不可能保存。"
 
 #: ../src/saving/SaveHelper.cs:478
 msgid "SAVING_SUCCEEDED"
