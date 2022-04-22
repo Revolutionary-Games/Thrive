@@ -17,6 +17,9 @@ public class SpawnSystem
     [JsonProperty]
     private float elapsed;
 
+    [JsonProperty]
+    private float despawnElapsed;
+
     /// <summary>
     ///   Root node to parent all spawned things to
     /// </summary>
@@ -72,7 +75,7 @@ public class SpawnSystem
     public static void AddEntityToTrack(ISpawned entity,
         float radius = Constants.MICROBE_SPAWN_RADIUS)
     {
-        entity.DespawnRadiusSquared = (int)(radius * radius);
+        entity.DespawnRadiusSquared = (int)(radius * radius) + Constants.DESPAWN_RADIUS_OFFSET_SQUARED;
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
@@ -118,6 +121,7 @@ public class SpawnSystem
         spawnTypes.Clear();
         queuedSpawns = null;
         elapsed = 0;
+        despawnElapsed = 0;
     }
 
     /// <summary>
@@ -127,13 +131,21 @@ public class SpawnSystem
     {
         queuedSpawns = null;
 
+        int despawned = 0;
+
         foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
         {
             if (!spawned.EntityNode.IsQueuedForDeletion())
             {
                 spawned.DestroyDetachAndQueueFree();
+                ++despawned;
             }
         }
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportDespawns(despawned);
     }
 
     /// <summary>
@@ -142,6 +154,7 @@ public class SpawnSystem
     public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation)
     {
         elapsed += delta;
+        despawnElapsed += delta;
 
         // Remove the y-position from player position
         playerPosition.y = 0;
@@ -169,10 +182,18 @@ public class SpawnSystem
 
             SpawnEntities(playerPosition, estimateEntityCount);
         }
+        else if (despawnElapsed > Constants.DESPAWN_INTERVAL)
+        {
+            despawnElapsed = 0;
+
+            DespawnEntities(playerPosition);
+        }
     }
 
     private int HandleQueuedSpawns(int spawnsLeftThisFrame)
     {
+        int initialSpawns = spawnsLeftThisFrame;
+
         if (queuedSpawns == null)
             return spawnsLeftThisFrame;
 
@@ -204,12 +225,20 @@ public class SpawnSystem
             --spawnsLeftThisFrame;
         }
 
+        if (initialSpawns != spawnsLeftThisFrame)
+        {
+            var metrics = PerformanceMetrics.Instance;
+
+            if (metrics.Visible)
+                metrics.ReportSpawns(initialSpawns - spawnsLeftThisFrame);
+        }
+
         return spawnsLeftThisFrame;
     }
 
     private void SpawnEntities(Vector3 playerPosition, int existing)
     {
-        // If  there are already too many entities, don't spawn more
+        // If there are already too many entities, don't spawn more
         if (existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
             return;
 
@@ -269,31 +298,39 @@ public class SpawnSystem
     {
         var angle = random.NextFloat() * 2 * Mathf.Pi;
 
+        var spawns = 0;
         foreach (var spawnType in spawnTypes)
         {
             if (spawnType is MicrobeSpawner)
             {
-                SpawnWithSpawner(spawnType,
+                spawns += SpawnWithSpawner(spawnType,
                     playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
                         Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2));
             }
         }
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportSpawns(spawns);
     }
 
     /// <summary>
     ///   Does a single spawn with a spawner
     /// </summary>
-    private void SpawnWithSpawner(Spawner spawnType, Vector3 location)
+    private int SpawnWithSpawner(Spawner spawnType, Vector3 location)
     {
+        var spawns = 0;
+
         if (random.NextFloat() > spawnType.Denstity)
         {
-            return;
+            return spawns;
         }
 
         var enumerable = spawnType.Spawn(worldRoot, location);
 
         if (enumerable == null)
-            return;
+            return spawns;
 
         using var spawner = enumerable.GetEnumerator();
         while (spawner.MoveNext())
@@ -303,7 +340,10 @@ public class SpawnSystem
 
             // Spawned something
             ProcessSpawnedEntity(spawner.Current, spawnType);
+            spawns++;
         }
+
+        return spawns;
     }
 
     /// <summary>
@@ -339,6 +379,11 @@ public class SpawnSystem
             }
         }
 
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportDespawns(entitiesDeleted);
+
         return spawnedCount - entitiesDeleted;
     }
 
@@ -347,11 +392,7 @@ public class SpawnSystem
     /// </summary>
     private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
     {
-        // I don't understand why the same
-        // value is used for spawning and
-        // despawning, but apparently it works
-        // just fine
-        entity.DespawnRadiusSquared = spawnType.SpawnRadiusSquared;
+        entity.DespawnRadiusSquared = spawnType.SpawnRadiusSquared + Constants.DESPAWN_RADIUS_OFFSET_SQUARED;
 
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
