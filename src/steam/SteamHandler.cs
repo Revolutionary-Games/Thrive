@@ -78,6 +78,14 @@ public class SteamHandler : Node, ISteamSignalReceiver
         OnSteamInit();
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        steamClient?.Dispose();
+        steamClient = null;
+    }
+
     public override void _Process(float delta)
     {
         steamClient?.Process(delta);

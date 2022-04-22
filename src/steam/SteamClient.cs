@@ -20,9 +20,7 @@ public class SteamClient : ISteamClient
     private Action<WorkshopResult>? workshopCreateCallback;
     private Action<WorkshopResult>? workshopUpdateCallback;
 
-    // We need to keep these variables around for the GC to not eat these. TODO: if this is changed to IDisposable
-    // that would probably count for use of these
-    // ReSharper disable NotAccessedField.Local
+    // We need to keep these variables around for the GC to not eat these
     private Callback<GameOverlayActivated_t>? overlayToggledCallback;
     private Callback<UserStatsReceived_t>? statsReceivedCallback;
     private Callback<UserStatsStored_t>? statsStoredCallback;
@@ -34,7 +32,6 @@ public class SteamClient : ISteamClient
     private Callback<SubmitItemUpdateResult_t>? updateItemCallback;
     private Callback<SteamAPICallCompleted_t>? apiCallCompletedCallback;
     private Callback<LowBatteryPower_t>? lowPowerCallback;
-    // ReSharper restore NotAccessedField.Local
 
     public bool IsLoaded { get; private set; }
     public string? LoadError { get; private set; }
@@ -147,6 +144,24 @@ public class SteamClient : ISteamClient
                 receiver.APICallComplete((ulong)t.m_hAsyncCall, t.m_iCallback, t.m_cubParam));
 
         lowPowerCallback = new Callback<LowBatteryPower_t>(t => receiver.LowPower(t.m_nMinutesBatteryLeft));
+    }
+
+    public void Dispose()
+    {
+        overlayToggledCallback?.Dispose();
+        statsReceivedCallback?.Dispose();
+        statsStoredCallback?.Dispose();
+        shutdownCallback?.Dispose();
+        createItemCallback?.Dispose();
+        downloadItemCallback?.Dispose();
+        installItemCallback?.Dispose();
+        deleteItemCallback?.Dispose();
+        updateItemCallback?.Dispose();
+        apiCallCompletedCallback?.Dispose();
+        lowPowerCallback?.Dispose();
+
+        GD.Print("Shutting down Steam API");
+        SteamAPI.Shutdown();
     }
 
     public void Process(float delta)

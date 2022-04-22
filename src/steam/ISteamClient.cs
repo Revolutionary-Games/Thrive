@@ -5,7 +5,7 @@ using Object = Godot.Object;
 /// <summary>
 ///   Interface specifying the Steam operations we use. Implemented in the SteamClient.cs file
 /// </summary>
-public interface ISteamClient : ISteamSignalReceiver
+public interface ISteamClient : ISteamSignalReceiver, IDisposable
 {
     /// <summary>
     ///   True if the Steam client has been initialized
