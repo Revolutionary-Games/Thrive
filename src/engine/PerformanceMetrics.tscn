@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/engine/PerformanceMetrics.cs" type="Script" id=2]
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=4]
 
 [node name="PerformanceMetrics" type="Control"]
 pause_mode = 2
@@ -43,8 +44,8 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CustomDialog/ScrollContainer"]
-margin_right = 250.0
-margin_bottom = 200.0
+margin_right = 300.0
+margin_bottom = 220.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -55,15 +56,18 @@ margin_bottom = 40.0
 [node name="FPS" type="Label" parent="CustomDialog/ScrollContainer/VBoxContainer/HBoxContainer"]
 margin_right = 250.0
 margin_bottom = 25.0
+custom_fonts/font = ExtResource( 4 )
 text = "FPS"
 
 [node name="Delta" type="Label" parent="CustomDialog/ScrollContainer/VBoxContainer/HBoxContainer"]
 margin_right = 40.0
 margin_bottom = 25.0
+custom_fonts/font = ExtResource( 4 )
 text = "FRAME_DELTA"
 
 [node name="MetricsText" type="Label" parent="CustomDialog/ScrollContainer/VBoxContainer"]
 margin_top = 29.0
 margin_right = 250.0
 margin_bottom = 54.0
+custom_fonts/font = ExtResource( 4 )
 text = "METRICS_CONTENT"
