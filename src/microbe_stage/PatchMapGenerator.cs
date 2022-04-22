@@ -23,20 +23,22 @@ public static class PatchMapGenerator
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
         var areaName = nameGenerator.Next(random);
 
+        // Initialize the graphs random parameters
         var patchCoords = new List<Vector2>();
         int [,] graph = new int [100,100];
         int vertexNr = random.Next(6,10);
         int edgeNr = random.Next(vertexNr + 1, 2*vertexNr - 4);
         int minDistance = 240;
         
+        // Create the graphs random points
         for (int i = 0;i < vertexNr; i++)
         {
             int x = random.Next(50,770);
             int y = random.Next(50,770);
             var coord = new Vector2(x,y);
 
+            // Check if the region doesnt overlap over other regions
             bool check = CheckPatchDistance(coord, patchCoords, minDistance);
-
             while (!check)
             {
                 x = random.Next(30,770);
@@ -47,7 +49,6 @@ public static class PatchMapGenerator
 
             patchCoords.Add(coord);
 
-            GD.Print(coord);
             var patch = new Patch(GetPatchLocalizedName(areaName, "VOLCANIC_VENT"), i,
             GetBiomeTemplate("aavolcanic_vent"))
             {
@@ -63,9 +64,12 @@ public static class PatchMapGenerator
             map.CurrentPatch = patch;
         }
 
+        // We make the graph by substracting edges from its Delaunay Triangulation 
+        // as long as the graph stays connected.
         graph = DelaunayTriangulation(graph, patchCoords);
         var currentEdgeNr = CurrentEdgeNumber(graph, vertexNr);
-        GD.Print(currentEdgeNr, " ", edgeNr);
+        
+        // Substract edges until we reach the desired edge count.
         while (currentEdgeNr > edgeNr)
         {
             int edgeToDelete = random.Next(1, currentEdgeNr);
@@ -81,6 +85,9 @@ public static class PatchMapGenerator
             }
             i--;
             j--;
+
+            // Check if the graph stays connected after substracting the edge
+            // otherwise, leave the edge as is.
             graph[i,j] = graph [j,i] = 0;
             if (!CheckConnectivity(graph, vertexNr))
                 graph[i,j] = graph [j,i] = 1;
@@ -123,6 +130,7 @@ public static class PatchMapGenerator
         _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
     }
 
+    // Create a triangulation for a certain graph given some vertex coordinates
     private static int [,] DelaunayTriangulation(int [,] graph, List<Vector2>vertexCoords)
     {
         var indices = Geometry.TriangulateDelaunay2d(vertexCoords.ToArray());
@@ -136,6 +144,7 @@ public static class PatchMapGenerator
         return graph;
     }
 
+    // DFS graph search
     private static int[] DFS(int [,] graph, int vertexNr, int point, int[] visited)
     {
         visited[point] = 1;
@@ -144,7 +153,8 @@ public static class PatchMapGenerator
                 visited = DFS(graph, vertexNr, i, visited);
         return visited;
     }
-
+    
+    // Checks the graphs connectivity
     private static bool CheckConnectivity(int [,] graph, int vertexNr)
     {
         int [] visited= new int [vertexNr];
@@ -153,6 +163,8 @@ public static class PatchMapGenerator
             return false;
         return true;
     }
+
+    // Current number of edges in a given graph
     private static int CurrentEdgeNumber(int [,] graph, int vertexNr)
     {
         int edgeNr = 0;
@@ -162,6 +174,8 @@ public static class PatchMapGenerator
         
         return edgeNr/2;
     }
+
+    // Checks distance between patches
     private static bool CheckPatchDistance(Vector2 patchCoord, List<Vector2> allPatchesCoords, int minDistance)
     {
         if (allPatchesCoords.Count == 0)
