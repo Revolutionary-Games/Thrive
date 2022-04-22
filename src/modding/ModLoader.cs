@@ -165,8 +165,7 @@ public class ModLoader : Node
     /// </returns>
     public static (int ErrorType, int ModIndex, int OtherModIndex) IsValidModList(List<FullModDetails> modsToCheck)
     {
-        (int ErrorType, int ModIndex, int OtherModIndex) isValidList = ((int)CheckErrorStatus.Unknown, -1, -1);
-        Dictionary<string, FullModDetails> tempModDictionary;
+        var isValidList = (ErrorType: (int)CheckErrorStatus.Unknown, ModIndex: -1, OtherModIndex: -1);
 
         // Make sure the list is not empty
         if (modsToCheck.Count < 1)
@@ -175,7 +174,7 @@ public class ModLoader : Node
         }
 
         // Store the mod in a dictionary for faster look-up when actually checking
-        tempModDictionary = ModArrayToModDictioanry(modsToCheck.ToArray());
+        Dictionary<string, FullModDetails> tempModDictionary = ModArrayToModDictioanry(modsToCheck.ToArray());
 
         for (int index = 0; index < modsToCheck.Count; ++index)
         {
@@ -411,7 +410,7 @@ public class ModLoader : Node
 
     private static Dictionary<string, FullModDetails> ModArrayToModDictioanry(FullModDetails[] modArray)
     {
-        Dictionary<string, FullModDetails> returnValue = new Dictionary<string, FullModDetails>();
+        var returnValue = new Dictionary<string, FullModDetails>();
         for (int index = 0; index < modArray.Length; ++index)
         {
             var currentMod = modArray[index];

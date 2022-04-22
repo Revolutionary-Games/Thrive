@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/modding/ModManager.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/redoButtonHover.png" type="Texture" id=14]
 [ext_resource path="res://assets/textures/DiscoBall.jpg" type="Texture" id=15]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=16]
+[ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/modding/ModUploader.tscn" type="PackedScene" id=18]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -330,9 +331,9 @@ custom_constants/separation = 8
 alignment = 2
 
 [node name="Label" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/MarginContainer/CheckBoxContainer"]
-margin_left = 1194.0
+margin_left = 1195.0
 margin_top = 5.0
-margin_right = 1385.0
+margin_right = 1386.0
 margin_bottom = 30.0
 grow_horizontal = 2
 hint_tooltip = "ONESHOT_LOADING_TOOLTIP"
@@ -340,11 +341,10 @@ mouse_filter = 1
 text = "ONESHOT_LOADING"
 align = 2
 
-[node name="OneshotLoadingCheckBox" type="CheckBox" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/MarginContainer/CheckBoxContainer"]
-margin_left = 1393.0
+[node name="OneshotLoadingCheckBox" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoaderTab/LoaderContainer/MarginContainer/CheckBoxContainer" instance=ExtResource( 17 )]
+margin_left = 1394.0
 margin_right = 1409.0
 margin_bottom = 35.0
-flat = true
 
 [node name="ModErrorTab" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer"]
 visible = false
@@ -1442,6 +1442,7 @@ text = "CLOSE"
 margin_top = 28.0
 margin_right = 253.0
 margin_bottom = 115.0
+WindowTitle = "CREATE_MOD_ERROR_DIALOG_TITLE"
 Resizable = false
 
 [node name="ModUploader" parent="." instance=ExtResource( 18 )]
@@ -1449,6 +1450,7 @@ visible = false
 
 [node name="LoadUnloadErrors" parent="." instance=ExtResource( 7 )]
 rect_min_size = Vector2( 400, 350 )
+WindowTitle = "LOAD_UNLOAD_ERROR_TITLE"
 ErrorMessage = "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 ExceptionInfo = ""
 

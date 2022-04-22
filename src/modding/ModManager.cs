@@ -260,7 +260,7 @@ public class ModManager : Control
     private Button loadOrderButton = null!;
     private Button checkButton = null!;
     private Button moveModDownButton = null!;
-    private Button oneshotLoadingCheckbox = null!;
+    private CustomCheckBox oneshotLoadingCheckbox = null!;
 
     private Label galleryLabel = null!;
     private Label selectedModName = null!;
@@ -488,7 +488,7 @@ public class ModManager : Control
         incompatibleButton = GetNode<Button>(IncompatibleButtonPath);
         loadOrderButton = GetNode<Button>(LoadOrderButtonPath);
         checkButton = GetNode<Button>(CheckButtonPath);
-        oneshotLoadingCheckbox = GetNode<CheckBox>(OneshotLoadingCheckboxPath);
+        oneshotLoadingCheckbox = GetNode<CustomCheckBox>(OneshotLoadingCheckboxPath);
 
         galleryLabel = GetNode<Label>(GalleryLabelPath);
         selectedModGalleryContainer = GetNode<VBoxContainer>(SelectedModGalleryContainerPath);
@@ -859,22 +859,23 @@ public class ModManager : Control
 
     private List<ImageTexture> LoadModPreviewImages(FullModDetails mod)
     {
-        if (mod.Info.PreviewImages == null)
-            return new List<ImageTexture>();
-
         var returnValue = new List<ImageTexture>();
-        foreach (string currentImagePath in mod.Info.PreviewImages)
+
+        if (mod.Info.PreviewImages != null)
         {
-            if (string.IsNullOrEmpty(currentImagePath))
-                return null!;
+            foreach (string currentImagePath in mod.Info.PreviewImages)
+            {
+                if (string.IsNullOrEmpty(currentImagePath))
+                    return null!;
 
-            var image = new Image();
-            image.Load(Path.Combine(mod.Folder, currentImagePath));
+                var image = new Image();
+                image.Load(Path.Combine(mod.Folder, currentImagePath));
 
-            var texture = new ImageTexture();
-            texture.CreateFromImage(image);
+                var texture = new ImageTexture();
+                texture.CreateFromImage(image);
 
-            returnValue.Add(texture);
+                returnValue.Add(texture);
+            }
         }
 
         return returnValue;
