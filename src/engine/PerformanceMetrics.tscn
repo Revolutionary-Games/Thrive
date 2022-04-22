@@ -34,9 +34,9 @@ Resizable = true
 [node name="ScrollContainer" type="ScrollContainer" parent="CustomDialog"]
 margin_left = 4.0
 margin_top = 3.0
-margin_right = 229.0
-margin_bottom = 203.0
-rect_min_size = Vector2( 300, 220 )
+margin_right = 224.0
+margin_bottom = 223.0
+rect_min_size = Vector2( 220, 220 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -44,7 +44,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CustomDialog/ScrollContainer"]
-margin_right = 300.0
+margin_right = 220.0
 margin_bottom = 220.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
