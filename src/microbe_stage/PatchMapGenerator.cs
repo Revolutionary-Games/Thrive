@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Godot;
 using Vector2 = Godot.Vector2;
 
@@ -25,18 +26,16 @@ public static class PatchMapGenerator
         var patchCoords = new List<Vector2>();
         int [,] graph = new int [100,100];
         int vertexNr = random.Next(6,10);
-        int edgeNr = random.Next(vertexNr, 2*vertexNr - 4);
+        int edgeNr = random.Next(vertexNr + 1, 2*vertexNr - 4);
         int minDistance = 240;
         
-        for(int i = 0;i < vertexNr; i++)
+        for (int i = 0;i < vertexNr; i++)
         {
             int x = random.Next(50,770);
             int y = random.Next(50,770);
             var coord = new Vector2(x,y);
-            bool check = true;
 
-            check = CheckPatchDistance(coord, patchCoords, minDistance);
-
+            bool check = CheckPatchDistance(coord, patchCoords, minDistance);
 
             while (!check)
             {
@@ -64,11 +63,35 @@ public static class PatchMapGenerator
             map.CurrentPatch = patch;
         }
 
+        graph = DelaunayTriangulation(graph, patchCoords);
+        var currentEdgeNr = CurrentEdgeNumber(graph, vertexNr);
+        GD.Print(currentEdgeNr, " ", edgeNr);
+        while (currentEdgeNr > edgeNr)
+        {
+            int edgeToDelete = random.Next(1, currentEdgeNr);
+            int i = 0;
+            int j = 0;
+            for (i = 0; i < vertexNr && edgeToDelete != 0; i++)
+            {
+                for (j = 0; j < vertexNr && edgeToDelete != 0 && j <= i; j++)
+                {
+                    if (graph[i,j] == 1)
+                        edgeToDelete --;
+                }
+            }
+            i--;
+            j--;
+            graph[i,j] = graph [j,i] = 0;
+            if (!CheckConnectivity(graph, vertexNr))
+                graph[i,j] = graph [j,i] = 1;
+            else
+                currentEdgeNr -= 1;
+        }
+
         for (int k = 0; k < vertexNr; k++)
-            if (map.Patches[k].Adjacent.Count == 0)
-                for (int l = 0; l < vertexNr; l++)
-                    if(l != k)
-                        LinkPatches(map.Patches[k], map.Patches[l]);
+            for (int l = 0; l < vertexNr; l++)
+                if(graph[l,k] == 1)
+                    LinkPatches(map.Patches[k], map.Patches[l]);
 
         return map;
     }
@@ -100,6 +123,45 @@ public static class PatchMapGenerator
         _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
     }
 
+    private static int [,] DelaunayTriangulation(int [,] graph, List<Vector2>vertexCoords)
+    {
+        var indices = Geometry.TriangulateDelaunay2d(vertexCoords.ToArray());
+        var triangles = indices.ToList<int>();
+        for (int i = 0; i < triangles.Count() - 2; i+=3)
+        {
+            graph[triangles[i] ,triangles[i+1]] = graph[triangles[i+1], triangles[i]] = 1;
+            graph[triangles[i+1] ,triangles[i+2]] = graph[triangles[i+2], triangles[i+1]] = 1;
+            graph[triangles[i] ,triangles[i+2]] = graph[triangles[i+2], triangles[i]] = 1;
+        }
+        return graph;
+    }
+
+    private static int[] DFS(int [,] graph, int vertexNr, int point, int[] visited)
+    {
+        visited[point] = 1;
+        for (int i = 0; i < vertexNr; i++)
+            if (graph[point,i] == 1 && visited[i] == 0)
+                visited = DFS(graph, vertexNr, i, visited);
+        return visited;
+    }
+
+    private static bool CheckConnectivity(int [,] graph, int vertexNr)
+    {
+        int [] visited= new int [vertexNr];
+        visited = DFS(graph , vertexNr, 0, visited);
+        if (visited.Sum() != vertexNr)
+            return false;
+        return true;
+    }
+    private static int CurrentEdgeNumber(int [,] graph, int vertexNr)
+    {
+        int edgeNr = 0;
+        for (int i = 0; i < vertexNr; i++)
+            for (int j = 0; j < vertexNr; j++)
+                edgeNr += graph [i,j];
+        
+        return edgeNr/2;
+    }
     private static bool CheckPatchDistance(Vector2 patchCoord, List<Vector2> allPatchesCoords, int minDistance)
     {
         if (allPatchesCoords.Count == 0)
@@ -108,7 +170,6 @@ public static class PatchMapGenerator
         for (int i = 0;i< allPatchesCoords.Count; i++)
         {
             var dist = (int)patchCoord.DistanceTo(allPatchesCoords[i]);
-            GD.Print(dist);
             if (dist < minDistance)
             {
                 return false;
