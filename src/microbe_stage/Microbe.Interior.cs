@@ -575,6 +575,10 @@ public partial class Microbe
     ///     AI cells will immediately reproduce when they can. On the player cell the editor is unlocked when
     ///     reproducing is possible.
     ///   </para>
+    ///   <para>
+    ///     TODO: split this into two parts: giving compounds to grow, and actually spawning things to be able to
+    ///     do multithreading here
+    ///   </para>
     /// </remarks>
     private void HandleReproduction(float delta)
     {
