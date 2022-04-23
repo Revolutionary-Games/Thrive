@@ -147,7 +147,7 @@ public class SpawnSystem
         if (metrics.Visible)
             metrics.ReportDespawns(despawned);
 
-        coordinatesSpawned = new();
+        coordinatesSpawned = new HashSet<Tuple<int, int>>();
     }
 
     /// <summary>
