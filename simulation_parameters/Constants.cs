@@ -84,7 +84,7 @@ public static class Constants
 
     public const int PROCESS_OBJECTS_PER_TASK = 30;
 
-    public const int MICROBE_SPAWN_RADIUS = 170;
+    public const int MICROBE_SPAWN_RADIUS = 350;
     public const int CLOUD_SPAWN_RADIUS = 350;
 
     /// <summary>
