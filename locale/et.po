@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-09 19:36-0400\n"
-"PO-Revision-Date: 2021-03-31 14:40+0000\n"
-"Last-Translator: Thor Andreas Laan <thor.a.laan@gmail.com>\n"
+"POT-Creation-Date: 2022-04-22 23:10-0400\n"
+"PO-Revision-Date: 2022-04-07 21:08+0000\n"
+"Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: et\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4\n"
+"X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -27,7 +27,7 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Su rakk kasutab ATP-d energiaallikana, kui see saab otsa, siis su rakk sureb."
+msgstr "Teie rakk kasutab energiaallikana [thrive: ühendi tüüp = \"atp\"] [/ thrive: ühend], kui see saab otsa, surete."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
@@ -333,7 +333,7 @@ msgid "ZOOM_IN"
 msgstr "Suurenda"
 
 #: ../simulation_parameters/common/input_options.json:87
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:150
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:153
 msgid "EDITOR"
 msgstr "Toimetaja"
 
@@ -647,7 +647,7 @@ msgstr "Lämmastik"
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:433
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
 msgstr "Päikesevalgus"
 
@@ -930,7 +930,7 @@ msgstr "{0} rööv"
 
 #: ../src/early_multicellular_stage/CellType.cs:38
 msgid "STEM_CELL_NAME"
-msgstr ""
+msgstr "tüvirakk"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
@@ -938,9 +938,8 @@ msgid "STRUCTURE"
 msgstr "Struktuur"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
-#, fuzzy
 msgid "REPRODUCTION"
-msgstr "Toodab"
+msgstr "Paljundamine"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
@@ -949,11 +948,11 @@ msgstr "Käitumine"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
 msgid "CELLS"
-msgstr ""
+msgstr "Rakud"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 msgid "MODIFY_TYPE"
-msgstr ""
+msgstr "Muuda tüüp"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:414
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
@@ -962,16 +961,16 @@ msgstr "Kustuta"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:421
 msgid "DUPLICATE_TYPE"
-msgstr ""
+msgstr "Duplikaadi tüüp"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:463
 msgid "REPRODUCTION_METHOD"
-msgstr ""
+msgstr "Paljundamine:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:476
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 msgid "REPRODUCTION_BUDDING"
-msgstr ""
+msgstr "lootustandev"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
@@ -981,42 +980,43 @@ msgstr "TÜHISTAGE TEGEVUS"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1186
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1018
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr "JÄRGMINE"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
 msgid "DISCONNECTED_CELLS"
-msgstr ""
+msgstr "Lahtiühendatud rakud"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
+"Seal on paigutatud rakud, mis ei ole ülejäänud osadega ühendatud.\n"
+"Jätkamiseks ühendage kõik paigutatud lahtrid üksteisega."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "Kasutatud lahtritüüpi ei saa kustutada"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "Praegu teie kehaplaanis kasutatavat rakutüüpi ei saa kustutada"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr ""
+msgstr "Looge uus lahtritüüp"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "Jäigem membraan teeb su raku vastupidavamaks vigastustele, aga raskendab liikumist."
+msgstr "Saate luua uusi lahtritüüpe, dubleerides olemasolevad ja andes neile uue nime. Lahtritüüpe saab muuta, et spetsialiseeruda erinevatele rollidele. Lahtritüübi muutmisel värskendatakse kõiki seda tüüpi paigutatud lahtreid."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
 msgid "NEW_NAME_COLON"
-msgstr ""
+msgstr "Uus nimi:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:585
 msgid "NEW_NAME"
-msgstr ""
+msgstr "Uus nimi"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:73
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
@@ -1024,18 +1024,18 @@ msgid "LOADING_MICROBE_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:187
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:192
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:191
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo käivitamine ebaõnnestus"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:188
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:193
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:192
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "käitamise olek:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "Valige redigeerija vahekaardil lahtri tüüp, mida siin redigeerida"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1577,24 +1577,24 @@ msgstr "Modifikaadi laadimise vead"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Ühe või mitme modifikatsiooni laadimisel ilmnesid vead. Logid võivad sisaldada lisateavet."
 
-#: ../src/general/OptionsMenu.cs:621 ../src/general/OptionsMenu.tscn:290
+#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Resolutsioon:"
 
-#: ../src/general/OptionsMenu.cs:923
+#: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Vaikimisi väljundseade"
 
-#: ../src/general/OptionsMenu.cs:955
+#: ../src/general/OptionsMenu.cs:956
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "See tõlge on väga puudulik ({0}% valmis). Palun aidake meid sellega!"
 
-#: ../src/general/OptionsMenu.cs:959
+#: ../src/general/OptionsMenu.cs:960
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "See keel on veel pooleli ({0}% valmis)"
 
-#: ../src/general/OptionsMenu.cs:963
+#: ../src/general/OptionsMenu.cs:964
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "See keel on {0}% valmis"
 
@@ -1933,7 +1933,7 @@ msgid "SAVE_GAME"
 msgstr "Salvesta mäng"
 
 #: ../src/general/PauseMenu.tscn:84
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:485
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Statistika"
 
@@ -2322,11 +2322,17 @@ msgstr "Siin kuvatakse Thrive'i osi hõlmavad litsentsid"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "Kas jätkata prototüüpide lavastamist?"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
+"Olete jõudnud Thrive'i \"täieliku\" osa lõpuni.\n"
+"Soovi korral saate jätkata mänguga kaasas olevate hilisemate prototüüpidega. Need võivad olla väga puudulikud, kasutada kohatäitegraafikat ja olla üldiselt väga karmid. Need on lisatud mängu osana, et näidata mängu potentsiaalset tulevikusuunda ja meie üldist nägemust etappide ühendamisest.\n"
+"\n"
+"Te ei saa salvestada, kui jätkate, ega pärast jätkamist tagasi pöörduda. Kui soovite sellesse etappi naasta, salvestage kohe enne jätkamist.\n"
+"\n"
+"Kui otsustate jätkata, siis mõistke, et hilisemad etapid on prototüübid ja ärge kurtke nende ebatäielikkuse üle."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2346,7 +2352,7 @@ msgstr "Lõpetage toimetamine ja naaske keskkonda"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
 msgid "NEXT_EDITOR_TAB"
-msgstr ""
+msgstr "Minge järgmisele redaktori vahekaardile"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
@@ -2743,7 +2749,7 @@ msgstr "Lubab/keelab salvestamata edenemise hoiatuse hüpikakna, kui mängija pr
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:370
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
 msgid "TEMPERATURE"
 msgstr "Temperatuur"
 
@@ -2861,12 +2867,12 @@ msgstr "väga vähe"
 #: ../src/microbe_stage/MicrobeHUD.cs:1156
 #: ../src/microbe_stage/MicrobeStage.tscn:1768
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Hakka mitmerakuliseks ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1192
 #: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Muuta makroskoopiliseks ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeStage.cs:691
 msgid "PLAYER_REPRODUCED"
@@ -2915,8 +2921,8 @@ msgstr "Surve."
 #: ../src/microbe_stage/MicrobeStage.tscn:1146
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:712
 msgid "COMPOUNDS"
 msgstr "Ühendid"
 
@@ -2955,7 +2961,7 @@ msgstr "vabasurm"
 #: ../src/microbe_stage/MicrobeStage.tscn:1767
 #: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr ""
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1813
 msgid "POPULATION_CAPITAL"
@@ -3084,7 +3090,7 @@ msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Lahtri tüübi nimi"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1768
 msgid "FAILED"
@@ -3260,7 +3266,7 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "PRAEGUNE ASUKOHT"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:329
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Füüsilised tingimused"
 
@@ -3270,8 +3276,8 @@ msgstr "Surve"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:511
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:669
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosfääri gaasid"
 
@@ -3318,58 +3324,58 @@ msgstr "mega aastat"
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:201
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:204
 msgid "AUTO_EVO"
 msgstr "auto-evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:215
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:218
 msgid "FOOD_CHAIN"
 msgstr "Toiduahel"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:228
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:231
 msgid "TIMELINE"
 msgstr "ajaskaala"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:281
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:284
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo tulemused:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:300
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:303
 msgid "EXTERNAL_EFFECTS"
 msgstr "Välised mõjud:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:397
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:400
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "Näita globaalseid sündmusi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:406
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:413
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Näita kohalikke sündmusi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:417
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:420
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:494
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:522
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:497
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:525
 msgid "SPECIES_POPULATION"
 msgstr "Liikide populatsioon"
 
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:110
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "teade"
 
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:130
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:133
 msgid "PATCH_MAP"
 msgstr "Plaastri kaart"
 
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:170
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
 msgid "CELL"
-msgstr ""
+msgstr "rakk"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
@@ -3992,6 +3998,9 @@ msgstr "Mängija on välja surnud"
 #: ../src/saving/SaveHelper.cs:470
 msgid "IN_PROTOTYPE"
 msgstr ""
+"Mängite hilisema etapi prototüüpe, mis on mänguga kaasas.\n"
+"Need võivad olla väga puudulikud, kasutada kohatäitegraafikat ja olla üldiselt väga karmid.\n"
+"Kuna selline salvestamine ei ole hetkel võimalik."
 
 #: ../src/saving/SaveHelper.cs:478
 msgid "SAVING_SUCCEEDED"

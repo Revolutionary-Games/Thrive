@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-09 19:36-0400\n"
-"PO-Revision-Date: 2022-03-31 05:02+0000\n"
+"POT-Creation-Date: 2022-04-22 23:10-0400\n"
+"PO-Revision-Date: 2022-04-08 11:52+0000\n"
 "Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Deine Zelle verwendet [thrive:compound type=\"atp\"][/thrive:compound] a
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Um den Editor freizuschalten und dich zu reproduzieren, müssen [thrive:compound type=\"ammonia\"][/thrive:compound] (orange Wolke) und [thrive:compound type=\"phosphates\"][/thrive:compound] (lila Wolke) gesammelt werden."
+msgstr "Um den Editor freizuschalten und dich zu reproduzieren, müssen [thrive:compound type=\"ammonia\"][/thrive:compound] (orangene Wolke) und [thrive:compound type=\"phosphates\"][/thrive:compound] (violette Wolke) gesammelt werden."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
@@ -331,7 +331,7 @@ msgid "ZOOM_IN"
 msgstr "Hereinzoomen"
 
 #: ../simulation_parameters/common/input_options.json:87
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:150
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:153
 msgid "EDITOR"
 msgstr "Editor"
 
@@ -645,7 +645,7 @@ msgstr "Stickstoff"
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:433
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
 msgstr "Sonnenlicht"
 
@@ -927,9 +927,8 @@ msgid "PREDATION_FOOD_SOURCE"
 msgstr "Beute von {0}"
 
 #: ../src/early_multicellular_stage/CellType.cs:38
-#, fuzzy
 msgid "STEM_CELL_NAME"
-msgstr "Eigener Nutzername:"
+msgstr "Stamm"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
@@ -937,9 +936,8 @@ msgid "STRUCTURE"
 msgstr "Struktur"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
-#, fuzzy
 msgid "REPRODUCTION"
-msgstr "ATP-Produktion"
+msgstr "Reproduktion"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
@@ -947,14 +945,12 @@ msgid "BEHAVIOUR"
 msgstr "Verhalten"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
-#, fuzzy
 msgid "CELLS"
-msgstr "Zellulose"
+msgstr "Zellen"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
-#, fuzzy
 msgid "MODIFY_TYPE"
-msgstr "Verändern"
+msgstr "Typ modifizieren"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:414
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
@@ -962,20 +958,17 @@ msgid "DELETE"
 msgstr "Löschen"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:421
-#, fuzzy
 msgid "DUPLICATE_TYPE"
-msgstr "Spieler duplizieren"
+msgstr "Typ duplizieren"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:463
-#, fuzzy
 msgid "REPRODUCTION_METHOD"
-msgstr "Reproduziert"
+msgstr "Reproduktion:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:476
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
-#, fuzzy
 msgid "REPRODUCTION_BUDDING"
-msgstr "Reproduziert"
+msgstr "Knospend"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
@@ -985,49 +978,43 @@ msgstr "AKTION ABBRECHEN"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1186
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1018
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr "NÄCHSTE"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
-#, fuzzy
 msgid "DISCONNECTED_CELLS"
-msgstr "Getrennte Organellen"
+msgstr "Getrennte Zellen"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
-#, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
-"Es gibt Organellen, die nicht mit dem Rest verbunden sind.\n"
-"Bitte verbinde alle platzierten Organellen miteinander oder mach deine Änderungen rückgängig."
+"Es gibt Zellen, die nicht mit dem Rest verbunden sind.\n"
+"Bitte verbinde alle platzierten Zellen miteinander oder mach deine Änderungen rückgängig."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "Verwendete Zellen nicht löschbar"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "Ein Zelltyp, der derzeit in deinem Körperplan verwendet wird, kann nicht gelöscht werden"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr "Neuen Speicherstand anlegen"
+msgstr "Neuen Zellentyp erstellen"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "Mein fantastischer Mod"
+msgstr "Du kannst neue Zelltypen hinzufügen, indem du Bestehende duplizierst und dann benennst. Zelltypen können modifiziert werden, um sie für verschiedene Aufgaben zu spezialisieren. Wenn ein Zellentyp geändert wird, werden alle platzierten Zellen dieses Typs aktualisiert."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
-#, fuzzy
 msgid "NEW_NAME_COLON"
-msgstr "Geschwindigkeit:"
+msgstr "Neuer Name:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:585
-#, fuzzy
 msgid "NEW_NAME"
-msgstr "Neues Spiel"
+msgstr "Neuer Name"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:73
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
@@ -1035,18 +1022,18 @@ msgid "LOADING_MICROBE_EDITOR"
 msgstr "Lade Mikrobeneditor"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:187
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:192
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:191
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo fehlgeschlagen"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:188
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:193
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:192
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Laufstatus:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "Wähle im Editor-Tab eine Zelle aus um sie hier zu editieren"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1588,24 +1575,24 @@ msgstr "Fehler beim Laden der Mods"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Ein Fehler trat beim Laden einer oder mehreren Modifikationen auf. Das Fehlerprotokoll enthält eventuell weitere informationen."
 
-#: ../src/general/OptionsMenu.cs:621 ../src/general/OptionsMenu.tscn:290
+#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Auflösung:"
 
-#: ../src/general/OptionsMenu.cs:923
+#: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standardausgabegerät"
 
-#: ../src/general/OptionsMenu.cs:955
+#: ../src/general/OptionsMenu.cs:956
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Diese Übersetzung ist sehr unvollständig ({0}% fertig). Bitte helfe uns dabei!"
 
-#: ../src/general/OptionsMenu.cs:959
+#: ../src/general/OptionsMenu.cs:960
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Diese Übersetzung ist noch in Arbeit ({0}% vollständig)"
 
-#: ../src/general/OptionsMenu.cs:963
+#: ../src/general/OptionsMenu.cs:964
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Diese Übersetzung ist zu {0}% vollständig"
 
@@ -1944,7 +1931,7 @@ msgid "SAVE_GAME"
 msgstr "Spiel speichern"
 
 #: ../src/general/PauseMenu.tscn:84
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:485
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Statistiken"
 
@@ -2332,8 +2319,9 @@ msgid "LICENSES_COVERING_THRIVE"
 msgstr "Die Lizenzen für Teile von Thrive werden hier angezeigt"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
+#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "Prototypen weiterentwickeln?"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
 #, fuzzy
@@ -2357,9 +2345,8 @@ msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Bearbeitung abschließen und zur Umgebung zurückkehren"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
-#, fuzzy
 msgid "NEXT_EDITOR_TAB"
-msgstr "Editor aktivieren"
+msgstr "Zum nächsten Tab des Editors wechseln"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
@@ -2608,7 +2595,7 @@ msgstr "Das bestimmende Merkmal der eukaryotischen Zellen. Zum Zellkern gehören
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1425
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
-msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um. Die Rate hängt von der Konventration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab."
+msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1426
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2756,7 +2743,7 @@ msgstr "Aktiviert/deaktiviert das Popup-Fenster mit der Warnung vor ungespeicher
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:370
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
 msgid "TEMPERATURE"
 msgstr "Temperatur"
 
@@ -2874,12 +2861,12 @@ msgstr "sehr wenig"
 #: ../src/microbe_stage/MicrobeHUD.cs:1156
 #: ../src/microbe_stage/MicrobeStage.tscn:1768
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Multizellulär werden ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1192
 #: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Makroskopisch werden ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeStage.cs:691
 msgid "PLAYER_REPRODUCED"
@@ -2928,8 +2915,8 @@ msgstr "Druck"
 #: ../src/microbe_stage/MicrobeStage.tscn:1146
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:712
 msgid "COMPOUNDS"
 msgstr "Substanzen"
 
@@ -2968,7 +2955,7 @@ msgstr "Suizid"
 #: ../src/microbe_stage/MicrobeStage.tscn:1767
 #: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr ""
+msgstr "Gehe zur nächsten Stufe des Spiels über (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1813
 msgid "POPULATION_CAPITAL"
@@ -3097,7 +3084,7 @@ msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Zellentypname"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1768
 msgid "FAILED"
@@ -3273,7 +3260,7 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "AKTUELLE POSITION"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:329
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Physikalische Bedingungen"
 
@@ -3283,8 +3270,8 @@ msgstr "Druck"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:511
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:669
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosphärische Gase"
 
@@ -3331,59 +3318,58 @@ msgstr "Mya"
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Zeit vergangen: {0:#,#} Jahre"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:201
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:204
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:215
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:218
 msgid "FOOD_CHAIN"
 msgstr "Nahrungskette"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:228
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:231
 msgid "TIMELINE"
 msgstr "Zeitleiste"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:281
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:284
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo Ergebnisse:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:300
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:303
 msgid "EXTERNAL_EFFECTS"
 msgstr "Externe Effekte:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:397
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:400
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "Globale Ereignisse anzeigen"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:406
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:413
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Lokale Ereignisse anzeigen"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:417
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:420
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:494
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:522
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:497
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:525
 msgid "SPECIES_POPULATION"
 msgstr "Spezienpopulation"
 
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:110
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Bericht"
 
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:130
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:133
 msgid "PATCH_MAP"
 msgstr "Gebietskarte"
 
-#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:170
-#, fuzzy
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
 msgid "CELL"
-msgstr "Zellulose"
+msgstr "Zelle"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
@@ -4004,9 +3990,11 @@ msgid "PLAYER_EXTINCT"
 msgstr "Spieler ist ausgestorben"
 
 #: ../src/saving/SaveHelper.cs:470
-#, fuzzy
 msgid "IN_PROTOTYPE"
-msgstr "Rotblindheit (Rot-Grün)"
+msgstr ""
+"Du spielst die späteren Prototypen, die dem Spiel beigefügt sind. \n"
+"Diese sind möglicherweise sehr unvollständig, verwenden Platzhaltergrafiken und sind im Allgemeinen sehr grob. \n"
+"Das Speichern ist daher derzeit nicht möglich."
 
 #: ../src/saving/SaveHelper.cs:478
 msgid "SAVING_SUCCEEDED"
