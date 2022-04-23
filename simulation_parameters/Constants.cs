@@ -241,6 +241,8 @@ public static class Constants
     /// </summary>
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
 
+    public const float MICROBE_REPRODUCTION_PROGRESS_INTERVAL = 0.05f;
+
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
     ///   is dealt to a microbe at a time when it is out of ATP.

@@ -34,6 +34,8 @@ public partial class Microbe
     [JsonProperty]
     private float lastCheckedATPDamage;
 
+    private float lastCheckedReproduction;
+
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the
     ///   current organelles. This is here to prevent anyone from
@@ -582,9 +584,6 @@ public partial class Microbe
     /// </remarks>
     private void HandleReproduction(float delta)
     {
-        // TODO: implement handling delta
-        _ = delta;
-
         // Dead cells can't reproduce
         if (Dead)
             return;
@@ -594,6 +593,14 @@ public partial class Microbe
             // Ready to reproduce already. Only the player gets here as other cells split and reset automatically
             return;
         }
+
+        lastCheckedReproduction += delta;
+
+        // Limit how often the reproduction logic is ran
+        if (lastCheckedReproduction < Constants.MICROBE_REPRODUCTION_PROGRESS_INTERVAL)
+            return;
+
+        lastCheckedReproduction = 0;
 
         // TODO: should we make it so that reproduction progress is only checked about max of 20 times per second?
         // might make a lot of cells use less CPU power
