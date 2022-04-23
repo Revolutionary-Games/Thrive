@@ -327,19 +327,20 @@ public class SpawnSystem
             return spawns;
         }
 
-        var enumerable = spawnType.Spawn(worldRoot, location);
-
-        if (enumerable == null)
-            return spawns;
-
-        using var spawner = enumerable.GetEnumerator();
-        while (spawner.MoveNext())
+        if (estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
         {
-            if (spawner.Current == null)
-                throw new NullReferenceException("spawn enumerator is not allowed to return null");
 
-            if (estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
+            var enumerable = spawnType.Spawn(worldRoot, location);
+
+            if (enumerable == null)
+                return spawns;
+
+            using var spawner = enumerable.GetEnumerator();
+            while (spawner.MoveNext())
             {
+                if (spawner.Current == null)
+                    throw new NullReferenceException("spawn enumerator is not allowed to return null");
+
                 ProcessSpawnedEntity(spawner.Current, spawnType);
                 spawns++;
                 estimateEntityCount++;
