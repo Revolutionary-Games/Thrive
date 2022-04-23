@@ -338,9 +338,12 @@ public class SpawnSystem
             if (spawner.Current == null)
                 throw new NullReferenceException("spawn enumerator is not allowed to return null");
 
-            // Spawned something
-            ProcessSpawnedEntity(spawner.Current, spawnType);
-            spawns++;
+            if (estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
+            {
+                ProcessSpawnedEntity(spawner.Current, spawnType);
+                spawns++;
+                estimateEntityCount++;
+            }
         }
 
         return spawns;
