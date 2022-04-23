@@ -51,6 +51,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     [JsonProperty]
     private bool isParticles;
 
+    [JsonProperty]
+    private float elapsedSinceProcess;
+
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
@@ -239,13 +242,32 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         if (delta <= 0)
             return;
 
-        VentCompounds(delta);
-
         if (isDissolving)
             HandleDissolving(delta);
 
+        if (isFadingParticles)
+        {
+            particleFadeTimer -= delta;
+
+            if (particleFadeTimer <= 0)
+            {
+                OnDestroyed();
+                this.DetachAndFree();
+            }
+        }
+
+        elapsedSinceProcess += delta;
+
+        // Skip some of our more expensive operations if not enough time has passed
+        // This doesn't actually seem to have that much effect with reasonable chunk counts... but doesn't seem
+        // to hurt either, so for the future I think we should keep this -hhyyrylainen
+        if (elapsedSinceProcess < Constants.FLOATING_CHUNK_PROCESS_INTERVAL)
+            return;
+
+        VentCompounds(elapsedSinceProcess);
+
         if (UsesDespawnTimer)
-            DespawnTimer += delta;
+            DespawnTimer += elapsedSinceProcess;
 
         // Check contacts
         foreach (var microbe in touchingMicrobes)
@@ -263,7 +285,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
                 }
                 else
                 {
-                    microbe.Damage(Damages * delta, DamageType);
+                    microbe.Damage(Damages * elapsedSinceProcess, DamageType);
                 }
             }
 
@@ -301,16 +323,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         if (DespawnTimer > Constants.DESPAWNING_CHUNK_LIFETIME)
             DissolveOrRemove();
 
-        if (isFadingParticles)
-        {
-            particleFadeTimer -= delta;
-
-            if (particleFadeTimer <= 0)
-            {
-                OnDestroyed();
-                this.DetachAndFree();
-            }
-        }
+        elapsedSinceProcess = 0;
     }
 
     public void OnDestroyed()

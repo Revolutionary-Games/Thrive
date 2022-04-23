@@ -209,6 +209,11 @@ public static class Constants
     /// </summary>
     public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
 
+    /// <summary>
+    ///   Limits how often floating chunks are processed to save on some performance
+    /// </summary>
+    public const float FLOATING_CHUNK_PROCESS_INTERVAL = 0.05f;
+
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 3000.0f;
 
     public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;
