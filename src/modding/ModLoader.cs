@@ -575,18 +575,18 @@ public class ModLoader : Node
 
         var className = info.Info.AssemblyModClass;
 
-        var type = assembly.GetTypes().FirstOrDefault(t => t.Name == className);
-        if (type == null)
-        {
-            GD.Print("No class with name \"", className, "\" found, can't finish loading mod assembly");
-            modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND"),
-                name, className)));
-            return false;
-        }
-
         try
         {
+            var type = assembly.GetTypes().FirstOrDefault(t => t.Name == className);
+            if (type == null)
+            {
+                GD.Print("No class with name \"", className, "\" found, can't finish loading mod assembly");
+                modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
+                    TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND"),
+                    name, className)));
+                return false;
+            }
+
             var mod = (IMod)Activator.CreateInstance(type);
 
             if (!mod.Initialize(modInterface!, info))
