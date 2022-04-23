@@ -2540,12 +2540,23 @@ msgstr "Qui sono mostrate le licenze coprenti parti di Thrive"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "Continuare allo stadio prototipi?"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
-msgstr "Protanopica (Rosso-Verde)"
+msgstr ""
+"Hai raggiunto la fine della parte \"completa\" di Thrive.\n"
+"Se lo desideri, puoi continuare con i prototipi della fase successiva "
+"inclusi nel gioco. Questi possono essere molto incompleti, utilizzano "
+"grafica placeholder e sono molto approssimativi in generale. Questi sono "
+"inclusi come parte del gioco per mostrare la potenziale direzione futura del "
+"gioco e la nostra visione generale di come le fasi sono collegate.\n"
+"\n"
+"Non sarai in grado di salvare se continui o tornare una volta che continui. "
+"Se vuoi tornare a questa fase, salva ora prima di procedere.\n"
+"\n"
+"Se scegli di continuare, ti preghiamo di comprendere che le fasi successive "
+"sono prototipi e di non lamentarti di quanto siano incomplete."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -4617,9 +4628,12 @@ msgid "PLAYER_EXTINCT"
 msgstr "Il giocatore si è estinto"
 
 #: ../src/saving/SaveHelper.cs:470
-#, fuzzy
 msgid "IN_PROTOTYPE"
-msgstr "Protanopica (Rosso-Verde)"
+msgstr ""
+"Stai giocando ai prototipi della fase successiva inclusi nel gioco.\n"
+"Questi possono essere molto incompleti, utilizzare grafica placeholder ed "
+"essere molto approssimativi in generale.\n"
+"In quanto tale salvare non è attualmente possibile."
 
 #: ../src/saving/SaveHelper.cs:478
 msgid "SAVING_SUCCEEDED"
