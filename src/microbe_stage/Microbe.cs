@@ -680,16 +680,18 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     public override void _EnterTree()
     {
+        base._EnterTree();
+
         if (IsPlayerMicrobe)
             CheatManager.OnPlayerDuplicationCheatUsed += OnPlayerDuplicationCheat;
     }
 
     public override void _ExitTree()
     {
+        base._ExitTree();
+
         if (IsPlayerMicrobe)
             CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
-
-        base._ExitTree();
     }
 
     public void AIThink(float delta, Random random, MicrobeAICommonData data)

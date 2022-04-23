@@ -630,6 +630,12 @@ public static class Constants
     /// <summary>
     ///   All Nodes tagged with this are considered Microbes that the AI can react to
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: quite a few of these AI_TAG starting constants need to be renamed as these are generally used to
+    ///     find relevant entities for things that aren't the AI system
+    ///   </para>
+    /// </remarks>
     public const string AI_TAG_MICROBE = "microbe";
 
     /// <summary>

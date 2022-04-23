@@ -268,6 +268,7 @@ public class ProcessSystem
         }
 
         var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.PROCESS_GROUP);
+        var nodeCount = nodes.Count;
 
         // Used to go from the calculated compound values to per second values for reporting statistics
         float inverseDelta = 1.0f / delta;
@@ -275,14 +276,14 @@ public class ProcessSystem
         // The objects are processed here in order to take advantage of threading
         var executor = TaskExecutor.Instance;
 
-        for (int i = 0; i < nodes.Count; i += Constants.PROCESS_OBJECTS_PER_TASK)
+        for (int i = 0; i < nodeCount; i += Constants.PROCESS_OBJECTS_PER_TASK)
         {
             int start = i;
 
             var task = new Task(() =>
             {
                 for (int a = start;
-                     a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodes.Count; ++a)
+                     a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodeCount; ++a)
                 {
                     ProcessNode(nodes[a] as IProcessable, delta, inverseDelta);
                 }
