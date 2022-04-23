@@ -170,7 +170,7 @@ public class PatchManager : IChildPropertiesLoadCallback
                 continue;
             }
 
-            var density = Mathf.Log(species.Population) * 0.01f;
+            var density = Mathf.Pow(species.Population, 0.25f) * 0.1f;
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
