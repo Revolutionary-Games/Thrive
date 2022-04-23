@@ -329,9 +329,8 @@ public class SpawnSystem
             return spawns;
         }
 
-        if (estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
+        if (spawnType is CompoundCloudSpawner || estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
         {
-
             var enumerable = spawnType.Spawn(worldRoot, location);
 
             if (enumerable == null)

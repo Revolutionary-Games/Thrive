@@ -24,7 +24,7 @@ public static class Constants
     /// </summary>
     public const float SPAWN_SECTOR_SIZE = 150.0f;
 
-    public const int CLOUD_SPAWN_SCALE_FACTOR = 50000;
+    public const int CLOUD_SPAWN_SCALE_FACTOR = 20000;
 
     /// <summary>
     ///   The (default) size of the hexagons, used in calculations. Don't change this.
