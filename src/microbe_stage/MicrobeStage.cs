@@ -671,7 +671,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         {
             daughter.BecomeFullyGrownMulticellularColony();
 
-            // TODO: add more extra offset between the player and the divided cell
+            // Back the daughter away so the player isn't stuck inside
+            while (daughter.Colony!.ColonyMembers.Any(member => member.GlobalTransform.origin.DistanceSquaredTo(Player.GlobalTransform.origin) < 50.0f))
+                daughter.Translation += new Vector3(0.0f, 0, -1.0f);
         }
 
         // Update the player's cell
