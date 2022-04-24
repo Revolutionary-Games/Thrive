@@ -1192,9 +1192,8 @@ msgstr ""
 
 #: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
 #: ../src/engine/PerformanceMetrics.tscn:60
-#, fuzzy
 msgid "FPS"
-msgstr "Макс. FPS:"
+msgstr "FPS: {0}"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
 msgid "LOADING"
@@ -4716,9 +4715,7 @@ msgstr "Не удалось обновить сохранение"
 #: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
-"Обновление указанного сохранения не удалось выполнить из-за следующей "
-"ошибки:\n"
-"{0}"
+"Обновление указанного сохранения не удалось выполнить из-за следующей ошибки:"
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
