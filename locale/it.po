@@ -83,7 +83,7 @@ msgstr ""
 "- giallo - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound];\n"
 "- arancione - [thrive:compound type=\"ammonia\"][/thrive:compound];\n"
 "- viola - [thrive:compound type=\"phosphates\"][/thrive:compound];\n"
-"- marrone - [thrive:compound type=\"iron\"][/thrive:compound].\n"
+"- marrone ruggine - [thrive:compound type=\"iron\"][/thrive:compound].\n"
 "\n"
 "Il [thrive:compound type=\"glucose\"][/thrive:compound] fornisce [thrive:"
 "compound type=\"atp\"][/thrive:compound]."
@@ -232,8 +232,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
 msgstr ""
-"Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere gli "
-"errori"
+"Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere "
+"eventuali errori"
 
 #: ../simulation_parameters/common/help_texts.json:126
 msgid "EASTEREGG_MESSAGE_1"
@@ -581,7 +581,7 @@ msgstr "Cattura la schermata"
 
 #: ../simulation_parameters/common/input_options.json:204
 msgid "SHOW_HELP"
-msgstr "Mostra la guida"
+msgstr "Mostra la finestra di aiuto"
 
 #: ../simulation_parameters/common/input_options.json:208
 msgid "TOGGLE_FULLSCREEN"
@@ -711,15 +711,15 @@ msgstr "Costiero"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1334
 msgid "UNDERWATERCAVE"
-msgstr "Caverna Sottomarina"
+msgstr "Caverna sottomarina"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1478
 msgid "ICESHELF"
-msgstr "Banchina Glaciale"
+msgstr "Banchina glaciale"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1554
 msgid "ICESHARD"
-msgstr "Scheggia di Ghiaccio"
+msgstr "Scheggia di ghiaccio"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1642
 msgid "ESTUARY"
@@ -727,7 +727,7 @@ msgstr "Estuario"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1787
 msgid "SEA_FLOOR"
-msgstr "Fondale Oceanico"
+msgstr "Fondale oceanico"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 msgid "ATP"
@@ -937,11 +937,11 @@ msgstr "Ciglia"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
-msgstr "Abortito."
+msgstr "Processo abortito."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
 msgid "FINISHED_DOT"
-msgstr "Completato."
+msgstr "Processo completato."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "NOT_RUNNING_DOT"
@@ -1261,19 +1261,19 @@ msgstr "End"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 msgid "KEY_LEFT"
-msgstr "Freccia sinistra"
+msgstr "🡐 Freccia sinistra"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "KEY_UP"
-msgstr "Freccia in alto"
+msgstr "🡑 Freccia in alto"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 msgid "KEY_RIGHT"
-msgstr "Freccia destra"
+msgstr "🡒 Freccia destra"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "KEY_DOWN"
-msgstr "Freccia in basso"
+msgstr "🡓 Freccia in basso"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
@@ -1389,15 +1389,15 @@ msgstr "Destra"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
 msgid "VOLUMEDOWN"
-msgstr "Abbassa Volume (tasto audio)"
+msgstr "Abbassa volume (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
 msgid "VOLUMEMUTE"
-msgstr "Volume Muto (tasto audio)"
+msgstr "Volume muto (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
 msgid "VOLUMEUP"
-msgstr "Alza Volume (tasto audio)"
+msgstr "Alza volume (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
@@ -1405,19 +1405,19 @@ msgstr "Bassboost (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "BASSUP"
-msgstr "Bass Up (tasto audio)"
+msgstr "Bass up (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "BASSDOWN"
-msgstr "Bass Down (tasto audio)"
+msgstr "Bass down (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "TREBLEUP"
-msgstr "Treble Up (tasto audio)"
+msgstr "Treble up (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
 msgid "TREBLEDOWN"
-msgstr "Treble Down (tasto audio)"
+msgstr "Treble down (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
@@ -1994,15 +1994,15 @@ msgstr "Mostra avvertimeto relativo ai progressi non salvati"
 
 #: ../src/general/OptionsMenu.tscn:1093
 msgid "CHEAT_KEYS_ENABLED"
-msgstr "Abilita trucchi"
+msgstr "Abilita i trucchi"
 
 #: ../src/general/OptionsMenu.tscn:1101
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr "Utilizza uno username personalizzato"
+msgstr "Utilizza un nome utente personalizzato"
 
 #: ../src/general/OptionsMenu.tscn:1112
 msgid "CUSTOM_USERNAME"
-msgstr "Username personalizzato:"
+msgstr "Nome utente personalizzato:"
 
 #: ../src/general/OptionsMenu.tscn:1138
 msgid "OPEN_SCREENSHOT_FOLDER"
@@ -3265,7 +3265,7 @@ msgstr "Scappa"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:492
 msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr "Diventa aggressivo/a"
+msgstr "Diventa aggressivo"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:495
 msgid "SIGNAL_TO_EMIT"
@@ -3339,7 +3339,7 @@ msgstr "il giocatore è morto"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:516
 msgid "AT_CURSOR"
-msgstr "Sotto il Cursore:"
+msgstr "Sotto il cursore:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:542
 msgid "NOTHING_HERE"
