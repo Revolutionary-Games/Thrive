@@ -70,7 +70,7 @@ public static class Constants
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
-    public const int PROCESS_OBJECTS_PER_TASK = 30;
+    public const int PROCESS_OBJECTS_PER_TASK = 15;
 
     public const int MICROBE_SPAWN_RADIUS = 170;
     public const int CLOUD_SPAWN_RADIUS = 170;
@@ -119,7 +119,7 @@ public static class Constants
     /// </summary>
     public const float MICROBE_AI_SIGNAL_REACT_INTERVAL = 1.2f;
 
-    public const int MICROBE_AI_OBJECTS_PER_TASK = 15;
+    public const int MICROBE_AI_OBJECTS_PER_TASK = 12;
 
     public const int INITIAL_SPECIES_POPULATION = 100;
 
