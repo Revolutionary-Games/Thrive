@@ -126,6 +126,22 @@ public class Jukebox : Node
         operations.Clear();
     }
 
+    /// <summary>
+    ///   Smoothly stops the currently playing music with fade out (doesn't preserve positions for when
+    ///   Resume is called)
+    /// </summary>
+    public void SmoothStop()
+    {
+        operations.Clear();
+        AddFadeOut();
+        operations.Enqueue(new Operation(_ =>
+        {
+            Pause();
+            StopStreams();
+            return true;
+        }));
+    }
+
     public override void _Process(float delta)
     {
         // https://github.com/Revolutionary-Games/Thrive/issues/1976
