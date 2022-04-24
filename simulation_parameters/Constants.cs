@@ -69,7 +69,7 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 7.0f;
+    public const float FLAGELLA_ENERGY_COST = 4.0f;
 
     public const float FLAGELLA_BASE_FORCE = 75.7f;
 
