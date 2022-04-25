@@ -62,7 +62,7 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 7.0f;
+    public const float FLAGELLA_ENERGY_COST = 4.0f;
 
     public const float FLAGELLA_BASE_FORCE = 75.7f;
 
@@ -659,6 +659,8 @@ public static class Constants
     public const string SAVE_FOLDER = "user://saves";
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
+
+    public const int MAX_PATH_LENGTH = 1024;
 
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 

@@ -1186,7 +1186,7 @@ public partial class Microbe
     private bool CanBindToMicrobe(Microbe other)
     {
         // Cannot hijack the player, other species or other colonies (TODO: yet)
-        return !other.IsPlayerMicrobe && other.Colony == null && other.Species == Species;
+        return !other.Dead && !other.IsPlayerMicrobe && other.Colony == null && other.Species == Species;
     }
 
     private void CheckBinding()
