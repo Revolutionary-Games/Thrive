@@ -408,7 +408,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         FluidSystem.Process(delta);
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);
-        floatingChunkSystem.Process(delta);
+        floatingChunkSystem.Process(delta, Player?.Translation);
         microbeAISystem.Process(delta);
         microbeSystem.Process(delta);
 

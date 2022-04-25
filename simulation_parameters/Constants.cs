@@ -214,6 +214,11 @@ public static class Constants
     /// </summary>
     public const float FLOATING_CHUNK_PROCESS_INTERVAL = 0.05f;
 
+    /// <summary>
+    ///   If more chunks exist at once than this, then some are forced to dissolve immediately
+    /// </summary>
+    public const int FLOATING_CHUNK_MAX_COUNT = 50;
+
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 3000.0f;
 
     public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;

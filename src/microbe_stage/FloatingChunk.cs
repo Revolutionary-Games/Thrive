@@ -311,6 +311,30 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         elapsedSinceProcess = 0;
     }
 
+    public void PopImmediately(CompoundCloudSystem compoundClouds)
+    {
+        // Vent all remaining compounds immediately
+        if (ContainedCompounds != null)
+        {
+            var pos = Translation;
+
+            var keys = new List<Compound>(ContainedCompounds.Compounds.Keys);
+
+            foreach (var compound in keys)
+            {
+                var amount = ContainedCompounds.GetCompoundAmount(compound);
+
+                if (amount < MathUtils.EPSILON)
+                    continue;
+
+                VentCompound(pos, compound, amount, compoundClouds);
+            }
+        }
+
+        OnDestroyed();
+        this.DetachAndFree();
+    }
+
     public void OnDestroyed()
     {
         AliveMarker.Alive = false;
