@@ -420,12 +420,8 @@ public partial class Microbe
 
         foreach (var entry in totalCompounds)
         {
-            float gathered = 0;
-
-            if (gatheredCompounds.ContainsKey(entry.Key))
-                gathered = gatheredCompounds[entry.Key];
-
-            totalFraction += gathered / entry.Value;
+            if (gatheredCompounds.TryGetValue(entry.Key, out var gathered))
+                totalFraction += gathered / entry.Value;
         }
 
         return totalFraction / totalCompounds.Count;

@@ -517,14 +517,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             storage.AddCompound(compound, taken);
 
             // Keep track of total compounds absorbed for the cell
-            if (!totals.ContainsKey(compound))
-            {
-                totals.Add(compound, taken);
-            }
-            else
-            {
-                totals[compound] += taken;
-            }
+            totals.TryGetValue(compound, out var existingValue);
+            totals[compound] = existingValue + taken;
         }
     }
 

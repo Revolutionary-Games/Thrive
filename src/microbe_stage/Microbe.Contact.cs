@@ -474,10 +474,7 @@ public partial class Microbe
         {
             foreach (var entry in organelle.Definition.InitialComposition)
             {
-                float existing = 0;
-
-                if (compoundsToRelease.ContainsKey(entry.Key))
-                    existing = compoundsToRelease[entry.Key];
+                compoundsToRelease.TryGetValue(entry.Key, out var existing);
 
                 compoundsToRelease[entry.Key] = existing + (entry.Value *
                     Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE);

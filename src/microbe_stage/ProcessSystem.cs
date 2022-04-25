@@ -83,19 +83,15 @@ public class ProcessSystem
             {
                 var processData = CalculateProcessMaximumSpeed(process, biome);
 
-                if (processData.WritableInputs.ContainsKey(ATP))
+                if (processData.WritableInputs.TryGetValue(ATP, out var amount))
                 {
-                    var amount = processData.WritableInputs[ATP];
-
                     processATPConsumption += amount;
 
                     result.AddConsumption(organelle.Definition.InternalName, amount);
                 }
 
-                if (processData.WritableOutputs.ContainsKey(ATP))
+                if (processData.WritableOutputs.TryGetValue(ATP, out amount))
                 {
-                    var amount = processData.WritableOutputs[ATP];
-
                     processATPProduction += amount;
 
                     result.AddProduction(organelle.Definition.InternalName, amount);
@@ -318,10 +314,10 @@ public class ProcessSystem
 
     private static float GetDissolvedInBiome(Compound compound, BiomeConditions biome)
     {
-        if (!biome.Compounds.ContainsKey(compound))
+        if (!biome.Compounds.TryGetValue(compound, out var environmentalCompoundProperties))
             return 0;
 
-        return biome.Compounds[compound].Dissolved;
+        return environmentalCompoundProperties.Dissolved;
     }
 
     private void ProcessNode(IProcessable? processor, float delta, float inverseDelta)
