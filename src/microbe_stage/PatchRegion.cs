@@ -16,6 +16,7 @@ public class PatchRegion
 
     [JsonProperty]
     public LocalizedString Name { get; private set; }
+    public string RegionType = null!;
 
     /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI
@@ -42,20 +43,34 @@ public class PatchRegion
     public void AddPatch(Patch patch)
     {
         Patches.Add(patch);
-        Update();
     }
 
-    public void Update()
+    public void Build()
     {
         Patches.Sort((x,y) => x.Depth[1].CompareTo(y.Depth[1]));
-
-        foreach (Patch patch in Patches)
+        
+        for (int i = 0; i < Patches.Count - 1; i++)
         {
-            
+            if (RegionType == "sea" || RegionType == "ocean")
+            {
+                LinkPatches(Patches[i], Patches[i+1]);
+            }
+
+            if (RegionType == "continent")
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (j != i)
+                    {
+                        LinkPatches(Patches[i], Patches[j]);
+                    }
+                }
+
+            }
         }
 
         // IF patches start at the same hieght make the region wider on the screen, 
-        // and put the patches horizontally near each
+        // and put the patches horizontally near eachother
         for (int i = 0; i < Patches.Count - 1; i++)
         {
             if (Patches[i].Depth[0] == Patches[i + 1].Depth[0])
@@ -68,7 +83,13 @@ public class PatchRegion
 
         Height = 64f * Patches.Count + (Patches.Count + 1) * PatchMargin;
 
-
     }
+
+    private void LinkPatches(Patch patch1, Patch patch2)
+    {
+        patch1.AddNeighbour(patch2);
+        patch2.AddNeighbour(patch1);
+    }
+
 
 }

@@ -17,6 +17,8 @@ public class PatchMap
     [JsonProperty]
     public Dictionary<int, Patch> Patches { get; private set; } = new();
 
+    [JsonProperty]
+    public Dictionary<int, PatchRegion> Regions { get; private set; } = new();
     /// <summary>
     ///   Currently active patch (the one player is in)
     /// </summary>
@@ -52,6 +54,20 @@ public class PatchMap
         }
 
         Patches[patch.ID] = patch;
+    }
+
+    /// <summary>
+    ///   Adds a new patch to the map. Throws if can't add
+    /// </summary>
+    public void AddRegion(PatchRegion region)
+    {
+        if (Patches.ContainsKey(region.ID))
+        {
+            throw new ArgumentException(
+                "patch cannot be added to this map, the ID is already in use: " + region.ID);
+        }
+
+        Regions[region.ID] = region;
     }
 
     /// <summary>
