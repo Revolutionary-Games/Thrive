@@ -295,7 +295,7 @@ public static class Constants
     /// <summary>
     ///   The force multiplier when a cell is getting pulled inside an engulfing cell.
     /// </summary>
-    public const float ENGULFING_PULL_SPEED = 15.5f;
+    public const float ENGULFING_PULL_SPEED = 19.5f;
 
     /// <summary>
     ///   The minimum size ratio between a cell and a possible engulfing victim.
