@@ -549,7 +549,7 @@ public partial class Microbe
 
             // Finally spawn a chunk with the settings
             var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
-                chunkScene, cloudSystem!, random);
+                chunkScene, random);
 
             // Add to the spawn system to make these chunks limit possible number of entities
             SpawnSystem.AddEntityToTrack(chunk);
