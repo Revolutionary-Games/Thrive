@@ -217,7 +217,7 @@ public static class Constants
     /// <summary>
     ///   If more chunks exist at once than this, then some are forced to dissolve immediately
     /// </summary>
-    public const int FLOATING_CHUNK_MAX_COUNT = 50;
+    public const int FLOATING_CHUNK_MAX_COUNT = 35;
 
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 3000.0f;
 
