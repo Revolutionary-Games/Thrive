@@ -110,6 +110,17 @@ public class PatchMapDrawer : Control
         if (Map == null)
             return;
 
+        foreach (var entry in Map.Regions)
+        {
+            foreach (var adjacent in entry.Value.Adjacent)
+            {
+                var start = RegionCenter(entry.Value);
+                var end = RegionCenter(adjacent);
+
+                DrawNodeLink(start, end);
+            }
+        }
+
         // This ends up drawing duplicates but that doesn't seem problematic ATM
         foreach (var entry in Map.Patches)
         {
@@ -121,6 +132,11 @@ public class PatchMapDrawer : Control
                 DrawNodeLink(start, end);
             }
         }
+    }
+
+    private Vector2 RegionCenter(PatchRegion region)
+    {
+        return new Vector2(region.ScreenCoordinates.x + region.Width / 2, region.ScreenCoordinates.y + region.Height / 2);
     }
 
     private Vector2 Center(Vector2 pos)
