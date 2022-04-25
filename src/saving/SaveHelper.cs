@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 using Path = System.IO.Path;
+using System.Text.RegularExpressions;
 
 /// <summary>
 ///   Helper functions for making the places in code dealing with saves shorter
@@ -239,9 +240,9 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Counts the total number of saves and how many bytes they take up
+    ///   Counts the total number of saves with the given regex expression and how many bytes they take up
     /// </summary>
-    public static (int Count, ulong DiskSpace) CountSaves(string? nameContains = null)
+    public static (int Count, ulong DiskSpace) CountSaves(Regex? nameContains = null)
     {
         int count = 0;
         ulong totalSize = 0;
@@ -249,7 +250,7 @@ public static class SaveHelper
         using var file = new File();
         foreach (var save in CreateListOfSaves())
         {
-            if (nameContains == null || save.Contains(nameContains))
+            if (nameContains == null || nameContains.IsMatch(save))
             {
                 if (file.Open(Path.Combine(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
                 {
@@ -295,16 +296,16 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Deletes all saves with the given string except the latest one and returns the list of saves deleted
+    ///   Deletes all saves with the given regex expression except the latest one and returns the list of saves deleted
     /// </summary>
-    public static List<string> CleanUpOldSavesOfType(string nameContains)
+    public static List<string> CleanUpOldSavesOfType(Regex nameContains)
     {
         bool isLatestSave = true;
         var savesDeleted = new List<string>();
 
         foreach (var save in CreateListOfSaves())
         {
-            if (save.Contains(nameContains))
+            if (nameContains.IsMatch(save))
             {
                 if (isLatestSave)
                 {
