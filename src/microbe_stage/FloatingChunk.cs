@@ -339,6 +339,12 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     {
     }
 
+    public void OnEjected()
+    {
+        // Just dissolve this chunk entirely (as it's already somehow broken down by digestion?)
+        DissolveOrRemove();
+    }
+
     /// <summary>
     ///   Vents compounds if this is a chunk that contains compounds
     /// </summary>

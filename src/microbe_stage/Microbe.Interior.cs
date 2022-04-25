@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Main script on each cell in the game.
 ///   Partial class: Compounds, ATP, Reproduction
-///   Divide, Organelles, Toxin, Digestion
+///   Divide, Organelles, Toxin, Digestion, Decay
 /// </summary>
 public partial class Microbe
 {
@@ -33,6 +33,9 @@ public partial class Microbe
 
     [JsonProperty]
     private float lastCheckedATPDamage;
+
+    [JsonProperty]
+    private float lastCheckedOxytoxyDigestionDamage;
 
     [JsonProperty]
     private float dissolveEffectValue;
@@ -1066,7 +1069,7 @@ public partial class Microbe
     {
         var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
-        for (int i = engulfedObjects.Count - 1; i >= 0; i--)
+        for (int i = engulfedObjects.Count - 1; i >= 0; --i)
         {
             var engulfedObject = engulfedObjects[i];
 
@@ -1085,8 +1088,18 @@ public partial class Microbe
                 var added = Compounds.AddCompound(compound.Key, taken);
                 SpawnEjectedCompound(compound.Key, taken - added);
 
-                if (compound.Key == oxytoxy)
-                    Damage(added * Constants.ENGULF_TOXIC_COMPOUND_ABSORB_DAMAGE_MULTIPLIER, "oxytoxy");
+                if (compound.Key == oxytoxy && added > 0)
+                {
+                    lastCheckedOxytoxyDigestionDamage += delta;
+
+                    if (lastCheckedOxytoxyDigestionDamage >=
+                        Constants.ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION)
+                    {
+                        lastCheckedOxytoxyDigestionDamage -=
+                            Constants.ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION;
+                        Damage(MaxHitpoints * added, "oxytoxy");
+                    }
+                }
             }
 
             var engulfable = engulfedObject.Engulfable.Value;
@@ -1108,8 +1121,11 @@ public partial class Microbe
             if (engulfedSize > Size)
                 EjectEngulfable(engulfable);
         }
+    }
 
-        // Handle ejected cell that has previously been ingested
+    private void HandleDecay(float delta)
+    {
+        // Handle regurgitaed cell that has previously been ingested
         if (!IsIngested)
         {
             if (DigestionProgress >= 0.3f)

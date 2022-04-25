@@ -367,10 +367,6 @@ public partial class Microbe
     /// </summary>
     public bool CanEngulf(IEngulfable target)
     {
-        // Limit amount of things that can be engulfed at once
-        if (engulfedSize >= Size || engulfedSize + target.Size >= Size)
-            return false;
-
         // Log error if trying to engulf something that is disposed, we got a crash log trace with an error with that
         // TODO: find out why disposed microbes can be attempted to be engulfed
         try
@@ -387,6 +383,10 @@ public partial class Microbe
             return false;
         }
 
+        // Limit amount of things that can be engulfed at once
+        if (engulfedSize >= Size || engulfedSize + target.Size >= Size)
+            return false;
+
         // Disallow cannibalism
         if (target is Microbe microbe && microbe.Species == Species)
             return false;
@@ -402,6 +402,11 @@ public partial class Microbe
     public void OnEngulfed()
     {
         OnIngested?.Invoke(this, HostileEngulfer.Value!);
+    }
+
+    public void OnEjected()
+    {
+        // This will already be handled by HandleDecay()
     }
 
     /// <summary>
@@ -1296,15 +1301,19 @@ public partial class Microbe
         body.ReParent(this);
         body.GlobalTransform = temp;
 
-        var tween = new Tween();
-        body.AddChild(tween);
-        tween.Connect("tween_all_completed", this, nameof(OnIngestAnimationFinished), new Array { body });
-        tween.Connect("tween_all_completed", tween, "queue_free");
-        tween.InterpolateProperty(body, "scale", null, body.Scale / 2, 2.0f);
-        var finalPosition = new Vector3(
-            random.Next(0.0f, body.Translation.x), body.Translation.y, random.Next(0.0f, body.Translation.z));
-        tween.InterpolateProperty(body, "translation", null, finalPosition, 2.0f);
-        tween.Start();
+        // Delay this to avoid potential AddChild call failing due to parent node being busy error
+        Invoke.Instance.Queue(() =>
+        {
+            var tween = new Tween();
+            body.AddChild(tween);
+            tween.Connect("tween_all_completed", this, nameof(OnIngestAnimationFinished), new Array { body });
+            tween.Connect("tween_all_completed", tween, "queue_free");
+            tween.InterpolateProperty(body, "scale", null, body.Scale / 2, 1.0f);
+            var finalPosition = new Vector3(
+                random.Next(0.0f, body.Translation.x), body.Translation.y, random.Next(0.0f, body.Translation.z));
+            tween.InterpolateProperty(body, "translation", null, finalPosition, 1.5f);
+            tween.Start();
+        });
     }
 
     /// <summary>
@@ -1329,6 +1338,7 @@ public partial class Microbe
         }
 
         target.IsIngested = false;
+        target.OnEjected();
 
         engulfedSize -= target.Size;
 
@@ -1343,7 +1353,15 @@ public partial class Microbe
         body.ReParent(GetParent());
         body.GlobalTransform = temp;
 
-        body.Scale = Vector3.One;
+        // Delay this to avoid potential AddChild call failing due to parent node being busy error
+        Invoke.Instance.Queue(() =>
+        {
+            var tween = new Tween();
+            body.AddChild(tween);
+            tween.Connect("tween_all_completed", tween, "queue_free");
+            tween.InterpolateProperty(body, "scale", body.Scale / 2, Vector3.One, 1.0f);
+            tween.Start();
+        });
     }
 
     private bool CanBindToMicrobe(IEngulfable other)

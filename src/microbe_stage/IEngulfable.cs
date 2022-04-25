@@ -25,4 +25,9 @@ public interface IEngulfable : IEntity
     ///   Called when this engulfable has been ingested by a microbe.
     /// </summary>
     void OnEngulfed();
+
+    /// <summary>
+    ///   Called when this engulfable has been ejected/regurgitated by a microbe.
+    /// </summary>
+    void OnEjected();
 }

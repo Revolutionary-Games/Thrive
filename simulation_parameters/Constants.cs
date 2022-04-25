@@ -307,7 +307,7 @@ public static class Constants
     /// </summary>
     public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 1.3f;
 
-    public const float ENGULF_TOXIC_COMPOUND_ABSORB_DAMAGE_MULTIPLIER = 5.0f;
+    public const float ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION = 0.9f;
 
     /// <summary>
     ///   How much ATP does binding mode cost per second
