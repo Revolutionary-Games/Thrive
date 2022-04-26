@@ -105,7 +105,7 @@ public static class SaveUpgrader
 
     public static bool IsSaveABackup(string saveName)
     {
-        return Constants.BACKUP_REGEX.IsMatch(Constants.SAVE_BACKUP_SUFFIX);
+        return Constants.BackupRegex.IsMatch(saveName);
     }
 
     public static string RemoveBackupSuffix(string saveName)
