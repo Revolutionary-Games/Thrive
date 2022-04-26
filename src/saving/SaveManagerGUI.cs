@@ -165,9 +165,12 @@ public class SaveManagerGUI : Control
         refreshing = true;
 
         getTotalSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves());
-        getAutoSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.AutoSaveRegex));
-        getQuickSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.QuickSaveRegex));
-        getBackupCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.BackupRegex));
+        getAutoSaveCountTask =
+            new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.AutoSaveRegex));
+        getQuickSaveCountTask =
+            new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.QuickSaveRegex));
+        getBackupCountTask =
+            new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.BackupRegex));
 
         TaskExecutor.Instance.AddTask(getTotalSaveCountTask);
         TaskExecutor.Instance.AddTask(getAutoSaveCountTask);
