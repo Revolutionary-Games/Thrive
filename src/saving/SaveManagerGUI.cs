@@ -165,9 +165,9 @@ public class SaveManagerGUI : Control
         refreshing = true;
 
         getTotalSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves());
-        getAutoSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.AUTO_SAVE_REGEX));
-        getQuickSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.QUICK_SAVE_REGEX));
-        getBackupCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.BACKUP_REGEX));
+        getAutoSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.AutoSaveRegex));
+        getQuickSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.QuickSaveRegex));
+        getBackupCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves(Constants.BackupRegex));
 
         TaskExecutor.Instance.AddTask(getTotalSaveCountTask);
         TaskExecutor.Instance.AddTask(getAutoSaveCountTask);
@@ -251,17 +251,17 @@ public class SaveManagerGUI : Control
 
     private void OnConfirmDeleteOld()
     {
-        string message = string.Join(", ", SaveHelper.CleanUpOldSavesOfType(Constants.AUTO_SAVE_REGEX));
+        string message = string.Join(", ", SaveHelper.CleanUpOldSavesOfType(Constants.AutoSaveRegex));
 
         if (message.Length > 0)
             message += ", ";
 
-        message += string.Join(", ", SaveHelper.CleanUpOldSavesOfType(Constants.QUICK_SAVE_REGEX));
+        message += string.Join(", ", SaveHelper.CleanUpOldSavesOfType(Constants.QuickSaveRegex));
 
         if (message.Length > 0)
             message += ", ";
 
-        message += string.Join(", ", SaveHelper.CleanUpOldSavesOfType(Constants.BACKUP_REGEX, true));
+        message += string.Join(", ", SaveHelper.CleanUpOldSavesOfType(Constants.BackupRegex, true));
 
         GD.Print("Deleted save(s): ", message);
 
