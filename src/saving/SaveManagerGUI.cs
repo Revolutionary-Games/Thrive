@@ -261,7 +261,7 @@ public class SaveManagerGUI : Control
         if (message.Length > 0)
             message += ", ";
 
-        message += string.Join(", ", SaveHelper.CleanUpOldSavesOfType(Constants.BACKUP_REGEX));
+        message += string.Join(", ", SaveHelper.CleanUpOldSavesOfType(Constants.BACKUP_REGEX, true));
 
         GD.Print("Deleted save(s): ", message);
 
