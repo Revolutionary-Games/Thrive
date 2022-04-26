@@ -69,25 +69,15 @@ public class EnergyBalanceInfo
 
     public void AddConsumption(string groupName, float amount)
     {
-        if (!Consumption.ContainsKey(groupName))
-        {
-            Consumption[groupName] = amount;
-        }
-        else
-        {
-            Consumption[groupName] += amount;
-        }
+        Consumption.TryGetValue(groupName, out var existing);
+
+        Consumption[groupName] = existing + amount;
     }
 
     public void AddProduction(string groupName, float amount)
     {
-        if (!Production.ContainsKey(groupName))
-        {
-            Production[groupName] = amount;
-        }
-        else
-        {
-            Production[groupName] += amount;
-        }
+        Production.TryGetValue(groupName, out var existing);
+
+        Production[groupName] = existing + amount;
     }
 }

@@ -281,6 +281,9 @@ Code style rules
 
 - Don't add a `Dispose` method to classes that don't need it.
 
+- Use `TryGetValue` instead of first calling `Dictionary.ContainsKey`
+  and then reading the value separate because `TryGetValue` is faster.
+
 - Base method calls should be at the start of the method, unless
   something really has to happen before them. This is to make it
   easier see that the base method is called and not forgotten. Often

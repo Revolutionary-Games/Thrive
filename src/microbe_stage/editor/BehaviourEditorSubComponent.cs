@@ -3,7 +3,7 @@ using Godot;
 using Newtonsoft.Json;
 
 [DeserializedCallbackTarget]
-[IgnoreNoMethodsTakingInputAttribute]
+[IgnoreNoMethodsTakingInput]
 [SceneLoadedClass("res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn", UsesEarlyResolve = false)]
 public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
 {

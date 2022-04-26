@@ -37,6 +37,15 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         this.organelle = null;
     }
 
+    /// <summary>
+    ///   Positions the external organelle the right way
+    /// </summary>
+    /// <param name="elapsed">Time since last frame</param>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: in profiling this is quite a hot spot so this should be optimized for when this needs to run
+    ///   </para>
+    /// </remarks>
     public virtual void Update(float elapsed)
     {
         // TODO: it would be nicer if this were notified when the

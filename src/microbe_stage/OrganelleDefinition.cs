@@ -235,9 +235,9 @@ public class OrganelleDefinition : IRegistryType
         // The rotations repeat every 6 steps
         rotation %= 6;
 
-        if (!rotatedHexesCache.ContainsKey(rotation))
+        if (!rotatedHexesCache.TryGetValue(rotation, out var rotated))
         {
-            var rotated = new List<Hex>();
+            rotated = new List<Hex>();
 
             foreach (var hex in Hexes)
             {
@@ -247,7 +247,7 @@ public class OrganelleDefinition : IRegistryType
             rotatedHexesCache[rotation] = rotated;
         }
 
-        return rotatedHexesCache[rotation];
+        return rotated;
     }
 
     public Vector3 CalculateCenterOffset()

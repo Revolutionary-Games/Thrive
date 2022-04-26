@@ -968,13 +968,13 @@
         {
             long totalPopulation = 0;
 
-            if (!results.ContainsKey(species))
+            if (!results.TryGetValue(species, out var speciesResult))
             {
                 GD.PrintErr("RunResults: no species entry found for counting spread population");
                 return -1;
             }
 
-            foreach (var entry in results[species].SpreadToPatches)
+            foreach (var entry in speciesResult.SpreadToPatches)
             {
                 if (entry.From == targetPatch)
                 {
