@@ -92,7 +92,7 @@ public class SpawnSystem
     public static void AddEntityToTrack(ISpawned entity,
         float radius = Constants.MICROBE_SPAWN_RADIUS + Constants.DESPAWN_RADIUS_OFFSET)
     {
-        entity.DespawnRadiusSquared = (int)(radius * radius);
+        entity.DespawnRadiusSquared = (int)Mathf.Pow(radius, 2.0f);
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
@@ -105,10 +105,10 @@ public class SpawnSystem
     {
         spawner.SpawnRadius = spawnRadius;
         spawner.SpawnFrequency = 122;
-        spawner.SpawnRadiusSquared = spawnRadius * spawnRadius;
+        spawner.SpawnRadiusSquared = (int)Mathf.Pow(spawnRadius, 2.0f);
 
         float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
-        spawner.MinSpawnRadiusSquared = minSpawnRadius * minSpawnRadius;
+        spawner.MinSpawnRadiusSquared = (int)Mathf.Pow(minSpawnRadius, 2.0f);
 
         spawner.SetFrequencyFromDensity(spawnDensity);
         spawnTypes.Add(spawner);
@@ -445,7 +445,7 @@ public class SpawnSystem
     private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
     {
         float radius = spawnType.SpawnRadius + Constants.DESPAWN_RADIUS_OFFSET;
-        entity.DespawnRadiusSquared = (int)(radius * radius);
+        entity.DespawnRadiusSquared = (int)Mathf.Pow(radius, 2.0f);
 
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }

@@ -106,7 +106,7 @@ public static class SpawnHelpers
         Vector3 playerPosition, Node worldRoot, PackedScene microbeScene,
         CompoundCloudSystem cloudSystem, GameProperties currentGame, Random random)
     {
-        var curSpawn = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
+        var locationOffset = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
         // Three kinds of colonies are supported, line colonies and clump colonies and Networks
         if (random.Next(0, 5) < 2)
@@ -116,17 +116,17 @@ public static class SpawnHelpers
                      Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
             {
                 // Skip spawning this microbe if it would spawn outside of the despawn radius
-                float distanceSquared = (playerPosition - (location + curSpawn)).LengthSquared();
+                float distanceSquared = (playerPosition - (location + locationOffset)).LengthSquared();
                 float despawnRadius = Constants.MICROBE_SPAWN_RADIUS + Constants.DESPAWN_RADIUS_OFFSET;
-                if (distanceSquared < despawnRadius * despawnRadius)
+                if (distanceSquared < Mathf.Pow(despawnRadius, 2.0f))
                 {
                     // Dont spawn them on top of each other because it
                     // causes them to bounce around and lag
-                    yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                    yield return SpawnMicrobe(species, location + locationOffset, worldRoot, microbeScene, true,
                         cloudSystem, currentGame);
                 }
 
-                curSpawn = curSpawn + new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
+                locationOffset = locationOffset + new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
             }
         }
         else if (random.Next(0, 31) > 2)
@@ -140,17 +140,17 @@ public static class SpawnHelpers
                      Constants.MAX_BACTERIAL_LINE_SIZE + 1); i++)
             {
                 // Skip spawning this microbe if it would spawn outside of the despawn radius
-                float distanceSquared = (playerPosition - (location + curSpawn)).LengthSquared();
+                float distanceSquared = (playerPosition - (location + locationOffset)).LengthSquared();
                 float despawnRadius = Constants.MICROBE_SPAWN_RADIUS + Constants.DESPAWN_RADIUS_OFFSET;
-                if (distanceSquared < despawnRadius * despawnRadius)
+                if (distanceSquared < Mathf.Pow(despawnRadius, 2.0f))
                 {
                     // Dont spawn them on top of each other because it
                     // Causes them to bounce around and lag
-                    yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                    yield return SpawnMicrobe(species, location + locationOffset, worldRoot, microbeScene, true,
                         cloudSystem, currentGame);
                 }
 
-                curSpawn = curSpawn + new Vector3(line + random.Next(-2, 3), 0, line + random.Next(-2, 3));
+                locationOffset = locationOffset + new Vector3(line + random.Next(-2, 3), 0, line + random.Next(-2, 3));
             }
         }
         else
@@ -162,8 +162,8 @@ public static class SpawnHelpers
             // To prevent bacteria being spawned on top of each other
             var vertical = false;
 
-            var colony = new ColonySpawnInfo(false, random, species, cloudSystem, currentGame, curSpawn, microbeScene,
-                worldRoot);
+            var colony = new ColonySpawnInfo(false, random, species, cloudSystem, currentGame, locationOffset,
+                microbeScene, worldRoot);
 
             for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
                      Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
@@ -314,21 +314,21 @@ public static class SpawnHelpers
 
             if (colony.Horizontal)
             {
-                colony.CurSpawn.x += colony.Random.Next(5, 8);
-                colony.CurSpawn.z += colony.Random.Next(-2, 3);
+                colony.LocationOffset.x += colony.Random.Next(5, 8);
+                colony.LocationOffset.z += colony.Random.Next(-2, 3);
             }
             else
             {
-                colony.CurSpawn.z += colony.Random.Next(5, 8);
-                colony.CurSpawn.x += colony.Random.Next(-2, 3);
+                colony.LocationOffset.z += colony.Random.Next(5, 8);
+                colony.LocationOffset.x += colony.Random.Next(-2, 3);
             }
 
             // Skip spawning this microbe if it would spawn outside of the despawn radius
-            float distanceSquared = (playerPosition - (location + colony.CurSpawn)).LengthSquared();
+            float distanceSquared = (playerPosition - (location + colony.LocationOffset)).LengthSquared();
             float despawnRadius = Constants.MICROBE_SPAWN_RADIUS + Constants.DESPAWN_RADIUS_OFFSET;
-            if (distanceSquared < despawnRadius * despawnRadius)
+            if (distanceSquared < Mathf.Pow(despawnRadius, 2.0f))
             {
-                yield return SpawnMicrobe(colony.Species, location + colony.CurSpawn, colony.WorldRoot,
+                yield return SpawnMicrobe(colony.Species, location + colony.LocationOffset, colony.WorldRoot,
                     colony.MicrobeScene, true, colony.CloudSystem, colony.CurrentGame);
             }
         }
@@ -339,21 +339,21 @@ public static class SpawnHelpers
         public Species Species;
         public Node WorldRoot;
         public PackedScene MicrobeScene;
-        public Vector3 CurSpawn;
+        public Vector3 LocationOffset;
         public bool Horizontal;
         public Random Random;
         public CompoundCloudSystem CloudSystem;
         public GameProperties CurrentGame;
 
         public ColonySpawnInfo(bool horizontal, Random random, Species species, CompoundCloudSystem cloudSystem,
-            GameProperties currentGame, Vector3 curSpawn, PackedScene microbeScene, Node worldRoot)
+            GameProperties currentGame, Vector3 locationOffset, PackedScene microbeScene, Node worldRoot)
         {
             Horizontal = horizontal;
             Random = random;
             Species = species;
             CloudSystem = cloudSystem;
             CurrentGame = currentGame;
-            CurSpawn = curSpawn;
+            LocationOffset = locationOffset;
             MicrobeScene = microbeScene;
             WorldRoot = worldRoot;
         }
