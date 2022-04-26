@@ -35,20 +35,20 @@
             {
                 foreach (var process in organelle.Definition.RunnableProcesses)
                 {
-                    if (process.Process.Inputs.ContainsKey(compound))
+                    if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
                     {
                         var processEfficiency = ProcessSystem.CalculateProcessMaximumSpeed(
                             process, patch.Biome).Efficiency;
 
-                        if (process.Process.Outputs.ContainsKey(glucose))
+                        if (process.Process.Outputs.TryGetValue(glucose, out var glucoseAmount))
                         {
-                            energyCreationScore += process.Process.Outputs[glucose] / process.Process.Inputs[compound]
+                            energyCreationScore += glucoseAmount / inputAmount
                                 * processEfficiency * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
                         }
 
-                        if (process.Process.Outputs.ContainsKey(atp))
+                        if (process.Process.Outputs.TryGetValue(atp, out var atpAmount))
                         {
-                            energyCreationScore += process.Process.Outputs[atp] / process.Process.Inputs[compound]
+                            energyCreationScore += atpAmount / inputAmount
                                 * processEfficiency * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
                         }
                     }

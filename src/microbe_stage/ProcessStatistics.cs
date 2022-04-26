@@ -28,17 +28,16 @@ public class ProcessStatistics
 
     public SingleProcessStatistics GetAndMarkUsed(TweakedProcess forProcess)
     {
-        if (Processes.ContainsKey(forProcess))
+        if (Processes.TryGetValue(forProcess, out var entry))
         {
-            var result = Processes[forProcess];
-            result.Used = true;
-            return result;
+            entry.Used = true;
+            return entry;
         }
 
-        var newEntry = new SingleProcessStatistics(forProcess.Process);
-        Processes[forProcess] = newEntry;
-        newEntry.Used = true;
-        return newEntry;
+        entry = new SingleProcessStatistics(forProcess.Process);
+        Processes[forProcess] = entry;
+        entry.Used = true;
+        return entry;
     }
 }
 
@@ -135,14 +134,9 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
             foreach (var limit in entry.LimitingCompounds)
             {
-                if (seenLimiters.ContainsKey(limit))
-                {
-                    seenLimiters[limit] += 1;
-                }
-                else
-                {
-                    seenLimiters[limit] = 1;
-                }
+                seenLimiters.TryGetValue(limit, out var existing);
+
+                seenLimiters[limit] = existing + 1;
             }
 
             ++entriesProcessed;
