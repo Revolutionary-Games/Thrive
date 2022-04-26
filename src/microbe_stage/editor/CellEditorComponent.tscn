@@ -210,9 +210,6 @@ margin_bottom = -1.41425
 rect_pivot_offset = Vector2( 1705, 266 )
 theme = ExtResource( 6 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
@@ -244,8 +241,8 @@ ATPProductionBarPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContain
 ATPConsumptionBarPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2/ATPConsumptionBar")
 SpeedIndicatorPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed/Indicator")
 HpIndicatorPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HP/Indicator")
-SizeIndicatorPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size/Indicator")
 StorageIndicatorPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage/Indicator")
+SizeIndicatorPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size/Indicator")
 TotalPopulationIndicatorPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total/Indicator")
 RigiditySliderPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
 NegativeAtpPopupPath = NodePath("NegativeAtpWarning")
@@ -509,7 +506,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer"]
 margin_right = 347.0
-margin_bottom = 735.0
+margin_bottom = 734.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
@@ -519,7 +516,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer"]
 margin_right = 337.0
-margin_bottom = 735.0
+margin_bottom = 734.0
 custom_constants/separation = 15
 
 [node name="MembraneTypes" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 45 )]
@@ -623,10 +620,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 184.0
-margin_top = 209.0
-margin_right = 500.0
-margin_bottom = 799.0
+margin_left = 192.0
+margin_top = 217.0
+margin_right = 508.0
+margin_bottom = 807.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
@@ -641,9 +638,6 @@ margin_bottom = 617.0
 rect_min_size = Vector2( 285, 617 )
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RightPanel"]
 margin_top = 10.0
@@ -1224,16 +1218,16 @@ __meta__ = {
 margin_right = 500.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 500, 0 )
-DialogText = "NEGATIVE_ATP_BALANCE_TEXT"
 WindowTitle = "NEGATIVE_ATP_BALANCE"
+DialogText = "NEGATIVE_ATP_BALANCE_TEXT"
 
 [node name="IslandError" parent="." instance=ExtResource( 9 )]
 margin_right = 600.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 600, 0 )
-DialogText = "DISCONNECTED_ORGANELLES_TEXT"
 WindowTitle = "DISCONNECTED_ORGANELLES"
 HideCancelButton = true
+DialogText = "DISCONNECTED_ORGANELLES_TEXT"
 
 [node name="OrganelleUpgradeGUI" parent="." instance=ExtResource( 30 )]
 visible = false

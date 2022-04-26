@@ -196,7 +196,7 @@ public partial class CellEditorComponent :
     [JsonProperty]
     private float initialCellHp;
 
-    [JsonProperty]
+    // [JsonProperty]
     private float initialCellStorage;
 
     private string? bestPatchName;
@@ -900,15 +900,16 @@ public partial class CellEditorComponent :
 
     public float CalculateStorage()
     {
-        var totalStorage = 0;
+        var totalStorage = 0f;
         foreach (var organelle in editedMicrobeOrganelles)
         {
-            if (organelle.Definition.Components.Storage != null) {
+            if (organelle.Definition.Components.Storage != null)
+            {
                 totalStorage += organelle.Definition.Components.Storage.Capacity;
             }
         }
 
-        return maxHitpoints;
+        return totalStorage;
     }
 
     /// <summary>
@@ -1353,6 +1354,7 @@ public partial class CellEditorComponent :
         UpdateMembraneButtons(Membrane.InternalName);
         UpdateSpeed(CalculateSpeed());
         UpdateHitpoints(CalculateHitpoints());
+        UpdateStorage(CalculateStorage());
 
         StartAutoEvoPrediction();
     }
@@ -1410,6 +1412,8 @@ public partial class CellEditorComponent :
         UpdatePatchDependentBalanceData();
 
         UpdateSpeed(CalculateSpeed());
+
+        UpdateStorage(CalculateStorage());
 
         UpdateCellVisualization();
 
