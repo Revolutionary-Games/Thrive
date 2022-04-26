@@ -296,20 +296,20 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Deletes all saves with the given regex expression except the latest one and returns the list of saves deleted
+    ///   Deletes all saves with the given regex expression except the
+    ///   latest one if deleteLatest is false and returns the list of saves deleted
     /// </summary>
-    public static List<string> CleanUpOldSavesOfType(Regex nameContains)
+    public static List<string> CleanUpOldSavesOfType(Regex nameContains, bool deleteLatest = false)
     {
-        bool isLatestSave = true;
         var savesDeleted = new List<string>();
 
         foreach (var save in CreateListOfSaves())
         {
             if (nameContains.IsMatch(save))
             {
-                if (isLatestSave)
+                if (!deleteLatest)
                 {
-                    isLatestSave = false;
+                    deleteLatest = true;
                 }
                 else
                 {
