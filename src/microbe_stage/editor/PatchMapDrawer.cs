@@ -112,9 +112,12 @@ public class PatchMapDrawer : Control
 
         foreach (var entry in Map.Regions)
         {
-            foreach (var adjacent in entry.Value.Adjacent)
+            var region = entry.Value;
+            DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)), new Color(0f, 1f, 0f, 1f));
+
+            foreach (var adjacent in region.Adjacent)
             {
-                var start = RegionCenter(entry.Value);
+                var start = RegionCenter(region);
                 var end = RegionCenter(adjacent);
 
                 DrawNodeLink(start, end);

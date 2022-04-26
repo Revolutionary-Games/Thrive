@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -16,10 +16,12 @@ public class PatchRegion
 
     [JsonProperty]
     public LocalizedString Name { get; private set; }
+    public float PatchNodeWidth = 64.0f;
+    public float PatchNodeHeight = 64.0f;
     public string RegionType = null!;
 
     /// <summary>
-    ///   Coordinates this patch is to be displayed in the GUI
+    ///   Coordinates this region is to be displayed in the GUI
     /// </summary>
     public Vector2 ScreenCoordinates { get; set; } = new(0, 0);
 
@@ -69,19 +71,47 @@ public class PatchRegion
             }
         }
 
-        // IF patches start at the same hieght make the region wider on the screen, 
-        // and put the patches horizontally near eachother
-        for (int i = 0; i < Patches.Count - 1; i++)
-        {
-            if (Patches[i].Depth[0] == Patches[i + 1].Depth[0])
-            {
-                Width += 64f * 2 * PatchMargin;
-            }
 
-            Patches[i + 1].ScreenCoordinates = new Vector2 (ScreenCoordinates.x, ScreenCoordinates.y + i * (64f + PatchMargin));
+        // patches position configuration
+        for (int i = 0; i < Patches.Count; i++)
+        {
+            
+            if (RegionType != "continent")
+                Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + PatchMargin, ScreenCoordinates.y + i * (64f + PatchMargin));
+            else
+            {
+                if (i % 2 == 0)
+                {
+                    if (i == 0)
+                        Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + PatchMargin, ScreenCoordinates.y + PatchMargin);
+                    else
+                        Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + PatchMargin, ScreenCoordinates.y + 64f + 2* PatchMargin);
+                }
+                else
+                {
+                    if (i == 1)
+                        Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + 2 * PatchMargin + 64f, ScreenCoordinates.y + PatchMargin);
+                    else
+                        Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + 2 * PatchMargin + 64f, ScreenCoordinates.y + 2* PatchMargin + 64f);
+                }   
+
+            }
         }
 
-        Height = 64f * Patches.Count + (Patches.Count + 1) * PatchMargin;
+        // Region size configuration
+        Width += 64f + 2*PatchMargin;
+        if (RegionType == "continent")
+        {
+            if (Patches.Count > 1)
+                Width += 64f + PatchMargin;
+            
+            if (Patches.Count > 2)
+                Height = 3 * PatchMargin + 2 * 64f;
+        }
+        else
+        {
+            Height += 64f * Patches.Count + (Patches.Count + 1) * PatchMargin;
+        }
 
     }
 
@@ -91,5 +121,14 @@ public class PatchRegion
         patch2.AddNeighbour(patch1);
     }
 
+    
+    /// <summary>
+    ///   Adds a connection to patch
+    /// </summary>
+    /// <returns>True if this was new, false if already added</returns>
+    public bool AddNeighbour(PatchRegion region)
+    {
+        return Adjacent.Add(region);
+    }
 
 }

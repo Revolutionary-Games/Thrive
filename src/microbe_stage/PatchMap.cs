@@ -61,10 +61,10 @@ public class PatchMap
     /// </summary>
     public void AddRegion(PatchRegion region)
     {
-        if (Patches.ContainsKey(region.ID))
+        if (Regions.ContainsKey(region.ID))
         {
             throw new ArgumentException(
-                "patch cannot be added to this map, the ID is already in use: " + region.ID);
+                "region cannot be added to this map, the ID is already in use: " + region.ID);
         }
 
         Regions[region.ID] = region;

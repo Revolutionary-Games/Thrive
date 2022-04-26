@@ -17,16 +17,17 @@ public static class PatchMapGenerator
         _ = settings;
 
         var map = new PatchMap();
-
+        var predefinedMap = new PatchMap();
+        predefinedMap = PredefinedMap(predefinedMap, "Pangonia", defaultSpecies);
         random ??= new Random();
 
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
         var areaName = nameGenerator.Next(random);
 
         // Initialize the graphs random parameters
-        var patchCoords = new List<Vector2>();
+        var regionCoords = new List<Vector2>();
         int [,] graph = new int [100,100];
-        int vertexNr = random.Next(8,14);
+        int vertexNr = random.Next(4,7);
         int edgeNr = random.Next(vertexNr + 1, 2*vertexNr - 4);
         int minDistance = 200;
         
@@ -38,37 +39,72 @@ public static class PatchMapGenerator
             var coord = new Vector2(x,y);
 
             // Check if the region doesnt overlap over other regions
-            bool check = CheckPatchDistance(coord, patchCoords, minDistance);
+            bool check = CheckPatchDistance(coord, regionCoords, minDistance);
             while (!check)
             {
                 x = random.Next(30,770);
                 y = random.Next(30,770);
                 coord = new Vector2(x,y);
-                check = CheckPatchDistance(coord, patchCoords, minDistance);
+                check = CheckPatchDistance(coord, regionCoords, minDistance);
             }
 
-            patchCoords.Add(coord);
+            regionCoords.Add(coord);
 
-            var patch = new Patch(GetPatchLocalizedName(areaName, "VOLCANIC_VENT"), i,
-            GetBiomeTemplate("aavolcanic_vent"))
+            
+
+            var regionType = random.Next(0,3);
+            string regionTypeName; 
+            if (regionType == 0)
             {
-                Depth =
+                regionTypeName = "sea";
+            }
+            else
+            {
+                if (regionType == 1)
                 {
-                    [0] = 2500,
-                    [1] = 3000,
-                },
-                ScreenCoordinates = coord,
-            };
+                    regionTypeName = "ocean";
+                }
+                else
+                {
+                    regionTypeName = "continent";
+                }
+            }
 
-            map.AddPatch(patch);
-            map.CurrentPatch = patch;
+            var region = new PatchRegion(i, GetPatchLocalizedName(areaName, regionTypeName));
+            int numberOfPatches;
+
+            if (regionType == 2)
+            {
+                numberOfPatches = random.Next(0,4);
+
+                // All continents must have at least 1 coastal patch.
+                var patch = predefinedMap.Patches[0];
+                region.AddPatch(patch);
+
+                while (numberOfPatches > 0)
+                {
+                    var patchIndex = random.Next(0,4);
+                    region.AddPatch(predefinedMap.Patches[patchIndex]);
+
+                }
+                map.AddPatch(patch);
+                map.CurrentPatch = patch;
+
+                
+            }
+            else
+            {
+                numberOfPatches = random.Next(2,8);
+            }
+
+
         }
 
         // We make the graph by substracting edges from its Delaunay Triangulation 
         // as long as the graph stays connected.
-        graph = DelaunayTriangulation(graph, patchCoords);
+        graph = DelaunayTriangulation(graph, regionCoords);
         var currentEdgeNr = CurrentEdgeNumber(graph, vertexNr);
-        
+
         // Substract edges until we reach the desired edge count.
         while (currentEdgeNr > edgeNr)
         {
@@ -95,10 +131,11 @@ public static class PatchMapGenerator
                 currentEdgeNr -= 1;
         }
 
+        // Link regions
         for (int k = 0; k < vertexNr; k++)
             for (int l = 0; l < vertexNr; l++)
                 if(graph[l,k] == 1)
-                    LinkPatches(map.Patches[k], map.Patches[l]);
+                    LinkRegions(map.Regions[k], map.Regions[l]);
 
         return map;
     }
@@ -113,7 +150,11 @@ public static class PatchMapGenerator
         patch1.AddNeighbour(patch2);
         patch2.AddNeighbour(patch1);
     }
-
+    private static void LinkRegions(PatchRegion region1, PatchRegion region2)
+    {
+        region1.AddNeighbour(region2);
+        region2.AddNeighbour(region1);
+    }
     private static void TranslatePatchNames()
     {
         // TODO: remove this entire method, see: https://github.com/Revolutionary-Games/Thrive/issues/3146
@@ -194,8 +235,45 @@ public static class PatchMapGenerator
 
     private static PatchMap PredefinedMap(PatchMap map, string areaName, Species defaultSpecies)
     {
-                // Predefined patches
-        var vents = new Patch(GetPatchLocalizedName(areaName, "VOLCANIC_VENT"), 0,
+
+        // Predefined patches
+        var coast = new Patch(GetPatchLocalizedName(areaName, "COASTAL"), 0,
+            GetBiomeTemplate("coastal"))
+        {
+            Depth =
+            {
+                [0] = 0,
+                [1] = 200,
+            },
+            ScreenCoordinates = new Vector2(100, 100),
+        };
+        map.AddPatch(coast);
+
+        var estuary = new Patch(GetPatchLocalizedName(areaName, "ESTUARY"), 1,
+            GetBiomeTemplate("estuary"))
+        {
+            Depth =
+            {
+                [0] = 0,
+                [1] = 200,
+            },
+            ScreenCoordinates = new Vector2(70, 160),
+        };
+        map.AddPatch(estuary);
+
+        var tidepool = new Patch(GetPatchLocalizedName(areaName, "TIDEPOOL"), 2,
+            GetBiomeTemplate("tidepool"))
+        {
+            Depth =
+            {
+                [0] = 0,
+                [1] = 10,
+            },
+            ScreenCoordinates = new Vector2(300, 100),
+        };
+        map.AddPatch(tidepool);
+
+        var vents = new Patch(GetPatchLocalizedName(areaName, "VOLCANIC_VENT"), 3,
             GetBiomeTemplate("aavolcanic_vent"))
         {
             Depth =
@@ -208,7 +286,7 @@ public static class PatchMapGenerator
         vents.AddSpecies(defaultSpecies);
         map.AddPatch(vents);
 
-        var mesopelagic = new Patch(GetPatchLocalizedName(areaName, "MESOPELAGIC"), 1,
+        var mesopelagic = new Patch(GetPatchLocalizedName(areaName, "MESOPELAGIC"), 4,
             GetBiomeTemplate("mesopelagic"))
         {
             Depth =
@@ -220,7 +298,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(mesopelagic);
 
-        var epipelagic = new Patch(GetPatchLocalizedName(areaName, "EPIPELAGIC"), 2,
+        var epipelagic = new Patch(GetPatchLocalizedName(areaName, "EPIPELAGIC"), 5,
             GetBiomeTemplate("default"))
         {
             Depth =
@@ -232,19 +310,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(epipelagic);
 
-        var tidepool = new Patch(GetPatchLocalizedName(areaName, "TIDEPOOL"), 3,
-            GetBiomeTemplate("tidepool"))
-        {
-            Depth =
-            {
-                [0] = 0,
-                [1] = 10,
-            },
-            ScreenCoordinates = new Vector2(300, 100),
-        };
-        map.AddPatch(tidepool);
-
-        var bathypelagic = new Patch(GetPatchLocalizedName(areaName, "BATHYPELAGIC"), 4,
+        var bathypelagic = new Patch(GetPatchLocalizedName(areaName, "BATHYPELAGIC"), 6,
             GetBiomeTemplate("bathypelagic"))
         {
             Depth =
@@ -256,7 +322,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(bathypelagic);
 
-        var abyssopelagic = new Patch(GetPatchLocalizedName(areaName, "ABYSSOPELAGIC"), 5,
+        var abyssopelagic = new Patch(GetPatchLocalizedName(areaName, "ABYSSOPELAGIC"), 7,
             GetBiomeTemplate("abyssopelagic"))
         {
             Depth =
@@ -268,29 +334,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(abyssopelagic);
 
-        var coast = new Patch(GetPatchLocalizedName(areaName, "COASTAL"), 6,
-            GetBiomeTemplate("coastal"))
-        {
-            Depth =
-            {
-                [0] = 0,
-                [1] = 200,
-            },
-            ScreenCoordinates = new Vector2(100, 100),
-        };
-        map.AddPatch(coast);
-
-        var estuary = new Patch(GetPatchLocalizedName(areaName, "ESTUARY"), 7,
-            GetBiomeTemplate("estuary"))
-        {
-            Depth =
-            {
-                [0] = 0,
-                [1] = 200,
-            },
-            ScreenCoordinates = new Vector2(70, 160),
-        };
-        map.AddPatch(estuary);
+  
 
         var cave = new Patch(GetPatchLocalizedName(areaName, "UNDERWATERCAVE"), 8,
             GetBiomeTemplate("underwater_cave"))
