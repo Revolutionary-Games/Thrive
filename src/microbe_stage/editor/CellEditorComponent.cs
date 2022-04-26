@@ -196,7 +196,7 @@ public partial class CellEditorComponent :
     [JsonProperty]
     private float initialCellHp;
 
-    // [JsonProperty]
+    [JsonProperty]
     private float initialCellStorage;
 
     private string? bestPatchName;
