@@ -680,9 +680,9 @@ public static class Constants
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
-    public static readonly Regex BACKUP_REGEX = new Regex(@"\.backup\.thirvesave$");
-    public static readonly Regex AUTO_SAVE_REGEX = new Regex(@"^auto_save_\d+\.thirvesave$");
-    public static readonly Regex QUICK_SAVE_REGEX = new Regex(@"^quick_save_\d+\.thirvesave$");
+    public static readonly Regex BACKUP_REGEX = new Regex(@"^.*\.backup\.thrivesave$");
+    public static readonly Regex AUTO_SAVE_REGEX = new Regex(@"^auto_save_\d+\.thrivesave$");
+    public static readonly Regex QUICK_SAVE_REGEX = new Regex(@"^quick_save_\d+\.thrivesave$");
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
 
