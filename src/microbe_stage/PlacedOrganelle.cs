@@ -354,10 +354,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             var absorbed = amountTotal - amountLeft;
 
-            float alreadyInResult = 0;
-
-            if (result.ContainsKey(entry.Key))
-                alreadyInResult = result[entry.Key];
+            result.TryGetValue(entry.Key, out var alreadyInResult);
 
             result[entry.Key] = alreadyInResult + absorbed;
 

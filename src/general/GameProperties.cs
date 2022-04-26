@@ -110,7 +110,8 @@ public class GameProperties
     /// </summary>
     public bool IsBoolSet(string key)
     {
-        return setBoolStatuses.ContainsKey(key) && setBoolStatuses[key];
+        setBoolStatuses.TryGetValue(key, out bool boolean);
+        return boolean;
     }
 
     /// <summary>

@@ -50,20 +50,19 @@ public class CompoundBag : ICompoundStorage
 
     public float GetCompoundAmount(Compound compound)
     {
-        if (Compounds.ContainsKey(compound))
-            return Compounds[compound];
+        Compounds.TryGetValue(compound, out var amount);
 
-        return 0.0f;
+        return amount;
     }
 
     public float TakeCompound(Compound compound, float amount)
     {
-        if (!Compounds.ContainsKey(compound) || amount <= 0.0f)
+        if (!Compounds.TryGetValue(compound, out var existingAmount) || amount <= 0.0f)
             return 0.0f;
 
-        amount = Math.Min(Compounds[compound], amount);
+        amount = Math.Min(existingAmount, amount);
 
-        Compounds[compound] -= amount;
+        Compounds[compound] = existingAmount - amount;
         return amount;
     }
 

@@ -16,8 +16,7 @@ public static class Spawners
         return new MicrobeSpawner(species, cloudSystem, currentGame);
     }
 
-    public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType,
-        CompoundCloudSystem cloudSystem)
+    public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType)
     {
         foreach (var mesh in chunkType.Meshes)
         {
@@ -25,7 +24,7 @@ public static class Spawners
                 throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
         }
 
-        return new ChunkSpawner(chunkType, cloudSystem);
+        return new ChunkSpawner(chunkType);
     }
 
     public static CompoundCloudSpawner MakeCompoundSpawner(Compound compound,
@@ -207,8 +206,7 @@ public static class SpawnHelpers
     }
 
     public static FloatingChunk SpawnChunk(ChunkConfiguration chunkType,
-        Vector3 location, Node worldNode, PackedScene chunkScene,
-        CompoundCloudSystem cloudSystem, Random random)
+        Vector3 location, Node worldNode, PackedScene chunkScene, Random random)
     {
         var chunk = (FloatingChunk)chunkScene.Instance();
 
@@ -222,7 +220,7 @@ public static class SpawnHelpers
             throw new ArgumentException("couldn't find a graphics scene for a chunk");
 
         // Pass on the chunk data
-        chunk.Init(chunkType, cloudSystem, selectedMesh.SceneModelPath);
+        chunk.Init(chunkType, selectedMesh.SceneModelPath);
         chunk.UsesDespawnTimer = !chunkType.Dissolves;
 
         worldNode.AddChild(chunk);
@@ -425,19 +423,17 @@ public class ChunkSpawner : Spawner
     private readonly PackedScene chunkScene;
     private readonly ChunkConfiguration chunkType;
     private readonly Random random = new();
-    private readonly CompoundCloudSystem cloudSystem;
 
-    public ChunkSpawner(ChunkConfiguration chunkType, CompoundCloudSystem cloudSystem)
+    public ChunkSpawner(ChunkConfiguration chunkType)
     {
         this.chunkType = chunkType;
-        this.cloudSystem = cloudSystem;
         chunkScene = SpawnHelpers.LoadChunkScene();
     }
 
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
         var chunk = SpawnHelpers.SpawnChunk(chunkType, location, worldNode, chunkScene,
-            cloudSystem, random);
+            random);
 
         yield return chunk;
 

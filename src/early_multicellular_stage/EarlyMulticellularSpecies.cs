@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [TypeConverter(typeof(ThriveTypeConverter))]
-[JSONDynamicTypeAllowedAttribute]
+[JSONDynamicTypeAllowed]
 [UseThriveConverter]
 public class EarlyMulticellularSpecies : Species
 {
