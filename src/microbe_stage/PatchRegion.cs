@@ -72,7 +72,7 @@ public class PatchRegion
         }
 
 
-        // patches position configuration
+        // Patches position configuration
         for (int i = 0; i < Patches.Count; i++)
         {
             

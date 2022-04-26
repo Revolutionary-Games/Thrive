@@ -31,6 +31,7 @@ public static class PatchMapGenerator
         int edgeNr = random.Next(vertexNr + 1, 2*vertexNr - 4);
         int minDistance = 200;
         
+        var currentPatchId = 0;
         // Create the graphs random points
         for (int i = 0;i < vertexNr; i++)
         {
@@ -78,18 +79,38 @@ public static class PatchMapGenerator
                 numberOfPatches = random.Next(0,4);
 
                 // All continents must have at least 1 coastal patch.
-                var patch = predefinedMap.Patches[0];
+                var coastal = predefinedMap.Patches[0];
+                var patch = new Patch(coastal.Name, currentPatchId++ ,coastal.BiomeTemplate)
+                {
+                    Depth =
+                    {
+                        [0] = coastal.Depth[0],
+                        [1] = coastal.Depth[1],
+                    }
+                };
+
+                map.AddPatch(patch);
                 region.AddPatch(patch);
+                map.CurrentPatch = patch;
 
                 while (numberOfPatches > 0)
                 {
                     var patchIndex = random.Next(0,4);
+                    patch = predefinedMap.Patches[patchIndex];
+
+                    patch = new Patch(patch.Name, currentPatchId++, patch.BiomeTemplate)
+                    {
+                        Depth =
+                        {
+                            [0] = patch.Depth[0],
+                            [1] = patch.Depth[1],
+                        }
+                    };
+
+                    map.AddPatch(patch);
                     region.AddPatch(predefinedMap.Patches[patchIndex]);
 
                 }
-                map.AddPatch(patch);
-                map.CurrentPatch = patch;
-
                 
             }
             else
