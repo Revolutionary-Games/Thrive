@@ -179,8 +179,8 @@ public class SaveManagerGUI : Control
     {
         loadButton.Disabled = Selected.Count != 1;
         deleteSelectedButton.Disabled = Selected.Count == 0;
-        deleteOldButton.Disabled = (currentAutoSaveCount < 1) &&
-            (currentQuickSaveCount < 1) &&
+        deleteOldButton.Disabled = (currentAutoSaveCount < 2) &&
+            (currentQuickSaveCount < 2) &&
             (currentBackupCount < 1);
     }
 
