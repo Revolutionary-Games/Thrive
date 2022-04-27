@@ -19,14 +19,14 @@ public class ReferenceResolver : IReferenceResolver
 
     public object ResolveReference(object context, string reference)
     {
-        if (!referenceToObject.ContainsKey(reference))
+        if (!referenceToObject.TryGetValue(reference, out var referencedObject))
         {
             throw new KeyNotFoundException(
                 $"The reference {reference} was not found. " +
                 "Is a child referencing an ancestor? If so, you should add [UseThriveSerializer]");
         }
 
-        return referenceToObject[reference];
+        return referencedObject;
     }
 
     /// <summary>
@@ -34,8 +34,8 @@ public class ReferenceResolver : IReferenceResolver
     /// </summary>
     public string GetReference(object context, object value)
     {
-        if (objectToReference.ContainsKey(value))
-            return objectToReference[value];
+        if (objectToReference.TryGetValue(value, out var existing))
+            return existing;
 
         string reference = (++referenceCounter).ToString(CultureInfo.InvariantCulture);
 
