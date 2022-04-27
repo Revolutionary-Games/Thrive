@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-18 23:21+0100\n"
+"POT-Creation-Date: 2022-04-27 18:25+0100\n"
 "PO-Revision-Date: 2022-04-15 14:50+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -3980,24 +3980,24 @@ msgstr "Não pode engolir"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "A tentativa de salvar falhou. O nome do save pode ser longo demais ou você não ter acesso a pasta."
 
-#: ../src/saving/SaveHelper.cs:498 ../src/saving/SaveHelper.cs:542
+#: ../src/saving/SaveHelper.cs:445 ../src/saving/SaveHelper.cs:489
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Falha ao salvar! Uma exceção ocorreu"
 
-#: ../src/saving/SaveHelper.cs:507 ../src/saving/SaveHelper.cs:523
+#: ../src/saving/SaveHelper.cs:454 ../src/saving/SaveHelper.cs:470
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Atualmente, não é possível salvar porque:"
 
-#: ../src/saving/SaveHelper.cs:508
+#: ../src/saving/SaveHelper.cs:455
 msgid "PLAYER_EXTINCT"
 msgstr "O jogador foi extinto"
 
-#: ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:471
 #, fuzzy
 msgid "IN_PROTOTYPE"
 msgstr "Protanopia (Vermelho-Verde)"
 
-#: ../src/saving/SaveHelper.cs:532
+#: ../src/saving/SaveHelper.cs:479
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvo com sucesso"
 
@@ -4133,13 +4133,13 @@ msgstr "Carregar"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Apagar este jogo salvo é irreversível, você tem certeza que quer apagar permanentemente este arquivo?"
 
-#: ../src/saving/SaveManagerGUI.cs:221
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Apagar o(s) jogo(s) salvo(s) é irreversível, você tem certeza que quer apagar {0} aquivo(s) permanentemente?"
 
-#: ../src/saving/SaveManagerGUI.cs:234
+#: ../src/saving/SaveManagerGUI.cs:237
 #, fuzzy
-msgid "DELETE_ALL_OLD_SAVE_WARNING2"
+msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Apagar todos os salvamentos automáticos e rápidos é irreversível, você deseja apagar permanentemente os arquivos abaixo?\n"
 "- {0} Salvamento(s) automático(s)\n"

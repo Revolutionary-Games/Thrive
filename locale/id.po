@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-18 23:21+0100\n"
+"POT-Creation-Date: 2022-04-27 18:25+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -4099,28 +4099,28 @@ msgstr "Tidak bisa menelan"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Auto-evo gagal bekerja"
 
-#: ../src/saving/SaveHelper.cs:498 ../src/saving/SaveHelper.cs:542
+#: ../src/saving/SaveHelper.cs:445 ../src/saving/SaveHelper.cs:489
 #, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr ""
 "Gagal memperbarui save karena error berikut:\n"
 "{0}"
 
-#: ../src/saving/SaveHelper.cs:507 ../src/saving/SaveHelper.cs:523
+#: ../src/saving/SaveHelper.cs:454 ../src/saving/SaveHelper.cs:470
 #, fuzzy
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Gagal menyimpan! Terjadi eksepsi"
 
-#: ../src/saving/SaveHelper.cs:508
+#: ../src/saving/SaveHelper.cs:455
 #, fuzzy
 msgid "PLAYER_EXTINCT"
 msgstr "Gandakan Pemain"
 
-#: ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:471
 msgid "IN_PROTOTYPE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:532
+#: ../src/saving/SaveHelper.cs:479
 msgid "SAVING_SUCCEEDED"
 msgstr "Sukses menyimpan"
 
@@ -4264,13 +4264,13 @@ msgstr "Muat"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus ini secara permanen?"
 
-#: ../src/saving/SaveManagerGUI.cs:221
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Save yang terpilih untuk dihapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus {0} save secara permanen?"
 
-#: ../src/saving/SaveManagerGUI.cs:234
+#: ../src/saving/SaveManagerGUI.cs:237
 #, fuzzy
-msgid "DELETE_ALL_OLD_SAVE_WARNING2"
+msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Semua save otomatis dan save cepat lawas yang akan dihapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus save berikut?\n"
 " - {0} Save otomatis\n"

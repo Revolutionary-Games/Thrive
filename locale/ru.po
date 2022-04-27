@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-18 23:21+0100\n"
+"POT-Creation-Date: 2022-04-27 18:25+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -3994,24 +3994,24 @@ msgstr "Не может поглощать"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Авто-эво не удалось запустить"
 
-#: ../src/saving/SaveHelper.cs:498 ../src/saving/SaveHelper.cs:542
+#: ../src/saving/SaveHelper.cs:445 ../src/saving/SaveHelper.cs:489
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Сохранение не удалось! Произошла ошибка"
 
-#: ../src/saving/SaveHelper.cs:507 ../src/saving/SaveHelper.cs:523
+#: ../src/saving/SaveHelper.cs:454 ../src/saving/SaveHelper.cs:470
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Сохранение сейчас невозможно по причине:"
 
-#: ../src/saving/SaveHelper.cs:508
+#: ../src/saving/SaveHelper.cs:455
 msgid "PLAYER_EXTINCT"
 msgstr "Игрок вымер"
 
-#: ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:471
 #, fuzzy
 msgid "IN_PROTOTYPE"
 msgstr "Протанопия (Крас.-Зел.)"
 
-#: ../src/saving/SaveHelper.cs:532
+#: ../src/saving/SaveHelper.cs:479
 msgid "SAVING_SUCCEEDED"
 msgstr "Сохранение успешно"
 
@@ -4147,13 +4147,13 @@ msgstr "Загрузить"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Удаление этого сохранение будет невозможно отменить, вы действительно хотите перманентно удалить это сохранение?"
 
-#: ../src/saving/SaveManagerGUI.cs:221
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Удаление выбранного(ых) сохранения(й) будет невозможно отменить, вы действительно хотите перманентно удалить {0} сохранение(ий)?"
 
-#: ../src/saving/SaveManagerGUI.cs:234
+#: ../src/saving/SaveManagerGUI.cs:237
 #, fuzzy
-msgid "DELETE_ALL_OLD_SAVE_WARNING2"
+msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Удаление всех старых Авто и Быстрых сохранений невозможно отменить, вы действительно желаете перманентно удалить следующие?\n"
 " - {0} Авто сохранение(я)\n"

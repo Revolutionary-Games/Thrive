@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-18 23:21+0100\n"
+"POT-Creation-Date: 2022-04-27 18:25+0100\n"
 "PO-Revision-Date: 2022-04-08 11:52+0000\n"
 "Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -3976,26 +3976,26 @@ msgstr "Kann nicht speichern"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Der Versuch zu speichern ist missglückt. Möglicherweise ist der Speichername zu lang oder du hast keinen Zugang zum Speicherordner."
 
-#: ../src/saving/SaveHelper.cs:498 ../src/saving/SaveHelper.cs:542
+#: ../src/saving/SaveHelper.cs:445 ../src/saving/SaveHelper.cs:489
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Speichern fehlgeschlagen. Ein Fehler ist aufgetreten."
 
-#: ../src/saving/SaveHelper.cs:507 ../src/saving/SaveHelper.cs:523
+#: ../src/saving/SaveHelper.cs:454 ../src/saving/SaveHelper.cs:470
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Speichern ist aus folgenden Gründen nicht möglich:"
 
-#: ../src/saving/SaveHelper.cs:508
+#: ../src/saving/SaveHelper.cs:455
 msgid "PLAYER_EXTINCT"
 msgstr "Spieler ist ausgestorben"
 
-#: ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:471
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Du spielst die späteren Prototypen, die dem Spiel beigefügt sind. \n"
 "Diese sind möglicherweise sehr unvollständig, verwenden Platzhaltergrafiken und sind im Allgemeinen sehr grob. \n"
 "Das Speichern ist daher derzeit nicht möglich."
 
-#: ../src/saving/SaveHelper.cs:532
+#: ../src/saving/SaveHelper.cs:479
 msgid "SAVING_SUCCEEDED"
 msgstr "Speichern erfolgreich"
 
@@ -4131,13 +4131,13 @@ msgstr "Laden"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du ihn dauerhaft löschen willst?"
 
-#: ../src/saving/SaveManagerGUI.cs:221
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Das Löschen des/der ausgewählten Spielstandes/Spielständen kann nicht rückgängig gemacht werden. Bist du sicher, dass du die {0} Speicherung(en) dauerhaft löschen möchten?"
 
-#: ../src/saving/SaveManagerGUI.cs:234
+#: ../src/saving/SaveManagerGUI.cs:237
 #, fuzzy
-msgid "DELETE_ALL_OLD_SAVE_WARNING2"
+msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Das Löschen aller alten Auto- und Schnellspeicherungen kann nicht rückgängig gemacht werden. Bist du sicher, dass du Folgendes dauerhaft löschen möchtest?\n"
 " - {0} Automatische Speicherung(en)\n"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-18 23:21+0100\n"
+"POT-Creation-Date: 2022-04-27 18:25+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -4003,24 +4003,24 @@ msgstr "Új mentés létrehozása"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Auto-evo futtatása sikertelen"
 
-#: ../src/saving/SaveHelper.cs:498 ../src/saving/SaveHelper.cs:542
+#: ../src/saving/SaveHelper.cs:445 ../src/saving/SaveHelper.cs:489
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "A mentés sikertelen! Hiba történt"
 
-#: ../src/saving/SaveHelper.cs:507 ../src/saving/SaveHelper.cs:523
+#: ../src/saving/SaveHelper.cs:454 ../src/saving/SaveHelper.cs:470
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "A mentés nem sikerült a következő ok(ok)miatt:"
 
-#: ../src/saving/SaveHelper.cs:508
+#: ../src/saving/SaveHelper.cs:455
 msgid "PLAYER_EXTINCT"
 msgstr "A játékos faja kihalt"
 
-#: ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:471
 #, fuzzy
 msgid "IN_PROTOTYPE"
 msgstr "Protanóp (Piros-Zöld)"
 
-#: ../src/saving/SaveHelper.cs:532
+#: ../src/saving/SaveHelper.cs:479
 msgid "SAVING_SUCCEEDED"
 msgstr "Sikeres mentés"
 
@@ -4153,13 +4153,13 @@ msgstr "Töltés"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
 
-#: ../src/saving/SaveManagerGUI.cs:221
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Biztos végérvényesen törölni akarsz {0} mentést?"
 
-#: ../src/saving/SaveManagerGUI.cs:234
+#: ../src/saving/SaveManagerGUI.cs:237
 #, fuzzy
-msgid "DELETE_ALL_OLD_SAVE_WARNING2"
+msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Az összes régi automatikus és gyors mentés törlése nem vonható vissza. Biztos vagy benne, hogy véglegesen törlöd a következőket?\n"
 " - {0} Automatikus mentés(-ek)\n"

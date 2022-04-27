@@ -234,7 +234,7 @@ public class SaveManagerGUI : Control
 
         deleteOldConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING2"),
+                TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING_2"),
                 autoSavesToDeleteCount, quickSavesToDeleteCount, oldBackupsToDeleteCount);
         deleteOldConfirmDialog.PopupCenteredShrink();
     }
