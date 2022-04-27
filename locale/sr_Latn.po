@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 23:01-0700\n"
+"POT-Creation-Date: 2022-04-27 00:01-0700\n"
 "PO-Revision-Date: 2022-03-21 22:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
+"Language: sr_Latn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sr_Latn\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
@@ -839,7 +839,7 @@ msgstr "{0:F1}% završeno. {1:n0}/{2:n0} koraka."
 msgid "STARTING"
 msgstr "Počinje"
 
-#: ../src/auto-evo/AutoEvoRun.cs:294
+#: ../src/auto-evo/AutoEvoRun.cs:288
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
@@ -2376,22 +2376,22 @@ msgstr ""
 msgid "RAW"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:636
+#: ../src/gui_common/charts/line/LineChart.cs:632
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1987
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:640
+#: ../src/gui_common/charts/line/LineChart.cs:636
 msgid "INVALID_DATA_TO_PLOT"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:1110
-#: ../src/gui_common/charts/line/LineChart.cs:1202
+#: ../src/gui_common/charts/line/LineChart.cs:1104
+#: ../src/gui_common/charts/line/LineChart.cs:1196
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:1116
-#: ../src/gui_common/charts/line/LineChart.cs:1207
+#: ../src/gui_common/charts/line/LineChart.cs:1110
+#: ../src/gui_common/charts/line/LineChart.cs:1201
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
@@ -2863,23 +2863,23 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "- МП"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:566
+#: ../src/microbe_stage/Microbe.Contact.cs:564
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:692
+#: ../src/microbe_stage/Microbe.Contact.cs:690
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "uspešno okupljanje"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:699
+#: ../src/microbe_stage/Microbe.Contact.cs:697
 msgid "SUCCESSFUL_KILL"
 msgstr "uspešno ubistvo"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:937
+#: ../src/microbe_stage/Microbe.Contact.cs:935
 msgid "ESCAPE_ENGULFING"
 msgstr "pobegne od gutanja"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:770
+#: ../src/microbe_stage/Microbe.Interior.cs:777
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Proizvodi"
@@ -2988,15 +2988,15 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:720
+#: ../src/microbe_stage/MicrobeStage.cs:727
 msgid "PLAYER_REPRODUCED"
 msgstr "Igrač se reprodukovao"
 
-#: ../src/microbe_stage/MicrobeStage.cs:734
+#: ../src/microbe_stage/MicrobeStage.cs:741
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:757
+#: ../src/microbe_stage/MicrobeStage.cs:764
 msgid "PLAYER_DIED"
 msgstr "igrač je umro"
 

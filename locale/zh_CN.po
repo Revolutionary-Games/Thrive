@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 23:01-0700\n"
+"POT-Creation-Date: 2022-04-27 00:01-0700\n"
 "PO-Revision-Date: 2022-03-26 14:06+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.8.0\n"
@@ -820,7 +820,7 @@ msgstr "已完成{0:F1}%。{1:n0}/{2:n0}步剩余。"
 msgid "STARTING"
 msgstr "启动中"
 
-#: ../src/auto-evo/AutoEvoRun.cs:294
+#: ../src/auto-evo/AutoEvoRun.cs:288
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0}种群数量变化了{1}，原因：{2}"
 
@@ -2299,22 +2299,22 @@ msgstr "HSV"
 msgid "RAW"
 msgstr "Raw"
 
-#: ../src/gui_common/charts/line/LineChart.cs:636
+#: ../src/gui_common/charts/line/LineChart.cs:632
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1987
 msgid "NO_DATA_TO_SHOW"
 msgstr "没有数据可显示"
 
-#: ../src/gui_common/charts/line/LineChart.cs:640
+#: ../src/gui_common/charts/line/LineChart.cs:636
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "绘图数据无效"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1110
-#: ../src/gui_common/charts/line/LineChart.cs:1202
+#: ../src/gui_common/charts/line/LineChart.cs:1104
+#: ../src/gui_common/charts/line/LineChart.cs:1196
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "不允许显示超过{0}个数据集！"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1116
-#: ../src/gui_common/charts/line/LineChart.cs:1207
+#: ../src/gui_common/charts/line/LineChart.cs:1110
+#: ../src/gui_common/charts/line/LineChart.cs:1201
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "不允许显示少于{0}个数据集！"
 
@@ -2784,23 +2784,23 @@ msgstr "温度"
 msgid "N_A_MP"
 msgstr "不消耗变异点"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:566
+#: ../src/microbe_stage/Microbe.Contact.cs:564
 msgid "DEATH"
 msgstr "死亡数"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:692
+#: ../src/microbe_stage/Microbe.Contact.cs:690
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:699
+#: ../src/microbe_stage/Microbe.Contact.cs:697
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:937
+#: ../src/microbe_stage/Microbe.Contact.cs:935
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:770
+#: ../src/microbe_stage/Microbe.Interior.cs:777
 msgid "REPRODUCED"
 msgstr "繁殖次数"
 
@@ -2900,15 +2900,15 @@ msgstr "成为多细胞（{0}/{1}）"
 msgid "BECOME_MACROSCOPIC"
 msgstr "成为宏观生物（{0}/{1}）"
 
-#: ../src/microbe_stage/MicrobeStage.cs:720
+#: ../src/microbe_stage/MicrobeStage.cs:727
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
-#: ../src/microbe_stage/MicrobeStage.cs:734
+#: ../src/microbe_stage/MicrobeStage.cs:741
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "无法使用生成敌人作弊，因为这个地区没有任何敌对物种"
 
-#: ../src/microbe_stage/MicrobeStage.cs:757
+#: ../src/microbe_stage/MicrobeStage.cs:764
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 

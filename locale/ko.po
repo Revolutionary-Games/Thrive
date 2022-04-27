@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 23:01-0700\n"
+"POT-Creation-Date: 2022-04-27 00:01-0700\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
@@ -835,7 +835,7 @@ msgstr "{0:F1}% 완료됨. {1:n0}/{2:n0} 단계."
 msgid "STARTING"
 msgstr "시작"
 
-#: ../src/auto-evo/AutoEvoRun.cs:294
+#: ../src/auto-evo/AutoEvoRun.cs:288
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
@@ -2381,24 +2381,24 @@ msgstr ""
 msgid "RAW"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:636
+#: ../src/gui_common/charts/line/LineChart.cs:632
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1987
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:640
+#: ../src/gui_common/charts/line/LineChart.cs:636
 #, fuzzy
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1110
-#: ../src/gui_common/charts/line/LineChart.cs:1202
+#: ../src/gui_common/charts/line/LineChart.cs:1104
+#: ../src/gui_common/charts/line/LineChart.cs:1196
 #, fuzzy
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 {0} 을 삭제하시겠습니까?"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1116
-#: ../src/gui_common/charts/line/LineChart.cs:1207
+#: ../src/gui_common/charts/line/LineChart.cs:1110
+#: ../src/gui_common/charts/line/LineChart.cs:1201
 #, fuzzy
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 {0} 을 삭제하시겠습니까?"
@@ -2870,23 +2870,23 @@ msgstr "온도"
 msgid "N_A_MP"
 msgstr "N/A 변이 점수"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:566
+#: ../src/microbe_stage/Microbe.Contact.cs:564
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:692
+#: ../src/microbe_stage/Microbe.Contact.cs:690
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "사냥 성공"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:699
+#: ../src/microbe_stage/Microbe.Contact.cs:697
 msgid "SUCCESSFUL_KILL"
 msgstr "처치 성공"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:937
+#: ../src/microbe_stage/Microbe.Contact.cs:935
 msgid "ESCAPE_ENGULFING"
 msgstr "삼키기 탈출"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:770
+#: ../src/microbe_stage/Microbe.Interior.cs:777
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "생산"
@@ -2995,15 +2995,15 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:720
+#: ../src/microbe_stage/MicrobeStage.cs:727
 msgid "PLAYER_REPRODUCED"
 msgstr "플레이어 복제됨"
 
-#: ../src/microbe_stage/MicrobeStage.cs:734
+#: ../src/microbe_stage/MicrobeStage.cs:741
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:757
+#: ../src/microbe_stage/MicrobeStage.cs:764
 msgid "PLAYER_DIED"
 msgstr "플레이어 사망함"
 
