@@ -31,6 +31,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     private SpawnSystem spawner = null!;
 
     private MicrobeAISystem microbeAISystem = null!;
+    private MicrobeSystem microbeSystem = null!;
+
+    private FloatingChunkSystem floatingChunkSystem = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -271,6 +274,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned, Clouds);
+        microbeSystem = new MicrobeSystem(rootOfDynamicallySpawned);
+        floatingChunkSystem = new FloatingChunkSystem(rootOfDynamicallySpawned, Clouds);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
@@ -403,7 +408,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         FluidSystem.Process(delta);
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);
+        floatingChunkSystem.Process(delta, Player?.Translation);
         microbeAISystem.Process(delta);
+        microbeSystem.Process(delta);
 
         if (gameOver)
         {
