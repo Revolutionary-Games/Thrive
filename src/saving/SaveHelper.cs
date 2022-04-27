@@ -250,7 +250,7 @@ public static class SaveHelper
         using var file = new File();
         foreach (var save in CreateListOfSaves())
         {
-            if (nameContains == null || nameContains.IsMatch(save))
+            if (nameMatches == null || nameMatches.IsMatch(save))
             {
                 if (file.Open(Path.Combine(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
                 {
@@ -299,13 +299,13 @@ public static class SaveHelper
     ///   Deletes all saves with the given regex expression except the
     ///   latest one if deleteLatest is false and returns the list of saves deleted
     /// </summary>
-    public static List<string> CleanUpOldSavesOfType(Regex nameContains, bool deleteLatest = false)
+    public static List<string> CleanUpOldSavesOfType(Regex nameMatches, bool deleteLatest = false)
     {
         var savesDeleted = new List<string>();
 
         foreach (var save in CreateListOfSaves())
         {
-            if (nameContains.IsMatch(save))
+            if (nameMatches.IsMatch(save))
             {
                 if (!deleteLatest)
                 {
