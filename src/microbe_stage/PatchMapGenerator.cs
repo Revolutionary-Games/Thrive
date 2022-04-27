@@ -35,6 +35,7 @@ public static class PatchMapGenerator
         for (int i = 0; i < vertexNr; i++)
         {
             var areaName = nameGenerator.Next(random);
+            var continentName = nameGenerator.ContinentName;
             int x = random.Next(50,770);
             int y = random.Next(50,770);
             var coord = new Vector2(x,y);
@@ -71,26 +72,24 @@ public static class PatchMapGenerator
                 }
             }
 
-            var region = new PatchRegion(i, GetPatchLocalizedName(areaName, regionTypeName), regionTypeName, coord);
+            var region = new PatchRegion(i, GetPatchLocalizedName(continentName, regionTypeName), regionTypeName, coord);
             int numberOfPatches;
-
+            GD.Print(region.Name);
             if (regionType == 2)
             {
                 numberOfPatches = random.Next(1,4);
 
                 // All continents must have at least 1 coastal patch.
-                var patch = GetPatchFromPredefinedMap(0, currentPatchId++, predefinedMap);
+                var patch = GetPatchFromPredefinedMap(0, currentPatchId++, predefinedMap, areaName);
 
-                map.AddPatch(patch);
                 region.AddPatch(patch);
-                map.CurrentPatch = patch;
+
 
                 while (numberOfPatches > 0)
                 {
                     var patchIndex = random.Next(0,3);
-                    patch = GetPatchFromPredefinedMap(patchIndex, currentPatchId++, predefinedMap);
+                    patch = GetPatchFromPredefinedMap(patchIndex, currentPatchId++, predefinedMap, areaName);
 
-                    map.AddPatch(patch);
                     region.AddPatch(patch);
                     numberOfPatches--;
                 }
@@ -101,31 +100,27 @@ public static class PatchMapGenerator
                 numberOfPatches = random.Next(0,4);
 
                 // All oceans/seas must have at least 1 epipelagic patch and a seafloor
-                var patch = GetPatchFromPredefinedMap(3, currentPatchId++, predefinedMap);
-                map.AddPatch(patch);
+                var patch = GetPatchFromPredefinedMap(3, currentPatchId++, predefinedMap, areaName);
                 region.AddPatch(patch);
 
-                patch = GetPatchFromPredefinedMap(7, currentPatchId++, predefinedMap);
-                map.AddPatch(patch);
+                patch = GetPatchFromPredefinedMap(7, currentPatchId++, predefinedMap, areaName);
                 region.AddPatch(patch);
 
-                map.CurrentPatch = patch;
 
 
                 while (numberOfPatches > 0)
                 {
                     var patchIndex = 3 + numberOfPatches;
-                    patch = GetPatchFromPredefinedMap(patchIndex, currentPatchId++, predefinedMap);
-                    map.AddPatch(patch);
+                    patch = GetPatchFromPredefinedMap(patchIndex, currentPatchId++, predefinedMap, areaName);
                     region.AddPatch(patch);
                     numberOfPatches--;
                 }
             }
-            region.Build();
             map.AddRegion(region);
 
-
         }
+
+        map = BuildRegionsAndAddPatches(map);
 
         // We make the graph by substracting edges from its Delaunay Triangulation 
         // as long as the graph stays connected.
@@ -260,10 +255,10 @@ public static class PatchMapGenerator
         return true;
     }
 
-    public static Patch GetPatchFromPredefinedMap(int patchId, int newId, PatchMap predefinedMap)
+    public static Patch GetPatchFromPredefinedMap(int patchId, int newId, PatchMap predefinedMap, string areaName)
     {
         var patch = predefinedMap.Patches[patchId];
-        patch = new Patch(patch.Name, newId++, patch.BiomeTemplate)
+        patch = new Patch(GetPatchLocalizedName(areaName, patch.BiomeTemplate.Name), newId++, patch.BiomeTemplate)
         {
             Depth =
             {
@@ -273,6 +268,36 @@ public static class PatchMapGenerator
         };
 
         return patch;
+    }
+
+    public static PatchMap BuildRegionsAndAddPatches(PatchMap map)
+    {
+        Vector2 sum = new Vector2(0,0);
+
+        // Calculate the center of the points/regions
+        foreach(var region in map.Regions)
+        {
+            sum += region.Value.ScreenCoordinates;
+        }
+
+        sum /= map.Regions.Count;
+        var dif = new Vector2(400,400) - sum;
+
+        // Apply the differnece of  the sceen center and points center
+        // And build the patch visually
+        foreach(var region in map.Regions)
+        {
+            if (dif.x < 0 && dif.y < 0)
+                region.Value.ScreenCoordinates += dif;
+            region.Value.Build();
+            foreach (var patch in region.Value.Patches)
+            {
+                map.AddPatch(patch);
+                map.CurrentPatch = patch;
+            }
+        }
+
+        return map;
     }
 
     private static PatchMap PredefinedMap(PatchMap map, string areaName, Species defaultSpecies)
