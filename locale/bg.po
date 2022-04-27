@@ -1178,7 +1178,7 @@ msgstr "Автоматичната еволюция не успя да стар�
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:187
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:192
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr "състояние:"
+msgstr "Състояние:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
@@ -3683,9 +3683,8 @@ msgid "SIZE_COLON"
 msgstr "Размер:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:831
-#, fuzzy
 msgid "STORAGE_COLON"
-msgstr "Съхранение"
+msgstr "Съхранение:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:852
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:826
@@ -3736,7 +3735,7 @@ msgstr "Изчезва:"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1195
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr "Отрицателен баланс на АТФ"
+msgstr "Производството на АТФ е недостатъчно"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1222
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1196
@@ -4998,8 +4997,9 @@ msgstr ""
 "преди да го поставите, защото той може да окаже негативно влияние върху "
 "нея.\n"
 "\n"
-"Обърнете внимание на баланса на АТФ, за да сте сигурни, че Вашата клетка ще "
-"оцелее. Горната лента винаги трябва да е по-дълга от долната лента.\n"
+"Обърнете внимание на производството на АТФ, за да сте сигурни, че Вашата "
+"клетка ще оцелее. Горната лента винаги трябва да е по-дълга от долната "
+"лента.\n"
 "\n"
 "Натиснете бутона „Възстановяване“ (до бутона „Отмяна“) за да продължите."
 
