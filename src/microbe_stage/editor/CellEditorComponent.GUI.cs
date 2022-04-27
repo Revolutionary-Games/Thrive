@@ -156,6 +156,13 @@ public partial class CellEditorComponent
         UpdateCellStatsIndicators();
     }
 
+    private void UpdateStorage(float storage)
+    {
+        storageLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", storage);
+
+        UpdateCellStatsIndicators();
+    }
+
     /// <summary>
     ///   Updates the organelle efficiencies in tooltips.
     /// </summary>
@@ -355,6 +362,7 @@ public partial class CellEditorComponent
         SetSpeciesInfo(newName, Membrane, Colour, Rigidity, behaviourEditor.Behaviour);
         UpdateGeneration(species.Generation);
         UpdateHitpoints(CalculateHitpoints());
+        UpdateStorage(CalculateStorage());
     }
 
     private class ATPComparer : IComparer<string>
