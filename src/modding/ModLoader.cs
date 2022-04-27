@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using Godot;
+using HarmonyLib;
 using File = System.IO.File;
 using Path = System.IO.Path;
 
@@ -28,6 +29,10 @@ public class ModLoader : Node
     private ModLoader()
     {
         instance = this;
+
+        // Make sure we reference something from Harmony so that our builds are forced to always include it
+        var harmony = new Harmony("com.revolutionarygamesstudio.thrive.dummyHarmony");
+        harmony.GetPatchedMethods();
 
         // The reason why mods aren't loaded here already is that this object can't be attached to the scene here yet
         // so we delay mod loading until this has been attached to the main scene tree
