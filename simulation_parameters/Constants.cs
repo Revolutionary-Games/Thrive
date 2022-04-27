@@ -493,7 +493,7 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
-    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 1200;
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
