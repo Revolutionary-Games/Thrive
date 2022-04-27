@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-07 17:13+0300\n"
+"POT-Creation-Date: 2022-04-27 15:43-0400\n"
 "PO-Revision-Date: 2022-03-21 04:28+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.8.0\n"
@@ -1490,7 +1490,7 @@ msgstr "Resmi yapan: {0}"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1278
 #: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:392
 msgid "CLOSE"
 msgstr "Kapat"
 
@@ -1590,19 +1590,24 @@ msgstr "Mod Yükleme Hataları"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Bir ya da daha fazla modu yüklerken sorun oluştu. Loglar, ek bilgi içerebilir."
 
-#: ../src/general/OptionsMenu.cs:900
+#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
+#, fuzzy
+msgid "AUTO_RESOLUTION"
+msgstr "Çözünürlük:"
+
+#: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Varsayılan çıkış aygıtı"
 
-#: ../src/general/OptionsMenu.cs:932
+#: ../src/general/OptionsMenu.cs:956
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Bu çeviri henüz bitmemiş (%{0} tamamlandı), lütfen tamamlamamıza yardımcı ol!"
 
-#: ../src/general/OptionsMenu.cs:936
+#: ../src/general/OptionsMenu.cs:960
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Bu dilin çevirisi halen devam etmekte (%{0} tamamlandı)"
 
-#: ../src/general/OptionsMenu.cs:940
+#: ../src/general/OptionsMenu.cs:964
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Bu dil %{0} tamamlandı"
 
@@ -1665,10 +1670,6 @@ msgstr "16x"
 #: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
 msgstr "Çözünürlük:"
-
-#: ../src/general/OptionsMenu.tscn:290
-msgid "AUTO"
-msgstr "Otomatik"
 
 #: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
@@ -2288,7 +2289,7 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1928
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1932
 msgid "NO_DATA_TO_SHOW"
 msgstr "Gösterilecek Veri Yok"
 
@@ -3071,28 +3072,28 @@ msgstr "Duyarlı"
 msgid "FOCUSED"
 msgstr "Odaklanmış"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:166
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:167
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
 msgid "ATP_PRODUCTION"
 msgstr "ATP Üretimi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:172
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:173
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP ÜRETİMİ ÇOK DÜŞÜK!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:201
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:202
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:221
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:222
 msgid "OSMOREGULATION"
 msgstr "Ozmoregülasyon"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:227
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:228
 msgid "BASE_MOVEMENT"
 msgstr "Ana Hareket"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:239
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:240
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -3100,33 +3101,33 @@ msgstr "{0}: -{1} ATP"
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1764
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1768
 msgid "FAILED"
 msgstr "Başarısız"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1774
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1786
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1780
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1792
 msgid "N_A"
 msgstr "Bilinmeyen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1896
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1900
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1} için {0} arazisinde bulunan enerji"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1900
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1904
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Birey başına {1} maliyet ile kazanılan toplam enerji {0} ve dengelenmemiş {2} popülasyonla sonuçlanıyor"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1907
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1911
 msgid "ENERGY_SOURCES"
 msgstr "Enerji Kaynakları:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1917
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} ile açığa çıkan enerji: {1} (uyum başarısı: {2}) mevcut toplam enerji: {3} (toplam uyum başarısı: {4})"
 
@@ -4256,14 +4257,14 @@ msgstr "Steam, UGC kilidi edinemedi"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Bilinmeyen Steam hatası meydana geldi"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:238
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:301
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4275,7 +4276,7 @@ msgstr "Bilinmeyen Steam hatası meydana geldi"
 msgid "TUTORIAL"
 msgstr "Oyun Rehberi"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Mikrop Editörü'ne hoşgeldin.\n"
@@ -4286,7 +4287,7 @@ msgstr ""
 "\n"
 "Hazır olunca, sağ alttaki \"sonraki\" butonuna bas."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Bu arazi haritası.\n"
@@ -4297,7 +4298,7 @@ msgstr ""
 "\n"
 "Devam etmek için bir arazi seç."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Bu hücre editörü. Burada mutasyon puanları (MP) harcayarak türünü evrimleştirebilirsin. Her kuşak için en fazla 100 MP harcayabilirsin, bu yüzden kalanları biriktirmene gerek yok.\n"
@@ -4306,7 +4307,7 @@ msgstr ""
 "\n"
 "Devam etmek için soldaki panelden bir parça seç. Daha sonra, onu yerleştirmek için altıgenin yanına sol tıkla. A ve D tuşları (varsayılan) ile parçaları döndürebilirsin."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Organeller mevcut mutasyon sürecinde yerleştirilmediyse, onları kaldırmak MP'ye mal olur. Çünkü bu, türünde mutasyona neden olur.\n"
@@ -4317,7 +4318,7 @@ msgstr ""
 "\n"
 "Devam etmek için geri al butonuna bas."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Menüde parçalar seçerken, onların ne yaptığını anlamak için sağda beliren araç ipuçlarına dikkat et. Eğer onların işlevlerine dikkat etmezsen, parçaların faydadan çok zararı olur.\n"
@@ -4326,7 +4327,7 @@ msgstr ""
 "\n"
 "Devam etmek için yinele butonuna (geri al butonunun yanında) bas."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:267
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Bunlar türünü düzenlerken bilmen gereken temel noktalar. Son olarak, sol alttaki isme tıklayıp metni düzenleyerek türünü yeniden adlandırabilirsin.\n"
@@ -4337,11 +4338,11 @@ msgstr ""
 "\n"
 "Bol şans!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
 msgid "GOT_IT"
 msgstr "Anladım"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Bu panel, senin gelecekteki popülasyonuna ait tahminleri gösterir. Bu rakamlar, oto-evrimin popülasyon simülasyonundan gelir.\n"
@@ -4352,7 +4353,7 @@ msgstr ""
 "\n"
 "Paneldeki soru işaretli butona basarak oto-evrim tahmininin ardındaki detaylı bilgiyi inceleyebilirsin. Devam etmek için bu butona bas."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Bir ya da iki enerji kaynağına odaklanmalısın. Böylece hayatta kalmak için, bütün kaynaklara birden ihtiyaç duymadan, yeterli ATP üretebilirsin.\n"
@@ -4436,6 +4437,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Şimdi İncele"
+
+#~ msgid "AUTO"
+#~ msgstr "Otomatik"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Yükleniyor..."
