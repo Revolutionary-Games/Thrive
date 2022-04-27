@@ -22,19 +22,19 @@ public static class PatchMapGenerator
         random ??= new Random();
 
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
-        var areaName = nameGenerator.Next(random);
 
         // Initialize the graphs random parameters
         var regionCoords = new List<Vector2>();
         int [,] graph = new int [100,100];
-        int vertexNr = random.Next(4,7);
-        int edgeNr = random.Next(vertexNr + 1, 2*vertexNr - 4);
+        int vertexNr = random.Next(5,8);
+        int edgeNr = random.Next(vertexNr , 2*vertexNr - 4);
         int minDistance = 200;
         
         var currentPatchId = 0;
         // Create the graphs random points
-        for (int i = 0;i < vertexNr; i++)
+        for (int i = 0; i < vertexNr; i++)
         {
+            var areaName = nameGenerator.Next(random);
             int x = random.Next(50,770);
             int y = random.Next(50,770);
             var coord = new Vector2(x,y);
@@ -71,23 +71,15 @@ public static class PatchMapGenerator
                 }
             }
 
-            var region = new PatchRegion(i, GetPatchLocalizedName(areaName, regionTypeName));
+            var region = new PatchRegion(i, GetPatchLocalizedName(areaName, regionTypeName), regionTypeName, coord);
             int numberOfPatches;
 
             if (regionType == 2)
             {
-                numberOfPatches = random.Next(0,4);
+                numberOfPatches = random.Next(1,4);
 
                 // All continents must have at least 1 coastal patch.
-                var coastal = predefinedMap.Patches[0];
-                var patch = new Patch(coastal.Name, currentPatchId++ ,coastal.BiomeTemplate)
-                {
-                    Depth =
-                    {
-                        [0] = coastal.Depth[0],
-                        [1] = coastal.Depth[1],
-                    }
-                };
+                var patch = GetPatchFromPredefinedMap(0, currentPatchId++, predefinedMap);
 
                 map.AddPatch(patch);
                 region.AddPatch(patch);
@@ -95,28 +87,42 @@ public static class PatchMapGenerator
 
                 while (numberOfPatches > 0)
                 {
-                    var patchIndex = random.Next(0,4);
-                    patch = predefinedMap.Patches[patchIndex];
-
-                    patch = new Patch(patch.Name, currentPatchId++, patch.BiomeTemplate)
-                    {
-                        Depth =
-                        {
-                            [0] = patch.Depth[0],
-                            [1] = patch.Depth[1],
-                        }
-                    };
+                    var patchIndex = random.Next(0,3);
+                    patch = GetPatchFromPredefinedMap(patchIndex, currentPatchId++, predefinedMap);
 
                     map.AddPatch(patch);
-                    region.AddPatch(predefinedMap.Patches[patchIndex]);
-
+                    region.AddPatch(patch);
+                    numberOfPatches--;
                 }
                 
             }
             else
             {
-                numberOfPatches = random.Next(2,8);
+                numberOfPatches = random.Next(0,4);
+
+                // All oceans/seas must have at least 1 epipelagic patch and a seafloor
+                var patch = GetPatchFromPredefinedMap(3, currentPatchId++, predefinedMap);
+                map.AddPatch(patch);
+                region.AddPatch(patch);
+
+                patch = GetPatchFromPredefinedMap(7, currentPatchId++, predefinedMap);
+                map.AddPatch(patch);
+                region.AddPatch(patch);
+
+                map.CurrentPatch = patch;
+
+
+                while (numberOfPatches > 0)
+                {
+                    var patchIndex = 3 + numberOfPatches;
+                    patch = GetPatchFromPredefinedMap(patchIndex, currentPatchId++, predefinedMap);
+                    map.AddPatch(patch);
+                    region.AddPatch(patch);
+                    numberOfPatches--;
+                }
             }
+            region.Build();
+            map.AddRegion(region);
 
 
         }
@@ -254,6 +260,21 @@ public static class PatchMapGenerator
         return true;
     }
 
+    public static Patch GetPatchFromPredefinedMap(int patchId, int newId, PatchMap predefinedMap)
+    {
+        var patch = predefinedMap.Patches[patchId];
+        patch = new Patch(patch.Name, newId++, patch.BiomeTemplate)
+        {
+            Depth =
+            {
+                [0] = patch.Depth[0],
+                [1] = patch.Depth[1],
+            }
+        };
+
+        return patch;
+    }
+
     private static PatchMap PredefinedMap(PatchMap map, string areaName, Species defaultSpecies)
     {
 
@@ -294,18 +315,17 @@ public static class PatchMapGenerator
         };
         map.AddPatch(tidepool);
 
-        var vents = new Patch(GetPatchLocalizedName(areaName, "VOLCANIC_VENT"), 3,
-            GetBiomeTemplate("aavolcanic_vent"))
+        var epipelagic = new Patch(GetPatchLocalizedName(areaName, "EPIPELAGIC"), 3,
+            GetBiomeTemplate("default"))
         {
             Depth =
             {
-                [0] = 2500,
-                [1] = 3000,
+                [0] = 0,
+                [1] = 200,
             },
-            ScreenCoordinates = new Vector2(100, 400),
+            ScreenCoordinates = new Vector2(200, 100),
         };
-        vents.AddSpecies(defaultSpecies);
-        map.AddPatch(vents);
+        map.AddPatch(epipelagic);
 
         var mesopelagic = new Patch(GetPatchLocalizedName(areaName, "MESOPELAGIC"), 4,
             GetBiomeTemplate("mesopelagic"))
@@ -319,19 +339,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(mesopelagic);
 
-        var epipelagic = new Patch(GetPatchLocalizedName(areaName, "EPIPELAGIC"), 5,
-            GetBiomeTemplate("default"))
-        {
-            Depth =
-            {
-                [0] = 0,
-                [1] = 200,
-            },
-            ScreenCoordinates = new Vector2(200, 100),
-        };
-        map.AddPatch(epipelagic);
-
-        var bathypelagic = new Patch(GetPatchLocalizedName(areaName, "BATHYPELAGIC"), 6,
+        var bathypelagic = new Patch(GetPatchLocalizedName(areaName, "BATHYPELAGIC"), 5,
             GetBiomeTemplate("bathypelagic"))
         {
             Depth =
@@ -343,7 +351,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(bathypelagic);
 
-        var abyssopelagic = new Patch(GetPatchLocalizedName(areaName, "ABYSSOPELAGIC"), 7,
+        var abyssopelagic = new Patch(GetPatchLocalizedName(areaName, "ABYSSOPELAGIC"), 6,
             GetBiomeTemplate("abyssopelagic"))
         {
             Depth =
@@ -355,7 +363,17 @@ public static class PatchMapGenerator
         };
         map.AddPatch(abyssopelagic);
 
-  
+        var seafloor = new Patch(GetPatchLocalizedName(areaName, "SEA_FLOOR"), 7,
+            GetBiomeTemplate("seafloor"))
+        {
+            Depth =
+            {
+                [0] = 4000,
+                [1] = 6000,
+            },
+            ScreenCoordinates = new Vector2(200, 400),
+        };
+        map.AddPatch(seafloor);
 
         var cave = new Patch(GetPatchLocalizedName(areaName, "UNDERWATERCAVE"), 8,
             GetBiomeTemplate("underwater_cave"))
@@ -381,17 +399,18 @@ public static class PatchMapGenerator
         };
         map.AddPatch(iceShelf);
 
-        var seafloor = new Patch(GetPatchLocalizedName(areaName, "SEA_FLOOR"), 10,
-            GetBiomeTemplate("seafloor"))
+        var vents = new Patch(GetPatchLocalizedName(areaName, "VOLCANIC_VENT"), 10,
+            GetBiomeTemplate("aavolcanic_vent"))
         {
             Depth =
             {
-                [0] = 4000,
-                [1] = 6000,
+                [0] = 2500,
+                [1] = 3000,
             },
-            ScreenCoordinates = new Vector2(200, 400),
+            ScreenCoordinates = new Vector2(100, 400),
         };
-        map.AddPatch(seafloor);
+        vents.AddSpecies(defaultSpecies);
+        map.AddPatch(vents);
 
         // Connections
         LinkPatches(vents, seafloor);

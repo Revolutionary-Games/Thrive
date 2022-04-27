@@ -33,13 +33,15 @@ public class PatchRegion
 
     public List<Patch> Patches;
 
-    public PatchRegion(int Id, LocalizedString name)
+    public PatchRegion(int Id, LocalizedString name, string regionType, Vector2 coordinates)
     {
         ID = Id;
         Patches = new List<Patch>();
         Name = name;
         Height = 0;
         Width = 0;
+        RegionType = regionType;
+        ScreenCoordinates = coordinates;
     }
 
     public void AddPatch(Patch patch)
@@ -60,7 +62,7 @@ public class PatchRegion
 
             if (RegionType == "continent")
             {
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < Patches.Count; j++)
                 {
                     if (j != i)
                     {
@@ -77,7 +79,7 @@ public class PatchRegion
         {
             
             if (RegionType != "continent")
-                Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + PatchMargin, ScreenCoordinates.y + i * (64f + PatchMargin));
+                Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + PatchMargin, ScreenCoordinates.y + i * (64f + PatchMargin) + PatchMargin);
             else
             {
                 if (i % 2 == 0)
@@ -100,8 +102,10 @@ public class PatchRegion
 
         // Region size configuration
         Width += 64f + 2*PatchMargin;
+        
         if (RegionType == "continent")
         {
+            Height = 64f + 2*PatchMargin;
             if (Patches.Count > 1)
                 Width += 64f + PatchMargin;
             
@@ -120,7 +124,6 @@ public class PatchRegion
         patch1.AddNeighbour(patch2);
         patch2.AddNeighbour(patch1);
     }
-
     
     /// <summary>
     ///   Adds a connection to patch
