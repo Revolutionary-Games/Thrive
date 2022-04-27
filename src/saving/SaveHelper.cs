@@ -242,7 +242,7 @@ public static class SaveHelper
     /// <summary>
     ///   Counts the total number of saves with the given regex expression and how many bytes they take up
     /// </summary>
-    public static (int Count, ulong DiskSpace) CountSaves(Regex? nameContains = null)
+    public static (int Count, ulong DiskSpace) CountSaves(Regex? nameMatches = null)
     {
         int count = 0;
         ulong totalSize = 0;
