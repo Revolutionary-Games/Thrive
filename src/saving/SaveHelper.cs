@@ -296,9 +296,9 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Deletes all saves with the given regex expression except the
-    ///   latest one if deleteLatest is false and returns the list of saves deleted
+    ///   Deletes all saves with the given regex expression except the latest one if deleteLatest is false
     /// </summary>
+    /// <returns>the list of saves deleted</returns>
     public static List<string> CleanUpOldSavesOfType(Regex nameMatches, bool deleteLatest = false)
     {
         var savesDeleted = new List<string>();
