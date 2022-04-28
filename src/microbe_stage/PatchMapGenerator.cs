@@ -28,7 +28,7 @@ public static class PatchMapGenerator
         int [,] graph = new int [100,100];
         int vertexNr = random.Next(5,8);
         int edgeNr = random.Next(vertexNr , 2*vertexNr - 4);
-        int minDistance = 200;
+        int minDistance = 20;
         
         var currentPatchId = 0;
         // Create the graphs random points
@@ -36,23 +36,7 @@ public static class PatchMapGenerator
         {
             var areaName = nameGenerator.Next(random);
             var continentName = nameGenerator.ContinentName;
-            int x = random.Next(50,770);
-            int y = random.Next(50,770);
-            var coord = new Vector2(x,y);
-
-            // Check if the region doesnt overlap over other regions
-            bool check = CheckPatchDistance(coord, regionCoords, minDistance);
-            while (!check)
-            {
-                x = random.Next(30,770);
-                y = random.Next(30,770);
-                coord = new Vector2(x,y);
-                check = CheckPatchDistance(coord, regionCoords, minDistance);
-            }
-
-            regionCoords.Add(coord);
-
-            
+            var coord = new Vector2(0,0);
 
             var regionType = random.Next(0,3);
             string regionTypeName; 
@@ -74,7 +58,7 @@ public static class PatchMapGenerator
 
             var region = new PatchRegion(i, GetPatchLocalizedName(continentName, regionTypeName), regionTypeName, coord);
             int numberOfPatches;
-            GD.Print(region.Name);
+
             if (regionType == 2)
             {
                 numberOfPatches = random.Next(1,4);
@@ -95,6 +79,7 @@ public static class PatchMapGenerator
                 }
                 
             }
+
             else
             {
                 numberOfPatches = random.Next(0,4);
@@ -106,8 +91,6 @@ public static class PatchMapGenerator
                 patch = GetPatchFromPredefinedMap(7, currentPatchId++, predefinedMap, areaName);
                 region.AddPatch(patch);
 
-
-
                 while (numberOfPatches > 0)
                 {
                     var patchIndex = 3 + numberOfPatches;
@@ -116,8 +99,11 @@ public static class PatchMapGenerator
                     numberOfPatches--;
                 }
             }
-            map.AddRegion(region);
+            region.BuildRegion();
+            coord = GenerateCoordinates(region, map, random, minDistance);
+            regionCoords.Add(coord - region.GetSize()/2f);
 
+            map.AddRegion(region);
         }
 
         map = BuildRegionsAndAddPatches(map);
@@ -239,20 +225,46 @@ public static class PatchMapGenerator
     }
 
     // Checks distance between patches
-    private static bool CheckPatchDistance(Vector2 patchCoord, List<Vector2> allPatchesCoords, int minDistance)
+    private static bool CheckRegionDistance(PatchRegion region, PatchMap map, int minDistance)
     {
-        if (allPatchesCoords.Count == 0)
+        if (map.Regions.Count == 0)
             return true;
 
-        for (int i = 0;i< allPatchesCoords.Count; i++)
+        for (int i = 0; i < map.Regions.Count; i++)
         {
-            var dist = (int)patchCoord.DistanceTo(allPatchesCoords[i]);
-            if (dist < minDistance)
-            {
+            if (CheckIfRegionsIntersect(region, map.Regions[i], minDistance))
                 return false;
-            }
         }
         return true;
+    }
+
+    private static bool CheckIfRegionsIntersect(PatchRegion region1, PatchRegion region2, int minDistance)
+    {
+        var minDist = new Vector2(minDistance, minDistance);
+        var region1Rect = new Rect2(region1.ScreenCoordinates, region1.GetSize() + minDist);
+        var region2Rect = new Rect2(region2.ScreenCoordinates, region2.GetSize() + minDist);
+        return region1Rect.Intersects(region2Rect, true);
+    }
+
+    private static Vector2 GenerateCoordinates(PatchRegion region, PatchMap map, Random random, int minDistance)
+    {
+            int x = random.Next(10,800);
+            int y = random.Next(10,800);
+            var coord = new Vector2(x,y);
+            region.ScreenCoordinates = coord;
+            
+            // Check if the region doesnt overlap over other regions
+            bool check = CheckRegionDistance(region, map, minDistance);
+            while (!check)
+            {
+                GD.Print(coord);
+                x = random.Next(10,800);
+                y = random.Next(10,800);
+                coord = new Vector2(x,y);
+                region.ScreenCoordinates = coord;
+                check = CheckRegionDistance(region, map, minDistance);
+            }
+            return coord;
     }
 
     public static Patch GetPatchFromPredefinedMap(int patchId, int newId, PatchMap predefinedMap, string areaName)
@@ -289,7 +301,7 @@ public static class PatchMapGenerator
         {
             if (dif.x < 0 && dif.y < 0)
                 region.Value.ScreenCoordinates += dif;
-            region.Value.Build();
+            region.Value.BuildPatches();
             foreach (var patch in region.Value.Patches)
             {
                 map.AddPatch(patch);

@@ -49,7 +49,7 @@ public class PatchRegion
         Patches.Add(patch);
     }
 
-    public void Build()
+    public void BuildPatches()
     {
         Patches.Sort((x,y) => x.Depth[1].CompareTo(y.Depth[1]));
         
@@ -72,7 +72,6 @@ public class PatchRegion
 
             }
         }
-
 
         // Patches position configuration
         for (int i = 0; i < Patches.Count; i++)
@@ -100,6 +99,10 @@ public class PatchRegion
             }
         }
 
+
+    }
+    public void BuildRegion()
+    {
         // Region size configuration
         Width += 64f + 2*PatchMargin;
         
@@ -132,6 +135,11 @@ public class PatchRegion
     public bool AddNeighbour(PatchRegion region)
     {
         return Adjacent.Add(region);
+    }
+
+    public Vector2 GetSize()
+    {
+        return new Vector2(Width, Height);
     }
 
 }
