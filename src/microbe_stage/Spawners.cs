@@ -116,9 +116,7 @@ public static class SpawnHelpers
                      Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
             {
                 // Skip spawning this microbe if it would spawn outside of the despawn radius
-                float distanceSquared = (playerPosition - (location + locationOffset)).LengthSquared();
-                float despawnRadius = Constants.MICROBE_SPAWN_RADIUS + Constants.DESPAWN_RADIUS_OFFSET;
-                if (distanceSquared < Mathf.Pow(despawnRadius, 2.0f))
+                if (IsInsideDespawnRadius(location + locationOffset, playerPosition))
                 {
                     // Dont spawn them on top of each other because it
                     // causes them to bounce around and lag
@@ -140,9 +138,7 @@ public static class SpawnHelpers
                      Constants.MAX_BACTERIAL_LINE_SIZE + 1); i++)
             {
                 // Skip spawning this microbe if it would spawn outside of the despawn radius
-                float distanceSquared = (playerPosition - (location + locationOffset)).LengthSquared();
-                float despawnRadius = Constants.MICROBE_SPAWN_RADIUS + Constants.DESPAWN_RADIUS_OFFSET;
-                if (distanceSquared < Mathf.Pow(despawnRadius, 2.0f))
+                if (IsInsideDespawnRadius(location + locationOffset, playerPosition))
                 {
                     // Dont spawn them on top of each other because it
                     // Causes them to bounce around and lag
@@ -324,14 +320,18 @@ public static class SpawnHelpers
             }
 
             // Skip spawning this microbe if it would spawn outside of the despawn radius
-            float distanceSquared = (playerPosition - (location + colony.LocationOffset)).LengthSquared();
-            float despawnRadius = Constants.MICROBE_SPAWN_RADIUS + Constants.DESPAWN_RADIUS_OFFSET;
-            if (distanceSquared < Mathf.Pow(despawnRadius, 2.0f))
+            if (IsInsideDespawnRadius(location + colony.LocationOffset, playerPosition))
             {
                 yield return SpawnMicrobe(colony.Species, location + colony.LocationOffset, colony.WorldRoot,
                     colony.MicrobeScene, true, colony.CloudSystem, colony.CurrentGame);
             }
         }
+    }
+
+    private static bool IsInsideDespawnRadius(Vector3 location, Vector3 playerPosition)
+    {
+        float distanceSquared = (playerPosition - location).LengthSquared();
+        return distanceSquared < Constants.MICROBE_DESPAWN_RADIUS_SQUARED;
     }
 
     private class ColonySpawnInfo
