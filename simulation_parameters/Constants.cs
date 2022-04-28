@@ -776,9 +776,9 @@ public static class Constants
     };
 
     ///   Regex expresions to categorize different file types.
-    public static readonly Regex BackupRegex = new(@"^.*\.backup\.thrivesave$");
-    public static readonly Regex AutoSaveRegex = new(@"^auto_save_\d+\.thrivesave$");
-    public static readonly Regex QuickSaveRegex = new(@"^quick_save_\d+\.thrivesave$");
+    public static readonly Regex BackupRegex = new(@"^.*\.backup\." + SAVE_EXTENSION + "$");
+    public static readonly Regex AutoSaveRegex = new(@"^auto_save_\d+\." + SAVE_EXTENSION + "$");
+    public static readonly Regex QuickSaveRegex = new(@"^quick_save_\d+\." + SAVE_EXTENSION + "$");
 
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
