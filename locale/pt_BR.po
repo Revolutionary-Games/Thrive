@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-28 00:38-0400\n"
-"PO-Revision-Date: 2022-03-26 14:06+0000\n"
+"POT-Creation-Date: 2022-04-28 19:33-0400\n"
+"PO-Revision-Date: 2022-04-15 14:50+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -123,7 +123,7 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Organelas acopladas à membrana\n"
 "\n"
-"Núcleo: Ocupa 11 espaços e permite a evolução de organelas com membranas. Também dobra o tamanho de sua célula (Só pode ser evoluído uma vez)\n"
+"Núcleo: Ocupa 11 espaços e permite a evolução das orgnanelas da membranas, e também dobra o tamanho de sua célula (Só pode ser evoluído uma vez)\n"
 "\n"
 "Agente de Ligação: Permite ligar-se com outras células\n"
 "\n"
@@ -131,13 +131,15 @@ msgstr ""
 "\n"
 "Cloroplasto: Produz glicose da luz solar e do O2 atmosférico\n"
 "\n"
-"Quimioplasto: Produz glicose do Sulfeto de Hidrogênio\n"
+"Quimioplasto: Produz glicose do sulfeto de hidrogênio\n"
 "\n"
-"Plastídeo de Fixação de Nitrogênio: Faz amônia do ATP e nitrogênio atmosférico e oxigênio\n"
+"Plastídeo de Fixação de Nitrogênio: Faz amônia de ATP, nitrogênio atmosférico e oxigênio\n"
 "\n"
-"Vacúolo: Armazena 15 compostos coletados\n"
+"Vacúolo: Armazena 8 compostos coletados\n"
 "\n"
-"Vacúolo de Toxinas: Produz toxinas (chamadas oxitoxinas)"
+"Vacúolo de Toxinas: Produz toxinas (chamadas oxitoxinas) e permite que você libere-as causando dano baseado na quantidade de oxitoxina disponível\n"
+"\n"
+"Agente de Sinalização: Permite que as células criem compostos químicos aos quais outras células podem reagir"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -927,9 +929,8 @@ msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predação de {0}"
 
 #: ../src/early_multicellular_stage/CellType.cs:38
-#, fuzzy
 msgid "STEM_CELL_NAME"
-msgstr "Nome personalizado:"
+msgstr "Tronco"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
@@ -937,9 +938,8 @@ msgid "STRUCTURE"
 msgstr "Estrutura"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
-#, fuzzy
 msgid "REPRODUCTION"
-msgstr "Produção de ATP"
+msgstr "Reprodução"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
@@ -947,14 +947,12 @@ msgid "BEHAVIOUR"
 msgstr "Comportamento"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
-#, fuzzy
 msgid "CELLS"
-msgstr "Celulose"
+msgstr "Células"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
-#, fuzzy
 msgid "MODIFY_TYPE"
-msgstr "Modificar"
+msgstr "Modificar tipo"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:414
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
@@ -962,20 +960,17 @@ msgid "DELETE"
 msgstr "Remover"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:421
-#, fuzzy
 msgid "DUPLICATE_TYPE"
-msgstr "Duplicar Jogador"
+msgstr "Duplicar"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:463
-#, fuzzy
 msgid "REPRODUCTION_METHOD"
-msgstr "reproduziu"
+msgstr "Reprodução:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:476
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
-#, fuzzy
 msgid "REPRODUCTION_BUDDING"
-msgstr "reproduziu"
+msgstr "Gemulação"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
@@ -990,44 +985,38 @@ msgid "NEXT_CAPITAL"
 msgstr "PRÓXIMO"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
-#, fuzzy
 msgid "DISCONNECTED_CELLS"
-msgstr "Organelas Desconectadas"
+msgstr "Células Desconectadas"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
-#, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
-"Há organelas desconectadas do resto da célula.\n"
-"Por favor conecte todas as organelas ou desfaça suas mudanças."
+"Há células desconectadas do resto do organismo.\n"
+"Por favor, conecte todas as células para continuar."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "Não é possível excluír tipos de células em uso"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "Um tipo de célula que está sendo usada no seu organismo não pode ser excluído"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr "Criar Novo Jogo"
+msgstr "Criar novo tipo de célula"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "Meu Mod Maneirasso"
+msgstr "Você pode criar novos tipos de célula duplicando os que já existem e os renomeando. Os tipos de célula podem ser alterados para especializá-los em diferentes funções. Ao alterá-los no editor, todas as células no organismo serão atualizadas."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
-#, fuzzy
 msgid "NEW_NAME_COLON"
-msgstr "Velocidade:"
+msgstr "Novo Nome:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:585
-#, fuzzy
 msgid "NEW_NAME"
-msgstr "Novo Jogo"
+msgstr "Novo Nome"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:73
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
@@ -1042,11 +1031,11 @@ msgstr "A auto-evo falhou"
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:192
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr "Estado da auto-evo:"
+msgstr "Estado da execução:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "Selecione um tipo de célula para editá-lo aqui"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1060,7 +1049,7 @@ msgstr "Aperte uma tecla..."
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Há um conflito com {0}.\n"
-"Deseja redefinir {1}?"
+"Deseja elimimar a entrada de {1}?"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
 msgid "KEY_FORWARD"
@@ -1084,11 +1073,11 @@ msgstr "Delete"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:131
 msgid "KEY_PAUSE"
-msgstr "Pausar"
+msgstr "Pause"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
-msgstr "Limpar"
+msgstr "Clear"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "KEY_HOME"
@@ -1156,7 +1145,7 @@ msgstr "Favoritos"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr "Tela de Print"
+msgstr "Capturar Tela"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
@@ -2333,12 +2322,17 @@ msgstr "As licenças que cobrem partes de Thrive são mostradas aqui"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "Prosseguir para o protótipo do estágio?"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
-msgstr "Protanopia (Vermelho-Verde)"
+msgstr ""
+"Você terminou a parte “completa” de Thrive.\n"
+"Se quiser, você pode jogar os protótipos dos estágios seguintes que estão incluídos no jogo. Eles podem estar incompletos e usar gráficos temporários. Os protótipos estão incluídos para mostrar como será o possível futuro do jogo, e como os estágios estarão conectados.\n"
+"\n"
+"Não será possível salvar o jogo ou sair dos protótipos caso prosseguir. Se quiser voltar, salve o jogo antes de continuar.\n"
+"\n"
+"Ao continuar, entenda que os estágios seguintes são protótipos e não reclame se estiverem incompletos."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2357,9 +2351,8 @@ msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Terminar de editar e voltar ao jogo"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
-#, fuzzy
 msgid "NEXT_EDITOR_TAB"
-msgstr "Habilitar o editor"
+msgstr "Ir para a próxima aba do editor"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
@@ -2874,12 +2867,12 @@ msgstr "muito pouco"
 #: ../src/microbe_stage/MicrobeHUD.cs:1156
 #: ../src/microbe_stage/MicrobeStage.tscn:1768
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Tornar-se Multicelular ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1192
 #: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Tornar-se Macroscópico ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeStage.cs:691
 msgid "PLAYER_REPRODUCED"
@@ -2968,7 +2961,7 @@ msgstr "Suicídio"
 #: ../src/microbe_stage/MicrobeStage.tscn:1767
 #: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr ""
+msgstr "Ir para o próximo estágio do jogo (milticelular). Disponível ao ter uma colônia grande o suficiente."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1813
 msgid "POPULATION_CAPITAL"
@@ -3019,9 +3012,8 @@ msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Relevo Oceânico Pangoniano"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:203
-#, fuzzy
 msgid "PATCH_NAME"
-msgstr "Caverna"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3098,7 +3090,7 @@ msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Nome do Tipo de Célula"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1768
 msgid "FAILED"
@@ -3382,9 +3374,8 @@ msgid "PATCH_MAP"
 msgstr "Mapa de Regiões"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
-#, fuzzy
 msgid "CELL"
-msgstr "Celulose"
+msgstr "Célula"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
@@ -3985,9 +3976,8 @@ msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Sobrescrever jogo salvo existente?"
 
 #: ../src/saving/NewSaveMenu.tscn:121
-#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr "Não pode engolir"
+msgstr "Erro ao Salvar"
 
 #: ../src/saving/NewSaveMenu.tscn:125
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
@@ -4006,9 +3996,11 @@ msgid "PLAYER_EXTINCT"
 msgstr "O jogador foi extinto"
 
 #: ../src/saving/SaveHelper.cs:470
-#, fuzzy
 msgid "IN_PROTOTYPE"
-msgstr "Protanopia (Vermelho-Verde)"
+msgstr ""
+"Você está jogando os protótipos dos estágios seguintes que estão incluídos no jogo.\n"
+"Eles podem estar incompletos, usar gráficos temporários, ou não estar polidos.\n"
+"Por isso, não será possível salvar."
 
 #: ../src/saving/SaveHelper.cs:478
 msgid "SAVING_SUCCEEDED"
@@ -4343,7 +4335,6 @@ msgid "GOT_IT"
 msgstr "Entendi"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Esse painel mostra uma previsão da sua população futura. Esses números são da simulação populacional da auto-evo.\n"
@@ -4355,14 +4346,13 @@ msgstr ""
 "Você pode ver informações mais detalhadas sobre a previsão clicando no ponto de interrogação no painel. Clique nele para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"Você deve focar em uma ou duas fontes de energia para que você não precise de todos os recursos para gerar ATP suficiente para sobreviver.\n"
+"Você deve focar em uma ou duas fontes de energia para que você não precise de recursos demais para gerar ATP suficiente para sobreviver.\n"
 "\n"
 "Também considere se adicionar uma organela é benéfico, muitas vezes não alterar nada é uma boa escolha, pois cada parte custa ATP para ser mantida e requer mais recursos para se dividir.\n"
 "\n"
-"Uma estratégia possível é permanecer como um único hexágono de citoplasma e ir à superfície antes de obter organelas fotossintetizantes."
+"Uma estratégia bastante usada é permanecer como um único hexágono de citoplasma e ir à superfície antes de obter organelas fotossintetizantes."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
@@ -4376,7 +4366,6 @@ msgstr ""
 "Para sobreviver neste mundo hostil, você precisará coletar compostos e evoluir por gerações para competir contra outras espécies de micróbios."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
-#, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Mostrar tutoriais"
 
@@ -4409,11 +4398,10 @@ msgstr ""
 "Certifique-se de conseguir glicose suficiente para produzir ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Para reproduzir você precisa duplicar todas as suas organelas coletando amônia e fosfatos suficientes.\n"
-"Veja o indicador no canto inferior esquerdo para ver o quanto precisa."
+"Para reproduzir você precisa duplicar todas as suas organelas coletando uma quantidade suficiente de amônia e fosfato.\n"
+"Veja o indicador no canto inferior esquerdo para ver o quanto precisa. As barras tornam-se brancas ao ficarem completas."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
@@ -4425,7 +4413,6 @@ msgstr ""
 "Para entrar no editor, aperte o botão do editor que está piscando no canto inferior direito."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Você entrou no modo de desconexão. Nesse modo você pode clicar nos membros da colônia para desconectá-las.\n"
@@ -4433,7 +4420,6 @@ msgstr ""
 "Para sair da colônia você pode clicar em sua própria célula ou apertar a tecla “desconectar todos”."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Se você estiver com dificuldade nas mecânicas do jogo, leia o manual de ajuda. Você pode abri-lo clicando no ponto de interrogação no canto inferior esquerdo.\n"
@@ -4444,8 +4430,24 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Ver Agora"
 
+#, fuzzy
+#~ msgid "TOGGLE_METRICS"
+#~ msgstr "Exibir FPS"
+
+#, fuzzy
+#~ msgid "FPS"
+#~ msgstr "FPS máximo:"
+
+#, fuzzy
+#~ msgid "METRICS"
+#~ msgstr "Exibir FPS"
+
 #~ msgid "AUTO"
 #~ msgstr "Auto"
+
+#, fuzzy
+#~ msgid "STORAGE_COLON"
+#~ msgstr "Armazenamento"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Carregando..."

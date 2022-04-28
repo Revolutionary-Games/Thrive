@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-28 00:38-0400\n"
-"PO-Revision-Date: 2022-03-21 21:55+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2022-04-28 19:33-0400\n"
+"PO-Revision-Date: 2022-04-15 14:50+0000\n"
+"Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -137,7 +137,9 @@ msgstr ""
 "\n"
 "Vacúol: Emmagatzema fins a 8 unitats de compostos recol·lectats\n"
 "\n"
-"Vacúol de Toxines: Produeix toxines (anomenades [thrive:compound type=\"oxytoxy\"][/thrive:compound])"
+"Vacúol de Toxines: Produeix toxines (anomenades [thrive:compound type=\"oxytoxy\"][/thrive:compound])\n"
+"\n"
+"Agent de Senyalització: Permet crear productes químics als quals altres espècies hi poden reaccionar."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -927,9 +929,8 @@ msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predació de {0}"
 
 #: ../src/early_multicellular_stage/CellType.cs:38
-#, fuzzy
 msgid "STEM_CELL_NAME"
-msgstr "Nom d'usuari propi:"
+msgstr "Arrel"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
@@ -937,9 +938,8 @@ msgid "STRUCTURE"
 msgstr "Estructura"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
-#, fuzzy
 msgid "REPRODUCTION"
-msgstr "Producció d'ATP"
+msgstr "Reproducció"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
@@ -947,14 +947,12 @@ msgid "BEHAVIOUR"
 msgstr "Comportament"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
-#, fuzzy
 msgid "CELLS"
-msgstr "Cel·lulosa"
+msgstr "Cèl·lules"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
-#, fuzzy
 msgid "MODIFY_TYPE"
-msgstr "Modificar"
+msgstr "Modificar Tipus"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:414
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
@@ -962,20 +960,17 @@ msgid "DELETE"
 msgstr "Eliminar"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:421
-#, fuzzy
 msgid "DUPLICATE_TYPE"
-msgstr "Jugador Duplicat"
+msgstr "Duplicar Tipus"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:463
-#, fuzzy
 msgid "REPRODUCTION_METHOD"
-msgstr "reproducció"
+msgstr "Reproducció:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:476
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
-#, fuzzy
 msgid "REPRODUCTION_BUDDING"
-msgstr "reproducció"
+msgstr "Gemmació"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
@@ -990,44 +985,38 @@ msgid "NEXT_CAPITAL"
 msgstr "SEGÜENT"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
-#, fuzzy
 msgid "DISCONNECTED_CELLS"
-msgstr "Orgànuls Desconnectats"
+msgstr "Cèl·lules Desconnectades"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
-#, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
-"Hi ha orgànuls que no han estat físicament connectats a la resta.\n"
-"Siusplau, connecta tots els orgànuls o bé desfés els teus canvis."
+"Hi ha cèl·lules col·locades que no han estat físicament connectats a la resta.\n"
+"Siusplau, connecta totes les cèl·lules per continuar."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "No es pot eliminar el Tipus de Cèl·lula"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "Un Tipus de Cèl·lula que s'utilitza actualment en el teu Pla Corporal no es pot eliminar"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr "Crear un nou arxiu de guardat"
+msgstr "Crear un nou Tipus de Cèl·lula"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "El Meu Mod Esbalaïdor"
+msgstr "Pots crear nous tipus de cèl·lules duplicant-ne de ja existents, i donant-les-hi un nou nou. Els tipus de cèl·lula es poden modificar per a especialitzar-se en diferents rols. Quan es modifica un tipus de cèl·lula, totes les cèl·lules del mateix tipus col·locades s'actualitzaran."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
-#, fuzzy
 msgid "NEW_NAME_COLON"
-msgstr "Velocitat:"
+msgstr "Nou nom:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:585
-#, fuzzy
 msgid "NEW_NAME"
-msgstr "Nova partida"
+msgstr "Nou Nom"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:73
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
@@ -1046,7 +1035,7 @@ msgstr "estat d'execució:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "Selecciona un tipus de cèl·lula per editar aquí des de la pestanya Editor"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -2333,12 +2322,17 @@ msgstr "Aquí es mostren les llicències cobrint parts de Thrive"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "Continuar als prototips d'altres estadis?"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
-msgstr "Protanòpia (Vermell-Verd)"
+msgstr ""
+"Has assolit el final de la part \"completa\" de Thrive.\n"
+"Si ho vols, pots continuar jugant als prototips d'altres estadis que estan inclosos al joc. Aquests, poden ser molt incomplerts, fer servir gràfics temporals, i ser \"matussers\" en general. No obstant, estan inclosos com a part del joc per a mostrar la possible direcció futura del joc, i la nostra visió general de com estan connectats els diferents estadis.\n"
+"\n"
+"Si continues, no podràs guardar ni tornar a l'estadi de microbi. Si vols tornar a aquest estadi, siusplau, guarda el joc ara, abans de continuar.\n"
+"\n"
+"Si tries continuar, siusplau tingues en compte que els següents estadis només són prototips incomplerts, i siusplau no ho critiqueu injustificadament."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2357,9 +2351,8 @@ msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Acabar la sessió d'evolució i tornar al món"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
-#, fuzzy
 msgid "NEXT_EDITOR_TAB"
-msgstr "Habilitar l'editor"
+msgstr "Anar a la següent pestanya de l'editor"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
@@ -2672,9 +2665,8 @@ msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Mantingues [thrive:input]g_pack_commands[/thrive:input] premut per obrir un menú que et permet donar ordres a altres membres de la teva espècie."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2085
-#, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
+msgstr "Els agents de senyalització permeten crear productes químics amb els quals altres cèl·lules hi poden reaccionar. Els productes de senyalització es poden utilitzar per atraure altres cèl·lules o avisar-les sobre el perill per a fer-les fugir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2211
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -2814,29 +2806,27 @@ msgstr "Generar Enemic"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:478
 msgid "SIGNAL_COMMAND_NONE"
-msgstr ""
+msgstr "Cap Comanda"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:479
 msgid "SIGNAL_COMMAND_FOLLOW"
-msgstr ""
+msgstr "Segueix-me"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:480
 msgid "SIGNAL_COMMAND_TO_ME"
-msgstr ""
+msgstr "Mou-te cap a mi"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:481
 msgid "SIGNAL_COMMAND_FLEE"
-msgstr ""
+msgstr "Fuig"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:482
-#, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr "Agent d'Unió"
+msgstr "Torna't agressiu"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:485
-#, fuzzy
 msgid "SIGNAL_TO_EMIT"
-msgstr "Agent d'Unió"
+msgstr "Senyal a emetre"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:801
 msgid "STUFF_AT"
@@ -2877,12 +2867,12 @@ msgstr "molt poc"
 #: ../src/microbe_stage/MicrobeHUD.cs:1156
 #: ../src/microbe_stage/MicrobeStage.tscn:1768
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Esdevenir un Organisme Multicel·lular ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1192
 #: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Esdevenir un Organisme Macroscòpic ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeStage.cs:691
 msgid "PLAYER_REPRODUCED"
@@ -2971,7 +2961,7 @@ msgstr "Suicidi"
 #: ../src/microbe_stage/MicrobeStage.tscn:1767
 #: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr ""
+msgstr "Accedeix al següent estadi del joc (Multicel·lular). Disponible un cop comptes amb una colònia cel·lular prou gran."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1813
 msgid "POPULATION_CAPITAL"
@@ -3022,9 +3012,8 @@ msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Llit Marí de Pangònia"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:203
-#, fuzzy
 msgid "PATCH_NAME"
-msgstr "Cova submarina"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3101,7 +3090,7 @@ msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Nom del Tipus de Cèl·lula"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1768
 msgid "FAILED"
@@ -3385,9 +3374,8 @@ msgid "PATCH_MAP"
 msgstr "Mapa d'Indrets del món"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
-#, fuzzy
 msgid "CELL"
-msgstr "Cel·lulosa"
+msgstr "Cèl·lula"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
@@ -3420,9 +3408,8 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sota el nivell del mar"
 
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
-#, fuzzy
 msgid "SPECIES_WITH_POPULATION"
-msgstr "Població de les Espècies"
+msgstr "{0} amb població: {1}"
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
 msgid "EXTINCT_SPECIES"
@@ -3749,7 +3736,7 @@ msgstr "Creant..."
 
 #: ../src/modding/ModUploader.cs:474
 msgid "SUCCESS_BUT_MISSING_ID"
-msgstr ""
+msgstr "El resultat ha indicat un èxit, però no s'ha retornat cap ID"
 
 #: ../src/modding/ModUploader.cs:519
 msgid "UPLOADING_DOT_DOT_DOT"
@@ -3917,9 +3904,8 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Creant objectes a partir de l'arxiu guardat"
 
 #: ../src/saving/InProgressLoad.cs:110
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr "S'ha esdevingut un problema mentre es carregaven les dades del fitxer guardat"
+msgstr "S'ha produït un problema mentre es carregaven les dades de guardat"
 
 #: ../src/saving/InProgressLoad.cs:136
 msgid "SAVE_IS_INVALID"
@@ -3934,7 +3920,6 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processant objectes carregats"
 
 #: ../src/saving/InProgressLoad.cs:165
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "S'ha produït un problema mentre es processaven els objectes carregats"
 
@@ -3951,9 +3936,8 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Ha fallat en alliberar recursos ja carregats: {0}"
 
 #: ../src/saving/InProgressSave.cs:204
-#, fuzzy
 msgid "SAVING_DOT_DOT_DOT"
-msgstr "Creant..."
+msgstr "Guardant..."
 
 #: ../src/saving/InProgressSave.cs:243
 msgid "SAVE_FAILED"
@@ -3964,9 +3948,8 @@ msgid "ERROR_SAVING"
 msgstr "Error amb l'acció de guardat"
 
 #: ../src/saving/NewSaveMenu.cs:80
-#, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr "El nom de l'arxiu ({0}) coincideix amb el d'un altre ja guardat. Voleu sobreescriure-ho?"
+msgstr "El nom de l'arxiu ({0}) ja existeix. Voleu sobreescriure?"
 
 #: ../src/saving/NewSaveMenu.cs:185
 msgid "INVALID_SAVE_NAME_POPUP"
@@ -3989,26 +3972,20 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Sobreescriure l'arxiu de guardat existent:"
 
 #: ../src/saving/NewSaveMenu.tscn:117
-#, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr "Sobreescriure l'arxiu de guardat existent:"
+msgstr "Sobreescriure l'arxiu de guardat existent?"
 
 #: ../src/saving/NewSaveMenu.tscn:121
-#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr "No pot engolir"
+msgstr "No pot Escriure Guardat"
 
 #: ../src/saving/NewSaveMenu.tscn:125
-#, fuzzy
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "L'algorisme auto-evo ha tingut un error"
+msgstr "L'intent d'escriure aquest arxiu de guardat ha fallat. És possible que el nom de guardat sigui massa llarg, o pot ser que no tinguis accés a la carpeta de guardat."
 
 #: ../src/saving/SaveHelper.cs:444 ../src/saving/SaveHelper.cs:488
-#, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr ""
-"Actualitzar l'arxiu de guardat especificat degut al següent error:\n"
-"{0}"
+msgstr "No s'ha pogut guardar! S'ha produït una excepció"
 
 #: ../src/saving/SaveHelper.cs:453 ../src/saving/SaveHelper.cs:469
 msgid "SAVING_NOT_POSSIBLE"
@@ -4019,9 +3996,11 @@ msgid "PLAYER_EXTINCT"
 msgstr "Jugador extingit"
 
 #: ../src/saving/SaveHelper.cs:470
-#, fuzzy
 msgid "IN_PROTOTYPE"
-msgstr "Protanòpia (Vermell-Verd)"
+msgstr ""
+"Estàs jugant els prototips d'estadis futurs, inclosos en el joc actual.\n"
+"Aquests poden ser molt incomplerts, fer servir gràfics temporals i ser molt \"matussers\" en general.\n"
+"Per tant, actualment no s'hi pot guardar la partida."
 
 #: ../src/saving/SaveHelper.cs:478
 msgid "SAVING_SUCCEEDED"
@@ -4052,17 +4031,14 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "No s'han trobat arxius de guardat"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-#, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Carregant..."
 
 #: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
-#, fuzzy
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Eliminar aquest arxiu de guardat?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Carregar arxiu de guardat incompatible?"
 
@@ -4081,7 +4057,6 @@ msgstr ""
 "Voleu intentar carregar l'arxiu igualment?"
 
 #: ../src/saving/SaveList.tscn:95
-#, fuzzy
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Carregar arxiu de guardat no vàlid?"
 
@@ -4093,7 +4068,6 @@ msgstr ""
 "Voleu intentar carregar l'arxiu igualment?"
 
 #: ../src/saving/SaveList.tscn:103
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "L'arxiu de guardat seleccionat és incompatible"
 
@@ -4105,9 +4079,8 @@ msgstr ""
 "Com que Thrive encara està en una fase primerenca de desenvolupament, la compatibilitat entre versions no és la major prioritat. Per això, encara no s'ha implementat un programa convertidor d'arxius de guardat."
 
 #: ../src/saving/SaveList.tscn:114
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
-msgstr "L'arxiu de guardat seleccionar es pot actualitzar"
+msgstr "L'arxiu de guardat seleccionat es pot actualitzar"
 
 #: ../src/saving/SaveList.tscn:115
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
@@ -4138,18 +4111,16 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-#, fuzzy
 msgid "TYPE_COLON"
-msgstr "Punts de salut:"
+msgstr "Tipus:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Descripció:"
 
 #: ../src/saving/SaveListItem.tscn:193
-#, fuzzy
 msgid "VERSION_COLON"
-msgstr "Generació:"
+msgstr "Versió:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -4203,12 +4174,10 @@ msgid "SELECTED_COLON"
 msgstr "Seleccionat:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-#, fuzzy
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Eliminar arxiu(s) de guardat seleccionat(s)?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-#, fuzzy
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Eliminar arxiu(s) de guardat antic(s)?"
 
@@ -4296,48 +4265,44 @@ msgstr "Hi ha hagut un error d'Steam desconegut"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
-#, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
-#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Benvingut a l'Editor de Microbi.\n"
+"\n"
 "Aquí pots revisar tot el que ha passat des del començament del joc o des de la darrera vegada que vas accedir a l'Editor. Tot seguit, pots fer canvis (que representen mutacions genètiques generades per un procés d'evolució).\n"
 "\n"
-"En aquesta pestanya pots examinar un informe que conté les espècies que hi ha actualment al món, el seu domini territorial i les seves poblacions fluctuants. També pots apreciar els canvis ambientals.\n"
+"Aquesta pestanya t'ofereix una llista de canvis en la zona que ocupes actualment. Intenta explorar les diferents eines que tens a la teva disposició per aprendre més sobre els esdeveniments del teu món.\n"
 "\n"
-"Per tal d'accedir a la següent pestanya de l'Editor, fes clic al botó SEGÜENT, a baix a la dreta."
+"Quan estiguis a punt, fes clic al botó \"següent\", a baix a la dreta."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Benvingut a l'Editor de Microbi.\n"
-"Aquí pots revisar tot el que ha passat des del començament del joc o des de la darrera vegada que vas accedir a l'Editor. Tot seguit, pots fer canvis (que representen mutacions genètiques generades per un procés d'evolució).\n"
+"Aquest és el mapa de zones.\n"
 "\n"
-"En aquesta pestanya pots examinar un informe que conté les espècies que hi ha actualment al món, el seu domini territorial i les seves poblacions fluctuants. També pots apreciar els canvis ambientals.\n"
+"Cada icona representa un ecosistema o bioma que pot ser habitat. El tauler de la dreta indica les condicions del bioma seleccionat.\n"
 "\n"
-"Per tal d'accedir a la següent pestanya de l'Editor, fes clic al botó SEGÜENT, a baix a la dreta."
+"Si selecciones un bioma connectat al que ocupes actualment, ressaltat amb una vora blau cian, pots premer el botó \"Moure's a aquesta zona\" per tal de migrar-hi.\n"
+"\n"
+"Selecciona una zona per continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Benvingut a l'Editor de Microbi.\n"
-"Aquí pots revisar tot el que ha passat des del començament del joc o des de la darrera vegada que vas accedir a l'Editor. Tot seguit, pots fer canvis (que representen mutacions genètiques generades per un procés d'evolució).\n"
+"Aquest és l'editor de microbi, on pots fer evolucionar la teva espècie invertint punts de mutació (MP). En cada generació disposaràs de 100 MP per invertir, de manera que no cal que n'estalviïs!\n"
 "\n"
-"En aquesta pestanya pots examinar un informe que conté les espècies que hi ha actualment al món, el seu domini territorial i les seves poblacions fluctuants. També pots apreciar els canvis ambientals.\n"
+"L'hexàgon del centre de la pantalla és la teva cèl·lula, formada per una sola part de citoplasma.\n"
 "\n"
-"Per tal d'accedir a la següent pestanya de l'Editor, fes clic al botó SEGÜENT, a baix a la dreta."
+"Per continuar, selecciona una part del tauler de l'esquerra. Tot seguit, fes clic-esquerra a l'hexàgon per a col·locar-la. Pots fer rotar les parts amb les tecles A i D (tecles per defecte)."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Eliminar orgànuls també costa una certa quantitat de Punts de Mutació, a menys que els hagis col·locat en la sessió actual de l'editor.\n"
+"Eliminar orgànuls també costa Punts de Mutació, a menys que els hagis col·locat en la sessió actual de l'editor.\n"
 "\n"
 "Pots fer clic dret a damunt dels orgànuls per fer visible el \"menú d'orgànul\" i seleccionar la opció d'eliminar-lo.\n"
 "\n"
@@ -4346,26 +4311,22 @@ msgstr ""
 "Clica el botó de desfer per tal de prosseguir."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Quan seleccionis els orgànuls que vulguis afegir, estigues atent als indicadors de funció ('tooltips', en anglès) per als orgànuls, que t'informaran dels processos que poden dur a terme i els compostos que consumeixen.\n"
+"Quan seleccionis parts del menú, estigues atent als indicadors de funció dels orgànuls, per entendre el que fan. Algunes parts poden fer més mal que bé si no s'utilitzen correctament.\n"
 "\n"
-"A més a més, estigues atent a la barra de balanç d'ATP que hi a la part superior dreta de la pantalla, per assegurar-te que la teva cèl·lula podrà sobreviure.\n"
+"La barra de balanç d'ATP que hi a la part superior dreta de la pantalla t'indica quanta energia produeixes comparat amb quanta energia consumeixes. Si la barra superior és més curta que la inferior, aleshores no estàs produïnt prou energia.\n"
 "\n"
-"Pots fer rotar els orgànuls amb les tecles A i D (tecles per defecte) abans de col·locar-los.\n"
-"\n"
-"Prem el botó de refer l'acció (a la vora del botó de desfer l'acció) per tal de prosseguir."
+"Prem el botó de refer l'acció (a la vora del botó de desfer l'acció) per continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:267
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"Aquests són els fonaments i consells bàsics per tal d'editar la teva espècie. Pots explorar les altres pestanyes de l'Editor de Microbi per descobrir totes les opcions que tens disponibles.\n"
+"Aquests són els fonaments per editar la teva espècie. També pots canviar el nom de la teva espècie clicant el requadre de sota i a l'esquerra i editant-ne el text. \n"
 "\n"
-"També pots batejar la teva espècie amb un nom propi, tot clicant en el nom actual de la teva espècie i editant-ne el text.\n"
+"Explora les altres pestanyes a sota la barra de Punts de Mutació per veure altres possibilitats de personalitzar la teva cèl·lula. de l'Editor de Microbi per descobrir totes les opcions que tens disponibles.\n"
 "\n"
-"A mode de consell, al principi de cada partida, mentre la teva espècie sigui jove, hauries d'intentar mantenir-la amb una mida i una complexitat reduïda, i intentar migrar fins als Indrets propers a la superfície marina. Aquesta estrategia evolutiva és, en la versió actual del joc, la més rendible. No obstant, si ets una persona inquieta, pots explorar i lluitar tot duent a terme altres estrategies!\n"
+"Per sobreviure en aquest món hostil, hauràs de trobar una font d'energia fiable, ja que la concentració de glucosa lliure s'anirà reduïnt al planeta.\n"
 "\n"
 "Bona sort!"
 
@@ -4374,26 +4335,24 @@ msgid "GOT_IT"
 msgstr "Ho he entès tot"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Aquest tauler mostra una predicció de la teva futura població. Aquests nombres provenen de la simulació del sistema auto-evo.\n"
 "\n"
-"No tenen en compte el teu rendiment individual. De manera que, en el teu Medi actual, tindràs un rendiment més alt quan entris a l'editor.\n"
+"No tenen en compte el teu rendiment individual. De manera que, en el teu bioma actual, tindràs un rendiment més alt quan entris a l'editor.\n"
 "\n"
 "Però hauries d'intentar mantenir la teva població alta, fins i tot quan no hi estàs directament involucrat.\n"
 "\n"
-"Pots veure informació més detallada de la predicció clicant a la icona del signe d'interrogació al tauler."
+"Pots veure informació més detallada de la predicció clicant a la icona del signe d'interrogació al tauler. Prem-la per continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"T'hauries de concentrar en una o dues fonts d'energia, de manera que no et calgui tenir tots els recursos per generar prou ATP per sobreviure.\n"
+"Per sobreviure, t'hauries de concentrar en especialitzar-te en explotar una o dues fonts d'energia, de manera que no necessitis molts recursos diferents per sobreviure.\n"
 "\n"
 "També, considera curosament si afegir un orgànul és bo, sovint no fer cap canvi és una bona tria, ja que cada part costa ATP per mantenir i requereix més recursos per dividir.\n"
 "\n"
-"Una possible estratègia consisteix en mantenir-se com un sol hexàgon de citoplasma i simplement dirigir-te als medis de la superfície primer abans d'aconseguir orgànuls de fotosíntesi."
+"Una possible estratègia consisteix en mantenir-se com un sol hexàgon de citoplasma i simplement dirigir-te als biomes de la superfície primer abans d'aconseguir orgànuls de fotosíntesi."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
@@ -4409,9 +4368,8 @@ msgstr ""
 "Per tal de sobreviure en aquest planeta hostil, hauràs d'arreplegar tots els compostos amb contingut nutritiu que puguis trobar. Al llarg de les diverses generacions del procés evolutiu, hauràs d'evolucionar per competir contra altres espècies pels nínxols de la cadena tròfica. Totes aquestes espècies hauran evolucionat a partir del darrer avantpassat universal comú."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
-#, fuzzy
 msgid "SHOW_TUTORIALS"
-msgstr "Mostrar els tutorials"
+msgstr "Mostrar tutorials"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
@@ -4427,9 +4385,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
-"Has de recol·lectar la Glucosa que hi ha dissolta a l'oceà (núvols de color blanc). Per fer-ho, mou-te en direcció cap al núvol. Un cop hi entris en contacte, la membrana cel·lular l'absorbirà.\n"
-"La teva cèl·lula necessita aquesta Glucosa per tal d'aconseguir energia, en forma de mol·lècules d'ATP, i mantenir-se viva.\n"
-"Segueix la línia de la pantalla, que s'estén des de la teva cèl·lula fins al núvol de Glucosa més proper."
+"Recol·lecta Glucosa (núvols blancs) desplaçant-t'hi per sobre.\n"
+"\n"
+"La teva cèl·lula necessita Glucosa per aconseguir energia i mantenir-se viva.\n"
+"\n"
+"Segueix la línia de la pantalla, des de la teva cèl·lula fins al núvol de Glucosa més proper."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "MICROBE_STAGE_HEALTH_TEXT"
@@ -4440,32 +4400,28 @@ msgstr ""
 "Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Per tal de reproduïr-te, has de dividir la teva cèl·lula en dos organismes diferents. Per fer-ho, abans has de duplicar tots els orgànuls de la teva cèl·lula recol·lectant prou Amoníac i Fosfats.\n"
-"Estigueu atents a l'indicador a la part inferior dreta per veure quina quantitat d'Amoníac i Fosfats et falta encara."
+"Per reproduïr-te, has de duplicar tots els teus orgànuls recol·lectant prou Amoníac i Fosfat.\n"
+"Estigues atent a les barres que envolten els botó de sota a la dreta per veure quant et falta. Aquestes barres es tornaran de color blanc quan s'hagin omplert."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Has recol·lectat prou recursos per tal que la teva cèl·lula es divideixi.\n"
+"Has recol·lectat prou recursos per què la teva cèl·lula es reprodueixi.\n"
 "\n"
-"Estàs a punt de poder editar la teva espècie.\n"
+"Cada cop que et reprodueixis, accediràs a l'editor.\n"
 "\n"
-"Per entrar a l'editar, prem el botó que parpelleja a sota i a la dreta de la pantalla."
+"Per entrar a l'editor, prem el botó que parpelleja a sota i a la dreta de la pantalla."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Has entrar en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre dels membres de la teva colònia per desunir-los.\n"
+"Has entrat en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre dels membres de la teva colònia per desunir-los.\n"
 "\n"
-"Per tal d'abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
+"Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Si encara no acabes d'entendre les mecàniques de joc, fes una ullada al menú d'ajuda. El pots obrir amb el signe d'interrogació a baix a la dreta.\n"
@@ -4473,12 +4429,27 @@ msgstr ""
 "Un altre consell: pots ampliar el camp de visió amb la rodeta del ratolí."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Tutorial"
+msgstr "Veure ara"
+
+#, fuzzy
+#~ msgid "TOGGLE_METRICS"
+#~ msgstr "Activar monitor FPS"
+
+#, fuzzy
+#~ msgid "FPS"
+#~ msgstr "Màxims FPS:"
+
+#, fuzzy
+#~ msgid "METRICS"
+#~ msgstr "Activar monitor FPS"
 
 #~ msgid "AUTO"
 #~ msgstr "Auto"
+
+#, fuzzy
+#~ msgid "STORAGE_COLON"
+#~ msgstr "Emmagatzematge"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Carregant..."

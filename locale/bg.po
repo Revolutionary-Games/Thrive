@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-28 00:38-0400\n"
-"PO-Revision-Date: 2022-04-09 08:33+0000\n"
+"POT-Creation-Date: 2022-04-28 19:33-0400\n"
+"PO-Revision-Date: 2022-04-22 07:55+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -996,21 +996,19 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "Клетката не може да бъде премахната"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "Тази клетка е част от Вашия многоклетъчен организъм и не може да бъде премахната"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr "Създаване на нов запис"
+msgstr "Създаване на нова клетка"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "Моята невероятна модификация"
+msgstr "Може да създадете нови клетки с различно наименование чрез удвояване на текущите клетки. Свойствата на клетките могат да бъдат променяни, за да изпълняват различни функции. Когато дадена клетка бъде променена, всички клетки от нейния вид ще бъдат обновени."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
 msgid "NEW_NAME_COLON"
@@ -1037,7 +1035,7 @@ msgstr "състояние:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "Изберете клетка от редактора за да промените нейните свойства"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -2324,12 +2322,17 @@ msgstr "Описание на лицензите"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "Искате ли да продължите?"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
-msgstr "Протанопия (червено и зелено)"
+msgstr ""
+"Достигнахте края на „завършената“ част на „Thrive“.\n"
+"Ако искате, може да продължите към следващите етапи на играта. Те все още са в процес на разбработка и са включени само за демонстрационни цели. Искаме да Ви покажем бъдещото развитие на играта и цялостната ни визия за това как са свързани етапите помежду си.\n"
+"\n"
+"Преди да продължете, запазете текущата си игра, защото създаването на запис по време на следващите етапи на играта не е възможно.\n"
+"\n"
+"Моля, обърнете внимание, че следващите етапи на играта не са завършени и може да не функционират правилно."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2348,9 +2351,8 @@ msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Завършване на промените и възобновяване на играта"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
-#, fuzzy
 msgid "NEXT_EDITOR_TAB"
-msgstr "Активиране на редактора"
+msgstr "Преминаване към следващия раздел"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
@@ -2865,12 +2867,12 @@ msgstr "в оскъдно количество"
 #: ../src/microbe_stage/MicrobeHUD.cs:1156
 #: ../src/microbe_stage/MicrobeStage.tscn:1768
 msgid "BECOME_MULTICELLULAR"
-msgstr "Преминаване към етапа на многоклетъчните организми ({0} от {1})"
+msgstr "Превръщане в многоклетъчен организъм ({0} от {1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1192
 #: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "BECOME_MACROSCOPIC"
-msgstr "Преминаване към етапа на макроскопичните организми ({0} от {1})"
+msgstr "Превръщане в макроскопичен организъм ({0} от {1})"
 
 #: ../src/microbe_stage/MicrobeStage.cs:691
 msgid "PLAYER_REPRODUCED"
@@ -2878,7 +2880,7 @@ msgstr "възпроизвеждане"
 
 #: ../src/microbe_stage/MicrobeStage.cs:705
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr "Съперничеството в тази зона е невъзможно, защото няма други създания"
+msgstr "Съперничеството в тази зона не е възможно, защото няма други създания"
 
 #: ../src/microbe_stage/MicrobeStage.cs:725
 msgid "PLAYER_DIED"
@@ -2959,7 +2961,7 @@ msgstr "Извършване на самоубийство"
 #: ../src/microbe_stage/MicrobeStage.tscn:1767
 #: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr "Трябва да създадете достатъчно голяма клетъчна колония за да преминете към етапa на многоклетъчните организми."
+msgstr "Трябва да създадете достатъчно голяма клетъчна колония за да превърнете Вашите създания в многоклетъчен организъм."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1813
 msgid "POPULATION_CAPITAL"
@@ -3088,7 +3090,7 @@ msgstr "{0}: -{1} АТФ"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:493
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Наименование на клетката"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1768
 msgid "FAILED"
@@ -3451,7 +3453,7 @@ msgstr "ВАШИТЕ СЪЗДАНИЯ ПРОЦЪФТЯХА!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
-msgstr "Поздравления, Вие победихте в тази версия на „Thrive“! Може да продължите играта след като този прозорец се затвори или да започнете нова игра в нов свят. Също така, може да използвате свързващия агент за да създадете клетъчна колония и да разгледате прототипа на следващия етап от играта."
+msgstr "Поздравления, Вие победихте в тази версия на „Thrive“! Може да продължите играта след като този прозорец се затвори или да започнете нова игра в нов свят. Също така, може да използвате свързващия агент за да създадете клетъчна колония и да продължите към следващите етапи на играта."
 
 #: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
 msgid "CANT_LOAD_MOD_INFO"
@@ -3994,9 +3996,11 @@ msgid "PLAYER_EXTINCT"
 msgstr "измиране на създанията"
 
 #: ../src/saving/SaveHelper.cs:470
-#, fuzzy
 msgid "IN_PROTOTYPE"
-msgstr "Протанопия (червено и зелено)"
+msgstr ""
+"Това са следващите етапи на играта.\n"
+"Те все още са в процес на разбработка и са включени само за демонстрационни цели.\n"
+"Запазването в момента не е възможно."
 
 #: ../src/saving/SaveHelper.cs:478
 msgid "SAVING_SUCCEEDED"
@@ -4273,7 +4277,7 @@ msgstr ""
 "\n"
 "В този раздел може да разгледате отчета за различните създания. Също така, може да наблюдавате промените в околната среда.\n"
 "\n"
-"За да преминете в следващия раздел, натиснете бутона „НАПРЕД“, който се намира долу вдясно."
+"За да преминете към следващия раздел, натиснете бутона „НАПРЕД“, който се намира долу вдясно."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
@@ -4426,8 +4430,24 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Преглед"
 
+#~ msgid "TOGGLE_METRICS"
+#~ msgstr "Превключване на показателите"
+
+#~ msgid "FPS"
+#~ msgstr "ЧКС: {0}"
+
+#~ msgid "FRAME_DELTA"
+#~ msgstr "Δ: {0}"
+
+#~ msgid "METRICS"
+#~ msgstr "Показатели"
+
 #~ msgid "AUTO"
 #~ msgstr "Автоматична"
+
+#, fuzzy
+#~ msgid "STORAGE_COLON"
+#~ msgstr "Съхранение"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Зареждане..."
