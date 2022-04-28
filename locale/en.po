@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-27 15:43-0400\n"
-"PO-Revision-Date: 2022-02-27 23:22+0000\n"
+"POT-Creation-Date: 2022-04-28 00:38-0400\n"
+"PO-Revision-Date: 2022-04-28 00:42-0400\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 3.0.1\n"
 "Generated-By: Babel 2.8.0\n"
@@ -1578,9 +1578,8 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Errors occurred when loading one or more mods. Logs may contain additional information."
 
 #: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
-#, fuzzy
 msgid "AUTO_RESOLUTION"
-msgstr "Resolution:"
+msgstr "AUTO({0}x{1})"
 
 #: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
