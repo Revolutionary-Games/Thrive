@@ -775,11 +775,8 @@ public static class Constants
         "user://mods",
     };
 
-    /// <summary>
     ///   Regex expresions to categorize different file types.
-    /// </summary>
     public static readonly Regex BackupRegex = new(@"^.*\.backup\.thrivesave$");
-
     public static readonly Regex AutoSaveRegex = new(@"^auto_save_\d+\.thrivesave$");
     public static readonly Regex QuickSaveRegex = new(@"^quick_save_\d+\.thrivesave$");
 
