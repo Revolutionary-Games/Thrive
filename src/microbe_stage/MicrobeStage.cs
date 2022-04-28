@@ -619,10 +619,14 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         GiveReproductionPopulationBonus();
 
         CurrentGame!.EnterPrototypes();
-        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(Player.Species);
 
         // Re-apply species here so that the player cell knows it is multicellular after this
-        Player.ApplySpecies(multicellularSpecies);
+        // Also apply species here to other members of the player's previous species
+        // This prevents previous members of the player's colony from immediately being hostile
+        var playerSpeciesMicrobes = GetAllPlayerSpeciesMicrobes();
+        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(Player.Species);
+        foreach (var microbe in playerSpeciesMicrobes)
+            microbe.ApplySpecies(multicellularSpecies);
 
         GD.Print("Canceling and restarting auto-evo to have player species multicellular version in it");
         GameWorld.ResetAutoEvoRun();
@@ -714,6 +718,24 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         TransitionFinished = true;
         TutorialState.SendEvent(
             TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
+    }
+
+    /// <summary>
+    ///   Helper function for transition to multicellular
+    ///   Returns array of all microbes of Player's species
+    /// </summary>
+    private Microbe[] GetAllPlayerSpeciesMicrobes()
+    {
+        if (Player == null)
+        {
+            GD.PrintErr("Could not get player species microbes: no Player node");
+            return new Microbe[0];
+        }
+
+        var microbes = rootOfDynamicallySpawned.GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>()
+            .ToArray();
+
+        return microbes.Where(m => m.Species == Player.Species).ToArray();
     }
 
     /// <summary>

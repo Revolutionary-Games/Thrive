@@ -395,6 +395,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             MulticellularCellType = earlyMulticellularSpecies.Cells[0].CellType;
 
             cachedMulticellularSpecies = earlyMulticellularSpecies;
+
+            if (IsPlayerMicrobe)
+                GD.Print("Applying multicellular species type to player");
         }
         else
         {
