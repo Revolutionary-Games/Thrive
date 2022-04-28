@@ -775,7 +775,6 @@ public static class Constants
         "user://mods",
     };
 
-    ///   Regex expresions to categorize different file types.
     public static readonly Regex BackupRegex = new(@"^.*\.backup\." + SAVE_EXTENSION + "$");
     public static readonly Regex AutoSaveRegex = new(@"^auto_save_\d+\." + SAVE_EXTENSION + "$");
     public static readonly Regex QuickSaveRegex = new(@"^quick_save_\d+\." + SAVE_EXTENSION + "$");
