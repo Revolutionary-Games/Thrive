@@ -19,6 +19,7 @@ public class ModLoader : Node
     private readonly List<string> loadedMods = new();
 
     private readonly Dictionary<string, IMod> loadedModAssemblies = new();
+    private readonly Dictionary<string, Harmony> loadedAutoHarmonyMods = new();
 
     private readonly List<string> modErrors = new();
 
@@ -296,6 +297,11 @@ public class ModLoader : Node
             loadedModAssemblies.Remove(name);
         }
 
+        if (info.Info.UseAutoHarmony == true)
+        {
+            UnloadAutoHarmonyMod(name);
+        }
+
         CheckAndMarkIfModRequiresRestart(info);
     }
 
@@ -347,6 +353,15 @@ public class ModLoader : Node
     {
         var className = info.Info.AssemblyModClass;
 
+        if (info.Info.UseAutoHarmony == true)
+        {
+            LoadAutoHarmonyMod(name, assembly);
+
+            // Allow normal loading if the mod class is also specified
+            if (string.IsNullOrEmpty(className))
+                return true;
+        }
+
         var type = assembly.GetTypes().FirstOrDefault(t => t.Name == className);
 
         if (type == null)
@@ -387,6 +402,48 @@ public class ModLoader : Node
         }
 
         return true;
+    }
+
+    private void LoadAutoHarmonyMod(string name, Assembly assembly)
+    {
+        if (!loadedAutoHarmonyMods.TryGetValue(name, out var harmony))
+        {
+            harmony = new Harmony($"thrive.auto.mod.{name}");
+            loadedAutoHarmonyMods[name] = harmony;
+        }
+
+        try
+        {
+            harmony.PatchAll(assembly);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Mod's (", name, ") harmony loading failed with an exception: ", e);
+            modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("MOD_HARMONY_LOAD_FAILED_EXCEPTION"),
+                name, e));
+        }
+    }
+
+    private void UnloadAutoHarmonyMod(string name)
+    {
+        if (!loadedAutoHarmonyMods.TryGetValue(name, out var harmony))
+        {
+            GD.Print("Can't unload Harmony using mod that is not loaded: ", name);
+            return;
+        }
+
+        try
+        {
+            harmony.UnpatchAll(harmony.Id);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Mod's (", name, ") harmony unload failed with an exception: ", e);
+            modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"),
+                name, e));
+        }
     }
 
     private void LoadPckFile(string path)
