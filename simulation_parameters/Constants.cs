@@ -86,6 +86,16 @@ public static class Constants
     /// </summary>
     public const int DESPAWN_RADIUS_OFFSET = 50;
 
+    /// <summary>
+    ///   Squared radius. Microbes despawn if they are outside it.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The value should be (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET)^2
+    ///   </para>
+    /// </remarks>
+    public const int MICROBE_DESPAWN_RADIUS_SQUARED = 48400;
+
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
     public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
