@@ -25,6 +25,7 @@ public class ModLoader : Node
 
     private List<FullModDetails>? workshopMods;
 
+    private bool initialLoad = true;
     private bool firstExecute = true;
 
     private ModLoader()
@@ -149,7 +150,7 @@ public class ModLoader : Node
         modInterface = new ModInterface(GetTree());
 
         LoadMods();
-        RequiresRestart = false;
+        initialLoad = false;
     }
 
     public override void _Process(float delta)
@@ -307,6 +308,10 @@ public class ModLoader : Node
 
     private void CheckAndMarkIfModRequiresRestart(FullModDetails mod)
     {
+        // Ignore restart state on initial load to not print the messages about it unnecessarily
+        if (initialLoad)
+            return;
+
         if (mod.Info.RequiresRestart)
         {
             GD.Print(mod.InternalName, " requires a restart");
@@ -412,6 +417,8 @@ public class ModLoader : Node
             loadedAutoHarmonyMods[name] = harmony;
         }
 
+        GD.Print("Performing auto Harmony load for: ", name);
+
         try
         {
             harmony.PatchAll(assembly);
@@ -432,6 +439,8 @@ public class ModLoader : Node
             GD.Print("Can't unload Harmony using mod that is not loaded: ", name);
             return;
         }
+
+        GD.Print("Performing auto Harmony unload for: ", name);
 
         try
         {
