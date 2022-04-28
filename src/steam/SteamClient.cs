@@ -25,11 +25,11 @@ public sealed class SteamClient : ISteamClient
     private Callback<UserStatsReceived_t>? statsReceivedCallback;
     private Callback<UserStatsStored_t>? statsStoredCallback;
     private Callback<SteamShutdown_t>? shutdownCallback;
-    private Callback<CreateItemResult_t>? createItemCallback;
+    private CallResult<CreateItemResult_t>? createItemCallback;
     private Callback<DownloadItemResult_t>? downloadItemCallback;
     private Callback<ItemInstalled_t>? installItemCallback;
-    private Callback<DeleteItemResult_t>? deleteItemCallback;
-    private Callback<SubmitItemUpdateResult_t>? updateItemCallback;
+    private CallResult<DeleteItemResult_t>? deleteItemCallback;
+    private CallResult<SubmitItemUpdateResult_t>? updateItemCallback;
     private Callback<SteamAPICallCompleted_t>? apiCallCompletedCallback;
     private Callback<LowBatteryPower_t>? lowPowerCallback;
 
@@ -101,6 +101,8 @@ public sealed class SteamClient : ISteamClient
         if (!IsLoaded)
             return;
 
+        // TODO: some of these still need to check if they need to use Callback or CallResult
+
         // clientErrorCallback = new Callback<IPCFailure_t>(t => receiver.GenericSteamworksError(t.m_eFailureType))
         overlayToggledCallback =
             new Callback<GameOverlayActivated_t>(t => receiver.OverlayStatusChanged(t.m_bActive != 0));
@@ -117,7 +119,8 @@ public sealed class SteamClient : ISteamClient
 
         // Workshop
         createItemCallback =
-            new Callback<CreateItemResult_t>(t => receiver.WorkshopItemCreated((int)t.m_eResult,
+            new CallResult<CreateItemResult_t>((t, ioError) => receiver.WorkshopItemCreated(
+                ioError ? (int)EResult.k_EResultIOFailure : (int)t.m_eResult,
                 (ulong)t.m_nPublishedFileId, t.m_bUserNeedsToAcceptWorkshopLegalAgreement));
         downloadItemCallback =
             new Callback<DownloadItemResult_t>(t =>
@@ -127,16 +130,12 @@ public sealed class SteamClient : ISteamClient
             new Callback<ItemInstalled_t>(t =>
                 receiver.WorkshopItemInstalledOrUpdatedLocally((ulong)t.m_unAppID, (ulong)t.m_nPublishedFileId));
         deleteItemCallback =
-            new Callback<DeleteItemResult_t>(t =>
-                receiver.WorkshopItemDeletedRemotely((int)t.m_eResult, (ulong)t.m_nPublishedFileId));
+            new CallResult<DeleteItemResult_t>((t, ioError) =>
+                receiver.WorkshopItemDeletedRemotely(ioError ? (int)EResult.k_EResultIOFailure : (int)t.m_eResult,
+                    (ulong)t.m_nPublishedFileId));
         updateItemCallback =
-            new Callback<SubmitItemUpdateResult_t>(t =>
-                receiver.WorkshopItemInfoUpdateFinished((int)t.m_eResult,
-                    t.m_bUserNeedsToAcceptWorkshopLegalAgreement));
-
-        updateItemCallback =
-            new Callback<SubmitItemUpdateResult_t>(t =>
-                receiver.WorkshopItemInfoUpdateFinished((int)t.m_eResult,
+            new CallResult<SubmitItemUpdateResult_t>((t, ioError) =>
+                receiver.WorkshopItemInfoUpdateFinished(ioError ? (int)EResult.k_EResultIOFailure : (int)t.m_eResult,
                     t.m_bUserNeedsToAcceptWorkshopLegalAgreement));
 
         apiCallCompletedCallback =
@@ -177,11 +176,15 @@ public sealed class SteamClient : ISteamClient
         if (workshopCreateCallback != null)
             throw new InvalidOperationException("Workshop create is already in-progress");
 
+        if (createItemCallback == null)
+            throw new InvalidOperationException("Listeners not created");
+
         workshopCreateCallback = callback ?? throw new ArgumentException("callback is required");
 
         GD.Print("Attempting new workshop item create");
 
-        SteamUGC.CreateItem(appId, EWorkshopFileType.k_EWorkshopFileTypeCommunity);
+        var apiCall = SteamUGC.CreateItem(appId, EWorkshopFileType.k_EWorkshopFileTypeCommunity);
+        createItemCallback.Set(apiCall);
     }
 
     public ulong StartWorkshopItemUpdate(ulong itemId)
@@ -264,6 +267,9 @@ public sealed class SteamClient : ISteamClient
         if (workshopUpdateCallback != null)
             throw new InvalidOperationException("Workshop update is already in-progress");
 
+        if (updateItemCallback == null)
+            throw new InvalidOperationException("Listeners not created");
+
         workshopUpdateCallback = callback ?? throw new ArgumentException("callback is required");
 
         // Steam docs say this constant is unused, but at least currently it seems to be the same value as the document
@@ -277,7 +283,8 @@ public sealed class SteamClient : ISteamClient
 
         GD.Print("Submitting workshop update with handle: ", updateHandle);
 
-        SteamUGC.SubmitItemUpdate(new UGCUpdateHandle_t(updateHandle), changeNotes);
+        var apiCall = SteamUGC.SubmitItemUpdate(new UGCUpdateHandle_t(updateHandle), changeNotes);
+        updateItemCallback.Set(apiCall);
     }
 
     public List<string> GetInstalledWorkshopItemFolders()
