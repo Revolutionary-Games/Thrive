@@ -250,7 +250,7 @@ public static class SaveHelper
         using var file = new File();
         foreach (var save in CreateListOfSaves())
         {
-            if (nameMatches?.IsMatch(save) == null)
+            if (nameMatches?.IsMatch(save) != false)
             {
                 if (file.Open(Path.Combine(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
                 {
