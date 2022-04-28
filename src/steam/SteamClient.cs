@@ -11,7 +11,7 @@ using Path = System.IO.Path;
 /// <summary>
 ///   Concrete implementation of the Steam integration handling. Only compiled for the Steam version of the game.
 /// </summary>
-public class SteamClient : ISteamClient
+public sealed class SteamClient : ISteamClient
 {
     private bool initStarted;
 
