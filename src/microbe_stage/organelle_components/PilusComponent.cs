@@ -21,6 +21,7 @@ public class PilusComponent : ExternallyPositionedComponent
         {
             // Send the organelle positions to the membrane then update the pilus
             currentShapesParent.SendOrganellePositionsToMembrane();
+            UpdateAsync(0);
             UpdateSync();
 
             if (newShapeParent.Colony != null)

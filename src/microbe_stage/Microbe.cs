@@ -589,7 +589,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
             // Update once for the positioning of external organelles
             foreach (var organelle in organelles.Organelles)
+            {
+                organelle.UpdateAsync(delta);
                 organelle.UpdateSync();
+            }
         }
 
         // The code below starting from here is not needed for a display-only cell
