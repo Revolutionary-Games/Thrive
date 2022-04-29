@@ -505,7 +505,6 @@ public partial class Microbe
     /// </summary>
     private void HandleCompoundVenting(float delta)
     {
-        // TODO: check that this works
         // Skip if process system has not run yet
         if (!Compounds.HasAnyBeenSetUseful())
             return;
@@ -515,7 +514,7 @@ public partial class Microbe
         // Cloud types are ones that can be vented
         foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
         {
-            // Vent if not useful, or if over float the capacity
+            // Vent if not useful, or if overflowed the capacity
             if (!Compounds.IsUseful(type))
             {
                 amountToVent -= EjectCompound(type, amountToVent);
