@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -132,10 +133,25 @@ public class CompoundBag : ICompoundStorage
 
     public void ClampNegativeCompoundAmounts()
     {
-        var negative = Compounds.Where(c => c.Value < 0.0f);
+        var negative = Compounds.Where(c => c.Value < 0.0f).ToList();
 
         foreach (var entry in negative)
         {
+            Compounds[entry.Key] = 0;
+        }
+    }
+
+    /// <summary>
+    ///   Sets NaN compounds back to 0. Mitigation for https://github.com/Revolutionary-Games/Thrive/issues/3201
+    ///   TODO: remove once that issue is solved
+    /// </summary>
+    public void FixNaNCompounds()
+    {
+        var nan = Compounds.Where(c => float.IsNaN(c.Value)).ToList();
+
+        foreach (var entry in nan)
+        {
+            GD.PrintErr("Detected compound amount of ", entry.Key, " to be NaN. Setting amount to 0.");
             Compounds[entry.Key] = 0;
         }
     }

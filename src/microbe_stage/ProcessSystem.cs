@@ -356,6 +356,7 @@ public class ProcessSystem
         }
 
         bag.ClampNegativeCompoundAmounts();
+        bag.FixNaNCompounds();
 
         processStatistics?.RemoveUnused();
     }
