@@ -689,6 +689,15 @@ public class MicrobeHUD : Control
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
 
         stage.MovingToEditor = true;
+
+        // TODO: mitigation for https://github.com/Revolutionary-Games/Thrive/issues/3006 remove once solved
+        // Start auto-evo if not started already to make sure it doesn't start after we are in the editor
+        // scene, this is a potential mitigation for the issue linked above
+        if (!Settings.Instance.RunAutoEvoDuringGamePlay)
+        {
+            GD.Print("Starting auto-evo while fading into the editor as mitigation for issue #3006");
+            stage.GameWorld.IsAutoEvoFinished(true);
+        }
     }
 
     public void ShowExtinctionBox()
