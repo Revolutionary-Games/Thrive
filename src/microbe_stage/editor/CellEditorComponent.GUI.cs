@@ -38,9 +38,10 @@ public partial class CellEditorComponent
         }
     }
 
-    public void SendUndoToTutorial(TutorialState tutorial)
+    public void SendUndoRedoToTutorial(TutorialState tutorial)
     {
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = componentBottomLeftButtons.UndoButton;
+        tutorial.EditorRedoTutorial.EditorRedoButtonControl = componentBottomLeftButtons.RedoButton;
 
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
     }

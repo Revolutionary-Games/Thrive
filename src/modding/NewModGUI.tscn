@@ -9,9 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 DialogPath = NodePath("CustomDialog")
 InternalNamePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/InternalName")
 NamePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/Name")
@@ -28,13 +25,14 @@ MaximumThrivePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxC
 PckNamePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/PckName")
 ModAssemblyPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModAssembly")
 AssemblyModClassPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/AssemblyModClass")
+AssemblyModAutoHarmonyPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/AutoHarmony")
 ErrorDisplayPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Error")
 
 [node name="CustomDialog" parent="." instance=ExtResource( 1 )]
 popup_exclusive = true
 WindowTitle = "CREATE_NEW_MOD"
-ExclusiveAllowCloseOnEscape = false
 Resizable = true
+ExclusiveAllowCloseOnEscape = false
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CustomDialog"]
 margin_left = 15.0
@@ -49,13 +47,13 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="CustomDialog/ScrollContainer"]
 margin_right = 550.0
-margin_bottom = 1234.0
+margin_bottom = 1272.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer"]
 margin_right = 540.0
-margin_bottom = 1234.0
+margin_bottom = 1272.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -426,6 +424,23 @@ text = "ModClass"
 max_length = 200
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer15" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1107.0
+margin_right = 534.0
+margin_bottom = 1112.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="AutoHarmony" type="CheckBox" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1145.0
+margin_right = 534.0
+margin_bottom = 1176.0
+hint_tooltip = "USE_AUTO_HARMONY_TOOLTIP"
+size_flags_horizontal = 3
+text = "USE_AUTO_HARMONY"
+__meta__ = {
+"_editor_description_": ""
 }
 
 [node name="Error" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer"]
