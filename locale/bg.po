@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-29 09:41+0300\n"
-"PO-Revision-Date: 2022-04-29 07:08+0000\n"
+"PO-Revision-Date: 2022-04-29 07:18+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -4259,9 +4259,8 @@ msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Основна програмна библиотека:"
 
 #: ../src/modding/ModManager.tscn:972
-#, fuzzy
 msgid "MOD_AUTO_HARMONY"
-msgstr "Автор:"
+msgstr "Използва „Harmony“:"
 
 #: ../src/modding/ModManager.tscn:999 ../src/modding/ModManager.tscn:979
 msgid "MOD_CREATION_FAILED"
@@ -4473,7 +4472,7 @@ msgstr "Наименованието на папката вече съществ
 
 #: ../src/modding/NewModGUI.cs:282 ../src/modding/NewModGUI.cs:275
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
-msgstr "Липсващ или невалиден формат на задължително поле: {0}"
+msgstr "Липсващ или невалиден формат на задължителното поле: {0}"
 
 #: ../src/modding/NewModGUI.cs:293 ../src/modding/NewModGUI.cs:286
 msgid "ADDITIONAL_VALIDATION_FAILED"
@@ -4492,13 +4491,12 @@ msgid "OUR_WIKI"
 msgstr "нашата Уикипедия"
 
 #: ../src/modding/NewModGUI.tscn:439
-#, fuzzy
 msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Извършване на самоубийство"
+msgstr "Автоматично зареждане на „Harmony“ от програмната библиотека"
 
 #: ../src/modding/NewModGUI.tscn:441
 msgid "USE_AUTO_HARMONY"
-msgstr ""
+msgstr "Използване на „Harmony“"
 
 #: ../src/modding/NewModGUI.tscn:465 ../src/modding/NewModGUI.tscn:450
 msgid "CREATE"
