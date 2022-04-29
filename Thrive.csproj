@@ -459,6 +459,9 @@
     <PackageReference Include="StyleCop.Analyzers">
       <Version>1.2.0-beta.406</Version>
     </PackageReference>
+    <PackageReference Include="Lib.Harmony">
+      <Version>2.2.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="export_presets.cfg" />
