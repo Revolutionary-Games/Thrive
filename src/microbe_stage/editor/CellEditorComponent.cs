@@ -54,6 +54,9 @@ public partial class CellEditorComponent :
     public NodePath HpLabelPath = null!;
 
     [Export]
+    public NodePath StorageLabelPath = null!;
+
+    [Export]
     public NodePath GenerationLabelPath = null!;
 
     [Export]
@@ -91,6 +94,9 @@ public partial class CellEditorComponent :
 
     [Export]
     public NodePath HpIndicatorPath = null!;
+
+    [Export]
+    public NodePath StorageIndicatorPath = null!;
 
     [Export]
     public NodePath SizeIndicatorPath = null!;
@@ -137,6 +143,7 @@ public partial class CellEditorComponent :
     private Label sizeLabel = null!;
     private Label speedLabel = null!;
     private Label hpLabel = null!;
+    private Label storageLabel = null!;
     private Label generationLabel = null!;
     private Label totalPopulationLabel = null!;
     private Label bestPatchLabel = null!;
@@ -155,6 +162,7 @@ public partial class CellEditorComponent :
 
     private TextureRect speedIndicator = null!;
     private TextureRect hpIndicator = null!;
+    private TextureRect storageIndicator = null!;
     private TextureRect sizeIndicator = null!;
     private TextureRect totalPopulationIndicator = null!;
 
@@ -187,6 +195,9 @@ public partial class CellEditorComponent :
 
     [JsonProperty]
     private float initialCellHp;
+
+    [JsonProperty]
+    private float initialCellStorage;
 
     private string? bestPatchName;
 
@@ -524,6 +535,7 @@ public partial class CellEditorComponent :
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
+        storageLabel = GetNode<Label>(StorageLabelPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
         totalPopulationLabel = GetNode<Label>(TotalPopulationLabelPath);
         worstPatchLabel = GetNode<Label>(WorstPatchLabelPath);
@@ -542,6 +554,7 @@ public partial class CellEditorComponent :
 
         speedIndicator = GetNode<TextureRect>(SpeedIndicatorPath);
         hpIndicator = GetNode<TextureRect>(HpIndicatorPath);
+        storageIndicator = GetNode<TextureRect>(StorageIndicatorPath);
         sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
         totalPopulationIndicator = GetNode<TextureRect>(TotalPopulationIndicatorPath);
 
@@ -658,6 +671,14 @@ public partial class CellEditorComponent :
         if (!Visible)
             return;
 
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+        {
+            var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
+            metrics.ReportEntities(roughCount, 0);
+        }
+
         CheckRunningAutoEvoPrediction();
 
         if (organelleDataDirty)
@@ -722,7 +743,8 @@ public partial class CellEditorComponent :
             return true;
 
         // Show warning popup if trying to exit with negative atp production
-        if (energyBalanceInfo != null &&
+        // Not shown in multicellular as the popup happens in kind of a weird place
+        if (!IsMulticellularEditor && energyBalanceInfo != null &&
             energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
         {
             negativeAtpPopup.PopupCenteredShrink();
@@ -876,6 +898,20 @@ public partial class CellEditorComponent :
         return maxHitpoints;
     }
 
+    public float CalculateStorage()
+    {
+        var totalStorage = 0f;
+        foreach (var organelle in editedMicrobeOrganelles)
+        {
+            if (organelle.Definition.Components.Storage != null)
+            {
+                totalStorage += organelle.Definition.Components.Storage.Capacity;
+            }
+        }
+
+        return totalStorage;
+    }
+
     /// <summary>
     ///   Returns the cost of the organelle that is about to be placed
     /// </summary>
@@ -957,6 +993,7 @@ public partial class CellEditorComponent :
     protected override void OnCurrentActionCanceled()
     {
         editedMicrobeOrganelles.Add(MovingPlacedHex!);
+        MovingPlacedHex = null;
         base.OnCurrentActionCanceled();
     }
 
@@ -1317,6 +1354,7 @@ public partial class CellEditorComponent :
         UpdateMembraneButtons(Membrane.InternalName);
         UpdateSpeed(CalculateSpeed());
         UpdateHitpoints(CalculateHitpoints());
+        UpdateStorage(CalculateStorage());
 
         StartAutoEvoPrediction();
     }
@@ -1374,6 +1412,8 @@ public partial class CellEditorComponent :
         UpdatePatchDependentBalanceData();
 
         UpdateSpeed(CalculateSpeed());
+
+        UpdateStorage(CalculateStorage());
 
         UpdateCellVisualization();
 
@@ -1759,6 +1799,21 @@ public partial class CellEditorComponent :
         {
             hpIndicator.Hide();
         }
+
+        storageIndicator.Show();
+
+        if (CalculateStorage() > initialCellStorage)
+        {
+            storageIndicator.Texture = increaseIcon;
+        }
+        else if (CalculateStorage() < initialCellStorage)
+        {
+            storageIndicator.Texture = decreaseIcon;
+        }
+        else
+        {
+            storageIndicator.Hide();
+        }
     }
 
     private void UpdateAutoEvoPredictionTranslations()
@@ -1936,6 +1991,7 @@ public partial class CellEditorComponent :
     {
         initialCellSpeed = CalculateSpeed();
         initialCellHp = CalculateHitpoints();
+        initialCellStorage = CalculateStorage();
         initialCellSize = MicrobeHexSize;
     }
 

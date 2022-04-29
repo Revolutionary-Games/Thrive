@@ -274,16 +274,10 @@ public class AutoEvoRun
         {
             var key = new Tuple<Species, string>(entry.Species, entry.EventType);
 
-            if (combinedExternalEffects.ContainsKey(key))
-            {
-                combinedExternalEffects[key] +=
-                    entry.Constant + (long)(entry.Species.Population * entry.Coefficient) - entry.Species.Population;
-            }
-            else
-            {
-                combinedExternalEffects[key] =
-                    entry.Constant + (int)(entry.Species.Population * entry.Coefficient) - entry.Species.Population;
-            }
+            combinedExternalEffects.TryGetValue(key, out var existingEffectAmount);
+
+            combinedExternalEffects[key] = existingEffectAmount +
+                entry.Constant + (long)(entry.Species.Population * entry.Coefficient) - entry.Species.Population;
         }
 
         var builder = new LocalizedStringBuilder(300);

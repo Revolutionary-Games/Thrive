@@ -41,7 +41,7 @@ public class LoadingScreen : Control
     private Label? artDescriptionLabel;
     private Label? loadingMessageLabel;
     private Label? loadingDescriptionLabel;
-    private Label? tipLabel;
+    private CustomRichTextLabel? tipLabel;
     private Control spinner = null!;
 
     private bool wasVisible;
@@ -134,7 +134,7 @@ public class LoadingScreen : Control
         artDescriptionLabel = GetNode<Label>(ArtDescriptionPath);
         loadingMessageLabel = GetNode<Label>(LoadingMessagePath);
         loadingDescriptionLabel = GetNode<Label>(LoadingDescriptionPath);
-        tipLabel = GetNode<Label>(TipLabelPath);
+        tipLabel = GetNode<CustomRichTextLabel>(TipLabelPath);
         randomizeTipTimer = GetNode<Timer>(RandomizeTipTimerPath);
         spinner = GetNode<Control>(SpinnerPath);
 
@@ -243,6 +243,6 @@ public class LoadingScreen : Control
     private void UpdateTip()
     {
         if (tipLabel != null)
-            tipLabel.Text = Tip;
+            tipLabel.ExtendedBbcode = TranslationServer.Translate(Tip);
     }
 }

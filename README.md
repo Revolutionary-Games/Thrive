@@ -7,6 +7,8 @@ This is the code repository for Thrive. For more information, visit
 ### Build Status [![CircleCI](https://circleci.com/gh/Revolutionary-Games/Thrive.svg?style=svg)](https://circleci.com/gh/Revolutionary-Games/Thrive)
 ### Patreon [![Patreon](https://img.shields.io/badge/Join-Patreon-orange.svg)](https://www.patreon.com/thrivegame)
 
+[![Thrive on Steam](https://img.shields.io/badge/-Thrive%20on%20Steam-blue)](https://store.steampowered.com/app/1779200/Thrive/) [![Thrive on Itch.io](https://img.shields.io/badge/-Thrive%20on%20Itch.io-orange)](https://revolutionarygames.itch.io/thrive)
+
 [![Community Forums](https://img.shields.io/badge/-Community%20Forums-%239cf)](https://community.revolutionarygamesstudio.com/)
 <a href="https://translate.revolutionarygamesstudio.com/engage/thrive/">
 <img src="https://translate.revolutionarygamesstudio.com/widgets/thrive/-/thrive-game/svg-badge.svg" alt="translation status" />

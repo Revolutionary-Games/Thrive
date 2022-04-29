@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=2]
+[gd_scene load_steps=128 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -88,6 +88,8 @@
 [ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=86]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
 [ext_resource path="res://src/gui_common/dialogs/StagePrototypeConfirm.tscn" type="PackedScene" id=88]
+[ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=89]
+[ext_resource path="res://assets/textures/gui/bevel/unbind.png" type="Texture" id=90]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -459,6 +461,8 @@ HotBarPath = NodePath("ScrollContainer/HotBar")
 EngulfHotkeyPath = NodePath("ScrollContainer/HotBar/Engulfment")
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
 BindingModeHotkeyPath = NodePath("ScrollContainer/HotBar/BindingMode")
+UnbindAllHotkeyPath = NodePath("ScrollContainer/HotBar/UnbindAll")
+SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
 MicrobeControlRadialPath = NodePath("../RadialPopup")
 
 [node name="MouseHoverPanel" type="MarginContainer" parent="MicrobeHUD"]
@@ -1781,7 +1785,6 @@ margin_right = -5.0
 margin_bottom = -285.0
 grow_horizontal = 0
 grow_vertical = 0
-hint_tooltip = "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 text = "BECOME_MACROSCOPIC"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2121,8 +2124,8 @@ __meta__ = {
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 225.0
-margin_right = 271.0
+margin_left = 277.0
+margin_right = 323.0
 margin_bottom = 51.0
 hint_tooltip = "TOGGLE_ENGULF"
 toggle_mode = true
@@ -2144,13 +2147,36 @@ ActionName = "g_fire_toxin"
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 329.0
-margin_right = 375.0
+margin_left = 277.0
+margin_right = 323.0
 margin_bottom = 51.0
 hint_tooltip = "TOGGLE_BINDING"
 toggle_mode = true
 ActionIcon = ExtResource( 82 )
 ActionName = "g_toggle_binding"
+
+[node name="UnbindAll" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 277.0
+margin_right = 323.0
+margin_bottom = 51.0
+hint_tooltip = "UNBIND_ALL"
+ActionIcon = ExtResource( 90 )
+ActionName = "g_unbind_all"
+
+[node name="SignalingAgents" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 277.0
+margin_right = 323.0
+margin_bottom = 51.0
+focus_mode = 2
+toggle_mode = true
+ActionIcon = ExtResource( 89 )
+ActionName = "g_pack_commands"
 
 [node name="HintText" type="Label" parent="MicrobeHUD"]
 anchor_right = 1.0
@@ -2247,6 +2273,7 @@ anims/FadeInOut = SubResource( 37 )
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/Engulfment" to="PlayerMicrobeInput" method="ToggleEngulf"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/FireToxin" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/BindingMode" to="PlayerMicrobeInput" method="ToggleBinding"]
+[connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/UnbindAll" to="PlayerMicrobeInput" method="UnbindAll"]
 [connection signal="Confirmed" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularConfirmed"]
 [connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="MicrobeHUD" method="OnRadialItemSelected"]

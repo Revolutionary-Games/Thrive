@@ -16,8 +16,7 @@ public static class Spawners
         return new MicrobeSpawner(species, cloudSystem, currentGame);
     }
 
-    public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType,
-        CompoundCloudSystem cloudSystem)
+    public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType)
     {
         foreach (var mesh in chunkType.Meshes)
         {
@@ -25,7 +24,7 @@ public static class Spawners
                 throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
         }
 
-        return new ChunkSpawner(chunkType, cloudSystem);
+        return new ChunkSpawner(chunkType);
     }
 
     public static CompoundCloudSpawner MakeCompoundSpawner(Compound compound,
@@ -66,15 +65,38 @@ public static class SpawnHelpers
         else
         {
             microbe.ApplySpecies(species);
-
-            if (species is EarlyMulticellularSpecies)
-            {
-                // TODO: sometimes spawn fully formed (or partially complete) body plan colonies
-            }
         }
 
         microbe.SetInitialCompounds();
         return microbe;
+    }
+
+    /// <summary>
+    ///   Gives a random chance for a multicellular cell colony to spawn partially or fully grown
+    /// </summary>
+    /// <param name="microbe">The multicellular microbe</param>
+    /// <param name="random">Random to use for the randomness</param>
+    /// <exception cref="ArgumentException">If the microbe is not multicellular</exception>
+    public static void GiveFullyGrownChanceForMulticellular(Microbe microbe, Random random)
+    {
+        if (!microbe.IsMulticellular)
+            throw new ArgumentException("must be multicellular");
+
+        // Chance to spawn fully grown or partially grown
+        if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_GROWN)
+        {
+            microbe.BecomeFullyGrownMulticellularColony();
+        }
+        else if (random.NextDouble() < Constants.CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN)
+        {
+            while (!microbe.IsFullyGrownMulticellular)
+            {
+                microbe.AddMulticellularGrowthCell();
+
+                if (random.NextDouble() > Constants.CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE)
+                    break;
+            }
+        }
     }
 
     // TODO: this is likely a huge cause of lag. Would be nice to be able
@@ -184,8 +206,7 @@ public static class SpawnHelpers
     }
 
     public static FloatingChunk SpawnChunk(ChunkConfiguration chunkType,
-        Vector3 location, Node worldNode, PackedScene chunkScene,
-        CompoundCloudSystem cloudSystem, Random random)
+        Vector3 location, Node worldNode, PackedScene chunkScene, Random random)
     {
         var chunk = (FloatingChunk)chunkScene.Instance();
 
@@ -199,7 +220,7 @@ public static class SpawnHelpers
             throw new ArgumentException("couldn't find a graphics scene for a chunk");
 
         // Pass on the chunk data
-        chunk.Init(chunkType, cloudSystem, selectedMesh.SceneModelPath);
+        chunk.Init(chunkType, selectedMesh.SceneModelPath);
         chunk.UsesDespawnTimer = !chunkType.Dissolves;
 
         worldNode.AddChild(chunk);
@@ -346,11 +367,17 @@ public class MicrobeSpawner : Spawner
         var first = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene, true, cloudSystem,
             currentGame);
 
+        if (first.IsMulticellular)
+        {
+            SpawnHelpers.GiveFullyGrownChanceForMulticellular(first, random);
+        }
+
         yield return first;
 
         ModLoader.ModInterface.TriggerOnMicrobeSpawned(first);
 
-        if (first.CellTypeProperties.IsBacteria)
+        // Just in case the is bacteria flag is not correct in a multicellular cell type, here's an extra safety check
+        if (first.CellTypeProperties.IsBacteria && !first.IsMulticellular)
         {
             foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
                          cloudSystem, currentGame, random))
@@ -396,19 +423,17 @@ public class ChunkSpawner : Spawner
     private readonly PackedScene chunkScene;
     private readonly ChunkConfiguration chunkType;
     private readonly Random random = new();
-    private readonly CompoundCloudSystem cloudSystem;
 
-    public ChunkSpawner(ChunkConfiguration chunkType, CompoundCloudSystem cloudSystem)
+    public ChunkSpawner(ChunkConfiguration chunkType)
     {
         this.chunkType = chunkType;
-        this.cloudSystem = cloudSystem;
         chunkScene = SpawnHelpers.LoadChunkScene();
     }
 
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
         var chunk = SpawnHelpers.SpawnChunk(chunkType, location, worldNode, chunkScene,
-            cloudSystem, random);
+            random);
 
         yield return chunk;
 

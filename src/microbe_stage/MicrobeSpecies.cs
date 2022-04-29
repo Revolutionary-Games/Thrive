@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [TypeConverter(typeof(ThriveTypeConverter))]
-[JSONDynamicTypeAllowedAttribute]
+[JSONDynamicTypeAllowed]
 [UseThriveConverter]
 public class MicrobeSpecies : Species, ICellProperties
 {
@@ -147,5 +147,23 @@ public class MicrobeSpecies : Species, ICellProperties
         }
 
         return result;
+    }
+
+    public override int GetVisualHashCode()
+    {
+        var hash = base.GetVisualHashCode();
+
+        hash ^= (MembraneType.GetHashCode() * 5743) ^ (MembraneRigidity.GetHashCode() * 5749) ^
+            ((IsBacteria ? 1 : 0) * 5779) ^
+            (Organelles.Count * 131);
+
+        int counter = 0;
+
+        foreach (var organelle in Organelles)
+        {
+            hash ^= counter++ * 13 * organelle.GetHashCode();
+        }
+
+        return hash;
     }
 }

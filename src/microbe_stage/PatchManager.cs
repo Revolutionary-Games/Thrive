@@ -124,8 +124,7 @@ public class PatchManager : IChildPropertiesLoadCallback
             HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
                 () =>
                 {
-                    var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value,
-                        compoundCloudSystem));
+                    var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
 
                     spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
                         Constants.MICROBE_SPAWN_RADIUS);

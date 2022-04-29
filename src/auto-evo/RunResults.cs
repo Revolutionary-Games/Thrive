@@ -808,23 +808,7 @@
             {
                 foreach (var species in patch.SpeciesInPatch.Keys)
                 {
-                    // TODO: handle species turning multicellular properly here
-                    long globalPopulation;
-
-                    try
-                    {
-                        globalPopulation = GetGlobalPopulation(species, true, true);
-                    }
-                    catch (ArgumentException)
-                    {
-                        if (species is EarlyMulticellularSpecies)
-                        {
-                            GD.Print("Ignore problem logging early multicellular species to timeline");
-                            continue;
-                        }
-
-                        throw;
-                    }
+                    long globalPopulation = GetGlobalPopulation(species, true, true);
 
                     var previousGlobalPopulation = world.Map.GetSpeciesGlobalPopulation(species);
 
@@ -984,13 +968,13 @@
         {
             long totalPopulation = 0;
 
-            if (!results.ContainsKey(species))
+            if (!results.TryGetValue(species, out var speciesResult))
             {
                 GD.PrintErr("RunResults: no species entry found for counting spread population");
                 return -1;
             }
 
-            foreach (var entry in results[species].SpreadToPatches)
+            foreach (var entry in speciesResult.SpreadToPatches)
             {
                 if (entry.From == targetPatch)
                 {

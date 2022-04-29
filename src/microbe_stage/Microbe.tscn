@@ -50,19 +50,16 @@ MaterialToEdit = SubResource( 1 )
 script = ExtResource( 8 )
 Stream = ExtResource( 6 )
 Volume = 0.0
-Bus = "SFX"
 
-[node name="BindingAudio" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 6 )
-unit_size = 50.0
-max_distance = 100.0
-bus = "SFX"
+[node name="BindingAudio" type="Spatial" parent="."]
+script = ExtResource( 8 )
+Stream = ExtResource( 6 )
+Volume = 0.0
 
 [node name="MovementAudio" type="Spatial" parent="."]
 script = ExtResource( 8 )
 Stream = ExtResource( 7 )
 Volume = 0.0
-Bus = "SFX"
 
 [node name="EngulfDetector" type="Area" parent="."]
 collision_layer = 0
