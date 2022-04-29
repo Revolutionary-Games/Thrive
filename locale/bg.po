@@ -8,10 +8,9 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-29 09:41+0300\n"
-"PO-Revision-Date: 2022-04-22 07:55+0000\n"
+"PO-Revision-Date: 2022-04-29 07:08+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
-"Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
-"projects/thrive/thrive-game/bg/>\n"
+"Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1773,9 +1772,8 @@ msgstr ""
 "повече информация, вижте дневниците на играта."
 
 #: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
-#, fuzzy
 msgid "AUTO_RESOLUTION"
-msgstr "Резолюция:"
+msgstr "Автоматична ({0}x{1})"
 
 #: ../src/general/OptionsMenu.cs:924 ../src/general/OptionsMenu.cs:900
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -4034,18 +4032,12 @@ msgstr ""
 "грешка: {1}"
 
 #: ../src/modding/ModLoader.cs:430
-#, fuzzy
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
-msgstr ""
-"„{0}“: стартирането на програмната библиотека е неуспешно поради следната "
-"грешка: {1}"
+msgstr "„{0}“: зареждането на „Harmony“ е неуспешно поради следната грешка: {1}"
 
 #: ../src/modding/ModLoader.cs:453
-#, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
-msgstr ""
-"„{0}“: изключването на програмната библиотека е неуспешно поради следната "
-"грешка: {1}"
+msgstr "„{0}“: изключването на „Harmony“ е неуспешно поради следната грешка: {1}"
 
 #: ../src/modding/ModLoader.cs:465 ../src/modding/ModLoader.cs:394
 msgid "PCK_LOAD_FAILED"
@@ -4064,9 +4056,8 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Изисква се основна програмна библиотека"
 
 #: ../src/modding/ModManager.cs:334
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "Изисква се основна програмна библиотека"
+msgstr "Изисква се основната програмна библиотека, когато използвате „Harmony“"
 
 #: ../src/modding/ModManager.cs:565 ../src/modding/ModManager.cs:549
 msgid "NO_SELECTED_MOD"
@@ -4081,13 +4072,12 @@ msgid "THIS_IS_LOCAL_MOD"
 msgstr "Тази модификация е от локален източник"
 
 #: ../src/modding/ModManager.cs:913
-#, fuzzy
 msgid "USES_FEATURE"
-msgstr "Температура"
+msgstr "Да"
 
 #: ../src/modding/ModManager.cs:914
 msgid "DOES_NOT_USE_FEATURE"
-msgstr ""
+msgstr "Не"
 
 #: ../src/modding/ModManager.cs:959 ../src/modding/ModManager.cs:940
 msgid "ERROR_CREATING_FOLDER"
