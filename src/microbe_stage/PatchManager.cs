@@ -299,9 +299,9 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
     }
 
-    private class MicrobeSpawnerComparer : IEqualityComparer<CreatedSpawner>
+    private class MicrobeSpawnerComparer : EqualityComparer<CreatedSpawner>
     {
-        public bool Equals(CreatedSpawner x, CreatedSpawner y)
+        public override bool Equals(CreatedSpawner x, CreatedSpawner y)
         {
             if (ReferenceEquals(x, y) || ReferenceEquals(x.Spawner, y.Spawner))
                 return true;
@@ -314,7 +314,7 @@ public class PatchManager : IChildPropertiesLoadCallback
             return false;
         }
 
-        public int GetHashCode(CreatedSpawner obj)
+        public override int GetHashCode(CreatedSpawner obj)
         {
             return (obj.Name.GetHashCode() * 439) ^ (obj.Spawner.GetHashCode() * 443);
         }
