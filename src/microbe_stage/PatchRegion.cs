@@ -52,7 +52,11 @@ public class PatchRegion
     public void BuildPatches()
     {
         Patches.Sort((x,y) => x.Depth[1].CompareTo(y.Depth[1]));
-        
+        if (RegionType != "continent" && Patches.Count == 5)
+        {
+            Patches.Add(Patches[Patches.Count - 2]);
+            Patches.RemoveAt(Patches.Count - 3);
+        }
         for (int i = 0; i < Patches.Count - 1; i++)
         {
             if (RegionType == "sea" || RegionType == "ocean")

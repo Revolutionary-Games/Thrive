@@ -84,8 +84,12 @@ public static class PatchMapGenerator
             {
                 numberOfPatches = random.Next(0,4);
 
-                // All oceans/seas must have at least 1 epipelagic patch and a seafloor
-                var patch = GetPatchFromPredefinedMap(3, currentPatchId++, predefinedMap, areaName);
+                // All oceans/seas must have at least 1 epipelagic/ice patch and a seafloor
+                Patch patch;
+                if (random.Next(0,2) == 1)
+                    patch = GetPatchFromPredefinedMap(3, currentPatchId++, predefinedMap, areaName);
+                else
+                    patch = GetPatchFromPredefinedMap(9, currentPatchId++, predefinedMap, areaName);
                 region.AddPatch(patch);
 
                 patch = GetPatchFromPredefinedMap(7, currentPatchId++, predefinedMap, areaName);
