@@ -620,13 +620,24 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         CurrentGame!.EnterPrototypes();
 
+        var playerSpeciesMicrobes = GetAllPlayerSpeciesMicrobes();
+
         // Re-apply species here so that the player cell knows it is multicellular after this
         // Also apply species here to other members of the player's previous species
         // This prevents previous members of the player's colony from immediately being hostile
-        var playerSpeciesMicrobes = GetAllPlayerSpeciesMicrobes();
+        bool playerHandled = false;
+
         var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(Player.Species);
         foreach (var microbe in playerSpeciesMicrobes)
+        {
             microbe.ApplySpecies(multicellularSpecies);
+
+            if (microbe == Player)
+                playerHandled = true;
+        }
+
+        if (!playerHandled)
+            throw new Exception("Did not find player to apply multicellular species to");
 
         GD.Print("Canceling and restarting auto-evo to have player species multicellular version in it");
         GameWorld.ResetAutoEvoRun();
@@ -722,20 +733,16 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     /// <summary>
     ///   Helper function for transition to multicellular
-    ///   Returns array of all microbes of Player's species
     /// </summary>
-    private Microbe[] GetAllPlayerSpeciesMicrobes()
+    /// <returns>Array of all microbes of Player's species</returns>
+    private IEnumerable<Microbe> GetAllPlayerSpeciesMicrobes()
     {
         if (Player == null)
-        {
-            GD.PrintErr("Could not get player species microbes: no Player node");
-            return new Microbe[0];
-        }
+            throw new InvalidOperationException("Could not get player species microbes: no Player object");
 
-        var microbes = rootOfDynamicallySpawned.GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>()
-            .ToArray();
+        var microbes = rootOfDynamicallySpawned.GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
 
-        return microbes.Where(m => m.Species == Player.Species).ToArray();
+        return microbes.Where(m => m.Species == Player.Species);
     }
 
     /// <summary>
