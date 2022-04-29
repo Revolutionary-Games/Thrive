@@ -639,9 +639,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         if (!playerHandled)
             throw new Exception("Did not find player to apply multicellular species to");
 
-        GD.Print("Canceling and restarting auto-evo to have player species multicellular version in it");
-        GameWorld.ResetAutoEvoRun();
-        GameWorld.IsAutoEvoFinished();
+        GameWorld.NotifySpeciesChangedStages();
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
