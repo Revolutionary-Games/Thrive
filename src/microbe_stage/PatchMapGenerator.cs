@@ -26,12 +26,13 @@ public static class PatchMapGenerator
         // Initialize the graphs random parameters
         var regionCoords = new List<Vector2>();
         int [,] graph = new int [100,100];
-        int vertexNr = random.Next(5,8);
+        int vertexNr = random.Next(6,10);
         int edgeNr = random.Next(vertexNr , 2*vertexNr - 4);
         int minDistance = 20;
         
         var currentPatchId = 0;
-        // Create the graphs random points
+        var specialRegionsId = -1;
+        // Create the graphs random regions
         for (int i = 0; i < vertexNr; i++)
         {
             var areaName = nameGenerator.Next(random);
@@ -64,7 +65,7 @@ public static class PatchMapGenerator
                 numberOfPatches = random.Next(1,4);
 
                 // All continents must have at least 1 coastal patch.
-                var patch = GetPatchFromPredefinedMap(0, currentPatchId++, predefinedMap, areaName);
+                Patch patch = GetPatchFromPredefinedMap(0, currentPatchId++, predefinedMap, areaName);
 
                 region.AddPatch(patch);
 
@@ -79,7 +80,6 @@ public static class PatchMapGenerator
                 }
                 
             }
-
             else
             {
                 numberOfPatches = random.Next(0,4);
@@ -102,15 +102,29 @@ public static class PatchMapGenerator
                     region.AddPatch(patch);
                     numberOfPatches--;
                 }
+
+                // Chance to add a vent region if this region were adding is an ocean one
+                if (random.Next(0,2) == 1)
+                {
+                    var ventRegion = new PatchRegion(specialRegionsId--,  GetPatchLocalizedName(continentName, "vents"), "vents", coord);
+                    var ventPatch = GetPatchFromPredefinedMap(10, currentPatchId++, predefinedMap, areaName);
+                    ventRegion.AddPatch(ventPatch);
+                    map.AddSpecialRegion(ventRegion);
+                    LinkRegions(ventRegion, region);
+                }
             }
             region.BuildRegion();
             coord = GenerateCoordinates(region, map, random, minDistance);
-            regionCoords.Add(coord + region.GetSize()/2f);
 
+            // We add the coordinates for the center of the region 
+            // since thats the point that will be connected
+            regionCoords.Add(coord + region.GetSize()/2f);
             map.AddRegion(region);
         }
 
-        map = BuildRegionsAndAddPatches(map);
+        // After building the normal regions we build the special ones and the patches in all regions
+        map.BuildSpecialRegions();
+        map.BuildPatchesInRegions();
 
         // We make the graph by substracting edges from its Delaunay Triangulation 
         // as long as the graph stays connected.
@@ -284,36 +298,6 @@ public static class PatchMapGenerator
         };
 
         return patch;
-    }
-
-    public static PatchMap BuildRegionsAndAddPatches(PatchMap map)
-    {
-        Vector2 sum = new Vector2(0,0);
-
-        // Calculate the center of the points/regions
-        foreach(var region in map.Regions)
-        {
-            sum += region.Value.ScreenCoordinates;
-        }
-
-        sum /= map.Regions.Count;
-        var dif = new Vector2(400,400) - sum;
-
-        // Apply the differnece of  the sceen center and points center
-        // And build the patch visually
-        foreach(var region in map.Regions)
-        {
-            if (dif.x < 0 && dif.y < 0)
-                region.Value.ScreenCoordinates += dif;
-            region.Value.BuildPatches();
-            foreach (var patch in region.Value.Patches)
-            {
-                map.AddPatch(patch);
-                map.CurrentPatch = patch;
-            }
-        }
-
-        return map;
     }
 
     private static PatchMap PredefinedMap(PatchMap map, string areaName, Species defaultSpecies)

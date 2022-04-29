@@ -19,6 +19,9 @@ public class PatchMap
 
     [JsonProperty]
     public Dictionary<int, PatchRegion> Regions { get; private set; } = new();
+
+    [JsonProperty]
+    public Dictionary<int, PatchRegion> SpecialRegions { get; private set; } = new();
     /// <summary>
     ///   Currently active patch (the one player is in)
     /// </summary>
@@ -57,7 +60,7 @@ public class PatchMap
     }
 
     /// <summary>
-    ///   Adds a new patch to the map. Throws if can't add
+    ///   Adds a new region to the map. Throws if can't add
     /// </summary>
     public void AddRegion(PatchRegion region)
     {
@@ -69,6 +72,21 @@ public class PatchMap
 
         Regions[region.ID] = region;
     }
+
+     /// <summary>
+    ///   Adds a new special region to the map. Throws if can't add
+    /// </summary>
+    public void AddSpecialRegion(PatchRegion region)
+    {
+        if (SpecialRegions.ContainsKey(region.ID))
+        {
+            throw new ArgumentException(
+                "region cannot be added to this map, the ID is already in use: " + region.ID);
+        }
+
+        SpecialRegions[region.ID] = region;
+    }
+
 
     /// <summary>
     ///   Returns true when the map is valid and has no invalid references
@@ -334,6 +352,38 @@ public class PatchMap
         foreach (var patch in Patches.Values)
         {
             patch.ReplaceSpecies(old, newSpecies);
+        }
+    }
+
+    public void BuildSpecialRegions()
+    {
+        foreach (var region in SpecialRegions)
+        {
+            region.Value.BuildRegion();
+        }
+    }
+
+    public void BuildPatchesInRegions()
+    {
+        foreach(var region in Regions)
+        {
+            region.Value.BuildPatches();
+            foreach (var patch in region.Value.Patches)
+            {
+                AddPatch(patch);
+                CurrentPatch = patch;
+            }
+        }
+
+        foreach(var region in SpecialRegions)
+        {   
+            region.Value.BuildPatches();
+            foreach (var patch in region.Value.Patches)
+            {
+                AddPatch(patch);
+                CurrentPatch = patch;
+            }
+
         }
     }
 }

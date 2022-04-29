@@ -77,6 +77,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 14 )
 script = ExtResource( 28 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 FinishOrNextButtonPath = NodePath("MarginContainer2/NextTabButton")
 MapDrawerPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/ScrollContainer/PatchMapDrawer")
 PatchNothingSelectedPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected")
@@ -153,8 +156,10 @@ follow_focus = true
 [node name="PatchMapDrawer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/ScrollContainer" instance=ExtResource( 18 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 886.0
-margin_bottom = 598.0
+margin_right = 1111.0
+margin_bottom = 1111.0
+rect_min_size = Vector2( 1111, 1111 )
+rect_scale = Vector2( 0.5, 0.5 )
 DrawDefaultMapIfEmpty = false
 
 [node name="StatisticsPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer"]
