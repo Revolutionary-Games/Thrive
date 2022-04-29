@@ -38,9 +38,10 @@ public partial class CellEditorComponent
         }
     }
 
-    public void SendUndoToTutorial(TutorialState tutorial)
+    public void SendUndoRedoToTutorial(TutorialState tutorial)
     {
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = componentBottomLeftButtons.UndoButton;
+        tutorial.EditorRedoTutorial.EditorRedoButtonControl = componentBottomLeftButtons.RedoButton;
 
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
     }
@@ -152,6 +153,13 @@ public partial class CellEditorComponent
     private void UpdateHitpoints(float hp)
     {
         hpLabel.Text = hp.ToString(CultureInfo.CurrentCulture);
+
+        UpdateCellStatsIndicators();
+    }
+
+    private void UpdateStorage(float storage)
+    {
+        storageLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", storage);
 
         UpdateCellStatsIndicators();
     }
@@ -355,6 +363,7 @@ public partial class CellEditorComponent
         SetSpeciesInfo(newName, Membrane, Colour, Rigidity, behaviourEditor.Behaviour);
         UpdateGeneration(species.Generation);
         UpdateHitpoints(CalculateHitpoints());
+        UpdateStorage(CalculateStorage());
     }
 
     private class ATPComparer : IComparer<string>

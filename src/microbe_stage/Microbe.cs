@@ -35,6 +35,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     private bool onReadyCalled;
 
+    /// <summary>
+    ///   We need to know when we should process ourselves or we are ran through <see cref="MicrobeSystem"/>.
+    ///   This is this way as microbes can be used for editor previews and also in <see cref="PhotoStudio"/>.
+    /// </summary>
+    private bool usesExternalProcess;
+
     private bool processesDirty = true;
     private List<TweakedProcess>? processes;
 
@@ -483,7 +489,58 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         player.Play();
     }
 
-    public override void _Process(float delta)
+    public void NotifyExternalProcessingIsUsed()
+    {
+        if (usesExternalProcess)
+            return;
+
+        usesExternalProcess = true;
+        SetProcess(false);
+    }
+
+    /// <summary>
+    ///   Async part of microbe processing
+    /// </summary>
+    /// <param name="delta">Time since the last call</param>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: microbe processing needs more refactoring in the individual operation methods to really allow more
+    ///     work to be put in this asynchronous processing method
+    ///   </para>
+    /// </remarks>
+    public void ProcessEarlyAsync(float delta)
+    {
+        if (membraneOrganellePositionsAreDirty)
+        {
+            // Redo the cell membrane.
+            SendOrganellePositionsToMembrane();
+
+            membraneOrganellesWereUpdatedThisFrame = true;
+        }
+        else
+        {
+            membraneOrganellesWereUpdatedThisFrame = false;
+        }
+
+        // The code below starting from here is not needed for a display-only cell
+        if (IsForPreviewOnly)
+            return;
+
+        // Movement factor is reset here. HandleEngulfing will set the right value
+        MovementFactor = 1.0f;
+        queuedMovementForce = new Vector3(0, 0, 0);
+
+        // Reduce agent emission cooldown
+        AgentEmissionCooldown -= delta;
+        if (AgentEmissionCooldown < 0)
+            AgentEmissionCooldown = 0;
+
+        HandleHitpointsRegeneration(delta);
+
+        HandleOsmoregulation(delta);
+    }
+
+    public void ProcessSync(float delta)
     {
         // Updates the listener if this is the player owned microbe.
         if (listener != null)
@@ -496,20 +553,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             listener.GlobalTransform = transform;
         }
 
-        if (membraneOrganellePositionsAreDirty)
+        if (membraneOrganellesWereUpdatedThisFrame && IsForPreviewOnly)
         {
-            // Redo the cell membrane.
-            SendOrganellePositionsToMembrane();
+            if (organelles == null)
+                throw new InvalidOperationException("Preview microbe was not initialized with organelles list");
 
-            if (IsForPreviewOnly)
-            {
-                if (organelles == null)
-                    throw new InvalidOperationException("Preview microbe was not initialized with organelles list");
-
-                // Update once for the positioning of external organelles
-                foreach (var organelle in organelles.Organelles)
-                    organelle.Update(delta);
-            }
+            // Update once for the positioning of external organelles
+            foreach (var organelle in organelles.Organelles)
+                organelle.Update(delta);
         }
 
         // The code below starting from here is not needed for a display-only cell
@@ -518,20 +569,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         CheckEngulfShapeSize();
 
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         HandleCompoundAbsorbing(delta);
-
-        // Movement factor is reset here. HandleEngulfing will set the right value
-        MovementFactor = 1.0f;
-        queuedMovementForce = new Vector3(0, 0, 0);
-
-        // Reduce agent emission cooldown
-        AgentEmissionCooldown -= delta;
-        if (AgentEmissionCooldown < 0)
-            AgentEmissionCooldown = 0;
 
         // Fire queued agents
         if (queuedToxinToEmit != null)
@@ -541,20 +579,16 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         HandleFlashing(delta);
-        HandleHitpointsRegeneration(delta);
+
         HandleReproduction(delta);
 
-        // Handles engulfing related stuff as well as modifies the
-        // movement factor. This needs to be done before Update is
-        // called on organelles as movement organelles will use
-        // MovementFactor.
+        // Handles engulfing related stuff as well as modifies the movement factor.
+        // This needs to be done before Update is called on organelles as movement organelles will use MovementFactor.
         HandleEngulfing(delta);
 
         // Handles binding related stuff
         HandleBinding(delta);
         HandleUnbinding();
-
-        HandleOsmoregulation(delta);
 
         // Colony members have their movement update before organelle update,
         // so that the movement organelles see the direction
@@ -610,6 +644,22 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
     }
 
+    public override void _Process(float delta)
+    {
+        if (usesExternalProcess)
+        {
+            GD.PrintErr("_Process was called for microbe that uses external processing");
+            return;
+        }
+
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
+        ProcessEarlyAsync(delta);
+        ProcessSync(delta);
+    }
+
     public override void _PhysicsProcess(float delta)
     {
         linearAcceleration = (LinearVelocity - lastLinearVelocity) / delta;
@@ -630,16 +680,18 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     public override void _EnterTree()
     {
+        base._EnterTree();
+
         if (IsPlayerMicrobe)
             CheatManager.OnPlayerDuplicationCheatUsed += OnPlayerDuplicationCheat;
     }
 
     public override void _ExitTree()
     {
+        base._ExitTree();
+
         if (IsPlayerMicrobe)
             CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
-
-        base._ExitTree();
     }
 
     public void AIThink(float delta, Random random, MicrobeAICommonData data)

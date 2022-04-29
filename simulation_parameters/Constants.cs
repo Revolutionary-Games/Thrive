@@ -62,20 +62,15 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 7.0f;
+    public const float FLAGELLA_ENERGY_COST = 4.0f;
 
     public const float FLAGELLA_BASE_FORCE = 75.7f;
-
-    /// <summary>
-    ///   Used for energy balance calculations
-    /// </summary>
-    public const string FLAGELLA_COMPONENT_NAME = "movement";
 
     public const float CELL_BASE_THRUST = 50.6f;
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
-    public const int PROCESS_OBJECTS_PER_TASK = 30;
+    public const int PROCESS_OBJECTS_PER_TASK = 15;
 
     public const int MICROBE_SPAWN_RADIUS = 170;
     public const int CLOUD_SPAWN_RADIUS = 170;
@@ -127,7 +122,7 @@ public static class Constants
     /// </summary>
     public const float MICROBE_AI_SIGNAL_REACT_INTERVAL = 1.2f;
 
-    public const int MICROBE_AI_OBJECTS_PER_TASK = 15;
+    public const int MICROBE_AI_OBJECTS_PER_TASK = 12;
 
     public const int INITIAL_SPECIES_POPULATION = 100;
 
@@ -217,6 +212,16 @@ public static class Constants
     /// </summary>
     public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
 
+    /// <summary>
+    ///   Limits how often floating chunks are processed to save on some performance
+    /// </summary>
+    public const float FLOATING_CHUNK_PROCESS_INTERVAL = 0.05f;
+
+    /// <summary>
+    ///   If more chunks exist at once than this, then some are forced to dissolve immediately
+    /// </summary>
+    public const int FLOATING_CHUNK_MAX_COUNT = 35;
+
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 3000.0f;
 
     public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;
@@ -243,6 +248,8 @@ public static class Constants
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
     /// </summary>
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
+
+    public const float MICROBE_REPRODUCTION_PROGRESS_INTERVAL = 0.05f;
 
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
@@ -489,7 +496,7 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
-    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 1200;
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
@@ -633,6 +640,12 @@ public static class Constants
     /// <summary>
     ///   All Nodes tagged with this are considered Microbes that the AI can react to
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: quite a few of these AI_TAG starting constants need to be renamed as these are generally used to
+    ///     find relevant entities for things that aren't the AI system
+    ///   </para>
+    /// </remarks>
     public const string AI_TAG_MICROBE = "microbe";
 
     /// <summary>
@@ -649,6 +662,8 @@ public static class Constants
     public const string SAVE_FOLDER = "user://saves";
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
+
+    public const int MAX_PATH_LENGTH = 1024;
 
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 

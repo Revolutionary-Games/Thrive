@@ -121,6 +121,11 @@ public class TaskExecutor
     ///   ones queued from another thread while this method is executing) are complete, which may be unwanted in
     ///   some cases.
     /// </param>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: this should be optimized to run as many tasks on the main thread as the other threads will run
+    ///   </para>
+    /// </remarks>
     public void RunTasks(IEnumerable<Task> tasks, bool runExtraTasksOnCallingThread = false)
     {
         // Queue all but the first task

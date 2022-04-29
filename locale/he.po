@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 11:00+0300\n"
+"POT-Creation-Date: 2022-04-29 09:41+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] והעכבר בשביל לנוע. [thrive:input]g_fire_toxin[/thrive:input] בשביל לירות[thrive:compound type=\"oxytoxy\"][/thrive:compound] אם יש לך חלולית רעלן. [thrive:input]g_toggle_engulf[/thrive:input] בשביל להחליף למצב בליעה. אתה יכול לעשות הגדלה והקטנה בעמצאות גלגל העכבר."
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] והעכבר בשביל לנוע. [thrive:input]g_fire_toxin[/thrive:input] בשביל לירות[thrive:compound type=\"oxytoxy\"][/thrive:compound] אם יש לך חלולית רעלן. [thrive:input]g_toggle_engulf[/thrive:input] בשביל להחליף למצב בליעה. אתה יכול לעשות הגדלה והקטנה באמצעות גלגל העכבר."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -114,7 +114,9 @@ msgstr ""
 "\n"
 "שוטון: מזיז את התא שלך מהר יותר על ידי צריכת [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"פילוס: ניתן להשתמש בו בשביל לדקור תאים אחרים"
+"פילוס: ניתן להשתמש בו בשביל לדקור תאים אחרים\n"
+"\n"
+"כימורצפטור: מאפשר לאתר תרכובות ממרחק גדול"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -135,7 +137,9 @@ msgstr ""
 "\n"
 "חלולית: מאחסן 15 תרכובות שנאספו\n"
 "\n"
-"חלוליות רעלן: מייצר רעלנים (המכונים [thrive:compound type=\"oxytoxy\"][/thrive:compound])"
+"חלוליות רעלן: מייצר רעלנים (המכונים [thrive:compound type=\"oxytoxy\"][/thrive:compound])\n"
+"\n"
+"חומר מאותת: מאפשר לתאים ליצור כימיקלים שתאים אחרים מגיבים לו"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -297,7 +301,7 @@ msgstr "החלף מצב בליעה"
 
 #: ../simulation_parameters/common/input_options.json:46
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr ""
+msgstr "החזק כדי להציג את תפריט פקודות"
 
 #: ../simulation_parameters/common/input_options.json:50
 #: ../src/microbe_stage/MicrobeStage.tscn:2153
@@ -775,15 +779,13 @@ msgstr "גרעין התא"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:678
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1164
-#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr "כימופלסט"
+msgstr "כימורצפטור"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:704
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2083
-#, fuzzy
 msgid "SIGNALING_AGENT"
-msgstr "מקשר"
+msgstr "חומר מאותת"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2181
@@ -801,19 +803,16 @@ msgid "CILIA"
 msgstr "ריס"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-#, fuzzy
 msgid "ABORTED_DOT"
-msgstr "בוטל."
+msgstr "הופל."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-#, fuzzy
 msgid "FINISHED_DOT"
-msgstr "גמור."
+msgstr "נגמר."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-#, fuzzy
 msgid "NOT_RUNNING_DOT"
-msgstr "לא פועל."
+msgstr "לא רץ."
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
 msgid "AUTO-EVO_STEPS_DONE"
@@ -823,23 +822,21 @@ msgstr "{0:F1}% הסתיים. {1:n0}/{2:n0} שלבים."
 msgid "STARTING"
 msgstr "מתחיל"
 
-#: ../src/auto-evo/AutoEvoRun.cs:294
+#: ../src/auto-evo/AutoEvoRun.cs:288
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "אוכלוסיית {0} השתנתה ב {1} בגלל: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-#, fuzzy
 msgid "POPULATION_COLON"
-msgstr "כלל האוכלוסיה:"
+msgstr "אוכלוסיה:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "נכחד ב{0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "מינים:"
+msgstr "קודם:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -858,16 +855,14 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "אוכלוסיה בחלק מהאזורים התפצלה למינים חדשים {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr "נוצר מוטציה"
+msgstr "עבר מוטציה"
 
 #: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "קוד גנטי:"
 
 #: ../src/auto-evo/RunResults.cs:652
-#, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "התפשט לאזורים:"
 
@@ -876,9 +871,8 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} על ידי שליחה: {1} פריטים מאזור: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "{0} ({1})"
+msgstr "אכלוסיה באזורים:"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -886,96 +880,85 @@ msgstr "נכחד מהכוכב"
 
 #: ../src/auto-evo/RunResults.cs:844
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr ""
+msgstr "[u]{0}[/u] נכחד!"
 
 #: ../src/auto-evo/RunResults.cs:854 ../src/auto-evo/RunResults.cs:876
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "אוכלוסיית מינים"
+msgstr "אוכלוסיית [u]{0}[/u] גדלה ל{1}"
 
 #: ../src/auto-evo/RunResults.cs:860 ../src/auto-evo/RunResults.cs:882
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "אוכלוסיית מינים"
+msgstr "אוכלוסיית [u]{0}[/u] קטנה ל{1}"
 
 #: ../src/auto-evo/RunResults.cs:868
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr ""
+msgstr "[u]{0}[/u] נעלמה מאזור זה"
 
 #: ../src/auto-evo/RunResults.cs:892
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr ""
+msgstr "חלק מאוכלוסיית [u]{0}[/u] נדדה לאזור זה מ{1}"
 
 #: ../src/auto-evo/RunResults.cs:897
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "חלק מאוכלוסיית [u]{0}[/u] נדדה מ{1} ל{2}"
 
 #: ../src/auto-evo/RunResults.cs:903
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "חלק מאוכלוסיית [u]{0}[/u] נדדה ל{1}"
 
 #: ../src/auto-evo/RunResults.cs:922
-#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
-msgstr "הופיע על מנת למלא נישה"
+msgstr "[u]{0}[/u] התפצל מ[u]{1}[/u] כמין חדש בשביל למלא גומחה"
 
 #: ../src/auto-evo/RunResults.cs:928
-#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "הופיע בשל לחצי סלקציה שונים"
+msgstr "[u]{0}[/u] התפצל מ[u]{1}[/u] כמין חדש בשל לחץ ברירה שונים"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
-#, fuzzy
 msgid "NOT_FOUND_CHUNK"
-msgstr "גוש ברזל גדול"
+msgstr "תקלה: גוש לא נמצא"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
-#, fuzzy
 msgid "CHUNK_FOOD_SOURCE"
-msgstr "ענני תרכובות"
+msgstr "{0} צריכה"
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:42
-#, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr "ענני תרכובות"
+msgstr "{0} צריכה"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:38
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "פיזור אחיד של מקור מזון סביבתי של {0}"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
 msgid "PREDATION_FOOD_SOURCE"
-msgstr ""
+msgstr "טריפה של {0}"
 
 #: ../src/early_multicellular_stage/CellType.cs:38
-#, fuzzy
 msgid "STEM_CELL_NAME"
-msgstr "שם משתמש מותאם אישית:"
+msgstr "גזע"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:358
 msgid "STRUCTURE"
 msgstr "מבנה"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
-#, fuzzy
 msgid "REPRODUCTION"
-msgstr "ייצור ATP"
+msgstr "הולדה"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:400
 msgid "BEHAVIOUR"
 msgstr "התנהגות"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
-#, fuzzy
 msgid "CELLS"
-msgstr "תאית"
+msgstr "תאים"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
-#, fuzzy
 msgid "MODIFY_TYPE"
-msgstr "לשנות"
+msgstr "שנה סוג"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:414
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
@@ -983,72 +966,63 @@ msgid "DELETE"
 msgstr "מחק"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:421
-#, fuzzy
 msgid "DUPLICATE_TYPE"
-msgstr "שכפל שחקן"
+msgstr "שכפל סוג"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:463
-#, fuzzy
 msgid "REPRODUCTION_METHOD"
-msgstr "התרבה"
+msgstr "סוגי רבייה:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:476
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
-#, fuzzy
 msgid "REPRODUCTION_BUDDING"
-msgstr "התרבה"
+msgstr "הנצה"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1173
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "בטל פעולה"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1186
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1212
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr "הבא"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
-#, fuzzy
 msgid "DISCONNECTED_CELLS"
-msgstr "אברונים מנותקים"
+msgstr "תאים מנותקים"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
-#, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
-"ישנם אברונים שאינם מחוברים לשאר.\n"
-"בבקשה חבר את כל האברונים אחד עם השני או בטל את הפעולה."
+"ישנם תאים שאינם מחוברים לשאר.\n"
+"בבקשה חבר את כל התאים אחד עם השני או בטל את הפעולה."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "לא ניתן למחוק סוג תא זה אשר בשימוש"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "לא ניתן למחוק סוג תא הנמצא כרגע בשימוש כחלק מתוכנית גוף"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr "יוצר שמירה חדשה"
+msgstr "יצירת סוג תא חדש"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "הכימופלסט הוא אברון בעל קרום כפול המכיל חלבונים המסוגלים להמיר מימן גופרתי, מים ופחמן דו חמצני לגלוקוז בתהליך הנקרא כימוסינתזה מימן גופרתי. קצב ייצור הגלוקוז שלו משתנה עם ריכוז פחמן הדו חמצני."
+msgstr "אתה יכול ליצור סוגי תא על ידי שיכפול קיימים ולתת להם שם חדש. ניתן לשנות סוגי תא בשביל להתמחותם לתפקידי שונים. בעת שינוי סוג התא כל אלו שממוקמים מאותו סוג גם יעודכנו."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
-#, fuzzy
 msgid "NEW_NAME_COLON"
-msgstr "מהירות:"
+msgstr "שם חדש:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:585
-#, fuzzy
 msgid "NEW_NAME"
-msgstr "משחק חדש"
+msgstr "שם חדש"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:72
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
@@ -1067,10 +1041,10 @@ msgstr "מריץ סטטוס:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "בחר סוג תא בשביל לערוך אותו בתגית העורך"
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:53
-#: ../src/engine/PerformanceMetrics.tscn:50
+#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
+#: ../src/engine/PerformanceMetrics.tscn:60
 #, fuzzy
 msgid "FPS"
 msgstr "מקסימום FPS:"
@@ -1079,16 +1053,17 @@ msgstr "מקסימום FPS:"
 msgid "LOADING"
 msgstr "טוען"
 
-#: ../src/engine/PerformanceMetrics.cs:54
+#: ../src/engine/PerformanceMetrics.cs:63
+#: ../src/engine/PerformanceMetrics.tscn:66
 msgid "FRAME_DELTA"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.cs:68
-#: ../src/engine/PerformanceMetrics.tscn:56
+#: ../src/engine/PerformanceMetrics.cs:77
+#: ../src/engine/PerformanceMetrics.tscn:73
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.tscn:26
+#: ../src/engine/PerformanceMetrics.tscn:31
 #, fuzzy
 msgid "METRICS"
 msgstr "אפשר תצוגת FPS"
@@ -1527,9 +1502,9 @@ msgstr "ציור מאת {0}"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1278
-#: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1304
+#: ../src/modding/ModManager.tscn:992
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:392
 msgid "CLOSE"
 msgstr "סגור"
 
@@ -1545,11 +1520,11 @@ msgstr "{0}%"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "ריכוזי ה{0} ירדו ב{1}"
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "ריכוזי הגלוקוז ירדו בצורה דרסטית!"
 
 #: ../src/general/MainMenu.cs:234
 msgid "STORE_LOGGED_IN_AS"
@@ -1596,7 +1571,7 @@ msgstr "עורך ארגז חול המיקרובי"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "חזור"
@@ -1623,25 +1598,30 @@ msgstr "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא 
 
 #: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
-msgstr ""
+msgstr "שגיאה בעליית המוד"
 
 #: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
-msgstr ""
+msgstr "שגיאה קרתה בזמן שטען אחד או יותר מודים. תיעודם עשויים להכיל מידע נוסף."
 
-#: ../src/general/OptionsMenu.cs:900
+#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
+#, fuzzy
+msgid "AUTO_RESOLUTION"
+msgstr "רזולוציה:"
+
+#: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "פלט ברירת מחדל"
 
-#: ../src/general/OptionsMenu.cs:932
+#: ../src/general/OptionsMenu.cs:956
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "תרגום זה מאוד לא מוכן ({0}% מושלם), בבקשה תעזרו לנו עם זה!"
 
-#: ../src/general/OptionsMenu.cs:936
+#: ../src/general/OptionsMenu.cs:960
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "תרגום זה עדין בשלבי הכנה ({0}% הושלם)"
 
-#: ../src/general/OptionsMenu.cs:940
+#: ../src/general/OptionsMenu.cs:964
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "שפה זו היינו {0}% הושלם"
 
@@ -1705,18 +1685,13 @@ msgstr "16x"
 msgid "RESOLUTION"
 msgstr "רזולוציה:"
 
-#: ../src/general/OptionsMenu.tscn:290
-msgid "AUTO"
-msgstr "אוטומטי"
-
 #: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
 msgstr "מקסימום FPS:"
 
 #: ../src/general/OptionsMenu.tscn:316
-#, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
-msgstr "מקסימום FPS:"
+msgstr "ללא הגבלה"
 
 #: ../src/general/OptionsMenu.tscn:332
 msgid "COLOURBLIND_CORRECTION"
@@ -1853,14 +1828,12 @@ msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "כמות שמירה מהירה שניתן לשמור:"
 
 #: ../src/general/OptionsMenu.tscn:1068
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr "הצג מדריך (בשמירות חדשות)"
+msgstr "הצג מדריכים (בשמירות חדשות)"
 
 #: ../src/general/OptionsMenu.tscn:1075
-#, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr "הצג מדריך (בשמירה נוכחית)"
+msgstr "הצג מדריכים (בשמירה נוכחית)"
 
 #: ../src/general/OptionsMenu.tscn:1081
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
@@ -1946,7 +1919,7 @@ msgstr "מחק והמשך"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "ביטול"
 
@@ -2135,106 +2108,106 @@ msgstr "מתרגמים"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "רישיונות וספריות שימוש"
 
-#: ../src/gui_common/CreditsScroll.cs:484
+#: ../src/gui_common/CreditsScroll.cs:486
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 "תודה ששיחקת!\n"
 "\n"
 "אם נהנתה מהמשחק, ספר לחבריך עלינו."
 
-#: ../src/gui_common/CreditsScroll.cs:493
+#: ../src/gui_common/CreditsScroll.cs:495
 msgid "PROGRAMMING_TEAM"
 msgstr "צוות מתכנתים"
 
-#: ../src/gui_common/CreditsScroll.cs:494
+#: ../src/gui_common/CreditsScroll.cs:496
 msgid "THEORY_TEAM"
 msgstr "צוות תיאוריה"
 
-#: ../src/gui_common/CreditsScroll.cs:495
+#: ../src/gui_common/CreditsScroll.cs:497
 msgid "GRAPHICS_TEAM"
 msgstr "צוות גרפיקה"
 
-#: ../src/gui_common/CreditsScroll.cs:496
+#: ../src/gui_common/CreditsScroll.cs:498
 msgid "SOUND_TEAM"
 msgstr "צוות סאונד"
 
-#: ../src/gui_common/CreditsScroll.cs:497
+#: ../src/gui_common/CreditsScroll.cs:499
 msgid "OUTREACH_TEAM"
 msgstr "צוות הסברה"
 
-#: ../src/gui_common/CreditsScroll.cs:498
+#: ../src/gui_common/CreditsScroll.cs:500
 msgid "GAME_DESIGN_TEAM"
 msgstr "צוות מעצבי משחק"
 
-#: ../src/gui_common/CreditsScroll.cs:499
+#: ../src/gui_common/CreditsScroll.cs:501
 msgid "TESTING_TEAM"
 msgstr "צוות בודקים"
 
-#: ../src/gui_common/CreditsScroll.cs:500
+#: ../src/gui_common/CreditsScroll.cs:502
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "צוות ניהול פרויקט"
 
-#: ../src/gui_common/CreditsScroll.cs:501
+#: ../src/gui_common/CreditsScroll.cs:503
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "בקשות דרישה / תיכנות"
 
-#: ../src/gui_common/CreditsScroll.cs:502
+#: ../src/gui_common/CreditsScroll.cs:504
 msgid "VIP_PATRONS"
 msgstr "תומכי VIP"
 
-#: ../src/gui_common/CreditsScroll.cs:503
+#: ../src/gui_common/CreditsScroll.cs:505
 msgid "DEV_BUILD_PATRONS"
 msgstr "תומכי בניית תוכנה"
 
-#: ../src/gui_common/CreditsScroll.cs:504
+#: ../src/gui_common/CreditsScroll.cs:506
 msgid "SUPPORTER_PATRONS"
 msgstr "תומכים"
 
-#: ../src/gui_common/CreditsScroll.cs:505
+#: ../src/gui_common/CreditsScroll.cs:507
 msgid "JANUARY"
 msgstr "ינואר"
 
-#: ../src/gui_common/CreditsScroll.cs:506
+#: ../src/gui_common/CreditsScroll.cs:508
 msgid "FEBRUARY"
 msgstr "פברואר"
 
-#: ../src/gui_common/CreditsScroll.cs:507
+#: ../src/gui_common/CreditsScroll.cs:509
 msgid "MARCH"
 msgstr "מרץ"
 
-#: ../src/gui_common/CreditsScroll.cs:508
+#: ../src/gui_common/CreditsScroll.cs:510
 msgid "APRIL"
 msgstr "אפריל"
 
-#: ../src/gui_common/CreditsScroll.cs:509
+#: ../src/gui_common/CreditsScroll.cs:511
 msgid "MAY"
 msgstr "מאי"
 
-#: ../src/gui_common/CreditsScroll.cs:510
+#: ../src/gui_common/CreditsScroll.cs:512
 msgid "JUNE"
 msgstr "יוני"
 
-#: ../src/gui_common/CreditsScroll.cs:511
+#: ../src/gui_common/CreditsScroll.cs:513
 msgid "JULY"
 msgstr "יולי"
 
-#: ../src/gui_common/CreditsScroll.cs:512
+#: ../src/gui_common/CreditsScroll.cs:514
 msgid "AUGUST"
 msgstr "אוגוסט"
 
-#: ../src/gui_common/CreditsScroll.cs:513
+#: ../src/gui_common/CreditsScroll.cs:515
 msgid "SEPTEMBER"
 msgstr "ספטמבר"
 
-#: ../src/gui_common/CreditsScroll.cs:514
+#: ../src/gui_common/CreditsScroll.cs:516
 msgid "OCTOBER"
 msgstr "אוקטובר"
 
-#: ../src/gui_common/CreditsScroll.cs:515
+#: ../src/gui_common/CreditsScroll.cs:517
 msgid "NOVEMBER"
 msgstr "נובמבר"
 
-#: ../src/gui_common/CreditsScroll.cs:516
+#: ../src/gui_common/CreditsScroll.cs:518
 msgid "DECEMBER"
 msgstr "דצמבר"
 
@@ -2261,9 +2234,8 @@ msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "לשמירה יש גרסה שונה"
 
 #: ../src/gui_common/RadialMenu.cs:63
-#, fuzzy
 msgid "SELECT_OPTION"
-msgstr "נבחרו:"
+msgstr "בחר אפשרות"
 
 #: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_PICK_COLOUR"
@@ -2330,29 +2302,28 @@ msgstr "HSV"
 msgid "RAW"
 msgstr "\"טרי\""
 
-#: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1934
+#: ../src/gui_common/charts/line/LineChart.cs:632
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1987
 msgid "NO_DATA_TO_SHOW"
 msgstr "אין מידע להציג"
 
-#: ../src/gui_common/charts/line/LineChart.cs:640
-#, fuzzy
+#: ../src/gui_common/charts/line/LineChart.cs:636
 msgid "INVALID_DATA_TO_PLOT"
-msgstr "נתיב סמליל מוד לא חוקית"
+msgstr "נתונים לא חוקיים להזימה"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1110
-#: ../src/gui_common/charts/line/LineChart.cs:1202
+#: ../src/gui_common/charts/line/LineChart.cs:1104
+#: ../src/gui_common/charts/line/LineChart.cs:1196
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "לא ניתן להציג יותר מ{0} נתונים!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1116
-#: ../src/gui_common/charts/line/LineChart.cs:1207
+#: ../src/gui_common/charts/line/LineChart.cs:1110
+#: ../src/gui_common/charts/line/LineChart.cs:1201
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "לא ניתן להציג פחות מ{0} נתונים!"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
-msgstr ""
+msgstr "לבדוק"
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
@@ -2364,7 +2335,7 @@ msgstr "בסדר"
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "מעתיק שגיאה ללוח העתקה"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:34
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:62
 msgid "GPL_LICENSE_HEADING"
 msgstr "להלן טקסט רישיון GPL:"
 
@@ -2378,12 +2349,17 @@ msgstr "רישונות המכסים חלקים מThrive מוצגים כאן"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "להמשיך לשלב האבטיפוס?"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
-msgstr "פרוטנופ (אדום-ירוק)"
+msgstr ""
+"אתה הגעת לסוף של החלק ה\"מוכן\" של Thrive.\n"
+"אם אתה רוצה, אתה יכול להמשיך לשלבי האבטיפוס המקדמים יותר הכוללים במשחק. הם יכולים להיות מאוד לא מוכנים, להשתמש בגרפיקה של מצייני מיקום ויכול בכללי להיות מאוד קשוח. אלה כלולים כחלק מהמשחק כדי להראות את הכיוון העתידי האפשרי של המשחק ואת החזון הכללי שלנו לגבי איך השלבים יתחברו.\n"
+"\n"
+"אתה לא תוכל לשמור אם אתה רוצה להמשיך או לחזור ברגע שתמשיך. אם אתה רוצה לחזור לשלב זה, בבקשה תשמור לפני שתתמשיך.\n"
+"\n"
+"אם אתה בחרת להמשיך, בבקשה תבין שזה שלב אבטיפוס ובבקשה על תתלונן על כמה זה לא מושלם."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2402,9 +2378,8 @@ msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "סיים עריכה וחזור לסביבה"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
-#, fuzzy
 msgid "NEXT_EDITOR_TAB"
-msgstr "הפעל את העורך"
+msgstr "לך לכרטיסיית העורך הבאה"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
@@ -2613,7 +2588,6 @@ msgid "SPEED"
 msgstr "מהירות"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1105
-#, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "דקור תאים אחרים בעזרתו."
 
@@ -2622,14 +2596,12 @@ msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "דקור תאים אחרים בעזרתו."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
-#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr "הופך [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ל[thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של [thrive:compoundtype=\"carbondioxide\"][/thrive:compound]."
+msgstr "הכימוריצפטור מאפשר לך לאתר תרכובות מרחוק. שנה ברגע שמיקמת בשביל לשנות את סוג התרכובת ואת צבע הקו מכוון."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
-#, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr "הכימופלסט הוא אברון בעל קרום כפול המכיל חלבונים המסוגלים להמיר מימן גופרתי, מים ופחמן דו חמצני לגלוקוז בתהליך הנקרא כימוסינתזה מימן גופרתי. קצב ייצור הגלוקוז שלו משתנה עם ריכוז פחמן הדו חמצני."
+msgstr "כל התאים מסוגלים \"לראות\" דרך הכימורצפטור. זה איך התא אוסף מידע סביבו. הוספת אברון זה מאפשרת לכימורצפטור להיות יותר מדויק. מכיוון שהשחקן מסוגל לראות אפילו בשלב התא, זה מיוצג על ידי קו שמצביע מחוץ להמסך הנראה לעין המראה תרכובות קרובים שהשחקן עדיין לא ראה."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
@@ -2716,14 +2688,12 @@ msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2084
-#, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "לחץ על [thrive:input]g_toggle_binding[/thrive:input] על מנת להחליף למצב קישור. בזמן מצב קישור אתה יכול להיצמד לתאים אחרים מאותו בני מינך על מנת ליצור מושבות על ידי תזוזה אליהם. על מנת לעזוב את המושבה לחץ [thrive:input]g_unbind_all[/thrive:input]."
+msgstr "החזק [thrive:input]g_pack_commands[/thrive:input] בשביל לפתוח את התפריט שמאפשר להנפיק פקודות לפריטים אחרים מהמין שלך."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2085
-#, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "מאפשר להתחבר לתאים אחרים. זהו הצד הראשון לכיוון רב-תאים. בזמן שאתה חלק ממושבה, התרכובות משותפות בין התאים . אתה לא יכול להיכנס לעורך בזמן שאתה חלק ממושבה כך שאתה צריך לשחרר באת שיש לך מספיק תרכובות על מנת לחלק את התא שלך."
+msgstr "חומרי איתות מאפשרים לתא ליצור כימיקלים שתאים אחרים מגיבים לו. חומרי איתות אלו משומשים בשביל למשוך תאים אחרים או להזהיר אותם מסכנה ולגרום להם לברוח."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2211
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -2815,23 +2785,23 @@ msgstr "טמפרטורה"
 msgid "N_A_MP"
 msgstr "אין נקמ\"ו"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:566
+#: ../src/microbe_stage/Microbe.Contact.cs:564
 msgid "DEATH"
 msgstr "מוות"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:692
+#: ../src/microbe_stage/Microbe.Contact.cs:690
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "ליקוט מוצלח"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:699
+#: ../src/microbe_stage/Microbe.Contact.cs:697
 msgid "SUCCESSFUL_KILL"
 msgstr "הרג מוצלח"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:937
+#: ../src/microbe_stage/Microbe.Contact.cs:935
 msgid "ESCAPE_ENGULFING"
 msgstr "בריחה מבליעה"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:770
+#: ../src/microbe_stage/Microbe.Interior.cs:777
 msgid "REPRODUCED"
 msgstr "התרבה"
 
@@ -2863,29 +2833,27 @@ msgstr "זמן אויב"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:488
 msgid "SIGNAL_COMMAND_NONE"
-msgstr ""
+msgstr "ללא פקודה"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:489
 msgid "SIGNAL_COMMAND_FOLLOW"
-msgstr ""
+msgstr "עקוב אחרי"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:490
 msgid "SIGNAL_COMMAND_TO_ME"
-msgstr ""
+msgstr "זוזו אליי"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:491
 msgid "SIGNAL_COMMAND_FLEE"
-msgstr ""
+msgstr "ברחו"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:492
-#, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr "מקשר"
+msgstr "להפוך לתוקפני"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:495
-#, fuzzy
 msgid "SIGNAL_TO_EMIT"
-msgstr "מקשר"
+msgstr "איתות לפליטה"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:811
 msgid "STUFF_AT"
@@ -2926,22 +2894,22 @@ msgstr "קטן מאוד"
 #: ../src/microbe_stage/MicrobeHUD.cs:1170
 #: ../src/microbe_stage/MicrobeStage.tscn:1772
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "להפוך לרב-תאיים ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1206
 #: ../src/microbe_stage/MicrobeStage.tscn:1788
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "להפוך למקרוסקופי ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:711
+#: ../src/microbe_stage/MicrobeStage.cs:727
 msgid "PLAYER_REPRODUCED"
 msgstr "השחקן התרבה"
 
-#: ../src/microbe_stage/MicrobeStage.cs:725
+#: ../src/microbe_stage/MicrobeStage.cs:741
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "אינך יכול לזמן אוייבים צ'יטים בגלל שאזור זה אינו מכיל שום מינים אויבים"
 
-#: ../src/microbe_stage/MicrobeStage.cs:748
+#: ../src/microbe_stage/MicrobeStage.cs:764
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
@@ -2987,7 +2955,7 @@ msgstr "תרכובות"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1526
 msgid "AGENTS"
-msgstr "שליחים"
+msgstr "חומרים"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1624
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
@@ -3019,7 +2987,7 @@ msgstr "התאבדות"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1771
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr ""
+msgstr "עבור לשלב הבא של המשחק (רב תא). זמין ברגע שיש לך מושבת תאים גדולה מספיק."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1816
 msgid "POPULATION_CAPITAL"
@@ -3070,9 +3038,8 @@ msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "אזור קרקעית הים"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:203
-#, fuzzy
 msgid "PATCH_NAME"
-msgstr "מערה"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3122,185 +3089,188 @@ msgstr "מגיב"
 msgid "FOCUSED"
 msgstr "ממוקד"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:187
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:192
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:195
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
 msgid "ATP_PRODUCTION"
 msgstr "ייצור ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:193
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:201
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ייצור ATP נמוך מדי!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:222
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:230
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: {1}+ ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:242
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:250
 msgid "OSMOREGULATION"
 msgstr "ויסות אוסמטי"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:248
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:256
 msgid "BASE_MOVEMENT"
 msgstr "מהירות בסיסית"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:260
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: {1}- ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:493
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:504
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "שם סוג תא"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1770
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1823
 msgid "FAILED"
 msgstr "נכשל"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1776
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1788
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1829
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1841
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1782
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1794
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1835
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1847
 msgid "N_A"
 msgstr "לא זמין"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1902
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1955
 msgid "ENERGY_IN_PATCH_FOR"
-msgstr ""
+msgstr "אנרגיה מ{0} ל{1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1906
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1959
 msgid "ENERGY_SUMMARY_LINE"
-msgstr ""
+msgstr "סך האנרגיה שנאספה הוא {0} עם עלות בודדת של {1} וכתוצאה מכך אוכלוסייה בלתי מותאמת של {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1913
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1966
 msgid "ENERGY_SOURCES"
-msgstr ""
+msgstr "מקורות אנרגיה:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1919
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1972
 msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr ""
+msgstr "{0} אנרגיה: {1} (כשירות: {2}) כמות אנרגיה זמינה: {3} (כשירות כללית: {4})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:380
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:379
 msgid "MEMBRANE"
 msgstr "קרום"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:453
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:452
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "מחפש..."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:460
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:459
 msgid "STRUCTURAL"
 msgstr "מִבְנִי"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:468
 msgid "PROTEINS"
 msgstr "חלבונים"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:478
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:477
 msgid "EXTERNAL"
 msgstr "חיצוניים"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:487
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:486
 msgid "ORGANELLES"
 msgstr "אברונים"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:528
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:527
 msgid "MEMBRANE_TYPES"
 msgstr "סוגי קרום"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:546
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:545
 msgid "FLUIDITY_RIGIDITY"
 msgstr "נזילות / קשיחות"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:566
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:565
 msgid "FLUID"
-msgstr ""
+msgstr "גמיש"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:579
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:578
 msgid "RIGID"
-msgstr ""
+msgstr "קשיח"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:612
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:611
 msgid "COLOUR"
 msgstr "צבע"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:683
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:679
 msgid "ORGANISM_STATISTICS"
 msgstr "סטטיסטיקת האורגניזם"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:745
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:741
 msgid "SPEED_COLON"
 msgstr "מהירות:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
 msgid "HP_COLON"
 msgstr "חיים:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:805
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:801
 msgid "SIZE_COLON"
 msgstr "גודל:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:826
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:831
+#, fuzzy
+msgid "STORAGE_COLON"
+msgstr "אחסון"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:852
 msgid "GENERATION_COLON"
 msgstr "דור:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:868
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:894
 msgid "ATP_BALANCE"
 msgstr "מאזן ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:981
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1007
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "לוח זה מראה את מספרי האוכלוסייה הצפויים מהמפתח האוטומטי עבור מינים ערוכים.\n"
 "מפתח אוטומטי מריץ הדמיות אכלוסיה שהיא החלק השני (חוץ מהפעולות שלך) שמשפיע על האוכלוסייה שלך."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:985
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1220
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1011
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
 msgid "AUTO-EVO_PREDICTION"
 msgstr "חיזוי של המפתח האוטומטי"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:993
-#, fuzzy
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr "המשך את המשחק"
+msgstr "הצג מידע מפורט מאחורי החיזוי"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1063
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1089
 msgid "TOTAL_POPULATION_COLON"
 msgstr "כלל האוכלוסיה:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1087
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1113
 msgid "BEST_PATCH_COLON"
 msgstr "האזור הטוב ביותר:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1112
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1138
 msgid "WORST_PATCH_COLON"
 msgstr "האזור הגרוע ביותר:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1195
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "מאזן ATP שלילי"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1196
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1222
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "המיקרוב שלך איננו מייצר מספיק ATP בשביל לשרוד!\n"
 "האם ברצונך להמשיך?"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1202
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1228
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "אברונים מנותקים"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1204
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1230
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "ישנם אברונים שאינם מחוברים לשאר.\n"
 "בבקשה חבר את כל האברונים אחד עם השני או בטל את הפעולה."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1269
-#, fuzzy
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1295
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "אוכלוסיית {0} השתנתה ב {1} בגלל: {2}"
+msgstr "חלונית זו מייצגת את המספרים שהמפתח האוטומטי חוזה כמה היו. את כמות האנרגיה שהמין מסוגל לתפוס ועלות לפרט של המין, קובעות את אכלוסייה הסופית. המפתח האוטומטי משתמש במודל פשוט של המציאות כדי לחשב את ביצועי המינים על סמך כמות האנרגיה שהם מסוגלים לאסוף. עבור כל מקור מזון, מוצגת כמה אנרגיה המין מרוויח ממנו. בנוסף, מוצגת האנרגיה הכוללת הזמינה מאותו מקור. החלק שהמין מרוויח מתוך האנרגיה הכוללת מבוסס על גודל הכשירות העצמית בהשוואה לכשירות הכוללת. כשירות הוא מדד הקובע עד כמה המין מנצל את מקור המזון זה."
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
@@ -3364,15 +3334,13 @@ msgstr "רשימת מינים"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:341
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:354
-#, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
-msgstr "נכחד מהכוכב"
+msgstr "נכחד מהכוכב לכת"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:342
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:353
-#, fuzzy
 msgid "EXTINCT_FROM_PATCH"
-msgstr "נכחד מהכוכב"
+msgstr "נכחד מהאזור"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:370
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -3385,7 +3353,7 @@ msgstr "מיליון שנה"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:385
 msgid "TIME_INDICATOR_TOOLTIP"
-msgstr ""
+msgstr "זמן שחלף: {0:#,#} שנים"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:204
 msgid "AUTO_EVO"
@@ -3409,19 +3377,19 @@ msgstr "השפעות חיצוניות:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:400
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "הראה אירועים גלובליים"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:406
 msgid "GLOBAL_INITIAL_LETTER"
-msgstr ""
+msgstr "ג"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:413
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "הראה אירועים מקומיים"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:420
 msgid "LOCAL_INITIAL_LETTER"
-msgstr ""
+msgstr "מ"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:497
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:525
@@ -3437,9 +3405,8 @@ msgid "PATCH_MAP"
 msgstr "מפת האזורים"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
-#, fuzzy
 msgid "CELL"
-msgstr "תאית"
+msgstr "תא"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
@@ -3472,41 +3439,36 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}מ' מתחת פני הים"
 
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:425
-#, fuzzy
 msgid "SPECIES_WITH_POPULATION"
-msgstr "אוכלוסיית מינים"
+msgstr "{0} עם אכלוסיה: {1}"
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
-#, fuzzy
 msgid "EXTINCT_SPECIES"
-msgstr "נכחד"
+msgstr "מינים נכחדים"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
-msgstr ""
+msgstr "לא תעדו אירועים"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
-#, fuzzy
 msgid "COMPOUND_TO_FIND"
-msgstr "ענני תרכובות"
+msgstr "תרכובת לחפש:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "SEARCH_RADIUS"
-msgstr ""
+msgstr "רדיוס חיפוש:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:60
 msgid "MINIMUM_AMOUNT_TO_FIND"
-msgstr ""
+msgstr "כמות מינימלית למצוא:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
-#, fuzzy
 msgid "LINE_COLOUR"
-msgstr "צבע"
+msgstr "צבע הקו:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
-#, fuzzy
 msgid "MODIFY_ORGANELLE"
-msgstr "הזז אברון"
+msgstr "שנה תפקוד אברון"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
@@ -3524,488 +3486,478 @@ msgstr "אתה שגשגת!"
 msgid "WIN_TEXT"
 msgstr "כל הכבוד על הזכייה בגרסה זו של Thrive! אתה יכול להמשיך לשחק אחרי סגירת מסך זה אם תרצה, או תוכל להתחיל עולם חדש במשחק חדש."
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModLoader.cs:218 ../src/modding/ModLoader.cs:271
 msgid "CANT_LOAD_MOD_INFO"
-msgstr ""
+msgstr "לא יכול לטעון מידע על המוד מ{0}"
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:242
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
-msgstr ""
+msgstr "{0}: טעינת הרכיב נכשלה עם חריגה: {1}"
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:259
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
-msgstr ""
+msgstr "{0}: אין רכיבים שניתנים לטעינה"
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:286
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
-msgstr ""
+msgstr "{0}: קריאת פריקה הרכבה של מוד זה נכשלה"
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:294
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
-msgstr ""
+msgstr "{0}: קריאת פריקת הרכבה מוד זה נכשלה פרט ל: {1}"
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:376
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
-msgstr ""
+msgstr "{0}: מחלקת מוד ספיציפית \"{1}\" לא מצאה את קליטת המוד"
 
-#: ../src/modding/ModLoader.cs:364
-#, fuzzy
+#: ../src/modding/ModLoader.cs:389
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
-msgstr "אתחול ספריית Steam נכשל"
+msgstr "{0}: קריאת שיטת אתחול הרכבת מוד זה נכשלה"
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:405
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
-msgstr ""
+msgstr "{0}: קריאת שיטת האתחול של הרכבה של המוד נכשלה עם חריגה של: {1}"
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:430
 #, fuzzy
-msgid "PCK_LOAD_FAILED"
-msgstr "טעינה הסתיימה"
+msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
+msgstr "{0}: קריאת שיטת האתחול של הרכבה של המוד נכשלה עם חריגה של: {1}"
 
-#: ../src/modding/ModManager.cs:293
+#: ../src/modding/ModLoader.cs:453
+#, fuzzy
+msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
+msgstr "{0}: קריאת פריקת הרכבה מוד זה נכשלה פרט ל: {1}"
+
+#: ../src/modding/ModLoader.cs:465
+msgid "PCK_LOAD_FAILED"
+msgstr "טעינת קבצי pck ({0}) נכשלה"
+
+#: ../src/modding/ModManager.cs:297
 msgid "INVALID_ICON_PATH"
 msgstr "נתיב סמליל מוד לא חוקית"
 
-#: ../src/modding/ModManager.cs:307
+#: ../src/modding/ModManager.cs:311
 msgid "INVALID_URL_SCHEME"
 msgstr "סכימת כתובת URL לא חוקית"
 
-#: ../src/modding/ModManager.cs:319
+#: ../src/modding/ModManager.cs:323
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "נדרשת מחלקת פריקת מוד בזמן שפריקה היא ספיציפית"
 
-#: ../src/modding/ModManager.cs:549
+#: ../src/modding/ModManager.cs:334
 #, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgstr "נדרשת מחלקת פריקת מוד בזמן שפריקה היא ספיציפית"
+
+#: ../src/modding/ModManager.cs:565
 msgid "NO_SELECTED_MOD"
-msgstr "נבחרו:"
+msgstr "לא נבחר מוד"
 
-#: ../src/modding/ModManager.cs:885
+#: ../src/modding/ModManager.cs:901
 msgid "THIS_IS_WORKSHOP_MOD"
-msgstr ""
+msgstr "מוד זה הורד מSteam Workshop"
 
-#: ../src/modding/ModManager.cs:886
+#: ../src/modding/ModManager.cs:902
 msgid "THIS_IS_LOCAL_MOD"
-msgstr ""
+msgstr "זהו מוד מותקן באופן מקומי"
 
-#: ../src/modding/ModManager.cs:940
+#: ../src/modding/ModManager.cs:913
 #, fuzzy
+msgid "USES_FEATURE"
+msgstr "טמפרטורה"
+
+#: ../src/modding/ModManager.cs:914
+msgid "DOES_NOT_USE_FEATURE"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:959
 msgid "ERROR_CREATING_FOLDER"
-msgstr "שומר שגיאה"
+msgstr "תקלה ביצירת תיקייה בשביל המוד"
 
-#: ../src/modding/ModManager.cs:949
+#: ../src/modding/ModManager.cs:968
 msgid "ERROR_CREATING_INFO_FILE"
-msgstr ""
+msgstr "תקלה ביצירת מידע על המוד"
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:119
 msgid "AVAILABLE_MODS"
-msgstr ""
+msgstr "מודים זמינים"
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:142 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "רענן"
 
-#: ../src/modding/ModManager.tscn:152
-#, fuzzy
+#: ../src/modding/ModManager.tscn:150
 msgid "OPEN_FOLDER"
-msgstr "פתח תקיית קבצי לוג"
+msgstr "פתח תיקייה"
 
-#: ../src/modding/ModManager.tscn:170
-#, fuzzy
+#: ../src/modding/ModManager.tscn:168
 msgid "RIGHT_ARROW"
-msgstr "לחצן עכבר הימני"
+msgstr "→"
 
-#: ../src/modding/ModManager.tscn:183
-#, fuzzy
+#: ../src/modding/ModManager.tscn:181
 msgid "LEFT_ARROW"
-msgstr "לחצן עכבר השמאלי"
+msgstr "←"
 
-#: ../src/modding/ModManager.tscn:195
-#, fuzzy
+#: ../src/modding/ModManager.tscn:193
 msgid "ENABLED_MODS"
-msgstr "הפעל את העורך"
+msgstr "מודים מופעלים"
 
-#: ../src/modding/ModManager.tscn:213
-#, fuzzy
+#: ../src/modding/ModManager.tscn:211
 msgid "DISABLE_ALL"
-msgstr "כבוי"
+msgstr "השבת הכל"
 
-#: ../src/modding/ModManager.tscn:250
-#, fuzzy
+#: ../src/modding/ModManager.tscn:248
 msgid "SELECTED_MOD"
-msgstr "נבחרו:"
+msgstr "מודים נבחרו:"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:282 ../src/modding/ModManager.tscn:670
+#: ../src/modding/NewModGUI.tscn:140
 msgid "MOD_AUTHOR"
-msgstr ""
+msgstr "יוצר המוד:"
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
-#, fuzzy
+#: ../src/modding/ModManager.tscn:313 ../src/modding/ModManager.tscn:692
+#: ../src/modding/NewModGUI.tscn:163
 msgid "MOD_VERSION"
-msgstr "גרסה:"
+msgstr "גרסת המוד:"
 
-#: ../src/modding/ModManager.tscn:371
+#: ../src/modding/ModManager.tscn:369
 msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr ""
+msgstr "המלצת Thrive:"
 
-#: ../src/modding/ModManager.tscn:415
-#, fuzzy
+#: ../src/modding/ModManager.tscn:413
 msgid "MINIMUM_VERSION"
-msgstr "גרסה:"
+msgstr "מינימום:"
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
-#, fuzzy
+#: ../src/modding/ModManager.tscn:440 ../src/modding/ModManager.tscn:714
+#: ../src/modding/NewModGUI.tscn:186
 msgid "MOD_DESCRIPTION"
-msgstr "תיאור:"
+msgstr "תיאור המוד:"
 
-#: ../src/modding/ModManager.tscn:474
+#: ../src/modding/ModManager.tscn:472
 msgid "MORE_INFO"
-msgstr ""
+msgstr "הראה עוד מידע"
 
-#: ../src/modding/ModManager.tscn:482
-#, fuzzy
+#: ../src/modding/ModManager.tscn:480
 msgid "OPEN_MOD_URL"
-msgstr "מקש פתח URL"
+msgstr "פתח כתובת מידע"
 
-#: ../src/modding/ModManager.tscn:505
+#: ../src/modding/ModManager.tscn:503
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "העלה Workshop"
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
-#, fuzzy
+#: ../src/modding/ModManager.tscn:510 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
-msgstr "טען"
+msgstr "העלה"
 
-#: ../src/modding/ModManager.tscn:519
+#: ../src/modding/ModManager.tscn:517
 msgid "NEW"
-msgstr ""
+msgstr "חדש"
 
-#: ../src/modding/ModManager.tscn:532
-#, fuzzy
+#: ../src/modding/ModManager.tscn:530
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr "לטעון שמירה לא תקפה?"
+msgstr "הערה: מודים רבים דורשים מהמשחק לטעון מחדש בשביל לעלות או להסיר כמו שצריך. העלה רק מודים שאתה בוטח בהם מכיוון שהם עלולים להכיל קודי בר הפעלה."
 
-#: ../src/modding/ModManager.tscn:559
-#, fuzzy
+#: ../src/modding/ModManager.tscn:557
 msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "השמירה שנבחרה אינו תואמת לגרסה זו"
+msgstr "הפעל את כל המודים התואמים"
 
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:566
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "החל שינויים"
+
+#: ../src/modding/ModManager.tscn:577
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr "ישנם שינויים שלא הוחלו"
+
+#: ../src/modding/ModManager.tscn:578
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr "עליך להחיל שינויים בכדי לטעון או לפרוק כל מוד כלשהו."
 
 #: ../src/modding/ModManager.tscn:579
-msgid "UNAPPLIED_MOD_CHANGES"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:580
-#, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "הצורה הבסיסית ביותר של הקרום, מספק מעט הגנה מפני נזק וצריך יותר אנרגיה כדי לא לעוות. היתרון בכך שהוא מאפשר לתא לנוע ולקלוט חומרים מזינים במהירות גדולה יותר."
-
-#: ../src/modding/ModManager.tscn:581
-#, fuzzy
 msgid "DISCARD_CHANGES"
-msgstr "מחק והמשך"
+msgstr "בטל שינויים"
 
-#: ../src/modding/ModManager.tscn:588
+#: ../src/modding/ModManager.tscn:586
 msgid "FULL_MOD_INFO"
-msgstr ""
+msgstr "מידע מלא על המוד"
 
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
-#, fuzzy
+#: ../src/modding/ModManager.tscn:627 ../src/modding/NewModGUI.tscn:117
 msgid "MOD_NAME"
-msgstr "שם:"
+msgstr "שם המוד:"
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:649 ../src/modding/NewModGUI.tscn:94
 msgid "MOD_INTERNAL_NAME"
-msgstr ""
+msgstr "שם (תיקייה) פנימי:"
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
-#, fuzzy
+#: ../src/modding/ModManager.tscn:736 ../src/modding/NewModGUI.tscn:209
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש בחנקן גזי ובאנרגיה תאית בצורת ATP כדי לייצר אמוניה, מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה קיבוע חנקן אנאירובי. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע גליקוליזה ברמה מסוימת."
+msgstr "תיאור ארוך של המוד:"
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:774 ../src/modding/NewModGUI.tscn:233
 msgid "MOD_ICON_FILE"
-msgstr ""
+msgstr "סמל הקובץ:"
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:796 ../src/modding/NewModGUI.tscn:256
 msgid "MOD_INFO_URL"
-msgstr ""
+msgstr "כתובת אתר של מידע על המוד:"
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
-#, fuzzy
+#: ../src/modding/ModManager.tscn:818 ../src/modding/NewModGUI.tscn:279
 msgid "MOD_LICENSE"
-msgstr "רישיונות"
+msgstr "רישיון המוד:"
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:840 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_RECOMMENDED_THRIVE"
-msgstr ""
+msgstr "גרסת Thrive מומלצת:"
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:862 ../src/modding/NewModGUI.tscn:325
 msgid "MOD_MINIMUM_THRIVE"
-msgstr ""
+msgstr "מינימום גרסת Thrive דרושה:"
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:884 ../src/modding/NewModGUI.tscn:348
 msgid "MOD_MAXIMUM_THRIVE"
-msgstr ""
+msgstr "גרסת Thrive המקסימלית שתומך:"
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
-#, fuzzy
+#: ../src/modding/ModManager.tscn:906 ../src/modding/NewModGUI.tscn:371
 msgid "MOD_PCK_NAME"
-msgstr "שם האזור"
+msgstr "קובץ .pck של מוד:"
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:928 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
-msgstr ""
+msgstr "העלת מוד:"
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:950 ../src/modding/NewModGUI.tscn:417
 msgid "MOD_ASSEMBLY_CLASS"
-msgstr ""
+msgstr "מחלקה העיקרית להעלת מוד:"
 
-#: ../src/modding/ModManager.tscn:979
+#: ../src/modding/ModManager.tscn:972
 #, fuzzy
+msgid "MOD_AUTO_HARMONY"
+msgstr "יוצר המוד:"
+
+#: ../src/modding/ModManager.tscn:999
 msgid "MOD_CREATION_FAILED"
-msgstr "אתחול ספריית Steam נכשל"
+msgstr "יצירת מוד נכשלה"
 
-#: ../src/modding/ModManager.tscn:989
-#, fuzzy
+#: ../src/modding/ModManager.tscn:1008
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr "לטעון שמירה לא תקפה?"
+msgstr "אירעו שגיאות בעת טעינה או פריקה של מוד אחד או יותר. תעודם עשויים להכיל מידע נוסף."
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1013
 msgid "RESTART_REQUIRED"
-msgstr ""
+msgstr "אתחול מחדש נדרש"
 
-#: ../src/modding/ModManager.tscn:996
-#, fuzzy
+#: ../src/modding/ModManager.tscn:1015
 msgid "MOD_LOAD_UNLOAD_RESTART"
-msgstr "לטעון שמירה לא תקפה?"
+msgstr "מוד אחד או יותר דורש מהמשחק אתחול מחדש בשביל לעלות או להסיר כראוי"
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
-msgstr ""
+msgstr "תוכן הWorkshop יעלו מהתיקייה: {0}"
 
 #: ../src/modding/ModUploader.cs:305
-#, fuzzy
 msgid "MISSING_TITLE"
-msgstr "אתה שגשגת!"
+msgstr "חסרה כותרת"
 
 #: ../src/modding/ModUploader.cs:311
-#, fuzzy
 msgid "MISSING_DESCRIPTION"
-msgstr "תיאור:"
+msgstr "חסר תיאור"
 
 #: ../src/modding/ModUploader.cs:319
-#, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
-msgstr "תיאור:"
+msgstr "התיאור ארוך מידי"
 
-#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:207
-#, fuzzy
+#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:280
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
-msgstr "תיאור:"
+msgstr "הערות שינוי ארוכות מידי"
 
 #: ../src/modding/ModUploader.cs:333
 msgid "TAGS_IS_WHITESPACE"
-msgstr ""
+msgstr "תגיות מכילים רק רווחים"
 
 #: ../src/modding/ModUploader.cs:341
-#, fuzzy
 msgid "INVALID_TAG"
-msgstr "לטעון שמירה לא תקפה?"
+msgstr "צוין תגית לא חוקית: \"{0}\""
 
 #: ../src/modding/ModUploader.cs:355
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
-msgstr ""
+msgstr "תמונה מקדימה לא קיימת"
 
 #: ../src/modding/ModUploader.cs:362
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
-msgstr ""
+msgstr "תמונה מקדימה כבדה מידי"
 
 #: ../src/modding/ModUploader.cs:417
 msgid "ID_IS_NOT_A_NUMBER"
-msgstr ""
+msgstr "מספר ID אינו חוקי"
 
 #: ../src/modding/ModUploader.cs:460
-#, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
-msgstr "מחפש..."
+msgstr "יוצר..."
 
 #: ../src/modding/ModUploader.cs:474
 msgid "SUCCESS_BUT_MISSING_ID"
-msgstr ""
+msgstr "התוצאה הצביעה על הצלחה אבל שום ID לא חזר"
 
 #: ../src/modding/ModUploader.cs:519
-#, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
-msgstr "טוען..."
+msgstr "מעלה..."
 
 #: ../src/modding/ModUploader.cs:556
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr ""
+msgstr "הפריט הועלה לSteam Workshop בהצלחה, אבל אתה חייב לאשר [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]תנאי שירות[/url][/color] של Workshop לפני שזה יהפוך לזמין"
 
 #: ../src/modding/ModUploader.cs:560
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
-msgstr ""
+msgstr "פריט זה הועלה לSteam Workshop בהצלחה"
 
 #: ../src/modding/ModUploader.cs:620
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
-msgstr ""
+msgstr "עלי ידי שליחה פריט זה, אתה מאשר ל [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]תנאי שירות[/url][/color] של Steam Workshop"
 
 #: ../src/modding/ModUploader.cs:645
-#, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr "השמירה נכשלה! קרה משהו חריג"
+msgstr "שמירת מידע נכשלה בפרט ל: {0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
-#, fuzzy
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:307
 msgid "FORM_ERROR_MESSAGE"
-msgstr "שומר שגיאה"
+msgstr "שגיאה: {0}"
 
 #: ../src/modding/ModUploader.tscn:44
 msgid "MOD_UPLOADER"
-msgstr ""
+msgstr "מעלה מוד"
 
 #: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
-msgstr ""
+msgstr "מוד להעלאה:"
 
 #: ../src/modding/ModUploader.tscn:109
-#, fuzzy
 msgid "UNKNOWN_WORKSHOP_ID"
-msgstr "לחצן עכבר לא יודע"
+msgstr "Workshop ID לא יודע בשביל מוד זה"
 
 #: ../src/modding/ModUploader.tscn:121
-#, fuzzy
 msgid "CREATE_NEW"
-msgstr "יוצר שמירה חדשה"
+msgstr "יוצר חדש"
 
 #: ../src/modding/ModUploader.tscn:128
-#, fuzzy
 msgid "ENTER_EXISTING_ID"
-msgstr "משכתב שמירה קיימת:"
+msgstr "הכנס ID קיים"
 
 #: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
-msgstr ""
+msgstr "הכנס Workshop ID קיים"
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
-msgstr ""
+msgstr "מספר ID"
 
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
-msgstr ""
+msgstr "החל"
 
 #: ../src/modding/ModUploader.tscn:168
-#, fuzzy
 msgid "WORKSHOP_ITEM_TITLE"
-msgstr "\"{0}\" - {1}"
+msgstr "כותרת פריט:"
 
 #: ../src/modding/ModUploader.tscn:186
-#, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr "הכלורופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לאור הנערמים בשקיות קרומיות. זהו פרוקריוט שהוטמע לשימוש על ידי המארח האוקריוטי שלו. הפיגמנטים בכלורופלסט מסוגלים להשתמש באנרגיית האור כדי לייצר גלוקוז ממים ופחמן דו חמצני בתהליך הנקרא פוטוסינתזה. הפיגמנטים הללו הם גם מה שמעניקים לו את הצבע ייחודי. קצב ייצור הגלוקוז שלו משתנה עם ריכוז הפחמן הדו חמצני ועוצמת האור."
+msgstr "תיאור פריט:"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
-msgstr ""
+msgstr "ברגע שפריט זה יהפוך לגלוי הוא היה גלוי לכולם"
 
 #: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
-msgstr ""
+msgstr "גלוי"
 
 #: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
-msgstr ""
+msgstr "תגיות הפריט (מופרד בפסיקים):"
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
-msgstr ""
+msgstr "תמונה מקדימה של הפריט:"
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
-msgstr ""
+msgstr "דפדף"
 
 #: ../src/modding/ModUploader.tscn:284
-#, fuzzy
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
-msgstr "המשך את המשחק"
+msgstr "הסר נתונים מקומיים לגבי פריט זה. שימושי אם הזנת ID שגוי או רוצה להעלות גרסה חדשה לפריט אחר."
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
-msgstr ""
+msgstr "הסר מידע מקומי"
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
-#, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
-msgstr "\"{0}\" - {1}"
+msgstr "שנה הערות שיוצגו בSteam Workshop עבור גרסה זו של פריט זה (אופציונלי)"
 
 #: ../src/modding/ModUploader.tscn:294
-#, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
-msgstr "\"{0}\" - {1}"
+msgstr "פריט הערות שינוי"
 
 #: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
-msgstr ""
+msgstr "בחר תמונה מקדימה"
 
 #: ../src/modding/ModUploader.tscn:336
-#, fuzzy
 msgid "UPLOAD_SUCCEEDED"
-msgstr "נשמר בהצלחה"
+msgstr "העלאה הצליחה"
 
-#: ../src/modding/NewModGUI.cs:175
-#, fuzzy
+#: ../src/modding/NewModGUI.cs:180
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
-msgstr "הכימופלסט הוא אברון בעל קרום כפול המכיל חלבונים המסוגלים להמיר מימן גופרתי, מים ופחמן דו חמצני לגלוקוז בתהליך הנקרא כימוסינתזה מימן גופרתי. קצב ייצור הגלוקוז שלו משתנה עם ריכוז פחמן הדו חמצני."
+msgstr "המוד המדהים שלי"
 
-#: ../src/modding/NewModGUI.cs:232
+#: ../src/modding/NewModGUI.cs:239
 msgid "INVALID_URL_FORMAT"
-msgstr ""
+msgstr "פורמט של כתובת אתר אינו חוקי"
 
-#: ../src/modding/NewModGUI.cs:247
+#: ../src/modding/NewModGUI.cs:254
 msgid "INTERNAL_NAME_REQUIRED"
-msgstr ""
+msgstr "נדרש שם פנימי"
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:260
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
-msgstr ""
+msgstr "השם הפנימי צריך להתחיל באות גדולה"
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:266
 msgid "INTERNAL_NAME_IN_USE"
-msgstr ""
+msgstr "כבר קיים מוד בעל שם פנימי ספציפי זה"
 
-#: ../src/modding/NewModGUI.cs:275
+#: ../src/modding/NewModGUI.cs:282
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
-msgstr ""
+msgstr "פורמט חסר או לא חוקי של שדה חובה: {0}"
 
-#: ../src/modding/NewModGUI.cs:286
-#, fuzzy
+#: ../src/modding/NewModGUI.cs:293
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "המפתח האוטומטי נכשל"
+msgstr "דרכי אימות נוספים זיהו בעיה: {0}"
 
-#: ../src/modding/NewModGUI.tscn:35
-#, fuzzy
+#: ../src/modding/NewModGUI.tscn:33
 msgid "CREATE_NEW_MOD"
-msgstr "צור מיקרוב חדש"
+msgstr "יצירת מוד חדש"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:67
 msgid "MODDING_INSTRUCTIONS_ON"
-msgstr ""
+msgstr "הוראות יצירת מוד זמינים ב-"
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:74
 msgid "OUR_WIKI"
+msgstr "בויקי שלנו"
+
+#: ../src/modding/NewModGUI.tscn:439
+#, fuzzy
+msgid "USE_AUTO_HARMONY_TOOLTIP"
+msgstr "התאבדות"
+
+#: ../src/modding/NewModGUI.tscn:441
+msgid "USE_AUTO_HARMONY"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:450
-#, fuzzy
+#: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
-msgstr "נוצר ב:"
+msgstr "ליצור"
 
 #: ../src/saving/InProgressLoad.cs:79 ../src/saving/InProgressLoad.cs:99
 #: ../src/saving/InProgressLoad.cs:148
@@ -4021,9 +3973,8 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "יוצר אובייקטים משמירה"
 
 #: ../src/saving/InProgressLoad.cs:110
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr "חריגה קרתה בעת טעינת השמירה"
+msgstr "חריג אירע בעת טעינת נתוני שמירה"
 
 #: ../src/saving/InProgressLoad.cs:136
 msgid "SAVE_IS_INVALID"
@@ -4038,9 +3989,8 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "מעלה אובייקטים"
 
 #: ../src/saving/InProgressLoad.cs:165
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
-msgstr "משהו חריג קרה בזמן העלאת אובייקטים"
+msgstr "משהו חריג אירע במהלך עיבוד טעינת אובייקטים"
 
 #: ../src/saving/InProgressLoad.cs:171
 msgid "LOAD_FINISHED"
@@ -4055,9 +4005,8 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr "נכשל לפנות חומרים מועלים: {0}"
 
 #: ../src/saving/InProgressSave.cs:204
-#, fuzzy
 msgid "SAVING_DOT_DOT_DOT"
-msgstr "מחפש..."
+msgstr "שומר..."
 
 #: ../src/saving/InProgressSave.cs:243
 msgid "SAVE_FAILED"
@@ -4068,14 +4017,12 @@ msgid "ERROR_SAVING"
 msgstr "שומר שגיאה"
 
 #: ../src/saving/NewSaveMenu.cs:80
-#, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr "שם הקובץ ({0}) קיים. האם ברצונך להחליפו?"
+msgstr "שם הקובץ הנבחר ({0}) כבר קיים. לשכתב מחדש?"
 
 #: ../src/saving/NewSaveMenu.cs:185
-#, fuzzy
 msgid "INVALID_SAVE_NAME_POPUP"
-msgstr "שם המין חייב להתאים למערכת השמות הבינומית (סוג וכינוי)!"
+msgstr "שם שמירה צריכה לא להכיל סימנים מיוחדים (<>:\"/\\|?*)"
 
 #: ../src/saving/NewSaveMenu.tscn:32
 msgid "CREATE_NEW_SAVE"
@@ -4094,26 +4041,20 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "משכתב שמירה קיימת:"
 
 #: ../src/saving/NewSaveMenu.tscn:117
-#, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr "משכתב שמירה קיימת:"
+msgstr "לשכתב מחדש שמירה קיימת?"
 
 #: ../src/saving/NewSaveMenu.tscn:121
-#, fuzzy
 msgid "CANNOT_WRITE_SAVE"
-msgstr "לא יכול לבלוע"
+msgstr "לא יכול לשכתב מחדש שמירה"
 
 #: ../src/saving/NewSaveMenu.tscn:125
-#, fuzzy
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
-msgstr "המפתח האוטומטי נכשל"
+msgstr "הניסיון לשכתב מחדש קובץ שמירה נכשלה. שם השמירה ארוך מידי או שאין לך אישור לשכתב מחדש בתיקיית השמירה."
 
 #: ../src/saving/SaveHelper.cs:444 ../src/saving/SaveHelper.cs:488
-#, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr ""
-"שידרוג שמירה שצוינה נכשלה בעקבות השגיאה הבאה:\n"
-"{0}"
+msgstr "שמירה נכשלה! משהו חריג קרה"
 
 #: ../src/saving/SaveHelper.cs:453 ../src/saving/SaveHelper.cs:469
 msgid "SAVING_NOT_POSSIBLE"
@@ -4124,9 +4065,11 @@ msgid "PLAYER_EXTINCT"
 msgstr "השחקן נכחד"
 
 #: ../src/saving/SaveHelper.cs:470
-#, fuzzy
 msgid "IN_PROTOTYPE"
-msgstr "פרוטנופ (אדום-ירוק)"
+msgstr ""
+"אתה משחק באבטיפוס של השלב המאוחר יותר הכלול במשחק.\n"
+"אלה עשויים להיות מאוד לא שלמים, להשתמש בגרפיקה של מציין מיקום, ולהיות נוקשים מאוד באופן כללי.\n"
+"כך ששמירה אינו אפשרי כרגע."
 
 #: ../src/saving/SaveHelper.cs:478
 msgid "SAVING_SUCCEEDED"
@@ -4154,22 +4097,19 @@ msgstr "מחיקת שמירה זו היינו פעולה בלתי הפיכה, ה
 
 #: ../src/saving/SaveList.tscn:53
 msgid "NO_SAVEGAMES_FOUND"
-msgstr ""
+msgstr "לא נמצאה שמירה"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-#, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "טוען..."
 
 #: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
-#, fuzzy
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "למחוק שמירה זו?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
-msgstr "האם לעלות שמירה שלא תואמת לגרסה זו?"
+msgstr "לעלות שמירה לא תאומת זו?"
 
 #: ../src/saving/SaveList.tscn:80
 msgid "NEWER_VERSION_LOADING_WARNING"
@@ -4186,7 +4126,6 @@ msgstr ""
 "האם ברצונך להמשיך לטעון שמירה זו?"
 
 #: ../src/saving/SaveList.tscn:95
-#, fuzzy
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "לטעון שמירה לא תקפה?"
 
@@ -4198,9 +4137,8 @@ msgstr ""
 "האם בכל זאת לנסות לטעון שמירה זו?"
 
 #: ../src/saving/SaveList.tscn:103
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
-msgstr "השמירה שנבחרה אינו תואמת לגרסה זו"
+msgstr "השמירה שנבחרה אנו תואם"
 
 #: ../src/saving/SaveList.tscn:105
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
@@ -4210,9 +4148,8 @@ msgstr ""
 "בגלל שThrive עדין בשלבי פיתוח ראשונים, התאמה שמירות אינו בעדיפות גבוהה, ובשל כך ,אין שדרוג שמירה לכל הגרסאות."
 
 #: ../src/saving/SaveList.tscn:114
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
-msgstr "ניתן לשדרג שמירה שנבחרה"
+msgstr "השמירה שנבחרה ניתנת לשידרוג"
 
 #: ../src/saving/SaveList.tscn:115
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
@@ -4243,18 +4180,16 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-#, fuzzy
 msgid "TYPE_COLON"
-msgstr "חיים:"
+msgstr "סוג:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "תיאור:"
 
 #: ../src/saving/SaveListItem.tscn:193
-#, fuzzy
 msgid "VERSION_COLON"
-msgstr "דור:"
+msgstr "גרסה:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -4308,12 +4243,10 @@ msgid "SELECTED_COLON"
 msgstr "נבחרו:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-#, fuzzy
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "למחוק שמירות שנבחרו?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-#, fuzzy
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "למחוק שמירות ישנות?"
 
@@ -4325,78 +4258,74 @@ msgstr "לא נמצאה ספריית שמירות"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "נסה ליצור שמירה!"
 
-#: ../src/steam/SteamClient.cs:47
+#: ../src/steam/SteamClient.cs:68 ../src/steam/SteamClient.cs:75
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "אתחול ספריית Steam נכשל"
 
-#: ../src/steam/SteamClient.cs:462
+#: ../src/steam/SteamClient.cs:528
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
-msgstr ""
+msgstr "משתמש הSteam שלך כרגע מוגבל העלאת תוכן. אנא פנה למרכז תמיכה של Steam."
 
-#: ../src/steam/SteamClient.cs:464
+#: ../src/steam/SteamClient.cs:530
 msgid "STEAM_ERROR_BANNED"
-msgstr ""
+msgstr "משתמש הSteam שלך חסום מלעלות תכנים"
 
-#: ../src/steam/SteamClient.cs:466
+#: ../src/steam/SteamClient.cs:532
 msgid "STEAM_ERROR_TIMEOUT"
-msgstr ""
+msgstr "תם הזמן הקצוב למפעיל Steam, נסה שוב"
 
-#: ../src/steam/SteamClient.cs:468
-#, fuzzy
+#: ../src/steam/SteamClient.cs:534
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
-msgstr "התחבר כ:{0}"
+msgstr "לא מחובר לSteam"
 
-#: ../src/steam/SteamClient.cs:470
+#: ../src/steam/SteamClient.cs:536
 msgid "STEAM_ERROR_UNAVAILABLE"
-msgstr ""
+msgstr "Steam לא זמין כרגע, בבקשה נסה שוב"
 
-#: ../src/steam/SteamClient.cs:472
-#, fuzzy
+#: ../src/steam/SteamClient.cs:538
 msgid "STEAM_ERROR_INVALID_PARAMETER"
-msgstr "לשמירה סצנת משחק לא תקפה"
+msgstr "פרמטר לא חוקי הועבר לSteam"
 
-#: ../src/steam/SteamClient.cs:474
+#: ../src/steam/SteamClient.cs:540
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
-msgstr ""
+msgstr "חרגת ממכסת האחסון בענן של Steam או ממגבלת גודל הקובץ"
 
-#: ../src/steam/SteamClient.cs:476
+#: ../src/steam/SteamClient.cs:542
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
-msgstr ""
+msgstr "קובץ לא נמצא"
 
-#: ../src/steam/SteamClient.cs:478
+#: ../src/steam/SteamClient.cs:544
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
-msgstr ""
+msgstr "Steam מדווח שהקובץ כבר עולה,בבקשה רענן מחדש"
 
-#: ../src/steam/SteamClient.cs:480
-#, fuzzy
+#: ../src/steam/SteamClient.cs:546
 msgid "STEAM_ERROR_DUPLICATE_NAME"
-msgstr "שכפל שחקן"
+msgstr "Steam מדווח שישנו שגיאה של שיכפול שם"
 
-#: ../src/steam/SteamClient.cs:482
+#: ../src/steam/SteamClient.cs:548
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
-msgstr ""
+msgstr "משתמש Steam שלך נמצא כעת במצב קריאה בלבד עקב שינוי אחרון במשתמש"
 
-#: ../src/steam/SteamClient.cs:484
+#: ../src/steam/SteamClient.cs:550
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
-msgstr ""
+msgstr "משתמש Steam שלך אינו בעל רישיון עבור Thrive"
 
-#: ../src/steam/SteamClient.cs:486
-#, fuzzy
+#: ../src/steam/SteamClient.cs:552
 msgid "STEAM_ERROR_LOCKING_FAILED"
-msgstr "אתחול ספריית Steam נכשל"
+msgstr "Steam נכשל בלהשיג UGC lock"
 
-#: ../src/steam/SteamClient.cs:488
+#: ../src/steam/SteamClient.cs:554
 msgid "STEAM_ERROR_UNKNOWN"
-msgstr ""
+msgstr "שגיאת Steam לא ידועה קרתה"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:238
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:301
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4405,104 +4334,94 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
-#, fuzzy
 msgid "TUTORIAL"
 msgstr "מדריך"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
-#, fuzzy
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "ברוך הבא לעורך המיקרובי.\n"
+"\n"
 "כאן אתה יכול לסקור את כל מה שקרה מתחילת המשחק או ממתי שפעם אחרונה בקרת בעורך, ולערוך שינויים למין שלך.\n"
 "\n"
 "בלשונית זו תוכל לראות בדוח איזה מינים קיימים, איפה וכמה יש. אתה גם יכול לראות איזה גורמים סביבתיים השתנו בחלק העליון של הדוח.\n"
 "\n"
-"בשביל לעבור ללשונית הבאה, לחץ על הבא שבפניה הימנית התחתונה."
+"בשביל לעבור ללשונית הבאה, לחץ על הבא שבפינה הימנית התחתונה."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-#, fuzzy
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"ברוך הבא לעורך המיקרובי.\n"
-"כאן אתה יכול לסקור את כל מה שקרה מתחילת המשחק או ממתי שפעם אחרונה בקרת בעורך, ולערוך שינויים למין שלך.\n"
+"זהו מפת האזורים.\n"
 "\n"
-"בלשונית זו תוכל לראות בדוח איזה מינים קיימים, איפה וכמה יש. אתה גם יכול לראות איזה גורמים סביבתיים השתנו בחלק העליון של הדוח.\n"
+"על כל אייקון מייצג סביבה ייחודית שאתה יכול להתיישב, עם כרטיסייה בצד ימין שמתאר את התנאים באזור הנבחר.\n"
 "\n"
-"בשביל לעבור ללשונית הבאה, לחץ על הבא שבפניה הימנית התחתונה."
+"אם תא בוחר אזור שליד האחד שבו אתה נמצא, שהוא מסומן בגבול טורקיז דק, אתה יכול ללחוץ על הכפתור \"תעבור לאזור זה\" בשביל לנדוד לשם.\n"
+"\n"
+"נסה לבחור אזור בשביל להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-#, fuzzy
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"ברוך הבא לעורך המיקרובי.\n"
-"כאן אתה יכול לסקור את כל מה שקרה מתחילת המשחק או ממתי שפעם אחרונה בקרת בעורך, ולערוך שינויים למין שלך.\n"
+"זהו עורך התא שבו אתה יכול לפתח את המין שלך על ידי תשלום בנקודות מוטציה (נקמ\"ו). על כל דור תמיד היה לך 100 נקמ\"ו לבזבז, כך שאין סיבה לשמור!.\n"
 "\n"
-"בלשונית זו תוכל לראות בדוח איזה מינים קיימים, איפה וכמה יש. אתה גם יכול לראות איזה גורמים סביבתיים השתנו בחלק העליון של הדוח.\n"
+"המשושה במרכז של המסך הוא התא שלך, שהוא מכיל יחידה של ציטופלזמה אחת.\n"
 "\n"
-"בשביל לעבור ללשונית הבאה, לחץ על הבא שבפניה הימנית התחתונה."
+"בשביל להמשיך, בחר חלק מהכרטיסייה השמאלית. לאחר מיכן לחץ על הלחצן השמאלי בתוך המשושה הרצוי בשביל להניח אותו. אתה יכול לסובב חלקים על ידי A וD (מקשי ברירת מחדל)."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-#, fuzzy
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"הסרה של אברונים גם עולה נקמ\"ו שכן זה מוטציה של המין שלך, אלו אם הם הוספו בעריכה הנוכחית. \n"
+"הסרה של אברונים גם עולה נקמ\"ו שכן זה מוטציה של המין שלך, אלו אם הם נוספו בעריכה הנוכחית. \n"
 "\n"
-"לחיצה ימנית על האברון תפתח אפשריות ובבחירה על אופצית המחיקה על מנת למחוק אותו.\n"
+"לחיצה ימנית על האברון תפתח רשמית אפשריות ובבחירה על אופציית המחיקה תמחוק אותו.\n"
 "\n"
 "אם עשית טעות, אתה יכול לבטל כל שינוי שעשית בעורך.\n"
 "\n"
 "לחץ על הכפתור בטל בשביל להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-#, fuzzy
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"כאשר אתה בוחר אילו אברונים להוסיף, שים לב בחלונית המידע עליהם איזה תהליכים הם עושים ואילו תרכובות הם צריכים ומייצרים.\n"
+"כשאתה בוחר חלקים בתפריט, הסתכל קרוב לתיבת המידע שצץ בשביל להבין מה הם עושים. חלקים יכולים לעשות יותר נזק מתועלת אם אתה מתעלם מתפקידם.\n"
 "\n"
-"גם שים לב לחלונית מאזן הATP שבצד ימין העליון בשביל לוודא שהתא שלך מסוגל לשרוד.\n"
+"הפסים \"ייצור ATP\" שבימין מייצג עד מה אתה מייצר בשוואה לכמות הנצרכת. אם הפס עליון קצר מהתחתון, זה אומר שאתה לא מייצר מספיק אנרגיה.\n"
 "\n"
-"אתה יכול לסובב את האברונים בלחיצה על A או D (בררת מחדל) לפני שאתה הצבתם בלוח.\n"
-"\n"
-"לחץ על הכפתור בצע שוב (זה שליד כפתור הבטל) בשביל להמשיך."
+"לחץ על כפתור עשה מחדש (זה שליד כפתור בטל) על מנת להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-#, fuzzy
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:267
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
-"אלו כל הדברים הבסיסים על עריכת המין שלך. אתה גם יכול לבדוק בלשוניות האחרות בעורך לעוד אפשרויות.\n"
+"אלו כל הדברים הבסיסים על עריכת המין שלך. ולסיום, אתה יכול לשנות את שם המין שלך על ידי לחיצה על השם בצד שמאל למטה ועריכת הטקסט.\n"
 "\n"
-"אתה יכול לשנות את שם המין שלך על ידי לחיצה על השם מין הנוכחי ולערוך את הטקסט.\n"
+"אתה יכול לחקור ולגלות בכרטיסיות אחרות תחת לפס הנקמ\"ו ולראות איך אתה יכול להתאים אישית את התא שלך.\n"
 "\n"
-"כדאי בתור התחלה לשמור על התא קטן ולזוז לאזורים העליונים.\n"
+"בשביל לשרוד בעולם האכזר,אתה תצטרך למצוא מקור אמין לאנרגיה מכיוון שריכוז הגלוקוז הטבעי יקטן במהירות.\n"
 "\n"
 "בהצלחה!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
 msgid "GOT_IT"
 msgstr "הבנתי"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-#, fuzzy
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"לוח זה מציג את התחזית העתידית של האכלוסיה שלך.\n"
-"\n"
-"מספרים ללו הם מהדמיות של האכלוסיה מהמפתח האוטומטי.\n"
+"לוח זה מציג את התחזית העתידית של האוכלוסייה שלך. מספרים ללו הם מהדמיות של האוכלוסייה מהמפתח האוטומטי.\n"
 "\n"
 "הם לא מתחשבים בחשבון את הפעולות שלך. אז באזור הנוכחי שלך אתה הולך להראות טוב יותר כשאתה נכנס לעורך.\n"
 "\n"
-"אבל כדאי לך לשמור על הכמות האכלוסיה שלך גבוהה אפילו שאתה לא מעורב בו באופן ישיר."
+"אבל כדאי לך לשמור על הכמות האוכלוסייה שלך גבוהה אפילו שאתה לא מעורב בו באופן ישיר.\n"
+"\n"
+"אתה יכול להציג מידע מפורט יותר מאחורי החיזוי על ידי לחיצה על כפתור סימן השאלה בלוח. לחץ עליו כדי להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-#, fuzzy
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
-"זה עורך המיקרובי או התא, איפה שאתה יכול להוסיף או להסיר אברונים מהמין שלך על ידי תשלום בנקודות מוטציה (נקמ\"ו).\n"
+"כדאי לך להתמקד בהתמחות על מנת לשרוד על מקור אנרגיה אחד או שניים, כך שלא תזדקק למשאבים רבים ושונים בבת אחת כדי לקיים את עצמך.\n"
 "\n"
-"אתה גם יכול לשנות מאפיינים אחרים של המין שלך בלשוניות האחרות של הערוך.\n"
+"כדאי גם שקול היטב האם הוספת חלק באמת מועילה, כך שלא תמיד כדאי לשנות את מה שכבר עובד, מכיוון שכל חלק עולה לתחזוקה של ATP ודורש יותר משאבים לשכפול.\n"
 "\n"
-"בשביל להמשיך, בחר אברון מהחלונית שמשמאל (ציטופלזמה היינו התחלה טובה). ואז לחץ לחיצה שמאלית ליד המשושה שמוצג במרכז במסך בשביל להוסיף את האברון למין שלך."
+"אסטרטגיה אפשרית אחת זהו להישאר משושה של ציטופלזמה אחת ורק להגיע לאזורים של פני הים המלאים באור לפני שמוסיפים אברונים שעושים פוטוסינתזה."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
@@ -4516,9 +4435,8 @@ msgstr ""
 "בשביל לשרוד בעולם העוין זה, אתה חייב למצוא כל תרכובת בדרך ולהתפתח בכל דור בכדי להצליח לתחרות במינים אחרים של מיקרובים."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
-#, fuzzy
 msgid "SHOW_TUTORIALS"
-msgstr "הצג מדריך"
+msgstr "הצג מדריכים"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
@@ -4535,7 +4453,9 @@ msgstr ""
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "את יכול לאסוף גלוקוז (הענן הלבן) על ידי מעבר מעליהם.\n"
+"\n"
 "התא שלך זקוק לגלוקוז על מנת ליצור אנרגיה שתשאיר אותך חיי.\n"
+"\n"
 "עקוב אחרי הקו מהתא שלך לגלוקוז הסמוך."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
@@ -4547,39 +4467,40 @@ msgstr ""
 "הקפד לאסוף מספיק גלוקוז ליצור ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "בכדי להתרבות, עליך לשכפל את כל האברונים, ובשביל זה אתה צריך לאסוף מספיק אמוניה ופוספט.\n"
-"תסתכל על האינדיקטור שבצד השמאלית התחתונה בשביל לראות כמה עוד צריך."
+"תסתכל על האינדיקטור שבצד השמאלית התחתונה בשביל לראות עוד כמה צריך. האינדיקטור הופך ללבן מתי שהוא מלא."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"אתה אספת מספיק תרכובות על מנת לחלק את התא שלך.\n"
+"אתה אספת מספיק תרכובות בשביל לגרום לתא שלך להתרבות.\n"
 "\n"
-"אתה מוכן לערוך את המין שלך.\n"
+"בכל פעם שאתה מתרבה, אתה תגיע לעורך.\n"
 "\n"
-"בשביל להיכנס לעורך לחץ על הכפתור העורך המהבהב בימין תחתון המסך."
+"בשביל להיכנס לעורך לחץ על הכפתור הגדול המהבהב בימין תחתון המסך כשאתה מוכן."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"אתהנכנסת ל\"מצב שחרר\". בזמן שאתה במצב זה אתה יכול ללחוץ על חברי המושבה שלך על מנת להשתחרר מהם.\n"
+"אתה נכנסת ל\"מצב שחרר\". במצב זה אתה יכול ללחוץ על חברי המושבה שלך על מנת להשתחרר מהם.\n"
 "\n"
 "על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש \"שחרר הכל\"."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] והעכבר בשביל לנוע. [thrive:input]g_fire_toxin[/thrive:input] בשביל לירות[thrive:compound type=\"oxytoxy\"][/thrive:compound] אם יש לך חלולית רעלן. [thrive:input]g_toggle_engulf[/thrive:input] בשביל להחליף למצב בליעה."
+msgstr ""
+"מתקשה? אתה יכול לבדוק בתפריט העזרה. אתה יכול אותו בעזרת הכפתור שמסומן עליו סימן שאלה בתחתון שמאלה.\n"
+"\n"
+"טיפ נוסף: אתה יכול לעשות זום אאוט עם גלגלת העכבר שלך בשביל להרחיב את שדה הראיה שלך."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "מדריך"
+msgstr "הראה עכשיו"
+
+#~ msgid "AUTO"
+#~ msgstr "אוטומטי"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "טוען..."
