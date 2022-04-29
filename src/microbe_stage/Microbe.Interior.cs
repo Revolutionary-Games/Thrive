@@ -163,6 +163,10 @@ public partial class Microbe
         foreach (var entry in organelles.Organelles)
         {
             entry.Colour = CellTypeProperties.Colour;
+            entry.UpdateAsync(0);
+
+            // This applies the colour so UpdateAsync is not technically needed but to avoid weird bugs we just do it
+            // as well
             entry.UpdateSync();
         }
     }
