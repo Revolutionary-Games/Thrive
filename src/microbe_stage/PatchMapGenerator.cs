@@ -248,8 +248,8 @@ public static class PatchMapGenerator
 
     private static Vector2 GenerateCoordinates(PatchRegion region, PatchMap map, Random random, int minDistance)
     {
-            int x = random.Next(10,900);
-            int y = random.Next(10,900);
+            int x = random.Next(20,900);
+            int y = random.Next(20,900);
             var coord = new Vector2(x,y);
             region.ScreenCoordinates = coord;
             
@@ -258,8 +258,8 @@ public static class PatchMapGenerator
             while (!check)
             {
                 GD.Print(coord);
-                x = random.Next(10,900);
-                y = random.Next(10,900);
+                x = random.Next(20,900);
+                y = random.Next(20,900);
                 coord = new Vector2(x,y);
                 region.ScreenCoordinates = coord;
                 check = CheckRegionDistance(region, map, minDistance);
