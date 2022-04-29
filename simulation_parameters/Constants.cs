@@ -77,9 +77,12 @@ public static class Constants
 
     /// <summary>
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
-    ///   without causing them to despawn instantly
+    ///   without causing them to despawn instantly. Things despawn outside the despawn radius.
     /// </summary>
-    public const int DESPAWN_RADIUS_OFFSET_SQUARED = 2500;
+    public const int DESPAWN_RADIUS_OFFSET = 50;
+
+    public const int MICROBE_DESPAWN_RADIUS_SQUARED = (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET) *
+        (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET);
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
