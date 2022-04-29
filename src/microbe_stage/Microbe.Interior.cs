@@ -163,7 +163,7 @@ public partial class Microbe
         foreach (var entry in organelles.Organelles)
         {
             entry.Colour = CellTypeProperties.Colour;
-            entry.Update(0);
+            entry.UpdateSync();
         }
     }
 

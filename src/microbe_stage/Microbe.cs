@@ -535,6 +535,19 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (AgentEmissionCooldown < 0)
             AgentEmissionCooldown = 0;
 
+        // Colony members have their movement update before organelle update,
+        // so that the movement organelles see the direction
+        // The colony master should be already updated as the movement direction is either set by the player input or
+        // microbe AI, neither of which will happen concurrently, so this should always get the up to date value
+        if (Colony != null && Colony.Master != this)
+            MovementDirection = Colony.Master.MovementDirection;
+
+        // Let organelles do stuff (this for example gets the movement force from flagella)
+        foreach (var organelle in organelles!.Organelles)
+        {
+            organelle.UpdateAsync(delta);
+        }
+
         HandleHitpointsRegeneration(delta);
 
         HandleOsmoregulation(delta);
@@ -560,7 +573,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
             // Update once for the positioning of external organelles
             foreach (var organelle in organelles.Organelles)
-                organelle.Update(delta);
+                organelle.UpdateSync();
         }
 
         // The code below starting from here is not needed for a display-only cell
@@ -590,17 +603,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         HandleBinding(delta);
         HandleUnbinding();
 
-        // Colony members have their movement update before organelle update,
-        // so that the movement organelles see the direction
-        // The colony master should be updated first, if not, theres an engine bug
-        // because the master is the parent node of the members.
-        if (Colony != null && Colony.Master != this)
-            MovementDirection = Colony.Master.MovementDirection;
-
         // Let organelles do stuff (this for example gets the movement force from flagella)
         foreach (var organelle in organelles!.Organelles)
         {
-            organelle.Update(delta);
+            organelle.UpdateSync();
         }
 
         if (QueuedSignalingCommand != null)
