@@ -41,6 +41,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     private bool usesExternalProcess;
 
+    private bool absorptionSkippedEarly;
+
     private bool processesDirty = true;
     private List<TweakedProcess>? processes;
 
@@ -535,6 +537,17 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (AgentEmissionCooldown < 0)
             AgentEmissionCooldown = 0;
 
+        lastCheckedATPDamage += delta;
+
+        if (!Membrane.Dirty)
+        {
+            HandleCompoundAbsorbing(delta);
+        }
+        else
+        {
+            absorptionSkippedEarly = true;
+        }
+
         // Colony members have their movement update before organelle update,
         // so that the movement organelles see the direction
         // The colony master should be already updated as the movement direction is either set by the player input or
@@ -551,6 +564,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         HandleHitpointsRegeneration(delta);
 
         HandleOsmoregulation(delta);
+
+        if (!Membrane.Dirty)
+            HandleCompoundVenting(delta);
     }
 
     public void ProcessSync(float delta)
@@ -582,13 +598,19 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         CheckEngulfShapeSize();
 
-        HandleCompoundAbsorbing(delta);
-
         // Fire queued agents
         if (queuedToxinToEmit != null)
         {
             EmitToxin(queuedToxinToEmit);
             queuedToxinToEmit = null;
+        }
+
+        // If we didn't have our membrane ready yet in the async process we need to do these now
+        if (absorptionSkippedEarly)
+        {
+            HandleCompoundAbsorbing(delta);
+            HandleCompoundVenting(delta);
+            absorptionSkippedEarly = false;
         }
 
         HandleFlashing(delta);
@@ -621,12 +643,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         HandleChemoreceptorLines(delta);
 
-        HandleCompoundVenting(delta);
-
         if (Colony != null && Colony.Master == this)
             Colony.Process(delta);
-
-        lastCheckedATPDamage += delta;
 
         while (lastCheckedATPDamage >= Constants.ATP_DAMAGE_CHECK_INTERVAL)
         {
