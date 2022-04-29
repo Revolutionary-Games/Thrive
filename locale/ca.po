@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-27 00:01-0700\n"
+"POT-Creation-Date: 2022-04-29 09:41+0300\n"
 "PO-Revision-Date: 2022-04-15 14:50+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1503,8 +1503,8 @@ msgstr "Art per {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1304
-#: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
+#: ../src/modding/ModManager.tscn:992
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:392
 msgid "CLOSE"
 msgstr "Tancar"
 
@@ -1571,7 +1571,7 @@ msgstr "Editor Lliure de Microbi"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Enrere"
@@ -1604,19 +1604,24 @@ msgstr "Errors en Carregar el Mod"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Hi han hagut errors en carregar un o més mods. Els logs poden tenir més informació."
 
-#: ../src/general/OptionsMenu.cs:900
+#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
+#, fuzzy
+msgid "AUTO_RESOLUTION"
+msgstr "Resolució:"
+
+#: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Aparell d'output per defecte"
 
-#: ../src/general/OptionsMenu.cs:932
+#: ../src/general/OptionsMenu.cs:956
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Aquesta traducció encara és incomplerta ({0}% traduït) siusplau ajuda'ns a completar-la!"
 
-#: ../src/general/OptionsMenu.cs:936
+#: ../src/general/OptionsMenu.cs:960
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Aquesta llengua encara és una feina en progrés ({0}% completat)"
 
-#: ../src/general/OptionsMenu.cs:940
+#: ../src/general/OptionsMenu.cs:964
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Aquest idioma s'ha traduït al {0}%"
 
@@ -1679,10 +1684,6 @@ msgstr "16x"
 #: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
 msgstr "Resolució:"
-
-#: ../src/general/OptionsMenu.tscn:290
-msgid "AUTO"
-msgstr "Auto"
 
 #: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
@@ -1918,7 +1919,7 @@ msgstr "Descartar i continuar"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Cancel·lar"
 
@@ -2107,106 +2108,106 @@ msgstr "Traductors"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Llicències i llibreries utilitzades"
 
-#: ../src/gui_common/CreditsScroll.cs:484
+#: ../src/gui_common/CreditsScroll.cs:486
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 "Gràcies per jugar!\n"
 "\n"
 "Si has gaudit del joc, siusplau explica-ho als teus amics."
 
-#: ../src/gui_common/CreditsScroll.cs:493
+#: ../src/gui_common/CreditsScroll.cs:495
 msgid "PROGRAMMING_TEAM"
 msgstr "Equip de programació"
 
-#: ../src/gui_common/CreditsScroll.cs:494
+#: ../src/gui_common/CreditsScroll.cs:496
 msgid "THEORY_TEAM"
 msgstr "Equip de teoria"
 
-#: ../src/gui_common/CreditsScroll.cs:495
+#: ../src/gui_common/CreditsScroll.cs:497
 msgid "GRAPHICS_TEAM"
 msgstr "Equip de gràfics"
 
-#: ../src/gui_common/CreditsScroll.cs:496
+#: ../src/gui_common/CreditsScroll.cs:498
 msgid "SOUND_TEAM"
 msgstr "Equip de so"
 
-#: ../src/gui_common/CreditsScroll.cs:497
+#: ../src/gui_common/CreditsScroll.cs:499
 msgid "OUTREACH_TEAM"
 msgstr "Equip de divulgació"
 
-#: ../src/gui_common/CreditsScroll.cs:498
+#: ../src/gui_common/CreditsScroll.cs:500
 msgid "GAME_DESIGN_TEAM"
 msgstr "Equip de disseny del joc"
 
-#: ../src/gui_common/CreditsScroll.cs:499
+#: ../src/gui_common/CreditsScroll.cs:501
 msgid "TESTING_TEAM"
 msgstr "Equip de proves"
 
-#: ../src/gui_common/CreditsScroll.cs:500
+#: ../src/gui_common/CreditsScroll.cs:502
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Equip de Gestió del Projecte"
 
-#: ../src/gui_common/CreditsScroll.cs:501
+#: ../src/gui_common/CreditsScroll.cs:503
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programació"
 
-#: ../src/gui_common/CreditsScroll.cs:502
+#: ../src/gui_common/CreditsScroll.cs:504
 msgid "VIP_PATRONS"
 msgstr "Partidaris VIP"
 
-#: ../src/gui_common/CreditsScroll.cs:503
+#: ../src/gui_common/CreditsScroll.cs:505
 msgid "DEV_BUILD_PATRONS"
 msgstr "Partidaris Devbuilds"
 
-#: ../src/gui_common/CreditsScroll.cs:504
+#: ../src/gui_common/CreditsScroll.cs:506
 msgid "SUPPORTER_PATRONS"
 msgstr "Partidaris"
 
-#: ../src/gui_common/CreditsScroll.cs:505
+#: ../src/gui_common/CreditsScroll.cs:507
 msgid "JANUARY"
 msgstr "Gener"
 
-#: ../src/gui_common/CreditsScroll.cs:506
+#: ../src/gui_common/CreditsScroll.cs:508
 msgid "FEBRUARY"
 msgstr "Febrer"
 
-#: ../src/gui_common/CreditsScroll.cs:507
+#: ../src/gui_common/CreditsScroll.cs:509
 msgid "MARCH"
 msgstr "Març"
 
-#: ../src/gui_common/CreditsScroll.cs:508
+#: ../src/gui_common/CreditsScroll.cs:510
 msgid "APRIL"
 msgstr "Abril"
 
-#: ../src/gui_common/CreditsScroll.cs:509
+#: ../src/gui_common/CreditsScroll.cs:511
 msgid "MAY"
 msgstr "Maig"
 
-#: ../src/gui_common/CreditsScroll.cs:510
+#: ../src/gui_common/CreditsScroll.cs:512
 msgid "JUNE"
 msgstr "Juny"
 
-#: ../src/gui_common/CreditsScroll.cs:511
+#: ../src/gui_common/CreditsScroll.cs:513
 msgid "JULY"
 msgstr "Juliol"
 
-#: ../src/gui_common/CreditsScroll.cs:512
+#: ../src/gui_common/CreditsScroll.cs:514
 msgid "AUGUST"
 msgstr "Agost"
 
-#: ../src/gui_common/CreditsScroll.cs:513
+#: ../src/gui_common/CreditsScroll.cs:515
 msgid "SEPTEMBER"
 msgstr "Setembre"
 
-#: ../src/gui_common/CreditsScroll.cs:514
+#: ../src/gui_common/CreditsScroll.cs:516
 msgid "OCTOBER"
 msgstr "Octubre"
 
-#: ../src/gui_common/CreditsScroll.cs:515
+#: ../src/gui_common/CreditsScroll.cs:517
 msgid "NOVEMBER"
 msgstr "Novembre"
 
-#: ../src/gui_common/CreditsScroll.cs:516
+#: ../src/gui_common/CreditsScroll.cs:518
 msgid "DECEMBER"
 msgstr "Desembre"
 
@@ -2334,7 +2335,7 @@ msgstr "D'acord"
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copiar l'Error al Porta-Retalls"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:34
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:62
 msgid "GPL_LICENSE_HEADING"
 msgstr "Text de la llicència GPL:"
 
@@ -3088,28 +3089,28 @@ msgstr "Reactiu"
 msgid "FOCUSED"
 msgstr "Centrat"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:199
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:195
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
 msgid "ATP_PRODUCTION"
 msgstr "Producció d'ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:201
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "LA PRODUCCIÓ D'ATP ÉS MASSA BAIXA!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:229
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:230
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:249
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:250
 msgid "OSMOREGULATION"
 msgstr "Osmoregulació"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:255
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:256
 msgid "BASE_MOVEMENT"
 msgstr "Capacitat de moviment"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:267
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -3485,238 +3486,267 @@ msgstr "HAS ACONSEGUIT PROSPERAR!"
 msgid "WIN_TEXT"
 msgstr "Enhorabona, has guanyat en la versió actual del joc! Si ho vols, un cop aquesta finestreta es tanqui, pots continuar jugant i fent evolucionar la teva espècie, o bé començar una nova partida en un nou món."
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModLoader.cs:218 ../src/modding/ModLoader.cs:271
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "No es pot carregar la informació del mod per {0}"
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:242
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: la càrrega de l'ensamblatge ha fallat amb una excepció: {1}"
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:259
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: no té recursos que es puguin carregar"
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:286
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: el mètode de descàrrega de l'ensamblatge del mod ha fallat"
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:294
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: el mètode de descàrrega d'ensamblatge del mod ha fallat amb una excepció: {1}"
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:376
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: classe de mod especificada \"{1}\" no s'ha trobat a l'ensamblatge del mod"
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:389
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: mètode d'inicialització d'ensamblatge del mod ha fallat"
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:405
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: el mètode d'inicialització d'ensamblatge del mod ha fallat amb una excepció: {1}"
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:430
+#, fuzzy
+msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
+msgstr "{0}: el mètode d'inicialització d'ensamblatge del mod ha fallat amb una excepció: {1}"
+
+#: ../src/modding/ModLoader.cs:453
+#, fuzzy
+msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
+msgstr "{0}: el mètode de descàrrega d'ensamblatge del mod ha fallat amb una excepció: {1}"
+
+#: ../src/modding/ModLoader.cs:465
 msgid "PCK_LOAD_FAILED"
 msgstr "La càrrega de l'arxiu ({0}) ha fallat"
 
-#: ../src/modding/ModManager.cs:293
+#: ../src/modding/ModManager.cs:297
 msgid "INVALID_ICON_PATH"
 msgstr "Camí de la icona del mod invàlid"
 
-#: ../src/modding/ModManager.cs:307
+#: ../src/modding/ModManager.cs:311
 msgid "INVALID_URL_SCHEME"
 msgstr "Esquema URL invàlid"
 
-#: ../src/modding/ModManager.cs:319
+#: ../src/modding/ModManager.cs:323
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Es requereix la classe de l'ensamblatge del mod quan s'especifica l'ensamblatge"
 
-#: ../src/modding/ModManager.cs:549
+#: ../src/modding/ModManager.cs:334
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgstr "Es requereix la classe de l'ensamblatge del mod quan s'especifica l'ensamblatge"
+
+#: ../src/modding/ModManager.cs:565
 msgid "NO_SELECTED_MOD"
 msgstr "Cap Mod Seleccionat"
 
-#: ../src/modding/ModManager.cs:885
+#: ../src/modding/ModManager.cs:901
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Aquest mod s'ha descarregat des del Workshop d'Steam"
 
-#: ../src/modding/ModManager.cs:886
+#: ../src/modding/ModManager.cs:902
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "Aquest és un mod instal·lat localment"
 
-#: ../src/modding/ModManager.cs:940
+#: ../src/modding/ModManager.cs:913
+#, fuzzy
+msgid "USES_FEATURE"
+msgstr "Temperatura"
+
+#: ../src/modding/ModManager.cs:914
+msgid "DOES_NOT_USE_FEATURE"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:959
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Error creant una carpeta per al mod"
 
-#: ../src/modding/ModManager.cs:949
+#: ../src/modding/ModManager.cs:968
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Error creant l'arxiu d'informació del mod"
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:119
 msgid "AVAILABLE_MODS"
 msgstr "Mods Disponibles"
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:142 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Refrescar"
 
-#: ../src/modding/ModManager.tscn:152
+#: ../src/modding/ModManager.tscn:150
 msgid "OPEN_FOLDER"
 msgstr "Obrir Carpeta"
 
-#: ../src/modding/ModManager.tscn:170
+#: ../src/modding/ModManager.tscn:168
 msgid "RIGHT_ARROW"
 msgstr "→"
 
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:181
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:193
 msgid "ENABLED_MODS"
 msgstr "Mods Habilitats"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:211
 msgid "DISABLE_ALL"
 msgstr "Inhabilitar Tot"
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:248
 msgid "SELECTED_MOD"
 msgstr "Mod Seleccionat:"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:282 ../src/modding/ModManager.tscn:670
+#: ../src/modding/NewModGUI.tscn:140
 msgid "MOD_AUTHOR"
 msgstr "Autor del Mod:"
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:313 ../src/modding/ModManager.tscn:692
+#: ../src/modding/NewModGUI.tscn:163
 msgid "MOD_VERSION"
 msgstr "Versió del Mod:"
 
-#: ../src/modding/ModManager.tscn:371
+#: ../src/modding/ModManager.tscn:369
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Recomanat Thrive:"
 
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:413
 msgid "MINIMUM_VERSION"
 msgstr "Mínim:"
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
+#: ../src/modding/ModManager.tscn:440 ../src/modding/ModManager.tscn:714
+#: ../src/modding/NewModGUI.tscn:186
 msgid "MOD_DESCRIPTION"
 msgstr "Descripció del Mod:"
 
-#: ../src/modding/ModManager.tscn:474
+#: ../src/modding/ModManager.tscn:472
 msgid "MORE_INFO"
 msgstr "Mostrar Més Informació"
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:480
 msgid "OPEN_MOD_URL"
 msgstr "Obrir Informació de l'URL"
 
-#: ../src/modding/ModManager.tscn:505
+#: ../src/modding/ModManager.tscn:503
 msgid "BROWSE_WORKSHOP"
 msgstr "Navegar Workshop"
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
+#: ../src/modding/ModManager.tscn:510 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
 msgstr "Pujar"
 
-#: ../src/modding/ModManager.tscn:519
+#: ../src/modding/ModManager.tscn:517
 msgid "NEW"
 msgstr "Nou"
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:530
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Nota: molts mods requereix reiniciar el joc per pujar-se o descarregar-se adequadament. Descarrega només mods en els quals hi puguis confiar, ja que poden contenir codi executable."
 
-#: ../src/modding/ModManager.tscn:559
+#: ../src/modding/ModManager.tscn:557
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Habilitar Tots els Mods Compatibles"
 
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:566
 msgid "APPLY_CHANGES"
 msgstr "Aplicar Canvis"
 
-#: ../src/modding/ModManager.tscn:579
+#: ../src/modding/ModManager.tscn:577
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Hi ha canvis no aplicats"
 
-#: ../src/modding/ModManager.tscn:580
+#: ../src/modding/ModManager.tscn:578
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Has d'aplicar els teus canvis per pujar o descarregar mods."
 
-#: ../src/modding/ModManager.tscn:581
+#: ../src/modding/ModManager.tscn:579
 msgid "DISCARD_CHANGES"
 msgstr "Descartar Canvis"
 
-#: ../src/modding/ModManager.tscn:588
+#: ../src/modding/ModManager.tscn:586
 msgid "FULL_MOD_INFO"
 msgstr "Informació Completa del Mod"
 
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:627 ../src/modding/NewModGUI.tscn:117
 msgid "MOD_NAME"
 msgstr "Nom del Mod:"
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:649 ../src/modding/NewModGUI.tscn:94
 msgid "MOD_INTERNAL_NAME"
 msgstr "Nom Intern (de Carpeta):"
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:736 ../src/modding/NewModGUI.tscn:209
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Descripció Llarga del Mod:"
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:774 ../src/modding/NewModGUI.tscn:233
 msgid "MOD_ICON_FILE"
 msgstr "Icona de l'Arxiu:"
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:796 ../src/modding/NewModGUI.tscn:256
 msgid "MOD_INFO_URL"
 msgstr "URL d'Informació del Mod:"
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:818 ../src/modding/NewModGUI.tscn:279
 msgid "MOD_LICENSE"
 msgstr "Llicència del Mod:"
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:840 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Versió de Thrive Recomanada:"
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:862 ../src/modding/NewModGUI.tscn:325
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Versió de Thrive Mínima Requerida:"
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:884 ../src/modding/NewModGUI.tscn:348
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Versió Màxima de Thrive Suportada:"
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:906 ../src/modding/NewModGUI.tscn:371
 msgid "MOD_PCK_NAME"
 msgstr "Arxiu de Mod .pck:"
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:928 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
 msgstr "Ensamblatge de Mod:"
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:950 ../src/modding/NewModGUI.tscn:417
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Classe Principal d'Ensamblatge de Mod:"
 
-#: ../src/modding/ModManager.tscn:979
+#: ../src/modding/ModManager.tscn:972
+#, fuzzy
+msgid "MOD_AUTO_HARMONY"
+msgstr "Autor del Mod:"
+
+#: ../src/modding/ModManager.tscn:999
 msgid "MOD_CREATION_FAILED"
 msgstr "Creació de Mod Fallida"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1008
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "S'han produït errors en carregar o descarregar un o més mods. Els logs poden tenir més informació."
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1013
 msgid "RESTART_REQUIRED"
 msgstr "Cal reiniciar"
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1015
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Un o més mods requereixen reiniciar el joc per a carregar-se o descarregar-se adequadament"
 
@@ -3736,7 +3766,7 @@ msgstr "Falta una descripció"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "La descripció és massa llarga"
 
-#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:274
+#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:280
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Les notes de canvi són massa llargues"
 
@@ -3788,7 +3818,7 @@ msgstr "Presentant aquest element, acceptes els termes de servei [color=#3796e1]
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "La informació de guardat ha estat fallida degut a l'excepció: {0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:307
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error: {0}"
 
@@ -3876,47 +3906,56 @@ msgstr "Seleccionar Imatge de Previsualització"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Càrrega amb èxit"
 
-#: ../src/modding/NewModGUI.cs:175
+#: ../src/modding/NewModGUI.cs:180
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "El Meu Mod Esbalaïdor"
 
-#: ../src/modding/NewModGUI.cs:232
+#: ../src/modding/NewModGUI.cs:239
 msgid "INVALID_URL_FORMAT"
 msgstr "Format d'URL invàlid"
 
-#: ../src/modding/NewModGUI.cs:247
+#: ../src/modding/NewModGUI.cs:254
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Es requereix un nom intern"
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:260
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Nom intern hauria de començar en majúscula"
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:266
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Ja hi ha un mod amb el nom intern especificat"
 
-#: ../src/modding/NewModGUI.cs:275
+#: ../src/modding/NewModGUI.cs:282
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Format invàlid o falta format d'un camp requerit: {0}"
 
-#: ../src/modding/NewModGUI.cs:286
+#: ../src/modding/NewModGUI.cs:293
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Validacions addicionals han detectat un problema: {0}"
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:33
 msgid "CREATE_NEW_MOD"
 msgstr "Crear un Nou Mod"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:67
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "Instruccions per fer Mods estan disponibles a"
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:74
 msgid "OUR_WIKI"
 msgstr "la nostra Wiki"
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:439
+#, fuzzy
+msgid "USE_AUTO_HARMONY_TOOLTIP"
+msgstr "Suicidi"
+
+#: ../src/modding/NewModGUI.tscn:441
+msgid "USE_AUTO_HARMONY"
+msgstr ""
+
+#: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
 msgstr "Crear"
 
@@ -4223,70 +4262,70 @@ msgstr "Intenta guardar una partida!"
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Error en la inicialització de la llibreria de client d'Steam"
 
-#: ../src/steam/SteamClient.cs:521
+#: ../src/steam/SteamClient.cs:528
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr "El teu compte d'Steam actualment té restringida la càrrega de contingut. Siusplau, contacta el suport d'Steam."
 
-#: ../src/steam/SteamClient.cs:523
+#: ../src/steam/SteamClient.cs:530
 msgid "STEAM_ERROR_BANNED"
 msgstr "El teu compte d'Steam està vedat de la càrrega de continguts"
 
-#: ../src/steam/SteamClient.cs:525
+#: ../src/steam/SteamClient.cs:532
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr "El temps d'operació d'Steam ha estat superat, siusplau torna-ho a provar"
 
-#: ../src/steam/SteamClient.cs:527
+#: ../src/steam/SteamClient.cs:534
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr "No ha iniciat sessió a Steam"
 
-#: ../src/steam/SteamClient.cs:529
+#: ../src/steam/SteamClient.cs:536
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr "Steam no està disponible actualment, siusplau torna-ho a provar"
 
-#: ../src/steam/SteamClient.cs:531
+#: ../src/steam/SteamClient.cs:538
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "Paràmetre invàlid passat a Steam"
 
-#: ../src/steam/SteamClient.cs:533
+#: ../src/steam/SteamClient.cs:540
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr "S'ha excedit la quota d'emmagatzematge al núvol d'Steam o la mida límit del fitxer"
 
-#: ../src/steam/SteamClient.cs:535
+#: ../src/steam/SteamClient.cs:542
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr "Fitxer no trobat"
 
-#: ../src/steam/SteamClient.cs:537
+#: ../src/steam/SteamClient.cs:544
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr "Steam ha comunicat que el fitxer ja ha estat carregat, siusplau refresca"
 
-#: ../src/steam/SteamClient.cs:539
+#: ../src/steam/SteamClient.cs:546
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "Steam ha comunicat un error de nom duplicat"
 
-#: ../src/steam/SteamClient.cs:541
+#: ../src/steam/SteamClient.cs:548
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr "El teu compte d'Steam és actualment només en mode de lectura degut a un canvi de compte recent"
 
-#: ../src/steam/SteamClient.cs:543
+#: ../src/steam/SteamClient.cs:550
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "El teu compte d'Steam no posseeix actualment una llicència per Thrive"
 
-#: ../src/steam/SteamClient.cs:545
+#: ../src/steam/SteamClient.cs:552
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr "Steam ha fallat en adquirir un cadenat UGC"
 
-#: ../src/steam/SteamClient.cs:547
+#: ../src/steam/SteamClient.cs:554
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Hi ha hagut un error d'Steam desconegut"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:238
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:301
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4298,7 +4337,7 @@ msgstr "Hi ha hagut un error d'Steam desconegut"
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Benvingut a l'Editor de Microbi.\n"
@@ -4309,7 +4348,7 @@ msgstr ""
 "\n"
 "Quan estiguis a punt, fes clic al botó \"següent\", a baix a la dreta."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Aquest és el mapa de zones.\n"
@@ -4320,7 +4359,7 @@ msgstr ""
 "\n"
 "Selecciona una zona per continuar."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Aquest és l'editor de microbi, on pots fer evolucionar la teva espècie invertint punts de mutació (MP). En cada generació disposaràs de 100 MP per invertir, de manera que no cal que n'estalviïs!\n"
@@ -4329,7 +4368,7 @@ msgstr ""
 "\n"
 "Per continuar, selecciona una part del tauler de l'esquerra. Tot seguit, fes clic-esquerra a l'hexàgon per a col·locar-la. Pots fer rotar les parts amb les tecles A i D (tecles per defecte)."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Eliminar orgànuls també costa Punts de Mutació, a menys que els hagis col·locat en la sessió actual de l'editor.\n"
@@ -4340,7 +4379,7 @@ msgstr ""
 "\n"
 "Clica el botó de desfer per tal de prosseguir."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Quan seleccionis parts del menú, estigues atent als indicadors de funció dels orgànuls, per entendre el que fan. Algunes parts poden fer més mal que bé si no s'utilitzen correctament.\n"
@@ -4349,7 +4388,7 @@ msgstr ""
 "\n"
 "Prem el botó de refer l'acció (a la vora del botó de desfer l'acció) per continuar."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:267
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Aquests són els fonaments per editar la teva espècie. També pots canviar el nom de la teva espècie clicant el requadre de sota i a l'esquerra i editant-ne el text. \n"
@@ -4360,11 +4399,11 @@ msgstr ""
 "\n"
 "Bona sort!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
 msgid "GOT_IT"
 msgstr "Ho he entès tot"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Aquest tauler mostra una predicció de la teva futura població. Aquests nombres provenen de la simulació del sistema auto-evo.\n"
@@ -4375,7 +4414,7 @@ msgstr ""
 "\n"
 "Pots veure informació més detallada de la predicció clicant a la icona del signe d'interrogació al tauler. Prem-la per continuar."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Per sobreviure, t'hauries de concentrar en especialitzar-te en explotar una o dues fonts d'energia, de manera que no necessitis molts recursos diferents per sobreviure.\n"
@@ -4461,6 +4500,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Veure ara"
+
+#~ msgid "AUTO"
+#~ msgstr "Auto"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Carregant..."

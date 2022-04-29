@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-27 00:01-0700\n"
+"POT-Creation-Date: 2022-04-29 09:41+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -1503,8 +1503,8 @@ msgstr "ציור מאת {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1304
-#: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
+#: ../src/modding/ModManager.tscn:992
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:392
 msgid "CLOSE"
 msgstr "סגור"
 
@@ -1571,7 +1571,7 @@ msgstr "עורך ארגז חול המיקרובי"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "חזור"
@@ -1604,19 +1604,24 @@ msgstr "שגיאה בעליית המוד"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "שגיאה קרתה בזמן שטען אחד או יותר מודים. תיעודם עשויים להכיל מידע נוסף."
 
-#: ../src/general/OptionsMenu.cs:900
+#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
+#, fuzzy
+msgid "AUTO_RESOLUTION"
+msgstr "רזולוציה:"
+
+#: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "פלט ברירת מחדל"
 
-#: ../src/general/OptionsMenu.cs:932
+#: ../src/general/OptionsMenu.cs:956
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "תרגום זה מאוד לא מוכן ({0}% מושלם), בבקשה תעזרו לנו עם זה!"
 
-#: ../src/general/OptionsMenu.cs:936
+#: ../src/general/OptionsMenu.cs:960
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "תרגום זה עדין בשלבי הכנה ({0}% הושלם)"
 
-#: ../src/general/OptionsMenu.cs:940
+#: ../src/general/OptionsMenu.cs:964
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "שפה זו היינו {0}% הושלם"
 
@@ -1679,10 +1684,6 @@ msgstr "16x"
 #: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
 msgstr "רזולוציה:"
-
-#: ../src/general/OptionsMenu.tscn:290
-msgid "AUTO"
-msgstr "אוטומטי"
 
 #: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
@@ -1918,7 +1919,7 @@ msgstr "מחק והמשך"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "ביטול"
 
@@ -2107,106 +2108,106 @@ msgstr "מתרגמים"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "רישיונות וספריות שימוש"
 
-#: ../src/gui_common/CreditsScroll.cs:484
+#: ../src/gui_common/CreditsScroll.cs:486
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 "תודה ששיחקת!\n"
 "\n"
 "אם נהנתה מהמשחק, ספר לחבריך עלינו."
 
-#: ../src/gui_common/CreditsScroll.cs:493
+#: ../src/gui_common/CreditsScroll.cs:495
 msgid "PROGRAMMING_TEAM"
 msgstr "צוות מתכנתים"
 
-#: ../src/gui_common/CreditsScroll.cs:494
+#: ../src/gui_common/CreditsScroll.cs:496
 msgid "THEORY_TEAM"
 msgstr "צוות תיאוריה"
 
-#: ../src/gui_common/CreditsScroll.cs:495
+#: ../src/gui_common/CreditsScroll.cs:497
 msgid "GRAPHICS_TEAM"
 msgstr "צוות גרפיקה"
 
-#: ../src/gui_common/CreditsScroll.cs:496
+#: ../src/gui_common/CreditsScroll.cs:498
 msgid "SOUND_TEAM"
 msgstr "צוות סאונד"
 
-#: ../src/gui_common/CreditsScroll.cs:497
+#: ../src/gui_common/CreditsScroll.cs:499
 msgid "OUTREACH_TEAM"
 msgstr "צוות הסברה"
 
-#: ../src/gui_common/CreditsScroll.cs:498
+#: ../src/gui_common/CreditsScroll.cs:500
 msgid "GAME_DESIGN_TEAM"
 msgstr "צוות מעצבי משחק"
 
-#: ../src/gui_common/CreditsScroll.cs:499
+#: ../src/gui_common/CreditsScroll.cs:501
 msgid "TESTING_TEAM"
 msgstr "צוות בודקים"
 
-#: ../src/gui_common/CreditsScroll.cs:500
+#: ../src/gui_common/CreditsScroll.cs:502
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "צוות ניהול פרויקט"
 
-#: ../src/gui_common/CreditsScroll.cs:501
+#: ../src/gui_common/CreditsScroll.cs:503
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "בקשות דרישה / תיכנות"
 
-#: ../src/gui_common/CreditsScroll.cs:502
+#: ../src/gui_common/CreditsScroll.cs:504
 msgid "VIP_PATRONS"
 msgstr "תומכי VIP"
 
-#: ../src/gui_common/CreditsScroll.cs:503
+#: ../src/gui_common/CreditsScroll.cs:505
 msgid "DEV_BUILD_PATRONS"
 msgstr "תומכי בניית תוכנה"
 
-#: ../src/gui_common/CreditsScroll.cs:504
+#: ../src/gui_common/CreditsScroll.cs:506
 msgid "SUPPORTER_PATRONS"
 msgstr "תומכים"
 
-#: ../src/gui_common/CreditsScroll.cs:505
+#: ../src/gui_common/CreditsScroll.cs:507
 msgid "JANUARY"
 msgstr "ינואר"
 
-#: ../src/gui_common/CreditsScroll.cs:506
+#: ../src/gui_common/CreditsScroll.cs:508
 msgid "FEBRUARY"
 msgstr "פברואר"
 
-#: ../src/gui_common/CreditsScroll.cs:507
+#: ../src/gui_common/CreditsScroll.cs:509
 msgid "MARCH"
 msgstr "מרץ"
 
-#: ../src/gui_common/CreditsScroll.cs:508
+#: ../src/gui_common/CreditsScroll.cs:510
 msgid "APRIL"
 msgstr "אפריל"
 
-#: ../src/gui_common/CreditsScroll.cs:509
+#: ../src/gui_common/CreditsScroll.cs:511
 msgid "MAY"
 msgstr "מאי"
 
-#: ../src/gui_common/CreditsScroll.cs:510
+#: ../src/gui_common/CreditsScroll.cs:512
 msgid "JUNE"
 msgstr "יוני"
 
-#: ../src/gui_common/CreditsScroll.cs:511
+#: ../src/gui_common/CreditsScroll.cs:513
 msgid "JULY"
 msgstr "יולי"
 
-#: ../src/gui_common/CreditsScroll.cs:512
+#: ../src/gui_common/CreditsScroll.cs:514
 msgid "AUGUST"
 msgstr "אוגוסט"
 
-#: ../src/gui_common/CreditsScroll.cs:513
+#: ../src/gui_common/CreditsScroll.cs:515
 msgid "SEPTEMBER"
 msgstr "ספטמבר"
 
-#: ../src/gui_common/CreditsScroll.cs:514
+#: ../src/gui_common/CreditsScroll.cs:516
 msgid "OCTOBER"
 msgstr "אוקטובר"
 
-#: ../src/gui_common/CreditsScroll.cs:515
+#: ../src/gui_common/CreditsScroll.cs:517
 msgid "NOVEMBER"
 msgstr "נובמבר"
 
-#: ../src/gui_common/CreditsScroll.cs:516
+#: ../src/gui_common/CreditsScroll.cs:518
 msgid "DECEMBER"
 msgstr "דצמבר"
 
@@ -2334,7 +2335,7 @@ msgstr "בסדר"
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "מעתיק שגיאה ללוח העתקה"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:34
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:62
 msgid "GPL_LICENSE_HEADING"
 msgstr "להלן טקסט רישיון GPL:"
 
@@ -3088,28 +3089,28 @@ msgstr "מגיב"
 msgid "FOCUSED"
 msgstr "ממוקד"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:199
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:195
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
 msgid "ATP_PRODUCTION"
 msgstr "ייצור ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:201
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ייצור ATP נמוך מדי!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:229
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:230
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: {1}+ ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:249
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:250
 msgid "OSMOREGULATION"
 msgstr "ויסות אוסמטי"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:255
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:256
 msgid "BASE_MOVEMENT"
 msgstr "מהירות בסיסית"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:267
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: {1}- ATP"
 
@@ -3485,238 +3486,267 @@ msgstr "אתה שגשגת!"
 msgid "WIN_TEXT"
 msgstr "כל הכבוד על הזכייה בגרסה זו של Thrive! אתה יכול להמשיך לשחק אחרי סגירת מסך זה אם תרצה, או תוכל להתחיל עולם חדש במשחק חדש."
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModLoader.cs:218 ../src/modding/ModLoader.cs:271
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "לא יכול לטעון מידע על המוד מ{0}"
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:242
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: טעינת הרכיב נכשלה עם חריגה: {1}"
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:259
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: אין רכיבים שניתנים לטעינה"
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:286
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: קריאת פריקה הרכבה של מוד זה נכשלה"
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:294
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: קריאת פריקת הרכבה מוד זה נכשלה פרט ל: {1}"
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:376
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: מחלקת מוד ספיציפית \"{1}\" לא מצאה את קליטת המוד"
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:389
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: קריאת שיטת אתחול הרכבת מוד זה נכשלה"
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:405
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: קריאת שיטת האתחול של הרכבה של המוד נכשלה עם חריגה של: {1}"
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:430
+#, fuzzy
+msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
+msgstr "{0}: קריאת שיטת האתחול של הרכבה של המוד נכשלה עם חריגה של: {1}"
+
+#: ../src/modding/ModLoader.cs:453
+#, fuzzy
+msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
+msgstr "{0}: קריאת פריקת הרכבה מוד זה נכשלה פרט ל: {1}"
+
+#: ../src/modding/ModLoader.cs:465
 msgid "PCK_LOAD_FAILED"
 msgstr "טעינת קבצי pck ({0}) נכשלה"
 
-#: ../src/modding/ModManager.cs:293
+#: ../src/modding/ModManager.cs:297
 msgid "INVALID_ICON_PATH"
 msgstr "נתיב סמליל מוד לא חוקית"
 
-#: ../src/modding/ModManager.cs:307
+#: ../src/modding/ModManager.cs:311
 msgid "INVALID_URL_SCHEME"
 msgstr "סכימת כתובת URL לא חוקית"
 
-#: ../src/modding/ModManager.cs:319
+#: ../src/modding/ModManager.cs:323
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "נדרשת מחלקת פריקת מוד בזמן שפריקה היא ספיציפית"
 
-#: ../src/modding/ModManager.cs:549
+#: ../src/modding/ModManager.cs:334
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgstr "נדרשת מחלקת פריקת מוד בזמן שפריקה היא ספיציפית"
+
+#: ../src/modding/ModManager.cs:565
 msgid "NO_SELECTED_MOD"
 msgstr "לא נבחר מוד"
 
-#: ../src/modding/ModManager.cs:885
+#: ../src/modding/ModManager.cs:901
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "מוד זה הורד מSteam Workshop"
 
-#: ../src/modding/ModManager.cs:886
+#: ../src/modding/ModManager.cs:902
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "זהו מוד מותקן באופן מקומי"
 
-#: ../src/modding/ModManager.cs:940
+#: ../src/modding/ModManager.cs:913
+#, fuzzy
+msgid "USES_FEATURE"
+msgstr "טמפרטורה"
+
+#: ../src/modding/ModManager.cs:914
+msgid "DOES_NOT_USE_FEATURE"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:959
 msgid "ERROR_CREATING_FOLDER"
 msgstr "תקלה ביצירת תיקייה בשביל המוד"
 
-#: ../src/modding/ModManager.cs:949
+#: ../src/modding/ModManager.cs:968
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "תקלה ביצירת מידע על המוד"
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:119
 msgid "AVAILABLE_MODS"
 msgstr "מודים זמינים"
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:142 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "רענן"
 
-#: ../src/modding/ModManager.tscn:152
+#: ../src/modding/ModManager.tscn:150
 msgid "OPEN_FOLDER"
 msgstr "פתח תיקייה"
 
-#: ../src/modding/ModManager.tscn:170
+#: ../src/modding/ModManager.tscn:168
 msgid "RIGHT_ARROW"
 msgstr "→"
 
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:181
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:193
 msgid "ENABLED_MODS"
 msgstr "מודים מופעלים"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:211
 msgid "DISABLE_ALL"
 msgstr "השבת הכל"
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:248
 msgid "SELECTED_MOD"
 msgstr "מודים נבחרו:"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:282 ../src/modding/ModManager.tscn:670
+#: ../src/modding/NewModGUI.tscn:140
 msgid "MOD_AUTHOR"
 msgstr "יוצר המוד:"
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:313 ../src/modding/ModManager.tscn:692
+#: ../src/modding/NewModGUI.tscn:163
 msgid "MOD_VERSION"
 msgstr "גרסת המוד:"
 
-#: ../src/modding/ModManager.tscn:371
+#: ../src/modding/ModManager.tscn:369
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "המלצת Thrive:"
 
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:413
 msgid "MINIMUM_VERSION"
 msgstr "מינימום:"
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
+#: ../src/modding/ModManager.tscn:440 ../src/modding/ModManager.tscn:714
+#: ../src/modding/NewModGUI.tscn:186
 msgid "MOD_DESCRIPTION"
 msgstr "תיאור המוד:"
 
-#: ../src/modding/ModManager.tscn:474
+#: ../src/modding/ModManager.tscn:472
 msgid "MORE_INFO"
 msgstr "הראה עוד מידע"
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:480
 msgid "OPEN_MOD_URL"
 msgstr "פתח כתובת מידע"
 
-#: ../src/modding/ModManager.tscn:505
+#: ../src/modding/ModManager.tscn:503
 msgid "BROWSE_WORKSHOP"
 msgstr "העלה Workshop"
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
+#: ../src/modding/ModManager.tscn:510 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
 msgstr "העלה"
 
-#: ../src/modding/ModManager.tscn:519
+#: ../src/modding/ModManager.tscn:517
 msgid "NEW"
 msgstr "חדש"
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:530
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "הערה: מודים רבים דורשים מהמשחק לטעון מחדש בשביל לעלות או להסיר כמו שצריך. העלה רק מודים שאתה בוטח בהם מכיוון שהם עלולים להכיל קודי בר הפעלה."
 
-#: ../src/modding/ModManager.tscn:559
+#: ../src/modding/ModManager.tscn:557
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "הפעל את כל המודים התואמים"
 
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:566
 msgid "APPLY_CHANGES"
 msgstr "החל שינויים"
 
-#: ../src/modding/ModManager.tscn:579
+#: ../src/modding/ModManager.tscn:577
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "ישנם שינויים שלא הוחלו"
 
-#: ../src/modding/ModManager.tscn:580
+#: ../src/modding/ModManager.tscn:578
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "עליך להחיל שינויים בכדי לטעון או לפרוק כל מוד כלשהו."
 
-#: ../src/modding/ModManager.tscn:581
+#: ../src/modding/ModManager.tscn:579
 msgid "DISCARD_CHANGES"
 msgstr "בטל שינויים"
 
-#: ../src/modding/ModManager.tscn:588
+#: ../src/modding/ModManager.tscn:586
 msgid "FULL_MOD_INFO"
 msgstr "מידע מלא על המוד"
 
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:627 ../src/modding/NewModGUI.tscn:117
 msgid "MOD_NAME"
 msgstr "שם המוד:"
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:649 ../src/modding/NewModGUI.tscn:94
 msgid "MOD_INTERNAL_NAME"
 msgstr "שם (תיקייה) פנימי:"
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:736 ../src/modding/NewModGUI.tscn:209
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "תיאור ארוך של המוד:"
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:774 ../src/modding/NewModGUI.tscn:233
 msgid "MOD_ICON_FILE"
 msgstr "סמל הקובץ:"
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:796 ../src/modding/NewModGUI.tscn:256
 msgid "MOD_INFO_URL"
 msgstr "כתובת אתר של מידע על המוד:"
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:818 ../src/modding/NewModGUI.tscn:279
 msgid "MOD_LICENSE"
 msgstr "רישיון המוד:"
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:840 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "גרסת Thrive מומלצת:"
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:862 ../src/modding/NewModGUI.tscn:325
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "מינימום גרסת Thrive דרושה:"
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:884 ../src/modding/NewModGUI.tscn:348
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "גרסת Thrive המקסימלית שתומך:"
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:906 ../src/modding/NewModGUI.tscn:371
 msgid "MOD_PCK_NAME"
 msgstr "קובץ .pck של מוד:"
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:928 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
 msgstr "העלת מוד:"
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:950 ../src/modding/NewModGUI.tscn:417
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "מחלקה העיקרית להעלת מוד:"
 
-#: ../src/modding/ModManager.tscn:979
+#: ../src/modding/ModManager.tscn:972
+#, fuzzy
+msgid "MOD_AUTO_HARMONY"
+msgstr "יוצר המוד:"
+
+#: ../src/modding/ModManager.tscn:999
 msgid "MOD_CREATION_FAILED"
 msgstr "יצירת מוד נכשלה"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1008
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "אירעו שגיאות בעת טעינה או פריקה של מוד אחד או יותר. תעודם עשויים להכיל מידע נוסף."
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1013
 msgid "RESTART_REQUIRED"
 msgstr "אתחול מחדש נדרש"
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1015
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "מוד אחד או יותר דורש מהמשחק אתחול מחדש בשביל לעלות או להסיר כראוי"
 
@@ -3736,7 +3766,7 @@ msgstr "חסר תיאור"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "התיאור ארוך מידי"
 
-#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:274
+#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:280
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "הערות שינוי ארוכות מידי"
 
@@ -3788,7 +3818,7 @@ msgstr "עלי ידי שליחה פריט זה, אתה מאשר ל [color=#3796e
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "שמירת מידע נכשלה בפרט ל: {0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:307
 msgid "FORM_ERROR_MESSAGE"
 msgstr "שגיאה: {0}"
 
@@ -3876,47 +3906,56 @@ msgstr "בחר תמונה מקדימה"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "העלאה הצליחה"
 
-#: ../src/modding/NewModGUI.cs:175
+#: ../src/modding/NewModGUI.cs:180
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "המוד המדהים שלי"
 
-#: ../src/modding/NewModGUI.cs:232
+#: ../src/modding/NewModGUI.cs:239
 msgid "INVALID_URL_FORMAT"
 msgstr "פורמט של כתובת אתר אינו חוקי"
 
-#: ../src/modding/NewModGUI.cs:247
+#: ../src/modding/NewModGUI.cs:254
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "נדרש שם פנימי"
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:260
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "השם הפנימי צריך להתחיל באות גדולה"
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:266
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "כבר קיים מוד בעל שם פנימי ספציפי זה"
 
-#: ../src/modding/NewModGUI.cs:275
+#: ../src/modding/NewModGUI.cs:282
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "פורמט חסר או לא חוקי של שדה חובה: {0}"
 
-#: ../src/modding/NewModGUI.cs:286
+#: ../src/modding/NewModGUI.cs:293
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "דרכי אימות נוספים זיהו בעיה: {0}"
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:33
 msgid "CREATE_NEW_MOD"
 msgstr "יצירת מוד חדש"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:67
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "הוראות יצירת מוד זמינים ב-"
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:74
 msgid "OUR_WIKI"
 msgstr "בויקי שלנו"
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:439
+#, fuzzy
+msgid "USE_AUTO_HARMONY_TOOLTIP"
+msgstr "התאבדות"
+
+#: ../src/modding/NewModGUI.tscn:441
+msgid "USE_AUTO_HARMONY"
+msgstr ""
+
+#: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
 msgstr "ליצור"
 
@@ -4223,70 +4262,70 @@ msgstr "נסה ליצור שמירה!"
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "אתחול ספריית Steam נכשל"
 
-#: ../src/steam/SteamClient.cs:521
+#: ../src/steam/SteamClient.cs:528
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr "משתמש הSteam שלך כרגע מוגבל העלאת תוכן. אנא פנה למרכז תמיכה של Steam."
 
-#: ../src/steam/SteamClient.cs:523
+#: ../src/steam/SteamClient.cs:530
 msgid "STEAM_ERROR_BANNED"
 msgstr "משתמש הSteam שלך חסום מלעלות תכנים"
 
-#: ../src/steam/SteamClient.cs:525
+#: ../src/steam/SteamClient.cs:532
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr "תם הזמן הקצוב למפעיל Steam, נסה שוב"
 
-#: ../src/steam/SteamClient.cs:527
+#: ../src/steam/SteamClient.cs:534
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr "לא מחובר לSteam"
 
-#: ../src/steam/SteamClient.cs:529
+#: ../src/steam/SteamClient.cs:536
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr "Steam לא זמין כרגע, בבקשה נסה שוב"
 
-#: ../src/steam/SteamClient.cs:531
+#: ../src/steam/SteamClient.cs:538
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "פרמטר לא חוקי הועבר לSteam"
 
-#: ../src/steam/SteamClient.cs:533
+#: ../src/steam/SteamClient.cs:540
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr "חרגת ממכסת האחסון בענן של Steam או ממגבלת גודל הקובץ"
 
-#: ../src/steam/SteamClient.cs:535
+#: ../src/steam/SteamClient.cs:542
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr "קובץ לא נמצא"
 
-#: ../src/steam/SteamClient.cs:537
+#: ../src/steam/SteamClient.cs:544
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr "Steam מדווח שהקובץ כבר עולה,בבקשה רענן מחדש"
 
-#: ../src/steam/SteamClient.cs:539
+#: ../src/steam/SteamClient.cs:546
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "Steam מדווח שישנו שגיאה של שיכפול שם"
 
-#: ../src/steam/SteamClient.cs:541
+#: ../src/steam/SteamClient.cs:548
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr "משתמש Steam שלך נמצא כעת במצב קריאה בלבד עקב שינוי אחרון במשתמש"
 
-#: ../src/steam/SteamClient.cs:543
+#: ../src/steam/SteamClient.cs:550
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "משתמש Steam שלך אינו בעל רישיון עבור Thrive"
 
-#: ../src/steam/SteamClient.cs:545
+#: ../src/steam/SteamClient.cs:552
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr "Steam נכשל בלהשיג UGC lock"
 
-#: ../src/steam/SteamClient.cs:547
+#: ../src/steam/SteamClient.cs:554
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "שגיאת Steam לא ידועה קרתה"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:238
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:301
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4298,7 +4337,7 @@ msgstr "שגיאת Steam לא ידועה קרתה"
 msgid "TUTORIAL"
 msgstr "מדריך"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "ברוך הבא לעורך המיקרובי.\n"
@@ -4309,7 +4348,7 @@ msgstr ""
 "\n"
 "בשביל לעבור ללשונית הבאה, לחץ על הבא שבפינה הימנית התחתונה."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "זהו מפת האזורים.\n"
@@ -4320,7 +4359,7 @@ msgstr ""
 "\n"
 "נסה לבחור אזור בשביל להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "זהו עורך התא שבו אתה יכול לפתח את המין שלך על ידי תשלום בנקודות מוטציה (נקמ\"ו). על כל דור תמיד היה לך 100 נקמ\"ו לבזבז, כך שאין סיבה לשמור!.\n"
@@ -4329,7 +4368,7 @@ msgstr ""
 "\n"
 "בשביל להמשיך, בחר חלק מהכרטיסייה השמאלית. לאחר מיכן לחץ על הלחצן השמאלי בתוך המשושה הרצוי בשביל להניח אותו. אתה יכול לסובב חלקים על ידי A וD (מקשי ברירת מחדל)."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "הסרה של אברונים גם עולה נקמ\"ו שכן זה מוטציה של המין שלך, אלו אם הם נוספו בעריכה הנוכחית. \n"
@@ -4340,7 +4379,7 @@ msgstr ""
 "\n"
 "לחץ על הכפתור בטל בשביל להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "כשאתה בוחר חלקים בתפריט, הסתכל קרוב לתיבת המידע שצץ בשביל להבין מה הם עושים. חלקים יכולים לעשות יותר נזק מתועלת אם אתה מתעלם מתפקידם.\n"
@@ -4349,7 +4388,7 @@ msgstr ""
 "\n"
 "לחץ על כפתור עשה מחדש (זה שליד כפתור בטל) על מנת להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:267
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "אלו כל הדברים הבסיסים על עריכת המין שלך. ולסיום, אתה יכול לשנות את שם המין שלך על ידי לחיצה על השם בצד שמאל למטה ועריכת הטקסט.\n"
@@ -4360,11 +4399,11 @@ msgstr ""
 "\n"
 "בהצלחה!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
 msgid "GOT_IT"
 msgstr "הבנתי"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "לוח זה מציג את התחזית העתידית של האוכלוסייה שלך. מספרים ללו הם מהדמיות של האוכלוסייה מהמפתח האוטומטי.\n"
@@ -4375,7 +4414,7 @@ msgstr ""
 "\n"
 "אתה יכול להציג מידע מפורט יותר מאחורי החיזוי על ידי לחיצה על כפתור סימן השאלה בלוח. לחץ עליו כדי להמשיך."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "כדאי לך להתמקד בהתמחות על מנת לשרוד על מקור אנרגיה אחד או שניים, כך שלא תזדקק למשאבים רבים ושונים בבת אחת כדי לקיים את עצמך.\n"
@@ -4459,6 +4498,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "הראה עכשיו"
+
+#~ msgid "AUTO"
+#~ msgstr "אוטומטי"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "טוען..."

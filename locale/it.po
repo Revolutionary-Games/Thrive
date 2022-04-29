@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-27 00:01-0700\n"
+"POT-Creation-Date: 2022-04-29 09:41+0300\n"
 "PO-Revision-Date: 2022-04-12 16:14+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -1503,8 +1503,8 @@ msgstr "Di {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1304
-#: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
+#: ../src/modding/ModManager.tscn:992
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:392
 msgid "CLOSE"
 msgstr "Chiudi"
 
@@ -1571,7 +1571,7 @@ msgstr "Editor Microbico Libero"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Indietro"
@@ -1604,19 +1604,24 @@ msgstr "Errori di caricamento mod"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Si sono verificati degli errori nel caricamento di una o più mod. I log potrebbero contenere informazioni ulteriori."
 
-#: ../src/general/OptionsMenu.cs:900
+#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
+#, fuzzy
+msgid "AUTO_RESOLUTION"
+msgstr "Risoluzione:"
+
+#: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo di output audio di default"
 
-#: ../src/general/OptionsMenu.cs:932
+#: ../src/general/OptionsMenu.cs:956
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Questa traduzione è molto incompleta ({0}% fatto). Perfavore, aiutaci!"
 
-#: ../src/general/OptionsMenu.cs:936
+#: ../src/general/OptionsMenu.cs:960
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Questa traduzione è ancora in corso ({0}% fatto)"
 
-#: ../src/general/OptionsMenu.cs:940
+#: ../src/general/OptionsMenu.cs:964
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Questa traduzione è completa al/all'{0}%"
 
@@ -1679,10 +1684,6 @@ msgstr "16x"
 #: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
 msgstr "Risoluzione:"
-
-#: ../src/general/OptionsMenu.tscn:290
-msgid "AUTO"
-msgstr "Automatica"
 
 #: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
@@ -1918,7 +1919,7 @@ msgstr "Continua senza salvare"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Annulla"
 
@@ -2107,106 +2108,106 @@ msgstr "Traduttori"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenze e librerie usate"
 
-#: ../src/gui_common/CreditsScroll.cs:484
+#: ../src/gui_common/CreditsScroll.cs:486
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 "Grazie per aver giocato!\n"
 "\n"
 "Se il gioco ti è piaciuto, parlane anche ai tuoi amici."
 
-#: ../src/gui_common/CreditsScroll.cs:493
+#: ../src/gui_common/CreditsScroll.cs:495
 msgid "PROGRAMMING_TEAM"
 msgstr "Squadra Programmatori"
 
-#: ../src/gui_common/CreditsScroll.cs:494
+#: ../src/gui_common/CreditsScroll.cs:496
 msgid "THEORY_TEAM"
 msgstr "Squadra Teorici"
 
-#: ../src/gui_common/CreditsScroll.cs:495
+#: ../src/gui_common/CreditsScroll.cs:497
 msgid "GRAPHICS_TEAM"
 msgstr "Squadra Grafici"
 
-#: ../src/gui_common/CreditsScroll.cs:496
+#: ../src/gui_common/CreditsScroll.cs:498
 msgid "SOUND_TEAM"
 msgstr "Squadra Fonici"
 
-#: ../src/gui_common/CreditsScroll.cs:497
+#: ../src/gui_common/CreditsScroll.cs:499
 msgid "OUTREACH_TEAM"
 msgstr "Squadra Pubblicitari"
 
-#: ../src/gui_common/CreditsScroll.cs:498
+#: ../src/gui_common/CreditsScroll.cs:500
 msgid "GAME_DESIGN_TEAM"
 msgstr "Squadra Progettisti di Gioco"
 
-#: ../src/gui_common/CreditsScroll.cs:499
+#: ../src/gui_common/CreditsScroll.cs:501
 msgid "TESTING_TEAM"
 msgstr "Squadra Collaudatori"
 
-#: ../src/gui_common/CreditsScroll.cs:500
+#: ../src/gui_common/CreditsScroll.cs:502
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Squadra Gestori del Progetto"
 
-#: ../src/gui_common/CreditsScroll.cs:501
+#: ../src/gui_common/CreditsScroll.cs:503
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull request / programmazione"
 
-#: ../src/gui_common/CreditsScroll.cs:502
+#: ../src/gui_common/CreditsScroll.cs:504
 msgid "VIP_PATRONS"
 msgstr "Sostenitori VIP"
 
-#: ../src/gui_common/CreditsScroll.cs:503
+#: ../src/gui_common/CreditsScroll.cs:505
 msgid "DEV_BUILD_PATRONS"
 msgstr "Sostenitori Devbuilds"
 
-#: ../src/gui_common/CreditsScroll.cs:504
+#: ../src/gui_common/CreditsScroll.cs:506
 msgid "SUPPORTER_PATRONS"
 msgstr "Sostenitori"
 
-#: ../src/gui_common/CreditsScroll.cs:505
+#: ../src/gui_common/CreditsScroll.cs:507
 msgid "JANUARY"
 msgstr "Gennaio"
 
-#: ../src/gui_common/CreditsScroll.cs:506
+#: ../src/gui_common/CreditsScroll.cs:508
 msgid "FEBRUARY"
 msgstr "Febbraio"
 
-#: ../src/gui_common/CreditsScroll.cs:507
+#: ../src/gui_common/CreditsScroll.cs:509
 msgid "MARCH"
 msgstr "Marzo"
 
-#: ../src/gui_common/CreditsScroll.cs:508
+#: ../src/gui_common/CreditsScroll.cs:510
 msgid "APRIL"
 msgstr "Aprile"
 
-#: ../src/gui_common/CreditsScroll.cs:509
+#: ../src/gui_common/CreditsScroll.cs:511
 msgid "MAY"
 msgstr "Maggio"
 
-#: ../src/gui_common/CreditsScroll.cs:510
+#: ../src/gui_common/CreditsScroll.cs:512
 msgid "JUNE"
 msgstr "Giugno"
 
-#: ../src/gui_common/CreditsScroll.cs:511
+#: ../src/gui_common/CreditsScroll.cs:513
 msgid "JULY"
 msgstr "Luglio"
 
-#: ../src/gui_common/CreditsScroll.cs:512
+#: ../src/gui_common/CreditsScroll.cs:514
 msgid "AUGUST"
 msgstr "Agosto"
 
-#: ../src/gui_common/CreditsScroll.cs:513
+#: ../src/gui_common/CreditsScroll.cs:515
 msgid "SEPTEMBER"
 msgstr "Settembre"
 
-#: ../src/gui_common/CreditsScroll.cs:514
+#: ../src/gui_common/CreditsScroll.cs:516
 msgid "OCTOBER"
 msgstr "Ottobre"
 
-#: ../src/gui_common/CreditsScroll.cs:515
+#: ../src/gui_common/CreditsScroll.cs:517
 msgid "NOVEMBER"
 msgstr "Novembre"
 
-#: ../src/gui_common/CreditsScroll.cs:516
+#: ../src/gui_common/CreditsScroll.cs:518
 msgid "DECEMBER"
 msgstr "Dicembre"
 
@@ -2334,7 +2335,7 @@ msgstr "OK"
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copia Errore negli Appunti"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:34
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:62
 msgid "GPL_LICENSE_HEADING"
 msgstr "Di seguito il testo della licenza GPL:"
 
@@ -3083,28 +3084,28 @@ msgstr "Reattivo"
 msgid "FOCUSED"
 msgstr "Focalizzato"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:199
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:195
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
 msgid "ATP_PRODUCTION"
 msgstr "Produzione di ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:201
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUZIONE DI ATP TROPPO BASSA!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:229
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:230
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:249
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:250
 msgid "OSMOREGULATION"
 msgstr "Osmoregolazione"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:255
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:256
 msgid "BASE_MOVEMENT"
 msgstr "Movimento di Base"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:267
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -3480,238 +3481,267 @@ msgstr "HAI PROSPERATO!"
 msgid "WIN_TEXT"
 msgstr "Congratulazioni! Hai vinto questa versione di Thrive! Se vuoi, puoi continuare a giocare dopo la chiusura di questo messaggio, oppure avviare una nuova partita in un nuovo mondo."
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModLoader.cs:218 ../src/modding/ModLoader.cs:271
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Impossibile caricare le info per {0}"
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:242
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: caricamento dell'assembly fallito con un'eccezione: {1}"
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:259
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: non ha risorse caricabili"
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:286
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: chiamata di unload metodo dell'assembly fallita"
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:294
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: chiamata di unload metodo dell'assembly fallita con un'eccezione: {1}"
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:376
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: classe specificata \"{1}\" non trovata nell'assembly della mod"
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:389
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: chiamata di inizializzazione metodo dell'assembly fallita"
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:405
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: chiamata di inizializzazione metodo dell'assembly fallita con un'eccezione: {1}"
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:430
+#, fuzzy
+msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
+msgstr "{0}: chiamata di inizializzazione metodo dell'assembly fallita con un'eccezione: {1}"
+
+#: ../src/modding/ModLoader.cs:453
+#, fuzzy
+msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
+msgstr "{0}: chiamata di unload metodo dell'assembly fallita con un'eccezione: {1}"
+
+#: ../src/modding/ModLoader.cs:465
 msgid "PCK_LOAD_FAILED"
 msgstr "Caricamento del file pck ({0}) non riuscito"
 
-#: ../src/modding/ModManager.cs:293
+#: ../src/modding/ModManager.cs:297
 msgid "INVALID_ICON_PATH"
 msgstr "Percorso icona non valido"
 
-#: ../src/modding/ModManager.cs:307
+#: ../src/modding/ModManager.cs:311
 msgid "INVALID_URL_SCHEME"
 msgstr "Schema URL non valido"
 
-#: ../src/modding/ModManager.cs:319
+#: ../src/modding/ModManager.cs:323
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "La classe dell'assembly è richiesta quando l'assembly è specificato"
 
-#: ../src/modding/ModManager.cs:549
+#: ../src/modding/ModManager.cs:334
+#, fuzzy
+msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgstr "La classe dell'assembly è richiesta quando l'assembly è specificato"
+
+#: ../src/modding/ModManager.cs:565
 msgid "NO_SELECTED_MOD"
 msgstr "Nessuna mod selezionata"
 
-#: ../src/modding/ModManager.cs:885
+#: ../src/modding/ModManager.cs:901
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Questa mod è stata scaricata dal Workshop di Steam"
 
-#: ../src/modding/ModManager.cs:886
+#: ../src/modding/ModManager.cs:902
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "Questa mod è stata installata localmente"
 
-#: ../src/modding/ModManager.cs:940
+#: ../src/modding/ModManager.cs:913
+#, fuzzy
+msgid "USES_FEATURE"
+msgstr "Temperatura"
+
+#: ../src/modding/ModManager.cs:914
+msgid "DOES_NOT_USE_FEATURE"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:959
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Errore nella creazione della cartella per la mod"
 
-#: ../src/modding/ModManager.cs:949
+#: ../src/modding/ModManager.cs:968
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Si è verificato un errore nella creazione del file di info"
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:119
 msgid "AVAILABLE_MODS"
 msgstr "Mod disponibili"
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:142 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Aggiorna"
 
-#: ../src/modding/ModManager.tscn:152
+#: ../src/modding/ModManager.tscn:150
 msgid "OPEN_FOLDER"
 msgstr "Apri cartella"
 
-#: ../src/modding/ModManager.tscn:170
+#: ../src/modding/ModManager.tscn:168
 msgid "RIGHT_ARROW"
 msgstr "→"
 
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:181
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:193
 msgid "ENABLED_MODS"
 msgstr "Mod attive"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:211
 msgid "DISABLE_ALL"
 msgstr "Disattiva tutte"
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:248
 msgid "SELECTED_MOD"
 msgstr "Mod selezionata:"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:282 ../src/modding/ModManager.tscn:670
+#: ../src/modding/NewModGUI.tscn:140
 msgid "MOD_AUTHOR"
 msgstr "Autore:"
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:313 ../src/modding/ModManager.tscn:692
+#: ../src/modding/NewModGUI.tscn:163
 msgid "MOD_VERSION"
 msgstr "Versione:"
 
-#: ../src/modding/ModManager.tscn:371
+#: ../src/modding/ModManager.tscn:369
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Versione consigliata di Thrive:"
 
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:413
 msgid "MINIMUM_VERSION"
 msgstr "Minima:"
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
+#: ../src/modding/ModManager.tscn:440 ../src/modding/ModManager.tscn:714
+#: ../src/modding/NewModGUI.tscn:186
 msgid "MOD_DESCRIPTION"
 msgstr "Descrizione:"
 
-#: ../src/modding/ModManager.tscn:474
+#: ../src/modding/ModManager.tscn:472
 msgid "MORE_INFO"
 msgstr "Mostra più info"
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:480
 msgid "OPEN_MOD_URL"
 msgstr "Apri URL info"
 
-#: ../src/modding/ModManager.tscn:505
+#: ../src/modding/ModManager.tscn:503
 msgid "BROWSE_WORKSHOP"
 msgstr "Naviga il Workshop"
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
+#: ../src/modding/ModManager.tscn:510 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
 msgstr "Carica"
 
-#: ../src/modding/ModManager.tscn:519
+#: ../src/modding/ModManager.tscn:517
 msgid "NEW"
 msgstr "Nuova"
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:530
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Nota bene: diverse mod richiedono il riavvio del gioco per essere attivate o disattivate correttamente. Se non ti fidi di una mod, non attivarla: potrebbe contenere codice eseguibile."
 
-#: ../src/modding/ModManager.tscn:559
+#: ../src/modding/ModManager.tscn:557
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Attiva tutte le mod compatibili"
 
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:566
 msgid "APPLY_CHANGES"
 msgstr "Applica modifiche"
 
-#: ../src/modding/ModManager.tscn:579
+#: ../src/modding/ModManager.tscn:577
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Ci sono modifiche non applicate"
 
-#: ../src/modding/ModManager.tscn:580
+#: ../src/modding/ModManager.tscn:578
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Devi applicare le tue modifiche per attivare o disattivare mod."
 
-#: ../src/modding/ModManager.tscn:581
+#: ../src/modding/ModManager.tscn:579
 msgid "DISCARD_CHANGES"
 msgstr "Abbandona le modifiche"
 
-#: ../src/modding/ModManager.tscn:588
+#: ../src/modding/ModManager.tscn:586
 msgid "FULL_MOD_INFO"
 msgstr "Info complete"
 
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:627 ../src/modding/NewModGUI.tscn:117
 msgid "MOD_NAME"
 msgstr "Nome:"
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:649 ../src/modding/NewModGUI.tscn:94
 msgid "MOD_INTERNAL_NAME"
 msgstr "Nome interno (della cartella):"
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:736 ../src/modding/NewModGUI.tscn:209
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Descrizione lunga:"
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:774 ../src/modding/NewModGUI.tscn:233
 msgid "MOD_ICON_FILE"
 msgstr "File icona:"
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:796 ../src/modding/NewModGUI.tscn:256
 msgid "MOD_INFO_URL"
 msgstr "URL info:"
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:818 ../src/modding/NewModGUI.tscn:279
 msgid "MOD_LICENSE"
 msgstr "Licenza:"
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:840 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Versione consigliata di Thrive:"
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:862 ../src/modding/NewModGUI.tscn:325
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Versione minima di Thrive richiesta:"
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:884 ../src/modding/NewModGUI.tscn:348
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Versione massima di Thrive supportata:"
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:906 ../src/modding/NewModGUI.tscn:371
 msgid "MOD_PCK_NAME"
 msgstr "File .pck:"
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:928 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
 msgstr "Assembly:"
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:950 ../src/modding/NewModGUI.tscn:417
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Classe principale dell'assembly:"
 
-#: ../src/modding/ModManager.tscn:979
+#: ../src/modding/ModManager.tscn:972
+#, fuzzy
+msgid "MOD_AUTO_HARMONY"
+msgstr "Autore:"
+
+#: ../src/modding/ModManager.tscn:999
 msgid "MOD_CREATION_FAILED"
 msgstr "Creazione della mod fallita"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1008
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "Si sono verificati degli errori nell'attivazione o nella disattivazione di una o più mod. I log potrebbero contenere informazioni maggiori."
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1013
 msgid "RESTART_REQUIRED"
 msgstr "È richiesto il riavvio"
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1015
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Una o più mod richiedono il riavvio del gioco per essere attivate o disattivate correttamente"
 
@@ -3731,7 +3761,7 @@ msgstr "La descrizione è mancante"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "La descrizione è troppo lunga"
 
-#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:274
+#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:280
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Le note sull'aggiornamento sono troppo lughe"
 
@@ -3783,7 +3813,7 @@ msgstr "Inviando questo oggetto, tu accetti i [color=#3796e1][url=https://steamc
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Salvataggio delle informazioni non riuscito a causa di un'eccezione: {0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:307
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Errore: {0}"
 
@@ -3871,47 +3901,56 @@ msgstr "Seleziona immagine di anteprima"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Caricamento riuscito"
 
-#: ../src/modding/NewModGUI.cs:175
+#: ../src/modding/NewModGUI.cs:180
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "La mia fantastica mod"
 
-#: ../src/modding/NewModGUI.cs:232
+#: ../src/modding/NewModGUI.cs:239
 msgid "INVALID_URL_FORMAT"
 msgstr "Formato URL non valido"
 
-#: ../src/modding/NewModGUI.cs:247
+#: ../src/modding/NewModGUI.cs:254
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Il nome interno è richiesto"
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:260
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Il nome interno dovrebbe iniziare con una lettera maiscola"
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:266
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "È già presente una mod con questo nome interno"
 
-#: ../src/modding/NewModGUI.cs:275
+#: ../src/modding/NewModGUI.cs:282
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Formato mancante o non valido in un campo richiesto: {0}"
 
-#: ../src/modding/NewModGUI.cs:286
+#: ../src/modding/NewModGUI.cs:293
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Ulteriori controlli hanno rilevato un problema: {0}"
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:33
 msgid "CREATE_NEW_MOD"
 msgstr "Crea una Nuova Mod"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:67
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "Le istruzioni per creare mod sono disponibili sulla"
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:74
 msgid "OUR_WIKI"
 msgstr "nostra Wiki"
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:439
+#, fuzzy
+msgid "USE_AUTO_HARMONY_TOOLTIP"
+msgstr "Suicidio"
+
+#: ../src/modding/NewModGUI.tscn:441
+msgid "USE_AUTO_HARMONY"
+msgstr ""
+
+#: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
 msgstr "Crea"
 
@@ -4216,70 +4255,70 @@ msgstr "Prova a creare un salvataggio!"
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Inizializzazione della libreria client Steam fallita"
 
-#: ../src/steam/SteamClient.cs:521
+#: ../src/steam/SteamClient.cs:528
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr "Al momento il tuo account Steam è limitato dal caricare contenuti. Contatta il loro servizio clienti."
 
-#: ../src/steam/SteamClient.cs:523
+#: ../src/steam/SteamClient.cs:530
 msgid "STEAM_ERROR_BANNED"
 msgstr "Il tuo account Steam è bandito dal caricare contenuti"
 
-#: ../src/steam/SteamClient.cs:525
+#: ../src/steam/SteamClient.cs:532
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr "È stato superato il limite di tempo per l'operazione Steam, ritenta"
 
-#: ../src/steam/SteamClient.cs:527
+#: ../src/steam/SteamClient.cs:534
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr "Non hai effettuato l'accesso a Steam"
 
-#: ../src/steam/SteamClient.cs:529
+#: ../src/steam/SteamClient.cs:536
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr "Steam è momentaneamente non disponibile, riprova"
 
-#: ../src/steam/SteamClient.cs:531
+#: ../src/steam/SteamClient.cs:538
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "È stato passato un parametro non valido a Steam"
 
-#: ../src/steam/SteamClient.cs:533
+#: ../src/steam/SteamClient.cs:540
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr "Steam: è stato superato il limite di archiviazione in cloud oppure la dimensione massima per i file"
 
-#: ../src/steam/SteamClient.cs:535
+#: ../src/steam/SteamClient.cs:542
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr "File non trovato"
 
-#: ../src/steam/SteamClient.cs:537
+#: ../src/steam/SteamClient.cs:544
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr "Steam riporta il file come già caricato, aggiorna la pagina"
 
-#: ../src/steam/SteamClient.cs:539
+#: ../src/steam/SteamClient.cs:546
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "Steam ha riportato un errore: nome duplicato"
 
-#: ../src/steam/SteamClient.cs:541
+#: ../src/steam/SteamClient.cs:548
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr "Il tuo account Steam è temporaneamente in modalità di sola lettura per via di una modifica recente a esso"
 
-#: ../src/steam/SteamClient.cs:543
+#: ../src/steam/SteamClient.cs:550
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "Il tuo account Steam non possiede una licenza per Thrive"
 
-#: ../src/steam/SteamClient.cs:545
+#: ../src/steam/SteamClient.cs:552
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr "Steam: acquisizione dell'UGC lock fallita"
 
-#: ../src/steam/SteamClient.cs:547
+#: ../src/steam/SteamClient.cs:554
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Steam: si è verificato un errore sconosciuto"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:238
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:301
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4291,7 +4330,7 @@ msgstr "Steam: si è verificato un errore sconosciuto"
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Benvenuto nell'Editor Microbico.\n"
@@ -4302,7 +4341,7 @@ msgstr ""
 "\n"
 "Quando ti ritieni pronto, premi il pulsante \"AVANTI\" in basso a destra per continuare."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Questa è la mappa delle zone.\n"
@@ -4313,7 +4352,7 @@ msgstr ""
 "\n"
 "Prova a selezionare una zona per continuare."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Questo è l'editor delle cellule. Qui puoi evolvere la tua specie spendendo punti mutazione (PM). A ogni generazione avrai a disposizione esattamente 100 PM, quindi non preoccuparti di risparmiare!\n"
@@ -4322,7 +4361,7 @@ msgstr ""
 "\n"
 "Per continuare, seleziona una parte dal pannello a sinistra. Poi, fai clic sinistro vicino all'esagono per posizionarla. Puoi ruotare le parti con A e D (di default)."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Anche rimuovere organuli costa PM, visto che si tratta di una mutazione alla tua specie, a meno che tu li abbia posizionati in questa sessione di modifica.\n"
@@ -4333,7 +4372,7 @@ msgstr ""
 "\n"
 "Clicca il pulsante \"Annulla l'ultima azione\" per continuare."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Quando selezioni le parti nel menù, presta attenzione alle finestrelle che appaiono: contengono informazioni importanti sul loro funzionamento. Non leggerle, e aggiungere parti a casaccio, spesso porta a conseguenze negative.\n"
@@ -4342,7 +4381,7 @@ msgstr ""
 "\n"
 "Premi il pulsante \"Rispristina l'ultima azione\" (vicino al precedente) per continuare."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:267
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Questi sono i concetti base per la modifica della tua specie; ma come ciliegina sulla torta, puoi rinominarla. Per farlo, fai clic sul suo nome attuale in basso a sinistra e modifica il testo.\n"
@@ -4353,11 +4392,11 @@ msgstr ""
 "\n"
 "Buona fortuna!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
 msgid "GOT_IT"
 msgstr "Ho capito"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Questo pannello mostra una previsione sulla tua popolazione futura. Questi numeri arrivano dalla simulazione di popolazione dell'auto-evo.\n"
@@ -4368,7 +4407,7 @@ msgstr ""
 "\n"
 "Puoi vedere informazioni più dettagliate premendo il punto di domanda all'interno del pannello. Premilo per continuare."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Dovresti concentrarti su una o due fonti di energia; così, non avrai bisogno di raccogliere troppe risorse diverse per produrre abbastanza ATP e sopravvivere.\n"
@@ -4452,6 +4491,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Vedi ora"
+
+#~ msgid "AUTO"
+#~ msgstr "Automatica"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Caricamento..."
