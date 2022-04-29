@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-28 15:25+0300\n"
+"POT-Creation-Date: 2022-04-29 09:41+0300\n"
 "PO-Revision-Date: 2022-04-12 16:14+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -1504,7 +1504,7 @@ msgstr "Resmi yapan: {0}"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1304
 #: ../src/modding/ModManager.tscn:992
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:392
 msgid "CLOSE"
 msgstr "Kapat"
 
@@ -1604,19 +1604,24 @@ msgstr "Mod Yükleme Hataları"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Bir ya da daha fazla modu yüklerken sorun oluştu. Loglar, ek bilgi içerebilir."
 
-#: ../src/general/OptionsMenu.cs:900
+#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
+#, fuzzy
+msgid "AUTO_RESOLUTION"
+msgstr "Çözünürlük:"
+
+#: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Varsayılan çıkış aygıtı"
 
-#: ../src/general/OptionsMenu.cs:932
+#: ../src/general/OptionsMenu.cs:956
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Bu çeviri henüz bitmemiş (%{0} tamamlandı), lütfen tamamlamamıza yardımcı ol!"
 
-#: ../src/general/OptionsMenu.cs:936
+#: ../src/general/OptionsMenu.cs:960
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Bu dilin çevirisi halen devam etmekte (%{0} tamamlandı)"
 
-#: ../src/general/OptionsMenu.cs:940
+#: ../src/general/OptionsMenu.cs:964
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Bu dil %{0} tamamlandı"
 
@@ -1679,10 +1684,6 @@ msgstr "16x"
 #: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
 msgstr "Çözünürlük:"
-
-#: ../src/general/OptionsMenu.tscn:290
-msgid "AUTO"
-msgstr "Otomatik"
 
 #: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
@@ -3088,28 +3089,28 @@ msgstr "Duyarlı"
 msgid "FOCUSED"
 msgstr "Odaklanmış"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:199
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:195
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
 msgid "ATP_PRODUCTION"
 msgstr "ATP Üretimi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:201
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP ÜRETİMİ ÇOK DÜŞÜK!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:229
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:230
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:249
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:250
 msgid "OSMOREGULATION"
 msgstr "Ozmoregülasyon"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:255
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:256
 msgid "BASE_MOVEMENT"
 msgstr "Ana Hareket"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:267
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -3765,7 +3766,7 @@ msgstr "Açıklama eksik"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Açıklama çok uzun"
 
-#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:274
+#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:280
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Değişiklik notları çok uzun"
 
@@ -4261,70 +4262,70 @@ msgstr "Kaydetmeyi dene!"
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam istemci kütüphanesi başlatma başarısız"
 
-#: ../src/steam/SteamClient.cs:521
+#: ../src/steam/SteamClient.cs:528
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr "Steam hesabın şu anda içerik yüklemekten kısıtlandı. Lütfen Steam destek ile görüş."
 
-#: ../src/steam/SteamClient.cs:523
+#: ../src/steam/SteamClient.cs:530
 msgid "STEAM_ERROR_BANNED"
 msgstr "Steam hesabın içerik yüklemekten yasaklandı"
 
-#: ../src/steam/SteamClient.cs:525
+#: ../src/steam/SteamClient.cs:532
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr "Steam işlemi zaman aşımına uğradı, lütfen tekrar dene"
 
-#: ../src/steam/SteamClient.cs:527
+#: ../src/steam/SteamClient.cs:534
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr "Steam'e giriş yapılmadı"
 
-#: ../src/steam/SteamClient.cs:529
+#: ../src/steam/SteamClient.cs:536
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr "Steam şu anda mevcut değil, lütfen tekrar dene"
 
-#: ../src/steam/SteamClient.cs:531
+#: ../src/steam/SteamClient.cs:538
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "Steam'e geçersiz parametre verildi"
 
-#: ../src/steam/SteamClient.cs:533
+#: ../src/steam/SteamClient.cs:540
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr "Steam bulut depolama kotası ya da dosya büyüklüğü sınırı aşıldı"
 
-#: ../src/steam/SteamClient.cs:535
+#: ../src/steam/SteamClient.cs:542
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr "Dosya bulunamadı"
 
-#: ../src/steam/SteamClient.cs:537
+#: ../src/steam/SteamClient.cs:544
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr "Steam, dosyanın zaten yüklendiğini bildirdi, lütfen yenile"
 
-#: ../src/steam/SteamClient.cs:539
+#: ../src/steam/SteamClient.cs:546
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "Steam, yinelenen ad hatası bildirdi"
 
-#: ../src/steam/SteamClient.cs:541
+#: ../src/steam/SteamClient.cs:548
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr "Yakın zamanda yapılan hesap değiştirmeden dolayı Steam hesabın şu anda salt okunur modda"
 
-#: ../src/steam/SteamClient.cs:543
+#: ../src/steam/SteamClient.cs:550
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "Steam hesabın, Thrive için bir lisansa sahip değil"
 
-#: ../src/steam/SteamClient.cs:545
+#: ../src/steam/SteamClient.cs:552
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr "Steam, UGC kilidi edinemedi"
 
-#: ../src/steam/SteamClient.cs:547
+#: ../src/steam/SteamClient.cs:554
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Bilinmeyen Steam hatası meydana geldi"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:238
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:301
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4336,7 +4337,7 @@ msgstr "Bilinmeyen Steam hatası meydana geldi"
 msgid "TUTORIAL"
 msgstr "Oyun Rehberi"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Mikrop Editörü'ne hoşgeldin.\n"
@@ -4347,7 +4348,7 @@ msgstr ""
 "\n"
 "Hazır olunca, sağ alttaki \"sonraki\" butonuna bas."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Bu arazi haritası.\n"
@@ -4358,7 +4359,7 @@ msgstr ""
 "\n"
 "Devam etmek için bir arazi seç."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Bu hücre editörü. Burada mutasyon puanları (MP) harcayarak türünü evrimleştirebilirsin. Her kuşak için en fazla 100 MP harcayabilirsin, bu yüzden kalanları biriktirmene gerek yok.\n"
@@ -4367,7 +4368,7 @@ msgstr ""
 "\n"
 "Devam etmek için soldaki panelden bir parça seç. Daha sonra, onu yerleştirmek için altıgenin yanına sol tıkla. A ve D tuşları (varsayılan) ile parçaları döndürebilirsin."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Organeller mevcut mutasyon sürecinde yerleştirilmediyse, onları kaldırmak MP'ye mal olur. Çünkü bu, türünde mutasyona neden olur.\n"
@@ -4378,7 +4379,7 @@ msgstr ""
 "\n"
 "Devam etmek için geri al butonuna bas."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Menüde parçalar seçerken, onların neler yaptığını anlamak için sağda beliren araç ipuçlarına dikkat et. Eğer onların işlevlerine dikkat etmezsen, parçaların faydadan çok zararı olur.\n"
@@ -4387,7 +4388,7 @@ msgstr ""
 "\n"
 "Devam etmek için yinele butonuna (geri al butonunun yanında) bas."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:267
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Bunlar türünü düzenlerken bilmen gereken temel hususlar. Son olarak, sol alttaki isme tıklayıp metni düzenleyerek türünü yeniden adlandırabilirsin.\n"
@@ -4398,11 +4399,11 @@ msgstr ""
 "\n"
 "Bol şans!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
 msgid "GOT_IT"
 msgstr "Anladım"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Bu panel, senin gelecekteki popülasyonuna ait tahminleri gösterir. Bu rakamlar, oto-evrimin popülasyon simülasyonundan gelir.\n"
@@ -4413,7 +4414,7 @@ msgstr ""
 "\n"
 "Paneldeki soru işaretli butona basarak oto-evrim tahmininin ardındaki detaylı bilgiyi inceleyebilirsin. Devam etmek için bu butona bas."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Bir ya da iki enerji kaynağına odaklanmalısın. Böylece hayatta kalmak için, bütün kaynaklara birden ihtiyaç duymadan, yeterli ATP üretebilirsin.\n"
@@ -4497,6 +4498,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Şimdi İncele"
+
+#~ msgid "AUTO"
+#~ msgstr "Otomatik"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Yükleniyor..."
