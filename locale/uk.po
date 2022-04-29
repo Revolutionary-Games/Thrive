@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-27 00:01-0700\n"
+"POT-Creation-Date: 2022-04-29 09:17+0300\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -1503,7 +1503,7 @@ msgstr "Малюнок від {0}"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1304
 #: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:392
 msgid "CLOSE"
 msgstr "Закрити"
 
@@ -1603,19 +1603,24 @@ msgstr "Помилка завантаження модифікації"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Виникла помилка коли завантажувалися кілька модифікацій. Додаткова інформація міститься у журналах."
 
-#: ../src/general/OptionsMenu.cs:900
+#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
+#, fuzzy
+msgid "AUTO_RESOLUTION"
+msgstr "Резолюції:"
+
+#: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Пристрій виведення за замовчуванням"
 
-#: ../src/general/OptionsMenu.cs:932
+#: ../src/general/OptionsMenu.cs:956
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Цей переклад дуже неповний ({0}% готово), буь-ласка допоможіть виправити ця ситуацію!!!"
 
-#: ../src/general/OptionsMenu.cs:936
+#: ../src/general/OptionsMenu.cs:960
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Прогрес перекладу на цю мову зараз солов'їну ({0}% готово)"
 
-#: ../src/general/OptionsMenu.cs:940
+#: ../src/general/OptionsMenu.cs:964
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Ця мова на {0}% готова"
 
@@ -1678,10 +1683,6 @@ msgstr "16х"
 #: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
 msgstr "Резолюції:"
-
-#: ../src/general/OptionsMenu.tscn:290
-msgid "AUTO"
-msgstr "Авто"
 
 #: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
@@ -3087,28 +3088,28 @@ msgstr "Розсіяні"
 msgid "FOCUSED"
 msgstr "Зосереджені"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:199
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:195
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
 msgid "ATP_PRODUCTION"
 msgstr "Продукування АТф"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:201
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "Продукування АТФ вкрай мала!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:229
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:230
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:249
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:250
 msgid "OSMOREGULATION"
 msgstr "Осморегуляція"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:255
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:256
 msgid "BASE_MOVEMENT"
 msgstr "Базова швидкість"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:267
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
@@ -4275,14 +4276,14 @@ msgstr "Steam не вдалося отримати блокування UGC"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Сталася невідома помилка Steam"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:238
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:301
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4294,7 +4295,7 @@ msgstr "Сталася невідома помилка Steam"
 msgid "TUTORIAL"
 msgstr "Туторіал"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Ласкаво просимо до мікробного редактору.\n"
@@ -4305,7 +4306,7 @@ msgstr ""
 "\n"
 "Перейдіть в наступну вкладку редактора, натиснувши кнопку \"Далі\" справа знизу."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Це мапа ділянок.\n"
@@ -4318,7 +4319,7 @@ msgstr ""
 "\n"
 "Виберіть ділянку, щоб продовжити."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Це клітинний редактор, де ви можете розвивати свій вид, використовуючи мутаційні очки (МО). Щоразу розмножившись ви отримуєте по 100 МО, для витрат, тому не варто накопичувати.\n"
@@ -4327,7 +4328,7 @@ msgstr ""
 "\n"
 "Щоб продовжити виберіть частину панелі зліва. Потім ЛКМ клацніть по гексові, щоб розмістити його. Ви можете обертати частини за допомогою А та D (клавіші за замовчуванням)."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Видалення органел також коштує МО, бо це мутація вашого виду, якщо вони не були в цьому місці редактора.\n"
@@ -4338,7 +4339,7 @@ msgstr ""
 "\n"
 "Натисніть кнопку скасування, щоб продовжити."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Коли обираєте частини для додавання, зверніть увагу на спливаючі підказки, щоб зрозуміти, що вони роблять. Частини можуть принести більше шкоди, аніж користі, неуважно ставлячись до їхніх функцій.\n"
@@ -4347,7 +4348,7 @@ msgstr ""
 "\n"
 "Натисніть кнопку повтору продовжити (поруч з кнопкою скасувати), аби продовжити."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:267
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Це основи редагування вашого виду. В ролі останього штриха ви можете перейменувати свій вид клацнувши по назві знизу зліва та відредагуйте текст.\n"
@@ -4358,11 +4359,11 @@ msgstr ""
 "\n"
 "Щасливо!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
 msgid "GOT_IT"
 msgstr "Зрозуміло"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Ця панель показує прогноз майбутнього вашої популяції. Ці цифри отримані з моделювання популяції авто-ево.\n"
@@ -4373,7 +4374,7 @@ msgstr ""
 "\n"
 "Ви можете переглянути більш детальну інформацію про прогноз, натиснувши кнопку зі знаком питання на панелі. Натисніть її, щоб продовжити."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Ви повинні зосередитися на одному-двох джерелах енергії, щоб вам не потрібно було мати всі ресурси для вироблення достатньої кількості АТФ для виживання.\n"
@@ -4457,6 +4458,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Переглянути зараз"
+
+#~ msgid "AUTO"
+#~ msgstr "Авто"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Завантаження..."

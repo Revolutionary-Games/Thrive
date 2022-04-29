@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-27 00:01-0700\n"
-"PO-Revision-Date: 2022-04-21 11:13+0300\n"
+"POT-Creation-Date: 2022-04-29 09:17+0300\n"
+"PO-Revision-Date: 2022-04-28 19:35-0400\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1518,7 +1518,7 @@ msgstr "Art by {0}"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1304
 #: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:392
 msgid "CLOSE"
 msgstr "Close"
 
@@ -1618,19 +1618,23 @@ msgstr "Mod Loading Errors"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Errors occurred when loading one or more mods. Logs may contain additional information."
 
-#: ../src/general/OptionsMenu.cs:900
+#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
+msgid "AUTO_RESOLUTION"
+msgstr "AUTO({0}x{1})"
+
+#: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Default output device"
 
-#: ../src/general/OptionsMenu.cs:932
+#: ../src/general/OptionsMenu.cs:956
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "This translation is very incomplete ({0}% done) please help us with it!"
 
-#: ../src/general/OptionsMenu.cs:936
+#: ../src/general/OptionsMenu.cs:960
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "This language is still a work in progress ({0}% complete)"
 
-#: ../src/general/OptionsMenu.cs:940
+#: ../src/general/OptionsMenu.cs:964
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "This language is {0}% complete"
 
@@ -1693,10 +1697,6 @@ msgstr "16x"
 #: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
 msgstr "Resolution:"
-
-#: ../src/general/OptionsMenu.tscn:290
-msgid "AUTO"
-msgstr "Auto"
 
 #: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
@@ -3102,28 +3102,28 @@ msgstr "Responsive"
 msgid "FOCUSED"
 msgstr "Focused"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:194
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:199
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:195
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
 msgid "ATP_PRODUCTION"
 msgstr "ATP Production"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:201
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUCTION TOO LOW!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:229
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:230
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:249
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:250
 msgid "OSMOREGULATION"
 msgstr "Osmoregulation"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:255
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:256
 msgid "BASE_MOVEMENT"
 msgstr "Base Movement"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:267
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -4290,14 +4290,14 @@ msgstr "Steam failed to acquire UGC lock"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Unknown Steam error happened"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:238
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:301
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4309,7 +4309,7 @@ msgstr "Unknown Steam error happened"
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Welcome to the Microbe Editor.\n"
@@ -4320,7 +4320,7 @@ msgstr ""
 "\n"
 "When you are ready, press the \"next\" button in the bottom right to continue."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "This is the patch map.\n"
@@ -4331,7 +4331,7 @@ msgstr ""
 "\n"
 "Try selecting a patch to continue."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "This is the cell editor where you can evolve your species by spending mutation points (MP). Each generation you will always have 100 MP to spend, so don't bother saving up!\n"
@@ -4340,7 +4340,7 @@ msgstr ""
 "\n"
 "To continue, select a part from the left panel. Then left-click next to the hex to place it. You can rotate parts with A and D (default keys)."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Removing organelles also costs MP as it is a mutation to your species, unless they were placed in the current editor session. \n"
@@ -4351,7 +4351,7 @@ msgstr ""
 "\n"
 "Click the undo button to continue."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "When selecting parts in the menu, pay close attention to the tooltips that pop up to understand what they do. Parts can do more harm than good if you are not considerate of their function.\n"
@@ -4360,7 +4360,7 @@ msgstr ""
 "\n"
 "Press the redo button (next to the undo button) to continue."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:267
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Those are the basics of editing your species. As a finishing touch, you can rename your species by clicking on the name on the bottom left and editing the text.\n"
@@ -4371,11 +4371,11 @@ msgstr ""
 "\n"
 "Good luck!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
 msgid "GOT_IT"
 msgstr "Got it"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "This panel shows a prediction of your future population. These numbers are from the population simulation of auto-evo.\n"
@@ -4386,7 +4386,7 @@ msgstr ""
 "\n"
 "You can view more detailed information behind the prediction by pressing the question mark button in the panel. Press it to continue."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "You should focus on specialization to survive on one or two energy sources so that you don't require many different resources at once to sustain yourself.\n"
@@ -4470,6 +4470,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "View Now"
+
+#~ msgid "AUTO"
+#~ msgstr "Auto"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Loading..."
