@@ -30,6 +30,7 @@ public class OrganellePopupMenu : PopupPanel
     private bool enableDelete = true;
     private bool enableMove = true;
     private bool enableModify;
+    private float editorCostFactor = 1f;
 
     [Signal]
     public delegate void DeletePressed();
@@ -39,6 +40,12 @@ public class OrganellePopupMenu : PopupPanel
 
     [Signal]
     public delegate void ModifyPressed();
+
+    public float EditorCostFactor
+    {
+        get => editorCostFactor;
+        set => editorCostFactor = value;
+    }
 
     public bool ShowPopup
     {
@@ -232,12 +239,14 @@ public class OrganellePopupMenu : PopupPanel
             return;
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
+        int organelleMPCost = (int)(SelectedOrganelle.Definition.MPCost * editorCostFactor);
+        int organelleRemoveCost = (int)(Constants.ORGANELLE_REMOVE_COST * editorCostFactor);
 
         mpLabel.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("MP_COST"),
             SelectedOrganelle is { PlacedThisSession: true } ?
-                "+" + SelectedOrganelle.Definition.MPCost :
-                "-" + Constants.ORGANELLE_REMOVE_COST);
+                "+" + organelleMPCost :
+                "-" + organelleRemoveCost);
 
         deleteButton.Disabled = !EnableDeleteOption;
     }
@@ -248,12 +257,13 @@ public class OrganellePopupMenu : PopupPanel
             return;
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
+        int organelleMoveCost = (int)(Constants.ORGANELLE_MOVE_COST * editorCostFactor);
 
         // The organelle is free to move if it was added (placed) this session or already moved this session
         bool isFreeToMove = SelectedOrganelle.MovedThisSession || SelectedOrganelle.PlacedThisSession;
         mpLabel.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("MP_COST"),
-            isFreeToMove ? "-0" : "-" + Constants.ORGANELLE_MOVE_COST.ToString(CultureInfo.CurrentCulture));
+            isFreeToMove ? "-0" : "-" + organelleMoveCost.ToString(CultureInfo.CurrentCulture));
 
         moveButton.Disabled = !EnableMoveOption;
     }

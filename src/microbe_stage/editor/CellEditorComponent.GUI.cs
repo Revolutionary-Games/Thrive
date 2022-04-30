@@ -121,7 +121,8 @@ public partial class CellEditorComponent
 
     private void UpdateRigiditySliderState(int mutationPoints)
     {
-        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP && MovingPlacedHex == null)
+        int costPerStep = (int)(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * editorCostFactor);
+        if (mutationPoints >= costPerStep && MovingPlacedHex == null)
         {
             rigiditySlider.Editable = true;
         }
@@ -178,6 +179,28 @@ public partial class CellEditorComponent
                 SimulationParameters.Instance.GetOrganelleType(organelle).InternalName, "organelleSelection");
 
             tooltip?.WriteOrganelleProcessList(organelleEfficiency[organelle].Processes);
+        }
+    }
+
+    /// <summary>
+    ///   Updates the MP costs in organelle menu tooltips by setting the cost factor for each one
+    /// </summary>
+    private void UpdateTooltipMPCostFactors()
+    {
+        var organelles = SimulationParameters.Instance.GetAllOrganelles();
+
+        foreach (var organelle in organelles)
+        {
+            string name = organelle.InternalName;
+
+            if (name == protoplasm.InternalName)
+                continue;
+
+            var tooltip = (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(
+                SimulationParameters.Instance.GetOrganelleType(name).InternalName, "organelleSelection");
+
+            if (tooltip != null)
+                tooltip.EditorCostFactor = editorCostFactor;
         }
     }
 
@@ -316,14 +339,14 @@ public partial class CellEditorComponent
         foreach (var entry in placeablePartSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = entry.Key.MPCost;
+            entry.Value.MPCost = (int)(entry.Key.MPCost * editorCostFactor);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
 
         foreach (var entry in membraneSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = entry.Key.EditorCost;
+            entry.Value.MPCost = (int)(entry.Key.EditorCost * editorCostFactor);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
     }

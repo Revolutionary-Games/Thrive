@@ -48,6 +48,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private string? description;
     private string processesDescription = string.Empty;
     private int mpCost;
+    private float editorCostFactor = 1f;
 
     [Export]
     public string DisplayName
@@ -98,6 +99,17 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         set
         {
             mpCost = value;
+            UpdateMpCost();
+        }
+    }
+
+    [Export]
+    public float EditorCostFactor
+    {
+        get => editorCostFactor;
+        set
+        {
+            editorCostFactor = value;
             UpdateMpCost();
         }
     }
@@ -291,7 +303,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (mpLabel == null)
             return;
 
-        mpLabel.Text = MutationPointCost.ToString(CultureInfo.CurrentCulture);
+        int mpDisplay = (int)(mpCost * editorCostFactor);
+        mpLabel.Text = mpDisplay.ToString(CultureInfo.CurrentCulture);
     }
 
     private void UpdateLists()
