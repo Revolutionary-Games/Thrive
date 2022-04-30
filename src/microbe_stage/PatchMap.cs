@@ -363,11 +363,11 @@ public class PatchMap
         }
     }
 
-    public void BuildPatchesInRegions()
+    public void BuildPatchesInRegions(Random random)
     {
         foreach(var region in Regions)
         {
-            region.Value.BuildPatches();
+            region.Value.BuildPatches(random);
             foreach (var patch in region.Value.Patches)
             {
                 AddPatch(patch);
@@ -375,15 +375,28 @@ public class PatchMap
             }
         }
 
+    }
+
+    public void BuildPatchesInSpecialRegions(Random random)
+    {
+        
         foreach(var region in SpecialRegions)
         {   
-            region.Value.BuildPatches();
+            region.Value.BuildPatches(random);
             foreach (var patch in region.Value.Patches)
             {
                 AddPatch(patch);
                 CurrentPatch = patch;
             }
 
+        }
+    }
+
+    public void ConnectPatchesBetweenRegions(Random random)
+    {
+        foreach(var region in Regions)
+        {
+            region.Value.ConnectPatchesBetweenRegions(random);
         }
     }
 }

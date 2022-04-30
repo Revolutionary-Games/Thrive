@@ -117,10 +117,13 @@ public class PatchMapDrawer : Control
 
             foreach (var adjacent in region.Adjacent)
             {
-                var start = RegionCenter(region);
-                var end = RegionCenter(adjacent);
+                if (adjacent.ID >= 0)
+                {
+                    var start = RegionCenter(region);
+                    var end = RegionCenter(adjacent);
 
-                DrawNodeLink(start, end);
+                    DrawNodeLink(start, end);
+                }
             }
         }
 
@@ -129,13 +132,6 @@ public class PatchMapDrawer : Control
             var region = entry.Value;
             DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)), new Color(0f, 0.7f, 0.5f, 0.7f), false, 4f);
 
-            foreach (var adjacent in region.Adjacent)
-            {
-                var start = RegionCenter(region);
-                var end = RegionCenter(adjacent);
-
-                DrawNodeLink(start, end);
-            }
         }
 
         // This ends up drawing duplicates but that doesn't seem problematic ATM

@@ -49,40 +49,42 @@ public class PatchRegion
         Patches.Add(patch);
     }
 
-    public void BuildPatches()
+    public void BuildPatches(Random random)
     {
-        Patches.Sort((x,y) => x.Depth[1].CompareTo(y.Depth[1]));
-        if (RegionType != "continent" && Patches.Count == 5)
-        {
-            Patches.Add(Patches[Patches.Count - 2]);
-            Patches.RemoveAt(Patches.Count - 3);
-        }
 
         // Patch linking first
-        for (int i = 0; i < Patches.Count - 1; i++)
+        if ( RegionType == "sea" || RegionType == "ocean" || RegionType == "continent")
         {
-            if (RegionType == "sea" || RegionType == "ocean")
+            for (int i = 0; i < Patches.Count - 1; i++)
             {
-                LinkPatches(Patches[i], Patches[i+1]);
-            }
-
-            if (RegionType == "continent")
-            {
-                for (int j = 0; j < Patches.Count; j++)
+                if (RegionType == "sea" || RegionType == "ocean")
                 {
-                    if (j != i)
-                    {
-                        LinkPatches(Patches[i], Patches[j]);
-                    }
+                    LinkPatches(Patches[i], Patches[i+1]);
+                    
                 }
 
+                if (RegionType == "continent")
+                {
+                    for (int j = 0; j < Patches.Count; j++)
+                    {
+                        if (j != i)
+                        {
+                            LinkPatches(Patches[i], Patches[j]);
+                        }
+                    }
+                }
             }
+
+
         }
-        if (RegionType == "vents" || RegionType == "underwatercave")
+
+        if (RegionType == "vents")
         {
-            foreach (var adjacent in Adjacent)
-                LinkPatches(Patches[0], adjacent.Patches[adjacent.Patches.Count - 1]);
+            var adjacent = Adjacent.First();
+            LinkPatches(Patches[0], adjacent.Patches[adjacent.Patches.Count - 1]);
         }
+
+
 
         // Patches position configuration
         for (int i = 0; i < Patches.Count; i++)
@@ -138,11 +140,79 @@ public class PatchRegion
         }
         if (RegionType == "vents")
         {
-            foreach (var adjacent in Adjacent)
-                ScreenCoordinates = adjacent.ScreenCoordinates + new Vector2(0, adjacent.Height) + new Vector2 (0, 20);
             Height = Width = 64 + 2 * PatchMargin;
+
+            var adjacent = Adjacent.First();
+            ScreenCoordinates = adjacent.ScreenCoordinates + new Vector2(0, adjacent.Height) + new Vector2(0, 20);
+            
+        }
+        if (RegionType == "underwatercave")
+        {
+            Height = Width = 64 + 2 * PatchMargin;
+
+            var adjacent = Adjacent.First();
+            var adjacentPatch = Patches[0].Adjacent.First();
+            if (adjacent.RegionType == "sea" || adjacent.RegionType == "ocean")
+            {
+                ScreenCoordinates = adjacent.ScreenCoordinates + new Vector2(adjacent.Width, adjacent.Patches.IndexOf(adjacentPatch) * 
+                    (64f + PatchMargin)) + new Vector2 (20, 0);
+            }
+            if (adjacent.RegionType == "continent")
+            {
+                var leftSide = adjacent.ScreenCoordinates -  new Vector2(Width, 0) -new Vector2(20, 0);
+                var rightSide = adjacent.ScreenCoordinates + new Vector2(adjacent.Width, 0) + new Vector2(20, 0);
+                var leftDist = (adjacentPatch.ScreenCoordinates - leftSide).Length();
+                var rightDist = (adjacentPatch.ScreenCoordinates - rightSide).Length();
+                if (leftDist < rightDist)
+                {
+                    ScreenCoordinates = leftSide;
+                }
+                else
+                {
+                    ScreenCoordinates = rightSide;
+                }
+
+                ScreenCoordinates = new Vector2(ScreenCoordinates.x, adjacentPatch.ScreenCoordinates.y - PatchMargin);
+            }
+            
         }
 
+    }
+
+    public void ConnectPatchesBetweenRegions(Random random)
+    {
+            if (RegionType == "ocean" || RegionType == "sea")
+            {
+                foreach (var adjacent in Adjacent)
+                {
+                    GD.Print(adjacent.RegionType);
+                    if (adjacent.RegionType == "continent")
+                    {   
+                        var patchIndex = random.Next(0, adjacent.Patches.Count - 1);
+                        LinkPatches(Patches[0], adjacent.Patches[patchIndex]);
+                    }
+                    if (adjacent.RegionType == "sea" || adjacent.RegionType == "ocean")
+                    {
+                        int lowestConnectedLevel = Patches.Count;
+                        lowestConnectedLevel = Math.Min(Patches.Count, adjacent.Patches.Count);
+                        lowestConnectedLevel = random.Next(0, lowestConnectedLevel - 1);
+                        GD.Print(lowestConnectedLevel);
+                        for (int i = 0; i <= lowestConnectedLevel; i++)
+                            LinkPatches(Patches[i], adjacent.Patches[i]);
+                    }
+                }
+            }
+
+            if (RegionType == "continent")
+            {
+                foreach (var adjacent in Adjacent)
+                    if (adjacent.RegionType == "continent")
+                    {
+                        var maxIndex = Math.Min(Patches.Count, adjacent.Patches.Count);
+                        var patchIndex = random.Next(0, maxIndex);
+                        LinkPatches(Patches[patchIndex], adjacent.Patches[patchIndex]);
+                    }
+            }
     }
 
     private void LinkPatches(Patch patch1, Patch patch2)

@@ -28,7 +28,7 @@ public static class PatchMapGenerator
         int [,] graph = new int [100,100];
         int vertexNr = random.Next(6,10);
         int edgeNr = random.Next(vertexNr , 2*vertexNr - 4);
-        int minDistance = 20;
+        int minDistance = 100;
         
         var currentPatchId = 0;
         var specialRegionsId = -1;
@@ -92,16 +92,16 @@ public static class PatchMapGenerator
                     patch = GetPatchFromPredefinedMap(9, currentPatchId++, predefinedMap, areaName);
                 region.AddPatch(patch);
 
-                patch = GetPatchFromPredefinedMap(7, currentPatchId++, predefinedMap, areaName);
-                region.AddPatch(patch);
 
-                while (numberOfPatches > 0)
+                for (int patchIndex = 4; numberOfPatches > 0 && patchIndex < 7; patchIndex ++, numberOfPatches--)
                 {
-                    var patchIndex = 3 + numberOfPatches;
                     patch = GetPatchFromPredefinedMap(patchIndex, currentPatchId++, predefinedMap, areaName);
                     region.AddPatch(patch);
-                    numberOfPatches--;
                 }
+
+                // Add the seafloor last
+                patch = GetPatchFromPredefinedMap(7, currentPatchId++, predefinedMap, areaName);
+                region.AddPatch(patch);
 
                 // Chance to add a vent region if this region were adding is an ocean one
                 if (random.Next(0,2) == 1)
@@ -113,6 +113,21 @@ public static class PatchMapGenerator
                     LinkRegions(ventRegion, region);
                 }
             }
+
+            // Random chance to create a cave
+            if (random.Next(0, 2) == 1)
+            {
+                var caveRegion = new PatchRegion(specialRegionsId--,  GetPatchLocalizedName(continentName, "underwatercave"), "underwatercave", coord);
+                var cavePatch = GetPatchFromPredefinedMap(8, currentPatchId++, predefinedMap, areaName);
+                caveRegion.AddPatch(cavePatch);
+                map.AddSpecialRegion(caveRegion);
+                LinkRegions(caveRegion, region);
+
+                // Chose one random patch from the region to be linked to the underwater cave
+                var patchIndex = random.Next(0, region.Patches.Count - 1);
+                LinkPatches(cavePatch, region.Patches[patchIndex]);
+            }
+
             region.BuildRegion();
             coord = GenerateCoordinates(region, map, random, minDistance);
 
@@ -122,9 +137,10 @@ public static class PatchMapGenerator
             map.AddRegion(region);
         }
 
-        // After building the normal regions we build the special ones and the patches in all regions
+        // After building the normal regions we build the special ones and the patches
+        map.BuildPatchesInRegions(random);
         map.BuildSpecialRegions();
-        map.BuildPatchesInRegions();
+        map.BuildPatchesInSpecialRegions(random);
 
         // We make the graph by substracting edges from its Delaunay Triangulation 
         // as long as the graph stays connected.
@@ -162,7 +178,8 @@ public static class PatchMapGenerator
             for (int l = 0; l < vertexNr; l++)
                 if(graph[l,k] == 1)
                     LinkRegions(map.Regions[k], map.Regions[l]);
-
+        
+        map.ConnectPatchesBetweenRegions(random);
         return map;
     }
 
@@ -266,8 +283,8 @@ public static class PatchMapGenerator
 
     private static Vector2 GenerateCoordinates(PatchRegion region, PatchMap map, Random random, int minDistance)
     {
-            int x = random.Next(20,900);
-            int y = random.Next(20,900);
+            int x = random.Next(80,1200);
+            int y = random.Next(80,1200);
             var coord = new Vector2(x,y);
             region.ScreenCoordinates = coord;
             
@@ -276,8 +293,8 @@ public static class PatchMapGenerator
             while (!check)
             {
                 GD.Print(coord);
-                x = random.Next(20,900);
-                y = random.Next(20,900);
+                x = random.Next(80,1200);
+                y = random.Next(80,1200);
                 coord = new Vector2(x,y);
                 region.ScreenCoordinates = coord;
                 check = CheckRegionDistance(region, map, minDistance);
