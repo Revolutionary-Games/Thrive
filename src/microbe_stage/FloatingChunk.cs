@@ -236,8 +236,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
             if (particleFadeTimer <= 0)
             {
-                OnDestroyed();
-                this.DetachAndFree();
+                this.DestroyDetachAndQueueFree();
             }
         }
 
@@ -331,8 +330,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             }
         }
 
-        OnDestroyed();
-        this.DetachAndFree();
+        this.DestroyDetachAndQueueFree();
     }
 
     public void OnDestroyed()
