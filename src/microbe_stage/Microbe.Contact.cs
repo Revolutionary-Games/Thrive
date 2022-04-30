@@ -76,6 +76,11 @@ public partial class Microbe
     [JsonProperty]
     private bool deathParticlesSpawned;
 
+    /// <summary>
+    ///   Used to log just once when the touched microbe disposed issue happens to reduce log spam
+    /// </summary>
+    private bool loggedTouchedDisposeIssue;
+
     [JsonProperty]
     private MicrobeState state;
 
@@ -355,7 +360,12 @@ public partial class Microbe
         }
         catch (ObjectDisposedException)
         {
-            GD.PrintErr("Touched microbe has been disposed before engulfing could start");
+            if (!loggedTouchedDisposeIssue)
+            {
+                GD.PrintErr("Touched microbe has been disposed before engulfing could start");
+                loggedTouchedDisposeIssue = true;
+            }
+
             return false;
         }
 
