@@ -22,15 +22,15 @@ public class MovementComponent : ExternallyPositionedComponent
         Torque = torque;
     }
 
-    public override void Update(float elapsed)
+    public override void UpdateAsync(float delta)
     {
         // Visual positioning code
-        base.Update(elapsed);
+        base.UpdateAsync(delta);
 
         // Movement force
         var microbe = organelle!.ParentMicrobe!;
 
-        var movement = CalculateMovementForce(microbe, elapsed);
+        var movement = CalculateMovementForce(microbe, delta);
 
         if (movement != new Vector3(0, 0, 0))
             microbe.AddMovementForce(movement);
