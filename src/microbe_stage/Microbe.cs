@@ -24,9 +24,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     public Vector3 MovementDirection = new(0, 0, 0);
 
+#pragma warning disable CA2213
     private HybridAudioPlayer engulfAudio = null!;
     private HybridAudioPlayer bindingAudio = null!;
     private HybridAudioPlayer movementAudio = null!;
+#pragma warning restore CA2213
     private List<AudioStreamPlayer3D> otherAudioPlayers = new();
     private List<AudioStreamPlayer> nonPositionalAudioPlayers = new();
 
@@ -34,6 +36,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     ///   Init can call _Ready if it hasn't been called yet
     /// </summary>
     private bool onReadyCalled;
+
+    private bool disposed;
 
     /// <summary>
     ///   We need to know when we should process ourselves or we are ran through <see cref="MicrobeSystem"/>.
@@ -74,7 +78,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// <summary>
     ///   3d audio listener attached to this microbe if it is the player owned one.
     /// </summary>
+#pragma warning disable CA2213
     private Listener? listener;
+#pragma warning restore CA2213
 
     private MicrobeSpecies? cachedMicrobeSpecies;
     private EarlyMulticellularSpecies? cachedMulticellularSpecies;
@@ -794,6 +800,15 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             throw new InvalidOperationException("Scale can only be overridden for preview microbes");
 
         ApplyScale(new Vector3(scale, scale, scale));
+    }
+
+    /// <summary>
+    ///   Get informed of disposed state, so that we won't need to check by using Godot call.
+    /// </summary>
+    protected override void Dispose(bool disposing)
+    {
+        disposed = true;
+        base.Dispose(disposing);
     }
 
     /// <summary>
