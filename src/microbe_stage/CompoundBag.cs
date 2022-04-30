@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -150,7 +151,7 @@ public class CompoundBag : ICompoundStorage
 
         foreach (var entry in nan)
         {
-            // GD.PrintErr("Detected compound amount of ", entry.Key, " to be NaN. Setting amount to 0.");
+            GD.PrintErr("Detected compound amount of ", entry.Key, " to be NaN. Setting amount to 0.");
             Compounds[entry.Key] = 0;
         }
     }
