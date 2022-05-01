@@ -11,9 +11,7 @@ using Newtonsoft.Json;
 /// </summary>
 public partial class Microbe
 {
-#pragma warning disable CA2213
     private SphereShape engulfShape = null!;
-#pragma warning restore CA2213
 
     /// <summary>
     ///   Contains the pili this microbe has for collision checking
@@ -73,9 +71,7 @@ public partial class Microbe
     [JsonProperty]
     private int flashPriority;
 
-#pragma warning disable CA2213
     private PackedScene cellBurstEffectScene = null!;
-#pragma warning restore CA2213
 
     [JsonProperty]
     private bool deathParticlesSpawned;
@@ -356,7 +352,13 @@ public partial class Microbe
     public bool CanEngulf(Microbe target)
     {
         // Log error if trying to engulf something that is disposed, we got a crash log trace with an error with that
-        if (target.disposed)
+        // TODO: find out why disposed microbes can be attempted to be engulfed
+        try
+        {
+            // Access a Godot property to throw disposed exception
+            _ = target.GlobalTransform;
+        }
+        catch (ObjectDisposedException)
         {
             if (!loggedTouchedDisposeIssue)
             {
@@ -1230,11 +1232,17 @@ public partial class Microbe
 
         touchedMicrobes.Remove(other);
 
-        other.touchedMicrobes.Remove(this);
+        try
+        {
+            other.touchedMicrobes.Remove(this);
 
-        other.MovementDirection = Vector3.Zero;
+            other.MovementDirection = Vector3.Zero;
 
-        if (other.disposed)
+            // This should ensure that Godot side will not throw disposed exception in an unexpected place causing
+            // binding problems
+            _ = other.GlobalTransform;
+        }
+        catch (ObjectDisposedException)
         {
             GD.PrintErr("Touched eligible microbe has been disposed before binding could start");
             return;
@@ -1242,9 +1250,14 @@ public partial class Microbe
 
         // This is probably unnecessary, but I'd like to make sure we have proper logging if this condition is ever
         // reached -hhyyrylainen
-        if (disposed)
+        try
         {
-            GD.PrintErr("Microbe that should be bound to is disposed. This should never happen. Please report this. ");
+            _ = GlobalTransform;
+        }
+        catch (ObjectDisposedException e)
+        {
+            GD.PrintErr("Microbe that should be bound to is disposed. This should never happen. Please report this. ",
+                e);
             return;
         }
 
@@ -1277,13 +1290,6 @@ public partial class Microbe
     {
         if (State != MicrobeState.Engulf)
             return;
-
-        var disposedMicrobes = touchedMicrobes.Where(m => m.disposed).ToList();
-        foreach (var disposedMicrobe in disposedMicrobes)
-        {
-            touchedMicrobes.Remove(disposedMicrobe);
-            GD.Print($"Removed disposed microbe from {nameof(touchedMicrobes)}");
-        }
 
         // In the case that the microbe first comes into engulf range, we don't want to start engulfing yet
         // foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
