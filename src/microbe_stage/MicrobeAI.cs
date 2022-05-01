@@ -227,7 +227,7 @@ public class MicrobeAI
         var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).FirstOrDefault();
         if (player != null)
         {
-            if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 2)
+            if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 2.25f)
             {
                 MoveToLocation(player.GlobalTransform.origin);
                 return;
