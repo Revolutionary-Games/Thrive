@@ -275,12 +275,24 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     /// <summary>
     ///   Called by Microbe.Update
     /// </summary>
-    public void Update(float delta)
+    /// <param name="delta">Time since last call</param>
+    public void UpdateAsync(float delta)
+    {
+        foreach (var component in Components)
+        {
+            component.UpdateAsync(delta);
+        }
+    }
+
+    /// <summary>
+    ///   The part of update that is allowed to modify Godot resources
+    /// </summary>
+    public void UpdateSync()
     {
         // Update each OrganelleComponent
         foreach (var component in Components)
         {
-            component.Update(delta);
+            component.UpdateSync();
         }
 
         // If the organelle is supposed to be another color.
@@ -372,10 +384,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             var absorbed = amountTotal - amountLeft;
 
-            float alreadyInResult = 0;
-
-            if (result.ContainsKey(entry.Key))
-                alreadyInResult = result[entry.Key];
+            result.TryGetValue(entry.Key, out var alreadyInResult);
 
             result[entry.Key] = alreadyInResult + absorbed;
 

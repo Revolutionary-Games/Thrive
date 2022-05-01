@@ -281,6 +281,15 @@ Code style rules
 
 - Don't add a `Dispose` method to classes that don't need it.
 
+- Use `TryGetValue` instead of first calling `Dictionary.ContainsKey`
+  and then reading the value separate because `TryGetValue` is faster.
+
+- When trying to save Thrive-related objects as a member variable of a
+  class/interface (especially scene-based nodes) such as Microbe,
+  FloatingChunks, etc. you should put `[UseThriveSerializer]` attribute on
+  top of the class/interface so that they can be recognized by the Thrive
+  serializer and thus be deserialized accordingly.
+
 - Base method calls should be at the start of the method, unless
   something really has to happen before them. This is to make it
   easier see that the base method is called and not forgotten. Often
@@ -440,12 +449,6 @@ Godot usage
   an operation that may not be called before `_Ready` has ran, and it's
   a public method or can be triggered that way and someone might call it 
   too early.
-
-- When trying to save Thrive-related objects as a member variable of a
-  class/interface (especially scene-based nodes) such as Microbe,
-  FloatingChunks, etc. you should put `[UseThriveSerializer]` attribute on
-  top of the class/interface so that they can be recognized by the Thrive
-  serializer and thus be deserialized accordingly.
 
 - When using `GD.PrintErr` don't use string concatenation, use the
   multi argument form instead, for example: `GD.PrintErr("My value is:

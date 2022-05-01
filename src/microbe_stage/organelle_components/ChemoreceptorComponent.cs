@@ -11,9 +11,9 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     private float searchAmount;
     private Color lineColour = Colors.White;
 
-    public override void Update(float elapsed)
+    public override void UpdateAsync(float delta)
     {
-        base.Update(elapsed);
+        base.UpdateAsync(delta);
 
         organelle!.ParentMicrobe!.ReportActiveChemereception(targetCompound!, searchRange, searchAmount, lineColour);
     }

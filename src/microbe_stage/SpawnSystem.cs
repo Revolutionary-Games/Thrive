@@ -89,10 +89,9 @@ public class SpawnSystem
     /// <summary>
     ///   Adds an externally spawned entity to be despawned
     /// </summary>
-    public static void AddEntityToTrack(ISpawned entity,
-        float radius = Constants.MICROBE_SPAWN_RADIUS)
+    public static void AddEntityToTrack(ISpawned entity)
     {
-        entity.DespawnRadiusSquared = (int)(radius * radius) + Constants.DESPAWN_RADIUS_OFFSET_SQUARED;
+        entity.DespawnRadiusSquared = Constants.MICROBE_DESPAWN_RADIUS_SQUARED;
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
@@ -332,7 +331,7 @@ public class SpawnSystem
                         squaredDistance >= spawnType.MinSpawnRadiusSquared)
                     {
                         // Second condition passed. Spawn the entity.
-                        if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
+                        if (SpawnWithSpawner(spawnType, playerPosition + displacement, playerPosition, existing,
                                 ref spawnsLeftThisFrame, ref spawned))
                         {
                             estimateEntityCountInSpawnRadius += spawned;
@@ -356,10 +355,10 @@ public class SpawnSystem
     ///   Does a single spawn with a spawner
     /// </summary>
     /// <returns>True if we have exceeded the spawn limit and no further spawns should be done this frame</returns>
-    private bool SpawnWithSpawner(Spawner spawnType, Vector3 location, int existing, ref int spawnsLeftThisFrame,
-        ref int spawned)
+    private bool SpawnWithSpawner(Spawner spawnType, Vector3 location, Vector3 playerPosition, int existing,
+        ref int spawnsLeftThisFrame, ref int spawned)
     {
-        var enumerable = spawnType.Spawn(worldRoot, location);
+        var enumerable = spawnType.Spawn(worldRoot, location, playerPosition);
 
         if (enumerable == null)
             return false;
@@ -444,7 +443,8 @@ public class SpawnSystem
     /// </summary>
     private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
     {
-        entity.DespawnRadiusSquared = spawnType.SpawnRadiusSquared + Constants.DESPAWN_RADIUS_OFFSET_SQUARED;
+        float radius = spawnType.SpawnRadius + Constants.DESPAWN_RADIUS_OFFSET;
+        entity.DespawnRadiusSquared = (int)(radius * radius);
 
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }

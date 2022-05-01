@@ -26,9 +26,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     /// </summary>
     public string? ModelNodePath;
 
-    [JsonProperty]
-    private CompoundCloudSystem? compoundClouds;
-
     /// <summary>
     ///   Used to check if a microbe wants to engulf this
     /// </summary>
@@ -50,6 +47,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
 
     [JsonProperty]
     private bool isParticles;
+
+    [JsonProperty]
+    private float elapsedSinceProcess;
 
     public int DespawnRadiusSquared { get; set; }
 
@@ -145,10 +145,8 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     ///     Doesn't initialize the graphics scene which needs to be set separately
     ///   </para>
     /// </remarks>
-    public void Init(ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds, string? modelPath)
+    public void Init(ChunkConfiguration chunkType, string? modelPath)
     {
-        this.compoundClouds = compoundClouds;
-
         // Grab data
         VentPerSecond = chunkType.VentAmount;
         Dissolves = chunkType.Dissolves;
@@ -224,9 +222,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
 
     public override void _Ready()
     {
-        if (compoundClouds == null)
-            throw new InvalidOperationException("init hasn't been called on a FloatingChunk");
-
         var graphicsNode = GraphicsScene.Instance();
         GetNode("NodeToScale").AddChild(graphicsNode);
 
@@ -256,25 +251,36 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         InitPhysics();
     }
 
-    public override void _Process(float delta)
+    public void ProcessChunk(float delta, CompoundCloudSystem compoundClouds)
     {
-        if (compoundClouds == null)
-            throw new InvalidOperationException("FloatingChunk has not been initialized");
-
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
         if (IsIngested)
             return;
-
-        VentCompounds(delta);
 
         if (isDissolving)
             HandleDissolving(delta);
 
+        if (isFadingParticles)
+        {
+            particleFadeTimer -= delta;
+
+            if (particleFadeTimer <= 0)
+            {
+                this.DestroyDetachAndQueueFree();
+            }
+        }
+
+        elapsedSinceProcess += delta;
+
+        // Skip some of our more expensive operations if not enough time has passed
+        // This doesn't actually seem to have that much effect with reasonable chunk counts... but doesn't seem
+        // to hurt either, so for the future I think we should keep this -hhyyrylainen
+        if (elapsedSinceProcess < Constants.FLOATING_CHUNK_PROCESS_INTERVAL)
+            return;
+
+        VentCompounds(elapsedSinceProcess, compoundClouds);
+
         if (UsesDespawnTimer)
-            DespawnTimer += delta;
+            DespawnTimer += elapsedSinceProcess;
 
         // Check contacts
         foreach (var microbe in touchingMicrobes)
@@ -292,7 +298,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
                 }
                 else
                 {
-                    microbe.Damage(Damages * delta, DamageType);
+                    microbe.Damage(Damages * elapsedSinceProcess, DamageType);
                 }
             }
 
@@ -306,16 +312,30 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         if (DespawnTimer > Constants.DESPAWNING_CHUNK_LIFETIME)
             DissolveOrRemove();
 
-        if (isFadingParticles)
-        {
-            particleFadeTimer -= delta;
+        elapsedSinceProcess = 0;
+    }
 
-            if (particleFadeTimer <= 0)
+    public void PopImmediately(CompoundCloudSystem compoundClouds)
+    {
+        // Vent all remaining compounds immediately
+        if (ContainedCompounds != null)
+        {
+            var pos = Translation;
+
+            var keys = new List<Compound>(ContainedCompounds.Compounds.Keys);
+
+            foreach (var compound in keys)
             {
-                OnDestroyed();
-                this.DetachAndFree();
+                var amount = ContainedCompounds.GetCompoundAmount(compound);
+
+                if (amount < MathUtils.EPSILON)
+                    continue;
+
+                VentCompound(pos, compound, amount, compoundClouds);
             }
         }
+
+        this.DestroyDetachAndQueueFree();
     }
 
     public void OnDestroyed()
@@ -351,7 +371,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     /// <summary>
     ///   Vents compounds if this is a chunk that contains compounds
     /// </summary>
-    private void VentCompounds(float delta)
+    private void VentCompounds(float delta, CompoundCloudSystem compoundClouds)
     {
         if (ContainedCompounds == null)
             return;
@@ -373,7 +393,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
 
             if (got > MathUtils.EPSILON)
             {
-                VentCompound(pos, compound, got);
+                VentCompound(pos, compound, got, compoundClouds);
                 vented = true;
             }
         }
@@ -386,9 +406,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         }
     }
 
-    private void VentCompound(Vector3 pos, Compound compound, float amount)
+    private void VentCompound(Vector3 pos, Compound compound, float amount, CompoundCloudSystem compoundClouds)
     {
-        compoundClouds!.AddCloud(compound, amount * Constants.CHUNK_VENT_COMPOUND_MULTIPLIER, pos);
+        compoundClouds.AddCloud(compound, amount * Constants.CHUNK_VENT_COMPOUND_MULTIPLIER, pos);
     }
 
     /// <summary>
