@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-01 15:26+0800\n"
+"POT-Creation-Date: 2022-05-01 18:35+0800\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -1043,27 +1043,31 @@ msgstr "käitamise olek:"
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Valige redigeerija vahekaardil lahtri tüüp, mida siin redigeerida"
 
-#: ../src/engine/DebugPanel.tscn:26
+#: ../src/engine/DebugPanel.tscn:16
+msgid "DEBUG_PANEL"
+msgstr ""
+
+#: ../src/engine/DebugPanel.tscn:25
 #, fuzzy
 msgid "FPS_DISPLAY"
 msgstr "meediamäng"
 
-#: ../src/engine/DebugPanel.tscn:32
+#: ../src/engine/DebugPanel.tscn:31
 #, fuzzy
 msgid "PERFORMANCE_METRICS"
 msgstr "Esitus"
 
-#: ../src/engine/DebugPanel.tscn:38
+#: ../src/engine/DebugPanel.tscn:37
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/engine/DebugPanel.tscn:44
+#: ../src/engine/DebugPanel.tscn:43
 #, fuzzy
 msgid "ENTITY_LABEL"
 msgstr "biome: {0}"
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
-#: ../src/engine/PerformanceMetrics.tscn:62
+#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:65
+#: ../src/engine/PerformanceMetrics.tscn:61
 #, fuzzy
 msgid "FPS"
 msgstr "max FPS:"
@@ -1072,17 +1076,17 @@ msgstr "max FPS:"
 msgid "LOADING"
 msgstr "Laadimine"
 
-#: ../src/engine/PerformanceMetrics.cs:63
-#: ../src/engine/PerformanceMetrics.tscn:69
+#: ../src/engine/PerformanceMetrics.cs:66
+#: ../src/engine/PerformanceMetrics.tscn:68
 msgid "FRAME_DELTA"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.cs:77
-#: ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/PerformanceMetrics.cs:80
+#: ../src/engine/PerformanceMetrics.tscn:75
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.tscn:33
+#: ../src/engine/PerformanceMetrics.tscn:32
 #, fuzzy
 msgid "METRICS"
 msgstr "FPS-kuva sisse- ja väljalülitamine"
@@ -2808,15 +2812,15 @@ msgstr "N/A MP"
 msgid "DEATH"
 msgstr "surma"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:700
+#: ../src/microbe_stage/Microbe.Contact.cs:702
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "edukas pühkimine"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:707
+#: ../src/microbe_stage/Microbe.Contact.cs:709
 msgid "SUCCESSFUL_KILL"
 msgstr "edukas tapmine"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:945
+#: ../src/microbe_stage/Microbe.Contact.cs:947
 msgid "ESCAPE_ENGULFING"
 msgstr "neelamisest pääsemine"
 

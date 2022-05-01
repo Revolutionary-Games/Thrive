@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-01 15:26+0800\n"
+"POT-Creation-Date: 2022-05-01 18:35+0800\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -1048,27 +1048,31 @@ msgstr "Status działania:"
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Wybierz typ komórki do edytowania"
 
-#: ../src/engine/DebugPanel.tscn:26
+#: ../src/engine/DebugPanel.tscn:16
+msgid "DEBUG_PANEL"
+msgstr ""
+
+#: ../src/engine/DebugPanel.tscn:25
 #, fuzzy
 msgid "FPS_DISPLAY"
 msgstr "Odtwarzaniee mediów"
 
-#: ../src/engine/DebugPanel.tscn:32
+#: ../src/engine/DebugPanel.tscn:31
 #, fuzzy
 msgid "PERFORMANCE_METRICS"
 msgstr "Wydajność"
 
-#: ../src/engine/DebugPanel.tscn:38
+#: ../src/engine/DebugPanel.tscn:37
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/engine/DebugPanel.tscn:44
+#: ../src/engine/DebugPanel.tscn:43
 #, fuzzy
 msgid "ENTITY_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
-#: ../src/engine/PerformanceMetrics.tscn:62
+#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:65
+#: ../src/engine/PerformanceMetrics.tscn:61
 #, fuzzy
 msgid "FPS"
 msgstr "Maksymalna ilość klatek na sekundę:"
@@ -1077,17 +1081,17 @@ msgstr "Maksymalna ilość klatek na sekundę:"
 msgid "LOADING"
 msgstr "Wczytywanie"
 
-#: ../src/engine/PerformanceMetrics.cs:63
-#: ../src/engine/PerformanceMetrics.tscn:69
+#: ../src/engine/PerformanceMetrics.cs:66
+#: ../src/engine/PerformanceMetrics.tscn:68
 msgid "FRAME_DELTA"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.cs:77
-#: ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/PerformanceMetrics.cs:80
+#: ../src/engine/PerformanceMetrics.tscn:75
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.tscn:33
+#: ../src/engine/PerformanceMetrics.tscn:32
 msgid "METRICS"
 msgstr "Wskaźniki Wydajności"
 
@@ -2823,15 +2827,15 @@ msgstr "N/A MP"
 msgid "DEATH"
 msgstr "śmierć"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:700
+#: ../src/microbe_stage/Microbe.Contact.cs:702
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "Udane poszukiwanie"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:707
+#: ../src/microbe_stage/Microbe.Contact.cs:709
 msgid "SUCCESSFUL_KILL"
 msgstr "udane zabicie"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:945
+#: ../src/microbe_stage/Microbe.Contact.cs:947
 msgid "ESCAPE_ENGULFING"
 msgstr "Uniknij fagocytozy"
 
