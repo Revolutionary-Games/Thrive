@@ -102,8 +102,8 @@ public static class SpawnHelpers
     // TODO: this is likely a huge cause of lag. Would be nice to be able
     // to spawn these so that only one per tick is spawned.
     public static IEnumerable<Microbe> SpawnBacteriaColony(Species species, Vector3 location,
-        Vector3 playerPosition, Node worldRoot, PackedScene microbeScene,
-        CompoundCloudSystem cloudSystem, GameProperties currentGame, Random random)
+        Node worldRoot, PackedScene microbeScene, CompoundCloudSystem cloudSystem, GameProperties currentGame, 
+        Random random)
     {
         var locationOffset = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
@@ -234,7 +234,7 @@ public class MicrobeSpawner : Spawner
 
     public Species Species { get; }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, Vector3 playerPosition)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
         // The true here is that this is AI controlled
         var first = SpawnHelpers.SpawnMicrobe(Species, location, worldNode, microbeScene, true, cloudSystem,
@@ -252,7 +252,7 @@ public class MicrobeSpawner : Spawner
         // Just in case the is bacteria flag is not correct in a multicellular cell type, here's an extra safety check
         if (first.CellTypeProperties.IsBacteria && !first.IsMulticellular)
         {
-            foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(Species, location, playerPosition, worldNode,
+            foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(Species, location, worldNode,
                          microbeScene, cloudSystem, currentGame, random))
             {
                 yield return colonyMember;
@@ -279,7 +279,7 @@ public class CompoundCloudSpawner : Spawner
         this.amount = amount;
     }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, Vector3 playerPosition)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount);
 
@@ -303,7 +303,7 @@ public class ChunkSpawner : Spawner
         chunkScene = SpawnHelpers.LoadChunkScene();
     }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, Vector3 playerPosition)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
         var chunk = SpawnHelpers.SpawnChunk(chunkType, location, worldNode, chunkScene,
             random);
