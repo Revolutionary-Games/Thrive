@@ -4,7 +4,7 @@ using System.Linq;
 using Godot;
 using Nito.Collections;
 
-public class PerformanceMetrics : ControlWithInput
+public class PerformanceMetrics : Control
 {
     [Export]
     public NodePath DialogPath = null!;
@@ -121,7 +121,6 @@ public class PerformanceMetrics : ControlWithInput
         currentDespawned += newDespawns;
     }
 
-    [RunOnKeyToggle("toggle_metrics", OnlyUnhandled = false)]
     public void Toggle(bool state)
     {
         if (Visible == state)

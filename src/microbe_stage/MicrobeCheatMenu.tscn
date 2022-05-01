@@ -57,7 +57,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBoxContainer/Speed"]
-margin_right = 101.0
+margin_right = 100.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
 text = "PLAYER_SPEED"
@@ -66,7 +66,7 @@ __meta__ = {
 }
 
 [node name="SpeedSlider" type="HSlider" parent="VBoxContainer/Speed"]
-margin_left = 105.0
+margin_left = 104.0
 margin_right = 177.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
