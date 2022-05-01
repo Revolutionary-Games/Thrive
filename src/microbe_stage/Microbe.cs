@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Main script on each cell in the game.
 ///   Partial class: Init, _Ready, _Process,
-///   Processes, Species, Audio, Movement
+///   Processes, Species, Audio, Movement, Debugging
 /// </summary>
 [JsonObject(IsReference = true)]
 [JSONAlwaysDynamicType]
@@ -78,6 +78,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private MicrobeSpecies? cachedMicrobeSpecies;
     private EarlyMulticellularSpecies? cachedMulticellularSpecies;
+
+    private string internalName = null!;
+
+    private Label? nameLabel;
+
+    private Camera camera = null!;
 
     /// <summary>
     ///   The species of this microbe. It's mandatory to initialize this with <see cref="ApplySpecies"/> otherwise
@@ -371,6 +377,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             SetMembraneFromSpecies();
         }
 
+        DebugPanel.Instance.Connect(nameof(DebugPanel.ToggleEntityLabel), this, nameof(OnToggleEntityLabel));
+        nameLabel = new Label();
+        AddChild(nameLabel);
+        SetInternalName();
+        nameLabel.Text = internalName;
+        nameLabel.Visible = DebugPanel.ShowEntityLabel;
+
         onReadyCalled = true;
     }
 
@@ -383,6 +396,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         cachedMulticellularSpecies = null;
 
         Species = species;
+
+        SetInternalName();
+
+        if (nameLabel != null)
+            nameLabel.Text = internalName;
 
         if (species is MicrobeSpecies microbeSpecies)
         {
@@ -669,6 +687,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 OnReproductionStatus(this, true);
             }
         }
+
+        if (DebugPanel.ShowEntityLabel && nameLabel != null)
+        {
+            nameLabel.RectGlobalPosition = camera.UnprojectPosition(Transform.origin);
+        }
     }
 
     public override void _Process(float delta)
@@ -708,6 +731,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public override void _EnterTree()
     {
         base._EnterTree();
+
+        camera = GetNode<MicrobeCamera>("/root/MicrobeStage/World/PrimaryCamera");
 
         if (IsPlayerMicrobe)
             CheatManager.OnPlayerDuplicationCheatUsed += OnPlayerDuplicationCheat;
@@ -761,6 +786,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             // proper handling for this in the future.
             collisionForce += physicsState.GetContactImpulse(i);
         }
+    }
+
+    public override string ToString()
+    {
+        return internalName;
     }
 
     /// <summary>
@@ -1014,5 +1044,25 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         cachedHexCountDirty = false;
+    }
+
+    private void OnToggleEntityLabel()
+    {
+        if (nameLabel != null)
+        {
+            nameLabel.Text = internalName;
+            nameLabel.Visible = DebugPanel.ShowEntityLabel;
+        }
+    }
+
+    private void SetInternalName()
+    {
+        if (Species == null!)
+        {
+            internalName = base.ToString();
+            return;
+        }
+
+        internalName = $"[{Species.Genus[0]}.{Species.Epithet.Substring(0, 4)}: {GetInstanceId()}]";
     }
 }

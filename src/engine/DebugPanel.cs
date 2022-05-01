@@ -2,6 +2,10 @@
 
 public class DebugPanel : Control
 {
+    public static DebugPanel Instance = null!;
+
+    public static bool ShowEntityLabel;
+
     [Export]
     private NodePath fpsCheckBoxPath = null!;
 
@@ -18,6 +22,9 @@ public class DebugPanel : Control
     private FPSCounter fpsCounter = null!;
     private PerformanceMetrics performanceMetrics = null!;
 
+    [Signal]
+    public delegate void ToggleEntityLabel();
+
     public override void _Ready()
     {
         fpsCheckBox = GetNode<CustomCheckBox>(fpsCheckBoxPath);
@@ -27,6 +34,8 @@ public class DebugPanel : Control
         fpsCounter = GetNode<FPSCounter>("FPSCounter");
         performanceMetrics = GetNode<PerformanceMetrics>("PerformanceMetrics");
         performanceMetrics.Connect(nameof(PerformanceMetrics.OnHidden), this, nameof(OnPerformanceMetricsToggled));
+
+        Instance = this;
         base._Ready();
     }
 
@@ -85,6 +94,7 @@ public class DebugPanel : Control
 
     private void OnEntityLabelCheckBoxToggled(bool state)
     {
-        // TODO:
+        ShowEntityLabel = state;
+        EmitSignal(nameof(ToggleEntityLabel));
     }
 }
