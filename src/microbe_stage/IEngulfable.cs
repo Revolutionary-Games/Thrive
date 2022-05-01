@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+[UseThriveSerializer]
 public interface IEngulfable : IEntity
 {
     /// <summary>
@@ -10,6 +11,8 @@ public interface IEngulfable : IEntity
     public EntityReference<Microbe> HostileEngulfer { get; }
 
     public bool IsBeingEngulfed { get; set; }
+
+    public bool IsBeingIngested { get; set; }
 
     public bool IsIngested { get; set; }
 

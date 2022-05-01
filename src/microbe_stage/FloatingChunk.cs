@@ -115,6 +115,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     public bool IsBeingEngulfed { get; set; }
 
     [JsonProperty]
+    public bool IsBeingIngested { get; set; }
+
+    [JsonProperty]
     public bool IsIngested { get; set; }
 
     [JsonProperty]

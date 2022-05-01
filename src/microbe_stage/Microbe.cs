@@ -343,6 +343,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 }
             }
 
+            foreach (var engulfed in engulfedObjects)
+            {
+                AddChild(engulfed.Engulfable.EntityNode);
+            }
+
             // Need to re-attach our organelles
             foreach (var organelle in organelles)
                 OrganelleParent.AddChild(organelle);
@@ -518,9 +523,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             }
         }
 
-        // Disable membrane wigglyness if this cell got engulfed
-        if (IsIngested && Membrane.WigglyNess > 0)
+        // Disable membrane wigglyness and restore membrane color if this cell got engulfed
+        if (IsIngested && Membrane.WigglyNess > 0 && Membrane.Tint != CellTypeProperties.Colour)
+        {
             Membrane.WigglyNess = 0;
+            Membrane.Tint = CellTypeProperties.Colour;
+        }
 
         // The code below starting from here is not needed for a display-only or engulfed cell
         if (IsForPreviewOnly || IsIngested)

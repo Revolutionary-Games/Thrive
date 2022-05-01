@@ -978,7 +978,7 @@ public abstract class BaseThriveConverter : JsonConverter
 /// <summary>
 ///   When a class has this attribute DefaultThriveJSONConverter is used to serialize it
 /// </summary>
-[AttributeUsage(AttributeTargets.Class)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
 public class UseThriveSerializerAttribute : Attribute
 {
 }

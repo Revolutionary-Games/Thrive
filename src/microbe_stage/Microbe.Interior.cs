@@ -1073,9 +1073,14 @@ public partial class Microbe
         {
             var engulfedObject = engulfedObjects[i];
 
-            for (var c = 0; c < engulfedObject.CachedEngulfableCompounds.Count; ++c)
+            var engulfable = engulfedObject.Engulfable;
+
+            if (!engulfable.IsIngested)
+                continue;
+
+            for (var c = 0; c < engulfedObject.AvailableEngulfableCompounds.Count; ++c)
             {
-                var compound = engulfedObject.CachedEngulfableCompounds.ElementAt(c);
+                var compound = engulfedObject.AvailableEngulfableCompounds.ElementAt(c);
 
                 if (compound.Value <= 0)
                     continue;
@@ -1083,7 +1088,7 @@ public partial class Microbe
                 var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND * delta;
 
                 var taken = Math.Min(compound.Value, amount);
-                engulfedObject.CachedEngulfableCompounds[compound.Key] -= amount;
+                engulfedObject.AvailableEngulfableCompounds[compound.Key] -= amount;
 
                 var added = Compounds.AddCompound(compound.Key, taken);
                 SpawnEjectedCompound(compound.Key, taken - added);
@@ -1102,11 +1107,7 @@ public partial class Microbe
                 }
             }
 
-            var engulfable = engulfedObject.Engulfable.Value;
-            if (engulfable == null)
-                continue;
-
-            var totalAmount = engulfedObject.CachedEngulfableCompounds.Sum(compound => compound.Value);
+            var totalAmount = engulfedObject.AvailableEngulfableCompounds.Sum(compound => compound.Value);
             engulfable.DigestionProgress = 1 - (totalAmount / engulfedObject.InitialTotalEngulfableCompounds);
 
             if (totalAmount <= 0 || engulfable.DigestionProgress >= 1)

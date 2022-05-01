@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Main script on each cell in the game.
@@ -145,6 +144,9 @@ public partial class Microbe
 
     [JsonProperty]
     public bool IsIngested { get; set; }
+
+    [JsonProperty]
+    public bool IsBeingIngested { get; set; }
 
     [JsonIgnore]
     public EntityReference<Microbe> HostileEngulfer => hostileEngulfer;
@@ -949,7 +951,7 @@ public partial class Microbe
 
             wasBeingEngulfed = true;
         }
-        else if (wasBeingEngulfed && !IsBeingEngulfed && !IsIngested)
+        else if (wasBeingEngulfed && !IsBeingEngulfed && !IsBeingIngested)
         {
             // Else If we were but are no longer, being engulfed
             wasBeingEngulfed = false;
@@ -992,6 +994,35 @@ public partial class Microbe
         else
         {
             IsBeingEngulfed = false;
+        }
+
+        for (int i = engulfedObjects.Count - 1; i >= 0; --i)
+        {
+            var engulfed = engulfedObjects[i];
+
+            var body = engulfed.Engulfable.EntityNode as RigidBody;
+            if (body == null)
+                continue;
+
+            // Interpolate translation and scale manually to allow saving
+            if (engulfed.Interpolate)
+            {
+                if (AnimateEngulfedMovement(delta, engulfed, body))
+                {
+                    if (engulfed.Engulfable.IsBeingIngested)
+                    {
+                        CompleteIngestion(engulfed.Engulfable);
+                    }
+                    else if (engulfed.Engulfable.IsIngested)
+                    {
+                        CompleteEjection(engulfed.Engulfable);
+                        engulfedObjects.RemoveAt(i);
+                    }
+
+                    engulfed.Interpolate = false;
+                    engulfed.AnimationTimeElapsed = 0;
+                }
+            }
         }
 
         previousEngulfMode = State == MicrobeState.Engulf;
@@ -1087,8 +1118,7 @@ public partial class Microbe
             // so this loop is run only once
             foreach (var engulfed in engulfedObjects.ToList())
             {
-                if (engulfed.Engulfable.Value != null)
-                    EjectEngulfable(engulfed.Engulfable.Value);
+                EjectEngulfable(engulfed.Engulfable);
             }
         }
 
@@ -1273,7 +1303,7 @@ public partial class Microbe
     /// </summary>
     private void IngestEngulfable(IEngulfable target)
     {
-        if (target.IsIngested)
+        if (target.IsBeingIngested || target.IsIngested || target.EntityNode.GetParent() == this)
             return;
 
         var body = target as RigidBody;
@@ -1285,10 +1315,8 @@ public partial class Microbe
 
         touchedEngulfables.Remove(target);
 
-        target.IsIngested = true;
-        target.OnEngulfed();
+        target.IsBeingIngested = true;
         target.IsBeingEngulfed = false;
-
         engulfedSize += target.Size;
 
         body.Mode = ModeEnum.Static;
@@ -1301,18 +1329,18 @@ public partial class Microbe
         body.ReParent(this);
         body.GlobalTransform = temp;
 
-        // Delay this to avoid potential AddChild call failing due to parent node being busy error
-        Invoke.Instance.Queue(() =>
+        var digestibleCompounds = target.CalculateDigestibleCompounds();
+
+        engulfedObjects.Add(new EngulfedObject
         {
-            var tween = new Tween();
-            body.AddChild(tween);
-            tween.Connect("tween_all_completed", this, nameof(OnIngestAnimationFinished), new Array { body });
-            tween.Connect("tween_all_completed", tween, "queue_free");
-            tween.InterpolateProperty(body, "scale", null, body.Scale / 2, 1.0f);
-            var finalPosition = new Vector3(
-                random.Next(0.0f, body.Translation.x), body.Translation.y, random.Next(0.0f, body.Translation.z));
-            tween.InterpolateProperty(body, "translation", null, finalPosition, 1.5f);
-            tween.Start();
+            Engulfable = target,
+            AvailableEngulfableCompounds = digestibleCompounds,
+            InitialTotalEngulfableCompounds = digestibleCompounds.Sum(c => c.Value),
+            TargetTranslation = new Vector3(
+                random.Next(0.0f, body.Translation.x), body.Translation.y, random.Next(0.0f, body.Translation.z)),
+            TargetScale = body.Scale / 2,
+            OriginalScale = body.Scale,
+            Interpolate = true,
         });
     }
 
@@ -1321,14 +1349,8 @@ public partial class Microbe
     /// </summary>
     private void EjectEngulfable(IEngulfable target)
     {
-        if (!target.IsIngested)
+        if (target.EntityNode.GetParent() != this)
             return;
-
-        var engulfedObject = engulfedObjects.Find(e => e.Engulfable == target);
-        if (engulfedObject == null)
-            return;
-
-        engulfedObjects.Remove(engulfedObject);
 
         var body = target as RigidBody;
         if (body == null)
@@ -1337,31 +1359,30 @@ public partial class Microbe
             return;
         }
 
-        target.IsIngested = false;
-        target.OnEjected();
+        var engulfedObject = engulfedObjects.Find(e => e.Engulfable == target);
+        if (engulfedObject == null)
+            return;
 
+        target.IsBeingIngested = false;
         engulfedSize -= target.Size;
 
-        body.Mode = ModeEnum.Rigid;
-
-        // Set to default microbe collision layer and mask values
-        body.CollisionLayer = 3;
-        body.CollisionMask = 3;
-
-        // Reparent to world node
-        var temp = body.GlobalTransform;
-        body.ReParent(GetParent());
-        body.GlobalTransform = temp;
-
-        // Delay this to avoid potential AddChild call failing due to parent node being busy error
-        Invoke.Instance.Queue(() =>
+        // If engulfer cell is dead (us), immediately eject without animation
+        if (Dead)
         {
-            var tween = new Tween();
-            body.AddChild(tween);
-            tween.Connect("tween_all_completed", tween, "queue_free");
-            tween.InterpolateProperty(body, "scale", body.Scale / 2, Vector3.One, 1.0f);
-            tween.Start();
-        });
+            CompleteEjection(target);
+            body.Scale = engulfedObject.OriginalScale;
+            engulfedObjects.Remove(engulfedObject);
+            return;
+        }
+
+        // Animate moving object to the outer membrane
+        var origin = body.GlobalTransform.origin;
+        engulfedObject.TargetTranslation = Membrane.GetVectorTowardsNearestPointOfMembrane(origin.x, origin.z);
+        engulfedObject.TargetScale = engulfedObject.OriginalScale;
+        engulfedObject.AnimationTimeElapsed = 0;
+        engulfedObject.Interpolate = true;
+
+        // Engulfed object will be removed from the list in HandleEngulfing
     }
 
     private bool CanBindToMicrobe(IEngulfable other)
@@ -1554,36 +1575,82 @@ public partial class Microbe
         }
     }
 
-    private void OnIngestAnimationFinished(RigidBody target)
+    private bool AnimateEngulfedMovement(float delta, EngulfedObject engulfedObject, RigidBody body)
     {
-        var engulfable = (IEngulfable)target;
+        if (engulfedObject.AnimationTimeElapsed < 2.0f)
+        {
+            var fraction = engulfedObject.AnimationTimeElapsed / 4.0f;
 
-        engulfedObjects.Add(new EngulfedObject(engulfable, engulfable.CalculateDigestibleCompounds()));
+            body.Translation = body.Translation.LinearInterpolate(engulfedObject.TargetTranslation, fraction);
+            body.Scale = body.Scale.LinearInterpolate(engulfedObject.TargetScale, fraction);
+
+            engulfedObject.AnimationTimeElapsed += delta;
+
+            return false;
+        }
+        else
+        {
+            // Snap values
+            body.Translation = engulfedObject.TargetTranslation;
+            body.Scale = engulfedObject.TargetScale;
+
+            return true;
+        }
+    }
+
+    private void CompleteIngestion(IEngulfable engulfable)
+    {
+        engulfable.IsBeingIngested = false;
+        engulfable.IsIngested = true;
+        engulfable.OnEngulfed();
 
         otherEngulfablesInEngulfRange.Remove(engulfable);
         touchedEngulfables.Remove(engulfable);
         attemptingToEngulf.Remove(engulfable);
     }
 
+    private void CompleteEjection(IEngulfable engulfable)
+    {
+        engulfable.IsIngested = false;
+        engulfable.OnEjected();
+
+        // Null-forgived as the engulfed node should be a rigidbody either way
+        var body = engulfable as RigidBody;
+
+        body!.Mode = ModeEnum.Rigid;
+
+        // Reparent to world node
+        var temp = body.GlobalTransform;
+        body.ReParent(GetStageAsParent());
+        body.GlobalTransform = temp;
+
+        // Set to default microbe collision layer and mask values
+        body.CollisionLayer = 3;
+        body.CollisionMask = 3;
+    }
+
     /// <summary>
-    ///   Holds cached informations in addition to the engulfed object
+    ///   Holds cached and extra informations to work on in addition to the engulfed object
     /// </summary>
     private class EngulfedObject
     {
-        public EngulfedObject(IEngulfable engulfable, Dictionary<Compound, float> cachedEngulfableCompounds)
-        {
-            Engulfable = new EntityReference<IEngulfable>(engulfable);
-            CachedEngulfableCompounds = new Dictionary<Compound, float>(cachedEngulfableCompounds);
-            InitialTotalEngulfableCompounds = CachedEngulfableCompounds.Sum(c => c.Value);
-        }
-
         /// <summary>
         ///   The object that has been engulfed.
         /// </summary>
-        public EntityReference<IEngulfable> Engulfable { get; }
+        public IEngulfable Engulfable { get; set; } = null!;
 
-        public float InitialTotalEngulfableCompounds { get; }
+        public Dictionary<Compound, float> AvailableEngulfableCompounds { get; set; } = null!;
 
-        public Dictionary<Compound, float> CachedEngulfableCompounds { get; }
+        public float InitialTotalEngulfableCompounds { get; set; }
+
+        public bool Interpolate { get; set; }
+
+        public float AnimationTimeElapsed { get; set; }
+
+        public Vector3 TargetTranslation { get; set; }
+
+        public Vector3 TargetScale { get; set; }
+
+        public Vector3 OriginalScale { get; set; }
     }
 }

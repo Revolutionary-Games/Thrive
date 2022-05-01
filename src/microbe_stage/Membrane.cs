@@ -45,9 +45,9 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
     private bool dirty = true;
     private bool radiusIsDirty = true;
-    private bool vertices3dIsDirty = true;
+    private bool convexShapeIsDirty = true;
     private float cachedRadius;
-    private Vector3[] cachedVertices3D = null!;
+    private Vector3[] cachedConvexShape = null!;
 
     /// <summary>
     ///   Amount of segments on one side of the above described
@@ -66,7 +66,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
             if (value)
             {
                 radiusIsDirty = true;
-                vertices3dIsDirty = true;
+                convexShapeIsDirty = true;
             }
 
             dirty = value;
@@ -96,7 +96,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
     {
         get
         {
-            if (vertices3dIsDirty)
+            if (convexShapeIsDirty)
             {
                 if (Dirty)
                     Update();
@@ -106,16 +106,16 @@ public class Membrane : MeshInstance, IComputedMembraneData
                 if (Type.CellWall)
                     height = 0.05f;
 
-                cachedVertices3D = new Vector3[vertices2D.Count];
+                cachedConvexShape = new Vector3[vertices2D.Count];
                 for (var i = 0; i < vertices2D.Count; ++i)
                 {
-                    cachedVertices3D[i] = new Vector3(vertices2D[i].x, height / 2, vertices2D[i].y);
+                    cachedConvexShape[i] = new Vector3(vertices2D[i].x, height / 2, vertices2D[i].y);
                 }
 
-                vertices3dIsDirty = false;
+                convexShapeIsDirty = false;
             }
 
-            return cachedVertices3D;
+            return cachedConvexShape;
         }
     }
 
