@@ -163,7 +163,11 @@ public partial class Microbe
         foreach (var entry in organelles.Organelles)
         {
             entry.Colour = CellTypeProperties.Colour;
-            entry.Update(0);
+            entry.UpdateAsync(0);
+
+            // This applies the colour so UpdateAsync is not technically needed but to avoid weird bugs we just do it
+            // as well
+            entry.UpdateSync();
         }
     }
 
@@ -505,7 +509,6 @@ public partial class Microbe
     /// </summary>
     private void HandleCompoundVenting(float delta)
     {
-        // TODO: check that this works
         // Skip if process system has not run yet
         if (!Compounds.HasAnyBeenSetUseful())
             return;
@@ -515,7 +518,7 @@ public partial class Microbe
         // Cloud types are ones that can be vented
         foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
         {
-            // Vent if not useful, or if over float the capacity
+            // Vent if not useful, or if overflowed the capacity
             if (!Compounds.IsUseful(type))
             {
                 amountToVent -= EjectCompound(type, amountToVent);

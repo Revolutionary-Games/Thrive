@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-29 11:19+0300\n"
-"PO-Revision-Date: 2022-04-15 14:50+0000\n"
-"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
+"PO-Revision-Date: 2022-04-30 07:18+0000\n"
+"Last-Translator: Igor Silva <igorkcs@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.12\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -1602,9 +1602,8 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Houve erros ao carregar um ou mais mods. Os logs podem conter mais informações."
 
 #: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
-#, fuzzy
 msgid "AUTO_RESOLUTION"
-msgstr "Resolução:"
+msgstr "Auto ({0}x{1})"
 
 #: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -3206,9 +3205,8 @@ msgid "SIZE_COLON"
 msgstr "Tamanho:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:831
-#, fuzzy
 msgid "STORAGE_COLON"
-msgstr "Armazenamento"
+msgstr "Armazenamento:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:852
 msgid "GENERATION_COLON"
@@ -3516,9 +3514,8 @@ msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0} chamada do método initialize do assembly do mod falhou com uma exceção: {1}"
 
 #: ../src/modding/ModLoader.cs:430
-#, fuzzy
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
-msgstr "{0} chamada do método initialize do assembly do mod falhou com uma exceção: {1}"
+msgstr "{0} carregamento de mod's Harmony falhou com uma exceção: {1}"
 
 #: ../src/modding/ModLoader.cs:453
 #, fuzzy
@@ -3559,13 +3556,12 @@ msgid "THIS_IS_LOCAL_MOD"
 msgstr "Este mod foi instalado localmente"
 
 #: ../src/modding/ModManager.cs:913
-#, fuzzy
 msgid "USES_FEATURE"
-msgstr "Temperatura"
+msgstr "Sim"
 
 #: ../src/modding/ModManager.cs:914
 msgid "DOES_NOT_USE_FEATURE"
-msgstr ""
+msgstr "Não"
 
 #: ../src/modding/ModManager.cs:959
 msgid "ERROR_CREATING_FOLDER"
