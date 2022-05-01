@@ -5,43 +5,43 @@
 [ext_resource path="res://src/engine/DebugPanel.cs" type="Script" id=3]
 
 [node name="DebugPanel" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
 script = ExtResource( 3 )
-fpsCheckBoxPath = NodePath("CustomDialog/VBoxContainer/FPSCheckBox")
-performanceMetricsCheckBoxPath = NodePath("CustomDialog/VBoxContainer/PerformanceMetricsCheckBox")
+fpsCheckBoxPath = NodePath("Dialog/VBoxContainer/FPSCheckBox")
+performanceMetricsCheckBoxPath = NodePath("Dialog/VBoxContainer/PerformanceMetricsCheckBox")
+dialogPath = NodePath("Dialog")
 
-[node name="CustomDialog" parent="." instance=ExtResource( 1 )]
-visible = true
+[node name="Dialog" parent="." instance=ExtResource( 1 )]
 margin_left = 30.0
 margin_top = 30.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CustomDialog"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialog"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="FPSCheckBox" parent="CustomDialog/VBoxContainer" instance=ExtResource( 2 )]
+[node name="FPSCheckBox" parent="Dialog/VBoxContainer" instance=ExtResource( 2 )]
 margin_right = 257.0
 margin_bottom = 25.0
 text = "FPS_DISPLAY"
 
-[node name="PerformanceMetricsCheckBox" parent="CustomDialog/VBoxContainer" instance=ExtResource( 2 )]
+[node name="PerformanceMetricsCheckBox" parent="Dialog/VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 29.0
 margin_right = 257.0
 margin_bottom = 54.0
 text = "PERFORMANCE_METRICS"
 
-[node name="CollisionShapeCheckBox" parent="CustomDialog/VBoxContainer" instance=ExtResource( 2 )]
+[node name="CollisionShapeCheckBox" parent="Dialog/VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 58.0
 margin_right = 257.0
 margin_bottom = 83.0
 text = "COLLISION_SHAPE"
 
-[node name="EntityLabelCheckBox" parent="CustomDialog/VBoxContainer" instance=ExtResource( 2 )]
+[node name="EntityLabelCheckBox" parent="Dialog/VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 87.0
 margin_right = 257.0
 margin_bottom = 112.0
 text = "ENTITY_LABEL"
 
-[connection signal="toggled" from="CustomDialog/VBoxContainer/FPSCheckBox" to="." method="OnFpsCheckBoxToggled"]
-[connection signal="toggled" from="CustomDialog/VBoxContainer/PerformanceMetricsCheckBox" to="." method="OnPerformanceMetricsCheckBoxToggled"]
+[connection signal="toggled" from="Dialog/VBoxContainer/FPSCheckBox" to="." method="OnFpsCheckBoxToggled"]
+[connection signal="toggled" from="Dialog/VBoxContainer/PerformanceMetricsCheckBox" to="." method="OnPerformanceMetricsCheckBoxToggled"]
+[connection signal="toggled" from="Dialog/VBoxContainer/CollisionShapeCheckBox" to="." method="OnCollisionShapeCheckBoxToggled"]
+[connection signal="toggled" from="Dialog/VBoxContainer/EntityLabelCheckBox" to="." method="OnEntityLabelCheckBoxToggled"]

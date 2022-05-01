@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 public class DebugPanel : Control
 {
@@ -8,6 +8,10 @@ public class DebugPanel : Control
     [Export]
     private NodePath performanceMetricsCheckBoxPath = null!;
 
+    [Export]
+    private NodePath dialogPath = null!;
+
+    private CustomDialog dialog = null!;
     private CustomCheckBox fpsCheckBox = null!;
     private CustomCheckBox performanceMetricsCheckBox = null!;
 
@@ -18,14 +22,17 @@ public class DebugPanel : Control
     {
         fpsCheckBox = GetNode<CustomCheckBox>(fpsCheckBoxPath);
         performanceMetricsCheckBox = GetNode<CustomCheckBox>(performanceMetricsCheckBoxPath);
+        dialog = GetNode<CustomDialog>(dialogPath);
 
         fpsCounter = GetNode<FPSCounter>("FPSCounter");
         performanceMetrics = GetNode<PerformanceMetrics>("PerformanceMetrics");
+        performanceMetrics.Connect(nameof(PerformanceMetrics.OnHidden), this, nameof(OnPerformanceMetricsToggled));
         base._Ready();
     }
 
     public override void _EnterTree()
     {
+        Show();
         InputManager.RegisterReceiver(this);
         base._EnterTree();
     }
@@ -36,16 +43,29 @@ public class DebugPanel : Control
         base._ExitTree();
     }
 
-    [RunOnKeyDown("toggle_metrics", OnlyUnhandled = false)]
-    public void OnPerformanceMetricsKeyToggled()
+    [RunOnKeyDown("toggle_metrics", OnlyUnhandled = false, Priority = 1)]
+    public void OnPerformanceMetricsToggled()
     {
         performanceMetricsCheckBox.Pressed = !performanceMetricsCheckBox.Pressed;
     }
 
-    [RunOnKeyDown("toggle_FPS", OnlyUnhandled = false)]
-    public void OnFpsKeyToggled()
+    [RunOnKeyDown("toggle_FPS", OnlyUnhandled = false, Priority = 1)]
+    public void OnFpsToggled()
     {
         fpsCheckBox.Pressed = !fpsCheckBox.Pressed;
+    }
+
+    [RunOnKeyDown("toggle_debug_panel", OnlyUnhandled = false, Priority = 2)]
+    public void OnDebugPanelToggled()
+    {
+        if (!dialog.Visible)
+        {
+            dialog.Show();
+        }
+        else
+        {
+            dialog.Hide();
+        }
     }
 
     private void OnPerformanceMetricsCheckBoxToggled(bool state)
@@ -56,5 +76,15 @@ public class DebugPanel : Control
     private void OnFpsCheckBoxToggled(bool state)
     {
         fpsCounter.ToggleFps(state);
+    }
+
+    private void OnCollisionShapeCheckBoxToggled(bool state)
+    {
+        GetTree().DebugCollisionsHint = state;
+    }
+
+    private void OnEntityLabelCheckBoxToggled(bool state)
+    {
+        // TODO:
     }
 }

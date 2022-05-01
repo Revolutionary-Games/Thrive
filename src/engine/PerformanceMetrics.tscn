@@ -23,7 +23,6 @@ DeltaLabelPath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/HBoxContai
 MetricsTextPath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/MetricsText")
 
 [node name="CustomDialog" parent="." instance=ExtResource( 3 )]
-visible = true
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 54.0
@@ -74,3 +73,5 @@ margin_right = 220.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 4 )
 text = "METRICS_CONTENT"
+
+[connection signal="hide" from="CustomDialog" to="." method="DialogHidden"]

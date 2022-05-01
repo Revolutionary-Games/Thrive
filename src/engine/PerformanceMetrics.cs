@@ -41,6 +41,9 @@ public class PerformanceMetrics : Control
         instance = this;
     }
 
+    [Signal]
+    public delegate void OnHidden();
+
     public static PerformanceMetrics Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public override void _Ready()
@@ -138,8 +141,12 @@ public class PerformanceMetrics : Control
         }
     }
 
-    private void DialogHidden()
+    public void DialogHidden()
     {
-        Visible = false;
+        if (Visible)
+        {
+            Visible = false;
+            EmitSignal(nameof(OnHidden));
+        }
     }
 }
