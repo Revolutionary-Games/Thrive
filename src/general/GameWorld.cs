@@ -345,6 +345,20 @@ public class GameWorld : ISaveLoadable
     }
 
     /// <summary>
+    ///   Should be called after a batch of species stage changes are done, for example after calling
+    ///   <see cref="ChangeSpeciesToMulticellular"/>
+    /// </summary>
+    public void NotifySpeciesChangedStages()
+    {
+        if (autoEvo != null)
+        {
+            GD.Print("Canceling and restarting auto-evo to have stage changed species versions in it");
+            ResetAutoEvoRun();
+            IsAutoEvoFinished();
+        }
+    }
+
+    /// <summary>
     ///   Stores a description of a global event into the game world records.
     /// </summary>
     /// <param name="description">The event's description</param>

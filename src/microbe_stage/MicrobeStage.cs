@@ -32,6 +32,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     private SpawnSystem spawner = null!;
 
     private MicrobeAISystem microbeAISystem = null!;
+    private MicrobeSystem microbeSystem = null!;
+
+    private FloatingChunkSystem floatingChunkSystem = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -273,6 +276,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned, Clouds);
+        microbeSystem = new MicrobeSystem(rootOfDynamicallySpawned);
+        floatingChunkSystem = new FloatingChunkSystem(rootOfDynamicallySpawned, Clouds);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
@@ -411,7 +416,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         FluidSystem.Process(delta);
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);
+        floatingChunkSystem.Process(delta, Player?.Translation);
         microbeAISystem.Process(delta);
+        microbeSystem.Process(delta);
 
         if (gameOver)
         {
@@ -620,14 +627,27 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         GiveReproductionPopulationBonus();
 
         CurrentGame!.EnterPrototypes();
-        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(Player.Species);
+
+        var playerSpeciesMicrobes = GetAllPlayerSpeciesMicrobes();
 
         // Re-apply species here so that the player cell knows it is multicellular after this
-        Player.ApplySpecies(multicellularSpecies);
+        // Also apply species here to other members of the player's previous species
+        // This prevents previous members of the player's colony from immediately being hostile
+        bool playerHandled = false;
 
-        GD.Print("Canceling and restarting auto-evo to have player species multicellular version in it");
-        GameWorld.ResetAutoEvoRun();
-        GameWorld.IsAutoEvoFinished();
+        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(Player.Species);
+        foreach (var microbe in playerSpeciesMicrobes)
+        {
+            microbe.ApplySpecies(multicellularSpecies);
+
+            if (microbe == Player)
+                playerHandled = true;
+        }
+
+        if (!playerHandled)
+            throw new Exception("Did not find player to apply multicellular species to");
+
+        GameWorld.NotifySpeciesChangedStages();
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
@@ -715,6 +735,20 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         TransitionFinished = true;
         TutorialState.SendEvent(
             TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
+    }
+
+    /// <summary>
+    ///   Helper function for transition to multicellular
+    /// </summary>
+    /// <returns>Array of all microbes of Player's species</returns>
+    private IEnumerable<Microbe> GetAllPlayerSpeciesMicrobes()
+    {
+        if (Player == null)
+            throw new InvalidOperationException("Could not get player species microbes: no Player object");
+
+        var microbes = rootOfDynamicallySpawned.GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
+
+        return microbes.Where(m => m.Species == Player.Species);
     }
 
     /// <summary>

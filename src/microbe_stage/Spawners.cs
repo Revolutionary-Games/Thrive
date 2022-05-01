@@ -16,8 +16,7 @@ public static class Spawners
         return new MicrobeSpawner(species, cloudSystem, currentGame);
     }
 
-    public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType,
-        CompoundCloudSystem cloudSystem)
+    public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType)
     {
         foreach (var mesh in chunkType.Meshes)
         {
@@ -25,7 +24,7 @@ public static class Spawners
                 throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
         }
 
-        return new ChunkSpawner(chunkType, cloudSystem);
+        return new ChunkSpawner(chunkType);
     }
 
     public static CompoundCloudSpawner MakeCompoundSpawner(Compound compound,
@@ -103,9 +102,11 @@ public static class SpawnHelpers
     // TODO: this is likely a huge cause of lag. Would be nice to be able
     // to spawn these so that only one per tick is spawned.
     public static IEnumerable<Microbe> SpawnBacteriaColony(Species species, Vector3 location,
-        Node worldRoot, PackedScene microbeScene, CompoundCloudSystem cloudSystem,
-        GameProperties currentGame, Random random)
+        Vector3 playerPosition, Node worldRoot, PackedScene microbeScene,
+        CompoundCloudSystem cloudSystem, GameProperties currentGame, Random random)
     {
+        var locationOffset = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
+
         var curSpawn = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
         var clumpSize = random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
@@ -117,7 +118,7 @@ public static class SpawnHelpers
             yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
                 cloudSystem, currentGame);
 
-            curSpawn = curSpawn + new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
+            curSpawn += new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
         }
     }
 
@@ -127,8 +128,7 @@ public static class SpawnHelpers
     }
 
     public static FloatingChunk SpawnChunk(ChunkConfiguration chunkType,
-        Vector3 location, Node worldNode, PackedScene chunkScene,
-        CompoundCloudSystem cloudSystem, Random random)
+        Vector3 location, Node worldNode, PackedScene chunkScene, Random random)
     {
         var chunk = (FloatingChunk)chunkScene.Instance();
 
@@ -142,7 +142,7 @@ public static class SpawnHelpers
             throw new ArgumentException("couldn't find a graphics scene for a chunk");
 
         // Pass on the chunk data
-        chunk.Init(chunkType, cloudSystem, selectedMesh.SceneModelPath);
+        chunk.Init(chunkType, selectedMesh.SceneModelPath);
         chunk.UsesDespawnTimer = !chunkType.Dissolves;
 
         worldNode.AddChild(chunk);
@@ -217,14 +217,13 @@ public static class SpawnHelpers
 public class MicrobeSpawner : Spawner
 {
     private readonly PackedScene microbeScene;
-    private readonly Species species;
     private readonly CompoundCloudSystem cloudSystem;
     private readonly GameProperties currentGame;
     private readonly Random random;
 
     public MicrobeSpawner(Species species, CompoundCloudSystem cloudSystem, GameProperties currentGame)
     {
-        this.species = species ?? throw new ArgumentException("species is null");
+        Species = species ?? throw new ArgumentException("species is null");
 
         microbeScene = SpawnHelpers.LoadMicrobeScene();
         this.cloudSystem = cloudSystem;
@@ -233,10 +232,12 @@ public class MicrobeSpawner : Spawner
         random = new Random();
     }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
+    public Species Species { get; }
+
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, Vector3 playerPosition)
     {
         // The true here is that this is AI controlled
-        var first = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene, true, cloudSystem,
+        var first = SpawnHelpers.SpawnMicrobe(Species, location, worldNode, microbeScene, true, cloudSystem,
             currentGame);
 
         if (first.IsMulticellular)
@@ -251,8 +252,8 @@ public class MicrobeSpawner : Spawner
         // Just in case the is bacteria flag is not correct in a multicellular cell type, here's an extra safety check
         if (first.CellTypeProperties.IsBacteria && !first.IsMulticellular)
         {
-            foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
-                         cloudSystem, currentGame, random))
+            foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(Species, location, playerPosition, worldNode,
+                         microbeScene, cloudSystem, currentGame, random))
             {
                 yield return colonyMember;
 
@@ -278,7 +279,7 @@ public class CompoundCloudSpawner : Spawner
         this.amount = amount;
     }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, Vector3 playerPosition)
     {
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount);
 
@@ -295,19 +296,17 @@ public class ChunkSpawner : Spawner
     private readonly PackedScene chunkScene;
     private readonly ChunkConfiguration chunkType;
     private readonly Random random = new();
-    private readonly CompoundCloudSystem cloudSystem;
 
-    public ChunkSpawner(ChunkConfiguration chunkType, CompoundCloudSystem cloudSystem)
+    public ChunkSpawner(ChunkConfiguration chunkType)
     {
         this.chunkType = chunkType;
-        this.cloudSystem = cloudSystem;
         chunkScene = SpawnHelpers.LoadChunkScene();
     }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, Vector3 playerPosition)
     {
         var chunk = SpawnHelpers.SpawnChunk(chunkType, location, worldNode, chunkScene,
-            cloudSystem, random);
+            random);
 
         yield return chunk;
 

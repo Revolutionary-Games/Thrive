@@ -113,6 +113,9 @@ public class ModManager : Control
     public NodePath FullInfoAssemblyModClassPath = null!;
 
     [Export]
+    public NodePath FullInfoAutoHarmonyPath = null!;
+
+    [Export]
     public NodePath OpenWorkshopButtonPath = null!;
 
     [Export]
@@ -176,6 +179,7 @@ public class ModManager : Control
     private Label fullInfoPckName = null!;
     private Label fullInfoModAssembly = null!;
     private Label fullInfoAssemblyModClass = null!;
+    private Label fullInfoAutoHarmony = null!;
 
     private Button openWorkshopButton = null!;
     private Button modUploaderButton = null!;
@@ -312,14 +316,25 @@ public class ModManager : Control
             }
         }
 
-        if (info.ModAssembly != null && info.AssemblyModClass == null)
+        if (info.ModAssembly != null && info.AssemblyModClass == null && info.UseAutoHarmony != true)
         {
             if (throwOnError)
             {
                 throw new ArgumentException(TranslationServer.Translate("ASSEMBLY_CLASS_REQUIRED"));
             }
 
-            GD.PrintErr("AssemblyModClass must be set if ModAssembly is set");
+            GD.PrintErr("AssemblyModClass must be set if ModAssembly is set (and auto harmony is not used)");
+            return false;
+        }
+
+        if (info.UseAutoHarmony == true && string.IsNullOrEmpty(info.ModAssembly))
+        {
+            if (throwOnError)
+            {
+                throw new ArgumentException(TranslationServer.Translate("ASSEMBLY_REQUIRED_WITH_HARMONY"));
+            }
+
+            GD.PrintErr("ModAssembly must be set if UseAutoHarmony is true");
             return false;
         }
 
@@ -368,6 +383,7 @@ public class ModManager : Control
         fullInfoPckName = GetNode<Label>(FullInfoPckNamePath);
         fullInfoModAssembly = GetNode<Label>(FullInfoModAssemblyPath);
         fullInfoAssemblyModClass = GetNode<Label>(FullInfoAssemblyModClassPath);
+        fullInfoAutoHarmony = GetNode<Label>(FullInfoAutoHarmonyPath);
 
         openWorkshopButton = GetNode<Button>(OpenWorkshopButtonPath);
         modUploaderButton = GetNode<Button>(ModUploaderButtonPath);
@@ -893,6 +909,9 @@ public class ModManager : Control
         fullInfoPckName.Text = info.PckToLoad;
         fullInfoModAssembly.Text = info.ModAssembly;
         fullInfoAssemblyModClass.Text = info.AssemblyModClass;
+        fullInfoAutoHarmony.Text = info.UseAutoHarmony == true ?
+            TranslationServer.Translate("USES_FEATURE") :
+            TranslationServer.Translate("DOES_NOT_USE_FEATURE");
 
         modFullInfoPopup.PopupCenteredShrink();
     }

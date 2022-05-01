@@ -34,6 +34,8 @@ public partial class Microbe
     [JsonProperty]
     private float lastCheckedATPDamage;
 
+    private float lastCheckedReproduction;
+
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the
     ///   current organelles. This is here to prevent anyone from
@@ -161,7 +163,11 @@ public partial class Microbe
         foreach (var entry in organelles.Organelles)
         {
             entry.Colour = CellTypeProperties.Colour;
-            entry.Update(0);
+            entry.UpdateAsync(0);
+
+            // This applies the colour so UpdateAsync is not technically needed but to avoid weird bugs we just do it
+            // as well
+            entry.UpdateSync();
         }
     }
 
@@ -418,12 +424,8 @@ public partial class Microbe
 
         foreach (var entry in totalCompounds)
         {
-            float gathered = 0;
-
-            if (gatheredCompounds.ContainsKey(entry.Key))
-                gathered = gatheredCompounds[entry.Key];
-
-            totalFraction += gathered / entry.Value;
+            if (gatheredCompounds.TryGetValue(entry.Key, out var gathered))
+                totalFraction += gathered / entry.Value;
         }
 
         return totalFraction / totalCompounds.Count;
@@ -507,7 +509,6 @@ public partial class Microbe
     /// </summary>
     private void HandleCompoundVenting(float delta)
     {
-        // TODO: check that this works
         // Skip if process system has not run yet
         if (!Compounds.HasAnyBeenSetUseful())
             return;
@@ -517,7 +518,7 @@ public partial class Microbe
         // Cloud types are ones that can be vented
         foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
         {
-            // Vent if not useful, or if over float the capacity
+            // Vent if not useful, or if overflowed the capacity
             if (!Compounds.IsUseful(type))
             {
                 amountToVent -= EjectCompound(type, amountToVent);
@@ -575,12 +576,13 @@ public partial class Microbe
     ///     AI cells will immediately reproduce when they can. On the player cell the editor is unlocked when
     ///     reproducing is possible.
     ///   </para>
+    ///   <para>
+    ///     TODO: split this into two parts: giving compounds to grow, and actually spawning things to be able to
+    ///     do multithreading here
+    ///   </para>
     /// </remarks>
     private void HandleReproduction(float delta)
     {
-        // TODO: implement handling delta
-        _ = delta;
-
         // Dead cells can't reproduce
         if (Dead)
             return;
@@ -590,6 +592,14 @@ public partial class Microbe
             // Ready to reproduce already. Only the player gets here as other cells split and reset automatically
             return;
         }
+
+        lastCheckedReproduction += delta;
+
+        // Limit how often the reproduction logic is ran
+        if (lastCheckedReproduction < Constants.MICROBE_REPRODUCTION_PROGRESS_INTERVAL)
+            return;
+
+        lastCheckedReproduction = 0;
 
         // TODO: should we make it so that reproduction progress is only checked about max of 20 times per second?
         // might make a lot of cells use less CPU power

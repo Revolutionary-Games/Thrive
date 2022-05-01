@@ -53,10 +53,10 @@ public class PatchManager : IChildPropertiesLoadCallback
     }
 
     /// <summary>
-    ///   Applies all patch related settings that are needed to be
-    ///   set. Like different spawners, despawning old entities if the
-    ///   patch changed etc.
+    ///   Applies all patch related settings that are needed to be set. Like different spawners, despawning old
+    ///   entities if the patch changed etc.
     /// </summary>
+    /// <param name="currentPatch">The patch to apply settings from</param>
     /// <returns>
     ///   True if the patch is changed from the previous one. False if the patch is not changed.
     /// </returns>
@@ -69,8 +69,7 @@ public class PatchManager : IChildPropertiesLoadCallback
             if (previousPatch != null)
             {
                 GD.Print("Previous patch (", previousPatch.Name.ToString(),
-                    ") different to " + "current patch (",
-                    currentPatch.Name.ToString(), ") despawning all entities.");
+                    ") different to " + "current patch (", currentPatch.Name.ToString(), ") despawning all entities.");
             }
             else
             {
@@ -125,8 +124,7 @@ public class PatchManager : IChildPropertiesLoadCallback
             HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
                 () =>
                 {
-                    var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value,
-                        compoundCloudSystem));
+                    var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
 
                     spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
                         Constants.MICROBE_SPAWN_RADIUS);
@@ -184,12 +182,12 @@ public class PatchManager : IChildPropertiesLoadCallback
                     spawnSystem.AddSpawnType(spawner.Spawner, density,
                         Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
-                });
+                }, new MicrobeSpawnerComparer());
         }
     }
 
     private void HandleSpawnHelper(List<CreatedSpawner> existingSpawners, string itemName,
-        float density, Func<CreatedSpawner> createNew)
+        float density, Func<CreatedSpawner> createNew, IEqualityComparer<CreatedSpawner>? customEqualityComparer = null)
     {
         if (density <= 0)
         {
@@ -198,6 +196,20 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
 
         var existing = existingSpawners.Find(s => s.Name == itemName);
+
+        CreatedSpawner? newSpawner = null;
+
+        if (existing != null && customEqualityComparer != null)
+        {
+            // Need additional checking to make sure the existing is good
+            newSpawner = createNew();
+
+            if (!customEqualityComparer.Equals(existing, newSpawner))
+            {
+                GD.Print("Existing spawner of ", existing.Name, " didn't match equality check, creating new instead");
+                existing = null;
+            }
+        }
 
         if (existing != null)
         {
@@ -208,7 +220,8 @@ public class PatchManager : IChildPropertiesLoadCallback
             // New spawner needed
             GD.Print("Registering new spawner: Name: ", itemName, " density: ", density);
 
-            existingSpawners.Add(createNew());
+            newSpawner ??= createNew();
+            existingSpawners.Add(newSpawner);
         }
     }
 
@@ -273,6 +286,27 @@ public class PatchManager : IChildPropertiesLoadCallback
         {
             Name = name;
             Spawner = spawner;
+        }
+    }
+
+    private class MicrobeSpawnerComparer : EqualityComparer<CreatedSpawner>
+    {
+        public override bool Equals(CreatedSpawner x, CreatedSpawner y)
+        {
+            if (ReferenceEquals(x, y) || ReferenceEquals(x.Spawner, y.Spawner))
+                return true;
+
+            if (x.Spawner is MicrobeSpawner microbeSpawner1 && y.Spawner is MicrobeSpawner microbeSpawner2)
+            {
+                return Equals(microbeSpawner1.Species, microbeSpawner2.Species);
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode(CreatedSpawner obj)
+        {
+            return (obj.Name.GetHashCode() * 439) ^ (obj.Spawner.GetHashCode() * 443);
         }
     }
 }

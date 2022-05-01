@@ -758,6 +758,10 @@ public class MicrobeAI
             if (speciesMicrobe.SignalCommand == MicrobeSignalCommand.None)
                 continue;
 
+            // Don't detect your own signals
+            if (speciesMicrobe == microbe)
+                continue;
+
             var distance = DistanceFromMe(speciesMicrobe.Translation);
 
             if (closestSignalSquared == null || distance < closestSignalSquared.Value)
