@@ -84,9 +84,7 @@ public partial class CellEditorComponent
         // Pass in a membrane that the values are taken as relative to
         foreach (var membraneType in SimulationParameters.Instance.GetAllMembranes())
         {
-            var tooltip = (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(
-                membraneType.InternalName, "membraneSelection");
-
+            var tooltip = GetSelectionTooltip(membraneType.InternalName, "membraneSelection");
             tooltip?.WriteMembraneModifierList(referenceMembrane, membraneType);
         }
     }
@@ -98,7 +96,7 @@ public partial class CellEditorComponent
     {
         float convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
-        var rigidityTooltip = (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor");
+        var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
 
         if (rigidityTooltip == null)
             throw new InvalidOperationException("Could not find rigidity tooltip");
@@ -170,38 +168,48 @@ public partial class CellEditorComponent
     /// </summary>
     private void UpdateOrganelleEfficiencies(Dictionary<string, OrganelleEfficiency> organelleEfficiency)
     {
-        foreach (var organelle in organelleEfficiency.Keys)
+        foreach (var organelleInternalName in organelleEfficiency.Keys)
         {
-            if (organelle == protoplasm.InternalName)
+            if (organelleInternalName == protoplasm.InternalName)
                 continue;
 
-            var tooltip = (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(
-                SimulationParameters.Instance.GetOrganelleType(organelle).InternalName, "organelleSelection");
-
-            tooltip?.WriteOrganelleProcessList(organelleEfficiency[organelle].Processes);
+            var tooltip = GetSelectionTooltip(organelleInternalName, "organelleSelection");
+            tooltip?.WriteOrganelleProcessList(organelleEfficiency[organelleInternalName].Processes);
         }
     }
 
+    private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
+    {
+        return (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(name, group);
+    }
+
     /// <summary>
-    ///   Updates the MP costs in organelle menu tooltips by setting the cost factor for each one
+    ///   Updates the MP costs in organelle, membrane, and rigidity tooltips by setting the cost factor for each one
     /// </summary>
     private void UpdateTooltipMPCostFactors()
     {
-        var organelles = SimulationParameters.Instance.GetAllOrganelles();
-
-        foreach (var organelle in organelles)
+        var organelleNames = SimulationParameters.Instance.GetAllOrganelles().Select(o => o.InternalName);
+        foreach (string name in organelleNames)
         {
-            string name = organelle.InternalName;
-
             if (name == protoplasm.InternalName)
                 continue;
 
-            var tooltip = (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(
-                SimulationParameters.Instance.GetOrganelleType(name).InternalName, "organelleSelection");
-
+            var tooltip = GetSelectionTooltip(name, "organelleSelection");
             if (tooltip != null)
                 tooltip.EditorCostFactor = editorCostFactor;
         }
+
+        var membraneNames = SimulationParameters.Instance.GetAllMembranes().Select(m => m.InternalName);
+        foreach (var name in membraneNames)
+        {
+            var tooltip = GetSelectionTooltip(name, "membraneSelection");
+            if (tooltip != null)
+                tooltip.EditorCostFactor = editorCostFactor;
+        }
+
+        var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
+        if (rigidityTooltip != null)
+            rigidityTooltip.EditorCostFactor = editorCostFactor;
     }
 
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
