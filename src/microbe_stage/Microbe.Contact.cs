@@ -1291,6 +1291,12 @@ public partial class Microbe
         if (State != MicrobeState.Engulf)
             return;
 
+        foreach (var disposedMicrobe in touchedMicrobes.Where(m => m.destroyed).ToList())
+        {
+            touchedMicrobes.Remove(disposedMicrobe);
+            GD.Print($"Removed destroyed microbe from {nameof(touchedMicrobes)}");
+        }
+
         // In the case that the microbe first comes into engulf range, we don't want to start engulfing yet
         // foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
         foreach (var microbe in touchedMicrobes)
