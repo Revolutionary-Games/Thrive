@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Godot;
 
@@ -127,9 +128,15 @@ public class PatchMapDrawer : Control
             }
         }
 
+        // For special regions draw the connection between them and the normal region.
         foreach (var entry in Map.SpecialRegions)
         {
             var region = entry.Value;
+            var patch = region.Patches.First();
+            var adjacent = patch.Adjacent.First();
+            var start = Center(patch.ScreenCoordinates);
+            var end = Center(adjacent.ScreenCoordinates);
+            DrawNodeLink(start, end);
             DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)), new Color(0f, 0.7f, 0.5f, 0.7f), false, 4f);
 
         }
@@ -139,10 +146,15 @@ public class PatchMapDrawer : Control
         {
             foreach (var adjacent in entry.Value.Adjacent)
             {
-                var start = Center(entry.Value.ScreenCoordinates);
-                var end = Center(adjacent.ScreenCoordinates);
 
-                DrawNodeLink(start, end);
+                // Only draw connections if patches belong to the same region
+                if (entry.Value.Region.Name == adjacent.Region.Name)
+                {
+                    var start = Center(entry.Value.ScreenCoordinates);
+                    var end = Center(adjacent.ScreenCoordinates);
+
+                    DrawNodeLink(start, end);
+                }
             }
         }
     }
@@ -200,6 +212,12 @@ public class PatchMapDrawer : Control
         {
             node.Selected = node.Patch == selectedPatch;
             node.Marked = node.Patch == playerPatch;
+
+            if (selectedPatch != null)
+                node.SelectionAdjacent =  selectedPatch.Adjacent.Contains(node.Patch);
+            
+            if (playerPatch != null)
+                node.PlayerAdjacent = playerPatch.Adjacent.Contains(node.Patch);
         }
     }
 

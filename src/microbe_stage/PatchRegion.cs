@@ -44,11 +44,6 @@ public class PatchRegion
         ScreenCoordinates = coordinates;
     }
 
-    public void AddPatch(Patch patch)
-    {
-        Patches.Add(patch);
-    }
-
     public void BuildPatches(Random random)
     {
 
@@ -220,7 +215,13 @@ public class PatchRegion
         patch1.AddNeighbour(patch2);
         patch2.AddNeighbour(patch1);
     }
-    
+
+    public void AddPatch(Patch patch)
+    {
+        Patches.Add(patch);
+        patch.Region = this;
+    }
+
     /// <summary>
     ///   Adds a connection to patch
     /// </summary>
