@@ -12,7 +12,6 @@ performanceMetricsCheckBoxPath = NodePath("Dialog/VBoxContainer/PerformanceMetri
 dialogPath = NodePath("Dialog")
 
 [node name="Dialog" parent="." instance=ExtResource( 1 )]
-visible = true
 margin_left = 30.0
 margin_top = 30.0
 WindowTitle = "DEBUG_PANEL"
