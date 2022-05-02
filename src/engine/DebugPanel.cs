@@ -52,19 +52,19 @@ public class DebugPanel : Control
         base._ExitTree();
     }
 
-    [RunOnKeyDown("toggle_metrics", OnlyUnhandled = false, Priority = 1)]
+    [RunOnKeyDown("toggle_metrics", OnlyUnhandled = false)]
     public void OnPerformanceMetricsToggled()
     {
         performanceMetricsCheckBox.Pressed = !performanceMetricsCheckBox.Pressed;
     }
 
-    [RunOnKeyDown("toggle_FPS", OnlyUnhandled = false, Priority = 1)]
+    [RunOnKeyDown("toggle_FPS", OnlyUnhandled = false)]
     public void OnFpsToggled()
     {
         fpsCheckBox.Pressed = !fpsCheckBox.Pressed;
     }
 
-    [RunOnKeyDown("toggle_debug_panel", OnlyUnhandled = false, Priority = 2)]
+    [RunOnKeyDown("toggle_debug_panel", OnlyUnhandled = false)]
     public void OnDebugPanelToggled()
     {
         if (!dialog.Visible)
