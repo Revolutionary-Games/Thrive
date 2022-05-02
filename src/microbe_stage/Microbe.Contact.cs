@@ -1015,7 +1015,7 @@ public partial class Microbe
             // Interpolate translation and scale manually to allow saving
             if (engulfed.Interpolate)
             {
-                if (AnimateEngulfedMovement(delta, engulfed, body))
+                if (LerpEngulfedMovement(delta, engulfed, body))
                 {
                     if (engulfed.Engulfable.IsBeingIngested)
                     {
@@ -1583,7 +1583,7 @@ public partial class Microbe
         }
     }
 
-    private bool AnimateEngulfedMovement(float delta, EngulfedObject engulfedObject, RigidBody body)
+    private bool LerpEngulfedMovement(float delta, EngulfedObject engulfedObject, RigidBody body)
     {
         if (engulfedObject.AnimationTimeElapsed < 2.0f)
         {
