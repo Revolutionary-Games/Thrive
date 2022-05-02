@@ -6,13 +6,6 @@
 [sub_resource type="ShaderMaterial" id=1]
 
 [node name="FPSCounter" type="Control"]
-visible = false
-anchor_left = 0.05
-anchor_top = 0.05
-anchor_right = 0.05
-anchor_bottom = 0.05
-margin_right = 60.0
-margin_bottom = 30.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
