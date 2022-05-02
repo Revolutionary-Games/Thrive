@@ -97,4 +97,9 @@ public class DebugPanel : Control
         ShowEntityLabel = state;
         EmitSignal(nameof(ToggleEntityLabel));
     }
+
+    private void OnRigiditySliderValueChanged(float value)
+    {
+        dialog.Modulate = new Color(1, 1, 1, 1 - value);
+    }
 }

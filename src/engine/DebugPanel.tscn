@@ -12,6 +12,7 @@ performanceMetricsCheckBoxPath = NodePath("Dialog/VBoxContainer/PerformanceMetri
 dialogPath = NodePath("Dialog")
 
 [node name="Dialog" parent="." instance=ExtResource( 1 )]
+visible = true
 margin_left = 30.0
 margin_top = 30.0
 WindowTitle = "DEBUG_PANEL"
@@ -47,7 +48,29 @@ margin_bottom = 80.0
 custom_fonts/font = ExtResource( 4 )
 text = "ENTITY_LABEL"
 
+[node name="VBoxContainer" type="HBoxContainer" parent="Dialog/VBoxContainer"]
+margin_top = 84.0
+margin_right = 191.0
+margin_bottom = 101.0
+
+[node name="RigidityLabel" type="Label" parent="Dialog/VBoxContainer/VBoxContainer"]
+margin_right = 110.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 4 )
+text = "TRANSPARENCY"
+
+[node name="RigiditySlider" type="HSlider" parent="Dialog/VBoxContainer/VBoxContainer"]
+margin_left = 114.0
+margin_right = 191.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+max_value = 0.7
+step = 0.01
+scrollable = false
+ticks_on_borders = true
+
 [connection signal="toggled" from="Dialog/VBoxContainer/FPSCheckBox" to="." method="OnFpsCheckBoxToggled"]
 [connection signal="toggled" from="Dialog/VBoxContainer/PerformanceMetricsCheckBox" to="." method="OnPerformanceMetricsCheckBoxToggled"]
 [connection signal="toggled" from="Dialog/VBoxContainer/CollisionShapeCheckBox" to="." method="OnCollisionShapeCheckBoxToggled"]
 [connection signal="toggled" from="Dialog/VBoxContainer/EntityLabelCheckBox" to="." method="OnEntityLabelCheckBoxToggled"]
+[connection signal="value_changed" from="Dialog/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnRigiditySliderValueChanged"]
