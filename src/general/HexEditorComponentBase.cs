@@ -73,7 +73,7 @@ public abstract class
     protected PackedScene hexScene = null!;
     protected PackedScene modelScene = null!;
 
-    private AudioStream hexPlacementSound = null!;
+    protected AudioStream hexPlacementSound = null!;
 
     [JsonProperty]
     protected string? activeActionName;
