@@ -28,7 +28,7 @@ public static class PatchMapGenerator
         int [,] graph = new int [100,100];
         int vertexNr = random.Next(6,10);
         int edgeNr = random.Next(vertexNr , 2*vertexNr - 4);
-        int minDistance = 200;
+        int minDistance = 180;
         
         var currentPatchId = 0;
         var specialRegionsId = -1;
@@ -63,7 +63,7 @@ public static class PatchMapGenerator
 
             if (regionType == 2)
             {
-                numberOfPatches = random.Next(1,4);
+                numberOfPatches = random.Next(0,4);
 
                 // All continents must have at least 1 coastal patch.
                 Patch patch = GetPatchFromPredefinedMap(0, currentPatchId++, predefinedMap, areaName);
@@ -93,7 +93,7 @@ public static class PatchMapGenerator
                     patch = GetPatchFromPredefinedMap(9, currentPatchId++, predefinedMap, areaName);
                 region.AddPatch(patch);
 
-
+                // Add the patches between surface and sea floor
                 for (int patchIndex = 4; numberOfPatches > 0 && patchIndex < 7; patchIndex ++, numberOfPatches--)
                 {
                     patch = GetPatchFromPredefinedMap(patchIndex, currentPatchId++, predefinedMap, areaName);
@@ -104,7 +104,7 @@ public static class PatchMapGenerator
                 patch = GetPatchFromPredefinedMap(7, currentPatchId++, predefinedMap, areaName);
                 region.AddPatch(patch);
 
-                // Chance to add a vent region if this region were adding is an ocean one
+                // Chance to add a vent region if this region were adding to is an ocean/sea one
                 if (random.Next(0,2) == 1)
                 {
                     var ventRegion = new PatchRegion(specialRegionsId--,  GetPatchLocalizedName(continentName, "vents"), "vents", coord);
@@ -146,35 +146,9 @@ public static class PatchMapGenerator
         // We make the graph by substracting edges from its Delaunay Triangulation 
         // as long as the graph stays connected.
         graph = DelaunayTriangulation(graph, regionCoords);
-        var currentEdgeNr = CurrentEdgeNumber(graph, vertexNr);
+        graph = SubstractEdges(graph, regionCoords, vertexNr, edgeNr, random);
 
-        // Substract edges until we reach the desired edge count.
-        while (currentEdgeNr > edgeNr)
-        {
-            int edgeToDelete = random.Next(1, currentEdgeNr);
-            int i = 0;
-            int j = 0;
-            for (i = 0; i < vertexNr && edgeToDelete != 0; i++)
-            {
-                for (j = 0; j < vertexNr && edgeToDelete != 0 && j <= i; j++)
-                {
-                    if (graph[i,j] == 1)
-                        edgeToDelete --;
-                }
-            }
-            i--;
-            j--;
-
-            // Check if the graph stays connected after substracting the edge
-            // otherwise, leave the edge as is.
-            graph[i,j] = graph [j,i] = 0;
-            if (!CheckConnectivity(graph, vertexNr))
-                graph[i,j] = graph [j,i] = 1;
-            else
-                currentEdgeNr -= 1;
-        }
-
-        // Link regions
+        // Link regions according to the graph matrix
         for (int k = 0; k < vertexNr; k++)
             for (int l = 0; l < vertexNr; l++)
                 if(graph[l,k] == 1)
@@ -214,7 +188,38 @@ public static class PatchMapGenerator
         _ = TranslationServer.Translate("PATCH_ICE_SHELF");
         _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
     }
+    private static int [,] SubstractEdges(int [,] graph, List<Vector2>vertexCoords, int vertexNr, int edgeNr, Random random)
+    {
+        var currentEdgeNr = CurrentEdgeNumber(graph, vertexNr);
 
+        // Substract edges until we reach the desired edge count.
+        while (currentEdgeNr > edgeNr)
+        {
+            int edgeToDelete = random.Next(1, currentEdgeNr);
+            int i = 0;
+            int j = 0;
+            for (i = 0; i < vertexNr && edgeToDelete != 0; i++)
+            {
+                for (j = 0; j < vertexNr && edgeToDelete != 0 && j <= i; j++)
+                {
+                    if (graph[i,j] == 1)
+                        edgeToDelete --;
+                }
+            }
+            i--;
+            j--;
+
+            // Check if the graph stays connected after substracting the edge
+            // otherwise, leave the edge as is.
+            graph[i,j] = graph [j,i] = 0;
+            if (!CheckConnectivity(graph, vertexNr))
+                graph[i,j] = graph [j,i] = 1;
+            else
+                currentEdgeNr -= 1;
+        }
+
+        return graph;
+    }
     // Create a triangulation for a certain graph given some vertex coordinates
     private static int [,] DelaunayTriangulation(int [,] graph, List<Vector2>vertexCoords)
     {

@@ -18,6 +18,7 @@ public class PatchRegion
     public LocalizedString Name { get; private set; }
     public float PatchNodeWidth = 64.0f;
     public float PatchNodeHeight = 64.0f;
+    public float RegionLineWidth = 4f;
     public string RegionType = null!;
 
     /// <summary>
@@ -46,6 +47,7 @@ public class PatchRegion
 
     public void BuildPatches(Random random)
     {
+        var RegionMargin = PatchMargin + RegionLineWidth;
 
         // Patch linking first
         if ( RegionType == "sea" || RegionType == "ocean" || RegionType == "continent")
@@ -86,29 +88,29 @@ public class PatchRegion
         {
             
             if ( RegionType == "sea" || RegionType == "ocean")
-                Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + PatchMargin, ScreenCoordinates.y + i * (64f + PatchMargin) + PatchMargin);
+                Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + RegionMargin, ScreenCoordinates.y + i * (64f + PatchMargin) + PatchMargin + RegionLineWidth);
 
             if (RegionType == "continent")
             {
                 if (i % 2 == 0)
                 {
                     if (i == 0)
-                        Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + PatchMargin, ScreenCoordinates.y + PatchMargin);
+                        Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + RegionMargin, ScreenCoordinates.y + RegionMargin);
                     else
-                        Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + PatchMargin, ScreenCoordinates.y + 64f + 2* PatchMargin);
+                        Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + RegionMargin, ScreenCoordinates.y + 64f + 2* PatchMargin);
                 }
                 else
                 {
                     if (i == 1)
-                        Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + 2 * PatchMargin + 64f, ScreenCoordinates.y + PatchMargin);
+                        Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + 2 * PatchMargin + 64f + RegionLineWidth, ScreenCoordinates.y + RegionMargin);
                     else
-                        Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + 2 * PatchMargin + 64f, ScreenCoordinates.y + 2* PatchMargin + 64f);
+                        Patches[i].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + 2 * PatchMargin + 64f + RegionLineWidth, ScreenCoordinates.y + 2* PatchMargin + 64f + RegionLineWidth);
                 }   
             }
 
             if (RegionType == "vents" || RegionType == "underwatercave")
             {
-                Patches[0].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + PatchMargin, ScreenCoordinates.y + PatchMargin);
+                Patches[0].ScreenCoordinates = new Vector2 (ScreenCoordinates.x + RegionMargin, ScreenCoordinates.y + RegionMargin);
             }
         }
 
@@ -117,25 +119,25 @@ public class PatchRegion
     public void BuildRegion()
     {
         // Region size configuration
-        Width += 64f + 2 * PatchMargin;
+        Width += 64f + 2 * PatchMargin + RegionLineWidth;
         
         if (RegionType == "continent")
         {
-            Height = 64f + 2*PatchMargin;
+            Height = 64f + 2*PatchMargin + RegionLineWidth;
             if (Patches.Count > 1)
                 Width += 64f + PatchMargin;
             
             if (Patches.Count > 2)
-                Height = 3 * PatchMargin + 2 * 64f;
+                Height = 3 * PatchMargin + 2 * 64f + RegionLineWidth;
         }
 
         if (RegionType == "ocean" || RegionType == "sea")
         {
-            Height += 64f * Patches.Count + (Patches.Count + 1) * PatchMargin;
+            Height += 64f * Patches.Count + (Patches.Count + 1) * PatchMargin + RegionLineWidth;
         }
         if (RegionType == "vents")
         {
-            Height = Width = 64 + 2 * PatchMargin;
+            Height = Width = 64 + 2 * PatchMargin + RegionLineWidth;
 
             var adjacent = Adjacent.First();
             ScreenCoordinates = adjacent.ScreenCoordinates + new Vector2(0, adjacent.Height) + new Vector2(0, 20);
@@ -143,7 +145,7 @@ public class PatchRegion
         }
         if (RegionType == "underwatercave")
         {
-            Height = Width = 64 + 2 * PatchMargin;
+            Height = Width = 64 + 2 * PatchMargin + RegionLineWidth;
 
             var adjacent = Adjacent.First();
             var adjacentPatch = Patches[0].Adjacent.First();

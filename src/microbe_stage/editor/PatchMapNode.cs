@@ -25,6 +25,7 @@ public class PatchMapNode : MarginContainer
     private Panel? highlightPanel;
     private Panel? markPanel;
     private Panel? adjacentHighlightPanel;
+
     // mouse hover
     private bool highlighted;
 
@@ -36,9 +37,6 @@ public class PatchMapNode : MarginContainer
 
     // node adjacent to the selected node
     private bool selectionAdjacent;
-
-    // node adjacent to the player node
-    private bool playerAdjacent;
     private Texture? patchIcon;
 
     /// <summary>
@@ -121,6 +119,7 @@ public class PatchMapNode : MarginContainer
         {
             if (mouse.Pressed)
             {
+                ((PatchMapDrawer)GetParent()).MarkDirty();
                 OnSelect();
                 AcceptEvent();
             }

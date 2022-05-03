@@ -24,10 +24,22 @@ public class PatchMapDrawer : Control
     public float PatchMargin = 6f;
 
     [Export]
-    public Color ConnectionColour = new(1.0f, 1.0f, 1.0f, 1.0f);
+    public Color ConnectionColour = new Color(0f, 0.6f, 0.2f, 1f);
+
+    [Export]
+    public Color DefaultConnectionColor = new Color(0f, 0.6f, 0.2f, 1f);
+
+    [Export]
+    public Color HighlightedConnectionColor = new Color(0f, 1f, 1f, 1f);
+
+    [Export]
+    public float RegionLineWidth = 4f;
 
     private readonly List<PatchMapNode> nodes = new();
 
+    // The representation of connections between regions 
+    // Made so we wont draw the same line multiple times
+    private List<Tuple<int,int>> connections = new();
     private PatchMap? map;
     private bool dirty = true;
 
@@ -110,20 +122,38 @@ public class PatchMapDrawer : Control
     {
         if (Map == null)
             return;
-
+        
+        connections = new();
         foreach (var entry in Map.Regions)
         {
             var region = entry.Value;
-            DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)), new Color(0f, 0.7f, 0.5f, 0.7f), false, 4f);
+            DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)), new Color(0f, 0.7f, 0.5f, 0.7f), 
+                false, RegionLineWidth);
 
             foreach (var adjacent in region.Adjacent)
             {
                 if (adjacent.ID >= 0)
                 {
-                    var start = RegionCenter(region);
-                    var end = RegionCenter(adjacent);
+                    var tuple = Tuple.Create(region.ID, adjacent.ID);
+                    var complementTuple = Tuple.Create(adjacent.ID, region.ID);
 
-                    DrawNodeLink(start, end);
+                    if (!connections.Contains(tuple) && !connections.Contains(complementTuple))
+                    {
+                        var start = RegionCenter(region);
+                        var end = RegionCenter(adjacent);
+                        var intermediate1 = new Vector2(start.x, end.y);
+                        var intermediate2 = new Vector2(end.x, start.y);
+
+                        if (CheckHighlightedAdjency(region, adjacent))
+                            ConnectionColour = HighlightedConnectionColor;
+                        else
+                            ConnectionColour = DefaultConnectionColor;
+
+                        DrawNodeLink(start, intermediate1); 
+                        DrawNodeLink(intermediate1, end);
+
+                        connections.Add(tuple);
+                    }
                 }
             }
         }
@@ -137,10 +167,11 @@ public class PatchMapDrawer : Control
             var start = Center(patch.ScreenCoordinates);
             var end = Center(adjacent.ScreenCoordinates);
             DrawNodeLink(start, end);
-            DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)), new Color(0f, 0.7f, 0.5f, 0.7f), false, 4f);
+            DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)), new Color(0f, 0.7f, 0.5f, 0.7f), 
+                false, RegionLineWidth);
 
         }
-
+        ConnectionColour = DefaultConnectionColor;
         // This ends up drawing duplicates but that doesn't seem problematic ATM
         foreach (var entry in Map.Patches)
         {
@@ -159,6 +190,11 @@ public class PatchMapDrawer : Control
         }
     }
 
+    public void MarkDirty()
+    {
+        dirty = true;
+    }
+
     private Vector2 RegionCenter(PatchRegion region)
     {
         return new Vector2(region.ScreenCoordinates.x + region.Width / 2, region.ScreenCoordinates.y + region.Height / 2);
@@ -173,7 +209,52 @@ public class PatchMapDrawer : Control
     {
         DrawLine(center1, center2, ConnectionColour, ConnectionLineWidth, true);
     }
+    private PatchMapNode GetNode(Patch patch)
+    {
+        foreach (var node in nodes)
+            if (node.Patch == patch)
+                return node;
+        return new();
+    }
+    private bool ContainsSelected(PatchRegion region)
+    {
+        foreach (var patch in region.Patches)
+        {
+            var node = GetNode(patch);
+            if (node.Selected)
+                return true;
+        }
 
+        return false;
+    }
+
+    private bool ContainsAdjacentToSelected(PatchRegion region)
+    {
+        foreach (var patch in region.Patches)
+        {
+            var node = GetNode(patch);
+            if (node.SelectionAdjacent)
+                return true;
+        }
+
+        return false;
+    }
+    private bool CheckHighlightedAdjency(PatchRegion region1, PatchRegion region2)
+    {
+        if ((ContainsSelected(region1) && ContainsAdjacentToSelected(region2)) || 
+            (ContainsSelected(region2) && ContainsAdjacentToSelected(region1)))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private Vector2 LineRectangleIntersection(Vector2 l1, Vector2 l2, Rect2 rect)
+    {
+        var intersection = new Vector2();
+        return intersection;
+    }
     private void RebuildMapNodes()
     {
         foreach (var node in nodes)
