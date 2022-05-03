@@ -19,6 +19,7 @@ public partial class Microbe
     private HashSet<uint> pilusPhysicsShapes = new();
 
     private bool membraneOrganellePositionsAreDirty = true;
+    private bool membraneOrganellesWereUpdatedThisFrame;
 
     private bool destroyed;
 
@@ -74,6 +75,11 @@ public partial class Microbe
 
     [JsonProperty]
     private bool deathParticlesSpawned;
+
+    /// <summary>
+    ///   Used to log just once when the touched microbe disposed issue happens to reduce log spam
+    /// </summary>
+    private bool loggedTouchedDisposeIssue;
 
     [JsonProperty]
     private MicrobeState state;
@@ -315,7 +321,7 @@ public partial class Microbe
         }
         else if (source == "atpDamage")
         {
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg", 0.8f);
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg");
         }
         else if (source == "ice")
         {
@@ -354,7 +360,12 @@ public partial class Microbe
         }
         catch (ObjectDisposedException)
         {
-            GD.PrintErr("Touched microbe has been disposed before engulfing could start");
+            if (!loggedTouchedDisposeIssue)
+            {
+                GD.PrintErr("Touched microbe has been disposed before engulfing could start");
+                loggedTouchedDisposeIssue = true;
+            }
+
             return false;
         }
 
@@ -473,10 +484,7 @@ public partial class Microbe
         {
             foreach (var entry in organelle.Definition.InitialComposition)
             {
-                float existing = 0;
-
-                if (compoundsToRelease.ContainsKey(entry.Key))
-                    existing = compoundsToRelease[entry.Key];
+                compoundsToRelease.TryGetValue(entry.Key, out var existing);
 
                 compoundsToRelease[entry.Key] = existing + (entry.Value *
                     Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
@@ -551,7 +559,7 @@ public partial class Microbe
 
             // Finally spawn a chunk with the settings
             var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
-                chunkScene, cloudSystem!, random);
+                chunkScene, random);
 
             // Add to the spawn system to make these chunks limit possible number of entities
             SpawnSystem.AddEntityToTrack(chunk);
@@ -1188,7 +1196,7 @@ public partial class Microbe
     private bool CanBindToMicrobe(Microbe other)
     {
         // Cannot hijack the player, other species or other colonies (TODO: yet)
-        return !other.IsPlayerMicrobe && other.Colony == null && other.Species == Species;
+        return !other.Dead && !other.IsPlayerMicrobe && other.Colony == null && other.Species == Species;
     }
 
     private void CheckBinding()

@@ -37,8 +37,6 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     [Export]
     public NodePath NewHiddenAlternativeSpacerPath = null!;
 
-    private TextureButton redoButton = null!;
-
     private TextureButton? newButton;
     private LineEdit speciesNameEdit = null!;
     private TextureButton? randomizeNameButton;
@@ -55,6 +53,12 @@ public class EditorComponentBottomLeftButtons : MarginContainer
 
     private bool showNewButton = true;
     private bool showRandomizeButton = true;
+
+    /// <summary>
+    ///   True when one of our (name related) Controls is hovered. This needs to be known to know if a click happened
+    ///   outside the name editing controls, for detecting when the name needs to be validated.
+    /// </summary>
+    private bool controlsHoveredOver;
 
     [Signal]
     public delegate void OnNewClicked();
@@ -98,13 +102,15 @@ public class EditorComponentBottomLeftButtons : MarginContainer
 
     public TextureButton UndoButton { get; private set; } = null!;
 
+    public TextureButton RedoButton { get; private set; } = null!;
+
     public bool UndoEnabled { get => !UndoButton.Disabled; set => UndoButton.Disabled = !value; }
-    public bool RedoEnabled { get => !redoButton.Disabled; set => redoButton.Disabled = !value; }
+    public bool RedoEnabled { get => !RedoButton.Disabled; set => RedoButton.Disabled = !value; }
 
     public override void _Ready()
     {
         UndoButton = GetNode<TextureButton>(UndoButtonPath);
-        redoButton = GetNode<TextureButton>(RedoButtonPath);
+        RedoButton = GetNode<TextureButton>(RedoButtonPath);
 
         newButton = GetNode<TextureButton>(NewButtonPath);
         speciesNameEdit = GetNode<LineEdit>(NameEditPath);
@@ -130,7 +136,7 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     public void RegisterTooltips()
     {
         UndoButton.RegisterToolTipForControl("undoButton", "editor");
-        redoButton.RegisterToolTipForControl("redoButton", "editor");
+        RedoButton.RegisterToolTipForControl("redoButton", "editor");
 
         symmetryButton.RegisterToolTipForControl("symmetryButton", "editor");
 
@@ -180,6 +186,17 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         speciesNameEdit.PlaceholderText = placeholder;
     }
 
+    public void OnClickedOffName()
+    {
+        var focused = GetFocusOwner();
+
+        // Ignore if the species name line edit wasn't focused or if one of our controls is hovered
+        if (focused != speciesNameEdit || controlsHoveredOver)
+            return;
+
+        PerformValidation(speciesNameEdit.Text);
+    }
+
     private void OnSymmetryHold()
     {
         symmetryIcon.Modulate = new Color(0, 0, 0);
@@ -226,23 +243,34 @@ public class EditorComponentBottomLeftButtons : MarginContainer
 
     private void OnNameTextEntered(string newText)
     {
+        PerformValidation(newText);
+        EmitSignal(nameof(OnNameSet), newText);
+    }
+
+    private void PerformValidation(string text)
+    {
         if (UseSpeciesNameValidation)
         {
             // Only defocus if the name is valid to indicate invalid namings to the player
-            if (Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
+            if (Regex.IsMatch(text, Constants.SPECIES_NAME_REGEX))
             {
                 speciesNameEdit.ReleaseFocus();
             }
             else
             {
+                // Prevents user from doing other actions with an invalid name
+                GetTree().SetInputAsHandled();
+
                 // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
                 ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
 
                 speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
             }
         }
-
-        EmitSignal(nameof(OnNameSet), newText);
+        else
+        {
+            speciesNameEdit.ReleaseFocus();
+        }
     }
 
     private void OnRandomizeNamePressed()
@@ -278,5 +306,15 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         {
             randomizeNameButton.Visible = showRandomizeButton;
         }
+    }
+
+    private void OnControlMouseEntered()
+    {
+        controlsHoveredOver = true;
+    }
+
+    private void OnControlMouseExited()
+    {
+        controlsHoveredOver = false;
     }
 }

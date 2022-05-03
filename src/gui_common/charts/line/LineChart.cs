@@ -279,13 +279,13 @@ public class LineChart : VBoxContainer
 
     public ChartDataSet? GetDataSet(string name)
     {
-        if (!dataSets.ContainsKey(name))
+        if (!dataSets.TryGetValue(name, out var dataSet))
         {
             GD.PrintErr("DataSet with name '" + name + "' not found");
             return null;
         }
 
-        return dataSets[name];
+        return dataSet;
     }
 
     public void ClearDataSets()
@@ -505,10 +505,8 @@ public class LineChart : VBoxContainer
         // Clear lines
         foreach (var data in dataSets)
         {
-            if (!dataLines.ContainsKey(data.Key))
+            if (!dataLines.TryGetValue(data.Key, out var dataLine))
                 continue;
-
-            var dataLine = dataLines[data.Key];
 
             dataLine.DetachAndQueueFree();
 
@@ -540,10 +538,8 @@ public class LineChart : VBoxContainer
     {
         childChart?.UpdateDataSetVisibility(name, visible);
 
-        if (!dataSets.ContainsKey(name))
+        if (!dataSets.TryGetValue(name, out var data))
             return DataSetVisibilityUpdateResult.NotFound;
-
-        var data = dataSets[name];
 
         if (data.Draw == visible)
             return DataSetVisibilityUpdateResult.UnchangedValue;
@@ -668,13 +664,11 @@ public class LineChart : VBoxContainer
             // Create into List so we can use IndexOf
             var points = data.Value.DataPoints.ToList();
 
-            if (points.Count <= 0 || !dataLines.ContainsKey(data.Key))
+            if (points.Count <= 0 || !dataLines.TryGetValue(data.Key, out var dataLine))
                 continue;
 
             // This is actually the first point (left-most)
             var previousPoint = points.Last();
-
-            var dataLine = dataLines[data.Key];
 
             // Setup lines
             foreach (var point in points)

@@ -307,6 +307,14 @@ public partial class CellBodyPlanEditorComponent :
         if (!Visible)
             return;
 
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+        {
+            var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
+            metrics.ReportEntities(roughCount, 0);
+        }
+
         if (organelleDataDirty)
         {
             OnOrganellesChanged();
@@ -374,7 +382,7 @@ public partial class CellBodyPlanEditorComponent :
         if (editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
             return true;
 
-        // TODO: warning about not producing enough ATP
+        // TODO: warning about not producing enough ATP if entire body plan would be negative
 
         return true;
     }

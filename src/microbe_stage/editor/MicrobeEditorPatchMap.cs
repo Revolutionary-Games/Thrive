@@ -1,7 +1,7 @@
 ﻿/// <summary>
 ///   Microbe patch map GUI
 /// </summary>
-[IgnoreNoMethodsTakingInputAttribute]
+[IgnoreNoMethodsTakingInput]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn", UsesEarlyResolve = false)]
 public class MicrobeEditorPatchMap : PatchMapEditorComponent<IEditorWithPatches>
 {

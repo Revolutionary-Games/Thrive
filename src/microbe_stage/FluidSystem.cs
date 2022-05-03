@@ -51,19 +51,8 @@ public class FluidSystem
     public void PhysicsProcess(float delta)
     {
         _ = delta;
-
-        var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.FLUID_EFFECT_GROUP);
-
-        foreach (Node entity in nodes)
+        foreach (var body in worldRoot.GetChildrenToProcess<RigidBody>(Constants.FLUID_EFFECT_GROUP))
         {
-            var body = entity as RigidBody;
-
-            if (body == null)
-            {
-                GD.PrintErr("A node has been put in the fluid effect group but it isn't a RigidBody");
-                continue;
-            }
-
             var pos = new Vector2(body.Translation.x, body.Translation.z);
             var vel = VelocityAt(pos) * Constants.MAX_FORCE_APPLIED_BY_CURRENTS;
             body.ApplyCentralImpulse(new Vector3(vel.x, 0, vel.y));

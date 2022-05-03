@@ -17,9 +17,31 @@ public partial class CellEditorComponent
 {
     private Texture questionIcon = null!;
 
-    public void SendUndoToTutorial(TutorialState tutorial)
+    [Signal]
+    public delegate void Clicked();
+
+    /// <summary>
+    ///   Detects presses anywhere to notify the name input to unfocus
+    /// </summary>
+    /// <param name="event">The input event</param>
+    /// <remarks>
+    ///   <para>
+    ///     This doesn't use <see cref="Control._GuiInput"/> as this needs to always see events, even ones that are
+    ///     handled elsewhere
+    ///   </para>
+    /// </remarks>
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton { Pressed: true })
+        {
+            EmitSignal(nameof(Clicked));
+        }
+    }
+
+    public void SendUndoRedoToTutorial(TutorialState tutorial)
     {
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = componentBottomLeftButtons.UndoButton;
+        tutorial.EditorRedoTutorial.EditorRedoButtonControl = componentBottomLeftButtons.RedoButton;
 
         tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
     }
@@ -131,6 +153,13 @@ public partial class CellEditorComponent
     private void UpdateHitpoints(float hp)
     {
         hpLabel.Text = hp.ToString(CultureInfo.CurrentCulture);
+
+        UpdateCellStatsIndicators();
+    }
+
+    private void UpdateStorage(float storage)
+    {
+        storageLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", storage);
 
         UpdateCellStatsIndicators();
     }
@@ -308,10 +337,16 @@ public partial class CellEditorComponent
 
     private void ConfirmFinishEditingWithNegativeATPPressed()
     {
+        if (OnFinish == null)
+        {
+            GD.PrintErr("Confirmed editing for cell editor when finish callback is not set");
+            return;
+        }
+
         GUICommon.Instance.PlayButtonPressSound();
 
         // If we add more things that can be overridden this needs to be updated
-        OnFinish!.Invoke(new List<EditorUserOverride> { EditorUserOverride.NotProducingEnoughATP });
+        OnFinish.Invoke(new List<EditorUserOverride> { EditorUserOverride.NotProducingEnoughATP });
     }
 
     private void UpdateGUIAfterLoadingSpecies(Species species, ICellProperties properties)
@@ -328,6 +363,7 @@ public partial class CellEditorComponent
         SetSpeciesInfo(newName, Membrane, Colour, Rigidity, behaviourEditor.Behaviour);
         UpdateGeneration(species.Generation);
         UpdateHitpoints(CalculateHitpoints());
+        UpdateStorage(CalculateStorage());
     }
 
     private class ATPComparer : IComparer<string>

@@ -90,6 +90,7 @@
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\NodeHelpers.cs" />
+    <Compile Include="src\engine\PerformanceMetrics.cs" />
     <Compile Include="src\engine\PhotoStudio.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
     <Compile Include="src\engine\ProceduralDataCache.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="src\microbe_stage\editor\MicrobeEditorTabButtons.cs" />
     <Compile Include="src\microbe_stage\editor\MutationPointsBar.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapEditorComponent.cs" />
+    <Compile Include="src\microbe_stage\FloatingChunkSystem.cs" />
     <Compile Include="src\microbe_stage\ICellProperties.cs" />
     <Compile Include="src\microbe_stage\IComputedMembraneData.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
@@ -216,6 +218,8 @@
     <Compile Include="src\microbe_stage\MicrobeColony.cs" />
     <Compile Include="src\microbe_stage\CompoundBalance.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
+    <Compile Include="src\microbe_stage\MicrobeSystem.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\EmptyOrganelleComponent.cs" />
     <Compile Include="src\microbe_stage\PatchMapNameGenerator.cs" />
     <Compile Include="src\microbe_stage\editor\BarHelper.cs" />
     <Compile Include="src\microbe_stage\editor\CompoundBalanceDisplay.cs" />
@@ -455,6 +459,9 @@
     </PackageReference>
     <PackageReference Include="StyleCop.Analyzers">
       <Version>1.2.0-beta.406</Version>
+    </PackageReference>
+    <PackageReference Include="Lib.Harmony">
+      <Version>2.2.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

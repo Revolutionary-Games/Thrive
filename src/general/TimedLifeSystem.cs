@@ -14,9 +14,7 @@ public class TimedLifeSystem
 
     public void Process(float delta)
     {
-        var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.TIMED_GROUP);
-
-        foreach (Node entity in nodes)
+        foreach (var entity in worldRoot.GetChildrenToProcess<Node>(Constants.TIMED_GROUP))
         {
             var timed = entity as ITimedLife;
 
@@ -41,9 +39,7 @@ public class TimedLifeSystem
     /// </summary>
     public void DespawnAll()
     {
-        var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.TIMED_GROUP);
-
-        foreach (Node entity in spawnedEntities)
+        foreach (var entity in worldRoot.GetChildrenToProcess<Node>(Constants.TIMED_GROUP))
         {
             if (!entity.IsQueuedForDeletion())
                 entity.DetachAndQueueFree();

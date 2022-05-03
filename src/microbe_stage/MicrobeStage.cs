@@ -31,6 +31,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     private SpawnSystem spawner = null!;
 
     private MicrobeAISystem microbeAISystem = null!;
+    private MicrobeSystem microbeSystem = null!;
+
+    private FloatingChunkSystem floatingChunkSystem = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -271,6 +274,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned, Clouds);
+        microbeSystem = new MicrobeSystem(rootOfDynamicallySpawned);
+        floatingChunkSystem = new FloatingChunkSystem(rootOfDynamicallySpawned, Clouds);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
@@ -403,7 +408,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         FluidSystem.Process(delta);
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);
+        floatingChunkSystem.Process(delta, Player?.Translation);
         microbeAISystem.Process(delta);
+        microbeSystem.Process(delta);
 
         if (gameOver)
         {
@@ -501,6 +508,15 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
                 SaveHelper.AutoSave(this);
 
             wantsToSave = false;
+        }
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+        {
+            var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP).Count();
+            var childCount = rootOfDynamicallySpawned.GetChildCount();
+            metrics.ReportEntities(entities, childCount - entities);
         }
     }
 
@@ -603,14 +619,27 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         GiveReproductionPopulationBonus();
 
         CurrentGame!.EnterPrototypes();
-        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(Player.Species);
+
+        var playerSpeciesMicrobes = GetAllPlayerSpeciesMicrobes();
 
         // Re-apply species here so that the player cell knows it is multicellular after this
-        Player.ApplySpecies(multicellularSpecies);
+        // Also apply species here to other members of the player's previous species
+        // This prevents previous members of the player's colony from immediately being hostile
+        bool playerHandled = false;
 
-        GD.Print("Canceling and restarting auto-evo to have player species multicellular version in it");
-        GameWorld.ResetAutoEvoRun();
-        GameWorld.IsAutoEvoFinished();
+        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(Player.Species);
+        foreach (var microbe in playerSpeciesMicrobes)
+        {
+            microbe.ApplySpecies(multicellularSpecies);
+
+            if (microbe == Player)
+                playerHandled = true;
+        }
+
+        if (!playerHandled)
+            throw new Exception("Did not find player to apply multicellular species to");
+
+        GameWorld.NotifySpeciesChangedStages();
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
 
@@ -653,14 +682,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             wonOnce = true;
         }
 
-        // Update the player's cell
-        Player!.ApplySpecies(Player.Species);
-
-        // Reset all the duplicates organelles of the player
-        Player.ResetOrganelleLayout();
-
         // Spawn another cell from the player species
-        var daughter = Player.Divide();
+        // This is done first to ensure that the player colony is still intact for spawn separation calculation
+        var daughter = Player!.Divide();
 
         // If multicellular, we want that other cell colony to be fully grown to show budding in action
         if (Player.IsMulticellular)
@@ -669,6 +693,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             // TODO: add more extra offset between the player and the divided cell
         }
+
+        // Update the player's cell
+        Player.ApplySpecies(Player.Species);
+
+        // Reset all the duplicates organelles of the player
+        Player.ResetOrganelleLayout();
 
         HUD.OnEnterStageTransition(false);
         HUD.HideReproductionDialog();
@@ -700,6 +730,20 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     }
 
     /// <summary>
+    ///   Helper function for transition to multicellular
+    /// </summary>
+    /// <returns>Array of all microbes of Player's species</returns>
+    private IEnumerable<Microbe> GetAllPlayerSpeciesMicrobes()
+    {
+        if (Player == null)
+            throw new InvalidOperationException("Could not get player species microbes: no Player object");
+
+        var microbes = rootOfDynamicallySpawned.GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE).Cast<Microbe>();
+
+        return microbes.Where(m => m.Species == Player.Species);
+    }
+
+    /// <summary>
     ///   Increases the population by the constant for the player reproducing
     /// </summary>
     private void GiveReproductionPopulationBonus()
@@ -728,9 +772,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         var randomSpecies = species.Random(random);
 
-        SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
+        var copyEntity = SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
             rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
             CurrentGame!);
+
+        // Make the cell despawn like normal
+        SpawnSystem.AddEntityToTrack(copyEntity);
     }
 
     [DeserializedCallbackAllowed]

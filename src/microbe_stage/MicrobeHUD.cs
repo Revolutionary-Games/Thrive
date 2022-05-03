@@ -178,6 +178,12 @@ public class MicrobeHUD : Control
     public NodePath BindingModeHotkeyPath = null!;
 
     [Export]
+    public NodePath UnbindAllHotkeyPath = null!;
+
+    [Export]
+    public NodePath SignallingAgentsHotkeyPath = null!;
+
+    [Export]
     public NodePath MicrobeControlRadialPath = null!;
 
     // Formatter and code checks disagree here
@@ -213,6 +219,8 @@ public class MicrobeHUD : Control
     private ActionButton engulfHotkey = null!;
     private ActionButton fireToxinHotkey = null!;
     private ActionButton bindingModeHotkey = null!;
+    private ActionButton unbindAllHotkey = null!;
+    private ActionButton signallingAgentsHotkey = null!;
 
     // Store these statefully for after player death
     private float maxHP = 1.0f;
@@ -373,6 +381,8 @@ public class MicrobeHUD : Control
         engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
         fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
         bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
+        unbindAllHotkey = GetNode<ActionButton>(UnbindAllHotkeyPath);
+        signallingAgentsHotkey = GetNode<ActionButton>(SignallingAgentsHotkeyPath);
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
@@ -679,6 +689,15 @@ public class MicrobeHUD : Control
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
 
         stage.MovingToEditor = true;
+
+        // TODO: mitigation for https://github.com/Revolutionary-Games/Thrive/issues/3006 remove once solved
+        // Start auto-evo if not started already to make sure it doesn't start after we are in the editor
+        // scene, this is a potential mitigation for the issue linked above
+        if (!Settings.Instance.RunAutoEvoDuringGamePlay)
+        {
+            GD.Print("Starting auto-evo while fading into the editor as mitigation for issue #3006");
+            stage.GameWorld.IsAutoEvoFinished(true);
+        }
     }
 
     public void ShowExtinctionBox()
@@ -1105,10 +1124,14 @@ public class MicrobeHUD : Control
         engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall;
         bindingModeHotkey.Visible = player.CanBind;
         fireToxinHotkey.Visible = player.AgentVacuoleCount > 0;
+        unbindAllHotkey.Visible = player.CanUnbind;
+        signallingAgentsHotkey.Visible = player.HasSignalingAgent;
 
         engulfHotkey.Pressed = player.State == Microbe.MicrobeState.Engulf;
         bindingModeHotkey.Pressed = player.State == Microbe.MicrobeState.Binding;
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
+        unbindAllHotkey.Pressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
+        signallingAgentsHotkey.Pressed = Input.IsActionPressed(signallingAgentsHotkey.ActionName);
     }
 
     private void UpdateMulticellularButton(Microbe player)
