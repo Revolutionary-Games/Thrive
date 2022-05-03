@@ -72,6 +72,9 @@ public class CustomDialog : Popup, ICustomPopup
     private bool showCloseButton = true;
     private bool decorate = true;
 
+    [Signal]
+    public delegate void Closed();
+
     [Flags]
     private enum DragType
     {
@@ -82,9 +85,6 @@ public class CustomDialog : Popup, ICustomPopup
         ResizeBottom = 1 << 3,
         ResizeLeft = 1 << 4,
     }
-
-    [Signal]
-    public delegate void Closed();
 
     /// <summary>
     ///   The text displayed in the window's title bar.
