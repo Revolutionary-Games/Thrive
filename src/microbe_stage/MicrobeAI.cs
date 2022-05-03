@@ -74,7 +74,7 @@ public class MicrobeAI
     private MicrobeSignalCommand receivedCommand = MicrobeSignalCommand.None;
 
     [JsonIgnore]
-    private bool hasBeenNearPlayer = false;
+    private bool hasBeenNearPlayer;
 
     public MicrobeAI(Microbe microbe)
     {
@@ -237,10 +237,8 @@ public class MicrobeAI
                     MoveToLocation(player.GlobalTransform.origin);
                     return;
                 }
-                else
-                {
-                    hasBeenNearPlayer = true;
-                }
+
+                hasBeenNearPlayer = true;
             }
         }
 
