@@ -17,14 +17,14 @@ public class PatchMapNode : MarginContainer
     [Export]
     public NodePath MarkPanelPath = null!;
 
+    // for patches adjacent to the selected one
+    [Export]
+    public NodePath AdjacentPanelPath = null!;
+
     private TextureRect? iconRect;
     private Panel? highlightPanel;
     private Panel? markPanel;
-
-    private Color selectionAdjacentColor = new Color(1f, 1f, 1f, 1f);
-    private Color playerAdjacentColor = new Color(1f, 1f, 1f, 1f); 
-    private Color selectColor = new Color(0.05f, 0.03f, 0.95f, 1f);
-    private Color markedColor = new Color(0.02f, 0.8f, 0.95f, 1f);
+    private Panel? adjacentHighlightPanel;
     // mouse hover
     private bool highlighted;
 
@@ -99,15 +99,6 @@ public class PatchMapNode : MarginContainer
             UpdateSelectHighlightRing(); 
         }
     }
-    public bool PlayerAdjacent
-    {
-        get => playerAdjacent;
-        set
-        {
-            playerAdjacent = value;
-            UpdateMarkRing();
-        }
-    }
 
     public override void _Ready()
     {
@@ -117,8 +108,7 @@ public class PatchMapNode : MarginContainer
         iconRect = GetNode<TextureRect>(IconPath);
         highlightPanel = GetNode<Panel>(HighlightPanelPath);
         markPanel = GetNode<Panel>(MarkPanelPath);
-        var style = markPanel.HasStyleboxOverride("panel");
-        var sty = (StyleBoxFlat)markPanel.GetStylebox("panel","");
+        adjacentHighlightPanel = GetNode<Panel>(AdjacentPanelPath);
 
         UpdateSelectHighlightRing();
         UpdateMarkRing();
@@ -156,21 +146,11 @@ public class PatchMapNode : MarginContainer
 
     private void UpdateSelectHighlightRing()
     {
-        if (highlightPanel == null)
+        if (highlightPanel == null || adjacentHighlightPanel == null)
             return;
-
-        highlightPanel.Visible = Highlighted || Selected || SelectionAdjacent;
-
-        var styleBox = (StyleBoxFlat)highlightPanel.GetStylebox("panel","");
-        if (SelectionAdjacent)
-        {
-            styleBox.BgColor = selectionAdjacentColor;
-        }
-        else
-        {
-            styleBox.BgColor = selectColor;
-        }
-        highlightPanel.AddStyleboxOverride("panel", styleBox);
+        
+        highlightPanel.Visible = Highlighted || Selected;
+        adjacentHighlightPanel.Visible = SelectionAdjacent;
     }
 
     private void UpdateMarkRing()
@@ -178,18 +158,7 @@ public class PatchMapNode : MarginContainer
         if (markPanel == null)
             return;
 
-        markPanel.Visible = Marked || PlayerAdjacent;
-
-        var styleBox = (StyleBoxFlat)markPanel.GetStylebox("panel","");
-        if (PlayerAdjacent)
-        {
-            styleBox.BgColor = playerAdjacentColor;
-        }
-        else
-        {
-            styleBox.BgColor = markedColor;
-        }
-        markPanel.AddStyleboxOverride("panel", styleBox);
+        markPanel.Visible = Marked;
     }
 
 

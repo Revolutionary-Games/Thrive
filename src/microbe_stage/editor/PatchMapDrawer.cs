@@ -215,9 +215,6 @@ public class PatchMapDrawer : Control
 
             if (selectedPatch != null)
                 node.SelectionAdjacent =  selectedPatch.Adjacent.Contains(node.Patch);
-            
-            if (playerPatch != null)
-                node.PlayerAdjacent = playerPatch.Adjacent.Contains(node.Patch);
         }
     }
 

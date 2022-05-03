@@ -180,7 +180,7 @@ public class PatchRegion
             {
                 foreach (var adjacent in Adjacent)
                 {
-                    GD.Print(adjacent.RegionType);
+
                     if (adjacent.RegionType == "continent")
                     {   
                         var patchIndex = random.Next(0, adjacent.Patches.Count - 1);
@@ -191,7 +191,7 @@ public class PatchRegion
                         int lowestConnectedLevel = Patches.Count;
                         lowestConnectedLevel = Math.Min(Patches.Count, adjacent.Patches.Count);
                         lowestConnectedLevel = random.Next(0, lowestConnectedLevel - 1);
-                        GD.Print(lowestConnectedLevel);
+
                         for (int i = 0; i <= lowestConnectedLevel; i++)
                             LinkPatches(Patches[i], adjacent.Patches[i]);
                     }

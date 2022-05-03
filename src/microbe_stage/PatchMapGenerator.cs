@@ -28,10 +28,11 @@ public static class PatchMapGenerator
         int [,] graph = new int [100,100];
         int vertexNr = random.Next(6,10);
         int edgeNr = random.Next(vertexNr , 2*vertexNr - 4);
-        int minDistance = 100;
+        int minDistance = 200;
         
         var currentPatchId = 0;
         var specialRegionsId = -1;
+
         // Create the graphs random regions
         for (int i = 0; i < vertexNr; i++)
         {
@@ -283,8 +284,8 @@ public static class PatchMapGenerator
 
     private static Vector2 GenerateCoordinates(PatchRegion region, PatchMap map, Random random, int minDistance)
     {
-            int x = random.Next(80,1200);
-            int y = random.Next(80,1200);
+            int x = random.Next(80,1300);
+            int y = random.Next(80,1300);
             var coord = new Vector2(x,y);
             region.ScreenCoordinates = coord;
             
@@ -292,9 +293,8 @@ public static class PatchMapGenerator
             bool check = CheckRegionDistance(region, map, minDistance);
             while (!check)
             {
-                GD.Print(coord);
-                x = random.Next(80,1200);
-                y = random.Next(80,1200);
+                x = random.Next(80,1300);
+                y = random.Next(80,1300);
                 coord = new Vector2(x,y);
                 region.ScreenCoordinates = coord;
                 check = CheckRegionDistance(region, map, minDistance);
