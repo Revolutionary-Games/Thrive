@@ -186,7 +186,7 @@ public partial class CellEditorComponent :
     private OrganelleDefinition bindingAgent = null!;
 
     /// <summary>
-    /// Controls MP discounts (for multicellular)
+    ///   Controls MP discounts (for multicellular)
     /// </summary>
     private float editorCostFactor = 1f;
 
@@ -519,8 +519,8 @@ public partial class CellEditorComponent :
             behaviourEditor.Visible = false;
         }
 
-        // After the if multicellular check so it resets if this is a single-cell editor
-        // but the previously opened editor was multicell (ie save and switch to new file)
+        // After the if multicellular check so the tooltip cost factors are correct
+        // on changing editor types, as tooltip manager is persistent while the game is running
         UpdateTooltipMPCostFactors();
     }
 
@@ -1327,7 +1327,7 @@ public partial class CellEditorComponent :
     private bool MoveOrganelle(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
         int newRotation)
     {
-        // TODO: consider allowing rotation inplace (issue #2993)
+        // TODO: consider allowing rotation inplace (https://github.com/Revolutionary-Games/Thrive/issues/2993)
 
         // Make sure placement is valid
         if (!IsMoveTargetValid(newLocation, newRotation, organelle))
@@ -1340,7 +1340,7 @@ public partial class CellEditorComponent :
         int cost = isFreeToMove ? 0 : moveCost;
 
         // Too low mutation points, cancel move
-        if (!isFreeToMove && Editor.MutationPoints < cost)
+        if (Editor.MutationPoints < cost)
         {
             CancelCurrentAction();
             Editor.OnInsufficientMP(false);
