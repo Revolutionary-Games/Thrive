@@ -73,6 +73,9 @@ public class MicrobeAI
     [JsonIgnore]
     private MicrobeSignalCommand receivedCommand = MicrobeSignalCommand.None;
 
+    [JsonIgnore]
+    private bool hasBeenNearPlayer = false;
+
     public MicrobeAI(Microbe microbe)
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
@@ -224,13 +227,20 @@ public class MicrobeAI
         }
 
         // If I'm very far from the player, get on stage
-        var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).FirstOrDefault();
-        if (player != null)
+        if (!hasBeenNearPlayer)
         {
-            if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 2.25f)
+            var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).FirstOrDefault();
+            if (player != null)
             {
-                MoveToLocation(player.GlobalTransform.origin);
-                return;
+                if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 2.25f)
+                {
+                    MoveToLocation(player.GlobalTransform.origin);
+                    return;
+                }
+                else
+                {
+                    hasBeenNearPlayer = true;
+                }
             }
         }
 
