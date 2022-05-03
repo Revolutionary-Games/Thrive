@@ -83,6 +83,9 @@ public class CustomDialog : Popup, ICustomPopup
         ResizeLeft = 1 << 4,
     }
 
+    [Signal]
+    public delegate void Closed();
+
     /// <summary>
     ///   The text displayed in the window's title bar.
     /// </summary>
@@ -613,6 +616,7 @@ public class CustomDialog : Popup, ICustomPopup
     private void OnCloseButtonPressed()
     {
         Hide();
+        EmitSignal(nameof(Closed));
     }
 
     private void OnViewportResized()
