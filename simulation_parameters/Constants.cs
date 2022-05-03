@@ -565,7 +565,7 @@ public static class Constants
     public const float MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE = 0.18f;
 
     /// <summary>
-    ///   Multiplier for editor actions in multicellular
+    ///   Multiplier for cell editor actions in multicellular editor
     /// </summary>
     public const float MULTICELLULAR_EDITOR_COST_FACTOR = 0.5f;
 

@@ -30,7 +30,7 @@ public class OrganellePopupMenu : PopupPanel
     private bool enableDelete = true;
     private bool enableMove = true;
     private bool enableModify;
-    private float editorCostFactor = 1f;
+    private float editorCostFactor = 1.0f;
 
     [Signal]
     public delegate void DeletePressed();

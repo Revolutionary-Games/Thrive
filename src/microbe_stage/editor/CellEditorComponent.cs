@@ -185,7 +185,9 @@ public partial class CellEditorComponent :
     private OrganelleDefinition nucleus = null!;
     private OrganelleDefinition bindingAgent = null!;
 
-    // Controls MP discounts (for multicelluar)
+    /// <summary>
+    /// Controls MP discounts (for multicellular)
+    /// </summary>
     private float editorCostFactor = 1f;
 
     private EnergyBalanceInfo? energyBalanceInfo;
@@ -517,7 +519,7 @@ public partial class CellEditorComponent :
             behaviourEditor.Visible = false;
         }
 
-        // after the if multicellular check so it resets if this is a single-cell editor
+        // After the if multicellular check so it resets if this is a single-cell editor
         // but the previously opened editor was multicell (ie save and switch to new file)
         UpdateTooltipMPCostFactors();
     }
@@ -933,7 +935,7 @@ public partial class CellEditorComponent :
         if (string.IsNullOrEmpty(ActiveActionName) || !Editor.ShowHover)
             return 0;
 
-        // Calculated in this order to be consistent with placing singleton organelles
+        // Calculated in this order to be consistent with placing unique organelles
         var cost = (int)(SimulationParameters.Instance.GetOrganelleType(ActiveActionName!).MPCost * editorCostFactor);
 
         switch (Symmetry)
@@ -1325,7 +1327,7 @@ public partial class CellEditorComponent :
     private bool MoveOrganelle(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
         int newRotation)
     {
-        // TODO: consider allowing rotation inplace
+        // TODO: consider allowing rotation inplace (issue #2993)
 
         // Make sure placement is valid
         if (!IsMoveTargetValid(newLocation, newRotation, organelle))
@@ -1338,7 +1340,7 @@ public partial class CellEditorComponent :
         int cost = isFreeToMove ? 0 : moveCost;
 
         // Too low mutation points, cancel move
-        if (!isFreeToMove && Editor.MutationPoints < moveCost)
+        if (!isFreeToMove && Editor.MutationPoints < cost)
         {
             CancelCurrentAction();
             Editor.OnInsufficientMP(false);

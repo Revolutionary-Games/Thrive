@@ -48,7 +48,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private string? description;
     private string processesDescription = string.Empty;
     private int mpCost;
-    private float editorCostFactor = 1f;
+    private float editorCostFactor = 1.0f;
 
     [Export]
     public string DisplayName
