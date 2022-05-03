@@ -240,7 +240,8 @@
             foreach (var currentSpecies in species)
             {
                 var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(currentSpecies, patch);
-                var individualCost = energyBalanceInfo.TotalConsumptionStationary;
+                var individualCost = energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
+                    * currentSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
 
                 // Modify populations based on energy
                 var newPopulation = (long)(energyBySpecies[currentSpecies]
