@@ -22,7 +22,7 @@ public static class Constants
     /// <summary>
     ///     Size of "chunks" used for spawning entities
     /// </summary>
-    public const float SPAWN_SECTOR_SIZE = 100.0f;
+    public const float SPAWN_SECTOR_SIZE = 120.0f;
 
     public const int CLOUD_SPAWN_SCALE_FACTOR = 10000;
 
