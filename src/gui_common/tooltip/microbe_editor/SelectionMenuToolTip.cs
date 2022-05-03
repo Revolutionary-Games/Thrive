@@ -303,8 +303,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (mpLabel == null)
             return;
 
-        int mpDisplay = (int)(mpCost * editorCostFactor);
-        mpLabel.Text = mpDisplay.ToString(CultureInfo.CurrentCulture);
+        mpLabel.Text = ((int)(mpCost * editorCostFactor)).ToString(CultureInfo.CurrentCulture);
     }
 
     private void UpdateLists()
