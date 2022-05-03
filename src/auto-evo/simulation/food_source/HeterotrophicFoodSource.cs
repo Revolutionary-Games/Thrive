@@ -44,9 +44,14 @@
                 Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
             {
                 engulfScore = Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
-            }
+                engulfScore *= predatorSpeed / preySpeed;
+                engulfScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
-            engulfScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
+                // Favor larger microbes, as if they stand more chances in a fight/can digest prey faster.
+                // Here it is artificially after speed comparison for gamey incentive.
+                // Compensating lower speed requires at least PREDATION_SCORE/LUCKY_CATCH_PROBABILITY more hexes.
+                engulfScore += microbeSpeciesHexSize;
+            }
 
             var pilusScore = 0.0f;
             var oxytoxyScore = 0.0f;
@@ -77,7 +82,7 @@
             }
 
             // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-            return behaviourScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore);
+            return behaviourScore * (pilusScore + engulfScore + oxytoxyScore);
         }
 
         public override IFormattable GetDescription()
