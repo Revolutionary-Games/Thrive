@@ -44,10 +44,10 @@
                         if (process.Process.Outputs.TryGetValue(glucose, out var glucoseAmount))
                         {
                             // Better ratio means that we transform stuff more efficiently and need less input
-                            var compoundRatio = process.Process.Outputs[glucose] / process.Process.Inputs[compound];
+                            var compoundRatio = glucoseAmount / inputAmount;
 
                             // Better output is a proxy for more time dedicated to reproduction than energy production
-                            var absoluteOutput = process.Process.Outputs[glucose] * processEfficiency;
+                            var absoluteOutput = glucoseAmount * processEfficiency;
 
                             energyCreationScore += (float)(
                                 Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
@@ -58,10 +58,10 @@
                         if (process.Process.Outputs.TryGetValue(atp, out var atpAmount))
                         {
                             // Better ratio means that we transform stuff more efficiently and need less input
-                            var compoundRatio = process.Process.Outputs[atp] / process.Process.Inputs[compound];
+                            var compoundRatio = atpAmount / inputAmount;
 
                             // Better output is a proxy for more time dedicated to reproduction than energy production
-                            var absoluteOutput = process.Process.Outputs[atp] * processEfficiency;
+                            var absoluteOutput = atpAmount * processEfficiency;
 
                             energyCreationScore += (float)(
                                 Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
