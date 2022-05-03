@@ -423,7 +423,7 @@ public class MicrobeHUD : Control
 
         // Fade out for that smooth satisfying transition
         stage.TransitionFinished = false;
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.3f);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.OnFinishTransitioning));
     }
 
@@ -1076,9 +1076,6 @@ public class MicrobeHUD : Control
     private void UpdatePopulation()
     {
         populationLabel.Text = stage!.GameWorld.PlayerSpecies.Population.FormatNumber();
-
-        // Reset box height
-        populationLabel.GetParent<Control>().MarginTop = 0;
     }
 
     private void UpdateProcessPanel()
@@ -1344,9 +1341,27 @@ public class MicrobeHUD : Control
 
     private void OnBecomeMulticellularPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
+        if (!GetTree().Paused)
+        {
+            // The button press sound will play along with this
+            PauseButtonPressed();
+        }
+        else
+        {
+            GUICommon.Instance.PlayButtonPressSound();
+        }
 
         multicellularConfirmPopup.PopupCenteredShrink();
+    }
+
+    private void OnBecomeMulticellularCancelled()
+    {
+        // The game should have been paused already but just in case
+        if (GetTree().Paused)
+        {
+            // The button press sound will play along with this
+            PauseButtonPressed();
+        }
     }
 
     private void OnBecomeMulticellularConfirmed()
