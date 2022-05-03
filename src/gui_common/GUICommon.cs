@@ -18,7 +18,7 @@ public class GUICommon : NodeWithInput
     {
         instance = this;
 
-        AudioSources = new();
+        AudioSources = new List<AudioStreamPlayer>();
 
         Tween = new Tween();
         AddChild(Tween);
@@ -44,7 +44,7 @@ public class GUICommon : NodeWithInput
 
     /// <summary>
     ///  The audio players for UI sound effects.
-    /// </ Tsummary>
+    /// </summary>
     private List<AudioStreamPlayer> AudioSources { get; }
 
     public static Vector2 GetFirstChildMinSize(Control control)
