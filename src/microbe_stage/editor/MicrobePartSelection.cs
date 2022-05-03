@@ -156,8 +156,12 @@ public class MicrobePartSelection : MarginContainer
         button.Disabled = Locked;
     }
 
-    private void OnSelected()
+    private void OnPressed()
     {
+        if (Selected)
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnPartSelected), Name);
     }
 }
