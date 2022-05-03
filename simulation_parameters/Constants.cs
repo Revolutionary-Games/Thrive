@@ -436,8 +436,14 @@ public static class Constants
 
     public const float DEFAULT_BEHAVIOUR_VALUE = 100.0f;
 
-    // Bacterial Colony configuration
+    /// <summary>
+    ///   Minimum extra microbes to spawn
+    /// </summary>
     public const int MIN_BACTERIAL_COLONY_SIZE = 0;
+
+    /// <summary>
+    ///   Maximum extra microbes to spawn
+    /// </summary>
     public const int MAX_BACTERIAL_COLONY_SIZE = 1;
 
     // What is divided during fear and aggression calculations in the AI
