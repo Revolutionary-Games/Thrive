@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-29 11:19+0300\n"
-"PO-Revision-Date: 2022-03-22 18:22+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"PO-Revision-Date: 2022-05-02 08:23+0000\n"
+"Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.12\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -428,9 +428,8 @@ msgid "TOGGLE_FPS"
 msgstr "切換FPS顯示"
 
 #: ../simulation_parameters/common/input_options.json:188
-#, fuzzy
 msgid "TOGGLE_METRICS"
-msgstr "切換FPS顯示"
+msgstr "開關FPS顯示"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "QUICK_SAVE"
@@ -1900,7 +1899,7 @@ msgstr "從不"
 
 #: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:74
 msgid "SAVE"
-msgstr "存檔"
+msgstr "儲存"
 
 #: ../src/general/OptionsMenu.tscn:1224
 msgid "RESET_SETTINGS_TO_DEFAULTS"
@@ -4384,10 +4383,10 @@ msgid "TUTORIAL"
 msgstr "教學"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
-#, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "歡迎來到微生物編輯器。\n"
+"\n"
 "在這裡，你可以回顧自遊戲開始或上一次進入編輯器以來發生的狀況。並對你的物種進行更改。\n"
 "\n"
 "在這個選項卡中，你可以看到有哪些物種存在，在哪裡，以及它們的種群數量的報告。你還可以在頂部看到環境變化。\n"
@@ -4395,26 +4394,24 @@ msgstr ""
 "要進入下一個編輯器選項卡，請按右下角的下一個按鈕。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"歡迎來到微生物編輯器。\n"
-"在這裡，你可以回顧自遊戲開始或上一次進入編輯器以來發生的狀況。並對你的物種進行更改。\n"
+"這是區塊地圖。\n"
 "\n"
-"在這個選項卡中，你可以看到有哪些物種存在，在哪裡，以及它們的種群數量的報告。你還可以在頂部看到環境變化。\n"
+"每個圖標代表一個你可以居住的獨特環境，你右邊的面板描述了當前選定的區塊的條件。\n"
 "\n"
-"要進入下一個編輯器選項卡，請按右下角的下一個按鈕。"
+"如果你選擇了一個與你所佔據的區塊相連的區塊，該區塊用薄薄的青色邊框突出顯示，你可以按下右邊的 \"移動到這個區塊 \"按鈕，遷移到那裡。\n"
+"\n"
+"請嘗試選擇一個區塊來繼續。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"歡迎來到微生物編輯器。\n"
-"在這裡，你可以回顧自遊戲開始或上一次進入編輯器以來發生的狀況。並對你的物種進行更改。\n"
+"這是細胞編輯器，你可以通過花費變異點（MP）來進化你的物種。每一代你都會有100個MP可以花，所以不必費心去存錢\n"
 "\n"
-"在這個選項卡中，你可以看到有哪些物種存在，在哪裡，以及它們的種群數量的報告。你還可以在頂部看到環境變化。\n"
+"屏幕中央的六角形是你的細胞，它由一個細胞質部分組成。\n"
 "\n"
-"要進入下一個編輯器選項卡，請按右下角的下一個按鈕。"
+"要繼續，從左邊的面板上選擇一個部分。然後在六邊形旁邊左鍵單擊來放置它。你可以用A和D（默認鍵）旋轉部件。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 #, fuzzy
@@ -4487,7 +4484,7 @@ msgstr ""
 "\n"
 "簡單的微生物居住在海洋的深層區域。你是這個星球上最後的宇宙共同祖先（LUCA）。\n"
 "\n"
-"為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過幾代人的進化來與其他種類的微生物競爭。"
+"為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過多代的進化來與其他種類的微生物競爭。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 #, fuzzy
