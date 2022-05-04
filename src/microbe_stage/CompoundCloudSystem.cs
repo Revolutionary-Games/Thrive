@@ -92,6 +92,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         }
 
         // TODO: if the compound types have changed since we saved, that needs to be handled
+        int currentCloudTextureOffset = 0;
         if (IsLoadedFromSave)
         {
             foreach (var cloud in clouds)
@@ -99,15 +100,18 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
                 // Re-init with potentially changed compounds
                 // TODO: special handling is needed if the compounds actually changed
                 cloud.Init(fluidSystem, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
-                    cloud.Compounds[3]);
+                    cloud.Compounds[3], currentCloudTextureOffset);
 
                 // Re-add the clouds as our children
                 AddChild(cloud);
+
+                currentCloudTextureOffset += AddOffset(cloud.Compounds[1], cloud.Compounds[2], cloud.Compounds[3]);
             }
 
             return;
         }
 
+        currentCloudTextureOffset = 0;
         for (int i = 0; i < clouds.Count; ++i)
         {
             Compound cloud1;
@@ -128,9 +132,37 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             if (startOffset + 3 < allCloudCompounds.Count)
                 cloud4 = allCloudCompounds[startOffset + 3];
 
-            clouds[i].Init(fluidSystem, cloud1, cloud2, cloud3, cloud4);
+            clouds[i].Init(fluidSystem, cloud1, cloud2, cloud3, cloud4, currentCloudTextureOffset);
             clouds[i].Translation = new Vector3(0, 0, 0);
+
+            currentCloudTextureOffset += AddOffset(cloud2, cloud3, cloud4);
         }
+    }
+
+    /// <summary>
+    ///   Amount of offset to be added to next compoundplane shader
+    /// </summary>
+    /// <returns>Amount of compounds (from the given arguments) that are not null + 1</returns>
+    public int AddOffset(Compound? compound1, Compound? compound2, Compound? compound3)
+    {
+        int offset = 1;
+
+        if (compound1 != null)
+        {
+            offset++;
+        }
+
+        if (compound2 != null)
+        {
+            offset++;
+        }
+
+        if (compound3 != null)
+        {
+            offset++;
+        }
+
+        return offset;
     }
 
     /// <summary>

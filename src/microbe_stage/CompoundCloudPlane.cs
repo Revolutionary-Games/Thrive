@@ -113,7 +113,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     ///   Initializes this cloud. cloud2 onwards can be null
     /// </summary>
     public void Init(FluidSystem fluidSystem, Compound cloud1, Compound? cloud2,
-        Compound? cloud3, Compound? cloud4)
+        Compound? cloud3, Compound? cloud4, int cloudTextureOffset)
     {
         this.fluidSystem = fluidSystem;
         Compounds = new Compound?[Constants.CLOUDS_IN_ONE] { cloud1, cloud2, cloud3, cloud4 };
@@ -124,10 +124,24 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         material.SetShaderParam("colour1", cloud1.Colour);
 
         var blank = new Color(0, 0, 0, 0);
+        var blankTexture = new ImageTexture();
 
         material.SetShaderParam("colour2", cloud2?.Colour ?? blank);
         material.SetShaderParam("colour3", cloud3?.Colour ?? blank);
         material.SetShaderParam("colour4", cloud4?.Colour ?? blank);
+
+        bool compoundTextureEnabled = Settings.Instance.CompoundTextureEnabled;
+        var cloudCount = SimulationParameters.Instance.GetCloudCompounds().Count;
+
+        material.SetShaderParam("enable_texture", compoundTextureEnabled || false);
+        material.SetShaderParam("coumpound_count", cloudCount);
+        material.SetShaderParam("compound_count_offset", cloudTextureOffset);
+
+        material.SetShaderParam("icon1", cloud1.LoadedTexture);
+
+        material.SetShaderParam("icon2", cloud2?.LoadedTexture ?? blankTexture);
+        material.SetShaderParam("icon3", cloud3?.LoadedTexture ?? blankTexture);
+        material.SetShaderParam("icon4", cloud4?.LoadedTexture ?? blankTexture);
     }
 
     /// <summary>

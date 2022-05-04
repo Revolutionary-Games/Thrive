@@ -98,6 +98,11 @@ public class Settings
     /// </summary>
     public SettingValue<bool> GUILightEffectsEnabled { get; set; } = new(true);
 
+    /// <summary>
+    ///   Enable or disable texture on top of compound clouds. Is meant to make compound clouds more distinguishable.
+    /// </summary>
+    public SettingValue<bool> CompoundTextureEnabled { get; set; } = new(true);
+
     // Sound Properties
 
     /// <summary>

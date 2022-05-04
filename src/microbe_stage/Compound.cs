@@ -22,6 +22,8 @@ public class Compound : IRegistryType
 
     public string IconPath = null!;
 
+    public string TexturePath = null!;
+
     /// <summary>
     ///   When this is true the compound is always considered to be
     ///   useful and is not dumped.
@@ -42,6 +44,11 @@ public class Compound : IRegistryType
     /// </summary>
     public Texture? LoadedIcon;
 
+    /// <summary>
+    ///   Loaded texture for display on compound clouds (to set compounds more clearly apart)
+    /// </summary>
+    public Texture? LoadedTexture;
+
 #pragma warning disable 169 // Used through reflection
     private string? untranslatedName;
 #pragma warning restore 169
@@ -60,6 +67,12 @@ public class Compound : IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Compound must be provided an icon");
+        }
+
+        if (string.IsNullOrEmpty(TexturePath) && IsCloud)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Compound must be provided with a texture");
         }
 
         // Guards against uninitialized alpha
@@ -93,6 +106,11 @@ public class Compound : IRegistryType
     public void Resolve()
     {
         LoadedIcon = GD.Load<Texture>(IconPath);
+
+        if (IsCloud)
+        {
+            LoadedTexture = GD.Load<Texture>(TexturePath);
+        }
     }
 
     public void ApplyTranslations()
