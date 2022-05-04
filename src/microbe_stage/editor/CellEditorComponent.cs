@@ -1401,6 +1401,9 @@ public partial class CellEditorComponent :
 
     private void OnOrganelleToPlaceSelected(string organelle)
     {
+        if (ActiveActionName == organelle)
+            return;
+
         ActiveActionName = organelle;
 
         // Update the icon highlightings
