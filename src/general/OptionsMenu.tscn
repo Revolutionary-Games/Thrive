@@ -52,6 +52,7 @@ ChromaticAberrationSliderPath = NodePath("CenterContainer/VBoxContainer/PanelCon
 ChromaticAberrationTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle")
 DisplayAbilitiesBarTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayAbilitiesBar")
 GUILightEffectsTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/GUILightsEffectToggle")
+CompoundTextureTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/compoundTextureToggle")
 SoundTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound")
 MasterVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume")
 MasterMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted")
@@ -395,6 +396,12 @@ margin_bottom = 339.0
 size_flags_horizontal = 0
 pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
+
+[node name="compoundTextureToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
+margin_top = 349.0
+margin_right = 657.0
+margin_bottom = 374.0
+text = "ENABLE_COMPOUND_TEXTURE"
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 visible = false

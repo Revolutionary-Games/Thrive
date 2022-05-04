@@ -72,6 +72,9 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath GUILightEffectsTogglePath = null!;
 
+    [Export]
+    public NodePath CompoundTextureTogglePath = null!;
+
     // Sound tab.
     [Export]
     public NodePath SoundTabPath = null!;
@@ -238,6 +241,7 @@ public class OptionsMenu : ControlWithInput
     private Slider chromaticAberrationSlider = null!;
     private CustomCheckBox displayAbilitiesHotBarToggle = null!;
     private CustomCheckBox guiLightEffectsToggle = null!;
+    private CustomCheckBox compoundTextureToggle = null!;
 
     // Sound tab
     private Control soundTab = null!;
@@ -361,6 +365,7 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
         displayAbilitiesHotBarToggle = GetNode<CustomCheckBox>(DisplayAbilitiesBarTogglePath);
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
+        compoundTextureToggle = GetNode<CustomCheckBox>(CompoundTextureTogglePath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -423,6 +428,7 @@ public class OptionsMenu : ControlWithInput
 
         cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
+        compoundTextureToggle.RegisterToolTipForControl("compoundTexture", "options");
         assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options");
         unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options");
     }
@@ -508,6 +514,7 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
         displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
+        compoundTextureToggle.Pressed = settings.CompoundTextureEnabled;
         DisplayResolution();
 
         // Sound
@@ -1186,6 +1193,13 @@ public class OptionsMenu : ControlWithInput
     private void OnGUILightEffectsToggled(bool toggle)
     {
         Settings.Instance.GUILightEffectsEnabled.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnCompoundTextureToggled(bool toggle)
+    {
+        Settings.Instance.CompoundTextureEnabled.Value = toggle;
 
         UpdateResetSaveButtonState();
     }
