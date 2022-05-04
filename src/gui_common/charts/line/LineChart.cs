@@ -392,7 +392,7 @@ public class LineChart : VBoxContainer
                 if (stored.TryGetValue(data.Key, out bool value))
                     visible = value;
 
-                GD.Print(UpdateDataSetVisibility(data.Key, visible));
+                UpdateDataSetVisibility(data.Key, visible);
 
                 if (visible)
                     visibleDataSetCount++;
