@@ -420,6 +420,18 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         }
     }
 
+    public virtual void OnValidAction()
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            if (editorComponent.Visible)
+            {
+                editorComponent.OnValidAction();
+                break;
+            }
+        }
+    }
+
     public bool RequestFinishEditingWithOverride(List<EditorUserOverride> userOverrides)
     {
         if (userOverrides.Count < 1)
