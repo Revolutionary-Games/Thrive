@@ -43,7 +43,7 @@ public class GUICommon : NodeWithInput
     public bool IsAnyExclusivePopupActive => GetCurrentlyActiveExclusivePopup() != null;
 
     /// <summary>
-    ///  The audio players for UI sound effects.
+    ///   The audio players for UI sound effects.
     /// </summary>
     private List<AudioStreamPlayer> AudioSources { get; }
 
