@@ -73,6 +73,8 @@ public abstract class
     protected PackedScene hexScene = null!;
     protected PackedScene modelScene = null!;
 
+    protected AudioStream hexPlacementSound = null!;
+
     [JsonProperty]
     protected string? activeActionName;
 
@@ -169,6 +171,7 @@ public abstract class
 
         LoadHexMaterials();
         LoadScenes();
+        LoadAudioStreams();
 
         UpdateCamera();
     }
@@ -514,6 +517,11 @@ public abstract class
         return true;
     }
 
+    public override void OnValidAction()
+    {
+        GUICommon.Instance.PlayCustomSound(hexPlacementSound);
+    }
+
     public override void _Process(float delta)
     {
         base._Process(delta);
@@ -618,6 +626,11 @@ public abstract class
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
     }
 
+    protected virtual void LoadAudioStreams()
+    {
+        hexPlacementSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_success.ogg");
+    }
+
     protected override void EnqueueAction(TAction action)
     {
         if (!Editor.CheckEnoughMPForAction(action.Cost))
@@ -634,6 +647,7 @@ public abstract class
         }
 
         Editor.EnqueueAction(action);
+        Editor.OnValidAction();
     }
 
     protected void OnSymmetryPressed()
