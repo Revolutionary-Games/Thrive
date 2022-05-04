@@ -79,6 +79,8 @@ public interface IEditor : ISaveLoadedTracked
 
     public void OnInvalidAction();
 
+    public void OnValidAction();
+
     /// <summary>
     ///   Request from the user to exit the editor anyway
     /// </summary>

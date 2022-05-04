@@ -89,6 +89,10 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
     {
     }
 
+    public override void OnValidAction()
+    {
+    }
+
     public void SetBehaviouralValue(BehaviouralValueType type, float value)
     {
         UpdateBehaviourSlider(type, value);
