@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-29 11:19+0300\n"
-"PO-Revision-Date: 2022-03-22 18:22+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"PO-Revision-Date: 2022-05-02 08:23+0000\n"
+"Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.12\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -42,7 +42,7 @@ msgstr "אתה יכול גם לבלוע תאים, חיידקים, גושי בר�
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "ויסות אוסמטי עולה [thrive:compound type=\"atp\"][/thrive:compound], מה שזה אומר שככל שהתא שלך גדול יותר, כך יותר מיטוכונדריה, מטבולוזומים או רוסטיצינין (או ציטופלזמה, שעושה גליקוליזה) אתה צריך על מנת למנוע איבוד של [thrive:compound type=\"atp\"][/thrive:compound] בזמן שאתה נח."
+msgstr "אוסמורגולציה עולה [thrive:compound type=\"atp\"][/thrive:compound], מה שזה אומר שככל שהתא שלך גדול יותר, כך יותר מיטוכונדריה, מטבולוזומים או רוסטיצינין (או ציטופלזמה, שעושה גליקוליזה) אתה צריך על מנת למנוע איבוד של [thrive:compound type=\"atp\"][/thrive:compound] בזמן שאתה נח."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -163,7 +163,7 @@ msgstr "הנה טיפ: ניתן להשתמש ברעלנים בשביל להדו�
 
 #: ../simulation_parameters/common/help_texts.json:132
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "הנה טיפ: ויסות אוסמטי עולה ATP 1 לשנייה על כל משושה שהתא שלך מכיל, ועל כל משושה ריק של ציטופלזמה מייצר ATP 5 לשנייה גם כן, כלומר שאם אתה מאבד ATP בגלל ויסות אוסמטי, רק הוסף עוד משושי ציטופלזמה או הסר אברון כלשהו."
+msgstr "הנה טיפ: אוסמורגולציה עולה ATP 1 לשנייה על כל משושה שהתא שלך מכיל, ועל כל משושה ריק של ציטופלזמה מייצר ATP 5 לשנייה גם כן, כלומר שאם אתה מאבד ATP בגלל אוסמורגולציה, רק הוסף עוד משושי ציטופלזמה או הסר אברון כלשהו."
 
 #: ../simulation_parameters/common/help_texts.json:135
 msgid "EASTEREGG_MESSAGE_4"
@@ -1619,9 +1619,8 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "שגיאה קרתה בזמן שטען אחד או יותר מודים. תיעודם עשויים להכיל מידע נוסף."
 
 #: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
-#, fuzzy
 msgid "AUTO_RESOLUTION"
-msgstr "רזולוציה:"
+msgstr "אוטומטי ({0}X{1})"
 
 #: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -2535,7 +2534,7 @@ msgstr "אחסון"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3072
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3342
 msgid "OSMOREGULATION_COST"
-msgstr "עלות ויסות אוסמטי"
+msgstr "עלות אוסמורגולציה"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:376
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
@@ -3118,7 +3117,7 @@ msgstr "{0}: {1}+ ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:250
 msgid "OSMOREGULATION"
-msgstr "ויסות אוסמטי"
+msgstr "אוסמורגולציה"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:256
 msgid "BASE_MOVEMENT"
@@ -3532,14 +3531,12 @@ msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: קריאת שיטת האתחול של הרכבה של המוד נכשלה עם חריגה של: {1}"
 
 #: ../src/modding/ModLoader.cs:430
-#, fuzzy
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
-msgstr "{0}: קריאת שיטת האתחול של הרכבה של המוד נכשלה עם חריגה של: {1}"
+msgstr "{0}: טעינת Harmony מוד נכשל בפרט ל: {1}"
 
 #: ../src/modding/ModLoader.cs:453
-#, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
-msgstr "{0}: קריאת פריקת הרכבה מוד זה נכשלה פרט ל: {1}"
+msgstr "{0}: קריאת פריקת Harmony מוד נכשלה פרט ל: {1}"
 
 #: ../src/modding/ModLoader.cs:465
 msgid "PCK_LOAD_FAILED"
@@ -3558,9 +3555,8 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "נדרשת מחלקת פריקת מוד בזמן שפריקה היא ספיציפית"
 
 #: ../src/modding/ModManager.cs:334
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "נדרשת מחלקת פריקת מוד בזמן שפריקה היא ספיציפית"
+msgstr "נדרשת מחלקת פריקת מוד בזמן שפריקה Harmony מוד נבחרה"
 
 #: ../src/modding/ModManager.cs:565
 msgid "NO_SELECTED_MOD"
@@ -3575,13 +3571,12 @@ msgid "THIS_IS_LOCAL_MOD"
 msgstr "זהו מוד מותקן באופן מקומי"
 
 #: ../src/modding/ModManager.cs:913
-#, fuzzy
 msgid "USES_FEATURE"
-msgstr "טמפרטורה"
+msgstr "כן"
 
 #: ../src/modding/ModManager.cs:914
 msgid "DOES_NOT_USE_FEATURE"
-msgstr ""
+msgstr "לא"
 
 #: ../src/modding/ModManager.cs:959
 msgid "ERROR_CREATING_FOLDER"
@@ -3743,9 +3738,8 @@ msgid "MOD_ASSEMBLY_CLASS"
 msgstr "מחלקה העיקרית להעלת מוד:"
 
 #: ../src/modding/ModManager.tscn:972
-#, fuzzy
 msgid "MOD_AUTO_HARMONY"
-msgstr "יוצר המוד:"
+msgstr "השתמש באוטו-Harmony:"
 
 #: ../src/modding/ModManager.tscn:999
 msgid "MOD_CREATION_FAILED"
@@ -3960,13 +3954,12 @@ msgid "OUR_WIKI"
 msgstr "בויקי שלנו"
 
 #: ../src/modding/NewModGUI.tscn:439
-#, fuzzy
 msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "התאבדות"
+msgstr "מעלה אוטומטי את Harmony מהמפרק (לא דורש מחלקת מוד מסויימת)"
 
 #: ../src/modding/NewModGUI.tscn:441
 msgid "USE_AUTO_HARMONY"
-msgstr ""
+msgstr "השתמש במעלה אוטו-Harmony"
 
 #: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"

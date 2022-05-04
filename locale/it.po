@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-29 11:19+0300\n"
-"PO-Revision-Date: 2022-04-30 07:18+0000\n"
+"PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
@@ -1060,6 +1060,23 @@ msgstr "Delta: {0}"
 #: ../src/engine/PerformanceMetrics.tscn:73
 msgid "METRICS_CONTENT"
 msgstr ""
+"Tempo processi (process time): {0} s\n"
+"Tempo fisica (physics time): {1} s\n"
+"Entità: {2} Altro: {3}\n"
+"Generate (spawned): {4} Distrutte (despawned): {5}\n"
+"Nodi usati: {6}\n"
+"Memoria usata: {7} MiB\n"
+"Memoria GPU: {8} Mib\n"
+"Oggetti renderizzati: {9}\n"
+"Chiamate disegno (draw calls): {10} 2D: {11}\n"
+"Vertici renderizzati: {12}\n"
+"Cambi di materiale (material changes): {13}\n"
+"Cambi ombreggiatura (shader changes): {14}\n"
+"Nodi orfani: {15}\n"
+"Latenza audio: {16} ms\n"
+"Thread totali: {17}\n"
+"Tempo totale CPU:\n"
+"{18}"
 
 #: ../src/engine/PerformanceMetrics.tscn:31
 msgid "METRICS"
@@ -3515,12 +3532,11 @@ msgstr "{0}: chiamata di inizializzazione metodo dell'assembly fallita con un'ec
 
 #: ../src/modding/ModLoader.cs:430
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
-msgstr ""
+msgstr "{0}: attivazione modalità Auto Harmony fallita con un'eccezione: {1}"
 
 #: ../src/modding/ModLoader.cs:453
-#, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
-msgstr "{0}: chiamata di unload metodo dell'assembly fallita con un'eccezione: {1}"
+msgstr "{0}: disattivazione modalità Auto Harmony fallita con un'eccezione: {1}"
 
 #: ../src/modding/ModLoader.cs:465
 msgid "PCK_LOAD_FAILED"
@@ -3539,9 +3555,8 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "La classe dell'assembly è richiesta quando l'assembly è specificato"
 
 #: ../src/modding/ModManager.cs:334
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "La classe dell'assembly è richiesta quando l'assembly è specificato"
+msgstr "La classe dell'assembly è richiesta quando la modalità Auto Harmony è selezionata"
 
 #: ../src/modding/ModManager.cs:565
 msgid "NO_SELECTED_MOD"
@@ -3723,9 +3738,8 @@ msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Classe principale dell'assembly:"
 
 #: ../src/modding/ModManager.tscn:972
-#, fuzzy
 msgid "MOD_AUTO_HARMONY"
-msgstr "Autore:"
+msgstr "Usa Auto Harmony:"
 
 #: ../src/modding/ModManager.tscn:999
 msgid "MOD_CREATION_FAILED"
@@ -3940,13 +3954,12 @@ msgid "OUR_WIKI"
 msgstr "nostra Wiki"
 
 #: ../src/modding/NewModGUI.tscn:439
-#, fuzzy
 msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Suicidio"
+msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di specificare la classe della mod)"
 
 #: ../src/modding/NewModGUI.tscn:441
 msgid "USE_AUTO_HARMONY"
-msgstr ""
+msgstr "Usa modalità Auto Harmony"
 
 #: ../src/modding/NewModGUI.tscn:465
 msgid "CREATE"
