@@ -364,14 +364,13 @@ public static class SpawnHelpers
 public class MicrobeSpawner : Spawner
 {
     private readonly PackedScene microbeScene;
-    private readonly Species species;
     private readonly CompoundCloudSystem cloudSystem;
     private readonly GameProperties currentGame;
     private readonly Random random;
 
     public MicrobeSpawner(Species species, CompoundCloudSystem cloudSystem, GameProperties currentGame)
     {
-        this.species = species ?? throw new ArgumentException("species is null");
+        Species = species ?? throw new ArgumentException("species is null");
 
         microbeScene = SpawnHelpers.LoadMicrobeScene();
         this.cloudSystem = cloudSystem;
@@ -380,10 +379,12 @@ public class MicrobeSpawner : Spawner
         random = new Random();
     }
 
+    public Species Species { get; }
+
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, Vector3 playerPosition)
     {
         // The true here is that this is AI controlled
-        var first = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene, true, cloudSystem,
+        var first = SpawnHelpers.SpawnMicrobe(Species, location, worldNode, microbeScene, true, cloudSystem,
             currentGame);
 
         if (first.IsMulticellular)
@@ -398,7 +399,7 @@ public class MicrobeSpawner : Spawner
         // Just in case the is bacteria flag is not correct in a multicellular cell type, here's an extra safety check
         if (first.CellTypeProperties.IsBacteria && !first.IsMulticellular)
         {
-            foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(species, location, playerPosition, worldNode,
+            foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(Species, location, playerPosition, worldNode,
                          microbeScene, cloudSystem, currentGame, random))
             {
                 yield return colonyMember;

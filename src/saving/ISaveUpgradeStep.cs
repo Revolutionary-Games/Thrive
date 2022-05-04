@@ -61,6 +61,7 @@
                 { "0.5.8.0-alpha", new UpgradeJustVersionNumber("0.5.8.0-rc1") },
                 { "0.5.8.0-rc1", new UpgradeJustVersionNumber("0.5.8.0") },
                 { "0.5.8.0", new UpgradeJustVersionNumber("0.5.8.1-alpha") },
+                { "0.5.8.1-alpha", new UpgradeJustVersionNumber("0.5.8.1") },
             };
         }
     }
