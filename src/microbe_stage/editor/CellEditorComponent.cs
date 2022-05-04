@@ -185,6 +185,11 @@ public partial class CellEditorComponent :
     private OrganelleDefinition nucleus = null!;
     private OrganelleDefinition bindingAgent = null!;
 
+    /// <summary>
+    ///   Controls MP discounts (for multicellular)
+    /// </summary>
+    private float editorCostFactor = 1f;
+
     private EnergyBalanceInfo? energyBalanceInfo;
 
     [JsonProperty]
@@ -495,6 +500,10 @@ public partial class CellEditorComponent :
 
         if (IsMulticellularEditor)
         {
+            editorCostFactor = Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
+            organelleMenu.EditorCostFactor = editorCostFactor;
+            UpdateMicrobePartSelections();
+
             componentBottomLeftButtons.HandleRandomSpeciesName = false;
             componentBottomLeftButtons.UseSpeciesNameValidation = false;
 
@@ -509,6 +518,10 @@ public partial class CellEditorComponent :
             behaviourTabButton.Visible = false;
             behaviourEditor.Visible = false;
         }
+
+        // After the if multicellular check so the tooltip cost factors are correct
+        // on changing editor types, as tooltip manager is persistent while the game is running
+        UpdateTooltipMPCostFactors();
     }
 
     public override void ResolveNodeReferences()
@@ -810,8 +823,9 @@ public partial class CellEditorComponent :
         if (Membrane.Equals(membrane))
             return;
 
-        var action = new CellEditorAction(Editor, membrane.EditorCost, DoMembraneChangeAction,
-            UndoMembraneChangeAction, new MembraneActionData(Membrane, membrane));
+        var action = new CellEditorAction(Editor, (int)(membrane.EditorCost * editorCostFactor),
+            DoMembraneChangeAction, UndoMembraneChangeAction,
+            new MembraneActionData(Membrane, membrane));
 
         Editor.EnqueueAction(action);
 
@@ -833,11 +847,12 @@ public partial class CellEditorComponent :
         if (intRigidity == rigidity)
             return;
 
-        int cost = Math.Abs(rigidity - intRigidity) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+        int costPerStep = (int)(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * editorCostFactor);
+        int cost = Math.Abs(rigidity - intRigidity) * costPerStep;
 
         if (cost > Editor.MutationPoints)
         {
-            int stepsLeft = Editor.MutationPoints / Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+            int stepsLeft = Editor.MutationPoints / costPerStep;
             if (stepsLeft < 1)
             {
                 UpdateRigiditySlider(intRigidity);
@@ -845,7 +860,7 @@ public partial class CellEditorComponent :
             }
 
             rigidity = intRigidity > rigidity ? intRigidity - stepsLeft : intRigidity + stepsLeft;
-            cost = stepsLeft * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+            cost = stepsLeft * costPerStep;
         }
 
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
@@ -920,7 +935,8 @@ public partial class CellEditorComponent :
         if (string.IsNullOrEmpty(ActiveActionName) || !Editor.ShowHover)
             return 0;
 
-        var cost = SimulationParameters.Instance.GetOrganelleType(ActiveActionName!).MPCost;
+        // Calculated in this order to be consistent with placing unique organelles
+        var cost = (int)(SimulationParameters.Instance.GetOrganelleType(ActiveActionName!).MPCost * editorCostFactor);
 
         switch (Symmetry)
         {
@@ -1025,6 +1041,7 @@ public partial class CellEditorComponent :
         int cost = organelleHere.PlacedThisSession ?
             -organelleHere.Definition.MPCost :
             Constants.ORGANELLE_REMOVE_COST;
+        cost = (int)(cost * editorCostFactor);
 
         var action = new CellEditorAction(Editor, cost,
             DoOrganelleRemoveAction, UndoOrganelleRemoveAction, new RemoveActionData(organelleHere));
@@ -1295,7 +1312,8 @@ public partial class CellEditorComponent :
 
         organelle.PlacedThisSession = true;
 
-        var action = new CellEditorAction(Editor, organelle.Definition.MPCost,
+        int cost = (int)(organelle.Definition.MPCost * editorCostFactor);
+        var action = new CellEditorAction(Editor, cost,
             DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle));
 
         EnqueueAction(action);
@@ -1309,6 +1327,8 @@ public partial class CellEditorComponent :
     private bool MoveOrganelle(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
         int newRotation)
     {
+        // TODO: consider allowing rotation inplace (https://github.com/Revolutionary-Games/Thrive/issues/2993)
+
         // Make sure placement is valid
         if (!IsMoveTargetValid(newLocation, newRotation, organelle))
             return false;
@@ -1316,10 +1336,11 @@ public partial class CellEditorComponent :
         // If the organelle was already moved this session, added (placed) this session,
         // or not moved (but can be rotated), then moving it is free
         bool isFreeToMove = organelle.MovedThisSession || oldLocation == newLocation || organelle.PlacedThisSession;
-        int cost = isFreeToMove ? 0 : Constants.ORGANELLE_MOVE_COST;
+        int moveCost = (int)(Constants.ORGANELLE_MOVE_COST * editorCostFactor);
+        int cost = isFreeToMove ? 0 : moveCost;
 
         // Too low mutation points, cancel move
-        if (!isFreeToMove && Editor.MutationPoints < Constants.ORGANELLE_MOVE_COST)
+        if (Editor.MutationPoints < cost)
         {
             CancelCurrentAction();
             Editor.OnInsufficientMP(false);
@@ -1587,7 +1608,7 @@ public partial class CellEditorComponent :
             control.PartIcon = organelle.LoadedIcon ?? throw new Exception("Organelle with no icon");
             control.PartName = organelle.UntranslatedName;
             control.SelectionGroup = organelleButtonGroup;
-            control.MPCost = organelle.MPCost;
+            control.MPCost = (int)(organelle.MPCost * editorCostFactor);
             control.Name = organelle.InternalName;
 
             // Special case with registering the tooltip here for item with no associated organelle
@@ -1610,7 +1631,7 @@ public partial class CellEditorComponent :
             control.PartIcon = membraneType.LoadedIcon;
             control.PartName = membraneType.UntranslatedName;
             control.SelectionGroup = membraneButtonGroup;
-            control.MPCost = membraneType.EditorCost;
+            control.MPCost = (int)(membraneType.EditorCost * editorCostFactor);
             control.Name = membraneType.InternalName;
 
             control.RegisterToolTipForControl(membraneType.InternalName, "membraneSelection");
