@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Godot;
 
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
+[SuppressMessage("Usage", "CA2213:Disposable fields should be disposed", Justification =
+    "We don't manually dispose Godot derived types")]
 public class PauseMenu : CustomDialog
 {
     [Export]
