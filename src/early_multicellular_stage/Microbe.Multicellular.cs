@@ -123,6 +123,11 @@ public partial class Microbe
         compoundsNeededForNextCell = null;
     }
 
+    public void EmitToxin()
+    {
+        GD.Print("emitting from multicelulr");
+    }
+
     public void BecomeFullyGrownMulticellularColony()
     {
         while (!IsFullyGrownMulticellular)
