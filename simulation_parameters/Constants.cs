@@ -168,9 +168,9 @@ public static class Constants
     ///   Percentage of the compounds that compose the organelle
     ///   released upon death (between 0.0 and 1.0).
     /// </summary>
-    public const float COMPOUND_MAKEUP_RELEASE_PERCENTAGE = 0.9f;
+    public const float COMPOUND_MAKEUP_RELEASE_FRACTION = 0.9f;
 
-    public const float COMPOUND_RELEASE_PERCENTAGE = 0.9f;
+    public const float COMPOUND_RELEASE_FRACTION = 0.9f;
 
     /// <summary>
     ///   Base mass all microbes have on top of their organelle masses
@@ -322,7 +322,7 @@ public static class Constants
     /// <summary>
     ///   Each lysosome grants 15% increase in digestion speed.
     /// </summary>
-    public const float LYSOSOME_DIGESTION_SPEED_UP_PERCENTAGE = 0.15f;
+    public const float LYSOSOME_DIGESTION_SPEED_UP_FRACTION = 0.15f;
 
     /// <summary>
     ///   How much ATP does binding mode cost per second

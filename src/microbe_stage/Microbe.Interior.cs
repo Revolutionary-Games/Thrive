@@ -522,7 +522,7 @@ public partial class Microbe
         foreach (var compound in Compounds)
         {
             result.Add(compound.Key, compound.Value * (compound.Key.IsCloud ?
-                Constants.COMPOUND_RELEASE_PERCENTAGE :
+                Constants.COMPOUND_RELEASE_FRACTION :
                 1));
         }
 
@@ -536,7 +536,7 @@ public partial class Microbe
                 if (result.ContainsKey(entry.Key))
                     existing = result[entry.Key];
 
-                result[entry.Key] = existing + (entry.Value * Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
+                result[entry.Key] = existing + (entry.Value * Constants.COMPOUND_MAKEUP_RELEASE_FRACTION);
             }
         }
 
@@ -1112,7 +1112,7 @@ public partial class Microbe
 
                 if (LysosomeCount > 0)
                 {
-                    var buff = amount * Constants.LYSOSOME_DIGESTION_SPEED_UP_PERCENTAGE * LysosomeCount;
+                    var buff = amount * Constants.LYSOSOME_DIGESTION_SPEED_UP_FRACTION * LysosomeCount;
                     amount += buff;
                 }
 
