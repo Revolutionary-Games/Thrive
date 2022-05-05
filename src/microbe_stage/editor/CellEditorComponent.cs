@@ -1329,6 +1329,9 @@ public partial class CellEditorComponent :
     {
         // TODO: consider allowing rotation inplace (https://github.com/Revolutionary-Games/Thrive/issues/2993)
 
+        if (MicrobePreviewMode)
+            return false;
+
         // Make sure placement is valid
         if (!IsMoveTargetValid(newLocation, newRotation, organelle))
             return false;
