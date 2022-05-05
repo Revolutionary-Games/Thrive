@@ -315,9 +315,14 @@ public static class Constants
     /// <summary>
     ///   How much compounds a cell can absorb per second from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 1.3f;
+    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.3f;
 
     public const float ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION = 0.9f;
+
+    /// <summary>
+    ///   Each lysosome grants 15% increase in digestion speed.
+    /// </summary>
+    public const float LYSOSOME_DIGESTION_SPEED_UP_PERCENTAGE = 0.15f;
 
     /// <summary>
     ///   How much ATP does binding mode cost per second

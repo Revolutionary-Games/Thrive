@@ -776,5 +776,31 @@
         "editorButtonGroup": "External",
         "editorButtonOrder": 4,
         "unimplemented": true
+    },
+    "lysosome": {
+        "mpCost": 45,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {},
+        "components": {
+            "lysosome": {}
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 0.4,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Vacuole.tscn",
+        "name": "LYSOSOME",
+        "iconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png",
+        "requiresNucleus": true,
+        "editorButtonGroup": "Organelle",
+        "editorButtonOrder": 5
     }
 }

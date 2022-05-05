@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
 [ext_resource path="res://src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/parts/FlagellumIcon.png" type="Texture" id=6]
@@ -2200,6 +2201,37 @@ visible = false
 margin_top = 42.0
 margin_bottom = 59.0
 
+[node name="lysosome" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
+DisplayName = "LYSOSOME"
+ProcessesDescription = "LYSOSOME_PROCESSES_DESCRIPTION"
+Description = "LYSOSOME_DESCRIPTION"
+MutationPointCost = 45
+
+[node name="VBoxContainer" parent="GroupHolder/organelleSelection/lysosome/MarginContainer" index="0"]
+margin_bottom = 232.0
+
+[node name="digestionSpeed" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="0" instance=ExtResource( 2 )]
+DisplayName = "DIGESTION_SPEED"
+ModifierValue = "+0.15"
+ModifierValueColor = Color( 0, 1, 0, 1 )
+
+[node name="storage" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource( 2 )]
+margin_right = 318.0
+mouse_filter = 2
+DisplayName = "STORAGE"
+ModifierValue = "+1"
+ModifierValueColor = Color( 0, 1, 0, 1 )
+ModifierIcon = ExtResource( 12 )
+
+[node name="osmoregulationCost" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource( 2 )]
+margin_top = 24.0
+margin_right = 318.0
+margin_bottom = 44.0
+mouse_filter = 2
+DisplayName = "OSMOREGULATION_COST"
+ModifierValue = "+1"
+ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
+
 [node name="membraneSelection" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -3724,6 +3756,7 @@ DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 [editable path="GroupHolder/organelleSelection/oxytoxy"]
 [editable path="GroupHolder/organelleSelection/signalingAgent"]
 [editable path="GroupHolder/organelleSelection/bioluminescentVacuole"]
+[editable path="GroupHolder/organelleSelection/lysosome"]
 [editable path="GroupHolder/membraneSelection/single"]
 [editable path="GroupHolder/membraneSelection/double"]
 [editable path="GroupHolder/membraneSelection/cellulose"]

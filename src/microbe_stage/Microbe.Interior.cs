@@ -81,6 +81,13 @@ public partial class Microbe
     public int AgentVacuoleCount { get; private set; }
 
     /// <summary>
+    ///   The number of lysosome vacuoles. Determines the speed up
+    ///   in digestion time.
+    /// </summary>
+    [JsonProperty]
+    public int LysosomeCount { get; private set; }
+
+    /// <summary>
     ///   All organelle nodes need to be added to this node to make scale work
     /// </summary>
     [JsonIgnore]
@@ -511,8 +518,6 @@ public partial class Microbe
     public Dictionary<Compound, float> CalculateDigestibleCompounds()
     {
         var result = new Dictionary<Compound, float>();
-
-        // TODO: Remove some of the constants once digestion organelles were added?
 
         foreach (var compound in Compounds)
         {
@@ -957,6 +962,9 @@ public partial class Microbe
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount += 1;
 
+        if (organelle.IsLysosome)
+            LysosomeCount += 1;
+
         // This is calculated here as it would be a bit difficult to
         // hook up computing this when the StorageBag needs this info.
         organellesCapacity += organelle.StorageCapacity;
@@ -967,8 +975,13 @@ public partial class Microbe
     private void OnOrganelleRemoved(PlacedOrganelle organelle)
     {
         organellesCapacity -= organelle.StorageCapacity;
+
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount -= 1;
+
+        if (organelle.IsLysosome)
+            LysosomeCount -= 1;
+
         organelle.OnRemovedFromMicrobe();
 
         // The organelle only detaches but doesn't delete itself, so we delete it here
@@ -1096,6 +1109,12 @@ public partial class Microbe
                     continue;
 
                 var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND * delta;
+
+                if (LysosomeCount > 0)
+                {
+                    var buff = amount * Constants.LYSOSOME_DIGESTION_SPEED_UP_PERCENTAGE * LysosomeCount;
+                    amount += buff;
+                }
 
                 var taken = Math.Min(compound.Value, amount);
                 engulfedObject.AvailableEngulfableCompounds[compound.Key] -= amount;

@@ -432,6 +432,7 @@ public class OrganelleDefinition : IRegistryType
         public PilusComponentFactory? Pilus;
         public ChemoreceptorComponentFactory? Chemoreceptor;
         public SignalingAgentComponentFactory? SignalingAgent;
+        public LysosomeComponentFactory? Lysosome;
 
         private readonly List<IOrganelleComponentFactory> allFactories = new();
 
@@ -505,6 +506,13 @@ public class OrganelleDefinition : IRegistryType
             {
                 SignalingAgent.Check(name);
                 allFactories.Add(SignalingAgent);
+                ++count;
+            }
+
+            if (Lysosome != null)
+            {
+                Lysosome.Check(name);
+                allFactories.Add(Lysosome);
                 ++count;
             }
         }

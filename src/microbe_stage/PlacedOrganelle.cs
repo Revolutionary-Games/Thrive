@@ -172,6 +172,13 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     [JsonIgnore]
     public bool IsBindingAgent => HasComponent<BindingAgentComponent>();
 
+    /// <summary>
+    ///   True if this is a lysosome. Number of lysosomes
+    ///   determine the speed up of digestion time.
+    /// </summary>
+    [JsonIgnore]
+    public bool IsLysosome => HasComponent<LysosomeComponent>();
+
     public bool IsLoadedFromSave { get; set; }
 
     public bool HasShape(uint searchShape)
