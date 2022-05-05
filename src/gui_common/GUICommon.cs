@@ -132,7 +132,7 @@ public class GUICommon : NodeWithInput
         }
 
         popup!.Hide();
-        popup!.EmitSignal(nameof(CustomDialog.Closed));
+        popup.EmitSignal(nameof(CustomDialog.Closed));
 
         return true;
     }
