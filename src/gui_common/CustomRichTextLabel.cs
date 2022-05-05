@@ -352,6 +352,13 @@ public class CustomRichTextLabel : RichTextLabel
                         break;
                     }
 
+                    case "LYSOSOME_DIGESTION_SPEED_UP_PERCENTAGE":
+                    {
+                        output = (Constants.LYSOSOME_DIGESTION_SPEED_UP_FRACTION * 100).ToString(
+                            format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
                     case "PILUS_BASE_DAMAGE":
                     {
                         output = Constants.PILUS_BASE_DAMAGE.ToString(format, CultureInfo.CurrentCulture);

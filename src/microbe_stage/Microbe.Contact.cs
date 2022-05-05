@@ -375,14 +375,22 @@ public partial class Microbe
     /// </summary>
     public bool CanEngulf(IEngulfable target)
     {
+        var microbe = target as Microbe;
+        var isMicrobe = microbe != null;
+
+        // Can't engulf already destroyed microbes. We don't use entity references so we need to manually check if
+        // something is destroyed or not here (especially now that the Invoke the engulf start callback)
+        if (isMicrobe && microbe!.destroyed)
+            return false;
+
         // Log error if trying to engulf something that is disposed, we got a crash log trace with an error with that
         // TODO: find out why disposed microbes can be attempted to be engulfed
         try
         {
-            if (target is Microbe casted)
+            if (isMicrobe)
             {
                 // Access a Godot property to throw disposed exception
-                _ = casted.GlobalTransform;
+                _ = microbe!.GlobalTransform;
             }
         }
         catch (ObjectDisposedException)
@@ -401,7 +409,7 @@ public partial class Microbe
             return false;
 
         // Disallow cannibalism
-        if (target is Microbe microbe && microbe.Species == Species)
+        if (isMicrobe && microbe!.Species == Species)
             return false;
 
         // Membranes with Cell Wall cannot engulf
@@ -515,7 +523,7 @@ public partial class Microbe
         foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
         {
             var amount = Compounds.GetCompoundAmount(type) *
-                Constants.COMPOUND_RELEASE_PERCENTAGE;
+                Constants.COMPOUND_RELEASE_FRACTION;
 
             compoundsToRelease[type] = amount;
         }
@@ -528,7 +536,7 @@ public partial class Microbe
                 compoundsToRelease.TryGetValue(entry.Key, out var existing);
 
                 compoundsToRelease[entry.Key] = existing + (entry.Value *
-                    Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
+                    Constants.COMPOUND_MAKEUP_RELEASE_FRACTION);
             }
         }
 
@@ -1230,21 +1238,25 @@ public partial class Microbe
 
                 var target = otherIsPilus ? thisMicrobe : touchedMicrobe;
 
-                target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus");
+                Invoke.Instance.Perform(() => target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus"));
                 return;
             }
 
             // Pili don't stop engulfing
             if (thisMicrobe.touchedEngulfables.Add(touchedMicrobe))
             {
-                thisMicrobe.CheckStartEngulfingOnCandidates();
-                thisMicrobe.CheckBinding();
+                Invoke.Instance.Perform(() =>
+                {
+                    thisMicrobe.CheckStartEngulfingOnCandidates();
+                    thisMicrobe.CheckBinding();
+                });
             }
 
             // Play bump sound if certain total collision impulse is reached (adjusted by mass)
             if (thisMicrobe.collisionForce / Mass > Constants.CONTACT_IMPULSE_TO_BUMP_SOUND)
             {
-                thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg");
+                Invoke.Instance.Perform(() =>
+                    thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg"));
             }
         }
         else if (body is IEngulfable engulfable)
@@ -1279,9 +1291,16 @@ public partial class Microbe
         if (body is not IEngulfable engulfable || engulfable == this)
             return;
 
-        if (otherEngulfablesInEngulfRange.Add((IEngulfable)body))
+        if (otherEngulfablesInEngulfRange.Add(engulfable))
         {
-            CheckStartEngulfingOnCandidates();
+            // TODO: does this need to check for disposed exception?
+            if (engulfable is Microbe microbe && microbe.Dead)
+                return;
+
+            if (otherEngulfablesInEngulfRange.Add(engulfable))
+            {
+                Invoke.Instance.Perform(CheckStartEngulfingOnCandidates);
+            }
         }
     }
 
