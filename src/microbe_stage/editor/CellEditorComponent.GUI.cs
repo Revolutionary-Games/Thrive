@@ -84,9 +84,7 @@ public partial class CellEditorComponent
         // Pass in a membrane that the values are taken as relative to
         foreach (var membraneType in SimulationParameters.Instance.GetAllMembranes())
         {
-            var tooltip = (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(
-                membraneType.InternalName, "membraneSelection");
-
+            var tooltip = GetSelectionTooltip(membraneType.InternalName, "membraneSelection");
             tooltip?.WriteMembraneModifierList(referenceMembrane, membraneType);
         }
     }
@@ -98,7 +96,7 @@ public partial class CellEditorComponent
     {
         float convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
-        var rigidityTooltip = (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor");
+        var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
 
         if (rigidityTooltip == null)
             throw new InvalidOperationException("Could not find rigidity tooltip");
@@ -121,7 +119,8 @@ public partial class CellEditorComponent
 
     private void UpdateRigiditySliderState(int mutationPoints)
     {
-        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP && MovingPlacedHex == null)
+        int costPerStep = (int)(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * editorCostFactor);
+        if (mutationPoints >= costPerStep && MovingPlacedHex == null)
         {
             rigiditySlider.Editable = true;
         }
@@ -169,16 +168,48 @@ public partial class CellEditorComponent
     /// </summary>
     private void UpdateOrganelleEfficiencies(Dictionary<string, OrganelleEfficiency> organelleEfficiency)
     {
-        foreach (var organelle in organelleEfficiency.Keys)
+        foreach (var organelleInternalName in organelleEfficiency.Keys)
         {
-            if (organelle == protoplasm.InternalName)
+            if (organelleInternalName == protoplasm.InternalName)
                 continue;
 
-            var tooltip = (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(
-                SimulationParameters.Instance.GetOrganelleType(organelle).InternalName, "organelleSelection");
-
-            tooltip?.WriteOrganelleProcessList(organelleEfficiency[organelle].Processes);
+            var tooltip = GetSelectionTooltip(organelleInternalName, "organelleSelection");
+            tooltip?.WriteOrganelleProcessList(organelleEfficiency[organelleInternalName].Processes);
         }
+    }
+
+    private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
+    {
+        return (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(name, group);
+    }
+
+    /// <summary>
+    ///   Updates the MP costs in organelle, membrane, and rigidity tooltips by setting the cost factor for each one
+    /// </summary>
+    private void UpdateTooltipMPCostFactors()
+    {
+        var organelleNames = SimulationParameters.Instance.GetAllOrganelles().Select(o => o.InternalName);
+        foreach (string name in organelleNames)
+        {
+            if (name == protoplasm.InternalName)
+                continue;
+
+            var tooltip = GetSelectionTooltip(name, "organelleSelection");
+            if (tooltip != null)
+                tooltip.EditorCostFactor = editorCostFactor;
+        }
+
+        var membraneNames = SimulationParameters.Instance.GetAllMembranes().Select(m => m.InternalName);
+        foreach (var name in membraneNames)
+        {
+            var tooltip = GetSelectionTooltip(name, "membraneSelection");
+            if (tooltip != null)
+                tooltip.EditorCostFactor = editorCostFactor;
+        }
+
+        var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
+        if (rigidityTooltip != null)
+            rigidityTooltip.EditorCostFactor = editorCostFactor;
     }
 
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
@@ -316,14 +347,14 @@ public partial class CellEditorComponent
         foreach (var entry in placeablePartSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = entry.Key.MPCost;
+            entry.Value.MPCost = (int)(entry.Key.MPCost * editorCostFactor);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
 
         foreach (var entry in membraneSelectionElements)
         {
             entry.Value.PartName = entry.Key.Name;
-            entry.Value.MPCost = entry.Key.EditorCost;
+            entry.Value.MPCost = (int)(entry.Key.EditorCost * editorCostFactor);
             entry.Value.PartIcon = entry.Key.LoadedIcon;
         }
     }
