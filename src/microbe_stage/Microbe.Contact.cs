@@ -331,6 +331,11 @@ public partial class Microbe
             amount /= CellTypeProperties.MembraneType.PhysicalResistance;
         }
 
+        if (!CellTypeProperties.IsBacteria)
+        {
+            amount /= 2;
+        }
+
         Hitpoints -= amount;
 
         ModLoader.ModInterface.TriggerOnDamageReceived(this, amount, IsPlayerMicrobe);
