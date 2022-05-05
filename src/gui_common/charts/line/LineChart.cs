@@ -96,6 +96,8 @@ public class LineChart : VBoxContainer
     /// </remarks>
     public string? TooltipYAxisFormat;
 
+    private static readonly Dictionary<string, Dictionary<string, bool>> StoredDatasetsVisibilityStatus = new();
+
     /// <summary>
     ///   Datasets to be plotted on the chart. Key is the dataset's name
     /// </summary>
@@ -369,6 +371,11 @@ public class LineChart : VBoxContainer
 
         UpdateMinimumAndMaximumValues();
 
+        if (!StoredDatasetsVisibilityStatus.ContainsKey(ChartName))
+            StoredDatasetsVisibilityStatus.Add(ChartName, new Dictionary<string, bool>());
+
+        var stored = StoredDatasetsVisibilityStatus[ChartName];
+
         foreach (var data in dataSets)
         {
             childChart?.dataSets.Add(data.Key, (LineChartData)data.Value.Clone());
@@ -377,14 +384,18 @@ public class LineChart : VBoxContainer
             if (string.IsNullOrEmpty(data.Key))
                 throw new Exception("Dataset dictionary key is null");
 
-            // Hide the rest, if number of shown dataset exceeds initialVisibleDataSets
-            if (visibleDataSetCount >= initialVisibleDataSets && data.Key != defaultDataSet)
+            if (data.Key != defaultDataSet)
             {
-                UpdateDataSetVisibility(data.Key, false);
-            }
-            else if (visibleDataSetCount < initialVisibleDataSets && data.Key != defaultDataSet)
-            {
-                visibleDataSetCount++;
+                var visible = visibleDataSetCount < initialVisibleDataSets;
+
+                // Override visible value if stored value exists
+                if (stored.TryGetValue(data.Key, out bool value))
+                    visible = value;
+
+                UpdateDataSetVisibility(data.Key, visible);
+
+                if (visible)
+                    visibleDataSetCount++;
             }
 
             // Initialize line
@@ -565,6 +576,11 @@ public class LineChart : VBoxContainer
 
         // Update the legend
         DataSetsLegend?.OnDataSetVisibilityChange(visible, name);
+
+        if (StoredDatasetsVisibilityStatus.TryGetValue(ChartName, out Dictionary<string, bool> value))
+        {
+            value[name] = visible;
+        }
 
         return DataSetVisibilityUpdateResult.Success;
     }
