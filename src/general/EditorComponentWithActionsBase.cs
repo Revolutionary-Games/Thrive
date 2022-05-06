@@ -120,9 +120,9 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     ///   Special enqueue that can have special logic in specific components to pre-process actions before passing
     ///   them to the editor
     /// </summary>
-    protected virtual void EnqueueAction(TAction action)
+    protected virtual bool EnqueueAction(TAction action)
     {
-        Editor.EnqueueAction(action);
+        return Editor.EnqueueAction(action);
     }
 
     /// <summary>

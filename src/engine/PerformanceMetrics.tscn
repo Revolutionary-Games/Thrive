@@ -13,9 +13,6 @@ anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 DialogPath = NodePath("CustomDialog")
 FPSLabelPath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/HBoxContainer/FPS")
 DeltaLabelPath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/HBoxContainer/Delta")
@@ -63,7 +60,10 @@ text = "FPS"
 margin_right = 40.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 4 )
-text = "FRAME_DELTA"
+text = "Delta: 0.002311"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="MetricsText" type="Label" parent="CustomDialog/ScrollContainer/VBoxContainer"]
 margin_top = 29.0
