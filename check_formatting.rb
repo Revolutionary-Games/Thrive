@@ -262,6 +262,9 @@ end
 def file_begins_with_bom(path)
   raw_data = File.binread(path, 3)
 
+  # Guard against empty files
+  return false if raw_data.nil?
+
   # Unpack as raw bytes for comparison
   potential_bom = raw_data.unpack('CCC')
 
