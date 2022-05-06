@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-05 15:06+0700\n"
+"POT-Creation-Date: 2022-05-06 12:44+0300\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -1024,17 +1024,17 @@ msgid "NEW_NAME"
 msgstr "Нова назва"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:72
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:65
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:79
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Завантаження мікробного редактору"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:186
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:191
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:206
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:231
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-ево не почалась"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:187
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:192
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:207
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:232
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус виконання:"
 
@@ -1481,7 +1481,7 @@ msgstr "Спеціальна миша 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Невідома миша"
 
-#: ../src/general/EditorBase.cs:226
+#: ../src/general/EditorBase.cs:237
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Очікування на авто-ево:"
 
@@ -1533,12 +1533,12 @@ msgstr "Ви увійшли як:{0}"
 msgid "NEW_GAME"
 msgstr "Нова гра"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Завантажити гру"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
 msgid "OPTIONS"
 msgstr "Налаштування"
 
@@ -1568,7 +1568,7 @@ msgstr "Режим творчого мікробного редактор"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:138
+#: ../src/general/PauseMenu.tscn:254
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1938,45 +1938,45 @@ msgstr "Не знайдено каталог скріншотів"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Спробуйте зробити декілька скріншотів!"
 
-#: ../src/general/PauseMenu.cs:313
+#: ../src/general/PauseMenu.cs:306
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Ви впевнені, що хочете вийти до головного меню?\n"
 "Увесь незбережений прогрес буде втрачено."
 
-#: ../src/general/PauseMenu.cs:329
+#: ../src/general/PauseMenu.cs:322
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Ви хочете покинути гру?\n"
 "Весь незбережений процес буде втрачено."
 
-#: ../src/general/PauseMenu.tscn:62
+#: ../src/general/PauseMenu.tscn:178
 msgid "RESUME"
 msgstr "Продовжити"
 
-#: ../src/general/PauseMenu.tscn:69
+#: ../src/general/PauseMenu.tscn:185
 msgid "SAVE_GAME"
 msgstr "Зберегти гру"
 
-#: ../src/general/PauseMenu.tscn:84
+#: ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Статистика"
 
-#: ../src/general/PauseMenu.tscn:91
+#: ../src/general/PauseMenu.tscn:207
 msgid "HELP"
 msgstr "Допомога"
 
-#: ../src/general/PauseMenu.tscn:105
+#: ../src/general/PauseMenu.tscn:221
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Повернутись до меню"
 
-#: ../src/general/PauseMenu.tscn:112
+#: ../src/general/PauseMenu.tscn:228
 msgid "EXIT"
 msgstr "Вихід"
 
-#: ../src/general/PauseMenu.tscn:163
+#: ../src/general/PauseMenu.tscn:279
 msgid "CONFIRM_EXIT"
 msgstr "Підтвердити вихід"
 
@@ -2302,7 +2302,7 @@ msgid "RAW"
 msgstr "Необроблений"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2011
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2183
 msgid "NO_DATA_TO_SHOW"
 msgstr "Немає даних для показу"
 
@@ -2605,7 +2605,7 @@ msgstr "Усі клітини «бачають» лиш через хеморе�
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2182
-#: ../src/microbe_stage/MicrobeHUD.cs:1385
+#: ../src/microbe_stage/MicrobeHUD.cs:1368
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Буде реалізованим."
 
@@ -3088,32 +3088,32 @@ msgstr "Розсіяні"
 msgid "FOCUSED"
 msgstr "Зосереджені"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:51
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:52
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:226
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:231
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:227
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:232
 msgid "ATP_PRODUCTION"
 msgstr "Продукування АТф"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:232
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:233
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "Продукування АТФ вкрай мала!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:261
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:262
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:281
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:282
 msgid "OSMOREGULATION"
 msgstr "Осморегуляція"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:287
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:288
 msgid "BASE_MOVEMENT"
 msgstr "Базова швидкість"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:299
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:300
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
@@ -3121,33 +3121,33 @@ msgstr "{0}: -{1} АТФ"
 msgid "CELL_TYPE_NAME"
 msgstr "Назва типу клітини"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1847
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2019
 msgid "FAILED"
 msgstr "Провалено"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1853
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1865
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2025
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2037
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1859
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1871
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2031
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
 msgid "N_A"
 msgstr "Н/Є"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1979
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергія в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1983
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2155
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Загальна зібрана енергія становить{0} з індивідуальною вартістю {1}, врезультаті чого– некоригована популяція з {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1990
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2162
 msgid "ENERGY_SOURCES"
 msgstr "Джерела енергії:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1996
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2168
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} енергії: {1} (пристосованість: {2}) загальної доступної енергії: {3}(загальна пристосованість:{4})"
 
@@ -3279,11 +3279,11 @@ msgstr "Ця панель відображає числа, за якими пе�
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Баланс сполук"
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:265
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:266
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Видова назва має відповідати біномінальній системі іменування ( рід та епітет)!"
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:172
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:174
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Назва виду..."
 
@@ -3412,8 +3412,8 @@ msgid "CELL"
 msgstr "Клітина"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:246
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:265
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:266
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:284
 msgid "MP_COST"
 msgstr "{0} ОM"
 
@@ -3424,6 +3424,11 @@ msgstr "Вільне конструктуювання"
 #: ../src/microbe_stage/editor/MutationPointsBar.tscn:150
 msgid "MUTATION_POINTS"
 msgstr "Очки мутації"
+
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:249
+#, fuzzy
+msgid "MULTIPLE_ORGANELLES"
+msgstr "Місце для органели"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 msgid "MOVE"
