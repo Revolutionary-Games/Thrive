@@ -160,6 +160,7 @@ public class PatchRegion
                 var rightSide = adjacent.ScreenCoordinates + new Vector2(adjacent.Width, 0) + new Vector2(20, 0);
                 var leftDist = (adjacentPatch.ScreenCoordinates - leftSide).Length();
                 var rightDist = (adjacentPatch.ScreenCoordinates - rightSide).Length();
+    
                 if (leftDist < rightDist)
                 {
                     ScreenCoordinates = leftSide;
@@ -169,7 +170,7 @@ public class PatchRegion
                     ScreenCoordinates = rightSide;
                 }
 
-                ScreenCoordinates = new Vector2(ScreenCoordinates.x, adjacentPatch.ScreenCoordinates.y - PatchMargin);
+                ScreenCoordinates = new Vector2(ScreenCoordinates.x, adjacentPatch.ScreenCoordinates.y - PatchMargin - RegionLineWidth);
             }
             
         }
@@ -225,7 +226,7 @@ public class PatchRegion
     }
 
     /// <summary>
-    ///   Adds a connection to patch
+    ///   Adds a connection to region
     /// </summary>
     /// <returns>True if this was new, false if already added</returns>
     public bool AddNeighbour(PatchRegion region)
@@ -233,6 +234,9 @@ public class PatchRegion
         return Adjacent.Add(region);
     }
 
+    /// <summary>
+    ///   Returns the regions size
+    /// </summary>
     public Vector2 GetSize()
     {
         return new Vector2(Width, Height);

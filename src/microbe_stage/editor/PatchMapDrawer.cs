@@ -103,6 +103,8 @@ public class PatchMapDrawer : Control
             GD.Print("Generating and showing a new patch map for testing in PatchMapDrawer");
             Map = new GameWorld(new WorldGenerationSettings()).Map;
         }
+
+        
     }
 
     public override void _Process(float delta)
@@ -112,6 +114,7 @@ public class PatchMapDrawer : Control
             RebuildMapNodes();
             Update();
             dirty = false;
+            RectMinSize = GetRightCornerPointOnMap() + new Vector2(100, 100);
         }
     }
 
@@ -250,9 +253,62 @@ public class PatchMapDrawer : Control
         return false;
     }
 
+    private Vector2 GetRightCornerPointOnMap()
+    {
+        var point = Vector2.Zero;
+        foreach (var region in Map!.Regions)
+        {
+            var regionEnd = region.Value.ScreenCoordinates + region.Value.GetSize();
+            
+            point.x = Math.Max(point.x, regionEnd.x);
+            point.y = Math.Max(point.y, regionEnd.y);
+        }
+
+        foreach (var region in Map!.SpecialRegions)
+        {
+            var regionEnd = region.Value.ScreenCoordinates + region.Value.GetSize();
+            
+            point.x = Math.Max(point.x, regionEnd.x);
+            point.y = Math.Max(point.y, regionEnd.y);
+        }
+        return point;
+    }
+
+    private Vector2 ClosestPoint(Vector2 p, Vector2 q1, Vector2 q2)
+    {
+        if (q1 == null)
+            return new();
+        if (q2 == null)
+            return new();
+        if (q1.DistanceTo(p) > q2.DistanceTo(p))
+            return q2;
+        else
+            return q1;
+    }
+    private Vector2 LineLineIntersection(Vector2 p1, Vector2 p2, Vector2 q1, Vector2 q2)
+    {
+        var dirp = p2 - p1;
+        var dirq = q2 - q2;
+        return (Vector2)Geometry.LineIntersectsLine2d(p1, dirp, q1, dirq);
+    }
     private Vector2 LineRectangleIntersection(Vector2 l1, Vector2 l2, Rect2 rect)
     {
-        var intersection = new Vector2();
+        var intersection = Vector2.Zero;
+        var p0 = rect.Position;
+        var p1 = rect.Position + new Vector2(0, rect.Size.y);
+        var p2 = rect.Position + new Vector2(rect.Size.x, 0);
+        var p3 = rect.End;
+        
+        var int1 = LineLineIntersection(p0, p1, l1, l1);
+        var int2 = LineLineIntersection(p0, p2, l1, l1);
+        var int3 = LineLineIntersection(p1, p3, l1, l1);
+        var int4 = LineLineIntersection(p2, p3, l1, l1);
+
+        intersection = ClosestPoint(l1, intersection, int1);
+        intersection = ClosestPoint(l1, intersection, int2);
+        intersection = ClosestPoint(l1, intersection, int3);
+        intersection = ClosestPoint(l1, intersection, int4);
+        
         return intersection;
     }
     private void RebuildMapNodes()
