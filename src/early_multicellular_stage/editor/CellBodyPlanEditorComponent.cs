@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 /// </summary>
 [SceneLoadedClass("res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn")]
 public partial class CellBodyPlanEditorComponent :
-    HexEditorComponentBase<EarlyMulticellularEditor, CellEditorAction, CellTemplate>,
+    HexEditorComponentBase<EarlyMulticellularEditor, CombinedMicrobeEditorAction, CellEditorAction, CellTemplate>,
     IGodotEarlyNodeResolve
 {
     [Export]
@@ -413,20 +413,7 @@ public partial class CellBodyPlanEditorComponent :
         if (activeActionName == null || !Editor.ShowHover)
             return 0;
 
-        var cost = CellTypeFromName(activeActionName).MPCost;
-
-        switch (Symmetry)
-        {
-            case HexEditorSymmetry.XAxisSymmetry:
-                cost *= 2;
-                break;
-            case HexEditorSymmetry.FourWaySymmetry:
-                cost *= 4;
-                break;
-            case HexEditorSymmetry.SixWaySymmetry:
-                cost *= 6;
-                break;
-        }
+        var cost = CellTypeFromName(activeActionName).MPCost * Symmetry.PositionCount();
 
         return cost;
     }
@@ -443,7 +430,12 @@ public partial class CellBodyPlanEditorComponent :
         AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active")));
     }
 
-    protected override bool DoesActionEndInProgressAction(CellEditorAction action)
+    protected override bool DoesActionEndInProgressAction(CombinedMicrobeEditorAction action)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override CombinedMicrobeEditorAction CreateCombinedAction(IEnumerable<CellEditorAction> actions)
     {
         throw new NotImplementedException();
     }
@@ -468,15 +460,15 @@ public partial class CellBodyPlanEditorComponent :
         return editedMicrobeCells.GetElementAt(position)?.Data;
     }
 
-    protected override void TryRemoveHexAt(Hex location)
+    protected override CellEditorAction? TryRemoveHexAt(Hex location)
     {
         var hexHere = editedMicrobeCells.GetElementAt(location);
         if (hexHere == null)
-            return;
+            return null;
 
         // Dont allow deletion of last cell
         if (editedMicrobeCells.Count < 2)
-            return;
+            return null;
 
         // If it was placed this session, just refund the cost of adding it.
         // TODO: this doesn't take being placed in current editor session into account, this is instead waiting for
@@ -484,14 +476,18 @@ public partial class CellBodyPlanEditorComponent :
         int cost = Constants.ORGANELLE_REMOVE_COST;
 
         // TODO: move to using actions
-        Editor.ChangeMutationPoints(-cost);
         editedMicrobeCells.Remove(hexHere);
+        Editor.MutationPoints -= cost;
+        if (Editor.MutationPoints < 0)
+            Editor.MutationPoints = 0;
 
         /*
         var action = new CellEditorAction(Editor, cost,
             DoOrganelleRemoveAction, UndoOrganelleRemoveAction, new RemoveActionData(hexHere));
 
-        EnqueueAction(action);*/
+        return action*/
+
+        return null;
     }
 
     protected override float CalculateEditorArrowZPosition()
@@ -625,7 +621,7 @@ public partial class CellBodyPlanEditorComponent :
             return false;
         }
 
-        Editor.ChangeMutationPoints(-cell.Data!.CellType.MPCost);
+        Editor.MutationPoints -= cell.Data!.CellType.MPCost;
         editedMicrobeCells.Add(cell);
 
         /*var action = new CellEditorAction(Editor, organelle.Definition.MPCost,
