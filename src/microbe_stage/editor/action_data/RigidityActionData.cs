@@ -1,7 +1,7 @@
 ﻿using System;
 
 [JSONAlwaysDynamicType]
-public class RigidityActionData : MicrobeEditorCombinableActionData
+public class RigidityActionData : EditorCombinableActionData
 {
     public float NewRigidity;
     public float PreviousRigidity;

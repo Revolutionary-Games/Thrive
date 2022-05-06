@@ -12,8 +12,8 @@ public abstract class
         EditorComponentWithActionsBase<TEditor, TCombinedAction>,
         ISaveLoadedTracked, IChildPropertiesLoadCallback
     where TEditor : class, IHexEditor, IEditorWithActions
-    where TCombinedAction : CombinedMicrobeEditorAction
-    where TAction : CellEditorAction
+    where TCombinedAction : CombinedEditorAction
+    where TAction : EditorAction
     where THexMove : class
 {
     [Export]

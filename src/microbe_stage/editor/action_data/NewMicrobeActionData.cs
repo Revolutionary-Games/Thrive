@@ -1,7 +1,7 @@
 ﻿using System;
 
 [JSONAlwaysDynamicType]
-public class NewMicrobeActionData : MicrobeEditorCombinableActionData
+public class NewMicrobeActionData : EditorCombinableActionData
 {
     public OrganelleLayout<OrganelleTemplate> OldEditedMicrobeOrganelles;
     public MembraneType OldMembrane;

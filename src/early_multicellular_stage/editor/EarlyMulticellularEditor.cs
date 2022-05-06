@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn")]
-public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
+public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     [Export]
     public NodePath ReportTabPath = null!;
@@ -94,11 +94,11 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
 
-    public int WhatWouldActionsCost(IEnumerable<MicrobeEditorCombinableActionData> actions)
+    public int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
         // TODO: action history. Once we have also body plan actions we need a way to only apply the discount to one
         // type
-        var dummyHistory = new EditorActionHistory<CombinedMicrobeEditorAction>();
+        var dummyHistory = new EditorActionHistory<CombinedEditorAction>();
 
         return (int)(dummyHistory.WhatWouldActionsCost(actions) * Constants.MULTICELLULAR_EDITOR_COST_FACTOR);
     }
@@ -139,7 +139,7 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
         noCellTypeSelected = GetNode<Control>(NoCellTypeSelectedPath);
     }
 
-    protected override void UpdateHistoryCallbackTargets(ActionHistory<CellEditorAction> actionHistory)
+    protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
     {
         // See TODO comment in MicrobeEditor.UpdateHistoryCallbackTargets
     }

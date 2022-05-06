@@ -189,7 +189,7 @@
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\BehaviourActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\MembraneActionData.cs" />
-    <Compile Include="src\microbe_stage\editor\action_data\MicrobeEditorCombinableActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\EditorCombinableActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\MoveActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\NewMicrobeActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\PlacementActionData.cs" />
@@ -214,13 +214,13 @@
     <Compile Include="src\microbe_stage\ICellProperties.cs" />
     <Compile Include="src\microbe_stage\IComputedMembraneData.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
-    <Compile Include="src\microbe_stage\editor\CombinedMicrobeEditorAction.cs" />
+    <Compile Include="src\microbe_stage\editor\CombinedEditorAction.cs" />
     <Compile Include="src\microbe_stage\editor\SpeciesPopulationDatasetsLegend.cs" />
     <Compile Include="src\microbe_stage\editor\TimelineTab.cs" />
     <Compile Include="src\microbe_stage\editor\upgrades\ChemoreceptorUpgradeGUI.cs" />
     <Compile Include="src\microbe_stage\editor\upgrades\IOrganelleUpgrader.cs" />
     <Compile Include="src\microbe_stage\editor\upgrades\OrganelleUpgradeGUI.cs" />
-    <Compile Include="src\microbe_stage\editor\upgrades\SingleCellEditorAction.cs" />
+    <Compile Include="src\microbe_stage\editor\upgrades\SingleEditorAction.cs" />
     <Compile Include="src\microbe_stage\gui\ExtinctionBox.cs" />
     <Compile Include="src\microbe_stage\IComponentSpecificUpgrades.cs" />
     <Compile Include="src\microbe_stage\Microbe.Interior.cs" />
@@ -238,7 +238,7 @@
     <Compile Include="src\microbe_stage\editor\BarHelper.cs" />
     <Compile Include="src\microbe_stage\editor\CompoundBalanceDisplay.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditor.cs" />
-    <Compile Include="src\microbe_stage\editor\CellEditorAction.cs" />
+    <Compile Include="src\microbe_stage\editor\EditorAction.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobePartSelection.cs" />
     <Compile Include="src\microbe_stage\editor\OrganellePopupMenu.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapDrawer.cs" />

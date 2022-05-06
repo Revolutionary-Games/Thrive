@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 [JSONAlwaysDynamicType]
-public class PlacementActionData : MicrobeEditorCombinableActionData
+public class PlacementActionData : EditorCombinableActionData
 {
     public List<OrganelleTemplate>? ReplacedCytoplasm;
     public OrganelleTemplate Organelle;

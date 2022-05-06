@@ -105,7 +105,7 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
         if (Math.Abs(value - oldValue) < MathUtils.EPSILON)
             return;
 
-        var action = new SingleCellEditorAction<BehaviourActionData>(DoBehaviourChangeAction, UndoBehaviourChangeAction,
+        var action = new SingleEditorAction<BehaviourActionData>(DoBehaviourChangeAction, UndoBehaviourChangeAction,
             new BehaviourActionData(value, oldValue, type));
 
         Editor.EnqueueAction(action);

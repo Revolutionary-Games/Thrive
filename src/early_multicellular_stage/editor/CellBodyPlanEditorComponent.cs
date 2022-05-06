@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 /// </summary>
 [SceneLoadedClass("res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn")]
 public partial class CellBodyPlanEditorComponent :
-    HexEditorComponentBase<EarlyMulticellularEditor, CombinedMicrobeEditorAction, CellEditorAction, CellTemplate>,
+    HexEditorComponentBase<EarlyMulticellularEditor, CombinedEditorAction, EditorAction, CellTemplate>,
     IGodotEarlyNodeResolve
 {
     [Export]
@@ -430,12 +430,12 @@ public partial class CellBodyPlanEditorComponent :
         AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active")));
     }
 
-    protected override bool DoesActionEndInProgressAction(CombinedMicrobeEditorAction action)
+    protected override bool DoesActionEndInProgressAction(CombinedEditorAction action)
     {
         throw new NotImplementedException();
     }
 
-    protected override CombinedMicrobeEditorAction CreateCombinedAction(IEnumerable<CellEditorAction> actions)
+    protected override CombinedEditorAction CreateCombinedAction(IEnumerable<EditorAction> actions)
     {
         throw new NotImplementedException();
     }
@@ -460,7 +460,7 @@ public partial class CellBodyPlanEditorComponent :
         return editedMicrobeCells.GetElementAt(position)?.Data;
     }
 
-    protected override CellEditorAction? TryRemoveHexAt(Hex location)
+    protected override EditorAction? TryRemoveHexAt(Hex location)
     {
         var hexHere = editedMicrobeCells.GetElementAt(location);
         if (hexHere == null)
@@ -482,7 +482,7 @@ public partial class CellBodyPlanEditorComponent :
             Editor.MutationPoints = 0;
 
         /*
-        var action = new CellEditorAction(Editor, cost,
+        var action = new EditorAction(Editor, cost,
             DoOrganelleRemoveAction, UndoOrganelleRemoveAction, new RemoveActionData(hexHere));
 
         return action*/
@@ -624,7 +624,7 @@ public partial class CellBodyPlanEditorComponent :
         Editor.MutationPoints -= cell.Data!.CellType.MPCost;
         editedMicrobeCells.Add(cell);
 
-        /*var action = new CellEditorAction(Editor, organelle.Definition.MPCost,
+        /*var action = new EditorAction(Editor, organelle.Definition.MPCost,
             DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle));
 
         EnqueueAction(action);*/

@@ -1,5 +1,5 @@
 ﻿[JSONAlwaysDynamicType]
-public class MembraneActionData : MicrobeEditorCombinableActionData
+public class MembraneActionData : EditorCombinableActionData
 {
     public MembraneType OldMembrane;
     public MembraneType NewMembrane;

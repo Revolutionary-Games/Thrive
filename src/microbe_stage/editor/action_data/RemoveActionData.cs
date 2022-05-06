@@ -1,5 +1,5 @@
 ﻿[JSONAlwaysDynamicType]
-public class RemoveActionData : MicrobeEditorCombinableActionData
+public class RemoveActionData : EditorCombinableActionData
 {
     public OrganelleTemplate Organelle;
     public Hex Location;

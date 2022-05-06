@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 /// </summary>
 [SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn")]
 public partial class CellEditorComponent :
-    HexEditorComponentBase<ICellEditorData, CombinedMicrobeEditorAction, CellEditorAction, OrganelleTemplate>,
+    HexEditorComponentBase<ICellEditorData, CombinedEditorAction, EditorAction, OrganelleTemplate>,
     IGodotEarlyNodeResolve
 {
     [Export]
@@ -816,7 +816,7 @@ public partial class CellEditorComponent :
         var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane);
 
         var action =
-            new SingleCellEditorAction<NewMicrobeActionData>(DoNewMicrobeAction, UndoNewMicrobeAction, data);
+            new SingleEditorAction<NewMicrobeActionData>(DoNewMicrobeAction, UndoNewMicrobeAction, data);
 
         Editor.EnqueueAction(action);
     }
@@ -828,7 +828,7 @@ public partial class CellEditorComponent :
         if (Membrane.Equals(membrane))
             return;
 
-        var action = new SingleCellEditorAction<MembraneActionData>(DoMembraneChangeAction, UndoMembraneChangeAction,
+        var action = new SingleEditorAction<MembraneActionData>(DoMembraneChangeAction, UndoMembraneChangeAction,
             new MembraneActionData(Membrane, membrane));
 
         Editor.EnqueueAction(action);
@@ -869,7 +869,7 @@ public partial class CellEditorComponent :
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
         var prevRigidity = Rigidity;
 
-        var action = new SingleCellEditorAction<RigidityActionData>(DoRigidityChangeAction, UndoRigidityChangeAction,
+        var action = new SingleEditorAction<RigidityActionData>(DoRigidityChangeAction, UndoRigidityChangeAction,
             new RigidityActionData(newRigidity, prevRigidity));
 
         Editor.EnqueueAction(action);
@@ -957,7 +957,7 @@ public partial class CellEditorComponent :
         var organelleTemplates = positions
             .Select(h => new OrganelleTemplate(organelleDefinition, h.Hex, h.Orientation)).ToList();
 
-        CombinedMicrobeEditorAction moveOccupancies;
+        CombinedEditorAction moveOccupancies;
 
         if (MovingPlacedHex == null)
         {
@@ -1013,7 +1013,7 @@ public partial class CellEditorComponent :
         }
     }
 
-    protected override CombinedMicrobeEditorAction CreateCombinedAction(IEnumerable<CellEditorAction> actions)
+    protected override CombinedEditorAction CreateCombinedAction(IEnumerable<EditorAction> actions)
     {
         throw new NotImplementedException();
     }
@@ -1023,7 +1023,7 @@ public partial class CellEditorComponent :
         return editedMicrobeOrganelles.CanPlace(organelle.Definition, position, rotation, false);
     }
 
-    protected override bool DoesActionEndInProgressAction(CombinedMicrobeEditorAction action)
+    protected override bool DoesActionEndInProgressAction(CombinedEditorAction action)
     {
         // Allow only move actions with an in-progress move
         return action.Data.Any(d => d is MoveActionData);
@@ -1046,7 +1046,7 @@ public partial class CellEditorComponent :
         return editedMicrobeOrganelles.GetElementAt(position);
     }
 
-    protected override CellEditorAction? TryRemoveHexAt(Hex location)
+    protected override EditorAction? TryRemoveHexAt(Hex location)
     {
         var organelleHere = editedMicrobeOrganelles.GetElementAt(location);
         if (organelleHere == null)
@@ -1060,7 +1060,7 @@ public partial class CellEditorComponent :
         if (IsMulticellularEditor && organelleHere.Definition == bindingAgent)
             return null;
 
-        return new SingleCellEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
+        return new SingleEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
             new RemoveActionData(organelleHere, organelleHere.Position, organelleHere.Orientation));
     }
 
@@ -1207,20 +1207,20 @@ public partial class CellEditorComponent :
         return organellePositions.Where(t => t.Organelle != null)!;
     }
 
-    private CombinedMicrobeEditorAction GetMultiActionWithOccupancies(List<(Hex Hex, int Orientation)> hexes,
+    private CombinedEditorAction GetMultiActionWithOccupancies(List<(Hex Hex, int Orientation)> hexes,
         List<OrganelleTemplate> organelles, bool moving)
     {
-        var moveActionData = new List<CellEditorAction>();
+        var moveActionData = new List<EditorAction>();
         foreach (var (hex, organelle, orientation, occupied) in GetOccupancies(hexes, organelles))
         {
-            CellEditorAction action;
+            EditorAction action;
             if (occupied)
             {
                 var data = new RemoveActionData(organelle, organelle.Position, organelle.Orientation)
                 {
                     GotReplaced = organelle.Definition.InternalName == "cytoplasm",
                 };
-                action = new SingleCellEditorAction<RemoveActionData>(DoOrganelleRemoveAction,
+                action = new SingleEditorAction<RemoveActionData>(DoOrganelleRemoveAction,
                     UndoOrganelleRemoveAction, data);
             }
             else
@@ -1229,7 +1229,7 @@ public partial class CellEditorComponent :
                 {
                     var data = new MoveActionData(organelle, organelle.Position, hex, organelle.Orientation,
                         orientation);
-                    action = new SingleCellEditorAction<MoveActionData>(DoOrganelleMoveAction,
+                    action = new SingleEditorAction<MoveActionData>(DoOrganelleMoveAction,
                         UndoOrganelleMoveAction, data);
                 }
                 else
@@ -1239,7 +1239,7 @@ public partial class CellEditorComponent :
                     if (replacedHex != null)
                         data.ReplacedCytoplasm = new List<OrganelleTemplate> { replacedHex };
 
-                    action = new SingleCellEditorAction<PlacementActionData>(DoOrganellePlaceAction,
+                    action = new SingleEditorAction<PlacementActionData>(DoOrganellePlaceAction,
                         UndoOrganellePlaceAction, data);
                 }
             }
@@ -1247,7 +1247,7 @@ public partial class CellEditorComponent :
             moveActionData.Add(action);
         }
 
-        return new CombinedMicrobeEditorAction(moveActionData.ToArray());
+        return new CombinedEditorAction(moveActionData);
     }
 
     private IEnumerable<OrganelleTemplate> GetReplacedCytoplasm(IEnumerable<OrganelleTemplate> organelles)
@@ -1275,12 +1275,12 @@ public partial class CellEditorComponent :
             });
     }
 
-    private IEnumerable<SingleCellEditorAction<RemoveActionData>> GetReplacedCytoplasmRemoveAction(
+    private IEnumerable<SingleEditorAction<RemoveActionData>> GetReplacedCytoplasmRemoveAction(
         IEnumerable<OrganelleTemplate> organelles)
     {
         var replacedCytoplasmData = GetReplacedCytoplasmRemoveActionData(organelles);
         return replacedCytoplasmData.Select(o =>
-            new SingleCellEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, o));
+            new SingleEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, o));
     }
 
     private void StartAutoEvoPrediction()
@@ -1401,7 +1401,7 @@ public partial class CellEditorComponent :
     {
         GetMouseHex(out int q, out int r);
 
-        var placementActions = new List<CellEditorAction>();
+        var placementActions = new List<EditorAction>();
 
         // For multi hex organelles we keep track of positions that got filled in
         var usedHexes = new HashSet<Hex>();
@@ -1439,7 +1439,7 @@ public partial class CellEditorComponent :
         if (placementActions.Count < 1)
             return false;
 
-        var multiAction = new CombinedMicrobeEditorAction(placementActions.ToArray());
+        var multiAction = new CombinedEditorAction(placementActions);
 
         return EnqueueAction(multiAction);
     }
@@ -1447,7 +1447,7 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Helper for AddOrganelle
     /// </summary>
-    private CombinedMicrobeEditorAction? PlaceIfPossible(OrganelleTemplate organelle)
+    private CombinedEditorAction? PlaceIfPossible(OrganelleTemplate organelle)
     {
         if (MicrobePreviewMode)
             return null;
@@ -1472,7 +1472,7 @@ public partial class CellEditorComponent :
             notPlacingCytoplasm);
     }
 
-    private CombinedMicrobeEditorAction? AddOrganelle(OrganelleTemplate organelle)
+    private CombinedEditorAction? AddOrganelle(OrganelleTemplate organelle)
     {
         // 1 - you put a unique organelle (means only one instance allowed) but you already have it
         // 2 - you put an organelle that requires nucleus but you don't have one
@@ -1481,14 +1481,14 @@ public partial class CellEditorComponent :
             return null;
 
         var replacedCytoplasmActions =
-            GetReplacedCytoplasmRemoveAction(new[] { organelle }).Cast<CellEditorAction>().ToList();
+            GetReplacedCytoplasmRemoveAction(new[] { organelle }).Cast<EditorAction>().ToList();
 
-        var action = new SingleCellEditorAction<PlacementActionData>(
+        var action = new SingleEditorAction<PlacementActionData>(
             DoOrganellePlaceAction, UndoOrganellePlaceAction,
             new PlacementActionData(organelle, organelle.Position, organelle.Orientation));
 
         replacedCytoplasmActions.Add(action);
-        return new CombinedMicrobeEditorAction(replacedCytoplasmActions.ToArray());
+        return new CombinedEditorAction(replacedCytoplasmActions);
     }
 
     /// <summary>
@@ -1698,8 +1698,8 @@ public partial class CellEditorComponent :
     private void OnDeletePressed()
     {
         var action =
-            new CombinedMicrobeEditorAction(organelleMenu.SelectedOrganelles
-                .Select(o => TryRemoveHexAt(o.Position)).WhereNotNull().ToArray());
+            new CombinedEditorAction(organelleMenu.SelectedOrganelles
+                .Select(o => TryRemoveHexAt(o.Position)).WhereNotNull());
         EnqueueAction(action);
     }
 

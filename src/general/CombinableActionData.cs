@@ -4,7 +4,7 @@
 ///   A combinable action data can be combined with other actions.
 ///   For example two separate movements of the same object can be combined into one larger movement action.
 ///   This is implemented as an aid for the player so that they do not have to think about optimizing their actions
-///   to cost the least amount of MP.
+///   to cost the least amount of MP. And reduce how many steps need to be undone when doing repetitive actions.
 /// </summary>
 public abstract class CombinableActionData
 {
@@ -29,9 +29,8 @@ public abstract class CombinableActionData
     }
 
     /// <summary>
-    ///   Combines two actions to one if possible.
-    ///   Call <see cref="GetInterferenceModeWith"/> first and check if it returns
-    ///   <see cref="ActionInterferenceMode.Combinable"/>
+    ///   Combines two actions into one if possible. Call <see cref="GetInterferenceModeWith"/> first and check if
+    ///   it returns <see cref="ActionInterferenceMode.Combinable"/>
     /// </summary>
     /// <param name="other">The action this should be combined with</param>
     /// <returns>Returns the combined action</returns>
@@ -47,7 +46,7 @@ public abstract class CombinableActionData
     protected abstract ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other);
 
     /// <summary>
-    ///   Combines two actions to one
+    ///   Combines two actions into one
     /// </summary>
     /// <param name="other">The action this should be combined with. Guaranteed to be combinable</param>
     /// <returns>Returns the combined action</returns>

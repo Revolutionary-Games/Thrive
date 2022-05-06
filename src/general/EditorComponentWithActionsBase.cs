@@ -7,7 +7,7 @@
 /// <typeparam name="TAction">Editor action type the editor this will be used with will use</typeparam>
 public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorComponentBase<TEditor>
     where TEditor : IEditorWithActions
-    where TAction : CellEditorAction
+    where TAction : EditorAction
 {
     [Export]
     public NodePath MutationPointsBarPath = null!;

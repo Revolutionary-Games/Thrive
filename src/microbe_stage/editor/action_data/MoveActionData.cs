@@ -1,7 +1,7 @@
 ﻿using System;
 
 [JSONAlwaysDynamicType]
-public class MoveActionData : MicrobeEditorCombinableActionData
+public class MoveActionData : EditorCombinableActionData
 {
     public OrganelleTemplate Organelle;
     public Hex OldLocation;

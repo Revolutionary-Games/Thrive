@@ -48,7 +48,7 @@ public class OrganellePopupMenu : PopupPanel
         set => editorCostFactor = value;
     }
 
-    public Func<IEnumerable<MicrobeEditorCombinableActionData>, int>? GetActionPrice { get; set; }
+    public Func<IEnumerable<EditorCombinableActionData>, int>? GetActionPrice { get; set; }
 
     public bool ShowPopup
     {
@@ -257,7 +257,7 @@ public class OrganellePopupMenu : PopupPanel
 
         var mpCost = GetActionPrice?.Invoke(
             SelectedOrganelles
-                .Select(o => (MicrobeEditorCombinableActionData)new RemoveActionData(o, o.Position, o.Orientation))
+                .Select(o => (EditorCombinableActionData)new RemoveActionData(o, o.Position, o.Orientation))
                 .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
@@ -274,7 +274,7 @@ public class OrganellePopupMenu : PopupPanel
             return;
 
         var mpCost = GetActionPrice?.Invoke(SelectedOrganelles.Select(o =>
-                (MicrobeEditorCombinableActionData)new MoveActionData(o, o.Position, o.Position, o.Orientation,
+                (EditorCombinableActionData)new MoveActionData(o, o.Position, o.Position, o.Orientation,
                     o.Orientation))
             .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 

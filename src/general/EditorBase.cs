@@ -31,7 +31,7 @@ using Newtonsoft.Json;
 /// </remarks>
 public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState,
     IGodotEarlyNodeResolve
-    where TAction : CellEditorAction
+    where TAction : EditorAction
     where TStage : Node, IReturnableGameState
 {
     [Export]

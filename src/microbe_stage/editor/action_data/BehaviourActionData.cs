@@ -1,7 +1,7 @@
 ﻿using System;
 
 [JSONAlwaysDynamicType]
-public class BehaviourActionData : MicrobeEditorCombinableActionData
+public class BehaviourActionData : EditorCombinableActionData
 {
     public float OldValue;
     public float NewValue;

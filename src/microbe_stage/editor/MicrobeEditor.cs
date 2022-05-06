@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
-public class MicrobeEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
+public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     [Export]
     public NodePath ReportTabPath = null!;
@@ -86,7 +86,7 @@ public class MicrobeEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditor
         tutorialGUI.Visible = true;
     }
 
-    public override bool EnqueueAction(CellEditorAction action)
+    public override bool EnqueueAction(EditorAction action)
     {
         if (base.EnqueueAction(action))
         {
@@ -141,7 +141,7 @@ public class MicrobeEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditor
 
     public override int WhatWouldActionsCost(IEnumerable<CombinableActionData> actions)
     {
-        return history.WhatWouldActionsCost(actions.Cast<MicrobeEditorCombinableActionData>());
+        return history.WhatWouldActionsCost(actions.Cast<EditorCombinableActionData>());
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -160,7 +160,7 @@ public class MicrobeEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditor
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
     }
 
-    protected override void UpdateHistoryCallbackTargets(ActionHistory<CellEditorAction> actionHistory)
+    protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
     {
         // TODO: figure out why the callbacks are correctly pointing to the cell editor instance even without this
         // actionHistory.ReTargetCallbacksInHistory(cellEditorTab);

@@ -11,18 +11,18 @@ using System.Linq;
 ///   </para>
 /// </remarks>
 public class EditorActionHistory<TAction> : ActionHistory<TAction>
-    where TAction : CellEditorAction
+    where TAction : EditorAction
 {
-    private List<MicrobeEditorCombinableActionData>? cache;
+    private List<EditorCombinableActionData>? cache;
 
-    private List<MicrobeEditorCombinableActionData> History =>
+    private List<EditorCombinableActionData> History =>
         cache ??= GetActionHistorySinceLastNewMicrobePress();
 
     // TODO: remove this if this stays unused
     /// <summary>
     ///   Calculates how much MP these actions would cost if performed on top of the current history.
     /// </summary>
-    public int WhatWouldActionsCost(IEnumerable<MicrobeEditorCombinableActionData> actions)
+    public int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
         return actions.Sum(WhatWouldActionCost);
     }
@@ -30,7 +30,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <summary>
     ///   Calculates how much MP this action would cost if performed on top of the current history.
     /// </summary>
-    public int WhatWouldActionCost(MicrobeEditorCombinableActionData combinableAction)
+    public int WhatWouldActionCost(EditorCombinableActionData combinableAction)
     {
         int result = 0;
 
@@ -41,7 +41,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
                 case ActionInterferenceMode.Combinable:
                 {
                     result -= History[i].CalculateCost();
-                    combinableAction = (MicrobeEditorCombinableActionData)combinableAction.Combine(History[i]);
+                    combinableAction = (EditorCombinableActionData)combinableAction.Combine(History[i]);
                     break;
                 }
 
@@ -81,7 +81,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
                     case ActionInterferenceMode.Combinable:
                     {
                         var combinedValue =
-                            (MicrobeEditorCombinableActionData)History[compareIndex].Combine(History[compareToIndex]);
+                            (EditorCombinableActionData)History[compareIndex].Combine(History[compareToIndex]);
                         History.RemoveAt(compareIndex);
                         History.RemoveAt(compareToIndex);
                         History.Insert(compareToIndex, combinedValue);
@@ -153,7 +153,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// <summary>
     ///   Returns all actions since the last time the user performed the "New Microbe" action
     /// </summary>
-    private List<MicrobeEditorCombinableActionData> GetActionHistorySinceLastNewMicrobePress()
+    private List<EditorCombinableActionData> GetActionHistorySinceLastNewMicrobePress()
     {
         var relevantActions = Actions.Take(ActionIndex).SelectMany(p => p.Data).ToList();
         var lastNewMicrobeActionIndex = relevantActions.FindLastIndex(p => p is NewMicrobeActionData);
