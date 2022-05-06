@@ -523,7 +523,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
             // This needs to be setup before the GUI in case there is an element there whose initial state depends on
             // how much MP is remaining
-            MutationPoints = Constants.BASE_MUTATION_POINTS;
+            mutationPoints = Constants.BASE_MUTATION_POINTS;
         }
 
         InitEditorGUI(fresh);
