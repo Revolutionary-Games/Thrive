@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-04 11:00+0300\n"
+"POT-Creation-Date: 2022-05-06 12:44+0300\n"
 "PO-Revision-Date: 2022-04-30 07:18+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1024,17 +1024,17 @@ msgid "NEW_NAME"
 msgstr "Наименование"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:72
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:65
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:79
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Зареждане на микробния редактор"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:186
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:191
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:206
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:231
 msgid "AUTO_EVO_FAILED"
 msgstr "Автоматичната еволюция не успя да стартира"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:187
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:192
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:207
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:232
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Състояние:"
 
@@ -1496,7 +1496,7 @@ msgstr "Специален бутон №2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Неизвестен бутон"
 
-#: ../src/general/EditorBase.cs:226
+#: ../src/general/EditorBase.cs:237
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Изчакване на автоматичната еволюция:"
 
@@ -1524,11 +1524,11 @@ msgstr "Затваряне"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/gui_common/CompoundAmount.cs:171
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:248
 #: ../src/microbe_stage/MicrobeHUD.cs:741
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:390
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
 msgid "PERCENTAGE_VALUE"
 msgstr "{0} %"
 
@@ -1548,12 +1548,12 @@ msgstr "Влезли сте като: {0}"
 msgid "NEW_GAME"
 msgstr "Нова игра"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Зареждане"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
 msgid "OPTIONS"
 msgstr "Настройки"
 
@@ -1583,7 +1583,7 @@ msgstr "Микробен редактор"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:138
+#: ../src/general/PauseMenu.tscn:254
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1952,45 +1952,45 @@ msgstr "Папката със снимки не съществува"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Трябва да направите няколко снимки!"
 
-#: ../src/general/PauseMenu.cs:313
+#: ../src/general/PauseMenu.cs:306
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да се върнете в главното меню?\n"
 "Всички незапазени промени ще бъдат изгубени."
 
-#: ../src/general/PauseMenu.cs:329
+#: ../src/general/PauseMenu.cs:322
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да излезете от играта?\n"
 "Всички незапазени промени ще бъдат изгубени."
 
-#: ../src/general/PauseMenu.tscn:62
+#: ../src/general/PauseMenu.tscn:178
 msgid "RESUME"
 msgstr "Продължаване"
 
-#: ../src/general/PauseMenu.tscn:69
+#: ../src/general/PauseMenu.tscn:185
 msgid "SAVE_GAME"
 msgstr "Запазване"
 
-#: ../src/general/PauseMenu.tscn:84
+#: ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Статистика"
 
-#: ../src/general/PauseMenu.tscn:91
+#: ../src/general/PauseMenu.tscn:207
 msgid "HELP"
 msgstr "Ръководство"
 
-#: ../src/general/PauseMenu.tscn:105
+#: ../src/general/PauseMenu.tscn:221
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Главно меню"
 
-#: ../src/general/PauseMenu.tscn:112
+#: ../src/general/PauseMenu.tscn:228
 msgid "EXIT"
 msgstr "Изход"
 
-#: ../src/general/PauseMenu.tscn:163
+#: ../src/general/PauseMenu.tscn:279
 msgid "CONFIRM_EXIT"
 msgstr "Потвърждение за изход"
 
@@ -2315,22 +2315,22 @@ msgstr "ОНС"
 msgid "RAW"
 msgstr "НЦ"
 
-#: ../src/gui_common/charts/line/LineChart.cs:632
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1987
+#: ../src/gui_common/charts/line/LineChart.cs:648
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2183
 msgid "NO_DATA_TO_SHOW"
 msgstr "Няма данни"
 
-#: ../src/gui_common/charts/line/LineChart.cs:636
+#: ../src/gui_common/charts/line/LineChart.cs:652
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Невалидни данни"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1104
-#: ../src/gui_common/charts/line/LineChart.cs:1196
+#: ../src/gui_common/charts/line/LineChart.cs:1120
+#: ../src/gui_common/charts/line/LineChart.cs:1212
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Не е възможно показването на повече от {0} набора от данни!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1110
-#: ../src/gui_common/charts/line/LineChart.cs:1201
+#: ../src/gui_common/charts/line/LineChart.cs:1126
+#: ../src/gui_common/charts/line/LineChart.cs:1217
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Не е възможно показването на по-малко от {0} набор(а) от данни!"
 
@@ -2619,7 +2619,7 @@ msgstr "Това е „зрението“ на клетката. Хеморец
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2182
-#: ../src/microbe_stage/MicrobeHUD.cs:1385
+#: ../src/microbe_stage/MicrobeHUD.cs:1368
 msgid "TO_BE_IMPLEMENTED"
 msgstr "В процес на разработка."
 
@@ -2664,7 +2664,7 @@ msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Термопластът е структура с двойна мембрана, съдържаща термочувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в него използват енергията от топлината за да произвеждат глюкоза от вода и газообразен въглероден диоксид в процес, който се нарича термосинтеза. Количеството на произведената глюкоза зависи от концентрацията на въглеродния диоксид и температурата."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1610
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:185
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Не се осъществяват клетъчни процеси"
 
@@ -2794,23 +2794,23 @@ msgid "TEMPERATURE"
 msgstr "Температура"
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn:95
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:81
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:78
 msgid "N_A_MP"
 msgstr "Няма МТ"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:574
+#: ../src/microbe_stage/Microbe.Contact.cs:579
 msgid "DEATH"
 msgstr "измиране"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:700
+#: ../src/microbe_stage/Microbe.Contact.cs:705
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "успешно плячкосване"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:707
+#: ../src/microbe_stage/Microbe.Contact.cs:712
 msgid "SUCCESSFUL_KILL"
 msgstr "успешно убийство"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:945
+#: ../src/microbe_stage/Microbe.Contact.cs:950
 msgid "ESCAPE_ENGULFING"
 msgstr "бягство от поглъщане"
 
@@ -3102,62 +3102,66 @@ msgstr "Бдително"
 msgid "FOCUSED"
 msgstr "Вглъбено"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:195
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:52
+msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:227
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:232
 msgid "ATP_PRODUCTION"
 msgstr "Производство на АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:201
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:233
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ПРОИЗВОДСТВОТО НА АТФ Е НЕДОСТАТЪЧНО!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:230
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:262
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:250
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:282
 msgid "OSMOREGULATION"
 msgstr "Осморегулация"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:256
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:288
 msgid "BASE_MOVEMENT"
 msgstr "Базово движение"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:300
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:504
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:513
 msgid "CELL_TYPE_NAME"
 msgstr "Наименование на клетката"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1823
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2019
 msgid "FAILED"
 msgstr "Неуспешна"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1829
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1841
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2025
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2037
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1835
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1847
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2031
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2043
 msgid "N_A"
 msgstr "Няма"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1955
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергийни стойности в {0} на „{1}“"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1959
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2155
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Некоригираната популация на Вашите създания ({2}) се определя от общата усвоена енергийна стойност ({0}), разделена на индивидуалния разход ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1966
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2162
 msgid "ENERGY_SOURCES"
 msgstr "Източници на енергия:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1972
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2168
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}: усвоена енергийна стойност {1} със стойност на усвояване {2} и обща енергийна стойност {3} с обща стойност на усвояване {4}"
 
@@ -3288,11 +3292,11 @@ msgstr "Това са стойностите, които използва про
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Баланс на химичните съединения"
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:265
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:266
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Наименованието трябва да отговаря на бинарната номенклатура (родово название и видов епитет)!"
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:172
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:174
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Наименование..."
 
@@ -3421,8 +3425,8 @@ msgid "CELL"
 msgstr "Клетка"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:255
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:266
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:284
 msgid "MP_COST"
 msgstr "{0} МТ"
 
@@ -3434,6 +3438,11 @@ msgstr "Неограничени"
 msgid "MUTATION_POINTS"
 msgstr "Мутационни точки"
 
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:249
+#, fuzzy
+msgid "MULTIPLE_ORGANELLES"
+msgstr "Добавяне на органел"
+
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 msgid "MOVE"
 msgstr "Преместване"
@@ -3442,15 +3451,15 @@ msgstr "Преместване"
 msgid "MODIFY"
 msgstr "Свойства"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:383
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:387
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:387
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:391
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1} м. под морското равнище"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:425
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:429
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0}: {1} индивида"
 
