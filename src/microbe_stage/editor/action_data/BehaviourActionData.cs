@@ -3,11 +3,11 @@
 [JSONAlwaysDynamicType]
 public class BehaviourActionData : EditorCombinableActionData
 {
-    public float OldValue;
     public float NewValue;
+    public float OldValue;
     public BehaviouralValueType Type;
 
-    public BehaviourActionData(float oldValue, float newValue, BehaviouralValueType type)
+    public BehaviourActionData(float newValue, float oldValue, BehaviouralValueType type)
     {
         OldValue = oldValue;
         NewValue = newValue;

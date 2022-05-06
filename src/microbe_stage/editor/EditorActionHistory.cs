@@ -132,6 +132,8 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
     public override void AddAction(TAction action)
     {
+        // TODO: check if the action can be combined (for example behaviour or rigidity slider subsequent edits should
+        // combine) in a single step for undo
         if (action.Data.Any(d => d.ResetsHistory))
         {
             History.Clear();
