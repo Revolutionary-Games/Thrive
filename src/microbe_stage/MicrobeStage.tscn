@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=2]
+[gd_scene load_steps=129 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -90,6 +90,7 @@
 [ext_resource path="res://src/gui_common/dialogs/StagePrototypeConfirm.tscn" type="PackedScene" id=88]
 [ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=89]
 [ext_resource path="res://assets/textures/gui/bevel/unbind.png" type="Texture" id=90]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=91]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -417,13 +418,13 @@ PauseButtonPath = NodePath("BottomLeft/BottomBar/PauseButtonMargin/Pause")
 ResumeButtonPath = NodePath("BottomLeft/BottomBar/PauseButtonMargin/Resume")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
-PopulationLabelPath = NodePath("BottomRight/PopulationData/Value")
+PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
 PatchLabelPath = NodePath("../PatchNameOverlay/VBoxContainer/PatchLabel")
 PatchOverlayAnimatorPath = NodePath("../PatchNameOverlay/AnimationPlayer")
 EditorButtonPath = NodePath("BottomRight/EditorButton")
-MulticellularButtonPath = NodePath("BottomRight/Multicellular")
+MulticellularButtonPath = NodePath("BottomRight/VBoxContainer/Control/Multicellular")
 MulticellularConfirmPopupPath = NodePath("StagePrototypeConfirm")
-MacroscopicButtonPath = NodePath("BottomRight/Macroscopic")
+MacroscopicButtonPath = NodePath("BottomRight/VBoxContainer/Control/Macroscopic")
 EnvironmentPanelPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 OxygenBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen")
 Co2BarPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide")
@@ -475,9 +476,6 @@ mouse_filter = 2
 theme = ExtResource( 72 )
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PanelContainer" type="PanelContainer" parent="MicrobeHUD/MouseHoverPanel"]
 margin_top = 10.0
@@ -1749,64 +1747,66 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -274.0
-margin_top = -281.0
+margin_top = -317.0
 margin_right = 1.0
 margin_bottom = -1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Multicellular" type="Button" parent="MicrobeHUD/BottomRight"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/BottomRight"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -263.0
-margin_top = -320.0
-margin_right = -5.0
-margin_bottom = -285.0
+margin_left = -229.0
+margin_top = -317.0
+margin_right = -10.0
+margin_bottom = -242.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_constants/separation = 8
+alignment = 2
+
+[node name="Control" type="MarginContainer" parent="MicrobeHUD/BottomRight/VBoxContainer"]
+margin_left = 16.0
+margin_right = 219.0
+margin_bottom = 30.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Multicellular" type="Button" parent="MicrobeHUD/BottomRight/VBoxContainer/Control"]
+margin_right = 203.0
+margin_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 0
 hint_tooltip = "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 91 )
 text = "BECOME_MULTICELLULAR"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Macroscopic" type="Button" parent="MicrobeHUD/BottomRight"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -263.0
-margin_top = -320.0
-margin_right = -5.0
-margin_bottom = -285.0
+[node name="Macroscopic" type="Button" parent="MicrobeHUD/BottomRight/VBoxContainer/Control"]
+margin_left = 10.0
+margin_right = 203.0
+margin_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 91 )
 text = "BECOME_MACROSCOPIC"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="PopulationData" type="HBoxContainer" parent="MicrobeHUD/BottomRight"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -141.0
-margin_top = -260.0
-margin_right = -10.0
-margin_bottom = -241.0
+[node name="PopulationData" type="HBoxContainer" parent="MicrobeHUD/BottomRight/VBoxContainer"]
+margin_left = 88.0
+margin_top = 38.0
+margin_right = 219.0
+margin_bottom = 75.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 0, 17 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+size_flags_horizontal = 8
+size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomRight/VBoxContainer/PopulationData"]
 margin_right = 87.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 87, 0 )
@@ -1820,7 +1820,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomRight/VBoxContainer/PopulationData"]
 margin_left = 91.0
 margin_top = 9.0
 margin_right = 131.0
@@ -1847,9 +1847,6 @@ margin_bottom = -183.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 29 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Margin" type="MarginContainer" parent="MicrobeHUD/BottomRight/DataValue"]
 margin_right = 80.0
@@ -1893,8 +1890,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -229.509
 margin_top = -228.78
-margin_right = -95.509
-margin_bottom = -31.7796
+margin_right = 33.491
+margin_bottom = 34.22
 mouse_filter = 2
 step = 0.1
 value = 100.0
@@ -2264,8 +2261,8 @@ anims/FadeInOut = SubResource( 37 )
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/ChemicalButton" to="MicrobeHUD" method="ProcessPanelButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/QuestionMarkButton" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/SuicideButton" to="MicrobeHUD" method="OnSuicide"]
-[connection signal="pressed" from="MicrobeHUD/BottomRight/Multicellular" to="MicrobeHUD" method="OnBecomeMulticellularPressed"]
-[connection signal="pressed" from="MicrobeHUD/BottomRight/Macroscopic" to="MicrobeHUD" method="OnBecomeMacroscopicPressed"]
+[connection signal="pressed" from="MicrobeHUD/BottomRight/VBoxContainer/Control/Multicellular" to="MicrobeHUD" method="OnBecomeMulticellularPressed"]
+[connection signal="pressed" from="MicrobeHUD/BottomRight/VBoxContainer/Control/Macroscopic" to="MicrobeHUD" method="OnBecomeMacroscopicPressed"]
 [connection signal="mouse_entered" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
@@ -2274,6 +2271,7 @@ anims/FadeInOut = SubResource( 37 )
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/FireToxin" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/BindingMode" to="PlayerMicrobeInput" method="ToggleBinding"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/UnbindAll" to="PlayerMicrobeInput" method="UnbindAll"]
+[connection signal="Cancelled" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularCancelled"]
 [connection signal="Confirmed" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularConfirmed"]
 [connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="MicrobeHUD" method="OnRadialItemSelected"]
