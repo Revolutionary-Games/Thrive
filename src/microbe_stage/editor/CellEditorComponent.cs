@@ -864,7 +864,6 @@ public partial class CellEditorComponent :
             }
 
             rigidity = intRigidity > rigidity ? intRigidity - stepsLeft : intRigidity + stepsLeft;
-            cost = stepsLeft * costPerStep;
         }
 
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
@@ -967,7 +966,7 @@ public partial class CellEditorComponent :
         else
         {
             moveOccupancies =
-                GetMultiActionWithOccupancies(positions, new List<OrganelleTemplate>() { MovingPlacedHex }, false);
+                GetMultiActionWithOccupancies(positions, new List<OrganelleTemplate> { MovingPlacedHex }, false);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
@@ -1510,7 +1509,7 @@ public partial class CellEditorComponent :
 
         var multiAction = GetMultiActionWithOccupancies(
             new List<(Hex Hex, int Orientation)> { (newLocation, newRotation) },
-            new List<OrganelleTemplate>() { organelle }, true);
+            new List<OrganelleTemplate> { organelle }, true);
 
         // Too low mutation points, cancel move
         if (Editor.MutationPoints < Editor.WhatWouldActionsCost(multiAction.Data))

@@ -8,7 +8,8 @@ using Newtonsoft.Json;
 ///   Editor component that specializes in hex-based stuff editing
 /// </summary>
 public abstract class
-    HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove> : EditorComponentWithActionsBase<TEditor, TCombinedAction>,
+    HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove> :
+        EditorComponentWithActionsBase<TEditor, TCombinedAction>,
         ISaveLoadedTracked, IChildPropertiesLoadCallback
     where TEditor : class, IHexEditor, IEditorWithActions
     where TCombinedAction : CombinedMicrobeEditorAction
