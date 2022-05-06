@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class ListUtils
 {
@@ -24,5 +25,11 @@ public static class ListUtils
             return default;
 
         return items[random.Next(0, items.Count)];
+    }
+
+    public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> items)
+        where T : class
+    {
+        return items.Where(t => t != null)!;
     }
 }
