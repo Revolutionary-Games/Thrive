@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 ///   have a number of actions that are logically a single step.
 /// </summary>
 /// <typeparam name="T">Type of the action data to hold</typeparam>
+[JSONAlwaysDynamicType]
 public class SingleCellEditorAction<T> : CellEditorAction
     where T : MicrobeEditorCombinableActionData
 {
@@ -23,7 +24,10 @@ public class SingleCellEditorAction<T> : CellEditorAction
         SingleData = data;
     }
 
-    public T SingleData { get; }
+    [JsonProperty]
+    public T SingleData { get; private set; }
+
+    [JsonIgnore]
     public override IEnumerable<MicrobeEditorCombinableActionData> Data => new[] { SingleData };
 
     public static implicit operator SingleCellEditorAction<MicrobeEditorCombinableActionData>(

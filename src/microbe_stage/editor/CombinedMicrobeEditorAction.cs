@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Combines multiple <see cref="CellEditorAction"/>s into one singular action
 /// </summary>
+[JSONAlwaysDynamicType]
 public class CombinedMicrobeEditorAction : CellEditorAction
 {
     public CombinedMicrobeEditorAction(params CellEditorAction[] actions)
@@ -15,6 +16,7 @@ public class CombinedMicrobeEditorAction : CellEditorAction
     [JsonProperty]
     public IReadOnlyList<CellEditorAction> Actions { get; private set; }
 
+    [JsonIgnore]
     public override IEnumerable<MicrobeEditorCombinableActionData> Data => Actions.SelectMany(a => a.Data);
 
     public override void DoAction()
