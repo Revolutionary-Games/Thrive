@@ -40,8 +40,9 @@ public abstract class Spawner
     /// </summary>
     /// <param name="worldNode">The parent node of spawned entities</param>
     /// <param name="location">Location the spawn system wants to spawn a thing at</param>
+    /// <param name="playerPosition">Player's position</param>
     /// <returns>An enumerator that on each next call spawns one thing</returns>
-    public abstract IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location);
+    public abstract IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, Vector3 playerPosition);
 
     public void SetFrequencyFromDensity(float spawnDensity)
     {

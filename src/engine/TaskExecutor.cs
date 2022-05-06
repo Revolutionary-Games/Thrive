@@ -14,10 +14,9 @@ using Thread = System.Threading.Thread;
 public class TaskExecutor
 #pragma warning restore CA1001
 {
-    private static readonly TaskExecutor SingletonInstance = new TaskExecutor();
+    private static readonly TaskExecutor SingletonInstance = new();
 
-    private readonly BlockingCollection<ThreadCommand> queuedTasks =
-        new BlockingCollection<ThreadCommand>();
+    private readonly BlockingCollection<ThreadCommand> queuedTasks = new();
 
     private bool running = true;
     private int currentThreadCount;
@@ -108,10 +107,7 @@ public class TaskExecutor
     /// </summary>
     public void AddTask(Task task)
     {
-        if (task != null)
-        {
-            queuedTasks.Add(new ThreadCommand(ThreadCommand.Type.Task, task));
-        }
+        queuedTasks.Add(new ThreadCommand(ThreadCommand.Type.Task, task));
     }
 
     /// <summary>
@@ -125,10 +121,15 @@ public class TaskExecutor
     ///   ones queued from another thread while this method is executing) are complete, which may be unwanted in
     ///   some cases.
     /// </param>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: this should be optimized to run as many tasks on the main thread as the other threads will run
+    ///   </para>
+    /// </remarks>
     public void RunTasks(IEnumerable<Task> tasks, bool runExtraTasksOnCallingThread = false)
     {
         // Queue all but the first task
-        Task firstTask = null;
+        Task? firstTask = null;
 
         var enumerated = tasks.ToList();
 
@@ -251,7 +252,8 @@ public class TaskExecutor
         {
             try
             {
-                command.Task.RunSynchronously();
+                // Task may not be null when the command type was task
+                command.Task!.RunSynchronously();
             }
             catch (TaskSchedulerException exception)
             {
@@ -277,9 +279,9 @@ public class TaskExecutor
     private struct ThreadCommand
     {
         public Type CommandType;
-        public Task Task;
+        public Task? Task;
 
-        public ThreadCommand(Type commandType, Task task)
+        public ThreadCommand(Type commandType, Task? task)
         {
             CommandType = commandType;
             Task = task;

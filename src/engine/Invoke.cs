@@ -2,17 +2,18 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Godot;
+using Object = Godot.Object;
 
 /// <summary>
 ///   Runs actions on the main thread before the next update
 /// </summary>
 public class Invoke : Node
 {
-    private static Invoke instance;
+    private static Invoke? instance;
 
-    private readonly BlockingCollection<Action> queuedInvokes = new BlockingCollection<Action>();
-    private readonly BlockingCollection<Action> nextFrameInvokes = new BlockingCollection<Action>();
-    private readonly List<Action> tempActionList = new List<Action>();
+    private readonly BlockingCollection<Action> queuedInvokes = new();
+    private readonly BlockingCollection<Action> nextFrameInvokes = new();
+    private readonly List<Action> tempActionList = new();
 
     private Invoke()
     {
@@ -22,7 +23,7 @@ public class Invoke : Node
         ProcessPriority = -1000;
     }
 
-    public static Invoke Instance => instance;
+    public static Invoke Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   Queues an action to run on the next frame
@@ -31,6 +32,25 @@ public class Invoke : Node
     public void Queue(Action action)
     {
         nextFrameInvokes.Add(action);
+    }
+
+    /// <summary>
+    ///   Queues an action to run on the next frame for a Godot reference typed object. This variant can avoid disposed
+    ///   exceptions when running on Godot objects
+    /// </summary>
+    /// <param name="action">Action to run</param>
+    /// <param name="forObject">
+    ///   Object the action is for. The action will be skipped automatically if the object is destroyed before the
+    ///   action is ran
+    /// </param>
+    /// <param name="logDispose">
+    ///   If true then a log message is printed if <see cref="forObject"/> is disposed before the action is ran
+    /// </param>
+    public void QueueForObject(Action action, Object forObject, bool logDispose = false)
+    {
+        var skippableInvoke = new SkippableDisposedInvoke(action, forObject, logDispose);
+
+        nextFrameInvokes.Add(() => skippableInvoke.Run());
     }
 
     /// <summary>
@@ -78,6 +98,39 @@ public class Invoke : Node
             {
                 GD.PrintErr("An invoke target is already disposed: ", e);
             }
+        }
+    }
+
+    private class SkippableDisposedInvoke
+    {
+        private readonly Action underlyingAction;
+        private readonly Object objectToCheck;
+        private readonly bool logFailure;
+
+        public SkippableDisposedInvoke(Action underlyingAction, Object objectToCheck, bool logFailure)
+        {
+            this.underlyingAction = underlyingAction;
+            this.objectToCheck = objectToCheck;
+            this.logFailure = logFailure;
+        }
+
+        public void Run()
+        {
+            // For now rely on asking Godot if the instance is valid (there doesn't seem to be easy access to the flag
+            // on the object to see if the disposed flag is set, though we could call something like GetInstanceId and
+            // see if that throws disposed exception)
+            if (!IsInstanceValid(objectToCheck))
+            {
+                if (logFailure)
+                {
+                    GD.Print("Object of type ", objectToCheck.GetType().FullName,
+                        " was already disposed before invoke");
+                }
+
+                return;
+            }
+
+            underlyingAction.Invoke();
         }
     }
 }

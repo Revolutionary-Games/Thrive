@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Helper functions for making the places in code dealing with saves shorter
@@ -13,7 +14,7 @@ public static class SaveHelper
     ///   This is a list of known versions where save compatibility is very broken and loading needs to be prevented
     ///   (unless there exists a version converter)
     /// </summary>
-    private static readonly List<string> KnownSaveIncompatibilityPoints = new List<string>
+    private static readonly List<string> KnownSaveIncompatibilityPoints = new()
     {
         "0.5.3.0",
         "0.5.3.1",
@@ -203,6 +204,10 @@ public static class SaveHelper
                 if (!filename.EndsWith(Constants.SAVE_EXTENSION, StringComparison.Ordinal))
                     continue;
 
+                // Skip folders
+                if (!directory.FileExists(filename))
+                    continue;
+
                 result.Add(filename);
             }
 
@@ -215,7 +220,7 @@ public static class SaveHelper
             {
                 using var file = new File();
                 result = result.OrderByDescending(item =>
-                    file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
+                    file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, item))).ToList();
 
                 break;
             }
@@ -224,7 +229,7 @@ public static class SaveHelper
             {
                 using var file = new File();
                 result = result.OrderBy(item =>
-                    file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
+                    file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, item))).ToList();
 
                 break;
             }
@@ -236,7 +241,7 @@ public static class SaveHelper
     /// <summary>
     ///   Counts the total number of saves and how many bytes they take up
     /// </summary>
-    public static (int Count, ulong DiskSpace) CountSaves(string nameStartsWith = null)
+    public static (int Count, ulong DiskSpace) CountSaves(string? nameStartsWith = null)
     {
         int count = 0;
         ulong totalSize = 0;
@@ -246,7 +251,12 @@ public static class SaveHelper
         {
             if (nameStartsWith == null || save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
             {
-                file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
+                if (file.Open(Path.Combine(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
+                {
+                    GD.PrintErr("Can't read size of save file: ", save);
+                    continue;
+                }
+
                 ++count;
                 totalSize += file.GetLen();
             }
@@ -261,7 +271,7 @@ public static class SaveHelper
     public static void DeleteSave(string saveName)
     {
         using var directory = new Directory();
-        directory.Remove(PathUtils.Join(Constants.SAVE_FOLDER, saveName));
+        directory.Remove(Path.Combine(Constants.SAVE_FOLDER, saveName));
     }
 
     public static void DeleteExcessSaves(string nameStartsWith, int maximumCount)
@@ -309,6 +319,19 @@ public static class SaveHelper
         }
 
         return savesDeleted;
+    }
+
+    public static void ShowErrorAboutPrototypeSaving(Node currentNode)
+    {
+        if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
+        {
+            GD.PrintErr("Can't show message about being in a prototype while loading or saving");
+            return;
+        }
+
+        new InProgressSave(SaveInformation.SaveType.Invalid, () => currentNode, _ =>
+                new Save(),
+            (inProgress, _) => { SetMessageAboutPrototypeSaving(inProgress); }, "invalid_prototype").Start();
     }
 
     /// <summary>
@@ -373,7 +396,7 @@ public static class SaveHelper
     }
 
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
-        Action<Save> copyInfoToSave, Func<Node> stateRoot, string saveName = null)
+        Action<Save> copyInfoToSave, Func<Node> stateRoot, string? saveName = null)
     {
         if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
         {
@@ -388,6 +411,9 @@ public static class SaveHelper
                 copyInfoToSave.Invoke(save);
 
                 if (PreventSavingIfExtinct(inProgress, save))
+                    return;
+
+                if (PreventSavingIfInPrototype(inProgress, save))
                     return;
 
                 PerformSave(inProgress, save);
@@ -406,12 +432,42 @@ public static class SaveHelper
 
     private static bool PreventSavingIfExtinct(InProgressSave inProgress, Save save)
     {
+        if (save.SavedProperties == null)
+        {
+            GD.PrintErr("Can't check extinction before saving because save is missing game properties");
+            try
+            {
+                throw new NullReferenceException();
+            }
+            catch (NullReferenceException e)
+            {
+                inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED_WITH_EXCEPTION"),
+                    e.ToString(), true);
+                return true;
+            }
+        }
+
         if (!save.SavedProperties.GameWorld.PlayerSpecies.IsExtinct)
             return false;
 
         inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
             TranslationServer.Translate("PLAYER_EXTINCT"), false);
         return true;
+    }
+
+    private static bool PreventSavingIfInPrototype(InProgressSave inProgress, Save save)
+    {
+        if (!save.SavedProperties!.InPrototypes)
+            return false;
+
+        SetMessageAboutPrototypeSaving(inProgress);
+        return true;
+    }
+
+    private static void SetMessageAboutPrototypeSaving(InProgressSave inProgressSave)
+    {
+        inProgressSave.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
+            TranslationServer.Translate("IN_PROTOTYPE"), false);
     }
 
     private static void PerformSave(InProgressSave inProgress, Save save)
@@ -429,7 +485,7 @@ public static class SaveHelper
                 throw;
 #pragma warning restore 162
 
-            inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED"),
+            inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED_WITH_EXCEPTION"),
                 e.ToString());
             return;
         }

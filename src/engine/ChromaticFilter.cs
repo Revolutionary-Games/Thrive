@@ -5,7 +5,7 @@
 /// </summary>
 public class ChromaticFilter : TextureRect
 {
-    private ShaderMaterial material;
+    private ShaderMaterial? material;
 
     public override void _EnterTree()
     {
@@ -42,6 +42,6 @@ public class ChromaticFilter : TextureRect
 
     private void SetAmount(float amount)
     {
-        material.SetShaderParam("MAX_DIST_PX", amount);
+        material!.SetShaderParam("MAX_DIST_PX", amount);
     }
 }

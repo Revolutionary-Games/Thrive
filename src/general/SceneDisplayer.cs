@@ -5,10 +5,10 @@
 /// </summary>
 public class SceneDisplayer : Spatial
 {
-    private string currentScene;
-    private Node currentlyShown;
+    private string? currentScene;
+    private Node? currentlyShown;
 
-    public string Scene
+    public string? Scene
     {
         get => currentScene;
         set
@@ -21,24 +21,35 @@ public class SceneDisplayer : Spatial
         }
     }
 
+    public Node? InstancedNode => currentlyShown;
+
     /// <summary>
     ///   Get the material of this scene's model.
     /// </summary>
     /// <param name="modelPath">Path to model within the scene. If null takes scene root as model.</param>
     /// <returns>ShaderMaterial of the GeometryInstance. Null if no scene.</returns>
-    public ShaderMaterial GetMaterial(NodePath modelPath = null)
+    public ShaderMaterial? GetMaterial(NodePath? modelPath = null)
     {
         return currentlyShown?.GetMaterial(modelPath);
     }
 
+    public void LoadFromAlreadyLoadedNode(Node sceneToShow)
+    {
+        if (sceneToShow == InstancedNode)
+            return;
+
+        RemovePreviousScene();
+
+        // We don't know the scene name now
+        currentScene = null;
+
+        currentlyShown = sceneToShow;
+        AddChild(currentlyShown);
+    }
+
     private void LoadNewScene()
     {
-        if (currentlyShown != null)
-        {
-            RemoveChild(currentlyShown);
-            currentlyShown.QueueFree();
-            currentlyShown = null;
-        }
+        RemovePreviousScene();
 
         if (string.IsNullOrEmpty(currentScene))
             return;
@@ -47,5 +58,15 @@ public class SceneDisplayer : Spatial
 
         currentlyShown = scene.Instance();
         AddChild(currentlyShown);
+    }
+
+    private void RemovePreviousScene()
+    {
+        if (currentlyShown != null)
+        {
+            RemoveChild(currentlyShown);
+            currentlyShown.QueueFree();
+            currentlyShown = null;
+        }
     }
 }

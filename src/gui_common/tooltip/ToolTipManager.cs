@@ -12,16 +12,15 @@ public class ToolTipManager : CanvasLayer
     /// </summary>
     public const string DEFAULT_GROUP_NAME = "default";
 
-    private static ToolTipManager instance;
+    private static ToolTipManager? instance;
 
     /// <summary>
     ///   Collection of tooltips in a group, with Key being the group node
     ///   and Value the tooltips inside it
     /// </summary>
-    private Dictionary<Control, List<ICustomToolTip>> tooltips =
-        new Dictionary<Control, List<ICustomToolTip>>();
+    private readonly Dictionary<Control, List<ICustomToolTip>> tooltips = new();
 
-    private Control groupHolder;
+    private Control groupHolder = null!;
 
     private bool display;
     private float displayTimer;
@@ -34,20 +33,20 @@ public class ToolTipManager : CanvasLayer
 
     private Vector2 lastMousePosition;
 
-    private ICustomToolTip mainToolTip;
-    private ICustomToolTip previousToolTip;
+    private ICustomToolTip? mainToolTip;
+    private ICustomToolTip? previousToolTip;
 
     private ToolTipManager()
     {
         instance = this;
     }
 
-    public static ToolTipManager Instance => instance;
+    public static ToolTipManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   The tooltip to be shown
     /// </summary>
-    public ICustomToolTip MainToolTip
+    public ICustomToolTip? MainToolTip
     {
         get => mainToolTip;
         set
@@ -73,6 +72,9 @@ public class ToolTipManager : CanvasLayer
 
             if (display)
             {
+                if (MainToolTip == null)
+                    throw new InvalidOperationException("Can't set display to true without main tooltip");
+
                 // Set timer
                 displayTimer = MainToolTip.DisplayDelay;
             }
@@ -126,12 +128,21 @@ public class ToolTipManager : CanvasLayer
                     position = GetViewport().GetMousePosition();
                     offset = Constants.TOOLTIP_OFFSET;
                     break;
-                case ToolTipPositioning.ControlBottomRightEdge:
+                case ToolTipPositioning.ControlBottomRightCorner:
                 {
                     var control = ToolTipHelper.GetControlAssociatedWithToolTip(MainToolTip);
-                    position = new Vector2(
-                        control.RectGlobalPosition.x + control.RectSize.x,
-                        control.RectGlobalPosition.y + control.RectSize.y);
+                    if (control != null)
+                    {
+                        position = new Vector2(
+                            control.RectGlobalPosition.x + control.RectSize.x,
+                            control.RectGlobalPosition.y + control.RectSize.y);
+                    }
+                    else
+                    {
+                        position = new Vector2(0, 0);
+                        GD.PrintErr("Failed to find control associated with main tooltip");
+                    }
+
                     break;
                 }
 
@@ -230,8 +241,22 @@ public class ToolTipManager : CanvasLayer
     {
         var tooltip = GetToolTip(name, group);
 
-        tooltip?.ToolTipNode.DetachAndQueueFree();
-        tooltips[GetGroup(group)]?.Remove(tooltip);
+        if (tooltip == null)
+        {
+            GD.PrintErr("Can't remove non-existent tooltip ", name, " in group ", group);
+            return;
+        }
+
+        tooltip.ToolTipNode.DetachAndQueueFree();
+
+        var retrievedGroup = GetGroup(group);
+        if (retrievedGroup == null)
+        {
+            GD.PrintErr("Failed to retrieve group (", group, ") of an existing tooltip");
+            return;
+        }
+
+        tooltips[retrievedGroup]?.Remove(tooltip);
     }
 
     /// <summary>
@@ -270,9 +295,16 @@ public class ToolTipManager : CanvasLayer
     /// </summary>
     /// <param name="name">The name of the tooltip's node (not display name)</param>
     /// <param name="group">The name of the group the tooltip belongs to</param>
-    public ICustomToolTip GetToolTip(string name, string group = DEFAULT_GROUP_NAME)
+    public ICustomToolTip? GetToolTip(string name, string group = DEFAULT_GROUP_NAME)
     {
-        var tooltip = tooltips[GetGroup(group)].Find(found => found.ToolTipNode.Name == name);
+        var retrievedGroup = GetGroup(group);
+        if (retrievedGroup == null)
+        {
+            GD.PrintErr("Failed to find tooltip group: ", group);
+            return null;
+        }
+
+        var tooltip = tooltips[retrievedGroup].Find(found => found.ToolTipNode.Name == name);
 
         if (tooltip == null)
         {
@@ -286,10 +318,10 @@ public class ToolTipManager : CanvasLayer
     /// <summary>
     ///   Generic version of <see cref="GetToolTip"/> method.
     /// </summary>
-    public T GetToolTip<T>(string name, string group = DEFAULT_GROUP_NAME)
+    public T? GetToolTip<T>(string name, string group = DEFAULT_GROUP_NAME)
         where T : ICustomToolTip
     {
-        return (T)GetToolTip(name, group);
+        return (T?)GetToolTip(name, group);
     }
 
     /// <summary>
@@ -307,7 +339,7 @@ public class ToolTipManager : CanvasLayer
         return groupNode;
     }
 
-    private Control GetGroup(string name, bool verbose = true)
+    private Control? GetGroup(string name, bool verbose = true)
     {
         foreach (var group in tooltips.Keys)
         {

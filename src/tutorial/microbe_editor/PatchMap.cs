@@ -7,8 +7,8 @@
     /// </summary>
     public class PatchMap : TutorialPhase
     {
-        private readonly string patchMapTab = MicrobeEditorGUI.EditorTab.PatchMap.ToString();
-        private readonly string cellEditorTab = MicrobeEditorGUI.EditorTab.CellEditor.ToString();
+        private readonly string patchMapTab = EditorTab.PatchMap.ToString();
+        private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
         public override string ClosedByName { get; } = "PatchMap";
 
@@ -24,7 +24,7 @@
             {
                 case TutorialEventType.MicrobeEditorTabChanged:
                 {
-                    string tab = ((StringEventArgs)args).Data;
+                    var tab = ((StringEventArgs)args).Data;
 
                     if (!HasBeenShown && CanTrigger && tab == patchMapTab)
                     {

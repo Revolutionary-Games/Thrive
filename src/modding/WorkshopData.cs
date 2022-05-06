@@ -12,6 +12,9 @@ public class WorkshopData
     [JsonProperty]
     public Dictionary<string, ulong> KnownModWorkshopIds { get; private set; } = new();
 
+    [JsonProperty]
+    public Dictionary<string, WorkshopItemData> PreviouslyUploadedItemData { get; private set; } = new();
+
     public static WorkshopData Load()
     {
         using var file = new File();
@@ -23,7 +26,8 @@ public class WorkshopData
 
         var data = file.GetAsText();
 
-        return JsonSerializer.Create().Deserialize<WorkshopData>(new JsonTextReader(new StringReader(data)));
+        return JsonSerializer.Create().Deserialize<WorkshopData>(new JsonTextReader(new StringReader(data))) ??
+            new WorkshopData();
     }
 
     public void Save()
@@ -38,5 +42,15 @@ public class WorkshopData
         JsonSerializer.Create().Serialize(serialized, this);
 
         file.StoreString(serialized.ToString());
+    }
+
+    /// <summary>
+    ///   Removes all data regarding a mod
+    /// </summary>
+    /// <param name="mod">The internal name of the mod</param>
+    public void RemoveDataForMod(string mod)
+    {
+        KnownModWorkshopIds.Remove(mod);
+        PreviouslyUploadedItemData.Remove(mod);
     }
 }

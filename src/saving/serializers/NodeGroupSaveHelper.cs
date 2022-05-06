@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -11,7 +12,7 @@ public static class NodeGroupSaveHelper
 {
     public const string GROUP_JSON_PROPERTY_NAME = "NodeGroups";
 
-    private static readonly List<string> IgnoredGroups = new List<string>
+    private static readonly List<string> IgnoredGroups = new()
     {
         "physics_process",
         "process",
@@ -22,18 +23,18 @@ public static class NodeGroupSaveHelper
     {
         writer.WritePropertyName(GROUP_JSON_PROPERTY_NAME);
 
-        var groups = value.GetGroups().Cast<string>().ToList();
-
-        // Ignore inbuilt groups
-        groups.RemoveAll(item => item.BeginsWith("_") || IgnoredGroups.Contains(item));
-
-        if (groups.Count > 0)
+        try
         {
-            serializer.Serialize(writer, groups);
+            var groups = value.GetGroups().Cast<string>().ToList();
+
+            // Ignore inbuilt groups
+            groups.RemoveAll(item => item.BeginsWith("_") || IgnoredGroups.Contains(item));
+
+            serializer.Serialize(writer, groups.Count > 0 ? groups : null);
         }
-        else
+        catch (ObjectDisposedException e)
         {
-            serializer.Serialize(writer, null);
+            throw new JsonException($"Failed to save Node groups ({value}) due to the object being disposed", e);
         }
     }
 

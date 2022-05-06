@@ -11,24 +11,24 @@ using Newtonsoft.Json;
 /// </summary>
 public class Mutations
 {
-    private static readonly List<string> Vowels = new List<string>
+    private static readonly List<string> Vowels = new()
     {
         "a", "e", "i", "o", "u",
     };
 
-    private static readonly List<string> PronounceablePermutation = new List<string>
+    private static readonly List<string> PronounceablePermutation = new()
     {
         "th", "sh", "ch", "wh", "Th", "Sh", "Ch", "Wh",
     };
 
-    private static readonly List<string> Consonants = new List<string>
+    private static readonly List<string> Consonants = new()
     {
         "b", "c", "d", "f", "g", "h", "j", "k", "l", "m",
         "n", "p", "q", "s", "t", "v", "w", "x", "y", "z",
     };
 
     [JsonProperty]
-    private Random random = new Random();
+    private Random random = new();
 
     /// <summary>
     ///   Creates a mutated version of a species
@@ -48,6 +48,9 @@ public class Mutations
 
         var simulation = SimulationParameters.Instance;
         var nameGenerator = simulation.NameGenerator;
+
+        // Keeps track of how "evolved" from the starting species, this species is
+        mutated.Generation = parent.Generation + 1;
 
         mutated.IsBacteria = parent.IsBacteria;
 
@@ -122,7 +125,7 @@ public class Mutations
     public MicrobeSpecies CreateRandomSpecies(MicrobeSpecies mutated, int steps = 5)
     {
         // Temporarily create species with just cytoplasm to start mutating from
-        var temp = new MicrobeSpecies(int.MaxValue);
+        var temp = new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty);
 
         GameWorld.SetInitialSpeciesProperties(temp);
 
@@ -146,14 +149,10 @@ public class Mutations
         var part1 = newName.ToString(index - 1, 2);
         var part2 = newName.ToString(index - 2, 2);
         var part3 = newName.ToString(index, 2);
-        if (PronounceablePermutation.Contains(part1) ||
-            PronounceablePermutation.Contains(part2) ||
-            PronounceablePermutation.Contains(part3))
-        {
-            return true;
-        }
 
-        return false;
+        return PronounceablePermutation.Contains(part1) ||
+            PronounceablePermutation.Contains(part2) ||
+            PronounceablePermutation.Contains(part3);
     }
 
     private void MutateBehaviour(Species parent, Species mutated)
@@ -289,7 +288,8 @@ public class Mutations
 
             // Move all island organelles by minSubHex
             foreach (var organelle in mutatedOrganelles.Where(
-                o => islandHexes.Any(h => o.Definition.GetRotatedHexes(o.Orientation).Contains(h - o.Position))))
+                         o => islandHexes.Any(h =>
+                             o.Definition.GetRotatedHexes(o.Orientation).Contains(h - o.Position))))
             {
                 organelle.Position -= minSubHex;
             }

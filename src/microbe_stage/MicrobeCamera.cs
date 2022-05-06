@@ -9,16 +9,16 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     /// <summary>
     ///   Object the camera positions itself over
     /// </summary>
-    public Spatial ObjectToFollow;
+    public Spatial? ObjectToFollow;
 
     /// <summary>
     ///   Background plane that is moved farther away from the camera when zooming out
     /// </summary>
     [JsonIgnore]
-    public Spatial BackgroundPlane;
+    public Spatial? BackgroundPlane;
 
     [JsonIgnore]
-    public Particles BackgroundParticles;
+    public Particles? BackgroundParticles;
 
     /// <summary>
     ///   How fast the camera zooming is
@@ -60,10 +60,13 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
 
-    private ShaderMaterial materialToUpdate;
+    private ShaderMaterial materialToUpdate = null!;
 
-    private Vector3 cursorWorldPos = new Vector3(0, 0, 0);
+    private Vector3 cursorWorldPos = new(0, 0, 0);
     private bool cursorDirty = true;
+
+    [Signal]
+    public delegate void OnZoomChanged(float zoom);
 
     /// <summary>
     ///   How high the camera is above the followed object
@@ -102,6 +105,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     public void ResetHeight()
     {
         CameraHeight = DefaultCameraHeight;
+        EmitSignal(nameof(OnZoomChanged), CameraHeight);
     }
 
     public override void _Ready()
@@ -147,6 +151,8 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true)]
     public void Zoom(float delta, float value)
     {
+        var old = CameraHeight;
+
         if (FramerateAdjustZoomSpeed)
         {
             // The constant on next line is for converting from delta corrected value to a good zooming speed.
@@ -159,6 +165,10 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         }
 
         CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
+
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (CameraHeight != old)
+            EmitSignal(nameof(OnZoomChanged), CameraHeight);
     }
 
     /// <summary>

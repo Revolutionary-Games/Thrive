@@ -9,6 +9,11 @@ using Newtonsoft.Json;
 /// </summary>
 public class PatchManager : IChildPropertiesLoadCallback
 {
+    // Currently active spawns
+    private readonly List<CreatedSpawner> chunkSpawners = new();
+    private readonly List<CreatedSpawner> cloudSpawners = new();
+    private readonly List<CreatedSpawner> microbeSpawners = new();
+
     private SpawnSystem spawnSystem;
     private ProcessSystem processSystem;
     private CompoundCloudSystem compoundCloudSystem;
@@ -16,21 +21,16 @@ public class PatchManager : IChildPropertiesLoadCallback
     private DirectionalLight worldLight;
 
     [JsonProperty]
-    private Patch previousPatch;
+    private Patch? previousPatch;
 
     /// <summary>
     ///   Used to detect when an old save is loaded and we can't rely on the new logic for despawning things
     /// </summary>
     private bool skipDespawn;
 
-    // Currently active spawns
-    private List<CreatedSpawner> chunkSpawners = new List<CreatedSpawner>();
-    private List<CreatedSpawner> cloudSpawners = new List<CreatedSpawner>();
-    private List<CreatedSpawner> microbeSpawners = new List<CreatedSpawner>();
-
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
         CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight,
-        GameProperties currentGame)
+        GameProperties? currentGame)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
@@ -40,18 +40,22 @@ public class PatchManager : IChildPropertiesLoadCallback
         CurrentGame = currentGame;
     }
 
-    public GameProperties CurrentGame { get; set; }
+    public GameProperties? CurrentGame { get; set; }
 
     public void OnNoPropertiesLoaded()
     {
         skipDespawn = true;
     }
 
+    public void OnPropertiesLoaded()
+    {
+    }
+
     /// <summary>
-    ///   Applies all patch related settings that are needed to be
-    ///   set. Like different spawners, despawning old entities if the
-    ///   patch changed etc.
+    ///   Applies all patch related settings that are needed to be set. Like different spawners, despawning old
+    ///   entities if the patch changed etc.
     /// </summary>
+    /// <param name="currentPatch">The patch to apply settings from</param>
     /// <returns>
     ///   True if the patch is changed from the previous one. False if the patch is not changed.
     /// </returns>
@@ -63,8 +67,8 @@ public class PatchManager : IChildPropertiesLoadCallback
         {
             if (previousPatch != null)
             {
-                GD.Print("Previous patch (", TranslationServer.Translate(previousPatch.Name), ") different to " +
-                    "current patch (", TranslationServer.Translate(currentPatch.Name), ") despawning all entities.");
+                GD.Print("Previous patch (", previousPatch.Name.ToString(),
+                    ") different to " + "current patch (", currentPatch.Name.ToString(), ") despawning all entities.");
             }
             else
             {
@@ -86,7 +90,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         previousPatch = currentPatch;
         skipDespawn = false;
 
-        GD.Print("Applying patch (", TranslationServer.Translate(currentPatch.Name), ") settings");
+        GD.Print($"Applying patch ({currentPatch.Name}) settings");
 
         // Update environment for process system
         processSystem.SetBiome(currentPatch.Biome);
@@ -105,6 +109,8 @@ public class PatchManager : IChildPropertiesLoadCallback
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
 
+        compoundCloudSystem.SetBrightnessModifier(currentPatch.BiomeTemplate.CompoundCloudBrightness);
+
         return patchIsChanged;
     }
 
@@ -117,9 +123,7 @@ public class PatchManager : IChildPropertiesLoadCallback
             HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
                 () =>
                 {
-                    var spawner = new CreatedSpawner(entry.Value.Name);
-                    spawner.Spawner = Spawners.MakeChunkSpawner(entry.Value,
-                        compoundCloudSystem);
+                    var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
 
                     spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
                         Constants.MICROBE_SPAWN_RADIUS);
@@ -137,8 +141,8 @@ public class PatchManager : IChildPropertiesLoadCallback
             HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, entry.Value.Density,
                 () =>
                 {
-                    var spawner = new CreatedSpawner(entry.Key.InternalName);
-                    spawner.Spawner = Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount);
+                    var spawner = new CreatedSpawner(entry.Key.InternalName,
+                        Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount));
 
                     spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
                         Constants.CLOUD_SPAWN_RADIUS);
@@ -149,6 +153,9 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private void HandleCellSpawns(Patch patch)
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
+
         GD.Print("Number of species in this patch = ", patch.SpeciesInPatch.Count);
 
         foreach (var entry in patch.SpeciesInPatch)
@@ -170,19 +177,18 @@ public class PatchManager : IChildPropertiesLoadCallback
             HandleSpawnHelper(microbeSpawners, name, density,
                 () =>
                 {
-                    var spawner = new CreatedSpawner(name);
-                    spawner.Spawner = Spawners.MakeMicrobeSpawner(species,
-                        compoundCloudSystem, CurrentGame);
+                    var spawner = new CreatedSpawner(name, Spawners.MakeMicrobeSpawner(species,
+                        compoundCloudSystem, CurrentGame));
 
                     spawnSystem.AddSpawnType(spawner.Spawner, density,
                         Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
-                });
+                }, new MicrobeSpawnerComparer());
         }
     }
 
     private void HandleSpawnHelper(List<CreatedSpawner> existingSpawners, string itemName,
-        float density, Func<CreatedSpawner> createNew)
+        float density, Func<CreatedSpawner> createNew, IEqualityComparer<CreatedSpawner>? customEqualityComparer = null)
     {
         if (density <= 0)
         {
@@ -191,6 +197,20 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
 
         var existing = existingSpawners.Find(s => s.Name == itemName);
+
+        CreatedSpawner? newSpawner = null;
+
+        if (existing != null && customEqualityComparer != null)
+        {
+            // Need additional checking to make sure the existing is good
+            newSpawner = createNew();
+
+            if (!customEqualityComparer.Equals(existing, newSpawner))
+            {
+                GD.Print("Existing spawner of ", existing.Name, " didn't match equality check, creating new instead");
+                existing = null;
+            }
+        }
 
         if (existing != null)
         {
@@ -210,18 +230,13 @@ public class PatchManager : IChildPropertiesLoadCallback
             // New spawner needed
             GD.Print("Registering new spawner: Name: ", itemName, " density: ", density);
 
-            existingSpawners.Add(createNew());
+            newSpawner ??= createNew();
+            existingSpawners.Add(newSpawner);
         }
     }
 
     private void UpdateLight(Biome biome)
     {
-        if (biome.Sunlight == null)
-        {
-            GD.PrintErr("biome has no sunlight parameters");
-            return;
-        }
-
         worldLight.Translation = new Vector3(0, 0, 0);
         worldLight.LookAt(biome.Sunlight.Direction, new Vector3(0, 1, 0));
 
@@ -277,9 +292,31 @@ public class PatchManager : IChildPropertiesLoadCallback
         public string Name;
         public bool Marked = true;
 
-        public CreatedSpawner(string name)
+        public CreatedSpawner(string name, Spawner spawner)
         {
             Name = name;
+            Spawner = spawner;
+        }
+    }
+
+    private class MicrobeSpawnerComparer : EqualityComparer<CreatedSpawner>
+    {
+        public override bool Equals(CreatedSpawner x, CreatedSpawner y)
+        {
+            if (ReferenceEquals(x, y) || ReferenceEquals(x.Spawner, y.Spawner))
+                return true;
+
+            if (x.Spawner is MicrobeSpawner microbeSpawner1 && y.Spawner is MicrobeSpawner microbeSpawner2)
+            {
+                return Equals(microbeSpawner1.Species, microbeSpawner2.Species);
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode(CreatedSpawner obj)
+        {
+            return (obj.Name.GetHashCode() * 439) ^ (obj.Spawner.GetHashCode() * 443);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using System;
+using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Defines properties of a membrane type
@@ -9,12 +11,14 @@ public class MembraneType : IRegistryType
     ///   User readable name
     /// </summary>
     [TranslateFrom("untranslatedName")]
-    public string Name;
+    public string Name = null!;
 
-    public string IconPath;
-    public string AlbedoTexture;
-    public string NormalTexture;
-    public string DamagedTexture;
+    [JsonRequired]
+    public string IconPath = null!;
+
+    public string AlbedoTexture = null!;
+    public string NormalTexture = null!;
+    public string DamagedTexture = null!;
     public float MovementFactor = 1.0f;
     public float OsmoregulationFactor = 1.0f;
     public float ResourceAbsorptionFactor = 1.0f;
@@ -26,20 +30,37 @@ public class MembraneType : IRegistryType
     public float BaseWigglyness = 1.0f;
     public float MovementWigglyness = 1.0f;
 
-    public Texture LoadedAlbedoTexture;
-    public Texture LoadedNormalTexture;
-    public Texture LoadedDamagedTexture;
+    public int EditorButtonOrder;
 
-    public Texture LoadedIcon;
+    [JsonIgnore]
+    public Texture LoadedAlbedoTexture = null!;
 
-#pragma warning disable 169 // Used through reflection
-    private string untranslatedName;
-#pragma warning restore 169
+    [JsonIgnore]
+    public Texture LoadedNormalTexture = null!;
 
-    public string InternalName { get; set; }
+    [JsonIgnore]
+    public Texture LoadedDamagedTexture = null!;
+
+    [JsonIgnore]
+    public Texture? LoadedIcon;
+
+#pragma warning disable 169,649 // Used through reflection
+    private string? untranslatedName;
+#pragma warning restore 169,649
+
+    public string InternalName { get; set; } = null!;
+
+    [JsonIgnore]
+    public string UntranslatedName =>
+        untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
 
     public void Check(string name)
     {
+        if (string.IsNullOrEmpty(IconPath))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Missing IconPath");
+        }
+
         if (string.IsNullOrEmpty(AlbedoTexture) || string.IsNullOrEmpty(NormalTexture)
             || string.IsNullOrEmpty(DamagedTexture))
         {
@@ -74,10 +95,7 @@ public class MembraneType : IRegistryType
         LoadedNormalTexture = GD.Load<Texture>(NormalTexture);
         LoadedDamagedTexture = GD.Load<Texture>(DamagedTexture);
 
-        if (!string.IsNullOrEmpty(IconPath))
-        {
-            LoadedIcon = GD.Load<Texture>(IconPath);
-        }
+        LoadedIcon = GD.Load<Texture>(IconPath);
     }
 
     public void ApplyTranslations()

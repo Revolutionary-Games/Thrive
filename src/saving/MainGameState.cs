@@ -23,4 +23,6 @@ public enum MainGameState
     ///   Microbe editor
     /// </summary>
     MicrobeEditor,
+
+    EarlyMulticellularEditor,
 }

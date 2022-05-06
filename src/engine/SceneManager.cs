@@ -6,16 +6,16 @@ using Godot;
 /// </summary>
 public class SceneManager : Node
 {
-    private static SceneManager instance;
+    private static SceneManager? instance;
 
-    private Node internalRootNode;
+    private Node internalRootNode = null!;
 
     private SceneManager()
     {
         instance = this;
     }
 
-    public static SceneManager Instance => instance;
+    public static SceneManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public override void _Ready()
     {
@@ -36,7 +36,7 @@ public class SceneManager : Node
         SwitchToScene(LoadScene(scenePath).Instance());
     }
 
-    public Node SwitchToScene(Node newSceneRoot, bool keepOldRoot = false)
+    public Node? SwitchToScene(Node newSceneRoot, bool keepOldRoot = false)
     {
         var oldRoot = GetTree().CurrentScene;
         GetTree().CurrentScene = null;
@@ -117,6 +117,8 @@ public class SceneManager : Node
                 return LoadScene("res://src/microbe_stage/MicrobeStage.tscn");
             case MainGameState.MicrobeEditor:
                 return LoadScene("res://src/microbe_stage/editor/MicrobeEditor.tscn");
+            case MainGameState.EarlyMulticellularEditor:
+                return LoadScene("res://src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn");
             default:
                 throw new ArgumentException("unknown scene path for given game state");
         }
@@ -125,5 +127,16 @@ public class SceneManager : Node
     public PackedScene LoadScene(string scenePath)
     {
         return GD.Load<PackedScene>(scenePath);
+    }
+
+    public PackedScene LoadScene(SceneLoadedClassAttribute? sceneLoaded)
+    {
+        if (string.IsNullOrEmpty(sceneLoaded?.ScenePath))
+        {
+            throw new ArgumentException(
+                "The specified class to load a scene for didn't have SceneLoadedClassAttribute");
+        }
+
+        return LoadScene(sceneLoaded!.ScenePath);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Globalization;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -9,28 +10,45 @@ using Godot;
 public class OrganellePopupMenu : PopupPanel
 {
     [Export]
-    public NodePath SelectedOrganelleNameLabelPath;
+    public NodePath SelectedOrganelleNameLabelPath = null!;
 
     [Export]
-    public NodePath DeleteButtonPath;
+    public NodePath DeleteButtonPath = null!;
 
     [Export]
-    public NodePath MoveButtonPath;
+    public NodePath MoveButtonPath = null!;
 
-    private Label selectedOrganelleNameLabel;
-    private Button deleteButton;
-    private Button moveButton;
+    [Export]
+    public NodePath ModifyButtonPath = null!;
+
+    private Label? selectedOrganelleNameLabel;
+    private Button? deleteButton;
+    private Button? moveButton;
+    private Button? modifyButton;
 
     private bool showPopup;
-    private OrganelleTemplate selectedOrganelle;
+    private List<OrganelleTemplate>? selectedOrganelles;
     private bool enableDelete = true;
     private bool enableMove = true;
+    private bool enableModify;
+    private float editorCostFactor = 1.0f;
 
     [Signal]
     public delegate void DeletePressed();
 
     [Signal]
     public delegate void MovePressed();
+
+    [Signal]
+    public delegate void ModifyPressed();
+
+    public float EditorCostFactor
+    {
+        get => editorCostFactor;
+        set => editorCostFactor = value;
+    }
+
+    public Func<IEnumerable<MicrobeEditorCombinableActionData>, int>? GetActionPrice { get; set; }
 
     public bool ShowPopup
     {
@@ -58,14 +76,20 @@ public class OrganellePopupMenu : PopupPanel
     }
 
     /// <summary>
-    ///   The placed organelle to be shown options of.
+    ///   The organelle the user explicitly selected
     /// </summary>
-    public OrganelleTemplate SelectedOrganelle
+    public OrganelleTemplate? MainOrganelle => selectedOrganelles?[0];
+
+    /// <summary>
+    ///   The placed organelles to be shown options of.
+    /// </summary>
+    public List<OrganelleTemplate> SelectedOrganelles
     {
-        get => selectedOrganelle;
+        get => selectedOrganelles ??
+            throw new InvalidOperationException("OrganellePopup was not opened with organelle set");
         set
         {
-            selectedOrganelle = value;
+            selectedOrganelles = value;
             UpdateOrganelleNameLabel();
         }
     }
@@ -90,15 +114,32 @@ public class OrganellePopupMenu : PopupPanel
         }
     }
 
+    public bool EnableModifyOption
+    {
+        get => enableModify;
+        set
+        {
+            enableModify = value;
+            UpdateModifyButton();
+        }
+    }
+
     public override void _Ready()
     {
         selectedOrganelleNameLabel = GetNode<Label>(SelectedOrganelleNameLabelPath);
         deleteButton = GetNode<Button>(DeleteButtonPath);
         moveButton = GetNode<Button>(MoveButtonPath);
+        modifyButton = GetNode<Button>(ModifyButtonPath);
 
-        UpdateOrganelleNameLabel();
-        UpdateDeleteButton();
-        UpdateMoveButton();
+        // Skip things that use the organelle to work on if we aren't open (no selected organelle set)
+        if (selectedOrganelles != null)
+        {
+            UpdateOrganelleNameLabel();
+            UpdateDeleteButton();
+            UpdateMoveButton();
+        }
+
+        UpdateModifyButton();
     }
 
     public override void _EnterTree()
@@ -165,7 +206,11 @@ public class OrganellePopupMenu : PopupPanel
 
     private void OnModifyPressed()
     {
-        throw new NotImplementedException();
+        GUICommon.Instance.PlayButtonPressSound();
+
+        EmitSignal(nameof(ModifyPressed));
+
+        Hide();
     }
 
     private void UpdateButtonContentsColour(string optionName, bool pressed)
@@ -193,7 +238,16 @@ public class OrganellePopupMenu : PopupPanel
         if (selectedOrganelleNameLabel == null)
             return;
 
-        selectedOrganelleNameLabel.Text = SelectedOrganelle?.Definition.Name;
+        var names = SelectedOrganelles.Select(p => p.Definition.Name).Distinct().ToList();
+
+        if (names.Count == 1)
+        {
+            selectedOrganelleNameLabel.Text = names[0];
+        }
+        else
+        {
+            selectedOrganelleNameLabel.Text = TranslationServer.Translate("MULTIPLE_ORGANELLES");
+        }
     }
 
     private void UpdateDeleteButton()
@@ -201,13 +255,15 @@ public class OrganellePopupMenu : PopupPanel
         if (deleteButton == null)
             return;
 
-        var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
+        var mpCost = GetActionPrice?.Invoke(
+            SelectedOrganelles
+                .Select(o => (MicrobeEditorCombinableActionData)new RemoveActionData(o, o.Position, o.Orientation))
+                .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
-        mpLabel.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("MP_COST"),
-            (SelectedOrganelle != null && SelectedOrganelle.PlacedThisSession) ?
-                "+" + SelectedOrganelle.Definition.MPCost :
-                "-" + Constants.ORGANELLE_REMOVE_COST);
+        var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
+        mpCost = (int)(mpCost * editorCostFactor);
+
+        mpLabel.Text = new LocalizedString("MP_COST", mpCost).ToString();
 
         deleteButton.Disabled = !EnableDeleteOption;
     }
@@ -217,15 +273,24 @@ public class OrganellePopupMenu : PopupPanel
         if (moveButton == null)
             return;
 
-        var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
+        var mpCost = GetActionPrice?.Invoke(SelectedOrganelles.Select(o =>
+                (MicrobeEditorCombinableActionData)new MoveActionData(o, o.Position, o.Position, o.Orientation,
+                    o.Orientation))
+            .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
-        // The organelle is free to move if it was added (placed) this session or already moved this session
-        bool isFreeToMove = SelectedOrganelle != null && (SelectedOrganelle.MovedThisSession ||
-            SelectedOrganelle.PlacedThisSession);
-        mpLabel.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("MP_COST"),
-            isFreeToMove ? "-0" : "-" + Constants.ORGANELLE_MOVE_COST.ToString(CultureInfo.CurrentCulture));
+        var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
+        mpCost = (int)(mpCost * editorCostFactor);
+
+        mpLabel.Text = new LocalizedString("MP_COST", mpCost).ToString();
 
         moveButton.Disabled = !EnableMoveOption;
+    }
+
+    private void UpdateModifyButton()
+    {
+        if (modifyButton == null)
+            return;
+
+        modifyButton.Disabled = !enableModify;
     }
 }

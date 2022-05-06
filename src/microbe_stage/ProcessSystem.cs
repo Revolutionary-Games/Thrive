@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -9,10 +10,10 @@ using Godot;
 public class ProcessSystem
 {
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
-    private readonly List<Task> tasks = new List<Task>();
+    private readonly List<Task> tasks = new();
 
     private readonly Node worldRoot;
-    private BiomeConditions biome;
+    private BiomeConditions? biome;
 
     public ProcessSystem(Node worldRoot)
     {
@@ -49,14 +50,24 @@ public class ProcessSystem
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane)
     {
-        return ComputeEnergyBalance(organelles.Select(o => o.Definition), biome, membrane);
+        var organellesList = organelles.ToList();
+
+        var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
+        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection);
     }
 
     /// <summary>
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
-    public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleDefinition> organelles,
-        BiomeConditions biome, MembraneType membrane)
+    /// <param name="organelles">The organelles to compute the balance with</param>
+    /// <param name="biome">The conditions the organelles are simulated in</param>
+    /// <param name="membrane">The membrane type to adjust the energy balance with</param>
+    /// <param name="onlyMovementInDirection">
+    ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
+    ///   movement organelles are assumed to be inactive in the balance calculation.
+    /// </param>
+    public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
+        BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection)
     {
         var result = new EnergyBalanceInfo();
 
@@ -66,46 +77,43 @@ public class ProcessSystem
 
         int hexCount = 0;
 
-        var enumerated = organelles.ToList();
-
-        foreach (var organelle in enumerated)
+        foreach (var organelle in organelles)
         {
-            foreach (var process in organelle.RunnableProcesses)
+            foreach (var process in organelle.Definition.RunnableProcesses)
             {
                 var processData = CalculateProcessMaximumSpeed(process, biome);
 
-                if (processData.WritableInputs.ContainsKey(ATP))
+                if (processData.WritableInputs.TryGetValue(ATP, out var amount))
                 {
-                    var amount = processData.WritableInputs[ATP];
-
                     processATPConsumption += amount;
 
-                    result.AddConsumption(organelle.InternalName, amount);
+                    result.AddConsumption(organelle.Definition.InternalName, amount);
                 }
 
-                if (processData.WritableOutputs.ContainsKey(ATP))
+                if (processData.WritableOutputs.TryGetValue(ATP, out amount))
                 {
-                    var amount = processData.WritableOutputs[ATP];
-
                     processATPProduction += amount;
 
-                    result.AddProduction(organelle.InternalName, amount);
+                    result.AddProduction(organelle.Definition.InternalName, amount);
                 }
             }
 
             // Take special cell components that take energy into account
-            if (organelle.HasComponentFactory<MovementComponentFactory>())
+            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
             {
                 var amount = Constants.FLAGELLA_ENERGY_COST;
 
-                movementATPConsumption += amount;
-                result.Flagella += amount;
-
-                result.AddConsumption(organelle.InternalName, amount);
+                var organelleDirection = MicrobeInternalCalculations.GetOrganelleDirection(organelle);
+                if (organelleDirection.Dot(onlyMovementInDirection) > 0)
+                {
+                    movementATPConsumption += amount;
+                    result.Flagella += amount;
+                    result.AddConsumption(organelle.Definition.InternalName, amount);
+                }
             }
 
             // Store hex count
-            hexCount += organelle.HexCount;
+            hexCount += organelle.Definition.HexCount;
         }
 
         // Add movement consumption together
@@ -175,103 +183,43 @@ public class ProcessSystem
         return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
     }
 
-    public void Process(float delta)
-    {
-        // Guard against Godot delta problems. https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        if (biome == null)
-        {
-            GD.PrintErr("ProcessSystem has no biome set");
-            return;
-        }
-
-        var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.PROCESS_GROUP);
-
-        // Used to go from the calculated compound values to per second values for reporting statistics
-        float inverseDelta = 1.0f / delta;
-
-        // The objects are processed here in order to take advantage of threading
-        var executor = TaskExecutor.Instance;
-
-        for (int i = 0; i < nodes.Count; i += Constants.PROCESS_OBJECTS_PER_TASK)
-        {
-            int start = i;
-
-            var task = new Task(() =>
-            {
-                for (int a = start;
-                    a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodes.Count; ++a)
-                {
-                    ProcessNode(nodes[a] as IProcessable, delta, inverseDelta);
-                }
-            });
-
-            tasks.Add(task);
-        }
-
-        // Start and wait for tasks to finish
-        executor.RunTasks(tasks);
-        tasks.Clear();
-    }
-
-    /// <summary>
-    ///   Sets the biome whose environmental values affect processes
-    /// </summary>
-    public void SetBiome(BiomeConditions newBiome)
-    {
-        biome = newBiome;
-    }
-
-    /// <summary>
-    ///   Get the amount of environmental compound
-    /// </summary>
-    public float GetDissolved(Compound compound)
-    {
-        return GetDissolvedInBiome(compound, biome);
-    }
-
-    private static float GetDissolvedInBiome(Compound compound, BiomeConditions biome)
-    {
-        if (!biome.Compounds.ContainsKey(compound))
-            return 0;
-
-        return biome.Compounds[compound].Dissolved;
-    }
-
     /// <summary>
     ///   Calculates the maximum speed a process can run at in a biome
     ///   based on the environmental compounds.
     /// </summary>
-    private static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
+    public static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
         BiomeConditions biome)
     {
         var result = new ProcessSpeedInformation(process.Process);
 
         float speedFactor = 1.0f;
+        float efficiency = 1.0f;
 
         // Environmental inputs need to be processed first
-        foreach (var entry in process.Process.Inputs)
+        foreach (var input in process.Process.Inputs)
         {
-            if (!entry.Key.IsEnvironmental)
+            if (!input.Key.IsEnvironmental)
                 continue;
 
             // Environmental compound that can limit the rate
 
-            var availableInEnvironment = GetDissolvedInBiome(entry.Key, biome);
+            var availableInEnvironment = GetDissolvedInBiome(input.Key, biome);
 
-            var availableRate = availableInEnvironment / entry.Value;
+            var availableRate = availableInEnvironment / input.Value;
 
-            result.AvailableAmounts[entry.Key] = availableInEnvironment;
+            result.AvailableAmounts[input.Key] = availableInEnvironment;
+
+            efficiency *= availableInEnvironment;
 
             // More than needed environment value boosts the effectiveness
-            result.AvailableRates[entry.Key] = availableRate;
+            result.AvailableRates[input.Key] = availableRate;
 
             speedFactor *= availableRate;
 
-            result.WritableInputs[entry.Key] = entry.Value;
+            result.WritableInputs[input.Key] = input.Value;
         }
+
+        result.Efficiency = efficiency;
 
         speedFactor *= process.Rate;
 
@@ -303,12 +251,80 @@ public class ProcessSystem
         return result;
     }
 
-    private void ProcessNode(IProcessable processor, float delta, float inverseDelta)
+    public void Process(float delta)
+    {
+        // Guard against Godot delta problems. https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
+        if (biome == null)
+        {
+            GD.PrintErr("ProcessSystem has no biome set");
+            return;
+        }
+
+        var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.PROCESS_GROUP);
+        var nodeCount = nodes.Count;
+
+        // Used to go from the calculated compound values to per second values for reporting statistics
+        float inverseDelta = 1.0f / delta;
+
+        // The objects are processed here in order to take advantage of threading
+        var executor = TaskExecutor.Instance;
+
+        for (int i = 0; i < nodeCount; i += Constants.PROCESS_OBJECTS_PER_TASK)
+        {
+            int start = i;
+
+            var task = new Task(() =>
+            {
+                for (int a = start;
+                     a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodeCount; ++a)
+                {
+                    ProcessNode(nodes[a] as IProcessable, delta, inverseDelta);
+                }
+            });
+
+            tasks.Add(task);
+        }
+
+        // Start and wait for tasks to finish
+        executor.RunTasks(tasks);
+        tasks.Clear();
+    }
+
+    /// <summary>
+    ///   Sets the biome whose environmental values affect processes
+    /// </summary>
+    public void SetBiome(BiomeConditions newBiome)
+    {
+        biome = newBiome;
+    }
+
+    /// <summary>
+    ///   Get the amount of environmental compound
+    /// </summary>
+    public float GetDissolved(Compound compound)
+    {
+        if (biome == null)
+            throw new InvalidOperationException("Biome needs to be set before getting dissolved compounds");
+
+        return GetDissolvedInBiome(compound, biome);
+    }
+
+    private static float GetDissolvedInBiome(Compound compound, BiomeConditions biome)
+    {
+        if (!biome.Compounds.TryGetValue(compound, out var environmentalCompoundProperties))
+            return 0;
+
+        return environmentalCompoundProperties.Dissolved;
+    }
+
+    private void ProcessNode(IProcessable? processor, float delta, float inverseDelta)
     {
         if (processor == null)
         {
-            GD.PrintErr("A node has been put in the process group " +
-                "but it isn't derived from IProcessable");
+            GD.PrintErr("A node has been put in the process group but it isn't derived from IProcessable");
             return;
         }
 
@@ -340,12 +356,13 @@ public class ProcessSystem
         }
 
         bag.ClampNegativeCompoundAmounts();
+        bag.FixNaNCompounds();
 
         processStatistics?.RemoveUnused();
     }
 
     private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
-        SingleProcessStatistics currentProcessStatistics, float inverseDelta)
+        SingleProcessStatistics? currentProcessStatistics, float inverseDelta)
     {
         // Can your cell do the process
         bool canDoProcess = true;

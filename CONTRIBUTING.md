@@ -31,7 +31,8 @@ for which version of Godot you need, as well as the version of the
 Godot documentation you should read.
 
 Please follow our [styleguide](doc/style_guide.md) when making your
-changes to Thrive.
+changes to Thrive. Note that our styleguide has a section on Git
+usage, which you should read!
 
 Once your changes are complete, then open a pull request (PR) to this repo
 and someone from the team will review your pull request. Note that
@@ -67,9 +68,12 @@ loadable) you should include a save upgrader in your PR. Note that you
 may need to introduce a new sub version / bump the version number to
 make it possible to trigger the save upgrader.
 
+If your PR requires new translations or touches a part that uses translations,
+please read the translations documentation linked in the next section.
+
 ## Translating the game
 
-You can find the necessary informations about how to translate the game [here](doc/working_with_translations.md).
+You can find the necessary information about how to translate the game [here](doc/working_with_translations.md).
 
 ## Planning Board
 
@@ -95,8 +99,10 @@ When updating Godot import settings (meaning changing the settings for
 an existing asset, if you just added a new one, you don't need to do
 this), or adding new C# dependencies, you should update the cache
 versions for CI. To do this you need to increment the relevant numbers
-by 1 in `CIConfiguration.yml`. If you are unsure which cache names to
-increment, please ask.
+by 1 in `CIConfiguration.yml`. When updating the caches you must also
+remember to update the `writeTo` cache. Otherwise caching will not
+work correctly. If you are unsure which cache names to increment,
+please ask.
 
 ## Getting help
 

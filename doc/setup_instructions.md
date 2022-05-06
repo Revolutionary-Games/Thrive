@@ -24,7 +24,7 @@ Prerequisites
 Godot mono version
 ------------------
 
-The currently used Godot version is __3.4 mono__. The regular version
+The currently used Godot version is __3.4.4 mono__. The regular version
 will not work. You can download Godot here: https://godotengine.org/download/
 if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
@@ -73,6 +73,28 @@ it here https://git-scm.com/book/en/v2 or if you prefer video learning
 these two are recommended https://www.youtube.com/watch?v=SWYqp7iY_Tc
 https://www.youtube.com/watch?v=HVsySz-h9r4
 
+.NET SDK
+----------
+
+Next you need, .NET SDK. Recommended version currently is 5.0, but a
+newer version may also work.
+
+On Linux you can use your package manager to install that. The package
+might be called `dotnet-sdk-5.0`. For example on Fedora this can be
+installed with: `sudo dnf install dotnet-sdk-5.0`
+
+On Windows don't intall Mono or MonoDevelop, it will break
+things. Dotnet is a good tool to use on Windows. You can download an
+installer for that from: https://dotnet.microsoft.com/en-us/download
+
+At this point you should verify that running `dotnet` in terminal /
+command prompt runs the dotnet tool. If it doesn't you don't have .NET
+SDK properly installed in PATH. You can list the available SDK
+versions you have installed with:
+```sh
+dotnet --list-sdks
+```
+The output of that should not be empty.
 
 A development environment
 -------------------------
@@ -98,16 +120,8 @@ following packages with your package manager: `mono-complete
 monodevelop nuget`. Make sure it is a newer version of mono that comes
 with msbuild. Fedora has mono in the official repo but it is too old
 to work. If you are going to use Rider you don't need the monodevelop
-package.
-
-Next you need, dotnet sdk, for example the package might be called
-`dotnet-sdk-5.0`, this will install the `dotnet` command required
-later. With Rider it may be possible to skip the mono install and just
-install dotnet sdk. Note that some of the used tools require the 3.1
-version of the sdk, so you should install that now.
-
-On Windows don't intall Mono or MonoDevelop, it will break
-things. Dotnet may be a good tool to use on Windows.
+package. With Rider it may be possible to skip the mono install and just
+install dotnet sdk.
 
 For a better experience with Godot, you can install the following
 addon for MonoDevelop:
@@ -123,10 +137,9 @@ available from: https://www.jetbrains.com/rider/
 It has a Godot plugin which is easy to install. With Rider the
 debugging experience is better than with MonoDevelop.
 
-First install dotnet according to the instructions in the previous
-section. If building in Rider doesn't work or some features are
-missing, then install the mono packages, also mentioned in the
-previous section.
+If building in Rider doesn't work or some features are missing, then
+install the mono packages, also mentioned in the previous section. Or
+you can also change the build tools used by Rider.
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/rider_godot_plugin.png" alt="rider godot plugin" width="600px">
 
@@ -151,10 +164,9 @@ need **at least** VS Build tools 2019 due to the version of C# used by
 Thrive. During the installation process, make sure MSBuild tools is
 listed under the installation details.
 
-Go to https://dotnet.microsoft.com/download Under the .NET Core
-section, click on _Download .NET Core SDK_ and run the installer.
-Go back to the main download page and find
-_All .NET Framework Downloads_ Choose version 4.7 and select the Developer Pack.
+Go back to where you downloaded the .NET SDK from and find _All .NET
+Framework Downloads_ Choose version 4.7 and select the Developer Pack.    
+If you can't find it you can download the 4.7.2 .NET developer pack from here: https://dotnet.microsoft.com/en-us/download/dotnet-framework/net472
 
 Open Visual Studio Code and go to the Extensions tab. Get the extensions
 _C#_, _Mono Debug_, and _C# Tools for Godot_.
@@ -451,19 +463,17 @@ sudo npm install -g jsonlint
 
 ## Jetbrains tools
 
-Download from:
-https://www.jetbrains.com/resharper/download/#section=commandline
-unzip and add to PATH. Currently used version is:
-JetBrains.ReSharper.CommandLineTools.2021.2.1
+Jetbrains tools are now installed with dotnet. This happens
+automatically as long as you have installed the dotnet sdk.
 
-NOTE: there is more documentation on the install process here:
-https://www.jetbrains.com/help/resharper/InspectCode.html
+If you want, you can manually install them with:
+```sh
+dotnet tool restore
+```
 
-On Linux you need to install the dotnet runtime for them to work. On
-Fedora this can be done with: `sudo dnf install dotnet-runtime-3.1` If
-that doesn't work you may need to install a different runtime as
-well. If none of the sh scripts are executable run this in the
-unzipped jetbrains folder: `chmod +x *.sh`
+If you specify to the formatting check script to not automatically
+restore the tools, you'll need to re-run that command in the Thrive
+folder whenever our checking tools versions change.
 
 ## Localization tools
 
@@ -546,7 +556,7 @@ source venv/bin/activate
 
 On Windows:
 ```sh
-\venv\Scripts\activate.bat
+venv\Scripts\activate.bat
 ```
 
 Then install the required packages and run the localization scripts

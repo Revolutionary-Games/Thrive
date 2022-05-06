@@ -21,6 +21,7 @@ FileUtils.mkdir_p 'builds'
 ALL_TARGETS = ['Linux/X11', 'Windows Desktop', 'Windows Desktop (32-bit)', 'Mac OSX'].freeze
 DEVBUILD_TARGETS = ['Linux/X11', 'Windows Desktop'].freeze
 BASE_BUILDS_FOLDER = File.realpath 'builds'
+EXPECTED_DATA_FOLDER = 'data_Thrive'
 
 README_FILE = 'builds/README.txt'
 REVISION_FILE = 'builds/revision.txt'
@@ -65,12 +66,14 @@ SPECIAL_BUILDS = { steam:
                                  'due to Steam being incompatible with the GPL license!'
                          @reprint_messages.append 'WARNING: This is the Steam version, see'\
                                                   ' above the licensing caveats'
-                         enable_steam_build
+                       },
+                       prepare_target: lambda { |target|
+                         enable_steam_build target
                        },
                        target_suffix: '_steam',
-                       godot_executable: 'godot-steam',
-                       folder_prepare: lambda { |target_folder|
-                         copy_steam_resources target_folder
+                       godot_executable: 'godot',
+                       folder_prepare: lambda { |target_folder, target|
+                         copy_steam_resources target_folder, target
                        },
                        mac_zip_postprocess: lambda {|target_folder, target_file|
                                             }
@@ -232,7 +235,7 @@ def copy_extra_linux_resources(target_folder)
   end
 end
 
-def copy_steam_resources(target_folder)
+def copy_steam_resources(target_folder, target)
   File.open(File.join(target_folder, 'README.txt'), 'w') do |file|
     file.puts 'Thrive'
     file.puts ''
@@ -246,6 +249,9 @@ def copy_steam_resources(target_folder)
   end
 
   FileUtils.cp REVISION_FILE, target_folder
+
+  # Copy the right Steamworks.NET library for the current target
+  FileUtils.cp path_to_steam_assembly(target).gsub('\\', '/'), target_folder
 end
 
 def gzip_to_target(source, target)
@@ -304,16 +310,19 @@ def devbuild_package(target, target_name, target_folder, target_file)
 
   pck = File.join(target_folder, 'Thrive.pck')
 
-  # Start by extracting the big files to be dehydrated
+  # Start by extracting the big files to be dehydrated, but ignore
+  # a list of well compressing / often changing files
   if runSystemSafe(pck_tool, '--action', 'extract', pck,
-                   '-o', extract_folder, '--min-size-filter',
-                   DEHYDRATE_FILE_SIZE_THRESSHOLD.to_s) != 0
+                   '-o', extract_folder, '-q', '--min-size-filter',
+                   DEHYDRATE_FILE_SIZE_THRESSHOLD.to_s,
+                   '--exclude-regex-filter', DEHYDRATE_IGNORE_FILE_TYPES) != 0
     onError 'Failed to run extract. Do you have the right godotpcktool version?'
   end
 
   # And remove them from the .pck
   if runSystemSafe(pck_tool, '--action', 'repack', File.join(target_folder, 'Thrive.pck'),
-                   '--max-size-filter', (DEHYDRATE_FILE_SIZE_THRESSHOLD - 1).to_s) != 0
+                   '--max-size-filter', (DEHYDRATE_FILE_SIZE_THRESSHOLD - 1).to_s,
+                   '--include-override-filter', DEHYDRATE_IGNORE_FILE_TYPES, '-q') != 0
     onError 'Failed to run repack'
   end
 
@@ -455,6 +464,11 @@ def perform_export(target)
   puts ''
   info "Starting export for target: #{target}"
 
+  if @options[:special] && SPECIAL_BUILDS[@options[:special]][:prepare_target]
+    puts 'Preparing special target'
+    SPECIAL_BUILDS[@options[:special]][:prepare_target].call target
+  end
+
   target_name = "Thrive_#{THRIVE_VERSION}_" + target.gsub(%r{[\s/]}i, '_').downcase
   godot = 'godot'
 
@@ -476,7 +490,8 @@ def perform_export(target)
   success = false
 
   (1..attempts).each do |attempt|
-    if runOpen3(godot, '--export', godot_template_name(target), target_file).success?
+    if runOpen3(godot, '--no-window', '--export', godot_template_name(target),
+                target_file).success?
       success = true
       break
     end
@@ -484,6 +499,15 @@ def perform_export(target)
     # Failed
     error 'Exporting failed.'
     puts 'Retrying...' if attempt < attempts
+  end
+
+  if target !~ /mac/i
+    data_folder = File.join target_folder, EXPECTED_DATA_FOLDER
+
+    unless File.exist? data_folder
+      onError "Expected data folder (#{data_folder}) was not created on export. "\
+              'Are export templates installed?'
+    end
   end
 
   if success
@@ -494,7 +518,7 @@ def perform_export(target)
   end
 
   if @options[:special]
-    SPECIAL_BUILDS[@options[:special]][:folder_prepare].call target_folder
+    SPECIAL_BUILDS[@options[:special]][:folder_prepare].call target_folder, target
   else
     prepare_licenses target_folder
     prepare_readme target_folder

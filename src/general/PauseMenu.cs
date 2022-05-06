@@ -1,41 +1,45 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Godot;
 
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
-public class PauseMenu : ControlWithInput
+[SuppressMessage("Usage", "CA2213:Disposable fields should be disposed", Justification =
+    "We don't manually dispose Godot derived types")]
+public class PauseMenu : CustomDialog
 {
     [Export]
-    public string HelpCategory;
+    public string HelpCategory = null!;
 
     [Export]
-    public NodePath PrimaryMenuPath;
+    public NodePath PrimaryMenuPath = null!;
 
     [Export]
-    public NodePath HelpScreenPath;
+    public NodePath HelpScreenPath = null!;
 
     [Export]
-    public NodePath LoadMenuPath;
+    public NodePath LoadMenuPath = null!;
 
     [Export]
-    public NodePath OptionsMenuPath;
+    public NodePath OptionsMenuPath = null!;
 
     [Export]
-    public NodePath SaveMenuPath;
+    public NodePath SaveMenuPath = null!;
 
     [Export]
-    public NodePath LoadSaveListPath;
+    public NodePath LoadSaveListPath = null!;
 
     [Export]
-    public NodePath UnsavedProgressWarningPath;
+    public NodePath UnsavedProgressWarningPath = null!;
 
-    private Control primaryMenu;
-    private HelpScreen helpScreen;
-    private Control loadMenu;
-    private OptionsMenu optionsMenu;
-    private NewSaveMenu saveMenu;
-    private CustomConfirmationDialog unsavedProgressWarning;
+    private Control primaryMenu = null!;
+    private HelpScreen helpScreen = null!;
+    private Control loadMenu = null!;
+    private OptionsMenu optionsMenu = null!;
+    private NewSaveMenu saveMenu = null!;
+    private CustomConfirmationDialog unsavedProgressWarning = null!;
+    private AnimationPlayer animationPlayer = null!;
 
     /// <summary>
     ///   The assigned pending exit type, will be used to specify what kind of
@@ -82,7 +86,7 @@ public class PauseMenu : ControlWithInput
     /// <summary>
     ///   The GameProperties object holding settings and state for the current game session.
     /// </summary>
-    public GameProperties GameProperties { get; set; }
+    public GameProperties? GameProperties { get; set; } = null!;
 
     public bool GameLoading { get; set; }
 
@@ -134,13 +138,22 @@ public class PauseMenu : ControlWithInput
             switch (value)
             {
                 case ActiveMenuType.Options:
-                    optionsMenu.OpenFromInGame(GameProperties);
+                    optionsMenu.OpenFromInGame(GameProperties ??
+                        throw new InvalidOperationException(
+                            $"{nameof(GameProperties)} is required before opening options"));
                     break;
                 case ActiveMenuType.None:
                     // just close the current menu
                     break;
                 default:
-                    GetControlFromMenuEnum(value).Show();
+                    var control = GetControlFromMenuEnum(value);
+                    if (control == null)
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(value),
+                            "Can't set active menu to one without an associated control");
+                    }
+
+                    control.Show();
                     break;
             }
         }
@@ -151,7 +164,16 @@ public class PauseMenu : ControlWithInput
         // This needs to be done early here to make sure the help screen loads the right text
         helpScreen = GetNode<HelpScreen>(HelpScreenPath);
         helpScreen.Category = HelpCategory;
+        InputManager.RegisterReceiver(this);
+
         base._EnterTree();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        InputManager.UnregisterReceiver(this);
     }
 
     public override void _Ready()
@@ -161,6 +183,7 @@ public class PauseMenu : ControlWithInput
         optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
         unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
+        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
@@ -171,6 +194,7 @@ public class PauseMenu : ControlWithInput
             ActiveMenu = ActiveMenuType.Primary;
 
             EmitSignal(nameof(OnClosed));
+            Close();
 
             return true;
         }
@@ -179,6 +203,8 @@ public class PauseMenu : ControlWithInput
             return false;
 
         EmitSignal(nameof(OnOpenWithKeyPress));
+        Open();
+
         return true;
     }
 
@@ -189,6 +215,8 @@ public class PauseMenu : ControlWithInput
             return false;
 
         EmitSignal(nameof(OnOpenWithKeyPress));
+        Open();
+
         ShowHelpScreen();
         return true;
     }
@@ -202,6 +230,30 @@ public class PauseMenu : ControlWithInput
         helpScreen.RandomizeEasterEgg();
     }
 
+    public void Open()
+    {
+        if (Visible)
+            return;
+
+        animationPlayer.Play("Open");
+        GetTree().Paused = true;
+    }
+
+    public void Close()
+    {
+        if (!Visible)
+            return;
+
+        animationPlayer.Play("Close");
+        GetTree().Paused = false;
+    }
+
+    public void OpenToHelp()
+    {
+        Open();
+        ShowHelpScreen();
+    }
+
     public void SetNewSaveName(string name)
     {
         saveMenu.SetSaveName(name, true);
@@ -209,10 +261,16 @@ public class PauseMenu : ControlWithInput
 
     public void SetNewSaveNameFromSpeciesName()
     {
+        if (GameProperties == null)
+        {
+            GD.PrintErr("No game properties set, can't set save name from species");
+            return;
+        }
+
         SetNewSaveName(GameProperties.GameWorld.PlayerSpecies.FormattedName.Replace(' ', '_'));
     }
 
-    private Control GetControlFromMenuEnum(ActiveMenuType value)
+    private Control? GetControlFromMenuEnum(ActiveMenuType value)
     {
         return value switch
         {
@@ -230,6 +288,7 @@ public class PauseMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnClosed));
+        Close();
     }
 
     private void ReturnToMenuPressed()
@@ -362,5 +421,10 @@ public class PauseMenu : ControlWithInput
     private void OnSwitchToMenu()
     {
         SceneManager.Instance.ReturnToMenu();
+    }
+
+    private void OnLoadSaveConfirmed(SaveListItem item)
+    {
+        item.LoadThisSave();
     }
 }

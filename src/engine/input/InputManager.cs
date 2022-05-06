@@ -14,8 +14,8 @@ using Godot;
 /// </remarks>
 public class InputManager : Node
 {
-    private static readonly List<WeakReference> DestroyedListeners = new List<WeakReference>();
-    private static InputManager staticInstance;
+    private static readonly List<WeakReference> DestroyedListeners = new();
+    private static InputManager? staticInstance;
 
     /// <summary>
     ///   A list of all loaded attributes
@@ -49,6 +49,9 @@ public class InputManager : Node
     /// <param name="instance">The instance to add</param>
     public static void RegisterReceiver(object instance)
     {
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
         bool registered = false;
 
         var reference = new WeakReference(instance);
@@ -56,8 +59,8 @@ public class InputManager : Node
         // Find all attributes where the associated method's class matches the instances class
         // TODO: check if there is some alternative faster approach to registering instances
         foreach (var inputAttribute in staticInstance
-            .attributes
-            .Where(p => p.Key.Method.DeclaringType?.IsInstanceOfType(instance) == true))
+                     .attributes
+                     .Where(p => p.Key.Method?.DeclaringType?.IsInstanceOfType(instance) == true))
         {
             inputAttribute.Value.Add(reference);
             registered = true;
@@ -65,7 +68,11 @@ public class InputManager : Node
 
         if (!registered)
         {
-            GD.PrintErr("Object registered to receive input, but it has no input attributes on its methods");
+            if (instance.GetType().GetCustomAttribute<IgnoreNoMethodsTakingInputAttribute>() != null)
+                return;
+
+            GD.PrintErr("Object registered to receive input, but it has no input attributes on its methods (type: ",
+                instance.GetType().Name, ")");
         }
     }
 
@@ -75,6 +82,9 @@ public class InputManager : Node
     /// <param name="instance">The instance to remove</param>
     public static void UnregisterReceiver(object instance)
     {
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
         int removed = 0;
 
         foreach (var attribute in staticInstance.attributes)
@@ -84,7 +94,11 @@ public class InputManager : Node
 
         if (removed < 1)
         {
-            GD.PrintErr("Found no instances to unregister input receiving from");
+            if (instance.GetType().GetCustomAttribute<IgnoreNoMethodsTakingInputAttribute>() != null)
+                return;
+
+            GD.PrintErr("Found no instances to unregister input receiving from (unregistering object of type: ",
+                instance.GetType().Name, ")");
         }
     }
 
@@ -94,6 +108,9 @@ public class InputManager : Node
     /// </summary>
     public static void OnFocusLost()
     {
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
         foreach (var attribute in staticInstance.attributes)
             attribute.Key.FocusLost();
     }
@@ -105,6 +122,9 @@ public class InputManager : Node
     /// <param name="inputEvent">The event the user fired</param>
     public static void ForwardInput(InputEvent inputEvent)
     {
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
         staticInstance._UnhandledInput(inputEvent);
     }
 
@@ -114,6 +134,9 @@ public class InputManager : Node
     /// <param name="delta">The time since the last _Process call</param>
     public override void _Process(float delta)
     {
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
         // https://github.com/Revolutionary-Games/Thrive/issues/1976
         if (delta <= 0)
             return;
@@ -169,7 +192,7 @@ public class InputManager : Node
         if (method == null)
             return true;
 
-        var instances = staticInstance.attributes[attribute];
+        var instances = staticInstance!.attributes[attribute];
         var result = false;
 
         if (method.IsStatic)
@@ -300,7 +323,7 @@ public class InputManager : Node
     /// </summary>
     private void ClearExpiredReferences()
     {
-        foreach (var attributesValue in staticInstance.attributes.Values)
+        foreach (var attributesValue in staticInstance!.attributes.Values)
             attributesValue.RemoveAll(p => !p.IsAlive);
     }
 
@@ -317,18 +340,25 @@ public class InputManager : Node
             // foreach type in the specified assemblies
             foreach (var type in assembly.GetTypes())
             {
+                // Skip abstract classes as those can't be instantiated and their methods will be detected for the
+                // derived types
+                if (type.IsAbstract || type.IsInterface)
+                    continue;
+
                 // foreach method in the classes
                 foreach (var methodInfo in type.GetMethods())
                 {
-                    // Check attributes
+                    // Check attributes (duplicate attributes that may be caused by finding duplicates through
+                    // inheritance are skipped)
                     var inputAttributes =
-                        (InputAttribute[])methodInfo.GetCustomAttributes(typeof(InputAttribute), true);
+                        ((InputAttribute[])methodInfo.GetCustomAttributes(typeof(InputAttribute), true)).Distinct()
+                        .ToArray();
                     if (inputAttributes.Length == 0)
                         continue;
 
                     // Get the RunOnAxisGroupAttribute, if there is one
                     var runOnAxisGroupAttribute =
-                        (RunOnAxisGroupAttribute)inputAttributes.FirstOrDefault(p => p is RunOnAxisGroupAttribute);
+                        (RunOnAxisGroupAttribute?)inputAttributes.FirstOrDefault(p => p is RunOnAxisGroupAttribute);
 
                     foreach (var attribute in inputAttributes)
                     {
@@ -339,6 +369,8 @@ public class InputManager : Node
                         }
                         else
                         {
+                            // TODO: it seems likely that if a class with input attributes is inherited a duplicate
+                            // key error will be raised in here
                             // Give the attribute a reference to the method it is placed on
                             attribute.Init(methodInfo);
 

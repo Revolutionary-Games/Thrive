@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Flagellum for making cells move faster
@@ -13,7 +14,7 @@ public class MovementComponent : ExternallyPositionedComponent
     private bool movingTail;
     private Vector3 force;
 
-    private AnimationPlayer animation;
+    private AnimationPlayer? animation;
 
     public MovementComponent(float momentum, float torque)
     {
@@ -21,15 +22,15 @@ public class MovementComponent : ExternallyPositionedComponent
         Torque = torque;
     }
 
-    public override void Update(float elapsed)
+    public override void UpdateAsync(float delta)
     {
         // Visual positioning code
-        base.Update(elapsed);
+        base.UpdateAsync(delta);
 
         // Movement force
-        var microbe = organelle.ParentMicrobe;
+        var microbe = organelle!.ParentMicrobe!;
 
-        var movement = CalculateMovementForce(microbe, elapsed);
+        var movement = CalculateMovementForce(microbe, delta);
 
         if (movement != new Vector3(0, 0, 0))
             microbe.AddMovementForce(movement);
@@ -37,7 +38,10 @@ public class MovementComponent : ExternallyPositionedComponent
 
     protected override void CustomAttach()
     {
-        force = CalculateForce(organelle.Position, Momentum);
+        if (organelle?.OrganelleGraphics == null)
+            throw new InvalidOperationException("Pilus needs parent organelle to have graphics");
+
+        force = CalculateForce(organelle!.Position, Momentum);
 
         animation = organelle.OrganelleAnimation;
 
@@ -49,21 +53,36 @@ public class MovementComponent : ExternallyPositionedComponent
         SetSpeedFactor(0.25f);
     }
 
+    protected override bool NeedsUpdateAnyway()
+    {
+        // The basis of the transform represents the rotation, as long as the rotation is not modified,
+        // the organelle needs to be updated.
+        // TODO: Calculated rotations should never equal the identity,
+        // it should be kept an eye on if it does. The engine for some reason doesnt update THIS basis
+        // unless checked with some condition (if or return)
+        // SEE: https://github.com/Revolutionary-Games/Thrive/issues/2906
+        return organelle!.OrganelleGraphics!.Transform.basis == Transform.Identity.basis;
+    }
+
     protected override void OnPositionChanged(Quat rotation, float angle,
         Vector3 membraneCoords)
     {
-        organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
+        organelle!.OrganelleGraphics!.Transform = new Transform(rotation, membraneCoords);
     }
 
     /// <summary>
     ///   Calculate the momentum of the movement organelle based on
     ///   angle towards middle of cell
+    ///   If the flagella is placed in the microbe's center, hence delta equals 0,
+    ///   consider defaultPos as the organelle's "false" position.
     /// </summary>
     private static Vector3 CalculateForce(Hex pos, float momentum)
     {
-        Vector3 organelle = Hex.AxialToCartesian(pos);
+        Vector3 organellePosition = Hex.AxialToCartesian(pos);
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
-        var delta = middle - organelle;
+        var delta = middle - organellePosition;
+        if (delta == Vector3.Zero)
+            delta = DefaultVisualPos;
         return delta.Normalized() * momentum;
     }
 
@@ -86,9 +105,12 @@ public class MovementComponent : ExternallyPositionedComponent
         // The movementDirection is the player or AI input
         Vector3 direction = microbe.MovementDirection;
 
-        var forceMagnitude = force.Dot(direction);
+        // Real force the flagella applied to the colony (considering rotation)
+        var realForce = organelle!.RotatedPositionInsideColony(force);
+        var forceMagnitude = realForce.Dot(direction);
+
         if (forceMagnitude <= 0 || direction.LengthSquared() < MathUtils.EPSILON ||
-            force.LengthSquared() < MathUtils.EPSILON)
+            realForce.LengthSquared() < MathUtils.EPSILON)
         {
             if (movingTail)
             {
@@ -121,7 +143,14 @@ public class MovementComponent : ExternallyPositionedComponent
             forceMagnitude / 100.0f;
 
         // Rotate the 'thrust' based on our orientation
-        direction = microbe.Transform.basis.Xform(direction);
+        if (microbe.Colony?.Master == null)
+        {
+            direction = microbe.Transform.basis.Xform(direction);
+        }
+        else
+        {
+            direction = microbe.Colony.Master.Transform.basis.Xform(direction);
+        }
 
         SetSpeedFactor(animationSpeed);
 

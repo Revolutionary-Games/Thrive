@@ -8,8 +8,8 @@ using Godot;
 /// [Tool]
 public class ErrorDialog : CustomDialog
 {
-    private string errorMessage;
-    private string exceptionInfo;
+    private string errorMessage = string.Empty;
+    private string? exceptionInfo;
 
     /// <summary>
     ///   If true closing the dialog returns to menu. If false the dialog is just closed (and game is unpaused).
@@ -19,12 +19,12 @@ public class ErrorDialog : CustomDialog
     /// <summary>
     ///   Callback for when the dialog is closed.
     /// </summary>
-    private Action onCloseCallback;
+    private Action? onCloseCallback;
 
-    private Label extraDescriptionLabel;
-    private Label exceptionLabel;
-    private VBoxContainer exceptionBox;
-    private Control copyException;
+    private Label? extraDescriptionLabel;
+    private Label? exceptionLabel;
+    private VBoxContainer exceptionBox = null!;
+    private Control copyException = null!;
 
     /// <summary>
     ///   The main error message.
@@ -46,7 +46,7 @@ public class ErrorDialog : CustomDialog
     ///   The additional exception info that is thrown from an error.
     /// </summary>
     [Export]
-    public string ExceptionInfo
+    public string? ExceptionInfo
     {
         get => exceptionInfo;
         set
@@ -77,7 +77,7 @@ public class ErrorDialog : CustomDialog
     ///   Helper for showing the error dialog with extra callback.
     /// </summary>
     public void ShowError(string title, string message, string exception, bool returnToMenu = false,
-        Action onClosed = null, bool allowExceptionCopy = true)
+        Action? onClosed = null, bool allowExceptionCopy = true)
     {
         WindowTitle = title;
         ErrorMessage = message;
@@ -91,7 +91,7 @@ public class ErrorDialog : CustomDialog
 
     private void UpdateMessage()
     {
-        extraDescriptionLabel.SizeFlagsVertical = exceptionBox.Visible ?
+        extraDescriptionLabel!.SizeFlagsVertical = exceptionBox.Visible ?
             (int)SizeFlags.Fill :
             (int)SizeFlags.ExpandFill;
         extraDescriptionLabel.Text = errorMessage;
@@ -99,7 +99,7 @@ public class ErrorDialog : CustomDialog
 
     private void UpdateException()
     {
-        exceptionLabel.Text = exceptionInfo;
+        exceptionLabel!.Text = exceptionInfo;
         exceptionBox.Visible = !string.IsNullOrEmpty(exceptionInfo);
     }
 
@@ -117,9 +117,9 @@ public class ErrorDialog : CustomDialog
 
     private void OnCopyToClipboardPressed()
     {
-        OS.Clipboard = WindowTitle + " - " +
-            extraDescriptionLabel.Text + " exception: " +
-            exceptionLabel.Text;
+        OS.Clipboard = TranslationServer.Translate(WindowTitle) + " - " +
+            TranslationServer.Translate(extraDescriptionLabel!.Text) + " exception: " +
+            exceptionLabel!.Text;
     }
 
     private void OnClosePressed()

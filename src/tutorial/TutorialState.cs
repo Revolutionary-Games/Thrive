@@ -25,7 +25,7 @@ public class TutorialState : ITutorialInput
 
     private bool needsToApplyEvenIfDisabled;
 
-    private List<TutorialPhase> cachedTutorials;
+    private List<TutorialPhase>? cachedTutorials;
 
     public bool Enabled { get; set; } = Settings.Instance.TutorialsEnabled;
 
@@ -198,7 +198,11 @@ public class TutorialState : ITutorialInput
 
         // Pause if the game is paused, but we didn't want to pause things
         if (gui.GUINode.GetTree().Paused && !WantsGamePaused)
+        {
+            // Apply GUI states anyway to not have a chance of locking a tutorial on screen
+            ApplyGUIState(gui);
             return;
+        }
 
         TotalElapsed += delta;
 
@@ -311,6 +315,16 @@ public class TutorialState : ITutorialInput
 
                 // Pause
                 returnToPauseState = gui.GUINode.GetTree().Paused;
+
+                if (InProgressSave.IsSaving)
+                {
+                    // I'd hope this never happens but at least in developing individual scenes and things this can
+                    // happen, so we don't at least want to softlock here
+                    GD.Print("Overriding tutorial return pause state as save is in progress, " +
+                        "this shouldn't happen in normal gameplay");
+                    returnToPauseState = false;
+                }
+
                 gui.GUINode.GetTree().Paused = true;
                 hasPaused = true;
             }
