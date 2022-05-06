@@ -22,15 +22,15 @@ public class MovementComponent : ExternallyPositionedComponent
         Torque = torque;
     }
 
-    public override void Update(float elapsed)
+    public override void UpdateAsync(float delta)
     {
         // Visual positioning code
-        base.Update(elapsed);
+        base.UpdateAsync(delta);
 
         // Movement force
         var microbe = organelle!.ParentMicrobe!;
 
-        var movement = CalculateMovementForce(microbe, elapsed);
+        var movement = CalculateMovementForce(microbe, delta);
 
         if (movement != new Vector3(0, 0, 0))
             microbe.AddMovementForce(movement);
@@ -105,9 +105,12 @@ public class MovementComponent : ExternallyPositionedComponent
         // The movementDirection is the player or AI input
         Vector3 direction = microbe.MovementDirection;
 
-        var forceMagnitude = force.Dot(direction);
+        // Real force the flagella applied to the colony (considering rotation)
+        var realForce = organelle!.RotatedPositionInsideColony(force);
+        var forceMagnitude = realForce.Dot(direction);
+
         if (forceMagnitude <= 0 || direction.LengthSquared() < MathUtils.EPSILON ||
-            force.LengthSquared() < MathUtils.EPSILON)
+            realForce.LengthSquared() < MathUtils.EPSILON)
         {
             if (movingTail)
             {
@@ -140,7 +143,14 @@ public class MovementComponent : ExternallyPositionedComponent
             forceMagnitude / 100.0f;
 
         // Rotate the 'thrust' based on our orientation
-        direction = microbe.Transform.basis.Xform(direction);
+        if (microbe.Colony?.Master == null)
+        {
+            direction = microbe.Transform.basis.Xform(direction);
+        }
+        else
+        {
+            direction = microbe.Colony.Master.Transform.basis.Xform(direction);
+        }
 
         SetSpeedFactor(animationSpeed);
 

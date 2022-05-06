@@ -4,19 +4,25 @@ using System.Linq;
 
 /// <summary>
 ///   Holds the action history for the microbe editor.
-///   Is capable of MP calculation.
 /// </summary>
-public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
+/// <remarks>
+///   <para>
+///     Is capable of MP calculation.
+///   </para>
+/// </remarks>
+public class EditorActionHistory<TAction> : ActionHistory<TAction>
+    where TAction : CellEditorAction
 {
     private List<MicrobeEditorCombinableActionData>? cache;
 
     private List<MicrobeEditorCombinableActionData> History =>
         cache ??= GetActionHistorySinceLastNewMicrobePress();
 
+    // TODO: remove this if this stays unused
     /// <summary>
     ///   Calculates how much MP these actions would cost if performed on top of the current history.
     /// </summary>
-    public int WhatWouldActionsCost(List<MicrobeEditorCombinableActionData> actions)
+    public int WhatWouldActionsCost(IEnumerable<MicrobeEditorCombinableActionData> actions)
     {
         return actions.Sum(WhatWouldActionCost);
     }
@@ -124,7 +130,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
         return result;
     }
 
-    public override void AddAction(MicrobeEditorAction action)
+    public override void AddAction(TAction action)
     {
         if (action.Data.Any(d => d.ResetsHistory))
         {
@@ -138,6 +144,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
         base.AddAction(action);
     }
 
+    // TODO: remove if this stays unused
     public bool OrganellePlacedThisSession(OrganelleTemplate organelle)
     {
         return Actions.SelectMany(a => a.Data).OfType<PlacementActionData>().Any(a => a.Organelle == organelle);

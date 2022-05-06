@@ -33,7 +33,7 @@ public class Patch
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
-    public Patch(string name, int id, Biome biomeTemplate)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate)
     {
         Name = name;
         ID = id;
@@ -42,7 +42,7 @@ public class Patch
     }
 
     [JsonProperty]
-    public string Name { get; private set; }
+    public LocalizedString Name { get; private set; }
 
     /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI
@@ -208,6 +208,44 @@ public class Patch
         return population;
     }
 
+    public float GetCompoundAmount(string compoundName)
+    {
+        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+
+        switch (compoundName)
+        {
+            case "sunlight":
+            case "oxygen":
+            case "carbondioxide":
+            case "nitrogen":
+                return Biome.Compounds[compound].Dissolved * 100;
+            case "iron":
+                return GetTotalChunkCompoundAmount(compound);
+            default:
+                return Biome.Compounds[compound].Density * Biome.Compounds[compound].Amount +
+                    GetTotalChunkCompoundAmount(compound);
+        }
+    }
+
+    public float GetCompoundAmountInSnapshot(PatchSnapshot snapshot, string compoundName)
+    {
+        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+
+        switch (compoundName)
+        {
+            case "sunlight":
+            case "oxygen":
+            case "carbondioxide":
+            case "nitrogen":
+                return snapshot.Biome.Compounds[compound].Dissolved * 100;
+            case "iron":
+                return GetTotalChunkCompoundAmount(compound);
+            default:
+                return snapshot.Biome.Compounds[compound].Density * snapshot.Biome.Compounds[compound].Amount +
+                    GetTotalChunkCompoundAmount(compound);
+        }
+    }
+
     public float GetTotalChunkCompoundAmount(Compound compound)
     {
         var result = 0.0f;
@@ -219,9 +257,9 @@ public class Patch
             if (chunk.Compounds == null)
                 continue;
 
-            if (chunk.Density > 0 && chunk.Compounds.ContainsKey(compound))
+            if (chunk.Density > 0 && chunk.Compounds.TryGetValue(compound, out var chunkCompound))
             {
-                result += chunk.Density * chunk.Compounds[compound].Amount;
+                result += chunk.Density * chunkCompound.Amount;
             }
         }
 
@@ -246,6 +284,21 @@ public class Patch
 
         if (clearLoggedEvents)
             currentSnapshot.EventsLog.Clear();
+    }
+
+    public void ReplaceSpecies(Species old, Species newSpecies, bool replaceInHistory = true)
+    {
+        currentSnapshot.ReplaceSpecies(old, newSpecies);
+
+        if (!replaceInHistory)
+            return;
+
+        foreach (var snapshot in History)
+        {
+            snapshot.ReplaceSpecies(old, newSpecies);
+        }
+
+        // TODO: can we do something about the game log here?
     }
 
     /// <summary>
@@ -286,6 +339,23 @@ public class PatchSnapshot : ICloneable
     public PatchSnapshot(BiomeConditions biome)
     {
         Biome = biome;
+    }
+
+    public void ReplaceSpecies(Species old, Species newSpecies)
+    {
+        if (SpeciesInPatch.TryGetValue(old, out var population))
+        {
+            SpeciesInPatch.Remove(old);
+            SpeciesInPatch.Add(newSpecies, population);
+        }
+
+        if (RecordedSpeciesInfo.TryGetValue(old, out var info))
+        {
+            RecordedSpeciesInfo.Remove(old);
+            RecordedSpeciesInfo.Add(newSpecies, info);
+        }
+
+        // TODO: can we handle EventsLog here?
     }
 
     public object Clone()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using File = Godot.File;
@@ -32,6 +33,8 @@ public class SimulationParameters : Node
     private List<OrganelleDefinition> eukaryoticOrganelles = null!;
     private float eukaryoticOrganellesChance;
 
+    private List<Compound>? cachedCloudCompounds;
+
     public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public IEnumerable<NamedInputGroup> InputGroups => inputGroups;
@@ -39,6 +42,7 @@ public class SimulationParameters : Node
     public AutoEvoConfiguration AutoEvoConfiguration => autoEvoConfiguration;
 
     public NameGenerator NameGenerator { get; private set; } = null!;
+    public PatchMapNameGenerator PatchMapNameGenerator { get; private set; } = null!;
 
     /// <summary>
     ///   Loads the simulation configuration parameters from JSON files
@@ -93,6 +97,9 @@ public class SimulationParameters : Node
 
         gameCredits =
             LoadDirectObject<GameCredits>("res://simulation_parameters/common/credits.json");
+
+        PatchMapNameGenerator = LoadDirectObject<PatchMapNameGenerator>(
+            "res://simulation_parameters/microbe_stage/patch_syllables.json");
 
         GD.Print("SimulationParameters loading ended");
 
@@ -177,17 +184,7 @@ public class SimulationParameters : Node
     /// </summary>
     public List<Compound> GetCloudCompounds()
     {
-        var result = new List<Compound>();
-
-        foreach (var entry in compounds)
-        {
-            if (entry.Value.IsCloud)
-            {
-                result.Add(entry.Value);
-            }
-        }
-
-        return result;
+        return cachedCloudCompounds ??= ComputeCloudCompounds();
     }
 
     public Dictionary<string, MusicCategory> GetMusicCategories()
@@ -243,6 +240,11 @@ public class SimulationParameters : Node
         }
 
         return eukaryoticOrganelles[eukaryoticOrganelles.Count - 1];
+    }
+
+    public PatchMapNameGenerator GetPatchMapNameGenerator()
+    {
+        return PatchMapNameGenerator;
     }
 
     /// <summary>
@@ -367,6 +369,7 @@ public class SimulationParameters : Node
         CheckRegistryType(gallery);
 
         NameGenerator.Check(string.Empty);
+        PatchMapNameGenerator.Check(string.Empty);
         autoEvoConfiguration.Check(string.Empty);
         translationsInfo.Check(string.Empty);
         gameCredits.Check(string.Empty);
@@ -435,5 +438,10 @@ public class SimulationParameters : Node
                 prokaryoticOrganellesTotalChance += organelle.ChanceToCreate;
             }
         }
+    }
+
+    private List<Compound> ComputeCloudCompounds()
+    {
+        return compounds.Where(p => p.Value.IsCloud).Select(p => p.Value).ToList();
     }
 }

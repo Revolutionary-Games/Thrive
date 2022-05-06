@@ -11,6 +11,13 @@ using Vector3 = Godot.Vector3;
 public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 {
     /// <summary>
+    ///   Some cloud operations are performed in a multithreaded way (absorbing, venting) and to do that safely this
+    ///   lock needs to be held by the thread doing the operations.
+    /// </summary>
+    [JsonIgnore]
+    public readonly object MultithreadedLock = new();
+
+    /// <summary>
     ///   The current densities of compounds. This uses custom writing so this is ignored.
     /// </summary>
     /// <remarks>
@@ -370,13 +377,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// </summary>
     public void AddCloud(Compound compound, float density, int x, int y)
     {
-        var cloudToAdd = new Vector4(
-            Compounds[0] == compound ? density : 0.0f,
-            Compounds[1] == compound ? density : 0.0f,
-            Compounds[2] == compound ? density : 0.0f,
-            Compounds[3] == compound ? density : 0.0f);
+        var cloudToAdd = CalculateCloudToAdd(compound, density);
 
-        Density[x, y] += cloudToAdd;
+        lock (MultithreadedLock)
+        {
+            Density[x, y] += cloudToAdd;
+        }
     }
 
     /// <summary>
@@ -386,11 +392,16 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     public float TakeCompound(Compound compound, int x, int y, float fraction = 1.0f)
     {
         float amountInCloud = HackyAddress(Density[x, y], GetCompoundIndex(compound));
-        float amountToGive = amountInCloud * fraction;
+        var amountToGive = amountInCloud * fraction;
+
         if (amountInCloud - amountToGive < 0.1f)
-            AddCloud(compound, -amountInCloud, x, y);
+        {
+            Density[x, y] += CalculateCloudToAdd(compound, -amountInCloud);
+        }
         else
-            AddCloud(compound, -amountToGive, x, y);
+        {
+            Density[x, y] += CalculateCloudToAdd(compound, -amountToGive);
+        }
 
         return amountToGive;
     }
@@ -517,14 +528,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             storage.AddCompound(compound, taken);
 
             // Keep track of total compounds absorbed for the cell
-            if (!totals.ContainsKey(compound))
-            {
-                totals.Add(compound, taken);
-            }
-            else
-            {
-                totals[compound] += taken;
-            }
+            totals.TryGetValue(compound, out var existingValue);
+            totals[compound] = existingValue + taken;
         }
     }
 
@@ -538,6 +543,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                 OldDensity[x, y] = Vector4.Zero;
             }
         }
+    }
+
+    public void SetBrightness(float brightness)
+    {
+        var material = (ShaderMaterial)Material;
+        material.SetShaderParam("BrightnessMultiplier", brightness);
     }
 
     /// <summary>
@@ -560,6 +571,15 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         s0 = 1.0f - s1;
         t1 = Math.Abs(dy - r0);
         t0 = 1.0f - t1;
+    }
+
+    private Vector4 CalculateCloudToAdd(Compound compound, float density)
+    {
+        return new Vector4(
+            Compounds[0] == compound ? density : 0.0f,
+            Compounds[1] == compound ? density : 0.0f,
+            Compounds[2] == compound ? density : 0.0f,
+            Compounds[3] == compound ? density : 0.0f);
     }
 
     private void PartialDiffuseCenter(int x0, int y0, int width, int height, float delta)

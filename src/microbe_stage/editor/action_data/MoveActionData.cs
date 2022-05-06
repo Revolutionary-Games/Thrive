@@ -48,31 +48,38 @@ public class MoveActionData : MicrobeEditorCombinableActionData
             placementActionData.Organelle.Definition == Organelle.Definition &&
             placementActionData.Location == OldLocation &&
             placementActionData.Orientation == OldRotation)
+        {
             return ActionInterferenceMode.Combinable;
+        }
 
         // If this organelle got removed in this session
         if (other is RemoveActionData removeActionData &&
             removeActionData.Organelle.Definition == Organelle.Definition &&
             removeActionData.Location == NewLocation)
+        {
             return ActionInterferenceMode.ReplacesOther;
+        }
 
         return ActionInterferenceMode.NoInterference;
     }
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
-        return other switch
+        switch (other)
         {
-            PlacementActionData placementActionData => new PlacementActionData(placementActionData.Organelle,
-                NewLocation, NewRotation) { ReplacedCytoplasm = placementActionData.ReplacedCytoplasm },
-
-            MoveActionData moveActionData when moveActionData.NewLocation == OldLocation => new MoveActionData(
-                Organelle, moveActionData.OldLocation, NewLocation, moveActionData.OldRotation, NewRotation),
-
-            MoveActionData moveActionData => new MoveActionData(moveActionData.Organelle, OldLocation,
-                moveActionData.NewLocation, OldRotation, moveActionData.NewRotation),
-
-            _ => throw new NotSupportedException(),
-        };
+            case PlacementActionData placementActionData:
+                return new PlacementActionData(placementActionData.Organelle, NewLocation, NewRotation)
+                {
+                    ReplacedCytoplasm = placementActionData.ReplacedCytoplasm,
+                };
+            case MoveActionData moveActionData when moveActionData.NewLocation == OldLocation:
+                return new MoveActionData(Organelle, moveActionData.OldLocation, NewLocation,
+                    moveActionData.OldRotation, NewRotation);
+            case MoveActionData moveActionData:
+                return new MoveActionData(moveActionData.Organelle, OldLocation, moveActionData.NewLocation,
+                    OldRotation, moveActionData.NewRotation);
+            default:
+                throw new NotSupportedException();
+        }
     }
 }

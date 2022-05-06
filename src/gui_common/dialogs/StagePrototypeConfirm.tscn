@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=1]
+
+[node name="StagePrototypeConfirm" instance=ExtResource( 1 )]
+WindowTitle = "CONTINUE_TO_PROTOTYPES_PROMPT"
+DialogText = "CONTINUE_TO_PROTOTYPES"

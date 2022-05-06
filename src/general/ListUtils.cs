@@ -27,7 +27,7 @@ public static class ListUtils
         return items[random.Next(0, items.Count)];
     }
 
-    public static IEnumerable<T> DiscardNulls<T>(this IEnumerable<T?> items)
+    public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> items)
         where T : class
     {
         return items.Where(t => t != null)!;

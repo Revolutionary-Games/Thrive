@@ -28,6 +28,8 @@ public class Biome : IRegistryType
     /// </summary>
     public LightDetails Sunlight = new();
 
+    public float CompoundCloudBrightness = 1.0f;
+
     [JsonIgnore]
     public Texture? LoadedIcon;
 
@@ -65,6 +67,12 @@ public class Biome : IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "sunlight missing");
+        }
+
+        if (CompoundCloudBrightness <= 0)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "cloud brightness needs to be over 0");
         }
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);

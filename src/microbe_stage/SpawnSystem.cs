@@ -17,6 +17,9 @@ public class SpawnSystem
     [JsonProperty]
     private float elapsed;
 
+    [JsonProperty]
+    private float despawnElapsed;
+
     /// <summary>
     ///   Root node to parent all spawned things to
     /// </summary>
@@ -26,19 +29,6 @@ public class SpawnSystem
 
     [JsonProperty]
     private Random random = new();
-
-    /// <summary>
-    ///   Delete a max of this many entities per step to reduce lag
-    ///   from deleting tons of entities at once.
-    /// </summary>
-    [JsonProperty]
-    private int maxEntitiesToDeletePerStep = Constants.MAX_DESPAWNS_PER_FRAME;
-
-    /// <summary>
-    ///   This limits the total number of things that can be spawned.
-    /// </summary>
-    [JsonProperty]
-    private int maxAliveEntities = Constants.DEFAULT_MAX_SPAWNED_ENTITIES;
 
     /// <summary>
     ///   This limits the number of things that can be spawned in a single spawn radius.
@@ -99,10 +89,9 @@ public class SpawnSystem
     /// <summary>
     ///   Adds an externally spawned entity to be despawned
     /// </summary>
-    public static void AddEntityToTrack(ISpawned entity,
-        float radius = Constants.MICROBE_SPAWN_RADIUS)
+    public static void AddEntityToTrack(ISpawned entity)
     {
-        entity.DespawnRadiusSquared = (int)(radius * radius);
+        entity.DespawnRadiusSquared = Constants.MICROBE_DESPAWN_RADIUS_SQUARED;
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
@@ -149,6 +138,7 @@ public class SpawnSystem
         spawnTypes.Clear();
         queuedSpawns = null;
         elapsed = 0;
+        despawnElapsed = 0;
     }
 
     /// <summary>
@@ -157,23 +147,22 @@ public class SpawnSystem
     public void DespawnAll()
     {
         queuedSpawns = null;
-        var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
-        foreach (Node entity in spawnedEntities)
+        int despawned = 0;
+
+        foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
         {
-            if (!entity.IsQueuedForDeletion())
+            if (!spawned.EntityNode.IsQueuedForDeletion())
             {
-                var spawned = entity as ISpawned;
-
-                if (spawned == null)
-                {
-                    GD.PrintErr("A node has been put in the spawned group but it isn't derived from ISpawned");
-                    continue;
-                }
-
                 spawned.DestroyDetachAndQueueFree();
+                ++despawned;
             }
         }
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportDespawns(despawned);
     }
 
     /// <summary>
@@ -182,6 +171,7 @@ public class SpawnSystem
     public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation)
     {
         elapsed += delta;
+        despawnElapsed += delta;
 
         // Remove the y-position from player position
         playerPosition.y = 0;
@@ -209,15 +199,23 @@ public class SpawnSystem
 
             SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
         }
+        else if (despawnElapsed > Constants.DESPAWN_INTERVAL)
+        {
+            despawnElapsed = 0;
+
+            DespawnEntities(playerPosition);
+        }
     }
 
     private int HandleQueuedSpawns(int spawnsLeftThisFrame)
     {
+        int initialSpawns = spawnsLeftThisFrame;
+
         if (queuedSpawns == null)
             return spawnsLeftThisFrame;
 
         // If we don't have room, just abandon spawning
-        if (estimateEntityCount >= maxAliveEntities)
+        if (estimateEntityCount >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
         {
             queuedSpawns.Spawns.Dispose();
             queuedSpawns = null;
@@ -225,7 +223,7 @@ public class SpawnSystem
         }
 
         // Spawn from the queue
-        while (estimateEntityCount < maxAliveEntities && spawnsLeftThisFrame > 0)
+        while (estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES && spawnsLeftThisFrame > 0)
         {
             if (!queuedSpawns.Spawns.MoveNext())
             {
@@ -244,13 +242,21 @@ public class SpawnSystem
             --spawnsLeftThisFrame;
         }
 
+        if (initialSpawns != spawnsLeftThisFrame)
+        {
+            var metrics = PerformanceMetrics.Instance;
+
+            if (metrics.Visible)
+                metrics.ReportSpawns(initialSpawns - spawnsLeftThisFrame);
+        }
+
         return spawnsLeftThisFrame;
     }
 
     private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame)
     {
-        // If  there are already too many entities, don't spawn more
-        if (existing >= maxAliveEntities)
+        // If there are already too many entities, don't spawn more
+        if (existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
             return;
 
         // Here we want to check that the player moved to not basically spawn in circle around the player.
@@ -325,7 +331,7 @@ public class SpawnSystem
                         squaredDistance >= spawnType.MinSpawnRadiusSquared)
                     {
                         // Second condition passed. Spawn the entity.
-                        if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
+                        if (SpawnWithSpawner(spawnType, playerPosition + displacement, playerPosition, existing,
                                 ref spawnsLeftThisFrame, ref spawned))
                         {
                             estimateEntityCountInSpawnRadius += spawned;
@@ -338,16 +344,21 @@ public class SpawnSystem
         }
 
         estimateEntityCountInSpawnRadius += spawned;
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportSpawns(spawned);
     }
 
     /// <summary>
     ///   Does a single spawn with a spawner
     /// </summary>
     /// <returns>True if we have exceeded the spawn limit and no further spawns should be done this frame</returns>
-    private bool SpawnWithSpawner(Spawner spawnType, Vector3 location, int existing, ref int spawnsLeftThisFrame,
-        ref int spawned)
+    private bool SpawnWithSpawner(Spawner spawnType, Vector3 location, Vector3 playerPosition, int existing,
+        ref int spawnsLeftThisFrame, ref int spawned)
     {
-        var enumerable = spawnType.Spawn(worldRoot, location);
+        var enumerable = spawnType.Spawn(worldRoot, location, playerPosition);
 
         if (enumerable == null)
             return false;
@@ -366,10 +377,8 @@ public class SpawnSystem
 
             // Check if we are out of quota for this frame
 
-            // TODO: this is a bit awkward if this
-            // stops compound clouds from spawning as
-            // well...
-            if (spawned + existing >= maxAliveEntities)
+            // TODO: this is a bit awkward if this stops compound clouds from spawning as well...
+            if (spawned + existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
             {
                 // We likely couldn't spawn things next frame anyway if we are at the entity limit,
                 // so the spawner is not stored here
@@ -397,23 +406,17 @@ public class SpawnSystem
         int entitiesDeleted = 0;
 
         // Despawn entities
-        var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
+        int spawnedCount = 0;
 
-        foreach (Node entity in spawnedEntities)
+        foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
         {
-            var spawned = entity as ISpawned;
-
-            if (spawned == null)
-            {
-                GD.PrintErr("A node has been put in the spawned group but it isn't derived from ISpawned");
-                continue;
-            }
+            ++spawnedCount;
 
             // Global position must be used here as otherwise colony members are despawned
             // TODO: check if it would be better to remove the spawned group tag from colony members (and add it back
             // when leaving the colony) or this could only get direct descendants of the world root and ignore nested
             // nodes in the spawned group
-            var entityPosition = ((Spatial)entity).GlobalTransform.origin;
+            var entityPosition = ((Spatial)spawned).GlobalTransform.origin;
             var squaredDistance = (playerPosition - entityPosition).LengthSquared();
 
             // If the entity is too far away from the player, despawn it.
@@ -422,12 +425,17 @@ public class SpawnSystem
                 entitiesDeleted++;
                 spawned.DestroyDetachAndQueueFree();
 
-                if (entitiesDeleted >= maxEntitiesToDeletePerStep)
+                if (entitiesDeleted >= Constants.MAX_DESPAWNS_PER_FRAME)
                     break;
             }
         }
 
-        return spawnedEntities.Count - entitiesDeleted;
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportDespawns(entitiesDeleted);
+
+        return spawnedCount - entitiesDeleted;
     }
 
     /// <summary>
@@ -435,11 +443,8 @@ public class SpawnSystem
     /// </summary>
     private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
     {
-        // I don't understand why the same
-        // value is used for spawning and
-        // despawning, but apparently it works
-        // just fine
-        entity.DespawnRadiusSquared = spawnType.SpawnRadiusSquared;
+        float radius = spawnType.SpawnRadius + Constants.DESPAWN_RADIUS_OFFSET;
+        entity.DespawnRadiusSquared = (int)(radius * radius);
 
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }

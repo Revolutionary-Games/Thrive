@@ -63,11 +63,8 @@ public class ChildObjectCache<TKey, TNode>
 
     public TNode GetChild(TKey child)
     {
-        CreatedNode entry;
-
-        if (createdChildren.ContainsKey(child))
+        if (createdChildren.TryGetValue(child, out var entry))
         {
-            entry = createdChildren[child];
             entry.Marked = true;
             entry.AccessOrder = nextAccessOrder++;
             return entry.Node;

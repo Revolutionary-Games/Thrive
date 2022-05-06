@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Godot;
 
@@ -32,6 +31,7 @@ public class OrganellePopupMenu : PopupPanel
     private bool enableDelete = true;
     private bool enableMove = true;
     private bool enableModify;
+    private float editorCostFactor = 1.0f;
 
     [Signal]
     public delegate void DeletePressed();
@@ -42,7 +42,13 @@ public class OrganellePopupMenu : PopupPanel
     [Signal]
     public delegate void ModifyPressed();
 
-    public Func<List<MicrobeEditorCombinableActionData>, int>? GetActionPrice { get; set; }
+    public float EditorCostFactor
+    {
+        get => editorCostFactor;
+        set => editorCostFactor = value;
+    }
+
+    public Func<IEnumerable<MicrobeEditorCombinableActionData>, int>? GetActionPrice { get; set; }
 
     public bool ShowPopup
     {
@@ -255,9 +261,9 @@ public class OrganellePopupMenu : PopupPanel
                 .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
+        mpCost = (int)(mpCost * editorCostFactor);
 
-        mpLabel.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("MP_COST"), mpCost > 0 ? "+" + mpCost : "-" + -mpCost);
+        mpLabel.Text = new LocalizedString("MP_COST", mpCost).ToString();
 
         deleteButton.Disabled = !EnableDeleteOption;
     }
@@ -273,10 +279,9 @@ public class OrganellePopupMenu : PopupPanel
             .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
+        mpCost = (int)(mpCost * editorCostFactor);
 
-        mpLabel.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("MP_COST"),
-            mpCost.ToString(CultureInfo.CurrentCulture));
+        mpLabel.Text = new LocalizedString("MP_COST", mpCost).ToString();
 
         moveButton.Disabled = !EnableMoveOption;
     }

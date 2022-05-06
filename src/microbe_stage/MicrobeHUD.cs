@@ -58,6 +58,15 @@ public class MicrobeHUD : Control
     public NodePath EditorButtonPath = null!;
 
     [Export]
+    public NodePath MulticellularButtonPath = null!;
+
+    [Export]
+    public NodePath MulticellularConfirmPopupPath = null!;
+
+    [Export]
+    public NodePath MacroscopicButtonPath = null!;
+
+    [Export]
     public NodePath EnvironmentPanelPath = null!;
 
     [Export]
@@ -168,6 +177,15 @@ public class MicrobeHUD : Control
     [Export]
     public NodePath BindingModeHotkeyPath = null!;
 
+    [Export]
+    public NodePath UnbindAllHotkeyPath = null!;
+
+    [Export]
+    public NodePath SignallingAgentsHotkeyPath = null!;
+
+    [Export]
+    public NodePath MicrobeControlRadialPath = null!;
+
     // Formatter and code checks disagree here
     // ReSharper disable RedundantNameQualifier
     private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts = new();
@@ -201,6 +219,8 @@ public class MicrobeHUD : Control
     private ActionButton engulfHotkey = null!;
     private ActionButton fireToxinHotkey = null!;
     private ActionButton bindingModeHotkey = null!;
+    private ActionButton unbindAllHotkey = null!;
+    private ActionButton signallingAgentsHotkey = null!;
 
     // Store these statefully for after player death
     private float maxHP = 1.0f;
@@ -241,11 +261,17 @@ public class MicrobeHUD : Control
     private Label patchLabel = null!;
     private AnimationPlayer patchOverlayAnimator = null!;
     private TextureButton editorButton = null!;
+    private Button multicellularButton = null!;
+    private CustomDialog multicellularConfirmPopup = null!;
+    private Button macroscopicButton = null!;
+
     private CustomDialog? extinctionBox;
     private CustomDialog? winBox;
     private Tween panelsTween = null!;
     private Control winExtinctBoxHolder = null!;
     private Label hintText = null!;
+
+    private RadialPopup microbeControlRadial = null!;
 
     private Array compoundBars = null!;
 
@@ -280,6 +306,13 @@ public class MicrobeHUD : Control
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
     /// </summary>
     private float hoverInfoTimeElapsed;
+
+    /// <summary>
+    ///   If not null the signaling agent radial menu is open for the given microbe, which should be the player
+    /// </summary>
+    private Microbe? signalingAgentMenuOpenForMicrobe;
+
+    private int? playerColonySize;
 
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
@@ -337,12 +370,19 @@ public class MicrobeHUD : Control
         patchLabel = GetNode<Label>(PatchLabelPath);
         patchOverlayAnimator = GetNode<AnimationPlayer>(PatchOverlayAnimatorPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
+        multicellularButton = GetNode<Button>(MulticellularButtonPath);
+        multicellularConfirmPopup = GetNode<CustomDialog>(MulticellularConfirmPopupPath);
+        macroscopicButton = GetNode<Button>(MacroscopicButtonPath);
         hintText = GetNode<Label>(HintTextPath);
         hotBar = GetNode<HBoxContainer>(HotBarPath);
+
+        microbeControlRadial = GetNode<RadialPopup>(MicrobeControlRadialPath);
 
         engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
         fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
         bindingModeHotkey = GetNode<ActionButton>(BindingModeHotkeyPath);
+        unbindAllHotkey = GetNode<ActionButton>(UnbindAllHotkeyPath);
+        signallingAgentsHotkey = GetNode<ActionButton>(SignallingAgentsHotkeyPath);
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
@@ -371,6 +411,9 @@ public class MicrobeHUD : Control
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
+        multicellularButton.Visible = false;
+        macroscopicButton.Visible = false;
     }
 
     public void OnEnterStageTransition(bool longerDuration)
@@ -395,6 +438,13 @@ public class MicrobeHUD : Control
             UpdateCompoundBars();
             UpdateReproductionProgress(stage.Player);
             UpdateAbilitiesHotBar(stage.Player);
+            UpdateMulticellularButton(stage.Player);
+            UpdateMacroscopicButton(stage.Player);
+        }
+        else
+        {
+            multicellularButton.Visible = false;
+            macroscopicButton.Visible = false;
         }
 
         UpdateATP(delta);
@@ -419,7 +469,60 @@ public class MicrobeHUD : Control
             {
                 hoveredCompoundControl.Value.UpdateTranslation();
             }
+
+            UpdateColonySizeForMulticellular();
+            UpdateColonySizeForMacroscopic();
         }
+    }
+
+    public void ShowSignalingCommandsMenu(Microbe player)
+    {
+        if (microbeControlRadial.Visible)
+        {
+            GD.PrintErr("Radial menu is already open for signaling commands");
+            return;
+        }
+
+        var choices = new List<(string Text, int Id)>
+        {
+            (TranslationServer.Translate("SIGNAL_COMMAND_NONE"), (int)MicrobeSignalCommand.None),
+            (TranslationServer.Translate("SIGNAL_COMMAND_FOLLOW"), (int)MicrobeSignalCommand.FollowMe),
+            (TranslationServer.Translate("SIGNAL_COMMAND_TO_ME"), (int)MicrobeSignalCommand.MoveToMe),
+            (TranslationServer.Translate("SIGNAL_COMMAND_FLEE"), (int)MicrobeSignalCommand.FleeFromMe),
+            (TranslationServer.Translate("SIGNAL_COMMAND_AGGRESSION"), (int)MicrobeSignalCommand.BecomeAggressive),
+        };
+
+        microbeControlRadial.Radial.CenterText = TranslationServer.Translate("SIGNAL_TO_EMIT");
+
+        signalingAgentMenuOpenForMicrobe = player;
+        microbeControlRadial.ShowWithItems(choices);
+    }
+
+    public MicrobeSignalCommand? SelectSignalCommandIfOpen()
+    {
+        // Return nothing if not open
+        if (!microbeControlRadial.Visible)
+            return null;
+
+        var item = microbeControlRadial.Radial.HoveredItem;
+
+        microbeControlRadial.Hide();
+
+        if (item == null)
+            return null;
+
+        return (MicrobeSignalCommand)item.Value;
+    }
+
+    /// <summary>
+    ///   Applies a signaling command to microbe. This is here as the user can actively select a radial menu item
+    /// </summary>
+    /// <param name="command">The command to apply</param>
+    /// <param name="microbe">The target microbe</param>
+    public void ApplySignalCommand(MicrobeSignalCommand? command, Microbe microbe)
+    {
+        microbe.QueuedSignalingCommand = command;
+        signalingAgentMenuOpenForMicrobe = null;
     }
 
     public void ResizeEnvironmentPanel(string mode)
@@ -586,6 +689,15 @@ public class MicrobeHUD : Control
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
 
         stage.MovingToEditor = true;
+
+        // TODO: mitigation for https://github.com/Revolutionary-Games/Thrive/issues/3006 remove once solved
+        // Start auto-evo if not started already to make sure it doesn't start after we are in the editor
+        // scene, this is a potential mitigation for the issue linked above
+        if (!Settings.Instance.RunAutoEvoDuringGamePlay)
+        {
+            GD.Print("Starting auto-evo while fading into the editor as mitigation for issue #3006");
+            stage.GameWorld.IsAutoEvoFinished(true);
+        }
     }
 
     public void ShowExtinctionBox()
@@ -1009,13 +1121,99 @@ public class MicrobeHUD : Control
 
     private void UpdateAbilitiesHotBar(Microbe player)
     {
-        engulfHotkey.Visible = !player.Species.MembraneType.CellWall;
+        engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall;
         bindingModeHotkey.Visible = player.CanBind;
         fireToxinHotkey.Visible = player.AgentVacuoleCount > 0;
+        unbindAllHotkey.Visible = player.CanUnbind;
+        signallingAgentsHotkey.Visible = player.HasSignalingAgent;
 
         engulfHotkey.Pressed = player.State == Microbe.MicrobeState.Engulf;
         bindingModeHotkey.Pressed = player.State == Microbe.MicrobeState.Binding;
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
+        unbindAllHotkey.Pressed = Input.IsActionPressed(unbindAllHotkey.ActionName);
+        signallingAgentsHotkey.Pressed = Input.IsActionPressed(signallingAgentsHotkey.ActionName);
+    }
+
+    private void UpdateMulticellularButton(Microbe player)
+    {
+        if (stage == null)
+            throw new InvalidOperationException("Can't update multicellular button without stage set");
+
+        if (player.Colony == null || player.IsMulticellular || stage.CurrentGame!.FreeBuild)
+        {
+            multicellularButton.Visible = false;
+            return;
+        }
+
+        multicellularButton.Visible = true;
+
+        var newColonySize = player.Colony.ColonyMembers.Count;
+
+        if (stage.MovingToEditor)
+        {
+            multicellularButton.Disabled = true;
+        }
+        else
+        {
+            multicellularButton.Disabled = newColonySize < Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR;
+        }
+
+        UpdateColonySize(newColonySize);
+    }
+
+    private void UpdateColonySize(int newColonySize)
+    {
+        if (newColonySize != playerColonySize)
+        {
+            playerColonySize = newColonySize;
+            UpdateColonySizeForMulticellular();
+            UpdateColonySizeForMacroscopic();
+        }
+    }
+
+    private void UpdateColonySizeForMulticellular()
+    {
+        if (playerColonySize == null)
+            return;
+
+        multicellularButton.Text = string.Format(TranslationServer.Translate("BECOME_MULTICELLULAR"), playerColonySize,
+            Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR);
+    }
+
+    private void UpdateMacroscopicButton(Microbe player)
+    {
+        if (stage == null)
+            throw new InvalidOperationException("Can't update macroscopic button without stage set");
+
+        if (player.Colony == null || !player.IsMulticellular || stage.CurrentGame!.FreeBuild)
+        {
+            macroscopicButton.Visible = false;
+            return;
+        }
+
+        macroscopicButton.Visible = true;
+
+        var newColonySize = player.Colony.ColonyMembers.Count;
+
+        if (stage.MovingToEditor)
+        {
+            macroscopicButton.Disabled = true;
+        }
+        else
+        {
+            macroscopicButton.Disabled = newColonySize < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC;
+        }
+
+        UpdateColonySize(newColonySize);
+    }
+
+    private void UpdateColonySizeForMacroscopic()
+    {
+        if (playerColonySize == null)
+            return;
+
+        macroscopicButton.Text = string.Format(TranslationServer.Translate("BECOME_MACROSCOPIC"), playerColonySize,
+            Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC);
     }
 
     /// <summary>
@@ -1024,22 +1222,7 @@ public class MicrobeHUD : Control
     private void OpenMicrobeStageMenuPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-
-        OpenMenu();
-    }
-
-    private void OpenMenu()
-    {
-        menu.Show();
-        GetTree().Paused = true;
-    }
-
-    private void CloseMenu()
-    {
-        menu.Hide();
-
-        if (!paused)
-            GetTree().Paused = false;
+        menu.Open();
     }
 
     private void PauseButtonPressed()
@@ -1086,9 +1269,7 @@ public class MicrobeHUD : Control
     private void HelpButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-
-        OpenMenu();
-        menu.ShowHelpScreen();
+        menu.OpenToHelp();
     }
 
     private void OnEditorButtonMouseEnter()
@@ -1131,6 +1312,60 @@ public class MicrobeHUD : Control
     private void OnAbilitiesHotBarDisplayChanged(bool displayed)
     {
         hotBar.Visible = displayed;
+    }
+
+    private void OnRadialItemSelected(int itemId)
+    {
+        if (signalingAgentMenuOpenForMicrobe != null)
+        {
+            ApplySignalCommand((MicrobeSignalCommand)itemId, signalingAgentMenuOpenForMicrobe);
+            return;
+        }
+
+        GD.PrintErr("Unexpected radial menu item selection signal");
+    }
+
+    private void OnBecomeMulticellularPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        multicellularConfirmPopup.PopupCenteredShrink();
+    }
+
+    private void OnBecomeMulticellularConfirmed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (stage?.Player == null || playerColonySize is null or < Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR)
+        {
+            GD.Print("Player is no longer eligible to move to multicellular stage");
+            return;
+        }
+
+        GD.Print("Becoming multicellular. NOTE: game is moving to prototype parts of the game, " +
+            "expect non-finished and buggy things!");
+
+        // To prevent being clicked twice
+        multicellularButton.Disabled = true;
+
+        // Make sure the game is unpaused
+        if (GetTree().Paused)
+        {
+            PauseButtonPressed();
+        }
+
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
+        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToMulticellular));
+
+        stage.MovingToEditor = true;
+    }
+
+    private void OnBecomeMacroscopicPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // TODO: late multicellular not done yet
+        ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("TO_BE_IMPLEMENTED"), 2.5f);
     }
 
     private class HoveredCompoundControl : HBoxContainer

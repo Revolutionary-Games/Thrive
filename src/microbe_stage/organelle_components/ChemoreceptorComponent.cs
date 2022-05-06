@@ -10,15 +10,10 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     private float searchRange;
     private float searchAmount;
     private Color lineColour = Colors.White;
-    private bool isActive;
 
-    public override void Update(float elapsed)
+    public override void UpdateAsync(float delta)
     {
-        base.Update(elapsed);
-
-        // For now only player's chemoreceptor does anything during gameplay
-        if (!isActive)
-            return;
+        base.UpdateAsync(delta);
 
         organelle!.ParentMicrobe!.ReportActiveChemereception(targetCompound!, searchRange, searchAmount, lineColour);
     }
@@ -27,11 +22,6 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     {
         if (organelle?.OrganelleGraphics == null)
             throw new InvalidOperationException("Chemoreceptor needs parent organelle to have graphics");
-
-        isActive = organelle!.ParentMicrobe!.IsPlayerMicrobe;
-
-        if (!isActive)
-            return;
 
         var configuration = organelle.Upgrades?.CustomUpgradeData;
 

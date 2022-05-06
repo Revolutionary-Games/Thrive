@@ -68,7 +68,11 @@ public class InputManager : Node
 
         if (!registered)
         {
-            GD.PrintErr("Object registered to receive input, but it has no input attributes on its methods");
+            if (instance.GetType().GetCustomAttribute<IgnoreNoMethodsTakingInputAttribute>() != null)
+                return;
+
+            GD.PrintErr("Object registered to receive input, but it has no input attributes on its methods (type: ",
+                instance.GetType().Name, ")");
         }
     }
 
@@ -90,7 +94,11 @@ public class InputManager : Node
 
         if (removed < 1)
         {
-            GD.PrintErr("Found no instances to unregister input receiving from");
+            if (instance.GetType().GetCustomAttribute<IgnoreNoMethodsTakingInputAttribute>() != null)
+                return;
+
+            GD.PrintErr("Found no instances to unregister input receiving from (unregistering object of type: ",
+                instance.GetType().Name, ")");
         }
     }
 
@@ -332,12 +340,19 @@ public class InputManager : Node
             // foreach type in the specified assemblies
             foreach (var type in assembly.GetTypes())
             {
+                // Skip abstract classes as those can't be instantiated and their methods will be detected for the
+                // derived types
+                if (type.IsAbstract || type.IsInterface)
+                    continue;
+
                 // foreach method in the classes
                 foreach (var methodInfo in type.GetMethods())
                 {
-                    // Check attributes
+                    // Check attributes (duplicate attributes that may be caused by finding duplicates through
+                    // inheritance are skipped)
                     var inputAttributes =
-                        (InputAttribute[])methodInfo.GetCustomAttributes(typeof(InputAttribute), true);
+                        ((InputAttribute[])methodInfo.GetCustomAttributes(typeof(InputAttribute), true)).Distinct()
+                        .ToArray();
                     if (inputAttributes.Length == 0)
                         continue;
 
@@ -354,6 +369,8 @@ public class InputManager : Node
                         }
                         else
                         {
+                            // TODO: it seems likely that if a class with input attributes is inherited a duplicate
+                            // key error will be raised in here
                             // Give the attribute a reference to the method it is placed on
                             attribute.Init(methodInfo);
 

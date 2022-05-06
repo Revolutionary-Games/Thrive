@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Helper functions for making the places in code dealing with saves shorter
@@ -219,7 +220,7 @@ public static class SaveHelper
             {
                 using var file = new File();
                 result = result.OrderByDescending(item =>
-                    file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
+                    file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, item))).ToList();
 
                 break;
             }
@@ -228,7 +229,7 @@ public static class SaveHelper
             {
                 using var file = new File();
                 result = result.OrderBy(item =>
-                    file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
+                    file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, item))).ToList();
 
                 break;
             }
@@ -250,7 +251,7 @@ public static class SaveHelper
         {
             if (nameStartsWith == null || save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
             {
-                if (file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
+                if (file.Open(Path.Combine(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
                 {
                     GD.PrintErr("Can't read size of save file: ", save);
                     continue;
@@ -270,7 +271,7 @@ public static class SaveHelper
     public static void DeleteSave(string saveName)
     {
         using var directory = new Directory();
-        directory.Remove(PathUtils.Join(Constants.SAVE_FOLDER, saveName));
+        directory.Remove(Path.Combine(Constants.SAVE_FOLDER, saveName));
     }
 
     public static void DeleteExcessSaves(string nameStartsWith, int maximumCount)
@@ -318,6 +319,19 @@ public static class SaveHelper
         }
 
         return savesDeleted;
+    }
+
+    public static void ShowErrorAboutPrototypeSaving(Node currentNode)
+    {
+        if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
+        {
+            GD.PrintErr("Can't show message about being in a prototype while loading or saving");
+            return;
+        }
+
+        new InProgressSave(SaveInformation.SaveType.Invalid, () => currentNode, _ =>
+                new Save(),
+            (inProgress, _) => { SetMessageAboutPrototypeSaving(inProgress); }, "invalid_prototype").Start();
     }
 
     /// <summary>
@@ -399,6 +413,9 @@ public static class SaveHelper
                 if (PreventSavingIfExtinct(inProgress, save))
                     return;
 
+                if (PreventSavingIfInPrototype(inProgress, save))
+                    return;
+
                 PerformSave(inProgress, save);
             }, saveName).Start();
     }
@@ -436,6 +453,21 @@ public static class SaveHelper
         inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
             TranslationServer.Translate("PLAYER_EXTINCT"), false);
         return true;
+    }
+
+    private static bool PreventSavingIfInPrototype(InProgressSave inProgress, Save save)
+    {
+        if (!save.SavedProperties!.InPrototypes)
+            return false;
+
+        SetMessageAboutPrototypeSaving(inProgress);
+        return true;
+    }
+
+    private static void SetMessageAboutPrototypeSaving(InProgressSave inProgressSave)
+    {
+        inProgressSave.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
+            TranslationServer.Translate("IN_PROTOTYPE"), false);
     }
 
     private static void PerformSave(InProgressSave inProgress, Save save)

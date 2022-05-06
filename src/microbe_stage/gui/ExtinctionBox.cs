@@ -11,6 +11,12 @@ public class ExtinctionBox : CustomDialog
     private Control extinctionMenu = null!;
     private Control loadMenu = null!;
 
+    public override void _Ready()
+    {
+        extinctionMenu = GetNode<Control>(ExtinctionMenuPath);
+        loadMenu = GetNode<Control>(LoadMenuPath);
+    }
+
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -23,12 +29,6 @@ public class ExtinctionBox : CustomDialog
         base._ExitTree();
 
         InputManager.UnregisterReceiver(this);
-    }
-
-    public override void _Ready()
-    {
-        extinctionMenu = GetNode<Control>(ExtinctionMenuPath);
-        loadMenu = GetNode<Control>(LoadMenuPath);
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]

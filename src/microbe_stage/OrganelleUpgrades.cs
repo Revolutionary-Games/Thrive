@@ -25,4 +25,10 @@ public class OrganelleUpgrades : ICloneable
             CustomUpgradeData = (IComponentSpecificUpgrades?)CustomUpgradeData?.Clone(),
         };
     }
+
+    public override int GetHashCode()
+    {
+        return (UnlockedFeatures.GetHashCode() * 3) ^
+            ((CustomUpgradeData != null ? CustomUpgradeData.GetHashCode() : 1) * 1151);
+    }
 }

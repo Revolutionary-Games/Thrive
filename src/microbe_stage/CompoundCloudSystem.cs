@@ -29,6 +29,9 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     [JsonProperty]
     private float elapsed;
 
+    [JsonIgnore]
+    private float currentBrightness = 1.0f;
+
     /// <summary>
     ///   The cloud resolution of the first cloud
     /// </summary>
@@ -216,11 +219,6 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <summary>
     ///   Absorbs compounds from clouds into a bag
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: finding a way to add threading here probably helps quite a bit
-    ///   </para>
-    /// </remarks>
     public void AbsorbCompounds(Vector3 position, float radius, CompoundBag storage,
         Dictionary<Compound, float> totals, float delta, float rate)
     {
@@ -256,32 +254,32 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             int xEnd = (int)Mathf.Round(cloudRelativeX + localGrabRadius);
             int yEnd = (int)Mathf.Round(cloudRelativeY + localGrabRadius);
 
-            for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius);
-                 x <= xEnd;
-                 x += 1)
+            // TODO: try to improve performance here regarding this lock, as we have just 2 clouds so only 2 threads
+            // can even in theory run absorption code at once
+            lock (cloud.MultithreadedLock)
             {
-                for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius);
-                     y <= yEnd;
-                     y += 1)
+                for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius); x <= xEnd; x += 1)
                 {
-                    // Negative coordinates are always outside the cloud area
-                    if (x < 0 || y < 0)
-                        continue;
-
-                    // Circle check
-                    if (Mathf.Pow(x - cloudRelativeX, 2) +
-                        Mathf.Pow(y - cloudRelativeY, 2) >
-                        localGrabRadiusSquared)
+                    for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius); y <= yEnd; y += 1)
                     {
-                        // Not in it
-                        continue;
-                    }
+                        // Negative coordinates are always outside the cloud area
+                        if (x < 0 || y < 0)
+                            continue;
 
-                    // Then just need to check that it is within the cloud simulation array
-                    if (x < cloud.Size && y < cloud.Size)
-                    {
-                        // Absorb all compounds in the cloud
-                        cloud.AbsorbCompounds(x, y, storage, totals, delta, rate);
+                        // Circle check
+                        if (Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2) >
+                            localGrabRadiusSquared)
+                        {
+                            // Not in it
+                            continue;
+                        }
+
+                        // Then just need to check that it is within the cloud simulation array
+                        if (x < cloud.Size && y < cloud.Size)
+                        {
+                            // Absorb all compounds in the cloud
+                            cloud.AbsorbCompounds(x, y, storage, totals, delta, rate);
+                        }
                     }
                 }
             }
@@ -307,8 +305,6 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         // This version is used when working with cloud local coordinates
         float localRadius = searchRadius / resolution;
 
-        float localRadiusSquared = Mathf.Pow(searchRadius / resolution, 2);
-
         float nearestDistanceSquared = float.MaxValue;
 
         Vector3? closestPoint = null;
@@ -325,36 +321,17 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
 
             cloud.ConvertToCloudLocal(position, out var cloudRelativeX, out var cloudRelativeY);
 
-            // For simplicity all points within a bounding box around the
-            // relative origin point is calculated and that is restricted by
-            // checking if the point is within the circle before grabbing
-
-            // And apparently there isn't an algorithm to generate the points with closest ones first? so
-            // this goes through everything and keeps the closest found point
-
-            int xEnd = (int)Mathf.Round(cloudRelativeX + localRadius);
-            int yEnd = (int)Mathf.Round(cloudRelativeY + localRadius);
-
-            for (int x = (int)Mathf.Round(cloudRelativeX - localRadius);
-                 x <= xEnd;
-                 x += 1)
+            // Search each angle for nearby compounds
+            for (int radius = 1; radius < localRadius; radius += 1)
             {
-                for (int y = (int)Mathf.Round(cloudRelativeY - localRadius);
-                     y <= yEnd;
-                     y += 1)
+                for (double theta = 0; theta <= MathUtils.FULL_CIRCLE; theta += Constants.CHEMORECEPTOR_ARC_SIZE)
                 {
+                    int x = cloudRelativeX + (int)Math.Round(Math.Cos(theta) * radius);
+                    int y = cloudRelativeY + (int)Math.Round(Math.Sin(theta) * radius);
+
                     // Negative coordinates are always outside the cloud area
                     if (x < 0 || y < 0)
                         continue;
-
-                    // Circle check
-                    if (Mathf.Pow(x - cloudRelativeX, 2) +
-                        Mathf.Pow(y - cloudRelativeY, 2) >
-                        localRadiusSquared)
-                    {
-                        // Not in it
-                        continue;
-                    }
 
                     // Then just need to check that it is within the cloud simulation array
                     if (x < cloud.Size && y < cloud.Size)
@@ -404,6 +381,19 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         {
             cloudGridCenter = targetCenter;
             PositionClouds();
+        }
+    }
+
+    public void SetBrightnessModifier(float brightness)
+    {
+        if (Math.Abs(brightness - currentBrightness) < 0.001f)
+            return;
+
+        currentBrightness = brightness;
+
+        foreach (var cloud in clouds)
+        {
+            cloud.SetBrightness(currentBrightness);
         }
     }
 

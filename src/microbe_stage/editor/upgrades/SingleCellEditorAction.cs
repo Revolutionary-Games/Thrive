@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-public class SingleMicrobeEditorAction<T> : MicrobeEditorAction
+/// <summary>
+///   This action contains a single "action" in contrast to <see cref="CombinedMicrobeEditorAction"/> which can
+///   have a number of actions that are logically a single step.
+/// </summary>
+/// <typeparam name="T">Type of the action data to hold</typeparam>
+public class SingleCellEditorAction<T> : CellEditorAction
     where T : MicrobeEditorCombinableActionData
 {
     [JsonProperty]
@@ -11,7 +16,7 @@ public class SingleMicrobeEditorAction<T> : MicrobeEditorAction
     [JsonProperty]
     private readonly Action<T> undo;
 
-    public SingleMicrobeEditorAction(Action<T> redo, Action<T> undo, T data)
+    public SingleCellEditorAction(Action<T> redo, Action<T> undo, T data)
     {
         this.redo = redo;
         this.undo = undo;
@@ -21,10 +26,10 @@ public class SingleMicrobeEditorAction<T> : MicrobeEditorAction
     public T SingleData { get; }
     public override IEnumerable<MicrobeEditorCombinableActionData> Data => new[] { SingleData };
 
-    public static implicit operator SingleMicrobeEditorAction<MicrobeEditorCombinableActionData>(
-        SingleMicrobeEditorAction<T> x)
+    public static implicit operator SingleCellEditorAction<MicrobeEditorCombinableActionData>(
+        SingleCellEditorAction<T> x)
     {
-        return new SingleMicrobeEditorAction<MicrobeEditorCombinableActionData>(data => x.redo((T)data),
+        return new SingleCellEditorAction<MicrobeEditorCombinableActionData>(data => x.redo((T)data),
             data => x.undo((T)data),
             x.SingleData);
     }

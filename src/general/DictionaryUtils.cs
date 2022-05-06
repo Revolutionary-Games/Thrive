@@ -33,9 +33,9 @@ public static class DictionaryUtils
     {
         float sum = 0.0f;
 
-        foreach (var entry in items)
+        foreach (var entry in items.Values)
         {
-            sum += entry.Value;
+            sum += entry;
         }
 
         return sum;
@@ -53,10 +53,8 @@ public static class DictionaryUtils
     {
         foreach (var entry in valuesToAdd)
         {
-            float existing = 0.0f;
-
-            if (items.ContainsKey(entry.Key))
-                existing = items[entry.Key];
+            if (!items.TryGetValue(entry.Key, out float existing))
+                existing = 0;
 
             items[entry.Key] = entry.Value + existing;
         }

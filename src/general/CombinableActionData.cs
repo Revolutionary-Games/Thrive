@@ -22,7 +22,7 @@ public abstract class CombinableActionData
     /// <exception cref="ArgumentException">Thrown when called with itself</exception>
     public ActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
-        if (Equals(other))
+        if (ReferenceEquals(this, other))
             throw new ArgumentException("Do not call with itself", nameof(other));
 
         return GetInterferenceModeWithGuaranteed(other);

@@ -40,6 +40,7 @@ NODE_NAME_UPPERCASE_ACRONYM_ALLOWED_LENGTH = 4
 CFG_VERSION_LINE = %r{[/_]version="([\d.]+)"}.freeze
 ASSEMBLY_VERSION_FILE = 'Properties/AssemblyInfo.cs'
 ASSEMBLY_VERSION_REGEX = /AssemblyVersion\("([\d.]+)"\)/.freeze
+ASSEMBLY_EXTRA_VERSION_REGEX = /AssemblyInformationalVersion\("([^"]*)"\)/.freeze
 
 REQUIREMENTS_TXT_FILE = 'docker/jsonlint/requirements.txt'
 PIP_BABEL_THRIVE_VERSION = /^Babel-Thrive\s*([\d.]+)/.freeze
@@ -165,13 +166,29 @@ end
 def game_version
   return @game_version if @game_version
 
+  found = false
+
   File.foreach(ASSEMBLY_VERSION_FILE, encoding: 'utf-8') do |line|
     next unless line
 
     matches = line.match(ASSEMBLY_VERSION_REGEX)
 
-    return @game_version = matches[1] if matches
+    if matches
+      @game_version = matches[1]
+      found = true
+      next
+    end
+
+    matches = line.match(ASSEMBLY_EXTRA_VERSION_REGEX)
+
+    if matches && matches[1].length.positive?
+      puts 'additional version check'
+
+      raise 'AssemblyInformationalVersion must start with a dash' if matches[1][0] != '-'
+    end
   end
+
+  return @game_version if found
 
   raise 'Could not find AssemblyVersion'
 end
@@ -780,9 +797,14 @@ def run_cleanup_code
   params = ['dotnet', 'tool', 'run', 'jb', 'cleanupcode', 'Thrive.sln',
             '--profile=full_no_xml', "--caches-home=#{JET_BRAINS_CACHE}"]
 
+  # TODO: we could probably split the includes into 4 groups to speed up things as the
+  # cleanup tool doesn't run in parallel by default (so we could run 4 processes at once)
   params.append "--include=#{@includes.join(';')}" if @includes
 
-  runOpen3Checked(*params)
+  # Sometimes the code inspections fails completely and caches bad data if ran at the same time
+  BUILD_MUTEX.synchronize do
+    runOpen3Checked(*params)
+  end
 
   new_diff = runOpen3CaptureOutput 'git', '-c', 'core.safecrlf=false', 'diff', '--stat'
 

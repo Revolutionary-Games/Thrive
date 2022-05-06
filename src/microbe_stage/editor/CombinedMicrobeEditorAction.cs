@@ -3,17 +3,17 @@ using System.Linq;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Combines multiple <see cref="MicrobeEditorAction"/>s into one singular action
+///   Combines multiple <see cref="CellEditorAction"/>s into one singular action
 /// </summary>
-public class CombinedMicrobeEditorAction : MicrobeEditorAction
+public class CombinedMicrobeEditorAction : CellEditorAction
 {
-    public CombinedMicrobeEditorAction(params MicrobeEditorAction[] actions)
+    public CombinedMicrobeEditorAction(params CellEditorAction[] actions)
     {
         Actions = actions;
     }
 
     [JsonProperty]
-    public IReadOnlyList<MicrobeEditorAction> Actions { get; private set; }
+    public IReadOnlyList<CellEditorAction> Actions { get; private set; }
 
     public override IEnumerable<MicrobeEditorCombinableActionData> Data => Actions.SelectMany(a => a.Data);
 

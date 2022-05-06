@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
 using Saving;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Holds data needed for an in-progress save action. And manages stepping through all the actions that need to happen
@@ -15,7 +16,7 @@ public class InProgressSave : IDisposable
     private readonly Func<InProgressSave, Save> createSaveData;
     private readonly Action<InProgressSave, Save> performSave;
 
-    private readonly Task<string> saveNameTask;
+    private readonly Task<string>? saveNameTask;
 
     private readonly Stopwatch stopwatch;
 
@@ -24,7 +25,7 @@ public class InProgressSave : IDisposable
     /// </summary>
     private readonly string? saveName;
 
-    private readonly bool returnToPauseState;
+    private bool returnToPauseState;
 
     private State state = State.Initial;
     private Save? save;
@@ -52,13 +53,15 @@ public class InProgressSave : IDisposable
         this.performSave = performSave;
         this.saveName = saveName;
         Type = type;
-        returnToPauseState = currentGameRoot.Invoke().GetTree().Paused;
 
         stopwatch = Stopwatch.StartNew();
 
         // Start calculating the save name here to save some time
-        saveNameTask = new Task<string>(CalculateNameForSave);
-        TaskExecutor.Instance.AddTask(saveNameTask);
+        if (type != SaveInformation.SaveType.Invalid)
+        {
+            saveNameTask = new Task<string>(CalculateNameForSave);
+            TaskExecutor.Instance.AddTask(saveNameTask);
+        }
     }
 
     private enum State
@@ -78,6 +81,7 @@ public class InProgressSave : IDisposable
 
     public void Start()
     {
+        returnToPauseState = currentGameRoot.Invoke().GetTree().Paused;
         currentGameRoot.Invoke().GetTree().Paused = true;
 
         IsSaving = true;
@@ -104,7 +108,7 @@ public class InProgressSave : IDisposable
         {
             if (disposing)
             {
-                saveNameTask.Dispose();
+                saveNameTask?.Dispose();
             }
 
             disposed = true;
@@ -148,7 +152,7 @@ public class InProgressSave : IDisposable
                 if (found > highestNumber)
                     highestNumber = found;
 
-                var modified = file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, name));
+                var modified = file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, name));
 
                 if (modified < oldestModifiedTime)
                 {
@@ -166,6 +170,18 @@ public class InProgressSave : IDisposable
         switch (state)
         {
             case State.Initial:
+                if (Type == SaveInformation.SaveType.Invalid)
+                {
+                    // If we are just meant to show an error message, we can jump ahead steps
+                    performSave.Invoke(this, new Save());
+
+                    if (string.IsNullOrEmpty(message))
+                        ReportStatus(false, "Error: failure not set for invalid type save");
+
+                    state = State.Finished;
+                    break;
+                }
+
                 // On this frame a pause menu might still be open, wait until next frame for it to close before
                 // taking a screenshot
                 wasColourblindScreenFilterVisible = ColourblindScreenFilter.Instance.Visible;
@@ -195,6 +211,12 @@ public class InProgressSave : IDisposable
 
             case State.SaveData:
             {
+                if (saveNameTask == null)
+                {
+                    throw new InvalidOperationException(
+                        "In progress ave is in invalid state for missing save name generation task");
+                }
+
                 save!.Name = saveNameTask.Result;
 
                 GD.Print("Creating a save with name: ", save.Name);

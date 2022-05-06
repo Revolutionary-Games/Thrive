@@ -59,7 +59,10 @@ Code style rules
   named the same as the class in them are named with all lowercase
   with underscores separating the words.
 
-- Use British English, unless something like Godot requires to use American spelling.
+- Use British English, unless something like Godot requires you to use
+  American spelling, for code comments, variables and in-game text. An
+  exception to this is "meter" and other words that would end in
+  "tre", spell those as "ter".
 
 - C# file lines should have a maximum width of 120 columns.
 
@@ -277,6 +280,9 @@ Code style rules
   "cells" etc.
 
 - Don't add a `Dispose` method to classes that don't need it.
+
+- Use `TryGetValue` instead of first calling `Dictionary.ContainsKey`
+  and then reading the value separate because `TryGetValue` is faster.
 
 - Base method calls should be at the start of the method, unless
   something really has to happen before them. This is to make it

@@ -69,7 +69,7 @@ public class Jukebox : Node
     }
 
     private List<string> PlayingTracks => audioPlayers.Where(player => player.Playing)
-        .Select(player => player.CurrentTrack).DiscardNulls().ToList();
+        .Select(player => player.CurrentTrack).WhereNotNull().ToList();
 
     public override void _Ready()
     {
@@ -123,6 +123,22 @@ public class Jukebox : Node
         Pause();
         StopStreams();
         operations.Clear();
+    }
+
+    /// <summary>
+    ///   Smoothly stops the currently playing music with fade out (doesn't preserve positions for when
+    ///   Resume is called)
+    /// </summary>
+    public void SmoothStop()
+    {
+        operations.Clear();
+        AddFadeOut();
+        operations.Enqueue(new Operation(_ =>
+        {
+            Pause();
+            StopStreams();
+            return true;
+        }));
     }
 
     public override void _Process(float delta)
