@@ -98,14 +98,12 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     {
         // TODO: action history. Once we have also body plan actions we need a way to only apply the discount to one
         // type
-        var dummyHistory = new EditorActionHistory<CombinedEditorAction>();
-
-        return (int)(dummyHistory.WhatWouldActionsCost(actions) * Constants.MULTICELLULAR_EDITOR_COST_FACTOR);
+        return (int)(history.WhatWouldActionsCost(actions) * Constants.MULTICELLULAR_EDITOR_COST_FACTOR);
     }
 
     public bool OrganellePlacedThisSession(OrganelleTemplate organelle)
     {
-        throw new NotImplementedException();
+        return history.OrganellePlacedThisSession(organelle);
     }
 
     public override bool CancelCurrentAction()
