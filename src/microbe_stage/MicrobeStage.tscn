@@ -439,6 +439,10 @@ AmmoniaBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Bo
 PhosphateBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates")
 HydrogenSulfideBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide")
 IronBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron")
+EnvironmentPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton")
+EnvironmentPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton")
+CompoundsPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton")
+CompoundsPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton")
 CompoundsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer")
 AgentsPanelPath = NodePath("BottomLeft/LeftPanels/AgentsPanel")
 OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
@@ -2249,11 +2253,12 @@ custom_styles/separator = SubResource( 36 )
 anims/FadeInOut = SubResource( 37 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
+visible = true
 
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "expand" ]]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "compress" ]]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="MicrobeHUD" method="ResizeCompoundPanel" binds= [ "expand" ]]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="MicrobeHUD" method="ResizeCompoundPanel" binds= [ "compress" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "expand" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "compress" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/OpenMicrobeMenu" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/PauseButtonMargin/Pause" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/PauseButtonMargin/Resume" to="MicrobeHUD" method="PauseButtonPressed"]
