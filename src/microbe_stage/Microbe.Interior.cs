@@ -1136,10 +1136,10 @@ public partial class Microbe
                 }
             }
 
-            var totalAmount = engulfedObject.AvailableEngulfableCompounds.Sum(compound => compound.Value);
-            engulfable.DigestionProgress = 1 - (totalAmount / engulfedObject.InitialTotalEngulfableCompounds);
+            var totalAmountLeft = engulfedObject.AvailableEngulfableCompounds.Sum(compound => compound.Value);
+            engulfable.DigestionProgress = 1 - (totalAmountLeft / engulfedObject.InitialTotalEngulfableCompounds);
 
-            if (totalAmount <= 0 || engulfable.DigestionProgress >= 1)
+            if (totalAmountLeft <= 0 || engulfable.DigestionProgress >= 1)
             {
                 engulfedSize -= engulfable.Size;
                 engulfedObjects.RemoveAt(i);

@@ -327,7 +327,7 @@ public static class Constants
     /// <summary>
     ///   Each lysosome grants 15% increase in digestion speed.
     /// </summary>
-    public const float LYSOSOME_DIGESTION_SPEED_UP_FRACTION = 0.15f;
+    public const float LYSOSOME_DIGESTION_SPEED_UP_FRACTION = 0.2f;
 
     /// <summary>
     ///   How much ATP does binding mode cost per second
