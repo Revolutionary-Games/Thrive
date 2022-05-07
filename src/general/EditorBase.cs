@@ -51,7 +51,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     ///   Where all user actions will  be registered
     /// </summary>
     [JsonProperty]
-    protected ActionHistory<TAction> history = null!;
+    protected EditorActionHistory<TAction> history = null!;
 
     protected bool ready;
 
@@ -75,6 +75,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     [JsonProperty]
     protected GameProperties? currentGame;
 
+    [JsonProperty]
+    private int mutationPoints;
+
     private Control editorGUIBaseNode = null!;
 
     /// <summary>
@@ -87,8 +90,16 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     [JsonIgnore]
     public bool TransitionFinished { get; protected set; }
 
-    [JsonProperty]
-    public int MutationPoints { get; set; }
+    [JsonIgnore]
+    public virtual int MutationPoints
+    {
+        get => mutationPoints;
+        set
+        {
+            mutationPoints = Mathf.Clamp(value, 0, Constants.BASE_MUTATION_POINTS);
+            OnMutationPointsChanged();
+        }
+    }
 
     [JsonProperty]
     public bool FreeBuilding { get; protected set; }
@@ -292,8 +303,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Individual editor parts may have a
-    ///     <see cref="HexEditorComponentBase{TEditor,TAction,THexMove}.SetEditorWorldTabSpecificObjectVisibility"/>
+    ///     Individual editor parts may have a SetEditorWorldTabSpecificObjectVisibility
     ///     method to be able to set the visibility per editor component
     ///   </para>
     /// </remarks>
@@ -349,27 +359,30 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     public abstract bool CancelCurrentAction();
 
-    public void EnqueueAction(TAction action)
+    public abstract int WhatWouldActionsCost(IEnumerable<CombinableActionData> actions);
+
+    public virtual bool EnqueueAction(TAction action)
     {
         // A sanity check to not let an action proceed if we don't have enough mutation points
-        if (!CheckEnoughMPForAction(action.Cost))
-            return;
+        if (!CheckEnoughMPForAction(WhatWouldActionsCost(action.Data)))
+            return false;
 
         if (HasInProgressAction)
         {
             GD.Print("Editor action blocked due to an in-progress action");
             OnActionBlockedWhileMoving();
-            return;
+            return false;
         }
 
         history.AddAction(action);
 
         NotifyUndoRedoStateChanged();
+        return true;
     }
 
-    public void EnqueueAction(ReversibleAction action)
+    public bool EnqueueAction(ReversibleAction action)
     {
-        EnqueueAction((TAction)action);
+        return EnqueueAction((TAction)action);
     }
 
     public bool CheckEnoughMPForAction(int cost)
@@ -450,16 +463,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         return OnFinishEditing(userOverrides);
     }
 
-    public void ChangeMutationPoints(int change)
-    {
-        if (FreeBuilding || CheatManager.InfiniteMP)
-            return;
-
-        MutationPoints = (MutationPoints + change).Clamp(0, Constants.BASE_MUTATION_POINTS);
-
-        OnMutationPointsChanged();
-    }
-
     protected abstract void InitEditorGUI(bool fresh);
 
     protected bool ForwardEditorComponentFinishRequest(List<EditorUserOverride>? userOverrides)
@@ -484,7 +487,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         if (!IsLoadedFromSave)
         {
-            history = new ActionHistory<TAction>();
+            history = new EditorActionHistory<TAction>();
 
             // Start a new game if no game has been started
             if (currentGame == null)
@@ -520,11 +523,14 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
             // This needs to be setup before the GUI in case there is an element there whose initial state depends on
             // how much MP is remaining
-            MutationPoints = Constants.BASE_MUTATION_POINTS;
+            mutationPoints = Constants.BASE_MUTATION_POINTS;
         }
 
         InitEditorGUI(fresh);
         NotifyUndoRedoStateChanged();
+
+        // TODO: dynamic MP changes
+        // NotifySymmetryButtonState();
 
         // Set the right active tab if it isn't the default or we loaded a save
         ApplyEditorTab();

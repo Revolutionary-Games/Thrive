@@ -259,6 +259,8 @@ public class Settings
     /// </summary>
     public SettingValue<bool> ShowUnsavedProgressWarning { get; set; } = new(true);
 
+    public SettingValue<bool> MoveOrganellesWithSymmetry { get; set; } = new(false);
+
     // Input properties
 
     /// <summary>

@@ -48,7 +48,8 @@ public partial class CellEditorComponent
 
     public override void OnActionBlockedWhileAnotherIsInProgress()
     {
-        throw new NotImplementedException();
+        ToolTipManager.Instance.ShowPopup(
+            TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
     }
 
     protected override void RegisterTooltips()
