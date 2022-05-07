@@ -595,8 +595,6 @@ public partial class Microbe
         CollisionLayer = 0;
         CollisionMask = 0;
 
-        nameLabel?.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
-
         // Some pre-death actions are going to be run now
     }
 
