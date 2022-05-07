@@ -227,7 +227,7 @@ public class MicrobeHUD : Control
     private HSeparator hoveredCellsSeparator = null!;
     private VBoxContainer hoveredCellsContainer = null!;
     private Panel environmentPanel = null!;
-    private GridContainer environmentPanelBarContainer = null!;
+    private GridContainer? environmentPanelBarContainer = null!;
     private Panel compoundsPanel = null!;
     private HBoxContainer hotBar = null!;
     private ActionButton engulfHotkey = null!;
@@ -250,7 +250,7 @@ public class MicrobeHUD : Control
     // ReSharper disable once NotAccessedField.Local
     private ProgressBar pressure = null!;
 
-    private GridContainer compoundsPanelBarContainer = null!;
+    private GridContainer? compoundsPanelBarContainer = null!;
     private ProgressBar glucoseBar = null!;
     private ProgressBar ammoniaBar = null!;
     private ProgressBar phosphateBar = null!;
