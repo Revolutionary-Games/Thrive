@@ -65,6 +65,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private bool? hasSignalingAgent;
 
+    private string debugName = null!;
+
     [JsonProperty]
     private MicrobeSignalCommand command = MicrobeSignalCommand.None;
 
@@ -371,6 +373,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             SetMembraneFromSpecies();
         }
 
+        SetDebugName();
+
         onReadyCalled = true;
     }
 
@@ -383,6 +387,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         cachedMulticellularSpecies = null;
 
         Species = species;
+
+        SetDebugName();
 
         if (species is MicrobeSpecies microbeSpecies)
         {
@@ -763,6 +769,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
     }
 
+    public override string ToString()
+    {
+        return debugName;
+    }
+
     /// <summary>
     ///   Returns a list of tuples, representing all possible compound targets. These are not all clouds that the
     ///   microbe can smell; only the best candidate of each compound type.
@@ -1014,5 +1025,16 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         cachedHexCountDirty = false;
+    }
+
+    private void SetDebugName()
+    {
+        if (Species == null!)
+        {
+            debugName = $"<{GetInstanceId()}>";
+            return;
+        }
+
+        debugName = $"[{Species.Genus[0]}.{Species.Epithet.Substring(0, 4)}: {GetInstanceId()}]";
     }
 }

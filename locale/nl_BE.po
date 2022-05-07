@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-02 12:32+0800\n"
+"POT-Creation-Date: 2022-05-07 19:30+0800\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -1072,55 +1072,56 @@ msgstr "loopstatus:"
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr ""
 
-#: ../src/engine/DebugPanel.tscn:18
-msgid "DEBUG_PANEL"
-msgstr ""
-
-#: ../src/engine/DebugPanel.tscn:28
-#, fuzzy
-msgid "FPS_DISPLAY"
-msgstr "Media Play(toets)"
-
-#: ../src/engine/DebugPanel.tscn:35
-#, fuzzy
-msgid "PERFORMANCE_METRICS"
-msgstr "Prestaties"
-
-#: ../src/engine/DebugPanel.tscn:42
-msgid "COLLISION_SHAPE"
-msgstr ""
-
-#: ../src/engine/DebugPanel.tscn:49
-#, fuzzy
-msgid "ENTITY_LABEL"
-msgstr "Bioom: {0}"
-
-#: ../src/engine/DebugPanel.tscn:60
-#, fuzzy
-msgid "TRANSPARENCY"
-msgstr "Vertalers"
-
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:65
-#: ../src/engine/PerformanceMetrics.tscn:61
-#, fuzzy
-msgid "FPS"
-msgstr "Max FPS:"
-
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
 msgid "LOADING"
 msgstr "Laden"
 
-#: ../src/engine/PerformanceMetrics.cs:66
-#: ../src/engine/PerformanceMetrics.tscn:68
+#: ../src/engine/debugging/DebugOverlay.tscn:36
+msgid "DEBUG_PANEL"
+msgstr ""
+
+#: ../src/engine/debugging/DebugOverlay.tscn:46
+#, fuzzy
+msgid "FPS_DISPLAY"
+msgstr "Media Play(toets)"
+
+#: ../src/engine/debugging/DebugOverlay.tscn:53
+#, fuzzy
+msgid "PERFORMANCE_METRICS"
+msgstr "Prestaties"
+
+#: ../src/engine/debugging/DebugOverlay.tscn:60
+msgid "COLLISION_SHAPE"
+msgstr ""
+
+#: ../src/engine/debugging/DebugOverlay.tscn:67
+#, fuzzy
+msgid "ENTITY_LABEL"
+msgstr "Bioom: {0}"
+
+#: ../src/engine/debugging/DebugOverlay.tscn:78
+#, fuzzy
+msgid "TRANSPARENCY"
+msgstr "Vertalers"
+
+#: ../src/engine/debugging/FPSCounter.cs:18
+#: ../src/engine/debugging/PerformanceMetrics.cs:65
+#: ../src/engine/debugging/PerformanceMetrics.tscn:62
+#, fuzzy
+msgid "FPS"
+msgstr "Max FPS:"
+
+#: ../src/engine/debugging/PerformanceMetrics.cs:66
+#: ../src/engine/debugging/PerformanceMetrics.tscn:69
 msgid "FRAME_DELTA"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.cs:80
-#: ../src/engine/PerformanceMetrics.tscn:75
+#: ../src/engine/debugging/PerformanceMetrics.cs:80
+#: ../src/engine/debugging/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.tscn:32
+#: ../src/engine/debugging/PerformanceMetrics.tscn:33
 #, fuzzy
 msgid "METRICS"
 msgstr "Schakel FPS weergave"
@@ -2852,15 +2853,15 @@ msgstr "N/A MP"
 msgid "DEATH"
 msgstr "Dood"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:702
+#: ../src/microbe_stage/Microbe.Contact.cs:700
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "succesvolle doorzoeking"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:709
+#: ../src/microbe_stage/Microbe.Contact.cs:707
 msgid "SUCCESSFUL_KILL"
 msgstr "succesvolle moord"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:947
+#: ../src/microbe_stage/Microbe.Contact.cs:945
 msgid "ESCAPE_ENGULFING"
 msgstr "ontsnap omsluiting"
 

@@ -1,13 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/engine/FPSCounter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/saving/SaveStatusOverlay.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/engine/LoadingScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/engine/ColourblindScreenFilter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/QuickLoadHandler.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=6]
-[ext_resource path="res://src/engine/PerformanceMetrics.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/engine/DebugPanel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/engine/debugging/DebugOverlay.tscn" type="PackedScene" id=8]
 
 [node name="ScreenOverlays" type="Node"]
 pause_mode = 2
@@ -28,13 +26,4 @@ theme = ExtResource( 6 )
 [node name="ColourblindScreenFilter" parent="CanvasLayer" instance=ExtResource( 4 )]
 visible = false
 
-[node name="DebugPanel" parent="CanvasLayer" instance=ExtResource( 8 )]
-
-[node name="PerformanceMetrics" parent="CanvasLayer/DebugPanel" instance=ExtResource( 7 )]
-
-[node name="FPSCounter" parent="CanvasLayer/DebugPanel" instance=ExtResource( 1 )]
-visible = false
-margin_left = 50.0
-margin_top = 50.0
-margin_right = 50.0
-margin_bottom = 50.0
+[node name="DebugOverlay" parent="CanvasLayer" instance=ExtResource( 8 )]
