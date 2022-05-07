@@ -48,7 +48,7 @@ public class PauseMenu : CustomDialog
     private ExitType exitType;
 
     [Signal]
-    public delegate void OnClosed();
+    public delegate void OnResumed();
 
     /// <summary>
     ///   Triggered when the user hits ESC to open the pause menu
@@ -193,8 +193,8 @@ public class PauseMenu : CustomDialog
         {
             ActiveMenu = ActiveMenuType.Primary;
 
-            EmitSignal(nameof(OnClosed));
             Close();
+            EmitSignal(nameof(OnResumed));
 
             return true;
         }
@@ -202,8 +202,8 @@ public class PauseMenu : CustomDialog
         if (IsPausingBlocked)
             return false;
 
-        EmitSignal(nameof(OnOpenWithKeyPress));
         Open();
+        EmitSignal(nameof(OnOpenWithKeyPress));
 
         return true;
     }
@@ -214,8 +214,8 @@ public class PauseMenu : CustomDialog
         if (IsPausingBlocked)
             return false;
 
-        EmitSignal(nameof(OnOpenWithKeyPress));
         Open();
+        EmitSignal(nameof(OnOpenWithKeyPress));
 
         ShowHelpScreen();
         return true;
@@ -287,8 +287,8 @@ public class PauseMenu : CustomDialog
     private void ClosePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnClosed));
         Close();
+        EmitSignal(nameof(OnResumed));
     }
 
     private void ReturnToMenuPressed()
@@ -411,7 +411,8 @@ public class PauseMenu : CustomDialog
         ActiveMenu = ActiveMenuType.Primary;
 
         // Close this first to get the menus out of the way to capture the save screenshot
-        EmitSignal(nameof(OnClosed));
+        Hide();
+        EmitSignal(nameof(OnResumed));
         EmitSignal(nameof(MakeSave), name);
     }
 
