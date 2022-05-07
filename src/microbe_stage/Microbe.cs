@@ -65,7 +65,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private bool? hasSignalingAgent;
 
-    private string debugName = null!;
+    private string debugName = string.Empty;
 
     [JsonProperty]
     private MicrobeSignalCommand command = MicrobeSignalCommand.None;
@@ -1031,10 +1031,10 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     {
         if (Species == null!)
         {
-            debugName = $"<{GetInstanceId()}>";
+            debugName = string.Empty;
             return;
         }
 
-        debugName = $"[{Species.Genus[0]}.{Species.Epithet.Substring(0, 4)}: {GetInstanceId()}]";
+        debugName = $"[{Species.Genus[0]}.{Species.Epithet.Substring(0, 4)}:{GetInstanceId()}]";
     }
 }

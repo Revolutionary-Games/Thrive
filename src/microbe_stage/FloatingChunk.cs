@@ -51,6 +51,8 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     [JsonProperty]
     private float elapsedSinceProcess;
 
+    private string debugName = null!;
+
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
@@ -149,6 +151,8 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
                 ContainedCompounds.Compounds.Add(entry.Key, entry.Value.Amount);
             }
         }
+
+        debugName = $"[{chunkType.Name}:{GetInstanceId()}]";
     }
 
     /// <summary>
@@ -223,6 +227,11 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             throw new InvalidOperationException("Can't make a chunk without graphics scene");
 
         InitPhysics();
+    }
+
+    public override string ToString()
+    {
+        return debugName;
     }
 
     public void ProcessChunk(float delta, CompoundCloudSystem compoundClouds)

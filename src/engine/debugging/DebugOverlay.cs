@@ -123,7 +123,7 @@ public class DebugOverlay : Control
             var microbe = pair.Key;
             var label = pair.Value;
 
-            if (label.Text.Empty() || label.Text[0] == '<')
+            if (label.Text.Empty())
                 label.Text = microbe.ToString();
 
             label.RectPosition = camera.UnprojectPosition(microbe.Transform.origin);
@@ -133,6 +133,9 @@ public class DebugOverlay : Control
         {
             var floatingChunk = pair.Key;
             var label = pair.Value;
+
+            if (label.Text.Empty())
+                label.Text = floatingChunk.ToString();
 
             label.RectPosition = camera.UnprojectPosition(floatingChunk.Transform.origin);
         }
