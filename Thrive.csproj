@@ -100,6 +100,7 @@
     <Compile Include="src\engine\ScreenShotTaker.cs" />
     <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
+    <Compile Include="src\general\CombinableActionData.cs" />
     <Compile Include="src\general\AliveMarker.cs" />
     <Compile Include="src\general\EditorBase.cs" />
     <Compile Include="src\general\BehaviouralValueType.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="src\general\GameEventDescription.cs" />
     <Compile Include="src\general\HexEditorComponentBase.cs" />
     <Compile Include="src\general\HexEditorSymmetry.cs" />
+    <Compile Include="src\general\HexEditorSymmetryExtensions.cs" />
     <Compile Include="src\general\HexLayout.cs" />
     <Compile Include="src\general\HexWithData.cs" />
     <Compile Include="src\general\HybridAudioPlayer.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="src\general\IPositionedHex.cs" />
     <Compile Include="src\general\IReturnableGameState.cs" />
     <Compile Include="src\general\JSONHelpers.cs" />
+    <Compile Include="src\general\ActionInterferenceMode.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
@@ -185,6 +188,14 @@
     <Compile Include="src\general\SceneDisplayer.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\BehaviourActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\MembraneActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\MicrobeEditorCombinableActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\MoveActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\NewMicrobeActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\PlacementActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\RemoveActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\RigidityActionData.cs" />
     <Compile Include="src\microbe_stage\editor\BehaviourEditorSubComponent.cs" />
     <Compile Include="src\microbe_stage\editor\CellEditorComponent.Callbacks.cs" />
     <Compile Include="src\microbe_stage\editor\CellEditorComponent.cs" />
@@ -199,15 +210,18 @@
     <Compile Include="src\microbe_stage\editor\MicrobeEditorTabButtons.cs" />
     <Compile Include="src\microbe_stage\editor\MutationPointsBar.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapEditorComponent.cs" />
+    <Compile Include="src\microbe_stage\editor\EditorActionHistory.cs" />
     <Compile Include="src\microbe_stage\FloatingChunkSystem.cs" />
     <Compile Include="src\microbe_stage\ICellProperties.cs" />
     <Compile Include="src\microbe_stage\IComputedMembraneData.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
+    <Compile Include="src\microbe_stage\editor\CombinedMicrobeEditorAction.cs" />
     <Compile Include="src\microbe_stage\editor\SpeciesPopulationDatasetsLegend.cs" />
     <Compile Include="src\microbe_stage\editor\TimelineTab.cs" />
     <Compile Include="src\microbe_stage\editor\upgrades\ChemoreceptorUpgradeGUI.cs" />
     <Compile Include="src\microbe_stage\editor\upgrades\IOrganelleUpgrader.cs" />
     <Compile Include="src\microbe_stage\editor\upgrades\OrganelleUpgradeGUI.cs" />
+    <Compile Include="src\microbe_stage\editor\upgrades\SingleCellEditorAction.cs" />
     <Compile Include="src\microbe_stage\gui\ExtinctionBox.cs" />
     <Compile Include="src\microbe_stage\IComponentSpecificUpgrades.cs" />
     <Compile Include="src\microbe_stage\Microbe.Interior.cs" />
@@ -224,7 +238,6 @@
     <Compile Include="src\microbe_stage\PatchMapNameGenerator.cs" />
     <Compile Include="src\microbe_stage\editor\BarHelper.cs" />
     <Compile Include="src\microbe_stage\editor\CompoundBalanceDisplay.cs" />
-    <Compile Include="src\microbe_stage\editor\IMicrobeEditorActionData.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditor.cs" />
     <Compile Include="src\microbe_stage\editor\CellEditorAction.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobePartSelection.cs" />
@@ -459,7 +472,7 @@
       <Version>1.1.1</Version>
     </PackageReference>
     <PackageReference Include="StyleCop.Analyzers">
-      <Version>1.2.0-beta.406</Version>
+      <Version>1.2.0-beta.435</Version>
     </PackageReference>
     <PackageReference Include="Lib.Harmony">
       <Version>2.2.1</Version>

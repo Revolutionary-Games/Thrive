@@ -459,7 +459,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 return;
 
             player = new AudioStreamPlayer3D();
-            player.UnitDb = GD.Linear2Db(volume);
             player.MaxDistance = 100.0f;
             player.Bus = "SFX";
 
@@ -467,6 +466,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             otherAudioPlayers.Add(player);
         }
 
+        player.UnitDb = GD.Linear2Db(volume);
         player.Stream = sound;
         player.Play();
     }
@@ -486,13 +486,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 return;
 
             player = new AudioStreamPlayer();
-            player.VolumeDb = GD.Linear2Db(volume);
             player.Bus = "SFX";
 
             AddChild(player);
             nonPositionalAudioPlayers.Add(player);
         }
 
+        player.VolumeDb = GD.Linear2Db(volume);
         player.Stream = sound;
         player.Play();
     }
