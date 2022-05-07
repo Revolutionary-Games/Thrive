@@ -1304,7 +1304,8 @@ public partial class Microbe
         // foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
         foreach (var microbe in touchedMicrobes)
         {
-            if (microbe.destroyed) {
+            if (microbe.destroyed)
+            {
                 GD.Print($"Removed destroyed microbe from {nameof(touchedMicrobes)}");
                 touchedMicrobes.Remove(microbe);
                 break; // this is important to not crash on the next loop in the foreach
