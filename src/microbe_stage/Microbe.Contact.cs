@@ -48,10 +48,10 @@ public partial class Microbe
     /// <summary>
     ///   Engulfables that this cell is actively trying to engulf
     /// </summary>
-    private HashSet<IEngulfable> attemptingToEngulf = new();
+    private List<IEngulfable> attemptingToEngulf = new();
 
     [JsonProperty]
-    private List<EngulfedObject> engulfedObjects = new();
+    private List<EngulfedMaterial> engulfedMaterials = new();
 
     [JsonProperty]
     private float escapeInterval;
@@ -1012,9 +1012,9 @@ public partial class Microbe
             IsBeingEngulfed = false;
         }
 
-        for (int i = engulfedObjects.Count - 1; i >= 0; --i)
+        for (int i = engulfedMaterials.Count - 1; i >= 0; --i)
         {
-            var engulfed = engulfedObjects[i];
+            var engulfed = engulfedMaterials[i];
 
             var body = engulfed.Engulfable.EntityNode as RigidBody;
             if (body == null)
@@ -1032,7 +1032,7 @@ public partial class Microbe
                     else if (engulfed.Engulfable.IsIngested)
                     {
                         CompleteEjection(engulfed.Engulfable);
-                        engulfedObjects.RemoveAt(i);
+                        engulfedMaterials.RemoveAt(i);
                     }
 
                     engulfed.Interpolate = false;
@@ -1064,8 +1064,10 @@ public partial class Microbe
             CheckStartEngulfingOnCandidates();
 
         // Apply engulf effect to the objects we are engulfing
-        foreach (var engulfable in attemptingToEngulf)
+        for (int i = attemptingToEngulf.Count - 1; i >= 0; --i)
         {
+            var engulfable = attemptingToEngulf[i];
+
             // Ignore non-engulfable objects
             if (!CanEngulf(engulfable))
             {
@@ -1082,6 +1084,13 @@ public partial class Microbe
                 // Pull nearby bodies into our cell
                 var direction = body.GlobalTransform.origin.DirectionTo(GlobalTransform.origin);
                 body.AddCentralForce(direction * body.Mass * Constants.ENGULFING_PULL_SPEED);
+
+                // Ingest if not yet and body is in ingestion area
+                if (engulfableArea.OverlapsBody(body) && CanEngulf(engulfable))
+                {
+                    IngestEngulfable(engulfable);
+                    continue;
+                }
             }
 
             engulfable.HostileEngulfer.Value = this;
@@ -1132,7 +1141,7 @@ public partial class Microbe
 
             // This loop is placed here (which isn't related to the particles but for convenience)
             // so this loop is run only once
-            foreach (var engulfed in engulfedObjects.ToList())
+            foreach (var engulfed in engulfedMaterials.ToList())
             {
                 EjectEngulfable(engulfed.Engulfable);
             }
@@ -1315,15 +1324,6 @@ public partial class Microbe
         }
     }
 
-    private void OnAreaEnteredEngulfableArea(Area area)
-    {
-        if (area == engulfableArea || State != MicrobeState.Engulf)
-            return;
-
-        if (area.GetParent() is IEngulfable engulfable && CanEngulf(engulfable))
-            IngestEngulfable(engulfable);
-    }
-
     /// <summary>
     ///   Ingests (finishes engulfment of) the target into this microbe. Does not check whether the target
     ///   can be engulfed or not.
@@ -1358,13 +1358,20 @@ public partial class Microbe
 
         var digestibleCompounds = target.CalculateDigestibleCompounds();
 
-        engulfedObjects.Add(new EngulfedObject
+        var nearestPointOfMembraneHalfScale = Membrane.GetVectorTowardsNearestPointOfMembrane(
+            body.Translation.x, body.Translation.z) / 2;
+
+        var engulfedPosition = new Vector3(
+                random.Next(0.0f, nearestPointOfMembraneHalfScale.x),
+                body.Translation.y,
+                random.Next(0.0f, nearestPointOfMembraneHalfScale.z));
+
+        engulfedMaterials.Add(new EngulfedMaterial
         {
             Engulfable = target,
             AvailableEngulfableCompounds = digestibleCompounds,
             InitialTotalEngulfableCompounds = digestibleCompounds.Sum(c => c.Value),
-            TargetTranslation = new Vector3(
-                random.Next(0.0f, body.Translation.x), body.Translation.y, random.Next(0.0f, body.Translation.z)),
+            TargetTranslation = engulfedPosition,
             TargetScale = body.Scale / 2,
             OriginalScale = body.Scale,
             Interpolate = true,
@@ -1372,7 +1379,7 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Ejects an ingested engulfable from this microbe.
+    ///   Ejects an ingested material from this microbe.
     /// </summary>
     private void EjectEngulfable(IEngulfable target)
     {
@@ -1386,7 +1393,7 @@ public partial class Microbe
             return;
         }
 
-        var engulfedObject = engulfedObjects.Find(e => e.Engulfable == target);
+        var engulfedObject = engulfedMaterials.Find(e => e.Engulfable == target);
         if (engulfedObject == null)
             return;
 
@@ -1398,7 +1405,7 @@ public partial class Microbe
         {
             CompleteEjection(target);
             body.Scale = engulfedObject.OriginalScale;
-            engulfedObjects.Remove(engulfedObject);
+            engulfedMaterials.Remove(engulfedObject);
             return;
         }
 
@@ -1519,8 +1526,9 @@ public partial class Microbe
         // foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
         foreach (var engulfable in touchedEngulfables)
         {
-            if (attemptingToEngulf.Add(engulfable) && CanEngulf(engulfable))
+            if (!attemptingToEngulf.Contains(engulfable) && CanEngulf(engulfable))
             {
+                attemptingToEngulf.Add(engulfable);
                 StartEngulfingTarget(engulfable);
             }
             else if (engulfedSize >= Size || engulfedSize + engulfable.Size >= Size)
@@ -1602,7 +1610,7 @@ public partial class Microbe
         }
     }
 
-    private bool LerpEngulfedMovement(float delta, EngulfedObject engulfedObject, RigidBody body)
+    private bool LerpEngulfedMovement(float delta, EngulfedMaterial engulfedObject, RigidBody body)
     {
         if (engulfedObject.AnimationTimeElapsed < 2.0f)
         {
@@ -1657,7 +1665,7 @@ public partial class Microbe
     /// <summary>
     ///   Holds cached and extra informations to work on in addition to the engulfed object
     /// </summary>
-    private class EngulfedObject
+    private class EngulfedMaterial
     {
         /// <summary>
         ///   The object that has been engulfed.

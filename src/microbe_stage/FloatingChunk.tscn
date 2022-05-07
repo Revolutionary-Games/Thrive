@@ -15,6 +15,3 @@ script = ExtResource( 1 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 
 [node name="NodeToScale" type="Spatial" parent="."]
-
-[node name="EngulfableArea" type="Area" parent="."]
-collision_mask = 3

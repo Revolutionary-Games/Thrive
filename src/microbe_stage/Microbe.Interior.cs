@@ -1092,18 +1092,18 @@ public partial class Microbe
     {
         var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
-        for (int i = engulfedObjects.Count - 1; i >= 0; --i)
+        for (int i = engulfedMaterials.Count - 1; i >= 0; --i)
         {
-            var engulfedObject = engulfedObjects[i];
+            var engulfedMaterial = engulfedMaterials[i];
 
-            var engulfable = engulfedObject.Engulfable;
+            var engulfable = engulfedMaterial.Engulfable;
 
             if (!engulfable.IsIngested)
                 continue;
 
-            for (var c = 0; c < engulfedObject.AvailableEngulfableCompounds.Count; ++c)
+            for (var c = 0; c < engulfedMaterial.AvailableEngulfableCompounds.Count; ++c)
             {
-                var compound = engulfedObject.AvailableEngulfableCompounds.ElementAt(c);
+                var compound = engulfedMaterial.AvailableEngulfableCompounds.ElementAt(c);
 
                 if (compound.Value <= 0)
                     continue;
@@ -1117,7 +1117,7 @@ public partial class Microbe
                 }
 
                 var taken = Math.Min(compound.Value, amount);
-                engulfedObject.AvailableEngulfableCompounds[compound.Key] -= amount;
+                engulfedMaterial.AvailableEngulfableCompounds[compound.Key] -= amount;
 
                 var added = Compounds.AddCompound(compound.Key, taken);
                 SpawnEjectedCompound(compound.Key, taken - added);
@@ -1136,13 +1136,13 @@ public partial class Microbe
                 }
             }
 
-            var totalAmountLeft = engulfedObject.AvailableEngulfableCompounds.Sum(compound => compound.Value);
-            engulfable.DigestionProgress = 1 - (totalAmountLeft / engulfedObject.InitialTotalEngulfableCompounds);
+            var totalAmountLeft = engulfedMaterial.AvailableEngulfableCompounds.Sum(compound => compound.Value);
+            engulfable.DigestionProgress = 1 - (totalAmountLeft / engulfedMaterial.InitialTotalEngulfableCompounds);
 
             if (totalAmountLeft <= 0 || engulfable.DigestionProgress >= 1)
             {
                 engulfedSize -= engulfable.Size;
-                engulfedObjects.RemoveAt(i);
+                engulfedMaterials.RemoveAt(i);
                 engulfable.DestroyDetachAndQueueFree();
             }
 

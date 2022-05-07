@@ -444,16 +444,11 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     {
         // Apply physics shape
         var shape = GetNode<CollisionShape>("CollisionShape");
-        var engulfableArea = GetNode<Area>("EngulfableArea");
 
         if (ConvexPhysicsMesh == null)
         {
             var sphereShape = new SphereShape { Radius = Radius };
             shape.Shape = sphereShape;
-
-            var engulfableRadius = Radius / 2 / Constants.ENGULF_SIZE_RATIO_REQ;
-            engulfableArea.ShapeOwnerAddShape(engulfableArea.CreateShapeOwner(sphereShape), sphereShape);
-            engulfableArea.Scale = new Vector3(engulfableRadius, engulfableRadius, engulfableRadius);
         }
         else
         {
@@ -462,9 +457,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
 
             shape.Shape = ConvexPhysicsMesh;
             shape.Transform = chunkMesh.Transform;
-
-            engulfableArea.ShapeOwnerAddShape(engulfableArea.CreateShapeOwner(ConvexPhysicsMesh), ConvexPhysicsMesh);
-            engulfableArea.Scale = GetNode<Spatial>("NodeToScale").Scale / 2 / Constants.ENGULF_SIZE_RATIO_REQ;
         }
 
         // Needs physics callback when this is engulfable or damaging

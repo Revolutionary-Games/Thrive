@@ -329,7 +329,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         engulfDetector.Connect("body_exited", this, nameof(OnBodyExitedEngulfArea));
 
         engulfableArea = GetNode<Area>("EngulfableArea");
-        engulfableArea.Connect("area_entered", this, nameof(OnAreaEnteredEngulfableArea));
 
         ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
         Connect("body_shape_entered", this, nameof(OnContactBegin));
@@ -351,7 +350,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 }
             }
 
-            foreach (var engulfed in engulfedObjects)
+            foreach (var engulfed in engulfedMaterials)
             {
                 AddChild(engulfed.Engulfable.EntityNode);
             }
@@ -928,7 +927,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (!existingShape.Points.SequenceEqual(wanted))
         {
             existingShape.Points = wanted;
-            engulfableArea.Scale = Membrane.Scale / 2 / Constants.ENGULF_SIZE_RATIO_REQ;
+            engulfableArea.Scale = Membrane.Scale;
         }
     }
 
