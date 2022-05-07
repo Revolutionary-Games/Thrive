@@ -193,7 +193,7 @@ public class DebugOverlay : Control
             {
                 if (microbeLabels.TryGetValue(microbe, out var label))
                 {
-                    RemoveChild(label);
+                    labelsLayer.RemoveChild(label);
                     label.QueueFree();
                 }
 
@@ -205,7 +205,7 @@ public class DebugOverlay : Control
             {
                 if (floatingChunkLabels.TryGetValue(floatingChunk, out var label))
                 {
-                    RemoveChild(label);
+                    labelsLayer.RemoveChild(label);
                     label.QueueFree();
                 }
 
