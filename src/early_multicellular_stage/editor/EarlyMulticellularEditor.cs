@@ -94,6 +94,20 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
 
+    public int WhatWouldActionsCost(IEnumerable<MicrobeEditorCombinableActionData> actions)
+    {
+        // TODO: action history. Once we have also body plan actions we need a way to only apply the discount to one
+        // type
+        var dummyHistory = new EditorActionHistory<CombinedMicrobeEditorAction>();
+
+        return (int)(dummyHistory.WhatWouldActionsCost(actions) * Constants.MULTICELLULAR_EDITOR_COST_FACTOR);
+    }
+
+    public bool OrganellePlacedThisSession(OrganelleTemplate organelle)
+    {
+        throw new NotImplementedException();
+    }
+
     public override bool CancelCurrentAction()
     {
         if (bodyPlanEditorTab.Visible)
@@ -108,6 +122,12 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
 
         GD.PrintErr("No action to cancel");
         return false;
+    }
+
+    public override int WhatWouldActionsCost(IEnumerable<CombinableActionData> actions)
+    {
+        // TODO: actions
+        return 0;
     }
 
     protected override void ResolveDerivedTypeNodeReferences()

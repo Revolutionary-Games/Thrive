@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 /// </summary>
 [SceneLoadedClass("res://src/microbe_stage/editor/CellEditorComponent.tscn")]
 public partial class CellEditorComponent :
-    HexEditorComponentBase<ICellEditorData, CellEditorAction, OrganelleTemplate>,
+    HexEditorComponentBase<ICellEditorData, CombinedMicrobeEditorAction, CellEditorAction, OrganelleTemplate>,
     IGodotEarlyNodeResolve
 {
     [Export]
@@ -184,6 +184,11 @@ public partial class CellEditorComponent :
     private OrganelleDefinition protoplasm = null!;
     private OrganelleDefinition nucleus = null!;
     private OrganelleDefinition bindingAgent = null!;
+
+    /// <summary>
+    ///   Controls MP discounts (for multicellular)
+    /// </summary>
+    private float editorCostFactor = 1f;
 
     private EnergyBalanceInfo? energyBalanceInfo;
 
@@ -495,6 +500,10 @@ public partial class CellEditorComponent :
 
         if (IsMulticellularEditor)
         {
+            editorCostFactor = Constants.MULTICELLULAR_EDITOR_COST_FACTOR;
+            organelleMenu.EditorCostFactor = editorCostFactor;
+            UpdateMicrobePartSelections();
+
             componentBottomLeftButtons.HandleRandomSpeciesName = false;
             componentBottomLeftButtons.UseSpeciesNameValidation = false;
 
@@ -509,6 +518,10 @@ public partial class CellEditorComponent :
             behaviourTabButton.Visible = false;
             behaviourEditor.Visible = false;
         }
+
+        // After the if multicellular check so the tooltip cost factors are correct
+        // on changing editor types, as tooltip manager is persistent while the game is running
+        UpdateTooltipMPCostFactors();
     }
 
     public override void ResolveNodeReferences()
@@ -633,8 +646,6 @@ public partial class CellEditorComponent :
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
             var organelleToAdd = (OrganelleTemplate)organelle.Clone();
-            organelleToAdd.PlacedThisSession = false;
-            organelleToAdd.NumberOfTimesMoved = 0;
             editedProperties.Organelles.Add(organelleToAdd);
         }
 
@@ -711,9 +722,16 @@ public partial class CellEditorComponent :
                 effectiveSymmetry = HexEditorSymmetry.None;
             }
 
+            HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
+
             RunWithSymmetry(q, r,
-                (finalQ, finalR, rotation) => RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle),
-                effectiveSymmetry);
+                (finalQ, finalR, rotation) =>
+                {
+                    RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle);
+                    hoveredHexes.Add((new Hex(finalQ, finalR), rotation));
+                }, effectiveSymmetry);
+
+            MouseHoverHexes = hoveredHexes.ToList();
         }
     }
 
@@ -787,7 +805,6 @@ public partial class CellEditorComponent :
         if (!Editor.FreeBuilding)
             throw new InvalidOperationException("can't reset cell when not freebuilding");
 
-        var previousMP = Editor.MutationPoints;
         var oldEditedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>();
         var oldMembrane = Membrane;
 
@@ -796,9 +813,10 @@ public partial class CellEditorComponent :
             oldEditedMicrobeOrganelles.Add(organelle);
         }
 
-        var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, previousMP, oldMembrane);
+        var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane);
 
-        var action = new CellEditorAction(Editor, 0, DoNewMicrobeAction, UndoNewMicrobeAction, data);
+        var action =
+            new SingleCellEditorAction<NewMicrobeActionData>(DoNewMicrobeAction, UndoNewMicrobeAction, data);
 
         Editor.EnqueueAction(action);
     }
@@ -810,8 +828,8 @@ public partial class CellEditorComponent :
         if (Membrane.Equals(membrane))
             return;
 
-        var action = new CellEditorAction(Editor, membrane.EditorCost, DoMembraneChangeAction,
-            UndoMembraneChangeAction, new MembraneActionData(Membrane, membrane));
+        var action = new SingleCellEditorAction<MembraneActionData>(DoMembraneChangeAction, UndoMembraneChangeAction,
+            new MembraneActionData(Membrane, membrane));
 
         Editor.EnqueueAction(action);
 
@@ -833,11 +851,12 @@ public partial class CellEditorComponent :
         if (intRigidity == rigidity)
             return;
 
-        int cost = Math.Abs(rigidity - intRigidity) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+        int costPerStep = (int)(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * editorCostFactor);
+        int cost = Math.Abs(rigidity - intRigidity) * costPerStep;
 
         if (cost > Editor.MutationPoints)
         {
-            int stepsLeft = Editor.MutationPoints / Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+            int stepsLeft = Editor.MutationPoints / costPerStep;
             if (stepsLeft < 1)
             {
                 UpdateRigiditySlider(intRigidity);
@@ -845,14 +864,13 @@ public partial class CellEditorComponent :
             }
 
             rigidity = intRigidity > rigidity ? intRigidity - stepsLeft : intRigidity + stepsLeft;
-            cost = stepsLeft * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
         }
 
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
         var prevRigidity = Rigidity;
 
-        var action = new CellEditorAction(Editor, cost, DoRigidityChangeAction, UndoRigidityChangeAction,
-            new RigidityChangeActionData(newRigidity, prevRigidity));
+        var action = new SingleCellEditorAction<RigidityActionData>(DoRigidityChangeAction, UndoRigidityChangeAction,
+            new RigidityActionData(newRigidity, prevRigidity));
 
         Editor.EnqueueAction(action);
     }
@@ -876,12 +894,21 @@ public partial class CellEditorComponent :
 
         GetMouseHex(out int q, out int r);
 
-        var organelle = editedMicrobeOrganelles.GetElementAt(new Hex(q, r));
+        // This is a list to preserve order, Distinct is used later to ensure no duplicate organelles are added
+        var organelles = new List<OrganelleTemplate>();
 
-        if (organelle == null)
+        RunWithSymmetry(q, r, (symmetryQ, symmetryR, _) =>
+        {
+            var organelle = editedMicrobeOrganelles.GetElementAt(new Hex(symmetryQ, symmetryR));
+
+            if (organelle != null)
+                organelles.Add(organelle);
+        });
+
+        if (organelles.Count < 1)
             return true;
 
-        ShowOrganelleMenu(organelle);
+        ShowOrganelleMenu(organelles.Distinct());
         return true;
     }
 
@@ -912,30 +939,37 @@ public partial class CellEditorComponent :
         return totalStorage;
     }
 
-    /// <summary>
-    ///   Returns the cost of the organelle that is about to be placed
-    /// </summary>
     protected override int CalculateCurrentActionCost()
     {
         if (string.IsNullOrEmpty(ActiveActionName) || !Editor.ShowHover)
             return 0;
 
-        var cost = SimulationParameters.Instance.GetOrganelleType(ActiveActionName!).MPCost;
+        var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(ActiveActionName!);
 
-        switch (Symmetry)
+        // Calculated in this order to be consistent with placing unique organelles
+        var cost = (int)(organelleDefinition.MPCost * editorCostFactor);
+
+        if (MouseHoverHexes == null)
+            return cost * Symmetry.PositionCount();
+
+        var positions = MouseHoverHexes.ToList();
+
+        var organelleTemplates = positions
+            .Select(h => new OrganelleTemplate(organelleDefinition, h.Hex, h.Orientation)).ToList();
+
+        CombinedMicrobeEditorAction moveOccupancies;
+
+        if (MovingPlacedHex == null)
         {
-            case HexEditorSymmetry.XAxisSymmetry:
-                cost *= 2;
-                break;
-            case HexEditorSymmetry.FourWaySymmetry:
-                cost *= 4;
-                break;
-            case HexEditorSymmetry.SixWaySymmetry:
-                cost *= 6;
-                break;
+            moveOccupancies = GetMultiActionWithOccupancies(positions, organelleTemplates, true);
+        }
+        else
+        {
+            moveOccupancies =
+                GetMultiActionWithOccupancies(positions, new List<OrganelleTemplate> { MovingPlacedHex }, false);
         }
 
-        return cost;
+        return Editor.WhatWouldActionsCost(moveOccupancies.Data);
     }
 
     protected override void LoadScenes()
@@ -979,15 +1013,20 @@ public partial class CellEditorComponent :
         }
     }
 
+    protected override CombinedMicrobeEditorAction CreateCombinedAction(IEnumerable<CellEditorAction> actions)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override bool IsMoveTargetValid(Hex position, int rotation, OrganelleTemplate organelle)
     {
         return editedMicrobeOrganelles.CanPlace(organelle.Definition, position, rotation, false);
     }
 
-    protected override bool DoesActionEndInProgressAction(CellEditorAction action)
+    protected override bool DoesActionEndInProgressAction(CombinedMicrobeEditorAction action)
     {
         // Allow only move actions with an in-progress move
-        return action.IsMoveAction;
+        return action.Data.Any(d => d is MoveActionData);
     }
 
     protected override void OnCurrentActionCanceled()
@@ -1007,29 +1046,22 @@ public partial class CellEditorComponent :
         return editedMicrobeOrganelles.GetElementAt(position);
     }
 
-    protected override void TryRemoveHexAt(Hex location)
+    protected override CellEditorAction? TryRemoveHexAt(Hex location)
     {
         var organelleHere = editedMicrobeOrganelles.GetElementAt(location);
         if (organelleHere == null)
-            return;
+            return null;
 
         // Dont allow deletion of nucleus or the last organelle
         if (organelleHere.Definition == nucleus || MicrobeSize < 2)
-            return;
+            return null;
 
         // In multicellular binding agents can't be removed
         if (IsMulticellularEditor && organelleHere.Definition == bindingAgent)
-            return;
+            return null;
 
-        // If it was placed this session, just refund the cost of adding it.
-        int cost = organelleHere.PlacedThisSession ?
-            -organelleHere.Definition.MPCost :
-            Constants.ORGANELLE_REMOVE_COST;
-
-        var action = new CellEditorAction(Editor, cost,
-            DoOrganelleRemoveAction, UndoOrganelleRemoveAction, new RemoveActionData(organelleHere));
-
-        EnqueueAction(action);
+        return new SingleCellEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
+            new RemoveActionData(organelleHere, organelleHere.Position, organelleHere.Orientation));
     }
 
     protected override float CalculateEditorArrowZPosition()
@@ -1091,20 +1123,24 @@ public partial class CellEditorComponent :
         SetRigiditySliderTooltip(value);
     }
 
-    private void ShowOrganelleMenu(OrganelleTemplate selectedOrganelle)
+    private void ShowOrganelleMenu(IEnumerable<OrganelleTemplate> selectedOrganelles)
     {
-        organelleMenu.SelectedOrganelle = selectedOrganelle;
+        var organelles = selectedOrganelles.ToList();
+        organelleMenu.SelectedOrganelles = organelles;
+        organelleMenu.GetActionPrice = Editor.WhatWouldActionsCost;
         organelleMenu.ShowPopup = true;
 
+        var count = organelles.Count;
+
         // Disable delete for nucleus or the last organelle.
-        if (MicrobeSize < 2 || selectedOrganelle.Definition == nucleus)
+        if (MicrobeSize <= count || organelles.Any(o => o.Definition == nucleus))
         {
             organelleMenu.EnableDeleteOption = false;
         }
         else
         {
             // Additionally in multicellular binding agents can't be removed
-            if (IsMulticellularEditor && selectedOrganelle.Definition == bindingAgent)
+            if (IsMulticellularEditor && organelles.Any(o => o.Definition == bindingAgent))
             {
                 organelleMenu.EnableDeleteOption = false;
             }
@@ -1117,8 +1153,134 @@ public partial class CellEditorComponent :
         // Move enabled only when microbe has more than one organelle
         organelleMenu.EnableMoveOption = MicrobeSize > 1;
 
-        // Modify / upgrade possible when defined on the organelle definition
-        organelleMenu.EnableModifyOption = !string.IsNullOrEmpty(selectedOrganelle.Definition.UpgradeGUI);
+        // Modify / upgrade possible when defined on the primary organelle definition
+        if (count > 0 && !string.IsNullOrEmpty(organelles.First().Definition.UpgradeGUI))
+        {
+            organelleMenu.EnableModifyOption = true;
+        }
+        else
+        {
+            organelleMenu.EnableModifyOption = false;
+        }
+    }
+
+    /// <summary>
+    ///   Returns a list with hex, orientation, the organelle and whether or not this hex is already occupied by a
+    ///   higher-ranked organelle.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     An organelle is ranked higher if it costs more MP.
+    ///   </para>
+    ///   <para>
+    ///     TODO: figure out why the OrganelleTemplate in the tuples used here can be null and simplify the logic if
+    ///     it's possible
+    ///   </para>
+    /// </remarks>
+    private IEnumerable<(Hex Hex, OrganelleTemplate Organelle, int Orientation, bool Occupied)> GetOccupancies(
+        List<(Hex Hex, int Orientation)> hexes, List<OrganelleTemplate> organelles)
+    {
+        var organellePositions = new List<(Hex Hex, OrganelleTemplate? Organelle, int Orientation, bool Occupied)>();
+        for (var i = 0; i < hexes.Count; i++)
+        {
+            var (hex, orientation) = hexes[i];
+            var organelle = organelles[i];
+            var oldOrganelle = organellePositions.FirstOrDefault(p => p.Hex == hex);
+            var occupied = false;
+            if (oldOrganelle != default && organelle != null)
+            {
+                if (organelle.Definition.MPCost > oldOrganelle.Organelle?.Definition.MPCost)
+                {
+                    organellePositions.Remove(oldOrganelle);
+                    oldOrganelle.Occupied = true;
+                    organellePositions.Add(oldOrganelle);
+                }
+                else
+                {
+                    occupied = true;
+                }
+            }
+
+            organellePositions.Add((hex, organelle, orientation, occupied));
+        }
+
+        return organellePositions.Where(t => t.Organelle != null)!;
+    }
+
+    private CombinedMicrobeEditorAction GetMultiActionWithOccupancies(List<(Hex Hex, int Orientation)> hexes,
+        List<OrganelleTemplate> organelles, bool moving)
+    {
+        var moveActionData = new List<CellEditorAction>();
+        foreach (var (hex, organelle, orientation, occupied) in GetOccupancies(hexes, organelles))
+        {
+            CellEditorAction action;
+            if (occupied)
+            {
+                var data = new RemoveActionData(organelle, organelle.Position, organelle.Orientation)
+                {
+                    GotReplaced = organelle.Definition.InternalName == "cytoplasm",
+                };
+                action = new SingleCellEditorAction<RemoveActionData>(DoOrganelleRemoveAction,
+                    UndoOrganelleRemoveAction, data);
+            }
+            else
+            {
+                if (moving)
+                {
+                    var data = new MoveActionData(organelle, organelle.Position, hex, organelle.Orientation,
+                        orientation);
+                    action = new SingleCellEditorAction<MoveActionData>(DoOrganelleMoveAction,
+                        UndoOrganelleMoveAction, data);
+                }
+                else
+                {
+                    var replacedHex = editedMicrobeOrganelles.GetElementAt(hex);
+                    var data = new PlacementActionData(organelle, hex, orientation);
+                    if (replacedHex != null)
+                        data.ReplacedCytoplasm = new List<OrganelleTemplate> { replacedHex };
+
+                    action = new SingleCellEditorAction<PlacementActionData>(DoOrganellePlaceAction,
+                        UndoOrganellePlaceAction, data);
+                }
+            }
+
+            moveActionData.Add(action);
+        }
+
+        return new CombinedMicrobeEditorAction(moveActionData.ToArray());
+    }
+
+    private IEnumerable<OrganelleTemplate> GetReplacedCytoplasm(IEnumerable<OrganelleTemplate> organelles)
+    {
+        foreach (var templateHex in organelles
+                     .Where(o => o.Definition.InternalName != "cytoplasm")
+                     .SelectMany(o => o.RotatedHexes.Select(hex => hex + o.Position)))
+        {
+            var existingOrganelle = editedMicrobeOrganelles.GetElementAt(templateHex);
+
+            if (existingOrganelle != null && existingOrganelle.Definition.InternalName == "cytoplasm")
+            {
+                yield return existingOrganelle;
+            }
+        }
+    }
+
+    private IEnumerable<RemoveActionData> GetReplacedCytoplasmRemoveActionData(
+        IEnumerable<OrganelleTemplate> organelles)
+    {
+        return GetReplacedCytoplasm(organelles)
+            .Select(o => new RemoveActionData(o, o.Position, o.Orientation)
+            {
+                GotReplaced = true,
+            });
+    }
+
+    private IEnumerable<SingleCellEditorAction<RemoveActionData>> GetReplacedCytoplasmRemoveAction(
+        IEnumerable<OrganelleTemplate> organelles)
+    {
+        var replacedCytoplasmData = GetReplacedCytoplasmRemoveActionData(organelles);
+        return replacedCytoplasmData.Select(o =>
+            new SingleCellEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, o));
     }
 
     private void StartAutoEvoPrediction()
@@ -1239,40 +1401,65 @@ public partial class CellEditorComponent :
     {
         GetMouseHex(out int q, out int r);
 
-        bool placedSomething = false;
+        var placementActions = new List<CellEditorAction>();
+
+        // For multi hex organelles we keep track of positions that got filled in
+        var usedHexes = new HashSet<Hex>();
 
         RunWithSymmetry(q, r,
             (attemptQ, attemptR, rotation) =>
             {
-                if (PlaceIfPossible(organelleType, attemptQ, attemptR, rotation))
-                    placedSomething = true;
+                var organelle = new OrganelleTemplate(GetOrganelleDefinition(organelleType),
+                    new Hex(attemptQ, attemptR), rotation);
+
+                var hexes = organelle.RotatedHexes.Select(h => h + new Hex(attemptQ, attemptR)).ToList();
+
+                foreach (var hex in hexes)
+                {
+                    if (usedHexes.Contains(hex))
+                    {
+                        // Duplicate with already placed
+                        return;
+                    }
+                }
+
+                var placed = PlaceIfPossible(organelle);
+
+                if (placed != null)
+                {
+                    placementActions.Add(placed);
+
+                    foreach (var hex in hexes)
+                    {
+                        usedHexes.Add(hex);
+                    }
+                }
             });
 
-        return placedSomething;
+        if (placementActions.Count < 1)
+            return false;
+
+        var multiAction = new CombinedMicrobeEditorAction(placementActions.ToArray());
+
+        return EnqueueAction(multiAction);
     }
 
     /// <summary>
     ///   Helper for AddOrganelle
     /// </summary>
-    private bool PlaceIfPossible(string organelleType, int q, int r, int rotation)
+    private CombinedMicrobeEditorAction? PlaceIfPossible(OrganelleTemplate organelle)
     {
         if (MicrobePreviewMode)
-            return false;
-
-        var organelle = new OrganelleTemplate(GetOrganelleDefinition(organelleType),
-            new Hex(q, r), rotation);
+            return null;
 
         if (!IsValidPlacement(organelle))
         {
             // Play Sound
             Editor.OnInvalidAction();
-            return false;
+            return null;
         }
 
-        if (AddOrganelle(organelle))
-            return true;
-
-        return false;
+        return AddOrganelle(organelle);
     }
 
     private bool IsValidPlacement(OrganelleTemplate organelle)
@@ -1285,21 +1472,23 @@ public partial class CellEditorComponent :
             notPlacingCytoplasm);
     }
 
-    private bool AddOrganelle(OrganelleTemplate organelle)
+    private CombinedMicrobeEditorAction? AddOrganelle(OrganelleTemplate organelle)
     {
         // 1 - you put a unique organelle (means only one instance allowed) but you already have it
         // 2 - you put an organelle that requires nucleus but you don't have one
         if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
             (organelle.Definition.RequiresNucleus && !HasNucleus))
-            return false;
+            return null;
 
-        organelle.PlacedThisSession = true;
+        var replacedCytoplasmActions =
+            GetReplacedCytoplasmRemoveAction(new[] { organelle }).Cast<CellEditorAction>().ToList();
 
-        var action = new CellEditorAction(Editor, organelle.Definition.MPCost,
-            DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle));
+        var action = new SingleCellEditorAction<PlacementActionData>(
+            DoOrganellePlaceAction, UndoOrganellePlaceAction,
+            new PlacementActionData(organelle, organelle.Position, organelle.Orientation));
 
-        EnqueueAction(action);
-        return true;
+        replacedCytoplasmActions.Add(action);
+        return new CombinedMicrobeEditorAction(replacedCytoplasmActions.ToArray());
     }
 
     /// <summary>
@@ -1309,39 +1498,28 @@ public partial class CellEditorComponent :
     private bool MoveOrganelle(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
         int newRotation)
     {
+        // TODO: consider allowing rotation inplace (https://github.com/Revolutionary-Games/Thrive/issues/2993)
+
+        if (MicrobePreviewMode)
+            return false;
+
         // Make sure placement is valid
         if (!IsMoveTargetValid(newLocation, newRotation, organelle))
             return false;
 
-        // If the organelle was already moved this session, added (placed) this session,
-        // or not moved (but can be rotated), then moving it is free
-        bool isFreeToMove = organelle.MovedThisSession || oldLocation == newLocation || organelle.PlacedThisSession;
-        int cost = isFreeToMove ? 0 : Constants.ORGANELLE_MOVE_COST;
+        var multiAction = GetMultiActionWithOccupancies(
+            new List<(Hex Hex, int Orientation)> { (newLocation, newRotation) },
+            new List<OrganelleTemplate> { organelle }, true);
 
         // Too low mutation points, cancel move
-        if (!isFreeToMove && Editor.MutationPoints < Constants.ORGANELLE_MOVE_COST)
+        if (Editor.MutationPoints < Editor.WhatWouldActionsCost(multiAction.Data))
         {
             CancelCurrentAction();
             Editor.OnInsufficientMP(false);
             return false;
         }
 
-        // Don't register the action if the final location is the same as previous. This is so the player can't exploit
-        // the MovedThisSession flag allowing them to freely move an organelle that was placed in another session
-        // while on zero mutation points. Also it makes more sense to not count that organelle as moved either way.
-        if (oldLocation == newLocation)
-        {
-            CancelCurrentAction();
-
-            // Assume this is a successful move (some operation in the above call may be repeated)
-            return true;
-        }
-
-        var action = new CellEditorAction(Editor, cost,
-            DoOrganelleMoveAction, UndoOrganelleMoveAction,
-            new MoveActionData(organelle, oldLocation, newLocation, oldRotation, newRotation));
-
-        EnqueueAction(action);
+        EnqueueAction(multiAction);
 
         // It's assumed that the above enqueue can't fail, otherwise the reference to MovingPlacedHex may be
         // permanently lost (as the code that calls this assumes it's safe to set MovingPlacedHex to null
@@ -1380,6 +1558,9 @@ public partial class CellEditorComponent :
 
     private void OnOrganelleToPlaceSelected(string organelle)
     {
+        if (ActiveActionName == organelle)
+            return;
+
         ActiveActionName = organelle;
 
         // Update the icon highlightings
@@ -1430,7 +1611,7 @@ public partial class CellEditorComponent :
 
         // Build the entities to show the current microbe
         UpdateAlreadyPlacedHexes(
-            editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes, o.PlacedThisSession)), islands,
+            editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes, PlacedThisSession(o))), islands,
             microbePreviewMode);
 
         int nextFreeOrganelle = 0;
@@ -1473,6 +1654,11 @@ public partial class CellEditorComponent :
         }
     }
 
+    private bool PlacedThisSession(OrganelleTemplate organelle)
+    {
+        return Editor.OrganellePlacedThisSession(organelle);
+    }
+
     private void SetSpeciesInfo(string name, MembraneType membrane, Color colour, float rigidity,
         BehaviourDictionary? behaviour)
     {
@@ -1495,7 +1681,15 @@ public partial class CellEditorComponent :
 
     private void OnMovePressed()
     {
-        StartHexMove(organelleMenu.SelectedOrganelle);
+        if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
+        {
+            // Start moving the organelles symmetrical to the clicked organelle.
+            StartHexMoveWithSymmetry(organelleMenu.SelectedOrganelles);
+        }
+        else
+        {
+            StartHexMove(organelleMenu.SelectedOrganelles.First());
+        }
 
         // Once an organelle move has begun, the button visibility should be updated so it becomes visible
         UpdateCancelButtonVisibility();
@@ -1503,12 +1697,16 @@ public partial class CellEditorComponent :
 
     private void OnDeletePressed()
     {
-        RemoveHex(organelleMenu.SelectedOrganelle.Position);
+        var action =
+            new CombinedMicrobeEditorAction(organelleMenu.SelectedOrganelles
+                .Select(o => TryRemoveHexAt(o.Position)).WhereNotNull().ToArray());
+        EnqueueAction(action);
     }
 
     private void OnModifyPressed()
     {
-        var upgradeGUI = organelleMenu.SelectedOrganelle.Definition.UpgradeGUI;
+        var targetOrganelle = organelleMenu.SelectedOrganelles.First();
+        var upgradeGUI = targetOrganelle.Definition.UpgradeGUI;
 
         if (string.IsNullOrEmpty(upgradeGUI))
         {
@@ -1516,7 +1714,7 @@ public partial class CellEditorComponent :
             return;
         }
 
-        organelleUpgradeGUI.OpenForOrganelle(organelleMenu.SelectedOrganelle, upgradeGUI!, Editor);
+        organelleUpgradeGUI.OpenForOrganelle(targetOrganelle, upgradeGUI!, Editor);
     }
 
     /// <summary>
@@ -1584,7 +1782,7 @@ public partial class CellEditorComponent :
             control.PartIcon = organelle.LoadedIcon ?? throw new Exception("Organelle with no icon");
             control.PartName = organelle.UntranslatedName;
             control.SelectionGroup = organelleButtonGroup;
-            control.MPCost = organelle.MPCost;
+            control.MPCost = (int)(organelle.MPCost * editorCostFactor);
             control.Name = organelle.InternalName;
 
             // Special case with registering the tooltip here for item with no associated organelle
@@ -1607,7 +1805,7 @@ public partial class CellEditorComponent :
             control.PartIcon = membraneType.LoadedIcon;
             control.PartName = membraneType.UntranslatedName;
             control.SelectionGroup = membraneButtonGroup;
-            control.MPCost = membraneType.EditorCost;
+            control.MPCost = (int)(membraneType.EditorCost * editorCostFactor);
             control.Name = membraneType.InternalName;
 
             control.RegisterToolTipForControl(membraneType.InternalName, "membraneSelection");
