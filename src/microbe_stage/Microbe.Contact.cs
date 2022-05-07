@@ -1362,9 +1362,9 @@ public partial class Microbe
             body.Translation.x, body.Translation.z) / 2;
 
         var engulfedPosition = new Vector3(
-                random.Next(0.0f, nearestPointOfMembraneHalfScale.x),
-                body.Translation.y,
-                random.Next(0.0f, nearestPointOfMembraneHalfScale.z));
+            random.Next(0.0f, nearestPointOfMembraneHalfScale.x),
+            body.Translation.y,
+            random.Next(0.0f, nearestPointOfMembraneHalfScale.z));
 
         engulfedMaterials.Add(new EngulfedMaterial
         {
