@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-07 20:37+0800\n"
+"POT-Creation-Date: 2022-05-08 15:33+0800\n"
 "PO-Revision-Date: 2022-01-20 07:56+0000\n"
 "Last-Translator: Iván Sviser Lisiuk <lextromex@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -1154,9 +1154,10 @@ msgid "FPS_DISPLAY"
 msgstr ""
 
 #: ../src/engine/debugging/DebugOverlay.tscn:53
+#: ../src/engine/debugging/PerformanceMetrics.tscn:30
 #, fuzzy
-msgid "PERFORMANCE_METRICS"
-msgstr "Rendimiento"
+msgid "METRICS"
+msgstr "Activar/Desactivar ver los FPS en la pantalla"
 
 #: ../src/engine/debugging/DebugOverlay.tscn:60
 msgid "COLLISION_SHAPE"
@@ -1186,11 +1187,6 @@ msgstr "Resolución:"
 #: ../src/engine/debugging/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
-
-#: ../src/engine/debugging/PerformanceMetrics.tscn:30
-#, fuzzy
-msgid "METRICS"
-msgstr "Activar/Desactivar ver los FPS en la pantalla"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -4496,6 +4492,10 @@ msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
+
+#, fuzzy
+#~ msgid "PERFORMANCE_METRICS"
+#~ msgstr "Rendimiento"
 
 #~ msgid "AUTO"
 #~ msgstr "Automática"
