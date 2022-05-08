@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using Godot;
 
 public class DebugOverlay : Control
 {
-    private readonly Dictionary<Microbe, Label> microbeLabels = new();
-    private readonly Dictionary<FloatingChunk, Label> floatingChunkLabels = new();
-    private readonly Dictionary<AgentProjectile, Label> agentProjectileLabels = new();
+    private readonly Dictionary<RigidBody, Label> entityLabels = new();
 
     [Export]
     private NodePath fpsCheckBoxPath = null!;
@@ -122,45 +119,21 @@ public class DebugOverlay : Control
         if (activeCamera == null)
             return;
 
-        foreach (var pair in microbeLabels)
+        foreach (var pair in entityLabels)
         {
-            var microbe = pair.Key;
+            var body = pair.Key;
             var label = pair.Value;
 
             if (label.Text.Empty())
-                label.Text = microbe.ToString();
+                label.Text = body.ToString();
 
-            label.RectPosition = activeCamera.UnprojectPosition(microbe.Transform.origin);
-        }
-
-        foreach (var pair in floatingChunkLabels)
-        {
-            var floatingChunk = pair.Key;
-            var label = pair.Value;
-
-            if (label.Text.Empty())
-                label.Text = floatingChunk.ToString();
-
-            label.RectPosition = activeCamera.UnprojectPosition(floatingChunk.Transform.origin);
-        }
-
-        foreach (var pair in agentProjectileLabels)
-        {
-            var agentProjectile = pair.Key;
-            var label = pair.Value;
-
-            label.Text = !agentProjectile.Visible ?
-                string.Empty :
-                $"[AP:{agentProjectile.GetInstanceId()}:Amount={agentProjectile.Amount}:" +
-                $"TTL={agentProjectile.TimeToLiveRemaining.ToString("F2", CultureInfo.CurrentCulture)}]";
-
-            label.RectPosition = activeCamera.UnprojectPosition(agentProjectile.Transform.origin);
+            label.RectPosition = activeCamera.UnprojectPosition(body.Transform.origin);
         }
     }
 
     private void UpdateLabelOnMicrobeDeath(Microbe microbe)
     {
-        if (microbeLabels.TryGetValue(microbe, out var label))
+        if (entityLabels.TryGetValue(microbe, out var label))
             label.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
     }
 
@@ -191,32 +164,30 @@ public class DebugOverlay : Control
 
     private void OnNodeAdded(Node node)
     {
-        switch (node)
+        if (node is not RigidBody body)
+            return;
+
+        var label = new Label { Text = body.ToString() };
+        labelsLayer.AddChild(label);
+        entityLabels.Add(body, label);
+
+        switch (body)
         {
             case Microbe microbe:
             {
-                var label = new Label { Text = microbe.ToString() };
-                labelsLayer.AddChild(label);
-                microbeLabels.Add(microbe, label);
                 microbe.OnDeath += UpdateLabelOnMicrobeDeath;
                 break;
             }
 
             case FloatingChunk floatingChunk:
             {
-                var label = new Label { Text = floatingChunk.ToString() };
                 label.AddFontOverride("font", smallerFont);
-                labelsLayer.AddChild(label);
-                floatingChunkLabels.Add(floatingChunk, label);
                 break;
             }
 
             case AgentProjectile agentProjectile:
             {
-                var label = new Label { Text = agentProjectile.ToString() };
                 label.AddFontOverride("font", smallerFont);
-                labelsLayer.AddChild(label);
-                agentProjectileLabels.Add(agentProjectile, label);
                 break;
             }
         }
@@ -224,53 +195,27 @@ public class DebugOverlay : Control
 
     private void OnNodeRemoved(Node node)
     {
-        switch (node)
+        if (node is Camera camera)
         {
-            case Camera camera:
+            // When a camera is removed from the scene tree, it can't be active and will be disposed soon.
+            // This makes sure the active camera is not disposed so we don't check it in _Process().
+            if (activeCamera == camera)
+                activeCamera = null;
+            return;
+        }
+
+        if (node is not RigidBody body)
+            return;
+
+        if (entityLabels.TryGetValue(body, out var label))
+        {
+            labelsLayer.RemoveChild(label);
+            label.QueueFree();
+            entityLabels.Remove(body);
+
+            if (body is Microbe microbe)
             {
-                // When a camera is removed from the scene tree, it can't be active and will be disposed soon.
-                // This makes sure the active camera is not disposed so we don't check it in _Process().
-                if (activeCamera == camera)
-                    activeCamera = null;
-
-                break;
-            }
-
-            case Microbe microbe:
-            {
-                if (microbeLabels.TryGetValue(microbe, out var label))
-                {
-                    labelsLayer.RemoveChild(label);
-                    label.QueueFree();
-                    microbe.OnDeath -= UpdateLabelOnMicrobeDeath;
-                }
-
-                microbeLabels.Remove(microbe);
-                break;
-            }
-
-            case FloatingChunk floatingChunk:
-            {
-                if (floatingChunkLabels.TryGetValue(floatingChunk, out var label))
-                {
-                    labelsLayer.RemoveChild(label);
-                    label.QueueFree();
-                }
-
-                floatingChunkLabels.Remove(floatingChunk);
-                break;
-            }
-
-            case AgentProjectile agentProjectile:
-            {
-                if (agentProjectileLabels.TryGetValue(agentProjectile, out var label))
-                {
-                    labelsLayer.RemoveChild(label);
-                    label.QueueFree();
-                }
-
-                agentProjectileLabels.Remove(agentProjectile);
-                break;
+                microbe.OnDeath -= UpdateLabelOnMicrobeDeath;
             }
         }
     }
