@@ -143,6 +143,11 @@ public static class Constants
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
 
+    /// <summary>
+    ///   Max number of concurrent audio players that may be spawned for UI sounds.
+    /// </summary>
+    public const int MAX_CONCURRENT_UI_AUDIO_PLAYERS = 10;
+
     public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
 
     /// <summary>
@@ -566,6 +571,11 @@ public static class Constants
     ///   Scale used for one frame while membrane data is not ready yet
     /// </summary>
     public const float MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE = 0.18f;
+
+    /// <summary>
+    ///   Multiplier for cell editor actions in multicellular editor
+    /// </summary>
+    public const float MULTICELLULAR_EDITOR_COST_FACTOR = 0.5f;
 
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 

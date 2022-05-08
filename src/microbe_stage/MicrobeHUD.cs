@@ -423,7 +423,7 @@ public class MicrobeHUD : Control
 
         // Fade out for that smooth satisfying transition
         stage.TransitionFinished = false;
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.3f);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.OnFinishTransitioning));
     }
 
@@ -1076,9 +1076,6 @@ public class MicrobeHUD : Control
     private void UpdatePopulation()
     {
         populationLabel.Text = stage!.GameWorld.PlayerSpecies.Population.FormatNumber();
-
-        // Reset box height
-        populationLabel.GetParent<Control>().MarginTop = 0;
     }
 
     private void UpdateProcessPanel()
@@ -1222,22 +1219,7 @@ public class MicrobeHUD : Control
     private void OpenMicrobeStageMenuPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-
-        OpenMenu();
-    }
-
-    private void OpenMenu()
-    {
-        menu.Show();
-        GetTree().Paused = true;
-    }
-
-    private void CloseMenu()
-    {
-        menu.Hide();
-
-        if (!paused)
-            GetTree().Paused = false;
+        menu.Open();
     }
 
     private void PauseButtonPressed()
@@ -1284,9 +1266,7 @@ public class MicrobeHUD : Control
     private void HelpButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-
-        OpenMenu();
-        menu.ShowHelpScreen();
+        menu.OpenToHelp();
     }
 
     private void OnEditorButtonMouseEnter()
@@ -1344,9 +1324,27 @@ public class MicrobeHUD : Control
 
     private void OnBecomeMulticellularPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
+        if (!GetTree().Paused)
+        {
+            // The button press sound will play along with this
+            PauseButtonPressed();
+        }
+        else
+        {
+            GUICommon.Instance.PlayButtonPressSound();
+        }
 
         multicellularConfirmPopup.PopupCenteredShrink();
+    }
+
+    private void OnBecomeMulticellularCancelled()
+    {
+        // The game should have been paused already but just in case
+        if (GetTree().Paused)
+        {
+            // The button press sound will play along with this
+            PauseButtonPressed();
+        }
     }
 
     private void OnBecomeMulticellularConfirmed()
@@ -1383,6 +1381,12 @@ public class MicrobeHUD : Control
 
         // TODO: late multicellular not done yet
         ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("TO_BE_IMPLEMENTED"), 2.5f);
+    }
+
+    private void FixPauseStateOnPauseMenuClose()
+    {
+        if (paused)
+            GetTree().Paused = true;
     }
 
     private class HoveredCompoundControl : HBoxContainer
