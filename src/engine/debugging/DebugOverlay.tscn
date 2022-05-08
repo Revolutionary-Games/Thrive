@@ -71,13 +71,13 @@ margin_top = 84.0
 margin_right = 191.0
 margin_bottom = 101.0
 
-[node name="RigidityLabel" type="Label" parent="DebugPanel/VBoxContainer/VBoxContainer"]
+[node name="TransparencyLabel" type="Label" parent="DebugPanel/VBoxContainer/VBoxContainer"]
 margin_right = 110.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 4 )
 text = "TRANSPARENCY"
 
-[node name="RigiditySlider" type="HSlider" parent="DebugPanel/VBoxContainer/VBoxContainer"]
+[node name="TransparencySlider" type="HSlider" parent="DebugPanel/VBoxContainer/VBoxContainer"]
 margin_left = 114.0
 margin_right = 191.0
 margin_bottom = 15.0
@@ -92,4 +92,4 @@ ticks_on_borders = true
 [connection signal="toggled" from="DebugPanel/VBoxContainer/PerformanceMetricsCheckBox" to="." method="OnPerformanceMetricsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/CollisionShapeCheckBox" to="." method="OnCollisionShapeCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/EntityLabelCheckBox" to="." method="OnEntityLabelCheckBoxToggled"]
-[connection signal="value_changed" from="DebugPanel/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnRigiditySliderValueChanged"]
+[connection signal="value_changed" from="DebugPanel/VBoxContainer/VBoxContainer/TransparencySlider" to="." method="OnTransparencySliderValueChanged"]

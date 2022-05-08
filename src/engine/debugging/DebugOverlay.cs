@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using Godot;
 
@@ -27,7 +26,7 @@ public class DebugOverlay : Control
     [Export]
     private NodePath labelsLayerPath = null!;
 
-    private bool showLabels;
+    private bool showEntityLabels;
 
     private CustomDialog dialog = null!;
     private CustomCheckBox fpsCheckBox = null!;
@@ -37,15 +36,14 @@ public class DebugOverlay : Control
     private Control labelsLayer = null!;
     private Font smallerFont = null!;
 
-    private SceneTree rootTree = null!;
     private Camera? activeCamera;
 
-    private bool ShowLabels
+    private bool ShowEntityLabels
     {
-        get => showLabels;
+        get => showEntityLabels;
         set
         {
-            showLabels = value;
+            showEntityLabels = value;
             labelsLayer.Visible = value;
         }
     }
@@ -69,9 +67,8 @@ public class DebugOverlay : Control
 
         Show();
         InputManager.RegisterReceiver(this);
-        rootTree = GetTree();
 
-        // TODO: Assess expenses
+        var rootTree = GetTree();
         rootTree.Connect("node_added", this, nameof(OnNodeAdded));
         rootTree.Connect("node_removed", this, nameof(OnNodeRemoved));
     }
@@ -89,9 +86,9 @@ public class DebugOverlay : Control
         if (activeCamera is not { Current: true })
             activeCamera = GetViewport().GetCamera();
 
-        if (showLabels)
+        if (showEntityLabels)
         {
-            UpdateLabels();
+            UpdateEntityLabels();
         }
     }
 
@@ -120,7 +117,7 @@ public class DebugOverlay : Control
         fpsCheckBox.Pressed = !fpsCheckBox.Pressed;
     }
 
-    private void UpdateLabels()
+    private void UpdateEntityLabels()
     {
         if (activeCamera == null)
             return;
@@ -179,15 +176,15 @@ public class DebugOverlay : Control
 
     private void OnCollisionShapeCheckBoxToggled(bool state)
     {
-        rootTree.DebugCollisionsHint = state;
+        GetTree().DebugCollisionsHint = state;
     }
 
     private void OnEntityLabelCheckBoxToggled(bool state)
     {
-        ShowLabels = state;
+        ShowEntityLabels = state;
     }
 
-    private void OnRigiditySliderValueChanged(float value)
+    private void OnTransparencySliderValueChanged(float value)
     {
         performanceMetrics.Modulate = dialog.Modulate = new Color(1, 1, 1, 1 - value);
     }
