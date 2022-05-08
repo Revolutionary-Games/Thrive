@@ -34,6 +34,7 @@ public class DebugOverlay : Control
     private Control labelsLayer = null!;
 
     private SceneTree rootTree = null!;
+    private Camera? activeCamera;
 
     private bool ShowLabels
     {
@@ -80,6 +81,9 @@ public class DebugOverlay : Control
     {
         base._Process(delta);
 
+        if (activeCamera is not { Current: true })
+            activeCamera = GetViewport().GetCamera();
+
         if (showLabels)
         {
             UpdateLabels();
@@ -113,9 +117,7 @@ public class DebugOverlay : Control
 
     private void UpdateLabels()
     {
-        var camera = GetViewport().GetCamera();
-
-        if (camera == null)
+        if (activeCamera == null)
             return;
 
         foreach (var pair in microbeLabels)
@@ -126,7 +128,7 @@ public class DebugOverlay : Control
             if (label.Text.Empty())
                 label.Text = microbe.ToString();
 
-            label.RectPosition = camera.UnprojectPosition(microbe.Transform.origin);
+            label.RectPosition = activeCamera.UnprojectPosition(microbe.Transform.origin);
         }
 
         foreach (var pair in floatingChunkLabels)
@@ -137,7 +139,7 @@ public class DebugOverlay : Control
             if (label.Text.Empty())
                 label.Text = floatingChunk.ToString();
 
-            label.RectPosition = camera.UnprojectPosition(floatingChunk.Transform.origin);
+            label.RectPosition = activeCamera.UnprojectPosition(floatingChunk.Transform.origin);
         }
     }
 
@@ -192,6 +194,16 @@ public class DebugOverlay : Control
     {
         switch (node)
         {
+            case Camera camera:
+            {
+                // When a camera is removed from the scene tree, it can't be active and will be disposed soon.
+                // This makes sure the active camera is not disposed so we don't check it in _Process().
+                if (activeCamera == camera)
+                    activeCamera = null;
+
+                break;
+            }
+
             case Microbe microbe:
             {
                 if (microbeLabels.TryGetValue(microbe, out var label))
