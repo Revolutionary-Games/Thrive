@@ -284,6 +284,8 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         editorButtonTutorial = GetNode<CustomDialog>(EditorButtonTutorialPath);
         unbindTutorial = GetNode<CustomDialog>(UnbindTutorialPath);
         checkTheHelpMenu = GetNode<CustomDialog>(CheckTheHelpMenuPath);
+
+        PauseMode = PauseModeEnum.Process;
     }
 
     public override void _Process(float delta)

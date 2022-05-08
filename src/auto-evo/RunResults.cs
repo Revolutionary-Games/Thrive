@@ -402,7 +402,7 @@
             var populationResults = new Dictionary<Patch, long>();
 
             if (!results.TryGetValue(species, out var speciesResult))
-                throw new ArgumentException("Species " + species.FormattedName + "not found in results.");
+                throw new ArgumentException("Species " + species.FormattedName + " not found in results.");
 
             // Get natural variations
             foreach (var patchPopulationEntry in speciesResult.NewPopulationInPatches)
@@ -537,7 +537,7 @@
                 }
 
                 builder2.Append(' ');
-                builder2.Append(new LocalizedString(patch.Name));
+                builder2.Append(patch.Name);
 
                 return builder2;
             }
@@ -625,7 +625,7 @@
                     {
                         builder.Append("   ");
 
-                        builder.Append(new LocalizedString(patch.Name));
+                        builder.Append(patch.Name);
                         builder.Append('\n');
                     }
                 }
@@ -658,17 +658,17 @@
                         {
                             builder.Append("  ");
                             builder.Append(new LocalizedString("RUN_RESULT_BY_SENDING_POPULATION",
-                                new LocalizedString(spreadEntry.To.Name), spreadEntry.Population,
-                                new LocalizedString(spreadEntry.From.Name)));
+                                spreadEntry.To.Name, spreadEntry.Population,
+                                spreadEntry.From.Name));
                         }
                         else
                         {
                             builder.Append("  ");
-                            builder.Append(new LocalizedString(spreadEntry.To.Name));
+                            builder.Append(spreadEntry.To.Name);
                             builder.Append(" pop: ");
                             builder.Append(spreadEntry.Population);
                             builder.Append(" from: ");
-                            builder.Append(new LocalizedString(spreadEntry.From.Name));
+                            builder.Append(spreadEntry.From.Name);
                         }
 
                         builder.Append('\n');
@@ -808,7 +808,8 @@
             {
                 foreach (var species in patch.SpeciesInPatch.Keys)
                 {
-                    var globalPopulation = GetGlobalPopulation(species, true, true);
+                    long globalPopulation = GetGlobalPopulation(species, true, true);
+
                     var previousGlobalPopulation = world.Map.GetSpeciesGlobalPopulation(species);
 
                     var finalPatchPopulation = GetPopulationInPatch(species, patch);
@@ -889,18 +890,18 @@
                 {
                     // Log to destination patch
                     patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_FROM", migration.Key.FormattedName,
-                            new LocalizedString(migration.Value.From.Name)),
+                            migration.Value.From.Name),
                         migration.Key.PlayerSpecies, "newSpecies.png");
 
                     // Log to game world
                     world.LogEvent(new LocalizedString("GLOBAL_TIMELINE_SPECIES_MIGRATED_TO",
-                            migration.Key.FormattedName, new LocalizedString(migration.Value.To.Name),
-                            new LocalizedString(migration.Value.From.Name)),
+                            migration.Key.FormattedName, migration.Value.To.Name,
+                            migration.Value.From.Name),
                         migration.Key.PlayerSpecies, "newSpecies.png");
 
                     // Log to origin patch
                     migration.Value.From.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO",
-                            migration.Key.FormattedName, new LocalizedString(migration.Value.To.Name)),
+                            migration.Key.FormattedName, migration.Value.To.Name),
                         migration.Key.PlayerSpecies, "newSpecies.png");
                 }
 
@@ -967,13 +968,13 @@
         {
             long totalPopulation = 0;
 
-            if (!results.ContainsKey(species))
+            if (!results.TryGetValue(species, out var speciesResult))
             {
                 GD.PrintErr("RunResults: no species entry found for counting spread population");
                 return -1;
             }
 
-            foreach (var entry in results[species].SpreadToPatches)
+            foreach (var entry in speciesResult.SpreadToPatches)
             {
                 if (entry.From == targetPatch)
                 {

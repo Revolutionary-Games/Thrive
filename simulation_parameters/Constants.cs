@@ -20,8 +20,7 @@ public static class Constants
     public const float MAX_SPAWN_DISTANCE = 5000.0f;
 
     /// <summary>
-    ///   The (default) size of the hexagons, used in
-    ///   calculations. Don't change this.
+    ///   The (default) size of the hexagons, used in calculations. Don't change this.
     /// </summary>
     public const float DEFAULT_HEX_SIZE = 0.75f;
 
@@ -63,23 +62,27 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 7.0f;
+    public const float FLAGELLA_ENERGY_COST = 4.0f;
 
     public const float FLAGELLA_BASE_FORCE = 75.7f;
-
-    /// <summary>
-    ///   Used for energy balance calculations
-    /// </summary>
-    public const string FLAGELLA_COMPONENT_NAME = "movement";
 
     public const float CELL_BASE_THRUST = 50.6f;
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
-    public const int PROCESS_OBJECTS_PER_TASK = 50;
+    public const int PROCESS_OBJECTS_PER_TASK = 15;
 
     public const int MICROBE_SPAWN_RADIUS = 170;
     public const int CLOUD_SPAWN_RADIUS = 170;
+
+    /// <summary>
+    ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
+    ///   without causing them to despawn instantly. Things despawn outside the despawn radius.
+    /// </summary>
+    public const int DESPAWN_RADIUS_OFFSET = 50;
+
+    public const int MICROBE_DESPAWN_RADIUS_SQUARED = (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET) *
+        (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET);
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
@@ -119,7 +122,7 @@ public static class Constants
     /// </summary>
     public const float MICROBE_AI_SIGNAL_REACT_INTERVAL = 1.2f;
 
-    public const int MICROBE_AI_OBJECTS_PER_TASK = 15;
+    public const int MICROBE_AI_OBJECTS_PER_TASK = 12;
 
     public const int INITIAL_SPECIES_POPULATION = 100;
 
@@ -139,6 +142,11 @@ public static class Constants
     ///   Max number of concurrent audio players that may be spawned per entity.
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
+
+    /// <summary>
+    ///   Max number of concurrent audio players that may be spawned for UI sounds.
+    /// </summary>
+    public const int MAX_CONCURRENT_UI_AUDIO_PLAYERS = 10;
 
     public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
 
@@ -209,6 +217,16 @@ public static class Constants
     /// </summary>
     public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
 
+    /// <summary>
+    ///   Limits how often floating chunks are processed to save on some performance
+    /// </summary>
+    public const float FLOATING_CHUNK_PROCESS_INTERVAL = 0.05f;
+
+    /// <summary>
+    ///   If more chunks exist at once than this, then some are forced to dissolve immediately
+    /// </summary>
+    public const int FLOATING_CHUNK_MAX_COUNT = 35;
+
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 3000.0f;
 
     public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;
@@ -236,6 +254,8 @@ public static class Constants
     /// </summary>
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
 
+    public const float MICROBE_REPRODUCTION_PROGRESS_INTERVAL = 0.05f;
+
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
     ///   is dealt to a microbe at a time when it is out of ATP.
@@ -245,7 +265,12 @@ public static class Constants
     /// <summary>
     ///   Organelles won't take compounds if there is less available than this amount
     /// </summary>
-    public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0f;
+    /// <remarks>
+    ///   <para>
+    ///     This is no longer zero as rounding can otherwise make compounds just disappear
+    ///   </para>
+    /// </remarks>
+    public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0001f;
 
     /// <summary>
     ///   Cost of moving the rigidity slider by one step in the microbe editor
@@ -335,6 +360,8 @@ public static class Constants
 
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
+
+    public const float COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET = 1;
 
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
@@ -476,7 +503,7 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
-    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 1200;
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
@@ -494,13 +521,22 @@ public static class Constants
 
     // These control how many game entities can exist at once and how fast they are allowed to spawn / despawn
     // TODO: bump this back up once we resolve the performance bottleneck
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 150;
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 140;
     public const int MAX_SPAWNS_PER_FRAME = 1;
 
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
     /// </summary>
-    public const int MAX_DESPAWNS_PER_FRAME = 1;
+    public const int MAX_DESPAWNS_PER_FRAME = 2;
+
+    /// <summary>
+    ///   How often despawns happen on top of the normal despawns that are part of the spawn cycle
+    /// </summary>
+    public const float DESPAWN_INTERVAL = 0.08f;
+
+    public const float CHANCE_MULTICELLULAR_SPAWNS_GROWN = 0.1f;
+    public const float CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN = 0.3f;
+    public const float CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE = 0.4f;
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
@@ -526,10 +562,27 @@ public static class Constants
     public const float EDITOR_ARROW_OFFSET = 3.5f;
     public const float EDITOR_ARROW_INTERPOLATE_SPEED = 0.5f;
 
+    public const float EDITOR_DEFAULT_CAMERA_HEIGHT = 10;
+
+    public const float MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER = 0.80f;
+
+    /// <summary>
+    ///   Scale used for one frame while membrane data is not ready yet
+    /// </summary>
+    public const float MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE = 0.18f;
+
+    /// <summary>
+    ///   Multiplier for cell editor actions in multicellular editor
+    /// </summary>
+    public const float MULTICELLULAR_EDITOR_COST_FACTOR = 0.5f;
+
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
     public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
+
+    public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
+    public const int COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC = 20;
 
     /// <summary>
     ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs
@@ -599,6 +652,12 @@ public static class Constants
     /// <summary>
     ///   All Nodes tagged with this are considered Microbes that the AI can react to
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: quite a few of these AI_TAG starting constants need to be renamed as these are generally used to
+    ///     find relevant entities for things that aren't the AI system
+    ///   </para>
+    /// </remarks>
     public const string AI_TAG_MICROBE = "microbe";
 
     /// <summary>
@@ -615,6 +674,8 @@ public static class Constants
     public const string SAVE_FOLDER = "user://saves";
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
+
+    public const int MAX_PATH_LENGTH = 1024;
 
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
@@ -703,6 +764,10 @@ public static class Constants
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 600f;
 
+    public const float PHOTO_STUDIO_CAMERA_FOV = 70;
+    public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
+    public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 0.80f;
+
     /// <summary>
     ///   Regex for species name validation.
     /// </summary>
@@ -714,6 +779,8 @@ public static class Constants
     ///   Minimum hex distance before the same render priority.
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
+
+    public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
     public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
 

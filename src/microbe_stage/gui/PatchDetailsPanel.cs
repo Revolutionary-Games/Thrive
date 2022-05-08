@@ -201,7 +201,7 @@ public class PatchDetailsPanel : PanelContainer
         details.Visible = true;
         nothingSelected.Visible = false;
 
-        name.Text = TranslationServer.Translate(Patch.Name);
+        name.Text = Patch.Name.ToString();
 
         // Biome: {0}
         biome.Text = string.Format(CultureInfo.CurrentCulture,

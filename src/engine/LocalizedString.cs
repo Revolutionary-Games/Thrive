@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using Godot;
@@ -14,6 +15,7 @@ using Newtonsoft.Json;
 ///   This class can be used on its own, but was designed for the use within LocalizedStringBuilder.
 /// </remarks>
 [JSONDynamicTypeAllowed]
+[TypeConverter(typeof(LocalizedStringTypeConverter))]
 public class LocalizedString : IFormattable, IEquatable<LocalizedString>
 {
     [JsonProperty]
@@ -46,8 +48,17 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
             return format ?? TranslationServer.Translate(translationKey);
         }
 
-        return string.Format(formatProvider ?? CultureInfo.CurrentCulture,
-            format ?? TranslationServer.Translate(translationKey), formatStringArgs);
+        try
+        {
+            return string.Format(formatProvider ?? CultureInfo.CurrentCulture,
+                format ?? TranslationServer.Translate(translationKey), formatStringArgs);
+        }
+        catch (FormatException e)
+        {
+            GD.PrintErr("Invalid translation format in string ", translationKey, " for current language, exception: ",
+                e);
+            return TranslationServer.Translate(translationKey);
+        }
     }
 
     public override bool Equals(object? obj)

@@ -277,16 +277,10 @@ public class AutoEvoRun
             var key = (entry.Species, entry.EventType, entry.Patch);
             var speciesPopulation = entry.Species.Population;
 
-            if (combinedExternalEffects.ContainsKey(key))
-            {
-                combinedExternalEffects[key] +=
-                    entry.Constant + (long)(speciesPopulation * entry.Coefficient) - speciesPopulation;
-            }
-            else
-            {
-                combinedExternalEffects[key] =
-                    entry.Constant + (int)(speciesPopulation * entry.Coefficient) - speciesPopulation;
-            }
+            combinedExternalEffects.TryGetValue(key, out var existingEffectAmount);
+
+            combinedExternalEffects[key] = existingEffectAmount +
+                entry.Constant + (long)(speciesPopulation * entry.Coefficient) - speciesPopulation;
         }
 
         var builder = new LocalizedStringBuilder(300);
@@ -300,10 +294,8 @@ public class AutoEvoRun
             }
             else
             {
-                var patchName = TranslationServer.Translate(entry.Key.Patch.Name);
-
                 builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED",
-                    entry.Key.Species.FormattedName, entry.Value, patchName, entry.Key.Event));
+                    entry.Key.Species.FormattedName, entry.Value, entry.Key.Patch.Name, entry.Key.Event));
             }
 
             builder.Append('\n');

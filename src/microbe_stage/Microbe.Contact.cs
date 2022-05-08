@@ -19,6 +19,9 @@ public partial class Microbe
     private HashSet<uint> pilusPhysicsShapes = new();
 
     private bool membraneOrganellePositionsAreDirty = true;
+    private bool membraneOrganellesWereUpdatedThisFrame;
+
+    private bool destroyed;
 
     // variables for engulfing
     [JsonProperty]
@@ -72,6 +75,11 @@ public partial class Microbe
 
     [JsonProperty]
     private bool deathParticlesSpawned;
+
+    /// <summary>
+    ///   Used to log just once when the touched microbe disposed issue happens to reduce log spam
+    /// </summary>
+    private bool loggedTouchedDisposeIssue;
 
     [JsonProperty]
     private MicrobeState state;
@@ -140,7 +148,19 @@ public partial class Microbe
     [JsonIgnore]
     public MicrobeState State
     {
-        get => Colony?.State ?? state;
+        get
+        {
+            if (Colony == null)
+                return state;
+
+            var colonyState = Colony.State;
+
+            // Override engulf mode in colony cells that can't engulf
+            if (colonyState == MicrobeState.Engulf && Membrane.Type.CellWall)
+                return MicrobeState.Normal;
+
+            return colonyState;
+        }
         set
         {
             if (state == value)
@@ -149,6 +169,10 @@ public partial class Microbe
             // Engulfing is not legal for microbes will cell walls
             if (value == MicrobeState.Engulf && Membrane.Type.CellWall)
             {
+                // Don't warn when in a multicellular colony as the other cells there can enter engulf mode
+                if (ColonyParent != null && IsMulticellular)
+                    return;
+
                 GD.PrintErr("Illegal Action: microbe attempting to engulf with a membrane that does not allow it!");
                 return;
             }
@@ -170,7 +194,7 @@ public partial class Microbe
     {
         get
         {
-            if (Species.IsBacteria)
+            if (CellTypeProperties.IsBacteria)
             {
                 return HexCount * 0.5f;
             }
@@ -180,9 +204,14 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Returns true when this microbe can enable binding mode
+    ///   Returns true when this microbe can enable binding mode. Multicellular species can't attach random cells
+    ///   to themselves anymore
     /// </summary>
-    public bool CanBind => organelles?.Any(p => p.IsBindingAgent) == true || Colony != null;
+    [JsonIgnore]
+    public bool CanBind => !IsMulticellular && (organelles?.Any(p => p.IsBindingAgent) == true || Colony != null);
+
+    [JsonIgnore]
+    public bool CanUnbind => !IsMulticellular && Colony != null;
 
     /// <summary>
     ///   Called when this Microbe dies
@@ -202,9 +231,9 @@ public partial class Microbe
     /// </summary>
     public void ApplyMembraneWigglyness()
     {
-        Membrane.WigglyNess = Membrane.Type.BaseWigglyness - (Species.MembraneRigidity /
+        Membrane.WigglyNess = Membrane.Type.BaseWigglyness - (CellTypeProperties.MembraneRigidity /
             Membrane.Type.BaseWigglyness) * 0.2f;
-        Membrane.MovementWigglyNess = Membrane.Type.MovementWigglyness - (Species.MembraneRigidity /
+        Membrane.MovementWigglyNess = Membrane.Type.MovementWigglyness - (CellTypeProperties.MembraneRigidity /
             Membrane.Type.MovementWigglyness) * 0.2f;
     }
 
@@ -235,7 +264,7 @@ public partial class Microbe
         flashDuration = 0;
         flashColour = new Color(0, 0, 0, 0);
         flashPriority = 0;
-        Membrane.Tint = Species.Colour;
+        Membrane.Tint = CellTypeProperties.Colour;
     }
 
     /// <summary>
@@ -269,7 +298,7 @@ public partial class Microbe
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
 
             // Divide damage by toxin resistance
-            amount /= Species.MembraneType.ToxinResistance;
+            amount /= CellTypeProperties.MembraneType.ToxinResistance;
         }
         else if (source == "pilus")
         {
@@ -279,7 +308,7 @@ public partial class Microbe
             // TODO: this may get triggered a lot more than the toxin
             // so this might need to be rate limited or something
             // Divide damage by physical resistance
-            amount /= Species.MembraneType.PhysicalResistance;
+            amount /= CellTypeProperties.MembraneType.PhysicalResistance;
         }
         else if (source == "chunk")
         {
@@ -288,20 +317,18 @@ public partial class Microbe
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
 
             // Divide damage by physical resistance
-            amount /= Species.MembraneType.PhysicalResistance;
+            amount /= CellTypeProperties.MembraneType.PhysicalResistance;
         }
         else if (source == "atpDamage")
         {
-            // TODO: Replace this take damage sound with a more appropriate one.
-
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg");
         }
         else if (source == "ice")
         {
             PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-ice-damage.ogg", 0.5f);
 
             // Divide damage by physical resistance
-            amount /= Species.MembraneType.PhysicalResistance;
+            amount /= CellTypeProperties.MembraneType.PhysicalResistance;
         }
 
         Hitpoints -= amount;
@@ -324,6 +351,29 @@ public partial class Microbe
     /// </summary>
     public bool CanEngulf(Microbe target)
     {
+        // Can't engulf already destroyed microbes. We don't use entity references so we need to manually check if
+        // something is destroyed or not here (especially now that the Invoke the engulf start callback)
+        if (target.destroyed)
+            return false;
+
+        // Log error if trying to engulf something that is disposed, we got a crash log trace with an error with that
+        // TODO: find out why disposed microbes can be attempted to be engulfed
+        try
+        {
+            // Access a Godot property to throw disposed exception
+            _ = target.GlobalTransform;
+        }
+        catch (ObjectDisposedException)
+        {
+            if (!loggedTouchedDisposeIssue)
+            {
+                GD.PrintErr("Touched microbe has been disposed before engulfing could start");
+                loggedTouchedDisposeIssue = true;
+            }
+
+            return false;
+        }
+
         // Disallow cannibalism
         if (target.Species == Species)
             return false;
@@ -439,10 +489,7 @@ public partial class Microbe
         {
             foreach (var entry in organelle.Definition.InitialComposition)
             {
-                float existing = 0;
-
-                if (compoundsToRelease.ContainsKey(entry.Key))
-                    existing = compoundsToRelease[entry.Key];
+                compoundsToRelease.TryGetValue(entry.Key, out var existing);
 
                 compoundsToRelease[entry.Key] = existing + (entry.Value *
                     Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
@@ -517,7 +564,7 @@ public partial class Microbe
 
             // Finally spawn a chunk with the settings
             var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
-                chunkScene, cloudSystem!, random);
+                chunkScene, random);
 
             // Add to the spawn system to make these chunks limit possible number of entities
             SpawnSystem.AddEntityToTrack(chunk);
@@ -558,6 +605,12 @@ public partial class Microbe
 
     public void OnDestroyed()
     {
+        if (destroyed)
+            return;
+
+        destroyed = true;
+
+        // TODO: find out a way to cleanly despawn colonies without having to run the reproduction progress lost logic
         Colony?.RemoveFromColony(this);
 
         AliveMarker.Alive = false;
@@ -576,9 +629,12 @@ public partial class Microbe
         if (State is MicrobeState.Unbinding or MicrobeState.Binding)
             State = MicrobeState.Normal;
 
+        if (!CanUnbind)
+            return;
+
         // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should keep the
         // disband entire colony functionality
-        Colony?.RemoveFromColony(this);
+        Colony!.RemoveFromColony(this);
     }
 
     internal void OnColonyMemberRemoved(Microbe microbe)
@@ -593,6 +649,12 @@ public partial class Microbe
             Mode = ModeEnum.Rigid;
 
             return;
+        }
+
+        if (IsMulticellular && Colony?.Master == this)
+        {
+            // Lost a member of the multicellular organism
+            OnMulticellularColonyCellLost(microbe);
         }
 
         if (hostileEngulfer != microbe)
@@ -671,7 +733,12 @@ public partial class Microbe
 
     private void OnIGotAddedToColony()
     {
-        State = MicrobeState.Normal;
+        // Multicellular creature can stay in engulf mode when growing things
+        if (!IsMulticellular || State != MicrobeState.Engulf)
+        {
+            State = MicrobeState.Normal;
+        }
+
         UnreadyToReproduce();
 
         if (ColonyParent == null)
@@ -687,8 +754,8 @@ public partial class Microbe
 
     private void SetMembraneFromSpecies()
     {
-        Membrane.Type = Species.MembraneType;
-        Membrane.Tint = Species.Colour;
+        Membrane.Type = CellTypeProperties.MembraneType;
+        Membrane.Tint = CellTypeProperties.Colour;
         Membrane.Dirty = true;
         ApplyMembraneWigglyness();
     }
@@ -719,7 +786,7 @@ public partial class Microbe
             else
             {
                 // Restore colour
-                Membrane.Tint = Species.Colour;
+                Membrane.Tint = CellTypeProperties.Colour;
             }
 
             // Flashing ended
@@ -728,7 +795,7 @@ public partial class Microbe
                 flashDuration = 0;
 
                 // Restore colour
-                Membrane.Tint = Species.Colour;
+                Membrane.Tint = CellTypeProperties.Colour;
             }
         }
     }
@@ -740,8 +807,14 @@ public partial class Microbe
     {
         if (State != MicrobeState.Binding)
         {
-            if (bindingAudio.Playing)
-                bindingAudio.Stop();
+            if (bindingAudio.Playing && bindingAudio.Volume > 0)
+            {
+                bindingAudio.Volume -= delta;
+
+                if (bindingAudio.Volume <= 0)
+                    bindingAudio.Stop();
+            }
+
             return;
         }
 
@@ -755,6 +828,16 @@ public partial class Microbe
 
         if (!bindingAudio.Playing)
             bindingAudio.Play();
+
+        // To balance loudness, here the binding audio's max volume is reduced to 0.6 in linear volume
+        if (bindingAudio.Volume < 0.6f)
+        {
+            bindingAudio.Volume += delta;
+        }
+        else if (bindingAudio.Volume >= 0.6f)
+        {
+            bindingAudio.Volume = 0.6f;
+        }
 
         Flash(1, new Color(0.2f, 0.5f, 0.0f, 0.5f));
     }
@@ -1050,21 +1133,25 @@ public partial class Microbe
 
                 var target = otherIsPilus ? thisMicrobe : touchedMicrobe;
 
-                target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus");
+                Invoke.Instance.Perform(() => target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus"));
                 return;
             }
 
             // Pili don't stop engulfing
             if (thisMicrobe.touchedMicrobes.Add(touchedMicrobe))
             {
-                thisMicrobe.CheckStartEngulfingOnCandidates();
-                thisMicrobe.CheckBinding();
+                Invoke.Instance.Perform(() =>
+                {
+                    thisMicrobe.CheckStartEngulfingOnCandidates();
+                    thisMicrobe.CheckBinding();
+                });
             }
 
             // Play bump sound if certain total collision impulse is reached (adjusted by mass)
             if (thisMicrobe.collisionForce / Mass > Constants.CONTACT_IMPULSE_TO_BUMP_SOUND)
             {
-                thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg");
+                Invoke.Instance.Perform(() =>
+                    thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg"));
             }
         }
     }
@@ -1099,7 +1186,7 @@ public partial class Microbe
 
             if (otherMicrobesInEngulfRange.Add(microbe))
             {
-                CheckStartEngulfingOnCandidates();
+                Invoke.Instance.Perform(CheckStartEngulfingOnCandidates);
             }
         }
     }
@@ -1118,7 +1205,7 @@ public partial class Microbe
     private bool CanBindToMicrobe(Microbe other)
     {
         // Cannot hijack the player, other species or other colonies (TODO: yet)
-        return !other.IsPlayerMicrobe && other.Colony == null && other.Species == Species;
+        return !other.Dead && !other.IsPlayerMicrobe && other.Colony == null && other.Species == Species;
     }
 
     private void CheckBinding()

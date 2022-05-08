@@ -24,6 +24,9 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public NodePath CellEditorRedoPath = null!;
 
     [Export]
+    public NodePath CellEditorRedoHighlightPath = null!;
+
+    [Export]
     public NodePath CellEditorClosingWordsPath = null!;
 
     [Export]
@@ -51,6 +54,8 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public Node GUINode => this;
 
     public ControlHighlight? CellEditorUndoHighlight { get; private set; }
+
+    public ControlHighlight? CellEditorRedoHighlight { get; private set; }
 
     public ControlHighlight? AutoEvoPredictionHighlight { get; private set; }
 
@@ -218,7 +223,10 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         staySmallTutorial = GetNode<CustomDialog>(StaySmallTutorialPath);
 
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
+        CellEditorRedoHighlight = GetNode<ControlHighlight>(CellEditorRedoHighlightPath);
         AutoEvoPredictionHighlight = GetNode<ControlHighlight>(AutoEvoPredictionHighlightPath);
+
+        PauseMode = PauseModeEnum.Process;
     }
 
     public override void _Process(float delta)

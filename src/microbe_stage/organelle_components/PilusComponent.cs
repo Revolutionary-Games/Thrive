@@ -21,7 +21,11 @@ public class PilusComponent : ExternallyPositionedComponent
         {
             // Send the organelle positions to the membrane then update the pilus
             currentShapesParent.SendOrganellePositionsToMembrane();
-            Update(0);
+            UpdateAsync(0);
+            UpdateSync();
+
+            if (newShapeParent.Colony != null)
+                OnShapeParentChanged(newShapeParent, offset);
         }
         else
         {
@@ -80,7 +84,7 @@ public class PilusComponent : ExternallyPositionedComponent
 
         membraneCoords += membranePointDirection * Constants.DEFAULT_HEX_SIZE * 2;
 
-        if (organelle.ParentMicrobe!.Species.IsBacteria)
+        if (organelle.ParentMicrobe!.CellTypeProperties.IsBacteria)
         {
             membraneCoords *= 0.5f;
         }
@@ -107,7 +111,7 @@ public class PilusComponent : ExternallyPositionedComponent
         float pilusSize = 4.6f;
 
         // Scale the size down for bacteria
-        if (organelle!.ParentMicrobe!.Species.IsBacteria)
+        if (organelle!.ParentMicrobe!.CellTypeProperties.IsBacteria)
         {
             pilusSize *= 0.5f;
         }

@@ -18,6 +18,7 @@ using Newtonsoft.Json;
 /// </remarks>
 public class MicrobeAI
 {
+    private readonly Compound atp;
     private readonly Compound glucose;
     private readonly Compound iron;
     private readonly Compound oxytoxy;
@@ -41,6 +42,13 @@ public class MicrobeAI
 
     [JsonProperty]
     private float pursuitThreshold;
+
+    /// <summary>
+    ///   A value between 0.0f and 1.0f, this is the portion of the microbe's atp bar that needs to refill
+    ///   before resuming motion.
+    /// </summary>
+    [JsonProperty]
+    private float atpThreshold;
 
     /// <summary>
     ///   Stores the value of microbe.totalAbsorbedCompound at tick t-1 before it is cleared and updated at tick t.
@@ -69,6 +77,7 @@ public class MicrobeAI
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
 
+        atp = SimulationParameters.Instance.GetCompound("atp");
         glucose = SimulationParameters.Instance.GetCompound("glucose");
         iron = SimulationParameters.Instance.GetCompound("iron");
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
@@ -157,6 +166,26 @@ public class MicrobeAI
             return;
         }
 
+        // If this microbe is out of ATP, pick an amount of time to rest
+        if (microbe.Compounds.GetCompoundAmount(atp) < 1.0f)
+        {
+            // Keep the maximum at 95% full, as there is flickering when near full
+            atpThreshold = 0.95f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
+        }
+
+        if (atpThreshold > 0.0f)
+        {
+            if (microbe.Compounds.GetCompoundAmount(atp) < microbe.Compounds.Capacity * atpThreshold
+                && microbe.Compounds.Where(compound => IsVitalCompound(compound.Key) && compound.Value > 0.0f)
+                    .Count() > 0)
+            {
+                SetMoveSpeed(0.0f);
+                return;
+            }
+
+            atpThreshold = 0.0f;
+        }
+
         // Follow received commands if we have them
         // TODO: tweak the balance between following commands and doing normal behaviours
         // TODO: and also probably we want to add some randomness to the positions and speeds based on distance
@@ -195,7 +224,7 @@ public class MicrobeAI
         }
 
         // If there are no threats, look for a chunk to eat
-        if (!microbe.Species.MembraneType.CellWall)
+        if (!microbe.CellTypeProperties.MembraneType.CellWall)
         {
             Vector3? targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random)?.Translation;
             if (targetChunk.HasValue)
@@ -216,6 +245,9 @@ public class MicrobeAI
             EngagePrey(prey.Value, random, engulfPrey);
             return;
         }
+
+        // There is no reason to be engulfing at this stage
+        microbe.State = Microbe.MicrobeState.Normal;
 
         // Otherwise just wander around and look for compounds
         if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
@@ -472,9 +504,6 @@ public class MicrobeAI
 
     private void SeekCompounds(Random random, MicrobeAICommonData data)
     {
-        // If we are still engulfing for some reason, stop
-        microbe.State = Microbe.MicrobeState.Normal;
-
         // More active species just try to get distance to avoid over-clustering
         if (RollCheck(SpeciesActivity, Constants.MAX_SPECIES_ACTIVITY + (Constants.MAX_SPECIES_ACTIVITY / 2), random))
         {
@@ -716,6 +745,10 @@ public class MicrobeAI
         foreach (var speciesMicrobe in ownSpeciesMicrobes)
         {
             if (speciesMicrobe.SignalCommand == MicrobeSignalCommand.None)
+                continue;
+
+            // Don't detect your own signals
+            if (speciesMicrobe == microbe)
                 continue;
 
             var distance = DistanceFromMe(speciesMicrobe.Translation);

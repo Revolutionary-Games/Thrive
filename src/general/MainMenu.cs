@@ -278,8 +278,8 @@ public class MainMenu : NodeWithInput
     private void OnIntroEnded()
     {
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ?
-            0.3f :
-            0.5f, false);
+            0.5f :
+            1.0f, false);
         TransitionManager.Instance.StartTransitions(null);
 
         // Start music after the video
@@ -317,11 +317,11 @@ public class MainMenu : NodeWithInput
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
-        Jukebox.Instance.Stop();
+        Jukebox.Instance.SmoothStop();
 
         if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
         {
-            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
+            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 1.5f);
             TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f);
         }
         else

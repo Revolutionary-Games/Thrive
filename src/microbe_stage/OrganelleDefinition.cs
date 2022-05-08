@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -45,7 +46,7 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   User readable name
     /// </summary>
-    [TranslateFrom("untranslatedName")]
+    [TranslateFrom(nameof(untranslatedName))]
     public string Name = null!;
 
     /// <summary>
@@ -71,16 +72,19 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   Loaded scene instance to be used when organelle of this type is placed
     /// </summary>
+    [JsonIgnore]
     public PackedScene? LoadedScene;
 
     /// <summary>
     ///   Loaded scene instance to be used when organelle of this type needs to be displayed for a dead microbe
     /// </summary>
+    [JsonIgnore]
     public PackedScene? LoadedCorpseChunkScene;
 
     /// <summary>
     ///   Loaded icon for display in GUIs
     /// </summary>
+    [JsonIgnore]
     public Texture? LoadedIcon;
 
     public float Mass;
@@ -94,6 +98,22 @@ public class OrganelleDefinition : IRegistryType
     ///   Same as ChanceToCreate but for prokaryotes (bacteria)
     /// </summary>
     public float ProkaryoteChance;
+
+    /// <summary>
+    ///   If set to true this part is unimplemented and isn't loadable (and not all properties are required)
+    /// </summary>
+    public bool Unimplemented;
+
+    /// <summary>
+    ///   The group of buttons under which the button to select to place this organelle is put
+    /// </summary>
+    [JsonRequired]
+    public OrganelleGroup EditorButtonGroup = OrganelleGroup.Hidden;
+
+    /// <summary>
+    ///   Controls the order of editor organelle selection buttons within a single section. Smaller values are first
+    /// </summary>
+    public int EditorButtonOrder;
 
     [JsonRequired]
     public OrganelleComponentFactoryInfo Components = null!;
@@ -109,8 +129,7 @@ public class OrganelleDefinition : IRegistryType
     public List<Hex> Hexes = null!;
 
     /// <summary>
-    ///   The compounds this organelle consists of (how many resources
-    ///   are needed to duplicate this)
+    ///   The compounds this organelle consists of (how many resources are needed to duplicate this)
     /// </summary>
     public Dictionary<Compound, float> InitialComposition = null!;
 
@@ -125,7 +144,7 @@ public class OrganelleDefinition : IRegistryType
     public string ConsumptionColour = null!;
 
     /// <summary>
-    ///   Icon used for the ATP bars
+    ///   Icon used for the ATP bars and editor selection buttons. Required if placeable by the player
     /// </summary>
     public string? IconPath;
 
@@ -159,13 +178,27 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();
 
-#pragma warning disable 169 // Used through reflection
+#pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
-#pragma warning restore 169
+#pragma warning restore 169,649
+
+    public enum OrganelleGroup
+    {
+        /// <summary>
+        ///   Not shown in the GUI, not placeable by the player
+        /// </summary>
+        Hidden,
+
+        Structural,
+        Protein,
+        External,
+        Organelle,
+    }
 
     /// <summary>
     ///   The total amount of compounds in InitialComposition
     /// </summary>
+    [JsonIgnore]
     public float OrganelleCost { get; private set; }
 
     [JsonIgnore]
@@ -178,6 +211,10 @@ public class OrganelleDefinition : IRegistryType
     public int HexCount => Hexes.Count;
 
     public string InternalName { get; set; } = null!;
+
+    [JsonIgnore]
+    public string UntranslatedName =>
+        untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
 
     public bool ContainsHex(Hex hex)
     {
@@ -196,11 +233,11 @@ public class OrganelleDefinition : IRegistryType
     public IEnumerable<Hex> GetRotatedHexes(int rotation)
     {
         // The rotations repeat every 6 steps
-        rotation = rotation % 6;
+        rotation %= 6;
 
-        if (!rotatedHexesCache.ContainsKey(rotation))
+        if (!rotatedHexesCache.TryGetValue(rotation, out var rotated))
         {
-            var rotated = new List<Hex>();
+            rotated = new List<Hex>();
 
             foreach (var hex in Hexes)
             {
@@ -210,7 +247,7 @@ public class OrganelleDefinition : IRegistryType
             rotatedHexesCache[rotation] = rotated;
         }
 
-        return rotatedHexesCache[rotation];
+        return rotated;
     }
 
     public Vector3 CalculateCenterOffset()
@@ -258,6 +295,16 @@ public class OrganelleDefinition : IRegistryType
 
     public void Check(string name)
     {
+        if (string.IsNullOrEmpty(Name))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Name is not set");
+        }
+
+        TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
+
+        if (Unimplemented)
+            return;
+
         if (Components == null)
         {
             throw new InvalidRegistryDataException(name, GetType().Name, "No components specified");
@@ -273,16 +320,6 @@ public class OrganelleDefinition : IRegistryType
         if (Mass <= 0.0f)
         {
             throw new InvalidRegistryDataException(name, GetType().Name, "Mass is unset");
-        }
-
-        if (Mass <= 0.0f)
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name, "Mass is unset");
-        }
-
-        if (string.IsNullOrEmpty(Name))
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name, "Name is not set");
         }
 
         if (InitialComposition == null || InitialComposition.Count < 1)
@@ -321,8 +358,6 @@ public class OrganelleDefinition : IRegistryType
                     "Duplicate hex position");
             }
         }
-
-        TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
     /// <summary>
@@ -358,6 +393,9 @@ public class OrganelleDefinition : IRegistryType
                     process.Value));
             }
         }
+
+        if (Unimplemented)
+            return;
 
         // Compute total cost from the initial composition
         OrganelleCost = 0;

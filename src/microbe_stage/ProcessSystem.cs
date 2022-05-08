@@ -83,19 +83,15 @@ public class ProcessSystem
             {
                 var processData = CalculateProcessMaximumSpeed(process, biome);
 
-                if (processData.WritableInputs.ContainsKey(ATP))
+                if (processData.WritableInputs.TryGetValue(ATP, out var amount))
                 {
-                    var amount = processData.WritableInputs[ATP];
-
                     processATPConsumption += amount;
 
                     result.AddConsumption(organelle.Definition.InternalName, amount);
                 }
 
-                if (processData.WritableOutputs.ContainsKey(ATP))
+                if (processData.WritableOutputs.TryGetValue(ATP, out amount))
                 {
-                    var amount = processData.WritableOutputs[ATP];
-
                     processATPProduction += amount;
 
                     result.AddProduction(organelle.Definition.InternalName, amount);
@@ -187,6 +183,74 @@ public class ProcessSystem
         return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
     }
 
+    /// <summary>
+    ///   Calculates the maximum speed a process can run at in a biome
+    ///   based on the environmental compounds.
+    /// </summary>
+    public static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
+        BiomeConditions biome)
+    {
+        var result = new ProcessSpeedInformation(process.Process);
+
+        float speedFactor = 1.0f;
+        float efficiency = 1.0f;
+
+        // Environmental inputs need to be processed first
+        foreach (var input in process.Process.Inputs)
+        {
+            if (!input.Key.IsEnvironmental)
+                continue;
+
+            // Environmental compound that can limit the rate
+
+            var availableInEnvironment = GetDissolvedInBiome(input.Key, biome);
+
+            var availableRate = availableInEnvironment / input.Value;
+
+            result.AvailableAmounts[input.Key] = availableInEnvironment;
+
+            efficiency *= availableInEnvironment;
+
+            // More than needed environment value boosts the effectiveness
+            result.AvailableRates[input.Key] = availableRate;
+
+            speedFactor *= availableRate;
+
+            result.WritableInputs[input.Key] = input.Value;
+        }
+
+        result.Efficiency = efficiency;
+
+        speedFactor *= process.Rate;
+
+        // Note that we don't consider storage constraints here so we don't use spaceConstraintModifier calculations
+
+        // So that the speed factor is available here
+        foreach (var entry in process.Process.Inputs)
+        {
+            if (entry.Key.IsEnvironmental)
+                continue;
+
+            // Normal, cloud input
+
+            result.WritableInputs.Add(entry.Key, entry.Value * speedFactor);
+        }
+
+        foreach (var entry in process.Process.Outputs)
+        {
+            var amount = entry.Value * speedFactor;
+
+            result.WritableOutputs[entry.Key] = amount;
+
+            if (amount <= 0)
+                result.WritableLimitingCompounds.Add(entry.Key);
+        }
+
+        result.CurrentSpeed = speedFactor;
+
+        return result;
+    }
+
     public void Process(float delta)
     {
         // Guard against Godot delta problems. https://github.com/Revolutionary-Games/Thrive/issues/1976
@@ -200,6 +264,7 @@ public class ProcessSystem
         }
 
         var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.PROCESS_GROUP);
+        var nodeCount = nodes.Count;
 
         // Used to go from the calculated compound values to per second values for reporting statistics
         float inverseDelta = 1.0f / delta;
@@ -207,14 +272,14 @@ public class ProcessSystem
         // The objects are processed here in order to take advantage of threading
         var executor = TaskExecutor.Instance;
 
-        for (int i = 0; i < nodes.Count; i += Constants.PROCESS_OBJECTS_PER_TASK)
+        for (int i = 0; i < nodeCount; i += Constants.PROCESS_OBJECTS_PER_TASK)
         {
             int start = i;
 
             var task = new Task(() =>
             {
                 for (int a = start;
-                     a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodes.Count; ++a)
+                     a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodeCount; ++a)
                 {
                     ProcessNode(nodes[a] as IProcessable, delta, inverseDelta);
                 }
@@ -249,73 +314,10 @@ public class ProcessSystem
 
     private static float GetDissolvedInBiome(Compound compound, BiomeConditions biome)
     {
-        if (!biome.Compounds.ContainsKey(compound))
+        if (!biome.Compounds.TryGetValue(compound, out var environmentalCompoundProperties))
             return 0;
 
-        return biome.Compounds[compound].Dissolved;
-    }
-
-    /// <summary>
-    ///   Calculates the maximum speed a process can run at in a biome
-    ///   based on the environmental compounds.
-    /// </summary>
-    private static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
-        BiomeConditions biome)
-    {
-        var result = new ProcessSpeedInformation(process.Process);
-
-        float speedFactor = 1.0f;
-
-        // Environmental inputs need to be processed first
-        foreach (var entry in process.Process.Inputs)
-        {
-            if (!entry.Key.IsEnvironmental)
-                continue;
-
-            // Environmental compound that can limit the rate
-
-            var availableInEnvironment = GetDissolvedInBiome(entry.Key, biome);
-
-            var availableRate = availableInEnvironment / entry.Value;
-
-            result.AvailableAmounts[entry.Key] = availableInEnvironment;
-
-            // More than needed environment value boosts the effectiveness
-            result.AvailableRates[entry.Key] = availableRate;
-
-            speedFactor *= availableRate;
-
-            result.WritableInputs[entry.Key] = entry.Value;
-        }
-
-        speedFactor *= process.Rate;
-
-        // Note that we don't consider storage constraints here so we don't use spaceConstraintModifier calculations
-
-        // So that the speed factor is available here
-        foreach (var entry in process.Process.Inputs)
-        {
-            if (entry.Key.IsEnvironmental)
-                continue;
-
-            // Normal, cloud input
-
-            result.WritableInputs.Add(entry.Key, entry.Value * speedFactor);
-        }
-
-        foreach (var entry in process.Process.Outputs)
-        {
-            var amount = entry.Value * speedFactor;
-
-            result.WritableOutputs[entry.Key] = amount;
-
-            if (amount <= 0)
-                result.WritableLimitingCompounds.Add(entry.Key);
-        }
-
-        result.CurrentSpeed = speedFactor;
-
-        return result;
+        return environmentalCompoundProperties.Dissolved;
     }
 
     private void ProcessNode(IProcessable? processor, float delta, float inverseDelta)
@@ -354,6 +356,7 @@ public class ProcessSystem
         }
 
         bag.ClampNegativeCompoundAmounts();
+        bag.FixNaNCompounds();
 
         processStatistics?.RemoveUnused();
     }

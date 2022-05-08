@@ -34,6 +34,8 @@ public partial class Microbe
     [JsonProperty]
     private float lastCheckedATPDamage;
 
+    private float lastCheckedReproduction;
+
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the
     ///   current organelles. This is here to prevent anyone from
@@ -108,14 +110,13 @@ public partial class Microbe
     /// </summary>
     public void ResetOrganelleLayout()
     {
-        // TODO: It would be much better if only organelles that need
-        // to be removed where removed, instead of everything.
+        // TODO: It would be much better if only organelles that need to be removed where removed,
+        // instead of everything.
         // When doing that all organelles will need to be re-added anyway if this turned from a prokaryote to eukaryote
 
         if (organelles == null)
         {
-            organelles = new OrganelleLayout<PlacedOrganelle>(OnOrganelleAdded,
-                OnOrganelleRemoved);
+            organelles = new OrganelleLayout<PlacedOrganelle>(OnOrganelleAdded, OnOrganelleRemoved);
         }
         else
         {
@@ -123,7 +124,7 @@ public partial class Microbe
             organelles.Clear();
         }
 
-        foreach (var entry in Species.Organelles.Organelles)
+        foreach (var entry in CellTypeProperties.Organelles.Organelles)
         {
             var placed = new PlacedOrganelle(entry.Definition, entry.Position, entry.Orientation)
             {
@@ -143,6 +144,9 @@ public partial class Microbe
         // Make chemoreception update happen immediately in case the settings changed so that new information is
         // used earlier
         timeUntilChemoreceptionUpdate = 0;
+
+        if (IsMulticellular)
+            ResetMulticellularProgress();
     }
 
     /// <summary>
@@ -158,8 +162,12 @@ public partial class Microbe
 
         foreach (var entry in organelles.Organelles)
         {
-            entry.Colour = Species.Colour;
-            entry.Update(0);
+            entry.Colour = CellTypeProperties.Colour;
+            entry.UpdateAsync(0);
+
+            // This applies the colour so UpdateAsync is not technically needed but to avoid weird bugs we just do it
+            // as well
+            entry.UpdateSync();
         }
     }
 
@@ -192,7 +200,7 @@ public partial class Microbe
         float ejectionDistance = Membrane.EncompassingCircleRadius +
             Constants.AGENT_EMISSION_DISTANCE_OFFSET;
 
-        if (Species.IsBacteria)
+        if (CellTypeProperties.IsBacteria)
             ejectionDistance *= 0.5f;
 
         var props = new AgentProperties(Species, agentType);
@@ -262,26 +270,48 @@ public partial class Microbe
     /// <summary>
     ///   Triggers reproduction on this cell (even if not ready)
     /// </summary>
-    /// <exception cref="NotSupportedException">Thrown when this microbe is in a colony</exception>
-    public void Divide()
+    /// <remarks>
+    ///   <para>
+    ///     Now with multicellular colonies are also allowed to divide so there's no longer a check against that
+    ///   </para>
+    /// </remarks>
+    public Microbe Divide()
     {
-        if (Colony != null)
-            throw new NotSupportedException("Cannot divide a microbe while in a colony");
+        if (ColonyParent != null)
+            throw new ArgumentException("Cell that is a colony member (non-leader) can't divide");
 
-        ForceDivide();
-    }
+        var currentPosition = GlobalTransform.origin;
 
-    /// <summary>
-    ///   Triggers reproduction on this cell (even if not ready)
-    ///   Ignores security checks. If you want those checks, use <see cref="Divide"/>
-    /// </summary>
-    public void ForceDivide()
-    {
         // Separate the two cells.
         var separation = new Vector3(Radius, 0, 0);
 
+        if (Colony != null)
+        {
+            // When in a colony we approximate a much higher separation distance
+            var colonyRadius = separation.x;
+
+            foreach (var colonyMember in Colony.ColonyMembers)
+            {
+                if (colonyMember == this)
+                    continue;
+
+                var radius = colonyMember.Radius + Constants.COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET;
+
+                // TODO: switch this to something else if this is too slow for large colonies
+                var positionInColony = colonyMember.GlobalTransform.origin - currentPosition;
+
+                var outerRadius = Math.Max(Math.Abs(positionInColony.x) + radius,
+                    Math.Abs(positionInColony.z) + radius);
+
+                if (outerRadius > colonyRadius)
+                    colonyRadius = outerRadius;
+            }
+
+            separation = new Vector3(colonyRadius + Constants.COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET, 0, 0);
+        }
+
         // Create the one daughter cell.
-        var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation + separation,
+        var copyEntity = SpawnHelpers.SpawnMicrobe(Species, currentPosition + separation,
             GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, CurrentGame);
 
         // Make it despawn like normal
@@ -343,6 +373,8 @@ public partial class Microbe
 
         // Play the split sound
         PlaySoundEffect("res://assets/sounds/soundeffects/reproduction.ogg");
+
+        return copyEntity;
     }
 
     /// <summary>
@@ -392,25 +424,24 @@ public partial class Microbe
 
         foreach (var entry in totalCompounds)
         {
-            float gathered = 0;
-
-            if (gatheredCompounds.ContainsKey(entry.Key))
-                gathered = gatheredCompounds[entry.Key];
-
-            totalFraction += gathered / entry.Value;
+            if (gatheredCompounds.TryGetValue(entry.Key, out var gathered))
+                totalFraction += gathered / entry.Value;
         }
 
         return totalFraction / totalCompounds.Count;
     }
 
     /// <summary>
-    ///   Calculates total compounds needed for a cell to reproduce,
-    /// used by calculateReproductionProgress to calculate the
-    /// fraction done.  </summary>
+    ///   Calculates total compounds needed for a cell to reproduce, used by calculateReproductionProgress to calculate
+    ///   the fraction done.
+    /// </summary>
     public Dictionary<Compound, float> CalculateTotalCompounds()
     {
         if (organelles == null)
             throw new InvalidOperationException("Microbe must be initialized first");
+
+        if (IsMulticellular)
+            return CalculateTotalBodyPlanCompounds();
 
         var result = new Dictionary<Compound, float>();
 
@@ -451,6 +482,9 @@ public partial class Microbe
             organelle.CalculateAbsorbedCompounds(result);
         }
 
+        if (compoundsUsedForMulticellularGrowth != null)
+            result.Merge(compoundsUsedForMulticellularGrowth);
+
         return result;
     }
 
@@ -475,7 +509,6 @@ public partial class Microbe
     /// </summary>
     private void HandleCompoundVenting(float delta)
     {
-        // TODO: check that this works
         // Skip if process system has not run yet
         if (!Compounds.HasAnyBeenSetUseful())
             return;
@@ -485,7 +518,7 @@ public partial class Microbe
         // Cloud types are ones that can be vented
         foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
         {
-            // Vent if not useful, or if over float the capacity
+            // Vent if not useful, or if overflowed the capacity
             if (!Compounds.IsUseful(type))
             {
                 amountToVent -= EjectCompound(type, amountToVent);
@@ -528,37 +561,53 @@ public partial class Microbe
     {
         float currentHealth = Hitpoints / MaxHitpoints;
 
-        MaxHitpoints = Species.MembraneType.Hitpoints +
-            (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
+        MaxHitpoints = CellTypeProperties.MembraneType.Hitpoints +
+            (CellTypeProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
 
         Hitpoints = MaxHitpoints * currentHealth;
     }
 
     /// <summary>
-    ///   Handles feeding the organelles in this microbe in order for
-    ///   them to split. After all are split this is ready to
-    ///   reproduce.
+    ///   Handles feeding the organelles in this microbe in order for them to split. After all are split this is
+    ///   ready to reproduce.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     AI cells will immediately reproduce when they can. On the
-    ///     player cell the editor is unlocked when reproducing is
-    ///     possible.
+    ///     AI cells will immediately reproduce when they can. On the player cell the editor is unlocked when
+    ///     reproducing is possible.
+    ///   </para>
+    ///   <para>
+    ///     TODO: split this into two parts: giving compounds to grow, and actually spawning things to be able to
+    ///     do multithreading here
     ///   </para>
     /// </remarks>
-#pragma warning disable CA1801 // TODO: implement handling delta
     private void HandleReproduction(float delta)
     {
-#pragma warning restore CA1801
-
         // Dead cells can't reproduce
         if (Dead)
             return;
 
         if (allOrganellesDivided)
         {
-            // Ready to reproduce already. Only the player gets here
-            // as other cells split and reset automatically
+            // Ready to reproduce already. Only the player gets here as other cells split and reset automatically
+            return;
+        }
+
+        lastCheckedReproduction += delta;
+
+        // Limit how often the reproduction logic is ran
+        if (lastCheckedReproduction < Constants.MICROBE_REPRODUCTION_PROGRESS_INTERVAL)
+            return;
+
+        lastCheckedReproduction = 0;
+
+        // TODO: should we make it so that reproduction progress is only checked about max of 20 times per second?
+        // might make a lot of cells use less CPU power
+
+        // Multicellular microbes in a colony still run reproduction logic as long as they are the colony leader
+        if (IsMulticellular && ColonyParent == null)
+        {
+            HandleMulticellularReproduction();
             return;
         }
 
@@ -626,8 +675,7 @@ public partial class Microbe
                 if (organelle.Definition.InternalName != "nucleus")
                     continue;
 
-                // The nucleus hasn't finished replicating
-                // its DNA, give it some compounds.
+                // The nucleus hasn't finished replicating its DNA, give it some compounds.
                 organelle.GrowOrganelle(Compounds);
 
                 if (organelle.GrowthValue < 1.0f)
@@ -643,8 +691,7 @@ public partial class Microbe
             // Nucleus is also now ready to reproduce
             allOrganellesDivided = true;
 
-            // For NPC cells this immediately splits them and the
-            // allOrganellesDivided flag is reset
+            // For NPC cells this immediately splits them and the allOrganellesDivided flag is reset
             ReadyToReproduce();
         }
     }
@@ -653,7 +700,7 @@ public partial class Microbe
     {
         allOrganellesDivided = true;
 
-        ForceDivide();
+        Divide();
     }
 
     private PlacedOrganelle SplitOrganelle(PlacedOrganelle organelle)
@@ -723,20 +770,28 @@ public partial class Microbe
             // The player doesn't split automatically
             allOrganellesDivided = true;
 
-            OnReproductionStatus?.Invoke(this, Colony == null);
+            OnReproductionStatus?.Invoke(this, Colony == null || IsMulticellular);
         }
         else
         {
-            // Return the first cell to its normal, non duplicated cell arrangement.
             if (!Species.PlayerSpecies)
             {
                 GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
                     Constants.CREATURE_REPRODUCE_POPULATION_GAIN, TranslationServer.Translate("REPRODUCED"));
             }
 
-            ResetOrganelleLayout();
+            if (!IsMulticellular)
+            {
+                // Return the first cell to its normal, non duplicated cell arrangement and spawn a daughter cell
+                ResetOrganelleLayout();
 
-            Divide();
+                Divide();
+            }
+            else
+            {
+                Divide();
+                enoughResourcesForBudding = false;
+            }
         }
     }
 
@@ -754,8 +809,14 @@ public partial class Microbe
 
     private void HandleOsmoregulation(float delta)
     {
-        var osmoregulationCost = (HexCount * Species.MembraneType.OsmoregulationFactor *
+        var osmoregulationCost = (HexCount * CellTypeProperties.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
+
+        // 5% osmoregulation bonus per colony member
+        if (Colony != null)
+        {
+            osmoregulationCost *= 20f / (20f + Colony.ColonyMembers.Count);
+        }
 
         Compounds.TakeCompound(atp, osmoregulationCost);
     }
@@ -915,7 +976,7 @@ public partial class Microbe
         var ejectionDistance = Membrane.EncompassingCircleRadius;
 
         // The membrane radius doesn't take being bacteria into account
-        if (Species.IsBacteria)
+        if (CellTypeProperties.IsBacteria)
             ejectionDistance *= 0.5f;
 
         float angle = 180;

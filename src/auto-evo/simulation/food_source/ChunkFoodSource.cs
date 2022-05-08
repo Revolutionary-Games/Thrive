@@ -57,7 +57,7 @@
 
             // We ponder the score for each compound by its amount, leading to pondering in proportion of total
             // quantity, with a constant factor that will be eliminated when making ratios of scores for this niche.
-            var score = energyCompounds.Sum(c => EnergyGenerationScore(microbeSpecies, c.Key) * c.Value);
+            var score = energyCompounds.Sum(c => EnergyGenerationScore(microbeSpecies, c.Key, patch) * c.Value);
 
             score *= chunkEaterSpeed * species.Behaviour.Activity;
 

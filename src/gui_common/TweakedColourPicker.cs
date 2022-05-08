@@ -233,7 +233,7 @@ public class TweakedColourPicker : ColorPicker
         // TODO: Revert this PR once https://github.com/godotengine/godot/issues/57343 is solved.
         baseControl = GetChild(1);
         var customPickerButton = new ToolButton { Icon = pickerButton.Icon };
-        baseControl.RemoveChild(pickerButton);
+        pickerButton.Hide();
         baseControl.AddChild(customPickerButton);
         pickerButton = customPickerButton;
         pickerButton.Connect("pressed", this, nameof(OnPickerClicked));
@@ -288,7 +288,8 @@ public class TweakedColourPicker : ColorPicker
         {
             if (@event is InputEventMouse { ButtonMask: (int)ButtonList.Left })
             {
-                // Confirm
+                // Confirm, perform the last pick so that the colour is precisely the pixel clicked
+                HandleActiveColourPicking(Constants.COLOUR_PICKER_PICK_INTERVAL);
                 pickingColor = false;
             }
             else if (@event is InputEventKey { Scancode: (int)KeyList.Escape, Pressed: true }
@@ -511,7 +512,7 @@ public class TweakedColourPicker : ColorPicker
     {
         pickerTimeElapsed += delta;
 
-        if (pickerTimeElapsed < 0.2f)
+        if (pickerTimeElapsed < Constants.COLOUR_PICKER_PICK_INTERVAL)
             return;
 
         var viewportTexture = GetViewport().GetTexture().GetData();

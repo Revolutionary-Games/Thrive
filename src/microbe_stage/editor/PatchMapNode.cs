@@ -130,13 +130,13 @@ public class PatchMapNode : MarginContainer
         if (!Enabled)
             return;
 
-        if (@event is InputEventMouseButton mouse)
-        {
-            if (mouse.Pressed)
+        if (@event is InputEventMouseButton
             {
-                OnSelect();
-                AcceptEvent();
-            }
+                Pressed: true, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
+            })
+        {
+            OnSelect();
+            GetTree().SetInputAsHandled();
         }
     }
 

@@ -40,6 +40,7 @@ NODE_NAME_UPPERCASE_ACRONYM_ALLOWED_LENGTH = 4
 CFG_VERSION_LINE = %r{[/_]version="([\d.]+)"}.freeze
 ASSEMBLY_VERSION_FILE = 'Properties/AssemblyInfo.cs'
 ASSEMBLY_VERSION_REGEX = /AssemblyVersion\("([\d.]+)"\)/.freeze
+ASSEMBLY_EXTRA_VERSION_REGEX = /AssemblyInformationalVersion\("([^"]*)"\)/.freeze
 
 REQUIREMENTS_TXT_FILE = 'docker/jsonlint/requirements.txt'
 PIP_BABEL_THRIVE_VERSION = /^Babel-Thrive\s*([\d.]+)/.freeze
@@ -165,13 +166,29 @@ end
 def game_version
   return @game_version if @game_version
 
+  found = false
+
   File.foreach(ASSEMBLY_VERSION_FILE, encoding: 'utf-8') do |line|
     next unless line
 
     matches = line.match(ASSEMBLY_VERSION_REGEX)
 
-    return @game_version = matches[1] if matches
+    if matches
+      @game_version = matches[1]
+      found = true
+      next
+    end
+
+    matches = line.match(ASSEMBLY_EXTRA_VERSION_REGEX)
+
+    if matches && matches[1].length.positive?
+      puts 'additional version check'
+
+      raise 'AssemblyInformationalVersion must start with a dash' if matches[1][0] != '-'
+    end
   end
+
+  return @game_version if found
 
   raise 'Could not find AssemblyVersion'
 end
@@ -244,6 +261,9 @@ end
 
 def file_begins_with_bom(path)
   raw_data = File.binread(path, 3)
+
+  # Guard against empty files
+  return false if raw_data.nil?
 
   # Unpack as raw bytes for comparison
   potential_bom = raw_data.unpack('CCC')

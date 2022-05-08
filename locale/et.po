@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-06 15:46+0300\n"
+"POT-Creation-Date: 2022-05-08 21:02+0200\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -290,12 +290,12 @@ msgid "ABILITIES"
 msgstr "Võimed"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2139
+#: ../src/microbe_stage/MicrobeStage.tscn:2133
 msgid "FIRE_TOXIN"
 msgstr "Tulista toksiini"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2127
+#: ../src/microbe_stage/MicrobeStage.tscn:2121
 msgid "TOGGLE_ENGULF"
 msgstr "Neelamise sisse- ja väljalülitamine"
 
@@ -304,7 +304,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Pakikäskude menüü kuvamiseks hoidke all"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2150
+#: ../src/microbe_stage/MicrobeStage.tscn:2144
 msgid "TOGGLE_BINDING"
 msgstr "Lülitage sidumine sisse"
 
@@ -313,7 +313,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Lülita lahti sidumine"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2162
+#: ../src/microbe_stage/MicrobeStage.tscn:2157
 msgid "UNBIND_ALL"
 msgstr "Vabastage kõik"
 
@@ -601,52 +601,60 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1298
+#: ../src/microbe_stage/MicrobeStage.tscn:1297
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:661
 msgid "AMMONIA"
 msgstr "Ammoniaak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1350
+#: ../src/microbe_stage/MicrobeStage.tscn:1349
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:732
 msgid "PHOSPHATE"
 msgstr "fosfaat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1402
+#: ../src/microbe_stage/MicrobeStage.tscn:1401
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:626
 msgid "HYDROGEN_SULFIDE"
 msgstr "Vesiniksulfiid"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1246
+#: ../src/microbe_stage/MicrobeStage.tscn:1245
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:696
 msgid "GLUCOSE"
 msgstr "Glükoos"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1584
+#: ../src/microbe_stage/MicrobeStage.tscn:1583
 msgid "OXYTOXY_NT"
 msgstr "oksütotsiini nt"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1454
+#: ../src/microbe_stage/MicrobeStage.tscn:1453
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:767
 msgid "IRON"
 msgstr "Raud"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:549
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:463
 msgid "OXYGEN"
 msgstr "Hapnik"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:603
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:517
 msgid "CARBON_DIOXIDE"
 msgstr "Süsinikdioksiid"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:576
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:490
 msgid "NITROGEN"
 msgstr "Lämmastik"
 
@@ -654,6 +662,7 @@ msgstr "Lämmastik"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
 msgstr "Päikesevalgus"
 
@@ -822,7 +831,12 @@ msgstr "{0:F1}% valmis. {1:n0}/{2:n0} sammu."
 msgid "STARTING"
 msgstr "alustamine"
 
-#: ../src/auto-evo/AutoEvoRun.cs:288
+#: ../src/auto-evo/AutoEvoRun.cs:292
+#, fuzzy
+msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
+msgstr "{1} muutis elanikkonda {0} põhjustel: {2}"
+
+#: ../src/auto-evo/AutoEvoRun.cs:297
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{1} muutis elanikkonda {0} põhjustel: {2}"
 
@@ -1511,10 +1525,13 @@ msgstr "Sulge"
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:248
-#: ../src/microbe_stage/MicrobeHUD.cs:741
+#: ../src/microbe_stage/MicrobeHUD.cs:760
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:626
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:975
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:217
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2304,6 +2321,7 @@ msgstr "Toores"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2185
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2245
 msgid "NO_DATA_TO_SHOW"
 msgstr "Kuvatavaid andmeid pole"
 
@@ -2606,7 +2624,7 @@ msgstr "Kõik rakud \"näevad\" ainult kemoretseptsiooni kaudu. Nii saavad rakud
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2182
-#: ../src/microbe_stage/MicrobeHUD.cs:1383
+#: ../src/microbe_stage/MicrobeHUD.cs:1413
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Pole veel mängus."
 
@@ -2774,9 +2792,11 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Lubab/keelab salvestamata edenemise hoiatuse hüpikakna, kui mängija proovib mängust väljuda."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:857
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:281
 msgid "TEMPERATURE"
 msgstr "Temperatuur"
 
@@ -2831,87 +2851,93 @@ msgstr "Dubleeri pleier"
 msgid "SPAWN_ENEMY"
 msgstr "Kudema vaenlane"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:488
+#: ../src/microbe_stage/MicrobeHUD.cs:492
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Ei mingit käsku"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:489
+#: ../src/microbe_stage/MicrobeHUD.cs:493
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Järgne mulle"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:490
+#: ../src/microbe_stage/MicrobeHUD.cs:494
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Liigu Minu juurde"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:491
+#: ../src/microbe_stage/MicrobeHUD.cs:495
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Põgenege"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:492
+#: ../src/microbe_stage/MicrobeHUD.cs:496
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Muutuda agressiivseks"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:495
+#: ../src/microbe_stage/MicrobeHUD.cs:499
 msgid "SIGNAL_TO_EMIT"
 msgstr "Signaal väljastada"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:820
+#: ../src/microbe_stage/MicrobeHUD.cs:850
 msgid "STUFF_AT"
 msgstr "Kraam aadressil {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:853
+#: ../src/microbe_stage/MicrobeHUD.cs:883
 msgid "PLAYER_CELL"
 msgstr "Mängija rakk"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:870
+#: ../src/microbe_stage/MicrobeHUD.cs:900
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:915
+#: ../src/microbe_stage/MicrobeHUD.cs:945
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "küllus"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:917
+#: ../src/microbe_stage/MicrobeHUD.cs:947
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "üsna palju"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:919
+#: ../src/microbe_stage/MicrobeHUD.cs:949
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "õiglane summa"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:921
+#: ../src/microbe_stage/MicrobeHUD.cs:951
 msgid "CATEGORY_SOME"
 msgstr "mõni"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:923
+#: ../src/microbe_stage/MicrobeHUD.cs:953
 msgid "CATEGORY_LITTLE"
 msgstr "pisut"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:925
+#: ../src/microbe_stage/MicrobeHUD.cs:955
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "väga vähe"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1176
-#: ../src/microbe_stage/MicrobeStage.tscn:1785
+#: ../src/microbe_stage/MicrobeHUD.cs:1206
+#: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "BECOME_MULTICELLULAR"
 msgstr "Hakka mitmerakuliseks ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1212
-#: ../src/microbe_stage/MicrobeStage.tscn:1796
+#: ../src/microbe_stage/MicrobeHUD.cs:1242
+#: ../src/microbe_stage/MicrobeStage.tscn:1795
 msgid "BECOME_MACROSCOPIC"
 msgstr "Muuta makroskoopiliseks ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:754
+#: ../src/microbe_stage/MicrobeStage.cs:786
 msgid "PLAYER_REPRODUCED"
 msgstr "mängija reprodutseeritud"
 
-#: ../src/microbe_stage/MicrobeStage.cs:768
+#: ../src/microbe_stage/MicrobeStage.cs:800
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Ei saa kasutada vaenlase pettust, kuna see plaaster ei sisalda ühtegi vaenlase liiki"
 
-#: ../src/microbe_stage/MicrobeStage.cs:791
+#: ../src/microbe_stage/MicrobeStage.cs:823
 msgid "PLAYER_DIED"
 msgstr "mängija suri"
+
+#: ../src/microbe_stage/MicrobeStage.cs:885
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
+#, fuzzy
+msgid "PATCH_EXTINCTION"
+msgstr "suri välja {0}"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:514
 msgid "AT_CURSOR"
@@ -2933,63 +2959,65 @@ msgstr "Liigid:"
 msgid "ENVIRONMENT"
 msgstr "Keskkond"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:954
+#: ../src/microbe_stage/MicrobeStage.tscn:953
 msgid "TEMPERATURE_SHORT"
 msgstr "temperatuur."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1010
+#: ../src/microbe_stage/MicrobeStage.tscn:1009
 msgid "LIGHT"
 msgstr "Valgus"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1065
+#: ../src/microbe_stage/MicrobeStage.tscn:1064
 msgid "PRESSURE_SHORT"
 msgstr "Surve."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1148
+#: ../src/microbe_stage/MicrobeStage.tscn:1147
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1003
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:712
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:586
 msgid "COMPOUNDS"
 msgstr "Ühendid"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1524
+#: ../src/microbe_stage/MicrobeStage.tscn:1523
 msgid "AGENTS"
 msgstr "ained"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1622
+#: ../src/microbe_stage/MicrobeStage.tscn:1621
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1640
+#: ../src/microbe_stage/MicrobeStage.tscn:1639
 msgid "PAUSE_TOOLTIP"
 msgstr "Peata mäng"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1653
+#: ../src/microbe_stage/MicrobeStage.tscn:1652
 msgid "RESUME_TOOLTIP"
 msgstr "Jätkake mängu"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1666
+#: ../src/microbe_stage/MicrobeStage.tscn:1665
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Näita/peida keskkonda ja ühendeid"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1681
+#: ../src/microbe_stage/MicrobeStage.tscn:1680
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Kuva/peida rakuprotsessid"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1718
+#: ../src/microbe_stage/MicrobeStage.tscn:1717
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Abi"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1730
+#: ../src/microbe_stage/MicrobeStage.tscn:1729
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "vabasurm"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1781
+#: ../src/microbe_stage/MicrobeStage.tscn:1780
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1816
+#: ../src/microbe_stage/MicrobeStage.tscn:1815
 msgid "POPULATION_CAPITAL"
 msgstr "ELANIKKOND:"
 
@@ -3051,26 +3079,33 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:227
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:232
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:701
 msgid "ATP_PRODUCTION"
 msgstr "ATP tootmine"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:233
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:702
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP TOOTMINE LIIGA VÄHE!"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:262
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:731
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:282
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:751
 msgid "OSMOREGULATION"
 msgstr "osmoregulatsioon"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:288
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:757
 msgid "BASE_MOVEMENT"
 msgstr "Aluse liikumine"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:300
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:769
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -3079,32 +3114,41 @@ msgid "CELL_TYPE_NAME"
 msgstr "Lahtri tüübi nimi"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2021
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1906
 msgid "FAILED"
 msgstr "Ebaõnnestunud"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2027
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2039
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1912
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1924
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2033
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2045
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1918
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1930
 msgid "N_A"
 msgstr "ei ole kohaldatav"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2153
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2213
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia: {0}, {1}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2157
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2217
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Kogutud energia on {0} individuaalse kuluga {1}, mille tulemuseks on korrigeerimata elanikkond {2}"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2164
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2224
 msgid "ENERGY_SOURCES"
 msgstr "Energiaallikad:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2170
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2230
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (fitness: {2}) kogu saadaolev energia: {3} (kogu fitness: {4})"
 
@@ -3237,6 +3281,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Liitsaldod"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:266
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2087
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Liigi nimi peab vastama binoomnimesüsteemile (perekond ja epiteet)!"
 
@@ -3248,38 +3293,27 @@ msgstr "Liigi nimi..."
 msgid "INFINITE_MP"
 msgstr "Lõpmatu MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:209
-msgid "SELECT_A_PATCH"
-msgstr "Siin üksikasjade kuvamiseks valige plaaster"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:632
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:370
+msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+msgstr "Glükoosi kogust on vähendatud {0}-ni eelmisest kogusest."
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
-msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "PRAEGUNE ASUKOHT"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:642
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:377
+#: ../src/microbe_stage/editor/TimelineTab.cs:187
+msgid "MEGA_YEARS"
+msgstr "mega aastat"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:326
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
-msgid "PHYSICAL_CONDITIONS"
-msgstr "Füüsilised tingimused"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:650
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:385
+msgid "TIME_INDICATOR_TOOLTIP"
+msgstr "Möödunud aeg: {0:#,#} aastat"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:403
-msgid "PRESSURE"
-msgstr "Surve"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:508
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:669
-msgid "ATMOSPHERIC_GASSES"
-msgstr "Atmosfääri gaasid"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:931
-msgid "SPECIES_PRESENT"
-msgstr "Olemasolevad liigid"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:988
-msgid "MOVE_TO_THIS_PATCH"
-msgstr "Liikuge sellele paigale"
-
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:993
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:994
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:996
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:999
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1003
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:324
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:325
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
@@ -3288,32 +3322,69 @@ msgstr "Liikuge sellele paigale"
 msgid "YEARS"
 msgstr "aastat"
 
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:996
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:508
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:669
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:422
+msgid "ATMOSPHERIC_GASSES"
+msgstr "Atmosfääri gaasid"
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:999
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:330
 msgid "SPECIES_LIST"
 msgstr "Liikide nimekiri"
 
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1010
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1023
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:341
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:354
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Planeedilt välja surnud"
 
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1011
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1022
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:342
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:353
 msgid "EXTINCT_FROM_PATCH"
 msgstr "Lapist välja surnud"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:370
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Glükoosi kogust on vähendatud {0}-ni eelmisest kogusest."
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1065
+#: ../src/microbe_stage/editor/MutationPointsBar.cs:46
+msgid "FREEBUILDING"
+msgstr "Vabaehitus"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:377
-#: ../src/microbe_stage/editor/TimelineTab.cs:187
-msgid "MEGA_YEARS"
-msgstr "mega aastat"
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:209
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:123
+msgid "SELECT_A_PATCH"
+msgstr "Siin üksikasjade kuvamiseks valige plaaster"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:385
-msgid "TIME_INDICATOR_TOOLTIP"
-msgstr "Möödunud aeg: {0:#,#} aastat"
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:158
+msgid "CURRENT_LOCATION_CAPITAL"
+msgstr "PRAEGUNE ASUKOHT"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:326
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:240
+msgid "PHYSICAL_CONDITIONS"
+msgstr "Füüsilised tingimused"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:403
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:317
+msgid "PRESSURE"
+msgstr "Surve"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:931
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:845
+msgid "SPECIES_PRESENT"
+msgstr "Olemasolevad liigid"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:988
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:902
+msgid "MOVE_TO_THIS_PATCH"
+msgstr "Liikuge sellele paigale"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:204
 msgid "AUTO_EVO"
@@ -3374,10 +3445,6 @@ msgstr "rakk"
 msgid "MP_COST"
 msgstr "{0} mp"
 
-#: ../src/microbe_stage/editor/MutationPointsBar.cs:46
-msgid "FREEBUILDING"
-msgstr "Vabaehitus"
-
 #: ../src/microbe_stage/editor/MutationPointsBar.tscn:150
 msgid "MUTATION_POINTS"
 msgstr "Mutatsioonipunktid"
@@ -3396,10 +3463,12 @@ msgid "MODIFY"
 msgstr "Muutma"
 
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:387
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:208
 msgid "BIOME_LABEL"
 msgstr "biome: {0}"
 
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:391
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:213
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}–{1} m allpool merepinda"
 
@@ -3441,6 +3510,16 @@ msgstr "Väljasuremine"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
+msgstr "Nii nagu 99% kõigist kunagi eksisteerinud liikidest, on ka teie liik välja surnud. Teised täidavad teie nišši ja arenevad hästi, kuid see pole teie. Teid unustatakse, ebaõnnestunud evolutsioonikatse."
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:252
+#, fuzzy
+msgid "WITH_POPULATION"
+msgstr "{0} elanikkonnaga: {1}"
+
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:80
+#, fuzzy
+msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr "Nii nagu 99% kõigist kunagi eksisteerinud liikidest, on ka teie liik välja surnud. Teised täidavad teie nišši ja arenevad hästi, kuid see pole teie. Teid unustatakse, ebaõnnestunud evolutsioonikatse."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82

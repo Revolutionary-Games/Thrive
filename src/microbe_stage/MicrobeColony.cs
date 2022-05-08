@@ -16,6 +16,9 @@ public class MicrobeColony
         master.ColonyChildren = new List<Microbe>();
         ColonyMembers = new List<Microbe> { master };
         ColonyCompounds = new ColonyCompoundBag(this);
+
+        // Grab initial state from microbe to preserve that (only really important for multicellular)
+        state = master.State;
     }
 
     [JsonProperty]
@@ -87,6 +90,7 @@ public class MicrobeColony
         ColonyMembers.Remove(microbe);
 
         microbe.ColonyParent?.ColonyChildren?.Remove(microbe);
+
         if (microbe.ColonyParent?.Colony != null && microbe.ColonyParent?.ColonyParent == null &&
             microbe.ColonyParent?.ColonyChildren?.Count == 0)
         {
@@ -95,6 +99,8 @@ public class MicrobeColony
 
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;
+        if (microbe != Master)
+            Master.Mass -= microbe.Mass;
     }
 
     public void AddToColony(Microbe microbe, Microbe master)
@@ -103,6 +109,7 @@ public class MicrobeColony
             throw new ArgumentException("Microbe or master null or microbe already is in a colony");
 
         ColonyMembers.Add(microbe);
+        Master.Mass += microbe.Mass;
 
         microbe.ColonyParent = master;
         master.ColonyChildren!.Add(microbe);

@@ -9,7 +9,7 @@ using Godot;
 public class PatchMapDrawer : Control
 {
     [Export]
-    public bool DrawDefaultMapIfEmpty = false;
+    public bool DrawDefaultMapIfEmpty;
 
     [Export]
     public float ConnectionLineWidth = 2.0f;

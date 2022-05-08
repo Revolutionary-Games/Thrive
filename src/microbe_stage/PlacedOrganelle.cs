@@ -215,7 +215,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         ParentMicrobe = microbe;
 
         // Grab the species colour for us
-        Colour = microbe.Species.Colour;
+        Colour = microbe.CellTypeProperties.Colour;
 
         ParentMicrobe.OrganelleParent.AddChild(this);
 
@@ -260,12 +260,24 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     /// <summary>
     ///   Called by Microbe.Update
     /// </summary>
-    public void Update(float delta)
+    /// <param name="delta">Time since last call</param>
+    public void UpdateAsync(float delta)
+    {
+        foreach (var component in Components)
+        {
+            component.UpdateAsync(delta);
+        }
+    }
+
+    /// <summary>
+    ///   The part of update that is allowed to modify Godot resources
+    /// </summary>
+    public void UpdateSync()
     {
         // Update each OrganelleComponent
         foreach (var component in Components)
         {
-            component.Update(delta);
+            component.UpdateSync();
         }
 
         // If the organelle is supposed to be another color.
@@ -281,9 +293,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     public void GrowOrganelle(CompoundBag compounds)
     {
         float totalTaken = 0;
-        var keys = new List<Compound>(compoundsLeft.Keys);
 
-        foreach (var key in keys)
+        // TODO: should we just check a single type per frame (and remove once done) so we can skip creating a bunch
+        // of extra lists
+        foreach (var key in compoundsLeft.Keys.ToArray())
         {
             var amountNeeded = compoundsLeft[key];
 
@@ -297,7 +310,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             var amountAvailable = compounds.GetCompoundAmount(key)
                 - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
 
-            if (amountAvailable <= 0.0f)
+            if (amountAvailable <= MathUtils.EPSILON)
                 continue;
 
             // We can take some
@@ -306,7 +319,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             var amount = compounds.TakeCompound(key, amountToTake);
             var left = amountNeeded - amount;
 
-            if (left < 0.0001)
+            if (left < 0.0001f)
                 left = 0;
 
             compoundsLeft[key] = left;
@@ -353,10 +366,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             var absorbed = amountTotal - amountLeft;
 
-            float alreadyInResult = 0;
-
-            if (result.ContainsKey(entry.Key))
-                alreadyInResult = result[entry.Key];
+            result.TryGetValue(entry.Key, out var alreadyInResult);
 
             result[entry.Key] = alreadyInResult + absorbed;
 
@@ -421,6 +431,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
                 parent = parent.ColonyParent;
             }
         }
+        else
+        {
+            return shapePosition;
+        }
 
         rotation = rotation.Normalized();
 
@@ -454,7 +468,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             shapePosition = RotatedPositionInsideColony(shapePosition);
 
             // Scale for bacteria physics.
-            if (ParentMicrobe.Species.IsBacteria)
+            if (ParentMicrobe.CellTypeProperties.IsBacteria)
                 shapePosition *= 0.5f;
 
             shapePosition += offset;
@@ -494,10 +508,15 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
 
         // Physics
-        // TODO: shouldn't we also add the mass to the colony master?
         ParentMicrobe!.Mass += Definition.Mass;
 
-        MakeCollisionShapes(ParentMicrobe.Colony?.Master ?? ParentMicrobe);
+        // TODO: if organelles can grow while cells are in a colony this will be needed
+        // Add the mass of the organelles to the colony master
+        // if (ParentMicrobe.Colony != null && ParentMicrobe != ParentMicrobe.Colony.Master &&
+        //     !IsLoadedFromSave)
+        //     ParentMicrobe.Colony.Master.Mass += Definition.Mass;
+
+        MakeCollisionShapes(ParentMicrobe!.Colony?.Master ?? ParentMicrobe);
 
         // Components
         components = new List<IOrganelleComponent>();
@@ -539,7 +558,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         float hexSize = Constants.DEFAULT_HEX_SIZE;
 
         // Scale the physics hex size down for bacteria
-        if (ParentMicrobe!.Species.IsBacteria)
+        if (ParentMicrobe!.CellTypeProperties.IsBacteria)
             hexSize *= 0.5f;
 
         // Add hex collision shapes
@@ -553,7 +572,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             Vector3 shapePosition = ShapeTruePosition(hex);
 
             // Scale for bacteria physics.
-            if (ParentMicrobe.Species.IsBacteria)
+            if (ParentMicrobe.CellTypeProperties.IsBacteria)
                 shapePosition *= 0.5f;
 
             // Create a transform for a shape position
