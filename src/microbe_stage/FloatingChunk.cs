@@ -51,8 +51,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     [JsonProperty]
     private float elapsedSinceProcess;
 
-    private string debugName = null!;
-
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
@@ -108,6 +106,8 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     /// </summary>
     public string DamageType { get; set; } = "chunk";
 
+    public new string Name { get; set; } = string.Empty;
+
     public bool IsLoadedFromSave { get; set; }
 
     [JsonIgnore]
@@ -124,6 +124,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public void Init(ChunkConfiguration chunkType, string? modelPath)
     {
         // Grab data
+        Name = chunkType.Name;
         VentPerSecond = chunkType.VentAmount;
         Dissolves = chunkType.Dissolves;
         Size = chunkType.Size;
@@ -151,8 +152,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
                 ContainedCompounds.Compounds.Add(entry.Key, entry.Value.Amount);
             }
         }
-
-        debugName = $"[{chunkType.Name}:{GetInstanceId()}]";
     }
 
     /// <summary>
@@ -163,6 +162,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     {
         var config = default(ChunkConfiguration);
 
+        config.Name = Name;
         config.VentAmount = VentPerSecond;
         config.Dissolves = Dissolves;
         config.Size = Size;
@@ -231,7 +231,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
     public override string ToString()
     {
-        return debugName;
+        return $"[{Name}:{GetInstanceId()}]";
     }
 
     public void ProcessChunk(float delta, CompoundCloudSystem compoundClouds)
