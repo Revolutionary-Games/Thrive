@@ -119,6 +119,8 @@ public abstract class Species : ICloneable
     /// </remarks>
     public void ApplyImmediatePopulationChange(long constant, float coefficient)
     {
+        ThrowPopulationChangeErrorIfNotPlayer();
+
         Population = (long)(Population * coefficient);
         Population += constant;
 
@@ -128,6 +130,8 @@ public abstract class Species : ICloneable
 
     public void ApplyImmediatePopulationChangeInPatch(long constant, float coefficient, Patch patch)
     {
+        ThrowPopulationChangeErrorIfNotPlayer();
+
         var oldPopulation = patch.GetSpeciesPopulation(this);
         var population = (long)(oldPopulation * coefficient);
         population += constant;
@@ -278,5 +282,11 @@ public abstract class Species : ICloneable
         // There can only be one player species at a time, so to avoid adding a method to reset this flag when
         // mutating, this property is just not copied
         // species.PlayerSpecies = PlayerSpecies;
+    }
+
+    private void ThrowPopulationChangeErrorIfNotPlayer()
+    {
+        if (!PlayerSpecies)
+            throw new InvalidOperationException("Cannot apply an immediate population change to an AI species");
     }
 }
