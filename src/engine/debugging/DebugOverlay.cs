@@ -32,6 +32,7 @@ public class DebugOverlay : Control
     private FPSCounter fpsCounter = null!;
     private PerformanceMetrics performanceMetrics = null!;
     private Control labelsLayer = null!;
+    private Font smallerFont = null!;
 
     private SceneTree rootTree = null!;
     private Camera? activeCamera;
@@ -54,6 +55,7 @@ public class DebugOverlay : Control
         fpsCounter = GetNode<FPSCounter>(fpsCounterPath);
         performanceMetrics = GetNode<PerformanceMetrics>(performanceMetricsPath);
         labelsLayer = GetNode<Control>(labelsLayerPath);
+        smallerFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Tiny.tres");
 
         base._Ready();
     }
@@ -190,6 +192,7 @@ public class DebugOverlay : Control
             case FloatingChunk floatingChunk:
             {
                 var label = new Label { Text = floatingChunk.ToString() };
+                label.AddFontOverride("font", smallerFont);
                 labelsLayer.AddChild(label);
                 floatingChunkLabels.Add(floatingChunk, label);
                 break;
