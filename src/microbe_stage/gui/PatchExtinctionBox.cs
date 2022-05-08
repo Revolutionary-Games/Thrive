@@ -16,7 +16,16 @@ public class PatchExtinctionBox : Control
     private PatchDetailsPanel patchDetailsPanel = null!;
     private AnimationPlayer animationPlayer = null!;
 
-    public PatchMap Map { get; set; } = null!;
+    public PatchMap? Map
+    {
+        get => patchMapDrawer.Map;
+        set
+        {
+            patchMapDrawer.Map = value;
+            patchMapDrawer.SetPatchEnabledStatuses(value!.Patches.Values, p => p.GetSpeciesPopulation(PlayerSpecies) > 0);
+        }
+    }
+
     public Species PlayerSpecies { get; set; } = null!;
     public Action<Patch> GoToNewPatch { get; set; } = null!;
 
@@ -26,14 +35,17 @@ public class PatchExtinctionBox : Control
         patchDetailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
         animationPlayer = GetNode<AnimationPlayer>(AnimationPlayer);
 
-        patchMapDrawer.Map = Map;
-        patchDetailsPanel.CurrentPatch = Map.CurrentPatch;
+        patchDetailsPanel.CurrentPatch = Map?.CurrentPatch;
         patchDetailsPanel.Patch = null;
         patchDetailsPanel.OnMoveToPatchClicked = NewPatchSelected;
 
         patchMapDrawer.OnSelectedPatchChanged = SelectedPatchChanged;
+    }
 
-        patchMapDrawer.SetPatchEnabledStatuses(Map.Patches.Values, p => p.GetSpeciesPopulation(PlayerSpecies) > 0);
+    public new void Show()
+    {
+        animationPlayer.Play();
+        base.Show();
     }
 
     private void NewPatchSelected(Patch patch)
@@ -55,6 +67,7 @@ public class PatchExtinctionBox : Control
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, animationPlayer.CurrentAnimationLength,
             false);
         TransitionManager.Instance.StartTransitions();
+        patchDetailsPanel.MouseFilter = MouseFilterEnum.Stop;
     }
 
     private void SelectedPatchChanged(PatchMapDrawer drawer)

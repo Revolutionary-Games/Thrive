@@ -148,6 +148,9 @@ public class MicrobeHUD : Control
     public PackedScene ExtinctionBoxScene = null!;
 
     [Export]
+    public PackedScene PatchExtinctionBoxScene = null!;
+
+    [Export]
     public PackedScene WinBoxScene = null!;
 
     [Export]
@@ -268,7 +271,6 @@ public class MicrobeHUD : Control
     private CustomDialog? winBox;
     private CustomDialog? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
-    private PackedScene patchExtinctionBoxScene = null!;
     private Tween panelsTween = null!;
     private Control winExtinctBoxHolder = null!;
     private Label hintText = null!;
@@ -330,8 +332,6 @@ public class MicrobeHUD : Control
         compoundBars = GetTree().GetNodesInGroup("CompoundBar");
 
         winExtinctBoxHolder = GetNode<Control>("../WinExtinctBoxHolder");
-
-        patchExtinctionBoxScene = GD.Load<PackedScene>("res://src/microbe_stage/gui/PatchExtinctionBox.tscn");
 
         panelsTween = GetNode<Tween>(PanelsTweenPath);
         mouseHoverPanel = GetNode<MarginContainer>(MouseHoverPanelPath);
@@ -716,19 +716,28 @@ public class MicrobeHUD : Control
         extinctionBox.Show();
     }
 
-    public void ShowPatchExtinctionBox(PatchMap map, Species playerSpecies)
+    public void ShowPatchExtinctionBox()
     {
-        if (patchExtinctionBox != null)
-            return;
-
         winExtinctBoxHolder.Show();
 
-        patchExtinctionBox = (PatchExtinctionBox)patchExtinctionBoxScene.Instance();
-        patchExtinctionBox.Map = map;
-        patchExtinctionBox.PlayerSpecies = playerSpecies;
-        patchExtinctionBox.GoToNewPatch = GoToNewPatch;
+        if (patchExtinctionBox == null)
+        {
+            patchExtinctionBox = PatchExtinctionBoxScene.Instance<PatchExtinctionBox>();
+            winExtinctBoxHolder.AddChild(patchExtinctionBox);
 
-        winExtinctBoxHolder.AddChild(patchExtinctionBox);
+            patchExtinctionBox.GoToNewPatch = GoToNewPatch;
+            patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
+        }
+
+        patchExtinctionBox.Map = stage!.GameWorld.Map;
+
+        patchExtinctionBox.Show();
+    }
+
+    public void HidePatchExtinctionBox()
+    {
+        winExtinctBoxHolder.Hide();
+        patchExtinctionBox?.Hide();
     }
 
     public void ToggleWinBox()
@@ -786,9 +795,7 @@ public class MicrobeHUD : Control
     /// </summary>
     private void GoToNewPatch(Patch patch)
     {
-        winExtinctBoxHolder.RemoveChild(patchExtinctionBox);
         winExtinctBoxHolder.Hide();
-        patchExtinctionBox = null;
         stage!.GoToNewPatch(patch);
     }
 

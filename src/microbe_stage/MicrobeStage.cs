@@ -360,6 +360,29 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         }
     }
 
+    public void GameOver()
+    {
+        gameOver = true;
+        guidanceLine.Visible = false;
+
+        HUD.ShowExtinctionBox();
+    }
+
+    public void PlayerExtinctInPatch()
+    {
+        playerExtinctInCurrentPatch = true;
+        guidanceLine.Visible = false;
+
+        HUD.ShowPatchExtinctionBox();
+    }
+
+    public void PatchExtinctionResolved()
+    {
+        playerExtinctInCurrentPatch = false;
+
+        HUD.HidePatchExtinctionBox();
+    }
+
     /// <summary>
     ///   Spawns the player if there isn't currently a player node existing
     /// </summary>
@@ -419,24 +442,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         microbeSystem.Process(delta);
 
         if (gameOver)
-        {
-            guidanceLine.Visible = false;
-
-            // Player is extinct and has lost the game
-            // Show the game lost popup if not already visible
-            HUD.ShowExtinctionBox();
-
             return;
-        }
 
         if (playerExtinctInCurrentPatch)
-        {
-            guidanceLine.Visible = false;
-
-            HUD.ShowPatchExtinctionBox(GameWorld.Map, GameWorld.PlayerSpecies);
-
             return;
-        }
 
         if (Player != null)
         {
@@ -564,7 +573,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         CurrentGame.GameWorld.Map.CurrentPatch = patch;
         UpdatePatchSettings();
-        playerExtinctInCurrentPatch = false;
+        PatchExtinctionResolved();
         SpawnPlayer();
 
         // Auto save is wanted once possible
@@ -877,6 +886,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         if (CurrentGame?.FreeBuild == false)
         {
+            var playerExtinctInPatch = false;
             if (GameWorld.Map.CurrentPatch?.GetSpeciesPopulation(playerSpecies) <= 0)
             {
                 // Decrease the population by the constant for the player dying out in a patch
@@ -884,11 +894,13 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
                     playerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
                     TranslationServer.Translate("PATCH_EXTINCTION"),
                     true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT);
-                playerExtinctInCurrentPatch = true;
+                playerExtinctInPatch = true;
             }
 
             if (playerSpecies.Population <= 0)
-                gameOver = true;
+                GameOver();
+            else if (playerExtinctInPatch)
+                PlayerExtinctInPatch();
 
             if (gameOver || playerExtinctInCurrentPatch)
                 return;

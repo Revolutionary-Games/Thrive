@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=2]
+[gd_scene load_steps=130 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -91,6 +91,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=89]
 [ext_resource path="res://assets/textures/gui/bevel/unbind.png" type="Texture" id=90]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=91]
+[ext_resource path="res://src/microbe_stage/gui/PatchExtinctionBox.tscn" type="PackedScene" id=92]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -403,7 +404,6 @@ size_flags_vertical = 3
 theme = ExtResource( 72 )
 script = ExtResource( 9 )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 AnimationPlayerPath = NodePath("AnimationPlayer")
@@ -452,6 +452,7 @@ ProcessPanelPath = NodePath("ProcessPanel")
 ProcessPanelButtonPath = NodePath("BottomLeft/BottomBar/ChemicalButton")
 HintTextPath = NodePath("HintText")
 ExtinctionBoxScene = ExtResource( 70 )
+PatchExtinctionBoxScene = ExtResource( 92 )
 WinBoxScene = ExtResource( 69 )
 MicrobePickupOrganelleSound = ExtResource( 8 )
 AmmoniaBW = ExtResource( 6 )
@@ -2248,6 +2249,7 @@ custom_styles/separator = SubResource( 36 )
 anims/FadeInOut = SubResource( 37 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
+visible = true
 
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "compress" ]]
