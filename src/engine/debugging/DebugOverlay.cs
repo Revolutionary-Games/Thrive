@@ -143,6 +143,12 @@ public class DebugOverlay : Control
         }
     }
 
+    private void UpdateLabelOnMicrobeDeath(Microbe microbe)
+    {
+        if (microbeLabels.TryGetValue(microbe, out var label))
+            label.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
+    }
+
     private void OnPerformanceMetricsCheckBoxToggled(bool state)
     {
         performanceMetrics.Toggle(state);
@@ -165,7 +171,7 @@ public class DebugOverlay : Control
 
     private void OnRigiditySliderValueChanged(float value)
     {
-        dialog.Modulate = new Color(1, 1, 1, 1 - value);
+        performanceMetrics.Modulate = dialog.Modulate = new Color(1, 1, 1, 1 - value);
     }
 
     private void OnNodeAdded(Node node)
@@ -177,6 +183,7 @@ public class DebugOverlay : Control
                 var label = new Label { Text = microbe.ToString() };
                 labelsLayer.AddChild(label);
                 microbeLabels.Add(microbe, label);
+                microbe.OnDeath += UpdateLabelOnMicrobeDeath;
                 break;
             }
 
@@ -210,6 +217,7 @@ public class DebugOverlay : Control
                 {
                     labelsLayer.RemoveChild(label);
                     label.QueueFree();
+                    microbe.OnDeath -= UpdateLabelOnMicrobeDeath;
                 }
 
                 microbeLabels.Remove(microbe);
