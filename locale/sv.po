@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-02 19:40+0200\n"
-"PO-Revision-Date: 2022-03-22 18:22+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2022-05-06 15:46+0300\n"
+"PO-Revision-Date: 2022-04-12 16:14+0000\n"
+"Last-Translator: swedneck <github@swedneck.xyz>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -284,12 +284,12 @@ msgid "ABILITIES"
 msgstr "Förmågor"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2096
+#: ../src/microbe_stage/MicrobeStage.tscn:2139
 msgid "FIRE_TOXIN"
 msgstr "Skjut gift"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2084
+#: ../src/microbe_stage/MicrobeStage.tscn:2127
 msgid "TOGGLE_ENGULF"
 msgstr "Växla uppslukarläge av och på"
 
@@ -298,7 +298,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Håll för att visa grupp commando menyn"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2107
+#: ../src/microbe_stage/MicrobeStage.tscn:2150
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "Växla uppslukarläge av och på"
@@ -309,6 +309,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Växla uppslukarläge av och på"
 
 #: ../simulation_parameters/common/input_options.json:58
+#: ../src/microbe_stage/MicrobeStage.tscn:2162
 msgid "UNBIND_ALL"
 msgstr "Lösgör alla"
 
@@ -329,7 +330,7 @@ msgid "ZOOM_IN"
 msgstr "Zooma in"
 
 #: ../simulation_parameters/common/input_options.json:87
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3165
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:153
 msgid "EDITOR"
 msgstr "Cellredigerare"
 
@@ -425,26 +426,31 @@ msgid "TOGGLE_FPS"
 msgstr "Växla FPS display"
 
 #: ../simulation_parameters/common/input_options.json:188
+#, fuzzy
+msgid "TOGGLE_METRICS"
+msgstr "Växla FPS display"
+
+#: ../simulation_parameters/common/input_options.json:192
 msgid "QUICK_SAVE"
 msgstr "Snabbspara"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 msgid "QUICK_LOAD"
 msgstr "Snabbladda"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "TAKE_SCREENSHOT"
 msgstr "Ta ett screenshot"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "SHOW_HELP"
 msgstr "Visa hjälp"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Växla fullskärm av och på"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Växla HUD av och på"
 
@@ -591,191 +597,206 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1292
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:661
+#: ../src/microbe_stage/MicrobeStage.tscn:1298
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "AMMONIA"
 msgstr "Ammoniak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1344
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:732
+#: ../src/microbe_stage/MicrobeStage.tscn:1350
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1396
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:626
+#: ../src/microbe_stage/MicrobeStage.tscn:1402
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
 msgid "HYDROGEN_SULFIDE"
 msgstr "Svavelväte"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1240
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:696
+#: ../src/microbe_stage/MicrobeStage.tscn:1246
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "GLUCOSE"
 msgstr "Glukos"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1578
+#: ../src/microbe_stage/MicrobeStage.tscn:1584
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1448
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:767
+#: ../src/microbe_stage/MicrobeStage.tscn:1454
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "IRON"
 msgstr "Järn"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:463
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:549
 msgid "OXYGEN"
 msgstr "Syre"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:517
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:603
 msgid "CARBON_DIOXIDE"
 msgstr "Koldioxid"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:490
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:576
 msgid "NITROGEN"
 msgstr "Kväve"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2876
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
 msgstr "Solljus"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2205
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2210
 msgid "NORMAL"
 msgstr "Normal"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:20
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2373
+#: ../simulation_parameters/microbe_stage/membranes.json:21
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2378
 msgid "DOUBLE"
 msgstr "Dubbel"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:37
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2537
+#: ../simulation_parameters/microbe_stage/membranes.json:39
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2542
 msgid "CELLULOSE"
 msgstr "Cellulosa"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:54
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2772
+#: ../simulation_parameters/microbe_stage/membranes.json:57
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2777
 msgid "CHITIN"
 msgstr "Kitin"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:71
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3007
+#: ../simulation_parameters/microbe_stage/membranes.json:75
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3012
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalciumkarbonat"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:88
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3275
+#: ../simulation_parameters/microbe_stage/membranes.json:93
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3280
 msgid "SILICA"
 msgstr "Kiseldioxid"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1099
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1104
 msgid "PREDATORY_PILUS"
 msgstr "Rov Tagg"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:53
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:672
+#: ../simulation_parameters/microbe_stage/organelles.json:55
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:677
 msgid "RUSTICYANIN"
 msgstr "Rosticyanin"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:86
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:769
+#: ../simulation_parameters/microbe_stage/organelles.json:90
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:774
 msgid "NITROGENASE"
 msgstr "Kvävegenas"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:119
+#: ../simulation_parameters/microbe_stage/organelles.json:125
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:149
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:569
+#: ../simulation_parameters/microbe_stage/organelles.json:157
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:574
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosyntesiserande proteiner"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:186
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:867
+#: ../simulation_parameters/microbe_stage/organelles.json:196
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:872
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisom"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:219
+#: ../simulation_parameters/microbe_stage/organelles.json:231
 msgid "THYLAKOIDS"
 msgstr "Thylakoider"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:251
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:370
+#: ../simulation_parameters/microbe_stage/organelles.json:265
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:375
 msgid "METABOLOSOMES"
 msgstr "Metabolosomer"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:287
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1786
+#: ../simulation_parameters/microbe_stage/organelles.json:303
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1791
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Kväve-Fixande Plastid"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:324
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1702
+#: ../simulation_parameters/microbe_stage/organelles.json:342
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1707
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:356
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:964
+#: ../simulation_parameters/microbe_stage/organelles.json:376
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:969
 msgid "FLAGELLUM"
 msgstr "Flagell"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:383
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1884
+#: ../simulation_parameters/microbe_stage/organelles.json:405
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1889
 msgid "VACUOLE"
 msgstr "Vakuol"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:418
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1419
+#: ../simulation_parameters/microbe_stage/organelles.json:442
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1424
 msgid "MITOCHONDRION"
 msgstr "Mitochondria"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:452
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1981
+#: ../simulation_parameters/microbe_stage/organelles.json:478
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1986
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Gift\n"
 "vakuol"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:481
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
+#: ../simulation_parameters/microbe_stage/organelles.json:509
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1244
 msgid "BINDING_AGENT"
 msgstr "Bindemedel"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:521
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1503
+#: ../simulation_parameters/microbe_stage/organelles.json:551
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1508
 msgid "CHLOROPLAST"
 msgstr "Kloroplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:553
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:271
+#: ../simulation_parameters/microbe_stage/organelles.json:585
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:276
 msgid "CYTOPLASM"
 msgstr "Cytoplasma"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:618
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
+#: ../simulation_parameters/microbe_stage/organelles.json:652
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1327
 msgid "NUCLEUS"
 msgstr "Kärna"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:642
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
+#: ../simulation_parameters/microbe_stage/organelles.json:678
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1164
 msgid "CHEMORECEPTOR"
 msgstr "Kemoreceptor"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:666
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2078
+#: ../simulation_parameters/microbe_stage/organelles.json:704
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2083
 msgid "SIGNALING_AGENT"
 msgstr "Signaleringsmedel"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:727
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2181
+msgid "BIOLUMINESCENT_VACUOLE"
+msgstr "Bioluminescerande vakuol"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:750
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1592
+msgid "THERMOPLAST"
+msgstr "Termoplast"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:773
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1224
+msgid "CILIA"
+msgstr "Flimmerhår"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
@@ -797,12 +818,7 @@ msgstr "{0:F1}% klart. {1:n0}/{2:n0} steg."
 msgid "STARTING"
 msgstr "Börjar"
 
-#: ../src/auto-evo/AutoEvoRun.cs:298
-#, fuzzy
-msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
-msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
-
-#: ../src/auto-evo/AutoEvoRun.cs:305
+#: ../src/auto-evo/AutoEvoRun.cs:288
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
@@ -815,9 +831,8 @@ msgid "WENT_EXTINCT_IN"
 msgstr "dog ut i {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "tidigare:"
+msgstr "föregående:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -859,39 +874,39 @@ msgstr "befolkning på platser:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "dog ut på planeten"
 
-#: ../src/auto-evo/RunResults.cs:843
+#: ../src/auto-evo/RunResults.cs:844
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] har gått utdöd!"
 
-#: ../src/auto-evo/RunResults.cs:853 ../src/auto-evo/RunResults.cs:875
+#: ../src/auto-evo/RunResults.cs:854 ../src/auto-evo/RunResults.cs:876
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] befolkning har ökat till {1}"
 
-#: ../src/auto-evo/RunResults.cs:859 ../src/auto-evo/RunResults.cs:881
+#: ../src/auto-evo/RunResults.cs:860 ../src/auto-evo/RunResults.cs:882
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] befolkning har minskat till {1}"
 
-#: ../src/auto-evo/RunResults.cs:867
+#: ../src/auto-evo/RunResults.cs:868
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] har lämnat denna platsen"
 
-#: ../src/auto-evo/RunResults.cs:891
+#: ../src/auto-evo/RunResults.cs:892
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "En del av [u]{0}[/u] befolkningen har migrerat till denna plats från {1}"
 
-#: ../src/auto-evo/RunResults.cs:896
+#: ../src/auto-evo/RunResults.cs:897
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1} från {2}"
 
-#: ../src/auto-evo/RunResults.cs:902
+#: ../src/auto-evo/RunResults.cs:903
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1}"
 
-#: ../src/auto-evo/RunResults.cs:921
+#: ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_NICHE_FILL"
 msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art för att fylla nisch"
 
-#: ../src/auto-evo/RunResults.cs:927
+#: ../src/auto-evo/RunResults.cs:928
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u] avvek från [u]{1}[/u] som en ny art på grund av olika urvalstryck"
 
@@ -915,9 +930,147 @@ msgstr "Jämnt spridd miljömatkälla av {0}"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Plundring av {0}"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
+#: ../src/early_multicellular_stage/CellType.cs:38
+msgid "STEM_CELL_NAME"
+msgstr "Stam"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:358
+msgid "STRUCTURE"
+msgstr "Struktur"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
+msgid "REPRODUCTION"
+msgstr "Fortplantning"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:400
+msgid "BEHAVIOUR"
+msgstr "Beteende"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
+msgid "CELLS"
+msgstr "Celler"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
+msgid "MODIFY_TYPE"
+msgstr "Modifiera Typ"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:414
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+msgid "DELETE"
+msgstr "Radera"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:421
+msgid "DUPLICATE_TYPE"
+msgstr "Duplicera Typ"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:463
+msgid "REPRODUCTION_METHOD"
+msgstr "Reproduktion:"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:476
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#, fuzzy
+msgid "REPRODUCTION_BUDDING"
+msgstr "Producerar"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
+#, fuzzy
+msgid "CANCEL_ACTION_CAPITAL"
+msgstr "Avbryt"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1212
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
+msgid "NEXT_CAPITAL"
+msgstr "NÄSTA"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#, fuzzy
+msgid "DISCONNECTED_CELLS"
+msgstr "Bortkopplade Celler"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
+#, fuzzy
+msgid "DISCONNECTED_CELLS_TEXT"
+msgstr ""
+"Det finns placerade organeller, som inte är anslutna till resten.\n"
+"Vänligen anslut alla placerade organeller med varandra eller ångra dina ändringar."
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
+msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
+msgstr "Kan inte radera använd celltyp"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+msgid "CANNOT_DELETE_USED_CELL_TYPE"
+msgstr "En celltyp som används i din kroppsplan kan inte raderas"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
+#, fuzzy
+msgid "CREATE_NEW_CELL_TYPE"
+msgstr "Skapa Ny Sparfil"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
+#, fuzzy
+msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
+msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
+#, fuzzy
+msgid "NEW_NAME_COLON"
+msgstr "Hastighet:"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:585
+#, fuzzy
+msgid "NEW_NAME"
+msgstr "Nytt spel"
+
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:72
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:79
+msgid "LOADING_MICROBE_EDITOR"
+msgstr "Laddar mikrobredigerare"
+
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:206
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:231
+msgid "AUTO_EVO_FAILED"
+msgstr "Auto-evo kunde inte köras"
+
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:207
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:232
+msgid "AUTO_EVO_RUN_STATUS"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
+msgid "SELECT_CELL_TYPE_FROM_EDITOR"
+msgstr "Välj en celltyp att redigera här från redigerarfliken"
+
+#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
+#: ../src/engine/PerformanceMetrics.tscn:57
+#, fuzzy
+msgid "FPS"
+msgstr "Max Frames Per Sekund:"
+
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
 msgid "LOADING"
 msgstr "Laddar"
+
+#: ../src/engine/PerformanceMetrics.cs:63
+#, fuzzy
+msgid "FRAME_DURATION"
+msgstr "Anding"
+
+#: ../src/engine/PerformanceMetrics.cs:77
+#: ../src/engine/PerformanceMetrics.tscn:73
+msgid "METRICS_CONTENT"
+msgstr ""
+
+#: ../src/engine/PerformanceMetrics.tscn:28
+#, fuzzy
+msgid "METRICS"
+msgstr "Växla FPS display"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1049,7 +1202,7 @@ msgstr "Numpad Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
-msgstr ""
+msgstr "SysRq"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
@@ -1065,11 +1218,11 @@ msgstr "Capslock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
-msgstr ""
+msgstr "Num Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "Scroll Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
@@ -1129,11 +1282,11 @@ msgstr "Sänk Treble"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
-msgstr ""
+msgstr "Media Spela"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "MEDIASTOP"
-msgstr ""
+msgstr "Media Stopp"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
 #, fuzzy
@@ -1142,11 +1295,11 @@ msgstr "tidigare:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "MEDIANEXT"
-msgstr ""
+msgstr "Media Nästa"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "MEDIARECORD"
-msgstr ""
+msgstr "Media Spela in"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
 msgid "LAUNCHMAIL"
@@ -1336,6 +1489,14 @@ msgstr "Mus Special 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Okänd mus"
 
+#: ../src/general/EditorBase.cs:237
+msgid "WAITING_FOR_AUTO_EVO"
+msgstr "Väntar på auto-evo:"
+
+#: ../src/general/EditorComponentBase.cs:72
+msgid "CONFIRM_CAPITAL"
+msgstr "BEKRÄFTA"
+
 #: ../src/general/Gallery.cs:73
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
@@ -1348,19 +1509,19 @@ msgstr "Konst av {0}"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3320
-#: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1304
+#: ../src/modding/ModManager.tscn:992
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:392
 msgid "CLOSE"
 msgstr "Stäng"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/gui_common/CompoundAmount.cs:171
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:710
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:626
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:975
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:217
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:248
+#: ../src/microbe_stage/MicrobeHUD.cs:741
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1380,12 +1541,12 @@ msgstr "Inloggad som: {0}"
 msgid "NEW_GAME"
 msgstr "Nytt spel"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:192
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Ladda Spel"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
 msgid "OPTIONS"
 msgstr "Inställningar"
 
@@ -1415,9 +1576,9 @@ msgstr "Mikrob Fri Byggredigerare"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:138
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
+#: ../src/general/PauseMenu.tscn:254
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
+#: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Backåt"
@@ -1450,19 +1611,24 @@ msgstr "Mod Inladdningsfel"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Fel uppstod när en eller flera mod laddades. Loggen kan innehålla ytterligare information."
 
-#: ../src/general/OptionsMenu.cs:900
+#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
+#, fuzzy
+msgid "AUTO_RESOLUTION"
+msgstr "Upplösning:"
+
+#: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standard utgångsenhet"
 
-#: ../src/general/OptionsMenu.cs:932
+#: ../src/general/OptionsMenu.cs:956
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Den här översättningen är mycket ofullständig ({0}% klar) snälla hjälp oss med den!"
 
-#: ../src/general/OptionsMenu.cs:936
+#: ../src/general/OptionsMenu.cs:960
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Det här språket jobbas fortfarande på ({0}% klart)"
 
-#: ../src/general/OptionsMenu.cs:940
+#: ../src/general/OptionsMenu.cs:964
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Detta språk är {0}% komplett"
 
@@ -1525,10 +1691,6 @@ msgstr "16x"
 #: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
 msgstr "Upplösning:"
-
-#: ../src/general/OptionsMenu.tscn:290
-msgid "AUTO"
-msgstr "automatiskt"
 
 #: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
@@ -1769,7 +1931,7 @@ msgstr "Radera och fortsätt"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Avbryt"
 
@@ -1789,45 +1951,45 @@ msgstr "Hittade ingen screenshots mapp"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Testa att ta några screenshots!"
 
-#: ../src/general/PauseMenu.cs:271
+#: ../src/general/PauseMenu.cs:306
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Är du säker på att du vill tillbaka till huvudmenyn?\n"
 "Du kommer att förlora alla osparade framsteg."
 
-#: ../src/general/PauseMenu.cs:287
+#: ../src/general/PauseMenu.cs:322
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Är du säker på att du vill avsluta spelet?\n"
 "Du kommer att förlora alla osparade framsteg."
 
-#: ../src/general/PauseMenu.tscn:62
+#: ../src/general/PauseMenu.tscn:178
 msgid "RESUME"
 msgstr "Fortsätt"
 
-#: ../src/general/PauseMenu.tscn:69
+#: ../src/general/PauseMenu.tscn:185
 msgid "SAVE_GAME"
 msgstr "Spara Spel"
 
-#: ../src/general/PauseMenu.tscn:84
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2739
+#: ../src/general/PauseMenu.tscn:200
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Statistik"
 
-#: ../src/general/PauseMenu.tscn:91
+#: ../src/general/PauseMenu.tscn:207
 msgid "HELP"
 msgstr "Hjälp"
 
-#: ../src/general/PauseMenu.tscn:105
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
+#: ../src/general/PauseMenu.tscn:221
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Tillbaka till Menyn"
 
-#: ../src/general/PauseMenu.tscn:112
+#: ../src/general/PauseMenu.tscn:228
 msgid "EXIT"
 msgstr "Lämna"
 
-#: ../src/general/PauseMenu.tscn:163
+#: ../src/general/PauseMenu.tscn:279
 #, fuzzy
 msgid "CONFIRM_EXIT"
 msgstr "Bekräfta Stängning"
@@ -1959,106 +2121,106 @@ msgstr "Översättare"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licenser Och Använda Bibliotek"
 
-#: ../src/gui_common/CreditsScroll.cs:484
+#: ../src/gui_common/CreditsScroll.cs:486
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 "Tack för att du spelade!\n"
 "\n"
 "Om du gillade spelet, berätta om oss för dina vänner."
 
-#: ../src/gui_common/CreditsScroll.cs:493
+#: ../src/gui_common/CreditsScroll.cs:495
 msgid "PROGRAMMING_TEAM"
 msgstr "Programmering"
 
-#: ../src/gui_common/CreditsScroll.cs:494
+#: ../src/gui_common/CreditsScroll.cs:496
 msgid "THEORY_TEAM"
 msgstr "Teori"
 
-#: ../src/gui_common/CreditsScroll.cs:495
+#: ../src/gui_common/CreditsScroll.cs:497
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik"
 
-#: ../src/gui_common/CreditsScroll.cs:496
+#: ../src/gui_common/CreditsScroll.cs:498
 msgid "SOUND_TEAM"
 msgstr "Ljud"
 
-#: ../src/gui_common/CreditsScroll.cs:497
+#: ../src/gui_common/CreditsScroll.cs:499
 msgid "OUTREACH_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:498
+#: ../src/gui_common/CreditsScroll.cs:500
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spel Design"
 
-#: ../src/gui_common/CreditsScroll.cs:499
+#: ../src/gui_common/CreditsScroll.cs:501
 msgid "TESTING_TEAM"
 msgstr "Testning"
 
-#: ../src/gui_common/CreditsScroll.cs:500
+#: ../src/gui_common/CreditsScroll.cs:502
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Projektledning"
 
-#: ../src/gui_common/CreditsScroll.cs:501
+#: ../src/gui_common/CreditsScroll.cs:503
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programmering"
 
-#: ../src/gui_common/CreditsScroll.cs:502
+#: ../src/gui_common/CreditsScroll.cs:504
 msgid "VIP_PATRONS"
-msgstr ""
+msgstr "VIP-supportrar"
 
-#: ../src/gui_common/CreditsScroll.cs:503
+#: ../src/gui_common/CreditsScroll.cs:505
 msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:504
+#: ../src/gui_common/CreditsScroll.cs:506
 msgid "SUPPORTER_PATRONS"
-msgstr ""
+msgstr "Supportrar"
 
-#: ../src/gui_common/CreditsScroll.cs:505
+#: ../src/gui_common/CreditsScroll.cs:507
 msgid "JANUARY"
 msgstr "Januari"
 
-#: ../src/gui_common/CreditsScroll.cs:506
+#: ../src/gui_common/CreditsScroll.cs:508
 msgid "FEBRUARY"
 msgstr "Februari"
 
-#: ../src/gui_common/CreditsScroll.cs:507
+#: ../src/gui_common/CreditsScroll.cs:509
 msgid "MARCH"
 msgstr "Mars"
 
-#: ../src/gui_common/CreditsScroll.cs:508
+#: ../src/gui_common/CreditsScroll.cs:510
 msgid "APRIL"
 msgstr "April"
 
-#: ../src/gui_common/CreditsScroll.cs:509
+#: ../src/gui_common/CreditsScroll.cs:511
 msgid "MAY"
 msgstr "Maj"
 
-#: ../src/gui_common/CreditsScroll.cs:510
+#: ../src/gui_common/CreditsScroll.cs:512
 msgid "JUNE"
 msgstr "Juni"
 
-#: ../src/gui_common/CreditsScroll.cs:511
+#: ../src/gui_common/CreditsScroll.cs:513
 msgid "JULY"
 msgstr "Juli"
 
-#: ../src/gui_common/CreditsScroll.cs:512
+#: ../src/gui_common/CreditsScroll.cs:514
 msgid "AUGUST"
 msgstr "Augusti"
 
-#: ../src/gui_common/CreditsScroll.cs:513
+#: ../src/gui_common/CreditsScroll.cs:515
 msgid "SEPTEMBER"
 msgstr "September"
 
-#: ../src/gui_common/CreditsScroll.cs:514
+#: ../src/gui_common/CreditsScroll.cs:516
 msgid "OCTOBER"
 msgstr "Oktober"
 
-#: ../src/gui_common/CreditsScroll.cs:515
+#: ../src/gui_common/CreditsScroll.cs:517
 msgid "NOVEMBER"
 msgstr "November"
 
-#: ../src/gui_common/CreditsScroll.cs:516
+#: ../src/gui_common/CreditsScroll.cs:518
 msgid "DECEMBER"
 msgstr "December"
 
@@ -2068,7 +2230,7 @@ msgstr "Av Revolutionary Games Studio"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr ""
+msgstr "Utvecklingen stöds av Revolutionary Games Studio ry"
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
@@ -2088,22 +2250,22 @@ msgstr "Sparning har en annan version"
 msgid "SELECT_OPTION"
 msgstr "Välj Ett Alternativ"
 
-#: ../src/gui_common/TweakedColourPicker.cs:393
+#: ../src/gui_common/TweakedColourPicker.cs:394
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "Välj en färg från spel fönstret"
 
-#: ../src/gui_common/TweakedColourPicker.cs:394
+#: ../src/gui_common/TweakedColourPicker.cs:395
 #, fuzzy
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr "Lägg till aktuell färg till paletten"
 
-#: ../src/gui_common/TweakedColourPicker.cs:395
+#: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 "Slå på eller av HSV-läge (Hue, Saturation, Value).\n"
 "Kan inte slås på i rå-läge."
 
-#: ../src/gui_common/TweakedColourPicker.cs:396
+#: ../src/gui_common/TweakedColourPicker.cs:397
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 "Slå på eller av rå-läget.\n"
@@ -2111,35 +2273,35 @@ msgstr ""
 "färgvärdena att överskrida 1.0.\n"
 "Kan inte slås på i HSV-läge."
 
-#: ../src/gui_common/TweakedColourPicker.cs:400
+#: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Nyansvärde, del av färgen"
 
-#: ../src/gui_common/TweakedColourPicker.cs:401
+#: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Mättnadsvärde, mängden grått i en viss färg"
 
-#: ../src/gui_common/TweakedColourPicker.cs:402
+#: ../src/gui_common/TweakedColourPicker.cs:403
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Värde (ljusstyrka) värde, ljusstyrka eller intensitet för färgen"
 
-#: ../src/gui_common/TweakedColourPicker.cs:406
+#: ../src/gui_common/TweakedColourPicker.cs:407
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Röda kanal värdet för färgen"
 
-#: ../src/gui_common/TweakedColourPicker.cs:407
+#: ../src/gui_common/TweakedColourPicker.cs:408
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Gröna kanal värdet för färgen"
 
-#: ../src/gui_common/TweakedColourPicker.cs:408
+#: ../src/gui_common/TweakedColourPicker.cs:409
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Blåa kanal värdet för färgen"
 
-#: ../src/gui_common/TweakedColourPicker.cs:411
+#: ../src/gui_common/TweakedColourPicker.cs:412
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Alpha kanal värdet för färgen"
 
-#: ../src/gui_common/TweakedColourPicker.cs:586
+#: ../src/gui_common/TweakedColourPicker.cs:587
 #, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
@@ -2155,28 +2317,28 @@ msgstr "HSV"
 msgid "RAW"
 msgstr "Rå"
 
-#: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2245
+#: ../src/gui_common/charts/line/LineChart.cs:648
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2185
 msgid "NO_DATA_TO_SHOW"
 msgstr "Inga Data att Visa"
 
-#: ../src/gui_common/charts/line/LineChart.cs:640
+#: ../src/gui_common/charts/line/LineChart.cs:652
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Ogiltig Data att Plotta"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1110
-#: ../src/gui_common/charts/line/LineChart.cs:1202
+#: ../src/gui_common/charts/line/LineChart.cs:1120
+#: ../src/gui_common/charts/line/LineChart.cs:1212
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Det är inte tillåtet att visa fler än {0} datauppsättningar!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1116
-#: ../src/gui_common/charts/line/LineChart.cs:1207
+#: ../src/gui_common/charts/line/LineChart.cs:1126
+#: ../src/gui_common/charts/line/LineChart.cs:1217
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Inte tillåtet att visa mindre än {0} datauppsättning(ar)!"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
-msgstr ""
+msgstr "Inspektera"
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
@@ -2186,11 +2348,11 @@ msgstr "OK"
 
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr ""
+msgstr "Kopiera felmeddelande till urklipp"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:34
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:62
 msgid "GPL_LICENSE_HEADING"
-msgstr ""
+msgstr "Licenstexten för GPL följer:"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
 msgid "THRIVE_LICENSES"
@@ -2198,7 +2360,16 @@ msgstr ""
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
 msgid "LICENSES_COVERING_THRIVE"
-msgstr ""
+msgstr "Licenserna för delar av Thrive visas här"
+
+#: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
+msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
+msgstr "Fortsätt till fasprototyper?"
+
+#: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
+#, fuzzy
+msgid "CONTINUE_TO_PROTOTYPES"
+msgstr "Protanope (Röd-Grön)"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2216,442 +2387,440 @@ msgstr "Kan du thrivas?"
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Slutför redigering och återvänd till omgivning"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:90
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
+#, fuzzy
+msgid "NEXT_EDITOR_TAB"
+msgstr "Aktivera Cellredigeraren"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ändra symmetrin"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:96
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:101
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Ångra den senaste handlingen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:102
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:107
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Gör om den senaste handlingen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:108
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:113
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Skapa en ny mikrob"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:113
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:118
 msgid "RANDOMIZE_SPECIES_NAME"
-msgstr ""
+msgstr "Slumpa artnamn"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:128
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Membran Hårdhet"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:124
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Ett hårdare membran är mer resistant till skada, men kommer göre det svårare för cellen att röra sig omkring."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:150
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2232
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2400
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2564
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2799
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3032
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3302
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:155
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2237
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2405
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2569
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2804
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3037
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3307
 msgid "MOBILITY"
 msgstr "Mobilitet"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2335
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2500
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2667
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2902
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3135
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3405
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:190
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2340
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2672
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2907
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3410
 msgid "HEALTH"
 msgstr "Hälsa"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:224
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:232
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:237
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:240
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:245
 msgid "FEAR_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:248
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:253
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:256
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:261
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:272
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:277
 #, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:273
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:278
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:290
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:394
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:491
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:594
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:691
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:788
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:886
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1021
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1252
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1341
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1433
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1517
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1616
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1805
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1903
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2000
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2097
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:295
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:399
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:496
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:599
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:696
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:793
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:891
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1026
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1257
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1346
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1621
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1721
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1810
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1908
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2005
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2102
 msgid "STORAGE"
 msgstr "Förråd"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:328
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:432
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:529
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:632
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:729
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:826
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:924
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1059
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1119
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1179
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1290
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1379
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1471
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1555
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1654
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1754
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1843
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1941
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2038
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2135
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2267
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2434
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2599
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2834
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3067
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3337
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:333
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:437
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:534
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:637
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:734
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:831
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:929
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1064
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1184
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1295
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1384
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1476
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1560
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1659
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1759
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1848
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1946
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2043
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2140
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2272
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2439
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2604
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2839
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3072
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3342
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoreguleringskost"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:371
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:376
 #, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:372
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:377
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:472
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:477
 msgid "THYLAKOID"
 msgstr "THYLAKOID"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:473
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:478
 #, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:474
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:479
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Thylakoider är kluster av proteiner och ljuskänsliga pigment. Pigmenten kan använda ljusets energi för att producera glukos från vatten och gasformig koldioxid i en process som kallas fotosyntes. Dessa pigment är också det som ger dem en distinkt färg. Hastigheten för deras glukosproduktion skalas med koncentrationen av koldioxid och ljusintensiteten. Eftersom tylakoiderna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:570
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:575
 #, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:571
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:576
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:673
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:678
 #, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:674
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:679
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:770
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:775
 #, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:771
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:776
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:868
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:873
 #, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:869
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:874
 msgid "OXYTOXISOME_DESC"
 msgstr "En modifieerad metabolosom ansvarig för produktionen of en primitiv form av den giftiga agenten OxyToxy NT."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:965
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:970
 #, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:966
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:971
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:983
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:988
 msgid "SPEED"
 msgstr "Hastighet"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1105
 #, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
 #, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1161
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
 #, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1219
-msgid "CILIA"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1220
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1693
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2177
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2182
+#: ../src/microbe_stage/MicrobeHUD.cs:1383
 msgid "TO_BE_IMPLEMENTED"
-msgstr ""
+msgstr "Ej implementerat än."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1240
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1241
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1246
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1328
 msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr ""
+msgstr "Möjliggör utveckligen av komplexare membranbundna organeller. Kostar en stor mängd ATP att underhålla. Denna utveckling går inte att ångra."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1329
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1420
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1425
 #, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Kemosyntesproteiner är små kluster av proteiner i cytoplasman som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid. Eftersom de kemosyntetiserande proteinerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1421
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1426
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1504
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1509
 #, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1510
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1587
-msgid "THERMOPLAST"
-msgstr "Termoplast"
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1588
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1593
 #, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1589
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1594
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1605
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1610
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:185
 #, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Placera organell"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1703
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1708
 #, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1704
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1709
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1787
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1792
 #, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1788
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1793
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1885
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1890
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1886
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1891
 msgid "VACUOLE_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1982
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1987
 #, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1983
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1988
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr ""
+msgstr "Giftvakuolen är en vakuol som har modifierats för produktion, lagring, och utsöndring av oxytoxy-gifter. Mer giftvakuoler ökar intervallen gift kan avfyras med."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2079
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2084
 #, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2085
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2176
-msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2206
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2211
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2301
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2467
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2633
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2868
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3101
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3371
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2306
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2472
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2638
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2873
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3106
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3376
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2374
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2379
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2538
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2543
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2701
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3169
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3439
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2706
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3174
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3444
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2970
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3237
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2740
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2975
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3242
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3512
 msgid "CANNOT_ENGULF"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2773
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2778
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2936
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3203
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3473
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2941
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3208
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3478
 msgid "TOXIN_RESISTANCE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3008
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3013
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3276
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3281
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3658
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3663
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3664
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3669
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3670
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3675
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3676
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3681
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3681
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3686
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 "Du har osparade ändringar som kommer bli raderade.\n"
 "Vill du fortsätta?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3690
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2865
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:857
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:281
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
 msgid "TEMPERATURE"
 msgstr "Temperatur"
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn:95
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:81
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:78
 msgid "N_A_MP"
 msgstr "N/A MutationsPoäng"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:532
+#: ../src/microbe_stage/Microbe.Contact.cs:579
 msgid "DEATH"
-msgstr ""
+msgstr "död"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:643
+#: ../src/microbe_stage/Microbe.Contact.cs:705
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:650
+#: ../src/microbe_stage/Microbe.Contact.cs:712
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:867
+#: ../src/microbe_stage/Microbe.Contact.cs:950
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:734
+#: ../src/microbe_stage/Microbe.Interior.cs:780
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Producerar"
@@ -2662,7 +2831,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
 msgid "GODMODE"
-msgstr ""
+msgstr "Gudläge"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
 msgid "NO_AI"
@@ -2680,211 +2849,180 @@ msgstr "Duplicera Spelare"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:451
+#: ../src/microbe_stage/MicrobeHUD.cs:488
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:452
+#: ../src/microbe_stage/MicrobeHUD.cs:489
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:453
+#: ../src/microbe_stage/MicrobeHUD.cs:490
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:454
+#: ../src/microbe_stage/MicrobeHUD.cs:491
 msgid "SIGNAL_COMMAND_FLEE"
-msgstr ""
+msgstr "Fly"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:455
+#: ../src/microbe_stage/MicrobeHUD.cs:492
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 "There is a conflict with {0}.\n"
 "Vill du ta bort inputen från {1}?"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:458
+#: ../src/microbe_stage/MicrobeHUD.cs:495
 #, fuzzy
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 "There is a conflict with {0}.\n"
 "Vill du ta bort inputen från {1}?"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:800
+#: ../src/microbe_stage/MicrobeHUD.cs:820
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:833
+#: ../src/microbe_stage/MicrobeHUD.cs:853
 msgid "PLAYER_CELL"
 msgstr "spelarcell"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:850
+#: ../src/microbe_stage/MicrobeHUD.cs:870
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Artlista"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:895
+#: ../src/microbe_stage/MicrobeHUD.cs:915
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:897
+#: ../src/microbe_stage/MicrobeHUD.cs:917
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:899
+#: ../src/microbe_stage/MicrobeHUD.cs:919
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:901
+#: ../src/microbe_stage/MicrobeHUD.cs:921
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:903
+#: ../src/microbe_stage/MicrobeHUD.cs:923
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:905
+#: ../src/microbe_stage/MicrobeHUD.cs:925
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:576
+#: ../src/microbe_stage/MicrobeHUD.cs:1176
+#: ../src/microbe_stage/MicrobeStage.tscn:1785
+msgid "BECOME_MULTICELLULAR"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:1212
+#: ../src/microbe_stage/MicrobeStage.tscn:1796
+msgid "BECOME_MACROSCOPIC"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:754
 msgid "PLAYER_REPRODUCED"
 msgstr "spelare fortplantad"
 
-#: ../src/microbe_stage/MicrobeStage.cs:665
+#: ../src/microbe_stage/MicrobeStage.cs:768
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:685
+#: ../src/microbe_stage/MicrobeStage.cs:791
 msgid "PLAYER_DIED"
 msgstr "spelare dog"
 
-#: ../src/microbe_stage/MicrobeStage.cs:746
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
-#, fuzzy
-msgid "PATCH_EXTINCTION"
-msgstr "dog ut i {0}"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:508
+#: ../src/microbe_stage/MicrobeStage.tscn:514
 msgid "AT_CURSOR"
 msgstr "Vid Muspekare:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:534
+#: ../src/microbe_stage/MicrobeStage.tscn:540
 msgid "NOTHING_HERE"
 msgstr "Ingenting här"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:559
+#: ../src/microbe_stage/MicrobeStage.tscn:565
 msgid "COMPOUNDS_COLON"
-msgstr ""
+msgstr "Föreningar:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:599
+#: ../src/microbe_stage/MicrobeStage.tscn:605
 msgid "SPECIES_COLON"
-msgstr ""
+msgstr "Arter:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:679
+#: ../src/microbe_stage/MicrobeStage.tscn:685
 msgid "ENVIRONMENT"
 msgstr "Miljö"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:948
+#: ../src/microbe_stage/MicrobeStage.tscn:954
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1004
+#: ../src/microbe_stage/MicrobeStage.tscn:1010
 msgid "LIGHT"
 msgstr "Ljus"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1059
+#: ../src/microbe_stage/MicrobeStage.tscn:1065
 msgid "PRESSURE_SHORT"
 msgstr "Tryck"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1142
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2929
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2963
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1003
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:586
+#: ../src/microbe_stage/MicrobeStage.tscn:1148
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:712
 msgid "COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1518
+#: ../src/microbe_stage/MicrobeStage.tscn:1524
 msgid "AGENTS"
-msgstr ""
+msgstr "Medel"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1616
+#: ../src/microbe_stage/MicrobeStage.tscn:1622
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1634
+#: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1647
+#: ../src/microbe_stage/MicrobeStage.tscn:1653
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "Fortsätt"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1660
+#: ../src/microbe_stage/MicrobeStage.tscn:1666
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1675
+#: ../src/microbe_stage/MicrobeStage.tscn:1681
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1712
+#: ../src/microbe_stage/MicrobeStage.tscn:1718
 msgid "HELP_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Hjälp"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1724
+#: ../src/microbe_stage/MicrobeStage.tscn:1730
 msgid "SUICIDE_BUTTON_TOOLTIP"
+msgstr "Självmord"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1781
+msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1775
+#: ../src/microbe_stage/MicrobeStage.tscn:1816
 msgid "POPULATION_CAPITAL"
 msgstr "INVÅNARE:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:181
-msgid "PATCH_PANGONIAN_VENTS"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:182
-msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:183
-msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:184
-msgid "PATCH_PANGONIAN_TIDEPOOL"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:185
-msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:186
-msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr ""
-
 #: ../src/microbe_stage/PatchMapGenerator.cs:187
-msgid "PATCH_PANGONIAN_COAST"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:188
-msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:189
-msgid "PATCH_CAVE"
+#, fuzzy
+msgid "PATCH_NAME"
 msgstr "Grotta"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:190
-msgid "PATCH_ICE_SHELF"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:191
-msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr ""
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -2894,398 +3032,395 @@ msgstr "Lösgöringsläge"
 msgid "PROCESS_PANEL_TITLE"
 msgstr "Cellprocesser"
 
-#: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
-msgid "COMPOUND_BALANCE_TITLE"
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:70
+msgid "PEACEFUL"
+msgstr "Fredlig"
+
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:87
+msgid "AGGRESSIVE"
+msgstr "Aggressiv"
+
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:123
+msgid "CAUTIOUS"
+msgstr "Försiktig"
+
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:141
+msgid "OPPORTUNISTIC"
+msgstr "Opportunistisk"
+
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:177
+msgid "BRAVE"
+msgstr "Modig"
+
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:194
+msgid "FEARFUL"
+msgstr "Rädd"
+
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:230
+msgid "SESSILE"
+msgstr "Stillastående"
+
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:247
+msgid "ACTIVE"
+msgstr "Aktiv"
+
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:283
+msgid "RESPONSIVE"
+msgstr "Responsiv"
+
+#: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
+msgid "FOCUSED"
+msgstr "Fokuserad"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:52
+msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:626
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1465
-msgid "LOADING_MICROBE_EDITOR"
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:227
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:232
+msgid "ATP_PRODUCTION"
+msgstr "ATP Produktion"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:233
+msgid "ATP_PRODUCTION_TOO_LOW"
+msgstr "ATP PRODUKTION FÖR LÅG!"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:262
+msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
+msgstr "{0}:+{1} ATP"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:282
+msgid "OSMOREGULATION"
+msgstr "Osmoregulering"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:288
+msgid "BASE_MOVEMENT"
+msgstr "Grundrörelse"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:300
+msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
+msgstr "{0}: -{1} ATP"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:513
+msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:628
-msgid "WAITING_FOR_AUTO_EVO"
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2021
+msgid "FAILED"
+msgstr "Misslyckades"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2027
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2039
+#, fuzzy
+msgid "POPULATION_IN_PATCH_SHORT"
+msgstr "INVÅNARE:"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2033
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2045
+msgid "N_A"
+msgstr "N/A"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2153
+msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2518
-msgid "AUTO_EVO_FAILED"
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2157
+msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2519
-msgid "AUTO_EVO_RUN_STATUS"
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2164
+msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:619
-msgid "MUTATION_POINTS"
-msgstr "Mutationspoäng"
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2170
+msgid "FOOD_SOURCE_ENERGY_INFO"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:754
-msgid "STRUCTURE"
-msgstr "Struktur"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:776
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:379
 #, fuzzy
 msgid "MEMBRANE"
 msgstr "Membrantyper"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:798
-#, fuzzy
-msgid "BEHAVIOUR"
-msgstr "Beteende"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:850
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:452
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Sök..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:857
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:459
 msgid "STRUCTURAL"
 msgstr "Strukturel"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:897
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:468
 msgid "PROTEINS"
 msgstr "Proteiner"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:967
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:477
 msgid "EXTERNAL"
 msgstr "Externa"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1027
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:486
 msgid "ORGANELLES"
 msgstr "Organeller"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1169
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:527
 msgid "MEMBRANE_TYPES"
 msgstr "Membrantyper"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1248
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:545
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Mjukhet / Hårdhet"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1268
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:565
 msgid "FLUID"
-msgstr ""
+msgstr "Rörlig"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1281
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:578
 msgid "RIGID"
-msgstr ""
+msgstr "Stel"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1314
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:611
 msgid "COLOUR"
 msgstr "Färg"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1379
-msgid "PEACEFUL"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1396
-msgid "AGGRESSIVE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1432
-msgid "CAUTIOUS"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1450
-msgid "OPPORTUNISTIC"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1486
-msgid "BRAVE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1503
-msgid "FEARFUL"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1539
-msgid "SESSILE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1556
-msgid "ACTIVE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1592
-msgid "RESPONSIVE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1609
-msgid "FOCUSED"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1677
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:679
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismstatistik"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1739
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:741
 msgid "SPEED_COLON"
 msgstr "Hastighet:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1769
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
 msgid "HP_COLON"
 msgstr "Hälsa:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1799
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:801
 msgid "SIZE_COLON"
 msgstr "Storlek:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1820
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:831
+#, fuzzy
+msgid "STORAGE_COLON"
+msgstr "Förråd"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:852
 msgid "GENERATION_COLON"
 msgstr "generation:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1862
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:894
 msgid "ATP_BALANCE"
 msgstr "ATP Balans"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1975
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1007
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1979
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3262
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1011
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION"
 msgstr "{0:F1}% klart. {1:n0}/{2:n0} steg."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1987
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Fortsätt"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2057
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1089
 #, fuzzy
 msgid "TOTAL_POPULATION_COLON"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2081
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1113
 msgid "BEST_PATCH_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2106
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1138
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2252
-msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "Artnamn..."
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2306
-#, fuzzy
-msgid "CANCEL_ACTION_CAPITAL"
-msgstr "BEKRÄFTA"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2320
-msgid "CONFIRM_CAPITAL"
-msgstr "BEKRÄFTA"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2329
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negativ ATP Balans"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2330
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1222
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Din mikrob producerar inte tillräckligt med atp för att överleva!\n"
 "Vill du fortsätta?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2336
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1228
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Bortkopplade Organeller"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2338
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1230
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Det finns placerade organeller, som inte är anslutna till resten.\n"
 "Vänligen anslut alla placerade organeller med varandra eller ångra dina ändringar."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2455
-msgid "AUTO_EVO"
-msgstr "Auto-Evolution"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2469
-msgid "FOOD_CHAIN"
-msgstr "Näringskedja"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2482
-msgid "TIMELINE"
-msgstr "Tidslinje"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2535
-msgid "AUTO_EVO_RESULTS"
-msgstr "Auto-evo resultat:"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2554
-msgid "EXTERNAL_EFFECTS"
-msgstr "Externa effekter:"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2651
-msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2657
-msgid "GLOBAL_INITIAL_LETTER"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2664
-msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2671
-msgid "LOCAL_INITIAL_LETTER"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2748
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2776
-msgid "SPECIES_POPULATION"
-msgstr "Artbefolkning"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2786
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:240
-msgid "PHYSICAL_CONDITIONS"
-msgstr "Fysisk Mående"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2886
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2920
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:996
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:422
-msgid "ATMOSPHERIC_GASSES"
-msgstr "Atmosfäriska Gaser"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2989
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3081
-msgid "NEXT_CAPITAL"
-msgstr "NÄSTA"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3123
-msgid "REPORT"
-msgstr "Rapportera"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3144
-msgid "PATCH_MAP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3311
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1295
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
+msgid "COMPOUND_BALANCE_TITLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:266
+msgid "INVALID_SPECIES_NAME_POPUP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:174
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "Artnamn..."
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:632
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Mängden glukos har minskats med {0} av den tidigare mängden."
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:209
+msgid "SELECT_A_PATCH"
+msgstr "Välj en plats för att visa detaljerna här"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:642
-#: ../src/microbe_stage/editor/TimelineTab.cs:187
-msgid "MEGA_YEARS"
-msgstr "Miljoner År"
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
+msgid "CURRENT_LOCATION_CAPITAL"
+msgstr "NUVARANDE PLATS"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:650
-msgid "TIME_INDICATOR_TOOLTIP"
-msgstr ""
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:326
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
+msgid "PHYSICAL_CONDITIONS"
+msgstr "Fysisk Mående"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:701
-msgid "ATP_PRODUCTION"
-msgstr "ATP Produktion"
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:403
+msgid "PRESSURE"
+msgstr "Tryck"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:702
-msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr "ATP PRODUKTION FÖR LÅG!"
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:508
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:669
+msgid "ATMOSPHERIC_GASSES"
+msgstr "Atmosfäriska Gaser"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:731
-msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0}:+{1} ATP"
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:931
+msgid "SPECIES_PRESENT"
+msgstr "Arter I Denna plats"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:751
-msgid "OSMOREGULATION"
-msgstr "Osmoregulering"
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:988
+msgid "MOVE_TO_THIS_PATCH"
+msgstr "Flytta till Denna Plats"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:757
-msgid "BASE_MOVEMENT"
-msgstr "Grundrörelse"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:769
-msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
-msgstr "{0}: -{1} ATP"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:993
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:994
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:996
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:999
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1003
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:324
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:325
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:330
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 msgid "YEARS"
 msgstr "år"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:999
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:330
 msgid "SPECIES_LIST"
 msgstr "Artlista"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1010
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1023
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:341
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:354
 #, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "dog ut på planeten"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1011
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1022
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:342
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:353
 #, fuzzy
 msgid "EXTINCT_FROM_PATCH"
 msgstr "dog ut på planeten"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1065
-msgid "FREEBUILDING"
-msgstr "Fri byggredigerare"
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:370
+msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+msgstr "Mängden glukos har minskats med {0} av den tidigare mängden."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1906
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:377
+#: ../src/microbe_stage/editor/TimelineTab.cs:187
+msgid "MEGA_YEARS"
+msgstr "Miljoner År"
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:385
+msgid "TIME_INDICATOR_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:204
+msgid "AUTO_EVO"
+msgstr "Auto-Evolution"
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:218
+msgid "FOOD_CHAIN"
+msgstr "Näringskedja"
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:231
+msgid "TIMELINE"
+msgstr "Tidslinje"
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:284
+msgid "AUTO_EVO_RESULTS"
+msgstr "Auto-evo resultat:"
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:303
+msgid "EXTERNAL_EFFECTS"
+msgstr "Externa effekter:"
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:400
+msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:406
+msgid "GLOBAL_INITIAL_LETTER"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:413
+msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:420
+msgid "LOCAL_INITIAL_LETTER"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:497
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:525
+msgid "SPECIES_POPULATION"
+msgstr "Artbefolkning"
+
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
+msgid "REPORT"
+msgstr "Rapportera"
+
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:133
+msgid "PATCH_MAP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
 #, fuzzy
-msgid "FAILED"
-msgstr "Sparande misslyckades"
+msgid "CELL"
+msgstr "Cellulosa"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1912
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1924
-#, fuzzy
-msgid "POPULATION_IN_PATCH_SHORT"
-msgstr "INVÅNARE:"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1918
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1930
-#, fuzzy
-msgid "N_A"
-msgstr "Ingen AI"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2087
-msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2213
-msgid "ENERGY_IN_PATCH_FOR"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2217
-msgid "ENERGY_SUMMARY_LINE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2224
-msgid "ENERGY_SOURCES"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2230
-msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:255
+#: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:266
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:284
 msgid "MP_COST"
 msgstr "{0} MP"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
-msgid "DELETE"
-msgstr ""
+#: ../src/microbe_stage/editor/MutationPointsBar.cs:46
+msgid "FREEBUILDING"
+msgstr "Fri byggredigerare"
+
+#: ../src/microbe_stage/editor/MutationPointsBar.tscn:150
+msgid "MUTATION_POINTS"
+msgstr "Mutationspoäng"
+
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:249
+#, fuzzy
+msgid "MULTIPLE_ORGANELLES"
+msgstr "Placera organell"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 #, fuzzy
@@ -3295,6 +3430,19 @@ msgstr "Rörelse"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:362
 msgid "MODIFY"
 msgstr "Modifiera"
+
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:387
+msgid "BIOME_LABEL"
+msgstr "Omgivning: {0}"
+
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:391
+msgid "BELOW_SEA_LEVEL"
+msgstr "{0}-{1}m under havsnivån"
+
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:429
+#, fuzzy
+msgid "SPECIES_WITH_POPULATION"
+msgstr "Artbefolkning"
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
 #, fuzzy
@@ -3328,304 +3476,291 @@ msgstr "Färg"
 msgid "MODIFY_ORGANELLE"
 msgstr "Ta bort organell"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
 msgstr "UTROTNING"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Precis som 99% av alla arter som någonsin har existerat, har din art utrotats. Andra kommer att fortsätta frodas och upprätthålla din niche, men det blir inte du som gör. Du kommer att glömmas, ett misslyckats experiment i evolutionen."
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:208
-msgid "BIOME_LABEL"
-msgstr "Omgivning: {0}"
-
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:213
-msgid "BELOW_SEA_LEVEL"
-msgstr "{0}-{1}m under havsnivån"
-
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:252
-msgid "WITH_POPULATION"
-msgstr "{0} med befolkning: {1}"
-
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:123
-msgid "SELECT_A_PATCH"
-msgstr "Välj en plats för att visa detaljerna här"
-
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:158
-msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "NUVARANDE PLATS"
-
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:317
-msgid "PRESSURE"
-msgstr "Tryck"
-
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:845
-msgid "SPECIES_PRESENT"
-msgstr "Arter I Denna plats"
-
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:902
-msgid "MOVE_TO_THIS_PATCH"
-msgstr "Flytta till Denna Plats"
-
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:80
-#, fuzzy
-msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr "Precis som 99% av alla arter som någonsin har existerat, har din art utrotats. Andra kommer att fortsätta frodas och upprätthålla din niche, men det blir inte du som gör. Du kommer att glömmas, ett misslyckats experiment i evolutionen."
-
-#: ../src/microbe_stage/gui/WinBox.tscn:56
+#: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
 msgstr "DU HAR FRODATS!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:65
+#: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr "Grattis, du har vunnit denna version av Thrive! Du kan fortsätta spela efter denna skärm stängs ner om du vill, eller starta nytt spel i en annan värld."
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModLoader.cs:218 ../src/modding/ModLoader.cs:271
 msgid "CANT_LOAD_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:242
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:259
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:286
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:294
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:376
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:389
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:405
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:430
+#, fuzzy
+msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
+msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+
+#: ../src/modding/ModLoader.cs:453
+#, fuzzy
+msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
+msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
+
+#: ../src/modding/ModLoader.cs:465
 #, fuzzy
 msgid "PCK_LOAD_FAILED"
 msgstr "Färdigladdat"
 
-#: ../src/modding/ModManager.cs:293
+#: ../src/modding/ModManager.cs:297
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:307
+#: ../src/modding/ModManager.cs:311
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:319
+#: ../src/modding/ModManager.cs:323
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:549
+#: ../src/modding/ModManager.cs:334
+msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:565
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:885
+#: ../src/modding/ModManager.cs:901
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:886
+#: ../src/modding/ModManager.cs:902
 msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:940
+#: ../src/modding/ModManager.cs:913
+#, fuzzy
+msgid "USES_FEATURE"
+msgstr "Temperatur"
+
+#: ../src/modding/ModManager.cs:914
+msgid "DOES_NOT_USE_FEATURE"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:959
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Öppna Skärmbildsmapp"
 
-#: ../src/modding/ModManager.cs:949
+#: ../src/modding/ModManager.cs:968
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:119
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:142 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
-msgstr ""
+msgstr "Ladda om"
 
-#: ../src/modding/ModManager.tscn:152
+#: ../src/modding/ModManager.tscn:150
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Öppna Logmapp"
 
-#: ../src/modding/ModManager.tscn:170
-#, fuzzy
+#: ../src/modding/ModManager.tscn:168
 msgid "RIGHT_ARROW"
-msgstr "Högerklick"
+msgstr "→"
 
-#: ../src/modding/ModManager.tscn:183
-#, fuzzy
+#: ../src/modding/ModManager.tscn:181
 msgid "LEFT_ARROW"
-msgstr "Vänster musknapp"
+msgstr "←"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:193
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Aktivera Cellredigeraren"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:211
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:248
 msgid "SELECTED_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:282 ../src/modding/ModManager.tscn:670
+#: ../src/modding/NewModGUI.tscn:140
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:313 ../src/modding/ModManager.tscn:692
+#: ../src/modding/NewModGUI.tscn:163
 msgid "MOD_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:371
+#: ../src/modding/ModManager.tscn:369
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:413
 msgid "MINIMUM_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
+#: ../src/modding/ModManager.tscn:440 ../src/modding/ModManager.tscn:714
+#: ../src/modding/NewModGUI.tscn:186
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/modding/ModManager.tscn:474
+#: ../src/modding/ModManager.tscn:472
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:480
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Öppen URL"
 
-#: ../src/modding/ModManager.tscn:505
+#: ../src/modding/ModManager.tscn:503
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
-#, fuzzy
+#: ../src/modding/ModManager.tscn:510 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
-msgstr "Snabbladda"
+msgstr "Ladda upp"
 
-#: ../src/modding/ModManager.tscn:519
+#: ../src/modding/ModManager.tscn:517
 msgid "NEW"
-msgstr ""
+msgstr "Ny"
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:530
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:559
+#: ../src/modding/ModManager.tscn:557
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:566
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:579
+#: ../src/modding/ModManager.tscn:577
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:580
+#: ../src/modding/ModManager.tscn:578
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/modding/ModManager.tscn:581
+#: ../src/modding/ModManager.tscn:579
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Radera och fortsätt"
 
-#: ../src/modding/ModManager.tscn:588
+#: ../src/modding/ModManager.tscn:586
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:627 ../src/modding/NewModGUI.tscn:117
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Namn:"
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:649 ../src/modding/NewModGUI.tscn:94
 msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:736 ../src/modding/NewModGUI.tscn:209
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:774 ../src/modding/NewModGUI.tscn:233
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:796 ../src/modding/NewModGUI.tscn:256
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:818 ../src/modding/NewModGUI.tscn:279
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:840 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:862 ../src/modding/NewModGUI.tscn:325
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:884 ../src/modding/NewModGUI.tscn:348
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:906 ../src/modding/NewModGUI.tscn:371
 msgid "MOD_PCK_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:928 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:950 ../src/modding/NewModGUI.tscn:417
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:979
+#: ../src/modding/ModManager.tscn:972
+msgid "MOD_AUTO_HARMONY"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:999
 msgid "MOD_CREATION_FAILED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1008
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1013
 msgid "RESTART_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1015
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""
 
@@ -3648,7 +3783,7 @@ msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellul
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "ATP PRODUKTION FÖR LÅG!"
 
-#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:207
+#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:280
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "ATP PRODUKTION FÖR LÅG!"
@@ -3675,18 +3810,16 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:460
-#, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
-msgstr "Sök..."
+msgstr "Skapar..."
 
 #: ../src/modding/ModUploader.cs:474
 msgid "SUCCESS_BUT_MISSING_ID"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:519
-#, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
-msgstr "Laddar..."
+msgstr "Laddar upp..."
 
 #: ../src/modding/ModUploader.cs:556
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
@@ -3705,7 +3838,7 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:307
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -3742,7 +3875,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
-msgstr ""
+msgstr "Tillämpa"
 
 #: ../src/modding/ModUploader.tscn:168
 #, fuzzy
@@ -3760,7 +3893,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
-msgstr ""
+msgstr "Synlig"
 
 #: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
@@ -3772,7 +3905,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
-msgstr ""
+msgstr "Bläddra"
 
 #: ../src/modding/ModUploader.tscn:284
 #, fuzzy
@@ -3801,51 +3934,60 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:175
+#: ../src/modding/NewModGUI.cs:180
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
-#: ../src/modding/NewModGUI.cs:232
+#: ../src/modding/NewModGUI.cs:239
 msgid "INVALID_URL_FORMAT"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:247
+#: ../src/modding/NewModGUI.cs:254
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:260
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:266
 msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:275
+#: ../src/modding/NewModGUI.cs:282
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:286
+#: ../src/modding/NewModGUI.cs:293
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:33
 #, fuzzy
 msgid "CREATE_NEW_MOD"
 msgstr "Skapa en ny mikrob"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:67
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:74
 msgid "OUR_WIKI"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:450
-msgid "CREATE"
+#: ../src/modding/NewModGUI.tscn:439
+#, fuzzy
+msgid "USE_AUTO_HARMONY_TOOLTIP"
+msgstr "Självmord"
+
+#: ../src/modding/NewModGUI.tscn:441
+msgid "USE_AUTO_HARMONY"
 msgstr ""
+
+#: ../src/modding/NewModGUI.tscn:465
+msgid "CREATE"
+msgstr "Skapa"
 
 #: ../src/saving/InProgressLoad.cs:79 ../src/saving/InProgressLoad.cs:99
 #: ../src/saving/InProgressLoad.cs:148
@@ -3894,18 +4036,17 @@ msgstr "Laddningsfel"
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
-#: ../src/saving/InProgressSave.cs:189
-#, fuzzy
+#: ../src/saving/InProgressSave.cs:204
 msgid "SAVING_DOT_DOT_DOT"
-msgstr "Sök..."
+msgstr "Sparar..."
 
-#: ../src/saving/InProgressSave.cs:222
+#: ../src/saving/InProgressSave.cs:243
 msgid "SAVE_FAILED"
 msgstr "Sparande misslyckades"
 
-#: ../src/saving/InProgressSave.cs:223
+#: ../src/saving/InProgressSave.cs:244
 msgid "ERROR_SAVING"
-msgstr ""
+msgstr "Sparningsfel"
 
 #: ../src/saving/NewSaveMenu.cs:80
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
@@ -3945,23 +4086,28 @@ msgstr "Skapa Ny Sparfil"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:428 ../src/saving/SaveHelper.cs:457
+#: ../src/saving/SaveHelper.cs:445 ../src/saving/SaveHelper.cs:489
 #, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen. De består av flera blåsor, mindre membranstrukturer som ofta används i celler för lagring, som har smält samman. Den är fylld med vatten som används för att hålla kvar molekyler, enzymer, fasta ämnen och andra ämnen. Deras form är flytande och kan variera mellan celler."
 
-#: ../src/saving/SaveHelper.cs:437
+#: ../src/saving/SaveHelper.cs:454 ../src/saving/SaveHelper.cs:470
 msgid "SAVING_NOT_POSSIBLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:438
+#: ../src/saving/SaveHelper.cs:455
 #, fuzzy
 msgid "PLAYER_EXTINCT"
 msgstr "Duplicera Spelare"
 
-#: ../src/saving/SaveHelper.cs:447
+#: ../src/saving/SaveHelper.cs:471
+#, fuzzy
+msgid "IN_PROTOTYPE"
+msgstr "Protanope (Röd-Grön)"
+
+#: ../src/saving/SaveHelper.cs:479
 msgid "SAVING_SUCCEEDED"
-msgstr ""
+msgstr "Sparning lyckades"
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
@@ -3969,11 +4115,11 @@ msgstr "Instruktionsbok"
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
-msgstr ""
+msgstr "Autospar"
 
 #: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
-msgstr ""
+msgstr "Snabbspar"
 
 #: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
@@ -3988,7 +4134,6 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-#, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Laddar..."
 
@@ -4046,31 +4191,29 @@ msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen.
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
-msgstr ""
+msgstr "Skapad:"
 
 #: ../src/saving/SaveListItem.tscn:139 ../src/saving/SaveListItem.tscn:158
 #: ../src/saving/SaveListItem.tscn:177 ../src/saving/SaveListItem.tscn:200
 #: ../src/saving/SaveListItem.tscn:229 ../src/saving/SaveListItem.tscn:248
 msgid "DOT_DOT_DOT"
-msgstr ""
+msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-#, fuzzy
 msgid "TYPE_COLON"
-msgstr "Hälsa:"
+msgstr "Typ:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
-msgstr ""
+msgstr "Beskrivning:"
 
 #: ../src/saving/SaveListItem.tscn:193
-#, fuzzy
 msgid "VERSION_COLON"
-msgstr "generation:"
+msgstr "Version:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
-msgstr ""
+msgstr "Av:"
 
 #: ../src/saving/SaveListItem.tscn:241
 msgid "CREATED_ON_PLATFORM"
@@ -4078,7 +4221,7 @@ msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
-msgstr ""
+msgstr "Ladda"
 
 #: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
@@ -4094,7 +4237,7 @@ msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
-msgstr ""
+msgstr "Radera Valda"
 
 #: ../src/saving/SaveManagerGUI.tscn:87
 msgid "CLEAN_UP_OLD_SAVES"
@@ -4106,15 +4249,15 @@ msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:132
 msgid "TOTAL_SAVES"
-msgstr ""
+msgstr "Totala sparningar:"
 
 #: ../src/saving/SaveManagerGUI.tscn:152
 msgid "SAVE_SPACE_USED"
-msgstr ""
+msgstr "Använt utrymme:"
 
 #: ../src/saving/SaveManagerGUI.tscn:172
 msgid "SELECTED_COLON"
-msgstr ""
+msgstr "Vald:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
 msgid "DELETE_SELECTED_SAVES_PROMPT"
@@ -4132,75 +4275,75 @@ msgstr ""
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:47
+#: ../src/steam/SteamClient.cs:68 ../src/steam/SteamClient.cs:75
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:462
+#: ../src/steam/SteamClient.cs:528
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:464
+#: ../src/steam/SteamClient.cs:530
 msgid "STEAM_ERROR_BANNED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:466
+#: ../src/steam/SteamClient.cs:532
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:468
+#: ../src/steam/SteamClient.cs:534
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:470
+#: ../src/steam/SteamClient.cs:536
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:472
+#: ../src/steam/SteamClient.cs:538
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:474
+#: ../src/steam/SteamClient.cs:540
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:476
+#: ../src/steam/SteamClient.cs:542
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:478
+#: ../src/steam/SteamClient.cs:544
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:480
+#: ../src/steam/SteamClient.cs:546
 #, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "Duplicera Spelare"
 
-#: ../src/steam/SteamClient.cs:482
+#: ../src/steam/SteamClient.cs:548
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:484
+#: ../src/steam/SteamClient.cs:550
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:486
+#: ../src/steam/SteamClient.cs:552
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:488
+#: ../src/steam/SteamClient.cs:554
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:238
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:301
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4210,17 +4353,17 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
 msgid "TUTORIAL"
-msgstr ""
+msgstr "Handledning"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
@@ -4238,29 +4381,29 @@ msgstr ""
 "\n"
 "Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:267
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr "Mikrob Fri Byggredigerare"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
 msgid "GOT_IT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr "{0:F1}% klart. {1:n0}/{2:n0} steg."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 
@@ -4270,11 +4413,11 @@ msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
-msgstr ""
+msgstr "Visa handledningar"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
-msgstr ""
+msgstr "Börja Trivas"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
 msgid "MICROBE_STAGE_CONTROL_TEXT"
@@ -4314,9 +4457,14 @@ msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#, fuzzy
-#~ msgid "SPECIES_WITH_POPULATION"
-#~ msgstr "Artbefolkning"
+#~ msgid "PATCH_CAVE"
+#~ msgstr "Grotta"
+
+#~ msgid "PATCH_ICE_SHELF"
+#~ msgstr "Ishylla"
+
+#~ msgid "AUTO"
+#~ msgstr "automatiskt"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Laddar..."
@@ -4327,11 +4475,18 @@ msgstr ""
 #~ msgid "RUN_RESULT_POP_IN_PATCHES"
 #~ msgstr "befolkning i platser:"
 
+#~ msgid "WITH_POPULATION"
+#~ msgstr "{0} med befolkning: {1}"
+
 #~ msgid "SAVING"
 #~ msgstr "Sparar..."
 
 #~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 #~ msgstr "Skriv över aktuell sparfil?"
+
+#, fuzzy
+#~ msgid "TOTAL_EXTINCTION"
+#~ msgstr "dog ut i {0}"
 
 #, fuzzy
 #~ msgid "LOCAL_EXTINCTION"
