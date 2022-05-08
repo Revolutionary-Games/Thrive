@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/AgentProjectile.tscn", UsesEarlyResolve = false)]
-public class AgentProjectile : RigidBody, ITimedLife
+public class AgentProjectile : RigidBody, ITimedLife, IEntity
 {
     private Particles particles = null!;
 
@@ -15,6 +15,10 @@ public class AgentProjectile : RigidBody, ITimedLife
     public float Amount { get; set; }
     public AgentProperties? Properties { get; set; }
     public EntityReference<IEntity> Emitter { get; set; } = new();
+
+    public Node EntityNode { get; private set; } = null!;
+
+    public AliveMarker AliveMarker { get; } = new();
 
     [JsonProperty]
     private float? FadeTimeRemaining { get; set; }
@@ -27,6 +31,8 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     public override void _Ready()
     {
+        EntityNode = this;
+
         if (Properties == null)
             throw new InvalidOperationException($"{nameof(Properties)} is required");
 
@@ -47,7 +53,12 @@ public class AgentProjectile : RigidBody, ITimedLife
 
         FadeTimeRemaining -= delta;
         if (FadeTimeRemaining <= 0)
-            Destroy();
+            OnDestroyed();
+    }
+
+    public void OnDestroyed()
+    {
+        this.DetachAndQueueFree();
     }
 
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
@@ -93,10 +104,7 @@ public class AgentProjectile : RigidBody, ITimedLife
 
         // Timer that delays despawn of projectiles
         FadeTimeRemaining = Constants.PROJECTILE_DESPAWN_DELAY;
-    }
 
-    private void Destroy()
-    {
-        this.DetachAndQueueFree();
+        AliveMarker.Alive = false;
     }
 }
