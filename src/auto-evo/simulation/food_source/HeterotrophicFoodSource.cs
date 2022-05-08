@@ -38,13 +38,17 @@
             var predatorSpeed = microbeSpecies.BaseSpeed;
             predatorSpeed += simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch).FinalBalance;
 
-            // It's great if you can engulf this prey, but only if you can catch it
+            // Only assign engulf score if one can actually engulf
             var engulfScore = 0.0f;
             if (microbeSpeciesHexSize / preyHexSize >
                 Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
             {
                 engulfScore = Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
+
+                // The faster the better
                 engulfScore *= predatorSpeed / preySpeed;
+
+                // Allow for some degree of lucky engulfment
                 engulfScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
                 // Favor larger microbes, as if they stand more chances in a fight/can digest prey faster.
