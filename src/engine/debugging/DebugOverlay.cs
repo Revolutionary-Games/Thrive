@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using Godot;
 
 public class DebugOverlay : Control
 {
     private readonly Dictionary<Microbe, Label> microbeLabels = new();
     private readonly Dictionary<FloatingChunk, Label> floatingChunkLabels = new();
+    private readonly Dictionary<AgentProjectile, Label> agentProjectileLabels = new();
 
     [Export]
     private NodePath fpsCheckBoxPath = null!;
@@ -143,6 +146,19 @@ public class DebugOverlay : Control
 
             label.RectPosition = activeCamera.UnprojectPosition(floatingChunk.Transform.origin);
         }
+
+        foreach (var pair in agentProjectileLabels)
+        {
+            var agentProjectile = pair.Key;
+            var label = pair.Value;
+
+            label.Text = !agentProjectile.Visible ?
+                string.Empty :
+                $"[AP:{agentProjectile.GetInstanceId()}:Amount={agentProjectile.Amount}:" +
+                $"TTL={agentProjectile.TimeToLiveRemaining.ToString("F2", CultureInfo.CurrentCulture)}]";
+
+            label.RectPosition = activeCamera.UnprojectPosition(agentProjectile.Transform.origin);
+        }
     }
 
     private void UpdateLabelOnMicrobeDeath(Microbe microbe)
@@ -197,6 +213,15 @@ public class DebugOverlay : Control
                 floatingChunkLabels.Add(floatingChunk, label);
                 break;
             }
+
+            case AgentProjectile agentProjectile:
+            {
+                var label = new Label { Text = agentProjectile.ToString() };
+                label.AddFontOverride("font", smallerFont);
+                labelsLayer.AddChild(label);
+                agentProjectileLabels.Add(agentProjectile, label);
+                break;
+            }
         }
     }
 
@@ -236,6 +261,18 @@ public class DebugOverlay : Control
                 }
 
                 floatingChunkLabels.Remove(floatingChunk);
+                break;
+            }
+
+            case AgentProjectile agentProjectile:
+            {
+                if (agentProjectileLabels.TryGetValue(agentProjectile, out var label))
+                {
+                    labelsLayer.RemoveChild(label);
+                    label.QueueFree();
+                }
+
+                agentProjectileLabels.Remove(agentProjectile);
                 break;
             }
         }
