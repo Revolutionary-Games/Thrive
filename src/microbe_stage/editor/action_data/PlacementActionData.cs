@@ -15,7 +15,7 @@ public class PlacementActionData : EditorCombinableActionData
         Orientation = orientation;
     }
 
-    public override int CalculateCost()
+    protected override int CalculateCostInternal()
     {
         return Organelle.Definition.MPCost;
     }
@@ -33,12 +33,13 @@ public class PlacementActionData : EditorCombinableActionData
             return ActionInterferenceMode.Combinable;
         }
 
-        if (other is MoveActionData moveActionData && moveActionData.Organelle.Definition == Organelle.Definition)
+        if (other is OrganelleMoveActionData moveActionData &&
+            moveActionData.MovedHex.Definition == Organelle.Definition)
         {
             if (moveActionData.OldLocation == Location)
                 return ActionInterferenceMode.Combinable;
 
-            if (ReplacedCytoplasm?.Contains(moveActionData.Organelle) == true)
+            if (ReplacedCytoplasm?.Contains(moveActionData.MovedHex) == true)
                 return ActionInterferenceMode.ReplacesOther;
         }
 
@@ -53,11 +54,11 @@ public class PlacementActionData : EditorCombinableActionData
     {
         if (other is RemoveActionData removeActionData)
         {
-            return new MoveActionData(removeActionData.Organelle, removeActionData.Location, Location,
+            return new OrganelleMoveActionData(removeActionData.Organelle, removeActionData.Location, Location,
                 removeActionData.Orientation, Orientation);
         }
 
-        var moveActionData = (MoveActionData)other;
+        var moveActionData = (OrganelleMoveActionData)other;
         return new PlacementActionData(Organelle, moveActionData.NewLocation, moveActionData.NewRotation);
     }
 }

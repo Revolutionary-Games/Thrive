@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -40,8 +39,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
     [JsonProperty]
     private MicrobeSpecies? editedSpecies;
 
-    private int? mutationPointsCache;
-
     [JsonIgnore]
     public TutorialState TutorialState => CurrentGame.TutorialState ??
         throw new InvalidOperationException("Editor doesn't have current game set yet");
@@ -61,17 +58,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
     [JsonIgnore]
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
-
-    [JsonIgnore]
-    public override int MutationPoints
-    {
-        get => mutationPointsCache ?? CalculateMutationPointsLeft();
-        set
-        {
-            _ = value;
-            DirtyMutationPointsCache();
-        }
-    }
 
     protected override string MusicCategory => "MicrobeEditor";
 
@@ -134,14 +120,9 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         return history.OrganellePlacedThisSession(organelle);
     }
 
-    public void DirtyMutationPointsCache()
+    public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
-        mutationPointsCache = null;
-    }
-
-    public override int WhatWouldActionsCost(IEnumerable<CombinableActionData> actions)
-    {
-        return history.WhatWouldActionsCost(actions.Cast<EditorCombinableActionData>());
+        return history.WhatWouldActionsCost(actions);
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -346,28 +327,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 #pragma warning restore 162
 
         base.SetupEditedSpecies();
-    }
-
-    /// <summary>
-    ///   Calculates the remaining MP from the action history
-    /// </summary>
-    /// <returns>The remaining MP</returns>
-    private int CalculateMutationPointsLeft()
-    {
-        if (FreeBuilding || CheatManager.InfiniteMP)
-            return Constants.BASE_MUTATION_POINTS;
-
-        mutationPointsCache = history.CalculateMutationPointsLeft();
-
-        if (mutationPointsCache.Value < 0 || mutationPointsCache > Constants.BASE_MUTATION_POINTS)
-        {
-            GD.PrintErr("Invalid MP amount: ", mutationPointsCache,
-                " This should only happen if the user disabled the Infinite MP cheat while having mutated too much.");
-        }
-
-        OnMutationPointsChanged();
-
-        return mutationPointsCache.Value;
     }
 
     private void CreateMutatedSpeciesCopy(Species species)

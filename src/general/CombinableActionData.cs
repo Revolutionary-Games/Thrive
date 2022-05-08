@@ -35,7 +35,7 @@ public abstract class CombinableActionData
     /// <param name="other">The action this should be combined with</param>
     /// <returns>Returns the combined action</returns>
     /// <exception cref="NotSupportedException">Thrown when combination is not possible</exception>
-    public CombinableActionData Combine(CombinableActionData other)
+    public virtual CombinableActionData Combine(CombinableActionData other)
     {
         if (GetInterferenceModeWith(other) != ActionInterferenceMode.Combinable)
             throw new NotSupportedException();

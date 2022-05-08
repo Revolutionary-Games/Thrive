@@ -420,6 +420,8 @@ public partial class CellEditorComponent :
 
     protected override bool ForceHideHover => MicrobePreviewMode;
 
+    private float CostMultiplier => IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f;
+
     public override void _Ready()
     {
         base._Ready();
@@ -829,7 +831,10 @@ public partial class CellEditorComponent :
             return;
 
         var action = new SingleEditorAction<MembraneActionData>(DoMembraneChangeAction, UndoMembraneChangeAction,
-            new MembraneActionData(Membrane, membrane));
+            new MembraneActionData(Membrane, membrane)
+            {
+                CostMultiplier = CostMultiplier,
+            });
 
         Editor.EnqueueAction(action);
 
@@ -870,7 +875,10 @@ public partial class CellEditorComponent :
         var prevRigidity = Rigidity;
 
         var action = new SingleEditorAction<RigidityActionData>(DoRigidityChangeAction, UndoRigidityChangeAction,
-            new RigidityActionData(newRigidity, prevRigidity));
+            new RigidityActionData(newRigidity, prevRigidity)
+            {
+                CostMultiplier = CostMultiplier,
+            });
 
         Editor.EnqueueAction(action);
     }
@@ -1026,7 +1034,7 @@ public partial class CellEditorComponent :
     protected override bool DoesActionEndInProgressAction(CombinedEditorAction action)
     {
         // Allow only move actions with an in-progress move
-        return action.Data.Any(d => d is MoveActionData);
+        return action.Data.Any(d => d is OrganelleMoveActionData);
     }
 
     protected override void OnCurrentActionCanceled()
@@ -1061,7 +1069,10 @@ public partial class CellEditorComponent :
             return null;
 
         return new SingleEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
-            new RemoveActionData(organelleHere, organelleHere.Position, organelleHere.Orientation));
+            new RemoveActionData(organelleHere, organelleHere.Position, organelleHere.Orientation)
+            {
+                CostMultiplier = CostMultiplier,
+            });
     }
 
     protected override float CalculateEditorArrowZPosition()
@@ -1219,6 +1230,7 @@ public partial class CellEditorComponent :
                 var data = new RemoveActionData(organelle, organelle.Position, organelle.Orientation)
                 {
                     GotReplaced = organelle.Definition.InternalName == "cytoplasm",
+                    CostMultiplier = CostMultiplier,
                 };
                 action = new SingleEditorAction<RemoveActionData>(DoOrganelleRemoveAction,
                     UndoOrganelleRemoveAction, data);
@@ -1227,15 +1239,22 @@ public partial class CellEditorComponent :
             {
                 if (moving)
                 {
-                    var data = new MoveActionData(organelle, organelle.Position, hex, organelle.Orientation,
-                        orientation);
-                    action = new SingleEditorAction<MoveActionData>(DoOrganelleMoveAction,
+                    var data = new OrganelleMoveActionData(organelle, organelle.Position, hex, organelle.Orientation,
+                        orientation)
+                    {
+                        CostMultiplier = CostMultiplier,
+                    };
+                    action = new SingleEditorAction<OrganelleMoveActionData>(DoOrganelleMoveAction,
                         UndoOrganelleMoveAction, data);
                 }
                 else
                 {
                     var replacedHex = editedMicrobeOrganelles.GetElementAt(hex);
-                    var data = new PlacementActionData(organelle, hex, orientation);
+                    var data = new PlacementActionData(organelle, hex, orientation)
+                    {
+                        CostMultiplier = CostMultiplier,
+                    };
+
                     if (replacedHex != null)
                         data.ReplacedCytoplasm = new List<OrganelleTemplate> { replacedHex };
 
@@ -1272,6 +1291,7 @@ public partial class CellEditorComponent :
             .Select(o => new RemoveActionData(o, o.Position, o.Orientation)
             {
                 GotReplaced = true,
+                CostMultiplier = CostMultiplier,
             });
     }
 
@@ -1485,7 +1505,10 @@ public partial class CellEditorComponent :
 
         var action = new SingleEditorAction<PlacementActionData>(
             DoOrganellePlaceAction, UndoOrganellePlaceAction,
-            new PlacementActionData(organelle, organelle.Position, organelle.Orientation));
+            new PlacementActionData(organelle, organelle.Position, organelle.Orientation)
+            {
+                CostMultiplier = CostMultiplier,
+            });
 
         replacedCytoplasmActions.Add(action);
         return new CombinedEditorAction(replacedCytoplasmActions);

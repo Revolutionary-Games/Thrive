@@ -19,6 +19,11 @@ public class NewMicrobeActionData : EditorCombinableActionData
         return -Constants.BASE_MUTATION_POINTS;
     }
 
+    protected override int CalculateCostInternal()
+    {
+        throw new NotSupportedException();
+    }
+
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
         return ActionInterferenceMode.NoInterference;

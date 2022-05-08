@@ -14,7 +14,7 @@ public class BehaviourActionData : EditorCombinableActionData
         Type = type;
     }
 
-    public override int CalculateCost()
+    protected override int CalculateCostInternal()
     {
         // TODO: should this be free?
         return 0;

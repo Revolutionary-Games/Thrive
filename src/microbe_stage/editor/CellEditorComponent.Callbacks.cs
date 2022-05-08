@@ -84,12 +84,12 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganelleMoveAction(MoveActionData data)
+    private void DoOrganelleMoveAction(OrganelleMoveActionData data)
     {
-        data.Organelle.Position = data.NewLocation;
-        data.Organelle.Orientation = data.NewRotation;
+        data.MovedHex.Position = data.NewLocation;
+        data.MovedHex.Orientation = data.NewRotation;
 
-        if (editedMicrobeOrganelles.Contains(data.Organelle))
+        if (editedMicrobeOrganelles.Contains(data.MovedHex))
         {
             UpdateAlreadyPlacedVisuals();
 
@@ -98,7 +98,7 @@ public partial class CellEditorComponent
         }
         else
         {
-            editedMicrobeOrganelles.Add(data.Organelle);
+            editedMicrobeOrganelles.Add(data.MovedHex);
         }
 
         // TODO: dynamic MP PR had this line:
@@ -106,10 +106,10 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganelleMoveAction(MoveActionData data)
+    private void UndoOrganelleMoveAction(OrganelleMoveActionData data)
     {
-        data.Organelle.Position = data.OldLocation;
-        data.Organelle.Orientation = data.OldRotation;
+        data.MovedHex.Position = data.OldLocation;
+        data.MovedHex.Orientation = data.OldRotation;
 
         UpdateAlreadyPlacedVisuals();
         StartAutoEvoPrediction();

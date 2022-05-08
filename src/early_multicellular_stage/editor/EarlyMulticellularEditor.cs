@@ -94,7 +94,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
 
-    public int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
+    public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
         // TODO: action history. Once we have also body plan actions we need a way to only apply the discount to one
         // type
@@ -120,12 +120,6 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
         GD.PrintErr("No action to cancel");
         return false;
-    }
-
-    public override int WhatWouldActionsCost(IEnumerable<CombinableActionData> actions)
-    {
-        // TODO: actions
-        return 0;
     }
 
     protected override void ResolveDerivedTypeNodeReferences()

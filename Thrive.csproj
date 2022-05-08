@@ -187,10 +187,11 @@
     <Compile Include="src\general\SceneDisplayer.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\HexMoveActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\BehaviourActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\MembraneActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\EditorCombinableActionData.cs" />
-    <Compile Include="src\microbe_stage\editor\action_data\MoveActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\OrganelleMoveActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\NewMicrobeActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\PlacementActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\RemoveActionData.cs" />

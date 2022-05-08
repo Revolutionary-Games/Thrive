@@ -1,36 +1,17 @@
 ﻿using System;
 
-[JSONAlwaysDynamicType]
-public class MoveActionData : EditorCombinableActionData
+public class OrganelleMoveActionData : HexMoveActionData<OrganelleTemplate>
 {
-    public OrganelleTemplate Organelle;
-    public Hex OldLocation;
-    public Hex NewLocation;
-    public int OldRotation;
-    public int NewRotation;
-
-    public MoveActionData(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
-        int newRotation)
+    public OrganelleMoveActionData(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
+        int newRotation) : base(organelle, oldLocation, newLocation, oldRotation, newRotation)
     {
-        Organelle = organelle;
-        OldLocation = oldLocation;
-        NewLocation = newLocation;
-        OldRotation = oldRotation;
-        NewRotation = newRotation;
-    }
-
-    public override int CalculateCost()
-    {
-        if (OldLocation == NewLocation && OldRotation == NewRotation)
-            return 0;
-
-        return Constants.ORGANELLE_MOVE_COST;
     }
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
         // If this organelle got moved in the same session again
-        if (other is MoveActionData moveActionData && moveActionData.Organelle.Definition == Organelle.Definition)
+        if (other is OrganelleMoveActionData moveActionData &&
+            moveActionData.MovedHex.Definition == MovedHex.Definition)
         {
             // If this organelle got moved back and forth
             if (OldLocation == moveActionData.NewLocation && NewLocation == moveActionData.OldLocation &&
@@ -45,7 +26,7 @@ public class MoveActionData : EditorCombinableActionData
 
         // If this organelle got placed in this session
         if (other is PlacementActionData placementActionData &&
-            placementActionData.Organelle.Definition == Organelle.Definition &&
+            placementActionData.Organelle.Definition == MovedHex.Definition &&
             placementActionData.Location == OldLocation &&
             placementActionData.Orientation == OldRotation)
         {
@@ -54,7 +35,7 @@ public class MoveActionData : EditorCombinableActionData
 
         // If this organelle got removed in this session
         if (other is RemoveActionData removeActionData &&
-            removeActionData.Organelle.Definition == Organelle.Definition &&
+            removeActionData.Organelle.Definition == MovedHex.Definition &&
             removeActionData.Location == NewLocation)
         {
             return ActionInterferenceMode.ReplacesOther;
@@ -72,11 +53,11 @@ public class MoveActionData : EditorCombinableActionData
                 {
                     ReplacedCytoplasm = placementActionData.ReplacedCytoplasm,
                 };
-            case MoveActionData moveActionData when moveActionData.NewLocation == OldLocation:
-                return new MoveActionData(Organelle, moveActionData.OldLocation, NewLocation,
+            case OrganelleMoveActionData moveActionData when moveActionData.NewLocation == OldLocation:
+                return new OrganelleMoveActionData(MovedHex, moveActionData.OldLocation, NewLocation,
                     moveActionData.OldRotation, NewRotation);
-            case MoveActionData moveActionData:
-                return new MoveActionData(moveActionData.Organelle, OldLocation, moveActionData.NewLocation,
+            case OrganelleMoveActionData moveActionData:
+                return new OrganelleMoveActionData(moveActionData.MovedHex, OldLocation, moveActionData.NewLocation,
                     OldRotation, moveActionData.NewRotation);
             default:
                 throw new NotSupportedException();

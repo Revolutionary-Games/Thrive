@@ -75,10 +75,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     [JsonProperty]
     protected GameProperties? currentGame;
 
-    [JsonProperty]
-    private int mutationPoints;
-
     private Control editorGUIBaseNode = null!;
+
+    private int? mutationPointsCache;
 
     /// <summary>
     ///   Base Node where all dynamically created world Nodes in the editor should go. Optionally grouped under
@@ -91,13 +90,13 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     public bool TransitionFinished { get; protected set; }
 
     [JsonIgnore]
-    public virtual int MutationPoints
+    public int MutationPoints
     {
-        get => mutationPoints;
+        get => mutationPointsCache ?? CalculateMutationPointsLeft();
         set
         {
-            mutationPoints = Mathf.Clamp(value, 0, Constants.BASE_MUTATION_POINTS);
-            OnMutationPointsChanged();
+            _ = value;
+            DirtyMutationPointsCache();
         }
     }
 
@@ -312,6 +311,11 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         RootOfDynamicallySpawned.Visible = shown;
     }
 
+    public void DirtyMutationPointsCache()
+    {
+        mutationPointsCache = null;
+    }
+
     [RunOnKeyDown("e_redo")]
     public void Redo()
     {
@@ -359,7 +363,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     public abstract bool CancelCurrentAction();
 
-    public abstract int WhatWouldActionsCost(IEnumerable<CombinableActionData> actions);
+    public abstract int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions);
 
     public virtual bool EnqueueAction(TAction action)
     {
@@ -520,10 +524,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         {
             // Auto save is wanted once possible
             wantsToSave = true;
-
-            // This needs to be setup before the GUI in case there is an element there whose initial state depends on
-            // how much MP is remaining
-            mutationPoints = Constants.BASE_MUTATION_POINTS;
         }
 
         InitEditorGUI(fresh);
@@ -664,6 +664,12 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     protected virtual void UpdateEditor(float delta)
     {
+        if (mutationPointsCache == null)
+        {
+            // This calls OnMutationPointsChanged anyway so we call this directly here to save a duplicate callback
+            // dispatch to editor components
+            CalculateMutationPointsLeft();
+        }
     }
 
     protected abstract void ElapseEditorEntryTime();
@@ -786,6 +792,28 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         // Clear the run to make the cell stage start a new run when we go back there
         CurrentGame.GameWorld.ResetAutoEvoRun();
+    }
+
+    /// <summary>
+    ///   Calculates the remaining MP from the action history
+    /// </summary>
+    /// <returns>The remaining MP</returns>
+    private int CalculateMutationPointsLeft()
+    {
+        if (FreeBuilding || CheatManager.InfiniteMP)
+            return Constants.BASE_MUTATION_POINTS;
+
+        mutationPointsCache = history.CalculateMutationPointsLeft();
+
+        if (mutationPointsCache.Value < 0 || mutationPointsCache > Constants.BASE_MUTATION_POINTS)
+        {
+            GD.PrintErr("Invalid MP amount: ", mutationPointsCache,
+                " This should only happen if the user disabled the Infinite MP cheat while having mutated too much.");
+        }
+
+        OnMutationPointsChanged();
+
+        return mutationPointsCache.Value;
     }
 
     /// <summary>

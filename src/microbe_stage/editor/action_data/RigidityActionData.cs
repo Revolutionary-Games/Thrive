@@ -12,7 +12,7 @@ public class RigidityActionData : EditorCombinableActionData
         PreviousRigidity = previousRigidity;
     }
 
-    public override int CalculateCost()
+    protected override int CalculateCostInternal()
     {
         return (int)Math.Abs((NewRigidity - PreviousRigidity) * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO) *
             Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;

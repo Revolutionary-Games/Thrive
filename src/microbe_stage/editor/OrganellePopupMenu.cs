@@ -263,7 +263,7 @@ public class OrganellePopupMenu : PopupPanel
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
         mpCost = (int)(mpCost * editorCostFactor);
 
-        mpLabel.Text = new LocalizedString("MP_COST", mpCost).ToString();
+        mpLabel.Text = new LocalizedString("MP_COST", -mpCost).ToString();
 
         deleteButton.Disabled = !EnableDeleteOption;
     }
@@ -274,7 +274,7 @@ public class OrganellePopupMenu : PopupPanel
             return;
 
         var mpCost = GetActionPrice?.Invoke(SelectedOrganelles.Select(o =>
-                (EditorCombinableActionData)new MoveActionData(o, o.Position, o.Position, o.Orientation,
+                (EditorCombinableActionData)new OrganelleMoveActionData(o, o.Position, o.Position, o.Orientation,
                     o.Orientation))
             .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 

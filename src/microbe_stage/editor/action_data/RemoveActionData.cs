@@ -17,7 +17,7 @@ public class RemoveActionData : EditorCombinableActionData
         Orientation = orientation;
     }
 
-    public override int CalculateCost()
+    protected override int CalculateCostInternal()
     {
         return GotReplaced ? 0 : Constants.ORGANELLE_REMOVE_COST;
     }
@@ -37,8 +37,8 @@ public class RemoveActionData : EditorCombinableActionData
         }
 
         // If this organelle got moved in this session
-        if (other is MoveActionData moveActionData &&
-            moveActionData.Organelle.Definition == Organelle.Definition &&
+        if (other is OrganelleMoveActionData moveActionData &&
+            moveActionData.MovedHex.Definition == Organelle.Definition &&
             moveActionData.NewLocation == Location)
         {
             return ActionInterferenceMode.Combinable;
@@ -51,11 +51,11 @@ public class RemoveActionData : EditorCombinableActionData
     {
         if (other is PlacementActionData placementActionData)
         {
-            return new MoveActionData(placementActionData.Organelle, Location, placementActionData.Location,
+            return new OrganelleMoveActionData(placementActionData.Organelle, Location, placementActionData.Location,
                 Orientation, placementActionData.Orientation);
         }
 
-        var moveActionData = (MoveActionData)other;
+        var moveActionData = (OrganelleMoveActionData)other;
         return new RemoveActionData(Organelle, moveActionData.OldLocation, moveActionData.OldRotation);
     }
 }
