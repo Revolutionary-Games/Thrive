@@ -38,7 +38,7 @@ public class PatchMapDrawer : Control
     private readonly List<PatchMapNode> nodes = new();
 
     // The representation of connections between regions 
-    // Made so we wont draw the same line multiple times
+    // Made so we wont draw the same connection multiple times
     private List<Tuple<int,int>> connections = new();
     private PatchMap? map;
     private bool dirty = true;
@@ -151,6 +151,10 @@ public class PatchMapDrawer : Control
                             ConnectionColour = HighlightedConnectionColor;
                         else
                             ConnectionColour = DefaultConnectionColor;
+                    
+                        (start, intermediate1, end) = ConnectionIntersectionWithRegions(start, end, intermediate1, region, adjacent);
+                        
+
 
                         DrawNodeLink(start, intermediate1); 
                         DrawNodeLink(intermediate1, end);
@@ -161,6 +165,7 @@ public class PatchMapDrawer : Control
             }
         }
 
+        ConnectionColour = DefaultConnectionColor;
         // For special regions draw the connection between them and the normal region.
         foreach (var entry in Map.SpecialRegions)
         {
@@ -174,7 +179,8 @@ public class PatchMapDrawer : Control
                 false, RegionLineWidth);
 
         }
-        ConnectionColour = DefaultConnectionColor;
+
+
         // This ends up drawing duplicates but that doesn't seem problematic ATM
         foreach (var entry in Map.Patches)
         {
@@ -276,10 +282,8 @@ public class PatchMapDrawer : Control
 
     private Vector2 ClosestPoint(Vector2 p, Vector2 q1, Vector2 q2)
     {
-        if (q1 == null)
-            return new();
-        if (q2 == null)
-            return new();
+        if (q2 == Vector2.Inf)
+            return q1;
         if (q1.DistanceTo(p) > q2.DistanceTo(p))
             return q2;
         else
@@ -288,28 +292,56 @@ public class PatchMapDrawer : Control
     private Vector2 LineLineIntersection(Vector2 p1, Vector2 p2, Vector2 q1, Vector2 q2)
     {
         var dirp = p2 - p1;
-        var dirq = q2 - q2;
-        return (Vector2)Geometry.LineIntersectsLine2d(p1, dirp, q1, dirq);
+        var dirq = q2 - q1;
+        var intersection = Geometry.LineIntersectsLine2d(p1, dirp.Normalized(), q1, dirq.Normalized());
+        
+        if (intersection is Vector2)
+            return (Vector2)intersection;
+        else
+            return Vector2.Inf;
     }
-    private Vector2 LineRectangleIntersection(Vector2 l1, Vector2 l2, Rect2 rect)
+    private Vector2 LineRectangleIntersection(Vector2 start, Vector2 end, Rect2 rect)
     {
-        var intersection = Vector2.Zero;
+        var intersection = -Vector2.Inf;
         var p0 = rect.Position;
         var p1 = rect.Position + new Vector2(0, rect.Size.y);
         var p2 = rect.Position + new Vector2(rect.Size.x, 0);
         var p3 = rect.End;
-        
-        var int1 = LineLineIntersection(p0, p1, l1, l1);
-        var int2 = LineLineIntersection(p0, p2, l1, l1);
-        var int3 = LineLineIntersection(p1, p3, l1, l1);
-        var int4 = LineLineIntersection(p2, p3, l1, l1);
 
-        intersection = ClosestPoint(l1, intersection, int1);
-        intersection = ClosestPoint(l1, intersection, int2);
-        intersection = ClosestPoint(l1, intersection, int3);
-        intersection = ClosestPoint(l1, intersection, int4);
+        var int1 = LineLineIntersection(p0, p1, start, end);
+        var int2 = LineLineIntersection(p0, p2, start, end);
+        var int3 = LineLineIntersection(p1, p3, start, end);
+        var int4 = LineLineIntersection(p2, p3, start, end);
+        
+        intersection = ClosestPoint(start, intersection, int1);
+        intersection = ClosestPoint(start, intersection, int2);
+        intersection = ClosestPoint(start, intersection, int3);
+        intersection = ClosestPoint(start, intersection, int4);
         
         return intersection;
+    }
+    private (Vector2, Vector2, Vector2) ConnectionIntersectionWithRegions(Vector2 start, Vector2 end, Vector2 intermediate, PatchRegion region1, PatchRegion region2)
+    {
+        var regionRect = new Rect2(region1.ScreenCoordinates, region1.GetSize());
+        var adjacentRect = new Rect2(region2.ScreenCoordinates, region2.GetSize());
+        if (regionRect.HasPoint(intermediate))
+        {
+            start = intermediate;
+            intermediate = start/2f + end/2f;
+        }
+        if (adjacentRect.HasPoint(intermediate))
+        {
+            end = intermediate;
+            intermediate = start/2f + end/2f;
+        }
+
+        var newStart = LineRectangleIntersection(intermediate, start, regionRect);
+        var newEnd = LineRectangleIntersection(intermediate, end, adjacentRect);
+
+        if (newStart == -Vector2.Inf || newEnd == -Vector2.Inf)
+            return (start, intermediate, end);
+        else
+            return (newStart, intermediate, newEnd);
     }
     private void RebuildMapNodes()
     {
