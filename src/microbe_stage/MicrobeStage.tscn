@@ -2087,6 +2087,11 @@ margin_bottom = -48.0
 anims/HideLeftPanels = SubResource( 31 )
 anims/ShowLeftPanels = SubResource( 32 )
 
+[node name="MicrobeCheatMenu" parent="MicrobeHUD" instance=ExtResource( 73 )]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 207.0
+
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeHUD"]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -2145,7 +2150,6 @@ hint_tooltip = "TOGGLE_BINDING"
 toggle_mode = true
 ActionIcon = ExtResource( 82 )
 ActionName = "g_toggle_binding"
-
 
 [node name="UnbindAll" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
 visible = false
