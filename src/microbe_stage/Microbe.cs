@@ -65,8 +65,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private bool? hasSignalingAgent;
 
-    private string debugName = string.Empty;
-
     [JsonProperty]
     private MicrobeSignalCommand command = MicrobeSignalCommand.None;
 
@@ -373,8 +371,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             SetMembraneFromSpecies();
         }
 
-        SetDebugName();
-
         onReadyCalled = true;
     }
 
@@ -387,8 +383,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         cachedMulticellularSpecies = null;
 
         Species = species;
-
-        SetDebugName();
 
         if (species is MicrobeSpecies microbeSpecies)
         {
@@ -771,7 +765,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     public override string ToString()
     {
-        return debugName;
+        return Species != null! ?
+            $"[{Species.Genus[0]}.{Species.Epithet.Substring(0, 4)}:{GetInstanceId()}]" :
+            string.Empty;
     }
 
     /// <summary>
@@ -1025,16 +1021,5 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         cachedHexCountDirty = false;
-    }
-
-    private void SetDebugName()
-    {
-        if (Species == null!)
-        {
-            debugName = string.Empty;
-            return;
-        }
-
-        debugName = $"[{Species.Genus[0]}.{Species.Epithet.Substring(0, 4)}:{GetInstanceId()}]";
     }
 }
