@@ -40,7 +40,7 @@ public class PatchMapNode : MarginContainer
 
     /// <summary>
     ///   Display the icon in monochrome and make it not selectable or highlightable.
-    ///   Setting this to true also removes current selection.
+    ///   Setting this to false removes current selection.
     /// </summary>
     public bool Enabled
     {
