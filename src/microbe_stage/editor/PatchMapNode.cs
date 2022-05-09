@@ -159,6 +159,8 @@ public class PatchMapNode : MarginContainer
 
     private void UpdateSelectHighlightRing()
     {
+        selectHighlightRingDirty = false;
+
         if (highlightPanel == null)
             return;
 
@@ -170,33 +172,33 @@ public class PatchMapNode : MarginContainer
         {
             highlightPanel.Visible = false;
         }
-
-        selectHighlightRingDirty = false;
     }
 
     private void UpdateMarkRing()
     {
+        markRingDirty = false;
+
         if (markPanel == null)
             return;
 
         markPanel.Visible = Marked;
-        markRingDirty = false;
     }
 
     private void UpdateIcon()
     {
+        iconDirty = false;
+
         if (PatchIcon == null || iconRect == null)
             return;
 
         iconRect.Texture = PatchIcon;
-        iconDirty = false;
     }
 
     private void UpdateGrayscale()
     {
+        grayscaleDirty = false;
+
         if (iconRect != null)
             iconRect.Material = Enabled ? null : MonochromeShader;
-
-        grayscaleDirty = false;
     }
 }
