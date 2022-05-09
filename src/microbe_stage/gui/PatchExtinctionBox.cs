@@ -22,7 +22,8 @@ public class PatchExtinctionBox : Control
         set
         {
             patchMapDrawer.Map = value;
-            patchMapDrawer.SetPatchEnabledStatuses(value!.Patches.Values, p => p.GetSpeciesPopulation(PlayerSpecies) > 0);
+            patchMapDrawer.SetPatchEnabledStatuses(value!.Patches.Values,
+                p => p.GetSpeciesPopulation(PlayerSpecies) > 0);
         }
     }
 
