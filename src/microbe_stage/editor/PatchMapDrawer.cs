@@ -125,7 +125,7 @@ public class PatchMapDrawer : Control
     {
         if (Map == null)
             return;
-        
+
         connections = new();
         foreach (var entry in Map.Regions)
         {
@@ -153,7 +153,33 @@ public class PatchMapDrawer : Control
                             ConnectionColour = DefaultConnectionColor;
                     
                         (start, intermediate1, end) = ConnectionIntersectionWithRegions(start, end, intermediate1, region, adjacent);
-                        
+
+                        var startRegion = region;
+                        foreach (var special in region.Adjacent)
+                        {   
+                            if (Map.SpecialRegions.ContainsKey(special.ID))
+                            {
+                                
+                                var newStart = start;
+
+                                (newStart, intermediate1, end) = ConnectionIntersectionWithRegions(start, end, intermediate1, special, adjacent);
+                                if (newStart != start)
+                                {
+                                    start = newStart;
+                                    startRegion = special;
+                                }
+                            }
+
+                        }
+
+                        foreach (var specialAdjacent in adjacent.Adjacent)  
+                        {
+                            if (Map.SpecialRegions.ContainsKey(specialAdjacent.ID))
+                            {
+                                (start, intermediate1, end) = ConnectionIntersectionWithRegions(start, end, intermediate1, startRegion, specialAdjacent);
+                            }
+                        }
+
 
 
                         DrawNodeLink(start, intermediate1); 
@@ -291,9 +317,7 @@ public class PatchMapDrawer : Control
     }
     private Vector2 LineLineIntersection(Vector2 p1, Vector2 p2, Vector2 q1, Vector2 q2)
     {
-        var dirp = p2 - p1;
-        var dirq = q2 - q1;
-        var intersection = Geometry.LineIntersectsLine2d(p1, dirp.Normalized(), q1, dirq.Normalized());
+        var intersection = Geometry.SegmentIntersectsSegment2d(p1, p2, q1, q2);
         
         if (intersection is Vector2)
             return (Vector2)intersection;
@@ -313,14 +337,15 @@ public class PatchMapDrawer : Control
         var int3 = LineLineIntersection(p1, p3, start, end);
         var int4 = LineLineIntersection(p2, p3, start, end);
         
-        intersection = ClosestPoint(start, intersection, int1);
-        intersection = ClosestPoint(start, intersection, int2);
-        intersection = ClosestPoint(start, intersection, int3);
-        intersection = ClosestPoint(start, intersection, int4);
+        intersection = ClosestPoint(end, intersection, int1);
+        intersection = ClosestPoint(end, intersection, int2);
+        intersection = ClosestPoint(end, intersection, int3);
+        intersection = ClosestPoint(end, intersection, int4);
         
         return intersection;
     }
-    private (Vector2, Vector2, Vector2) ConnectionIntersectionWithRegions(Vector2 start, Vector2 end, Vector2 intermediate, PatchRegion region1, PatchRegion region2)
+    private (Vector2, Vector2, Vector2) ConnectionIntersectionWithRegions(Vector2 start, Vector2 end, Vector2 intermediate, 
+        PatchRegion region1, PatchRegion region2)
     {
         var regionRect = new Rect2(region1.ScreenCoordinates, region1.GetSize());
         var adjacentRect = new Rect2(region2.ScreenCoordinates, region2.GetSize());
@@ -335,13 +360,17 @@ public class PatchMapDrawer : Control
             intermediate = start/2f + end/2f;
         }
 
-        var newStart = LineRectangleIntersection(intermediate, start, regionRect);
-        var newEnd = LineRectangleIntersection(intermediate, end, adjacentRect);
+        var newStart = LineRectangleIntersection(start, intermediate, regionRect);
+        var newEnd = LineRectangleIntersection(end, intermediate, adjacentRect);
 
-        if (newStart == -Vector2.Inf || newEnd == -Vector2.Inf)
-            return (start, intermediate, end);
-        else
-            return (newStart, intermediate, newEnd);
+        if (newStart != -Vector2.Inf)
+            start = newStart;
+        
+        if (newEnd != -Vector2.Inf)
+            end = newEnd;
+
+
+        return (start, intermediate, end);
     }
     private void RebuildMapNodes()
     {
