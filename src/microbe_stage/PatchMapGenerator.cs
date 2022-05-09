@@ -123,7 +123,7 @@ public static class PatchMapGenerator
                 caveRegion.AddPatch(cavePatch);
                 map.AddSpecialRegion(caveRegion);
                 LinkRegions(caveRegion, region);
-
+            
                 // Chose one random patch from the region to be linked to the underwater cave
                 var patchIndex = random.Next(0, region.Patches.Count - 1);
                 LinkPatches(cavePatch, region.Patches[patchIndex]);
@@ -137,12 +137,15 @@ public static class PatchMapGenerator
             regionCoords.Add(coord + region.GetSize()/2f);
             map.AddRegion(region);
         }
-
+    
         // After building the normal regions we build the special ones and the patches
         map.BuildPatchesInRegions(random);
         map.BuildSpecialRegions();
         map.BuildPatchesInSpecialRegions(random);
 
+        map.CurrentPatch = map.Patches[random.Next(0, currentPatchId)];
+        map.CurrentPatch.AddSpecies(defaultSpecies);
+        
         // We make the graph by substracting edges from its Delaunay Triangulation 
         // as long as the graph stays connected.
         graph = DelaunayTriangulation(graph, regionCoords);

@@ -127,69 +127,10 @@ public class PatchMapDrawer : Control
             return;
 
         connections = new();
-        foreach (var entry in Map.Regions)
-        {
-            var region = entry.Value;
-            DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)), new Color(0f, 0.7f, 0.5f, 0.7f), 
-                false, RegionLineWidth);
-
-            foreach (var adjacent in region.Adjacent)
-            {
-                if (adjacent.ID >= 0)
-                {
-                    var tuple = Tuple.Create(region.ID, adjacent.ID);
-                    var complementTuple = Tuple.Create(adjacent.ID, region.ID);
-
-                    if (!connections.Contains(tuple) && !connections.Contains(complementTuple))
-                    {
-                        var start = RegionCenter(region);
-                        var end = RegionCenter(adjacent);
-                        var intermediate1 = new Vector2(start.x, end.y);
-                        var intermediate2 = new Vector2(end.x, start.y);
-
-                        if (CheckHighlightedAdjency(region, adjacent))
-                            ConnectionColour = HighlightedConnectionColor;
-                        else
-                            ConnectionColour = DefaultConnectionColor;
-                    
-                        (start, intermediate1, end) = ConnectionIntersectionWithRegions(start, end, intermediate1, region, adjacent);
-
-                        var startRegion = region;
-                        foreach (var special in region.Adjacent)
-                        {   
-                            if (Map.SpecialRegions.ContainsKey(special.ID))
-                            {
-                                
-                                var newStart = start;
-
-                                (newStart, intermediate1, end) = ConnectionIntersectionWithRegions(start, end, intermediate1, special, adjacent);
-                                if (newStart != start)
-                                {
-                                    start = newStart;
-                                    startRegion = special;
-                                }
-                            }
-
-                        }
-
-                        foreach (var specialAdjacent in adjacent.Adjacent)  
-                        {
-                            if (Map.SpecialRegions.ContainsKey(specialAdjacent.ID))
-                            {
-                                (start, intermediate1, end) = ConnectionIntersectionWithRegions(start, end, intermediate1, startRegion, specialAdjacent);
-                            }
-                        }
-
-
-
-                        DrawNodeLink(start, intermediate1); 
-                        DrawNodeLink(intermediate1, end);
-
-                        connections.Add(tuple);
-                    }
-                }
-            }
-        }
+        ConnectionColour = DefaultConnectionColor;
+        DrawNormalRegionLinks();
+        ConnectionColour = HighlightedConnectionColor;
+        DrawAdjacentRegionLinks();
 
         ConnectionColour = DefaultConnectionColor;
         // For special regions draw the connection between them and the normal region.
@@ -371,6 +312,188 @@ public class PatchMapDrawer : Control
 
 
         return (start, intermediate, end);
+    }
+
+    private Vector2 GetLeastIntersectionIntermediate(PatchRegion region1, PatchRegion region2)
+    {
+        var start = RegionCenter(region1);
+        var end = RegionCenter(region2);
+        var intermediate1 = new Vector2(start.x, end.y);
+        var intermediate2 = new Vector2(end.x, start.y);
+        var firstIntermediateIntersections = 0;
+        var secondIntermediateIntersections = 0;
+
+        // Calculate the number of intersecting regions for each possible line path
+        foreach (var reg in Map.Regions)
+        {
+            var value = reg.Value;
+
+            if (value != region1 && value != region2)
+            {
+                var regionRect = new Rect2(value.ScreenCoordinates, value.GetSize());
+                if (LineRectangleIntersection(start, intermediate1, regionRect) != -Vector2.Inf || 
+                    LineRectangleIntersection(intermediate1, end, regionRect) != -Vector2.Inf )
+                {
+                    firstIntermediateIntersections++;
+                }
+
+                if (LineRectangleIntersection(start, intermediate2, regionRect) != -Vector2.Inf || 
+                    LineRectangleIntersection(intermediate2, end, regionRect) != -Vector2.Inf )
+                {
+                    secondIntermediateIntersections++;
+                }
+            }
+        }
+
+        foreach (var reg in Map.SpecialRegions)
+        {
+            var value = reg.Value;
+
+            if (!region2.Adjacent.Contains(value) && !region1.Adjacent.Contains(value))
+            {
+                var regionRect = new Rect2(value.ScreenCoordinates, value.GetSize());
+                if (LineRectangleIntersection(start, intermediate1, regionRect) != -Vector2.Inf || 
+                    LineRectangleIntersection(intermediate1, end, regionRect) != -Vector2.Inf )
+                {
+                    firstIntermediateIntersections++;
+                }
+
+                if (LineRectangleIntersection(start, intermediate2, regionRect) != -Vector2.Inf || 
+                    LineRectangleIntersection(intermediate2, end, regionRect) != -Vector2.Inf )
+                {
+                    secondIntermediateIntersections++;
+                }
+            }
+        }
+
+        var intermediate = Vector2.Zero;
+
+        if (firstIntermediateIntersections > secondIntermediateIntersections)
+            intermediate = intermediate2;
+        else
+            intermediate = intermediate1;
+        
+        return intermediate;
+    }
+
+    private void DrawNormalRegionLinks()
+    {
+        foreach (var entry in Map.Regions)
+        {
+            var region = entry.Value;
+            DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)), new Color(0f, 0.7f, 0.5f, 0.7f), 
+                false, RegionLineWidth);
+
+            foreach (var adjacent in region.Adjacent)
+            {
+                if (adjacent.ID >= 0)
+                {
+                    var tuple = Tuple.Create(region.ID, adjacent.ID);
+                    var complementTuple = Tuple.Create(adjacent.ID, region.ID);
+
+                    if (!connections.Contains(tuple) && !connections.Contains(complementTuple) && !CheckHighlightedAdjency(region, adjacent))
+                    {
+                        var start = RegionCenter(region);
+                        var end = RegionCenter(adjacent);
+
+                        var intermediate = GetLeastIntersectionIntermediate(region, adjacent);
+                    
+                        (start, intermediate, end) = ConnectionIntersectionWithRegions(start, end, intermediate, region, adjacent);
+
+                        var startRegion = region;
+                        foreach (var special in region.Adjacent)
+                        {   
+                            if (Map.SpecialRegions.ContainsKey(special.ID))
+                            {
+                                
+                                var newStart = start;
+
+                                (newStart, intermediate, end) = ConnectionIntersectionWithRegions(start, end, intermediate, special, adjacent);
+                                if (newStart != start)
+                                {
+                                    start = newStart;
+                                    startRegion = special;
+                                }
+                            }
+                        }
+
+                        foreach (var specialAdjacent in adjacent.Adjacent)  
+                        {
+                            if (Map.SpecialRegions.ContainsKey(specialAdjacent.ID))
+                            {
+                                (start, intermediate, end) = ConnectionIntersectionWithRegions(start, end, intermediate, startRegion, specialAdjacent);
+                            }
+                        }
+
+                        DrawNodeLink(start, intermediate); 
+                        DrawNodeLink(intermediate, end);
+
+                        connections.Add(tuple);
+                    }
+                }
+            }
+        }
+    }
+
+    private void DrawAdjacentRegionLinks()
+    {
+        foreach (var entry in Map.Regions)
+        {
+            var region = entry.Value;
+            DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)), new Color(0f, 0.7f, 0.5f, 0.7f), 
+                false, RegionLineWidth);
+
+            foreach (var adjacent in region.Adjacent)
+            {
+                if (adjacent.ID >= 0)
+                {
+                    var tuple = Tuple.Create(region.ID, adjacent.ID);
+                    var complementTuple = Tuple.Create(adjacent.ID, region.ID);
+
+                    if (!connections.Contains(tuple) && !connections.Contains(complementTuple) && CheckHighlightedAdjency(region, adjacent))
+                    {
+                        var start = RegionCenter(region);
+                        var end = RegionCenter(adjacent);
+
+                        var intermediate = GetLeastIntersectionIntermediate(region, adjacent);
+
+                        
+                    
+                        (start, intermediate, end) = ConnectionIntersectionWithRegions(start, end, intermediate, region, adjacent);
+
+                        var startRegion = region;
+                        foreach (var special in region.Adjacent)
+                        {   
+                            if (Map.SpecialRegions.ContainsKey(special.ID))
+                            {
+                                
+                                var newStart = start;
+
+                                (newStart, intermediate, end) = ConnectionIntersectionWithRegions(start, end, intermediate, special, adjacent);
+                                if (newStart != start)
+                                {
+                                    start = newStart;
+                                    startRegion = special;
+                                }
+                            }
+                        }
+
+                        foreach (var specialAdjacent in adjacent.Adjacent)  
+                        {
+                            if (Map.SpecialRegions.ContainsKey(specialAdjacent.ID))
+                            {
+                                (start, intermediate, end) = ConnectionIntersectionWithRegions(start, end, intermediate, startRegion, specialAdjacent);
+                            }
+                        }
+
+                        DrawNodeLink(start, intermediate); 
+                        DrawNodeLink(intermediate, end);
+
+                        connections.Add(tuple);
+                    }
+                }
+            }
+        }
     }
     private void RebuildMapNodes()
     {

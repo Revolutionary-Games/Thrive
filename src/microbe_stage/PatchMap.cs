@@ -371,7 +371,6 @@ public class PatchMap
             foreach (var patch in region.Value.Patches)
             {
                 AddPatch(patch);
-                CurrentPatch = patch;
             }
         }
 
@@ -386,7 +385,6 @@ public class PatchMap
             foreach (var patch in region.Value.Patches)
             {
                 AddPatch(patch);
-                CurrentPatch = patch;
             }
 
         }
