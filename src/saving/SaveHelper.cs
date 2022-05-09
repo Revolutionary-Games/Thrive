@@ -428,7 +428,10 @@ public static class SaveHelper
         Action<Save> copyInfoToSave, Func<Node> stateRoot, string? saveName = null)
     {
         if (type == SaveInformation.SaveType.QuickSave && !AllowQuickSavingAndLoading)
+        {
+            GD.Print("Can't save due to quick save being currently suppressed");
             return;
+        }
 
         if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
         {
