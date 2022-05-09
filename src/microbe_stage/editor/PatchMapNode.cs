@@ -39,7 +39,7 @@ public class PatchMapNode : MarginContainer
     public ShaderMaterial? MonochromeShader { get; set; }
 
     /// <summary>
-    ///   Display the icon in monochrome and make it not selectable or highlightable.
+    ///   Display the icon in color and make it highlightable/selectable.
     ///   Setting this to false removes current selection.
     /// </summary>
     public bool Enabled
