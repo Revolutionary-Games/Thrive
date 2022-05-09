@@ -8,6 +8,8 @@ public interface IEngulfable : IEntity
     /// </summary>
     public float Size { get; }
 
+    public float Radius { get; }
+
     public EntityReference<Microbe> HostileEngulfer { get; }
 
     public bool IsBeingEngulfed { get; set; }

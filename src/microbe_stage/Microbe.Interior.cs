@@ -1096,10 +1096,12 @@ public partial class Microbe
         {
             var engulfedMaterial = engulfedMaterials[i];
 
-            var engulfable = engulfedMaterial.Engulfable;
+            var engulfable = engulfedMaterial.Material;
 
             if (!engulfable.IsIngested)
                 continue;
+
+            var hasAnyUsefulCompounds = false;
 
             for (var c = 0; c < engulfedMaterial.AvailableEngulfableCompounds.Count; ++c)
             {
@@ -1116,11 +1118,19 @@ public partial class Microbe
                     amount += buff;
                 }
 
+                if (Compounds.IsUseful(compound.Key))
+                    hasAnyUsefulCompounds = true;
+
+                // Don't absorb this specific compound as we has just reached max capacity. And if the compound bag is
+                // entirely full then this material won't be digested and would just be stored away until it's needed
+                // again
+                if (Compounds.GetCompoundAmount(compound.Key) > Compounds.Capacity)
+                    continue;
+
                 var taken = Math.Min(compound.Value, amount);
                 engulfedMaterial.AvailableEngulfableCompounds[compound.Key] -= amount;
 
                 var added = Compounds.AddCompound(compound.Key, taken);
-                SpawnEjectedCompound(compound.Key, taken - added);
 
                 if (compound.Key == oxytoxy && added > 0)
                 {
@@ -1134,6 +1144,13 @@ public partial class Microbe
                         Damage(MaxHitpoints * added, "oxytoxy");
                     }
                 }
+            }
+
+            // Eject this material as it has no use
+            if (!hasAnyUsefulCompounds)
+            {
+                EjectEngulfable(engulfable);
+                continue;
             }
 
             var totalAmountLeft = engulfedMaterial.AvailableEngulfableCompounds.Sum(compound => compound.Value);
@@ -1153,9 +1170,12 @@ public partial class Microbe
         }
     }
 
+    /// <summary>
+    ///   Handle decay if this cell has been regurgitated by a predator. This currently has no relation
+    ///   with post-death related functions.
+    /// </summary>
     private void HandleDecay(float delta)
     {
-        // Handle regurgitaed cell that has previously been ingested
         if (!IsIngested)
         {
             if (DigestionProgress >= 0.3f)

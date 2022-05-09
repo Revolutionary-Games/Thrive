@@ -352,7 +352,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
             foreach (var engulfed in engulfedMaterials)
             {
-                AddChild(engulfed.Engulfable.EntityNode);
+                AddChild(engulfed.Material.EntityNode);
             }
 
             // Need to re-attach our organelles

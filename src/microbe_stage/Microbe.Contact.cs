@@ -1016,7 +1016,7 @@ public partial class Microbe
         {
             var engulfed = engulfedMaterials[i];
 
-            var body = engulfed.Engulfable.EntityNode as RigidBody;
+            var body = engulfed.Material.EntityNode as RigidBody;
             if (body == null)
                 continue;
 
@@ -1025,13 +1025,13 @@ public partial class Microbe
             {
                 if (LerpEngulfedMovement(delta, engulfed, body))
                 {
-                    if (engulfed.Engulfable.IsBeingIngested)
+                    if (engulfed.Material.IsBeingIngested)
                     {
-                        CompleteIngestion(engulfed.Engulfable);
+                        CompleteIngestion(engulfed.Material);
                     }
-                    else if (engulfed.Engulfable.IsIngested)
+                    else if (engulfed.Material.IsIngested)
                     {
-                        CompleteEjection(engulfed.Engulfable);
+                        CompleteEjection(engulfed.Material);
                         engulfedMaterials.RemoveAt(i);
                     }
 
@@ -1143,7 +1143,7 @@ public partial class Microbe
             // so this loop is run only once
             foreach (var engulfed in engulfedMaterials.ToList())
             {
-                EjectEngulfable(engulfed.Engulfable);
+                EjectEngulfable(engulfed.Material);
             }
         }
 
@@ -1344,6 +1344,8 @@ public partial class Microbe
 
         target.IsBeingIngested = true;
         target.IsBeingEngulfed = false;
+        target.OnEngulfed();
+
         engulfedSize += target.Size;
 
         body.Mode = ModeEnum.Static;
@@ -1358,20 +1360,31 @@ public partial class Microbe
 
         var digestibleCompounds = target.CalculateDigestibleCompounds();
 
-        var nearestPointOfMembraneHalfScale = Membrane.GetVectorTowardsNearestPointOfMembrane(
-            body.Translation.x, body.Translation.z) / 2;
+        // Below is for figuring out where to place the ingested material inside the membrane and calculated
+        // accordingly to hopefully minimize any part of the material sticking out the membrane.
+        // Note: extremely long and thin objects might still stick out
 
-        var engulfedPosition = new Vector3(
-            random.Next(0.0f, nearestPointOfMembraneHalfScale.x),
+        // Calculate the nearest membrane point to the target and interpolate it by a half to this cell's center
+        // to get the maximum extent/edge that qualifies as the "inside" of the membrane
+        var nearestPointOfMembraneToTargetHalfScale = Membrane.GetVectorTowardsNearestPointOfMembrane(
+            body.Translation.x, body.Translation.z).LinearInterpolate(Vector3.Zero, 0.5f);
+
+        // Further shrink the edge closer to the center by taking into account the target's radius
+        var viableStoringEdge = nearestPointOfMembraneToTargetHalfScale / (target.Radius / 2);
+
+        // Get the final storing position by taking a value between this cell's center and the storing edge.
+        // This would lessen the possibility of engulfed things getting bunched up in the same position.
+        var finalStoringPosition = new Vector3(
+            random.Next(0.0f, viableStoringEdge.x),
             body.Translation.y,
-            random.Next(0.0f, nearestPointOfMembraneHalfScale.z));
+            random.Next(0.0f, viableStoringEdge.z));
 
         engulfedMaterials.Add(new EngulfedMaterial
         {
-            Engulfable = target,
+            Material = target,
             AvailableEngulfableCompounds = digestibleCompounds,
             InitialTotalEngulfableCompounds = digestibleCompounds.Sum(c => c.Value),
-            TargetTranslation = engulfedPosition,
+            TargetTranslation = finalStoringPosition,
             TargetScale = body.Scale / 2,
             OriginalScale = body.Scale,
             Interpolate = true,
@@ -1393,15 +1406,19 @@ public partial class Microbe
             return;
         }
 
-        var engulfedObject = engulfedMaterials.Find(e => e.Engulfable == target);
+        var engulfedObject = engulfedMaterials.Find(e => e.Material == target);
         if (engulfedObject == null)
             return;
 
         target.IsBeingIngested = false;
         engulfedSize -= target.Size;
 
-        // If engulfer cell is dead (us), immediately eject without animation
-        if (Dead)
+        var origin = body.GlobalTransform.origin;
+        var nearestPointOfMembraneToTarget = Membrane.GetVectorTowardsNearestPointOfMembrane(origin.x, origin.z);
+
+        // If engulfer cell is dead (us) or the engulfed is positioned outside any of our closest membrane, immediately
+        // eject it without animation
+        if (Dead || origin > nearestPointOfMembraneToTarget)
         {
             CompleteEjection(target);
             body.Scale = engulfedObject.OriginalScale;
@@ -1410,8 +1427,7 @@ public partial class Microbe
         }
 
         // Animate moving object to the outer membrane
-        var origin = body.GlobalTransform.origin;
-        engulfedObject.TargetTranslation = Membrane.GetVectorTowardsNearestPointOfMembrane(origin.x, origin.z);
+        engulfedObject.TargetTranslation = nearestPointOfMembraneToTarget;
         engulfedObject.TargetScale = engulfedObject.OriginalScale;
         engulfedObject.AnimationTimeElapsed = 0;
         engulfedObject.Interpolate = true;
@@ -1635,7 +1651,6 @@ public partial class Microbe
     {
         engulfable.IsBeingIngested = false;
         engulfable.IsIngested = true;
-        engulfable.OnEngulfed();
 
         otherEngulfablesInEngulfRange.Remove(engulfable);
         touchedEngulfables.Remove(engulfable);
@@ -1647,10 +1662,10 @@ public partial class Microbe
         engulfable.IsIngested = false;
         engulfable.OnEjected();
 
-        // Null-forgived as the engulfed node should be a rigidbody either way
-        var body = engulfable as RigidBody;
+        // Ignore possible invalid cast as the engulfed node should be a rigidbody either way
+        var body = (RigidBody)engulfable;
 
-        body!.Mode = ModeEnum.Rigid;
+        body.Mode = ModeEnum.Rigid;
 
         // Reparent to world node
         var temp = body.GlobalTransform;
@@ -1670,7 +1685,7 @@ public partial class Microbe
         /// <summary>
         ///   The object that has been engulfed.
         /// </summary>
-        public IEngulfable Engulfable { get; set; } = null!;
+        public IEngulfable Material { get; set; } = null!;
 
         public Dictionary<Compound, float> AvailableEngulfableCompounds { get; set; } = null!;
 
