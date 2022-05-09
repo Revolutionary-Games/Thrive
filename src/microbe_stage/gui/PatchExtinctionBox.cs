@@ -60,7 +60,7 @@ public class PatchExtinctionBox : Control
     private void OnFadedToBlack()
     {
         if (patchDetailsPanel.Patch == null)
-            throw new NullReferenceException("The patch must not be null at this point");
+            throw new InvalidOperationException("The patch must not be null at this point");
 
         GoToNewPatch.Invoke(patchDetailsPanel.Patch);
 
