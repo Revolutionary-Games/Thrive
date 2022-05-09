@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-09 02:18+0200\n"
+"POT-Creation-Date: 2022-05-09 19:18+0200\n"
 "PO-Revision-Date: 2022-03-14 21:22+0000\n"
 "Last-Translator: Lazare Chikhradze <lazaresali@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -781,11 +781,7 @@ msgstr ""
 msgid "STARTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:292
-msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoRun.cs:297
+#: ../src/auto-evo/AutoEvoRun.cs:293
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr ""
 
@@ -2806,21 +2802,21 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:792
+#: ../src/microbe_stage/MicrobeStage.cs:388
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
+msgid "PATCH_EXTINCTION"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:807
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:806
+#: ../src/microbe_stage/MicrobeStage.cs:821
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:829
+#: ../src/microbe_stage/MicrobeStage.cs:844
 msgid "PLAYER_DIED"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.cs:892
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
-msgid "PATCH_EXTINCTION"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:515

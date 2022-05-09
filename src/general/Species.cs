@@ -102,33 +102,7 @@ public abstract class Species : ICloneable
         }
     }
 
-    /// <summary>
-    ///   Immediate population change (from the player dying)
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This should be made sure to not affect auto-evo. As long
-    ///     as auto-evo uses the per patch population numbers this
-    ///     doesn't affect that.
-    ///   </para>
-    ///   <para>
-    ///     In addition to this an external population effect needs to
-    ///     be sent to auto-evo, otherwise this effect disappears when
-    ///     auto-evo finishes.
-    ///   </para>
-    /// </remarks>
-    public void ApplyImmediatePopulationChange(long constant, float coefficient)
-    {
-        ThrowPopulationChangeErrorIfNotPlayer();
-
-        Population = (long)(Population * coefficient);
-        Population += constant;
-
-        if (Population < 0)
-            Population = 0;
-    }
-
-    public void ApplyImmediatePopulationChangeInPatch(long constant, float coefficient, Patch patch)
+    public void ApplyImmediatePopulationChange(long constant, float coefficient, Patch patch)
     {
         ThrowPopulationChangeErrorIfNotPlayer();
 

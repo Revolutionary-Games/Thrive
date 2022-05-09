@@ -257,9 +257,9 @@ public class AutoEvoRun
     /// <param name="constant">The population change amount (constant part).</param>
     /// <param name="coefficient">The population change amount (coefficient part).</param>
     /// <param name="eventType">The external event type.</param>
-    /// <param name="patch">The patch this effect affects or null for a global event.</param>
+    /// <param name="patch">The patch this effect affects.</param>
     public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType,
-        Patch? patch)
+        Patch patch)
     {
         ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType, patch));
     }
@@ -270,7 +270,7 @@ public class AutoEvoRun
     /// <returns>The summary of external effects.</returns>
     public LocalizedStringBuilder MakeSummaryOfExternalEffects()
     {
-        var combinedExternalEffects = new Dictionary<(Species Species, string Event, Patch? Patch), long>();
+        var combinedExternalEffects = new Dictionary<(Species Species, string Event, Patch Patch), long>();
 
         foreach (var entry in ExternalEffects)
         {
@@ -287,16 +287,11 @@ public class AutoEvoRun
 
         foreach (var entry in combinedExternalEffects)
         {
-            if (entry.Key.Patch == null)
-            {
-                builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED_EVERYWHERE",
-                    entry.Key.Species.FormattedName, entry.Value, entry.Key.Event));
-            }
-            else
-            {
-                builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED",
-                    entry.Key.Species.FormattedName, entry.Value, entry.Key.Patch.Name, entry.Key.Event));
-            }
+            if (string.IsNullOrEmpty(entry.Key.Event))
+                continue;
+
+            builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED",
+                entry.Key.Species.FormattedName, entry.Value, entry.Key.Patch.Name, entry.Key.Event));
 
             builder.Append('\n');
         }

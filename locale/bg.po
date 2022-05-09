@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-09 02:18+0200\n"
+"POT-Creation-Date: 2022-05-09 19:18+0200\n"
 "PO-Revision-Date: 2022-04-30 07:18+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -830,12 +830,7 @@ msgstr "{0:F1} % на стъпка {1:n0} от {2:n0}."
 msgid "STARTING"
 msgstr "Започната"
 
-#: ../src/auto-evo/AutoEvoRun.cs:292
-#, fuzzy
-msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
-msgstr "популацията на „{0}“ се промени с {1} индивида поради {2} на създанията"
-
-#: ../src/auto-evo/AutoEvoRun.cs:297
+#: ../src/auto-evo/AutoEvoRun.cs:293
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "популацията на „{0}“ се промени с {1} индивида поради {2} на създанията"
 
@@ -2929,23 +2924,23 @@ msgstr "Превръщане в многоклетъчен организъм ({
 msgid "BECOME_MACROSCOPIC"
 msgstr "Превръщане в макроскопичен организъм ({0} от {1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:792
-msgid "PLAYER_REPRODUCED"
-msgstr "възпроизвеждане"
-
-#: ../src/microbe_stage/MicrobeStage.cs:806
-msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr "Съперничеството в тази зона не е възможно, защото няма други създания"
-
-#: ../src/microbe_stage/MicrobeStage.cs:829
-msgid "PLAYER_DIED"
-msgstr "измиране"
-
-#: ../src/microbe_stage/MicrobeStage.cs:892
+#: ../src/microbe_stage/MicrobeStage.cs:388
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
 #, fuzzy
 msgid "PATCH_EXTINCTION"
 msgstr "изчезнаха от {0}"
+
+#: ../src/microbe_stage/MicrobeStage.cs:807
+msgid "PLAYER_REPRODUCED"
+msgstr "възпроизвеждане"
+
+#: ../src/microbe_stage/MicrobeStage.cs:821
+msgid "SPAWN_ENEMY_CHEAT_FAIL"
+msgstr "Съперничеството в тази зона не е възможно, защото няма други създания"
+
+#: ../src/microbe_stage/MicrobeStage.cs:844
+msgid "PLAYER_DIED"
+msgstr "измиране"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:515
 msgid "AT_CURSOR"
@@ -4507,6 +4502,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Преглед"
+
+#, fuzzy
+#~ msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
+#~ msgstr "популацията на „{0}“ се промени с {1} индивида поради {2} на създанията"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Пангонски вулканични отвори"

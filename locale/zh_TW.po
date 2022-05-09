@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-09 02:18+0200\n"
+"POT-Creation-Date: 2022-05-09 19:18+0200\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -832,12 +832,7 @@ msgstr "已完成{0:F1}%。{1:n0}/{2:n0}步剩餘。"
 msgid "STARTING"
 msgstr "啟動中"
 
-#: ../src/auto-evo/AutoEvoRun.cs:292
-#, fuzzy
-msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
-msgstr "原{0}人口變動了{1}，原因：{2}"
-
-#: ../src/auto-evo/AutoEvoRun.cs:297
+#: ../src/auto-evo/AutoEvoRun.cs:293
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "原{0}人口變動了{1}，原因：{2}"
 
@@ -2940,23 +2935,23 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:792
-msgid "PLAYER_REPRODUCED"
-msgstr "玩家繁殖"
-
-#: ../src/microbe_stage/MicrobeStage.cs:806
-msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr "無法使用生成敵人作弊，因為這個地區沒有任何敵對物種"
-
-#: ../src/microbe_stage/MicrobeStage.cs:829
-msgid "PLAYER_DIED"
-msgstr "玩家死亡"
-
-#: ../src/microbe_stage/MicrobeStage.cs:892
+#: ../src/microbe_stage/MicrobeStage.cs:388
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
 #, fuzzy
 msgid "PATCH_EXTINCTION"
 msgstr "原{0}人口變動了{1}，原因：{2}"
+
+#: ../src/microbe_stage/MicrobeStage.cs:807
+msgid "PLAYER_REPRODUCED"
+msgstr "玩家繁殖"
+
+#: ../src/microbe_stage/MicrobeStage.cs:821
+msgid "SPAWN_ENEMY_CHEAT_FAIL"
+msgstr "無法使用生成敵人作弊，因為這個地區沒有任何敵對物種"
+
+#: ../src/microbe_stage/MicrobeStage.cs:844
+msgid "PLAYER_DIED"
+msgstr "玩家死亡"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:515
 msgid "AT_CURSOR"
@@ -4560,6 +4555,10 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "教學"
+
+#, fuzzy
+#~ msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
+#~ msgstr "原{0}人口變動了{1}，原因：{2}"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "遠古熱泉"

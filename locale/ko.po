@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-09 02:18+0200\n"
+"POT-Creation-Date: 2022-05-09 19:18+0200\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -844,12 +844,7 @@ msgstr "{0:F1}% 완료됨. {1:n0}/{2:n0} 단계."
 msgid "STARTING"
 msgstr "시작"
 
-#: ../src/auto-evo/AutoEvoRun.cs:292
-#, fuzzy
-msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
-msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
-
-#: ../src/auto-evo/AutoEvoRun.cs:297
+#: ../src/auto-evo/AutoEvoRun.cs:293
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
@@ -3012,23 +3007,23 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:792
-msgid "PLAYER_REPRODUCED"
-msgstr "플레이어 복제됨"
-
-#: ../src/microbe_stage/MicrobeStage.cs:806
-msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.cs:829
-msgid "PLAYER_DIED"
-msgstr "플레이어 사망함"
-
-#: ../src/microbe_stage/MicrobeStage.cs:892
+#: ../src/microbe_stage/MicrobeStage.cs:388
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
 #, fuzzy
 msgid "PATCH_EXTINCTION"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
+
+#: ../src/microbe_stage/MicrobeStage.cs:807
+msgid "PLAYER_REPRODUCED"
+msgstr "플레이어 복제됨"
+
+#: ../src/microbe_stage/MicrobeStage.cs:821
+msgid "SPAWN_ENEMY_CHEAT_FAIL"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:844
+msgid "PLAYER_DIED"
+msgstr "플레이어 사망함"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:515
 msgid "AT_CURSOR"
@@ -4701,6 +4696,10 @@ msgstr "W,A,S,D 와 마우스로 이동합니다. 독성 액포가 있다면 E �
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "튜토리얼"
+
+#, fuzzy
+#~ msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
+#~ msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
 #, fuzzy
 #~ msgid "PATCH_PANGONIAN_VENTS"

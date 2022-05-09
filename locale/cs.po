@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-09 02:18+0200\n"
+"POT-Creation-Date: 2022-05-09 19:18+0200\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -833,12 +833,7 @@ msgstr "{0:F1}% splněno. {1:n0}/{2:n0} kroků."
 msgid "STARTING"
 msgstr "Začínání"
 
-#: ../src/auto-evo/AutoEvoRun.cs:292
-#, fuzzy
-msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
-msgstr "Populace {0} se změnila o {1} z důvodu: {2}"
-
-#: ../src/auto-evo/AutoEvoRun.cs:297
+#: ../src/auto-evo/AutoEvoRun.cs:293
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "Populace {0} se změnila o {1} z důvodu: {2}"
 
@@ -2942,23 +2937,23 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:792
-msgid "PLAYER_REPRODUCED"
-msgstr "hráč se rozmnožil"
-
-#: ../src/microbe_stage/MicrobeStage.cs:806
-msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr "Nemůžete použít cheat spawnout nepřítele, protože se v této oblasti se nevyskytují nepřátelské druhy"
-
-#: ../src/microbe_stage/MicrobeStage.cs:829
-msgid "PLAYER_DIED"
-msgstr "hráč zemřel"
-
-#: ../src/microbe_stage/MicrobeStage.cs:892
+#: ../src/microbe_stage/MicrobeStage.cs:388
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
 #, fuzzy
 msgid "PATCH_EXTINCTION"
 msgstr "vyhynul v {0}"
+
+#: ../src/microbe_stage/MicrobeStage.cs:807
+msgid "PLAYER_REPRODUCED"
+msgstr "hráč se rozmnožil"
+
+#: ../src/microbe_stage/MicrobeStage.cs:821
+msgid "SPAWN_ENEMY_CHEAT_FAIL"
+msgstr "Nemůžete použít cheat spawnout nepřítele, protože se v této oblasti se nevyskytují nepřátelské druhy"
+
+#: ../src/microbe_stage/MicrobeStage.cs:844
+msgid "PLAYER_DIED"
+msgstr "hráč zemřel"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:515
 msgid "AT_CURSOR"
@@ -4564,6 +4559,10 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutoriál"
+
+#, fuzzy
+#~ msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
+#~ msgstr "Populace {0} se změnila o {1} z důvodu: {2}"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Pangoniánské hydrotermální průduchy"

@@ -380,6 +380,21 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     {
         playerExtinctInCurrentPatch = false;
 
+        // Decrease the population by the constant for the player dying out in a patch
+        // If the player does not have sufficient population in the new patch then the population drops to 0 and
+        // they have to select a new patch if they die again.
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
+            GameWorld.PlayerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
+            TranslationServer.Translate("PATCH_EXTINCTION"),
+            true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT);
+
+        // Grant the player the initial species population if they have 0 total population as this is an invalid state.
+        if (GameWorld.PlayerSpecies.Population == 0)
+        {
+            GameWorld.AlterSpeciesPopulationInCurrentPatch(GameWorld.PlayerSpecies,
+                Constants.INITIAL_SPECIES_POPULATION, string.Empty, true);
+        }
+
         HUD.HidePatchExtinctionBox();
     }
 
@@ -883,16 +898,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         if (CurrentGame?.FreeBuild == false)
         {
-            var playerExtinctInPatch = false;
-            if (GameWorld.Map.CurrentPatch?.GetSpeciesPopulation(playerSpecies) <= 0)
-            {
-                // Decrease the population by the constant for the player dying out in a patch
-                GameWorld.AlterSpeciesPopulation(
-                    playerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
-                    TranslationServer.Translate("PATCH_EXTINCTION"),
-                    true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT);
-                playerExtinctInPatch = true;
-            }
+            var playerExtinctInPatch = GameWorld.Map.CurrentPatch?.GetSpeciesPopulation(playerSpecies) <= 0;
 
             if (playerSpecies.Population <= 0)
                 GameOver();

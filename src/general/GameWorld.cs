@@ -279,13 +279,13 @@ public class GameWorld : ISaveLoadable
     /// <param name="species">Target species</param>
     /// <param name="constant">Change amount (constant part)</param>
     /// <param name="description">What caused the change</param>
+    /// <param name="patch">The patch this effect affects.</param>
     /// <param name="immediate">
     ///   If true applied immediately. Should only be used for the player dying
     /// </param>
     /// <param name="coefficient">Change amount (coefficient part)</param>
-    /// <param name="patch">The patch this effect affects or null for a global event.</param>
-    public void AlterSpeciesPopulation(Species species, int constant, string description,
-        bool immediate = false, float coefficient = 1, Patch? patch = null)
+    public void AlterSpeciesPopulation(Species species, int constant, string description, Patch patch,
+        bool immediate = false, float coefficient = 1)
     {
         if (constant == 0 || coefficient == 0)
             return;
@@ -302,17 +302,7 @@ public class GameWorld : ISaveLoadable
             GD.Print("Applying immediate population effect " +
                 "(should only be used for the player dying)");
 
-            if (patch == null)
-            {
-                foreach (var iterPatch in Map.Patches.Values)
-                {
-                    species.ApplyImmediatePopulationChangeInPatch(constant, coefficient, iterPatch);
-                }
-            }
-            else
-            {
-                species.ApplyImmediatePopulationChangeInPatch(constant, coefficient, patch);
-            }
+            species.ApplyImmediatePopulationChange(constant, coefficient, patch);
         }
 
         CreateRunIfMissing();
@@ -323,7 +313,10 @@ public class GameWorld : ISaveLoadable
     public void AlterSpeciesPopulationInCurrentPatch(Species species, int constant, string description,
         bool immediate = false, float coefficient = 1)
     {
-        AlterSpeciesPopulation(species, constant, description, immediate, coefficient, Map.CurrentPatch);
+        if (Map.CurrentPatch == null)
+            throw new InvalidOperationException("The player is not in a chunk");
+
+        AlterSpeciesPopulation(species, constant, description, Map.CurrentPatch, immediate, coefficient);
     }
 
     public void RemoveSpecies(Species species)
