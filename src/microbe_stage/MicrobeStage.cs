@@ -787,7 +787,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     private void GiveReproductionPopulationBonus()
     {
         var playerSpecies = GameWorld.PlayerSpecies;
-        GameWorld.AlterSpeciesPopulation(
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
             playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
             TranslationServer.Translate("PLAYER_REPRODUCED"),
             false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
