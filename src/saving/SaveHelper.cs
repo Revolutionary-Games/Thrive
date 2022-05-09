@@ -43,6 +43,27 @@ public static class SaveHelper
     }
 
     /// <summary>
+    ///   The error that is returned after trying to perform a quick load.
+    /// </summary>
+    public enum QuickLoadError
+    {
+        /// <summary>
+        ///   No error, quick load is successful (or error is not handled).
+        /// </summary>
+        None,
+
+        /// <summary>
+        ///   The loaded version does not match the current game version.
+        /// </summary>
+        VersionMismatch,
+
+        /// <summary>
+        ///   Quick load is currently prevented by the current state of the game.
+        /// </summary>
+        NotAllowed,
+    }
+
+    /// <summary>
     ///   Checks whether the last save is made within a timespan of set duration.
     /// </summary>
     /// <remarks>
@@ -52,6 +73,11 @@ public static class SaveHelper
     /// </remarks>
     /// <returns>True if the last save is still recent, false if otherwise.</returns>
     public static bool SavedRecently => lastSave != null ? DateTime.Now - lastSave < Constants.RecentSaveTime : false;
+
+    /// <summary>
+    ///   Determines whether it's allowed to perform quick save and quick load, if set to false they will be disabled.
+    /// </summary>
+    public static bool AllowQuickSavingAndLoading { get; set; } = true;
 
     /// <summary>
     ///   A save (and not a quick save) that the user triggered
@@ -147,17 +173,20 @@ public static class SaveHelper
 
     /// <summary>
     ///   Loads the save file with the latest write time.
-    ///   Does not load if there is a version difference.
+    ///   Does not load if there is a version difference or if quick load is not allowed.
     /// </summary>
-    /// <returns>False if the versions do not match</returns>
-    public static bool QuickLoad()
+    /// <returns>See <see cref="QuickLoadError"/>.</returns>
+    public static QuickLoadError QuickLoad()
     {
+        if (!AllowQuickSavingAndLoading)
+            return QuickLoadError.NotAllowed;
+
         // TODO: is there a way to to find the latest modified file without checking them all?
         var save = CreateListOfSaves(SaveOrder.LastModifiedFirst).FirstOrDefault();
         if (save == null)
         {
             GD.Print("No saves exist, can't quick load");
-            return true;
+            return QuickLoadError.None;
         }
 
         SaveInformation info;
@@ -168,15 +197,15 @@ public static class SaveHelper
         catch (Exception e)
         {
             GD.PrintErr($"Cannot load save information for save {save}: {e}");
-            return true;
+            return QuickLoadError.None;
         }
 
         var versionDiff = VersionUtils.Compare(info.ThriveVersion, Constants.Version);
         if (versionDiff != 0)
-            return false;
+            return QuickLoadError.VersionMismatch;
 
         LoadSave(save);
-        return true;
+        return QuickLoadError.None;
     }
 
     /// <summary>
@@ -399,6 +428,12 @@ public static class SaveHelper
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
         Action<Save> copyInfoToSave, Func<Node> stateRoot, string? saveName = null)
     {
+        if (type == SaveInformation.SaveType.QuickSave && !AllowQuickSavingAndLoading)
+        {
+            GD.Print("Can't save due to quick save being currently suppressed");
+            return;
+        }
+
         if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
         {
             GD.PrintErr("Can't start save while a load or save is in progress");
