@@ -575,9 +575,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         UpdatePatchSettings();
         PatchExtinctionResolved();
         SpawnPlayer();
-
-        // Auto save is wanted once possible
-        wantsToSave = true;
     }
 
     /// <summary>
