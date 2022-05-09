@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -11,10 +11,10 @@ using Array = Godot.Collections.Array;
 public class MainMenu : NodeWithInput
 {
     /// <summary>
-    ///   Index of the current menu.
+    ///   The current menu.
     /// </summary>
     [Export]
-    public uint CurrentMenuIndex;
+    public Menu CurrentMenuIndex;
 
     [Export]
     public NodePath ThriveLogoPath = null!;
@@ -28,6 +28,9 @@ public class MainMenu : NodeWithInput
 
     [Export]
     public NodePath FreebuildButtonPath = null!;
+
+    [Export]
+    public NodePath ModsButtonPath = null!;
 
     [Export]
     public NodePath CreditsContainerPath = null!;
@@ -67,11 +70,20 @@ public class MainMenu : NodeWithInput
 
     private Button newGameButton = null!;
     private Button freebuildButton = null!;
+    private Button modsButton = null!;
 
     private Label storeLoggedInDisplay = null!;
 
     private CustomConfirmationDialog gles2Popup = null!;
     private ErrorDialog modLoadFailures = null!;
+
+    public enum Menu : uint
+    {
+        MainMenu = 0,
+        Tools = 1,
+        Extra = 2,
+        SubClass = uint.MaxValue,
+    }
 
     public override void _Ready()
     {
@@ -107,17 +119,10 @@ public class MainMenu : NodeWithInput
     /// </summary>
     /// <param name="index">Index of the menu</param>
     /// <param name="slide">If false then the menu slide animation will not be played</param>
-    public void SetCurrentMenu(uint index, bool slide = true)
+    public void SetCurrentMenu(Menu index, bool slide = true)
     {
         if (MenuArray == null)
             throw new InvalidOperationException("Main menu has not been initialized");
-
-        // Allow disabling all the menus for going to the options menu
-        if (index > MenuArray.Count - 1 && index != uint.MaxValue)
-        {
-            GD.PrintErr("Selected menu index is out of range!");
-            return;
-        }
 
         CurrentMenuIndex = index;
 
@@ -140,15 +145,15 @@ public class MainMenu : NodeWithInput
     public bool OnEscapePressed()
     {
         // In a sub menu (that doesn't have its own class)
-        if (CurrentMenuIndex != 0 && CurrentMenuIndex < uint.MaxValue)
+        if (CurrentMenuIndex != Menu.MainMenu && CurrentMenuIndex != Menu.SubClass)
         {
-            SetCurrentMenu(0);
+            SetCurrentMenu(Menu.MainMenu);
 
             // Handled, stop here.
             return true;
         }
 
-        if (CurrentMenuIndex == uint.MaxValue && saves.Visible)
+        if (CurrentMenuIndex == Menu.SubClass && saves.Visible)
         {
             OnReturnFromLoadGame();
             return true;
@@ -168,6 +173,7 @@ public class MainMenu : NodeWithInput
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         newGameButton = GetNode<Button>(NewGameButtonPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
+        modsButton = GetNode<Button>(ModsButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
@@ -193,7 +199,7 @@ public class MainMenu : NodeWithInput
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
 
         // Set initial menu
-        SwitchMenu();
+        SetCurrentMenu(Menu.MainMenu, false);
 
         // Easter egg message
         thriveLogo.RegisterToolTipForControl("thriveLogoEasterEgg", "mainMenu");
@@ -257,11 +263,19 @@ public class MainMenu : NodeWithInput
         {
             menu.Hide();
 
-            if (menu.GetIndex() == CurrentMenuIndex)
+            if (menu.GetIndex() == (uint)CurrentMenuIndex)
             {
                 menu.Show();
             }
         }
+
+        (CurrentMenuIndex switch
+        {
+            Menu.MainMenu => newGameButton,
+            Menu.Tools => freebuildButton,
+            Menu.Extra => modsButton,
+            _ => null,
+        })?.GrabFocus();
     }
 
     private void CheckModFailures()
@@ -336,13 +350,13 @@ public class MainMenu : NodeWithInput
     private void ToolsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        SetCurrentMenu(1);
+        SetCurrentMenu(Menu.Tools);
     }
 
     private void ExtrasPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        SetCurrentMenu(2);
+        SetCurrentMenu(Menu.Extra);
     }
 
     private void FreebuildEditorPressed()
@@ -360,7 +374,7 @@ public class MainMenu : NodeWithInput
     private void BackFromToolsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        SetCurrentMenu(0);
+        SetCurrentMenu(Menu.MainMenu);
     }
 
     private void ViewSourceCodePressed()
@@ -379,7 +393,7 @@ public class MainMenu : NodeWithInput
         GUICommon.Instance.PlayButtonPressSound();
 
         // Hide all the other menus
-        SetCurrentMenu(uint.MaxValue, false);
+        SetCurrentMenu(Menu.SubClass, false);
 
         // Show the options
         options.OpenFromMainMenu();
@@ -391,7 +405,7 @@ public class MainMenu : NodeWithInput
     {
         options.Visible = false;
 
-        SetCurrentMenu(0, false);
+        SetCurrentMenu(Menu.MainMenu, false);
 
         thriveLogo.Show();
     }
@@ -401,7 +415,7 @@ public class MainMenu : NodeWithInput
         GUICommon.Instance.PlayButtonPressSound();
 
         // Hide all the other menus
-        SetCurrentMenu(uint.MaxValue, false);
+        SetCurrentMenu(Menu.SubClass, false);
 
         // Show the options
         saves.Visible = true;
@@ -413,7 +427,7 @@ public class MainMenu : NodeWithInput
     {
         saves.Visible = false;
 
-        SetCurrentMenu(0, false);
+        SetCurrentMenu(Menu.MainMenu, false);
 
         thriveLogo.Show();
     }
@@ -423,7 +437,7 @@ public class MainMenu : NodeWithInput
         GUICommon.Instance.PlayButtonPressSound();
 
         // Hide all the other menus
-        SetCurrentMenu(uint.MaxValue, false);
+        SetCurrentMenu(Menu.SubClass, false);
 
         // Show the credits view
         credits.Restart();
@@ -437,7 +451,7 @@ public class MainMenu : NodeWithInput
         creditsContainer.Visible = false;
         credits.Pause();
 
-        SetCurrentMenu(0, false);
+        SetCurrentMenu(Menu.MainMenu, false);
 
         thriveLogo.Show();
     }
@@ -447,7 +461,7 @@ public class MainMenu : NodeWithInput
         GUICommon.Instance.PlayButtonPressSound();
 
         // Hide all the other menus
-        SetCurrentMenu(uint.MaxValue, false);
+        SetCurrentMenu(Menu.SubClass, false);
 
         // Show the licenses view
         licensesDisplay.PopupCenteredShrink();
@@ -457,7 +471,7 @@ public class MainMenu : NodeWithInput
 
     private void OnReturnFromLicenses()
     {
-        SetCurrentMenu(2, false);
+        SetCurrentMenu(Menu.Extra, false);
 
         thriveLogo.Show();
     }
@@ -467,7 +481,7 @@ public class MainMenu : NodeWithInput
         GUICommon.Instance.PlayButtonPressSound();
 
         // Hide all the other menus
-        SetCurrentMenu(uint.MaxValue, false);
+        SetCurrentMenu(Menu.SubClass, false);
 
         // Show the mods view
         modManager.Visible = true;
@@ -479,7 +493,7 @@ public class MainMenu : NodeWithInput
     {
         modManager.Visible = false;
 
-        SetCurrentMenu(0, false);
+        SetCurrentMenu(Menu.MainMenu, false);
 
         thriveLogo.Show();
     }
