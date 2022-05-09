@@ -781,10 +781,9 @@ margin_right = 38.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = ExtResource( 80 )
-text = "O2"
+text = "O₂"
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
 }
 
@@ -840,7 +839,7 @@ margin_right = 46.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = ExtResource( 80 )
-text = "CO2"
+text = "CO₂"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -899,7 +898,7 @@ margin_right = 49.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = ExtResource( 80 )
-text = "N2"
+text = "N₂"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -2280,3 +2279,4 @@ anims/FadeInOut = SubResource( 37 )
 [connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="MicrobeHUD" method="OnRadialItemSelected"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
+[connection signal="OnResumed" from="PauseMenu" to="MicrobeHUD" method="FixPauseStateOnPauseMenuClose"]

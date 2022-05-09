@@ -1468,6 +1468,12 @@ public class MicrobeHUD : Control
         ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("TO_BE_IMPLEMENTED"), 2.5f);
     }
 
+    private void FixPauseStateOnPauseMenuClose()
+    {
+        if (paused)
+            GetTree().Paused = true;
+    }
+
     private class HoveredCompoundControl : HBoxContainer
     {
         private Label compoundName = null!;
