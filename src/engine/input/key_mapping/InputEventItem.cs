@@ -130,7 +130,15 @@ public class InputEventItem : Control
     /// </summary>
     public void SetLeftNeighbor(Control control)
     {
-        button.FocusNeighbourLeft = control.GetPath();
+        SetLeftNeighbor(control.GetPath());
+    }
+
+    /// <summary>
+    ///   Sets the InputEventItem left to this. Used for keyboard/controller navigation.
+    /// </summary>
+    public void SetLeftNeighbor(NodePath path)
+    {
+        button.FocusNeighbourLeft = path;
     }
 
     /// <summary>
@@ -146,7 +154,65 @@ public class InputEventItem : Control
     /// </summary>
     public void SetRightNeighbor(Control control)
     {
-        xButton.FocusNeighbourRight = control.GetPath();
+        SetRightNeighbor(control.GetPath());
+    }
+
+    /// <summary>
+    ///   Sets the InputEventItem left to this. Used for keyboard/controller navigation.
+    /// </summary>
+    public void SetRightNeighbor(NodePath path)
+    {
+        xButton.FocusNeighbourRight = path;
+    }
+
+    /// <summary>
+    ///   Sets the InputEventItem above this. Used for keyboard/controller navigation.
+    /// </summary>
+    public void SetTopNeighbor(InputEventItem item)
+    {
+        SetTopNeighbor(item.button);
+    }
+
+    /// <summary>
+    ///   Sets the InputEventItem above this. Used for keyboard/controller navigation.
+    /// </summary>
+    public void SetTopNeighbor(Control control)
+    {
+        SetTopNeighbor(control.GetPath());
+    }
+
+    /// <summary>
+    ///   Sets the InputEventItem above this. Used for keyboard/controller navigation.
+    /// </summary>
+    public void SetTopNeighbor(NodePath path)
+    {
+        xButton.FocusNeighbourTop = path;
+        button.FocusNeighbourTop = path;
+    }
+
+    /// <summary>
+    ///   Sets the InputEventItem below this. Used for keyboard/controller navigation.
+    /// </summary>
+    public void SetBottomNeighbor(InputEventItem item)
+    {
+        SetBottomNeighbor(item.button);
+    }
+
+    /// <summary>
+    ///   Sets the InputEventItem below this. Used for keyboard/controller navigation.
+    /// </summary>
+    public void SetBottomNeighbor(Control control)
+    {
+        SetBottomNeighbor(control.GetPath());
+    }
+
+    /// <summary>
+    ///   Sets the InputEventItem below this. Used for keyboard/controller navigation.
+    /// </summary>
+    public void SetBottomNeighbor(NodePath nodePath)
+    {
+        xButton.FocusNeighbourBottom = nodePath;
+        button.FocusNeighbourBottom = nodePath;
     }
 
     public NodePath GetLeftAnchorPath()

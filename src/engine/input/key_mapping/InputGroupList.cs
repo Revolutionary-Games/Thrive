@@ -171,7 +171,7 @@ public class InputGroupList : VBoxContainer
         activeInputGroupList = BuildGUI(SimulationParameters.Instance.InputGroups, data);
     }
 
-    public void InitGroupList()
+    public void InitGroupList(Button inputButton, Button resetButton)
     {
         this.QueueFreeChildren();
 
@@ -180,6 +180,24 @@ public class InputGroupList : VBoxContainer
         foreach (var inputGroup in ActiveInputGroupList)
         {
             AddChild(inputGroup);
+        }
+
+        var actions = ActiveInputGroupList.SelectMany(g => g.Actions).ToList();
+        for (var i = 0; i < actions.Count; i++)
+        {
+            var prev = i == 0 ? null : actions[i - 1];
+            var next = i == actions.Count - 1 ? null : actions[i + 1];
+            var action = actions[i];
+
+            if (prev != null)
+                action.SetTopNeighbor(prev);
+            else
+                action.SetTopNeighbor(inputButton);
+
+            if (next != null)
+                action.SetBottomNeighbor(next);
+            else
+                action.SetBottomNeighbor(resetButton);
         }
     }
 

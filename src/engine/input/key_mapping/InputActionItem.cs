@@ -141,6 +141,55 @@ public class InputActionItem : VBoxContainer
         return InputName.GetHashCode();
     }
 
+    public void SetTopNeighbor(InputActionItem other)
+    {
+        for (var i = 0; i < Inputs.Count; i++)
+        {
+            if (i < other.Inputs.Count)
+                Inputs[i].SetTopNeighbor(other.Inputs[i]);
+            else
+                Inputs[i].SetTopNeighbor(other.addInputEvent);
+        }
+
+        addInputEvent.FocusNeighbourTop = Inputs.Count < other.Inputs.Count ?
+            other.Inputs[Inputs.Count].GetLeftAnchorPath() :
+            other.addInputEvent.GetPath();
+    }
+
+    public void SetTopNeighbor(Control control)
+    {
+        foreach (var inputEventItem in Inputs)
+            inputEventItem.SetTopNeighbor(control);
+        addInputEvent.FocusNeighbourTop = control.GetPath();
+    }
+
+    public void SetBottomNeighbor(InputActionItem other)
+    {
+        for (var i = 0; i < Inputs.Count; i++)
+        {
+            if (i < other.Inputs.Count)
+                Inputs[i].SetBottomNeighbor(other.Inputs[i]);
+            else
+                Inputs[i].SetBottomNeighbor(other.addInputEvent);
+        }
+
+        addInputEvent.FocusNeighbourBottom = Inputs.Count < other.Inputs.Count ?
+            other.Inputs[Inputs.Count].GetLeftAnchorPath() :
+            other.addInputEvent.GetPath();
+    }
+
+    public void SetBottomNeighbor(Control control)
+    {
+        foreach (var inputEventItem in Inputs)
+            inputEventItem.SetBottomNeighbor(control);
+        addInputEvent.FocusNeighbourBottom = control.GetPath();
+    }
+
+    public NodePath GetAddInputButtonPath()
+    {
+        return addInputEvent.GetPath();
+    }
+
     internal static InputActionItem BuildGUI(InputGroupItem associatedGroup, NamedInputAction data,
         IEnumerable<SpecifiedInputKey> inputs)
     {
@@ -198,6 +247,8 @@ public class InputActionItem : VBoxContainer
         var newInput = (InputEventItem)GroupList!.InputEventItemScene.Instance();
         newInput.AssociatedAction = new WeakReference<InputActionItem>(this);
         newInput.JustAdded = true;
+        newInput.SetTopNeighbor(addInputEvent.FocusNeighbourTop);
+        newInput.SetBottomNeighbor(addInputEvent.FocusNeighbourBottom);
         Inputs.Add(newInput);
     }
 

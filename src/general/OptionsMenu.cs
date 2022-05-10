@@ -17,10 +17,16 @@ public class OptionsMenu : ControlWithInput
     // Options control buttons.
 
     [Export]
+    public NodePath BackButtonPath = null!;
+
+    [Export]
     public NodePath ResetButtonPath = null!;
 
     [Export]
     public NodePath SaveButtonPath = null!;
+
+    [Export]
+    public NodePath DefaultsButtonPath = null!;
 
     // Tab selector buttons.
     [Export]
@@ -118,6 +124,9 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath LanguageProgressLabelPath = null!;
 
+    [Export]
+    public NodePath HelpTranslateTheGameButtonPath = null!;
+
     // Performance tab.
     [Export]
     public NodePath PerformanceTabPath = null!;
@@ -155,6 +164,9 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath InputGroupListPath = null!;
+
+    [Export]
+    public NodePath ResetInputsButtonPath = null!;
 
     // Misc tab.
     [Export]
@@ -216,8 +228,10 @@ public class OptionsMenu : ControlWithInput
         .GetDeviceList().OfType<string>().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
+    private Button backButton = null!;
     private Button resetButton = null!;
     private Button saveButton = null!;
+    private Button defaultsButton = null!;
 
     // Tab selector buttons
     private Button graphicsButton = null!;
@@ -255,6 +269,7 @@ public class OptionsMenu : ControlWithInput
     private OptionButton languageSelection = null!;
     private Button resetLanguageButton = null!;
     private Label languageProgressLabel = null!;
+    private Button helpTranslateTheGameButton = null!;
 
     // Performance tab
     private Control performanceTab = null!;
@@ -271,6 +286,7 @@ public class OptionsMenu : ControlWithInput
     // Inputs tab
     private Control inputsTab = null!;
     private InputGroupList inputGroupList = null!;
+    private Button resetInputsButton = null!;
 
     // Misc tab
     private Control miscTab = null!;
@@ -339,8 +355,10 @@ public class OptionsMenu : ControlWithInput
     public override void _Ready()
     {
         // Options control buttons
+        backButton = GetNode<Button>(BackButtonPath);
         resetButton = GetNode<Button>(ResetButtonPath);
         saveButton = GetNode<Button>(SaveButtonPath);
+        defaultsButton = GetNode<Button>(DefaultsButtonPath);
 
         // Tab selector buttons
         graphicsButton = GetNode<Button>(GraphicsButtonPath);
@@ -378,6 +396,7 @@ public class OptionsMenu : ControlWithInput
         languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
         resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
         languageProgressLabel = GetNode<Label>(LanguageProgressLabelPath);
+        helpTranslateTheGameButton = GetNode<Button>(HelpTranslateTheGameButtonPath);
 
         LoadLanguages();
         LoadAudioOutputDevices();
@@ -397,6 +416,7 @@ public class OptionsMenu : ControlWithInput
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
         inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
+        resetInputsButton = GetNode<Button>(ResetInputsButtonPath);
         inputGroupList.OnControlsChanged += OnControlsChanged;
 
         // Misc
@@ -637,6 +657,22 @@ public class OptionsMenu : ControlWithInput
         btn.EmitSignal("pressed");
     }
 
+    private void SetFooterButtonBarNeighbourTop(NodePath path)
+    {
+        backButton.FocusNeighbourTop = path;
+        resetButton.FocusNeighbourTop = path;
+        saveButton.FocusNeighbourTop = path;
+        defaultsButton.FocusNeighbourTop = path;
+    }
+
+    private void SetFooterButtonBarNeighbourBottom(NodePath path)
+    {
+        backButton.FocusNeighbourBottom = path;
+        resetButton.FocusNeighbourBottom = path;
+        saveButton.FocusNeighbourBottom = path;
+        defaultsButton.FocusNeighbourBottom = path;
+    }
+
     /// <summary>
     ///   Changes the active settings tab that is displayed, or returns if the tab is already active.
     /// </summary>
@@ -660,22 +696,32 @@ public class OptionsMenu : ControlWithInput
             case SelectedOptionsTab.Graphics:
                 graphicsTab.Show();
                 graphicsButton.Pressed = true;
+                SetFooterButtonBarNeighbourTop(guiLightEffectsToggle.GetPath());
+                SetFooterButtonBarNeighbourBottom(graphicsButton.GetPath());
                 break;
             case SelectedOptionsTab.Sound:
                 soundTab.Show();
                 soundButton.Pressed = true;
+                SetFooterButtonBarNeighbourTop(helpTranslateTheGameButton.GetPath());
+                SetFooterButtonBarNeighbourBottom(soundButton.GetPath());
                 break;
             case SelectedOptionsTab.Performance:
                 performanceTab.Show();
                 performanceButton.Pressed = true;
+                SetFooterButtonBarNeighbourTop(threadCountSlider.GetPath());
+                SetFooterButtonBarNeighbourBottom(performanceButton.GetPath());
                 break;
             case SelectedOptionsTab.Inputs:
                 inputsTab.Show();
                 inputsButton.Pressed = true;
+                SetFooterButtonBarNeighbourTop(resetInputsButton.GetPath());
+                SetFooterButtonBarNeighbourBottom(inputsButton.GetPath());
                 break;
             case SelectedOptionsTab.Miscellaneous:
                 miscTab.Show();
                 miscButton.Pressed = true;
+                SetFooterButtonBarNeighbourTop(jsonDebugMode.GetPath());
+                SetFooterButtonBarNeighbourBottom(miscButton.GetPath());
                 break;
             default:
                 GD.PrintErr("Invalid tab");
@@ -1429,7 +1475,11 @@ public class OptionsMenu : ControlWithInput
 
     private void BuildInputRebindControls()
     {
-        inputGroupList.InitGroupList();
+        inputGroupList.InitGroupList(inputsButton, resetInputsButton);
+
+        resetInputsButton.FocusNeighbourTop =
+            inputGroupList.ActiveInputGroupList.Last().Actions.Last().GetAddInputButtonPath();
+        resetInputsButton.FocusPrevious = resetInputsButton.FocusNeighbourTop;
     }
 
     private void OnOpenScreenshotFolder()
