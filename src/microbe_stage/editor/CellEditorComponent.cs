@@ -658,6 +658,14 @@ public partial class CellEditorComponent :
         if (!Visible)
             return;
 
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+        {
+            var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
+            metrics.ReportEntities(roughCount, 0);
+        }
+
         CheckRunningAutoEvoPrediction();
 
         if (organelleDataDirty)

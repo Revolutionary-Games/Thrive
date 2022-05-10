@@ -7,7 +7,7 @@ defined in Steam's End User License Agreement.
 
 Steam version of Thrive uses additional libraries:
 
-GodotSteam: MIT License Copyright (c) 2017 GP Garcia
+Steamworks.NET: MIT License Copyright (c) 2013-2022 Riley Labrecque
 
 In addition to Godot Engine, Thrive uses the following third party libraries:
 

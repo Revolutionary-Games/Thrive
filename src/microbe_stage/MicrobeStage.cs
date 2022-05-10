@@ -502,6 +502,15 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
             wantsToSave = false;
         }
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+        {
+            var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP).Count();
+            var childCount = rootOfDynamicallySpawned.GetChildCount();
+            metrics.ReportEntities(entities, childCount - entities);
+        }
     }
 
     [RunOnKeyDown("g_quick_save")]
@@ -729,9 +738,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         var randomSpecies = species.Random(random);
 
-        SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
+        var copyEntity = SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
             rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
             CurrentGame!);
+
+        // Make the cell despawn like normal
+        SpawnSystem.AddEntityToTrack(copyEntity);
     }
 
     [DeserializedCallbackAllowed]
