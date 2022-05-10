@@ -10,7 +10,7 @@ using Godot;
 ///     Used by OptionsMenu>Inputs>InputGroupContainer>InputGroupItem>InputActionItem>InputEventItem
 ///   </para>
 /// </remarks>
-public class InputEventItem : Node
+public class InputEventItem : Control
 {
     [Export]
     public NodePath ButtonPath = null!;
@@ -111,6 +111,8 @@ public class InputEventItem : Node
     /// </summary>
     public void Delete()
     {
+        GetNode<Control>(xButton.FocusNeighbourRight).GrabFocus();
+
         Action?.Inputs.Remove(this);
         GroupList?.ControlsChanged();
     }
@@ -157,6 +159,16 @@ public class InputEventItem : Node
         return xButton.GetPath();
     }
 
+    private void XButtonPressed()
+    {
+        GetTree().SetInputAsHandled();
+
+        Delete();
+
+        // Rebind canceled, alert the InputManager so it can resume getting input
+        InputManager.PerformingRebind = false;
+    }
+
     /// <summary>
     ///   Performs the key reassigning.
     ///   Checks if it is waiting for a user input and if there are any conflicts (opens a warning dialog
@@ -177,29 +189,46 @@ public class InputEventItem : Node
             return;
 
         // Only InputEventMouseButton and InputEventKey are supported now
-        if (!(@event is InputEventMouseButton) && !(@event is InputEventKey))
+        if (@event is not (InputEventMouseButton or InputEventKey))
             return;
 
         // Hacky custom button press detection
-        if (@event is InputEventMouseButton mouseEvent)
+        if ((@event is InputEventMouseButton && xButton.IsHovered() && !xButton.Disabled) ||
+            (@event.IsActionPressed("ui_accept") && xButton.HasFocus() && !xButton.Disabled))
         {
-            if (xButton.IsHovered() && !xButton.Disabled)
+            XButtonPressed();
+            return;
+        }
+
+        if (!button.Disabled && !WaitingForInput && @event.IsPressed())
+        {
+            if (@event is InputEventMouseButton mouseEvent)
             {
-                GetTree().SetInputAsHandled();
-
-                Delete();
-
-                // Rebind canceled, alert the InputManager so it can resume getting input
-                InputManager.PerformingRebind = false;
-
-                return;
+                if (button.IsHovered())
+                {
+                    GetTree().SetInputAsHandled();
+                    OnButtonPressed(mouseEvent.ButtonIndex == (int)ButtonList.Right);
+                    return;
+                }
             }
-
-            if (button.IsHovered() && !WaitingForInput && mouseEvent.Pressed && !button.Disabled)
+            else
             {
-                GetTree().SetInputAsHandled();
-                OnButtonPressed(mouseEvent);
-                return;
+                if (button.HasFocus())
+                {
+                    if (@event.IsActionPressed("ui_accept"))
+                    {
+                        GetTree().SetInputAsHandled();
+                        OnButtonPressed(false);
+                        return;
+                    }
+
+                    if (@event.IsActionPressed("ui_delete"))
+                    {
+                        GetTree().SetInputAsHandled();
+                        OnButtonPressed(true);
+                        return;
+                    }
+                }
             }
         }
 
@@ -347,7 +376,7 @@ public class InputEventItem : Node
     /// <summary>
     ///   Detect mouse button presses on this input key Control
     /// </summary>
-    private void OnButtonPressed(InputEventMouseButton @event)
+    private void OnButtonPressed(bool delete)
     {
         var groupList = GroupList;
 
@@ -363,15 +392,14 @@ public class InputEventItem : Node
         if (groupList.ListeningForInput)
             return;
 
-        switch (@event.ButtonIndex)
+        if (delete)
         {
-            case (int)ButtonList.Left:
-                wasPressingButton = true;
-                OnRebindButtonPressed();
-                break;
-            case (int)ButtonList.Right:
-                Delete();
-                break;
+            Delete();
+        }
+        else
+        {
+            wasPressingButton = true;
+            OnRebindButtonPressed();
         }
     }
 
