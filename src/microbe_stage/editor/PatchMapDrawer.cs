@@ -384,6 +384,7 @@ public class PatchMapDrawer : Control
         return intermediate;
     }
 
+    // TODO merge this and the other draw function below into one.
     private void DrawNormalRegionLinks()
     {
         foreach (var entry in Map!.Regions)
