@@ -22,6 +22,7 @@ public class PatchMap
 
     [JsonProperty]
     public Dictionary<int, PatchRegion> SpecialRegions { get; private set; } = new();
+
     /// <summary>
     ///   Currently active patch (the one player is in)
     /// </summary>
@@ -73,7 +74,7 @@ public class PatchMap
         Regions[region.ID] = region;
     }
 
-     /// <summary>
+    /// <summary>
     ///   Adds a new special region to the map. Throws if can't add
     /// </summary>
     public void AddSpecialRegion(PatchRegion region)
@@ -86,7 +87,6 @@ public class PatchMap
 
         SpecialRegions[region.ID] = region;
     }
-
 
     /// <summary>
     ///   Returns true when the map is valid and has no invalid references
@@ -365,7 +365,7 @@ public class PatchMap
 
     public void BuildPatchesInRegions(Random random)
     {
-        foreach(var region in Regions)
+        foreach (var region in Regions)
         {
             region.Value.BuildPatches(random);
             foreach (var patch in region.Value.Patches)
@@ -373,26 +373,23 @@ public class PatchMap
                 AddPatch(patch);
             }
         }
-
     }
 
     public void BuildPatchesInSpecialRegions(Random random)
     {
-        
-        foreach(var region in SpecialRegions)
-        {   
+        foreach (var region in SpecialRegions)
+        {
             region.Value.BuildPatches(random);
             foreach (var patch in region.Value.Patches)
             {
                 AddPatch(patch);
             }
-
         }
     }
 
     public void ConnectPatchesBetweenRegions(Random random)
     {
-        foreach(var region in Regions)
+        foreach (var region in Regions)
         {
             region.Value.ConnectPatchesBetweenRegions(random);
         }

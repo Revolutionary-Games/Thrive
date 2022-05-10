@@ -25,11 +25,11 @@ public static class PatchMapGenerator
 
         // Initialize the graphs random parameters
         var regionCoords = new List<Vector2>();
-        int [,] graph = new int [100,100];
-        int vertexNr = random.Next(6,10);
-        int edgeNr = random.Next(vertexNr , 2*vertexNr - 4);
+        int[,] graph = new int[100, 100];
+        int vertexNr = random.Next(6, 10);
+        int edgeNr = random.Next(vertexNr, 2 * vertexNr - 4);
         int minDistance = 180;
-        
+
         var currentPatchId = 0;
         var specialRegionsId = -1;
 
@@ -38,10 +38,10 @@ public static class PatchMapGenerator
         {
             var areaName = nameGenerator.Next(random);
             var continentName = nameGenerator.ContinentName;
-            var coord = new Vector2(0,0);
+            var coord = new Vector2(0, 0);
 
-            var regionType = random.Next(0,3);
-            string regionTypeName; 
+            var regionType = random.Next(0, 3);
+            string regionTypeName;
             if (regionType == 0)
             {
                 regionTypeName = "sea";
@@ -63,38 +63,36 @@ public static class PatchMapGenerator
 
             if (regionType == 2)
             {
-                numberOfPatches = random.Next(0,4);
+                numberOfPatches = random.Next(0, 4);
 
                 // All continents must have at least 1 coastal patch.
                 Patch patch = GetPatchFromPredefinedMap(0, currentPatchId++, predefinedMap, areaName);
 
                 region.AddPatch(patch);
 
-
                 while (numberOfPatches > 0)
                 {
-                    var patchIndex = random.Next(0,3);
+                    var patchIndex = random.Next(0, 3);
                     patch = GetPatchFromPredefinedMap(patchIndex, currentPatchId++, predefinedMap, areaName);
 
                     region.AddPatch(patch);
                     numberOfPatches--;
                 }
-                
             }
             else
             {
-                numberOfPatches = random.Next(0,4);
+                numberOfPatches = random.Next(0, 4);
 
                 // All oceans/seas must have at least 1 epipelagic/ice patch and a seafloor
                 Patch patch;
-                if (random.Next(0,2) == 1)
+                if (random.Next(0, 2) == 1)
                     patch = GetPatchFromPredefinedMap(3, currentPatchId++, predefinedMap, areaName);
                 else
                     patch = GetPatchFromPredefinedMap(9, currentPatchId++, predefinedMap, areaName);
                 region.AddPatch(patch);
 
                 // Add the patches between surface and sea floor
-                for (int patchIndex = 4; numberOfPatches > 0 && patchIndex < 7; patchIndex ++, numberOfPatches--)
+                for (int patchIndex = 4; numberOfPatches > 0 && patchIndex < 7; patchIndex++, numberOfPatches--)
                 {
                     patch = GetPatchFromPredefinedMap(patchIndex, currentPatchId++, predefinedMap, areaName);
                     region.AddPatch(patch);
@@ -105,9 +103,9 @@ public static class PatchMapGenerator
                 region.AddPatch(patch);
 
                 // Chance to add a vent region if this region were adding to is an ocean/sea one
-                if (random.Next(0,2) == 1)
+                if (random.Next(0, 2) == 1)
                 {
-                    var ventRegion = new PatchRegion(specialRegionsId--,  GetPatchLocalizedName(continentName, "vents"), "vents", coord);
+                    var ventRegion = new PatchRegion(specialRegionsId--, GetPatchLocalizedName(continentName, "vents"), "vents", coord);
                     var ventPatch = GetPatchFromPredefinedMap(10, currentPatchId++, predefinedMap, areaName);
                     ventRegion.AddPatch(ventPatch);
                     map.AddSpecialRegion(ventRegion);
@@ -118,12 +116,12 @@ public static class PatchMapGenerator
             // Random chance to create a cave
             if (random.Next(0, 2) == 1)
             {
-                var caveRegion = new PatchRegion(specialRegionsId--,  GetPatchLocalizedName(continentName, "underwatercave"), "underwatercave", coord);
+                var caveRegion = new PatchRegion(specialRegionsId--, GetPatchLocalizedName(continentName, "underwatercave"), "underwatercave", coord);
                 var cavePatch = GetPatchFromPredefinedMap(8, currentPatchId++, predefinedMap, areaName);
                 caveRegion.AddPatch(cavePatch);
                 map.AddSpecialRegion(caveRegion);
                 LinkRegions(caveRegion, region);
-            
+
                 // Chose one random patch from the region to be linked to the underwater cave
                 var patchIndex = random.Next(0, region.Patches.Count - 1);
                 LinkPatches(cavePatch, region.Patches[patchIndex]);
@@ -132,12 +130,12 @@ public static class PatchMapGenerator
             region.BuildRegion();
             coord = GenerateCoordinates(region, map, random, minDistance);
 
-            // We add the coordinates for the center of the region 
+            // We add the coordinates for the center of the region
             // since thats the point that will be connected
-            regionCoords.Add(coord + region.GetSize()/2f);
+            regionCoords.Add(coord + region.GetSize() / 2f);
             map.AddRegion(region);
         }
-    
+
         // After building the normal regions we build the special ones and the patches
         map.BuildPatchesInRegions(random);
         map.BuildSpecialRegions();
@@ -145,18 +143,22 @@ public static class PatchMapGenerator
 
         map.CurrentPatch = map.Patches[random.Next(0, currentPatchId)];
         map.CurrentPatch.AddSpecies(defaultSpecies);
-        
-        // We make the graph by substracting edges from its Delaunay Triangulation 
+
+        // We make the graph by substracting edges from its Delaunay Triangulation
         // as long as the graph stays connected.
         graph = DelaunayTriangulation(graph, regionCoords);
         graph = SubstractEdges(graph, regionCoords, vertexNr, edgeNr, random);
 
         // Link regions according to the graph matrix
         for (int k = 0; k < vertexNr; k++)
+        {
             for (int l = 0; l < vertexNr; l++)
-                if(graph[l,k] == 1)
+            {
+                if (graph[l, k] == 1)
                     LinkRegions(map.Regions[k], map.Regions[l]);
-        
+            }
+        }
+
         map.ConnectPatchesBetweenRegions(random);
         return map;
     }
@@ -171,11 +173,13 @@ public static class PatchMapGenerator
         patch1.AddNeighbour(patch2);
         patch2.AddNeighbour(patch1);
     }
+
     private static void LinkRegions(PatchRegion region1, PatchRegion region2)
     {
         region1.AddNeighbour(region2);
         region2.AddNeighbour(region1);
     }
+
     private static void TranslatePatchNames()
     {
         // TODO: remove this entire method, see: https://github.com/Revolutionary-Games/Thrive/issues/3146
@@ -191,7 +195,8 @@ public static class PatchMapGenerator
         _ = TranslationServer.Translate("PATCH_ICE_SHELF");
         _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
     }
-    private static int [,] SubstractEdges(int [,] graph, List<Vector2>vertexCoords, int vertexNr, int edgeNr, Random random)
+
+    private static int[,] SubstractEdges(int[,] graph, List<Vector2> vertexCoords, int vertexNr, int edgeNr, Random random)
     {
         var currentEdgeNr = CurrentEdgeNumber(graph, vertexNr);
 
@@ -205,67 +210,75 @@ public static class PatchMapGenerator
             {
                 for (j = 0; j < vertexNr && edgeToDelete != 0 && j <= i; j++)
                 {
-                    if (graph[i,j] == 1)
-                        edgeToDelete --;
+                    if (graph[i, j] == 1)
+                        edgeToDelete--;
                 }
             }
+
             i--;
             j--;
 
             // Check if the graph stays connected after substracting the edge
             // otherwise, leave the edge as is.
-            graph[i,j] = graph [j,i] = 0;
+            graph[i, j] = graph[j, i] = 0;
             if (!CheckConnectivity(graph, vertexNr))
-                graph[i,j] = graph [j,i] = 1;
+                graph[i, j] = graph[j, i] = 1;
             else
                 currentEdgeNr -= 1;
         }
 
         return graph;
     }
+
     // Create a triangulation for a certain graph given some vertex coordinates
-    private static int [,] DelaunayTriangulation(int [,] graph, List<Vector2>vertexCoords)
+    private static int[,] DelaunayTriangulation(int[,] graph, List<Vector2> vertexCoords)
     {
         var indices = Geometry.TriangulateDelaunay2d(vertexCoords.ToArray());
         var triangles = indices.ToList<int>();
-        for (int i = 0; i < triangles.Count() - 2; i+=3)
+        for (int i = 0; i < triangles.Count() - 2; i += 3)
         {
-            graph[triangles[i] ,triangles[i+1]] = graph[triangles[i+1], triangles[i]] = 1;
-            graph[triangles[i+1] ,triangles[i+2]] = graph[triangles[i+2], triangles[i+1]] = 1;
-            graph[triangles[i] ,triangles[i+2]] = graph[triangles[i+2], triangles[i]] = 1;
+            graph[triangles[i], triangles[i + 1]] = graph[triangles[i + 1], triangles[i]] = 1;
+            graph[triangles[i + 1], triangles[i + 2]] = graph[triangles[i + 2], triangles[i + 1]] = 1;
+            graph[triangles[i], triangles[i + 2]] = graph[triangles[i + 2], triangles[i]] = 1;
         }
+
         return graph;
     }
 
     // DFS graph search
-    private static int[] DFS(int [,] graph, int vertexNr, int point, int[] visited)
+    private static int[] DFS(int[,] graph, int vertexNr, int point, int[] visited)
     {
         visited[point] = 1;
         for (int i = 0; i < vertexNr; i++)
-            if (graph[point,i] == 1 && visited[i] == 0)
+        {
+            if (graph[point, i] == 1 && visited[i] == 0)
                 visited = DFS(graph, vertexNr, i, visited);
+        }
+
         return visited;
     }
-    
+
     // Checks the graphs connectivity
-    private static bool CheckConnectivity(int [,] graph, int vertexNr)
+    private static bool CheckConnectivity(int[,] graph, int vertexNr)
     {
-        int [] visited= new int [vertexNr];
-        visited = DFS(graph , vertexNr, 0, visited);
+        int[] visited = new int[vertexNr];
+        visited = DFS(graph, vertexNr, 0, visited);
         if (visited.Sum() != vertexNr)
             return false;
         return true;
     }
 
     // Current number of edges in a given graph
-    private static int CurrentEdgeNumber(int [,] graph, int vertexNr)
+    private static int CurrentEdgeNumber(int[,] graph, int vertexNr)
     {
         int edgeNr = 0;
         for (int i = 0; i < vertexNr; i++)
+        {
             for (int j = 0; j < vertexNr; j++)
-                edgeNr += graph [i,j];
-        
-        return edgeNr/2;
+                edgeNr += graph[i, j];
+        }
+
+        return edgeNr / 2;
     }
 
     // Checks distance between patches
@@ -279,6 +292,7 @@ public static class PatchMapGenerator
             if (CheckIfRegionsIntersect(region, map.Regions[i], minDistance))
                 return false;
         }
+
         return true;
     }
 
@@ -292,25 +306,26 @@ public static class PatchMapGenerator
 
     private static Vector2 GenerateCoordinates(PatchRegion region, PatchMap map, Random random, int minDistance)
     {
-            int x = random.Next(80,1300);
-            int y = random.Next(80,1300);
-            var coord = new Vector2(x,y);
+        int x = random.Next(80, 1300);
+        int y = random.Next(80, 1300);
+        var coord = new Vector2(x, y);
+        region.ScreenCoordinates = coord;
+
+        // Check if the region doesnt overlap over other regions
+        bool check = CheckRegionDistance(region, map, minDistance);
+        while (!check)
+        {
+            x = random.Next(80, 1300);
+            y = random.Next(80, 1300);
+            coord = new Vector2(x, y);
             region.ScreenCoordinates = coord;
-            
-            // Check if the region doesnt overlap over other regions
-            bool check = CheckRegionDistance(region, map, minDistance);
-            while (!check)
-            {
-                x = random.Next(80,1300);
-                y = random.Next(80,1300);
-                coord = new Vector2(x,y);
-                region.ScreenCoordinates = coord;
-                check = CheckRegionDistance(region, map, minDistance);
-            }
-            return coord;
+            check = CheckRegionDistance(region, map, minDistance);
+        }
+
+        return coord;
     }
 
-    public static Patch GetPatchFromPredefinedMap(int patchId, int newId, PatchMap predefinedMap, string areaName)
+    private static Patch GetPatchFromPredefinedMap(int patchId, int newId, PatchMap predefinedMap, string areaName)
     {
         var patch = predefinedMap.Patches[patchId];
         patch = new Patch(GetPatchLocalizedName(areaName, patch.BiomeTemplate.Name), newId++, patch.BiomeTemplate)
@@ -319,7 +334,7 @@ public static class PatchMapGenerator
             {
                 [0] = patch.Depth[0],
                 [1] = patch.Depth[1],
-            }
+            },
         };
 
         return patch;
@@ -327,7 +342,6 @@ public static class PatchMapGenerator
 
     private static PatchMap PredefinedMap(PatchMap map, string areaName, Species defaultSpecies)
     {
-
         // Predefined patches
         var coast = new Patch(GetPatchLocalizedName(areaName, "COASTAL"), 0,
             GetBiomeTemplate("coastal"))

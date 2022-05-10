@@ -88,13 +88,14 @@ public class PatchMapNode : MarginContainer
             UpdateMarkRing();
         }
     }
+
     public bool SelectionAdjacent
     {
         get => selectionAdjacent;
         set
         {
             selectionAdjacent = value;
-            UpdateSelectHighlightRing(); 
+            UpdateSelectHighlightRing();
         }
     }
 
@@ -147,7 +148,7 @@ public class PatchMapNode : MarginContainer
     {
         if (highlightPanel == null || adjacentHighlightPanel == null)
             return;
-        
+
         highlightPanel.Visible = Highlighted || Selected;
         adjacentHighlightPanel.Visible = SelectionAdjacent;
     }
@@ -159,8 +160,6 @@ public class PatchMapNode : MarginContainer
 
         markPanel.Visible = Marked;
     }
-
-
 
     private void UpdateIcon()
     {
