@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -11,6 +11,14 @@
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=52]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=53]
 [ext_resource path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn" type="PackedScene" id=85]
+
+[sub_resource type="ButtonGroup" id=1]
+
+[sub_resource type="ButtonGroup" id=2]
+
+[sub_resource type="ButtonGroup" id=3]
+
+[sub_resource type="ButtonGroup" id=4]
 
 [node name="MicrobeEditor" type="Node"]
 process_priority = -1
@@ -48,12 +56,58 @@ CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
 
 [node name="Report" parent="MicrobeEditorGUI" instance=ExtResource( 6 )]
 
+[node name="AutoEvoButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="2"]
+focus_neighbour_bottom = NodePath("../../../../../../../NextTabButton/Button")
+group = SubResource( 1 )
+
+[node name="FoodChainButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="3"]
+group = SubResource( 1 )
+
+[node name="TimelineButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" index="4"]
+focus_neighbour_bottom = NodePath("../../../../../../../NextTabButton/Button")
+group = SubResource( 1 )
+
+[node name="GlobalFilter" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer" index="0"]
+group = SubResource( 2 )
+
+[node name="LocalFilter" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer" index="1"]
+group = SubResource( 2 )
+
+[node name="temperature" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend" index="0"]
+group = SubResource( 3 )
+
+[node name="sunlight" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend" index="1"]
+group = SubResource( 3 )
+
 [node name="PatchMap" parent="MicrobeEditorGUI" instance=ExtResource( 7 )]
 visible = false
 
 [node name="MicrobeEditorTabButtons" parent="MicrobeEditorGUI" instance=ExtResource( 5 )]
 
+[node name="ReportButton" parent="MicrobeEditorGUI/MicrobeEditorTabButtons/HBoxContainer" index="0"]
+focus_neighbour_bottom = NodePath("../../../Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
+group = SubResource( 4 )
+
+[node name="PatchMapButton" parent="MicrobeEditorGUI/MicrobeEditorTabButtons/HBoxContainer" index="1"]
+focus_neighbour_bottom = NodePath("../../../Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
+group = SubResource( 4 )
+
+[node name="CellEditorButton" parent="MicrobeEditorGUI/MicrobeEditorTabButtons/HBoxContainer" index="2"]
+focus_neighbour_bottom = NodePath("../../../Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
+group = SubResource( 4 )
+
+[node name="CellTypeEditorButton" parent="MicrobeEditorGUI/MicrobeEditorTabButtons/HBoxContainer" index="3"]
+focus_neighbour_bottom = NodePath("../../../Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
+group = SubResource( 4 )
+
 [node name="EditorCommonBottomLeftButtons" parent="MicrobeEditorGUI" instance=ExtResource( 4 )]
+
+[node name="MenuButton" parent="MicrobeEditorGUI/EditorCommonBottomLeftButtons/HBoxContainer" index="0"]
+focus_neighbour_top = NodePath("../../../Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
+
+[node name="HelpButton" parent="MicrobeEditorGUI/EditorCommonBottomLeftButtons/HBoxContainer" index="2"]
+focus_neighbour_top = NodePath("../../../Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
+focus_neighbour_right = NodePath("../../../Report/NextTabButton/Button")
 
 [node name="MicrobeEditorCheatMenu" parent="MicrobeEditorGUI" instance=ExtResource( 39 )]
 visible = false
@@ -71,6 +125,7 @@ CellEditorRedoPath = NodePath("../TutorialGUI/RedoTutorial")
 CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
 
 [node name="PauseMenu" parent="." instance=ExtResource( 52 )]
+visible = true
 theme = ExtResource( 53 )
 HelpCategory = "MicrobeEditor"
 
@@ -80,3 +135,14 @@ HelpCategory = "MicrobeEditor"
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
 [editable path="EditorWorld"]
+[editable path="MicrobeEditorGUI/Report"]
+[editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation"]
+[editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart"]
+[editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions"]
+[editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
+[editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses"]
+[editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart"]
+[editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds"]
+[editable path="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart"]
+[editable path="MicrobeEditorGUI/MicrobeEditorTabButtons"]
+[editable path="MicrobeEditorGUI/EditorCommonBottomLeftButtons"]

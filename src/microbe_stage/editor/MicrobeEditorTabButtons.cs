@@ -37,6 +37,7 @@ public class MicrobeEditorTabButtons : MarginContainer
         cellTypeTab = GetNode<Button>(CellTypeTabPath);
 
         cellTypeTab.Visible = IsForMulticellular;
+        reportTabButton.GrabFocus();
     }
 
     public void SetCurrentTab(EditorTab tab)

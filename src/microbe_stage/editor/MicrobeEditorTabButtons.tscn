@@ -98,6 +98,11 @@ __meta__ = {
 [node name="ReportButton" type="Button" parent="HBoxContainer"]
 margin_right = 71.0
 margin_bottom = 30.0
+focus_neighbour_left = NodePath("../CellTypeEditorButton")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath("../PatchMapButton")
+focus_next = NodePath("../PatchMapButton")
+focus_previous = NodePath("../CellTypeEditorButton")
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
@@ -119,6 +124,11 @@ __meta__ = {
 margin_left = 81.0
 margin_right = 169.0
 margin_bottom = 30.0
+focus_neighbour_left = NodePath("../ReportButton")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath("../CellEditorButton")
+focus_next = NodePath("../CellEditorButton")
+focus_previous = NodePath("../ReportButton")
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
@@ -139,6 +149,11 @@ __meta__ = {
 margin_left = 179.0
 margin_right = 251.0
 margin_bottom = 30.0
+focus_neighbour_left = NodePath("../PatchMapButton")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath("../CellTypeEditorButton")
+focus_next = NodePath("../CellTypeEditorButton")
+focus_previous = NodePath("../PatchMapButton")
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
@@ -159,6 +174,11 @@ __meta__ = {
 margin_left = 261.0
 margin_right = 333.0
 margin_bottom = 30.0
+focus_neighbour_left = NodePath("../CellEditorButton")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath("../ReportButton")
+focus_next = NodePath("../ReportButton")
+focus_previous = NodePath("../CellEditorButton")
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
@@ -175,7 +195,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="focus_entered" from="HBoxContainer/ReportButton" to="." method="SetEditorTab" binds= [ "Report" ]]
 [connection signal="pressed" from="HBoxContainer/ReportButton" to="." method="SetEditorTab" binds= [ "Report" ]]
+[connection signal="focus_entered" from="HBoxContainer/PatchMapButton" to="." method="SetEditorTab" binds= [ "PatchMap" ]]
 [connection signal="pressed" from="HBoxContainer/PatchMapButton" to="." method="SetEditorTab" binds= [ "PatchMap" ]]
+[connection signal="focus_entered" from="HBoxContainer/CellEditorButton" to="." method="SetEditorTab" binds= [ "CellEditor" ]]
 [connection signal="pressed" from="HBoxContainer/CellEditorButton" to="." method="SetEditorTab" binds= [ "CellEditor" ]]
+[connection signal="focus_entered" from="HBoxContainer/CellTypeEditorButton" to="." method="SetEditorTab" binds= [ "CellTypeEditor" ]]
 [connection signal="pressed" from="HBoxContainer/CellTypeEditorButton" to="." method="SetEditorTab" binds= [ "CellTypeEditor" ]]

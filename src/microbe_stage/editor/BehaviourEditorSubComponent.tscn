@@ -20,9 +20,6 @@ size_flags_vertical = 3
 theme = ExtResource( 3 )
 custom_styles/panel = SubResource( 16 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 AggressionSliderPath = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Aggression/AggressionSlider")
 OpportunismSliderPath = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Opportunism/OpportunismSlider")
 FearSliderPath = NodePath("ScrollContainer/MarginContainer/VBoxContainer/Fear/FearSlider")

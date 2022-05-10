@@ -155,6 +155,10 @@ margin_top = 1.0
 margin_right = 32.0
 margin_bottom = 33.0
 rect_min_size = Vector2( 0, 32 )
+focus_neighbour_left = NodePath(".")
+focus_neighbour_right = NodePath("../../AutoEvoButton")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 size_flags_vertical = 4
 custom_constants/hseparation = 0
 clip_text = true
@@ -195,6 +199,11 @@ margin_top = 5.0
 margin_right = 638.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 30 )
+focus_neighbour_left = NodePath("../HBoxContainer/PatchSelector")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath("../TimelineButton")
+focus_next = NodePath("../TimelineButton")
+focus_previous = NodePath("../TimelineButton")
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = true
@@ -223,6 +232,11 @@ margin_top = 5.0
 margin_right = 846.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 30 )
+focus_neighbour_left = NodePath("../../EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/AutoEvoResults")
+focus_neighbour_top = NodePath(".")
+focus_neighbour_right = NodePath("../../../../../StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/HBoxContainer/Buttons/minusButton")
+focus_next = NodePath("../AutoEvoButton")
+focus_previous = NodePath("../AutoEvoButton")
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = true
@@ -499,13 +513,17 @@ DisplayName = "SPECIES_POPULATION"
 [node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" index="0"]
 margin_right = 297.0
 
-[node name="Title" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/HBoxContainer" index="1"]
-margin_top = 0.0
-margin_right = 148.0
-margin_bottom = 20.0
+[node name="minusButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/HBoxContainer/Buttons" index="0"]
+focus_neighbour_left = NodePath("../../../../../../../../../PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton")
+focus_neighbour_top = NodePath(".")
+focus_previous = NodePath(".")
+
+[node name="plusButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/HBoxContainer/Buttons" index="1"]
+focus_neighbour_right = NodePath("../../../Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
+focus_neighbour_bottom = NodePath("../../../../PhysicalConditions/HBoxContainer/Buttons/minusButton")
+focus_next = NodePath("../../../Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
 
 [node name="HSeparator" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/HBoxContainer" index="2"]
-margin_left = 152.0
 margin_right = 297.0
 
 [node name="Clip" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" index="1"]
@@ -526,6 +544,86 @@ ChartName = "SPECIES_POPULATION"
 YAxisTicks = 6
 LegendMode = 1
 
+[node name="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart" index="0"]
+margin_right = 297.0
+
+[node name="LegendContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/MarginContainer" index="0"]
+margin_right = 295.0
+
+[node name="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart" index="1"]
+margin_right = 297.0
+margin_bottom = 95.0
+
+[node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer" index="1"]
+margin_right = 297.0
+margin_bottom = 91.0
+
+[node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 297.0
+margin_bottom = 69.0
+
+[node name="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer" index="0"]
+margin_right = 265.0
+margin_bottom = 69.0
+
+[node name="ChartContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer" index="0"]
+margin_right = 255.0
+margin_bottom = 69.0
+
+[node name="Ordinate" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="0"]
+margin_bottom = 69.0
+
+[node name="Labels" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate" index="0"]
+margin_bottom = 69.0
+
+[node name="Line" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate" index="1"]
+margin_bottom = 69.0
+
+[node name="Drawer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="1"]
+margin_right = 253.0
+margin_bottom = 69.0
+
+[node name="Origin" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="2"]
+margin_top = 67.0
+margin_bottom = 71.0
+
+[node name="Abscissa" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="3"]
+margin_top = 67.0
+margin_right = 253.0
+margin_bottom = 71.0
+
+[node name="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa" index="0"]
+margin_right = 250.0
+
+[node name="Line" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer" index="0"]
+margin_right = 250.0
+
+[node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer" index="1"]
+margin_right = 250.0
+
+[node name="Labels" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 250.0
+
+[node name="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="4"]
+margin_top = 69.0
+margin_bottom = 69.0
+
+[node name="xAxisLabel" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer" index="1"]
+margin_left = 269.0
+margin_top = 51.0
+margin_right = 276.0
+margin_bottom = 69.0
+
+[node name="InspectButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer" index="2"]
+margin_left = 280.0
+margin_right = 297.0
+focus_neighbour_left = NodePath("../../../../../../../HBoxContainer/Buttons/plusButton")
+focus_neighbour_top = NodePath("../../../../../../../HBoxContainer/Buttons/plusButton")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../../../../../../../../PhysicalConditions/HBoxContainer/Buttons/minusButton")
+focus_next = NodePath("../../../../../../../../PhysicalConditions/HBoxContainer/Buttons/minusButton")
+focus_previous = NodePath("../../../../../../../HBoxContainer/Buttons/plusButton")
+
 [node name="PhysicalConditions" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -543,13 +641,17 @@ TweenPath = NodePath("../PhysicalConditions/Tween")
 [node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions" index="0"]
 margin_right = 297.0
 
-[node name="Title" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/HBoxContainer" index="1"]
-margin_top = 0.0
-margin_right = 148.0
-margin_bottom = 20.0
+[node name="minusButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/HBoxContainer/Buttons" index="0"]
+focus_neighbour_left = NodePath("../../../../../../../../../PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton")
+focus_neighbour_top = NodePath("../../../../SpeciesPopulation/HBoxContainer/Buttons/plusButton")
+focus_previous = NodePath("../../../../SpeciesPopulation/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
+
+[node name="plusButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/HBoxContainer/Buttons" index="1"]
+focus_neighbour_right = NodePath("../../../Clip/GridContainer/MarginContainer/Legend/temperature")
+focus_neighbour_bottom = NodePath("../../../../AtmosphericGasses/HBoxContainer/Buttons/minusButton")
+focus_next = NodePath("../../../Clip/GridContainer/MarginContainer/Legend/temperature")
 
 [node name="HSeparator" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/HBoxContainer" index="2"]
-margin_left = 152.0
 margin_right = 297.0
 
 [node name="Clip" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions" index="1"]
@@ -582,6 +684,12 @@ margin_right = 275.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 18, 18 )
 rect_pivot_offset = Vector2( 9, 9 )
+focus_neighbour_left = NodePath("../../../../../HBoxContainer/Buttons/plusButton")
+focus_neighbour_top = NodePath("../../../../../HBoxContainer/Buttons/plusButton")
+focus_neighbour_right = NodePath("../sunlight")
+focus_neighbour_bottom = NodePath("../../../Temperature/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
+focus_next = NodePath("../sunlight")
+focus_previous = NodePath("../../../../../HBoxContainer/Buttons/plusButton")
 toggle_mode = true
 pressed = true
 action_mode = 0
@@ -596,6 +704,12 @@ margin_right = 293.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 18, 18 )
 rect_pivot_offset = Vector2( 9, 9 )
+focus_neighbour_left = NodePath("../temperature")
+focus_neighbour_top = NodePath("../../../../../HBoxContainer/Buttons/plusButton")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../../../Temperature/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
+focus_next = NodePath("../../../Temperature/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
+focus_previous = NodePath("../temperature")
 toggle_mode = true
 action_mode = 0
 group = SubResource( 31 )
@@ -614,6 +728,86 @@ margin_bottom = 121.0
 ChartName = "TEMPERATURE"
 YAxisTicks = 6
 LegendMode = 2
+
+[node name="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature" index="0"]
+margin_right = 297.0
+
+[node name="LegendContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/MarginContainer" index="0"]
+margin_right = 295.0
+
+[node name="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature" index="1"]
+margin_right = 297.0
+margin_bottom = 95.0
+
+[node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer" index="1"]
+margin_right = 297.0
+margin_bottom = 91.0
+
+[node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 297.0
+margin_bottom = 69.0
+
+[node name="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer" index="0"]
+margin_right = 265.0
+margin_bottom = 69.0
+
+[node name="ChartContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer" index="0"]
+margin_right = 255.0
+margin_bottom = 69.0
+
+[node name="Ordinate" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="0"]
+margin_bottom = 69.0
+
+[node name="Labels" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate" index="0"]
+margin_bottom = 69.0
+
+[node name="Line" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate" index="1"]
+margin_bottom = 69.0
+
+[node name="Drawer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="1"]
+margin_right = 253.0
+margin_bottom = 69.0
+
+[node name="Origin" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="2"]
+margin_top = 67.0
+margin_bottom = 71.0
+
+[node name="Abscissa" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="3"]
+margin_top = 67.0
+margin_right = 253.0
+margin_bottom = 71.0
+
+[node name="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa" index="0"]
+margin_right = 250.0
+
+[node name="Line" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer" index="0"]
+margin_right = 250.0
+
+[node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer" index="1"]
+margin_right = 250.0
+
+[node name="Labels" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 250.0
+
+[node name="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="4"]
+margin_top = 69.0
+margin_bottom = 69.0
+
+[node name="xAxisLabel" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer" index="1"]
+margin_left = 269.0
+margin_top = 51.0
+margin_right = 276.0
+margin_bottom = 69.0
+
+[node name="InspectButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer" index="2"]
+margin_left = 280.0
+margin_right = 297.0
+focus_neighbour_left = NodePath("../../../../../../../HBoxContainer/Buttons/plusButton")
+focus_neighbour_top = NodePath("../../../../../MarginContainer/Legend/sunlight")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../../../../../../../../AtmosphericGasses/HBoxContainer/Buttons/minusButton")
+focus_next = NodePath("../../../../../../../../Compounds/HBoxContainer/Buttons/minusButton")
+focus_previous = NodePath("../../../../../MarginContainer/Legend/sunlight")
 
 [node name="Sunlight" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="2" instance=ExtResource( 103 )]
 visible = false
@@ -643,13 +837,17 @@ TweenPath = NodePath("../AtmosphericGasses/Tween")
 [node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses" index="0"]
 margin_right = 297.0
 
-[node name="Title" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/HBoxContainer" index="1"]
-margin_top = 0.0
-margin_right = 148.0
-margin_bottom = 20.0
+[node name="minusButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/HBoxContainer/Buttons" index="0"]
+focus_neighbour_left = NodePath("../../../../../../../../../PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton")
+focus_neighbour_top = NodePath("../../../../PhysicalConditions/HBoxContainer/Buttons/plusButton")
+focus_previous = NodePath("../../../../PhysicalConditions/Clip/GridContainer/Temperature/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
+
+[node name="plusButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/HBoxContainer/Buttons" index="1"]
+focus_neighbour_right = NodePath("../../../Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
+focus_neighbour_bottom = NodePath("../../../../Compounds/HBoxContainer/Buttons/minusButton")
+focus_next = NodePath("../../../Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
 
 [node name="HSeparator" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/HBoxContainer" index="2"]
-margin_left = 152.0
 margin_right = 297.0
 
 [node name="Clip" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses" index="1"]
@@ -669,6 +867,86 @@ margin_bottom = 95.0
 ChartName = "ATMOSPHERIC_GASSES"
 YAxisTicks = 6
 
+[node name="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart" index="0"]
+margin_right = 297.0
+
+[node name="LegendContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/MarginContainer" index="0"]
+margin_right = 295.0
+
+[node name="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart" index="1"]
+margin_right = 297.0
+margin_bottom = 95.0
+
+[node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer" index="1"]
+margin_right = 297.0
+margin_bottom = 91.0
+
+[node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 297.0
+margin_bottom = 69.0
+
+[node name="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer" index="0"]
+margin_right = 265.0
+margin_bottom = 69.0
+
+[node name="ChartContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer" index="0"]
+margin_right = 255.0
+margin_bottom = 69.0
+
+[node name="Ordinate" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="0"]
+margin_bottom = 69.0
+
+[node name="Labels" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate" index="0"]
+margin_bottom = 69.0
+
+[node name="Line" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate" index="1"]
+margin_bottom = 69.0
+
+[node name="Drawer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="1"]
+margin_right = 253.0
+margin_bottom = 69.0
+
+[node name="Origin" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="2"]
+margin_top = 67.0
+margin_bottom = 71.0
+
+[node name="Abscissa" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="3"]
+margin_top = 67.0
+margin_right = 253.0
+margin_bottom = 71.0
+
+[node name="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa" index="0"]
+margin_right = 250.0
+
+[node name="Line" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer" index="0"]
+margin_right = 250.0
+
+[node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer" index="1"]
+margin_right = 250.0
+
+[node name="Labels" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 250.0
+
+[node name="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="4"]
+margin_top = 69.0
+margin_bottom = 69.0
+
+[node name="xAxisLabel" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer" index="1"]
+margin_left = 269.0
+margin_top = 51.0
+margin_right = 276.0
+margin_bottom = 69.0
+
+[node name="InspectButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer" index="2"]
+margin_left = 280.0
+margin_right = 297.0
+focus_neighbour_left = NodePath("../../../../../../../HBoxContainer/Buttons/plusButton")
+focus_neighbour_top = NodePath("../../../../../../../HBoxContainer/Buttons/plusButton")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../../../../../../../../Compounds/HBoxContainer/Buttons/minusButton")
+focus_next = NodePath("../../../../../../../../Compounds/HBoxContainer/Buttons/minusButton")
+focus_previous = NodePath("../../../../../../../HBoxContainer/Buttons/plusButton")
+
 [node name="Compounds" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -686,13 +964,17 @@ TweenPath = NodePath("../Compounds/Tween")
 [node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds" index="0"]
 margin_right = 297.0
 
-[node name="Title" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/HBoxContainer" index="1"]
-margin_top = 0.0
-margin_right = 148.0
-margin_bottom = 20.0
+[node name="minusButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/HBoxContainer/Buttons" index="0"]
+focus_neighbour_left = NodePath("../../../../../../../../../PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton")
+focus_neighbour_top = NodePath("../../../../AtmosphericGasses/HBoxContainer/Buttons/plusButton")
+focus_previous = NodePath("../../../../AtmosphericGasses/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
+
+[node name="plusButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/HBoxContainer/Buttons" index="1"]
+focus_neighbour_right = NodePath("../../../Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
+focus_neighbour_bottom = NodePath("../../../Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
+focus_next = NodePath("../../../Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
 
 [node name="HSeparator" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/HBoxContainer" index="2"]
-margin_left = 152.0
 margin_right = 297.0
 
 [node name="Clip" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds" index="1"]
@@ -712,6 +994,86 @@ margin_bottom = 95.0
 ChartName = "COMPOUNDS"
 YAxisTicks = 6
 
+[node name="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart" index="0"]
+margin_right = 297.0
+
+[node name="LegendContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/MarginContainer" index="0"]
+margin_right = 295.0
+
+[node name="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart" index="1"]
+margin_right = 297.0
+margin_bottom = 95.0
+
+[node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer" index="1"]
+margin_right = 297.0
+margin_bottom = 91.0
+
+[node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 297.0
+margin_bottom = 69.0
+
+[node name="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer" index="0"]
+margin_right = 265.0
+margin_bottom = 69.0
+
+[node name="ChartContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer" index="0"]
+margin_right = 255.0
+margin_bottom = 69.0
+
+[node name="Ordinate" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="0"]
+margin_bottom = 69.0
+
+[node name="Labels" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate" index="0"]
+margin_bottom = 69.0
+
+[node name="Line" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate" index="1"]
+margin_bottom = 69.0
+
+[node name="Drawer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="1"]
+margin_right = 253.0
+margin_bottom = 69.0
+
+[node name="Origin" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="2"]
+margin_top = 67.0
+margin_bottom = 71.0
+
+[node name="Abscissa" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="3"]
+margin_top = 67.0
+margin_right = 253.0
+margin_bottom = 71.0
+
+[node name="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa" index="0"]
+margin_right = 250.0
+
+[node name="Line" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer" index="0"]
+margin_right = 250.0
+
+[node name="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer" index="1"]
+margin_right = 250.0
+
+[node name="Labels" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 250.0
+
+[node name="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer" index="4"]
+margin_top = 69.0
+margin_bottom = 69.0
+
+[node name="xAxisLabel" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer" index="1"]
+margin_left = 269.0
+margin_top = 51.0
+margin_right = 276.0
+margin_bottom = 69.0
+
+[node name="InspectButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer" index="2"]
+margin_left = 280.0
+margin_right = 297.0
+focus_neighbour_left = NodePath("../../../../../../../HBoxContainer/Buttons/plusButton")
+focus_neighbour_top = NodePath("../../../../../../../HBoxContainer/Buttons/plusButton")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath("../../../../../../../../../../../../../../../NextTabButton/Button")
+focus_next = NodePath("../../../../../../../../../../../../../../../NextTabButton/Button")
+focus_previous = NodePath("../../../../../../../HBoxContainer/Buttons/plusButton")
+
 [node name="NextTabButton" type="MarginContainer" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -730,6 +1092,11 @@ __meta__ = {
 [node name="Button" type="Button" parent="NextTabButton"]
 margin_right = 150.0
 margin_bottom = 40.0
+focus_neighbour_top = NodePath("../../MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
+focus_neighbour_right = NodePath(".")
+focus_neighbour_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath("../../MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart/VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
 mouse_filter = 1
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_styles/hover = SubResource( 26 )
@@ -740,7 +1107,9 @@ __meta__ = {
 }
 
 [connection signal="item_selected" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector" to="." method="OnReportTabPatchListSelected"]
+[connection signal="focus_entered" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton" to="." method="SetReportSubtab" binds= [ "AutoEvo" ]]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton" to="." method="SetReportSubtab" binds= [ "AutoEvo" ]]
+[connection signal="focus_entered" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton" to="." method="SetReportSubtab" binds= [ "Timeline" ]]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton" to="." method="SetReportSubtab" binds= [ "Timeline" ]]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer/GlobalFilter" to="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" method="OnFilterSelected" binds= [ 0 ]]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer/LocalFilter" to="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" method="OnFilterSelected" binds= [ 1 ]]
@@ -753,6 +1122,10 @@ __meta__ = {
 [connection signal="pressed" from="NextTabButton/Button" to="." method="NextOrFinishClicked"]
 
 [editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation"]
+[editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer/LineChart"]
 [editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions"]
+[editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
 [editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses"]
+[editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer/LineChart"]
 [editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds"]
+[editable path="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer/LineChart"]

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -183,6 +183,9 @@ public class CollapsibleList : VBoxContainer
 
     private void Collapse()
     {
+        if (collapseButton.HasFocus())
+            expandButton.GrabFocus();
+
         collapseButton.Hide();
         expandButton.Show();
 
@@ -198,6 +201,9 @@ public class CollapsibleList : VBoxContainer
 
     private void Expand()
     {
+        if (expandButton.HasFocus())
+            collapseButton.GrabFocus();
+
         collapseButton.Show();
         expandButton.Hide();
 
