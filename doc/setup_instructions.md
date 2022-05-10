@@ -83,9 +83,14 @@ On Linux you can use your package manager to install that. The package
 might be called `dotnet-sdk-5.0`. For example on Fedora this can be
 installed with: `sudo dnf install dotnet-sdk-5.0`
 
-On Windows don't intall Mono or MonoDevelop, it will break
+On Windows don't install Mono or MonoDevelop, it will break
 things. Dotnet is a good tool to use on Windows. You can download an
 installer for that from: https://dotnet.microsoft.com/en-us/download
+
+On mac you can install the latest dotnet sdk using homebrew:
+```sh
+brew install dotnet-sdk
+```
 
 At this point you should verify that running `dotnet` in terminal /
 command prompt runs the dotnet tool. If it doesn't you don't have .NET
@@ -410,7 +415,8 @@ After installing ruby open a terminal / command prompt and run:
 gem install os colorize rubyzip json sha3 httparty parallel nokogiri
 ```
 
-On Linux you might need to run the command with `sudo`.
+On Linux you might need to run the command with `sudo`. Or you can install
+them in your user directory with `--user` flag, this also applies to Mac.
 
 
 If you have trouble installing sha3 on windows: make sure you have
@@ -586,7 +592,8 @@ use them and a plain text editor to work on translations.
 On Windows you can download precompiled versions of the tools. You will likely need to extract
 them and then add the folder you extracted them in to your PATH for them to be found.
 
-On Linux use your package manager to install the `gettext` package.
+On Linux use your package manager to install the `gettext` package. On Mac the same package
+is available through Homebrew.
 
 ## Running the Format Checks
 
@@ -699,3 +706,44 @@ On Linux these folders are:
 ```
 
 On Windows the cache folders are somewhere in your APPDATA folders.
+
+## Exporting the game
+
+### Prerequisites
+
+There is a provided script `make_release.rb` which helps with bundling the
+game up for releases. This relies on `godot` (or `godot.exe`) being the name
+of the Godot editor that is the current version and it being in PATH.
+
+To set this up basically create a new folder that you add to PATH (Windows 
+registry, `.bashrc` or `.zshrc` for Linux/Mac) and create a copy or 
+symbolic link in it named `godot`. 
+
+For Mac if you copied the Godot editor to your apps folder, like you should,
+run the following (and then edit `.zshrc`):
+```sh
+mkdir ~/bin
+cd ~/bin
+ln -s /Applications/Godot_mono.app/Contents/MacOS/Godot godot
+./godot
+```
+The last command should have opened the Godot editor correctly. If it did,
+close it and you are now ready to edit your shell startup script to put
+the bin folder in your PATH. You can run `pwd` command to see the full
+path you need to include there.
+
+### Running the script
+
+After you have installed the prerequisites and checked the game runs fine
+from the Godot editor, you can just run the export script:
+```sh
+ruby make_release.rb
+```
+
+Or if you want more control you can select which platforms to export to
+and skip zipping up the folder if you just want to test locally:
+```sh
+ruby make_Release.rb -t "Windows Desktop" --no-zip
+```
+
+For more options run the script with the `-h` parameter to see all of them.
