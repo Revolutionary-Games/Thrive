@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -42,6 +42,9 @@ public class MainMenu : NodeWithInput
     public NodePath LicensesDisplayPath = null!;
 
     [Export]
+    public NodePath CreditsBackButtonPath = null!;
+
+    [Export]
     public NodePath GLES2PopupPath = null!;
 
     [Export]
@@ -67,6 +70,7 @@ public class MainMenu : NodeWithInput
     private Control creditsContainer = null!;
     private CreditsScroll credits = null!;
     private LicensesDisplay licensesDisplay = null!;
+    private Button creditsBackButton = null!;
 
     private Button newGameButton = null!;
     private Button freebuildButton = null!;
@@ -177,6 +181,7 @@ public class MainMenu : NodeWithInput
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
+        creditsBackButton = GetNode<Button>(CreditsBackButtonPath);
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
 
@@ -442,6 +447,7 @@ public class MainMenu : NodeWithInput
         // Show the credits view
         credits.Restart();
         creditsContainer.Visible = true;
+        creditsBackButton.GrabFocus();
 
         thriveLogo.Hide();
     }

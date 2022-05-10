@@ -225,16 +225,6 @@ public class InputEventItem : Control
         return xButton.GetPath();
     }
 
-    private void XButtonPressed()
-    {
-        GetTree().SetInputAsHandled();
-
-        Delete();
-
-        // Rebind canceled, alert the InputManager so it can resume getting input
-        InputManager.PerformingRebind = false;
-    }
-
     /// <summary>
     ///   Performs the key reassigning.
     ///   Checks if it is waiting for a user input and if there are any conflicts (opens a warning dialog
@@ -262,7 +252,12 @@ public class InputEventItem : Control
         if ((@event is InputEventMouseButton && xButton.IsHovered() && !xButton.Disabled) ||
             (@event.IsActionPressed("ui_accept") && xButton.HasFocus() && !xButton.Disabled))
         {
-            XButtonPressed();
+            GetTree().SetInputAsHandled();
+
+            Delete();
+
+            // Rebind canceled, alert the InputManager so it can resume getting input
+            InputManager.PerformingRebind = false;
             return;
         }
 
