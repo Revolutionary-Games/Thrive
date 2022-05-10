@@ -77,12 +77,12 @@ public class MainMenu : NodeWithInput
     private CustomConfirmationDialog gles2Popup = null!;
     private ErrorDialog modLoadFailures = null!;
 
-    public enum Menu : uint
+    public enum Menu
     {
         MainMenu = 0,
         Tools = 1,
         Extra = 2,
-        SubClass = uint.MaxValue,
+        SubClass = -1,
     }
 
     public override void _Ready()
@@ -263,7 +263,7 @@ public class MainMenu : NodeWithInput
         {
             menu.Hide();
 
-            if (menu.GetIndex() == (uint)CurrentMenuIndex)
+            if (menu.GetIndex() == (int)CurrentMenuIndex)
             {
                 menu.Show();
             }
