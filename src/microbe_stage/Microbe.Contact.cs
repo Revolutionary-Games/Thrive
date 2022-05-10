@@ -1308,7 +1308,7 @@ public partial class Microbe
             {
                 GD.Print($"Removed destroyed microbe from {nameof(touchedMicrobes)}");
                 touchedMicrobes.Remove(microbe);
-                break; // this is important to not crash on the next loop in the foreach
+                break;
             }
 
             if (!attemptingToEngulf.Contains(microbe) && CanEngulf(microbe))
