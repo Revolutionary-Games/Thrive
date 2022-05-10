@@ -3,7 +3,7 @@ using Godot;
 using Newtonsoft.Json;
 
 [DeserializedCallbackTarget]
-[IgnoreNoMethodsTakingInputAttribute]
+[IgnoreNoMethodsTakingInput]
 [SceneLoadedClass("res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn", UsesEarlyResolve = false)]
 public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
 {
@@ -89,6 +89,10 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
     {
     }
 
+    public override void OnValidAction()
+    {
+    }
+
     public void SetBehaviouralValue(BehaviouralValueType type, float value)
     {
         UpdateBehaviourSlider(type, value);
@@ -101,8 +105,8 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
         if (Math.Abs(value - oldValue) < MathUtils.EPSILON)
             return;
 
-        var action = new CellEditorAction(Editor, 0, DoBehaviourChangeAction, UndoBehaviourChangeAction,
-            new BehaviourChangeActionData(value, oldValue, type));
+        var action = new SingleCellEditorAction<BehaviourActionData>(DoBehaviourChangeAction, UndoBehaviourChangeAction,
+            new BehaviourActionData(value, oldValue, type));
 
         Editor.EnqueueAction(action);
     }
@@ -161,11 +165,8 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
     }
 
     [DeserializedCallbackAllowed]
-    private void DoBehaviourChangeAction(CellEditorAction action)
+    private void DoBehaviourChangeAction(BehaviourActionData data)
     {
-        var data = (BehaviourChangeActionData?)action.Data ??
-            throw new Exception($"{nameof(DoBehaviourChangeAction)} missing action data");
-
         if (Behaviour == null)
             throw new InvalidOperationException($"Editor has no {nameof(Behaviour)} set for change action to use");
 
@@ -174,11 +175,8 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoBehaviourChangeAction(CellEditorAction action)
+    private void UndoBehaviourChangeAction(BehaviourActionData data)
     {
-        var data = (BehaviourChangeActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoBehaviourChangeAction)} missing action data");
-
         if (Behaviour == null)
             throw new InvalidOperationException($"Editor has no {nameof(Behaviour)} set for change action to use");
 

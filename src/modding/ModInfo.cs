@@ -89,7 +89,7 @@ public class ModInfo
     public string? PckToLoad { get; set; }
 
     /// <summary>
-    ///   If set needs to point to a C# compiled DLL file that. Needs to be outside any .pck files
+    ///   If set needs to point to a C# compiled DLL file that can be loaded. Needs to be outside any .pck files
     /// </summary>
     public string? ModAssembly { get; set; }
 
@@ -99,6 +99,13 @@ public class ModInfo
     ///   the entrypoint to executing code in the mod's assembly.
     /// </summary>
     public string? AssemblyModClass { get; set; }
+
+    /// <summary>
+    ///   Alternative to specifying <see cref="AssemblyModClass"/>. If this is true, then the assembly is assumed to
+    ///   contain only Harmony patches which will be automatically loaded and unloaded when the mod is initialized
+    ///   and shutdown.
+    /// </summary>
+    public bool? UseAutoHarmony { get; set; }
 
     /// <summary>
     ///   If true the mod specifies that the game needs to be restarted for the mod to properly load / unload

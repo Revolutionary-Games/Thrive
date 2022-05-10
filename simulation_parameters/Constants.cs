@@ -66,25 +66,23 @@ public static class Constants
 
     public const float FLAGELLA_BASE_FORCE = 75.7f;
 
-    /// <summary>
-    ///   Used for energy balance calculations
-    /// </summary>
-    public const string FLAGELLA_COMPONENT_NAME = "movement";
-
     public const float CELL_BASE_THRUST = 50.6f;
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
-    public const int PROCESS_OBJECTS_PER_TASK = 30;
+    public const int PROCESS_OBJECTS_PER_TASK = 15;
 
     public const int MICROBE_SPAWN_RADIUS = 170;
     public const int CLOUD_SPAWN_RADIUS = 170;
 
     /// <summary>
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
-    ///   without causing them to despawn instantly
+    ///   without causing them to despawn instantly. Things despawn outside the despawn radius.
     /// </summary>
-    public const int DESPAWN_RADIUS_OFFSET_SQUARED = 2500;
+    public const int DESPAWN_RADIUS_OFFSET = 50;
+
+    public const int MICROBE_DESPAWN_RADIUS_SQUARED = (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET) *
+        (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET);
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
@@ -124,7 +122,7 @@ public static class Constants
     /// </summary>
     public const float MICROBE_AI_SIGNAL_REACT_INTERVAL = 1.2f;
 
-    public const int MICROBE_AI_OBJECTS_PER_TASK = 15;
+    public const int MICROBE_AI_OBJECTS_PER_TASK = 12;
 
     public const int INITIAL_SPECIES_POPULATION = 100;
 
@@ -144,6 +142,11 @@ public static class Constants
     ///   Max number of concurrent audio players that may be spawned per entity.
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
+
+    /// <summary>
+    ///   Max number of concurrent audio players that may be spawned for UI sounds.
+    /// </summary>
+    public const int MAX_CONCURRENT_UI_AUDIO_PLAYERS = 10;
 
     public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
 
@@ -214,6 +217,16 @@ public static class Constants
     /// </summary>
     public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
 
+    /// <summary>
+    ///   Limits how often floating chunks are processed to save on some performance
+    /// </summary>
+    public const float FLOATING_CHUNK_PROCESS_INTERVAL = 0.05f;
+
+    /// <summary>
+    ///   If more chunks exist at once than this, then some are forced to dissolve immediately
+    /// </summary>
+    public const int FLOATING_CHUNK_MAX_COUNT = 35;
+
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 3000.0f;
 
     public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;
@@ -240,6 +253,8 @@ public static class Constants
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
     /// </summary>
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
+
+    public const float MICROBE_REPRODUCTION_PROGRESS_INTERVAL = 0.05f;
 
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
@@ -486,7 +501,7 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
-    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 1200;
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
@@ -553,6 +568,11 @@ public static class Constants
     ///   Scale used for one frame while membrane data is not ready yet
     /// </summary>
     public const float MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE = 0.18f;
+
+    /// <summary>
+    ///   Multiplier for cell editor actions in multicellular editor
+    /// </summary>
+    public const float MULTICELLULAR_EDITOR_COST_FACTOR = 0.5f;
 
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
@@ -630,6 +650,12 @@ public static class Constants
     /// <summary>
     ///   All Nodes tagged with this are considered Microbes that the AI can react to
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: quite a few of these AI_TAG starting constants need to be renamed as these are generally used to
+    ///     find relevant entities for things that aren't the AI system
+    ///   </para>
+    /// </remarks>
     public const string AI_TAG_MICROBE = "microbe";
 
     /// <summary>

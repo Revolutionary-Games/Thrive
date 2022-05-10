@@ -19,6 +19,7 @@ public partial class Microbe
     private HashSet<uint> pilusPhysicsShapes = new();
 
     private bool membraneOrganellePositionsAreDirty = true;
+    private bool membraneOrganellesWereUpdatedThisFrame;
 
     private bool destroyed;
 
@@ -74,6 +75,11 @@ public partial class Microbe
 
     [JsonProperty]
     private bool deathParticlesSpawned;
+
+    /// <summary>
+    ///   Used to log just once when the touched microbe disposed issue happens to reduce log spam
+    /// </summary>
+    private bool loggedTouchedDisposeIssue;
 
     [JsonProperty]
     private MicrobeState state;
@@ -345,6 +351,11 @@ public partial class Microbe
     /// </summary>
     public bool CanEngulf(Microbe target)
     {
+        // Can't engulf already destroyed microbes. We don't use entity references so we need to manually check if
+        // something is destroyed or not here (especially now that the Invoke the engulf start callback)
+        if (target.destroyed)
+            return false;
+
         // Log error if trying to engulf something that is disposed, we got a crash log trace with an error with that
         // TODO: find out why disposed microbes can be attempted to be engulfed
         try
@@ -354,7 +365,12 @@ public partial class Microbe
         }
         catch (ObjectDisposedException)
         {
-            GD.PrintErr("Touched microbe has been disposed before engulfing could start");
+            if (!loggedTouchedDisposeIssue)
+            {
+                GD.PrintErr("Touched microbe has been disposed before engulfing could start");
+                loggedTouchedDisposeIssue = true;
+            }
+
             return false;
         }
 
@@ -473,10 +489,7 @@ public partial class Microbe
         {
             foreach (var entry in organelle.Definition.InitialComposition)
             {
-                float existing = 0;
-
-                if (compoundsToRelease.ContainsKey(entry.Key))
-                    existing = compoundsToRelease[entry.Key];
+                compoundsToRelease.TryGetValue(entry.Key, out var existing);
 
                 compoundsToRelease[entry.Key] = existing + (entry.Value *
                     Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
@@ -551,7 +564,7 @@ public partial class Microbe
 
             // Finally spawn a chunk with the settings
             var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
-                chunkScene, cloudSystem!, random);
+                chunkScene, random);
 
             // Add to the spawn system to make these chunks limit possible number of entities
             SpawnSystem.AddEntityToTrack(chunk);
@@ -1120,21 +1133,25 @@ public partial class Microbe
 
                 var target = otherIsPilus ? thisMicrobe : touchedMicrobe;
 
-                target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus");
+                Invoke.Instance.Perform(() => target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus"));
                 return;
             }
 
             // Pili don't stop engulfing
             if (thisMicrobe.touchedMicrobes.Add(touchedMicrobe))
             {
-                thisMicrobe.CheckStartEngulfingOnCandidates();
-                thisMicrobe.CheckBinding();
+                Invoke.Instance.Perform(() =>
+                {
+                    thisMicrobe.CheckStartEngulfingOnCandidates();
+                    thisMicrobe.CheckBinding();
+                });
             }
 
             // Play bump sound if certain total collision impulse is reached (adjusted by mass)
             if (thisMicrobe.collisionForce / Mass > Constants.CONTACT_IMPULSE_TO_BUMP_SOUND)
             {
-                thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg");
+                Invoke.Instance.Perform(() =>
+                    thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg"));
             }
         }
     }
@@ -1169,7 +1186,7 @@ public partial class Microbe
 
             if (otherMicrobesInEngulfRange.Add(microbe))
             {
-                CheckStartEngulfingOnCandidates();
+                Invoke.Instance.Perform(CheckStartEngulfingOnCandidates);
             }
         }
     }

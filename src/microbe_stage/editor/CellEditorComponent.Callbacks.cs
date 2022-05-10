@@ -23,11 +23,8 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganellePlaceAction(CellEditorAction action)
+    private void DoOrganellePlaceAction(PlacementActionData data)
     {
-        var data = (PlacementActionData?)action.Data ??
-            throw new Exception($"{nameof(DoOrganellePlaceAction)} missing action data");
-
         data.ReplacedCytoplasm = new List<OrganelleTemplate>();
         var organelle = data.Organelle;
 
@@ -58,11 +55,8 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganellePlaceAction(CellEditorAction action)
+    private void UndoOrganellePlaceAction(PlacementActionData data)
     {
-        var data = (PlacementActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoOrganellePlaceAction)} missing action data");
-
         editedMicrobeOrganelles.Remove(data.Organelle);
 
         if (data.ReplacedCytoplasm != null)
@@ -78,26 +72,20 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganelleRemoveAction(CellEditorAction action)
+    private void DoOrganelleRemoveAction(RemoveActionData data)
     {
-        var data = (RemoveActionData?)action.Data ??
-            throw new Exception($"{nameof(DoOrganelleRemoveAction)} missing action data");
         editedMicrobeOrganelles.Remove(data.Organelle);
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganelleRemoveAction(CellEditorAction action)
+    private void UndoOrganelleRemoveAction(RemoveActionData data)
     {
-        var data = (RemoveActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoOrganelleRemoveAction)} missing action data");
         editedMicrobeOrganelles.Add(data.Organelle);
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganelleMoveAction(CellEditorAction action)
+    private void DoOrganelleMoveAction(MoveActionData data)
     {
-        var data = (MoveActionData?)action.Data ??
-            throw new Exception($"{nameof(DoOrganelleMoveAction)} missing action data");
         data.Organelle.Position = data.NewLocation;
         data.Organelle.Orientation = data.NewRotation;
 
@@ -113,25 +101,25 @@ public partial class CellEditorComponent
             editedMicrobeOrganelles.Add(data.Organelle);
         }
 
-        ++data.Organelle.NumberOfTimesMoved;
+        // TODO: dynamic MP PR had this line:
+        // OnMembraneChanged();
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganelleMoveAction(CellEditorAction action)
+    private void UndoOrganelleMoveAction(MoveActionData data)
     {
-        var data = (MoveActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoOrganelleMoveAction)} missing action data");
         data.Organelle.Position = data.OldLocation;
         data.Organelle.Orientation = data.OldRotation;
 
         UpdateAlreadyPlacedVisuals();
         StartAutoEvoPrediction();
 
-        --data.Organelle.NumberOfTimesMoved;
+        // TODO: dynamic MP PR had this line:
+        // OnMembraneChanged();
     }
 
     [DeserializedCallbackAllowed]
-    private void DoNewMicrobeAction(CellEditorAction action)
+    private void DoNewMicrobeAction(NewMicrobeActionData data)
     {
         // TODO: could maybe grab the current organelles and put them in the action here? This could be more safe
         // against weird situations where it might be possible if the undo / redo system is changed to restore
@@ -147,13 +135,9 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoNewMicrobeAction(CellEditorAction action)
+    private void UndoNewMicrobeAction(NewMicrobeActionData data)
     {
-        var data = (NewMicrobeActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoNewMicrobeAction)} missing action data");
-
         editedMicrobeOrganelles.Clear();
-        Editor.MutationPoints = data.PreviousMP;
         Membrane = data.OldMembrane;
 
         foreach (var organelle in data.OldEditedMicrobeOrganelles)
@@ -165,14 +149,15 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoMembraneChangeAction(CellEditorAction action)
+    private void DoMembraneChangeAction(MembraneActionData data)
     {
-        var data = (MembraneActionData?)action.Data ??
-            throw new Exception($"{nameof(DoMembraneChangeAction)} missing action data");
-
         var membrane = data.NewMembrane;
         GD.Print("Changing membrane to '", membrane.InternalName, "'");
         Membrane = membrane;
+
+        // TODO: dynamic MP PR had this line:
+        // OnMembraneChanged();
+
         UpdateMembraneButtons(Membrane.InternalName);
         UpdateSpeed(CalculateSpeed());
         UpdateHitpoints(CalculateHitpoints());
@@ -191,10 +176,8 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoMembraneChangeAction(CellEditorAction action)
+    private void UndoMembraneChangeAction(MembraneActionData data)
     {
-        var data = (MembraneActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoMembraneChangeAction)} missing action data");
         Membrane = data.OldMembrane;
         GD.Print("Changing membrane back to '", Membrane.InternalName, "'");
         UpdateMembraneButtons(Membrane.InternalName);
@@ -215,11 +198,8 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoRigidityChangeAction(CellEditorAction action)
+    private void DoRigidityChangeAction(RigidityActionData data)
     {
-        var data = (RigidityChangeActionData?)action.Data ??
-            throw new Exception($"{nameof(DoRigidityChangeAction)} missing action data");
-
         Rigidity = data.NewRigidity;
 
         // TODO: when rigidity affects auto-evo this also needs to re-run the prediction, though there should probably
@@ -229,11 +209,8 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoRigidityChangeAction(CellEditorAction action)
+    private void UndoRigidityChangeAction(RigidityActionData data)
     {
-        var data = (RigidityChangeActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoRigidityChangeAction)} missing action data");
-
         Rigidity = data.PreviousRigidity;
         OnRigidityChanged();
     }

@@ -96,6 +96,8 @@ public class LineChart : VBoxContainer
     /// </remarks>
     public string? TooltipYAxisFormat;
 
+    private static readonly Dictionary<string, Dictionary<string, bool>> StoredDatasetsVisibilityStatus = new();
+
     /// <summary>
     ///   Datasets to be plotted on the chart. Key is the dataset's name
     /// </summary>
@@ -279,13 +281,13 @@ public class LineChart : VBoxContainer
 
     public ChartDataSet? GetDataSet(string name)
     {
-        if (!dataSets.ContainsKey(name))
+        if (!dataSets.TryGetValue(name, out var dataSet))
         {
             GD.PrintErr("DataSet with name '" + name + "' not found");
             return null;
         }
 
-        return dataSets[name];
+        return dataSet;
     }
 
     public void ClearDataSets()
@@ -369,6 +371,11 @@ public class LineChart : VBoxContainer
 
         UpdateMinimumAndMaximumValues();
 
+        if (!StoredDatasetsVisibilityStatus.ContainsKey(ChartName))
+            StoredDatasetsVisibilityStatus.Add(ChartName, new Dictionary<string, bool>());
+
+        var stored = StoredDatasetsVisibilityStatus[ChartName];
+
         foreach (var data in dataSets)
         {
             childChart?.dataSets.Add(data.Key, (LineChartData)data.Value.Clone());
@@ -377,14 +384,18 @@ public class LineChart : VBoxContainer
             if (string.IsNullOrEmpty(data.Key))
                 throw new Exception("Dataset dictionary key is null");
 
-            // Hide the rest, if number of shown dataset exceeds initialVisibleDataSets
-            if (visibleDataSetCount >= initialVisibleDataSets && data.Key != defaultDataSet)
+            if (data.Key != defaultDataSet)
             {
-                UpdateDataSetVisibility(data.Key, false);
-            }
-            else if (visibleDataSetCount < initialVisibleDataSets && data.Key != defaultDataSet)
-            {
-                visibleDataSetCount++;
+                var visible = visibleDataSetCount < initialVisibleDataSets;
+
+                // Override visible value if stored value exists
+                if (stored.TryGetValue(data.Key, out bool value))
+                    visible = value;
+
+                UpdateDataSetVisibility(data.Key, visible);
+
+                if (visible)
+                    visibleDataSetCount++;
             }
 
             // Initialize line
@@ -505,10 +516,8 @@ public class LineChart : VBoxContainer
         // Clear lines
         foreach (var data in dataSets)
         {
-            if (!dataLines.ContainsKey(data.Key))
+            if (!dataLines.TryGetValue(data.Key, out var dataLine))
                 continue;
-
-            var dataLine = dataLines[data.Key];
 
             dataLine.DetachAndQueueFree();
 
@@ -540,10 +549,8 @@ public class LineChart : VBoxContainer
     {
         childChart?.UpdateDataSetVisibility(name, visible);
 
-        if (!dataSets.ContainsKey(name))
+        if (!dataSets.TryGetValue(name, out var data))
             return DataSetVisibilityUpdateResult.NotFound;
-
-        var data = dataSets[name];
 
         if (data.Draw == visible)
             return DataSetVisibilityUpdateResult.UnchangedValue;
@@ -569,6 +576,11 @@ public class LineChart : VBoxContainer
 
         // Update the legend
         DataSetsLegend?.OnDataSetVisibilityChange(visible, name);
+
+        if (StoredDatasetsVisibilityStatus.TryGetValue(ChartName, out Dictionary<string, bool> value))
+        {
+            value[name] = visible;
+        }
 
         return DataSetVisibilityUpdateResult.Success;
     }
@@ -668,13 +680,11 @@ public class LineChart : VBoxContainer
             // Create into List so we can use IndexOf
             var points = data.Value.DataPoints.ToList();
 
-            if (points.Count <= 0 || !dataLines.ContainsKey(data.Key))
+            if (points.Count <= 0 || !dataLines.TryGetValue(data.Key, out var dataLine))
                 continue;
 
             // This is actually the first point (left-most)
             var previousPoint = points.Last();
-
-            var dataLine = dataLines[data.Key];
 
             // Setup lines
             foreach (var point in points)

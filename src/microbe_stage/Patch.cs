@@ -259,9 +259,9 @@ public class Patch
             if (chunk.Compounds == null)
                 continue;
 
-            if (chunk.Density > 0 && chunk.Compounds.ContainsKey(compound))
+            if (chunk.Density > 0 && chunk.Compounds.TryGetValue(compound, out var chunkCompound))
             {
-                result += chunk.Density * chunk.Compounds[compound].Amount;
+                result += chunk.Density * chunkCompound.Amount;
             }
         }
 

@@ -115,14 +115,14 @@ public class PatchMapNode : MarginContainer
 
     public override void _GuiInput(InputEvent @event)
     {
-        if (@event is InputEventMouseButton mouse)
-        {
-            if (mouse.Pressed)
+        if (@event is InputEventMouseButton
             {
-                ((PatchMapDrawer)GetParent()).MarkDirty();
-                OnSelect();
-                AcceptEvent();
-            }
+                Pressed: true, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
+            })
+        {
+            ((PatchMapDrawer)GetParent()).MarkDirty();
+            OnSelect();
+            GetTree().SetInputAsHandled();
         }
     }
 

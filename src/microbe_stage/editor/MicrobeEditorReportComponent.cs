@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   The report tab of the microbe editor
 /// </summary>
-[IgnoreNoMethodsTakingInputAttribute]
+[IgnoreNoMethodsTakingInput]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn", UsesEarlyResolve = false)]
 public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportData>
 {
@@ -400,6 +400,10 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     }
 
     public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
+    {
+    }
+
+    public override void OnValidAction()
     {
     }
 
