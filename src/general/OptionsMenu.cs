@@ -425,6 +425,8 @@ public class OptionsMenu : ControlWithInput
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
         assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options");
         unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options");
+
+        GetViewport().Connect("gui_focus_changed", this, nameof(OnFocusChanged));
     }
 
     public override void _Notification(int what)
@@ -461,6 +463,7 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
 
         Show();
+        graphicsButton.GrabFocus();
     }
 
     /// <summary>
@@ -622,6 +625,16 @@ public class OptionsMenu : ControlWithInput
         var screenResolution = OS.WindowSize * OS.GetScreenScale();
         resolution.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("AUTO_RESOLUTION"),
             screenResolution.x, screenResolution.y);
+    }
+
+    private void OnFocusChanged(Control control)
+    {
+        if (control is not Button btn)
+            return;
+        if (btn.Group != graphicsButton.Group)
+            return;
+
+        btn.EmitSignal("pressed");
     }
 
     /// <summary>
