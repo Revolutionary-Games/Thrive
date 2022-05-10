@@ -116,6 +116,48 @@ public class InputEventItem : Node
     }
 
     /// <summary>
+    ///   Sets the InputEventItem left to this. Used for keyboard/controller navigation.
+    /// </summary>
+    public void SetLeftNeighbor(InputEventItem item)
+    {
+        SetLeftNeighbor(item.xButton);
+    }
+
+    /// <summary>
+    ///   Sets the InputEventItem left to this. Used for keyboard/controller navigation.
+    /// </summary>
+    public void SetLeftNeighbor(Control control)
+    {
+        button.FocusNeighbourLeft = control.GetPath();
+    }
+
+    /// <summary>
+    ///   Sets the InputEventItem right to this. Used for keyboard/controller navigation.
+    /// </summary>
+    public void SetRightNeighbor(InputEventItem item)
+    {
+        SetRightNeighbor(item.button);
+    }
+
+    /// <summary>
+    ///   Sets the InputEventItem left to this. Used for keyboard/controller navigation.
+    /// </summary>
+    public void SetRightNeighbor(Control control)
+    {
+        xButton.FocusNeighbourRight = control.GetPath();
+    }
+
+    public NodePath GetLeftAnchorPath()
+    {
+        return button.GetPath();
+    }
+
+    public NodePath GetRightAnchorPath()
+    {
+        return xButton.GetPath();
+    }
+
+    /// <summary>
     ///   Performs the key reassigning.
     ///   Checks if it is waiting for a user input and if there are any conflicts (opens a warning dialog
     ///   if there is any).

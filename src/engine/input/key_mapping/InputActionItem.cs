@@ -113,10 +113,13 @@ public class InputActionItem : VBoxContainer
         foreach (var input in Inputs)
         {
             input.AssociatedAction = new WeakReference<InputActionItem>(this);
+
             inputEventsContainer.AddChild(input);
         }
 
         inputEventsContainer.MoveChild(addInputEvent, Inputs.Count);
+
+        SetFocusNeighbors();
 
         Inputs.CollectionChanged += OnInputsChanged;
     }
@@ -157,6 +160,36 @@ public class InputActionItem : VBoxContainer
         return inputActionItem;
     }
 
+    private void SetFocusNeighbors()
+    {
+        var count = Inputs.Count;
+
+        for (var index = 0; index < count; index++)
+        {
+            var input = Inputs[index];
+            if (index > 0)
+                input.SetLeftNeighbor(Inputs[index - 1]);
+            else
+                input.SetLeftNeighbor(addInputEvent);
+
+            if (index < count - 1)
+                input.SetRightNeighbor(Inputs[index + 1]);
+            else
+                input.SetRightNeighbor(addInputEvent);
+        }
+
+        if (count > 0)
+        {
+            addInputEvent.FocusNeighbourLeft = Inputs[count - 1].GetRightAnchorPath();
+            addInputEvent.FocusNeighbourRight = Inputs[0].GetLeftAnchorPath();
+        }
+        else
+        {
+            addInputEvent.FocusNeighbourLeft = AddInputEventPath;
+            addInputEvent.FocusNeighbourRight = AddInputEventPath;
+        }
+    }
+
     /// <summary>
     ///   The small + button has been pressed
     /// </summary>
@@ -191,5 +224,7 @@ public class InputActionItem : VBoxContainer
             default:
                 throw new NotSupportedException($"{e.Action} is not supported on {nameof(Inputs)}");
         }
+
+        SetFocusNeighbors();
     }
 }

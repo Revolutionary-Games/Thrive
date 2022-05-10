@@ -18,6 +18,8 @@ custom_constants/separation = 0
 [node name="Button" type="Button" parent="HBoxContainer"]
 margin_right = 77.0
 margin_bottom = 35.0
+focus_neighbour_right = NodePath("../XButton")
+focus_next = NodePath("../XButton")
 custom_fonts/font = ExtResource( 3 )
 text = "Control+A"
 __meta__ = {
@@ -28,6 +30,8 @@ __meta__ = {
 margin_left = 77.0
 margin_right = 97.0
 margin_bottom = 35.0
+focus_neighbour_left = NodePath("../Button")
+focus_previous = NodePath("../Button")
 custom_colors/font_color = Color( 0.784314, 0, 0, 1 )
 action_mode = 0
 text = "x"

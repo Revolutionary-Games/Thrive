@@ -1483,6 +1483,9 @@ public class OptionsMenu : ControlWithInput
     private void OnResetLanguagePressed()
     {
         Settings.Instance.SelectedLanguage.Value = null;
+        if (resetLanguageButton.HasFocus())
+            languageSelection.GrabFocus();
+
         resetLanguageButton.Visible = false;
 
         Settings.Instance.ApplyLanguageSettings();
