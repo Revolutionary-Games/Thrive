@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-09 14:59+0300\n"
+"POT-Creation-Date: 2022-05-10 18:31+0300\n"
 "PO-Revision-Date: 2022-03-26 14:06+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -601,25 +601,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1301
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:751
 msgid "AMMONIA"
 msgstr "氨"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1353
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:822
 msgid "PHOSPHATE"
 msgstr "磷酸盐"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1405
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:716
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氢"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1249
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:786
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
@@ -630,28 +630,28 @@ msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1457
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:857
 msgid "IRON"
 msgstr "铁"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:549
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:553
 msgid "OXYGEN"
 msgstr "氧"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:603
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:607
 msgid "CARBON_DIOXIDE"
 msgstr "二氧化碳"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:576
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:580
 msgid "NITROGEN"
 msgstr "氮"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:434
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
 msgstr "阳光"
@@ -982,7 +982,7 @@ msgstr "取消"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1212
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1019
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr "下一个"
@@ -2769,7 +2769,7 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "当玩家试图退出游戏时，启用/禁用未保存的进度警告弹出框。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:371
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
 msgid "TEMPERATURE"
@@ -2941,7 +2941,7 @@ msgid "PRESSURE_SHORT"
 msgstr "压力"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1151
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:676
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:712
@@ -2988,7 +2988,51 @@ msgstr "进入游戏的下一个阶段（多细胞）。在你有一个足够大
 msgid "POPULATION_CAPITAL"
 msgstr "种群数量："
 
+#: ../src/microbe_stage/PatchMapGenerator.cs:186
+msgid "PATCH_PANGONIAN_VENTS"
+msgstr "远古热泉"
+
 #: ../src/microbe_stage/PatchMapGenerator.cs:187
+msgid "PATCH_PANGONIAN_MESOPELAGIC"
+msgstr "远古中层带"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
+msgid "PATCH_PANGONIAN_EPIPELAGIC"
+msgstr "远古上远洋带"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
+msgid "PATCH_PANGONIAN_TIDEPOOL"
+msgstr "远古潮池"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
+msgid "PATCH_PANGONIAN_BATHYPELAGIC"
+msgstr "远古半深海带"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
+msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
+msgstr "远古深海带"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:192
+msgid "PATCH_PANGONIAN_COAST"
+msgstr "远古海岸"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:193
+msgid "PATCH_PANGONIAN_ESTUARY"
+msgstr "远古河口"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
+msgid "PATCH_CAVE"
+msgstr "洞穴"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
+msgid "PATCH_ICE_SHELF"
+msgstr "冰架"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
+msgid "PATCH_PANGONIAN_SEAFLOOR"
+msgstr "远古海床"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:498
 msgid "PATCH_NAME"
 msgstr "{0}{1}"
 
@@ -3242,35 +3286,35 @@ msgstr "物种名…"
 msgid "INFINITE_MP"
 msgstr "无限变异点"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:209
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:213
 msgid "SELECT_A_PATCH"
 msgstr "选择一个地区以显示详细"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:248
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "目前位置"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:326
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:330
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
 msgid "PHYSICAL_CONDITIONS"
 msgstr "物理条件"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:403
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:407
 msgid "PRESSURE"
 msgstr "压力"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:508
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:512
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:669
 msgid "ATMOSPHERIC_GASSES"
 msgstr "大气气体"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:931
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:935
 msgid "SPECIES_PRESENT"
 msgstr "存在的物种"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:988
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:992
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移动到这个地区"
 
@@ -3444,47 +3488,47 @@ msgstr "你已发展繁荣（Thrived）！"
 msgid "WIN_TEXT"
 msgstr "恭喜你！你已赢得了这个版本的Thrive！如果你愿意你可以关掉这个页面并继续游玩，或者在新世界开始一场新游戏。"
 
-#: ../src/modding/ModLoader.cs:218 ../src/modding/ModLoader.cs:271
+#: ../src/modding/ModLoader.cs:226 ../src/modding/ModLoader.cs:279
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "无法加载{0}的Mod信息"
 
-#: ../src/modding/ModLoader.cs:242
+#: ../src/modding/ModLoader.cs:250
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}：assembly加载失败，出现异常：{1}"
 
-#: ../src/modding/ModLoader.cs:259
+#: ../src/modding/ModLoader.cs:267
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}：没有可加载的资源"
 
-#: ../src/modding/ModLoader.cs:286
+#: ../src/modding/ModLoader.cs:294
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}：mod的assembly卸载方法调用失败"
 
-#: ../src/modding/ModLoader.cs:294
+#: ../src/modding/ModLoader.cs:302
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}：mod的assembly卸载方法调用失败，出现异常：{1}"
 
-#: ../src/modding/ModLoader.cs:376
+#: ../src/modding/ModLoader.cs:384
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}：Mod的assembly里没有找到指定的mod class “{1}”"
 
-#: ../src/modding/ModLoader.cs:389
+#: ../src/modding/ModLoader.cs:397
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}：mod的assembly初始化方法调用失败"
 
-#: ../src/modding/ModLoader.cs:405
+#: ../src/modding/ModLoader.cs:413
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}：mod的assembly初始化方法调用失败，出现异常：{1}"
 
-#: ../src/modding/ModLoader.cs:430
+#: ../src/modding/ModLoader.cs:438
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr "{0}：mod的Harmony载入失败，出现异常：{1}"
 
-#: ../src/modding/ModLoader.cs:453
+#: ../src/modding/ModLoader.cs:461
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}：mod的Harmony卸载方法调用失败，出现异常：{1}"
 
-#: ../src/modding/ModLoader.cs:465
+#: ../src/modding/ModLoader.cs:473
 msgid "PCK_LOAD_FAILED"
 msgstr "pck文件（{0}）载入失败"
 
@@ -4448,39 +4492,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "现在就查看"
-
-#~ msgid "PATCH_PANGONIAN_VENTS"
-#~ msgstr "远古热泉"
-
-#~ msgid "PATCH_PANGONIAN_MESOPELAGIC"
-#~ msgstr "远古中层带"
-
-#~ msgid "PATCH_PANGONIAN_EPIPELAGIC"
-#~ msgstr "远古上远洋带"
-
-#~ msgid "PATCH_PANGONIAN_TIDEPOOL"
-#~ msgstr "远古潮池"
-
-#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-#~ msgstr "远古半深海带"
-
-#~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-#~ msgstr "远古深海带"
-
-#~ msgid "PATCH_PANGONIAN_COAST"
-#~ msgstr "远古海岸"
-
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "远古河口"
-
-#~ msgid "PATCH_CAVE"
-#~ msgstr "洞穴"
-
-#~ msgid "PATCH_ICE_SHELF"
-#~ msgstr "冰架"
-
-#~ msgid "PATCH_PANGONIAN_SEAFLOOR"
-#~ msgstr "远古海床"
 
 #~ msgid "FRAME_DELTA"
 #~ msgstr "帧增量：{0}"

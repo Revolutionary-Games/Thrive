@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-09 14:59+0300\n"
+"POT-Creation-Date: 2022-05-10 18:31+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -605,25 +605,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1301
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:751
 msgid "AMMONIA"
 msgstr "Amoniako"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1353
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:822
 msgid "PHOSPHATE"
 msgstr "Fosfato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1405
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:716
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogena Sulfido"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1249
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:786
 msgid "GLUCOSE"
 msgstr "Glukozo"
 
@@ -634,28 +634,28 @@ msgstr "OksiToksina NO"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1457
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:857
 msgid "IRON"
 msgstr "Fero"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:549
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:553
 msgid "OXYGEN"
 msgstr "Oksigeno"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:603
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:607
 msgid "CARBON_DIOXIDE"
 msgstr "Karbona duoksido"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:576
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:580
 msgid "NITROGEN"
 msgstr "Nitrogeno"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:434
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
 msgstr "Sunlumo"
@@ -1023,7 +1023,7 @@ msgstr "KONFIRMU"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1212
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1019
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr "SEKVA"
@@ -2863,7 +2863,7 @@ msgstr ""
 " Ĉu vi volas daŭrigi?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:371
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
 msgid "TEMPERATURE"
@@ -3043,7 +3043,7 @@ msgid "PRESSURE_SHORT"
 msgstr "Premo."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1151
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:676
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:712
@@ -3096,7 +3096,51 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACIO:"
 
+#: ../src/microbe_stage/PatchMapGenerator.cs:186
+msgid "PATCH_PANGONIAN_VENTS"
+msgstr "Pangoniaj Ellastruoj"
+
 #: ../src/microbe_stage/PatchMapGenerator.cs:187
+msgid "PATCH_PANGONIAN_MESOPELAGIC"
+msgstr "Pangonia Mezopelagio"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
+msgid "PATCH_PANGONIAN_EPIPELAGIC"
+msgstr "Pangonia Epipelagio"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
+msgid "PATCH_PANGONIAN_TIDEPOOL"
+msgstr "Pangonia"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
+msgid "PATCH_PANGONIAN_BATHYPELAGIC"
+msgstr "Pangonia"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
+msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
+msgstr "Pangonia"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:192
+msgid "PATCH_PANGONIAN_COAST"
+msgstr "Pangonia Marbordo"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:193
+msgid "PATCH_PANGONIAN_ESTUARY"
+msgstr "Pangonia Estuaro"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
+msgid "PATCH_CAVE"
+msgstr "Kaverno"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
+msgid "PATCH_ICE_SHELF"
+msgstr "Glacia Breto"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
+msgid "PATCH_PANGONIAN_SEAFLOOR"
+msgstr "Pangonia Marfundo"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:498
 #, fuzzy
 msgid "PATCH_NAME"
 msgstr "Kaverno"
@@ -3360,36 +3404,36 @@ msgstr "Specia nomo..."
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:209
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:213
 msgid "SELECT_A_PATCH"
 msgstr "Elektu flikaĵon por montri detalojn ĉi tie"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:248
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "NUNA LOKO"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:326
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:330
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fizikaj Kondiĉoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:403
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:407
 #, fuzzy
 msgid "PRESSURE"
 msgstr "Premo."
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:508
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:512
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:669
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferaj Gasoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:931
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:935
 msgid "SPECIES_PRESENT"
 msgstr "Nunaj specio"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:988
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:992
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Moviĝu al ĉi tiu loko"
 
@@ -3572,49 +3616,49 @@ msgstr "VI PROSPERIS!"
 msgid "WIN_TEXT"
 msgstr "Gratulon, ke vi gajnis ĉi tiun version de Thrive! Vi povas daŭre ludi post kiam ĉi tiu ekrano fermiĝas, se vi volas, aŭ komenci novan ludon en nova mondo."
 
-#: ../src/modding/ModLoader.cs:218 ../src/modding/ModLoader.cs:271
+#: ../src/modding/ModLoader.cs:226 ../src/modding/ModLoader.cs:279
 msgid "CANT_LOAD_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:242
+#: ../src/modding/ModLoader.cs:250
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:259
+#: ../src/modding/ModLoader.cs:267
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:286
+#: ../src/modding/ModLoader.cs:294
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:294
+#: ../src/modding/ModLoader.cs:302
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:376
+#: ../src/modding/ModLoader.cs:384
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:389
+#: ../src/modding/ModLoader.cs:397
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:405
+#: ../src/modding/ModLoader.cs:413
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:430
+#: ../src/modding/ModLoader.cs:438
 #, fuzzy
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
-#: ../src/modding/ModLoader.cs:453
+#: ../src/modding/ModLoader.cs:461
 #, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "La vakuolo estas interna membraneca organeto uzata por stokado en la ĉelo. Ili estas kunmetitaj de pluraj kunfandiĝitaj vezikoj, pli malgrandaj membranaj strukturoj vaste uzataj en ĉeloj por stokado. Ĝi estas plenigita per akvo, kiu kutimas enhavi molekulojn, enzimojn, solidojn kaj aliajn substancojn. Ilia formo estas flua kaj povas varii inter ĉeloj."
 
-#: ../src/modding/ModLoader.cs:465
+#: ../src/modding/ModLoader.cs:473
 #, fuzzy
 msgid "PCK_LOAD_FAILED"
 msgstr "Ŝarĝo estas finita"
@@ -4657,39 +4701,6 @@ msgstr "W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas t
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Lernilo"
-
-#~ msgid "PATCH_PANGONIAN_VENTS"
-#~ msgstr "Pangoniaj Ellastruoj"
-
-#~ msgid "PATCH_PANGONIAN_MESOPELAGIC"
-#~ msgstr "Pangonia Mezopelagio"
-
-#~ msgid "PATCH_PANGONIAN_EPIPELAGIC"
-#~ msgstr "Pangonia Epipelagio"
-
-#~ msgid "PATCH_PANGONIAN_TIDEPOOL"
-#~ msgstr "Pangonia"
-
-#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-#~ msgstr "Pangonia"
-
-#~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-#~ msgstr "Pangonia"
-
-#~ msgid "PATCH_PANGONIAN_COAST"
-#~ msgstr "Pangonia Marbordo"
-
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Pangonia Estuaro"
-
-#~ msgid "PATCH_CAVE"
-#~ msgstr "Kaverno"
-
-#~ msgid "PATCH_ICE_SHELF"
-#~ msgstr "Glacia Breto"
-
-#~ msgid "PATCH_PANGONIAN_SEAFLOOR"
-#~ msgstr "Pangonia Marfundo"
 
 #~ msgid "AUTO"
 #~ msgstr "aŭtomate"

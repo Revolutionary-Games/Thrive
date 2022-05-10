@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-09 14:59+0300\n"
+"POT-Creation-Date: 2022-05-10 18:31+0300\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -601,25 +601,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1301
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:751
 msgid "AMMONIA"
 msgstr "אמוניה"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1353
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:822
 msgid "PHOSPHATE"
 msgstr "פוספט"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1405
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:716
 msgid "HYDROGEN_SULFIDE"
 msgstr "מימן גופרתי"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1249
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:786
 msgid "GLUCOSE"
 msgstr "גלוקוז"
 
@@ -630,28 +630,28 @@ msgstr "אוקסיטוקסי נ\"ט"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1457
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:857
 msgid "IRON"
 msgstr "ברזל"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:549
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:553
 msgid "OXYGEN"
 msgstr "חמצן"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:603
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:607
 msgid "CARBON_DIOXIDE"
 msgstr "פחמן דו חמצני"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:576
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:580
 msgid "NITROGEN"
 msgstr "חנקן"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:434
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
 msgstr "אור שמש"
@@ -984,7 +984,7 @@ msgstr "בטל פעולה"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1212
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1019
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr "הבא"
@@ -2786,7 +2786,7 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "הפעל / השבת את חלון אזהרת התקדמות הלא שמורה בזמן שהשחק מנסה לצאת מהמשחק."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:371
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
 msgid "TEMPERATURE"
@@ -2958,7 +2958,7 @@ msgid "PRESSURE_SHORT"
 msgstr "לחץ."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1151
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:676
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:712
@@ -3005,7 +3005,51 @@ msgstr "עבור לשלב הבא של המשחק (רב תא). זמין ברגע 
 msgid "POPULATION_CAPITAL"
 msgstr "אוכלוסיה:"
 
+#: ../src/microbe_stage/PatchMapGenerator.cs:186
+msgid "PATCH_PANGONIAN_VENTS"
+msgstr "אזור הנביעות"
+
 #: ../src/microbe_stage/PatchMapGenerator.cs:187
+msgid "PATCH_PANGONIAN_MESOPELAGIC"
+msgstr "אזור המזופלגי"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
+msgid "PATCH_PANGONIAN_EPIPELAGIC"
+msgstr "אזור האפיפלגי"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
+msgid "PATCH_PANGONIAN_TIDEPOOL"
+msgstr "אזור בריכות גאות"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
+msgid "PATCH_PANGONIAN_BATHYPELAGIC"
+msgstr "אזור הבתיאלי"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
+msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
+msgstr "אזור התהומות"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:192
+msgid "PATCH_PANGONIAN_COAST"
+msgstr "אזור החוף"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:193
+msgid "PATCH_PANGONIAN_ESTUARY"
+msgstr "אזור שפך הנהר"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
+msgid "PATCH_CAVE"
+msgstr "מערה"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
+msgid "PATCH_ICE_SHELF"
+msgstr "מדף קרח"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
+msgid "PATCH_PANGONIAN_SEAFLOOR"
+msgstr "אזור קרקעית הים"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:498
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -3259,35 +3303,35 @@ msgstr "שם המין..."
 msgid "INFINITE_MP"
 msgstr "אינסוף נקמ\"ו"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:209
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:213
 msgid "SELECT_A_PATCH"
 msgstr "בחר אזור להצגת פרטים כאן"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:248
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "מיקום נוכחי"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:326
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:330
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:535
 msgid "PHYSICAL_CONDITIONS"
 msgstr "מצב פיזי"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:403
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:407
 msgid "PRESSURE"
 msgstr "לחץ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:508
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:512
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:635
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:669
 msgid "ATMOSPHERIC_GASSES"
 msgstr "גזים אטמוספריים"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:931
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:935
 msgid "SPECIES_PRESENT"
 msgstr "מינים נוכחים"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:988
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:992
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "תעבור לאזור זה"
 
@@ -3461,47 +3505,47 @@ msgstr "אתה שגשגת!"
 msgid "WIN_TEXT"
 msgstr "כל הכבוד על הזכייה בגרסה זו של Thrive! אתה יכול להמשיך לשחק אחרי סגירת מסך זה אם תרצה, או תוכל להתחיל עולם חדש במשחק חדש."
 
-#: ../src/modding/ModLoader.cs:218 ../src/modding/ModLoader.cs:271
+#: ../src/modding/ModLoader.cs:226 ../src/modding/ModLoader.cs:279
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "לא יכול לטעון מידע על המוד מ{0}"
 
-#: ../src/modding/ModLoader.cs:242
+#: ../src/modding/ModLoader.cs:250
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: טעינת הרכיב נכשלה עם חריגה: {1}"
 
-#: ../src/modding/ModLoader.cs:259
+#: ../src/modding/ModLoader.cs:267
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: אין רכיבים שניתנים לטעינה"
 
-#: ../src/modding/ModLoader.cs:286
+#: ../src/modding/ModLoader.cs:294
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: קריאת פריקה הרכבה של מוד זה נכשלה"
 
-#: ../src/modding/ModLoader.cs:294
+#: ../src/modding/ModLoader.cs:302
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: קריאת פריקת הרכבה מוד זה נכשלה פרט ל: {1}"
 
-#: ../src/modding/ModLoader.cs:376
+#: ../src/modding/ModLoader.cs:384
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: מחלקת מוד ספיציפית \"{1}\" לא מצאה את קליטת המוד"
 
-#: ../src/modding/ModLoader.cs:389
+#: ../src/modding/ModLoader.cs:397
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: קריאת שיטת אתחול הרכבת מוד זה נכשלה"
 
-#: ../src/modding/ModLoader.cs:405
+#: ../src/modding/ModLoader.cs:413
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: קריאת שיטת האתחול של הרכבה של המוד נכשלה עם חריגה של: {1}"
 
-#: ../src/modding/ModLoader.cs:430
+#: ../src/modding/ModLoader.cs:438
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr "{0}: טעינת Harmony מוד נכשל בפרט ל: {1}"
 
-#: ../src/modding/ModLoader.cs:453
+#: ../src/modding/ModLoader.cs:461
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "{0}: קריאת פריקת Harmony מוד נכשלה פרט ל: {1}"
 
-#: ../src/modding/ModLoader.cs:465
+#: ../src/modding/ModLoader.cs:473
 msgid "PCK_LOAD_FAILED"
 msgstr "טעינת קבצי pck ({0}) נכשלה"
 
@@ -4465,39 +4509,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "הראה עכשיו"
-
-#~ msgid "PATCH_PANGONIAN_VENTS"
-#~ msgstr "אזור הנביעות"
-
-#~ msgid "PATCH_PANGONIAN_MESOPELAGIC"
-#~ msgstr "אזור המזופלגי"
-
-#~ msgid "PATCH_PANGONIAN_EPIPELAGIC"
-#~ msgstr "אזור האפיפלגי"
-
-#~ msgid "PATCH_PANGONIAN_TIDEPOOL"
-#~ msgstr "אזור בריכות גאות"
-
-#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-#~ msgstr "אזור הבתיאלי"
-
-#~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-#~ msgstr "אזור התהומות"
-
-#~ msgid "PATCH_PANGONIAN_COAST"
-#~ msgstr "אזור החוף"
-
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "אזור שפך הנהר"
-
-#~ msgid "PATCH_CAVE"
-#~ msgstr "מערה"
-
-#~ msgid "PATCH_ICE_SHELF"
-#~ msgstr "מדף קרח"
-
-#~ msgid "PATCH_PANGONIAN_SEAFLOOR"
-#~ msgstr "אזור קרקעית הים"
 
 #~ msgid "FRAME_DELTA"
 #~ msgstr "דלתא: {0}"

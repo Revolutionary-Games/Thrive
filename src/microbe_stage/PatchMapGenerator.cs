@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Godot;
-using Vector2 = Godot.Vector2;
 
 /// <summary>
 ///   Contains logic for generating PatchMap objects
@@ -58,7 +57,8 @@ public static class PatchMapGenerator
                 }
             }
 
-            var region = new PatchRegion(i, GetPatchLocalizedName(continentName, regionTypeName), regionTypeName, coord);
+            var region = new PatchRegion(i, GetPatchLocalizedName(continentName, regionTypeName),
+                regionTypeName, coord);
             int numberOfPatches;
 
             if (regionType == 2)
@@ -105,7 +105,10 @@ public static class PatchMapGenerator
                 // Chance to add a vent region if this region were adding to is an ocean/sea one
                 if (random.Next(0, 2) == 1)
                 {
-                    var ventRegion = new PatchRegion(specialRegionsId--, GetPatchLocalizedName(continentName, "vents"), "vents", coord);
+                    var ventRegion =
+                        new PatchRegion(specialRegionsId--, GetPatchLocalizedName(continentName, "vents"), "vents",
+                            coord);
+
                     var ventPatch = GetPatchFromPredefinedMap(10, currentPatchId++, predefinedMap, areaName);
                     ventRegion.AddPatch(ventPatch);
                     map.AddSpecialRegion(ventRegion);
@@ -116,7 +119,8 @@ public static class PatchMapGenerator
             // Random chance to create a cave
             if (random.Next(0, 2) == 1)
             {
-                var caveRegion = new PatchRegion(specialRegionsId--, GetPatchLocalizedName(continentName, "underwatercave"), "underwatercave", coord);
+                var caveRegion = new PatchRegion(specialRegionsId--,
+                    GetPatchLocalizedName(continentName, "underwatercave"), "underwatercave", coord);
                 var cavePatch = GetPatchFromPredefinedMap(8, currentPatchId++, predefinedMap, areaName);
                 caveRegion.AddPatch(cavePatch);
                 map.AddSpecialRegion(caveRegion);
@@ -147,7 +151,7 @@ public static class PatchMapGenerator
         // We make the graph by substracting edges from its Delaunay Triangulation
         // as long as the graph stays connected.
         graph = DelaunayTriangulation(graph, regionCoords);
-        graph = SubstractEdges(graph, regionCoords, vertexNr, edgeNr, random);
+        graph = SubstractEdges(graph, vertexNr, edgeNr, random);
 
         // Link regions according to the graph matrix
         for (int k = 0; k < vertexNr; k++)
@@ -196,7 +200,8 @@ public static class PatchMapGenerator
         _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
     }
 
-    private static int[,] SubstractEdges(int[,] graph, List<Vector2> vertexCoords, int vertexNr, int edgeNr, Random random)
+    private static int[,] SubstractEdges(int[,] graph, int vertexNr, int edgeNr,
+        Random random)
     {
         var currentEdgeNr = CurrentEdgeNumber(graph, vertexNr);
 
@@ -204,9 +209,9 @@ public static class PatchMapGenerator
         while (currentEdgeNr > edgeNr)
         {
             int edgeToDelete = random.Next(1, currentEdgeNr);
-            int i = 0;
-            int j = 0;
-            for (i = 0; i < vertexNr && edgeToDelete != 0; i++)
+            int i;
+            int j;
+            for (i = 0, j = 0; i < vertexNr && edgeToDelete != 0; i++)
             {
                 for (j = 0; j < vertexNr && edgeToDelete != 0 && j <= i; j++)
                 {
@@ -234,8 +239,8 @@ public static class PatchMapGenerator
     private static int[,] DelaunayTriangulation(int[,] graph, List<Vector2> vertexCoords)
     {
         var indices = Geometry.TriangulateDelaunay2d(vertexCoords.ToArray());
-        var triangles = indices.ToList<int>();
-        for (int i = 0; i < triangles.Count() - 2; i += 3)
+        var triangles = indices.ToList();
+        for (int i = 0; i < triangles.Count - 2; i += 3)
         {
             graph[triangles[i], triangles[i + 1]] = graph[triangles[i + 1], triangles[i]] = 1;
             graph[triangles[i + 1], triangles[i + 2]] = graph[triangles[i + 2], triangles[i + 1]] = 1;
@@ -246,13 +251,13 @@ public static class PatchMapGenerator
     }
 
     // DFS graph search
-    private static int[] DFS(int[,] graph, int vertexNr, int point, int[] visited)
+    private static int[] Dfs(int[,] graph, int vertexNr, int point, int[] visited)
     {
         visited[point] = 1;
         for (int i = 0; i < vertexNr; i++)
         {
             if (graph[point, i] == 1 && visited[i] == 0)
-                visited = DFS(graph, vertexNr, i, visited);
+                visited = Dfs(graph, vertexNr, i, visited);
         }
 
         return visited;
@@ -262,9 +267,10 @@ public static class PatchMapGenerator
     private static bool CheckConnectivity(int[,] graph, int vertexNr)
     {
         int[] visited = new int[vertexNr];
-        visited = DFS(graph, vertexNr, 0, visited);
+        visited = Dfs(graph, vertexNr, 0, visited);
         if (visited.Sum() != vertexNr)
             return false;
+
         return true;
     }
 
@@ -275,7 +281,9 @@ public static class PatchMapGenerator
         for (int i = 0; i < vertexNr; i++)
         {
             for (int j = 0; j < vertexNr; j++)
+            {
                 edgeNr += graph[i, j];
+            }
         }
 
         return edgeNr / 2;
@@ -328,7 +336,7 @@ public static class PatchMapGenerator
     private static Patch GetPatchFromPredefinedMap(int patchId, int newId, PatchMap predefinedMap, string areaName)
     {
         var patch = predefinedMap.Patches[patchId];
-        patch = new Patch(GetPatchLocalizedName(areaName, patch.BiomeTemplate.Name), newId++, patch.BiomeTemplate)
+        patch = new Patch(GetPatchLocalizedName(areaName, patch.BiomeTemplate.Name), newId, patch.BiomeTemplate)
         {
             Depth =
             {
