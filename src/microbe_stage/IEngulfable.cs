@@ -12,9 +12,9 @@ public interface IEngulfable : IEntity
 
     public EntityReference<Microbe> HostileEngulfer { get; }
 
-    public bool IsBeingEngulfed { get; set; }
-
     public bool IsBeingIngested { get; set; }
+
+    public bool IsBeingRegurgitated { get; set; }
 
     public bool IsIngested { get; set; }
 

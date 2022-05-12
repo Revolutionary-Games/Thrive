@@ -146,13 +146,13 @@ public partial class Microbe
 
     // Properties for engulfing
     [JsonProperty]
-    public bool IsBeingEngulfed { get; set; }
+    public bool IsBeingIngested { get; set; }
+
+    [JsonProperty]
+    public bool IsBeingRegurgitated { get; set; }
 
     [JsonProperty]
     public bool IsIngested { get; set; }
-
-    [JsonProperty]
-    public bool IsBeingIngested { get; set; }
 
     [JsonIgnore]
     public EntityReference<Microbe> HostileEngulfer => hostileEngulfer;
@@ -959,6 +959,7 @@ public partial class Microbe
             MovementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
         }
 
+        /* NOTE: Will no longer work correctly with the new engulfment mechanics
         if (IsBeingEngulfed)
         {
             // Microbe is now getting absorbed into the engulfer
@@ -967,7 +968,7 @@ public partial class Microbe
 
             wasBeingEngulfed = true;
         }
-        else if (wasBeingEngulfed && !IsBeingEngulfed && !IsBeingIngested)
+        else if (wasBeingEngulfed && !IsBeingEngulfed && !IsIngested)
         {
             // Else If we were but are no longer, being engulfed
             wasBeingEngulfed = false;
@@ -1011,6 +1012,7 @@ public partial class Microbe
         {
             IsBeingEngulfed = false;
         }
+        */
 
         for (int i = engulfedMaterials.Count - 1; i >= 0; --i)
         {
@@ -1029,7 +1031,7 @@ public partial class Microbe
                     {
                         CompleteIngestion(engulfed.Material);
                     }
-                    else if (engulfed.Material.IsIngested)
+                    else if (engulfed.Material.IsBeingRegurgitated)
                     {
                         CompleteEjection(engulfed.Material);
                         engulfedMaterials.RemoveAt(i);
@@ -1048,14 +1050,7 @@ public partial class Microbe
     {
         if (State != MicrobeState.Engulf || engulfedSize >= Size)
         {
-            // Reset the engulfing ignores and potential targets
-            foreach (var body in attemptingToEngulf)
-            {
-                StopEngulfingOnTarget(body);
-            }
-
             attemptingToEngulf.Clear();
-
             return;
         }
 
@@ -1068,24 +1063,13 @@ public partial class Microbe
         {
             var engulfable = attemptingToEngulf[i];
 
-            // Ignore non-engulfable objects
-            if (!CanEngulf(engulfable))
-            {
-                StopEngulfingOnTarget(engulfable);
-                engulfable.IsBeingEngulfed = false;
-                continue;
-            }
-
-            if (engulfable.IsIngested)
+            // Ignore non-engulfable and already engulfed objects
+            if (!CanEngulf(engulfable) || engulfable.IsIngested)
                 continue;
 
             if (engulfable is RigidBody body)
             {
-                // Pull nearby bodies into our cell
-                var direction = body.GlobalTransform.origin.DirectionTo(GlobalTransform.origin);
-                body.AddCentralForce(direction * body.Mass * Constants.ENGULFING_PULL_SPEED);
-
-                // Ingest if not yet and body is in ingestion area
+                // Ingest if not yet already and body is in ingestion area
                 if (engulfableArea.OverlapsBody(body) && CanEngulf(engulfable))
                 {
                     IngestEngulfable(engulfable);
@@ -1094,7 +1078,6 @@ public partial class Microbe
             }
 
             engulfable.HostileEngulfer.Value = this;
-            engulfable.IsBeingEngulfed = true;
         }
     }
 
@@ -1103,7 +1086,7 @@ public partial class Microbe
         // This kept getting doubled for some reason, so i just set it to default
         MovementFactor = 1.0f;
         wasBeingEngulfed = false;
-        IsBeingEngulfed = false;
+        IsBeingIngested = false;
 
         if (HostileEngulfer.Value != null)
         {
@@ -1131,13 +1114,6 @@ public partial class Microbe
             cellBurstEffectParticles.AddToGroup(Constants.TIMED_GROUP);
 
             GetParent().AddChild(cellBurstEffectParticles);
-
-            // Hide the particles if being engulfed since they are
-            // supposed to be already "absorbed" by the engulfing cell
-            if (IsBeingEngulfed)
-            {
-                cellBurstEffectParticles.Hide();
-            }
 
             // This loop is placed here (which isn't related to the particles but for convenience)
             // so this loop is run only once
@@ -1343,7 +1319,6 @@ public partial class Microbe
         touchedEngulfables.Remove(target);
 
         target.IsBeingIngested = true;
-        target.IsBeingEngulfed = false;
         target.OnEngulfed();
 
         engulfedSize += target.Size;
@@ -1364,27 +1339,34 @@ public partial class Microbe
         // accordingly to hopefully minimize any part of the material sticking out the membrane.
         // Note: extremely long and thin objects might still stick out
 
-        // Calculate the nearest membrane point to the target and interpolate it by a half to this cell's center
-        // to get the maximum extent/edge that qualifies as the "inside" of the membrane
-        var nearestPointOfMembraneToTargetHalfScale = Membrane.GetVectorTowardsNearestPointOfMembrane(
-            body.Translation.x, body.Translation.z).LinearInterpolate(Vector3.Zero, 0.5f);
+        var targetRadiusNormalized = Mathf.Clamp(target.Radius / Radius, 0.0f, 1.0f);
 
-        // Further shrink the edge closer to the center by taking into account the target's radius
-        var viableStoringEdge = nearestPointOfMembraneToTargetHalfScale / (target.Radius / 2);
+        var nearestPointOfMembraneToTarget = Membrane.GetVectorTowardsNearestPointOfMembrane(
+            body.Translation.x, body.Translation.z);
 
-        // Get the final storing position by taking a value between this cell's center and the storing edge.
+        // The point nearest to the membrane calculation doesn't take being bacteria into account
+        if (CellTypeProperties.IsBacteria)
+            nearestPointOfMembraneToTarget *= 0.5f;
+
+        // From the calculated nearest point of membrane above we then linearly interpolate it by the engulfed's
+        // normalized radius to this cell's center in order to "shrink" the point relative to this cell's origin.
+        // This will then act as a "maximum extent/edge" that qualifies as the interior of the engulfer's membrane
+        var viableStoringAreaEdge = nearestPointOfMembraneToTarget.LinearInterpolate(
+            Vector3.Zero, targetRadiusNormalized);
+
+        // Get the final storing position by taking a value between this cell's center and the storing area edge.
         // This would lessen the possibility of engulfed things getting bunched up in the same position.
-        var finalStoringPosition = new Vector3(
-            random.Next(0.0f, viableStoringEdge.x),
+        var finalPosition = new Vector3(
+            random.Next(0.0f, viableStoringAreaEdge.x),
             body.Translation.y,
-            random.Next(0.0f, viableStoringEdge.z));
+            random.Next(0.0f, viableStoringAreaEdge.z));
 
         engulfedMaterials.Add(new EngulfedMaterial
         {
             Material = target,
             AvailableEngulfableCompounds = digestibleCompounds,
             InitialTotalEngulfableCompounds = digestibleCompounds.Sum(c => c.Value),
-            TargetTranslation = finalStoringPosition,
+            TargetTranslation = finalPosition,
             TargetScale = body.Scale / 2,
             OriginalScale = body.Scale,
             Interpolate = true,
@@ -1392,11 +1374,11 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Ejects an ingested material from this microbe.
+    ///   Ejects (regurgitate) an ingested material from this microbe.
     /// </summary>
     private void EjectEngulfable(IEngulfable target)
     {
-        if (target.EntityNode.GetParent() != this)
+        if (target.IsBeingRegurgitated || !target.IsIngested || target.EntityNode.GetParent() != this)
             return;
 
         var body = target as RigidBody;
@@ -1410,15 +1392,22 @@ public partial class Microbe
         if (engulfedObject == null)
             return;
 
-        target.IsBeingIngested = false;
+        target.IsBeingRegurgitated = true;
         engulfedSize -= target.Size;
 
-        var origin = body.GlobalTransform.origin;
-        var nearestPointOfMembraneToTarget = Membrane.GetVectorTowardsNearestPointOfMembrane(origin.x, origin.z);
+        var nearestPointOfMembraneToTarget = Membrane.GetVectorTowardsNearestPointOfMembrane(
+            body.Translation.x, body.Translation.z);
+
+        // The point nearest to the membrane calculation doesn't take being bacteria into account
+        if (CellTypeProperties.IsBacteria)
+            nearestPointOfMembraneToTarget *= 0.5f;
+
+        var bodyOrigin = body.Transform.origin;
 
         // If engulfer cell is dead (us) or the engulfed is positioned outside any of our closest membrane, immediately
         // eject it without animation
-        if (Dead || origin > nearestPointOfMembraneToTarget)
+        // TODO: Asses performance cost in massive cells?
+        if (Dead || !Membrane.Contains(bodyOrigin.x, bodyOrigin.z))
         {
             CompleteEjection(target);
             body.Scale = engulfedObject.OriginalScale;
@@ -1545,7 +1534,6 @@ public partial class Microbe
             if (!attemptingToEngulf.Contains(engulfable) && CanEngulf(engulfable))
             {
                 attemptingToEngulf.Add(engulfable);
-                StartEngulfingTarget(engulfable);
             }
             else if (engulfedSize >= Size || engulfedSize + engulfable.Size >= Size)
             {
@@ -1559,78 +1547,14 @@ public partial class Microbe
         if (touchedEngulfables.Contains(target) || otherEngulfablesInEngulfRange.Contains(target))
             return;
 
-        StopEngulfingOnTarget(target);
         attemptingToEngulf.Remove(target);
-    }
-
-    private void StartEngulfingTarget(IEngulfable target)
-    {
-        if (target is not RigidBody body)
-            return;
-
-        try
-        {
-            target.IsBeingEngulfed = true;
-            target.HostileEngulfer.Value = this;
-
-            if (Colony != null)
-            {
-                Colony.Master.AddCollisionExceptionWith(body);
-            }
-            else
-            {
-                AddCollisionExceptionWith(body);
-            }
-        }
-        catch (ObjectDisposedException)
-        {
-            GD.Print("Touched eligible engulfable has been disposed before engulfing could start");
-        }
-    }
-
-    private void StopEngulfingOnTarget(IEngulfable target)
-    {
-        target.HostileEngulfer.Value = null;
-
-        if (target is not RigidBody body)
-            return;
-
-        try
-        {
-            if (body is Microbe microbe && (Colony == null || Colony != microbe.Colony))
-            {
-                if (Colony != null)
-                {
-                    Colony.Master.RemoveCollisionExceptionWith(microbe);
-                }
-                else
-                {
-                    RemoveCollisionExceptionWith(microbe);
-                }
-            }
-            else if (body is not Microbe)
-            {
-                if (Colony != null)
-                {
-                    Colony.Master.RemoveCollisionExceptionWith(body);
-                }
-                else
-                {
-                    RemoveCollisionExceptionWith(body);
-                }
-            }
-        }
-        catch (ObjectDisposedException)
-        {
-            GD.Print("Engulfed object has been disposed before engulfing could stop");
-        }
     }
 
     private bool LerpEngulfedMovement(float delta, EngulfedMaterial engulfedObject, RigidBody body)
     {
         if (engulfedObject.AnimationTimeElapsed < 2.0f)
         {
-            var fraction = engulfedObject.AnimationTimeElapsed / 4.0f;
+            var fraction = engulfedObject.AnimationTimeElapsed / 24.0f;
 
             body.Translation = body.Translation.LinearInterpolate(engulfedObject.TargetTranslation, fraction);
             body.Scale = body.Scale.LinearInterpolate(engulfedObject.TargetScale, fraction);
@@ -1652,6 +1576,8 @@ public partial class Microbe
         engulfable.IsBeingIngested = false;
         engulfable.IsIngested = true;
 
+        // In contrast with CompleteEjection, we call OnIngested immediately when ingestion is triggered
+
         otherEngulfablesInEngulfRange.Remove(engulfable);
         touchedEngulfables.Remove(engulfable);
         attemptingToEngulf.Remove(engulfable);
@@ -1659,6 +1585,7 @@ public partial class Microbe
 
     private void CompleteEjection(IEngulfable engulfable)
     {
+        engulfable.IsBeingRegurgitated = false;
         engulfable.IsIngested = false;
         engulfable.OnEjected();
 

@@ -151,7 +151,7 @@ public class MicrobeAI
 
     private void ChooseActions(Random random, MicrobeAICommonData data, Microbe? signaler)
     {
-        if (microbe.IsBeingEngulfed)
+        if (microbe.IsBeingIngested)
         {
             SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }

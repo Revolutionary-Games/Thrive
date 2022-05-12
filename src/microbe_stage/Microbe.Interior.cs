@@ -1110,6 +1110,17 @@ public partial class Microbe
                 if (compound.Value <= 0)
                     continue;
 
+                if (!Compounds.IsUseful(compound.Key))
+                    continue;
+
+                hasAnyUsefulCompounds = true;
+
+                // Don't absorb this specific compound if we have just reached max capacity. And if the compound bag is
+                // entirely full then this material won't be digested and would just be stored away until it's needed
+                // again
+                if (Compounds.GetCompoundAmount(compound.Key) > Compounds.Capacity)
+                    continue;
+
                 var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND * delta;
 
                 if (LysosomeCount > 0)
@@ -1117,15 +1128,6 @@ public partial class Microbe
                     var buff = amount * Constants.LYSOSOME_DIGESTION_SPEED_UP_FRACTION * LysosomeCount;
                     amount += buff;
                 }
-
-                if (Compounds.IsUseful(compound.Key))
-                    hasAnyUsefulCompounds = true;
-
-                // Don't absorb this specific compound as we has just reached max capacity. And if the compound bag is
-                // entirely full then this material won't be digested and would just be stored away until it's needed
-                // again
-                if (Compounds.GetCompoundAmount(compound.Key) > Compounds.Capacity)
-                    continue;
 
                 var taken = Math.Min(compound.Value, amount);
                 engulfedMaterial.AvailableEngulfableCompounds[compound.Key] -= amount;

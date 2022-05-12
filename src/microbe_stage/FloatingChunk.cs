@@ -112,10 +112,10 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonProperty]
-    public bool IsBeingEngulfed { get; set; }
+    public bool IsBeingIngested { get; set; }
 
     [JsonProperty]
-    public bool IsBeingIngested { get; set; }
+    public bool IsBeingRegurgitated { get; set; }
 
     [JsonProperty]
     public bool IsIngested { get; set; }
@@ -364,8 +364,11 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
 
     public void OnEjected()
     {
-        // Just dissolve this chunk entirely (as it's already somehow broken down by digestion?)
-        DissolveOrRemove();
+        if (DigestionProgress > 0)
+        {
+            // Just dissolve this chunk entirely (as it's already somehow broken down by digestion)
+            DissolveOrRemove();
+        }
     }
 
     /// <summary>
