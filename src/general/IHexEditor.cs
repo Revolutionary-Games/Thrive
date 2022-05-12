@@ -4,5 +4,5 @@
 public interface IHexEditor : IEditor
 {
     public bool HexPlacedThisSession<THex>(THex hex)
-        where THex : class;
+        where THex : class, IActionHex;
 }

@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Editor component that contains an MP bar, undo / redo buttons etc. related functions
@@ -23,6 +24,12 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
     private MutationPointsBar mutationPointsBar = null!;
 
     private Button cancelButton = null!;
+
+    /// <summary>
+    ///   If true an editor (component) action is active and can be cancelled. By default just checks for moves
+    /// </summary>
+    [JsonIgnore]
+    public abstract bool CanCancelAction { get; }
 
     public override void _Ready()
     {

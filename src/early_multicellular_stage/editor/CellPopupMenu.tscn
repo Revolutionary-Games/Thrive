@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/early_multicellular_stage/editor/CellPopupMenu.cs" type="Script" id=2]
+
+[node name="CellPopupMenu" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+TitleLabelPath = NodePath("VBoxContainer/MarginContainer/SelectedOrganelleName")
+
+[node name="MpCost" parent="VBoxContainer/Move/MarginContainer/HBoxContainer" index="2"]
+text = "-2 MP"

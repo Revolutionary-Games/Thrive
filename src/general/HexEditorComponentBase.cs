@@ -14,7 +14,7 @@ public abstract class
     where TEditor : class, IHexEditor, IEditorWithActions
     where TCombinedAction : CombinedEditorAction
     where TAction : EditorAction
-    where THexMove : class
+    where THexMove : class, IActionHex
 {
     [Export]
     public NodePath CameraPath = null!;
@@ -94,9 +94,8 @@ public abstract class
 
     protected int usedHoverModel;
 
-    // TODO: rename this to placementRotation in the future (for now old name is kept to keep save compatibility)
     [JsonProperty]
-    protected int organelleRot;
+    protected int placementRotation;
 
     private CustomConfirmationDialog islandPopup = null!;
 
@@ -176,6 +175,9 @@ public abstract class
     public bool CanCancelMove => MovingPlacedHex != null;
 
     [JsonIgnore]
+    public override bool CanCancelAction => CanCancelMove;
+
+    [JsonIgnore]
     public abstract bool HasIslands { get; }
 
     public bool IsLoadedFromSave { get; set; }
@@ -231,7 +233,7 @@ public abstract class
 
         if (fresh)
         {
-            organelleRot = 0;
+            placementRotation = 0;
 
             ResetSymmetryButton();
         }
@@ -414,7 +416,7 @@ public abstract class
         if (!Visible)
             return false;
 
-        organelleRot = (organelleRot + 1) % 6;
+        placementRotation = (placementRotation + 1) % 6;
         return true;
     }
 
@@ -424,10 +426,10 @@ public abstract class
         if (!Visible)
             return false;
 
-        --organelleRot;
+        --placementRotation;
 
-        if (organelleRot < 0)
-            organelleRot = 5;
+        if (placementRotation < 0)
+            placementRotation = 5;
 
         return true;
     }
@@ -723,6 +725,11 @@ public abstract class
         return true;
     }
 
+    protected virtual TCombinedAction CreateCombinedAction(IEnumerable<EditorAction> actions)
+    {
+        return (TCombinedAction)new CombinedEditorAction(actions);
+    }
+
     protected void OnSymmetryPressed()
     {
         if (symmetry == HexEditorSymmetry.SixWaySymmetry)
@@ -813,17 +820,17 @@ public abstract class
         {
             case HexEditorSymmetry.None:
             {
-                callback(q, r, organelleRot);
+                callback(q, r, placementRotation);
                 break;
             }
 
             case HexEditorSymmetry.XAxisSymmetry:
             {
-                callback(q, r, organelleRot);
+                callback(q, r, placementRotation);
 
                 if (q != -1 * q || r != r + q)
                 {
-                    callback(-1 * q, r + q, 6 + (-1 * organelleRot));
+                    callback(-1 * q, r + q, 6 + (-1 * placementRotation));
                 }
 
                 break;
@@ -831,17 +838,17 @@ public abstract class
 
             case HexEditorSymmetry.FourWaySymmetry:
             {
-                callback(q, r, organelleRot);
+                callback(q, r, placementRotation);
 
                 if (q != -1 * q || r != r + q)
                 {
-                    callback(-1 * q, r + q, 6 + (-1 * organelleRot));
-                    callback(-1 * q, -1 * r, (organelleRot + 3) % 6);
-                    callback(q, -1 * (r + q), 9 + (-1 * organelleRot) % 6);
+                    callback(-1 * q, r + q, 6 + (-1 * placementRotation));
+                    callback(-1 * q, -1 * r, (placementRotation + 3) % 6);
+                    callback(q, -1 * (r + q), 9 + (-1 * placementRotation) % 6);
                 }
                 else
                 {
-                    callback(-1 * q, -1 * r, (organelleRot + 3) % 6);
+                    callback(-1 * q, -1 * r, (placementRotation + 3) % 6);
                 }
 
                 break;
@@ -849,12 +856,12 @@ public abstract class
 
             case HexEditorSymmetry.SixWaySymmetry:
             {
-                callback(q, r, organelleRot);
-                callback(-1 * r, r + q, (organelleRot + 1) % 6);
-                callback(-1 * (r + q), q, (organelleRot + 2) % 6);
-                callback(-1 * q, -1 * r, (organelleRot + 3) % 6);
-                callback(r, -1 * (r + q), (organelleRot + 4) % 6);
-                callback(r + q, -1 * q, (organelleRot + 5) % 6);
+                callback(q, r, placementRotation);
+                callback(-1 * r, r + q, (placementRotation + 1) % 6);
+                callback(-1 * (r + q), q, (placementRotation + 2) % 6);
+                callback(-1 * q, -1 * r, (placementRotation + 3) % 6);
+                callback(r, -1 * (r + q), (placementRotation + 4) % 6);
+                callback(r + q, -1 * q, (placementRotation + 5) % 6);
                 break;
             }
         }
@@ -996,9 +1003,12 @@ public abstract class
     }
 
     protected abstract void PerformActiveAction();
-    protected abstract bool DoesActionEndInProgressAction(TCombinedAction action);
 
-    protected abstract TCombinedAction CreateCombinedAction(IEnumerable<TAction> actions);
+    protected virtual bool DoesActionEndInProgressAction(TCombinedAction action)
+    {
+        // Allow only move actions with an in-progress move
+        return action.Data.Any(d => d is HexMoveActionData<THexMove>);
+    }
 
     /// <summary>
     ///   Checks if the target position is valid to place hex.

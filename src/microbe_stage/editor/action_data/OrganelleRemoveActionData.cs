@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 
 [JSONAlwaysDynamicType]
-public class OrganelleRemoveActionData : RemoveHexActionData<OrganelleTemplate>
+public class OrganelleRemoveActionData : HexRemoveActionData<OrganelleTemplate>
 {
     /// <summary>
     ///   Used for replacing Cytoplasm. If true this action is free.
@@ -25,40 +25,14 @@ public class OrganelleRemoveActionData : RemoveHexActionData<OrganelleTemplate>
         return GotReplaced ? 0 : base.CalculateCostInternal();
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override CombinableActionData CreateDerivedMoveAction(HexPlacementActionData<OrganelleTemplate> data)
     {
-        // If this organelle got placed in this session on the same position
-        if (other is OrganellePlacementActionData placementActionData &&
-            placementActionData.PlacedHex.Definition == AddedHex.Definition)
-        {
-            // If this organelle got placed on the same position
-            if (placementActionData.Location == Location)
-                return ActionInterferenceMode.CancelsOut;
-
-            // Removing an organelle and then placing it is a move operation
-            return ActionInterferenceMode.Combinable;
-        }
-
-        // If this organelle got moved in this session
-        if (other is OrganelleMoveActionData moveActionData &&
-            moveActionData.MovedHex.Definition == AddedHex.Definition &&
-            moveActionData.NewLocation == Location)
-        {
-            return ActionInterferenceMode.Combinable;
-        }
-
-        return ActionInterferenceMode.NoInterference;
+        return new OrganelleMoveActionData(data.PlacedHex, Location, data.Location,
+            Orientation, data.Orientation);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override CombinableActionData CreateDerivedRemoveAction(HexMoveActionData<OrganelleTemplate> data)
     {
-        if (other is OrganellePlacementActionData placementActionData)
-        {
-            return new OrganelleMoveActionData(placementActionData.PlacedHex, Location, placementActionData.Location,
-                Orientation, placementActionData.Orientation);
-        }
-
-        var moveActionData = (OrganelleMoveActionData)other;
-        return new OrganelleRemoveActionData(AddedHex, moveActionData.OldLocation, moveActionData.OldRotation);
+        return new OrganelleRemoveActionData(AddedHex, data.OldLocation, data.OldRotation);
     }
 }

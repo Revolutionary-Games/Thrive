@@ -20,13 +20,15 @@ public class CellPlacementActionData : HexPlacementActionData<HexWithData<CellTe
         return PlacedHex.Data?.CellType.MPCost ?? throw new InvalidOperationException("Hex with no data");
     }
 
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override CombinableActionData CreateDerivedMoveAction(HexRemoveActionData<HexWithData<CellTemplate>> data)
     {
-        throw new System.NotImplementedException();
+        return new CellMoveActionData(data.AddedHex, data.Location, Location,
+            data.Orientation, Orientation);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override CombinableActionData CreateDerivedPlacementAction(
+        HexMoveActionData<HexWithData<CellTemplate>> data)
     {
-        throw new System.NotImplementedException();
+        return new CellPlacementActionData(PlacedHex, data.NewLocation, data.NewRotation);
     }
 }

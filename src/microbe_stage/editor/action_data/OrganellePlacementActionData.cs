@@ -5,7 +5,8 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
 {
     public List<OrganelleTemplate>? ReplacedCytoplasm;
 
-    public OrganellePlacementActionData(OrganelleTemplate organelle, Hex location, int orientation) : base(organelle, location, orientation)
+    public OrganellePlacementActionData(OrganelleTemplate organelle, Hex location, int orientation) : base(organelle,
+        location, orientation)
     {
     }
 
@@ -16,17 +17,6 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
-        // If this organelle got removed in this session
-        if (other is OrganelleRemoveActionData removeActionData && removeActionData.AddedHex.Definition == PlacedHex.Definition)
-        {
-            // If the placed organelle has been placed on the same position where it got removed before
-            if (removeActionData.Location == Location)
-                return ActionInterferenceMode.CancelsOut;
-
-            // Removing and placing an organelle is a move operation
-            return ActionInterferenceMode.Combinable;
-        }
-
         if (other is OrganelleMoveActionData moveActionData &&
             moveActionData.MovedHex.Definition == PlacedHex.Definition)
         {
@@ -41,18 +31,17 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
             ReplacedCytoplasm?.Contains(placementActionData.PlacedHex) == true)
             return ActionInterferenceMode.ReplacesOther;
 
-        return ActionInterferenceMode.NoInterference;
+        return base.GetInterferenceModeWithGuaranteed(other);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override CombinableActionData CreateDerivedMoveAction(HexRemoveActionData<OrganelleTemplate> data)
     {
-        if (other is OrganelleRemoveActionData removeActionData)
-        {
-            return new OrganelleMoveActionData(removeActionData.AddedHex, removeActionData.Location, Location,
-                removeActionData.Orientation, Orientation);
-        }
+        return new OrganelleMoveActionData(data.AddedHex, data.Location, Location,
+            data.Orientation, Orientation);
+    }
 
-        var moveActionData = (OrganelleMoveActionData)other;
-        return new OrganellePlacementActionData(PlacedHex, moveActionData.NewLocation, moveActionData.NewRotation);
+    protected override CombinableActionData CreateDerivedPlacementAction(HexMoveActionData<OrganelleTemplate> data)
+    {
+        return new OrganellePlacementActionData(PlacedHex, data.NewLocation, data.NewRotation);
     }
 }

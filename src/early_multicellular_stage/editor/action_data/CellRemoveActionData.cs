@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 
 [JSONAlwaysDynamicType]
-public class CellRemoveActionData : RemoveHexActionData<HexWithData<CellTemplate>>
+public class CellRemoveActionData : HexRemoveActionData<HexWithData<CellTemplate>>
 {
     [JsonConstructor]
     public CellRemoveActionData(HexWithData<CellTemplate> hex, Hex location, int orientation) : base(hex, location,
@@ -15,17 +15,15 @@ public class CellRemoveActionData : RemoveHexActionData<HexWithData<CellTemplate
     {
     }
 
-
-
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    protected override CombinableActionData CreateDerivedMoveAction(
+        HexPlacementActionData<HexWithData<CellTemplate>> data)
     {
-        throw new System.NotImplementedException();
+        return new CellMoveActionData(data.PlacedHex, Location, data.Location,
+            Orientation, data.Orientation);
     }
 
-    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
+    protected override CombinableActionData CreateDerivedRemoveAction(HexMoveActionData<HexWithData<CellTemplate>> data)
     {
-        throw new System.NotImplementedException();
+        return new CellRemoveActionData(AddedHex, data.OldLocation, data.OldRotation);
     }
-
-
 }

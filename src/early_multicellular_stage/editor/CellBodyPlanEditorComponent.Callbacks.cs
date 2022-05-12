@@ -40,4 +40,30 @@ public partial class CellBodyPlanEditorComponent
         editedMicrobeCells.Remove(data.PlacedHex);
     }
 
+    [DeserializedCallbackAllowed]
+    private void DoCellMoveAction(CellMoveActionData data)
+    {
+        data.MovedHex.Position = data.NewLocation;
+        data.MovedHex.Data!.Orientation = data.NewRotation;
+
+        if (editedMicrobeCells.Contains(data.MovedHex))
+        {
+            UpdateAlreadyPlacedVisuals();
+
+            // TODO: notify auto-evo prediction once that is done
+        }
+        else
+        {
+            editedMicrobeCells.Add(data.MovedHex);
+        }
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoCellMoveAction(CellMoveActionData data)
+    {
+        data.MovedHex.Position = data.OldLocation;
+        data.MovedHex.Data!.Orientation = data.OldRotation;
+
+        UpdateAlreadyPlacedVisuals();
+    }
 }

@@ -317,7 +317,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     }
 
     public bool HexPlacedThisSession<THex>(THex hex)
-        where THex : class
+        where THex : class, IActionHex
     {
         return history.HexPlacedThisSession(hex);
     }

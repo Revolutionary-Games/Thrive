@@ -3,29 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-/// <summary>
-///   Manages a custom context menu solely for showing list of options for a placed organelle
-///   in the microbe editor.
-/// </summary>
-public class OrganellePopupMenu : HexPopupMenu
+public class CellPopupMenu : HexPopupMenu
 {
-    private List<OrganelleTemplate>? selectedOrganelles;
+    private List<CellTemplate>? selectedCells;
 
-    /// <summary>
-    ///   The organelle the user explicitly selected. Other organelles are selected with symmetry.
-    /// </summary>
-    public OrganelleTemplate? MainOrganelle => selectedOrganelles?[0];
-
-    /// <summary>
-    ///   The placed organelles to be shown options of.
-    /// </summary>
-    public List<OrganelleTemplate> SelectedOrganelles
+    public override bool EnableModifyOption
     {
-        get => selectedOrganelles ??
-            throw new InvalidOperationException("OrganellePopup was not opened with organelle set");
+        get => true;
         set
         {
-            selectedOrganelles = value;
+            if (value != true)
+                throw new NotSupportedException();
+        }
+    }
+
+    public List<CellTemplate> SelectedCells
+    {
+        get => selectedCells ??
+            throw new InvalidOperationException($"{nameof(CellPopupMenu)} was not opened with cells set");
+        set
+        {
+            selectedCells = value;
             UpdateTitleLabel();
         }
     }
@@ -35,7 +33,7 @@ public class OrganellePopupMenu : HexPopupMenu
         base._Ready();
 
         // Skip things that use the organelle to work on if we aren't open (no selected organelle set)
-        if (selectedOrganelles != null)
+        if (selectedCells != null)
         {
             UpdateTitleLabel();
             UpdateDeleteButton();
@@ -48,7 +46,7 @@ public class OrganellePopupMenu : HexPopupMenu
         if (titleLabel == null)
             return;
 
-        var names = SelectedOrganelles.Select(p => p.Definition.Name).Distinct()
+        var names = SelectedCells.Select(c => c.CellType.TypeName).Distinct()
             .ToList();
 
         if (names.Count == 1)
@@ -57,7 +55,7 @@ public class OrganellePopupMenu : HexPopupMenu
         }
         else
         {
-            titleLabel.Text = TranslationServer.Translate("MULTIPLE_ORGANELLES");
+            titleLabel.Text = TranslationServer.Translate("MULTIPLE_CELLS");
         }
     }
 
@@ -67,8 +65,10 @@ public class OrganellePopupMenu : HexPopupMenu
             return;
 
         var mpCost = GetActionPrice?.Invoke(
-                SelectedOrganelles
-                    .Select(o => (EditorCombinableActionData)new OrganelleRemoveActionData(o))) ??
+                SelectedCells
+                    .Select(o =>
+                        (EditorCombinableActionData)new CellRemoveActionData(new HexWithData<CellTemplate>(o)
+                            { Position = o.Position }))) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
@@ -84,8 +84,9 @@ public class OrganellePopupMenu : HexPopupMenu
         if (moveButton == null)
             return;
 
-        var mpCost = GetActionPrice?.Invoke(SelectedOrganelles.Select(o =>
-            (EditorCombinableActionData)new OrganelleMoveActionData(o, o.Position, o.Position, o.Orientation,
+        var mpCost = GetActionPrice?.Invoke(SelectedCells.Select(o =>
+            (EditorCombinableActionData)new CellMoveActionData(new HexWithData<CellTemplate>(o)
+                    { Position = o.Position }, o.Position, o.Position, o.Orientation,
                 o.Orientation))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");

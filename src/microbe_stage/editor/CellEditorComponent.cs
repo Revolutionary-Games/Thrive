@@ -412,12 +412,6 @@ public partial class CellEditorComponent :
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
 
-    /// <summary>
-    ///   If true an editor action is active and can be cancelled. Currently only checks for organelle move.
-    /// </summary>
-    [JsonIgnore]
-    public bool CanCancelAction => CanCancelMove;
-
     protected override bool ForceHideHover => MicrobePreviewMode;
 
     private float CostMultiplier => IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f;
@@ -713,13 +707,13 @@ public partial class CellEditorComponent :
             {
                 // Can place stuff at all?
                 isPlacementProbablyValid = IsValidPlacement(new OrganelleTemplate(
-                    GetOrganelleDefinition(ActiveActionName), new Hex(q, r), organelleRot));
+                    GetOrganelleDefinition(ActiveActionName), new Hex(q, r), placementRotation));
 
                 shownOrganelle = SimulationParameters.Instance.GetOrganelleType(ActiveActionName);
             }
             else
             {
-                isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), organelleRot, MovingPlacedHex);
+                isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), placementRotation, MovingPlacedHex);
                 shownOrganelle = MovingPlacedHex.Definition;
                 effectiveSymmetry = HexEditorSymmetry.None;
             }
@@ -1000,7 +994,7 @@ public partial class CellEditorComponent :
     protected override void PerformMove(int q, int r)
     {
         if (MoveOrganelle(MovingPlacedHex!, MovingPlacedHex!.Position, new Hex(q, r), MovingPlacedHex.Orientation,
-                organelleRot))
+                placementRotation))
         {
             // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
             MovingPlacedHex = null;
@@ -1022,20 +1016,9 @@ public partial class CellEditorComponent :
         }
     }
 
-    protected override CombinedEditorAction CreateCombinedAction(IEnumerable<EditorAction> actions)
-    {
-        throw new NotImplementedException();
-    }
-
     protected override bool IsMoveTargetValid(Hex position, int rotation, OrganelleTemplate organelle)
     {
         return editedMicrobeOrganelles.CanPlace(organelle.Definition, position, rotation, false);
-    }
-
-    protected override bool DoesActionEndInProgressAction(CombinedEditorAction action)
-    {
-        // Allow only move actions with an in-progress move
-        return action.Data.Any(d => d is OrganelleMoveActionData);
     }
 
     protected override void OnCurrentActionCanceled()

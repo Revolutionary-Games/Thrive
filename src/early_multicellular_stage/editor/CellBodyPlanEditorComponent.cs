@@ -51,6 +51,9 @@ public partial class CellBodyPlanEditorComponent :
     [Export]
     public NodePath DuplicateCellTypeNamePath = null!;
 
+    [Export]
+    public NodePath CellPopupMenuPath = null!;
+
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
@@ -86,6 +89,8 @@ public partial class CellBodyPlanEditorComponent :
     private ButtonGroup cellTypeButtonGroup = new();
 
     private PackedScene microbeScene = null!;
+
+    private CellPopupMenu cellPopupMenu = null!;
 
     // Microbe scale applies done with 3 frame delay (that's why there are multiple list variables)
     private List<Microbe> pendingScaleApplies = new();
@@ -207,6 +212,8 @@ public partial class CellBodyPlanEditorComponent :
         duplicateCellTypeDialog = GetNode<CustomDialog>(DuplicateCellTypeDialogPath);
 
         duplicateCellTypeName = GetNode<LineEdit>(DuplicateCellTypeNamePath);
+
+        cellPopupMenu = GetNode<CellPopupMenu>(CellPopupMenuPath);
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -317,7 +324,7 @@ public partial class CellBodyPlanEditorComponent :
 
         if (organelleDataDirty)
         {
-            OnOrganellesChanged();
+            OnCellsChanged();
             organelleDataDirty = false;
         }
 
@@ -352,7 +359,7 @@ public partial class CellBodyPlanEditorComponent :
             if (MovingPlacedHex == null)
             {
                 // Can place stuff at all?
-                // TODO: should organelleRot be used here in some way?
+                // TODO: should placementRotation be used here in some way?
                 isPlacementProbablyValid = IsValidPlacement(
                     new HexWithData<CellTemplate>(new CellTemplate(cellType))
                     {
@@ -361,7 +368,7 @@ public partial class CellBodyPlanEditorComponent :
             }
             else
             {
-                isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), organelleRot, MovingPlacedHex);
+                isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), placementRotation, MovingPlacedHex);
                 effectiveSymmetry = HexEditorSymmetry.None;
             }
 
@@ -399,6 +406,42 @@ public partial class CellBodyPlanEditorComponent :
         forceUpdateCellGraphics = true;
     }
 
+    /// <summary>
+    ///   Show options for the cell under the cursor
+    /// </summary>
+    [RunOnKeyDown("e_secondary")]
+    public bool ShowCellOptions()
+    {
+        // Need to prevent this from running when not visible to not conflict in an editor with multiple tabs
+        if (!Visible)
+            return false;
+
+        // Can't open popup menu while moving something
+        if (MovingPlacedHex != null)
+        {
+            Editor.OnActionBlockedWhileMoving();
+            return true;
+        }
+
+        GetMouseHex(out int q, out int r);
+
+        var cells = new List<HexWithData<CellTemplate>>();
+
+        RunWithSymmetry(q, r, (symmetryQ, symmetryR, _) =>
+        {
+            var organelle = editedMicrobeCells.GetElementAt(new Hex(symmetryQ, symmetryR));
+
+            if (organelle != null)
+                cells.Add(organelle);
+        });
+
+        if (cells.Count < 1)
+            return true;
+
+        ShowCellMenu(cells.Select(h => h.Data).WhereNotNull().Distinct());
+        return true;
+    }
+
     protected CellType CellTypeFromName(string name)
     {
         return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
@@ -413,9 +456,33 @@ public partial class CellBodyPlanEditorComponent :
         if (activeActionName == null || !Editor.ShowHover)
             return 0;
 
-        var cost = CellTypeFromName(activeActionName).MPCost * Symmetry.PositionCount();
+        var cellType = CellTypeFromName(activeActionName);
 
-        return cost;
+        if (MouseHoverPositions == null)
+            return cellType.MPCost * Symmetry.PositionCount();
+
+        var positions = MouseHoverPositions.ToList();
+
+        var cellTemplates = positions
+            .Select(h => new HexWithData<CellTemplate>(new CellTemplate(cellType, h.Hex, h.Orientation))
+                { Position = h.Hex }).ToList();
+
+        CombinedEditorAction moveOccupancies;
+
+        if (MovingPlacedHex == null)
+        {
+            moveOccupancies = GetMultiActionWithOccupancies(positions, cellTemplates, true);
+        }
+        else
+        {
+            moveOccupancies =
+                GetMultiActionWithOccupancies(positions,
+                    new List<HexWithData<CellTemplate>>
+                        { new(MovingPlacedHex) { Position = MovingPlacedHex.Position } },
+                    false);
+        }
+
+        return Editor.WhatWouldActionsCost(moveOccupancies.Data);
     }
 
     protected override void LoadScenes()
@@ -430,29 +497,42 @@ public partial class CellBodyPlanEditorComponent :
         AddCell(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active")));
     }
 
-    protected override bool DoesActionEndInProgressAction(CombinedEditorAction action)
+    protected override void PerformMove(int q, int r)
     {
-        throw new NotImplementedException();
+        if (MoveOrganelle(MovingPlacedHex!, MovingPlacedHex!.Position, new Hex(q, r), MovingPlacedHex.Orientation,
+                placementRotation))
+        {
+            // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
+            MovingPlacedHex = null;
+
+            // TODO: should this call be made through Editor here?
+            UpdateCancelButtonVisibility();
+
+            // Re-enable undo/redo button
+            Editor.NotifyUndoRedoStateChanged();
+        }
+        else
+        {
+            Editor.OnInvalidAction();
+        }
     }
 
-    protected override CombinedEditorAction CreateCombinedAction(IEnumerable<EditorAction> actions)
+    protected override bool IsMoveTargetValid(Hex position, int rotation, CellTemplate organelle)
     {
-        throw new NotImplementedException();
+        return editedMicrobeCells.CanPlace(new HexWithData<CellTemplate>(organelle) { Position = position });
     }
 
-    protected override bool IsMoveTargetValid(Hex position, int rotation, CellTemplate hex)
+    protected override void OnCurrentActionCanceled()
     {
-        throw new NotImplementedException();
+        editedMicrobeCells.Add(new HexWithData<CellTemplate>(MovingPlacedHex) { Position = MovingPlacedHex!.Position });
+        MovingPlacedHex = null;
+        base.OnCurrentActionCanceled();
     }
 
     protected override void OnMoveActionStarted()
     {
-        throw new NotImplementedException();
-    }
-
-    protected override void PerformMove(int q, int r)
-    {
-        throw new NotImplementedException();
+        var hex = editedMicrobeCells.First(h => h.Data == MovingPlacedHex);
+        editedMicrobeCells.Remove(hex);
     }
 
     protected override CellTemplate? GetHexAt(Hex position)
@@ -522,6 +602,19 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         return false;
+    }
+
+    private void ShowCellMenu(IEnumerable<CellTemplate> selectedCells)
+    {
+        var organelles = selectedCells.ToList();
+        cellPopupMenu.SelectedCells = organelles;
+        cellPopupMenu.GetActionPrice = Editor.WhatWouldActionsCost;
+        cellPopupMenu.ShowPopup = true;
+
+        var count = organelles.Count;
+
+        cellPopupMenu.EnableDeleteOption = count > 1;
+        cellPopupMenu.EnableMoveOption = count > 1;
     }
 
     private void RenderHighlightedCell(int q, int r, int rotation, CellType cellToPlace)
@@ -618,6 +711,119 @@ public partial class CellBodyPlanEditorComponent :
     {
         return new SingleEditorAction<CellPlacementActionData>(DoCellPlaceAction, UndoCellPlaceAction,
             new CellPlacementActionData(cell));
+    }
+
+    /// <summary>
+    ///   See: <see cref="CellEditorComponent.GetOccupancies"/>
+    /// </summary>
+    private IEnumerable<(Hex Hex, HexWithData<CellTemplate> Cell, int Orientation, bool Occupied)> GetOccupancies(
+        List<(Hex Hex, int Orientation)> hexes, List<HexWithData<CellTemplate>> cells)
+    {
+        var cellPositions = new List<(Hex Hex, HexWithData<CellTemplate> Cell, int Orientation, bool Occupied)>();
+        for (var i = 0; i < hexes.Count; i++)
+        {
+            var (hex, orientation) = hexes[i];
+            var cell = cells[i];
+            var oldOrganelle = cellPositions.FirstOrDefault(p => p.Hex == hex);
+            bool occupied = oldOrganelle != default;
+
+            cellPositions.Add((hex, cell, orientation, occupied));
+        }
+
+        return cellPositions;
+    }
+
+    private CombinedEditorAction GetMultiActionWithOccupancies(List<(Hex Hex, int Orientation)> hexes,
+        List<HexWithData<CellTemplate>> cells, bool moving)
+    {
+        var moveActionData = new List<EditorAction>();
+        foreach (var (hex, cell, orientation, occupied) in GetOccupancies(hexes, cells))
+        {
+            EditorAction action;
+            if (occupied)
+            {
+                action = new SingleEditorAction<CellRemoveActionData>(DoCellRemoveAction,
+                    UndoCellRemoveAction, new CellRemoveActionData(cell));
+            }
+            else
+            {
+                if (moving)
+                {
+                    var data = new CellMoveActionData(cell, cell.Position, hex, cell.Data!.Orientation,
+                        orientation);
+                    action = new SingleEditorAction<CellMoveActionData>(DoCellMoveAction,
+                        UndoCellMoveAction, data);
+                }
+                else
+                {
+                    action = new SingleEditorAction<CellPlacementActionData>(DoCellPlaceAction,
+                        UndoCellPlaceAction, new CellPlacementActionData(cell, hex, orientation));
+                }
+            }
+
+            moveActionData.Add(action);
+        }
+
+        return new CombinedEditorAction(moveActionData);
+    }
+
+    private bool MoveOrganelle(CellTemplate cell, Hex oldLocation, Hex newLocation, int oldRotation,
+        int newRotation)
+    {
+        // TODO: consider allowing rotation inplace (https://github.com/Revolutionary-Games/Thrive/issues/2993)
+
+        // Make sure placement is valid
+        if (!IsMoveTargetValid(newLocation, newRotation, cell))
+            return false;
+
+        var multiAction = GetMultiActionWithOccupancies(
+            new List<(Hex Hex, int Orientation)> { (newLocation, newRotation) },
+            new List<HexWithData<CellTemplate>> { new(cell) { Position = cell.Position } },
+            true);
+
+        // Too low mutation points, cancel move
+        if (Editor.MutationPoints < Editor.WhatWouldActionsCost(multiAction.Data))
+        {
+            CancelCurrentAction();
+            Editor.OnInsufficientMP(false);
+            return false;
+        }
+
+        EnqueueAction(multiAction);
+
+        // It's assumed that the above enqueue can't fail, otherwise the reference to MovingPlacedHex may be
+        // permanently lost (as the code that calls this assumes it's safe to set MovingPlacedHex to null
+        // when we return true)
+        return true;
+    }
+
+    private void OnMovePressed()
+    {
+        if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
+        {
+            // Start moving the organelles symmetrical to the clicked organelle.
+            StartHexMoveWithSymmetry(cellPopupMenu.SelectedCells);
+        }
+        else
+        {
+            StartHexMove(cellPopupMenu.SelectedCells.First());
+        }
+
+        // Once an organelle move has begun, the button visibility should be updated so it becomes visible
+        UpdateCancelButtonVisibility();
+    }
+
+    private void OnDeletePressed()
+    {
+        var action =
+            new CombinedEditorAction(cellPopupMenu.SelectedCells
+                .Select(o => TryCreateRemoveHexAtAction(o.Position)).WhereNotNull());
+        EnqueueAction(action);
+    }
+
+    private void OnModifyPressed()
+    {
+        EmitSignal(nameof(OnCellTypeToEditSelected), cellPopupMenu.SelectedCells.First().CellType.TypeName);
     }
 
     /// <summary>
@@ -720,7 +926,7 @@ public partial class CellBodyPlanEditorComponent :
         OnCurrentActionChanged();
     }
 
-    private void OnOrganellesChanged()
+    private void OnCellsChanged()
     {
         UpdateAlreadyPlacedVisuals();
 

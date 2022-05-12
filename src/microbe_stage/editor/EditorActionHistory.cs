@@ -150,7 +150,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     }
 
     public bool HexPlacedThisSession<THex>(THex hex)
-        where THex : class
+        where THex : class, IActionHex
     {
         return History.OfType<HexPlacementActionData<THex>>().Any(a => a.PlacedHex == hex);
     }
