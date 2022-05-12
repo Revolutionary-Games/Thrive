@@ -1,4 +1,6 @@
-﻿[JSONAlwaysDynamicType]
+﻿using Newtonsoft.Json;
+
+[JSONAlwaysDynamicType]
 public class RemoveActionData : EditorCombinableActionData
 {
     public OrganelleTemplate Organelle;
@@ -10,11 +12,19 @@ public class RemoveActionData : EditorCombinableActionData
     /// </summary>
     public bool GotReplaced;
 
+    [JsonConstructor]
     public RemoveActionData(OrganelleTemplate organelle, Hex location, int orientation)
     {
         Organelle = organelle;
         Location = location;
         Orientation = orientation;
+    }
+
+    public RemoveActionData(OrganelleTemplate organelle)
+    {
+        Organelle = organelle;
+        Location = organelle.Position;
+        Orientation = organelle.Orientation;
     }
 
     protected override int CalculateCostInternal()

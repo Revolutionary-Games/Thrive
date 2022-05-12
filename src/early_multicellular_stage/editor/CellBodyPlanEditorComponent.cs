@@ -460,7 +460,7 @@ public partial class CellBodyPlanEditorComponent :
         return editedMicrobeCells.GetElementAt(position)?.Data;
     }
 
-    protected override EditorAction? TryRemoveHexAt(Hex location)
+    protected override EditorAction? TryCreateRemoveHexActionAt(Hex location)
     {
         var hexHere = editedMicrobeCells.GetElementAt(location);
         if (hexHere == null)

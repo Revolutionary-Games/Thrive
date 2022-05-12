@@ -733,7 +733,7 @@ public partial class CellEditorComponent :
                     hoveredHexes.Add((new Hex(finalQ, finalR), rotation));
                 }, effectiveSymmetry);
 
-            MouseHoverHexes = hoveredHexes.ToList();
+            MouseHoverPositions = hoveredHexes.ToList();
         }
     }
 
@@ -957,10 +957,10 @@ public partial class CellEditorComponent :
         // Calculated in this order to be consistent with placing unique organelles
         var cost = (int)(organelleDefinition.MPCost * editorCostFactor);
 
-        if (MouseHoverHexes == null)
+        if (MouseHoverPositions == null)
             return cost * Symmetry.PositionCount();
 
-        var positions = MouseHoverHexes.ToList();
+        var positions = MouseHoverPositions.ToList();
 
         var organelleTemplates = positions
             .Select(h => new OrganelleTemplate(organelleDefinition, h.Hex, h.Orientation)).ToList();
@@ -1054,7 +1054,7 @@ public partial class CellEditorComponent :
         return editedMicrobeOrganelles.GetElementAt(position);
     }
 
-    protected override EditorAction? TryRemoveHexAt(Hex location)
+    protected override EditorAction? TryCreateRemoveHexActionAt(Hex location)
     {
         var organelleHere = editedMicrobeOrganelles.GetElementAt(location);
         if (organelleHere == null)
@@ -1069,7 +1069,7 @@ public partial class CellEditorComponent :
             return null;
 
         return new SingleEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
-            new RemoveActionData(organelleHere, organelleHere.Position, organelleHere.Orientation)
+            new RemoveActionData(organelleHere)
             {
                 CostMultiplier = CostMultiplier,
             });
@@ -1227,7 +1227,7 @@ public partial class CellEditorComponent :
             EditorAction action;
             if (occupied)
             {
-                var data = new RemoveActionData(organelle, organelle.Position, organelle.Orientation)
+                var data = new RemoveActionData(organelle)
                 {
                     GotReplaced = organelle.Definition.InternalName == "cytoplasm",
                     CostMultiplier = CostMultiplier,
@@ -1288,7 +1288,7 @@ public partial class CellEditorComponent :
         IEnumerable<OrganelleTemplate> organelles)
     {
         return GetReplacedCytoplasm(organelles)
-            .Select(o => new RemoveActionData(o, o.Position, o.Orientation)
+            .Select(o => new RemoveActionData(o)
             {
                 GotReplaced = true,
                 CostMultiplier = CostMultiplier,
@@ -1443,7 +1443,7 @@ public partial class CellEditorComponent :
                     }
                 }
 
-                var placed = PlaceIfPossible(organelle);
+                var placed = CreatePlaceActionIfPossible(organelle);
 
                 if (placed != null)
                 {
@@ -1467,7 +1467,7 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Helper for AddOrganelle
     /// </summary>
-    private CombinedEditorAction? PlaceIfPossible(OrganelleTemplate organelle)
+    private CombinedEditorAction? CreatePlaceActionIfPossible(OrganelleTemplate organelle)
     {
         if (MicrobePreviewMode)
             return null;
@@ -1479,7 +1479,7 @@ public partial class CellEditorComponent :
             return null;
         }
 
-        return AddOrganelle(organelle);
+        return CreateAddOrganelleAction(organelle);
     }
 
     private bool IsValidPlacement(OrganelleTemplate organelle)
@@ -1492,7 +1492,7 @@ public partial class CellEditorComponent :
             notPlacingCytoplasm);
     }
 
-    private CombinedEditorAction? AddOrganelle(OrganelleTemplate organelle)
+    private CombinedEditorAction? CreateAddOrganelleAction(OrganelleTemplate organelle)
     {
         // 1 - you put a unique organelle (means only one instance allowed) but you already have it
         // 2 - you put an organelle that requires nucleus but you don't have one
@@ -1722,7 +1722,7 @@ public partial class CellEditorComponent :
     {
         var action =
             new CombinedEditorAction(organelleMenu.SelectedOrganelles
-                .Select(o => TryRemoveHexAt(o.Position)).WhereNotNull());
+                .Select(o => TryCreateRemoveHexActionAt(o.Position)).WhereNotNull());
         EnqueueAction(action);
     }
 

@@ -102,7 +102,7 @@ public abstract class
 
     private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
 
-    private IEnumerable<(Hex Hex, int Orientation)>? mouseHoverHexes;
+    private IEnumerable<(Hex Hex, int Orientation)>? mouseHoverPositions;
 
     private Vector3 cameraPosition;
 
@@ -153,18 +153,18 @@ public abstract class
     public float CameraHeight { get; private set; } = Constants.EDITOR_DEFAULT_CAMERA_HEIGHT;
 
     [JsonIgnore]
-    public IEnumerable<(Hex Hex, int Orientation)>? MouseHoverHexes
+    public IEnumerable<(Hex Hex, int Orientation)>? MouseHoverPositions
     {
-        get => mouseHoverHexes;
+        get => mouseHoverPositions;
         set
         {
-            if (mouseHoverHexes == null && value == null)
+            if (mouseHoverPositions == null && value == null)
                 return;
 
-            if (mouseHoverHexes != null && value != null && mouseHoverHexes.SequenceEqual(value))
+            if (mouseHoverPositions != null && value != null && mouseHoverPositions.SequenceEqual(value))
                 return;
 
-            mouseHoverHexes = value;
+            mouseHoverPositions = value;
             UpdateMutationPointsBar();
         }
     }
@@ -541,7 +541,7 @@ public abstract class
 
         RunWithSymmetry(hex.Q, hex.R, (q, r, _) =>
         {
-            var removed = TryRemoveHexAt(new Hex(q, r));
+            var removed = TryCreateRemoveHexActionAt(new Hex(q, r));
 
             if (removed != null)
                 actions.Add(removed);
@@ -1014,7 +1014,7 @@ public abstract class
     protected abstract void OnMoveActionStarted();
     protected abstract void PerformMove(int q, int r);
     protected abstract THexMove? GetHexAt(Hex position);
-    protected abstract TAction? TryRemoveHexAt(Hex location);
+    protected abstract TAction? TryCreateRemoveHexActionAt(Hex location);
 
     protected abstract float CalculateEditorArrowZPosition();
 
