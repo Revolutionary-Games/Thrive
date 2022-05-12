@@ -322,12 +322,19 @@ public static class Constants
     /// </summary>
     public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.3f;
 
+    public const float ENGULF_BASE_COMPOUND_ABSORBTION_YIELD = 0.4f;
+
     public const float ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION = 0.9f;
 
     /// <summary>
-    ///   Each lysosome grants 15% increase in digestion speed.
+    ///   Each lysosome grants 20% increase in digestion speed.
     /// </summary>
     public const float LYSOSOME_DIGESTION_SPEED_UP_FRACTION = 0.2f;
+
+    /// <summary>
+    ///   Each lysosome grants 20% increase in compounds yield.
+    /// </summary>
+    public const float LYSOSOME_DIGESTION_EFFICIENCY_BUFF_FRACTION = 0.2f;
 
     /// <summary>
     ///   How much ATP does binding mode cost per second

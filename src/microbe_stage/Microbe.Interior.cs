@@ -1122,17 +1122,26 @@ public partial class Microbe
                     continue;
 
                 var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND * delta;
+                var efficiency = Constants.ENGULF_BASE_COMPOUND_ABSORBTION_YIELD;
 
                 if (LysosomeCount > 0)
                 {
-                    var buff = amount * Constants.LYSOSOME_DIGESTION_SPEED_UP_FRACTION * LysosomeCount;
-                    amount += buff;
+                    var speedBuff = amount * Constants.LYSOSOME_DIGESTION_SPEED_UP_FRACTION * LysosomeCount;
+                    var efficiencyBuff = efficiency *
+                        Constants.LYSOSOME_DIGESTION_EFFICIENCY_BUFF_FRACTION * LysosomeCount;
+
+                    amount += speedBuff;
+
+                    // Efficiency starts from 40% up to 100%. This means at least 8 lysosomes are needed to achieve
+                    // maximum efficiency
+                    // TODO: Maybe set max efficiency lower to 80%?
+                    efficiency = Mathf.Clamp(efficiency + efficiencyBuff, 0.0f, 1.0f);
                 }
 
-                var taken = Math.Min(compound.Value, amount);
+                var taken = Mathf.Min(compound.Value, amount);
                 engulfedMaterial.AvailableEngulfableCompounds[compound.Key] -= amount;
 
-                var added = Compounds.AddCompound(compound.Key, taken);
+                var added = Compounds.AddCompound(compound.Key, taken * efficiency);
 
                 if (compound.Key == oxytoxy && added > 0)
                 {

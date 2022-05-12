@@ -1007,10 +1007,7 @@ public partial class Microbe
             {
                 // Ingest if not yet already and body is in ingestion area
                 if (engulfableArea.OverlapsBody(body) && CanEngulf(engulfable))
-                {
                     IngestEngulfable(engulfable);
-                    continue;
-                }
             }
         }
     }
@@ -1472,15 +1469,15 @@ public partial class Microbe
 
     private bool LerpEngulfedMovement(float delta, EngulfedMaterial engulfedObject, RigidBody body)
     {
-        const float ENGULFED_MOVEMENT_DURATION = 2.0f;
+        const float engulfedMovementDuration = 2.0f;
 
         // NOTE: *Logically* This shouldn't have been multiplied by 12 and be left as is but doing this makes
         // the lerp sync up much closer with the elapsed time...
-        const float ELAPSED_TIME_DIVISOR = ENGULFED_MOVEMENT_DURATION * 12;
+        const float elapsedTimeDivisor = engulfedMovementDuration * 12;
 
-        if (engulfedObject.AnimationTimeElapsed < ENGULFED_MOVEMENT_DURATION)
+        if (engulfedObject.AnimationTimeElapsed < engulfedMovementDuration)
         {
-            var fraction = engulfedObject.AnimationTimeElapsed / ELAPSED_TIME_DIVISOR;
+            var fraction = engulfedObject.AnimationTimeElapsed / elapsedTimeDivisor;
 
             body.Translation = body.Translation.LinearInterpolate(engulfedObject.TargetTranslation, fraction);
             body.Scale = body.Scale.LinearInterpolate(engulfedObject.TargetScale, fraction);
