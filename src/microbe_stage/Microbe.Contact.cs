@@ -143,7 +143,7 @@ public partial class Microbe
     public bool IsIngested { get; set; }
 
     [JsonProperty]
-    public EntityReference<Microbe> HostileEngulfer { get; } = new();
+    public EntityReference<Microbe> HostileEngulfer { get; private set; } = new();
 
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();
@@ -1471,16 +1471,13 @@ public partial class Microbe
     {
         const float engulfedMovementDuration = 2.0f;
 
-        // NOTE: *Logically* This shouldn't have been multiplied by 12 and be left as is but doing this makes
-        // the lerp sync up much closer with the elapsed time...
-        const float elapsedTimeDivisor = engulfedMovementDuration * 12;
-
         if (engulfedObject.AnimationTimeElapsed < engulfedMovementDuration)
         {
-            var fraction = engulfedObject.AnimationTimeElapsed / elapsedTimeDivisor;
+            // Framerate independent handling
+            var weight = 1 - Mathf.Exp(-engulfedMovementDuration * delta);
 
-            body.Translation = body.Translation.LinearInterpolate(engulfedObject.TargetTranslation, fraction);
-            body.Scale = body.Scale.LinearInterpolate(engulfedObject.TargetScale, fraction);
+            body.Translation = body.Translation.LinearInterpolate(engulfedObject.TargetTranslation, weight);
+            body.Scale = body.Scale.LinearInterpolate(engulfedObject.TargetScale, weight);
 
             engulfedObject.AnimationTimeElapsed += delta;
 
