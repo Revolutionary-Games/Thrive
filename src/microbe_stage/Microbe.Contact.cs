@@ -1076,8 +1076,6 @@ public partial class Microbe
                     continue;
                 }
             }
-
-            engulfable.HostileEngulfer.Value = this;
         }
     }
 
@@ -1318,6 +1316,7 @@ public partial class Microbe
 
         touchedEngulfables.Remove(target);
 
+        target.HostileEngulfer.Value = this;
         target.IsBeingIngested = true;
         target.OnEngulfed();
 
@@ -1392,6 +1391,7 @@ public partial class Microbe
         if (engulfedObject == null)
             return;
 
+        target.HostileEngulfer.Value = null;
         target.IsBeingRegurgitated = true;
         engulfedSize -= target.Size;
 
@@ -1552,9 +1552,15 @@ public partial class Microbe
 
     private bool LerpEngulfedMovement(float delta, EngulfedMaterial engulfedObject, RigidBody body)
     {
-        if (engulfedObject.AnimationTimeElapsed < 2.0f)
+        const float ENGULFED_MOVEMENT_DURATION = 2.0f;
+
+        // NOTE: *Logically* This shouldn't have been multiplied by 12 and be left as is but doing this makes
+        // the lerp sync up much closer with the elapsed time...
+        const float ELAPSED_TIME_DIVISOR = ENGULFED_MOVEMENT_DURATION * 12;
+
+        if (engulfedObject.AnimationTimeElapsed < ENGULFED_MOVEMENT_DURATION)
         {
-            var fraction = engulfedObject.AnimationTimeElapsed / 24.0f;
+            var fraction = engulfedObject.AnimationTimeElapsed / ELAPSED_TIME_DIVISOR;
 
             body.Translation = body.Translation.LinearInterpolate(engulfedObject.TargetTranslation, fraction);
             body.Scale = body.Scale.LinearInterpolate(engulfedObject.TargetScale, fraction);

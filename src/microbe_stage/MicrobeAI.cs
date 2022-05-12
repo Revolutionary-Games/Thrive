@@ -151,11 +151,6 @@ public class MicrobeAI
 
     private void ChooseActions(Random random, MicrobeAICommonData data, Microbe? signaler)
     {
-        if (microbe.IsBeingIngested)
-        {
-            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
-        }
-
         // If nothing is engulfing me right now, see if there's something that might want to hunt me
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/2323
         Vector3? predator = GetNearestPredatorItem(data.AllMicrobes)?.GlobalTransform.origin;
@@ -227,7 +222,7 @@ public class MicrobeAI
         if (!microbe.CellTypeProperties.MembraneType.CellWall)
         {
             var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
-            if (targetChunk != null && !targetChunk.IsIngested)
+            if (targetChunk != null && !targetChunk.IsBeingIngested && !targetChunk.IsIngested)
             {
                 PursueAndConsumeChunks(targetChunk.Translation, random);
                 return;
@@ -236,10 +231,10 @@ public class MicrobeAI
 
         // If there are no chunks, look for living prey to hunt
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
-        if (possiblePrey != null)
+        if (possiblePrey != null && !possiblePrey.IsBeingIngested && !possiblePrey.IsIngested)
         {
             bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
-                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.Size && !possiblePrey.IsIngested;
+                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.Size;
             Vector3? prey = possiblePrey.GlobalTransform.origin;
 
             EngagePrey(prey.Value, random, engulfPrey);
