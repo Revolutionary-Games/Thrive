@@ -93,6 +93,12 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
     {
     }
 
+    public void ResetBehaviour()
+    {
+        behaviour = new BehaviourDictionary();
+        UpdateAllBehaviouralSliders(behaviour);
+    }
+
     public void SetBehaviouralValue(BehaviouralValueType type, float value)
     {
         UpdateBehaviourSlider(type, value);

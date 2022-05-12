@@ -130,6 +130,10 @@ public partial class CellEditorComponent
         editedMicrobeOrganelles.Clear();
         editedMicrobeOrganelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
             new Hex(0, 0), 0));
+        Rigidity = 0;
+
+        if (!IsMulticellularEditor)
+            behaviourEditor.ResetBehaviour();
 
         OnPostNewMicrobeChange();
     }
@@ -139,10 +143,19 @@ public partial class CellEditorComponent
     {
         editedMicrobeOrganelles.Clear();
         Membrane = data.OldMembrane;
+        Rigidity = data.OldMembraneRigidity;
 
         foreach (var organelle in data.OldEditedMicrobeOrganelles)
         {
             editedMicrobeOrganelles.Add(organelle);
+        }
+
+        if (!IsMulticellularEditor)
+        {
+            foreach (var oldBehaviour in data.OldBehaviourValues)
+            {
+                behaviourEditor.SetBehaviouralValue(oldBehaviour.Key, oldBehaviour.Value);
+            }
         }
 
         OnPostNewMicrobeChange();

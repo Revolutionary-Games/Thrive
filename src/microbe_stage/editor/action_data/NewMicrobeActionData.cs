@@ -5,11 +5,16 @@ public class NewMicrobeActionData : EditorCombinableActionData
 {
     public OrganelleLayout<OrganelleTemplate> OldEditedMicrobeOrganelles;
     public MembraneType OldMembrane;
+    public float OldMembraneRigidity;
+    public BehaviourDictionary OldBehaviourValues;
 
-    public NewMicrobeActionData(OrganelleLayout<OrganelleTemplate> oldEditedMicrobeOrganelles, MembraneType oldMembrane)
+    public NewMicrobeActionData(OrganelleLayout<OrganelleTemplate> oldEditedMicrobeOrganelles, MembraneType oldMembrane,
+        float oldRigidity, BehaviourDictionary oldBehaviourValues)
     {
         OldEditedMicrobeOrganelles = oldEditedMicrobeOrganelles;
         OldMembrane = oldMembrane;
+        OldMembraneRigidity = oldRigidity;
+        OldBehaviourValues = new BehaviourDictionary(oldBehaviourValues);
     }
 
     public override bool ResetsHistory => true;

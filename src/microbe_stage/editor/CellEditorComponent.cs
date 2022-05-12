@@ -815,7 +815,8 @@ public partial class CellEditorComponent :
             oldEditedMicrobeOrganelles.Add(organelle);
         }
 
-        var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane);
+        var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane, Rigidity,
+            behaviourEditor.Behaviour ?? throw new Exception("Behaviour not initialized"));
 
         var action =
             new SingleEditorAction<NewMicrobeActionData>(DoNewMicrobeAction, UndoNewMicrobeAction, data);
@@ -1556,6 +1557,7 @@ public partial class CellEditorComponent :
         UpdateSpeed(CalculateSpeed());
         UpdateHitpoints(CalculateHitpoints());
         UpdateStorage(CalculateStorage());
+        OnRigidityChanged();
 
         StartAutoEvoPrediction();
     }
