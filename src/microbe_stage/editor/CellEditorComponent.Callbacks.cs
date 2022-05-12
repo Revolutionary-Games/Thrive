@@ -23,10 +23,10 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganellePlaceAction(PlacementActionData data)
+    private void DoOrganellePlaceAction(OrganellePlacementActionData data)
     {
         data.ReplacedCytoplasm = new List<OrganelleTemplate>();
-        var organelle = data.Organelle;
+        var organelle = data.PlacedHex;
 
         // Check if there is cytoplasm under this organelle.
         foreach (var hex in organelle.RotatedHexes)
@@ -72,15 +72,15 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganelleRemoveAction(RemoveActionData data)
+    private void DoOrganelleRemoveAction(OrganelleRemoveActionData data)
     {
-        editedMicrobeOrganelles.Remove(data.Organelle);
+        editedMicrobeOrganelles.Remove(data.AddedHex);
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganelleRemoveAction(RemoveActionData data)
+    private void UndoOrganelleRemoveAction(OrganelleRemoveActionData data)
     {
-        editedMicrobeOrganelles.Add(data.Organelle);
+        editedMicrobeOrganelles.Add(data.AddedHex);
     }
 
     [DeserializedCallbackAllowed]

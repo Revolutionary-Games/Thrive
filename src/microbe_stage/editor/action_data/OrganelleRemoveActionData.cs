@@ -1,42 +1,35 @@
 ﻿using Newtonsoft.Json;
 
 [JSONAlwaysDynamicType]
-public class RemoveActionData : EditorCombinableActionData
+public class OrganelleRemoveActionData : RemoveHexActionData<OrganelleTemplate>
 {
-    public OrganelleTemplate Organelle;
-    public Hex Location;
-    public int Orientation;
-
     /// <summary>
     ///   Used for replacing Cytoplasm. If true this action is free.
     /// </summary>
     public bool GotReplaced;
 
     [JsonConstructor]
-    public RemoveActionData(OrganelleTemplate organelle, Hex location, int orientation)
+    public OrganelleRemoveActionData(OrganelleTemplate organelle, Hex location, int orientation) : base(organelle,
+        location,
+        orientation)
     {
-        Organelle = organelle;
-        Location = location;
-        Orientation = orientation;
     }
 
-    public RemoveActionData(OrganelleTemplate organelle)
+    public OrganelleRemoveActionData(OrganelleTemplate organelle) : base(organelle, organelle.Position,
+        organelle.Orientation)
     {
-        Organelle = organelle;
-        Location = organelle.Position;
-        Orientation = organelle.Orientation;
     }
 
     protected override int CalculateCostInternal()
     {
-        return GotReplaced ? 0 : Constants.ORGANELLE_REMOVE_COST;
+        return GotReplaced ? 0 : base.CalculateCostInternal();
     }
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
         // If this organelle got placed in this session on the same position
-        if (other is PlacementActionData placementActionData &&
-            placementActionData.Organelle.Definition == Organelle.Definition)
+        if (other is OrganellePlacementActionData placementActionData &&
+            placementActionData.PlacedHex.Definition == AddedHex.Definition)
         {
             // If this organelle got placed on the same position
             if (placementActionData.Location == Location)
@@ -48,7 +41,7 @@ public class RemoveActionData : EditorCombinableActionData
 
         // If this organelle got moved in this session
         if (other is OrganelleMoveActionData moveActionData &&
-            moveActionData.MovedHex.Definition == Organelle.Definition &&
+            moveActionData.MovedHex.Definition == AddedHex.Definition &&
             moveActionData.NewLocation == Location)
         {
             return ActionInterferenceMode.Combinable;
@@ -59,13 +52,13 @@ public class RemoveActionData : EditorCombinableActionData
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
-        if (other is PlacementActionData placementActionData)
+        if (other is OrganellePlacementActionData placementActionData)
         {
-            return new OrganelleMoveActionData(placementActionData.Organelle, Location, placementActionData.Location,
+            return new OrganelleMoveActionData(placementActionData.PlacedHex, Location, placementActionData.Location,
                 Orientation, placementActionData.Orientation);
         }
 
         var moveActionData = (OrganelleMoveActionData)other;
-        return new RemoveActionData(Organelle, moveActionData.OldLocation, moveActionData.OldRotation);
+        return new OrganelleRemoveActionData(AddedHex, moveActionData.OldLocation, moveActionData.OldRotation);
     }
 }

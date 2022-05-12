@@ -1055,7 +1055,7 @@ public partial class CellEditorComponent :
         return editedMicrobeOrganelles.GetElementAt(position);
     }
 
-    protected override EditorAction? TryCreateRemoveHexActionAt(Hex location)
+    protected override EditorAction? TryCreateRemoveHexAtAction(Hex location)
     {
         var organelleHere = editedMicrobeOrganelles.GetElementAt(location);
         if (organelleHere == null)
@@ -1069,8 +1069,8 @@ public partial class CellEditorComponent :
         if (IsMulticellularEditor && organelleHere.Definition == bindingAgent)
             return null;
 
-        return new SingleEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
-            new RemoveActionData(organelleHere)
+        return new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
+            new OrganelleRemoveActionData(organelleHere)
             {
                 CostMultiplier = CostMultiplier,
             });
@@ -1228,12 +1228,12 @@ public partial class CellEditorComponent :
             EditorAction action;
             if (occupied)
             {
-                var data = new RemoveActionData(organelle)
+                var data = new OrganelleRemoveActionData(organelle)
                 {
                     GotReplaced = organelle.Definition.InternalName == "cytoplasm",
                     CostMultiplier = CostMultiplier,
                 };
-                action = new SingleEditorAction<RemoveActionData>(DoOrganelleRemoveAction,
+                action = new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction,
                     UndoOrganelleRemoveAction, data);
             }
             else
@@ -1251,7 +1251,7 @@ public partial class CellEditorComponent :
                 else
                 {
                     var replacedHex = editedMicrobeOrganelles.GetElementAt(hex);
-                    var data = new PlacementActionData(organelle, hex, orientation)
+                    var data = new OrganellePlacementActionData(organelle, hex, orientation)
                     {
                         CostMultiplier = CostMultiplier,
                     };
@@ -1259,7 +1259,7 @@ public partial class CellEditorComponent :
                     if (replacedHex != null)
                         data.ReplacedCytoplasm = new List<OrganelleTemplate> { replacedHex };
 
-                    action = new SingleEditorAction<PlacementActionData>(DoOrganellePlaceAction,
+                    action = new SingleEditorAction<OrganellePlacementActionData>(DoOrganellePlaceAction,
                         UndoOrganellePlaceAction, data);
                 }
             }
@@ -1285,23 +1285,23 @@ public partial class CellEditorComponent :
         }
     }
 
-    private IEnumerable<RemoveActionData> GetReplacedCytoplasmRemoveActionData(
+    private IEnumerable<OrganelleRemoveActionData> GetReplacedCytoplasmRemoveActionData(
         IEnumerable<OrganelleTemplate> organelles)
     {
         return GetReplacedCytoplasm(organelles)
-            .Select(o => new RemoveActionData(o)
+            .Select(o => new OrganelleRemoveActionData(o)
             {
                 GotReplaced = true,
                 CostMultiplier = CostMultiplier,
             });
     }
 
-    private IEnumerable<SingleEditorAction<RemoveActionData>> GetReplacedCytoplasmRemoveAction(
+    private IEnumerable<SingleEditorAction<OrganelleRemoveActionData>> GetReplacedCytoplasmRemoveAction(
         IEnumerable<OrganelleTemplate> organelles)
     {
         var replacedCytoplasmData = GetReplacedCytoplasmRemoveActionData(organelles);
         return replacedCytoplasmData.Select(o =>
-            new SingleEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, o));
+            new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, o));
     }
 
     private void StartAutoEvoPrediction()
@@ -1636,7 +1636,7 @@ public partial class CellEditorComponent :
 
         // Build the entities to show the current microbe
         UpdateAlreadyPlacedHexes(
-            editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes, PlacedThisSession(o))), islands,
+            editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes, Editor.HexPlacedThisSession(o))), islands,
             microbePreviewMode);
 
         int nextFreeOrganelle = 0;
@@ -1679,11 +1679,6 @@ public partial class CellEditorComponent :
         }
     }
 
-    private bool PlacedThisSession(OrganelleTemplate organelle)
-    {
-        return Editor.OrganellePlacedThisSession(organelle);
-    }
-
     private void SetSpeciesInfo(string name, MembraneType membrane, Color colour, float rigidity,
         BehaviourDictionary? behaviour)
     {
@@ -1724,7 +1719,7 @@ public partial class CellEditorComponent :
     {
         var action =
             new CombinedEditorAction(organelleMenu.SelectedOrganelles
-                .Select(o => TryCreateRemoveHexActionAt(o.Position)).WhereNotNull());
+                .Select(o => TryCreateRemoveHexAtAction(o.Position)).WhereNotNull());
         EnqueueAction(action);
     }
 

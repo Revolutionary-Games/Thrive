@@ -34,8 +34,8 @@ public class OrganelleMoveActionData : HexMoveActionData<OrganelleTemplate>
         }
 
         // If this organelle got removed in this session
-        if (other is RemoveActionData removeActionData &&
-            removeActionData.Organelle.Definition == MovedHex.Definition &&
+        if (other is OrganelleRemoveActionData removeActionData &&
+            removeActionData.AddedHex.Definition == MovedHex.Definition &&
             removeActionData.Location == NewLocation)
         {
             return ActionInterferenceMode.ReplacesOther;

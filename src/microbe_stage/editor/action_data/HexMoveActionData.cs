@@ -7,7 +7,7 @@
     public int OldRotation;
     public int NewRotation;
 
-    public HexMoveActionData(THex hex, Hex oldLocation, Hex newLocation, int oldRotation,
+    protected HexMoveActionData(THex hex, Hex oldLocation, Hex newLocation, int oldRotation,
         int newRotation)
     {
         MovedHex = hex;

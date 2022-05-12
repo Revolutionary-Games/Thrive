@@ -257,7 +257,7 @@ public class OrganellePopupMenu : PopupPanel
 
         var mpCost = GetActionPrice?.Invoke(
             SelectedOrganelles
-                .Select(o => (EditorCombinableActionData)new RemoveActionData(o))
+                .Select(o => (EditorCombinableActionData)new OrganelleRemoveActionData(o))
                 .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");

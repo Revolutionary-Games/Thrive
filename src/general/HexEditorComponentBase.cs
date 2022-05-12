@@ -541,7 +541,7 @@ public abstract class
 
         RunWithSymmetry(hex.Q, hex.R, (q, r, _) =>
         {
-            var removed = TryCreateRemoveHexActionAt(new Hex(q, r));
+            var removed = TryCreateRemoveHexAtAction(new Hex(q, r));
 
             if (removed != null)
                 actions.Add(removed);
@@ -1014,7 +1014,7 @@ public abstract class
     protected abstract void OnMoveActionStarted();
     protected abstract void PerformMove(int q, int r);
     protected abstract THexMove? GetHexAt(Hex position);
-    protected abstract TAction? TryCreateRemoveHexActionAt(Hex location);
+    protected abstract TAction? TryCreateRemoveHexAtAction(Hex location);
 
     protected abstract float CalculateEditorArrowZPosition();
 

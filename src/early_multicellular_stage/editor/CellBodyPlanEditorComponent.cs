@@ -460,7 +460,7 @@ public partial class CellBodyPlanEditorComponent :
         return editedMicrobeCells.GetElementAt(position)?.Data;
     }
 
-    protected override EditorAction? TryCreateRemoveHexActionAt(Hex location)
+    protected override EditorAction? TryCreateRemoveHexAtAction(Hex location)
     {
         var hexHere = editedMicrobeCells.GetElementAt(location);
         if (hexHere == null)
@@ -470,24 +470,8 @@ public partial class CellBodyPlanEditorComponent :
         if (editedMicrobeCells.Count < 2)
             return null;
 
-        // If it was placed this session, just refund the cost of adding it.
-        // TODO: this doesn't take being placed in current editor session into account, this is instead waiting for
-        // the dynamic MP changes to be made
-        int cost = Constants.ORGANELLE_REMOVE_COST;
-
-        // TODO: move to using actions
-        editedMicrobeCells.Remove(hexHere);
-        Editor.MutationPoints -= cost;
-        if (Editor.MutationPoints < 0)
-            Editor.MutationPoints = 0;
-
-        /*
-        var action = new EditorAction(Editor, cost,
-            DoOrganelleRemoveAction, UndoOrganelleRemoveAction, new RemoveActionData(hexHere));
-
-        return action*/
-
-        return null;
+        return new SingleEditorAction<CellRemoveActionData>(DoCellRemoveAction, UndoCellRemoveAction,
+            new CellRemoveActionData(hexHere));
     }
 
     protected override float CalculateEditorArrowZPosition()
@@ -564,30 +548,51 @@ public partial class CellBodyPlanEditorComponent :
     }
 
     /// <summary>
-    ///   Places an organelle of the specified type under the cursor and also applies symmetry to
-    ///   place multiple at once.
+    ///   Places an organelle of the specified type under the cursor and also applies symmetry to place multiple
     /// </summary>
-    /// <returns>True when at least one organelle got placed</returns>
+    /// <returns>True when at least one hex got placed</returns>
     private bool AddCell(CellType cellType)
     {
         GetMouseHex(out int q, out int r);
 
-        bool placedSomething = false;
+        var placementActions = new List<EditorAction>();
+
+        // For multi hex organelles we keep track of positions that got filled in
+        var usedHexes = new HashSet<Hex>();
 
         RunWithSymmetry(q, r,
             (attemptQ, attemptR, rotation) =>
             {
-                if (PlaceIfPossible(cellType, attemptQ, attemptR, rotation))
-                    placedSomething = true;
+                var hex = new Hex(attemptQ, attemptR);
+
+                if (usedHexes.Contains(hex))
+                {
+                    // Duplicate with already placed
+                    return;
+                }
+
+                var placed = CreatePlaceActionIfPossible(cellType, attemptQ, attemptR, rotation);
+
+                if (placed != null)
+                {
+                    placementActions.Add(placed);
+
+                    usedHexes.Add(hex);
+                }
             });
 
-        return placedSomething;
+        if (placementActions.Count < 1)
+            return false;
+
+        var multiAction = new CombinedEditorAction(placementActions);
+
+        return EnqueueAction(multiAction);
     }
 
     /// <summary>
     ///   Helper for AddCell
     /// </summary>
-    private bool PlaceIfPossible(CellType cellType, int q, int r, int rotation)
+    private EditorAction? CreatePlaceActionIfPossible(CellType cellType, int q, int r, int rotation)
     {
         var cell = new HexWithData<CellTemplate>(new CellTemplate(cellType, new Hex(q, r), rotation))
         {
@@ -598,13 +603,10 @@ public partial class CellBodyPlanEditorComponent :
         {
             // Play Sound
             Editor.OnInvalidAction();
-            return false;
+            return null;
         }
 
-        if (AddCell(cell))
-            return true;
-
-        return false;
+        return CreateAddCellAction(cell);
     }
 
     private bool IsValidPlacement(HexWithData<CellTemplate> cell)
@@ -612,24 +614,10 @@ public partial class CellBodyPlanEditorComponent :
         return editedMicrobeCells.CanPlaceAndIsTouching(cell);
     }
 
-    private bool AddCell(HexWithData<CellTemplate> cell)
+    private EditorAction CreateAddCellAction(HexWithData<CellTemplate> cell)
     {
-        // TODO: editor actions
-        if (Editor.MutationPoints <= 0)
-        {
-            Editor.OnInsufficientMP();
-            return false;
-        }
-
-        Editor.MutationPoints -= cell.Data!.CellType.MPCost;
-        editedMicrobeCells.Add(cell);
-
-        /*var action = new EditorAction(Editor, organelle.Definition.MPCost,
-            DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle));
-
-        EnqueueAction(action);*/
-
-        return true;
+        return new SingleEditorAction<CellPlacementActionData>(DoCellPlaceAction, UndoCellPlaceAction,
+            new CellPlacementActionData(cell));
     }
 
     /// <summary>

@@ -38,6 +38,8 @@
     <Compile Include="src\early_multicellular_stage\CellTemplate.cs" />
     <Compile Include="src\early_multicellular_stage\CellType.cs" />
     <Compile Include="src\early_multicellular_stage\EarlyMulticellularSpecies.cs" />
+    <Compile Include="src\early_multicellular_stage\editor\action_data\CellPlacementActionData.cs" />
+    <Compile Include="src\early_multicellular_stage\editor\action_data\CellRemoveActionData.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellBodyPlanEditorComponent.Callbacks.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellBodyPlanEditorComponent.cs" />
     <Compile Include="src\early_multicellular_stage\editor\CellTypeSelection.cs" />
@@ -194,8 +196,9 @@
     <Compile Include="src\microbe_stage\editor\action_data\EditorCombinableActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\OrganelleMoveActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\NewMicrobeActionData.cs" />
-    <Compile Include="src\microbe_stage\editor\action_data\PlacementActionData.cs" />
-    <Compile Include="src\microbe_stage\editor\action_data\RemoveActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\OrganellePlacementActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\OrganelleRemoveActionData.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\RemoveHexActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\RigidityActionData.cs" />
     <Compile Include="src\microbe_stage\editor\BehaviourEditorSubComponent.cs" />
     <Compile Include="src\microbe_stage\editor\CellEditorComponent.Callbacks.cs" />
