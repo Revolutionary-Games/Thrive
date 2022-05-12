@@ -316,6 +316,12 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         mutationPointsCache = null;
     }
 
+    public bool HexPlacedThisSession<THex>(THex hex)
+        where THex : class
+    {
+        return history.HexPlacedThisSession(hex);
+    }
+
     [RunOnKeyDown("e_redo")]
     public void Redo()
     {

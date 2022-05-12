@@ -149,10 +149,10 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         base.AddAction(action);
     }
 
-    // TODO: try to generalize this method a bit
-    public bool OrganellePlacedThisSession(OrganelleTemplate organelle)
+    public bool HexPlacedThisSession<THex>(THex hex)
+        where THex : class
     {
-        return History.OfType<PlacementActionData>().Any(a => a.Organelle == organelle);
+        return History.OfType<HexPlacementActionData<THex>>().Any(a => a.PlacedHex == hex);
     }
 
     /// <summary>

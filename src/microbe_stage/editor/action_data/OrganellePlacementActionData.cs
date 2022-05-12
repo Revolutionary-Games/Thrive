@@ -1,29 +1,23 @@
 ﻿using System.Collections.Generic;
 
 [JSONAlwaysDynamicType]
-public class PlacementActionData : EditorCombinableActionData
+public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemplate>
 {
     public List<OrganelleTemplate>? ReplacedCytoplasm;
-    public OrganelleTemplate Organelle;
-    public Hex Location;
-    public int Orientation;
 
-    public PlacementActionData(OrganelleTemplate organelle, Hex location, int orientation)
+    public OrganellePlacementActionData(OrganelleTemplate organelle, Hex location, int orientation) : base(organelle, location, orientation)
     {
-        Organelle = organelle;
-        Location = location;
-        Orientation = orientation;
     }
 
     protected override int CalculateCostInternal()
     {
-        return Organelle.Definition.MPCost;
+        return PlacedHex.Definition.MPCost;
     }
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
         // If this organelle got removed in this session
-        if (other is RemoveActionData removeActionData && removeActionData.Organelle.Definition == Organelle.Definition)
+        if (other is OrganelleRemoveActionData removeActionData && removeActionData.AddedHex.Definition == PlacedHex.Definition)
         {
             // If the placed organelle has been placed on the same position where it got removed before
             if (removeActionData.Location == Location)
@@ -34,7 +28,7 @@ public class PlacementActionData : EditorCombinableActionData
         }
 
         if (other is OrganelleMoveActionData moveActionData &&
-            moveActionData.MovedHex.Definition == Organelle.Definition)
+            moveActionData.MovedHex.Definition == PlacedHex.Definition)
         {
             if (moveActionData.OldLocation == Location)
                 return ActionInterferenceMode.Combinable;
@@ -43,8 +37,8 @@ public class PlacementActionData : EditorCombinableActionData
                 return ActionInterferenceMode.ReplacesOther;
         }
 
-        if (other is PlacementActionData placementActionData &&
-            ReplacedCytoplasm?.Contains(placementActionData.Organelle) == true)
+        if (other is OrganellePlacementActionData placementActionData &&
+            ReplacedCytoplasm?.Contains(placementActionData.PlacedHex) == true)
             return ActionInterferenceMode.ReplacesOther;
 
         return ActionInterferenceMode.NoInterference;
@@ -52,13 +46,13 @@ public class PlacementActionData : EditorCombinableActionData
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
-        if (other is RemoveActionData removeActionData)
+        if (other is OrganelleRemoveActionData removeActionData)
         {
-            return new OrganelleMoveActionData(removeActionData.Organelle, removeActionData.Location, Location,
+            return new OrganelleMoveActionData(removeActionData.AddedHex, removeActionData.Location, Location,
                 removeActionData.Orientation, Orientation);
         }
 
         var moveActionData = (OrganelleMoveActionData)other;
-        return new PlacementActionData(Organelle, moveActionData.NewLocation, moveActionData.NewRotation);
+        return new OrganellePlacementActionData(PlacedHex, moveActionData.NewLocation, moveActionData.NewRotation);
     }
 }

@@ -25,8 +25,8 @@ public class OrganelleMoveActionData : HexMoveActionData<OrganelleTemplate>
         }
 
         // If this organelle got placed in this session
-        if (other is PlacementActionData placementActionData &&
-            placementActionData.Organelle.Definition == MovedHex.Definition &&
+        if (other is OrganellePlacementActionData placementActionData &&
+            placementActionData.PlacedHex.Definition == MovedHex.Definition &&
             placementActionData.Location == OldLocation &&
             placementActionData.Orientation == OldRotation)
         {
@@ -48,8 +48,8 @@ public class OrganelleMoveActionData : HexMoveActionData<OrganelleTemplate>
     {
         switch (other)
         {
-            case PlacementActionData placementActionData:
-                return new PlacementActionData(placementActionData.Organelle, NewLocation, NewRotation)
+            case OrganellePlacementActionData placementActionData:
+                return new OrganellePlacementActionData(placementActionData.PlacedHex, NewLocation, NewRotation)
                 {
                     ReplacedCytoplasm = placementActionData.ReplacedCytoplasm,
                 };

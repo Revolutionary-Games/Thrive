@@ -101,11 +101,6 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         return (int)(history.WhatWouldActionsCost(actions) * Constants.MULTICELLULAR_EDITOR_COST_FACTOR);
     }
 
-    public bool OrganellePlacedThisSession(OrganelleTemplate organelle)
-    {
-        return history.OrganellePlacedThisSession(organelle);
-    }
-
     public override bool CancelCurrentAction()
     {
         if (bodyPlanEditorTab.Visible)

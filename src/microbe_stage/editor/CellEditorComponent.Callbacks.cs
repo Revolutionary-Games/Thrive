@@ -55,9 +55,9 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganellePlaceAction(PlacementActionData data)
+    private void UndoOrganellePlaceAction(OrganellePlacementActionData data)
     {
-        editedMicrobeOrganelles.Remove(data.Organelle);
+        editedMicrobeOrganelles.Remove(data.PlacedHex);
 
         if (data.ReplacedCytoplasm != null)
         {

@@ -115,11 +115,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         return cellEditorTab.CancelCurrentAction();
     }
 
-    public bool OrganellePlacedThisSession(OrganelleTemplate organelle)
-    {
-        return history.OrganellePlacedThisSession(organelle);
-    }
-
     public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
         return history.WhatWouldActionsCost(actions);

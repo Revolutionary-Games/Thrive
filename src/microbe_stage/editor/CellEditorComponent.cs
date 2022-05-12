@@ -1504,9 +1504,9 @@ public partial class CellEditorComponent :
         var replacedCytoplasmActions =
             GetReplacedCytoplasmRemoveAction(new[] { organelle }).Cast<EditorAction>().ToList();
 
-        var action = new SingleEditorAction<PlacementActionData>(
+        var action = new SingleEditorAction<OrganellePlacementActionData>(
             DoOrganellePlaceAction, UndoOrganellePlaceAction,
-            new PlacementActionData(organelle, organelle.Position, organelle.Orientation)
+            new OrganellePlacementActionData(organelle, organelle.Position, organelle.Orientation)
             {
                 CostMultiplier = CostMultiplier,
             });
