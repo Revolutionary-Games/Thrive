@@ -29,12 +29,6 @@ public partial class Microbe
     [JsonProperty]
     private bool previousEngulfMode;
 
-    [JsonProperty]
-    private EntityReference<Microbe> hostileEngulfer = new();
-
-    [JsonProperty]
-    private bool wasBeingEngulfed;
-
     /// <summary>
     ///   Tracks other engulfables that are within the engulf area and are ignoring collisions with this body.
     /// </summary>
@@ -52,12 +46,6 @@ public partial class Microbe
 
     [JsonProperty]
     private List<EngulfedMaterial> engulfedMaterials = new();
-
-    [JsonProperty]
-    private float escapeInterval;
-
-    [JsonProperty]
-    private bool hasEscaped;
 
     [JsonProperty]
     private float engulfedSize;
@@ -154,8 +142,8 @@ public partial class Microbe
     [JsonProperty]
     public bool IsIngested { get; set; }
 
-    [JsonIgnore]
-    public EntityReference<Microbe> HostileEngulfer => hostileEngulfer;
+    [JsonProperty]
+    public EntityReference<Microbe> HostileEngulfer { get; } = new();
 
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();
@@ -959,60 +947,8 @@ public partial class Microbe
             MovementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
         }
 
-        /* NOTE: Will no longer work correctly with the new engulfment mechanics
-        if (IsBeingEngulfed)
-        {
-            // Microbe is now getting absorbed into the engulfer
-
-            MovementFactor /= Constants.ENGULFED_MOVEMENT_DIVISION;
-
-            wasBeingEngulfed = true;
-        }
-        else if (wasBeingEngulfed && !IsBeingEngulfed && !IsIngested)
-        {
-            // Else If we were but are no longer, being engulfed
-            wasBeingEngulfed = false;
-
-            if (!IsPlayerMicrobe && !Species.PlayerSpecies)
-            {
-                hasEscaped = true;
-                escapeInterval = 0;
-            }
-
-            RemoveEngulfedEffect();
-        }
-
-        // Still considered to be chased for CREATURE_ESCAPE_INTERVAL milliseconds
-        if (hasEscaped)
-        {
-            escapeInterval += delta;
-            if (escapeInterval >= Constants.CREATURE_ESCAPE_INTERVAL)
-            {
-                hasEscaped = false;
-                escapeInterval = 0;
-
-                GameWorld.AlterSpeciesPopulation(Species,
-                    Constants.CREATURE_ESCAPE_POPULATION_GAIN,
-                    TranslationServer.Translate("ESCAPE_ENGULFING"));
-            }
-        }
-
-        // Check whether we should not be being engulfed anymore
-        var hostile = HostileEngulfer.Value;
-        if (hostile != null)
-        {
-            // Dead or engulfed things can't engulf us
-            if (hostile.Dead || hostile.IsIngested)
-            {
-                HostileEngulfer.Value = null;
-                IsBeingEngulfed = false;
-            }
-        }
-        else
-        {
-            IsBeingEngulfed = false;
-        }
-        */
+        // TODO: Add back escaped from engulfment population reward. This is currently not feasible
+        // due to new engulfment behavior not allowing things to escape
 
         for (int i = engulfedMaterials.Count - 1; i >= 0; --i)
         {
@@ -1058,7 +994,7 @@ public partial class Microbe
         if (!previousEngulfMode)
             CheckStartEngulfingOnCandidates();
 
-        // Apply engulf effect to the objects we are engulfing
+        // Check if objects we are attempting to engulf can trigger ingestion
         for (int i = attemptingToEngulf.Count - 1; i >= 0; --i)
         {
             var engulfable = attemptingToEngulf[i];
@@ -1077,22 +1013,6 @@ public partial class Microbe
                 }
             }
         }
-    }
-
-    private void RemoveEngulfedEffect()
-    {
-        // This kept getting doubled for some reason, so i just set it to default
-        MovementFactor = 1.0f;
-        wasBeingEngulfed = false;
-        IsBeingIngested = false;
-
-        if (HostileEngulfer.Value != null)
-        {
-            // Currently unused
-            // hostileEngulfer.isCurrentlyEngulfing = false;
-        }
-
-        HostileEngulfer.Value = null;
     }
 
     /// <summary>
