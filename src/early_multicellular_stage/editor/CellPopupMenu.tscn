@@ -5,7 +5,3 @@
 
 [node name="CellPopupMenu" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-TitleLabelPath = NodePath("VBoxContainer/MarginContainer/SelectedOrganelleName")
-
-[node name="MpCost" parent="VBoxContainer/Move/MarginContainer/HBoxContainer" index="2"]
-text = "-2 MP"
