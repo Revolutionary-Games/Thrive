@@ -33,8 +33,16 @@ public class ModLoader : Node
         instance = this;
 
         // Make sure we reference something from Harmony so that our builds are forced to always include it
-        var harmony = new Harmony("com.revolutionarygamesstudio.thrive.dummyHarmony");
-        harmony.GetPatchedMethods();
+        try
+        {
+            var harmony = new Harmony("com.revolutionarygamesstudio.thrive.dummyHarmony");
+            harmony.GetPatchedMethods();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr(
+                "Harmony doesn't seem to be working. Don't expect any Harmony using mods to work. Exception: ", e);
+        }
 
         // The reason why mods aren't loaded here already is that this object can't be attached to the scene here yet
         // so we delay mod loading until this has been attached to the main scene tree
