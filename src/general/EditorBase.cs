@@ -634,6 +634,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         {
             // Make sure button status is reset so that it doesn't look like the wrong tab button is now active
             editorTabSelector?.SetCurrentTab(selectedEditorTab);
+
+            ToolTipManager.Instance.ShowPopup(
+                TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
             return;
         }
 

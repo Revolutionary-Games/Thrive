@@ -715,7 +715,9 @@ public partial class CellEditorComponent :
             {
                 isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), placementRotation, MovingPlacedHex);
                 shownOrganelle = MovingPlacedHex.Definition;
-                effectiveSymmetry = HexEditorSymmetry.None;
+
+                if (!Settings.Instance.MoveOrganellesWithSymmetry)
+                    effectiveSymmetry = HexEditorSymmetry.None;
             }
 
             HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
@@ -993,27 +995,21 @@ public partial class CellEditorComponent :
 
     protected override void PerformMove(int q, int r)
     {
-        if (MoveOrganelle(MovingPlacedHex!, MovingPlacedHex!.Position, new Hex(q, r), MovingPlacedHex.Orientation,
+        if (!MoveOrganelle(MovingPlacedHex!, MovingPlacedHex!.Position, new Hex(q, r), MovingPlacedHex.Orientation,
                 placementRotation))
-        {
-            // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
-            MovingPlacedHex = null;
-
-            // TODO: should this call be made through Editor here?
-            UpdateCancelButtonVisibility();
-
-            // Update rigidity slider in case it was disabled
-            // TODO: could come up with a bit nicer design here
-            int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
-            UpdateRigiditySlider(intRigidity);
-
-            // Re-enable undo/redo button
-            Editor.NotifyUndoRedoStateChanged();
-        }
-        else
         {
             Editor.OnInvalidAction();
         }
+    }
+
+    protected override void OnMoveWillSucceed()
+    {
+        base.OnMoveWillSucceed();
+
+        // Update rigidity slider in case it was disabled
+        // TODO: could come up with a bit nicer design here
+        int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+        UpdateRigiditySlider(intRigidity);
     }
 
     protected override bool IsMoveTargetValid(Hex position, int rotation, OrganelleTemplate organelle)

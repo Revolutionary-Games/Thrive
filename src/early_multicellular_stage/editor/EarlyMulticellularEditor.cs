@@ -48,7 +48,19 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     [JsonProperty]
     private CellType? selectedCellTypeToEdit;
 
-    public override bool CanCancelAction => cellEditorTab.Visible && cellEditorTab.CanCancelAction;
+    public override bool CanCancelAction
+    {
+        get
+        {
+            if (cellEditorTab.Visible)
+                return cellEditorTab.CanCancelAction;
+
+            if (bodyPlanEditorTab.Visible)
+                return bodyPlanEditorTab.CanCancelAction;
+
+            return false;
+        }
+    }
 
     [JsonIgnore]
     public override Species EditedBaseSpecies =>
@@ -71,7 +83,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
     protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MICROBE_EDITOR");
-    protected override bool HasInProgressAction { get; }
+    protected override bool HasInProgressAction => CanCancelAction;
 
     public void SendAutoEvoResultsToReportComponent()
     {
@@ -336,6 +348,13 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
     private void OnStartEditingCellType(string name)
     {
+        if (CanCancelAction)
+        {
+            ToolTipManager.Instance.ShowPopup(
+                TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
+            return;
+        }
+
         var newTypeToEdit = EditedSpecies.CellTypes.First(c => c.TypeName == name);
 
         // Only reinitialize the editor when required

@@ -5,7 +5,7 @@ using Godot;
 
 public class CellPopupMenu : HexPopupMenu
 {
-    private List<CellTemplate>? selectedCells;
+    private List<HexWithData<CellTemplate>>? selectedCells;
 
     public override bool EnableModifyOption
     {
@@ -17,7 +17,7 @@ public class CellPopupMenu : HexPopupMenu
         }
     }
 
-    public List<CellTemplate> SelectedCells
+    public List<HexWithData<CellTemplate>> SelectedCells
     {
         get => selectedCells ??
             throw new InvalidOperationException($"{nameof(CellPopupMenu)} was not opened with cells set");
@@ -46,7 +46,7 @@ public class CellPopupMenu : HexPopupMenu
         if (titleLabel == null)
             return;
 
-        var names = SelectedCells.Select(c => c.CellType.TypeName).Distinct()
+        var names = SelectedCells.Select(c => c.Data!.CellType.TypeName).Distinct()
             .ToList();
 
         if (names.Count == 1)
@@ -67,8 +67,7 @@ public class CellPopupMenu : HexPopupMenu
         var mpCost = GetActionPrice?.Invoke(
                 SelectedCells
                     .Select(o =>
-                        (EditorCombinableActionData)new CellRemoveActionData(new HexWithData<CellTemplate>(o)
-                            { Position = o.Position }))) ??
+                        (EditorCombinableActionData)new CellRemoveActionData(o))) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
@@ -85,9 +84,8 @@ public class CellPopupMenu : HexPopupMenu
             return;
 
         var mpCost = GetActionPrice?.Invoke(SelectedCells.Select(o =>
-            (EditorCombinableActionData)new CellMoveActionData(new HexWithData<CellTemplate>(o)
-                    { Position = o.Position }, o.Position, o.Position, o.Orientation,
-                o.Orientation))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
+            (EditorCombinableActionData)new CellMoveActionData(o, o.Position, o.Position + new Hex(5, 5), 0,
+                0))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
         mpCost = (int)(mpCost * editorCostFactor);

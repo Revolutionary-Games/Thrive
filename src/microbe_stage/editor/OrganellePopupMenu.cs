@@ -85,8 +85,8 @@ public class OrganellePopupMenu : HexPopupMenu
             return;
 
         var mpCost = GetActionPrice?.Invoke(SelectedOrganelles.Select(o =>
-            (EditorCombinableActionData)new OrganelleMoveActionData(o, o.Position, o.Position, o.Orientation,
-                o.Orientation))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
+            (EditorCombinableActionData)new OrganelleMoveActionData(o, o.Position, o.Position + new Hex(5, 5),
+                o.Orientation, o.Orientation))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
         mpCost = (int)(mpCost * editorCostFactor);

@@ -102,7 +102,7 @@ public abstract class EditorComponentWithActionsBase<TEditor, TAction> : EditorC
         Editor.Redo();
     }
 
-    protected void OnCancelActionClicked()
+    protected virtual void OnCancelActionClicked()
     {
         GUICommon.Instance.PlayButtonPressSound();
         Editor.CancelCurrentAction();

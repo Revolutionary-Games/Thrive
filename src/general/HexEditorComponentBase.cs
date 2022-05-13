@@ -184,9 +184,6 @@ public abstract class
 
     protected abstract bool ForceHideHover { get; }
 
-    // TODO: remove
-    // protected override bool HasInProgressAction => CanCancelMove;
-
     public override void _Ready()
     {
         base._Ready();
@@ -719,6 +716,8 @@ public abstract class
             }
         }
 
+        OnMoveWillSucceed();
+
         Editor.EnqueueAction(action);
         Editor.OnValidAction();
         UpdateSymmetryButton();
@@ -871,8 +870,20 @@ public abstract class
     {
         UpdateCancelButtonVisibility();
 
-        // TODO: for multi move of organelles:
-        // Editor.NotifySymmetryAllowedStateChanged();
+        // TODO: switch to this going through the editor
+        UpdateSymmetryButton();
+    }
+
+    protected virtual void OnMoveWillSucceed()
+    {
+        MovingPlacedHex = null;
+
+        // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
+        // TODO: should this call be made through Editor here?
+        UpdateCancelButtonVisibility();
+
+        // Re-enable undo/redo button
+        Editor.NotifyUndoRedoStateChanged();
     }
 
     /// <summary>

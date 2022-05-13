@@ -63,7 +63,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
     protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MICROBE_EDITOR");
-    protected override bool HasInProgressAction { get; }
+    protected override bool HasInProgressAction => CanCancelAction;
 
     public override void _Ready()
     {
