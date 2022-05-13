@@ -97,9 +97,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
     public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
-        // TODO: action history. Once we have also body plan actions we need a way to only apply the discount to one
-        // type
-        return (int)(history.WhatWouldActionsCost(actions) * Constants.MULTICELLULAR_EDITOR_COST_FACTOR);
+        return history.WhatWouldActionsCost(actions);
     }
 
     public override bool CancelCurrentAction()

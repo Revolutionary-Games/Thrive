@@ -387,6 +387,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         history.AddAction(action);
 
         NotifyUndoRedoStateChanged();
+
+        DirtyMutationPointsCache();
+
         return true;
     }
 

@@ -72,17 +72,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
         tutorialGUI.Visible = true;
     }
 
-    public override bool EnqueueAction(EditorAction action)
-    {
-        if (base.EnqueueAction(action))
-        {
-            DirtyMutationPointsCache();
-            return true;
-        }
-
-        return false;
-    }
-
     public void SendAutoEvoResultsToReportComponent()
     {
         reportTab.UpdateAutoEvoResults(autoEvoSummary?.ToString() ?? "error", autoEvoExternal?.ToString() ?? "error");
