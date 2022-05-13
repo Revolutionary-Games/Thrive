@@ -11,8 +11,6 @@ using Newtonsoft.Json;
 /// </summary>
 public partial class Microbe
 {
-    private SphereShape engulfShape = null!;
-
     /// <summary>
     ///   Contains the pili this microbe has for collision checking
     /// </summary>
@@ -1174,7 +1172,10 @@ public partial class Microbe
         if (body == this)
             return;
 
-        //
+        // A redundancy in case an engulfable is technically inside this cell's membrane but is not ingested
+        // (presumably due to it not touching any of this cell's collision shape), so we defer to the
+        // engulf detector area which is shaped as the membrane to check if the engulfable really is
+        // inside this cell
         if (body is IEngulfable engulfable)
         {
             CheckStartEngulfingOnCandidate(engulfable);
