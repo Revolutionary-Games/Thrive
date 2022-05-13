@@ -22,7 +22,7 @@ public class CellPlacementActionData : HexPlacementActionData<HexWithData<CellTe
 
     protected override CombinableActionData CreateDerivedMoveAction(HexRemoveActionData<HexWithData<CellTemplate>> data)
     {
-        return new CellMoveActionData(data.AddedHex, data.Location, Location,
+        return new CellMoveActionData(data.RemovedHex, data.Location, Location,
             data.Orientation, Orientation);
     }
 

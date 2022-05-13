@@ -36,7 +36,7 @@ public class OrganellePlacementActionData : HexPlacementActionData<OrganelleTemp
 
     protected override CombinableActionData CreateDerivedMoveAction(HexRemoveActionData<OrganelleTemplate> data)
     {
-        return new OrganelleMoveActionData(data.AddedHex, data.Location, Location,
+        return new OrganelleMoveActionData(data.RemovedHex, data.Location, Location,
             data.Orientation, Orientation);
     }
 

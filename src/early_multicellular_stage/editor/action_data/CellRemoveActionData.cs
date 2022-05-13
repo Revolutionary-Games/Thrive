@@ -24,6 +24,6 @@ public class CellRemoveActionData : HexRemoveActionData<HexWithData<CellTemplate
 
     protected override CombinableActionData CreateDerivedRemoveAction(HexMoveActionData<HexWithData<CellTemplate>> data)
     {
-        return new CellRemoveActionData(AddedHex, data.OldLocation, data.OldRotation);
+        return new CellRemoveActionData(RemovedHex, data.OldLocation, data.OldRotation);
     }
 }

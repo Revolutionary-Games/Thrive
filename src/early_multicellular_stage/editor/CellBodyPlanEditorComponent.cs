@@ -106,7 +106,7 @@ public partial class CellBodyPlanEditorComponent :
     /// <summary>
     ///   True when visuals of already placed things need to be updated
     /// </summary>
-    private bool organelleDataDirty = true;
+    private bool cellDataDirty = true;
 
     [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
@@ -322,10 +322,10 @@ public partial class CellBodyPlanEditorComponent :
             metrics.ReportEntities(roughCount, 0);
         }
 
-        if (organelleDataDirty)
+        if (cellDataDirty)
         {
             OnCellsChanged();
-            organelleDataDirty = false;
+            cellDataDirty = false;
         }
 
         foreach (var microbe in thisFrameScaleApplies)
@@ -431,10 +431,10 @@ public partial class CellBodyPlanEditorComponent :
 
         RunWithSymmetry(q, r, (symmetryQ, symmetryR, _) =>
         {
-            var organelle = editedMicrobeCells.GetElementAt(new Hex(symmetryQ, symmetryR));
+            var cell = editedMicrobeCells.GetElementAt(new Hex(symmetryQ, symmetryR));
 
-            if (organelle != null)
-                cells.Add(organelle);
+            if (cell != null)
+                cells.Add(cell);
         });
 
         if (cells.Count < 1)
@@ -505,9 +505,9 @@ public partial class CellBodyPlanEditorComponent :
         }
     }
 
-    protected override bool IsMoveTargetValid(Hex position, int rotation, HexWithData<CellTemplate> organelle)
+    protected override bool IsMoveTargetValid(Hex position, int rotation, HexWithData<CellTemplate> cell)
     {
-        return editedMicrobeCells.CanPlace(organelle);
+        return editedMicrobeCells.CanPlace(cell);
     }
 
     protected override void OnCurrentActionCanceled()
@@ -625,7 +625,7 @@ public partial class CellBodyPlanEditorComponent :
     }
 
     /// <summary>
-    ///   Places an organelle of the specified type under the cursor and also applies symmetry to place multiple
+    ///   Places a cell of the specified type under the cursor and also applies symmetry to place multiple
     /// </summary>
     /// <returns>True when at least one hex got placed</returns>
     private bool AddCell(CellType cellType)
@@ -634,7 +634,7 @@ public partial class CellBodyPlanEditorComponent :
 
         var placementActions = new List<EditorAction>();
 
-        // For multi hex organelles we keep track of positions that got filled in
+        // For symmetrically placed cells keep track of where we already placed something
         var usedHexes = new HashSet<Hex>();
 
         RunWithSymmetry(q, r,
@@ -708,8 +708,8 @@ public partial class CellBodyPlanEditorComponent :
         {
             var (hex, orientation) = hexes[i];
             var cell = cells[i];
-            var oldOrganelle = cellPositions.FirstOrDefault(p => p.Hex == hex);
-            bool occupied = oldOrganelle != default;
+            var oldCell = cellPositions.FirstOrDefault(p => p.Hex == hex);
+            bool occupied = oldCell != default;
 
             cellPositions.Add((hex, cell, orientation, occupied));
         }
@@ -785,7 +785,7 @@ public partial class CellBodyPlanEditorComponent :
     {
         if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
         {
-            // Start moving the organelles symmetrical to the clicked organelle.
+            // Start moving the cells symmetrical to the clicked cell.
             StartHexMoveWithSymmetry(cellPopupMenu.SelectedCells);
         }
         else
@@ -793,7 +793,7 @@ public partial class CellBodyPlanEditorComponent :
             StartHexMove(cellPopupMenu.SelectedCells.First());
         }
 
-        // Once an organelle move has begun, the button visibility should be updated so it becomes visible
+        // Once an cell move has begun, the button visibility should be updated so it becomes visible
         UpdateCancelButtonVisibility();
     }
 

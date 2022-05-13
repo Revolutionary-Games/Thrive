@@ -7,25 +7,25 @@ public partial class CellBodyPlanEditorComponent
     [DeserializedCallbackAllowed]
     private void OnCellAdded(HexWithData<CellTemplate> hexWithData)
     {
-        organelleDataDirty = true;
+        cellDataDirty = true;
     }
 
     [DeserializedCallbackAllowed]
     private void OnCellRemoved(HexWithData<CellTemplate> hexWithData)
     {
-        organelleDataDirty = true;
+        cellDataDirty = true;
     }
 
     [DeserializedCallbackAllowed]
     private void DoCellRemoveAction(CellRemoveActionData data)
     {
-        editedMicrobeCells.Remove(data.AddedHex);
+        editedMicrobeCells.Remove(data.RemovedHex);
     }
 
     [DeserializedCallbackAllowed]
     private void UndoCellRemoveAction(CellRemoveActionData data)
     {
-        editedMicrobeCells.Add(data.AddedHex);
+        editedMicrobeCells.Add(data.RemovedHex);
     }
 
     [DeserializedCallbackAllowed]

@@ -2,13 +2,13 @@
 public abstract class HexRemoveActionData<THex> : EditorCombinableActionData
     where THex : class, IActionHex
 {
-    public THex AddedHex;
+    public THex RemovedHex;
     public Hex Location;
     public int Orientation;
 
-    protected HexRemoveActionData(THex organelle, Hex location, int orientation)
+    protected HexRemoveActionData(THex hex, Hex location, int orientation)
     {
-        AddedHex = organelle;
+        RemovedHex = hex;
         Location = location;
         Orientation = orientation;
     }
@@ -22,7 +22,7 @@ public abstract class HexRemoveActionData<THex> : EditorCombinableActionData
     {
         // If this hex got placed in this session on the same position
         if (other is HexPlacementActionData<THex> placementActionData &&
-            placementActionData.PlacedHex.MatchesDefinition(AddedHex))
+            placementActionData.PlacedHex.MatchesDefinition(RemovedHex))
         {
             // If this hex got placed on the same position
             if (placementActionData.Location == Location)
@@ -34,7 +34,7 @@ public abstract class HexRemoveActionData<THex> : EditorCombinableActionData
 
         // If this hex got moved in this session
         if (other is HexMoveActionData<THex> moveActionData &&
-            moveActionData.MovedHex.MatchesDefinition(AddedHex) &&
+            moveActionData.MovedHex.MatchesDefinition(RemovedHex) &&
             moveActionData.NewLocation == Location)
         {
             return ActionInterferenceMode.Combinable;

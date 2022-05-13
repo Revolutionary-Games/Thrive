@@ -17,7 +17,7 @@ public abstract class HexPlacementActionData<THex> : EditorCombinableActionData
     {
         // If this hex got removed in this session
         if (other is HexRemoveActionData<THex> removeActionData &&
-            removeActionData.AddedHex.MatchesDefinition(PlacedHex))
+            removeActionData.RemovedHex.MatchesDefinition(PlacedHex))
         {
             // If the placed hex has been placed on the same position where it got removed before
             if (removeActionData.Location == Location)

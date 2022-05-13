@@ -55,7 +55,7 @@ public abstract class HexMoveActionData<THex> : EditorCombinableActionData
 
         // If this hex got removed in this session
         if (other is HexRemoveActionData<THex> removeActionData &&
-            removeActionData.AddedHex.MatchesDefinition(MovedHex) &&
+            removeActionData.RemovedHex.MatchesDefinition(MovedHex) &&
             removeActionData.Location == NewLocation)
         {
             return ActionInterferenceMode.ReplacesOther;
