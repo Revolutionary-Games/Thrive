@@ -149,6 +149,30 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         base.AddAction(action);
     }
 
+    /// <summary>
+    ///   Pops the topmost performed action and returns it. This should be used only for editing the topmost action
+    ///   to combine it with more steps.
+    /// </summary>
+    /// <returns>The action</returns>
+    /// <exception cref="InvalidOperationException">If there is no performed action</exception>
+    public TAction PopTopAction()
+    {
+        if (Actions.Count < ActionIndex)
+            throw new InvalidOperationException("There is no topmost action to pop");
+
+        var action = Actions[ActionIndex - 1];
+
+        // We undo the action here as when it is added back it will be performed again
+        // And we need this to adjust the ActionIndex to be right after we remove the element
+        if (!Undo())
+            throw new Exception("Failed to undo the action we want to pop");
+
+        if (!Actions.Remove(action))
+            throw new Exception("Failed to remove action from history");
+
+        return action;
+    }
+
     public bool HexPlacedThisSession<THex>(THex hex)
         where THex : class, IActionHex
     {
