@@ -56,7 +56,7 @@ jobs:
           # Remove the cat here once artifact uploads is done:
           command: |
             git diff-tree --no-commit-id --name-only -r HEAD..origin/$CI_DEFAULT_BRANCH > files_to_check.txt
-            git diff-tree --no-commit-id --name-only -r HEAD..$CI_EARLIER_COMMIT >> files_to_check.txt
+            git diff-tree --no-commit-id --name-only -r HEAD..$CI_EARLIER_COMMIT >> files_to_check.txt || echo compare with previous commit failed
             echo Changed files:
             cat files_to_check.txt
       # Don't care if this fails, it's enough that the C# build works
