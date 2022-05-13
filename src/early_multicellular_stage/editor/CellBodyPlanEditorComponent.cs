@@ -479,8 +479,9 @@ public partial class CellBodyPlanEditorComponent :
         }
         else
         {
-            moveOccupancies = GetMultiActionWithOccupancies(positions, new List<HexWithData<CellTemplate>>
-                { MovingPlacedHex }, false);
+            moveOccupancies = GetMultiActionWithOccupancies(positions.Take(1).ToList(),
+                new List<HexWithData<CellTemplate>>
+                    { MovingPlacedHex }, false);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
@@ -529,16 +530,17 @@ public partial class CellBodyPlanEditorComponent :
         return editedMicrobeCells.GetElementAt(position);
     }
 
-    protected override EditorAction? TryCreateRemoveHexAtAction(Hex location)
+    protected override EditorAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted)
     {
         var hexHere = editedMicrobeCells.GetElementAt(location);
         if (hexHere == null)
             return null;
 
         // Dont allow deletion of last cell
-        if (editedMicrobeCells.Count < 2)
+        if (editedMicrobeCells.Count - alreadyDeleted < 2)
             return null;
 
+        ++alreadyDeleted;
         return new SingleEditorAction<CellRemoveActionData>(DoCellRemoveAction, UndoCellRemoveAction,
             new CellRemoveActionData(hexHere));
     }
@@ -801,9 +803,10 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnDeletePressed()
     {
+        int alreadyDeleted = 0;
         var action =
             new CombinedEditorAction(cellPopupMenu.SelectedCells
-                .Select(o => TryCreateRemoveHexAtAction(o.Position)).WhereNotNull());
+                .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull());
         EnqueueAction(action);
     }
 

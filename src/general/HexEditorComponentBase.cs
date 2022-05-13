@@ -537,10 +537,11 @@ public abstract class
     public void RemoveHex(Hex hex)
     {
         var actions = new List<TAction>();
+        int alreadyDeleted = 0;
 
         RunWithSymmetry(hex.Q, hex.R, (q, r, _) =>
         {
-            var removed = TryCreateRemoveHexAtAction(new Hex(q, r));
+            var removed = TryCreateRemoveHexAtAction(new Hex(q, r), ref alreadyDeleted);
 
             if (removed != null)
                 actions.Add(removed);
@@ -1035,7 +1036,7 @@ public abstract class
     protected abstract void OnMoveActionStarted();
     protected abstract void PerformMove(int q, int r);
     protected abstract THexMove? GetHexAt(Hex position);
-    protected abstract TAction? TryCreateRemoveHexAtAction(Hex location);
+    protected abstract TAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted);
 
     protected abstract float CalculateEditorArrowZPosition();
 

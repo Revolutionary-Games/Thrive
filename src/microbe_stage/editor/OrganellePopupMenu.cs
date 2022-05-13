@@ -30,6 +30,8 @@ public class OrganellePopupMenu : HexPopupMenu
         }
     }
 
+    public float CostMultiplier { get; set; } = 1.0f;
+
     public override void _Ready()
     {
         base._Ready();
@@ -68,7 +70,10 @@ public class OrganellePopupMenu : HexPopupMenu
 
         var mpCost = GetActionPrice?.Invoke(
                 SelectedOrganelles
-                    .Select(o => (EditorCombinableActionData)new OrganelleRemoveActionData(o))) ??
+                    .Select(o => (EditorCombinableActionData)new OrganelleRemoveActionData(o)
+                    {
+                        CostMultiplier = CostMultiplier,
+                    })) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
@@ -86,7 +91,10 @@ public class OrganellePopupMenu : HexPopupMenu
 
         var mpCost = GetActionPrice?.Invoke(SelectedOrganelles.Select(o =>
             (EditorCombinableActionData)new OrganelleMoveActionData(o, o.Position, o.Position + new Hex(5, 5),
-                o.Orientation, o.Orientation))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
+                o.Orientation, o.Orientation)
+            {
+                CostMultiplier = CostMultiplier,
+            })) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
         mpCost = (int)(mpCost * editorCostFactor);

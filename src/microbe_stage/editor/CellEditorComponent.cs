@@ -971,7 +971,8 @@ public partial class CellEditorComponent :
         else
         {
             moveOccupancies =
-                GetMultiActionWithOccupancies(positions, new List<OrganelleTemplate> { MovingPlacedHex }, false);
+                GetMultiActionWithOccupancies(positions.Take(1).ToList(),
+                    new List<OrganelleTemplate> { MovingPlacedHex }, false);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
@@ -1034,20 +1035,21 @@ public partial class CellEditorComponent :
         return editedMicrobeOrganelles.GetElementAt(position);
     }
 
-    protected override EditorAction? TryCreateRemoveHexAtAction(Hex location)
+    protected override EditorAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted)
     {
         var organelleHere = editedMicrobeOrganelles.GetElementAt(location);
         if (organelleHere == null)
             return null;
 
         // Dont allow deletion of nucleus or the last organelle
-        if (organelleHere.Definition == nucleus || MicrobeSize < 2)
+        if (organelleHere.Definition == nucleus || MicrobeSize - alreadyDeleted < 2)
             return null;
 
         // In multicellular binding agents can't be removed
         if (IsMulticellularEditor && organelleHere.Definition == bindingAgent)
             return null;
 
+        ++alreadyDeleted;
         return new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
             new OrganelleRemoveActionData(organelleHere)
             {
@@ -1118,6 +1120,7 @@ public partial class CellEditorComponent :
     {
         var organelles = selectedOrganelles.ToList();
         organelleMenu.SelectedOrganelles = organelles;
+        organelleMenu.CostMultiplier = CostMultiplier;
         organelleMenu.GetActionPrice = Editor.WhatWouldActionsCost;
         organelleMenu.ShowPopup = true;
 
@@ -1696,9 +1699,10 @@ public partial class CellEditorComponent :
 
     private void OnDeletePressed()
     {
+        int alreadyDeleted = 0;
         var action =
             new CombinedEditorAction(organelleMenu.SelectedOrganelles
-                .Select(o => TryCreateRemoveHexAtAction(o.Position)).WhereNotNull());
+                .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull());
         EnqueueAction(action);
     }
 
