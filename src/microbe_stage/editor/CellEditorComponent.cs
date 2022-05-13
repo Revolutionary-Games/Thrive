@@ -735,7 +735,7 @@ public partial class CellEditorComponent :
 
     public override void SetEditorWorldTabSpecificObjectVisibility(bool shown)
     {
-        base.SetEditorWorldTabSpecificObjectVisibility(shown);
+        base.SetEditorWorldTabSpecificObjectVisibility(shown && !MicrobePreviewMode);
 
         if (previewMicrobe != null)
         {
