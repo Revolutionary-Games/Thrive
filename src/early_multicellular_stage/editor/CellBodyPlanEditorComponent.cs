@@ -606,15 +606,12 @@ public partial class CellBodyPlanEditorComponent :
 
     private void ShowCellMenu(IEnumerable<CellTemplate> selectedCells)
     {
-        var organelles = selectedCells.ToList();
-        cellPopupMenu.SelectedCells = organelles;
+        cellPopupMenu.SelectedCells = selectedCells.ToList();
         cellPopupMenu.GetActionPrice = Editor.WhatWouldActionsCost;
         cellPopupMenu.ShowPopup = true;
 
-        var count = organelles.Count;
-
-        cellPopupMenu.EnableDeleteOption = count > 1;
-        cellPopupMenu.EnableMoveOption = count > 1;
+        cellPopupMenu.EnableDeleteOption = editedMicrobeCells.Count > 1;
+        cellPopupMenu.EnableMoveOption = editedMicrobeCells.Count > 1;
     }
 
     private void RenderHighlightedCell(int q, int r, int rotation, CellType cellToPlace)
