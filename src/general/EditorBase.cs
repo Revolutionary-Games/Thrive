@@ -665,10 +665,12 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     protected virtual void OnUndoPerformed()
     {
+        DirtyMutationPointsCache();
     }
 
     protected virtual void OnRedoPerformed()
     {
+        DirtyMutationPointsCache();
     }
 
     protected virtual void UpdateEditor(float delta)
