@@ -1173,7 +1173,7 @@ public partial class Microbe
             return;
 
         // A redundancy in case an engulfable is technically inside this cell's membrane but is not ingested
-        // (presumably due to it not touching any of this cell's collision shape), so we defer to the
+        // (presumably due to it not touching any of this cell's collision shape), so we refer to the
         // engulf detector area which is shaped as the membrane to check if the engulfable really is
         // inside this cell
         if (body is IEngulfable engulfable)

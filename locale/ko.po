@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-12 21:02+0700\n"
+"POT-Creation-Date: 2022-05-13 22:42+0700\n"
 "PO-Revision-Date: 2022-03-22 16:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -654,39 +654,39 @@ msgid "NITROGEN"
 msgstr "질소"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3732
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3737
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
 msgstr "햇빛"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2242
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2247
 msgid "NORMAL"
 msgstr "보통"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2410
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2415
 msgid "DOUBLE"
 msgstr "이중"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2574
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2579
 msgid "CELLULOSE"
 msgstr "섬유소"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:57
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2809
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2814
 msgid "CHITIN"
 msgstr "키틴질"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3044
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3049
 msgid "CALCIUM_CARBONATE"
 msgstr "탄산 칼슘"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:93
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3312
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3317
 msgid "SILICA"
 msgstr "이산화규소"
 
@@ -2494,22 +2494,22 @@ msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "세포막 강도가 높을수록 피해에 더 견딜 수 있지만, 세포를 더욱 움직이기 힘들게 할 것입니다."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:156
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2269
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2437
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2601
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2836
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3069
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3339
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2274
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2442
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2606
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2841
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3074
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3344
 msgid "MOBILITY"
 msgstr "기동성"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:191
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2372
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2537
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2939
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3172
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3442
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2377
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2542
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2709
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2944
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3177
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3447
 msgid "HEALTH"
 msgstr "생명력"
 
@@ -2560,7 +2560,7 @@ msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1909
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2006
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2103
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2221
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2226
 msgid "STORAGE"
 msgstr "저장소"
 
@@ -2584,13 +2584,13 @@ msgstr "저장소"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1947
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2044
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2141
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2231
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2304
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2471
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2636
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2871
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3104
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3374
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2236
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2309
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2476
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2641
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2876
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3109
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3379
 msgid "OSMOREGULATION_COST"
 msgstr "삼투압 비용"
 
@@ -2803,86 +2803,91 @@ msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그�
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2214
 #, fuzzy
+msgid "DIGESTION_EFFICIENCY"
+msgstr "자원 흡수 속도"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
+#, fuzzy
 msgid "DIGESTION_SPEED"
 msgstr "자원 흡수 속도"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2243
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2248
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "가장 기본적인 형태의 막으로써 피해에 대한 보호 기능이 거의 없습니다. 무너지지 않기 위해선 더 많은 에너지가 필요합니다. 장점은 세포가 더 빠르게 움직이고 영양분을 흡수 할 수 있다는 것입니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2338
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2504
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2670
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2905
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3138
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3408
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2343
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2509
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2675
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2910
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3143
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3413
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "자원 흡수 속도"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2411
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2416
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "두 개의 층이있는 막으로써 피해로부터 더 잘 보호되고 무너지지 않는데 더 적은 에너지를 사용합니다. 그러나 세포의 속도와 자원 흡수 또한 더욱 느려집니다 ."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2575
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2580
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막에는 벽이 있어 전반적인 손상, 특히 물리적 손상에 대해 더 나은 보호를 제공합니다. 또한 형태를 유지하는 데 에너지가 덜 들지만 자원을 빠르게 흡수 할 수 없고 속도가 더 느려집니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2738
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3206
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3476
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2743
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3211
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3481
 msgid "PHYSICAL_RESISTANCE"
 msgstr "물리 저항"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2772
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3007
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3274
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3544
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2777
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3012
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3279
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3549
 msgid "CANNOT_ENGULF"
 msgstr "삼킬 수 없음"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2810
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2815
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막에는 벽이 있어 전반적인 손상, 특히 중독성 손상에 대해 더 나은 보호를 제공합니다. 또한 형태를 유지하는 데 에너지가 덜 들지만 자원을 빠르게 흡수 할 수 없고 속도가 더 느려집니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2973
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3240
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3510
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2978
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3515
 msgid "TOXIN_RESISTANCE"
 msgstr "독성 저항"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3045
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3050
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막은 탄산 칼슘으로 만든 강한 껍질을 가지고 있습니다. 손상에 쉽게 저항 할 수 있으며 변형되지 않는 데 더 적은 에너지가 필요합니다. 이 두터운 막의 단점은 세포가 훨씬 느려지고 자원을 흡수하는 데 시간이 걸린다는 것입니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3318
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막은 이산화규소로 이루어진 강력한 벽 입니다. 전반적인 손상에 잘 견딜 수 있으며 물리적 손상에 매우 강합니다. 또한 형태를 유지하는 데 더 적은 에너지가 필요합니다. 그러나 이는 세포 속도를 크게 낮추고 자원을 느리게 흡수합니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3701
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3706
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3707
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3712
 #, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr "세포의 핵심. 미토콘드리온(복수형: 미토콘드리아)는 단백질과 효소로 이루어진 이중막 구조입니다. 진핵 숙주가 사용하기 위해 동화된 원핵 생물입니다. 호기성 호흡을 통해 세포질에서 할 수 있는 것보다 훨씬 더 높은 효율로 포도당을 ATP로 전환 할 수 있습니다. 그러나 산소를 필요로 하며 환경의 산소 수준이 낮으면 ATP 생산 속도가 느려집니다."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3713
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3718
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3718
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 "저장하지 않은 변경점은 적용되지 않습니다.\n"
 "계속하시겠습니까?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3727
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3732
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
@@ -2894,15 +2899,15 @@ msgstr "온도"
 msgid "N_A_MP"
 msgstr "N/A 변이 점수"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:611
+#: ../src/microbe_stage/Microbe.Contact.cs:612
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:737
+#: ../src/microbe_stage/Microbe.Contact.cs:738
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "사냥 성공"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:744
+#: ../src/microbe_stage/Microbe.Contact.cs:745
 msgid "SUCCESSFUL_KILL"
 msgstr "처치 성공"
 

@@ -2210,12 +2210,17 @@ MutationPointCost = 45
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/lysosome/MarginContainer" index="0"]
 margin_bottom = 232.0
 
-[node name="digestionSpeed" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="0" instance=ExtResource( 2 )]
+[node name="digestionEfficiency" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="0" instance=ExtResource( 2 )]
+DisplayName = "DIGESTION_EFFICIENCY"
+ModifierValue = "+0.2"
+ModifierValueColor = Color( 0, 1, 0, 1 )
+
+[node name="digestionSpeed" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource( 2 )]
 DisplayName = "DIGESTION_SPEED"
 ModifierValue = "+0.2"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 
-[node name="storage" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource( 2 )]
+[node name="storage" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource( 2 )]
 margin_right = 318.0
 mouse_filter = 2
 DisplayName = "STORAGE"
@@ -2223,7 +2228,7 @@ ModifierValue = "+1"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
-[node name="osmoregulationCost" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource( 2 )]
+[node name="osmoregulationCost" parent="GroupHolder/organelleSelection/lysosome/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource( 2 )]
 margin_top = 24.0
 margin_right = 318.0
 margin_bottom = 44.0
