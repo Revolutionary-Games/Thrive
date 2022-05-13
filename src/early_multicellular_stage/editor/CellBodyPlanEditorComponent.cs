@@ -398,7 +398,9 @@ public partial class CellBodyPlanEditorComponent :
 
     public void OnCellTypeEdited(CellType changedType)
     {
-        UpdateAlreadyPlacedVisuals();
+        // This may be called while hidden from the undo/redo system
+        if (Visible)
+            UpdateAlreadyPlacedVisuals();
 
         UpdateCellTypeSelections();
 
