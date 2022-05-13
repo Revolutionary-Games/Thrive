@@ -1096,9 +1096,9 @@ public partial class Microbe
         {
             var engulfedMaterial = engulfedMaterials[i];
 
-            var engulfable = engulfedMaterial.Material;
+            var material = engulfedMaterial.Material;
 
-            if (!engulfable.IsIngested)
+            if (!material.IsIngested)
                 continue;
 
             var hasAnyUsefulCompounds = false;
@@ -1160,24 +1160,24 @@ public partial class Microbe
             // Eject this material as it has no use
             if (!hasAnyUsefulCompounds)
             {
-                EjectEngulfable(engulfable);
+                EjectEngulfable(material);
                 continue;
             }
 
             var totalAmountLeft = engulfedMaterial.AvailableEngulfableCompounds.Sum(compound => compound.Value);
-            engulfable.DigestionProgress = 1 - (totalAmountLeft / engulfedMaterial.InitialTotalEngulfableCompounds);
+            material.DigestionProgress = 1 - (totalAmountLeft / engulfedMaterial.InitialTotalEngulfableCompounds);
 
-            if (totalAmountLeft <= 0 || engulfable.DigestionProgress >= 1)
+            if (totalAmountLeft <= 0 || material.DigestionProgress >= 1)
             {
-                engulfedSize -= engulfable.Size;
+                engulfStorage -= material.Size;
                 engulfedMaterials.RemoveAt(i);
-                engulfable.DestroyDetachAndQueueFree();
+                material.DestroyDetachAndQueueFree();
             }
 
             // Eject the current engulfed object if this cell loses some of its size and its ingestion capacity
             // is overloaded
-            if (engulfedSize > Size)
-                EjectEngulfable(engulfable);
+            if (engulfStorage > Size)
+                EjectEngulfable(material);
         }
     }
 
@@ -1191,9 +1191,12 @@ public partial class Microbe
         {
             if (DigestionProgress >= 0.3f)
             {
-                // Cell is too damaged from digestion, can't live in open environment
-                // TODO: Placeholder damage source
-                Damage(MaxHitpoints * 0.04f, "atpDamage");
+                // Cell is too damaged from digestion, can't live in open environment and is considered dead
+                Dead = true;
+
+                // Disable collisions
+                CollisionLayer = 0;
+                CollisionMask = 0;
             }
             else if (DigestionProgress > 0 && DigestionProgress < 0.3f)
             {

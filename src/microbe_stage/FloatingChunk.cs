@@ -112,7 +112,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonProperty]
-    public bool IsBeingIngested { get; set; }
+    public bool IsBeingEngulfed { get; set; }
 
     [JsonProperty]
     public bool IsBeingRegurgitated { get; set; }

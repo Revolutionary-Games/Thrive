@@ -31,7 +31,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private List<AudioStreamPlayer3D> otherAudioPlayers = new();
     private List<AudioStreamPlayer> nonPositionalAudioPlayers = new();
 
-    private Area engulfableArea = null!;
+    private Area engulfDetector = null!;
 
     /// <summary>
     ///   Init can call _Ready if it hasn't been called yet
@@ -322,13 +322,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         // Setup physics callback stuff
-        var engulfDetector = GetNode<Area>("EngulfDetector");
-        engulfShape = (SphereShape)engulfDetector.GetNode<CollisionShape>("EngulfShape").Shape;
-
-        engulfDetector.Connect("body_entered", this, nameof(OnBodyEnteredEngulfArea));
-        engulfDetector.Connect("body_exited", this, nameof(OnBodyExitedEngulfArea));
-
-        engulfableArea = GetNode<Area>("EngulfableArea");
+        engulfDetector = GetNode<Area>("EngulfDetector");
 
         ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
         Connect("body_shape_entered", this, nameof(OnContactBegin));
@@ -616,8 +610,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (IsForPreviewOnly || IsIngested)
             return;
 
-        UpdateEngulfableAreaShape();
-        CheckEngulfShapeSize();
+        CheckEngulfShape();
 
         // Fire queued agents
         if (queuedToxinToEmit != null)
@@ -910,25 +903,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // Scale only the graphics parts to not have physics affected
         Membrane.Scale = scale;
         OrganelleParent.Scale = scale;
-    }
-
-    private void UpdateEngulfableAreaShape()
-    {
-        if (engulfedAreaShapeOwner == null)
-        {
-            var newShape = new ConvexPolygonShape();
-            engulfedAreaShapeOwner = engulfableArea.CreateShapeOwner(newShape);
-            engulfableArea.ShapeOwnerAddShape(engulfedAreaShapeOwner.Value, newShape);
-        }
-
-        var existingShape = (ConvexPolygonShape)engulfableArea.ShapeOwnerGetShape(engulfedAreaShapeOwner.Value, 0);
-
-        var wanted = Membrane.ConvexShape;
-        if (!existingShape.Points.SequenceEqual(wanted))
-        {
-            existingShape.Points = wanted;
-            engulfableArea.Scale = Membrane.Scale;
-        }
     }
 
     private Node GetStageAsParent()

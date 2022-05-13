@@ -222,7 +222,7 @@ public class MicrobeAI
         if (!microbe.CellTypeProperties.MembraneType.CellWall)
         {
             var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
-            if (targetChunk != null && !targetChunk.IsBeingIngested && !targetChunk.IsIngested)
+            if (targetChunk != null && !targetChunk.IsBeingEngulfed && !targetChunk.IsIngested)
             {
                 PursueAndConsumeChunks(targetChunk.Translation, random);
                 return;
@@ -231,7 +231,7 @@ public class MicrobeAI
 
         // If there are no chunks, look for living prey to hunt
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
-        if (possiblePrey != null && !possiblePrey.IsBeingIngested && !possiblePrey.IsIngested)
+        if (possiblePrey != null && !possiblePrey.IsBeingEngulfed && !possiblePrey.IsIngested)
         {
             bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
                 DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.Size;

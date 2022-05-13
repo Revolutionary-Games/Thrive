@@ -30,25 +30,21 @@ public partial class Microbe
     private bool previousEngulfMode;
 
     /// <summary>
-    ///   Tracks other engulfables that are within the engulf area and are ignoring collisions with this body.
+    ///   Tracks entities this is touching, for beginning engulfing and cell binding.
     /// </summary>
-    private HashSet<IEngulfable> otherEngulfablesInEngulfRange = new();
+    private HashSet<IEntity> touchedEntities = new();
 
     /// <summary>
-    ///   Tracks engulfables this is touching, for beginning engulfing
+    ///   Tracks entities this already engulfed.
     /// </summary>
-    private HashSet<IEngulfable> touchedEngulfables = new();
-
-    /// <summary>
-    ///   Engulfables that this cell is actively trying to engulf
-    /// </summary>
-    private List<IEngulfable> attemptingToEngulf = new();
-
     [JsonProperty]
     private List<EngulfedMaterial> engulfedMaterials = new();
 
+    /// <summary>
+    ///   The available space to store engulfable materials internally from engulfment.
+    /// </summary>
     [JsonProperty]
-    private float engulfedSize;
+    private float engulfStorage;
 
     /// <summary>
     ///   Controls for how long the flashColour is held before going
@@ -134,7 +130,7 @@ public partial class Microbe
 
     // Properties for engulfing
     [JsonProperty]
-    public bool IsBeingIngested { get; set; }
+    public bool IsBeingEngulfed { get; set; }
 
     [JsonProperty]
     public bool IsBeingRegurgitated { get; set; }
@@ -363,12 +359,19 @@ public partial class Microbe
     /// </summary>
     public bool CanEngulf(IEngulfable target)
     {
+        if (target.IsBeingEngulfed || target.IsIngested)
+            return false;
+
         var microbe = target as Microbe;
         var isMicrobe = microbe != null;
 
         // Can't engulf already destroyed microbes. We don't use entity references so we need to manually check if
         // something is destroyed or not here (especially now that the Invoke the engulf start callback)
         if (isMicrobe && microbe!.destroyed)
+            return false;
+
+        // Can't engulf dead microbes (unlikely to happen but this is fail-safe)
+        if (isMicrobe && microbe!.Dead)
             return false;
 
         // Log error if trying to engulf something that is disposed, we got a crash log trace with an error with that
@@ -393,7 +396,7 @@ public partial class Microbe
         }
 
         // Limit amount of things that can be engulfed at once
-        if (engulfedSize >= Size || engulfedSize + target.Size >= Size)
+        if (engulfStorage >= Size || engulfStorage + target.Size >= Size)
             return false;
 
         // Disallow cannibalism
@@ -792,11 +795,23 @@ public partial class Microbe
         ApplyMembraneWigglyness();
     }
 
-    private void CheckEngulfShapeSize()
+    private void CheckEngulfShape()
     {
-        var wanted = Radius;
-        if (engulfShape.Radius != wanted)
-            engulfShape.Radius = wanted;
+        if (engulfedAreaShapeOwner == null)
+        {
+            var newShape = new ConvexPolygonShape();
+            engulfedAreaShapeOwner = engulfDetector.CreateShapeOwner(newShape);
+            engulfDetector.ShapeOwnerAddShape(engulfedAreaShapeOwner.Value, newShape);
+        }
+
+        var existingShape = (ConvexPolygonShape)engulfDetector.ShapeOwnerGetShape(engulfedAreaShapeOwner.Value, 0);
+
+        var wanted = Membrane.ConvexShape;
+        if (!existingShape.Points.SequenceEqual(wanted))
+        {
+            existingShape.Points = wanted;
+            engulfDetector.Scale = Membrane.Scale;
+        }
     }
 
     /// <summary>
@@ -908,8 +923,6 @@ public partial class Microbe
             }
         }
 
-        ProcessPhysicsForEngulfing(delta);
-
         // Play sound
         if (State == MicrobeState.Engulf)
         {
@@ -954,7 +967,7 @@ public partial class Microbe
         {
             var engulfed = engulfedMaterials[i];
 
-            var body = engulfed.Material.EntityNode as RigidBody;
+            var body = engulfed.Material as RigidBody;
             if (body == null)
                 continue;
 
@@ -963,7 +976,7 @@ public partial class Microbe
             {
                 if (LerpEngulfedMovement(delta, engulfed, body))
                 {
-                    if (engulfed.Material.IsBeingIngested)
+                    if (engulfed.Material.IsBeingEngulfed)
                     {
                         CompleteIngestion(engulfed.Material);
                     }
@@ -982,44 +995,15 @@ public partial class Microbe
         previousEngulfMode = State == MicrobeState.Engulf;
     }
 
-    private void ProcessPhysicsForEngulfing(float delta)
-    {
-        if (State != MicrobeState.Engulf || engulfedSize >= Size)
-        {
-            attemptingToEngulf.Clear();
-            return;
-        }
-
-        // Check for starting engulfing on things we already touched
-        if (!previousEngulfMode)
-            CheckStartEngulfingOnCandidates();
-
-        // Check if objects we are attempting to engulf can trigger ingestion
-        for (int i = attemptingToEngulf.Count - 1; i >= 0; --i)
-        {
-            var engulfable = attemptingToEngulf[i];
-
-            // Ignore non-engulfable and already engulfed objects
-            if (!CanEngulf(engulfable) || engulfable.IsIngested)
-                continue;
-
-            if (engulfable is RigidBody body)
-            {
-                // Ingest if not yet already and body is in ingestion area
-                if (engulfableArea.OverlapsBody(body) && CanEngulf(engulfable))
-                    IngestEngulfable(engulfable);
-            }
-        }
-    }
-
     /// <summary>
     ///   Handles the death of this microbe. This queues this object
     ///   for deletion and handles some post-death actions.
     /// </summary>
     private void HandleDeath(float delta)
     {
-        // Spawn cell death particles
-        if (!deathParticlesSpawned)
+        // Spawn cell death particles. Don't spawn it if this has been digested as the membrane
+        // have already broke up by then and having a bursting particles won't make sense
+        if (!deathParticlesSpawned && DigestionProgress <= 0)
         {
             deathParticlesSpawned = true;
 
@@ -1143,11 +1127,11 @@ public partial class Microbe
             }
 
             // Pili don't stop engulfing
-            if (thisMicrobe.touchedEngulfables.Add(touchedMicrobe))
+            if (thisMicrobe.touchedEntities.Add(touchedMicrobe))
             {
                 Invoke.Instance.Perform(() =>
                 {
-                    thisMicrobe.CheckStartEngulfingOnCandidates();
+                    thisMicrobe.CheckStartEngulfingOnCandidate(touchedMicrobe);
                     thisMicrobe.CheckBinding();
                 });
             }
@@ -1161,9 +1145,9 @@ public partial class Microbe
         }
         else if (body is IEngulfable engulfable)
         {
-            if (thisMicrobe.touchedEngulfables.Add(engulfable))
+            if (thisMicrobe.touchedEntities.Add(engulfable))
             {
-                thisMicrobe.CheckStartEngulfingOnCandidates();
+                thisMicrobe.CheckStartEngulfingOnCandidate(engulfable);
             }
         }
     }
@@ -1181,37 +1165,19 @@ public partial class Microbe
             var hitMicrobe = GetMicrobeFromShape(localShape) ?? this;
 
             // TODO: should this also check for pilus before removing the collision?
-            hitMicrobe.touchedEngulfables.Remove(engulfable);
+            hitMicrobe.touchedEntities.Remove(engulfable);
         }
     }
 
     private void OnBodyEnteredEngulfArea(Node body)
     {
-        // ReSharper disable once MergeCastWithTypeCheck
-        if (body is not IEngulfable engulfable || engulfable == this)
+        if (body == this)
             return;
 
-        if (otherEngulfablesInEngulfRange.Add(engulfable))
-        {
-            // TODO: does this need to check for disposed exception?
-            if (engulfable is Microbe microbe && microbe.Dead)
-                return;
-
-            if (otherEngulfablesInEngulfRange.Add(engulfable))
-            {
-                Invoke.Instance.Perform(CheckStartEngulfingOnCandidates);
-            }
-        }
-    }
-
-    private void OnBodyExitedEngulfArea(Node body)
-    {
+        //
         if (body is IEngulfable engulfable)
         {
-            if (otherEngulfablesInEngulfRange.Remove(engulfable))
-            {
-                CheckStopEngulfingOnTarget(engulfable);
-            }
+            CheckStartEngulfingOnCandidate(engulfable);
         }
     }
 
@@ -1221,7 +1187,7 @@ public partial class Microbe
     /// </summary>
     private void IngestEngulfable(IEngulfable target)
     {
-        if (target.IsBeingIngested || target.IsIngested || target.EntityNode.GetParent() == this)
+        if (target.IsBeingEngulfed || target.IsIngested || target.EntityNode.GetParent() == this)
             return;
 
         var body = target as RigidBody;
@@ -1231,13 +1197,13 @@ public partial class Microbe
             return;
         }
 
-        touchedEngulfables.Remove(target);
+        touchedEntities.Remove(target);
 
         target.HostileEngulfer.Value = this;
-        target.IsBeingIngested = true;
+        target.IsBeingEngulfed = true;
         target.OnEngulfed();
 
-        engulfedSize += target.Size;
+        engulfStorage += target.Size;
 
         body.Mode = ModeEnum.Static;
 
@@ -1248,8 +1214,6 @@ public partial class Microbe
         var temp = body.GlobalTransform;
         body.ReParent(this);
         body.GlobalTransform = temp;
-
-        var digestibleCompounds = target.CalculateDigestibleCompounds();
 
         // Below is for figuring out where to place the ingested material inside the membrane and calculated
         // accordingly to hopefully minimize any part of the material sticking out the membrane.
@@ -1277,11 +1241,8 @@ public partial class Microbe
             body.Translation.y,
             random.Next(0.0f, viableStoringAreaEdge.z));
 
-        engulfedMaterials.Add(new EngulfedMaterial
+        engulfedMaterials.Add(new EngulfedMaterial(target)
         {
-            Material = target,
-            AvailableEngulfableCompounds = digestibleCompounds,
-            InitialTotalEngulfableCompounds = digestibleCompounds.Sum(c => c.Value),
             TargetTranslation = finalPosition,
             TargetScale = body.Scale / 2,
             OriginalScale = body.Scale,
@@ -1310,7 +1271,7 @@ public partial class Microbe
 
         target.HostileEngulfer.Value = null;
         target.IsBeingRegurgitated = true;
-        engulfedSize -= target.Size;
+        engulfStorage -= target.Size;
 
         var nearestPointOfMembraneToTarget = Membrane.GetVectorTowardsNearestPointOfMembrane(
             body.Translation.x, body.Translation.z);
@@ -1341,7 +1302,7 @@ public partial class Microbe
         // Engulfed object will be removed from the list in HandleEngulfing
     }
 
-    private bool CanBindToMicrobe(IEngulfable other)
+    private bool CanBindToMicrobe(IEntity other)
     {
         if (other is Microbe microbe)
         {
@@ -1363,7 +1324,7 @@ public partial class Microbe
             return;
         }
 
-        var other = touchedEngulfables.FirstOrDefault(CanBindToMicrobe);
+        var other = touchedEntities.FirstOrDefault(CanBindToMicrobe);
 
         // If there is no touching microbe that can bind, no need to invoke binding.
         if (other == null)
@@ -1375,7 +1336,7 @@ public partial class Microbe
 
     private void BeginBind()
     {
-        var other = touchedEngulfables.FirstOrDefault(CanBindToMicrobe) as Microbe;
+        var other = touchedEntities.FirstOrDefault(CanBindToMicrobe) as Microbe;
 
         if (other == null)
         {
@@ -1383,11 +1344,11 @@ public partial class Microbe
             return;
         }
 
-        touchedEngulfables.Remove(other);
+        touchedEntities.Remove(other);
 
         try
         {
-            other.touchedEngulfables.Remove(this);
+            other.touchedEntities.Remove(this);
 
             other.MovementDirection = Vector3.Zero;
 
@@ -1439,32 +1400,19 @@ public partial class Microbe
     /// <summary>
     ///   This checks if we can start engulfing
     /// </summary>
-    private void CheckStartEngulfingOnCandidates()
+    private void CheckStartEngulfingOnCandidate(IEngulfable engulfable)
     {
         if (State != MicrobeState.Engulf)
             return;
 
-        // In the case that the microbe first comes into engulf range, we don't want to start engulfing yet
-        // foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
-        foreach (var engulfable in touchedEngulfables)
+        if (CanEngulf(engulfable))
         {
-            if (!attemptingToEngulf.Contains(engulfable) && CanEngulf(engulfable))
-            {
-                attemptingToEngulf.Add(engulfable);
-            }
-            else if (engulfedSize >= Size || engulfedSize + engulfable.Size >= Size)
-            {
-                OnEngulfmentStorageFull?.Invoke(this);
-            }
+            IngestEngulfable(engulfable);
         }
-    }
-
-    private void CheckStopEngulfingOnTarget(IEngulfable target)
-    {
-        if (touchedEngulfables.Contains(target) || otherEngulfablesInEngulfRange.Contains(target))
-            return;
-
-        attemptingToEngulf.Remove(target);
+        else if (engulfStorage >= Size || engulfStorage + engulfable.Size >= Size)
+        {
+            OnEngulfmentStorageFull?.Invoke(this);
+        }
     }
 
     private bool LerpEngulfedMovement(float delta, EngulfedMaterial engulfedObject, RigidBody body)
@@ -1493,14 +1441,12 @@ public partial class Microbe
 
     private void CompleteIngestion(IEngulfable engulfable)
     {
-        engulfable.IsBeingIngested = false;
+        engulfable.IsBeingEngulfed = false;
         engulfable.IsIngested = true;
 
         // In contrast with CompleteEjection, we call OnIngested immediately when ingestion is triggered
 
-        otherEngulfablesInEngulfRange.Remove(engulfable);
-        touchedEngulfables.Remove(engulfable);
-        attemptingToEngulf.Remove(engulfable);
+        touchedEntities.Remove(engulfable);
     }
 
     private void CompleteEjection(IEngulfable engulfable)
@@ -1529,14 +1475,22 @@ public partial class Microbe
     /// </summary>
     private class EngulfedMaterial
     {
+        [JsonConstructor]
+        public EngulfedMaterial(IEngulfable material)
+        {
+            Material = material;
+            AvailableEngulfableCompounds = material.CalculateDigestibleCompounds();
+            InitialTotalEngulfableCompounds = AvailableEngulfableCompounds.Sum(c => c.Value);
+        }
+
         /// <summary>
         ///   The object that has been engulfed.
         /// </summary>
-        public IEngulfable Material { get; set; } = null!;
+        public IEngulfable Material { get; private set; }
 
-        public Dictionary<Compound, float> AvailableEngulfableCompounds { get; set; } = null!;
+        public Dictionary<Compound, float> AvailableEngulfableCompounds { get; private set; }
 
-        public float InitialTotalEngulfableCompounds { get; set; }
+        public float InitialTotalEngulfableCompounds { get; private set; }
 
         public bool Interpolate { get; set; }
 
