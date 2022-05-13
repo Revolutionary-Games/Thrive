@@ -90,7 +90,7 @@ public class CellPopupMenu : HexPopupMenu
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
         mpCost = (int)(mpCost * editorCostFactor);
 
-        mpLabel.Text = new LocalizedString("MP_COST", mpCost).ToString();
+        mpLabel.Text = new LocalizedString("MP_COST", -mpCost).ToString();
 
         moveButton.Disabled = !EnableMoveOption;
     }
