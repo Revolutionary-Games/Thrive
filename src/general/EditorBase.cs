@@ -400,7 +400,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     public bool CheckEnoughMPForAction(int cost)
     {
-        if (MutationPoints < cost)
+        // Freebuilding check is here because in freebuild we are allowed to make edits that consume more than the max
+        // MP in a single go, and those wouldn't work without this freebuilding check here
+        if (MutationPoints < cost && !FreeBuilding)
         {
             // Flash the MP bar and play sound
             OnInsufficientMP();
