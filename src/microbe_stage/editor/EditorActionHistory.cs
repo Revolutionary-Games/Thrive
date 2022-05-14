@@ -143,17 +143,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         }
         else
         {
-            // TODO: find the root cause and add a proper fix for:
-            // Seems like there's some kind of bug that triggers here if we aren't at the end of the action history
-            // (user has currently undone something) so in that case we need to clear the history
-            if (ActionIndex < Actions.Count)
-            {
-                cache = null;
-            }
-            else
-            {
-                History.AddRange(action.Data);
-            }
+            History.AddRange(action.Data);
         }
 
         base.AddAction(action);
