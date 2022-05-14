@@ -4,11 +4,11 @@ using System.Linq;
 using Godot;
 using Nito.Collections;
 
-public class PerformanceMetrics : Control
+/// <summary>
+///   Partial class: Performance metrics
+/// </summary>
+public partial class DebugOverlay
 {
-    [Export]
-    public NodePath DialogPath = null!;
-
     [Export]
     public NodePath FPSLabelPath = null!;
 
@@ -21,12 +21,9 @@ public class PerformanceMetrics : Control
     // TODO: make this time based
     private const int SpawnHistoryLength = 300;
 
-    private static PerformanceMetrics? instance;
-
     private readonly Deque<int> spawnHistory = new(SpawnHistoryLength);
     private readonly Deque<int> despawnHistory = new(SpawnHistoryLength);
 
-    private CustomDialog dialog = null!;
     private Label fpsLabel = null!;
     private Label deltaLabel = null!;
     private Label metricsText = null!;
@@ -36,28 +33,42 @@ public class PerformanceMetrics : Control
     private int currentSpawned;
     private int currentDespawned;
 
-    private PerformanceMetrics()
+    public bool PerformanceMetricsVisible
     {
-        instance = this;
+        get => performanceMetrics.Visible;
+        private set
+        {
+            if (performanceMetricsCheckBox.Pressed == value)
+                return;
+
+            performanceMetricsCheckBox.Pressed = value;
+        }
     }
 
-    [Signal]
-    public delegate void OnHidden();
-
-    public static PerformanceMetrics Instance => instance ?? throw new InstanceNotLoadedYetException();
-
-    public override void _Ready()
+    public void ReportEntities(int totalEntities, int otherChildren)
     {
-        dialog = GetNode<CustomDialog>(DialogPath);
+        entities = totalEntities;
+        children = otherChildren;
+    }
+
+    public void ReportSpawns(int newSpawns)
+    {
+        currentSpawned += newSpawns;
+    }
+
+    public void ReportDespawns(int newDespawns)
+    {
+        currentDespawned += newDespawns;
+    }
+
+    private void PerformanceMetricsReady()
+    {
         fpsLabel = GetNode<Label>(FPSLabelPath);
         deltaLabel = GetNode<Label>(DeltaLabelPath);
         metricsText = GetNode<Label>(MetricsTextPath);
-
-        if (Visible)
-            dialog.Show();
     }
 
-    public override void _Process(float delta)
+    private void PerformanceMetricsProcess(float delta)
     {
         if (!Visible)
             return;
@@ -106,47 +117,5 @@ public class PerformanceMetrics : Control
 
         currentSpawned = 0;
         currentDespawned = 0;
-    }
-
-    public void ReportEntities(int totalEntities, int otherChildren)
-    {
-        entities = totalEntities;
-        children = otherChildren;
-    }
-
-    public void ReportSpawns(int newSpawns)
-    {
-        currentSpawned += newSpawns;
-    }
-
-    public void ReportDespawns(int newDespawns)
-    {
-        currentDespawned += newDespawns;
-    }
-
-    public void Toggle(bool state)
-    {
-        if (Visible == state)
-            return;
-
-        if (state)
-        {
-            Show();
-            dialog.Show();
-        }
-        else
-        {
-            Hide();
-            dialog.Hide();
-        }
-    }
-
-    public void DialogHidden()
-    {
-        if (Visible)
-        {
-            Visible = false;
-            EmitSignal(nameof(OnHidden));
-        }
     }
 }

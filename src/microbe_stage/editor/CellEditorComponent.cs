@@ -682,12 +682,12 @@ public partial class CellEditorComponent :
         if (!Visible)
             return;
 
-        var metrics = PerformanceMetrics.Instance;
+        var debugOverlay = DebugOverlay.Instance;
 
-        if (metrics.Visible)
+        if (debugOverlay.PerformanceMetricsVisible)
         {
             var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
-            metrics.ReportEntities(roughCount, 0);
+            debugOverlay.ReportEntities(roughCount, 0);
         }
 
         CheckRunningAutoEvoPrediction();

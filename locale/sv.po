@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-14 18:59+0800\n"
+"POT-Creation-Date: 2022-05-14 19:59+0800\n"
 "PO-Revision-Date: 2022-04-12 16:14+0000\n"
 "Last-Translator: swedneck <github@swedneck.xyz>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -1052,53 +1052,55 @@ msgstr ""
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Välj en celltyp att redigera här från redigerarfliken"
 
-#: ../src/engine/DebugOverlay.tscn:36
-msgid "DEBUG_PANEL"
-msgstr ""
-
-#: ../src/engine/DebugOverlay.tscn:46
-#, fuzzy
-msgid "FPS_DISPLAY"
-msgstr "Media Spela"
-
-#: ../src/engine/DebugOverlay.tscn:53 ../src/engine/PerformanceMetrics.tscn:30
-#, fuzzy
-msgid "METRICS"
-msgstr "Växla FPS display"
-
-#: ../src/engine/DebugOverlay.tscn:60
-msgid "COLLISION_SHAPE"
-msgstr ""
-
-#: ../src/engine/DebugOverlay.tscn:67
-#, fuzzy
-msgid "ENTITY_LABEL"
-msgstr "Omgivning: {0}"
-
-#: ../src/engine/DebugOverlay.tscn:78
-#, fuzzy
-msgid "TRANSPARENCY"
-msgstr "Översättare"
-
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:65
+#: ../src/engine/DebugOverlay.PerformanceMetrics.cs:76
+#: ../src/engine/DebugOverlay.tscn:61 ../src/engine/FPSCounter.cs:18
 #: ../src/engine/PerformanceMetrics.tscn:59
 #, fuzzy
 msgid "FPS"
 msgstr "Max Frames Per Sekund:"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
-msgid "LOADING"
-msgstr "Laddar"
-
-#: ../src/engine/PerformanceMetrics.cs:66
+#: ../src/engine/DebugOverlay.PerformanceMetrics.cs:77
 #, fuzzy
 msgid "FRAME_DURATION"
 msgstr "Anding"
 
-#: ../src/engine/PerformanceMetrics.cs:80
-#: ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlay.PerformanceMetrics.cs:91
+#: ../src/engine/DebugOverlay.tscn:78 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
+
+#: ../src/engine/DebugOverlay.tscn:32 ../src/engine/DebugOverlay.tscn:107
+#: ../src/engine/PerformanceMetrics.tscn:30
+#, fuzzy
+msgid "METRICS"
+msgstr "Växla FPS display"
+
+#: ../src/engine/DebugOverlay.tscn:90
+msgid "DEBUG_PANEL"
+msgstr ""
+
+#: ../src/engine/DebugOverlay.tscn:100
+#, fuzzy
+msgid "FPS_DISPLAY"
+msgstr "Media Spela"
+
+#: ../src/engine/DebugOverlay.tscn:114
+msgid "COLLISION_SHAPE"
+msgstr ""
+
+#: ../src/engine/DebugOverlay.tscn:121
+#, fuzzy
+msgid "ENTITY_LABEL"
+msgstr "Omgivning: {0}"
+
+#: ../src/engine/DebugOverlay.tscn:132
+#, fuzzy
+msgid "TRANSPARENCY"
+msgstr "Översättare"
+
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
+msgid "LOADING"
+msgstr "Laddar"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"

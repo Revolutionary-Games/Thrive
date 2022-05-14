@@ -5,23 +5,77 @@
 [ext_resource path="res://src/engine/DebugOverlay.cs" type="Script" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/engine/FPSCounter.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/engine/PerformanceMetrics.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=6]
 
 [node name="DebugOverlay" type="Control"]
 script = ExtResource( 3 )
-fpsCheckBoxPath = NodePath("DebugPanel/VBoxContainer/FPSCheckBox")
-performanceMetricsCheckBoxPath = NodePath("DebugPanel/VBoxContainer/PerformanceMetricsCheckBox")
-dialogPath = NodePath("DebugPanel")
-fpsCounterPath = NodePath("FPSCounter")
-performanceMetricsPath = NodePath("PerformanceMetrics")
-labelsLayerPath = NodePath("EntityLabels")
+FPSCheckBoxPath = NodePath("DebugPanel/VBoxContainer/FPSCheckBox")
+PerformanceMetricsCheckBoxPath = NodePath("DebugPanel/VBoxContainer/PerformanceMetricsCheckBox")
+DebugPanelDialogPath = NodePath("DebugPanel")
+FPSCounterPath = NodePath("FPSCounter")
+PerformanceMetricsPath = NodePath("PerformanceMetrics")
+EntityLabelsPath = NodePath("EntityLabels")
+FPSLabelPath = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer/FPS")
+DeltaLabelPath = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer/Delta")
+MetricsTextPath = NodePath("PerformanceMetrics/ScrollContainer/VBoxContainer/MetricsText")
 
 [node name="EntityLabels" type="Control" parent="."]
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="PerformanceMetrics" parent="." instance=ExtResource( 6 )]
+[node name="PerformanceMetrics" parent="." instance=ExtResource( 1 )]
+margin_left = 54.0
+margin_top = 75.0
+margin_right = 274.0
+margin_bottom = 295.0
+WindowTitle = "METRICS"
+Resizable = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PerformanceMetrics"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 224.0
+margin_bottom = 223.0
+rect_min_size = Vector2( 220, 220 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PerformanceMetrics/ScrollContainer"]
+margin_right = 220.0
+margin_bottom = 220.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PerformanceMetrics/ScrollContainer/VBoxContainer"]
+margin_right = 220.0
+margin_bottom = 19.0
+
+[node name="FPS" type="Label" parent="PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_right = 25.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 6 )
+text = "FPS"
+
+[node name="Delta" type="Label" parent="PerformanceMetrics/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 29.0
+margin_right = 139.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 6 )
+text = "Delta: 0.002311"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="MetricsText" type="Label" parent="PerformanceMetrics/ScrollContainer/VBoxContainer"]
+margin_top = 23.0
+margin_right = 220.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 6 )
+text = "METRICS_CONTENT"
 
 [node name="FPSCounter" parent="." instance=ExtResource( 5 )]
 visible = false
@@ -87,9 +141,9 @@ step = 0.01
 scrollable = false
 ticks_on_borders = true
 
-[connection signal="OnHidden" from="PerformanceMetrics" to="." method="OnPerformanceMetricsToggled"]
+[connection signal="Closed" from="PerformanceMetrics" to="." method="OnPerformanceMetricsToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/FPSCheckBox" to="." method="OnFpsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/PerformanceMetricsCheckBox" to="." method="OnPerformanceMetricsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/CollisionShapeCheckBox" to="." method="OnCollisionShapeCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/EntityLabelCheckBox" to="." method="OnEntityLabelCheckBoxToggled"]
-[connection signal="value_changed" from="DebugPanel/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnRigiditySliderValueChanged"]
+[connection signal="value_changed" from="DebugPanel/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnTransparencySliderValueChanged"]

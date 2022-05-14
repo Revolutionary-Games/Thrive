@@ -7,39 +7,50 @@
 public partial class DebugOverlay : Control
 {
     [Export]
-    private NodePath fpsCheckBoxPath = null!;
+    public NodePath FPSCheckBoxPath = null!;
 
     [Export]
-    private NodePath performanceMetricsCheckBoxPath = null!;
+    public NodePath PerformanceMetricsCheckBoxPath = null!;
 
     [Export]
-    private NodePath dialogPath = null!;
+    public NodePath DebugPanelDialogPath = null!;
 
     [Export]
-    private NodePath fpsCounterPath = null!;
+    public NodePath FPSCounterPath = null!;
 
     [Export]
-    private NodePath performanceMetricsPath = null!;
+    public NodePath PerformanceMetricsPath = null!;
 
     [Export]
-    private NodePath labelsLayerPath = null!;
+    public NodePath EntityLabelsPath = null!;
 
-    private CustomDialog dialog = null!;
+    private static DebugOverlay? instance;
+
+    private CustomDialog debugPanelDialog = null!;
     private CustomCheckBox fpsCheckBox = null!;
     private CustomCheckBox performanceMetricsCheckBox = null!;
     private FPSCounter fpsCounter = null!;
-    private PerformanceMetrics performanceMetrics = null!;
+    private CustomDialog performanceMetrics = null!;
     private Control labelsLayer = null!;
+
+    private DebugOverlay()
+    {
+        instance = this;
+    }
+
+    public static DebugOverlay Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public override void _Ready()
     {
-        fpsCheckBox = GetNode<CustomCheckBox>(fpsCheckBoxPath);
-        performanceMetricsCheckBox = GetNode<CustomCheckBox>(performanceMetricsCheckBoxPath);
-        dialog = GetNode<CustomDialog>(dialogPath);
-        fpsCounter = GetNode<FPSCounter>(fpsCounterPath);
-        performanceMetrics = GetNode<PerformanceMetrics>(performanceMetricsPath);
-        labelsLayer = GetNode<Control>(labelsLayerPath);
+        fpsCheckBox = GetNode<CustomCheckBox>(FPSCheckBoxPath);
+        performanceMetricsCheckBox = GetNode<CustomCheckBox>(PerformanceMetricsCheckBoxPath);
+        debugPanelDialog = GetNode<CustomDialog>(DebugPanelDialogPath);
+        fpsCounter = GetNode<FPSCounter>(FPSCounterPath);
+        performanceMetrics = GetNode<CustomDialog>(PerformanceMetricsPath);
+        labelsLayer = GetNode<Control>(EntityLabelsPath);
         smallerFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Tiny.tres");
+
+        PerformanceMetricsReady();
 
         base._Ready();
     }
@@ -68,6 +79,7 @@ public partial class DebugOverlay : Control
         base._Process(delta);
 
         EntityLabelProcess();
+        PerformanceMetricsProcess(delta);
     }
 
     [RunOnKeyDown("toggle_metrics", OnlyUnhandled = false)]
@@ -79,13 +91,13 @@ public partial class DebugOverlay : Control
     [RunOnKeyDown("toggle_debug_panel", OnlyUnhandled = false)]
     public void OnDebugPanelToggled()
     {
-        if (!dialog.Visible)
+        if (!debugPanelDialog.Visible)
         {
-            dialog.Show();
+            debugPanelDialog.Show();
         }
         else
         {
-            dialog.Hide();
+            debugPanelDialog.Hide();
         }
     }
 
@@ -97,7 +109,17 @@ public partial class DebugOverlay : Control
 
     private void OnPerformanceMetricsCheckBoxToggled(bool state)
     {
-        performanceMetrics.Toggle(state);
+        if (performanceMetrics.Visible == state)
+            return;
+
+        if (state)
+        {
+            performanceMetrics.Show();
+        }
+        else
+        {
+            performanceMetrics.Hide();
+        }
     }
 
     private void OnFpsCheckBoxToggled(bool state)
@@ -117,6 +139,6 @@ public partial class DebugOverlay : Control
 
     private void OnTransparencySliderValueChanged(float value)
     {
-        performanceMetrics.Modulate = dialog.Modulate = new Color(1, 1, 1, 1 - value);
+        performanceMetrics.Modulate = debugPanelDialog.Modulate = new Color(1, 1, 1, 1 - value);
     }
 }
