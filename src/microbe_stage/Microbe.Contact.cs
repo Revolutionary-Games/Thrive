@@ -321,6 +321,7 @@ public partial class Microbe
         }
         else if (source == "atpDamage")
         {
+            set TakingAtpDamage = true
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg");
         }
         else if (source == "ice")
@@ -329,6 +330,12 @@ public partial class Microbe
 
             // Divide damage by physical resistance
             amount /= CellTypeProperties.MembraneType.PhysicalResistance;
+        }
+        
+        if (!CellTypeProperties.IsBacteria)
+        {
+            if TakingAtpDamage = false
+            amount /= 2;
         }
 
         Hitpoints -= amount;
