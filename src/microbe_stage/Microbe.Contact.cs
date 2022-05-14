@@ -321,7 +321,7 @@ public partial class Microbe
         }
         else if (source == "atpDamage")
         {
-            set TakingAtpDamage = true
+            set TakingAtpDamage = true;
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg");
         }
         else if (source == "ice")
@@ -334,7 +334,7 @@ public partial class Microbe
         
         if (!CellTypeProperties.IsBacteria)
         {
-            if TakingAtpDamage = false
+            (if TakingAtpDamage = false)
             amount /= 2;
         }
 
