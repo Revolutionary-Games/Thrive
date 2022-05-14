@@ -318,6 +318,11 @@ public static class Constants
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
     /// <summary>
+    ///   The duration for which an engulfable object can be engulfed again after being regurgitated.
+    /// </summary>
+    public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
+
+    /// <summary>
     ///   How much compounds a cell can absorb per second from digestible engulfed objects.
     /// </summary>
     public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.3f;

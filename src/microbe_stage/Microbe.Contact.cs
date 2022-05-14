@@ -39,6 +39,12 @@ public partial class Microbe
     private List<EngulfedMaterial> engulfedMaterials = new();
 
     /// <summary>
+    ///   Tracks entities this previously engulfed.
+    /// </summary>
+    [JsonProperty]
+    private List<EngulfedMaterial> wasEngulfedMaterials = new();
+
+    /// <summary>
     ///   The available space to store engulfable materials internally from engulfment.
     /// </summary>
     [JsonProperty]
@@ -358,6 +364,10 @@ public partial class Microbe
     public bool CanEngulf(IEngulfable target)
     {
         if (target.IsBeingEngulfed || target.IsIngested)
+            return false;
+
+        // Can't engulf recently ejected material, this act as a cooldown
+        if (wasEngulfedMaterials.Any(m => m.Material == target))
             return false;
 
         var microbe = target as Microbe;
@@ -976,11 +986,11 @@ public partial class Microbe
                 {
                     if (engulfed.Material.IsBeingEngulfed)
                     {
-                        CompleteIngestion(engulfed.Material);
+                        CompleteIngestion(engulfed);
                     }
                     else if (engulfed.Material.IsBeingRegurgitated)
                     {
-                        CompleteEjection(engulfed.Material);
+                        CompleteEjection(engulfed);
                         engulfedMaterials.RemoveAt(i);
                     }
 
@@ -988,6 +998,16 @@ public partial class Microbe
                     engulfed.AnimationTimeElapsed = 0;
                 }
             }
+        }
+
+        for (int i = wasEngulfedMaterials.Count - 1; i >= 0; --i)
+        {
+            var wasEngulfed = wasEngulfedMaterials[i];
+
+            wasEngulfed.WasJustEngulfedElapsed += delta;
+
+            if (wasEngulfed.WasJustEngulfedElapsed >= Constants.ENGULF_EJECTED_COOLDOWN)
+                wasEngulfedMaterials.RemoveAt(i);
         }
 
         previousEngulfMode = State == MicrobeState.Engulf;
@@ -1288,7 +1308,7 @@ public partial class Microbe
         // TODO: Asses performance cost in massive cells?
         if (Dead || !Membrane.Contains(bodyOrigin.x, bodyOrigin.z))
         {
-            CompleteEjection(target);
+            CompleteEjection(engulfedObject);
             body.Scale = engulfedObject.OriginalScale;
             engulfedMaterials.Remove(engulfedObject);
             return;
@@ -1440,8 +1460,10 @@ public partial class Microbe
         return true;
     }
 
-    private void CompleteIngestion(IEngulfable engulfable)
+    private void CompleteIngestion(EngulfedMaterial engulfed)
     {
+        var engulfable = engulfed.Material;
+
         engulfable.IsBeingEngulfed = false;
         engulfable.IsIngested = true;
 
@@ -1450,8 +1472,12 @@ public partial class Microbe
         touchedEntities.Remove(engulfable);
     }
 
-    private void CompleteEjection(IEngulfable engulfable)
+    private void CompleteEjection(EngulfedMaterial engulfed)
     {
+        var engulfable = engulfed.Material;
+
+        wasEngulfedMaterials.Add(engulfed);
+
         engulfable.IsBeingRegurgitated = false;
         engulfable.IsIngested = false;
         engulfable.OnEjected();
@@ -1469,6 +1495,8 @@ public partial class Microbe
         // Set to default microbe collision layer and mask values
         body.CollisionLayer = 3;
         body.CollisionMask = 3;
+
+        body.ApplyCentralImpulse(Transform.origin.DirectionTo(body.Transform.origin) * body.Mass * 10);
     }
 
     /// <summary>
@@ -1496,6 +1524,8 @@ public partial class Microbe
         public bool Interpolate { get; set; }
 
         public float AnimationTimeElapsed { get; set; }
+
+        public float WasJustEngulfedElapsed { get; set; }
 
         public Vector3 TargetTranslation { get; set; }
 
