@@ -439,6 +439,10 @@ AmmoniaBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Bo
 PhosphateBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates")
 HydrogenSulfideBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide")
 IronBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron")
+EnvironmentPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton")
+EnvironmentPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton")
+CompoundsPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton")
+CompoundsPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton")
 CompoundsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer")
 AgentsPanelPath = NodePath("BottomLeft/LeftPanels/AgentsPanel")
 OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
@@ -777,10 +781,9 @@ margin_right = 38.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = ExtResource( 80 )
-text = "O2"
+text = "O₂"
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
 }
 
@@ -836,7 +839,7 @@ margin_right = 46.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = ExtResource( 80 )
-text = "CO2"
+text = "CO₂"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -895,7 +898,7 @@ margin_right = 49.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = ExtResource( 80 )
-text = "N2"
+text = "N₂"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -2250,10 +2253,10 @@ anims/FadeInOut = SubResource( 37 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
 
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "expand" ]]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "compress" ]]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="MicrobeHUD" method="ResizeCompoundPanel" binds= [ "expand" ]]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="MicrobeHUD" method="ResizeCompoundPanel" binds= [ "compress" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "expand" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "compress" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/OpenMicrobeMenu" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/PauseButtonMargin/Pause" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/PauseButtonMargin/Resume" to="MicrobeHUD" method="PauseButtonPressed"]
@@ -2276,3 +2279,4 @@ anims/FadeInOut = SubResource( 37 )
 [connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="MicrobeHUD" method="OnRadialItemSelected"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
+[connection signal="OnResumed" from="PauseMenu" to="MicrobeHUD" method="FixPauseStateOnPauseMenuClose"]

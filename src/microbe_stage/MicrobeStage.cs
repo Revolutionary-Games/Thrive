@@ -105,7 +105,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [AssignOnlyChildItemsOnDeserialize]
     public MicrobeCamera Camera { get; private set; } = null!;
 
-    [JsonIgnore]
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     public MicrobeHUD HUD { get; private set; } = null!;
 
     /// <summary>
