@@ -48,7 +48,9 @@
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
-    <Compile Include="src\engine\debugging\DebugOverlay.cs" />
+    <Compile Include="src\engine\DebugOverlay.cs" />
+    <Compile Include="src\engine\DebugOverlay.EntityLabel.cs" />
+    <Compile Include="src\engine\FPSCounter.cs" />
     <Compile Include="src\engine\ICacheableData.cs" />
     <Compile Include="src\engine\ImageTask.cs" />
     <Compile Include="src\engine\input\IgnoreNoMethodsTakingInputAttribute.cs" />
@@ -91,7 +93,7 @@
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\NodeHelpers.cs" />
-    <Compile Include="src\engine\debugging\PerformanceMetrics.cs" />
+    <Compile Include="src\engine\PerformanceMetrics.cs" />
     <Compile Include="src\engine\PhotoStudio.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
     <Compile Include="src\engine\ProceduralDataCache.cs" />
@@ -181,7 +183,6 @@
     <Compile Include="src\gui_common\TweakedColourPicker.cs" />
     <Compile Include="src\gui_common\VersionNumber.cs" />
     <Compile Include="simulation_parameters\Constants.cs" />
-    <Compile Include="src\engine\debugging\FPSCounter.cs" />
     <Compile Include="src\engine\ColourblindScreenFilter.cs" />
     <Compile Include="src\engine\CursorLoader.cs" />
     <Compile Include="src\general\OptionsMenu.cs" />
@@ -454,6 +455,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="shaders\" />
+    <Folder Include="src\engine\debugging" />
     <Folder Include="src\microbe_stage\organelle_components\" />
     <Folder Include="src\auto-evo\steps\" />
     <Folder Include="src\auto-evo\simulation\" />

@@ -5,7 +5,8 @@
 [ext_resource path="res://src/engine/ColourblindScreenFilter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/QuickLoadHandler.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=6]
-[ext_resource path="res://src/engine/debugging/DebugOverlay.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/engine/DebugOverlay.tscn" type="PackedScene" id=8]
+
 
 [node name="ScreenOverlays" type="Node"]
 pause_mode = 2

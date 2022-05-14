@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-08 15:33+0800\n"
+"POT-Creation-Date: 2022-05-14 18:59+0800\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -1047,50 +1047,48 @@ msgstr "stato d'esecuzione:"
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Seleziona un tipo di cellula dal pannello Editor per modificarla qui"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
-msgid "LOADING"
-msgstr "Caricamento"
-
-#: ../src/engine/debugging/DebugOverlay.tscn:36
+#: ../src/engine/DebugOverlay.tscn:36
 msgid "DEBUG_PANEL"
 msgstr ""
 
-#: ../src/engine/debugging/DebugOverlay.tscn:46
+#: ../src/engine/DebugOverlay.tscn:46
 #, fuzzy
 msgid "FPS_DISPLAY"
 msgstr "⏵Riproduci (tasto multimediale)"
 
-#: ../src/engine/debugging/DebugOverlay.tscn:53
-#: ../src/engine/debugging/PerformanceMetrics.tscn:30
+#: ../src/engine/DebugOverlay.tscn:53 ../src/engine/PerformanceMetrics.tscn:30
 msgid "METRICS"
 msgstr "Metriche prestazioni"
 
-#: ../src/engine/debugging/DebugOverlay.tscn:60
+#: ../src/engine/DebugOverlay.tscn:60
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/engine/debugging/DebugOverlay.tscn:67
+#: ../src/engine/DebugOverlay.tscn:67
 #, fuzzy
 msgid "ENTITY_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/engine/debugging/DebugOverlay.tscn:78
+#: ../src/engine/DebugOverlay.tscn:78
 #, fuzzy
 msgid "TRANSPARENCY"
 msgstr "Traduttori"
 
-#: ../src/engine/debugging/FPSCounter.cs:18
-#: ../src/engine/debugging/PerformanceMetrics.cs:65
-#: ../src/engine/debugging/PerformanceMetrics.tscn:59
+#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:65
+#: ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
-#: ../src/engine/debugging/PerformanceMetrics.cs:66
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
+msgid "LOADING"
+msgstr "Caricamento"
+
+#: ../src/engine/PerformanceMetrics.cs:66
 msgid "FRAME_DURATION"
 msgstr "Delta: {0}"
 
-#: ../src/engine/debugging/PerformanceMetrics.cs:80
-#: ../src/engine/debugging/PerformanceMetrics.tscn:76
+#: ../src/engine/PerformanceMetrics.cs:80
+#: ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 "Tempo processi (process time): {0} s\n"
