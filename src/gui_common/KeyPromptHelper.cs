@@ -130,7 +130,8 @@ public static class KeyPromptHelper
                     {
                         return GetPathForKeyboardKey(OS.GetScancodeString(key.Scancode));
                     }
-                    else if (action is InputEventMouseButton button)
+
+                    if (action is InputEventMouseButton button)
                     {
                         return GetPathForMouseButton((ButtonList)button.ButtonIndex);
                     }
