@@ -334,7 +334,7 @@ public partial class Microbe
         
         if (!CellTypeProperties.IsBacteria)
         {
-            (if TakingAtpDamage = false)
+            if TakingAtpDamage = false;
             amount /= 2;
         }
 
