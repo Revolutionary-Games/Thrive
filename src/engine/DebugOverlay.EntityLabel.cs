@@ -22,6 +22,12 @@ public partial class DebugOverlay
         }
     }
 
+    private void EntityLabelReady()
+    {
+        labelsLayer = GetNode<Control>(EntityLabelsPath);
+        smallerFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Tiny.tres");
+    }
+
     private void EntityLabelEnterTree()
     {
         var rootTree = GetTree();

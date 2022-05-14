@@ -29,7 +29,7 @@ public partial class DebugOverlay : Control
     private CustomDialog debugPanelDialog = null!;
     private CustomCheckBox fpsCheckBox = null!;
     private CustomCheckBox performanceMetricsCheckBox = null!;
-    private FPSCounter fpsCounter = null!;
+    private Control fpsCounter = null!;
     private CustomDialog performanceMetrics = null!;
     private Control labelsLayer = null!;
 
@@ -45,12 +45,12 @@ public partial class DebugOverlay : Control
         fpsCheckBox = GetNode<CustomCheckBox>(FPSCheckBoxPath);
         performanceMetricsCheckBox = GetNode<CustomCheckBox>(PerformanceMetricsCheckBoxPath);
         debugPanelDialog = GetNode<CustomDialog>(DebugPanelDialogPath);
-        fpsCounter = GetNode<FPSCounter>(FPSCounterPath);
+        fpsCounter = GetNode<Control>(FPSCounterPath);
         performanceMetrics = GetNode<CustomDialog>(PerformanceMetricsPath);
-        labelsLayer = GetNode<Control>(EntityLabelsPath);
-        smallerFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Tiny.tres");
 
+        EntityLabelReady();
         PerformanceMetricsReady();
+        FPSCounterReady();
 
         base._Ready();
     }
@@ -80,6 +80,7 @@ public partial class DebugOverlay : Control
 
         EntityLabelProcess();
         PerformanceMetricsProcess(delta);
+        FPSCounterProcess();
     }
 
     [RunOnKeyDown("toggle_metrics", OnlyUnhandled = false)]
@@ -124,7 +125,7 @@ public partial class DebugOverlay : Control
 
     private void OnFpsCheckBoxToggled(bool state)
     {
-        fpsCounter.ToggleFps(state);
+        fpsCounter.Visible = state;
     }
 
     private void OnCollisionShapeCheckBoxToggled(bool state)
