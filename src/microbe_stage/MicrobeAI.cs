@@ -73,7 +73,7 @@ public class MicrobeAI
     [JsonIgnore]
     private MicrobeSignalCommand receivedCommand = MicrobeSignalCommand.None;
 
-    [JsonIgnore]
+    [JsonProperty]
     private bool hasBeenNearPlayer;
 
     public MicrobeAI(Microbe microbe)
