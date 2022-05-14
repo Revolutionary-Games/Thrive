@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
@@ -55,12 +54,6 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
         FadeTimeRemaining -= delta;
         if (FadeTimeRemaining <= 0)
             OnDestroyed();
-    }
-
-    public override string ToString()
-    {
-        return $"[AP:{GetInstanceId()}:Amount={Amount}:" +
-            $"TTL={TimeToLiveRemaining.ToString("F2", CultureInfo.CurrentCulture)}]";
     }
 
     public void OnDestroyed()

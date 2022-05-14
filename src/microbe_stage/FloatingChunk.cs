@@ -106,7 +106,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     /// </summary>
     public string DamageType { get; set; } = "chunk";
 
-    public new string Name { get; set; } = string.Empty;
+    public string ChunkName { get; set; } = string.Empty;
 
     public bool IsLoadedFromSave { get; set; }
 
@@ -124,7 +124,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public void Init(ChunkConfiguration chunkType, string? modelPath)
     {
         // Grab data
-        Name = chunkType.Name;
+        ChunkName = chunkType.Name;
         VentPerSecond = chunkType.VentAmount;
         Dissolves = chunkType.Dissolves;
         Size = chunkType.Size;
@@ -162,7 +162,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     {
         var config = default(ChunkConfiguration);
 
-        config.Name = Name;
+        config.Name = ChunkName;
         config.VentAmount = VentPerSecond;
         config.Dissolves = Dissolves;
         config.Size = Size;
@@ -227,11 +227,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             throw new InvalidOperationException("Can't make a chunk without graphics scene");
 
         InitPhysics();
-    }
-
-    public override string ToString()
-    {
-        return $"[{Name}:{GetInstanceId()}]";
     }
 
     public void ProcessChunk(float delta, CompoundCloudSystem compoundClouds)

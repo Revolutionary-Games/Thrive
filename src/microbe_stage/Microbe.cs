@@ -763,13 +763,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
     }
 
-    public override string ToString()
-    {
-        return Species != null! ?
-            $"[{Species.Genus[0]}.{Species.Epithet.Substring(0, 4)}:{GetInstanceId()}]" :
-            string.Empty;
-    }
-
     /// <summary>
     ///   Returns a list of tuples, representing all possible compound targets. These are not all clouds that the
     ///   microbe can smell; only the best candidate of each compound type.

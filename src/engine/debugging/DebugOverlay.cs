@@ -124,8 +124,36 @@ public class DebugOverlay : Control
             var body = pair.Key;
             var label = pair.Value;
 
+            // Update names
             if (label.Text.Empty())
-                label.Text = body.ToString();
+            {
+                switch (body)
+                {
+                    case Microbe microbe:
+                    {
+                        if (microbe.Species != null!)
+                        {
+                            label.Text = $"[{microbe.Name}:{microbe.Species.Genus[0]}." +
+                                $"{(microbe.Species.Epithet.Length >= 4 ? microbe.Species.Epithet.Substring(0, 4) : microbe.Species.Epithet)}]";
+                        }
+
+                        break;
+                    }
+
+                    case FloatingChunk chunk:
+                    {
+                        label.Text = $"[{chunk.Name}:{chunk.ChunkName}]";
+
+                        break;
+                    }
+
+                    default:
+                    {
+                        label.Text = $"[{body.Name}]";
+                        break;
+                    }
+                }
+            }
 
             label.RectPosition = activeCamera.UnprojectPosition(body.Transform.origin);
         }
@@ -167,7 +195,7 @@ public class DebugOverlay : Control
         if (node is not RigidBody body)
             return;
 
-        var label = new Label { Text = body.ToString() };
+        var label = new Label();
         labelsLayer.AddChild(label);
         entityLabels.Add(body, label);
 
@@ -179,13 +207,8 @@ public class DebugOverlay : Control
                 break;
             }
 
-            case FloatingChunk floatingChunk:
-            {
-                label.AddFontOverride("font", smallerFont);
-                break;
-            }
-
-            case AgentProjectile agentProjectile:
+            case FloatingChunk:
+            case AgentProjectile:
             {
                 label.AddFontOverride("font", smallerFont);
                 break;
