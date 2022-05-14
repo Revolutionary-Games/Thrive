@@ -27,7 +27,7 @@ public abstract class Spawner
     ///   How often the SpawnSystem will call this spawner
     /// </summary>
     /// <value>How often the SpawnSystem will call this spawner.</value>
-    public float Denstity { get; set; }
+    public float Density { get; set; }
 
     /// <summary>
     ///   If this is queued to be destroyed the spawn system will remove this on next update

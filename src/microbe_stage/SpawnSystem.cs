@@ -90,7 +90,7 @@ public class SpawnSystem
 
         float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
         spawner.MinSpawnRadiusSquared = minSpawnRadius * minSpawnRadius;
-        spawner.Denstity = spawnDensity;
+        spawner.Density = spawnDensity;
 
         spawnTypes.Add(spawner);
     }
@@ -323,7 +323,7 @@ public class SpawnSystem
     {
         var spawns = 0;
 
-        if (random.NextFloat() > spawnType.Denstity)
+        if (random.NextFloat() > spawnType.Density)
         {
             return spawns;
         }
