@@ -198,6 +198,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     [JsonIgnore]
     public Node EntityNode => this;
 
+    /// <summary>
+    ///   NOTE: This only returns the membrane material, organelles not included.
+    /// </summary>
+    [JsonIgnore]
+    public Material EntityMaterial => Membrane?.GetSurfaceMaterial(0)!;
+
     [JsonIgnore]
     public List<TweakedProcess> ActiveProcesses
     {

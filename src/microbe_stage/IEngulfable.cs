@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 [UseThriveSerializer]
-public interface IEngulfable : IEntity
+public interface IEngulfable : IGraphicalEntity
 {
     /// <summary>
     ///   The size of this engulfable object based on microbe hex count.
@@ -27,7 +27,7 @@ public interface IEngulfable : IEntity
     Dictionary<Compound, float> CalculateDigestibleCompounds();
 
     /// <summary>
-    ///   Called when this engulfable has been ingested by a microbe.
+    ///   Called when this engulfable is being engulfed by a microbe.
     /// </summary>
     void OnEngulfed();
 

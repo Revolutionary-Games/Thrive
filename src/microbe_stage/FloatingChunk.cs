@@ -56,6 +56,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     [JsonIgnore]
     public Node EntityNode => this;
 
+    [JsonIgnore]
+    public Material EntityMaterial => chunkMesh?.MaterialOverride!;
+
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
     /// </summary>

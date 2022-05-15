@@ -435,6 +435,14 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
     }
 
+    public void UpdateRenderPriority(int priority)
+    {
+        if (organelleMaterial == null)
+            return;
+
+        organelleMaterial.RenderPriority = priority;
+    }
+
     /// <summary>
     ///  Returns the rotated position, as it should be in the colony.
     ///  Used for re-parenting shapes to other microbes
@@ -660,7 +668,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         // Store the material of the organelle to be updated
         organelleMaterial = organelleSceneInstance.GetMaterial(Definition.DisplaySceneModelPath);
-        organelleMaterial.RenderPriority = Hex.GetRenderPriority(Position);
+        UpdateRenderPriority(Hex.GetRenderPriority(Position));
 
         // There is an intermediate node so that the organelle scene root rotation and scale work
         OrganelleGraphics = new Spatial();

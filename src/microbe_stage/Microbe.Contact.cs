@@ -42,7 +42,7 @@ public partial class Microbe
     ///   Tracks entities this previously engulfed.
     /// </summary>
     [JsonProperty]
-    private List<EngulfedMaterial> wasEngulfedMaterials = new();
+    private List<EngulfedMaterial> ejectedMaterials = new();
 
     /// <summary>
     ///   The available space to store engulfable materials internally from engulfment.
@@ -367,7 +367,7 @@ public partial class Microbe
             return false;
 
         // Can't engulf recently ejected material, this act as a cooldown
-        if (wasEngulfedMaterials.Any(m => m.Material == target))
+        if (ejectedMaterials.Any(m => m.Material == target))
             return false;
 
         var microbe = target as Microbe;
@@ -422,11 +422,27 @@ public partial class Microbe
     public void OnEngulfed()
     {
         OnIngested?.Invoke(this, HostileEngulfer.Value!);
+
+        // Make the render priority of our organelles be on top of the highest possible render priority
+        // of the hostile engulfer's organelles
+        if (HostileEngulfer.Value != null)
+        {
+            foreach (var organelle in organelles!)
+            {
+                var newPriority = Mathf.Clamp(Hex.GetRenderPriority(organelle.Position) +
+                    HostileEngulfer.Value.organelles!.MaxRenderPriority, 0, Material.RenderPriorityMax);
+                organelle.UpdateRenderPriority(newPriority);
+            }
+        }
     }
 
     public void OnEjected()
     {
-        // This will already be handled by HandleDecay()
+        // Reset our organelles' render priority back to their original value
+        foreach (var organelle in organelles!)
+        {
+            organelle.UpdateRenderPriority(Hex.GetRenderPriority(organelle.Position));
+        }
     }
 
     /// <summary>
@@ -1000,14 +1016,14 @@ public partial class Microbe
             }
         }
 
-        for (int i = wasEngulfedMaterials.Count - 1; i >= 0; --i)
+        for (int i = ejectedMaterials.Count - 1; i >= 0; --i)
         {
-            var wasEngulfed = wasEngulfedMaterials[i];
+            var ejected = ejectedMaterials[i];
 
-            wasEngulfed.WasJustEngulfedElapsed += delta;
+            ejected.EjectedElapsed += delta;
 
-            if (wasEngulfed.WasJustEngulfedElapsed >= Constants.ENGULF_EJECTED_COOLDOWN)
-                wasEngulfedMaterials.RemoveAt(i);
+            if (ejected.EjectedElapsed >= Constants.ENGULF_EJECTED_COOLDOWN)
+                ejectedMaterials.RemoveAt(i);
         }
 
         previousEngulfMode = State == MicrobeState.Engulf;
@@ -1268,7 +1284,12 @@ public partial class Microbe
             TargetScale = body.Scale / 2,
             OriginalScale = body.Scale,
             Interpolate = true,
+            OriginalRenderPriority = target.EntityMaterial.RenderPriority,
         });
+
+        // Set the render priority of the ingested object higher than all of our organelles' so it
+        // stays visible on top of our insides
+        target.EntityMaterial.RenderPriority = organelles!.MaxRenderPriority + 1;
     }
 
     /// <summary>
@@ -1301,12 +1322,10 @@ public partial class Microbe
         if (CellTypeProperties.IsBacteria)
             nearestPointOfMembraneToTarget *= 0.5f;
 
-        var bodyOrigin = body.Transform.origin;
-
         // If engulfer cell is dead (us) or the engulfed is positioned outside any of our closest membrane, immediately
         // eject it without animation
         // TODO: Asses performance cost in massive cells?
-        if (Dead || !Membrane.Contains(bodyOrigin.x, bodyOrigin.z))
+        if (Dead || !Membrane.Contains(body.Translation.x, body.Translation.z))
         {
             CompleteEjection(engulfedObject);
             body.Scale = engulfedObject.OriginalScale;
@@ -1476,11 +1495,14 @@ public partial class Microbe
     {
         var engulfable = engulfed.Material;
 
-        wasEngulfedMaterials.Add(engulfed);
+        ejectedMaterials.Add(engulfed);
 
         engulfable.IsBeingRegurgitated = false;
         engulfable.IsIngested = false;
         engulfable.OnEjected();
+
+        // Reset render priority
+        engulfable.EntityMaterial.RenderPriority = engulfed.OriginalRenderPriority;
 
         // Ignore possible invalid cast as the engulfed node should be a rigidbody either way
         var body = (RigidBody)engulfable;
@@ -1496,6 +1518,7 @@ public partial class Microbe
         body.CollisionLayer = 3;
         body.CollisionMask = 3;
 
+        // Apply outwards ejection force
         body.ApplyCentralImpulse(Transform.origin.DirectionTo(body.Transform.origin) * body.Mass * 10);
     }
 
@@ -1525,12 +1548,14 @@ public partial class Microbe
 
         public float AnimationTimeElapsed { get; set; }
 
-        public float WasJustEngulfedElapsed { get; set; }
+        public float EjectedElapsed { get; set; }
 
         public Vector3 TargetTranslation { get; set; }
 
         public Vector3 TargetScale { get; set; }
 
         public Vector3 OriginalScale { get; set; }
+
+        public int OriginalRenderPriority { get; set; }
     }
 }
