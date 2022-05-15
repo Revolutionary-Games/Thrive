@@ -11,6 +11,8 @@ using Newtonsoft.Json;
 /// </summary>
 public partial class Microbe
 {
+    private SphereShape pseudopodRangeSphereShape = null!;
+
     /// <summary>
     ///   Contains the pili this microbe has for collision checking
     /// </summary>
@@ -43,6 +45,10 @@ public partial class Microbe
     /// </summary>
     [JsonProperty]
     private List<EngulfedMaterial> ejectedMaterials = new();
+
+    private HashSet<IEngulfable> engulfablesInPseudopodRange = new();
+
+    private MeshInstance pseudopodTarget = null!;
 
     /// <summary>
     ///   The available space to store engulfable materials internally from engulfment.
@@ -821,6 +827,12 @@ public partial class Microbe
 
     private void CheckEngulfShape()
     {
+        var wantedRadius = Radius * 5;
+        if (pseudopodRangeSphereShape.Radius != wantedRadius)
+        {
+            pseudopodRangeSphereShape.Radius = wantedRadius;
+        }
+
         if (engulfedAreaShapeOwner == null)
         {
             var newShape = new ConvexPolygonShape();
@@ -1026,6 +1038,23 @@ public partial class Microbe
                 ejectedMaterials.RemoveAt(i);
         }
 
+        // DEBUG CODE
+        if (state == MicrobeState.Engulf)
+        {
+            foreach (Spatial engulfable in engulfablesInPseudopodRange)
+            {
+                pseudopodTarget.Translation = ToLocal(pseudopodTarget.GlobalTransform.origin.LinearInterpolate(engulfable.GlobalTransform.origin, 0.5f * delta));
+            }
+        }
+        else
+        {
+            pseudopodTarget.Translation = ToLocal(pseudopodTarget.GlobalTransform.origin.LinearInterpolate(GlobalTransform.origin, 0.5f * delta));
+        }
+
+        Membrane.EngulfPosition = pseudopodTarget.Translation;
+        Membrane.EngulfRadius = ((SphereMesh)pseudopodTarget.Mesh).Radius;
+        Membrane.EngulfOffset = 1f;
+
         previousEngulfMode = State == MicrobeState.Engulf;
     }
 
@@ -1215,6 +1244,25 @@ public partial class Microbe
         if (body is IEngulfable engulfable)
         {
             CheckStartEngulfingOnCandidate(engulfable);
+        }
+    }
+
+    private void OnBodyEnteredPseudopodRange(Node body)
+    {
+        if (body == this)
+            return;
+
+        if (body is IEngulfable engulfable)
+        {
+            engulfablesInPseudopodRange.Add(engulfable);
+        }
+    }
+
+    private void OnBodyExitedPseudopodRange(Node body)
+    {
+        if (body is IEngulfable engulfable)
+        {
+            engulfablesInPseudopodRange.Remove(engulfable);
         }
     }
 

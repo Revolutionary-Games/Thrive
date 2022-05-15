@@ -35,6 +35,9 @@ public class Membrane : MeshInstance, IComputedMembraneData
     private float sizeMovementWigglyNessDampeningFactor = 0.32f;
     private Color tint = Colors.White;
     private float dissolveEffectValue;
+    private Vector3 engulfPosition;
+    private float engulfRadius;
+    private float engulfOffest;
 
     private MembraneType? type;
 
@@ -230,6 +233,36 @@ public class Membrane : MeshInstance, IComputedMembraneData
         }
     }
 
+    public Vector3 EngulfPosition
+    {
+        get => engulfPosition;
+        set
+        {
+            engulfPosition = value;
+            ApplyEngulfEffect();
+        }
+    }
+
+    public float EngulfRadius
+    {
+        get => engulfRadius;
+        set
+        {
+            engulfRadius = value;
+            ApplyEngulfEffect();
+        }
+    }
+
+    public float EngulfOffset
+    {
+        get => engulfOffest;
+        set
+        {
+            engulfOffest = value;
+            ApplyEngulfEffect();
+        }
+    }
+
     public override void _Ready()
     {
         type ??= SimulationParameters.Instance.GetMembrane("single");
@@ -417,6 +450,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
         ApplyTint();
         ApplyTextures();
         ApplyDissolveEffect();
+        ApplyEngulfEffect();
     }
 
     private void ApplyWiggly()
@@ -480,6 +514,13 @@ public class Membrane : MeshInstance, IComputedMembraneData
     private void ApplyDissolveEffect()
     {
         MaterialToEdit?.SetShaderParam("dissolveValue", DissolveEffectValue);
+    }
+
+    private void ApplyEngulfEffect()
+    {
+        MaterialToEdit?.SetShaderParam("engulfPos", EngulfPosition);
+        MaterialToEdit?.SetShaderParam("engulfRad", EngulfRadius);
+        MaterialToEdit?.SetShaderParam("engulfOffset", EngulfOffset);
     }
 
     /// <summary>

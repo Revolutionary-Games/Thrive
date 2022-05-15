@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/microbe_stage/Membrane.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/FresnelGradient.png" type="Texture" id=2]
@@ -18,8 +18,20 @@ shader_param/movementWigglyNess = 1.0
 shader_param/dissolveValue = null
 shader_param/healthFraction = 0.25
 shader_param/tint = Plane( 1, 1, 1, 1 )
+shader_param/engulfPos = null
+shader_param/engulfRad = null
+shader_param/engulfOffset = null
 shader_param/albedoTexture = ExtResource( 2 )
 shader_param/damagedTexture = ExtResource( 3 )
+
+[sub_resource type="SphereShape" id=7]
+
+[sub_resource type="SpatialMaterial" id=5]
+render_priority = 2
+flags_transparent = true
+albedo_color = Color( 0, 1, 0, 0.470588 )
+
+[sub_resource type="SphereMesh" id=3]
 
 [node name="Microbe" type="RigidBody"]
 process_priority = 1
@@ -62,5 +74,16 @@ Volume = 0.0
 collision_layer = 3
 collision_mask = 3
 monitorable = false
+
+[node name="PseudopodRange" type="Area" parent="."]
+monitorable = false
+
+[node name="SphereShape" type="CollisionShape" parent="PseudopodRange"]
+shape = SubResource( 7 )
+
+[node name="PseudopodTarget" type="MeshInstance" parent="."]
+material_override = SubResource( 5 )
+mesh = SubResource( 3 )
+material/0 = null
 
 [connection signal="body_entered" from="EngulfDetector" to="." method="OnBodyEnteredEngulfArea"]
