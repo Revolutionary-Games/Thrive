@@ -880,7 +880,7 @@ public partial class Microbe
     {
         if (MovementDirection != Vector3.Zero || queuedMovementForce != Vector3.Zero)
         {
-            if (IsIngested)
+            if (CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)
             {
                 // Reset movement
                 MovementDirection = Vector3.Zero;
@@ -1098,7 +1098,7 @@ public partial class Microbe
 
             var material = engulfedMaterial.Material;
 
-            if (!material.IsIngested)
+            if (material.CurrentEngulfmentStep != EngulfmentStep.Ingested)
                 continue;
 
             var hasAnyUsefulCompounds = false;
@@ -1107,10 +1107,7 @@ public partial class Microbe
             {
                 var compound = engulfedMaterial.AvailableEngulfableCompounds.ElementAt(c);
 
-                if (compound.Value <= 0)
-                    continue;
-
-                if (!Compounds.IsUseful(compound.Key))
+                if (!Compounds.IsUseful(compound.Key) || compound.Value <= 0)
                     continue;
 
                 hasAnyUsefulCompounds = true;
@@ -1157,21 +1154,20 @@ public partial class Microbe
                 }
             }
 
-            // Eject this material as it has no use
-            if (!hasAnyUsefulCompounds)
-            {
-                EjectEngulfable(material);
-                continue;
-            }
-
             var totalAmountLeft = engulfedMaterial.AvailableEngulfableCompounds.Sum(compound => compound.Value);
             material.DigestionProgress = 1 - (totalAmountLeft / engulfedMaterial.InitialTotalEngulfableCompounds);
 
             if (totalAmountLeft <= 0 || material.DigestionProgress >= 1)
             {
                 engulfStorage -= material.Size;
-                engulfedMaterials.RemoveAt(i);
-                material.DestroyDetachAndQueueFree();
+                engulfedMaterial.Material.CurrentEngulfmentStep = EngulfmentStep.FullyDigested;
+            }
+
+            // Eject this material as it has no use
+            if (!hasAnyUsefulCompounds)
+            {
+                EjectEngulfable(material);
+                continue;
             }
 
             // Eject the current engulfed object if this cell loses some of its size and its ingestion capacity
@@ -1187,7 +1183,7 @@ public partial class Microbe
     /// </summary>
     private void HandleDecay(float delta)
     {
-        if (!IsIngested)
+        if (CurrentEngulfmentStep == EngulfmentStep.NotEngulfed)
         {
             if (DigestionProgress >= 0.3f)
             {
@@ -1214,7 +1210,7 @@ public partial class Microbe
         {
             organelle.DissolveEffectValue = dissolveEffectValue;
 
-            if (IsForPreviewOnly || IsIngested)
+            if (IsForPreviewOnly || CurrentEngulfmentStep == EngulfmentStep.Ingested)
             {
                 organelle.UpdateAsync(0);
                 organelle.UpdateSync();

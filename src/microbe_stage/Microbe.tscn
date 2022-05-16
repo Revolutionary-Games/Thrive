@@ -76,12 +76,14 @@ collision_mask = 3
 monitorable = false
 
 [node name="PseudopodRange" type="Area" parent="."]
+visible = false
 monitorable = false
 
 [node name="SphereShape" type="CollisionShape" parent="PseudopodRange"]
 shape = SubResource( 7 )
 
 [node name="PseudopodTarget" type="MeshInstance" parent="."]
+visible = false
 material_override = SubResource( 5 )
 mesh = SubResource( 3 )
 material/0 = null

@@ -8,13 +8,13 @@
 [ext_resource path="res://assets/textures/LysosomeInsidesAlbedoAlpha.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/LysosomeMembraneAlbedoAlpha.png" type="Texture" id=7]
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 4 )
 shader_param/dissolveValue = 0.0
 shader_param/fresnelValue = 1.0
 shader_param/fresnelActive = true
-shader_param/outlineWidth = null
-shader_param/growColor = null
+shader_param/outlineWidth = 0.0
+shader_param/growColor = Color( 0, 0, 0, 1 )
 shader_param/tint = Color( 1, 1, 1, 1 )
 shader_param/texture = ExtResource( 7 )
 shader_param/dissolveTexture = ExtResource( 3 )
@@ -32,7 +32,7 @@ shader_param/dissolveTexture = ExtResource( 3 )
 
 [node name="Lysosome" type="MeshInstance"]
 transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
-material_override = SubResource( 1 )
+material_override = SubResource( 3 )
 mesh = ExtResource( 1 )
 material/0 = null
 script = ExtResource( 5 )

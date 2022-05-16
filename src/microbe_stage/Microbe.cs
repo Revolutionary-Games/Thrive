@@ -198,6 +198,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     [JsonIgnore]
     public Node EntityNode => this;
 
+    [JsonIgnore]
+    public GeometryInstance EntityGraphics => Membrane;
+
     /// <summary>
     ///   NOTE: This only returns the membrane material, organelles not included.
     /// </summary>
@@ -303,6 +306,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         movementAudio = GetNode<HybridAudioPlayer>("MovementAudio");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
+        endosomeScene = GD.Load<PackedScene>("res://src/microbe_stage/Endosome.tscn");
 
         engulfAudio.Positional = movementAudio.Positional = bindingAudio.Positional = !IsPlayerMicrobe;
 
@@ -356,11 +360,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 }
             }
 
-            foreach (var engulfed in engulfedMaterials)
-            {
-                AddChild(engulfed.Material.EntityNode);
-            }
-
             // Need to re-attach our organelles
             foreach (var organelle in organelles)
                 OrganelleParent.AddChild(organelle);
@@ -385,6 +384,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             // Do species setup that we need on load
             SetScaleFromSpecies();
             SetMembraneFromSpecies();
+
+            // Re-attach engulfed objects
+            foreach (var engulfed in engulfedMaterials)
+            {
+                AddChild(engulfed.Material.EntityNode);
+                engulfed.Material.EntityGraphics.AddChild(engulfed.Endosome);
+                engulfed.Endosome.Mesh.MaterialOverride = endosomeMaterial;
+            }
         }
 
         onReadyCalled = true;
@@ -612,14 +619,15 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         // Disable membrane wigglyness and restore membrane color if this cell got engulfed
-        if (IsIngested && Membrane.WigglyNess > 0 && Membrane.Tint != CellTypeProperties.Colour)
+        if (CurrentEngulfmentStep != EngulfmentStep.NotEngulfed && Membrane.WigglyNess > 0 &&
+            Membrane.Tint != CellTypeProperties.Colour)
         {
             Membrane.WigglyNess = 0;
             Membrane.Tint = CellTypeProperties.Colour;
         }
 
         // The code below starting from here is not needed for a display-only or engulfed cell
-        if (IsForPreviewOnly || IsIngested)
+        if (IsForPreviewOnly || CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)
             return;
 
         CheckEngulfShape();
@@ -752,7 +760,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (IsPlayerMicrobe)
             throw new InvalidOperationException("AI can't run on the player microbe");
 
-        if (Dead || IsForPreviewOnly || IsIngested)
+        if (Dead || IsForPreviewOnly || CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)
             return;
 
         try

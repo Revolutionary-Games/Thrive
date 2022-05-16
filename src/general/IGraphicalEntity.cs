@@ -7,6 +7,12 @@ using Newtonsoft.Json;
 public interface IGraphicalEntity : IEntity
 {
     /// <summary>
+    ///   This entity's visual instance.
+    /// </summary>
+    [JsonIgnore]
+    public GeometryInstance EntityGraphics { get; }
+
+    /// <summary>
     ///   The shader material that this entity's geometric instance owns.
     /// </summary>
     [JsonIgnore]

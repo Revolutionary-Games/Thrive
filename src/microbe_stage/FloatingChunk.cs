@@ -57,6 +57,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     public Node EntityNode => this;
 
     [JsonIgnore]
+    public GeometryInstance EntityGraphics => chunkMesh!;
+
+    [JsonIgnore]
     public Material EntityMaterial => chunkMesh?.MaterialOverride!;
 
     /// <summary>
@@ -115,13 +118,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonProperty]
-    public bool IsBeingEngulfed { get; set; }
-
-    [JsonProperty]
-    public bool IsBeingRegurgitated { get; set; }
-
-    [JsonProperty]
-    public bool IsIngested { get; set; }
+    public EngulfmentStep CurrentEngulfmentStep { get; set; }
 
     [JsonProperty]
     public EntityReference<Microbe> HostileEngulfer { get; private set; } = new();
@@ -256,7 +253,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
 
     public void ProcessChunk(float delta, CompoundCloudSystem compoundClouds)
     {
-        if (IsIngested)
+        if (CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)
             return;
 
         if (isDissolving)

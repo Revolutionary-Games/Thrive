@@ -1,5 +1,16 @@
 ﻿using System.Collections.Generic;
 
+public enum EngulfmentStep
+{
+    NotEngulfed,
+    BeingEngulfed,
+    Ingested,
+    Digested,
+    FullyDigested,
+    BeingRegurgitated,
+    PreparingEjection,
+}
+
 [UseThriveSerializer]
 public interface IEngulfable : IGraphicalEntity
 {
@@ -12,11 +23,10 @@ public interface IEngulfable : IGraphicalEntity
 
     public EntityReference<Microbe> HostileEngulfer { get; }
 
-    public bool IsBeingEngulfed { get; set; }
-
-    public bool IsBeingRegurgitated { get; set; }
-
-    public bool IsIngested { get; set; }
+    /// <summary>
+    ///   The particular step of endocytosis process this engulfable is currently in.
+    /// </summary>
+    public EngulfmentStep CurrentEngulfmentStep { get; set; }
 
     /// <summary>
     ///   The value for how much this engulfable has been digested on the range of 0 to 1,
