@@ -469,6 +469,7 @@ BindingModeHotkeyPath = NodePath("ScrollContainer/HotBar/BindingMode")
 UnbindAllHotkeyPath = NodePath("ScrollContainer/HotBar/UnbindAll")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
 MicrobeControlRadialPath = NodePath("../RadialPopup")
+PausePromptPath = NodePath("PausePrompt/PausePromptLabel")
 
 [node name="MouseHoverPanel" type="MarginContainer" parent="MicrobeHUD"]
 anchor_left = 1.0
@@ -2096,6 +2097,33 @@ margin_left = 10.0
 margin_top = 30.0
 margin_right = 207.0
 
+[node name="PausePrompt" type="MarginContainer" parent="MicrobeHUD"]
+anchor_left = 0.5
+anchor_top = 0.782
+anchor_right = 0.5
+anchor_bottom = 0.782
+margin_left = -200.0
+margin_top = 60.0
+margin_right = 200.0
+margin_bottom = 82.0
+mouse_filter = 2
+custom_constants/margin_left = 10
+
+[node name="PausePromptLabel" type="Label" parent="MicrobeHUD/PausePrompt"]
+visible = false
+margin_left = 10.0
+margin_top = 1.0
+margin_right = 400.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 0, 20 )
+custom_fonts/font = ExtResource( 68 )
+text = "PAUSED (space to unpause)"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeHUD"]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -2252,6 +2280,7 @@ custom_styles/separator = SubResource( 36 )
 anims/FadeInOut = SubResource( 37 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
+visible = true
 
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]

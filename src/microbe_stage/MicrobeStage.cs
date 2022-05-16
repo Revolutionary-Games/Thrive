@@ -540,6 +540,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         hudRoot.Visible = !hudRoot.Visible;
     }
 
+    [RunOnKeyDown("g_pause")]
+    public void PauseKeyPressed()
+    {
+        HUD.PauseButtonPressed();
+    }
+
     /// <summary>
     ///   Switches to the editor
     /// </summary>

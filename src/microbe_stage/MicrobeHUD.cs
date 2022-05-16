@@ -200,6 +200,9 @@ public class MicrobeHUD : Control
     [Export]
     public NodePath MicrobeControlRadialPath = null!;
 
+    [Export]
+    public NodePath PausePromptPath = null!;
+
     // Formatter and code checks disagree here
     // ReSharper disable RedundantNameQualifier
     private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts = new();
@@ -296,6 +299,8 @@ public class MicrobeHUD : Control
 
     private ProcessPanel processPanel = null!;
     private TextureButton processPanelButton = null!;
+
+    private Label pausePrompt = null!;
 
     /// <summary>
     ///   Access to the stage to retrieve information for display as
@@ -438,6 +443,8 @@ public class MicrobeHUD : Control
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
+
+        pausePrompt = GetNode<Label>(PausePromptPath);
 
         OnAbilitiesHotBarDisplayChanged(Settings.Instance.DisplayAbilitiesHotBar);
         Settings.Instance.DisplayAbilitiesHotBar.OnChanged += OnAbilitiesHotBarDisplayChanged;
@@ -1283,7 +1290,7 @@ public class MicrobeHUD : Control
         menu.Open();
     }
 
-    private void PauseButtonPressed()
+    public void PauseButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
@@ -1292,6 +1299,7 @@ public class MicrobeHUD : Control
         {
             pauseButton.Hide();
             resumeButton.Show();
+            pausePrompt.Show();
             pauseButton.Pressed = false;
 
             // Pause the game
@@ -1301,6 +1309,7 @@ public class MicrobeHUD : Control
         {
             pauseButton.Show();
             resumeButton.Hide();
+            pausePrompt.Hide();
             resumeButton.Pressed = false;
 
             // Unpause the game
