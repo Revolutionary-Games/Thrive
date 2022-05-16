@@ -1,5 +1,6 @@
 ﻿public class LysosomeComponent : EmptyOrganelleComponent
 {
+    // TODO: Animate lysosomes sticking onto phagosomes (if possible)
 }
 
 public class LysosomeComponentFactory : IOrganelleComponentFactory

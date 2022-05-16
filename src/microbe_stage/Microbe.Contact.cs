@@ -51,7 +51,7 @@ public partial class Microbe
     // private MeshInstance pseudopodTarget = null!;
 
     private PackedScene endosomeScene = null!;
-    private SpatialMaterial endosomeMaterial = null!;
+    private SpatialMaterial? endosomeMaterial;
 
     /// <summary>
     ///   The available space to store engulfable materials internally from engulfment.
@@ -1378,7 +1378,7 @@ public partial class Microbe
 
         var endosomeMesh = engulfedMaterial.Endosome.Mesh;
         endosomeMesh.MaterialOverride = endosomeMaterial;
-        endosomeMesh.MaterialOverride.RenderPriority = Mathf.Max(
+        endosomeMesh.MaterialOverride!.RenderPriority = Mathf.Max(
             endosomeMesh.MaterialOverride.RenderPriority, target.EntityMaterial.RenderPriority + 1);
     }
 
