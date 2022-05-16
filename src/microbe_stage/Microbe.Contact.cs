@@ -1532,6 +1532,16 @@ public partial class Microbe
         if (State != MicrobeState.Engulf)
             return;
 
+        foreach (var entity in touchedEntities)
+        {
+            if (entity is Microbe microbe && microbe.destroyed)
+            {
+                GD.Print($"Removed destroyed microbe from {nameof(touchedEntities)}");
+                touchedEntities.Remove(microbe);
+                break;
+            }
+        }
+
         if (CanEngulf(engulfable))
         {
             IngestEngulfable(engulfable);
