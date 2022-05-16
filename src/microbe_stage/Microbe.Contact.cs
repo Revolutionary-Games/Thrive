@@ -821,9 +821,7 @@ public partial class Microbe
         Membrane.Dirty = true;
         ApplyMembraneWigglyness();
 
-        if (endosomeMaterial == null)
-            endosomeMaterial = new SpatialMaterial { FlagsTransparent = true };
-
+        endosomeMaterial ??= new SpatialMaterial { FlagsTransparent = true };
         endosomeMaterial.AlbedoColor = new Color(CellTypeProperties.Colour, 0.3f);
     }
 
@@ -1060,12 +1058,14 @@ public partial class Microbe
         {
             foreach (Spatial engulfable in engulfablesInPseudopodRange)
             {
-                pseudopodTarget.Translation = ToLocal(pseudopodTarget.GlobalTransform.origin.LinearInterpolate(engulfable.GlobalTransform.origin, 0.5f * delta));
+                pseudopodTarget.Translation = ToLocal(pseudopodTarget.GlobalTransform.origin.LinearInterpolate(
+                    engulfable.GlobalTransform.origin, 0.5f * delta));
             }
         }
         else
         {
-            pseudopodTarget.Translation = ToLocal(pseudopodTarget.GlobalTransform.origin.LinearInterpolate(GlobalTransform.origin, 0.5f * delta));
+            pseudopodTarget.Translation = ToLocal(
+                pseudopodTarget.GlobalTransform.origin.LinearInterpolate(GlobalTransform.origin, 0.5f * delta));
         }
 
         Membrane.EngulfPosition = pseudopodTarget.Translation;
@@ -1345,15 +1345,15 @@ public partial class Microbe
             body.Translation.y,
             random.Next(0.0f, viableStoringAreaEdge.z));
 
-        var Aabb = target.EntityGraphics.GetAabb().Size;
+        var aabb = target.EntityGraphics.GetAabb().Size;
 
         // In the case of flat mesh (like membrane) we don't want the endosome to end up completely flat
         // as it can cause unwanted visual glitch
-        var AabbClamped = new Vector3(Aabb.x, Mathf.Clamp(Aabb.y, Mathf.Epsilon, Mathf.Inf), Aabb.z);
+        var aabbClamped = new Vector3(aabb.x, Mathf.Clamp(aabb.y, Mathf.Epsilon, Mathf.Inf), aabb.z);
 
         var engulfedMaterial = new EngulfedMaterial(target)
         {
-            ValuesToLerp = (finalPosition, body.Scale / 2, AabbClamped),
+            ValuesToLerp = (finalPosition, body.Scale / 2, aabbClamped),
             OriginalScale = body.Scale,
             OriginalRenderPriority = target.EntityMaterial.RenderPriority,
         };
@@ -1553,7 +1553,7 @@ public partial class Microbe
             var fraction = engulfed.AnimationTimeElapsed / engulfed.LerpDuration;
 
             // Smoothstep
-            fraction = fraction * fraction * fraction * (fraction * (6f * fraction - 15f) + 10f);
+            fraction *= fraction * fraction * (fraction * (6f * fraction - 15f) + 10f);
 
             if (engulfed.ValuesToLerp.Translation.HasValue)
             {
@@ -1565,8 +1565,10 @@ public partial class Microbe
                 body.Scale = body.Scale.LinearInterpolate(engulfed.ValuesToLerp.Scale.Value, fraction);
 
             if (engulfed.ValuesToLerp.EndosomeScale.HasValue)
+            {
                 engulfed.Endosome.Scale = engulfed.Endosome.Scale.LinearInterpolate(
                     engulfed.ValuesToLerp.EndosomeScale.Value, fraction);
+            }
 
             return false;
         }
@@ -1625,7 +1627,7 @@ public partial class Microbe
         // Reset render priority
         engulfable.EntityMaterial.RenderPriority = engulfed.OriginalRenderPriority;
 
-        engulfed.Endosome?.DetachAndQueueFree();
+        engulfed.Endosome.DetachAndQueueFree();
 
         // Ignore possible invalid cast as the engulfed node should be a rigidbody either way
         var body = (RigidBody)engulfable;
