@@ -322,6 +322,8 @@ public static class Constants
     /// </summary>
     public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
 
+    public const float ENGULF_EJECTION_FORCE = 20f;
+
     /// <summary>
     ///   How much compounds a cell can absorb per second from digestible engulfed objects.
     /// </summary>

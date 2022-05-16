@@ -43,10 +43,10 @@ public class OrganelleLayout<T> : HexLayout<T>
     }
 
     /// <summary>
-    ///   The highest possible render priority in all of the organelles.
+    ///   The highest assigned render priority from all of the organelles.
     /// </summary>
     [JsonIgnore]
-    public int MaxRenderPriority
+    public int PeakRenderPriority
     {
         get
         {

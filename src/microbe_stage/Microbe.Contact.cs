@@ -433,7 +433,7 @@ public partial class Microbe
             foreach (var organelle in organelles!)
             {
                 var newPriority = Mathf.Clamp(Hex.GetRenderPriority(organelle.Position) +
-                    HostileEngulfer.Value.organelles!.MaxRenderPriority, 0, Material.RenderPriorityMax);
+                    HostileEngulfer.Value.organelles!.PeakRenderPriority, 0, Material.RenderPriorityMax);
                 organelle.UpdateRenderPriority(newPriority);
             }
         }
@@ -1358,13 +1358,13 @@ public partial class Microbe
             OriginalRenderPriority = target.EntityMaterial.RenderPriority,
         };
 
-        StartEngulfmentLerp(engulfedMaterial, 3.0f);
-
         engulfedMaterials.Add(engulfedMaterial);
+
+        StartEngulfmentLerp(engulfedMaterial, 3.0f);
 
         // Set the render priority of the ingested object higher than all of our organelles' so it
         // stays visible on top of our insides
-        target.EntityMaterial.RenderPriority += organelles!.MaxRenderPriority + 1;
+        target.EntityMaterial.RenderPriority += organelles!.PeakRenderPriority + 1;
 
         // Form endosome
         engulfedMaterial.Endosome = endosomeScene.Instance<Endosome>();
@@ -1372,8 +1372,10 @@ public partial class Microbe
         engulfedMaterial.Endosome.Transform = engulfedMaterial.Material.EntityGraphics.Transform.Scaled(Vector3.Zero);
         engulfedMaterial.Material.EntityGraphics.AddChild(engulfedMaterial.Endosome);
 
-        engulfedMaterial.Endosome.Mesh.MaterialOverride = endosomeMaterial;
-        engulfedMaterial.Endosome.Mesh.MaterialOverride.RenderPriority = target.EntityMaterial.RenderPriority + 1;
+        var endosomeMesh = engulfedMaterial.Endosome.Mesh;
+        endosomeMesh.MaterialOverride = endosomeMaterial;
+        endosomeMesh.MaterialOverride.RenderPriority = Mathf.Max(
+            endosomeMesh.MaterialOverride.RenderPriority, target.EntityMaterial.RenderPriority + 1);
     }
 
     /// <summary>
@@ -1640,7 +1642,8 @@ public partial class Microbe
         body.CollisionMask = 3;
 
         // Apply outwards ejection force
-        body.ApplyCentralImpulse(Transform.origin.DirectionTo(body.Transform.origin) * body.Mass * 20);
+        body.ApplyCentralImpulse(Transform.origin.DirectionTo(body.Transform.origin) * body.Mass *
+            Constants.ENGULF_EJECTION_FORCE);
     }
 
     /// <summary>
