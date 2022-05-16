@@ -17,28 +17,11 @@ uniform float dissolveValue : hint_range(0, 1);
 uniform float healthFraction = 0.5f;
 uniform vec4 tint : hint_color = vec4(1, 1, 1, 1);
 
-// Input for the data of a microbe's engulfment sphere
-uniform vec3 engulfPos;
-uniform float engulfRad;
-uniform float engulfOffset : hint_range(0, 1);
-
 
 void vertex(){
     vec3 worldVertex = (WORLD_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float size = length(VERTEX);
     
-    float angleToFood =
-        atan(float(vec3(VERTEX - engulfPos).x), float(vec3(VERTEX - engulfPos).z));
-	vec3 sphereSurface =
-	    vec3(cos(angleToFood) * engulfRad, 0, sin(angleToFood) * engulfRad);
-    
-    // Distance to the surface of the engulf sphere
-    vec3 distanceToSphere = VERTEX - (engulfPos + sphereSurface);
-
-    if (length(distanceToSphere) < engulfRad * engulfOffset){
-	    VERTEX += sphereSurface * vec3( engulfOffset, 0, engulfOffset) - distanceToSphere;
-    }
-
     VERTEX.x += sin(worldVertex.z * movementWigglyNess + TIME / 4.0f) / 10.f
         * wigglyNess * size;
     VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f

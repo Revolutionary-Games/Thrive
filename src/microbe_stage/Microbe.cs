@@ -332,13 +332,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         // Setup physics callback stuff
         engulfDetector = GetNode<Area>("EngulfDetector");
-        pseudopodTarget = GetNode<MeshInstance>("PseudopodTarget");
 
-        var pseudopodRange = GetNode<Area>("PseudopodRange");
-        pseudopodRangeSphereShape = (SphereShape)pseudopodRange.GetNode<CollisionShape>("SphereShape").Shape;
+        // pseudopodTarget = GetNode<MeshInstance>("PseudopodTarget");
+        // var pseudopodRange = GetNode<Area>("PseudopodRange");
+        // pseudopodRangeSphereShape = (SphereShape)pseudopodRange.GetNode<CollisionShape>("SphereShape").Shape;
 
-        pseudopodRange.Connect("body_entered", this, nameof(OnBodyEnteredPseudopodRange));
-        pseudopodRange.Connect("body_exited", this, nameof(OnBodyExitedPseudopodRange));
+        // pseudopodRange.Connect("body_entered", this, nameof(OnBodyEnteredPseudopodRange));
+        // pseudopodRange.Connect("body_exited", this, nameof(OnBodyExitedPseudopodRange));
 
         ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
         Connect("body_shape_entered", this, nameof(OnContactBegin));

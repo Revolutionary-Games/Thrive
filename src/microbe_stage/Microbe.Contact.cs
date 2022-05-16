@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 /// </summary>
 public partial class Microbe
 {
-    private SphereShape pseudopodRangeSphereShape = null!;
+    // private SphereShape pseudopodRangeSphereShape = null!;
 
     /// <summary>
     ///   Contains the pili this microbe has for collision checking
@@ -46,9 +46,9 @@ public partial class Microbe
     [JsonProperty]
     private List<EngulfedMaterial> ejectedMaterials = new();
 
-    private HashSet<IEngulfable> engulfablesInPseudopodRange = new();
+    // private HashSet<IEngulfable> engulfablesInPseudopodRange = new();
 
-    private MeshInstance pseudopodTarget = null!;
+    // private MeshInstance pseudopodTarget = null!;
 
     private PackedScene endosomeScene = null!;
     private SpatialMaterial endosomeMaterial = null!;
@@ -827,11 +827,13 @@ public partial class Microbe
 
     private void CheckEngulfShape()
     {
+        /*
         var wantedRadius = Radius * 5;
         if (pseudopodRangeSphereShape.Radius != wantedRadius)
         {
             pseudopodRangeSphereShape.Radius = wantedRadius;
         }
+        */
 
         if (engulfedAreaShapeOwner == null)
         {
@@ -1053,7 +1055,7 @@ public partial class Microbe
                 ejectedMaterials.RemoveAt(i);
         }
 
-        /* DEBUG CODE
+        /* Membrane engulf stretch debug code
         if (state == MicrobeState.Engulf)
         {
             foreach (Spatial engulfable in engulfablesInPseudopodRange)
@@ -1265,6 +1267,7 @@ public partial class Microbe
         }
     }
 
+    /*
     private void OnBodyEnteredPseudopodRange(Node body)
     {
         if (body == this)
@@ -1283,6 +1286,7 @@ public partial class Microbe
             engulfablesInPseudopodRange.Remove(engulfable);
         }
     }
+    */
 
     /// <summary>
     ///   Ingests (finishes engulfment of) the target into this microbe. Does not check whether the target
