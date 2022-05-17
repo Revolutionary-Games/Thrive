@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=2]
+[gd_scene load_steps=130 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -91,6 +91,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=89]
 [ext_resource path="res://assets/textures/gui/bevel/unbind.png" type="Texture" id=90]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=91]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=92]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -403,7 +404,6 @@ size_flags_vertical = 3
 theme = ExtResource( 72 )
 script = ExtResource( 9 )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 AnimationPlayerPath = NodePath("AnimationPlayer")
@@ -2099,9 +2099,9 @@ margin_right = 207.0
 
 [node name="PausePrompt" type="MarginContainer" parent="MicrobeHUD"]
 anchor_left = 0.5
-anchor_top = 0.782
+anchor_top = 0.697
 anchor_right = 0.5
-anchor_bottom = 0.782
+anchor_bottom = 0.776
 margin_left = -200.0
 margin_top = 60.0
 margin_right = 200.0
@@ -2112,12 +2112,12 @@ custom_constants/margin_left = 10
 [node name="PausePromptLabel" type="Label" parent="MicrobeHUD/PausePrompt"]
 visible = false
 margin_left = 10.0
-margin_top = 1.0
+margin_top = 18.0
 margin_right = 400.0
-margin_bottom = 21.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 0, 20 )
-custom_fonts/font = ExtResource( 68 )
-text = "PAUSED (space to unpause)"
+custom_fonts/font = ExtResource( 92 )
+text = "Paused"
 align = 1
 valign = 1
 __meta__ = {
@@ -2141,6 +2141,7 @@ __meta__ = {
 
 [node name="HotBar" type="HBoxContainer" parent="MicrobeHUD/ScrollContainer"]
 margin_right = 600.0
+margin_bottom = 51.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 1
@@ -2149,7 +2150,6 @@ __meta__ = {
 }
 
 [node name="Engulfment" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
-visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 277.0

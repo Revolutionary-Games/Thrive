@@ -1292,28 +1292,31 @@ public class MicrobeHUD : Control
 
     public void PauseButtonPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        paused = !paused;
-        if (paused)
+        if (!menu.Visible)
         {
-            pauseButton.Hide();
-            resumeButton.Show();
-            pausePrompt.Show();
-            pauseButton.Pressed = false;
+            GUICommon.Instance.PlayButtonPressSound();
 
-            // Pause the game
-            GetTree().Paused = true;
-        }
-        else
-        {
-            pauseButton.Show();
-            resumeButton.Hide();
-            pausePrompt.Hide();
-            resumeButton.Pressed = false;
+            paused = !paused;
+            if (paused)
+            {
+                pauseButton.Hide();
+                resumeButton.Show();
+                pausePrompt.Show();
+                pauseButton.Pressed = false;
 
-            // Unpause the game
-            GetTree().Paused = false;
+                // Pause the game
+                GetTree().Paused = true;
+            }
+            else
+            {
+                pauseButton.Show();
+                resumeButton.Hide();
+                pausePrompt.Hide();
+                resumeButton.Pressed = false;
+
+                // Unpause the game
+                GetTree().Paused = false;
+            }
         }
     }
 
