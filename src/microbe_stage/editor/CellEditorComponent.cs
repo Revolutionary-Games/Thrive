@@ -1480,6 +1480,9 @@ public partial class CellEditorComponent :
             (organelle.Definition.RequiresNucleus && !HasNucleus))
             return null;
 
+        if (organelle.Definition.Unique)
+            OnOrganelleToPlaceSelected(null!);
+
         var replacedCytoplasmActions =
             GetReplacedCytoplasmRemoveAction(new[] { organelle }).Cast<CellEditorAction>().ToList();
 
