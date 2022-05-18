@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/textures/LysosomeMembraneAlbedoAlpha.png" type="Texture" id=7]
 
 [sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
 shader = ExtResource( 4 )
 shader_param/dissolveValue = 0.0
 shader_param/fresnelValue = 1.0
@@ -20,6 +21,8 @@ shader_param/texture = ExtResource( 7 )
 shader_param/dissolveTexture = ExtResource( 3 )
 
 [sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+render_priority = -1
 shader = ExtResource( 4 )
 shader_param/dissolveValue = 0.0
 shader_param/fresnelValue = 1.0
