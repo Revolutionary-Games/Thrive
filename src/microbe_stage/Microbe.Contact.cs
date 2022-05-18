@@ -1006,8 +1006,6 @@ public partial class Microbe
             var engulfed = engulfedMaterials[i];
 
             var material = engulfed.Material.Value;
-            if (material == null)
-                continue;
 
             var body = material as RigidBody;
             if (body == null)
@@ -1015,7 +1013,7 @@ public partial class Microbe
 
             body.Mode = ModeEnum.Static;
 
-            if (material.CurrentEngulfmentStep == EngulfmentStep.FullyDigested)
+            if (material?.CurrentEngulfmentStep == EngulfmentStep.FullyDigested)
             {
                 engulfed.ValuesToLerp = (null, null, Vector3.One * Mathf.Epsilon);
                 StartEngulfmentLerp(engulfed, 1.0f, false);
@@ -1027,7 +1025,7 @@ public partial class Microbe
             // Interpolate values manually to make saving these values possible
             if (LerpEngulfmentProcess(delta, engulfed))
             {
-                switch (material.CurrentEngulfmentStep)
+                switch (material?.CurrentEngulfmentStep)
                 {
                     case EngulfmentStep.BeingEngulfed:
                         CompleteIngestion(engulfed);
@@ -1381,7 +1379,7 @@ public partial class Microbe
         engulfedMaterial.Endosome = endosomeScene.Instance<Endosome>();
         engulfedMaterial.Endosome.Scale = Vector3.Zero;
         engulfedMaterial.Endosome.Transform = actualMaterial!.EntityGraphics.Transform.Scaled(Vector3.Zero);
-        actualMaterial!.EntityGraphics.AddChild(engulfedMaterial.Endosome);
+        actualMaterial.EntityGraphics.AddChild(engulfedMaterial.Endosome);
 
         var endosomeMesh = engulfedMaterial.Endosome.Mesh;
         endosomeMesh.MaterialOverride = endosomeMaterial;

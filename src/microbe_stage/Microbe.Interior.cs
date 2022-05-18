@@ -1097,10 +1097,8 @@ public partial class Microbe
             var engulfedMaterial = engulfedMaterials[i];
 
             var material = engulfedMaterial.Material.Value;
-            if (material == null)
-                continue;
 
-            if (material.CurrentEngulfmentStep != EngulfmentStep.Ingested)
+            if (material?.CurrentEngulfmentStep != EngulfmentStep.Ingested)
                 continue;
 
             var hasAnyUsefulCompounds = false;
