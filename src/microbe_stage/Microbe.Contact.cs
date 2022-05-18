@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Main script on each cell in the game.
@@ -1384,6 +1385,9 @@ public partial class Microbe
 
         var engulfable = engulfedObject.Object.Value;
 
+        foreach (string group in engulfedObject.OriginalGroups)
+            engulfable?.EntityNode.RemoveFromGroup(group);
+
         // Form endosome
         engulfedObject.Endosome = endosomeScene.Instance<Endosome>();
         engulfedObject.Endosome.Scale = Vector3.Zero;
@@ -1444,7 +1448,7 @@ public partial class Microbe
         engulfedObject.ValuesToLerp = (nearestPointOfMembraneToTarget, null, Vector3.One * Mathf.Epsilon);
         StartEngulfmentLerp(engulfedObject, 3.0f);
 
-        // Engulfed object will be removed from the list in CompleteEjection
+        // The rest of the operation is done in CompleteEjection
     }
 
     private bool CanBindToMicrobe(IEntity other)
@@ -1659,6 +1663,9 @@ public partial class Microbe
         engulfable.CurrentEngulfmentStep = EngulfmentStep.NotEngulfed;
         engulfable.OnEjected();
 
+        foreach (string group in engulfed.OriginalGroups)
+            engulfable.EntityNode.AddToGroup(group);
+
         // Reset render priority
         engulfable.EntityMaterial.RenderPriority = engulfed.OriginalRenderPriority;
 
@@ -1694,6 +1701,7 @@ public partial class Microbe
             Object = new EntityReference<IEngulfable>(@object);
             AvailableEngulfableCompounds = @object.CalculateDigestibleCompounds();
             InitialTotalEngulfableCompounds = AvailableEngulfableCompounds.Sum(c => c.Value);
+            OriginalGroups = @object.EntityNode.GetGroups();
         }
 
         /// <summary>
@@ -1720,5 +1728,7 @@ public partial class Microbe
         public Vector3 OriginalScale { get; set; }
 
         public int OriginalRenderPriority { get; set; }
+
+        public Array OriginalGroups { get; private set; }
     }
 }
