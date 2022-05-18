@@ -9,25 +9,28 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 public class CombinedEditorAction : EditorAction
 {
-    [JsonConstructor]
+    [JsonProperty]
+    private List<EditorAction> actions;
+
     public CombinedEditorAction(params EditorAction[] actions)
     {
         if (actions.Length < 1)
             throw new ArgumentException("Actions can't be empty");
 
-        Actions = actions;
+        this.actions = actions.ToList();
     }
 
+    [JsonConstructor]
     public CombinedEditorAction(IEnumerable<EditorAction> actions)
     {
-        Actions = actions.ToList();
+        this.actions = actions.ToList();
 
         if (Actions.Count < 1)
             throw new ArgumentException("Actions can't be empty");
     }
 
-    [JsonProperty]
-    public IReadOnlyList<EditorAction> Actions { get; private set; }
+    [JsonIgnore]
+    public IReadOnlyList<EditorAction> Actions => actions;
 
     [JsonIgnore]
     public override IEnumerable<EditorCombinableActionData> Data => Actions.SelectMany(a => a.Data);
