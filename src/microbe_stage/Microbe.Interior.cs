@@ -1096,7 +1096,9 @@ public partial class Microbe
         {
             var engulfedMaterial = engulfedMaterials[i];
 
-            var material = engulfedMaterial.Material;
+            var material = engulfedMaterial.Material.Value;
+            if (material == null)
+                continue;
 
             if (material.CurrentEngulfmentStep != EngulfmentStep.Ingested)
                 continue;
@@ -1107,7 +1109,7 @@ public partial class Microbe
             {
                 var compound = engulfedMaterial.AvailableEngulfableCompounds.ElementAt(c);
 
-                if (!Compounds.IsUseful(compound.Key) || compound.Value <= 0)
+                if ((compound.Key != oxytoxy && !Compounds.IsUseful(compound.Key)) || compound.Value <= 0)
                     continue;
 
                 hasAnyUsefulCompounds = true;
@@ -1149,7 +1151,7 @@ public partial class Microbe
                     {
                         lastCheckedOxytoxyDigestionDamage -=
                             Constants.ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION;
-                        Damage(MaxHitpoints * added, "oxytoxy");
+                        Damage(MaxHitpoints * taken, "oxytoxy");
                     }
                 }
             }
@@ -1160,7 +1162,7 @@ public partial class Microbe
             if (totalAmountLeft <= 0 || material.DigestionProgress >= 1)
             {
                 engulfStorage -= material.Size;
-                engulfedMaterial.Material.CurrentEngulfmentStep = EngulfmentStep.FullyDigested;
+                material.CurrentEngulfmentStep = EngulfmentStep.FullyDigested;
             }
 
             // Eject this material as it has no use

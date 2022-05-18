@@ -388,8 +388,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             // Re-attach engulfed objects
             foreach (var engulfed in engulfedMaterials)
             {
-                AddChild(engulfed.Material.EntityNode);
-                engulfed.Material.EntityGraphics.AddChild(engulfed.Endosome);
+                var material = engulfed.Material.Value;
+                if (material == null)
+                    continue;
+
+                AddChild(material.EntityNode);
+                material.EntityGraphics.AddChild(engulfed.Endosome);
                 engulfed.Endosome.Mesh.MaterialOverride = endosomeMaterial;
             }
         }

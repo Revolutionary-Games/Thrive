@@ -810,13 +810,13 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerEngulfed(Microbe player, Microbe engulfer)
+    private void OnPlayerEngulfed(Microbe player, EntityReference<Microbe> engulfer)
     {
-        // Counted as normal death
+        // Considered as normal death
         OnPlayerDied(player);
 
         // To avoid camera position being reset to world origin
-        Camera.ObjectToFollow = engulfer;
+        Camera.ObjectToFollow = engulfer.Value;
     }
 
     [DeserializedCallbackAllowed]
