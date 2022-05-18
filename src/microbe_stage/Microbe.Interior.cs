@@ -1151,7 +1151,7 @@ public partial class Microbe
                     continue;
 
                 engulfedObject.AvailableEngulfableCompounds[compound.Key] -= amount;
-                var added = Compounds.AddCompound(compound.Key, taken * efficiency);
+                Compounds.AddCompound(compound.Key, taken * efficiency);
             }
 
             var totalAmountLeft = engulfedObject.AvailableEngulfableCompounds.Sum(compound => compound.Value);
