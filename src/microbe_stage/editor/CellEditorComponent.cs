@@ -1481,7 +1481,7 @@ public partial class CellEditorComponent :
             return null;
 
         if (organelle.Definition.Unique)
-            OnOrganelleToPlaceSelected(null!);
+            DeselectOrganelleToPlace();
 
         var replacedCytoplasmActions =
             GetReplacedCytoplasmRemoveAction(new[] { organelle }).Cast<CellEditorAction>().ToList();
@@ -1570,6 +1570,17 @@ public partial class CellEditorComponent :
         foreach (var element in placeablePartSelectionElements.Values)
         {
             element.Selected = element.Name == organelle;
+        }
+    }
+
+    private void DeselectOrganelleToPlace()
+    {
+        ActiveActionName = null;
+
+        // Update the icon highlightings
+        foreach (var element in placeablePartSelectionElements.Values)
+        {
+            element.Selected = false;
         }
     }
 
