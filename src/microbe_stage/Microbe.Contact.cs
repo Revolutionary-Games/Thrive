@@ -38,13 +38,13 @@ public partial class Microbe
     ///   Tracks entities this already engulfed.
     /// </summary>
     [JsonProperty]
-    private List<EngulfedMaterial> engulfedMaterials = new();
+    private List<EngulfedObject> engulfedObjects = new();
 
     /// <summary>
     ///   Tracks entities this previously engulfed.
     /// </summary>
     [JsonProperty]
-    private List<EngulfedMaterial> ejectedMaterials = new();
+    private List<EngulfedObject> ejectedObjects = new();
 
     // private HashSet<IEngulfable> engulfablesInPseudopodRange = new();
 
@@ -54,7 +54,7 @@ public partial class Microbe
     private SpatialMaterial? endosomeMaterial;
 
     /// <summary>
-    ///   The available space to store engulfable materials internally from engulfment.
+    ///   The available space left to store engulfable objects from engulfment.
     /// </summary>
     [JsonProperty]
     private float engulfStorage;
@@ -235,7 +235,7 @@ public partial class Microbe
     public Action<Microbe>? OnUnbound { get; set; }
 
     [JsonProperty]
-    public Action<Microbe, EntityReference<Microbe>>? OnIngested { get; set; }
+    public Action<Microbe, Microbe>? OnIngested { get; set; }
 
     [JsonProperty]
     public Action<Microbe>? OnEngulfmentStorageFull { get; set; }
@@ -369,8 +369,8 @@ public partial class Microbe
         if (target.CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)
             return false;
 
-        // Can't engulf recently ejected material, this act as a cooldown
-        if (ejectedMaterials.Any(m => m.Material == target))
+        // Can't engulf recently ejected objects, this act as a cooldown
+        if (ejectedObjects.Any(m => m.Object == target))
             return false;
 
         var microbe = target as Microbe;
@@ -424,7 +424,7 @@ public partial class Microbe
 
     public void OnEngulfed()
     {
-        OnIngested?.Invoke(this, HostileEngulfer);
+        OnIngested?.Invoke(this, HostileEngulfer.Value!);
 
         // Make the render priority of our organelles be on top of the highest possible render priority
         // of the hostile engulfer's organelles
@@ -1001,60 +1001,60 @@ public partial class Microbe
         // TODO: Add back escaped from engulfment population reward. This is currently not feasible
         // due to new engulfment behavior not allowing things to escape
 
-        for (int i = engulfedMaterials.Count - 1; i >= 0; --i)
+        for (int i = engulfedObjects.Count - 1; i >= 0; --i)
         {
-            var engulfed = engulfedMaterials[i];
+            var engulfedObject = engulfedObjects[i];
 
-            var material = engulfed.Material.Value;
+            var engulfable = engulfedObject.Object.Value;
 
-            var body = material as RigidBody;
+            var body = engulfable as RigidBody;
             if (body == null)
                 continue;
 
             body.Mode = ModeEnum.Static;
 
-            if (material?.CurrentEngulfmentStep == EngulfmentStep.FullyDigested)
+            if (engulfable?.CurrentEngulfmentStep == EngulfmentStep.FullyDigested)
             {
-                engulfed.ValuesToLerp = (null, null, Vector3.One * Mathf.Epsilon);
-                StartEngulfmentLerp(engulfed, 1.0f, false);
+                engulfedObject.ValuesToLerp = (null, null, Vector3.One * Mathf.Epsilon);
+                StartEngulfmentLerp(engulfedObject, 1.0f, false);
             }
 
-            if (!engulfed.Interpolate)
+            if (!engulfedObject.Interpolate)
                 continue;
 
             // Interpolate values manually to make saving these values possible
-            if (LerpEngulfmentProcess(delta, engulfed))
+            if (LerpEngulfmentProcess(delta, engulfedObject))
             {
-                switch (material?.CurrentEngulfmentStep)
+                switch (engulfable?.CurrentEngulfmentStep)
                 {
                     case EngulfmentStep.BeingEngulfed:
-                        CompleteIngestion(engulfed);
+                        CompleteIngestion(engulfedObject);
                         break;
                     case EngulfmentStep.FullyDigested:
-                        material.DestroyDetachAndQueueFree();
-                        engulfedMaterials.Remove(engulfed);
+                        engulfable.DestroyDetachAndQueueFree();
+                        engulfedObjects.Remove(engulfedObject);
                         break;
                     case EngulfmentStep.BeingRegurgitated:
-                        engulfed.Endosome.Hide();
-                        engulfed.ValuesToLerp = (null, engulfed.OriginalScale, null);
-                        StartEngulfmentLerp(engulfed, 1.0f);
-                        material.CurrentEngulfmentStep = EngulfmentStep.PreparingEjection;
+                        engulfedObject.Endosome.Hide();
+                        engulfedObject.ValuesToLerp = (null, engulfedObject.OriginalScale, null);
+                        StartEngulfmentLerp(engulfedObject, 1.0f);
+                        engulfable.CurrentEngulfmentStep = EngulfmentStep.PreparingEjection;
                         continue;
                     case EngulfmentStep.PreparingEjection:
-                        CompleteEjection(engulfed);
+                        CompleteEjection(engulfedObject);
                         break;
                 }
             }
         }
 
-        for (int i = ejectedMaterials.Count - 1; i >= 0; --i)
+        for (int i = ejectedObjects.Count - 1; i >= 0; --i)
         {
-            var ejected = ejectedMaterials[i];
+            var ejected = ejectedObjects[i];
 
             ejected.TimeElapsedSinceEjection += delta;
 
             if (ejected.TimeElapsedSinceEjection >= Constants.ENGULF_EJECTED_COOLDOWN)
-                ejectedMaterials.RemoveAt(i);
+                ejectedObjects.RemoveAt(i);
         }
 
         /* Membrane engulf stretch debug code
@@ -1101,10 +1101,10 @@ public partial class Microbe
 
             // This loop is placed here (which isn't related to the particles but for convenience)
             // so this loop is run only once
-            foreach (var engulfed in engulfedMaterials.ToList())
+            foreach (var engulfed in engulfedObjects.ToList())
             {
-                if (engulfed.Material.Value != null)
-                    EjectEngulfable(engulfed.Material.Value);
+                if (engulfed.Object.Value != null)
+                    EjectEngulfable(engulfed.Object.Value);
             }
         }
 
@@ -1326,8 +1326,8 @@ public partial class Microbe
         body.ReParent(this);
         body.GlobalTransform = temp;
 
-        // Below is for figuring out where to place the ingested material inside the membrane and calculated
-        // accordingly to hopefully minimize any part of the material sticking out the membrane.
+        // Below is for figuring out where to place the ingested object inside the membrane and calculated
+        // accordingly to hopefully minimize any part of the object sticking out the membrane.
         // Note: extremely long and thin objects might still stick out
 
         var targetRadiusNormalized = Mathf.Clamp(target.Radius / Radius, 0.0f, 1.0f);
@@ -1358,37 +1358,37 @@ public partial class Microbe
         // as it can cause unwanted visual glitch
         var aabbClamped = new Vector3(aabb.x, Mathf.Clamp(aabb.y, Mathf.Epsilon, Mathf.Inf), aabb.z);
 
-        var engulfedMaterial = new EngulfedMaterial(target)
+        var engulfedObject = new EngulfedObject(target)
         {
             ValuesToLerp = (finalPosition, body.Scale / 2, aabbClamped),
             OriginalScale = body.Scale,
             OriginalRenderPriority = target.EntityMaterial.RenderPriority,
         };
 
-        engulfedMaterials.Add(engulfedMaterial);
+        engulfedObjects.Add(engulfedObject);
 
-        StartEngulfmentLerp(engulfedMaterial, 3.0f);
+        StartEngulfmentLerp(engulfedObject, 3.0f);
 
         // Set the render priority of the ingested object higher than all of our organelles' so it
         // stays visible on top of our insides
         target.EntityMaterial.RenderPriority += organelles!.PeakRenderPriority + 1;
 
-        var actualMaterial = engulfedMaterial.Material.Value;
+        var engulfable = engulfedObject.Object.Value;
 
         // Form endosome
-        engulfedMaterial.Endosome = endosomeScene.Instance<Endosome>();
-        engulfedMaterial.Endosome.Scale = Vector3.Zero;
-        engulfedMaterial.Endosome.Transform = actualMaterial!.EntityGraphics.Transform.Scaled(Vector3.Zero);
-        actualMaterial.EntityGraphics.AddChild(engulfedMaterial.Endosome);
+        engulfedObject.Endosome = endosomeScene.Instance<Endosome>();
+        engulfedObject.Endosome.Scale = Vector3.Zero;
+        engulfedObject.Endosome.Transform = engulfable!.EntityGraphics.Transform.Scaled(Vector3.Zero);
+        engulfable.EntityGraphics.AddChild(engulfedObject.Endosome);
 
-        var endosomeMesh = engulfedMaterial.Endosome.Mesh;
+        var endosomeMesh = engulfedObject.Endosome.Mesh;
         endosomeMesh.MaterialOverride = endosomeMaterial;
         endosomeMesh.MaterialOverride!.RenderPriority = Mathf.Max(
             endosomeMesh.MaterialOverride.RenderPriority, target.EntityMaterial.RenderPriority + 1);
     }
 
     /// <summary>
-    ///   Ejects (regurgitate) an ingested material from this microbe.
+    ///   Ejects (regurgitate) an ingested object from this microbe.
     /// </summary>
     private void EjectEngulfable(IEngulfable target)
     {
@@ -1405,7 +1405,7 @@ public partial class Microbe
             return;
         }
 
-        var engulfedObject = engulfedMaterials.Find(e => e.Material == target);
+        var engulfedObject = engulfedObjects.Find(e => e.Object == target);
         if (engulfedObject == null)
             return;
 
@@ -1427,7 +1427,7 @@ public partial class Microbe
         {
             CompleteEjection(engulfedObject);
             body.Scale = engulfedObject.OriginalScale;
-            engulfedMaterials.Remove(engulfedObject);
+            engulfedObjects.Remove(engulfedObject);
             return;
         }
 
@@ -1561,12 +1561,12 @@ public partial class Microbe
         }
     }
 
-    private bool LerpEngulfmentProcess(float delta, EngulfedMaterial engulfed)
+    private bool LerpEngulfmentProcess(float delta, EngulfedObject engulfed)
     {
-        if (engulfed.Material.Value == null)
+        if (engulfed.Object.Value == null)
             return false;
 
-        var body = (RigidBody)engulfed.Material.Value;
+        var body = (RigidBody)engulfed.Object.Value;
 
         if (engulfed.AnimationTimeElapsed < engulfed.LerpDuration)
         {
@@ -1610,24 +1610,24 @@ public partial class Microbe
         return true;
     }
 
-    private void StartEngulfmentLerp(EngulfedMaterial material, float duration, bool resetElapsedTime = true)
+    private void StartEngulfmentLerp(EngulfedObject engulfedObject, float duration, bool resetElapsedTime = true)
     {
         if (resetElapsedTime)
-            material.AnimationTimeElapsed = 0;
+            engulfedObject.AnimationTimeElapsed = 0;
 
-        material.LerpDuration = duration;
-        material.Interpolate = true;
+        engulfedObject.LerpDuration = duration;
+        engulfedObject.Interpolate = true;
     }
 
-    private void StopEngulfmentLerp(EngulfedMaterial material)
+    private void StopEngulfmentLerp(EngulfedObject engulfedObject)
     {
-        material.AnimationTimeElapsed = 0;
-        material.Interpolate = false;
+        engulfedObject.AnimationTimeElapsed = 0;
+        engulfedObject.Interpolate = false;
     }
 
-    private void CompleteIngestion(EngulfedMaterial engulfed)
+    private void CompleteIngestion(EngulfedObject engulfed)
     {
-        var engulfable = engulfed.Material.Value;
+        var engulfable = engulfed.Object.Value;
         if (engulfable == null)
             return;
 
@@ -1638,14 +1638,14 @@ public partial class Microbe
         touchedEntities.Remove(engulfable);
     }
 
-    private void CompleteEjection(EngulfedMaterial engulfed)
+    private void CompleteEjection(EngulfedObject engulfed)
     {
-        var engulfable = engulfed.Material.Value;
+        var engulfable = engulfed.Object.Value;
         if (engulfable == null)
             return;
 
-        engulfedMaterials.Remove(engulfed);
-        ejectedMaterials.Add(engulfed);
+        engulfedObjects.Remove(engulfed);
+        ejectedObjects.Add(engulfed);
 
         engulfable.CurrentEngulfmentStep = EngulfmentStep.NotEngulfed;
         engulfable.OnEjected();
@@ -1677,20 +1677,20 @@ public partial class Microbe
     /// <summary>
     ///   Holds cached and extra informations to work on in addition to the engulfed object
     /// </summary>
-    private class EngulfedMaterial
+    private class EngulfedObject
     {
         [JsonConstructor]
-        public EngulfedMaterial(IEngulfable material)
+        public EngulfedObject(IEngulfable @object)
         {
-            Material = new EntityReference<IEngulfable>(material);
-            AvailableEngulfableCompounds = material.CalculateDigestibleCompounds();
+            Object = new EntityReference<IEngulfable>(@object);
+            AvailableEngulfableCompounds = @object.CalculateDigestibleCompounds();
             InitialTotalEngulfableCompounds = AvailableEngulfableCompounds.Sum(c => c.Value);
         }
 
         /// <summary>
         ///   The object that has been engulfed.
         /// </summary>
-        public EntityReference<IEngulfable> Material { get; private set; }
+        public EntityReference<IEngulfable> Object { get; private set; }
 
         public Endosome Endosome { get; set; } = null!;
 

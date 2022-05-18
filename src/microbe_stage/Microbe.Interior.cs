@@ -1092,31 +1092,25 @@ public partial class Microbe
     {
         var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
-        for (int i = engulfedMaterials.Count - 1; i >= 0; --i)
+        for (int i = engulfedObjects.Count - 1; i >= 0; --i)
         {
-            var engulfedMaterial = engulfedMaterials[i];
+            var engulfedObject = engulfedObjects[i];
 
-            var material = engulfedMaterial.Material.Value;
+            var engulfable = engulfedObject.Object.Value;
 
-            if (material?.CurrentEngulfmentStep != EngulfmentStep.Ingested)
+            if (engulfable?.CurrentEngulfmentStep != EngulfmentStep.Ingested)
                 continue;
 
             var hasAnyUsefulCompounds = false;
 
-            for (var c = 0; c < engulfedMaterial.AvailableEngulfableCompounds.Count; ++c)
+            for (var c = 0; c < engulfedObject.AvailableEngulfableCompounds.Count; ++c)
             {
-                var compound = engulfedMaterial.AvailableEngulfableCompounds.ElementAt(c);
+                var compound = engulfedObject.AvailableEngulfableCompounds.ElementAt(c);
 
                 if ((compound.Key != oxytoxy && !Compounds.IsUseful(compound.Key)) || compound.Value <= 0)
                     continue;
 
                 hasAnyUsefulCompounds = true;
-
-                // Don't absorb this specific compound if we have just reached max capacity. And if the compound bag is
-                // entirely full then this material won't be digested and would just be stored away until it's needed
-                // again
-                if (Compounds.GetCompoundAmount(compound.Key) > Compounds.Capacity)
-                    continue;
 
                 var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND * delta;
                 var efficiency = Constants.ENGULF_BASE_COMPOUND_ABSORBTION_YIELD;
@@ -1136,11 +1130,8 @@ public partial class Microbe
                 }
 
                 var taken = Mathf.Min(compound.Value, amount);
-                engulfedMaterial.AvailableEngulfableCompounds[compound.Key] -= amount;
 
-                var added = Compounds.AddCompound(compound.Key, taken * efficiency);
-
-                if (compound.Key == oxytoxy && added > 0)
+                if (compound.Key == oxytoxy && taken > 0)
                 {
                     lastCheckedOxytoxyDigestionDamage += delta;
 
@@ -1152,28 +1143,37 @@ public partial class Microbe
                         Damage(MaxHitpoints * taken, "oxytoxy");
                     }
                 }
+
+                // Don't absorb this specific compound if we have just reached max capacity. And if the compound bag is
+                // entirely full then this object won't be digested and would just be stored away until it's needed
+                // again
+                if (Compounds.GetCompoundAmount(compound.Key) > Compounds.Capacity)
+                    continue;
+
+                engulfedObject.AvailableEngulfableCompounds[compound.Key] -= amount;
+                var added = Compounds.AddCompound(compound.Key, taken * efficiency);
             }
 
-            var totalAmountLeft = engulfedMaterial.AvailableEngulfableCompounds.Sum(compound => compound.Value);
-            material.DigestionProgress = 1 - (totalAmountLeft / engulfedMaterial.InitialTotalEngulfableCompounds);
+            var totalAmountLeft = engulfedObject.AvailableEngulfableCompounds.Sum(compound => compound.Value);
+            engulfable.DigestionProgress = 1 - (totalAmountLeft / engulfedObject.InitialTotalEngulfableCompounds);
 
-            if (totalAmountLeft <= 0 || material.DigestionProgress >= 1)
+            if (totalAmountLeft <= 0 || engulfable.DigestionProgress >= 1)
             {
-                engulfStorage -= material.Size;
-                material.CurrentEngulfmentStep = EngulfmentStep.FullyDigested;
+                engulfStorage -= engulfable.Size;
+                engulfable.CurrentEngulfmentStep = EngulfmentStep.FullyDigested;
             }
 
-            // Eject this material as it has no use
+            // Eject this object as it has no use
             if (!hasAnyUsefulCompounds)
             {
-                EjectEngulfable(material);
+                EjectEngulfable(engulfable);
                 continue;
             }
 
             // Eject the current engulfed object if this cell loses some of its size and its ingestion capacity
             // is overloaded
             if (engulfStorage > Size)
-                EjectEngulfable(material);
+                EjectEngulfable(engulfable);
         }
     }
 
