@@ -1565,22 +1565,21 @@ public partial class CellEditorComponent :
             return;
 
         ActiveActionName = organelle;
-
-        // Update the icon highlightings
-        foreach (var element in placeablePartSelectionElements.Values)
-        {
-            element.Selected = element.Name == organelle;
-        }
+        UpdateOrganelleButtons(organelle);
     }
 
     private void DeselectOrganelleToPlace()
     {
         ActiveActionName = null;
+        UpdateOrganelleButtons(null);
+    }
 
+    private void UpdateOrganelleButtons(string? organelle)
+    {
         // Update the icon highlightings
-        foreach (var element in placeablePartSelectionElements.Values)
+        foreach (var selection in placeablePartSelectionElements.Values)
         {
-            element.Selected = false;
+            selection.Selected = selection.Name == organelle;
         }
     }
 
