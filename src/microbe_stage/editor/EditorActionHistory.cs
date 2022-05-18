@@ -69,41 +69,46 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
     /// </summary>
     public int CalculateMutationPointsLeft()
     {
-        var copyLength = History.Count;
-        for (int compareToIndex = 0; compareToIndex < copyLength - 1; compareToIndex++)
+        // As History is a reference, changing this affects the history cache
+        var processedHistory = History;
+        var copyLength = processedHistory.Count;
+
+        for (int compareToIndex = 0; compareToIndex < copyLength - 1; ++compareToIndex)
         {
-            for (int compareIndex = copyLength - 1; compareIndex > compareToIndex; compareIndex--)
+            for (int compareIndex = compareToIndex + 1; compareIndex < copyLength; ++compareIndex)
             {
-                switch (History[compareIndex].GetInterferenceModeWith(History[compareToIndex]))
+                switch (processedHistory[compareIndex].GetInterferenceModeWith(processedHistory[compareToIndex]))
                 {
                     case ActionInterferenceMode.NoInterference:
                         break;
 
                     case ActionInterferenceMode.Combinable:
                     {
-                        var combinedValue =
-                            (EditorCombinableActionData)History[compareIndex].Combine(History[compareToIndex]);
-                        History.RemoveAt(compareIndex);
-                        History.RemoveAt(compareToIndex);
-                        History.Insert(compareToIndex, combinedValue);
-                        copyLength--;
-                        compareIndex = copyLength;
+                        var combinedValue = (EditorCombinableActionData)processedHistory[compareIndex]
+                            .Combine(processedHistory[compareToIndex]);
+                        processedHistory.RemoveAt(compareIndex);
+                        processedHistory.RemoveAt(compareToIndex);
+                        processedHistory.Insert(compareToIndex, combinedValue);
+                        --copyLength;
+                        --compareIndex;
                         break;
                     }
 
                     case ActionInterferenceMode.ReplacesOther:
                     {
-                        History.RemoveAt(compareToIndex);
-                        copyLength--;
+                        processedHistory.RemoveAt(compareToIndex);
+                        --copyLength;
+                        --compareToIndex;
                         compareIndex = copyLength;
                         break;
                     }
 
                     case ActionInterferenceMode.CancelsOut:
                     {
-                        History.RemoveAt(compareIndex);
-                        History.RemoveAt(compareToIndex);
+                        processedHistory.RemoveAt(compareIndex);
+                        processedHistory.RemoveAt(compareToIndex);
                         copyLength -= 2;
+                        --compareToIndex;
                         compareIndex = copyLength;
                         break;
                     }
@@ -114,7 +119,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
             }
         }
 
-        return Constants.BASE_MUTATION_POINTS - History.Sum(p => p.CalculateCost());
+        return Constants.BASE_MUTATION_POINTS - processedHistory.Sum(p => p.CalculateCost());
     }
 
     public override bool Redo()
