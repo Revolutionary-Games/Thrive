@@ -1579,7 +1579,7 @@ public partial class CellEditorComponent :
         // Update the icon highlightings
         foreach (var selection in placeablePartSelectionElements.Values)
         {
-            selection.Selected = selection.Name == organelle;
+            selection.Selected = selection.Name == selectedOrganelle;
         }
     }
 
