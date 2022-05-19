@@ -321,6 +321,12 @@ public class OrganelleDefinition : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name, "Mass is unset");
         }
 
+        if (ProkaryoteChance != 0 && RequiresNucleus)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Prokaryote chance is non-zero but player requires a nucleus to place this");
+        }
+
         if (InitialComposition == null || InitialComposition.Count < 1)
         {
             throw new InvalidRegistryDataException(name, GetType().Name, "InitialComposition is not set");
