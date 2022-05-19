@@ -72,6 +72,12 @@ public static class Constants
 
     public const int PROCESS_OBJECTS_PER_TASK = 15;
 
+    public const float CILIA_DEFAULT_ANIMATION_SPEED = 0.3f;
+    public const float CILIA_MIN_ANIMATION_SPEED = 0.15f;
+    public const float CILIA_MAX_ANIMATION_SPEED = 1.2f;
+    public const float CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER = 7.0f;
+    public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
+
     public const int MICROBE_SPAWN_RADIUS = 170;
     public const int CLOUD_SPAWN_RADIUS = 170;
 

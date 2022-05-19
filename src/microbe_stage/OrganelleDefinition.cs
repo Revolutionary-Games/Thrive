@@ -271,14 +271,13 @@ public class OrganelleDefinition : IRegistryType
     }
 
     /// <summary>
-    ///   Returns true when this has the specified component
-    ///   factory. For example MovementComponentFactory.
+    ///   Returns true when this has the specified component factory.
+    ///   For example <see cref="MovementComponentFactory"/>.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     The PlacedOrganelle.HasComponent method checks for the
-    ///     actual component class this checks for the *factory*
-    ///     class.
+    ///     The <see cref="PlacedOrganelle.HasComponent{T}"/> method checks for the actual component class this checks
+    ///     for the *factory* class.
     ///   </para>
     /// </remarks>
     public bool HasComponentFactory<T>()
@@ -432,6 +431,7 @@ public class OrganelleDefinition : IRegistryType
         public PilusComponentFactory? Pilus;
         public ChemoreceptorComponentFactory? Chemoreceptor;
         public SignalingAgentComponentFactory? SignalingAgent;
+        public CiliaComponentFactory? Cilia;
 
         private readonly List<IOrganelleComponentFactory> allFactories = new();
 
@@ -505,6 +505,13 @@ public class OrganelleDefinition : IRegistryType
             {
                 SignalingAgent.Check(name);
                 allFactories.Add(SignalingAgent);
+                ++count;
+            }
+
+            if (Cilia != null)
+            {
+                Cilia.Check(name);
+                allFactories.Add(Cilia);
                 ++count;
             }
         }
