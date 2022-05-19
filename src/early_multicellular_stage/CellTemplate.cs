@@ -2,7 +2,7 @@
 using Godot;
 using Newtonsoft.Json;
 
-public class CellTemplate : IPositionedCell, ICloneable
+public class CellTemplate : IPositionedCell, ICloneable, IActionHex
 {
     private int orientation;
 
@@ -57,6 +57,11 @@ public class CellTemplate : IPositionedCell, ICloneable
     public void UpdateNameIfValid(string newName)
     {
         CellType.UpdateNameIfValid(newName);
+    }
+
+    public bool MatchesDefinition(IActionHex other)
+    {
+        return CellType == ((CellTemplate)other).CellType;
     }
 
     public object Clone()
