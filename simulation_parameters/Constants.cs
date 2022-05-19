@@ -70,6 +70,13 @@ public static class Constants
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
+    public const float CELL_BASE_ROTATION = 0.2f;
+    public const float CELL_MAX_ROTATION = 0.40f;
+    public const float CELL_MIN_ROTATION = 0.0001f;
+    public const float CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER = 0.8f;
+    public const float CILIA_ROTATION_FACTOR = 0.035f;
+    public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 0.7f;
+
     public const int PROCESS_OBJECTS_PER_TASK = 15;
 
     public const float CILIA_DEFAULT_ANIMATION_SPEED = 0.3f;

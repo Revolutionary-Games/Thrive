@@ -49,6 +49,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private bool cachedHexCountDirty = true;
     private int cachedHexCount;
 
+    [JsonProperty]
+    private float? cachedRotationSpeed;
+
     private float collisionForce;
 
     private Vector3 queuedMovementForce;
@@ -146,6 +149,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             return radius;
         }
     }
+
+    [JsonIgnore]
+    public float RotationSpeed => cachedRotationSpeed ??=
+        MicrobeInternalCalculations.CalculateRotationSpeed(organelles ??
+            throw new InvalidOperationException("Organelles not initialized yet"));
 
     [JsonIgnore]
     public bool HasSignalingAgent
@@ -403,6 +411,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             throw new ArgumentException("Microbe can only be a microbe or early multicellular species");
         }
 
+        cachedRotationSpeed = CellTypeProperties.BaseRotationSpeed;
+
         FinishSpeciesSetup();
     }
 
@@ -640,9 +650,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             QueuedSignalingCommand = null;
         }
 
-        // Rotation is applied in the physics force callback as that's
-        // the place where the body rotation can be directly set
-        // without problems
+        // Rotation is applied in the physics force callback as that's the place where the body rotation
+        // can be directly set without problems
 
         HandleChemoreceptorLines(delta);
 
@@ -943,15 +952,23 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     }
 
     /// <summary>
-    ///   Just slerps towards a fixed amount the target point
+    ///   Just slerps towards the target point with the amount being defined by the cell rotation speed.
+    ///   For now, eventually we want to use physics forces to turn
     /// </summary>
     private Transform GetNewPhysicsRotation(Transform transform)
     {
         var target = transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
 
+        float speed = RotationSpeed;
+
+        if (Colony != null)
+        {
+            // TODO: calculate overall rotation speed for colony
+        }
+
         // Need to manually normalize everything, otherwise the slerp fails
-        Quat slerped = transform.basis.Quat().Normalized().Slerp(
-            target.basis.Quat().Normalized(), 0.2f);
+        // Delta is not used here as the physics frames occur at a fixed number of times per second
+        Quat slerped = transform.basis.Quat().Normalized().Slerp(target.basis.Quat().Normalized(), speed);
 
         return new Transform(new Basis(slerped), transform.origin);
     }

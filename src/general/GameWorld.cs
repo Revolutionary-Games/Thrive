@@ -134,12 +134,13 @@ public class GameWorld : ISaveLoadable
     public static void SetInitialSpeciesProperties(MicrobeSpecies species)
     {
         species.IsBacteria = true;
-        species.SetInitialCompoundsForDefault();
 
         species.MembraneType = SimulationParameters.Instance.GetMembrane("single");
 
         species.Organelles.Add(new OrganelleTemplate(
             SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(0, 0), 0));
+
+        species.OnEdited();
     }
 
     /// <summary>

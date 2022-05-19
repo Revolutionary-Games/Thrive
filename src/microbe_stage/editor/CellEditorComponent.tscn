@@ -226,6 +226,7 @@ MembraneTypeSelectionPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginCo
 SizeLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size/Value")
 OrganismStatisticsPath = NodePath("RightPanel/VBoxContainer/Statistics")
 SpeedLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed/Value")
+RotationSpeedLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Rotation/Value")
 HpLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HP/Value")
 StorageLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage/Value")
 GenerationLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
@@ -240,6 +241,7 @@ ATPConsumptionLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxCont
 ATPProductionBarPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/ATPProductionBar")
 ATPConsumptionBarPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2/ATPConsumptionBar")
 SpeedIndicatorPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed/Indicator")
+RotationSpeedIndicatorPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Rotation/Indicator")
 HpIndicatorPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HP/Indicator")
 StorageIndicatorPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage/Indicator")
 SizeIndicatorPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size/Indicator")
@@ -505,7 +507,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer"]
-margin_right = 347.0
+margin_right = 332.0
 margin_bottom = 734.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -515,7 +517,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer"]
-margin_right = 337.0
+margin_right = 322.0
 margin_bottom = 734.0
 custom_constants/separation = 15
 
@@ -620,10 +622,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 192.0
-margin_top = 217.0
-margin_right = 508.0
-margin_bottom = 807.0
+margin_left = 196.0
+margin_top = 221.0
+margin_right = 512.0
+margin_bottom = 811.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
@@ -706,7 +708,7 @@ mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer"]
 margin_right = 254.0
-margin_bottom = 255.0
+margin_bottom = 278.0
 mouse_filter = 1
 custom_constants/margin_right = 5
 custom_constants/margin_top = 0
@@ -716,7 +718,7 @@ custom_constants/margin_bottom = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer"]
 margin_left = 3.0
 margin_right = 249.0
-margin_bottom = 252.0
+margin_bottom = 275.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -750,10 +752,41 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="HP" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Rotation" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 23.0
 margin_right = 246.0
-margin_bottom = 40.0
+margin_bottom = 42.0
+
+[node name="Indicator" type="TextureRect" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Rotation"]
+visible = false
+margin_top = 3.0
+margin_right = 10.0
+margin_bottom = 13.0
+rect_min_size = Vector2( 10, 10 )
+size_flags_vertical = 4
+expand = true
+
+[node name="Label" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Rotation"]
+margin_top = 1.0
+margin_right = 125.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 23 )
+text = "ROTATION_COLON"
+
+[node name="Value" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Rotation"]
+margin_left = 129.0
+margin_right = 150.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 10 )
+text = "n/a"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HP" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 246.0
+margin_bottom = 63.0
 
 [node name="Indicator" type="TextureRect" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HP"]
 visible = false
@@ -781,9 +814,9 @@ __meta__ = {
 }
 
 [node name="Size" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 44.0
+margin_top = 67.0
 margin_right = 246.0
-margin_bottom = 61.0
+margin_bottom = 84.0
 
 [node name="Indicator" type="TextureRect" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size"]
 visible = false
@@ -811,9 +844,9 @@ __meta__ = {
 }
 
 [node name="Storage" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 65.0
+margin_top = 88.0
 margin_right = 246.0
-margin_bottom = 82.0
+margin_bottom = 105.0
 
 [node name="Indicator" type="TextureRect" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage"]
 visible = false
@@ -841,9 +874,9 @@ __meta__ = {
 }
 
 [node name="Generation" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 86.0
+margin_top = 109.0
 margin_right = 246.0
-margin_bottom = 103.0
+margin_bottom = 126.0
 
 [node name="Label" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
 margin_right = 144.0
@@ -862,17 +895,17 @@ __meta__ = {
 }
 
 [node name="VSeparator" type="VSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 107.0
+margin_top = 130.0
 margin_right = 246.0
-margin_bottom = 117.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 0, 10 )
 mouse_filter = 1
 custom_styles/separator = SubResource( 20 )
 
 [node name="ATPBalancePanel" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 121.0
+margin_top = 144.0
 margin_right = 246.0
-margin_bottom = 213.0
+margin_bottom = 236.0
 mouse_filter = 1
 custom_constants/margin_right = 3
 custom_constants/margin_top = 3
@@ -956,9 +989,9 @@ align = 2
 autowrap = true
 
 [node name="VSeparator2" type="VSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 217.0
+margin_top = 240.0
 margin_right = 246.0
-margin_bottom = 227.0
+margin_bottom = 250.0
 rect_min_size = Vector2( 0, 10 )
 mouse_filter = 1
 custom_styles/separator = SubResource( 20 )
@@ -966,9 +999,9 @@ custom_styles/separator = SubResource( 20 )
 [node name="CompoundBalanceDisplay" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 42 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 231.0
+margin_top = 254.0
 margin_right = 246.0
-margin_bottom = 252.0
+margin_bottom = 275.0
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]
 margin_top = 381.0
