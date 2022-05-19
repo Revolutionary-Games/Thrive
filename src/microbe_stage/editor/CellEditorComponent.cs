@@ -1483,6 +1483,9 @@ public partial class CellEditorComponent :
             (organelle.Definition.RequiresNucleus && !HasNucleus))
             return null;
 
+        if (organelle.Definition.Unique)
+            DeselectOrganelleToPlace();
+
         var replacedCytoplasmActions =
             GetReplacedCytoplasmRemoveAction(new[] { organelle }).Cast<EditorAction>().ToList();
 
@@ -1569,11 +1572,21 @@ public partial class CellEditorComponent :
             return;
 
         ActiveActionName = organelle;
+        UpdateOrganelleButtons(organelle);
+    }
 
+    private void DeselectOrganelleToPlace()
+    {
+        ActiveActionName = null;
+        UpdateOrganelleButtons(null);
+    }
+
+    private void UpdateOrganelleButtons(string? selectedOrganelle)
+    {
         // Update the icon highlightings
-        foreach (var element in placeablePartSelectionElements.Values)
+        foreach (var selection in placeablePartSelectionElements.Values)
         {
-            element.Selected = element.Name == organelle;
+            selection.Selected = selection.Name == selectedOrganelle;
         }
     }
 
