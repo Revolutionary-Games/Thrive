@@ -286,6 +286,12 @@ public class Mutations
             minSubHex.Q = (int)(minSubHex.Q * (minDistance - 1.0) / minDistance);
             minSubHex.R = (int)(minSubHex.R * (minDistance - 1.0) / minDistance);
 
+            if (minSubHex.Q == 0 && minSubHex.R == 0)
+            {
+                // Exactly symmetrical islands. Avoid infinite loop by using this value
+                minSubHex = new Hex(1, 0);
+            }
+
             // Move all island organelles by minSubHex
             foreach (var organelle in mutatedOrganelles.Where(
                          o => islandHexes.Any(h =>
