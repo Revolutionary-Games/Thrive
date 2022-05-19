@@ -3,6 +3,8 @@ using Godot;
 
 public class CiliaComponent : ExternallyPositionedComponent
 {
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+
     private float currentSpeed = 1.0f;
     private float targetSpeed;
 
@@ -28,22 +30,36 @@ public class CiliaComponent : ExternallyPositionedComponent
 
         timeSinceRotationSample += delta;
 
+        // This is way too sensitive if we sample on each process, so we only sample tens of times per second
         if (timeSinceRotationSample < Constants.CILIA_ROTATION_SAMPLE_INTERVAL)
             return;
 
-        // This is way too sensitive if we sample on each process, so we only sample tens of times per second
-        timeSinceRotationSample = 0;
-
         // Calculate how fast the cell is turning for controlling the animation speed
-        var rotationSpeed = previousCellRotation.Value.AngleTo(currentCellRotation) *
-            Constants.CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER;
+        var rawRotation = previousCellRotation.Value.AngleTo(currentCellRotation);
+        var rotationSpeed = rawRotation * Constants.CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER;
 
         targetSpeed = Mathf.Clamp(rotationSpeed, Constants.CILIA_MIN_ANIMATION_SPEED,
             Constants.CILIA_MAX_ANIMATION_SPEED);
 
         previousCellRotation = currentCellRotation;
 
-        // TODO: should we consume extra ATP when rotating (like the flagellum)?
+        // Consume extra ATP when rotating (above certain speed
+        if (rawRotation > Constants.CILIA_ROTATION_NEEDED_FOR_ATP_COST)
+        {
+            var cost = Mathf.Clamp(rawRotation * Constants.CILIA_ROTATION_ENERGY_BASE_MULTIPLIER,
+                Constants.CILIA_ROTATION_NEEDED_FOR_ATP_COST, Constants.CILIA_ENERGY_COST);
+
+            var requiredEnergy = cost * timeSinceRotationSample;
+
+            var availableEnergy = organelle.ParentMicrobe!.Compounds.TakeCompound(atp, requiredEnergy);
+
+            if (availableEnergy < requiredEnergy)
+            {
+                // TODO: slow down rotation when we don't have enough ATP to use our cilia
+            }
+        }
+
+        timeSinceRotationSample = 0;
     }
 
     public override void UpdateSync()

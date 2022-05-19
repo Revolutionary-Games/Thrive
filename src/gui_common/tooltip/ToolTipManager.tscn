@@ -3670,6 +3670,11 @@ visible = false
 DisplayDelay = 0.5
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/flagellum/MarginContainer/VBoxContainer/Description")
 
+[node name="cilia" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
+visible = false
+DisplayDelay = 0.5
+DescriptionLabelPath = NodePath("../flagellum/MarginContainer/VBoxContainer/Description")
+
 [node name="nitrogenfixingplastid" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
 DisplayDelay = 0.5
