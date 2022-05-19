@@ -770,7 +770,7 @@
         "components": {
             "cilia": {}
         },
-        "prokaryoteChance": 2,
+        "prokaryoteChance": 0,
         "chanceToCreate": 6,
         "mass": 0.22,
         "displayScene": "res://assets/models/organelles/Cilia.tscn",
@@ -780,7 +780,7 @@
         "productionColour": "#ffae21",
         "consumptionColour": "#ffae21",
         "iconPath": "res://assets/textures/gui/bevel/parts/CiliaIcon.png",
-        "requiresNucleus": false,
+        "requiresNucleus": true,
         "editorButtonGroup": "External",
         "editorButtonOrder": 4
     }
