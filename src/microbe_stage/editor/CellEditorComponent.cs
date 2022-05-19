@@ -1574,7 +1574,7 @@ public partial class CellEditorComponent :
         UpdateOrganelleButtons(null);
     }
 
-    private void UpdateOrganelleButtons(string? organelle)
+    private void UpdateOrganelleButtons(string? selectedOrganelle)
     {
         // Update the icon highlightings
         foreach (var selection in placeablePartSelectionElements.Values)
