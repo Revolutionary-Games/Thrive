@@ -258,6 +258,14 @@ public class Jukebox : Node
             changedTrack = true;
         }
 
+        // Stream can be null for some reason. No idea what the actual cause was, for now just do this
+        if (player.Player.Stream == null)
+        {
+            var stream = GD.Load<AudioStream>(track.ResourcePath);
+
+            player.Player.Stream = stream;
+        }
+
         if (player.Bus != trackBus)
         {
             player.Bus = trackBus;
