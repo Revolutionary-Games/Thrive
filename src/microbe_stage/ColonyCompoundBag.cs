@@ -88,18 +88,20 @@ public class ColonyCompoundBag : ICompoundStorage
 
     public float AddCompound(Compound compound, float amount)
     {
-        var originalAmount = amount;
+        var totalAmountAdded = 0.0f;
 
         foreach (var bagToAddTo in GetCompoundBags())
         {
             var amountAdded = bagToAddTo.AddCompound(compound, amount);
+
+            totalAmountAdded += amountAdded;
             amount -= amountAdded;
 
             if (amount <= MathUtils.EPSILON)
                 break;
         }
 
-        return originalAmount - amount;
+        return totalAmountAdded;
     }
 
     public void ClearCompounds()

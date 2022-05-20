@@ -1,0 +1,1029 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=7]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" type="DynamicFont" id=8]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=9]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/plusButton.png" type="Texture" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=12]
+[ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture" id=13]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/oxygen.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/gui/bevel/hydrogensulfide.png" type="Texture" id=16]
+[ext_resource path="res://assets/textures/gui/bevel/carbondioxide.png" type="Texture" id=17]
+[ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=18]
+[ext_resource path="res://assets/textures/gui/bevel/Temperature.png" type="Texture" id=19]
+[ext_resource path="res://assets/textures/gui/bevel/Pressure.png" type="Texture" id=20]
+[ext_resource path="res://assets/textures/gui/bevel/ammonia.png" type="Texture" id=21]
+[ext_resource path="res://assets/textures/gui/bevel/iron.png" type="Texture" id=22]
+[ext_resource path="res://src/gui_common/CollapsibleList.cs" type="Script" id=23]
+[ext_resource path="res://assets/textures/gui/bevel/minusButton.png" type="Texture" id=24]
+[ext_resource path="res://assets/textures/gui/bevel/glucose.png" type="Texture" id=25]
+[ext_resource path="res://assets/textures/gui/bevel/minusButtonHover.png" type="Texture" id=26]
+[ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=27]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.cs" type="Script" id=28]
+
+[sub_resource type="StyleBoxTexture" id=32]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 258, 1 )
+
+[sub_resource type="Theme" id=33]
+default_font = ExtResource( 10 )
+
+[sub_resource type="StyleBoxTexture" id=34]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 429, 1 )
+
+[sub_resource type="StyleBoxFlat" id=26]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.0156863, 0.811765, 0.396078, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=27]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0, 0.490196, 0.258824, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="MicrobeEditorPatchMap" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 14 )
+script = ExtResource( 28 )
+FinishOrNextButtonPath = NodePath("MarginContainer2/NextTabButton")
+MapDrawerPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/ScrollContainer/PatchMapDrawer")
+PatchNothingSelectedPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected")
+PatchDetailsPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer")
+PatchNamePath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PatchName")
+PatchPlayerHerePath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PlayerHereLabel")
+PatchBiomePath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Biome")
+PatchDepthPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Depth")
+PatchTemperaturePath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature/TemperatureLabel")
+PatchPressurePath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Pressure/PressureLabel")
+PatchLightPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/LightLabel")
+PatchOxygenPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Oxygen/OxygenLabel")
+PatchNitrogenPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Nitrogen/NitrogenLabel")
+PatchCO2Path = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/CO2/CO2Label")
+PatchHydrogenSulfidePath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide/HydrogenSulfideLabel")
+PatchAmmoniaPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia/AmmoniaLabel")
+PatchGlucosePath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose/GlucoseLabel")
+PatchPhosphatePath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate/PhosphateLabel")
+PatchIronPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron/IronLabel")
+SpeciesCollapsibleBoxPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox")
+MoveToPatchButtonPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer2/MoveToPatchButton")
+PatchTemperatureSituationPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature/Situation")
+PatchLightSituationPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/Situation")
+PatchHydrogenSulfideSituationPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide/Situation")
+PatchGlucoseSituationPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose/Situation")
+PatchIronSituationPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron/Situation")
+PatchAmmoniaSituationPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia/Situation")
+PatchPhosphateSituationPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate/Situation")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 10
+custom_constants/margin_top = 45
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 55
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 45.0
+margin_right = 1270.0
+margin_bottom = 665.0
+collapsed = true
+
+[node name="MapPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer"]
+margin_right = 908.0
+margin_bottom = 620.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/MapPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 907.0
+margin_bottom = 619.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 896.0
+margin_bottom = 608.0
+follow_focus = true
+
+[node name="PatchMapDrawer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/ScrollContainer" instance=ExtResource( 18 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 886.0
+margin_bottom = 598.0
+DrawDefaultMapIfEmpty = false
+
+[node name="StatisticsPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer"]
+margin_left = 920.0
+margin_right = 1260.0
+margin_bottom = 620.0
+rect_min_size = Vector2( 340, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 339.0
+margin_bottom = 619.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer"]
+margin_right = 338.0
+margin_bottom = 556.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 328.0
+margin_bottom = 546.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer"]
+margin_right = 318.0
+margin_bottom = 536.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NothingSelected" type="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
+margin_right = 382.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected"]
+margin_right = 382.0
+margin_bottom = 55.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 8 )
+text = "SELECT_A_PATCH"
+align = 1
+autowrap = true
+
+[node name="PatchDetailsContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 318.0
+margin_bottom = 536.0
+size_flags_vertical = 3
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+margin_right = 318.0
+margin_bottom = 53.0
+
+[node name="PatchName" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
+margin_right = 318.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+text = "Patch Name Goes Here"
+align = 1
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="PlayerHereLabel" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
+margin_top = 33.0
+margin_right = 318.0
+margin_bottom = 53.0
+custom_colors/font_color = Color( 0, 1, 0.117647, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "CURRENT_LOCATION_CAPITAL"
+align = 1
+autowrap = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Biome" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+margin_top = 63.0
+margin_right = 318.0
+margin_bottom = 88.0
+custom_fonts/font = ExtResource( 4 )
+text = "Biome: BIOME HERE"
+align = 1
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Depth" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+margin_top = 98.0
+margin_right = 318.0
+margin_bottom = 123.0
+custom_fonts/font = ExtResource( 4 )
+text = "200-340m below sea level"
+align = 1
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="PhysicalConditions" type="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+margin_top = 133.0
+margin_right = 318.0
+margin_bottom = 221.0
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+TitleLabelPath = NodePath("HBoxContainer/Title")
+CollapseButtonPath = NodePath("HBoxContainer/Buttons/minusButton")
+ExpandButtonPath = NodePath("HBoxContainer/Buttons/plusButton")
+ClipBoxPath = NodePath("Clip")
+ItemContainerPath = NodePath("Clip/GridContainer")
+TweenPath = NodePath("Tween")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+margin_right = 318.0
+margin_bottom = 20.0
+
+[node name="Buttons" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="minusButton" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons"]
+margin_right = 20.0
+margin_bottom = 20.0
+texture_normal = ExtResource( 24 )
+texture_hover = ExtResource( 26 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="plusButton" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons"]
+visible = false
+margin_right = 20.0
+margin_bottom = 20.0
+texture_normal = ExtResource( 11 )
+texture_hover = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
+margin_left = 24.0
+margin_right = 198.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 6 )
+text = "PHYSICAL_CONDITIONS"
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
+margin_left = 202.0
+margin_right = 318.0
+margin_bottom = 20.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 32 )
+
+[node name="Clip" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+margin_top = 24.0
+margin_right = 318.0
+margin_bottom = 88.0
+rect_clip_content = true
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/margin_right = 15
+custom_constants/margin_top = 5
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip"]
+margin_left = 15.0
+margin_top = 5.0
+margin_right = 303.0
+margin_bottom = 59.0
+mouse_filter = 2
+columns = 2
+
+[node name="Temperature" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
+margin_right = 142.0
+margin_bottom = 25.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
+margin_right = 30.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+hint_tooltip = "TEMPERATURE"
+size_flags_vertical = 4
+texture = ExtResource( 19 )
+expand = true
+
+[node name="TemperatureLabel" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
+margin_left = 34.0
+margin_top = 2.0
+margin_right = 123.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "Temperature"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Situation" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
+margin_left = 127.0
+margin_right = 139.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+mouse_filter = 2
+size_flags_vertical = 0
+expand = true
+
+[node name="Pressure" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
+margin_left = 146.0
+margin_right = 288.0
+margin_bottom = 25.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Pressure"]
+margin_right = 30.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+hint_tooltip = "PRESSURE"
+size_flags_vertical = 4
+texture = ExtResource( 20 )
+expand = true
+
+[node name="PressureLabel" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Pressure"]
+margin_left = 34.0
+margin_top = 2.0
+margin_right = 95.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "Pressure"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Light" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
+margin_top = 29.0
+margin_right = 142.0
+margin_bottom = 54.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light"]
+margin_right = 30.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+hint_tooltip = "SUNLIGHT"
+size_flags_vertical = 4
+texture = ExtResource( 13 )
+expand = true
+
+[node name="LightLabel" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light"]
+margin_left = 34.0
+margin_top = 2.0
+margin_right = 69.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "Light"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Situation" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light"]
+margin_left = 73.0
+margin_right = 85.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+mouse_filter = 2
+size_flags_vertical = 0
+expand = true
+
+[node name="Tween" type="Tween" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+
+[node name="AtmosphericGasses" type="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+margin_top = 231.0
+margin_right = 318.0
+margin_bottom = 319.0
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+TitleLabelPath = NodePath("HBoxContainer/Title")
+CollapseButtonPath = NodePath("HBoxContainer/Buttons/minusButton")
+ExpandButtonPath = NodePath("HBoxContainer/Buttons/plusButton")
+ClipBoxPath = NodePath("Clip")
+ItemContainerPath = NodePath("Clip/GridContainer")
+TweenPath = NodePath("Tween")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+margin_right = 318.0
+margin_bottom = 20.0
+
+[node name="Buttons" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="minusButton" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer/Buttons"]
+margin_right = 20.0
+margin_bottom = 20.0
+texture_normal = ExtResource( 24 )
+texture_hover = ExtResource( 26 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="plusButton" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer/Buttons"]
+visible = false
+margin_right = 20.0
+margin_bottom = 20.0
+texture_normal = ExtResource( 11 )
+texture_hover = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
+margin_left = 24.0
+margin_right = 201.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 6 )
+text = "ATMOSPHERIC_GASSES"
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
+margin_left = 205.0
+margin_right = 318.0
+margin_bottom = 20.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 32 )
+
+[node name="Clip" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+margin_top = 24.0
+margin_right = 318.0
+margin_bottom = 88.0
+rect_clip_content = true
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/margin_right = 15
+custom_constants/margin_top = 5
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip"]
+margin_left = 15.0
+margin_top = 5.0
+margin_right = 303.0
+margin_bottom = 59.0
+mouse_filter = 2
+columns = 2
+
+[node name="Oxygen" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer"]
+margin_right = 142.0
+margin_bottom = 25.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Oxygen"]
+margin_right = 30.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+hint_tooltip = "OXYGEN"
+size_flags_vertical = 4
+texture = ExtResource( 15 )
+expand = true
+
+[node name="OxygenLabel" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Oxygen"]
+margin_left = 34.0
+margin_top = 2.0
+margin_right = 88.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "Oxygen"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Nitrogen" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer"]
+margin_left = 146.0
+margin_right = 288.0
+margin_bottom = 25.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Nitrogen"]
+margin_right = 30.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+hint_tooltip = "NITROGEN"
+size_flags_vertical = 4
+texture = ExtResource( 12 )
+expand = true
+
+[node name="NitrogenLabel" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/Nitrogen"]
+margin_left = 34.0
+margin_top = 2.0
+margin_right = 96.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "Nitrogen"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="CO2" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer"]
+margin_top = 29.0
+margin_right = 142.0
+margin_bottom = 54.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/CO2"]
+margin_right = 30.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+hint_tooltip = "CARBON_DIOXIDE"
+size_flags_vertical = 4
+texture = ExtResource( 17 )
+expand = true
+
+[node name="CO2Label" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer/CO2"]
+margin_left = 34.0
+margin_top = 2.0
+margin_right = 67.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "CO2"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Tween" type="Tween" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+
+[node name="Compounds" type="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+margin_top = 329.0
+margin_right = 318.0
+margin_bottom = 446.0
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+TitleLabelPath = NodePath("HBoxContainer/Title")
+CollapseButtonPath = NodePath("HBoxContainer/Buttons/minusButton")
+ExpandButtonPath = NodePath("HBoxContainer/Buttons/plusButton")
+ClipBoxPath = NodePath("Clip")
+ItemContainerPath = NodePath("Clip/GridContainer")
+TweenPath = NodePath("Tween")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+margin_right = 318.0
+margin_bottom = 20.0
+
+[node name="Buttons" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="minusButton" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer/Buttons"]
+margin_right = 20.0
+margin_bottom = 20.0
+texture_normal = ExtResource( 24 )
+texture_hover = ExtResource( 26 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="plusButton" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer/Buttons"]
+visible = false
+margin_right = 20.0
+margin_bottom = 20.0
+texture_normal = ExtResource( 11 )
+texture_hover = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
+margin_left = 24.0
+margin_right = 123.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 6 )
+text = "COMPOUNDS"
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
+margin_left = 127.0
+margin_right = 318.0
+margin_bottom = 20.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 32 )
+
+[node name="Clip" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+margin_top = 24.0
+margin_right = 318.0
+margin_bottom = 117.0
+rect_clip_content = true
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/margin_right = 15
+custom_constants/margin_top = 5
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip"]
+margin_left = 15.0
+margin_top = 5.0
+margin_right = 303.0
+margin_bottom = 88.0
+mouse_filter = 2
+columns = 2
+
+[node name="HydrogenSulfide" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer"]
+margin_right = 164.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+hint_tooltip = "HYDROGEN_SULFIDE"
+size_flags_vertical = 4
+texture = ExtResource( 16 )
+expand = true
+
+[node name="HydrogenSulfideLabel" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide"]
+margin_left = 29.0
+margin_top = 2.0
+margin_right = 148.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "Hydrogen Sulfide"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Situation" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide"]
+margin_left = 152.0
+margin_right = 164.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+mouse_filter = 2
+size_flags_vertical = 0
+expand = true
+
+[node name="Ammonia" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer"]
+margin_left = 168.0
+margin_right = 288.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+hint_tooltip = "AMMONIA"
+size_flags_vertical = 4
+texture = ExtResource( 21 )
+expand = true
+
+[node name="AmmoniaLabel" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia"]
+margin_left = 29.0
+margin_top = 2.0
+margin_right = 96.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ammonia"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Situation" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia"]
+margin_left = 100.0
+margin_right = 112.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+mouse_filter = 2
+size_flags_vertical = 0
+expand = true
+
+[node name="Glucose" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer"]
+margin_top = 29.0
+margin_right = 164.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+hint_tooltip = "GLUCOSE"
+size_flags_vertical = 4
+texture = ExtResource( 25 )
+expand = true
+
+[node name="GlucoseLabel" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose"]
+margin_left = 29.0
+margin_top = 2.0
+margin_right = 85.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "Glucose"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Situation" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose"]
+margin_left = 89.0
+margin_right = 101.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+mouse_filter = 2
+size_flags_vertical = 0
+expand = true
+
+[node name="Phosphate" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer"]
+margin_left = 168.0
+margin_top = 29.0
+margin_right = 288.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+hint_tooltip = "PHOSPHATE"
+size_flags_vertical = 4
+texture = ExtResource( 27 )
+expand = true
+
+[node name="PhosphateLabel" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate"]
+margin_left = 29.0
+margin_top = 2.0
+margin_right = 104.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "Phosphate"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Situation" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate"]
+margin_left = 108.0
+margin_right = 120.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+mouse_filter = 2
+size_flags_vertical = 0
+expand = true
+
+[node name="Iron" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer"]
+margin_top = 58.0
+margin_right = 164.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+hint_tooltip = "IRON"
+size_flags_vertical = 4
+texture = ExtResource( 22 )
+expand = true
+
+[node name="IronLabel" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron"]
+margin_left = 29.0
+margin_top = 2.0
+margin_right = 58.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "Iron"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Situation" type="TextureRect" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron"]
+margin_left = 62.0
+margin_right = 74.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+mouse_filter = 2
+size_flags_vertical = 0
+expand = true
+
+[node name="Tween" type="Tween" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+
+[node name="SpeciesBox" type="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
+margin_top = 456.0
+margin_right = 318.0
+margin_bottom = 490.0
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+TitleLabelPath = NodePath("HBoxContainer/Title")
+CollapseButtonPath = NodePath("HBoxContainer/Buttons/minusButton")
+ExpandButtonPath = NodePath("HBoxContainer/Buttons/plusButton")
+ClipBoxPath = NodePath("Clip")
+ItemContainerPath = NodePath("Clip/GridContainer")
+TweenPath = NodePath("Tween")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
+margin_right = 318.0
+margin_bottom = 20.0
+
+[node name="Buttons" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 4
+
+[node name="minusButton" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer/Buttons"]
+margin_right = 20.0
+margin_bottom = 20.0
+texture_normal = ExtResource( 24 )
+texture_hover = ExtResource( 26 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="plusButton" type="TextureButton" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer/Buttons"]
+visible = false
+margin_right = 20.0
+margin_bottom = 20.0
+texture_normal = ExtResource( 11 )
+texture_hover = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
+margin_left = 24.0
+margin_right = 162.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 6 )
+text = "SPECIES_PRESENT"
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
+margin_left = 166.0
+margin_right = 318.0
+margin_bottom = 20.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 32 )
+
+[node name="Clip" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
+margin_top = 24.0
+margin_right = 318.0
+margin_bottom = 34.0
+rect_clip_content = true
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/margin_right = 15
+custom_constants/margin_top = 5
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/Clip"]
+margin_left = 15.0
+margin_top = 5.0
+margin_right = 303.0
+margin_bottom = 5.0
+mouse_filter = 2
+theme = SubResource( 33 )
+
+[node name="Tween" type="Tween" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer"]
+margin_top = 560.0
+margin_right = 338.0
+margin_bottom = 564.0
+custom_styles/separator = SubResource( 34 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer"]
+margin_top = 568.0
+margin_right = 338.0
+margin_bottom = 618.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 5
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="MoveToPatchButton" type="Button" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer2"]
+margin_left = 10.0
+margin_top = 5.0
+margin_right = 328.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 35 )
+focus_mode = 0
+disabled = true
+text = "MOVE_TO_THIS_PATCH"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -150.0
+margin_top = -50.0
+grow_horizontal = 0
+rect_min_size = Vector2( 150, 0 )
+custom_constants/margin_right = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextTabButton" type="Button" parent="MarginContainer2"]
+margin_right = 150.0
+margin_bottom = 40.0
+mouse_filter = 1
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_styles/hover = SubResource( 26 )
+custom_styles/normal = SubResource( 27 )
+text = "NEXT_CAPITAL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons/minusButton" to="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions" method="CollapseButtonPressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons/plusButton" to="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions" method="ExpandButtonPressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer/Buttons/minusButton" to="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses" method="CollapseButtonPressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer/Buttons/plusButton" to="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses" method="ExpandButtonPressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer/Buttons/minusButton" to="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds" method="CollapseButtonPressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer/Buttons/plusButton" to="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds" method="ExpandButtonPressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer/Buttons/minusButton" to="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox" method="CollapseButtonPressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer/Buttons/plusButton" to="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox" method="ExpandButtonPressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer2/MoveToPatchButton" to="." method="MoveToPatchClicked"]
+[connection signal="pressed" from="MarginContainer2/NextTabButton" to="." method="NextOrFinishClicked"]

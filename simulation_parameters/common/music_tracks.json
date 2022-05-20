@@ -16,6 +16,27 @@
             }
         ]
     },
+    "LoadingScreen": {
+        "Return": "Reset",
+        "TrackLists": [
+            {
+                "Tracks": [
+                    {
+                        "Volume": 0.45,
+                        "ResourcePath": "res://assets/sounds/microbe-loading-screen-1.ogg"
+                    },
+                    {
+                        "Volume": 0.45,
+                        "ResourcePath": "res://assets/sounds/microbe-loading-screen-2.ogg"
+                    },
+                    {
+                        "Volume": 0.45,
+                        "ResourcePath": "res://assets/sounds/microbe-loading-screen-3.ogg"
+                    }
+                ]
+            }
+        ]
+    },
     "MicrobeStage": {
         "TrackLists": [
             {
@@ -37,6 +58,7 @@
                         "ResourcePath": "res://assets/sounds/microbe-theme-6.ogg"
                     },
                     {
+                        "Volume": 0.6,
                         "ResourcePath": "res://assets/sounds/microbe-theme-7.ogg"
                     }
                 ]
@@ -51,6 +73,10 @@
                     {
                         "Volume": 0.1,
                         "ResourcePath": "res://assets/sounds/soundeffects/microbe-ambience2.ogg"
+                    },
+                    {
+                        "Volume": 0.9,
+                        "ResourcePath": "res://assets/sounds/soundeffects/microbe-ambience-3.ogg"
                     }
                 ]
             }
@@ -93,22 +119,62 @@
             }
         ]
     },
-    "LoadingScreen": {
-        "Return": "Reset",
+    "EarlyMulticellularStage": {
         "TrackLists": [
             {
                 "Tracks": [
                     {
-                        "Volume": 0.45,
-                        "ResourcePath": "res://assets/sounds/microbe-loading-screen-1.ogg"
+                        "ResourcePath": "res://assets/sounds/multicellular-theme-1.ogg"
                     },
                     {
-                        "Volume": 0.45,
-                        "ResourcePath": "res://assets/sounds/microbe-loading-screen-2.ogg"
+                        "ResourcePath": "res://assets/sounds/multicellular-theme-2.ogg"
                     },
                     {
-                        "Volume": 0.45,
-                        "ResourcePath": "res://assets/sounds/microbe-loading-screen-3.ogg"
+                        "ResourcePath": "res://assets/sounds/multicellular-theme-3.ogg"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-theme-4.ogg"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-theme-5.ogg"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-theme-6.ogg"
+                    }
+                ]
+            },
+            {
+                "TrackBus": "Ambiance",
+                "TrackOrder": "EntirelyRandom",
+                "Tracks": [
+                    {
+                        "ResourcePath": "res://assets/sounds/soundeffects/microbe-ambience.ogg"
+                    },
+                    {
+                        "Volume": 0.1,
+                        "ResourcePath": "res://assets/sounds/soundeffects/microbe-ambience2.ogg"
+                    },
+                    {
+                        "Volume": 0.9,
+                        "ResourcePath": "res://assets/sounds/soundeffects/microbe-ambience-3.ogg"
+                    }
+                ]
+            }
+        ]
+    },
+    "EarlyMulticellularEditor": {
+        "TrackLists": [
+            {
+                "Tracks": [
+                    {
+                        "Volume": 0.9,
+                        "ResourcePath": "res://assets/sounds/multicellular-editor-theme-1.ogg"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-editor-theme-1.ogg"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-editor-theme-5.ogg"
                     }
                 ]
             }

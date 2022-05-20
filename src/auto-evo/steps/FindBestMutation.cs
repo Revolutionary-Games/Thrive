@@ -9,6 +9,7 @@
     /// </summary>
     public class FindBestMutation : VariantTryingStep
     {
+        private readonly AutoEvoConfiguration configuration;
         private readonly PatchMap map;
         private readonly Species species;
         private readonly float splitThresholdFraction;
@@ -16,10 +17,12 @@
 
         private readonly Mutations mutations = new();
 
-        public FindBestMutation(PatchMap map, Species species, int mutationsToTry, bool allowNoMutation,
+        public FindBestMutation(AutoEvoConfiguration configuration, PatchMap map, Species species,
+            int mutationsToTry, bool allowNoMutation,
             float splitThresholdFraction, int splitThresholdAmount)
             : base(mutationsToTry, allowNoMutation, splitThresholdAmount > 0)
         {
+            this.configuration = configuration;
             this.map = map;
             this.species = species;
             this.splitThresholdFraction = splitThresholdFraction;
@@ -41,7 +44,7 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);
 
@@ -55,7 +58,7 @@
             var mutated = (MicrobeSpecies)species.Clone();
             mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated);
 
-            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);
             config.ExcludedSpecies.Add(species);
@@ -72,7 +75,7 @@
         /// <param name="results">Where to store the split result if successful</param>
         /// <param name="best">The best found run</param>
         /// <param name="secondBest">The second best run</param>
-        private void HandleSpeciesSplit(RunResults results, AttemptResult best, IAttemptResult secondBest)
+        private void HandleSpeciesSplit(RunResults results, AttemptResult best, IAttemptResult? secondBest)
         {
             if (secondBest == null)
                 return;
@@ -111,10 +114,10 @@
             var secondBetter = new List<Patch>();
 
             // Used to track in which patch the best and second best where the closest
-            (Patch Patch, long Difference) closestMatch = (null, 0);
+            (Patch? Patch, long Difference) closestMatch = (null, 0);
 
             foreach (var patch in best.PatchScores.Select(p => p.Key).Concat(data.PatchScores.Select(p => p.Key))
-                .Distinct())
+                         .Distinct())
             {
                 if (!best.PatchScores.TryGetValue(patch, out long bestScore))
                     bestScore = 0;
@@ -166,6 +169,9 @@
 
             if (data.Mutation == null)
             {
+                if (best.Mutation == null)
+                    throw new Exception($"Logic error in {nameof(FindBestMigration)} fallback best mutation is null");
+
                 // Original species wants to split off
                 // So flip this around to make the mutated copy split off
                 results.AddMutationResultForSpecies(species, null);
@@ -179,14 +185,14 @@
 
         private class AttemptResult : IAttemptResult
         {
-            public AttemptResult(Species mutation, IEnumerable<KeyValuePair<Patch, long>> patchScores)
+            public AttemptResult(Species? mutation, IEnumerable<KeyValuePair<Patch, long>> patchScores)
             {
                 Mutation = mutation;
                 PatchScores = patchScores.ToDictionary(p => p.Key, p => p.Value);
                 Score = PatchScores.Sum(p => p.Value);
             }
 
-            public Species Mutation { get; }
+            public Species? Mutation { get; }
             public long Score { get; }
 
             public Dictionary<Patch, long> PatchScores { get; }

@@ -33,7 +33,7 @@
 
         public static IReadOnlyDictionary<string, ISaveUpgradeStep> SupportedUpgrades => StoredSaveUpgradeSteps;
 
-        public static ISaveUpgradeStep GetUpgradeStepForVersion(string version)
+        public static ISaveUpgradeStep? GetUpgradeStepForVersion(string version)
         {
             if (!SupportedUpgrades.TryGetValue(version, out ISaveUpgradeStep step))
                 return null;
@@ -54,6 +54,14 @@
                 { "0.5.5.0", new UpgradeStep055To056() },
                 { "0.5.6.0-alpha", new UpgradeJustVersionNumber("0.5.6.0-rc1") },
                 { "0.5.6.0-rc1", new UpgradeJustVersionNumber("0.5.6.0") },
+                { "0.5.6.0", new UpgradeJustVersionNumber("0.5.6.1") },
+                { "0.5.6.1", new UpgradeStep0561To057() },
+                { "0.5.7.0-rc1", new UpgradeJustVersionNumber("0.5.7.0") },
+                { "0.5.7.0", new UpgradeStep057To058() },
+                { "0.5.8.0-alpha", new UpgradeJustVersionNumber("0.5.8.0-rc1") },
+                { "0.5.8.0-rc1", new UpgradeJustVersionNumber("0.5.8.0") },
+                { "0.5.8.0", new UpgradeJustVersionNumber("0.5.8.1-alpha") },
+                { "0.5.8.1-alpha", new UpgradeJustVersionNumber("0.5.8.1") },
             };
         }
     }
@@ -62,11 +70,11 @@
     {
         protected override string VersionAfter => "0.5.5.0-alpha";
 
-        protected override void RecursivelyUpdateObjectProperties(JObject jObject)
+        protected override void RecursivelyUpdateObjectProperties(JObject? jObject)
         {
             base.RecursivelyUpdateObjectProperties(jObject);
 
-            foreach (var entry in jObject.Properties())
+            foreach (var entry in jObject!.Properties())
             {
                 if (entry.Name == "DespawnRadiusSqr")
                 {
@@ -159,6 +167,124 @@
         }
     }
 
+    internal class UpgradeStep0561To057 : BaseRecursiveJSONWalkerStep
+    {
+        protected override string VersionAfter => "0.5.7.0-rc1";
+
+        protected override void CheckAndUpdateProperty(JProperty property)
+        {
+            if (property.Name.Contains("GameWorld"))
+            {
+                ((JObject)property.Value).Add("eventsLog", new JObject());
+            }
+        }
+    }
+
+    internal class UpgradeStep057To058 : BaseRecursiveJSONWalkerStep
+    {
+        protected override string VersionAfter => "0.5.8.0-alpha";
+
+        protected override void PerformUpgradeOnJSON(JObject saveData)
+        {
+            base.PerformUpgradeOnJSON(saveData);
+
+            // We are just interested in updating the microbe editor properties (if it is present)
+            var editor = saveData.GetValue("MicrobeEditor") as JObject;
+
+            if (editor == null)
+                return;
+
+            JToken? GetAndRemoveEditorProperty(string name)
+            {
+                return GetAndRemoveProperty(editor, name);
+            }
+
+            var gui = GetAndRemoveEditorProperty("gui") as JObject;
+
+            if (gui == null)
+                throw new JsonException("Expected 'gui' child object on editor object");
+
+            var editedSpecies = editor.GetValue("editedSpecies");
+
+            // Move some properties around so that they are correct with the refactoring
+            var reportTab = new JObject
+            {
+                ["selectedReportSubtab"] = gui.GetValue("selectedReportSubtab"),
+            };
+
+            var patchMapTab = new JObject
+            {
+                ["targetPatch"] = GetAndRemoveEditorProperty("targetPatch"),
+                ["canStillMove"] = GetAndRemoveEditorProperty("canStillMove"),
+                ["playerPatchOnEntry"] = GetAndRemoveEditorProperty("playerPatchOnEntry"),
+            };
+
+            var behaviourEditor = new JObject
+            {
+                ["Behaviour"] = GetAndRemoveEditorProperty("behaviour"),
+                ["editedSpecies"] = editedSpecies,
+            };
+
+            var cellEditorTab = new JObject
+            {
+                ["NewName"] = GetAndRemoveEditorProperty("NewName"),
+                ["initialCellSpeed"] = gui.GetValue("initialCellSpeed"),
+                ["initialCellSize"] = gui.GetValue("initialCellSize"),
+                ["initialCellHp"] = gui.GetValue("initialCellHp"),
+                ["MovingPlacedHex"] = GetAndRemoveEditorProperty("MovingOrganelle"),
+                ["selectedSelectionMenuTab"] = gui.GetValue("selectedSelectionMenuTab"),
+                ["behaviourEditor"] = behaviourEditor,
+            };
+
+            MoveObjectProperties(editor, cellEditorTab,
+                "colour", "rigidity", "editedMicrobeOrganelles", "placementRotation", "activeActionName",
+                "Membrane", "Symmetry", "MicrobePreviewMode");
+
+            // Remove the organelle change callbacks which will be redone anyway on load
+            RemoveProperty(cellEditorTab, "editedMicrobeOrganelles.onAdded");
+            RemoveProperty(cellEditorTab, "editedMicrobeOrganelles.onRemoved");
+
+            // Fix references to things in the action history which will be removed
+            var references = CreateObjectReferenceDatabase((JObject?)editor["history"] ??
+                throw new JsonException("editor history object missing"));
+
+            ResolveObjectReferences(
+                (JObject?)cellEditorTab["editedMicrobeOrganelles"] ??
+                throw new JsonException("edited microbe organelles has disappeared"), references);
+
+            editor["selectedEditorTab"] = gui.GetValue("selectedEditorTab");
+            editor["reportTab"] = reportTab;
+            editor["patchMapTab"] = patchMapTab;
+            editor["cellEditorTab"] = cellEditorTab;
+
+            // Clear out the action history as updating that would be quite a bit of extra effort to code
+            editor["history"] = new JObject
+            {
+                ["actions"] = new JArray(),
+                ["actionIndex"] = 0,
+            };
+        }
+
+        protected override void CheckAndUpdateProperty(JProperty property)
+        {
+            if (property.Name is "organelles" or "Organelles" or "editedMicrobeOrganelles" &&
+                property.Value.Type == JTokenType.Object)
+            {
+                var asObject = (JObject)property.Value;
+
+                // Organelle layout has Organelles key which we want to update to the new hex layout
+                if (asObject.TryGetValue("Organelles", out var organelleList))
+                {
+                    if (organelleList.Type != JTokenType.Array)
+                        return;
+
+                    asObject.Remove("Organelles");
+                    asObject["existingHexes"] = organelleList;
+                }
+            }
+        }
+    }
+
     internal abstract class BaseRecursiveJSONWalkerStep : BaseJSONUpgradeStep
     {
         protected override void PerformUpgradeOnJSON(JObject saveData)
@@ -166,7 +292,7 @@
             RecursivelyUpdateObjectProperties(saveData);
         }
 
-        protected virtual void RecursivelyUpdateObjectProperties(JObject jObject)
+        protected virtual void RecursivelyUpdateObjectProperties(JObject? jObject)
         {
             if (jObject == null)
                 throw new JsonException("Null JSON object passed to looping properties");
@@ -182,8 +308,8 @@
         protected virtual void DetectAndUpdateKeysThatAreJSON(JObject jObject)
         {
             foreach (var entry in jObject.Properties().Where(e =>
-                e.Name.StartsWith("{", StringComparison.InvariantCulture) &&
-                e.Name.EndsWith("}", StringComparison.InvariantCulture)).ToList())
+                         e.Name.StartsWith("{", StringComparison.InvariantCulture) &&
+                         e.Name.EndsWith("}", StringComparison.InvariantCulture)).ToList())
             {
                 UpdateJSONPropertyKey(entry);
             }
@@ -275,6 +401,107 @@
             return VersionAfter;
         }
 
+        protected static JToken? GetAndRemoveProperty(JObject @object, string name)
+        {
+            var result = @object.GetValue(name);
+
+            if (result == null)
+                return null;
+
+            @object.Remove(name);
+            return result;
+        }
+
+        protected static void MoveObjectProperties(JObject from, JObject to, params string[] propertyNames)
+        {
+            foreach (var propertyName in propertyNames)
+            {
+                to[propertyName] = GetAndRemoveProperty(from, propertyName);
+            }
+        }
+
+        /// <summary>
+        ///   Removes a property multiple levels deep
+        /// </summary>
+        /// <param name="baseObject">The base object to which the path is relative</param>
+        /// <param name="pathToProperty">
+        ///   The path to the property to remove, with each level of property names separated by dots, for example
+        ///   <code>someProperty.AnotherLevel.FinalProperty</code>
+        /// </param>
+        /// <param name="errorIfCannotRemove">If true an error is thrown if the property can't be removed</param>
+        protected static void RemoveProperty(JObject baseObject, string pathToProperty, bool errorIfCannotRemove = true)
+        {
+            var pathParts = pathToProperty.Split('.');
+
+            RemoveProperty(baseObject, pathParts, errorIfCannotRemove);
+        }
+
+        /// <summary>
+        ///   Finds all subobjects in the object tree that specify an ID and collects them
+        /// </summary>
+        /// <param name="objectTree">The object to start finding the objects with IDs from</param>
+        /// <returns>A dictionary mapping IDs to the objects</returns>
+        protected static Dictionary<string, JObject> CreateObjectReferenceDatabase(JObject objectTree)
+        {
+            var result = new Dictionary<string, JObject>();
+
+            BuildObjectTreeIDDatabase(objectTree, result);
+
+            return result;
+        }
+
+        /// <summary>
+        ///   Detects child objects that are actually references to objects that are known and replaces them with
+        ///   the actual objects
+        /// </summary>
+        /// <param name="objectTree">
+        ///   The parent object to start looking for child properties that are object references from
+        /// </param>
+        /// <param name="knownIds">
+        ///   Known IDs that are to be handled. Use <see cref="CreateObjectReferenceDatabase"/> to create this
+        /// </param>
+        protected static void ResolveObjectReferences(JObject objectTree, Dictionary<string, JObject> knownIds)
+        {
+            // Find child properties where we can replace references
+            foreach (var property in objectTree.Properties().ToList())
+            {
+                if (property.Value.Type == JTokenType.Object)
+                {
+                    var newObject = GetReferencedObjectIfIsAReference((JObject)property.Value, knownIds);
+
+                    if (newObject != null)
+                    {
+                        property.Replace(new JProperty(property.Name, newObject));
+
+                        // TODO: should we recursively handle new objects that are assigned here?
+                        // ResolveObjectReferences(newObject, knownIds);
+                    }
+                }
+                else if (property.Value.Type == JTokenType.Array)
+                {
+                    var array = (JArray)property.Value;
+
+                    for (int i = 0; i < array.Count; ++i)
+                    {
+                        var arrayItem = array[i];
+
+                        if (arrayItem is JObject asObject)
+                        {
+                            var newObject = GetReferencedObjectIfIsAReference(asObject, knownIds);
+
+                            if (newObject != null)
+                            {
+                                array.RemoveAt(i);
+                                array.Insert(i, newObject);
+
+                                // See TODO comment above which also applies here
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         protected virtual void PerformUpgradeOnInfo(SaveInformation saveInformation)
         {
             saveInformation.ThriveVersion = VersionAfter;
@@ -285,9 +512,86 @@
 
         protected abstract void PerformUpgradeOnJSON(JObject saveData);
 
+        private static void BuildObjectTreeIDDatabase(JObject currentObject, Dictionary<string, JObject> result)
+        {
+            // Detect is current an object with an id
+            var potentialId = currentObject.GetValue(BaseThriveConverter.ID_PROPERTY);
+
+            if (potentialId != null)
+            {
+                result.Add(
+                    potentialId.Value<string>() ?? throw new JsonException("failed to convert object id to a string"),
+                    currentObject);
+            }
+
+            // Recurse to child objects
+            foreach (var property in currentObject.Properties())
+            {
+                if (property.Value.Type == JTokenType.Object)
+                {
+                    BuildObjectTreeIDDatabase((JObject)property.Value, result);
+                }
+                else if (property.Value.Type == JTokenType.Array)
+                {
+                    foreach (var arrayItem in (JArray)property.Value)
+                    {
+                        if (arrayItem is JObject asObject)
+                            BuildObjectTreeIDDatabase(asObject, result);
+                    }
+                }
+            }
+        }
+
+        private static JObject? GetReferencedObjectIfIsAReference(JObject potentialReference,
+            Dictionary<string, JObject> knownIds)
+        {
+            var reference = potentialReference.GetValue(BaseThriveConverter.REF_PROPERTY);
+
+            if (reference == null)
+                return null;
+
+            if (knownIds.TryGetValue(
+                    reference.Value<string>() ?? throw new JsonException("Ref property conversion to string failed"),
+                    out var result))
+            {
+                return result;
+            }
+
+            return null;
+        }
+
+        private static void RemoveProperty(JObject currentObject, string[] remainingPath, bool errorIfCannotRemove)
+        {
+            if (remainingPath.Length < 1 || string.IsNullOrEmpty(remainingPath[0]))
+                throw new ArgumentException("Zero length path part or no path provided at all");
+
+            if (remainingPath.Length == 1)
+            {
+                // Remove the key now that we are at the right object
+                if (!currentObject.Remove(remainingPath[0]) && errorIfCannotRemove)
+                {
+                    throw new JsonException(
+                        $"Cannot delete property '{remainingPath[0]}' as it doesn't exist in the current object");
+                }
+
+                return;
+            }
+
+            // Recurse deeper as we aren't at the end of the path yet
+
+            // TODO: support array index references
+
+            var nextObject = currentObject[remainingPath[0]] as JObject;
+
+            if (nextObject == null)
+                throw new JsonException($"Failed to find next part in path with key '{remainingPath[0]}'");
+
+            RemoveProperty(nextObject, remainingPath.Skip(1).ToArray(), errorIfCannotRemove);
+        }
+
         private void CopySaveInfoToStructure(JObject saveData, SaveInformation saveInfo)
         {
-            var info = saveData[nameof(Save.Info)];
+            var info = saveData[nameof(Save.Info)] ?? throw new JsonException("Save is missing info field");
 
             foreach (var property in BaseThriveConverter.PropertiesOf(saveInfo))
             {

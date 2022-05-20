@@ -1,12 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://src/engine/GuidanceLine.cs" type="Script" id=1]
 
-[sub_resource type="SpatialMaterial" id=1]
-
 [node name="GuidanceLine" type="ImmediateGeometry"]
-pause_mode = 2
-process_priority = 800
-material_override = SubResource( 1 )
 cast_shadow = 0
 script = ExtResource( 1 )

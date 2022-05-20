@@ -18,6 +18,19 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
         BehaviouralValueType.Focus,
     };
 
+    [JsonConstructor]
+    public BehaviourDictionary()
+    {
+    }
+
+    public BehaviourDictionary(BehaviourDictionary copyValues)
+    {
+        foreach (var value in copyValues)
+        {
+            this[value.Key] = value.Value;
+        }
+    }
+
     [JsonProperty]
     public float Aggression { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
 

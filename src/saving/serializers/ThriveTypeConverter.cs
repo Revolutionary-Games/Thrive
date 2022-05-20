@@ -8,9 +8,11 @@ using System.Linq;
 /// </summary>
 public class ThriveTypeConverter : TypeConverter
 {
+    private static readonly Type StringType = typeof(string);
+
     public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
     {
-        return typeof(string) == sourceType;
+        return sourceType == StringType;
     }
 
     public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
@@ -19,7 +21,7 @@ public class ThriveTypeConverter : TypeConverter
             attr => attr.AttributeType == typeof(UseThriveConverterAttribute));
     }
 
-    public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+    public override object? ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
     {
         // Must have the dynamic type used on the object, otherwise this doesn't do many sensible things
         return ThriveJsonConverter.Instance.DeserializeObjectDynamic((string)value);
@@ -28,13 +30,13 @@ public class ThriveTypeConverter : TypeConverter
     public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value,
         Type destinationType)
     {
-        if (destinationType == typeof(string))
+        if (destinationType == StringType)
         {
             var type = value.GetType();
 
             if (type.CustomAttributes.Any(attr =>
-                attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute) ||
-                attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute)))
+                    attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute) ||
+                    attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute)))
             {
                 type = type.BaseType;
             }

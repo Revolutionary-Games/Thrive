@@ -7,7 +7,7 @@
     /// </summary>
     public class CellEditorIntroduction : TutorialPhase
     {
-        private readonly string cellEditorTab = MicrobeEditorGUI.EditorTab.CellEditor.ToString();
+        private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
         public override string ClosedByName { get; } = "CellEditorIntroduction";
 

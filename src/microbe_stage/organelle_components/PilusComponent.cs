@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -6,17 +7,66 @@ using Godot;
 /// </summary>
 public class PilusComponent : ExternallyPositionedComponent
 {
-    private List<uint> addedChildShapes = new List<uint>();
+    private List<uint> addedChildShapes = new();
+
+    private Microbe? currentShapesParent;
 
     public override void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
     {
-        // For now to avoid bug with attaching to the wrong microbe physically, we destroy our shape here
-        DestroyShape();
+        if (currentShapesParent == null)
+            throw new InvalidOperationException("Pilus not attached to a microbe yet");
+
+        // Check if the pilus exists
+        if (NeedsUpdateAnyway())
+        {
+            // Send the organelle positions to the membrane then update the pilus
+            currentShapesParent.SendOrganellePositionsToMembrane();
+            UpdateAsync(0);
+            UpdateSync();
+
+            if (newShapeParent.Colony != null)
+                OnShapeParentChanged(newShapeParent, offset);
+        }
+        else
+        {
+            // Firstly the rotation relative to the master.
+            var position = organelle!.RotatedPositionInsideColony(lastCalculatedPosition);
+
+            // Then the position
+            position += offset;
+            Vector3 middle = offset;
+            Vector3 membranePointDirection = (position - middle).Normalized();
+            position += membranePointDirection * Constants.DEFAULT_HEX_SIZE * 2;
+
+            // Pilus rotation
+            var angle = GetAngle(middle - position);
+            var rotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
+            var transform = new Transform(rotation, position);
+
+            // New ownerId
+            var ownerId = currentShapesParent.CreateNewOwnerId(newShapeParent, transform, addedChildShapes[0]);
+            newShapeParent.AddPilus(ownerId);
+
+            // Destroy the old shape owner
+            DestroyShape();
+            addedChildShapes.Add(ownerId);
+        }
+
+        currentShapesParent = newShapeParent;
+    }
+
+    protected override void CustomAttach()
+    {
+        if (organelle?.OrganelleGraphics == null)
+            throw new InvalidOperationException("Pilus needs parent organelle to have graphics");
+
+        currentShapesParent = organelle!.ParentMicrobe;
     }
 
     protected override void CustomDetach()
     {
         DestroyShape();
+        currentShapesParent = null;
     }
 
     protected override bool NeedsUpdateAnyway()
@@ -27,60 +77,56 @@ public class PilusComponent : ExternallyPositionedComponent
     protected override void OnPositionChanged(Quat rotation, float angle,
         Vector3 membraneCoords)
     {
-        organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
-
-        // TODO: fix attaching to the wrong parent
-        // This if is only true when loading a save
-        if (organelle.ParentMicrobe.ColonyParent != null)
-            return;
+        organelle!.OrganelleGraphics!.Transform = new Transform(rotation, membraneCoords);
 
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         Vector3 membranePointDirection = (membraneCoords - middle).Normalized();
 
         membraneCoords += membranePointDirection * Constants.DEFAULT_HEX_SIZE * 2;
 
-        if (organelle.ParentMicrobe.Species.IsBacteria)
+        if (organelle.ParentMicrobe!.CellTypeProperties.IsBacteria)
         {
             membraneCoords *= 0.5f;
         }
 
+        var physicsRotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
+        var parentMicrobe = currentShapesParent!;
+
+        if (parentMicrobe.Colony != null && !NeedsUpdateAnyway())
+        {
+            // Get the real position of the pilus while in the colony
+            membraneCoords = organelle.RotatedPositionInsideColony(membraneCoords);
+            membraneCoords += parentMicrobe.GetOffsetRelativeToMaster();
+        }
+
+        var transform = new Transform(physicsRotation, membraneCoords);
+        if (NeedsUpdateAnyway())
+            CreateShape(parentMicrobe);
+
+        parentMicrobe.ShapeOwnerSetTransform(addedChildShapes[0], transform);
+    }
+
+    private void CreateShape(Microbe parent)
+    {
         float pilusSize = 4.6f;
 
         // Scale the size down for bacteria
-        if (organelle.ParentMicrobe.Species.IsBacteria)
+        if (organelle!.ParentMicrobe!.CellTypeProperties.IsBacteria)
         {
             pilusSize *= 0.5f;
         }
 
-        var physicsRotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
-
-        // Need to remove the old copy first
-        DestroyShape();
-
         // TODO: Godot doesn't have Cone shape.
         // https://github.com/godotengine/godot-proposals/issues/610
         // So this uses a cylinder for now
-
-        // @pilusShape = organelle.world.GetPhysicalWorld().CreateCone(pilusSize / 10.f,
-        //     pilusSize);
-
+        // Create the shape
         var shape = new CylinderShape();
         shape.Radius = pilusSize / 10.0f;
         shape.Height = pilusSize;
 
-        var parentMicrobe = organelle.ParentMicrobe;
-
-        var ownerId = parentMicrobe.CreateShapeOwner(shape);
-        parentMicrobe.ShapeOwnerAddShape(ownerId, shape);
-
-        // TODO: find a way to pass the information to the shape /
-        // parentMicrobe what is a pilus part of the collision
-        // pilusShape.SetCustomTag(PHYSICS_PILUS_TAG);
-
-        var transform = new Transform(physicsRotation, membraneCoords);
-        parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
-
-        parentMicrobe.AddPilus(ownerId);
+        var ownerId = parent.CreateShapeOwner(shape);
+        parent.ShapeOwnerAddShape(ownerId, shape);
+        parent.AddPilus(ownerId);
         addedChildShapes.Add(ownerId);
     }
 
@@ -90,8 +136,8 @@ public class PilusComponent : ExternallyPositionedComponent
         {
             foreach (var shape in addedChildShapes)
             {
-                organelle.ParentMicrobe.RemovePilus(shape);
-                organelle.ParentMicrobe.RemoveShapeOwner(shape);
+                currentShapesParent!.RemovePilus(shape);
+                currentShapesParent.RemoveShapeOwner(shape);
             }
 
             addedChildShapes.Clear();

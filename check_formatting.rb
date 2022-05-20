@@ -28,7 +28,7 @@ LOCALIZATION_UPPERCASE_EXCEPTIONS = ['Cancel'].freeze
 SCENE_EMBEDDED_LENGTH_HEURISTIC = 920
 
 VALID_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localization].freeze
-DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localization].freeze
+DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode localization].freeze
 
 LOCALE_TEMP_SUFFIX = '.temp_check'
 TRAILING_SPACE = /(?<=\S)[\t ]+$/.freeze
@@ -40,6 +40,7 @@ NODE_NAME_UPPERCASE_ACRONYM_ALLOWED_LENGTH = 4
 CFG_VERSION_LINE = %r{[/_]version="([\d.]+)"}.freeze
 ASSEMBLY_VERSION_FILE = 'Properties/AssemblyInfo.cs'
 ASSEMBLY_VERSION_REGEX = /AssemblyVersion\("([\d.]+)"\)/.freeze
+ASSEMBLY_EXTRA_VERSION_REGEX = /AssemblyInformationalVersion\("([^"]*)"\)/.freeze
 
 REQUIREMENTS_TXT_FILE = 'docker/jsonlint/requirements.txt'
 PIP_BABEL_THRIVE_VERSION = /^Babel-Thrive\s*([\d.]+)/.freeze
@@ -47,7 +48,11 @@ REQUIREMENTS_BABEL_THRIVE_VERSION = /^Babel-Thrive==([\d.]+)$/.freeze
 
 EMBEDDED_FONT_SIGNATURE = 'sub_resource type="DynamicFont"'
 
+JET_BRAINS_CACHE = '.jetbrains-cache'
+
 OUTPUT_MUTEX = Mutex.new
+TOOL_RESTORE_MUTEX = Mutex.new
+BUILD_MUTEX = Mutex.new
 
 # Bom bytes
 BOM = [239, 187, 191].freeze
@@ -55,7 +60,8 @@ BOM = [239, 187, 191].freeze
 @options = {
   checks: DEFAULT_CHECKS,
   skip_file_types: [],
-  parallel: true
+  parallel: true,
+  restore_tools: true
 }
 
 OptionParser.new do |opts|
@@ -71,6 +77,10 @@ OptionParser.new do |opts|
   end
   opts.on('-p', '--[no-]parallel', 'Run different checks in parallel (default)') do |b|
     @options[:parallel] = b
+  end
+  opts.on('-p', '--[no-]restore-tools',
+          'Automatically restore dotnet tools or skip that') do |b|
+    @options[:restore_tools] = b
   end
 end.parse!
 
@@ -156,13 +166,29 @@ end
 def game_version
   return @game_version if @game_version
 
+  found = false
+
   File.foreach(ASSEMBLY_VERSION_FILE, encoding: 'utf-8') do |line|
     next unless line
 
     matches = line.match(ASSEMBLY_VERSION_REGEX)
 
-    return @game_version = matches[1] if matches
+    if matches
+      @game_version = matches[1]
+      found = true
+      next
+    end
+
+    matches = line.match(ASSEMBLY_EXTRA_VERSION_REGEX)
+
+    if matches && matches[1].length.positive?
+      puts 'additional version check'
+
+      raise 'AssemblyInformationalVersion must start with a dash' if matches[1][0] != '-'
+    end
   end
+
+  return @game_version if found
 
   raise 'Could not find AssemblyVersion'
 end
@@ -207,6 +233,24 @@ def required_babel_thrive_version
   raise "Could not read required Babel-Thrive verion from #{REQUIREMENTS_TXT_FILE}."
 end
 
+def install_dotnet_tools
+  unless @options[:restore_tools]
+    puts 'Skipping restoring dotnet tools, hopefully they are up to date'
+  end
+
+  TOOL_RESTORE_MUTEX.synchronize do
+    if @tools_restored
+      puts 'Tools already restored'
+      return
+    end
+
+    @tools_restored = true
+
+    info 'Restoring dotnet tools to make sure they are up to date'
+    runOpen3Checked('dotnet', 'tool', 'restore')
+  end
+end
+
 def contains_merge_marker(line)
   line =~ GIT_MERGE_CONFLICT_MARKERS
 end
@@ -217,6 +261,9 @@ end
 
 def file_begins_with_bom(path)
   raw_data = File.binread(path, 3)
+
+  # Guard against empty files
+  return false if raw_data.nil?
 
   # Unpack as raw bytes for comparison
   potential_bom = raw_data.unpack('CCC')
@@ -629,11 +676,16 @@ end
 # Run functions for the specific checks
 
 def run_compile
-  # Make sure in analysis mode before running build
-  perform_analysis_mode_check true, quiet: true
+  status = nil
+  output = nil
 
-  status, output = runOpen3CaptureOutput('dotnet', 'build', 'Thrive.sln', '/t:Clean,Build',
-                                         '/warnaserror')
+  BUILD_MUTEX.synchronize do
+    # Make sure in analysis mode before running build
+    perform_analysis_mode_check true, quiet: true
+
+    status, output = runOpen3CaptureOutput('dotnet', 'build', 'Thrive.sln', '/t:Clean,Build',
+                                           '/warnaserror')
+  end
 
   if status != 0
     OUTPUT_MUTEX.synchronize  do
@@ -683,15 +735,6 @@ def run_files
   exit 2
 end
 
-def inspect_code_executable
-  # TODO: 32 bit support if needed
-  if OS.windows?
-    'inspectcode.exe'
-  else
-    'inspectcode.sh'
-  end
-end
-
 def skip_jetbrains?
   if @includes && !includes_changes_to('.cs')
     OUTPUT_MUTEX.synchronize do
@@ -706,11 +749,16 @@ end
 def run_inspect_code
   return if skip_jetbrains?
 
-  params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml', '--build']
+  install_dotnet_tools
+
+  params = ['dotnet', 'tool', 'run', 'jb', 'inspectcode', 'Thrive.sln',
+            '-o=inspect_results.xml', '--build', "--caches-home=#{JET_BRAINS_CACHE}"]
 
   params.append "--include=#{@includes.join(';')}" if @includes
 
-  runOpen3Checked(*params)
+  BUILD_MUTEX.synchronize do
+    runOpen3Checked(*params)
+  end
 
   issues_found = false
 
@@ -742,25 +790,24 @@ def run_inspect_code
   exit 2
 end
 
-def cleanup_code_executable
-  # TODO: 32 bit support if needed
-  if OS.windows?
-    'cleanupcode.exe'
-  else
-    'cleanupcode.sh'
-  end
-end
-
 def run_cleanup_code
   return if skip_jetbrains?
 
+  install_dotnet_tools
+
   old_diff = runOpen3CaptureOutput 'git', '-c', 'core.safecrlf=false', 'diff', '--stat'
 
-  params = [cleanup_code_executable, 'Thrive.sln', '--profile=full_no_xml']
+  params = ['dotnet', 'tool', 'run', 'jb', 'cleanupcode', 'Thrive.sln',
+            '--profile=full_no_xml', "--caches-home=#{JET_BRAINS_CACHE}"]
 
+  # TODO: we could probably split the includes into 4 groups to speed up things as the
+  # cleanup tool doesn't run in parallel by default (so we could run 4 processes at once)
   params.append "--include=#{@includes.join(';')}" if @includes
 
-  runOpen3Checked(*params)
+  # Sometimes the code inspections fails completely and caches bad data if ran at the same time
+  BUILD_MUTEX.synchronize do
+    runOpen3Checked(*params)
+  end
 
   new_diff = runOpen3CaptureOutput 'git', '-c', 'core.safecrlf=false', 'diff', '--stat'
 
@@ -782,6 +829,9 @@ end
 
 def run_duplicate_finder
   return if skip_jetbrains?
+
+  warning 'Dupfinder is deprecated. See: '\
+          'https://github.com/Revolutionary-Games/Thrive/issues/2953'
 
   params = [duplicate_code_executable, '-o=duplicate_results.xml', '--show-text',
             "--discard-cost=#{DUPLICATE_THRESHOLD}", '--discard-literals=false',

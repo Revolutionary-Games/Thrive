@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -37,50 +38,54 @@ public class OrganelleDefinition : IRegistryType
 
     processes:  A table with all the processes this organelle does,
     and the capacity of the process
+
+    upgradeGUI:  path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not
+    modifiable
     */
 
     /// <summary>
     ///   User readable name
     /// </summary>
-    [TranslateFrom("untranslatedName")]
-    public string Name;
+    [TranslateFrom(nameof(untranslatedName))]
+    public string Name = null!;
 
     /// <summary>
-    ///   A path to a scene to display this organelle with.
-    ///   If empty won't have a display model.
+    ///   A path to a scene to display this organelle with. If empty won't have a display model.
     /// </summary>
-    public string DisplayScene;
+    public string? DisplayScene;
 
     /// <summary>
-    ///   A path to a scene to display this organelle as a corpse chunk.
-    ///   Not needed if it is the same as DisplayScene.
+    ///   A path to a scene to display this organelle as a corpse chunk. Not needed if it is the same as DisplayScene.
     /// </summary>
-    public string CorpseChunkScene;
+    public string? CorpseChunkScene;
 
     /// <summary>
     ///   If the root of the display scene is not the MeshInstance this needs to have the relative node path
     /// </summary>
-    public string DisplaySceneModelPath;
+    public string? DisplaySceneModelPath;
 
     /// <summary>
     ///   If this organelle's display scene has animation this needs to be the path to the animation player node
     /// </summary>
-    public string DisplaySceneAnimation;
+    public string? DisplaySceneAnimation;
 
     /// <summary>
     ///   Loaded scene instance to be used when organelle of this type is placed
     /// </summary>
-    public PackedScene LoadedScene;
+    [JsonIgnore]
+    public PackedScene? LoadedScene;
 
     /// <summary>
     ///   Loaded scene instance to be used when organelle of this type needs to be displayed for a dead microbe
     /// </summary>
-    public PackedScene LoadedCorpseChunkScene;
+    [JsonIgnore]
+    public PackedScene? LoadedCorpseChunkScene;
 
     /// <summary>
     ///   Loaded icon for display in GUIs
     /// </summary>
-    public Texture LoadedIcon;
+    [JsonIgnore]
+    public Texture? LoadedIcon;
 
     public float Mass;
 
@@ -94,38 +99,54 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public float ProkaryoteChance;
 
-    public OrganelleComponentFactoryInfo Components;
+    /// <summary>
+    ///   If set to true this part is unimplemented and isn't loadable (and not all properties are required)
+    /// </summary>
+    public bool Unimplemented;
+
+    /// <summary>
+    ///   The group of buttons under which the button to select to place this organelle is put
+    /// </summary>
+    [JsonRequired]
+    public OrganelleGroup EditorButtonGroup = OrganelleGroup.Hidden;
+
+    /// <summary>
+    ///   Controls the order of editor organelle selection buttons within a single section. Smaller values are first
+    /// </summary>
+    public int EditorButtonOrder;
+
+    [JsonRequired]
+    public OrganelleComponentFactoryInfo Components = null!;
 
     /// <summary>
     ///   Defines the processes this organelle does and their speed multipliers
     /// </summary>
-    public Dictionary<string, float> Processes;
+    public Dictionary<string, float>? Processes;
 
     /// <summary>
     ///   List of hexes this organelle occupies
     /// </summary>
-    public List<Hex> Hexes;
+    public List<Hex> Hexes = null!;
 
     /// <summary>
-    ///   The compounds this organelle consists of (how many resources
-    ///   are needed to duplicate this)
+    ///   The compounds this organelle consists of (how many resources are needed to duplicate this)
     /// </summary>
-    public Dictionary<Compound, float> InitialComposition;
+    public Dictionary<Compound, float> InitialComposition = null!;
 
     /// <summary>
     ///   Colour used for ATP production bar
     /// </summary>
-    public string ProductionColour;
+    public string ProductionColour = null!;
 
     /// <summary>
     ///   Colour used for ATP consumption bar
     /// </summary>
-    public string ConsumptionColour;
+    public string ConsumptionColour = null!;
 
     /// <summary>
-    ///   Icon used for the ATP bars
+    ///   Icon used for the ATP bars and editor selection buttons. Required if placeable by the player
     /// </summary>
-    public string IconPath;
+    public string? IconPath;
 
     /// <summary>
     ///   Cost of placing this organelle in the editor
@@ -148,29 +169,52 @@ public class OrganelleDefinition : IRegistryType
     public bool Unique;
 
     /// <summary>
+    ///   Path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not modifiable
+    /// </summary>
+    public string? UpgradeGUI;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
-    private Dictionary<int, List<Hex>> rotatedHexesCache = new Dictionary<int, List<Hex>>();
+    private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();
 
-#pragma warning disable 169 // Used through reflection
-    private string untranslatedName;
-#pragma warning restore 169
+#pragma warning disable 169,649 // Used through reflection
+    private string? untranslatedName;
+#pragma warning restore 169,649
+
+    public enum OrganelleGroup
+    {
+        /// <summary>
+        ///   Not shown in the GUI, not placeable by the player
+        /// </summary>
+        Hidden,
+
+        Structural,
+        Protein,
+        External,
+        Organelle,
+    }
 
     /// <summary>
     ///   The total amount of compounds in InitialComposition
     /// </summary>
+    [JsonIgnore]
     public float OrganelleCost { get; private set; }
 
     [JsonIgnore]
     public List<IOrganelleComponentFactory> ComponentFactories => Components.Factories;
 
     [JsonIgnore]
-    public List<TweakedProcess> RunnableProcesses { get; private set; }
+    public List<TweakedProcess> RunnableProcesses { get; private set; } = null!;
 
     [JsonIgnore]
     public int HexCount => Hexes.Count;
 
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = null!;
+
+    [JsonIgnore]
+    public string UntranslatedName =>
+        untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
 
     public bool ContainsHex(Hex hex)
     {
@@ -189,11 +233,11 @@ public class OrganelleDefinition : IRegistryType
     public IEnumerable<Hex> GetRotatedHexes(int rotation)
     {
         // The rotations repeat every 6 steps
-        rotation = rotation % 6;
+        rotation %= 6;
 
-        if (!rotatedHexesCache.ContainsKey(rotation))
+        if (!rotatedHexesCache.TryGetValue(rotation, out var rotated))
         {
-            var rotated = new List<Hex>();
+            rotated = new List<Hex>();
 
             foreach (var hex in Hexes)
             {
@@ -203,7 +247,7 @@ public class OrganelleDefinition : IRegistryType
             rotatedHexesCache[rotation] = rotated;
         }
 
-        return rotatedHexesCache[rotation];
+        return rotated;
     }
 
     public Vector3 CalculateCenterOffset()
@@ -251,48 +295,41 @@ public class OrganelleDefinition : IRegistryType
 
     public void Check(string name)
     {
+        if (string.IsNullOrEmpty(Name))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Name is not set");
+        }
+
+        TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
+
+        if (Unimplemented)
+            return;
+
         if (Components == null)
         {
-            throw new InvalidRegistryDataException(name, GetType().Name,
-                "No components specified");
+            throw new InvalidRegistryDataException(name, GetType().Name, "No components specified");
         }
 
         Components.Check(name);
 
         if (Components.Count < 1)
         {
-            throw new InvalidRegistryDataException(name, GetType().Name,
-                "No components specified");
+            throw new InvalidRegistryDataException(name, GetType().Name, "No components specified");
         }
 
         if (Mass <= 0.0f)
         {
-            throw new InvalidRegistryDataException(name, GetType().Name,
-                "Mass is unset");
-        }
-
-        if (Mass <= 0.0f)
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name,
-                "Mass is unset");
-        }
-
-        if (string.IsNullOrEmpty(Name))
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name,
-                "Name is not set");
+            throw new InvalidRegistryDataException(name, GetType().Name, "Mass is unset");
         }
 
         if (InitialComposition == null || InitialComposition.Count < 1)
         {
-            throw new InvalidRegistryDataException(name, GetType().Name,
-                "InitialComposition is not set");
+            throw new InvalidRegistryDataException(name, GetType().Name, "InitialComposition is not set");
         }
 
         if (Hexes == null || Hexes.Count < 1)
         {
-            throw new InvalidRegistryDataException(name, GetType().Name,
-                "Hexes is empty");
+            throw new InvalidRegistryDataException(name, GetType().Name, "Hexes is empty");
         }
 
         if (string.IsNullOrEmpty(DisplayScene) && string.IsNullOrEmpty(CorpseChunkScene))
@@ -321,8 +358,6 @@ public class OrganelleDefinition : IRegistryType
                     "Duplicate hex position");
             }
         }
-
-        TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
     /// <summary>
@@ -359,6 +394,9 @@ public class OrganelleDefinition : IRegistryType
             }
         }
 
+        if (Unimplemented)
+            return;
+
         // Compute total cost from the initial composition
         OrganelleCost = 0;
 
@@ -386,15 +424,16 @@ public class OrganelleDefinition : IRegistryType
 
     public class OrganelleComponentFactoryInfo
     {
-        public NucleusComponentFactory Nucleus;
-        public StorageComponentFactory Storage;
-        public AgentVacuoleComponentFactory AgentVacuole;
-        public BindingAgentComponentFactory BindingAgent;
-        public MovementComponentFactory Movement;
-        public PilusComponentFactory Pilus;
+        public NucleusComponentFactory? Nucleus;
+        public StorageComponentFactory? Storage;
+        public AgentVacuoleComponentFactory? AgentVacuole;
+        public BindingAgentComponentFactory? BindingAgent;
+        public MovementComponentFactory? Movement;
+        public PilusComponentFactory? Pilus;
+        public ChemoreceptorComponentFactory? Chemoreceptor;
+        public SignalingAgentComponentFactory? SignalingAgent;
 
-        private readonly List<IOrganelleComponentFactory> allFactories =
-            new List<IOrganelleComponentFactory>();
+        private readonly List<IOrganelleComponentFactory> allFactories = new();
 
         [JsonIgnore]
         private int count = -1;
@@ -417,42 +456,56 @@ public class OrganelleDefinition : IRegistryType
             {
                 Nucleus.Check(name);
                 allFactories.Add(Nucleus);
-                count++;
+                ++count;
             }
 
             if (Storage != null)
             {
                 Storage.Check(name);
                 allFactories.Add(Storage);
-                count++;
+                ++count;
             }
 
             if (AgentVacuole != null)
             {
                 AgentVacuole.Check(name);
                 allFactories.Add(AgentVacuole);
-                count++;
+                ++count;
             }
 
             if (BindingAgent != null)
             {
                 BindingAgent.Check(name);
                 allFactories.Add(BindingAgent);
-                count++;
+                ++count;
             }
 
             if (Movement != null)
             {
                 Movement.Check(name);
                 allFactories.Add(Movement);
-                count++;
+                ++count;
             }
 
             if (Pilus != null)
             {
                 Pilus.Check(name);
                 allFactories.Add(Pilus);
-                count++;
+                ++count;
+            }
+
+            if (Chemoreceptor != null)
+            {
+                Chemoreceptor.Check(name);
+                allFactories.Add(Chemoreceptor);
+                ++count;
+            }
+
+            if (SignalingAgent != null)
+            {
+                SignalingAgent.Check(name);
+                allFactories.Add(SignalingAgent);
+                ++count;
             }
         }
     }

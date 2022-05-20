@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Common helper operations for Nodes
@@ -122,7 +123,7 @@ public static class NodeHelpers
     /// <param name="node">Node to get material from.</param>
     /// <param name="modelPath">Path to model within the scene. If null takes scene root as model.</param>
     /// <returns>ShaderMaterial of the GeometryInstance.</returns>
-    public static ShaderMaterial GetMaterial(this Node node, NodePath modelPath = null)
+    public static ShaderMaterial GetMaterial(this Node node, NodePath? modelPath = null)
     {
         GeometryInstance geometry;
 
@@ -137,5 +138,30 @@ public static class NodeHelpers
         }
 
         return (ShaderMaterial)geometry.MaterialOverride;
+    }
+
+    /// <summary>
+    ///   Finds immediate children of node that are in a group
+    /// </summary>
+    /// <param name="node">The node to find children of</param>
+    /// <param name="group">The group the children need to be in in</param>
+    /// <typeparam name="T">The type the children are cast to before returning</typeparam>
+    /// <returns>Enumerable sequence of the children</returns>
+    public static IEnumerable<T> GetChildrenToProcess<T>(this Node node, string group)
+    {
+        foreach (Node child in node.GetChildren())
+        {
+            if (!child.IsInGroup(group))
+                continue;
+
+            if (child is T casted)
+            {
+                yield return casted;
+            }
+            else
+            {
+                GD.PrintErr("A node has been put in the ", group, " group but it isn't derived from ", typeof(T).Name);
+            }
+        }
     }
 }

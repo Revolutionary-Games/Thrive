@@ -1,9 +1,9 @@
-﻿using Godot;
+﻿using Newtonsoft.Json;
 
 /// <summary>
 ///   Adds toxin shooting capability
 /// </summary>
-public class AgentVacuoleComponent : IOrganelleComponent
+public class AgentVacuoleComponent : EmptyOrganelleComponent
 {
     public string Compound;
 
@@ -11,28 +11,15 @@ public class AgentVacuoleComponent : IOrganelleComponent
     {
         Compound = compound;
     }
-
-    public void OnAttachToCell(PlacedOrganelle organelle)
-    {
-    }
-
-    public void OnDetachFromCell(PlacedOrganelle organelle)
-    {
-    }
-
-    public void Update(float elapsed)
-    {
-    }
-
-    public void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
-    {
-    }
 }
 
 public class AgentVacuoleComponentFactory : IOrganelleComponentFactory
 {
-    public string Compound;
-    public string Process;
+    [JsonRequired]
+    public string Compound = null!;
+
+    [JsonRequired]
+    public string Process = null!;
 
     public IOrganelleComponent Create()
     {

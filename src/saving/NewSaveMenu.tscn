@@ -16,6 +16,8 @@ __meta__ = {
 SaveListPath = NodePath("VBoxContainer/VBoxContainer/SaveList")
 SaveNameBoxPath = NodePath("VBoxContainer/VBoxContainer/HBoxContainer/SaveName")
 OverwriteConfirmPath = NodePath("OverwriteConfirm")
+AttemptWriteFailAcceptPath = NodePath("AttemptWriteFailAccept")
+SaveButtonPath = NodePath("VBoxContainer/VBoxContainer/HBoxContainer/Save")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -26,12 +28,12 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 1280.0
-margin_bottom = 22.0
+margin_bottom = 25.0
 text = "CREATE_NEW_SAVE"
 align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 26.0
+margin_top = 29.0
 margin_right = 1280.0
 margin_bottom = 679.0
 size_flags_vertical = 3
@@ -41,13 +43,13 @@ margin_right = 1280.0
 margin_bottom = 37.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_top = 7.0
-margin_right = 51.0
-margin_bottom = 29.0
+margin_top = 6.0
+margin_right = 56.0
+margin_bottom = 31.0
 text = "NAME"
 
 [node name="SaveName" type="LineEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 55.0
+margin_left = 60.0
 margin_right = 1041.0
 margin_bottom = 37.0
 size_flags_horizontal = 3
@@ -79,15 +81,15 @@ margin_bottom = 45.0
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer"]
 margin_top = 49.0
 margin_right = 1280.0
-margin_bottom = 71.0
+margin_bottom = 74.0
 text = "OVERWRITE_EXISTING_SAVE"
 
 [node name="SaveList" parent="VBoxContainer/VBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 75.0
+margin_top = 78.0
 margin_right = 1280.0
-margin_bottom = 653.0
+margin_bottom = 650.0
 size_flags_vertical = 3
 AutoRefreshOnFirstVisible = false
 SelectableItems = true
@@ -112,10 +114,20 @@ __meta__ = {
 
 [node name="OverwriteConfirm" parent="." instance=ExtResource( 3 )]
 rect_min_size = Vector2( 500, 0 )
-WindowTitle = "OVERWRITE_EXISTING_SAVE_TITLE"
+WindowTitle = "OVERWRITE_EXISTING_SAVE_PROMPT"
 
+[node name="AttemptWriteFailAccept" parent="." instance=ExtResource( 3 )]
+rect_min_size = Vector2( 500, 0 )
+WindowTitle = "CANNOT_WRITE_SAVE"
+Movable = false
+ShowCloseButton = false
+HideCancelButton = true
+DialogText = "ATTEMPT_TO_WRITE_SAVE_FAILED"
+
+[connection signal="text_changed" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextChanged"]
 [connection signal="text_entered" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextEntered"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Save" to="." method="SaveButtonPressed"]
+[connection signal="OnConfirmed" from="VBoxContainer/VBoxContainer/SaveList" to="." method="OnSaveListItemConfirmed"]
 [connection signal="OnSelectedChanged" from="VBoxContainer/VBoxContainer/SaveList" to="." method="OnSelectedChanged"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/Back" to="." method="ClosePressed"]
 [connection signal="Confirmed" from="OverwriteConfirm" to="." method="OnConfirmSaveName"]

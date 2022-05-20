@@ -7,7 +7,7 @@
     /// </summary>
     public class EditorWelcome : TutorialPhase
     {
-        private readonly string reportTab = MicrobeEditorGUI.EditorTab.Report.ToString();
+        private readonly string reportTab = EditorTab.Report.ToString();
 
         public override string ClosedByName { get; } = "MicrobeEditorReport";
 
@@ -33,7 +33,7 @@
 
                 case TutorialEventType.MicrobeEditorTabChanged:
                 {
-                    string tab = ((StringEventArgs)args).Data;
+                    var tab = ((StringEventArgs)args).Data;
 
                     // Hide when switched to another tab
                     if (tab != reportTab)

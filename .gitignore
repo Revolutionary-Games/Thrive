@@ -6,6 +6,7 @@ export.cfg
 /inspect_results.xml
 /files_to_check.txt
 /duplicate_results.xml
+/.jetbrains-cache
 
 # Seems really like this is needed for CI
 # export_presets.cfg
@@ -143,3 +144,8 @@ package-lock.json
 /steam_appid.txt
 
 /mods
+
+# Profiling files
+out.txt
+output.png
+*.DS_Store

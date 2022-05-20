@@ -8,20 +8,20 @@ using Godot;
 /// </summary>
 public class Jukebox : Node
 {
-    private const float FADE_TIME = 0.75f;
+    private const float FADE_TIME = 1.0f;
     private const float FADE_LOW_VOLUME = 0.0f;
     private const float NORMAL_VOLUME = 1.0f;
 
-    private static Jukebox instance;
+    private static Jukebox? instance;
 
-    private readonly List<AudioPlayer> audioPlayers = new List<AudioPlayer>();
+    private readonly List<AudioPlayer> audioPlayers = new();
 
-    private readonly Queue<Operation> operations = new Queue<Operation>();
+    private readonly Queue<Operation> operations = new();
 
     /// <summary>
     ///   Lists of music
     /// </summary>
-    private Dictionary<string, MusicCategory> categories;
+    private Dictionary<string, MusicCategory> categories = null!;
 
     /// <summary>
     ///   The current jukebox volume level in linear volume range 0-1.0f
@@ -30,12 +30,12 @@ public class Jukebox : Node
 
     private bool paused = true;
 
-    private string playingCategory;
+    private string? playingCategory;
 
     /// <summary>
     ///   Used to lookup the transitions to go away from a category
     /// </summary>
-    private MusicCategory previouslyPlayedCategory;
+    private MusicCategory? previouslyPlayedCategory;
 
     /// <summary>
     ///   Loads the music categories and prepares to play them
@@ -45,19 +45,22 @@ public class Jukebox : Node
         instance = this;
     }
 
-    public static Jukebox Instance => instance;
+    public static Jukebox Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   The category to play music tracks from
     /// </summary>
     public string PlayingCategory
     {
-        get => playingCategory;
+        get => playingCategory ?? throw new InvalidOperationException("Not yet playing any category");
 
         set
         {
             if (playingCategory == value)
                 return;
+
+            if (value == null)
+                throw new ArgumentException("Playing category can't be set to null");
 
             GD.Print("Jukebox now playing from: ", value);
             playingCategory = value;
@@ -65,10 +68,8 @@ public class Jukebox : Node
         }
     }
 
-    private List<string> PlayingTracks
-    {
-        get { return audioPlayers.Where(player => player.Playing).Select(player => player.CurrentTrack).ToList(); }
-    }
+    private List<string> PlayingTracks => audioPlayers.Where(player => player.Playing)
+        .Select(player => player.CurrentTrack).WhereNotNull().ToList();
 
     public override void _Ready()
     {
@@ -124,6 +125,22 @@ public class Jukebox : Node
         operations.Clear();
     }
 
+    /// <summary>
+    ///   Smoothly stops the currently playing music with fade out (doesn't preserve positions for when
+    ///   Resume is called)
+    /// </summary>
+    public void SmoothStop()
+    {
+        operations.Clear();
+        AddFadeOut();
+        operations.Enqueue(new Operation(_ =>
+        {
+            Pause();
+            StopStreams();
+            return true;
+        }));
+    }
+
     public override void _Process(float delta)
     {
         // https://github.com/Revolutionary-Games/Thrive/issues/1976
@@ -166,7 +183,7 @@ public class Jukebox : Node
         }
     }
 
-    private void SetVolume(float volume, AudioPlayer audioPlayer = null)
+    private void SetVolume(float volume, AudioPlayer? audioPlayer = null)
     {
         if (audioPlayer == null)
         {
@@ -180,7 +197,7 @@ public class Jukebox : Node
         ApplyLinearVolume(audioPlayer);
     }
 
-    private void ApplyLinearVolume(AudioPlayer audioPlayer = null)
+    private void ApplyLinearVolume(AudioPlayer? audioPlayer = null)
     {
         if (audioPlayer == null)
         {
@@ -310,17 +327,17 @@ public class Jukebox : Node
         }
     }
 
-    private void AddFadeOut(AudioPlayer audioPlayer = null)
+    private void AddFadeOut(AudioPlayer? audioPlayer = null)
     {
         AddVolumeChange(FADE_TIME, linearVolume, FADE_LOW_VOLUME, audioPlayer);
     }
 
-    private void AddFadeIn(AudioPlayer audioPlayer = null)
+    private void AddFadeIn(AudioPlayer? audioPlayer = null)
     {
         AddVolumeChange(FADE_TIME, 0, NORMAL_VOLUME, audioPlayer);
     }
 
-    private void AddWait(float duration, AudioPlayer audioPlayer = null)
+    private void AddWait(float duration, AudioPlayer? audioPlayer = null)
     {
         var data = new TimedOperationData(duration, audioPlayer);
 
@@ -341,7 +358,7 @@ public class Jukebox : Node
         }));
     }
 
-    private void AddVolumeChange(float duration, float startVolume, float endVolume, AudioPlayer audioPlayer = null)
+    private void AddVolumeChange(float duration, float startVolume, float endVolume, AudioPlayer? audioPlayer = null)
     {
         var data = new TimedOperationData(duration, audioPlayer) { StartVolume = startVolume, EndVolume = endVolume };
 
@@ -374,7 +391,7 @@ public class Jukebox : Node
         }));
     }
 
-    private void AddVolumeRestore(AudioPlayer audioPlayer = null)
+    private void AddVolumeRestore(AudioPlayer? audioPlayer = null)
     {
         var targetOperations = operations;
         if (audioPlayer != null)
@@ -389,7 +406,7 @@ public class Jukebox : Node
         }));
     }
 
-    private void AddVolumeRemove(AudioPlayer audioPlayer = null)
+    private void AddVolumeRemove(AudioPlayer? audioPlayer = null)
     {
         var targetOperations = operations;
         if (audioPlayer != null)
@@ -578,15 +595,15 @@ public class Jukebox : Node
 
     private class AudioPlayer
     {
-        public AudioStreamPlayer Player;
-        public string CurrentTrack;
+        public readonly AudioStreamPlayer Player;
+        public string? CurrentTrack;
 
         public AudioPlayer(AudioStreamPlayer player)
         {
             Player = player;
         }
 
-        public Queue<Operation> Operations { get; } = new Queue<Operation>();
+        public Queue<Operation> Operations { get; } = new();
 
         /// <summary>
         ///   The current AudioPlayer volume level in linear volume range 0-1.0f
@@ -629,7 +646,7 @@ public class Jukebox : Node
 
     private class TimedOperationData
     {
-        public readonly AudioPlayer AudioPlayer;
+        public readonly AudioPlayer? AudioPlayer;
 
         public readonly float TotalDuration;
         public float TimeLeft;
@@ -638,7 +655,7 @@ public class Jukebox : Node
         public float StartVolume;
         public float EndVolume;
 
-        public TimedOperationData(float time, AudioPlayer audioPlayer = null)
+        public TimedOperationData(float time, AudioPlayer? audioPlayer = null)
         {
             AudioPlayer = audioPlayer;
 

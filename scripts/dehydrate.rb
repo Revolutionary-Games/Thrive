@@ -8,6 +8,7 @@ DEHYDRATE_CACHE = 'builds/dehydrate_cache'
 DEVBUILDS_FOLDER = 'builds/devbuilds'
 
 DEHYDRATE_FILE_SIZE_THRESSHOLD = 100_000
+DEHYDRATE_IGNORE_FILE_TYPES = '\.po,\.pot,\.txt,\.md,\.tscn,Thrive\.dll,Thrive\.pdb'
 
 def git_commit
   `git rev-parse --verify HEAD`.strip

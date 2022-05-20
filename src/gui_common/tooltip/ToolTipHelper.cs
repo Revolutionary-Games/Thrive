@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -12,7 +13,7 @@ public static class ToolTipHelper
     /// <summary>
     ///   A helper static member to store enter/exit callback for registered tooltips to keep it from unloading.
     /// </summary>
-    private static readonly List<ToolTipCallbackData> ToolTipCallbacks = new List<ToolTipCallbackData>();
+    private static readonly List<ToolTipCallbackData> ToolTipCallbacks = new();
 
     /// <summary>
     ///   Instantiates a default tooltip scene
@@ -27,8 +28,11 @@ public static class ToolTipHelper
     ///   custom tooltip.
     /// </summary>
     /// <param name="control">The Control to register the tooltip to.</param>
-    /// <param name="tooltip">The tooltip to register with.</param>
-    public static void RegisterToolTipForControl(this Control control, ICustomToolTip tooltip)
+    /// <param name="tooltip">
+    ///   The tooltip to register with. Null is not valid but it's nullable to make a few other places in the code
+    ///   easier and there isn't much of a difference if we print the error here rather than if our callers did it.
+    /// </param>
+    public static void RegisterToolTipForControl(this Control control, ICustomToolTip? tooltip)
     {
         if (tooltip == null)
         {
@@ -68,6 +72,23 @@ public static class ToolTipHelper
         ToolTipCallbacks.Remove(data);
     }
 
+    /// <summary>
+    ///   Disconnects the first registered tooltip for a <see cref="Control"/>
+    /// </summary>
+    public static void UnRegisterFirstToolTipForControl(this Control control)
+    {
+        foreach (var toolTipCallbackData in GetAllToolTipsForControl(control))
+        {
+            // Not the most efficient as we've already looked up the data, but this isn't used that much so the extra
+            // slowness shouldn't matter
+            UnRegisterToolTipForControl(control, toolTipCallbackData.ToolTip);
+
+            // If this is converted to unregister all, then the list of things to unregister needs to be enumerated
+            // first. Here we can get by with a return;
+            return;
+        }
+    }
+
     public static bool IsToolTipRegistered(this Control control, ICustomToolTip tooltip)
     {
         return ToolTipCallbacks.Contains(GetToolTipCallbackData(control, tooltip));
@@ -86,25 +107,36 @@ public static class ToolTipHelper
     ///   Get the control the given tooltip is registered to. Doesn't take into account controls with multiple
     ///   registered tooltips.
     /// </summary>
-    public static Control GetControlAssociatedWithToolTip(ICustomToolTip tooltip)
+    public static Control? GetControlAssociatedWithToolTip(ICustomToolTip? tooltip)
     {
         var callbackData = ToolTipCallbacks.Find(match => match.ToolTip == tooltip);
 
-        return callbackData.ToolTipable;
+        return callbackData?.ToolTipable;
     }
 
     /// <summary>
     ///   Get the control the given tooltip is registered to. Doesn't take into account controls with multiple
     ///   registered tooltips.
     /// </summary>
-    public static Control GetControlAssociatedWithToolTip(string name, string group =
+    public static Control? GetControlAssociatedWithToolTip(string name, string group =
         ToolTipManager.DEFAULT_GROUP_NAME)
     {
-        return GetControlAssociatedWithToolTip(ToolTipManager.Instance.GetToolTip(name, group));
+        var tooltip = ToolTipManager.Instance.GetToolTip(name, group);
+
+        // No point in trying to find a control with a null tooltip
+        if (tooltip == null)
+            return null;
+
+        return GetControlAssociatedWithToolTip(tooltip);
     }
 
     private static ToolTipCallbackData GetToolTipCallbackData(Control control, ICustomToolTip tooltip)
     {
         return ToolTipCallbacks.Find(match => match.ToolTipable == control && match.ToolTip == tooltip);
+    }
+
+    private static IEnumerable<ToolTipCallbackData> GetAllToolTipsForControl(Control control)
+    {
+        return ToolTipCallbacks.Where(match => match.ToolTipable == control);
     }
 }

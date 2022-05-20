@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 public class SaveFileInfo
 {
-    private SaveInformation info;
+    private SaveInformation? info;
 
     public SaveFileInfo(string name)
     {
@@ -32,11 +32,8 @@ public class SaveFileInfo
 
     public SaveInformation Info
     {
-        get
-        {
-            // Load from file if missing
-            return info ??= Save.LoadJustInfoFromSave(Name);
-        }
+        // Load from file if missing
+        get => info ??= Save.LoadJustInfoFromSave(Name);
         set => info = value;
     }
 
@@ -46,7 +43,7 @@ public class SaveFileInfo
         if (name.StartsWith(Constants.EXPLICIT_PATH_PREFIX, StringComparison.InvariantCulture))
             return name.Substring(Constants.EXPLICIT_PATH_PREFIX.Length);
 
-        return PathUtils.Join(Constants.SAVE_FOLDER, name);
+        return System.IO.Path.Combine(Constants.SAVE_FOLDER, name);
     }
 
     /// <summary>

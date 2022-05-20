@@ -12,9 +12,9 @@ public class IconProgressBar : ColorRect
 
     private bool highlighted;
 
-    private TextureRect icon;
+    private TextureRect icon = null!;
 
-    private ColorRect highlight;
+    private ColorRect highlight = null!;
 
     public Vector2 BarSize
     {
@@ -34,7 +34,7 @@ public class IconProgressBar : ColorRect
         }
     }
 
-    public Texture IconTexture
+    public Texture? IconTexture
     {
         get => icon.Texture;
         set => icon.Texture = value;

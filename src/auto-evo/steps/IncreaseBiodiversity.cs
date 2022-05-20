@@ -15,12 +15,12 @@
         private readonly AutoEvoConfiguration configuration;
         private readonly Random random;
 
-        private readonly Mutations mutations = new Mutations();
+        private readonly Mutations mutations = new();
 
         private bool tryCurrentPatch = true;
         private bool createdASpecies;
 
-        public IncreaseBiodiversity(PatchMap map, Patch patch, Random random, AutoEvoConfiguration configuration)
+        public IncreaseBiodiversity(AutoEvoConfiguration configuration, PatchMap map, Patch patch, Random random)
         {
             this.map = map;
             this.patch = patch;
@@ -110,14 +110,18 @@
             }
         }
 
-        private MicrobeSpecies TryBiodiversitySplit(Species splitFrom, bool inCurrentPatch)
+        private MicrobeSpecies? TryBiodiversitySplit(Species splitFrom, bool inCurrentPatch)
         {
-            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            // TODO: multicellular handling
+            if (splitFrom is not MicrobeSpecies fromMicrobe)
+                return null;
 
-            var split = (MicrobeSpecies)splitFrom.Clone();
+            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+
+            var split = (MicrobeSpecies)fromMicrobe.Clone();
 
             if (configuration.BiodiversitySplitIsMutated)
-                mutations.CreateMutatedSpecies((MicrobeSpecies)splitFrom, split);
+                mutations.CreateMutatedSpecies(fromMicrobe, split);
 
             // Set the starting population in the patch
             split.Population = configuration.NewBiodiversityIncreasingSpeciesPopulation;

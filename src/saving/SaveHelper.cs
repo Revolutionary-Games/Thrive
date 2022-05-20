@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Helper functions for making the places in code dealing with saves shorter
@@ -13,11 +14,12 @@ public static class SaveHelper
     ///   This is a list of known versions where save compatibility is very broken and loading needs to be prevented
     ///   (unless there exists a version converter)
     /// </summary>
-    private static readonly List<string> KnownSaveIncompatibilityPoints = new List<string>
+    private static readonly List<string> KnownSaveIncompatibilityPoints = new()
     {
         "0.5.3.0",
         "0.5.3.1",
         "0.5.5.0-alpha",
+        "0.5.9.0-alpha",
     };
 
     private static DateTime? lastSave;
@@ -41,6 +43,27 @@ public static class SaveHelper
     }
 
     /// <summary>
+    ///   The error that is returned after trying to perform a quick load.
+    /// </summary>
+    public enum QuickLoadError
+    {
+        /// <summary>
+        ///   No error, quick load is successful (or error is not handled).
+        /// </summary>
+        None,
+
+        /// <summary>
+        ///   The loaded version does not match the current game version.
+        /// </summary>
+        VersionMismatch,
+
+        /// <summary>
+        ///   Quick load is currently prevented by the current state of the game.
+        /// </summary>
+        NotAllowed,
+    }
+
+    /// <summary>
     ///   Checks whether the last save is made within a timespan of set duration.
     /// </summary>
     /// <remarks>
@@ -50,6 +73,11 @@ public static class SaveHelper
     /// </remarks>
     /// <returns>True if the last save is still recent, false if otherwise.</returns>
     public static bool SavedRecently => lastSave != null ? DateTime.Now - lastSave < Constants.RecentSaveTime : false;
+
+    /// <summary>
+    ///   Determines whether it's allowed to perform quick save and quick load, if set to false they will be disabled.
+    /// </summary>
+    public static bool AllowQuickSavingAndLoading { get; set; } = true;
 
     /// <summary>
     ///   A save (and not a quick save) that the user triggered
@@ -145,17 +173,20 @@ public static class SaveHelper
 
     /// <summary>
     ///   Loads the save file with the latest write time.
-    ///   Does not load if there is a version difference.
+    ///   Does not load if there is a version difference or if quick load is not allowed.
     /// </summary>
-    /// <returns>False if the versions do not match</returns>
-    public static bool QuickLoad()
+    /// <returns>See <see cref="QuickLoadError"/>.</returns>
+    public static QuickLoadError QuickLoad()
     {
+        if (!AllowQuickSavingAndLoading)
+            return QuickLoadError.NotAllowed;
+
         // TODO: is there a way to to find the latest modified file without checking them all?
         var save = CreateListOfSaves(SaveOrder.LastModifiedFirst).FirstOrDefault();
         if (save == null)
         {
             GD.Print("No saves exist, can't quick load");
-            return true;
+            return QuickLoadError.None;
         }
 
         SaveInformation info;
@@ -166,15 +197,15 @@ public static class SaveHelper
         catch (Exception e)
         {
             GD.PrintErr($"Cannot load save information for save {save}: {e}");
-            return true;
+            return QuickLoadError.None;
         }
 
         var versionDiff = VersionUtils.Compare(info.ThriveVersion, Constants.Version);
         if (versionDiff != 0)
-            return false;
+            return QuickLoadError.VersionMismatch;
 
         LoadSave(save);
-        return true;
+        return QuickLoadError.None;
     }
 
     /// <summary>
@@ -203,6 +234,10 @@ public static class SaveHelper
                 if (!filename.EndsWith(Constants.SAVE_EXTENSION, StringComparison.Ordinal))
                     continue;
 
+                // Skip folders
+                if (!directory.FileExists(filename))
+                    continue;
+
                 result.Add(filename);
             }
 
@@ -215,7 +250,7 @@ public static class SaveHelper
             {
                 using var file = new File();
                 result = result.OrderByDescending(item =>
-                    file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
+                    file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, item))).ToList();
 
                 break;
             }
@@ -224,7 +259,7 @@ public static class SaveHelper
             {
                 using var file = new File();
                 result = result.OrderBy(item =>
-                    file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
+                    file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, item))).ToList();
 
                 break;
             }
@@ -236,7 +271,7 @@ public static class SaveHelper
     /// <summary>
     ///   Counts the total number of saves and how many bytes they take up
     /// </summary>
-    public static (int Count, ulong DiskSpace) CountSaves(string nameStartsWith = null)
+    public static (int Count, ulong DiskSpace) CountSaves(string? nameStartsWith = null)
     {
         int count = 0;
         ulong totalSize = 0;
@@ -246,7 +281,12 @@ public static class SaveHelper
         {
             if (nameStartsWith == null || save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
             {
-                file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
+                if (file.Open(Path.Combine(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
+                {
+                    GD.PrintErr("Can't read size of save file: ", save);
+                    continue;
+                }
+
                 ++count;
                 totalSize += file.GetLen();
             }
@@ -261,7 +301,7 @@ public static class SaveHelper
     public static void DeleteSave(string saveName)
     {
         using var directory = new Directory();
-        directory.Remove(PathUtils.Join(Constants.SAVE_FOLDER, saveName));
+        directory.Remove(Path.Combine(Constants.SAVE_FOLDER, saveName));
     }
 
     public static void DeleteExcessSaves(string nameStartsWith, int maximumCount)
@@ -309,6 +349,19 @@ public static class SaveHelper
         }
 
         return savesDeleted;
+    }
+
+    public static void ShowErrorAboutPrototypeSaving(Node currentNode)
+    {
+        if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
+        {
+            GD.PrintErr("Can't show message about being in a prototype while loading or saving");
+            return;
+        }
+
+        new InProgressSave(SaveInformation.SaveType.Invalid, () => currentNode, _ =>
+                new Save(),
+            (inProgress, _) => { SetMessageAboutPrototypeSaving(inProgress); }, "invalid_prototype").Start();
     }
 
     /// <summary>
@@ -373,8 +426,14 @@ public static class SaveHelper
     }
 
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
-        Action<Save> copyInfoToSave, Func<Node> stateRoot, string saveName = null)
+        Action<Save> copyInfoToSave, Func<Node> stateRoot, string? saveName = null)
     {
+        if (type == SaveInformation.SaveType.QuickSave && !AllowQuickSavingAndLoading)
+        {
+            GD.Print("Can't save due to quick save being currently suppressed");
+            return;
+        }
+
         if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
         {
             GD.PrintErr("Can't start save while a load or save is in progress");
@@ -388,6 +447,9 @@ public static class SaveHelper
                 copyInfoToSave.Invoke(save);
 
                 if (PreventSavingIfExtinct(inProgress, save))
+                    return;
+
+                if (PreventSavingIfInPrototype(inProgress, save))
                     return;
 
                 PerformSave(inProgress, save);
@@ -406,12 +468,42 @@ public static class SaveHelper
 
     private static bool PreventSavingIfExtinct(InProgressSave inProgress, Save save)
     {
+        if (save.SavedProperties == null)
+        {
+            GD.PrintErr("Can't check extinction before saving because save is missing game properties");
+            try
+            {
+                throw new NullReferenceException();
+            }
+            catch (NullReferenceException e)
+            {
+                inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED_WITH_EXCEPTION"),
+                    e.ToString(), true);
+                return true;
+            }
+        }
+
         if (!save.SavedProperties.GameWorld.PlayerSpecies.IsExtinct)
             return false;
 
         inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
             TranslationServer.Translate("PLAYER_EXTINCT"), false);
         return true;
+    }
+
+    private static bool PreventSavingIfInPrototype(InProgressSave inProgress, Save save)
+    {
+        if (!save.SavedProperties!.InPrototypes)
+            return false;
+
+        SetMessageAboutPrototypeSaving(inProgress);
+        return true;
+    }
+
+    private static void SetMessageAboutPrototypeSaving(InProgressSave inProgressSave)
+    {
+        inProgressSave.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
+            TranslationServer.Translate("IN_PROTOTYPE"), false);
     }
 
     private static void PerformSave(InProgressSave inProgress, Save save)
@@ -429,7 +521,7 @@ public static class SaveHelper
                 throw;
 #pragma warning restore 162
 
-            inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED"),
+            inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED_WITH_EXCEPTION"),
                 e.ToString());
             return;
         }

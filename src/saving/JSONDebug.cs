@@ -9,7 +9,7 @@
     /// </summary>
     public static class JSONDebug
     {
-        private static readonly List<string> QueuedTraces = new List<string>();
+        private static readonly List<string> QueuedTraces = new();
 
         public enum DebugMode
         {

@@ -5,12 +5,12 @@ using Newtonsoft.Json;
 public class TranslationsInfo : IRegistryType
 {
     [JsonProperty]
-    public Dictionary<string, float> TranslationProgress { get; private set; }
+    public Dictionary<string, float> TranslationProgress { get; private set; } = null!;
 
     /// <summary>
     ///   Unused
     /// </summary>
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = null!;
 
     public void Check(string name)
     {

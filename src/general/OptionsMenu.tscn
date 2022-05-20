@@ -32,7 +32,6 @@ anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_edit_vertical_guides_": [ -85.3295 ]
 }
 ResetButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Reset")
@@ -46,6 +45,8 @@ GraphicsTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphic
 VSyncPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/Vsync")
 FullScreenPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/Fullscreen")
 MSAAResolutionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer/MSAAResolution")
+ResolutionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer4/Resolution")
+MaxFramesPerSecondPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer3/MaxFramesPerSecond")
 ColourblindSettingPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer2/ColourblindSetting")
 ChromaticAberrationSliderPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount")
 ChromaticAberrationTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle")
@@ -104,9 +105,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 300.0
+margin_left = 295.0
 margin_top = 20.0
-margin_right = 980.0
+margin_right = 984.0
 margin_bottom = 700.0
 custom_constants/separation = 5
 __meta__ = {
@@ -114,7 +115,7 @@ __meta__ = {
 }
 
 [node name="TabButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_right = 680.0
+margin_right = 689.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 alignment = 1
@@ -146,7 +147,7 @@ text = "SOUND"
 
 [node name="PerformanceButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
 margin_left = 268.0
-margin_right = 412.0
+margin_right = 421.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
@@ -156,8 +157,8 @@ group = SubResource( 1 )
 text = "PERFORMANCE"
 
 [node name="InputsButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 416.0
-margin_right = 546.0
+margin_left = 425.0
+margin_right = 555.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
@@ -167,8 +168,8 @@ group = SubResource( 1 )
 text = "INPUTS"
 
 [node name="MiscButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 550.0
-margin_right = 680.0
+margin_left = 559.0
+margin_right = 689.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
@@ -179,14 +180,14 @@ text = "MISC"
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 40.0
-margin_right = 680.0
+margin_right = 689.0
 margin_bottom = 640.0
 rect_min_size = Vector2( 0, 600 )
 
 [node name="Graphics" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 679.0
+margin_right = 688.0
 margin_bottom = 599.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -196,7 +197,7 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 663.0
+margin_right = 672.0
 margin_bottom = 583.0
 custom_constants/separation = 10
 __meta__ = {
@@ -204,57 +205,57 @@ __meta__ = {
 }
 
 [node name="Vsync" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_right = 81.0
-margin_bottom = 22.0
+margin_right = 88.0
+margin_bottom = 25.0
 size_flags_horizontal = 0
 text = "VSYNC"
 
 [node name="Fullscreen" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 32.0
-margin_right = 141.0
-margin_bottom = 54.0
+margin_top = 35.0
+margin_right = 147.0
+margin_bottom = 60.0
 size_flags_horizontal = 0
 text = "FULLSCREEN"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 64.0
-margin_right = 648.0
-margin_bottom = 68.0
+margin_top = 70.0
+margin_right = 657.0
+margin_bottom = 74.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
-margin_top = 78.0
-margin_right = 648.0
-margin_bottom = 120.0
+margin_top = 84.0
+margin_right = 657.0
+margin_bottom = 129.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer"]
-margin_right = 268.0
-margin_bottom = 42.0
+margin_right = 290.0
+margin_bottom = 45.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 268.0
-margin_bottom = 22.0
+margin_right = 290.0
+margin_bottom = 25.0
 mouse_filter = 0
 text = "MULTISAMPLE_ANTI_ALIASING"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_top = 26.0
-margin_right = 268.0
-margin_bottom = 42.0
+margin_top = 29.0
+margin_right = 290.0
+margin_bottom = 45.0
 custom_fonts/font = ExtResource( 4 )
 text = "HIGHER_VALUES_WORSEN_PERFORMANCE"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer"]
-margin_left = 272.0
-margin_right = 444.0
-margin_bottom = 42.0
+margin_left = 294.0
+margin_right = 453.0
+margin_bottom = 45.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="MSAAResolution" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer"]
-margin_left = 448.0
-margin_right = 648.0
+margin_left = 457.0
+margin_right = 657.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
@@ -266,74 +267,80 @@ __meta__ = {
 }
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
-margin_top = 130.0
-margin_right = 648.0
-margin_bottom = 152.0
+margin_top = 139.0
+margin_right = 657.0
+margin_bottom = 164.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer4"]
-margin_right = 113.0
-margin_bottom = 22.0
+margin_right = 124.0
+margin_bottom = 25.0
 text = "RESOLUTION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer4"]
-margin_left = 117.0
-margin_right = 597.0
-margin_bottom = 22.0
+margin_left = 128.0
+margin_right = 466.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer4"]
-margin_left = 601.0
-margin_right = 648.0
-margin_bottom = 22.0
-text = "AUTO"
+[node name="Resolution" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer4"]
+margin_left = 470.0
+margin_right = 657.0
+margin_bottom = 25.0
+text = "AUTO_RESOLUTION"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
-margin_top = 162.0
-margin_right = 648.0
-margin_bottom = 184.0
+margin_top = 174.0
+margin_right = 657.0
+margin_bottom = 199.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer3"]
-margin_right = 83.0
-margin_bottom = 22.0
+margin_right = 250.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 250, 0 )
 text = "MAX_FPS"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer3"]
-margin_left = 87.0
-margin_right = 608.0
-margin_bottom = 22.0
+margin_left = 254.0
+margin_right = 453.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer3"]
-margin_left = 612.0
-margin_right = 648.0
-margin_bottom = 22.0
-text = "400"
+[node name="MaxFramesPerSecond" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer3"]
+margin_left = 457.0
+margin_right = 657.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+text = "60"
+items = [ "30", null, false, 0, null, "60", null, false, 1, null, "90", null, false, 2, null, "120", null, false, 3, null, "144", null, false, 4, null, "240", null, false, 5, null, "360", null, false, 6, null, "1000", null, false, 7, null, "MAX_FPS_NO_LIMIT", null, false, 8, null ]
+selected = 1
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
-margin_top = 194.0
-margin_right = 648.0
-margin_bottom = 219.0
+margin_top = 209.0
+margin_right = 657.0
+margin_bottom = 234.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer2"]
-margin_top = 1.0
-margin_right = 248.0
-margin_bottom = 23.0
+margin_right = 271.0
+margin_bottom = 25.0
 mouse_filter = 0
 text = "COLOURBLIND_CORRECTION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer2"]
-margin_left = 252.0
-margin_right = 444.0
+margin_left = 275.0
+margin_right = 453.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="ColourblindSetting" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer2"]
-margin_left = 448.0
-margin_right = 648.0
+margin_left = 457.0
+margin_right = 657.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 text = "NONE"
@@ -344,28 +351,28 @@ __meta__ = {
 }
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
-margin_top = 229.0
-margin_right = 648.0
-margin_bottom = 251.0
+margin_top = 244.0
+margin_right = 657.0
+margin_bottom = 269.0
 size_flags_horizontal = 3
 
 [node name="ChromaticToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5" instance=ExtResource( 10 )]
-margin_right = 244.0
-margin_bottom = 22.0
+margin_right = 265.0
+margin_bottom = 25.0
 pressed = true
 text = "CHROMATIC_ABERRATION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5"]
-margin_left = 248.0
-margin_right = 444.0
-margin_bottom = 22.0
+margin_left = 269.0
+margin_right = 453.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="ChromaticAmount" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5"]
-margin_left = 448.0
-margin_right = 648.0
-margin_bottom = 22.0
+margin_left = 457.0
+margin_right = 657.0
+margin_bottom = 25.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -374,17 +381,17 @@ max_value = 50.0
 value = 20.0
 
 [node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 261.0
-margin_right = 237.0
-margin_bottom = 283.0
+margin_top = 279.0
+margin_right = 247.0
+margin_bottom = 304.0
 size_flags_horizontal = 0
 pressed = true
 text = "DISPLAY_ABILITIES_BAR"
 
 [node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 293.0
-margin_right = 286.0
-margin_bottom = 315.0
+margin_top = 314.0
+margin_right = 300.0
+margin_bottom = 339.0
 size_flags_horizontal = 0
 pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
@@ -1166,7 +1173,7 @@ selected = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 645.0
-margin_right = 680.0
+margin_right = 689.0
 margin_bottom = 680.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
@@ -1181,7 +1188,7 @@ __meta__ = {
 
 [node name="Reset" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 104.0
-margin_right = 173.0
+margin_right = 176.0
 margin_bottom = 35.0
 focus_mode = 0
 disabled = true
@@ -1191,8 +1198,8 @@ __meta__ = {
 }
 
 [node name="Save" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 177.0
-margin_right = 277.0
+margin_left = 180.0
+margin_right = 280.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 focus_mode = 0
@@ -1203,15 +1210,15 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 281.0
-margin_right = 373.0
+margin_left = 284.0
+margin_right = 360.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="Defaults" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 377.0
-margin_right = 680.0
+margin_left = 364.0
+margin_right = 689.0
 margin_bottom = 35.0
 focus_mode = 0
 text = "RESET_SETTINGS_TO_DEFAULTS"
@@ -1221,27 +1228,27 @@ __meta__ = {
 
 [node name="DefaultsConfirm" parent="CenterContainer" instance=ExtResource( 6 )]
 margin_left = 340.0
-margin_top = 311.0
+margin_top = 360.0
 margin_right = 940.0
-margin_bottom = 408.0
+margin_bottom = 360.0
 rect_min_size = Vector2( 600, 0 )
-DialogText = "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 WindowTitle = "RESET_TO_DEFAULTS"
+DialogText = "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 
 [node name="DefaultsInputsConfirm" parent="CenterContainer" instance=ExtResource( 6 )]
 margin_left = 340.0
-margin_top = 311.0
+margin_top = 360.0
 margin_right = 940.0
-margin_bottom = 408.0
+margin_bottom = 360.0
 rect_min_size = Vector2( 600, 0 )
-DialogText = "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 WindowTitle = "RESET_INPUTS_TO_DEFAULTS"
+DialogText = "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 
 [node name="BackConfirm" parent="CenterContainer" instance=ExtResource( 8 )]
 margin_left = 340.0
-margin_top = 313.0
+margin_top = 360.0
 margin_right = 940.0
-margin_bottom = 406.0
+margin_bottom = 360.0
 rect_min_size = Vector2( 600, 0 )
 popup_exclusive = true
 WindowTitle = "CLOSE_OPTIONS"
@@ -1321,18 +1328,17 @@ __meta__ = {
 
 [node name="ConflictDialog" parent="CenterContainer" instance=ExtResource( 6 )]
 margin_left = 390.0
-margin_top = 311.0
+margin_top = 360.0
 margin_right = 890.0
-margin_bottom = 408.0
+margin_bottom = 360.0
 rect_min_size = Vector2( 500, 0 )
 WindowTitle = "ERROR"
 
 [node name="ErrorDialog" parent="CenterContainer" instance=ExtResource( 9 )]
-visible = false
 margin_left = 440.0
-margin_top = 317.0
+margin_top = 360.0
 margin_right = 840.0
-margin_bottom = 402.0
+margin_bottom = 360.0
 rect_min_size = Vector2( 400, 0 )
 WindowTitle = "ERROR"
 Resizable = false
@@ -1340,13 +1346,13 @@ ErrorMessage = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 
 [node name="NoDirectoryDialog" parent="CenterContainer" instance=ExtResource( 6 )]
 margin_left = 340.0
-margin_top = 311.0
+margin_top = 360.0
 margin_right = 940.0
-margin_bottom = 408.0
+margin_bottom = 360.0
 rect_min_size = Vector2( 600, 0 )
-DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
-HideCancelButton = true
 WindowTitle = "NO_SCREENSHOT_DIRECTORY"
+HideCancelButton = true
+DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="ChangeSettingsTab" binds= [ "Graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="ChangeSettingsTab" binds= [ "Sound" ]]
@@ -1356,6 +1362,7 @@ WindowTitle = "NO_SCREENSHOT_DIRECTORY"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/Vsync" to="." method="OnVSyncToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/Fullscreen" to="." method="OnFullScreenToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer/MSAAResolution" to="." method="OnMSAAResolutionSelected"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer3/MaxFramesPerSecond" to="." method="OnMaxFramesPerSecondSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer2/ColourblindSetting" to="." method="OnColourblindSettingSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle" to="." method="OnChromaticAberrationToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount" to="." method="OnChromaticAberrationValueChanged"]

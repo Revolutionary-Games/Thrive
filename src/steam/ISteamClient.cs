@@ -5,7 +5,7 @@ using Object = Godot.Object;
 /// <summary>
 ///   Interface specifying the Steam operations we use. Implemented in the SteamClient.cs file
 /// </summary>
-public interface ISteamClient : ISteamSignalReceiver
+public interface ISteamClient : ISteamSignalReceiver, IDisposable
 {
     /// <summary>
     ///   True if the Steam client has been initialized
@@ -14,7 +14,7 @@ public interface ISteamClient : ISteamSignalReceiver
 
     string DisplayName { get; }
 
-    public uint AppId { get; }
+    public ulong AppId { get; }
 
     void Init();
 
@@ -35,13 +35,13 @@ public interface ISteamClient : ISteamSignalReceiver
     void CreateWorkshopItem(Action<WorkshopResult> callback);
     ulong StartWorkshopItemUpdate(ulong itemId);
     bool SetWorkshopItemTitle(ulong updateHandle, string title);
-    bool SetWorkshopItemDescription(ulong updateHandle, string description);
+    bool SetWorkshopItemDescription(ulong updateHandle, string? description);
     bool SetWorkshopItemVisibility(ulong updateHandle, SteamItemVisibility visibility);
     bool SetWorkshopItemContentFolder(ulong updateHandle, string contentFolder);
     bool SetWorkshopItemPreview(ulong updateHandle, string previewImage);
-    void SubmitWorkshopItemUpdate(ulong updateHandle, string changeNotes, Action<WorkshopResult> callback);
+    void SubmitWorkshopItemUpdate(ulong updateHandle, string? changeNotes, Action<WorkshopResult> callback);
     SteamUploadProgress GetWorkshopItemUpdateProgress(ulong itemId);
-    bool SetWorkshopItemTags(ulong updateHandle, List<string> tags);
+    bool SetWorkshopItemTags(ulong updateHandle, List<string>? tags);
     List<string> GetInstalledWorkshopItemFolders();
     void OpenWorkshopItemInOverlayBrowser(ulong itemId);
 }

@@ -11,14 +11,14 @@ using Godot;
 public class InputGroupItem : VBoxContainer
 {
     [Export]
-    public NodePath InputGroupHeaderPath;
+    public NodePath InputGroupHeaderPath = null!;
 
     [Export]
-    public NodePath InputActionsContainerPath;
+    public NodePath InputActionsContainerPath = null!;
 
-    private Label inputGroupHeader;
-    private VBoxContainer inputActionsContainer;
-    private string groupName;
+    private Label? inputGroupHeader;
+    private VBoxContainer inputActionsContainer = null!;
+    private string groupName = "error";
 
     /// <summary>
     ///   The display name for the group
@@ -35,29 +35,37 @@ public class InputGroupItem : VBoxContainer
                 return;
 
             groupName = value;
-            if (inputGroupHeader != null)
-                ApplyGroupName();
+            ApplyGroupName();
         }
     }
 
     /// <summary>
     ///   The associated actions the group contains
     /// </summary>
-    public List<InputActionItem> Actions { get; private set; }
+    public List<InputActionItem> Actions { get; private set; } = null!;
 
     /// <summary>
     ///   A list of environments the actions of the group are associated with.
     ///   Used by the key conflict detection.
     /// </summary>
-    public List<string> EnvironmentId { get; private set; }
+    public List<string> EnvironmentId { get; private set; } = null!;
 
     /// <summary>
     ///   The top level input list this input group is associated with
     /// </summary>
-    internal WeakReference<InputGroupList> AssociatedList { get; private set; }
+    internal WeakReference<InputGroupList> AssociatedList { get; private set; } = null!;
 
     public override void _Ready()
     {
+        if (Actions == null)
+            throw new InvalidOperationException($"{nameof(Actions)} can't be null");
+
+        if (EnvironmentId == null)
+            throw new InvalidOperationException($"{nameof(EnvironmentId)} can't be null");
+
+        if (AssociatedList == null)
+            throw new InvalidOperationException($"{nameof(AssociatedList)} can't be null");
+
         inputGroupHeader = GetNode<Label>(InputGroupHeaderPath);
         inputActionsContainer = GetNode<VBoxContainer>(InputActionsContainerPath);
 
@@ -80,7 +88,8 @@ public class InputGroupItem : VBoxContainer
         result.GroupName = data.GroupName;
 
         // Build child objects
-        result.Actions = data.Actions.Select(x => InputActionItem.BuildGUI(result, x, inputData[x.InputName])).ToList();
+        result.Actions = data.Actions
+            .Select(x => InputActionItem.BuildGUI(result, x, inputData[x.InputName].WhereNotNull())).ToList();
 
         // When the result is attached to the scene tree it attaches the child objects. So it *must* be attached
         // at least one otherwise the child objects leak
@@ -89,6 +98,7 @@ public class InputGroupItem : VBoxContainer
 
     private void ApplyGroupName()
     {
-        inputGroupHeader.Text = GroupName;
+        if (inputGroupHeader != null)
+            inputGroupHeader.Text = GroupName;
     }
 }
