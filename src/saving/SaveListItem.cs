@@ -102,6 +102,13 @@ public class SaveListItem : PanelContainer
     [Signal]
     public delegate void OnDifferentVersionPrototypeLoaded();
 
+    /// <summary>
+    ///   Triggered when this is loaded without a problem. This is triggered when the load is already in progress
+    ///   so this is more of an informative callback for components that need to know when a save load was done.
+    /// </summary>
+    [Signal]
+    public delegate void OnProblemFreeSaveLoaded(string saveName);
+
     public string SaveName
     {
         get => saveName;
@@ -296,6 +303,7 @@ public class SaveListItem : PanelContainer
     private void LoadSave()
     {
         SaveHelper.LoadSave(SaveName);
+        EmitSignal(nameof(OnProblemFreeSaveLoaded), saveName);
     }
 
     private void LoadSaveData()

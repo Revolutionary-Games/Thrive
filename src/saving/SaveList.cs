@@ -90,6 +90,9 @@ public class SaveList : ScrollContainer
     [Signal]
     public delegate void OnConfirmed(SaveListItem item);
 
+    [Signal]
+    public delegate void OnSaveLoaded(string saveName);
+
     public override void _Ready()
     {
         loadingItem = GetNode<Control>(LoadingItemPath);
@@ -160,6 +163,7 @@ public class SaveList : ScrollContainer
                 item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
                 item.Connect(nameof(SaveListItem.OnDifferentVersionPrototypeLoaded), this,
                     nameof(OnDifferentVersionPrototypeLoaded));
+                item.Connect(nameof(SaveListItem.OnProblemFreeSaveLoaded), this, nameof(OnSaveLoadedWithoutProblems));
 
                 item.SaveName = save;
                 savesList.AddChild(item);
@@ -385,6 +389,12 @@ public class SaveList : ScrollContainer
         }
 
         SaveHelper.LoadSave(saveToBeLoaded);
+        EmitSignal(nameof(OnSaveLoaded), saveToBeLoaded);
         saveToBeLoaded = null;
+    }
+
+    private void OnSaveLoadedWithoutProblems(string saveName)
+    {
+        EmitSignal(nameof(OnSaveLoaded), saveName);
     }
 }
