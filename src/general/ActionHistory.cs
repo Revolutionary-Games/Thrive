@@ -51,6 +51,30 @@ public class ActionHistory<T>
     }
 
     /// <summary>
+    ///   Gets the action that would be performed with <see cref="Redo"/>
+    /// </summary>
+    /// <returns>The action or null if there is nothing to redo</returns>
+    public T? ActionToRedo()
+    {
+        if (!CanRedo())
+            return null;
+
+        return Actions[ActionIndex];
+    }
+
+    /// <summary>
+    ///   Gets the action that would be performed with <see cref="Undo"/>
+    /// </summary>
+    /// <returns>The action or null if there is nothing to undo</returns>
+    public T? ActionToUndo()
+    {
+        if (!CanUndo())
+            return null;
+
+        return Actions[ActionIndex - 1];
+    }
+
+    /// <summary>
     ///   Adds a new action and performs it
     /// </summary>
     public virtual void AddAction(T action)

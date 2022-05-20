@@ -62,7 +62,7 @@ public class InProgressLoad
 
         IsLoading = true;
         SceneManager.Instance.DetachCurrentScene();
-        SceneManager.Instance.GetTree().Paused = true;
+        PauseManager.Instance.AddPause(nameof(InProgressLoad));
 
         Invoke.Instance.Perform(Step);
     }
@@ -183,13 +183,12 @@ public class InProgressLoad
 
                 JSONDebug.FlushJSONTracesOut();
 
+                PauseManager.Instance.Resume(nameof(InProgressLoad));
+
                 if (success)
                 {
                     LoadingScreen.Instance.Hide();
                     SaveStatusOverlay.Instance.ShowMessage(message);
-
-                    // TODO: does this cause problems if the game was paused when saving?
-                    loadedState!.GameStateRoot.GetTree().Paused = false;
                 }
                 else
                 {

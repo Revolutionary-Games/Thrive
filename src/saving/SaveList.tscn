@@ -12,9 +12,6 @@ size_flags_horizontal = 3
 theme = ExtResource( 2 )
 follow_focus = true
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 LoadingItemPath = NodePath("MarginContainer/VBoxContainer/LoadingLabel")
 NoSavesItemPath = NodePath("MarginContainer/VBoxContainer/NoSavesLabel")
 SavesListPath = NodePath("MarginContainer/VBoxContainer/ItemList")
@@ -25,6 +22,7 @@ LoadInvalidSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadInvalidS
 LoadIncompatibleDialogPath = NodePath("MarginContainer/VBoxContainer/LoadKnownIncompatibleDialog")
 UpgradeSaveDialogPath = NodePath("MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog")
 UpgradeFailedDialogPath = NodePath("MarginContainer/VBoxContainer/SaveUpgradeFailedDialog")
+LoadIncompatiblePrototypeDialogPath = NodePath("MarginContainer/VBoxContainer/LoadIncompatiblePrototypeDialog")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 1280.0
@@ -120,6 +118,15 @@ margin_right = 1270.0
 margin_bottom = 89.0
 WindowTitle = "SAVE_UPGRADE_FAILED"
 ErrorMessage = "SAVE_UPGRADE_FAILED_DESCRIPTION"
+
+[node name="LoadIncompatiblePrototypeDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 4.0
+margin_right = 1270.0
+margin_bottom = 89.0
+rect_min_size = Vector2( 700, 0 )
+WindowTitle = "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
+HideCancelButton = true
+DialogText = "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog" to="." method="OnConfirmDelete"]
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmLoadNewer"]

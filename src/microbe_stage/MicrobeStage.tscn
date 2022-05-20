@@ -2308,4 +2308,3 @@ visible = true
 [connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="MicrobeHUD" method="OnRadialItemSelected"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
-[connection signal="OnResumed" from="PauseMenu" to="MicrobeHUD" method="FixPauseStateOnPauseMenuClose"]

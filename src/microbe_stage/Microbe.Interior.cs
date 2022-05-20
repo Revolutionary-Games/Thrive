@@ -896,6 +896,7 @@ public partial class Microbe
         cachedHexCountDirty = true;
         membraneOrganellePositionsAreDirty = true;
         hasSignalingAgent = null;
+        cachedRotationSpeed = null;
 
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount += 1;
@@ -921,6 +922,7 @@ public partial class Microbe
         cachedHexCountDirty = true;
         membraneOrganellePositionsAreDirty = true;
         hasSignalingAgent = null;
+        cachedRotationSpeed = null;
 
         Compounds.Capacity = organellesCapacity;
     }
