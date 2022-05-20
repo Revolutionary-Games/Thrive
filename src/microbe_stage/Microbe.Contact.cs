@@ -648,6 +648,8 @@ public partial class Microbe
 
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
+        cachedColonyRotationMultiplier = null;
+
         if (microbe == this)
         {
             OnUnbound?.Invoke(this);
@@ -683,6 +685,8 @@ public partial class Microbe
 
     internal void OnColonyMemberAdded(Microbe microbe)
     {
+        cachedColonyRotationMultiplier = null;
+
         if (microbe == this)
         {
             if (Colony == null)
