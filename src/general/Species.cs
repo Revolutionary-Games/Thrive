@@ -86,6 +86,12 @@ public abstract class Species : ICloneable
     public bool IsExtinct => Population <= 0;
 
     /// <summary>
+    ///   Triggered when this species is changed somehow. Should update any data that is cached in the species
+    ///   regarding its properties, including <see cref="RepositionToOrigin"/>
+    /// </summary>
+    public abstract void OnEdited();
+
+    /// <summary>
     ///   Repositions the structure of the species according to stage specific rules
     /// </summary>
     public abstract void RepositionToOrigin();

@@ -51,6 +51,9 @@ public partial class CellEditorComponent :
     public NodePath SpeedLabelPath = null!;
 
     [Export]
+    public NodePath RotationSpeedLabelPath = null!;
+
+    [Export]
     public NodePath HpLabelPath = null!;
 
     [Export]
@@ -91,6 +94,9 @@ public partial class CellEditorComponent :
 
     [Export]
     public NodePath SpeedIndicatorPath = null!;
+
+    [Export]
+    public NodePath RotationSpeedIndicatorPath = null!;
 
     [Export]
     public NodePath HpIndicatorPath = null!;
@@ -142,6 +148,7 @@ public partial class CellEditorComponent :
 
     private Label sizeLabel = null!;
     private Label speedLabel = null!;
+    private Label rotationSpeedLabel = null!;
     private Label hpLabel = null!;
     private Label storageLabel = null!;
     private Label generationLabel = null!;
@@ -161,6 +168,7 @@ public partial class CellEditorComponent :
     private SegmentedBar atpConsumptionBar = null!;
 
     private TextureRect speedIndicator = null!;
+    private TextureRect rotationSpeedIndicator = null!;
     private TextureRect hpIndicator = null!;
     private TextureRect storageIndicator = null!;
     private TextureRect sizeIndicator = null!;
@@ -194,6 +202,9 @@ public partial class CellEditorComponent :
 
     [JsonProperty]
     private float initialCellSpeed;
+
+    [JsonProperty]
+    private float initialRotationSpeed;
 
     [JsonProperty]
     private int initialCellSize;
@@ -543,6 +554,7 @@ public partial class CellEditorComponent :
 
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
+        rotationSpeedLabel = GetNode<Label>(RotationSpeedLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
         storageLabel = GetNode<Label>(StorageLabelPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
@@ -562,6 +574,7 @@ public partial class CellEditorComponent :
         atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
 
         speedIndicator = GetNode<TextureRect>(SpeedIndicatorPath);
+        rotationSpeedIndicator = GetNode<TextureRect>(RotationSpeedIndicatorPath);
         hpIndicator = GetNode<TextureRect>(HpIndicatorPath);
         storageIndicator = GetNode<TextureRect>(StorageIndicatorPath);
         sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
@@ -646,6 +659,7 @@ public partial class CellEditorComponent :
         }
 
         editedProperties.RepositionToOrigin();
+        editedProperties.CalculateRotationSpeed();
 
         // Update bacteria status
         editedProperties.IsBacteria = !HasNucleus;
@@ -692,6 +706,12 @@ public partial class CellEditorComponent :
         {
             OnOrganellesChanged();
             organelleDataDirty = false;
+        }
+
+        if (cellStatsIndicatorsDirty)
+        {
+            UpdateCellStatsIndicators();
+            cellStatsIndicatorsDirty = false;
         }
 
         // Show the organelle that is about to be placed
@@ -920,6 +940,11 @@ public partial class CellEditorComponent :
     public float CalculateSpeed()
     {
         return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles, Membrane, Rigidity);
+    }
+
+    public float CalculateRotationSpeed()
+    {
+        return MicrobeInternalCalculations.CalculateRotationSpeed(editedMicrobeOrganelles);
     }
 
     public float CalculateHitpoints()
@@ -1540,6 +1565,7 @@ public partial class CellEditorComponent :
     {
         UpdateMembraneButtons(Membrane.InternalName);
         UpdateSpeed(CalculateSpeed());
+        UpdateRotationSpeed(CalculateRotationSpeed());
         UpdateHitpoints(CalculateHitpoints());
         UpdateStorage(CalculateStorage());
         OnRigidityChanged();
@@ -1552,6 +1578,7 @@ public partial class CellEditorComponent :
         UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
 
         UpdateSpeed(CalculateSpeed());
+        UpdateRotationSpeed(CalculateRotationSpeed());
         UpdateHitpoints(CalculateHitpoints());
     }
 
@@ -1613,6 +1640,7 @@ public partial class CellEditorComponent :
         UpdatePatchDependentBalanceData();
 
         UpdateSpeed(CalculateSpeed());
+        UpdateRotationSpeed(CalculateRotationSpeed());
 
         UpdateStorage(CalculateStorage());
 
@@ -1967,69 +1995,6 @@ public partial class CellEditorComponent :
         }
     }
 
-    private void UpdateCellStatsIndicators()
-    {
-        sizeIndicator.Show();
-
-        if (MicrobeHexSize > initialCellSize)
-        {
-            sizeIndicator.Texture = increaseIcon;
-        }
-        else if (MicrobeHexSize < initialCellSize)
-        {
-            sizeIndicator.Texture = decreaseIcon;
-        }
-        else
-        {
-            sizeIndicator.Hide();
-        }
-
-        speedIndicator.Show();
-
-        if (CalculateSpeed() > initialCellSpeed)
-        {
-            speedIndicator.Texture = increaseIcon;
-        }
-        else if (CalculateSpeed() < initialCellSpeed)
-        {
-            speedIndicator.Texture = decreaseIcon;
-        }
-        else
-        {
-            speedIndicator.Hide();
-        }
-
-        hpIndicator.Show();
-
-        if (CalculateHitpoints() > initialCellHp)
-        {
-            hpIndicator.Texture = increaseIcon;
-        }
-        else if (CalculateHitpoints() < initialCellHp)
-        {
-            hpIndicator.Texture = decreaseIcon;
-        }
-        else
-        {
-            hpIndicator.Hide();
-        }
-
-        storageIndicator.Show();
-
-        if (CalculateStorage() > initialCellStorage)
-        {
-            storageIndicator.Texture = increaseIcon;
-        }
-        else if (CalculateStorage() < initialCellStorage)
-        {
-            storageIndicator.Texture = decreaseIcon;
-        }
-        else
-        {
-            storageIndicator.Hide();
-        }
-    }
-
     private void UpdateAutoEvoPredictionTranslations()
     {
         if (autoEvoPredictionRunSuccessful is false)
@@ -2204,6 +2169,7 @@ public partial class CellEditorComponent :
     private void SetInitialCellStats()
     {
         initialCellSpeed = CalculateSpeed();
+        initialRotationSpeed = CalculateRotationSpeed();
         initialCellHp = CalculateHitpoints();
         initialCellStorage = CalculateStorage();
         initialCellSize = MicrobeHexSize;

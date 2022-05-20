@@ -44,6 +44,9 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
     public bool IsBacteria { get => CellType.IsBacteria; set => CellType.IsBacteria = value; }
 
     [JsonIgnore]
+    public float BaseRotationSpeed { get => CellType.BaseRotationSpeed; set => CellType.BaseRotationSpeed = value; }
+
+    [JsonIgnore]
     public string FormattedName => CellType.TypeName;
 
     [JsonIgnore]
@@ -52,6 +55,11 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
     public void RepositionToOrigin()
     {
         CellType.RepositionToOrigin();
+    }
+
+    public void CalculateRotationSpeed()
+    {
+        CellType.CalculateRotationSpeed();
     }
 
     public void UpdateNameIfValid(string newName)

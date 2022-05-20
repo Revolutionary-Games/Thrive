@@ -15,6 +15,8 @@ using Godot;
 /// </remarks>
 public partial class CellEditorComponent
 {
+    private bool cellStatsIndicatorsDirty = true;
+
     private Texture questionIcon = null!;
 
     [Signal]
@@ -69,6 +71,86 @@ public partial class CellEditorComponent
 
         UpdateMicrobePartSelections();
         UpdateMutationPointsBar();
+    }
+
+    private void UpdateCellStatsIndicators()
+    {
+        sizeIndicator.Show();
+
+        if (MicrobeHexSize > initialCellSize)
+        {
+            sizeIndicator.Texture = increaseIcon;
+        }
+        else if (MicrobeHexSize < initialCellSize)
+        {
+            sizeIndicator.Texture = decreaseIcon;
+        }
+        else
+        {
+            sizeIndicator.Hide();
+        }
+
+        speedIndicator.Show();
+
+        var speed = CalculateSpeed();
+        if (speed > initialCellSpeed)
+        {
+            speedIndicator.Texture = increaseIcon;
+        }
+        else if (speed < initialCellSpeed)
+        {
+            speedIndicator.Texture = decreaseIcon;
+        }
+        else
+        {
+            speedIndicator.Hide();
+        }
+
+        rotationSpeedIndicator.Show();
+
+        var rotationSpeed = CalculateRotationSpeed();
+        if (rotationSpeed > initialRotationSpeed)
+        {
+            rotationSpeedIndicator.Texture = increaseIcon;
+        }
+        else if (rotationSpeed < initialRotationSpeed)
+        {
+            rotationSpeedIndicator.Texture = decreaseIcon;
+        }
+        else
+        {
+            rotationSpeedIndicator.Hide();
+        }
+
+        hpIndicator.Show();
+
+        if (CalculateHitpoints() > initialCellHp)
+        {
+            hpIndicator.Texture = increaseIcon;
+        }
+        else if (CalculateHitpoints() < initialCellHp)
+        {
+            hpIndicator.Texture = decreaseIcon;
+        }
+        else
+        {
+            hpIndicator.Hide();
+        }
+
+        storageIndicator.Show();
+
+        if (CalculateStorage() > initialCellStorage)
+        {
+            storageIndicator.Texture = increaseIcon;
+        }
+        else if (CalculateStorage() < initialCellStorage)
+        {
+            storageIndicator.Texture = decreaseIcon;
+        }
+        else
+        {
+            storageIndicator.Hide();
+        }
     }
 
     private void CheckRunningAutoEvoPrediction()
@@ -135,7 +217,7 @@ public partial class CellEditorComponent
     {
         sizeLabel.Text = size.ToString(CultureInfo.CurrentCulture);
 
-        UpdateCellStatsIndicators();
+        cellStatsIndicatorsDirty = true;
     }
 
     private void UpdateGeneration(int generation)
@@ -147,21 +229,29 @@ public partial class CellEditorComponent
     {
         speedLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", speed);
 
-        UpdateCellStatsIndicators();
+        cellStatsIndicatorsDirty = true;
+    }
+
+    private void UpdateRotationSpeed(float speed)
+    {
+        rotationSpeedLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}",
+            MicrobeInternalCalculations.RotationSpeedToUserReadableNumber(speed));
+
+        cellStatsIndicatorsDirty = true;
     }
 
     private void UpdateHitpoints(float hp)
     {
         hpLabel.Text = hp.ToString(CultureInfo.CurrentCulture);
 
-        UpdateCellStatsIndicators();
+        cellStatsIndicatorsDirty = true;
     }
 
     private void UpdateStorage(float storage)
     {
         storageLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", storage);
 
-        UpdateCellStatsIndicators();
+        cellStatsIndicatorsDirty = true;
     }
 
     /// <summary>
