@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-20 14:59+0300\n"
+"POT-Creation-Date: 2022-05-20 15:12+0300\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -4045,24 +4045,24 @@ msgstr "Új mentés létrehozása"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Auto-evo futtatása sikertelen"
 
-#: ../src/saving/SaveHelper.cs:480 ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:485 ../src/saving/SaveHelper.cs:536
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "A mentés sikertelen! Hiba történt"
 
-#: ../src/saving/SaveHelper.cs:489 ../src/saving/SaveHelper.cs:505
+#: ../src/saving/SaveHelper.cs:494 ../src/saving/SaveHelper.cs:513
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "A mentés nem sikerült a következő ok(ok)miatt:"
 
-#: ../src/saving/SaveHelper.cs:490
+#: ../src/saving/SaveHelper.cs:495
 msgid "PLAYER_EXTINCT"
 msgstr "A játékos faja kihalt"
 
-#: ../src/saving/SaveHelper.cs:506
+#: ../src/saving/SaveHelper.cs:514
 #, fuzzy
 msgid "IN_PROTOTYPE"
 msgstr "Protanóp (Piros-Zöld)"
 
-#: ../src/saving/SaveHelper.cs:514
+#: ../src/saving/SaveHelper.cs:526
 msgid "SAVING_SUCCEEDED"
 msgstr "Sikeres mentés"
 
@@ -4082,33 +4082,33 @@ msgstr "Gyorsmentés"
 msgid "SAVE_INVALID"
 msgstr "Érvénytelen"
 
-#: ../src/saving/SaveList.cs:208
+#: ../src/saving/SaveList.cs:215
 msgid "SAVE_DELETE_WARNING"
 msgstr "Biztos véglegesen akarod törölni a következő mentést: {0}?"
 
-#: ../src/saving/SaveList.tscn:53
+#: ../src/saving/SaveList.tscn:51
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Nincs mentés"
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Betöltés..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Törlöd ezt a mentést?"
 
-#: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
+#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Betöltöd ezt az inkompatibilis mentést?"
 
-#: ../src/saving/SaveList.tscn:80
+#: ../src/saving/SaveList.tscn:78
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Ez a mentés a Thrive egyik frissebb verziójából származik, és nagy eséllyel nem kompatibilis.\n"
 "Így is be akarod tölteni a mentést?"
 
-#: ../src/saving/SaveList.tscn:88
+#: ../src/saving/SaveList.tscn:86
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Ez a mentés a Thrive egy régebbi verziójából való, és nem biztos, hogy kompatibilis.\n"
@@ -4116,30 +4116,30 @@ msgstr ""
 "Jelentheted ezeket a hibákat a fejlesztőknek, de ezek nem elsődlegesek.\n"
 "Biztos be akarod tölteni a mentést?"
 
-#: ../src/saving/SaveList.tscn:95
+#: ../src/saving/SaveList.tscn:93
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Betöltöd ezt az érvénytelen mentést?"
 
-#: ../src/saving/SaveList.tscn:96
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "A mentési információt nem lehet betölteni ebből a fájlból.\n"
 "Ez a mentés nagy eséllyel korruptált, vagy új formátumú, amit a Thrive ezen verziója nem ismer fel.\n"
 "Biztos be akarod tölteni ezt a mentést?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:101
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "A kiválasztott mentés nem kompatibilis"
 
-#: ../src/saving/SaveList.tscn:105
+#: ../src/saving/SaveList.tscn:103
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:114
+#: ../src/saving/SaveList.tscn:112
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "A kiválasztott mentés frissíthető"
 
-#: ../src/saving/SaveList.tscn:115
+#: ../src/saving/SaveList.tscn:113
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "A kijelölt mentés a Thrive egy régebbi verziójából való, de újabb verzióra lehet frissíteni.\n"
@@ -4147,15 +4147,25 @@ msgstr ""
 "Ha nem frissíted a mentést, akkor a játék megpróbálja betölteni így is.\n"
 "Frissíted ezt a mentést?"
 
-#: ../src/saving/SaveList.tscn:121
+#: ../src/saving/SaveList.tscn:119
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "A mentés frissítése sikertelen"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
 "{0}"
+
+#: ../src/saving/SaveList.tscn:127
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
+msgstr "A kiválasztott mentés nem kompatibilis"
+
+#: ../src/saving/SaveList.tscn:129
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
+msgstr "Betöltöd ezt az inkompatibilis mentést?"
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"

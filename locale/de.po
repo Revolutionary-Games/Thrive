@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-20 14:59+0300\n"
+"POT-Creation-Date: 2022-05-20 15:12+0300\n"
 "PO-Revision-Date: 2022-04-08 11:52+0000\n"
 "Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -4035,26 +4035,26 @@ msgstr "Kann nicht speichern"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Der Versuch zu speichern ist missglückt. Möglicherweise ist der Speichername zu lang oder du hast keinen Zugang zum Speicherordner."
 
-#: ../src/saving/SaveHelper.cs:480 ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:485 ../src/saving/SaveHelper.cs:536
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Speichern fehlgeschlagen. Ein Fehler ist aufgetreten."
 
-#: ../src/saving/SaveHelper.cs:489 ../src/saving/SaveHelper.cs:505
+#: ../src/saving/SaveHelper.cs:494 ../src/saving/SaveHelper.cs:513
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Speichern ist aus folgenden Gründen nicht möglich:"
 
-#: ../src/saving/SaveHelper.cs:490
+#: ../src/saving/SaveHelper.cs:495
 msgid "PLAYER_EXTINCT"
 msgstr "Spieler ist ausgestorben"
 
-#: ../src/saving/SaveHelper.cs:506
+#: ../src/saving/SaveHelper.cs:514
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Du spielst die späteren Prototypen, die dem Spiel beigefügt sind. \n"
 "Diese sind möglicherweise sehr unvollständig, verwenden Platzhaltergrafiken und sind im Allgemeinen sehr grob. \n"
 "Das Speichern ist daher derzeit nicht möglich."
 
-#: ../src/saving/SaveHelper.cs:514
+#: ../src/saving/SaveHelper.cs:526
 msgid "SAVING_SUCCEEDED"
 msgstr "Speichern erfolgreich"
 
@@ -4074,33 +4074,33 @@ msgstr "Schnellspeicherung"
 msgid "SAVE_INVALID"
 msgstr "Ungülig"
 
-#: ../src/saving/SaveList.cs:208
+#: ../src/saving/SaveList.cs:215
 msgid "SAVE_DELETE_WARNING"
 msgstr "Das Löschen dieses Spielstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du {0} dauerhaft löschen willst?"
 
-#: ../src/saving/SaveList.tscn:53
+#: ../src/saving/SaveList.tscn:51
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "keine Speicherstände gefunden"
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Lädt..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Diesen Spielstand wirklich löschen?"
 
-#: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
+#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Inkompatiblen Speicherstand laden?"
 
-#: ../src/saving/SaveList.tscn:80
+#: ../src/saving/SaveList.tscn:78
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Dieser Speicherstand stammt aus einer neueren Version von Thrive und ist sehr wahrscheinlich inkompatibel.\n"
 "Möchtest du trotzdem versuchen, den Spielstand zu laden?"
 
-#: ../src/saving/SaveList.tscn:88
+#: ../src/saving/SaveList.tscn:86
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Dieser Speicherstand stammt aus einer alten Version von Thrive und ist möglicherweise inkompatibel.\n"
@@ -4108,33 +4108,33 @@ msgstr ""
 "Du kannst alle Probleme melden, auf die du stoßt, aber sie haben im Moment nicht die höchste Priorität.\n"
 "Möchtest du trotzdem versuchen, den Spielstand zu laden?"
 
-#: ../src/saving/SaveList.tscn:95
+#: ../src/saving/SaveList.tscn:93
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Ungültigen Speicherstand laden?"
 
-#: ../src/saving/SaveList.tscn:96
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Aus dieser Datei konnten keine Speicherinformationen geladen werden.\n"
 "Diese Speicherung ist höchstwahrscheinlich korrupt oder hat ein neueres Format, das von dieser Version von Thrive nicht verstanden wird.\n"
 "Möchtest du trotzdem versuchen, den Spielstand zu laden?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:101
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Der ausgewählte Speicherstand ist inkompatibel"
 
-#: ../src/saving/SaveList.tscn:105
+#: ../src/saving/SaveList.tscn:103
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Es ist bekannt, dass der ausgewählte Speicherstand mit dieser Version von Thrive inkompatibel ist.\n"
 "Es gibt keinen Spielstand-Konverter um diesen Speicherstand zu aktualisieren.\n"
 "Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die Kompatibilität von Speicherständen keine hohe Priorität, weil es nicht für alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
 
-#: ../src/saving/SaveList.tscn:114
+#: ../src/saving/SaveList.tscn:112
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Der ausgewählte Speicherstand ist aktualisierbar"
 
-#: ../src/saving/SaveList.tscn:115
+#: ../src/saving/SaveList.tscn:113
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "Die gewählte Speicherung stammt aus einer alten Thrive-Version, kann aber geupgraded werden.\n"
@@ -4142,15 +4142,28 @@ msgstr ""
 "Wenn du das upgraden überspringst wird versucht die Speicherung normal zu laden.\n"
 "Upgraden versuchen?"
 
-#: ../src/saving/SaveList.tscn:121
+#: ../src/saving/SaveList.tscn:119
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Speicherungsupgrade fehlgeschlagen"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Die Aktualisierung der angegebenen Sicherung ist aufgrund des folgenden Fehlers fehlgeschlagen:\n"
 "{0}"
+
+#: ../src/saving/SaveList.tscn:127
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
+msgstr "Der ausgewählte Speicherstand ist inkompatibel"
+
+#: ../src/saving/SaveList.tscn:129
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
+msgstr ""
+"Es ist bekannt, dass der ausgewählte Speicherstand mit dieser Version von Thrive inkompatibel ist.\n"
+"Es gibt keinen Spielstand-Konverter um diesen Speicherstand zu aktualisieren.\n"
+"Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die Kompatibilität von Speicherständen keine hohe Priorität, weil es nicht für alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"

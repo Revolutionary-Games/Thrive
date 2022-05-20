@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-20 14:59+0300\n"
+"POT-Creation-Date: 2022-05-20 15:12+0300\n"
 "PO-Revision-Date: 2022-04-15 14:50+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -4041,26 +4041,26 @@ msgstr "No pot Escriure Guardat"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "L'intent d'escriure aquest arxiu de guardat ha fallat. És possible que el nom de guardat sigui massa llarg, o pot ser que no tinguis accés a la carpeta de guardat."
 
-#: ../src/saving/SaveHelper.cs:480 ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:485 ../src/saving/SaveHelper.cs:536
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "No s'ha pogut guardar! S'ha produït una excepció"
 
-#: ../src/saving/SaveHelper.cs:489 ../src/saving/SaveHelper.cs:505
+#: ../src/saving/SaveHelper.cs:494 ../src/saving/SaveHelper.cs:513
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "No és possible guardar actualment degut a:"
 
-#: ../src/saving/SaveHelper.cs:490
+#: ../src/saving/SaveHelper.cs:495
 msgid "PLAYER_EXTINCT"
 msgstr "Jugador extingit"
 
-#: ../src/saving/SaveHelper.cs:506
+#: ../src/saving/SaveHelper.cs:514
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Estàs jugant els prototips d'estadis futurs, inclosos en el joc actual.\n"
 "Aquests poden ser molt incomplerts, fer servir gràfics temporals i ser molt \"matussers\" en general.\n"
 "Per tant, actualment no s'hi pot guardar la partida."
 
-#: ../src/saving/SaveHelper.cs:514
+#: ../src/saving/SaveHelper.cs:526
 msgid "SAVING_SUCCEEDED"
 msgstr "Acció de guardat exitosa"
 
@@ -4080,33 +4080,33 @@ msgstr "Guardat ràpid"
 msgid "SAVE_INVALID"
 msgstr "No vàlid"
 
-#: ../src/saving/SaveList.cs:208
+#: ../src/saving/SaveList.cs:215
 msgid "SAVE_DELETE_WARNING"
 msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible, esteu segur que voleu eliminar permanentment l'arxiu {0}?"
 
-#: ../src/saving/SaveList.tscn:53
+#: ../src/saving/SaveList.tscn:51
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "No s'han trobat arxius de guardat"
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Carregant..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Eliminar aquest arxiu de guardat?"
 
-#: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
+#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Carregar arxiu de guardat incompatible?"
 
-#: ../src/saving/SaveList.tscn:80
+#: ../src/saving/SaveList.tscn:78
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Aquest arxiu de guardat pertany a una versió de Thrive més nova que l'actual i, probablement, sigui incompatible.\n"
 "Voleu intentar carregar l'arxiu igualment?"
 
-#: ../src/saving/SaveList.tscn:88
+#: ../src/saving/SaveList.tscn:86
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Aquest arxiu de guardat pertany a una versió de Thrive antiga i, probablement, sigui incompatible.\n"
@@ -4114,33 +4114,33 @@ msgstr ""
 "Teniu la opció de notificar els problemes que us troben en aquest respecte però, no obstant, actualment no són de màxima prioritat.\n"
 "Voleu intentar carregar l'arxiu igualment?"
 
-#: ../src/saving/SaveList.tscn:95
+#: ../src/saving/SaveList.tscn:93
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Carregar arxiu de guardat no vàlid?"
 
-#: ../src/saving/SaveList.tscn:96
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "La informació de guardat no ha pogut ser carregada des d'aquest arxiu.\n"
 "És probable que aquest arxiu de guardat sigui corrupte, o que pertanyi a un format nou, no entès per aquesta versió de Thrive.\n"
 "Voleu intentar carregar l'arxiu igualment?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:101
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "L'arxiu de guardat seleccionat és incompatible"
 
-#: ../src/saving/SaveList.tscn:105
+#: ../src/saving/SaveList.tscn:103
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "L'arxiu de guardat seleccionat no és compatible amb la present versió de Thrive.\n"
 "I no hi ha cap actualitzador d'arxius de guardat per actualitzar aquest arxiu de guardat.\n"
 "Com que Thrive encara està en una fase primerenca de desenvolupament, la compatibilitat entre versions no és la major prioritat. Per això, encara no s'ha implementat un programa convertidor d'arxius de guardat."
 
-#: ../src/saving/SaveList.tscn:114
+#: ../src/saving/SaveList.tscn:112
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "L'arxiu de guardat seleccionat es pot actualitzar"
 
-#: ../src/saving/SaveList.tscn:115
+#: ../src/saving/SaveList.tscn:113
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "L'arxiu de guardat seleccionat és d'una versió més antiga de Thrive, però es pot actualitzar.\n"
@@ -4148,15 +4148,28 @@ msgstr ""
 "Si et saltes l'actualització, s'intentarà carregar l'arxiu de guardat amb normalitat.\n"
 "Intentar actualitzar aquest arxiu de guardat?"
 
-#: ../src/saving/SaveList.tscn:121
+#: ../src/saving/SaveList.tscn:119
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Actualització d'arxiu de guardat fallida"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Actualitzar l'arxiu de guardat especificat degut al següent error:\n"
 "{0}"
+
+#: ../src/saving/SaveList.tscn:127
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
+msgstr "L'arxiu de guardat seleccionat és incompatible"
+
+#: ../src/saving/SaveList.tscn:129
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
+msgstr ""
+"L'arxiu de guardat seleccionat no és compatible amb la present versió de Thrive.\n"
+"I no hi ha cap actualitzador d'arxius de guardat per actualitzar aquest arxiu de guardat.\n"
+"Com que Thrive encara està en una fase primerenca de desenvolupament, la compatibilitat entre versions no és la major prioritat. Per això, encara no s'ha implementat un programa convertidor d'arxius de guardat."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"

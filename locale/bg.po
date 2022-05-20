@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-20 14:59+0300\n"
+"POT-Creation-Date: 2022-05-20 15:12+0300\n"
 "PO-Revision-Date: 2022-05-20 06:07+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -4044,26 +4044,26 @@ msgstr "Записът не може да бъде създаден"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Създаването е неуспешно. Наименованието на записа може да е твърде дълго или достъпът е отказан."
 
-#: ../src/saving/SaveHelper.cs:480 ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:485 ../src/saving/SaveHelper.cs:536
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Запазването е неуспешно! Възникна грешка"
 
-#: ../src/saving/SaveHelper.cs:489 ../src/saving/SaveHelper.cs:505
+#: ../src/saving/SaveHelper.cs:494 ../src/saving/SaveHelper.cs:513
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Запазването в момента не е възможно поради:"
 
-#: ../src/saving/SaveHelper.cs:490
+#: ../src/saving/SaveHelper.cs:495
 msgid "PLAYER_EXTINCT"
 msgstr "измиране на създанията"
 
-#: ../src/saving/SaveHelper.cs:506
+#: ../src/saving/SaveHelper.cs:514
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Това са следващите етапи на играта.\n"
 "Те все още са в процес на разбработка и са включени само за демонстрационни цели.\n"
 "Запазването в момента не е възможно."
 
-#: ../src/saving/SaveHelper.cs:514
+#: ../src/saving/SaveHelper.cs:526
 msgid "SAVING_SUCCEEDED"
 msgstr "Запазването е успешно"
 
@@ -4083,33 +4083,33 @@ msgstr "Бърз запис"
 msgid "SAVE_INVALID"
 msgstr "Невалиден запис"
 
-#: ../src/saving/SaveList.cs:208
+#: ../src/saving/SaveList.cs:215
 msgid "SAVE_DELETE_WARNING"
 msgstr "Изтриването на записа не може да бъде отменено, сигурни ли сте, че искате да изтриете „{0}“?"
 
-#: ../src/saving/SaveList.tscn:53
+#: ../src/saving/SaveList.tscn:51
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Няма създадени записи"
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Зареждане..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Изтриване на този запис?"
 
-#: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
+#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Зареждане на несъвместим запис?"
 
-#: ../src/saving/SaveList.tscn:80
+#: ../src/saving/SaveList.tscn:78
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Този запис е от по-нова версия на „Thrive“ и е несъвместим.\n"
 "Искате ли да го заредите въпреки това?"
 
-#: ../src/saving/SaveList.tscn:88
+#: ../src/saving/SaveList.tscn:86
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Този запис е от стара версия на „Thrive“ и е несъвместим.\n"
@@ -4117,33 +4117,33 @@ msgstr ""
 "Ако искате, може да докладвате за потенциалните проблеми.\n"
 "Искате ли да го заредите въпреки това?"
 
-#: ../src/saving/SaveList.tscn:95
+#: ../src/saving/SaveList.tscn:93
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Зареждане на невалиден запис?"
 
-#: ../src/saving/SaveList.tscn:96
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Запазената информация не може да бъде заредена.\n"
 "Записът най-вероятно е повреден или е от по-нова версия на „Thrive“.\n"
 "Искате ли да го заредите въпреки това?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:101
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Избраният запис е несъвместим"
 
-#: ../src/saving/SaveList.tscn:105
+#: ../src/saving/SaveList.tscn:103
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Избраният запис е несъвместим с тази версия на „Thrive“.\n"
 "Надграждането не е възможно.\n"
 "Понеже играта е в начален етап на разработка и съвместимостта не е приоритет, някои записи не могат да бъдат надградени."
 
-#: ../src/saving/SaveList.tscn:114
+#: ../src/saving/SaveList.tscn:112
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Избраният запис може да бъде надграден"
 
-#: ../src/saving/SaveList.tscn:115
+#: ../src/saving/SaveList.tscn:113
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "Този запис е от стара версия на „Thrive“, но може да бъде надграден.\n"
@@ -4151,13 +4151,26 @@ msgstr ""
 "Ако пропуснете надграждането, зареждането ще продължи.\n"
 "Искате ли да продължите?"
 
-#: ../src/saving/SaveList.tscn:121
+#: ../src/saving/SaveList.tscn:119
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Надграждането на записа е неуспешно"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "Надграждането на записа е неуспешно поради следната грешка:"
+
+#: ../src/saving/SaveList.tscn:127
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
+msgstr "Избраният запис е несъвместим"
+
+#: ../src/saving/SaveList.tscn:129
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
+msgstr ""
+"Избраният запис е несъвместим с тази версия на „Thrive“.\n"
+"Надграждането не е възможно.\n"
+"Понеже играта е в начален етап на разработка и съвместимостта не е приоритет, някои записи не могат да бъдат надградени."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
