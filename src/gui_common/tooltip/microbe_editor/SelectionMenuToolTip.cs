@@ -114,7 +114,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         set
         {
             requiresNucleus = value;
-            UpdateRequiresNucelus();
+            UpdateRequiresNucleus();
         }
     }
 
@@ -157,6 +157,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         UpdateDescription();
         UpdateProcessesDescription();
         UpdateMpCost();
+        UpdateRequiresNucleus();
         UpdateLists();
     }
 
@@ -322,11 +323,12 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         mpLabel.Text = ((int)(mpCost * editorCostFactor)).ToString(CultureInfo.CurrentCulture);
     }
 
-    private void UpdateRequiresNucelus()
+    private void UpdateRequiresNucleus()
     {
         if (requiresNucleusLabel == null)
             return;
         
+        requiresNucleusLabel.Text = TranslationServer.Translate("REQUIRES_NUCLEUS");
         requiresNucleusLabel.Visible = requiresNucleus;
     }
 
