@@ -73,6 +73,7 @@ public class SaveListItem : PanelContainer
     private bool isBroken;
     private bool isKnownIncompatible;
     private bool isUpgradeable;
+    private bool isIncompatiblePrototype;
 
     [Signal]
     public delegate void OnSelectedChanged();
@@ -97,6 +98,9 @@ public class SaveListItem : PanelContainer
 
     [Signal]
     public delegate void OnKnownIncompatibleLoaded();
+
+    [Signal]
+    public delegate void OnDifferentVersionPrototypeLoaded();
 
     public string SaveName
     {
@@ -201,14 +205,21 @@ public class SaveListItem : PanelContainer
 
         if (versionDifference != 0)
         {
-            if (versionDifference < 0 && SaveUpgrader.CanUpgradeSaveToVersion(save.Info))
+            if (save.Info.IsPrototype)
             {
-                isUpgradeable = true;
+                isIncompatiblePrototype = true;
             }
-
-            if (SaveHelper.IsKnownIncompatible(save.Info.ThriveVersion))
+            else
             {
-                isKnownIncompatible = true;
+                if (versionDifference < 0 && SaveUpgrader.CanUpgradeSaveToVersion(save.Info))
+                {
+                    isUpgradeable = true;
+                }
+
+                if (SaveHelper.IsKnownIncompatible(save.Info.ThriveVersion))
+                {
+                    isKnownIncompatible = true;
+                }
             }
         }
 
@@ -245,6 +256,12 @@ public class SaveListItem : PanelContainer
         if (isBroken)
         {
             EmitSignal(nameof(OnBrokenSaveLoaded));
+            return;
+        }
+
+        if (isIncompatiblePrototype)
+        {
+            EmitSignal(nameof(OnDifferentVersionPrototypeLoaded));
             return;
         }
 

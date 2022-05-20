@@ -62,8 +62,10 @@ public class ExtinctionBox : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Unpause the game
-        GetTree().Paused = false;
+        // This now just prints an error if we are paused here, this used to unpause but when refactoring the pausing
+        // what should have paused the game before this wasn't found so this was probably just a safety check
+        if (PauseManager.Instance.Paused)
+            GD.PrintErr("Game is unexpectedly paused when closing the extinction screen");
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));

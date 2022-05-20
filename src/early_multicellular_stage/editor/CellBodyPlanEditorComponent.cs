@@ -298,9 +298,7 @@ public partial class CellBodyPlanEditorComponent :
             }
         }
 
-        editedSpecies.RepositionToOrigin();
-
-        editedSpecies.UpdateInitialCompounds();
+        editedSpecies.OnEdited();
 
         editedSpecies.UpdateNameIfValid(newName);
 

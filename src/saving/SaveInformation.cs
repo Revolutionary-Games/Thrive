@@ -58,6 +58,13 @@ public class SaveInformation
 
     public SaveType Type { get; set; } = SaveType.Manual;
 
+    /// <summary>
+    ///   True if this save was made in one of the prototypes allowing saving. Disallows save upgrade and loading
+    ///   from every different game version than exactly the one that made the save. This is so that prototype
+    ///   developers can freely rework the prototypes as much as they want without having to worry about saves.
+    /// </summary>
+    public bool IsPrototype { get; set; }
+
     [JsonIgnore]
     public string TranslatedSaveTypeString =>
         TranslationServer.Translate(Type.GetAttribute<DescriptionAttribute>()?.Description ??

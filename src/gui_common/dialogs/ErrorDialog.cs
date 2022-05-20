@@ -61,6 +61,8 @@ public class ErrorDialog : CustomDialog
         }
     }
 
+    private string PauseLock => $"{nameof(ErrorDialog)}_{Name}";
+
     public override void _Ready()
     {
         extraDescriptionLabel = GetNode<Label>("VBoxContainer/ExtraErrorDescription");
@@ -87,6 +89,8 @@ public class ErrorDialog : CustomDialog
 
         onDismissReturnToMenu = returnToMenu;
         onCloseCallback = onClosed;
+
+        PauseManager.Instance.AddPause(PauseLock);
     }
 
     private void UpdateMessage()
@@ -105,7 +109,7 @@ public class ErrorDialog : CustomDialog
 
     private void OnErrorDialogDismissed()
     {
-        SceneManager.Instance.GetTree().Paused = false;
+        PauseManager.Instance.Resume(PauseLock);
 
         if (onDismissReturnToMenu)
         {

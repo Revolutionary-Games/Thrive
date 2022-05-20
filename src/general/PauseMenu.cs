@@ -236,7 +236,7 @@ public class PauseMenu : CustomDialog
             return;
 
         animationPlayer.Play("Open");
-        GetTree().Paused = true;
+        PauseManager.Instance.AddPause(nameof(PauseMenu));
     }
 
     public void Close()
@@ -245,7 +245,7 @@ public class PauseMenu : CustomDialog
             return;
 
         animationPlayer.Play("Close");
-        GetTree().Paused = false;
+        PauseManager.Instance.Resume(nameof(PauseMenu));
     }
 
     public void OpenToHelp()
@@ -348,7 +348,7 @@ public class PauseMenu : CustomDialog
     private void ReturnToMenu()
     {
         // Unpause the game
-        GetTree().Paused = false;
+        PauseManager.Instance.Resume(nameof(PauseMenu));
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
