@@ -260,11 +260,7 @@ public class Jukebox : Node
 
         // Stream can be null for some reason. No idea what the actual cause was, for now just do this
         if (player.Player.Stream == null)
-        {
-            var stream = GD.Load<AudioStream>(track.ResourcePath);
-
-            player.Player.Stream = stream;
-        }
+            throw new InvalidOperationException("PlayTrack: The audio player stream is null");
 
         if (player.Bus != trackBus)
         {
