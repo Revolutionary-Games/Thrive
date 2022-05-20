@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-19 14:11+0300\n"
+"POT-Creation-Date: 2022-05-20 14:59+0300\n"
 "PO-Revision-Date: 2022-04-08 11:52+0000\n"
 "Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -649,7 +649,7 @@ msgid "NITROGEN"
 msgstr "Stickstoff"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3726
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3731
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
@@ -937,7 +937,7 @@ msgid "STEM_CELL_NAME"
 msgstr "Stamm"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:299
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:358
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:360
 msgid "STRUCTURE"
 msgstr "Struktur"
 
@@ -946,7 +946,7 @@ msgid "REPRODUCTION"
 msgstr "Reproduktion"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:341
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:400
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:402
 msgid "BEHAVIOUR"
 msgstr "Verhalten"
 
@@ -977,12 +977,12 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "Knospend"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:520
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1230
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "AKTION ABBRECHEN"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:533
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1245
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
@@ -1052,7 +1052,7 @@ msgstr "Laufstatus:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:376
 #: ../src/general/EditorBase.cs:641
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:52
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -1519,7 +1519,7 @@ msgstr "Grafiken von {0}"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1335
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1337
 #: ../src/modding/ModManager.tscn:992
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:392
 msgid "CLOSE"
@@ -1528,7 +1528,7 @@ msgstr "Schließen"
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:248
-#: ../src/microbe_stage/MicrobeHUD.cs:712
+#: ../src/microbe_stage/MicrobeHUD.cs:708
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
@@ -2320,7 +2320,7 @@ msgid "RAW"
 msgstr "Roh"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2227
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
 msgid "NO_DATA_TO_SHOW"
 msgstr "Keine Daten zu zeigen"
 
@@ -2674,7 +2674,7 @@ msgstr "Keine Prozesse"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1724
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2208
-#: ../src/microbe_stage/MicrobeHUD.cs:1468
+#: ../src/microbe_stage/MicrobeHUD.cs:1474
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Noch zu implementieren."
 
@@ -2770,15 +2770,15 @@ msgstr "Diese Membran hat eine starke Schale aus Kalziumkarbonat. Sie kann Besch
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Diese Membran hat eine starke Wand aus Siliciumdioxid. Sie widersteht gut gegen allgemeine Beschädigungen und ist sehr widerstandsfähig gegen physische Schäden. Sie benötigt auch weniger Energie, um ihre Form zu erhalten. Allerdings verlangsamt sie die Zelle um einen großen Faktor und die Zelle absorbiert Ressourcen mit einer reduzierten Geschwindigkeit."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3689
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3694
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Eingabemethode hinzufügen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Diese Option wird erst nach einem Neustart angewendet"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3701
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3706
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Aktiviert die Blinkeffekte auf GUIs (z.B. blinken von Editor-Schaltflächen).\n"
@@ -2786,17 +2786,17 @@ msgstr ""
 "Wenn Sie einen Fehler feststellen, bei dem Teile von Editor-Schaltflächen verschwinden,\n"
 "kannst du versuchen, dies zu deaktivieren, um zu sehen, ob das Problem verschwunden ist."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3707
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3712
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Es kann nicht automatisch erkannt werden, ob Hyperthreading aktiviert ist.\n"
 "Dies wirkt sich auf die Standardanzahl von Threads aus, da Hyperthreading-Threads nicht so schnell sind wie echte CPU-Kerne."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3712
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3717
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Aktiviert/deaktiviert das Popup-Fenster mit der Warnung vor ungespeichertem Fortschritt, wenn der Spieler versucht, das Spiel zu beenden."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3721
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3726
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
@@ -2812,15 +2812,15 @@ msgstr "N/V MP"
 msgid "DEATH"
 msgstr "Tot"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:714
+#: ../src/microbe_stage/Microbe.Contact.cs:718
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "erfolgreiche Plünderung"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:721
+#: ../src/microbe_stage/Microbe.Contact.cs:725
 msgid "SUCCESSFUL_KILL"
 msgstr "erfolgreiche Tötung"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:959
+#: ../src/microbe_stage/Microbe.Contact.cs:963
 msgid "ESCAPE_ENGULFING"
 msgstr "Verschlingung entflohen"
 
@@ -2878,48 +2878,48 @@ msgstr "Werde aggressiv"
 msgid "SIGNAL_TO_EMIT"
 msgstr "Signal zum aussenden"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:881
+#: ../src/microbe_stage/MicrobeHUD.cs:877
 msgid "STUFF_AT"
 msgstr "Sachen bei {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:914
+#: ../src/microbe_stage/MicrobeHUD.cs:910
 msgid "PLAYER_CELL"
 msgstr "Spielerzelle"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:931
+#: ../src/microbe_stage/MicrobeHUD.cs:927
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:976
+#: ../src/microbe_stage/MicrobeHUD.cs:972
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "eine Fülle"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:978
+#: ../src/microbe_stage/MicrobeHUD.cs:974
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "ziemlich viel"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:980
+#: ../src/microbe_stage/MicrobeHUD.cs:976
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "ein gutes Stück"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:982
+#: ../src/microbe_stage/MicrobeHUD.cs:978
 msgid "CATEGORY_SOME"
 msgstr "etwas"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:984
+#: ../src/microbe_stage/MicrobeHUD.cs:980
 msgid "CATEGORY_LITTLE"
 msgstr "wenig"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:986
+#: ../src/microbe_stage/MicrobeHUD.cs:982
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "sehr wenig"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1237
+#: ../src/microbe_stage/MicrobeHUD.cs:1233
 #: ../src/microbe_stage/MicrobeStage.tscn:1788
 msgid "BECOME_MULTICELLULAR"
 msgstr "Multizellulär werden ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1273
+#: ../src/microbe_stage/MicrobeHUD.cs:1269
 #: ../src/microbe_stage/MicrobeStage.tscn:1799
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopisch werden ({0}/{1})"
@@ -3068,28 +3068,28 @@ msgstr "Responsiv"
 msgid "FOCUSED"
 msgstr "Fokussiert"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:233
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:238
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:322
 msgid "ATP_PRODUCTION"
 msgstr "ATP-Produktion"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:239
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:323
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP-PRODUKTION ZU NIEDRIG!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:352
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:288
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:372
 msgid "OSMOREGULATION"
 msgstr "Osmoregulation"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:294
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:378
 msgid "BASE_MOVEMENT"
 msgstr "Basisbewegung"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:306
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:390
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -3097,162 +3097,162 @@ msgstr "{0}: -{1} ATP"
 msgid "CELL_TYPE_NAME"
 msgstr "Zellentypname"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2063
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2002
 msgid "FAILED"
 msgstr "Gescheitert"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2069
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2081
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2075
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2087
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
 msgid "N_A"
 msgstr "N/V"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2195
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2134
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie in {0} für {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2199
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2138
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Die gesammelte Gesamtenergie beträgt {0} mit individuellen Kosten von {1}, was zu einer unbereinigten Bevölkerung von {2} führt"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2206
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2145
 msgid "ENERGY_SOURCES"
 msgstr "Energiequellen:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2212
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}Energie:{1}(Fitness:{2})insgesamt verfügbare Energie:{3} (gesamte Fitness:{4})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:379
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:381
 msgid "MEMBRANE"
 msgstr "Membran"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:452
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:454
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Suche..."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:459
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:461
 msgid "STRUCTURAL"
 msgstr "Strukturell"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:468
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
 msgid "PROTEINS"
 msgstr "Proteine"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:477
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:479
 msgid "EXTERNAL"
 msgstr "Extern"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:486
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:488
 msgid "ORGANELLES"
 msgstr "Organellen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:527
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:529
 msgid "MEMBRANE_TYPES"
 msgstr "Membrantypen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:545
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:547
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Flüssigkeit / Steifigkeit"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:565
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:567
 msgid "FLUID"
 msgstr "flüssig"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:578
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:580
 msgid "RIGID"
 msgstr "steif"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:611
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:613
 msgid "COLOUR"
 msgstr "Farbe"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:679
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:681
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismus-Statistik"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:741
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:743
 msgid "SPEED_COLON"
 msgstr "Geschwindigkeit:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:772
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "Gesamtbevölkerung:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:802
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:804
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:832
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:834
 msgid "SIZE_COLON"
 msgstr "Größe:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:862
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:864
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "Speicher"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:885
 msgid "GENERATION_COLON"
 msgstr "Generation:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:925
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:927
 msgid "ATP_BALANCE"
 msgstr "ATP-Saldo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1038
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1040
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Dieses Feld zeigt die von Auto-Evo erwarteten Populationszahlen für die bearbeitete Art an.\n"
 "Auto-Evo führt die Populationssimulation durch, die der andere Teil (neben Ihrer eigenen Leistung) ist, der Ihre Population beeinflusst."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1042
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1277
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1044
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1279
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo-Vorhersage"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1050
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1052
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Detaillierte Informationen zur Prognose anzeigen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1120
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1122
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Gesamtbevölkerung:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1144
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1146
 msgid "BEST_PATCH_COLON"
 msgstr "Bestes Gebiet:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1169
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1171
 msgid "WORST_PATCH_COLON"
 msgstr "Schlechtestes Gebiet:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1252
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negativer ATP-Saldo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1253
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Deine Mikrobe produziert nicht genug ATP zum überleben!\n"
 "Möchtest du fortfahren?"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1259
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1261
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Getrennte Organellen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1261
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1263
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Es gibt Organellen, die nicht mit dem Rest verbunden sind.\n"
 "Bitte verbinde alle platzierten Organellen miteinander oder mach deine Änderungen rückgängig."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1326
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeitet. Die Gesamtenergie, die eine Spezies aufnehmen kann, und die Kosten pro Einzeltier der Spezies bestimmen die endgültige Population. Auto-Evo verwendet ein vereinfachtes Modell der Realität, um zu berechnen, wie gut die Spezies auf der Basis der von ihnen erbeuteten Energie abschneiden. Für jede Nahrungsquelle wird angezeigt, wie viel Energie die Art aus ihr gewinnt. Zusätzlich wird die Gesamtenergie, die aus dieser Quelle zur Verfügung steht, angezeigt. Der Anteil, den die Art an der Gesamtenergie gewinnt, basiert darauf, wie groß die Fitness im Vergleich zur Gesamtfitness ist. Die Fitness ist ein Maß dafür, wie gut die Spezies diese Nahrungsquelle verwerten kann."
 
@@ -3979,23 +3979,23 @@ msgstr "Während der Verarbeitung geladener Objekte trat ein Fehler auf"
 msgid "LOAD_FINISHED"
 msgstr "Laden beendet"
 
-#: ../src/saving/InProgressLoad.cs:196
+#: ../src/saving/InProgressLoad.cs:195
 msgid "ERROR_LOADING"
 msgstr "Fehler beim Laden"
 
-#: ../src/saving/InProgressLoad.cs:228
+#: ../src/saving/InProgressLoad.cs:227
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Die bereits geladenen Ressourcen konnten nicht freigegeben werden: {0}"
 
-#: ../src/saving/InProgressSave.cs:204
+#: ../src/saving/InProgressSave.cs:203
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Speichert..."
 
-#: ../src/saving/InProgressSave.cs:243
+#: ../src/saving/InProgressSave.cs:242
 msgid "SAVE_FAILED"
 msgstr "Speichern fehlgeschlagen"
 
-#: ../src/saving/InProgressSave.cs:244
+#: ../src/saving/InProgressSave.cs:243
 msgid "ERROR_SAVING"
 msgstr "Fehler beim Speichern"
 
