@@ -6,6 +6,7 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
 {
     private int orientation;
 
+    [JsonConstructor]
     public CellTemplate(CellType cellType, Hex position, int orientation)
     {
         CellType = cellType;

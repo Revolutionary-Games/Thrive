@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-20 14:59+0300\n"
+"POT-Creation-Date: 2022-05-20 15:12+0300\n"
 "PO-Revision-Date: 2022-04-15 08:28+0000\n"
 "Last-Translator: Louison Wouts <wouts.louison@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -4228,25 +4228,25 @@ msgstr "Ne peut pas absorber"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "L'Auto-évo n'a pas pu se lancer"
 
-#: ../src/saving/SaveHelper.cs:480 ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:485 ../src/saving/SaveHelper.cs:536
 #, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "La sauvegarde a échoué! Une exception est survenue"
 
-#: ../src/saving/SaveHelper.cs:489 ../src/saving/SaveHelper.cs:505
+#: ../src/saving/SaveHelper.cs:494 ../src/saving/SaveHelper.cs:513
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Sauvegarde actuellement impossible à cause de :"
 
-#: ../src/saving/SaveHelper.cs:490
+#: ../src/saving/SaveHelper.cs:495
 msgid "PLAYER_EXTINCT"
 msgstr "Le joueur est éteint"
 
-#: ../src/saving/SaveHelper.cs:506
+#: ../src/saving/SaveHelper.cs:514
 #, fuzzy
 msgid "IN_PROTOTYPE"
 msgstr "Protanopie (Rouge-Vert)"
 
-#: ../src/saving/SaveHelper.cs:514
+#: ../src/saving/SaveHelper.cs:526
 msgid "SAVING_SUCCEEDED"
 msgstr "Sauvegarde réussi"
 
@@ -4266,36 +4266,36 @@ msgstr "Sauvegarde rapide"
 msgid "SAVE_INVALID"
 msgstr "Invalide"
 
-#: ../src/saving/SaveList.cs:208
+#: ../src/saving/SaveList.cs:215
 msgid "SAVE_DELETE_WARNING"
 msgstr "Supprimer cette sauvegarde ne peut pas être défait, êtes-vous sûr de vouloir détruire {0} de manière permanente?"
 
-#: ../src/saving/SaveList.tscn:53
+#: ../src/saving/SaveList.tscn:51
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Aucune sauvegarde trouvée"
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
 #, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Chargement..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 #, fuzzy
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Supprimer cette Sauvegarde?"
 
-#: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
+#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
 #, fuzzy
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Charger une sauvegarde incompatible?"
 
-#: ../src/saving/SaveList.tscn:80
+#: ../src/saving/SaveList.tscn:78
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Cette sauvegarde vient dune version postérieure de Thrive et a beaucoup de chances d'être incompatible.\n"
 "Voulez-vous tout de même tenter de charger la sauvegarde?"
 
-#: ../src/saving/SaveList.tscn:88
+#: ../src/saving/SaveList.tscn:86
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Cette sauvegarde provient d'un version antérieure de Thrive et pourrait être incompatible.\n"
@@ -4303,35 +4303,35 @@ msgstr ""
 "Vous pouvez signaler les problèmes rencontrés, mais ils n'ont pas la plus haute priorité actuellement.\n"
 "Voulez-vous essayer de charger la sauvegarde malgré tout ?"
 
-#: ../src/saving/SaveList.tscn:95
+#: ../src/saving/SaveList.tscn:93
 #, fuzzy
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Charger la sauvegarde invalide ?"
 
-#: ../src/saving/SaveList.tscn:96
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Les informations de sauvegarde n'ont pas pu être chargées à partir de ce fichier.\n"
 "Il semble que la sauvegarde soit corrompue ou d'un nouveau format non compris par cette version de Thrive.\n"
 "Voulez-vous essayer de charger la sauvegarde malgré tout ?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:101
 #, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "La sauvegarde sélectionnée est incompatible"
 
-#: ../src/saving/SaveList.tscn:105
+#: ../src/saving/SaveList.tscn:103
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
 "Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
 
-#: ../src/saving/SaveList.tscn:114
+#: ../src/saving/SaveList.tscn:112
 #, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "La sauvegarde sélectionnée peut être mise à jour pour cette version du jeu"
 
-#: ../src/saving/SaveList.tscn:115
+#: ../src/saving/SaveList.tscn:113
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "La sauvegarde sélectionnée provient d'une version plus ancienne de Thrive, mais elle peut être mise à jour.\n"
@@ -4339,15 +4339,27 @@ msgstr ""
 "Si vous passer cette étape, Thrive essaiera de charger la sauvegarde normalement.\n"
 "Voulez-vous effectuer la mise à jour de cette sauvegarde ?"
 
-#: ../src/saving/SaveList.tscn:121
+#: ../src/saving/SaveList.tscn:119
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Échec de la mise à jour de la sauvegarde"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "La mise à jour de la sauvegarde a échouée à cause de cette erreur :\n"
 "{0}"
+
+#: ../src/saving/SaveList.tscn:127
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
+msgstr "La sauvegarde sélectionnée est incompatible"
+
+#: ../src/saving/SaveList.tscn:129
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
+msgstr ""
+"La sauvegarde sélectionnée est connue pour être incompatible avec cette version de Thrive.\n"
+"Comme Thrive est toujours en développement précaire la compatibilité des sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun convertisseur de sauvegarde intégré pour mettre à jour d'anciennes sauvegardes."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"

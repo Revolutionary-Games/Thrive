@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-20 14:59+0300\n"
+"POT-Creation-Date: 2022-05-20 15:12+0300\n"
 "PO-Revision-Date: 2022-05-08 18:10+0000\n"
 "Last-Translator: Igor Silva <igorkcs@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -4050,26 +4050,26 @@ msgstr "Erro ao Salvar"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "A tentativa de salvar falhou. O nome do save pode ser longo demais ou você não ter acesso a pasta."
 
-#: ../src/saving/SaveHelper.cs:480 ../src/saving/SaveHelper.cs:524
+#: ../src/saving/SaveHelper.cs:485 ../src/saving/SaveHelper.cs:536
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Falha ao salvar! Uma exceção ocorreu"
 
-#: ../src/saving/SaveHelper.cs:489 ../src/saving/SaveHelper.cs:505
+#: ../src/saving/SaveHelper.cs:494 ../src/saving/SaveHelper.cs:513
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Atualmente, não é possível salvar porque:"
 
-#: ../src/saving/SaveHelper.cs:490
+#: ../src/saving/SaveHelper.cs:495
 msgid "PLAYER_EXTINCT"
 msgstr "O jogador foi extinto"
 
-#: ../src/saving/SaveHelper.cs:506
+#: ../src/saving/SaveHelper.cs:514
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Você está jogando os protótipos dos estágios seguintes que estão incluídos no jogo.\n"
 "Eles podem estar incompletos, usar gráficos temporários, ou não estar polidos.\n"
 "Por isso, não será possível salvar."
 
-#: ../src/saving/SaveHelper.cs:514
+#: ../src/saving/SaveHelper.cs:526
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvo com sucesso"
 
@@ -4089,33 +4089,33 @@ msgstr "Salvamento rápido"
 msgid "SAVE_INVALID"
 msgstr "Inválido"
 
-#: ../src/saving/SaveList.cs:208
+#: ../src/saving/SaveList.cs:215
 msgid "SAVE_DELETE_WARNING"
 msgstr "Apagar o jogo salvo é irreversível, deseja apagar {0} permanentemente?"
 
-#: ../src/saving/SaveList.tscn:53
+#: ../src/saving/SaveList.tscn:51
 msgid "NO_SAVEGAMES_FOUND"
 msgstr "Nenhum Salvamento Encontrado"
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Carregando…"
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Apagar o jogo salvo?"
 
-#: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
+#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Carregar jogo incompatível?"
 
-#: ../src/saving/SaveList.tscn:80
+#: ../src/saving/SaveList.tscn:78
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Este jogo salvo é de uma versão mais nova de Thrive e é provavelmente incompatível.\n"
 "Deseja carregar o jogo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:88
+#: ../src/saving/SaveList.tscn:86
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Este jogo salvo é de uma versão mais antiga e pode ser incompatível com a atual.\n"
@@ -4123,33 +4123,33 @@ msgstr ""
 "Você pode relatar qualquer problema que encontrar, mas não serão priorizados.\n"
 "Deseja tentar carregar o jogo salvo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:95
+#: ../src/saving/SaveList.tscn:93
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Carregar salvamento inválido?"
 
-#: ../src/saving/SaveList.tscn:96
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "A informação do jogo salvo não pôde ser carregada do arquivo.\n"
 "O salvamento pode estar corrupto ou é um formato mais novo que não é entendido por essa versão de Thrive.\n"
 "Deseja carregar o jogo salvo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:101
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "O jogo salvo selecionado é incompatível"
 
-#: ../src/saving/SaveList.tscn:105
+#: ../src/saving/SaveList.tscn:103
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "O jogo salvo a ser carregado não é compatível com esta versão de Thrive.\n"
 "E não há atualizador de jogo salvo para atualizar este jogo salvo.\n"
 "Como Thrive está em desenvolvimento inicial, a compatibilidade entre salvamentos não é prioridade, já que não há um atualizador para todas as versões."
 
-#: ../src/saving/SaveList.tscn:114
+#: ../src/saving/SaveList.tscn:112
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "O jogo salvo selecionado pode ser atualizado"
 
-#: ../src/saving/SaveList.tscn:115
+#: ../src/saving/SaveList.tscn:113
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "O jogo salvo selecionado é de uma versão antiga de Thrive, mas pode ser atualizada.\n"
@@ -4157,13 +4157,26 @@ msgstr ""
 "Se pular a atualização, o jogo tentará executar o arquivo normalmente.\n"
 "Tentar atualizar esse arquivo salvo?"
 
-#: ../src/saving/SaveList.tscn:121
+#: ../src/saving/SaveList.tscn:119
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Falha ao atualizar o arquivo salvo"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "A atualização do arquivo salvo falhou devido ao seguinte erro:"
+
+#: ../src/saving/SaveList.tscn:127
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
+msgstr "O jogo salvo selecionado é incompatível"
+
+#: ../src/saving/SaveList.tscn:129
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
+msgstr ""
+"O jogo salvo a ser carregado não é compatível com esta versão de Thrive.\n"
+"E não há atualizador de jogo salvo para atualizar este jogo salvo.\n"
+"Como Thrive está em desenvolvimento inicial, a compatibilidade entre salvamentos não é prioridade, já que não há um atualizador para todas as versões."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
