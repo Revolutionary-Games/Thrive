@@ -346,6 +346,34 @@ public class GameWorld : ISaveLoadable
     }
 
     /// <summary>
+    ///   Moves a species to the late multicellular stage
+    /// </summary>
+    /// <param name="species">
+    ///   The species to convert to a late multicellular one. No checks are done to make sure the species is
+    ///   actually a valid multicellular one.
+    /// </param>
+    public LateMulticellularSpecies ChangeSpeciesToLateMulticellular(Species species)
+    {
+        var earlySpecies = species as EarlyMulticellularSpecies;
+
+        if (earlySpecies == null)
+            throw new ArgumentException("Only early multicellular species can become late multicellular species");
+
+        /*
+        var lateVersion = new LateMulticellularSpecies(species.ID, species.Genus, species.Epithet);
+        species.CopyDataToConvertedSpecies(lateVersion);
+
+        var stemCellType = new CellType(earlySpecies);
+
+        lateVersion.Cells.Add(new CellTemplate(stemCellType));
+        lateVersion.CellTypes.Add(stemCellType);
+
+        SwitchSpecies(species, lateVersion);
+        return lateVersion;
+        */
+    }
+
+    /// <summary>
     ///   Should be called after a batch of species stage changes are done, for example after calling
     ///   <see cref="ChangeSpeciesToMulticellular"/>
     /// </summary>

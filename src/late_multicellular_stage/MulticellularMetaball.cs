@@ -1,6 +1,8 @@
 ﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
+[UseThriveConverter]
 public class MulticellularMetaball : Metaball, ICloneable
 {
     public MulticellularMetaball(CellType cellType)
@@ -13,6 +15,9 @@ public class MulticellularMetaball : Metaball, ICloneable
     /// </summary>
     [JsonProperty]
     public CellType CellType { get; private set; }
+
+    [JsonIgnore]
+    public override Color Color => CellType.Colour;
 
     public object Clone()
     {
