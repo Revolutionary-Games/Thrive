@@ -1,0 +1,117 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=3]
+[ext_resource path="res://src/gui_common/art_gallery/GalleryDetailsTooltip.cs" type="Script" id=4]
+
+[node name="GalleryDetailsTooltip" type="PanelContainer"]
+margin_right = 300.0
+margin_bottom = 145.0
+rect_min_size = Vector2( 300, 145 )
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource( 3 )
+script = ExtResource( 4 )
+TitleLabelPath = NodePath("MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer/Label2")
+DescriptionLabelPath = NodePath("MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2/Label2")
+ArtistLabelPath = NodePath("MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer3/Label2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 299.0
+margin_bottom = 144.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 288.0
+margin_bottom = 133.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+margin_right = 278.0
+margin_bottom = 122.0
+size_flags_horizontal = 3
+custom_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 278.0
+margin_bottom = 34.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+margin_right = 278.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "TITLE"
+autowrap = true
+
+[node name="Label2" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+margin_top = 17.0
+margin_right = 278.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Insert title"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 44.0
+margin_right = 278.0
+margin_bottom = 78.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2"]
+margin_right = 278.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "DESCRIPTION"
+autowrap = true
+
+[node name="Label2" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2"]
+margin_top = 17.0
+margin_right = 278.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Insert description"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 88.0
+margin_right = 278.0
+margin_bottom = 122.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer3"]
+margin_right = 278.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "ARTIST"
+autowrap = true
+
+[node name="Label2" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer3"]
+margin_top = 17.0
+margin_right = 278.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Insert artist"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}

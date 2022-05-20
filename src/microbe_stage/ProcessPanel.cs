@@ -19,9 +19,6 @@ public class ProcessPanel : CustomDialog
 
     private Container closeButtonContainer = null!;
 
-    [Signal]
-    public delegate void OnClosed();
-
     public ProcessStatistics? ShownData { get; set; }
 
     public override void _Ready()
@@ -46,12 +43,6 @@ public class ProcessPanel : CustomDialog
         {
             processList.ProcessesToShow = null;
         }
-    }
-
-    protected override void OnHidden()
-    {
-        EmitSignal(nameof(OnClosed));
-        base.OnHidden();
     }
 
     private void ClosePressed()

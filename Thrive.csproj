@@ -141,6 +141,8 @@
     <Compile Include="src\general\TranslationHelper.cs" />
     <Compile Include="src\general\TypeUtils.cs" />
     <Compile Include="src\general\ShuffleBag.cs" />
+    <Compile Include="src\gui_common\art_gallery\GalleryDetailsTooltip.cs" />
+    <Compile Include="src\gui_common\art_gallery\SlideshowScreen.cs" />
     <Compile Include="src\gui_common\charts\ChartDataSet.cs" />
     <Compile Include="src\gui_common\charts\IDataSetsLegend.cs" />
     <Compile Include="src\gui_common\charts\line\LineChart.cs" />
@@ -155,9 +157,9 @@
     <Compile Include="src\gui_common\CreditsScroll.cs" />
     <Compile Include="src\gui_common\CustomDialog.cs" />
     <Compile Include="src\gui_common\CustomDropDown.cs" />
-    <Compile Include="src\gui_common\GalleryViewer.cs" />
+    <Compile Include="src\gui_common\art_gallery\GalleryViewer.cs" />
     <Compile Include="src\gui_common\dialogs\TutorialDialog.cs" />
-    <Compile Include="src\gui_common\GalleryItem.cs" />
+    <Compile Include="src\gui_common\art_gallery\GalleryItem.cs" />
     <Compile Include="src\gui_common\ICustomPopup.cs" />
     <Compile Include="src\gui_common\CustomRichTextLabel.cs" />
     <Compile Include="src\gui_common\dialogs\CustomConfirmationDialog.cs" />

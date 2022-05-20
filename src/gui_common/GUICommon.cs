@@ -115,8 +115,16 @@ public class GUICommon : NodeWithInput
             return false;
         }
 
-        popup!.Hide();
-        popup.EmitSignal(nameof(CustomDialog.Closed));
+        if (customPopup != null)
+        {
+            customPopup.CustomHide();
+        }
+        else
+        {
+            popup!.Hide();
+        }
+
+        popup!.EmitSignal(nameof(CustomDialog.Closed));
 
         return true;
     }
@@ -190,23 +198,23 @@ public class GUICommon : NodeWithInput
         Tween.Start();
     }
 
-    public void ModulateFadeIn(Control control, float duration,
+    public void ModulateFadeIn(Control control, float duration, float delay = 0,
         Tween.TransitionType transitionType = Tween.TransitionType.Sine, Tween.EaseType easeType = Tween.EaseType.In)
     {
         // Make sure the control is visible
         control.Show();
-        control.Modulate = new Color(1, 1, 1, 0);
 
-        Tween.InterpolateProperty(control, "modulate:a", 0, 1, duration, transitionType, easeType);
+        Tween.InterpolateProperty(control, "modulate:a", null, 1, duration, transitionType, easeType, delay);
         Tween.Start();
     }
 
-    public void ModulateFadeOut(Control control, float duration, Tween.TransitionType transitionType =
+    public void ModulateFadeOut(Control control, float duration, float delay = 0, Tween.TransitionType transitionType =
         Tween.TransitionType.Sine, Tween.EaseType easeType = Tween.EaseType.In, bool hideOnFinished = true)
     {
-        control.Modulate = new Color(1, 1, 1, 1);
+        if (!control.Visible)
+            return;
 
-        Tween.InterpolateProperty(control, "modulate:a", 1, 0, duration, transitionType, easeType);
+        Tween.InterpolateProperty(control, "modulate:a", null, 0, duration, transitionType, easeType, delay);
         Tween.Start();
 
         if (!Tween.IsConnected("tween_completed", this, nameof(HideControlOnFadeOutComplete)) && hideOnFinished)

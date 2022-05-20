@@ -68,7 +68,7 @@ public class ToolTipManager : CanvasLayer
             display = value;
 
             if (previousToolTip != null)
-                FinalizeToolTipVisibility(previousToolTip, false);
+                UpdateToolTipVisibility(previousToolTip, false);
 
             if (display)
             {
@@ -108,7 +108,7 @@ public class ToolTipManager : CanvasLayer
             if (displayTimer < 0)
             {
                 lastMousePosition = GetViewport().GetMousePosition();
-                FinalizeToolTipVisibility(MainToolTip, true);
+                UpdateToolTipVisibility(MainToolTip, true);
             }
         }
 
@@ -168,7 +168,7 @@ public class ToolTipManager : CanvasLayer
                 if (hideTimer < 0)
                 {
                     currentIsTemporary = false;
-                    FinalizeToolTipVisibility(MainToolTip, false);
+                    UpdateToolTipVisibility(MainToolTip, false);
                     MainToolTip = null;
                 }
             }
@@ -188,7 +188,7 @@ public class ToolTipManager : CanvasLayer
             if (currentIsTemporary && !MainToolTip.ToolTipNode.Visible)
                 return;
 
-            FinalizeToolTipVisibility(MainToolTip, false);
+            UpdateToolTipVisibility(MainToolTip, false);
             displayTimer = MainToolTip.DisplayDelay;
 
             if (currentIsTemporary)
@@ -372,7 +372,7 @@ public class ToolTipManager : CanvasLayer
         }
     }
 
-    private void FinalizeToolTipVisibility(ICustomToolTip tooltip, bool visible)
+    private void UpdateToolTipVisibility(ICustomToolTip tooltip, bool visible)
     {
         if (tooltip.ToolTipNode.Visible == visible)
             return;
@@ -412,7 +412,7 @@ public class ToolTipManager : CanvasLayer
         {
             foreach (var tooltip in tooltips[group])
             {
-                FinalizeToolTipVisibility(tooltip, false);
+                UpdateToolTipVisibility(tooltip, false);
             }
         }
     }

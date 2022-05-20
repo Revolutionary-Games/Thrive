@@ -473,12 +473,14 @@ public class MainMenu : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
         SetCurrentMenu(uint.MaxValue, false);
-        galleryViewer.PopupCenteredShrink();
+        galleryViewer.PopupFullRect();
+        Jukebox.Instance.PlayCategory("ArtGallery");
     }
 
     private void OnReturnFromArtGallery()
     {
         SetCurrentMenu(2, false);
+        Jukebox.Instance.PlayCategory("Menu");
     }
 
     private void OnEnteringGame()

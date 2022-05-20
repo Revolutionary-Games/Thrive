@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/gui_common/art_gallery/GalleryDetailsTooltip.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
 [ext_resource path="res://src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/parts/FlagellumIcon.png" type="Texture" id=6]
@@ -66,6 +67,9 @@ margin_bottom = 40.0
 visible = false
 Description = "WILL_YOU_THRIVE"
 DescriptionLabelPath = NodePath("../../../GroupHolder/mainMenu/thriveLogoEasterEgg/MarginContainer/VBoxContainer/Description")
+
+[node name="GalleryDetailsTooltip" parent="GroupHolder/mainMenu" instance=ExtResource( 2 )]
+visible = false
 
 [node name="editor" type="Control" parent="GroupHolder"]
 margin_right = 40.0

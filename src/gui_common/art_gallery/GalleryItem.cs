@@ -5,21 +5,20 @@ using Asset = Gallery.Asset;
 public class GalleryItem : Button
 {
     [Export]
-    public NodePath TitleLabelPath;
+    public NodePath TitleLabelPath = null!;
 
     [Export]
-    public NodePath TextureRectPath;
+    public NodePath TextureRectPath = null!;
 
     [Export]
-    public NodePath InspectButtonPath;
+    public NodePath InspectButtonPath = null!;
 
-    private Label titleLabel;
-    private TextureRect imagePreview;
-    private TextureButton inspectButton;
+    private Label titleLabel = null!;
+    private TextureRect imagePreview = null!;
 
-    private Asset asset;
+    private Asset asset = null!;
 
-    public event EventHandler<GalleryItemSelectedCallbackData> OnFullscreenView;
+    public event EventHandler<GalleryItemSelectedCallbackData>? OnFullscreenView;
 
     public Asset Asset
     {
@@ -35,14 +34,27 @@ public class GalleryItem : Button
     {
         titleLabel = GetNode<Label>(TitleLabelPath);
         imagePreview = GetNode<TextureRect>(TextureRectPath);
-        inspectButton = GetNode<TextureButton>(InspectButtonPath);
 
         UpdatePreview();
     }
 
+    public override void _GuiInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton { Pressed: true, ButtonIndex: (int)ButtonList.Left } mouse)
+        {
+            AcceptEvent();
+
+            if (mouse.Doubleclick)
+            {
+                GUICommon.Instance.PlayButtonPressSound();
+                OnFullscreenView?.Invoke(this, new GalleryItemSelectedCallbackData(asset));
+            }
+        }
+    }
+
     private void UpdatePreview()
     {
-        if (asset == null || titleLabel == null || inspectButton == null)
+        if (asset == null || titleLabel == null)
             return;
 
         titleLabel.Text = string.IsNullOrEmpty(asset.Title) ? TranslationServer.Translate("UNTITLED") : asset.Title;
@@ -51,24 +63,14 @@ public class GalleryItem : Button
 
     private void OnMouseEnter()
     {
-        inspectButton.Show();
-
         GUICommon.Instance.Tween.InterpolateProperty(imagePreview, "modulate", null, Colors.Gray, 0.5f);
         GUICommon.Instance.Tween.Start();
     }
 
     private void OnMouseExit()
     {
-        inspectButton.Hide();
-
         GUICommon.Instance.Tween.InterpolateProperty(imagePreview, "modulate", null, Colors.White, 0.5f);
         GUICommon.Instance.Tween.Start();
-    }
-
-    private void OnInspectPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        OnFullscreenView.Invoke(this, new GalleryItemSelectedCallbackData(asset));
     }
 }
 

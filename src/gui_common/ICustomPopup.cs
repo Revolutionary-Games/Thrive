@@ -9,5 +9,15 @@ public interface ICustomPopup
     ///   If true and <see cref="Popup.PopupExclusive"/> is true, pressing ESC key will close
     ///   the popup.
     /// </summary>
-    bool ExclusiveAllowCloseOnEscape { get; set; }
+    public bool ExclusiveAllowCloseOnEscape { get; set; }
+
+    /// <summary>
+    ///   Custom Show call for customizable Show behavior.
+    /// </summary>
+    public void CustomShow();
+
+    /// <summary>
+    ///   Custom Hide call for customizable Hide behavior.
+    /// </summary>
+    public void CustomHide();
 }
