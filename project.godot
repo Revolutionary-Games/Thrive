@@ -46,6 +46,8 @@ FullScreenToggle="*res://src/engine/FullScreenToggle.cs"
 Jukebox="*res://src/general/Jukebox.cs"
 TemporaryLoadedNodeDeleter="*res://src/saving/TemporaryLoadedNodeDeleter.cs"
 FileDropHandler="*res://src/engine/FileDropHandler.cs"
+ProceduralDataCache="*res://src/engine/ProceduralDataCache.cs"
+PhotoStudio="*res://src/engine/PhotoStudio.tscn"
 PostStartupActions="*res://src/engine/PostStartupActions.cs"
 
 [debug]
@@ -66,6 +68,10 @@ window/stretch/aspect="expand"
 [editor]
 
 search_in_file_extensions=PoolStringArray( "gd", "shader", "cs" )
+
+[global]
+
+hardened=false
 
 [input]
 
@@ -290,6 +296,17 @@ g_toggle_gui={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777245,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+g_pack_commands={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":86,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":5,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+toggle_metrics={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777246,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -298,7 +315,7 @@ g_toggle_gui={
 
 [locale]
 
-translations=PoolStringArray( "res://locale/en.po", "res://locale/fr.po", "res://locale/et.po", "res://locale/fi.po", "res://locale/cs.po", "res://locale/da.po", "res://locale/de.po", "res://locale/eo.po", "res://locale/es.po", "res://locale/es_AR.po", "res://locale/id.po", "res://locale/nl.po", "res://locale/nl_BE.po", "res://locale/pl.po", "res://locale/bg.po", "res://locale/ca.po", "res://locale/ko.po", "res://locale/lb_LU.po", "res://locale/it.po", "res://locale/pt_BR.po", "res://locale/pt_PT.po", "res://locale/ru.po", "res://locale/si_LK.po", "res://locale/sr_Cyrl.po", "res://locale/sr_Latn.po", "res://locale/he.po", "res://locale/hu.po", "res://locale/lt.po", "res://locale/lv.po", "res://locale/sv.po", "res://locale/th_TH.po", "res://locale/tr.po", "res://locale/uk.po", "res://locale/zh_CN.po", "res://locale/zh_TW.po" )
+translations=PoolStringArray( "res://locale/en.po", "res://locale/af.po", "res://locale/ar.po", "res://locale/fr.po", "res://locale/et.po", "res://locale/fi.po", "res://locale/cs.po", "res://locale/da.po", "res://locale/de.po", "res://locale/el.po", "res://locale/eo.po", "res://locale/es.po", "res://locale/es_AR.po", "res://locale/id.po", "res://locale/nl.po", "res://locale/nl_BE.po", "res://locale/pl.po", "res://locale/bg.po", "res://locale/ca.po", "res://locale/ka.po", "res://locale/ko.po", "res://locale/lb_LU.po", "res://locale/it.po", "res://locale/pt_BR.po", "res://locale/pt_PT.po", "res://locale/ro.po", "res://locale/ru.po", "res://locale/si_LK.po", "res://locale/sr_Cyrl.po", "res://locale/sr_Latn.po", "res://locale/he.po", "res://locale/hu.po", "res://locale/lt.po", "res://locale/lv.po", "res://locale/sv.po", "res://locale/th_TH.po", "res://locale/tr.po", "res://locale/uk.po", "res://locale/zh_CN.po", "res://locale/zh_TW.po" )
 
 [logging]
 

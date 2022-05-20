@@ -7,21 +7,22 @@ using Godot;
 public class MicrobePartSelection : MarginContainer
 {
     [Export]
-    public ButtonGroup SelectionGroup;
+    public ButtonGroup SelectionGroup = null!;
 
-    private Label mpLabel;
-    private Button button;
-    private TextureRect iconRect;
-    private Label nameLabel;
+    private Label? mpLabel;
+    private Button? button;
+    private TextureRect? iconRect;
+    private Label? nameLabel;
 
     private int mpCost;
-    private Texture partIcon;
-    private string name;
+    private Texture? partIcon;
+    private string name = "Error: unset";
     private bool locked;
     private bool selected;
 
     /// <summary>
-    ///   Emitted whenever the button is selected.
+    ///   Emitted whenever the button is selected. Note that this sends the Node's Name as the parameter
+    ///   (and not PartName)
     /// </summary>
     [Signal]
     public delegate void OnPartSelected(string name);
@@ -32,13 +33,16 @@ public class MicrobePartSelection : MarginContainer
         get => mpCost;
         set
         {
+            if (mpCost == value)
+                return;
+
             mpCost = value;
             UpdateLabels();
         }
     }
 
     [Export]
-    public Texture PartIcon
+    public Texture? PartIcon
     {
         get => partIcon;
         set
@@ -49,7 +53,7 @@ public class MicrobePartSelection : MarginContainer
     }
 
     /// <summary>
-    ///   User readable name. Note that the node Name property should be an "InternalName".
+    ///   Translatable name. This needs to be the STRING_LIKE_THIS to make this automatically react to language change
     /// </summary>
     [Export]
     public string PartName
@@ -57,6 +61,9 @@ public class MicrobePartSelection : MarginContainer
         get => name;
         set
         {
+            if (name == value)
+                return;
+
             name = value;
             UpdateLabels();
         }
@@ -149,8 +156,12 @@ public class MicrobePartSelection : MarginContainer
         button.Disabled = Locked;
     }
 
-    private void OnSelected()
+    private void OnPressed()
     {
+        if (Selected)
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnPartSelected), Name);
     }
 }

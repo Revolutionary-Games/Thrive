@@ -13,7 +13,7 @@ public class RegistryTypeStringConverter : TypeConverter
     ///   New entries need to be added when this converter is added as a class attribute
     /// </summary>
     protected static readonly Dictionary<string, SupportedRegistryType> SupportedRegistryTypes =
-        new Dictionary<string, SupportedRegistryType>
+        new()
         {
             {
                 "compound",
@@ -34,9 +34,6 @@ public class RegistryTypeStringConverter : TypeConverter
 
     public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
     {
-        if (value == null)
-            return null;
-
         var str = (string)value;
 
         var split = str.Split(':');
@@ -68,7 +65,7 @@ public class RegistryTypeStringConverter : TypeConverter
         throw new NotSupportedException();
     }
 
-    protected SupportedRegistryType GetRegistryByType(Type type)
+    protected SupportedRegistryType? GetRegistryByType(Type type)
     {
         foreach (var entry in SupportedRegistryTypes)
         {
@@ -105,9 +102,6 @@ public abstract class RegistryTypeStringSingleTypeConverter<TType> : RegistryTyp
 
     public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
     {
-        if (value == null)
-            return null;
-
         return SupportedRegistryTypes[TypeName].RetrieveInstance((string)value);
     }
 

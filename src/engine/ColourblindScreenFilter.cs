@@ -5,15 +5,15 @@
 /// </summary>
 public class ColourblindScreenFilter : TextureRect
 {
-    private static ColourblindScreenFilter instance;
-    private ShaderMaterial screenFilterMaterial;
+    private static ColourblindScreenFilter? instance;
+    private ShaderMaterial screenFilterMaterial = null!;
 
     private ColourblindScreenFilter()
     {
         instance = this;
     }
 
-    public static ColourblindScreenFilter Instance => instance;
+    public static ColourblindScreenFilter Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public override void _Ready()
     {

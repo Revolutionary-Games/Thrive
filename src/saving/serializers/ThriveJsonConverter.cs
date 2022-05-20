@@ -16,8 +16,7 @@ using Saving;
 /// </summary>
 public class ThriveJsonConverter : IDisposable
 {
-    private static readonly ThriveJsonConverter InstanceValue =
-        new ThriveJsonConverter(new SaveContext(SimulationParameters.Instance));
+    private static readonly ThriveJsonConverter InstanceValue = new(new SaveContext(SimulationParameters.Instance));
 
     // ReSharper disable once NotAccessedField.Local
     /// <summary>
@@ -28,7 +27,7 @@ public class ThriveJsonConverter : IDisposable
     private readonly JsonConverter[] thriveConverters;
     private readonly List<JsonConverter> thriveConvertersDynamicDeserialize;
 
-    private ThreadLocal<JsonSerializerSettings> currentJsonSettings = new ThreadLocal<JsonSerializerSettings>();
+    private readonly ThreadLocal<JsonSerializerSettings> currentJsonSettings = new();
     private bool disposed;
 
     // private IReferenceResolver referenceResolver = new Default;
@@ -74,20 +73,20 @@ public class ThriveJsonConverter : IDisposable
     /// <summary>
     ///   Serializes the specified object to a JSON string using ThriveJsonConverter settings.
     /// </summary>
-    /// <param name="o">Object to serialize</param>
+    /// <param name="object">Object to serialize</param>
     /// <param name="type">
     ///   <para>
     ///     Specifies the type of the object being serialized (optional). The dynamic type will
     ///     get written out if this is set to a base class of the object to serialize.
     ///   </para>
     /// </param>
-    public string SerializeObject(object o, Type type = null)
+    public string SerializeObject(object @object, Type? type = null)
     {
         return PerformWithSettings(
-            settings => JsonConvert.SerializeObject(o, type, Constants.SAVE_FORMATTING, settings));
+            settings => JsonConvert.SerializeObject(@object, type, Constants.SAVE_FORMATTING, settings));
     }
 
-    public T DeserializeObject<T>(string json)
+    public T? DeserializeObject<T>(string json)
     {
         return PerformWithSettings(settings => JsonConvert.DeserializeObject<T>(json, settings));
     }
@@ -98,7 +97,7 @@ public class ThriveJsonConverter : IDisposable
     /// <param name="json">JSON text to parse</param>
     /// <returns>The created object</returns>
     /// <exception cref="JsonException">If invalid json or the dynamic type is not allowed</exception>
-    public object DeserializeObjectDynamic(string json)
+    public object? DeserializeObjectDynamic(string json)
     {
         return PerformWithSettings(settings =>
         {
@@ -154,11 +153,16 @@ public class ThriveJsonConverter : IDisposable
 
             ReferenceResolverProvider = () => referenceResolver,
 
+            // Even though we have our custom converters the JSON library wants to mess with us so we need to force it
+            // to ignore these. This has the slight downside that if someone forgets to add
+            // UseThriveSerializerAttribute when reference loops exist, this probably causes a stack overflow
+            ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
+
             TraceWriter = GetTraceWriter(Settings.Instance.JSONDebugMode, JSONDebug.ErrorHasOccurred),
         };
     }
 
-    private ITraceWriter GetTraceWriter(JSONDebug.DebugMode debugMode, bool errorHasOccurred)
+    private ITraceWriter? GetTraceWriter(JSONDebug.DebugMode debugMode, bool errorHasOccurred)
     {
         if (debugMode == JSONDebug.DebugMode.AlwaysDisabled)
             return null;
@@ -208,7 +212,8 @@ public class ThriveJsonConverter : IDisposable
                 GD.Print("JSON error happened, retrying with debug printing (mode is automatic), first exception: ",
                     e);
 
-                currentJsonSettings.Value = null;
+                // Seems like the json library doesn't have nullability annotations
+                currentJsonSettings.Value = null!;
                 PerformWithSettings(func);
 
                 // If we get here, we didn't get another exception...
@@ -227,7 +232,7 @@ public class ThriveJsonConverter : IDisposable
         {
             if (!recursive)
             {
-                currentJsonSettings.Value = null;
+                currentJsonSettings.Value = null!;
 
                 if (settings.TraceWriter != null)
                 {
@@ -251,19 +256,19 @@ public class ThriveJsonConverter : IDisposable
 /// </summary>
 public abstract class BaseThriveConverter : JsonConverter
 {
-    public readonly ISaveContext Context;
-
     // ref handling approach from: https://stackoverflow.com/a/53716866/4371508
-    private const string REF_PROPERTY = "$ref";
-    private const string ID_PROPERTY = "$id";
+    public const string REF_PROPERTY = "$ref";
+    public const string ID_PROPERTY = "$id";
+
+    protected readonly ISaveContext? Context;
 
     // type handling approach from: https://stackoverflow.com/a/29822170/4371508
     // and https://stackoverflow.com/a/29826959/4371508
     private const string TYPE_PROPERTY = "$type";
 
-    private static readonly List<string> DefaultOnlyChildCopyIgnore = new List<string>();
+    private static readonly List<string> DefaultOnlyChildCopyIgnore = new();
 
-    protected BaseThriveConverter(ISaveContext context)
+    protected BaseThriveConverter(ISaveContext? context)
     {
         Context = context;
     }
@@ -385,7 +390,7 @@ public abstract class BaseThriveConverter : JsonConverter
         return typeof(Node).IsAssignableFrom(type) && BaseNodeConverter.IsIgnoredGodotNodeMember(name);
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
         JsonSerializer serializer)
     {
         var customRead = ReadCustomJson(reader, objectType, existingValue, serializer);
@@ -453,19 +458,6 @@ public abstract class BaseThriveConverter : JsonConverter
             return SkipMember(name) || alreadyConsumedItems.Contains(key);
         }
 
-        bool OnlyChildAssign(IEnumerable<Attribute> customAttributes,
-            out AssignOnlyChildItemsOnDeserializeAttribute data)
-        {
-            data = customAttributes.FirstOrDefault() as AssignOnlyChildItemsOnDeserializeAttribute;
-
-            if (data == null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         foreach (var field in FieldsOf(instance))
         {
             var name = DetermineKey(item, field.Name);
@@ -475,14 +467,14 @@ public abstract class BaseThriveConverter : JsonConverter
 
             var newData = ReadMember(name, field.FieldType, item, instance, reader, serializer);
 
-            if (!OnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
+            if (!UsesOnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
                     out var data))
             {
                 field.SetValue(instance, newData);
             }
             else
             {
-                ApplyOnlyChildProperties(newData, field.GetValue(instance), serializer, data);
+                ApplyOnlyChildProperties(newData, field.GetValue(instance), serializer, data!);
             }
         }
 
@@ -495,7 +487,7 @@ public abstract class BaseThriveConverter : JsonConverter
                 continue;
             }
 
-            if (!OnlyChildAssign(property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
+            if (!UsesOnlyChildAssign(property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
                     out var data))
             {
                 var set = property.GetSetMethodOnDeclaringType();
@@ -515,7 +507,7 @@ public abstract class BaseThriveConverter : JsonConverter
             else
             {
                 ApplyOnlyChildProperties(ReadMember(name, property.PropertyType, item, instance, reader,
-                    serializer), property.GetValue(instance), serializer, data);
+                    serializer), property.GetValue(instance), serializer, data!);
             }
         }
 
@@ -529,7 +521,7 @@ public abstract class BaseThriveConverter : JsonConverter
         return instance;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         if (value == null)
         {
@@ -631,8 +623,8 @@ public abstract class BaseThriveConverter : JsonConverter
         writer.WriteEndObject();
     }
 
-    protected virtual (object Read, bool Performed) ReadCustomJson(JsonReader reader, Type objectType,
-        object existingValue, JsonSerializer serializer)
+    protected virtual (object? Read, bool Performed) ReadCustomJson(JsonReader reader, Type objectType,
+        object? existingValue, JsonSerializer serializer)
     {
         return (null, false);
     }
@@ -665,7 +657,8 @@ public abstract class BaseThriveConverter : JsonConverter
     {
     }
 
-    protected virtual object ReadMember(string name, Type memberType, JObject item, object instance, JsonReader reader,
+    protected virtual object? ReadMember(string name, Type memberType, JObject item, object? instance,
+        JsonReader reader,
         JsonSerializer serializer)
     {
         var value = item[name];
@@ -677,7 +670,7 @@ public abstract class BaseThriveConverter : JsonConverter
     }
 
     protected virtual void ReadCustomExtraFields(JObject item, object instance, JsonReader reader, Type objectType,
-        object existingValue, JsonSerializer serializer)
+        object? existingValue, JsonSerializer serializer)
     {
     }
 
@@ -701,6 +694,11 @@ public abstract class BaseThriveConverter : JsonConverter
 
     private void RunPrePropertyDeserializeActions(object instance)
     {
+        HandleSaveLoadedTracked(instance);
+    }
+
+    private void HandleSaveLoadedTracked(object instance)
+    {
         // Any loaded object supports knowing if it was loaded from a save
         if (instance is ISaveLoadedTracked tracked)
         {
@@ -715,6 +713,19 @@ public abstract class BaseThriveConverter : JsonConverter
             loadable.FinishLoading(Context);
     }
 
+    private bool UsesOnlyChildAssign(IEnumerable<Attribute> customAttributes,
+        out AssignOnlyChildItemsOnDeserializeAttribute? data)
+    {
+        data = customAttributes.FirstOrDefault() as AssignOnlyChildItemsOnDeserializeAttribute;
+
+        if (data == null)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     /// <summary>
     ///   Figures out what constructor to call for an object that is to be loaded from JSON
     /// </summary>
@@ -724,7 +735,7 @@ public abstract class BaseThriveConverter : JsonConverter
         JObject item, out HashSet<string> alreadyConsumedItems)
     {
         // Find a constructor we can call
-        ConstructorInfo constructor = null;
+        ConstructorInfo? constructor = null;
 
         // Consider private constructors but ignore those that do not have the [JsonConstructor] attribute.
         var privateJsonConstructors = objectType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance).Where(
@@ -770,7 +781,7 @@ public abstract class BaseThriveConverter : JsonConverter
         }
 
         // Load constructor params
-        object[] constructorArgs = constructor.GetParameters()
+        object?[] constructorArgs = constructor.GetParameters()
             .Select(p => ReadMember(DetermineKey(item, p.Name),
                 p.ParameterType, item, null, reader, serializer)).ToArray();
 
@@ -815,6 +826,9 @@ public abstract class BaseThriveConverter : JsonConverter
 
         object instance = node;
 
+        // Let the object know first if it is loaded from a save to allow node resolve do special actions in this case
+        HandleSaveLoadedTracked(instance);
+
         // Perform early Node resolve to make loading child Node properties work
         if (data.UsesEarlyResolve)
         {
@@ -826,9 +840,56 @@ public abstract class BaseThriveConverter : JsonConverter
             {
                 throw new JsonException("Scene loaded JSON type cast to IGodotEarlyNodeResolve failed", e);
             }
+
+            // Recursively apply early resolve as otherwise recursive ApplyOnlyChildProperties may run into problems
+            try
+            {
+                RecursivelyApplyEarlyNodeResolve(instance);
+            }
+            catch (Exception e)
+            {
+                throw new JsonException("Scene loaded JSON type failed to recursively find / run early resolve nodes",
+                    e);
+            }
         }
 
         return instance;
+    }
+
+    private void RecursivelyApplyEarlyNodeResolve(object instance)
+    {
+        // Child objects are also told if they are loaded from a save
+        HandleSaveLoadedTracked(instance);
+
+        foreach (var field in FieldsOf(instance))
+        {
+            if (UsesOnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
+                    out _))
+            {
+                var value = field.GetValue(instance);
+
+                if (value is IGodotEarlyNodeResolve earlyNodeResolve)
+                {
+                    earlyNodeResolve.ResolveNodeReferences();
+                    RecursivelyApplyEarlyNodeResolve(value);
+                }
+            }
+        }
+
+        foreach (var property in PropertiesOf(instance))
+        {
+            if (UsesOnlyChildAssign(property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
+                    out _))
+            {
+                var value = property.GetValue(instance);
+
+                if (value is IGodotEarlyNodeResolve earlyNodeResolve)
+                {
+                    earlyNodeResolve.ResolveNodeReferences();
+                    RecursivelyApplyEarlyNodeResolve(value);
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -839,13 +900,14 @@ public abstract class BaseThriveConverter : JsonConverter
     /// <param name="target">The object to apply properties to</param>
     /// <param name="serializer">Serializer to use for reference handling</param>
     /// <param name="data">Options for the child assign</param>
-    private void ApplyOnlyChildProperties(object newData, object target, JsonSerializer serializer,
-        AssignOnlyChildItemsOnDeserializeAttribute data)
+    /// <param name="recursive">
+    ///   Set to true when called recursively. Disabled registering Node instance deletion
+    /// </param>
+    private void ApplyOnlyChildProperties(object? newData, object target, JsonSerializer serializer,
+        AssignOnlyChildItemsOnDeserializeAttribute data, bool recursive = false)
     {
         if (target == null)
-        {
             throw new JsonSerializationException("Copy only child properties target is null");
-        }
 
         // If no new data, don't apply anything
         if (newData == null)
@@ -859,7 +921,8 @@ public abstract class BaseThriveConverter : JsonConverter
         }
 
         // Need to register for deletion the orphaned Godot object
-        if (newData is Node node)
+        // We avoid registering things that are child properties of things that should already be freed
+        if (!recursive && newData is Node node)
         {
             TemporaryLoadedNodeDeleter.Instance.Register(node);
         }
@@ -871,13 +934,43 @@ public abstract class BaseThriveConverter : JsonConverter
         RunPrePropertyDeserializeActions(target);
         RunPostPropertyDeserializeActions(target);
 
-        if (data.ReplaceReferences)
+        if (data.ReplaceReferences && serializer.ReferenceResolver != null)
         {
-            if (serializer.ReferenceResolver?.IsReferenced(serializer, newData) == true)
+            UpdateObjectReference(serializer, newData, target);
+        }
+
+        // Recursively apply the reference update in case there are properties in the newData that also use the
+        // attribute and register them for deletion
+        foreach (var field in FieldsOf(newData))
+        {
+            if (UsesOnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
+                    out var recursiveChildData))
             {
-                serializer.ReferenceResolver.AddReference(serializer,
-                    serializer.ReferenceResolver.GetReference(serializer, newData), target);
+                ApplyOnlyChildProperties(field.GetValue(newData), field.GetValue(target), serializer,
+                    recursiveChildData!, true);
             }
+        }
+
+        foreach (var property in PropertiesOf(newData))
+        {
+            if (UsesOnlyChildAssign(property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
+                    out var recursiveChildData))
+            {
+                ApplyOnlyChildProperties(property.GetValue(newData), property.GetValue(target), serializer,
+                    recursiveChildData!, true);
+            }
+        }
+
+        if (target is IChildPropertiesLoadCallback callbackReceiver2)
+            callbackReceiver2.OnPropertiesLoaded();
+    }
+
+    private void UpdateObjectReference(JsonSerializer serializer, object oldReference, object newReference)
+    {
+        if (serializer.ReferenceResolver!.IsReferenced(serializer, oldReference))
+        {
+            serializer.ReferenceResolver.AddReference(serializer,
+                serializer.ReferenceResolver.GetReference(serializer, oldReference), newReference);
         }
     }
 }
@@ -896,6 +989,9 @@ public class UseThriveSerializerAttribute : Attribute
 /// </summary>
 internal class DefaultThriveJSONConverter : BaseThriveConverter
 {
+    private static readonly Type UseSerializerAttribute = typeof(UseThriveSerializerAttribute);
+    private static readonly Type SceneLoadedAttribute = typeof(SceneLoadedClassAttribute);
+
     public DefaultThriveJSONConverter(ISaveContext context) : base(context)
     {
     }
@@ -908,7 +1004,6 @@ internal class DefaultThriveJSONConverter : BaseThriveConverter
     {
         // Types with out custom attribute are supported
         return objectType.CustomAttributes.Any(
-            attr => attr.AttributeType == typeof(UseThriveSerializerAttribute) ||
-                attr.AttributeType == typeof(SceneLoadedClassAttribute));
+            attr => attr.AttributeType == UseSerializerAttribute || attr.AttributeType == SceneLoadedAttribute);
     }
 }

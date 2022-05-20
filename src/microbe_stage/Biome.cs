@@ -11,33 +11,35 @@ public class Biome : IRegistryType
     ///   Name of the biome, for showing to the player in the GUI
     /// </summary>
     [TranslateFrom("untranslatedName")]
-    public string Name;
+    public string Name = null!;
 
     /// <summary>
     ///   References a Background by name
     /// </summary>
-    public string Background;
+    public string Background = null!;
 
     /// <summary>
     ///   Icon of the biome to be used in the patch map
     /// </summary>
-    public string Icon;
+    public string Icon = null!;
 
     /// <summary>
     ///   The light to use for this biome
     /// </summary>
-    public LightDetails Sunlight;
+    public LightDetails Sunlight = new();
+
+    public float CompoundCloudBrightness = 1.0f;
 
     [JsonIgnore]
-    public Texture LoadedIcon;
+    public Texture? LoadedIcon;
 
-    public BiomeConditions Conditions;
+    public BiomeConditions Conditions = null!;
 
 #pragma warning disable 169 // Used through reflection
-    private string untranslatedName;
+    private string? untranslatedName;
 #pragma warning restore 169
 
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = null!;
 
     public void Check(string name)
     {
@@ -65,6 +67,12 @@ public class Biome : IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "sunlight missing");
+        }
+
+        if (CompoundCloudBrightness <= 0)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "cloud brightness needs to be over 0");
         }
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
@@ -95,7 +103,7 @@ public class Biome : IRegistryType
         /// <summary>
         ///   Colour of the light
         /// </summary>
-        public Color Colour = new Color(1, 1, 1, 1);
+        public Color Colour = new(1, 1, 1, 1);
 
         /// <summary>
         ///   Strength of the light
@@ -116,6 +124,6 @@ public class Biome : IRegistryType
         ///   The direction the light is pointing at. This is done by placing the light and making it look at a relative
         ///   position with these coordinates.
         /// </summary>
-        public Vector3 Direction = new Vector3(0.25f, -0.3f, 0.75f);
+        public Vector3 Direction = new(0.25f, -0.3f, 0.75f);
     }
 }

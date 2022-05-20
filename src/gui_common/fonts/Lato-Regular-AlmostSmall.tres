@@ -1,4 +1,4 @@
-[gd_resource type="DynamicFont" load_steps=9 format=2]
+[gd_resource type="DynamicFont" load_steps=11 format=2]
 
 [ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/NotoEmoji-Regular.ttf" type="DynamicFontData" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/fonts/NotoSansCJKtc-Regular.otf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/fonts/NotoSansThai-Regular.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://assets/fonts/NotoSansSinhala-Regular.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/fonts/NotoSansGeorgian-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/fonts/NotoSansArabic-Regular.ttf" type="DynamicFontData" id=10]
 
 [resource]
 size = 15
@@ -20,3 +22,5 @@ fallback/3 = ExtResource( 6 )
 fallback/4 = ExtResource( 5 )
 fallback/5 = ExtResource( 7 )
 fallback/6 = ExtResource( 8 )
+fallback/7 = ExtResource( 9 )
+fallback/8 = ExtResource( 10 )

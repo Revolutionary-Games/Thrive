@@ -107,7 +107,7 @@ public class SpecifiedInputKey : ICloneable
         };
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (ReferenceEquals(null, obj))
             return false;

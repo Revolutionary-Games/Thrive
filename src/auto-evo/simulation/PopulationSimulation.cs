@@ -116,6 +116,13 @@
                 }
             }
 
+            foreach (var entry in species)
+            {
+                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
+                if (entry == null)
+                    throw new Exception("Species in a simulation run is null");
+            }
+
             return species;
         }
 
@@ -145,7 +152,9 @@
             bool trackEnergy = simulationConfiguration.CollectEnergyInformation;
 
             // This algorithm version is for microbe species
-            var species = genericSpecies.Select(s => (MicrobeSpecies)s).ToList();
+            // TODO: add simulation for multicellular
+            var species = genericSpecies.Select(s => s as MicrobeSpecies).Where(s => s != null).Select(s => s!)
+                .ToList();
 
             // Skip if there aren't any species in this patch
             if (species.Count < 1)
@@ -231,15 +240,16 @@
             foreach (var currentSpecies in species)
             {
                 var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(currentSpecies, patch);
+                var individualCost = energyBalanceInfo.TotalConsumptionStationary;
 
                 // Modify populations based on energy
                 var newPopulation = (long)(energyBySpecies[currentSpecies]
-                    / energyBalanceInfo.FinalBalanceStationary);
+                    / individualCost);
 
                 if (trackEnergy)
                 {
                     populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch, newPopulation,
-                        energyBySpecies[currentSpecies], energyBalanceInfo.FinalBalanceStationary);
+                        energyBySpecies[currentSpecies], individualCost);
                 }
 
                 // TODO: this is a hack for now to make the player experience better, try to get the same rules working

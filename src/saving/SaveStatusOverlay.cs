@@ -7,20 +7,20 @@ using Godot;
 public class SaveStatusOverlay : Control
 {
     [Export]
-    public NodePath StatusLabelPath;
+    public NodePath StatusLabelPath = null!;
 
     [Export]
-    public NodePath AnimationPlayerPath;
+    public NodePath AnimationPlayerPath = null!;
 
     [Export]
-    public NodePath ErrorDialogPath;
+    public NodePath ErrorDialogPath = null!;
 
-    private static SaveStatusOverlay instance;
+    private static SaveStatusOverlay? instance;
 
-    private Label statusLabel;
-    private AnimationPlayer animationPlayer;
+    private Label statusLabel = null!;
+    private AnimationPlayer animationPlayer = null!;
 
-    private ErrorDialog errorDialog;
+    private ErrorDialog errorDialog = null!;
 
     private float hideTimer;
     private bool hidden;
@@ -35,7 +35,7 @@ public class SaveStatusOverlay : Control
         instance = this;
     }
 
-    public static SaveStatusOverlay Instance => instance;
+    public static SaveStatusOverlay Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public override void _Ready()
     {
@@ -74,7 +74,7 @@ public class SaveStatusOverlay : Control
     ///   If true allows the user to copy the error, should be on if exception is an exception
     /// </param>
     public void ShowError(string title, string message, string exception, bool returnToMenu = false,
-        Action onClosed = null, bool allowExceptionCopy = true)
+        Action? onClosed = null, bool allowExceptionCopy = true)
     {
         errorDialog.ShowError(title, message, exception, returnToMenu, onClosed, allowExceptionCopy);
     }

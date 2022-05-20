@@ -20,8 +20,7 @@ public static class Constants
     public const float MAX_SPAWN_DISTANCE = 5000.0f;
 
     /// <summary>
-    ///   The (default) size of the hexagons, used in
-    ///   calculations. Don't change this.
+    ///   The (default) size of the hexagons, used in calculations. Don't change this.
     /// </summary>
     public const float DEFAULT_HEX_SIZE = 0.75f;
 
@@ -63,23 +62,27 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 7.0f;
+    public const float FLAGELLA_ENERGY_COST = 4.0f;
 
     public const float FLAGELLA_BASE_FORCE = 75.7f;
-
-    /// <summary>
-    ///   Used for energy balance calculations
-    /// </summary>
-    public const string FLAGELLA_COMPONENT_NAME = "movement";
 
     public const float CELL_BASE_THRUST = 50.6f;
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
-    public const int PROCESS_OBJECTS_PER_TASK = 50;
+    public const int PROCESS_OBJECTS_PER_TASK = 15;
 
     public const int MICROBE_SPAWN_RADIUS = 170;
     public const int CLOUD_SPAWN_RADIUS = 170;
+
+    /// <summary>
+    ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
+    ///   without causing them to despawn instantly. Things despawn outside the despawn radius.
+    /// </summary>
+    public const int DESPAWN_RADIUS_OFFSET = 50;
+
+    public const int MICROBE_DESPAWN_RADIUS_SQUARED = (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET) *
+        (MICROBE_SPAWN_RADIUS + DESPAWN_RADIUS_OFFSET);
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
@@ -113,7 +116,13 @@ public static class Constants
     /// </summary>
     public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
 
-    public const int MICROBE_AI_OBJECTS_PER_TASK = 15;
+    /// <summary>
+    ///   This is how often the AI microbes look for emitted signaling agent signals from members of their species.
+    ///   This is set pretty high to reduce the performance impact.
+    /// </summary>
+    public const float MICROBE_AI_SIGNAL_REACT_INTERVAL = 1.2f;
+
+    public const int MICROBE_AI_OBJECTS_PER_TASK = 12;
 
     public const int INITIAL_SPECIES_POPULATION = 100;
 
@@ -133,6 +142,13 @@ public static class Constants
     ///   Max number of concurrent audio players that may be spawned per entity.
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
+
+    /// <summary>
+    ///   Max number of concurrent audio players that may be spawned for UI sounds.
+    /// </summary>
+    public const int MAX_CONCURRENT_UI_AUDIO_PLAYERS = 10;
+
+    public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
 
     /// <summary>
     ///   Controls with how much force agents are fired
@@ -201,6 +217,16 @@ public static class Constants
     /// </summary>
     public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
 
+    /// <summary>
+    ///   Limits how often floating chunks are processed to save on some performance
+    /// </summary>
+    public const float FLOATING_CHUNK_PROCESS_INTERVAL = 0.05f;
+
+    /// <summary>
+    ///   If more chunks exist at once than this, then some are forced to dissolve immediately
+    /// </summary>
+    public const int FLOATING_CHUNK_MAX_COUNT = 35;
+
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 3000.0f;
 
     public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;
@@ -228,6 +254,8 @@ public static class Constants
     /// </summary>
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
 
+    public const float MICROBE_REPRODUCTION_PROGRESS_INTERVAL = 0.05f;
+
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
     ///   is dealt to a microbe at a time when it is out of ATP.
@@ -237,7 +265,12 @@ public static class Constants
     /// <summary>
     ///   Organelles won't take compounds if there is less available than this amount
     /// </summary>
-    public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0f;
+    /// <remarks>
+    ///   <para>
+    ///     This is no longer zero as rounding can otherwise make compounds just disappear
+    ///   </para>
+    /// </remarks>
+    public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0001f;
 
     /// <summary>
     ///   Cost of moving the rigidity slider by one step in the microbe editor
@@ -326,6 +359,8 @@ public static class Constants
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
 
+    public const float COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET = 1;
+
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;
@@ -344,6 +379,20 @@ public static class Constants
     ///   If drag is below this it isn't applied to let the cells come to a halt properly
     /// </summary>
     public const float CELL_REQUIRED_DRAG_BEFORE_APPLY = 0.0033f;
+
+    public const float CHEMORECEPTOR_RANGE_MIN = 2;
+    public const float CHEMORECEPTOR_RANGE_MAX = 700;
+    public const float CHEMORECEPTOR_RANGE_DEFAULT = 350;
+    public const float CHEMORECEPTOR_AMOUNT_MIN = 1;
+    public const float CHEMORECEPTOR_AMOUNT_MAX = 5000;
+    public const float CHEMORECEPTOR_AMOUNT_DEFAULT = 100;
+    public const float CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL = 0.25f;
+    public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
+
+    /// <summary>
+    ///   Size, in radians, of the gaps between directions the chemoreceptor checks for compounds
+    /// </summary>
+    public const double CHEMORECEPTOR_ARC_SIZE = Math.PI / 24.0;
 
     /// <summary>
     ///   This should be the max needed hexes (nucleus {10} * 6-way symmetry)
@@ -401,6 +450,9 @@ public static class Constants
     // Cooldown for AI for toggling engulfing
     public const float AI_ENGULF_INTERVAL = 300;
 
+    // Average number of calls to think method before doing expensive cloud-finding calculations
+    public const int AI_STEPS_PER_SMELL = 20;
+
     // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
     public const float AI_COMPOUND_BIAS = -10.0f;
 
@@ -412,6 +464,9 @@ public static class Constants
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_FOCUSED_MOVEMENT = 1.0f;
     public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
+
+    public const float AI_FOLLOW_DISTANCE_SQUARED = 60 * 60;
+    public const float AI_FLEE_DISTANCE_SQUARED = 85 * 85;
 
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 40.0f;
@@ -438,7 +493,7 @@ public static class Constants
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
     public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
-    public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 1.0f;
+    public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 20;
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
@@ -446,11 +501,14 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
-    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 1200;
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
+
+    public const double AUTO_EVO_COMPOUND_RATIO_POWER_BIAS = 1;
+    public const double AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS = 0.5;
 
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
@@ -462,9 +520,24 @@ public static class Constants
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 300;
+    // These control how many game entities can exist at once and how fast they are allowed to spawn / despawn
+    // TODO: bump this back up once we resolve the performance bottleneck
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 140;
     public const int MAX_SPAWNS_PER_FRAME = 1;
-    public const int MAX_DESPAWNS_PER_FRAME = 1;
+
+    /// <summary>
+    ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
+    /// </summary>
+    public const int MAX_DESPAWNS_PER_FRAME = 2;
+
+    /// <summary>
+    ///   How often despawns happen on top of the normal despawns that are part of the spawn cycle
+    /// </summary>
+    public const float DESPAWN_INTERVAL = 0.08f;
+
+    public const float CHANCE_MULTICELLULAR_SPAWNS_GROWN = 0.1f;
+    public const float CHANCE_MULTICELLULAR_SPAWNS_PARTLY_GROWN = 0.3f;
+    public const float CHANCE_MULTICELLULAR_PARTLY_GROWN_CELL_CHANCE = 0.4f;
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
@@ -490,10 +563,27 @@ public static class Constants
     public const float EDITOR_ARROW_OFFSET = 3.5f;
     public const float EDITOR_ARROW_INTERPOLATE_SPEED = 0.5f;
 
+    public const float EDITOR_DEFAULT_CAMERA_HEIGHT = 10;
+
+    public const float MULTICELLULAR_EDITOR_PREVIEW_MICROBE_SCALE_MULTIPLIER = 0.80f;
+
+    /// <summary>
+    ///   Scale used for one frame while membrane data is not ready yet
+    /// </summary>
+    public const float MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE = 0.18f;
+
+    /// <summary>
+    ///   Multiplier for cell editor actions in multicellular editor
+    /// </summary>
+    public const float MULTICELLULAR_EDITOR_COST_FACTOR = 0.5f;
+
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
     public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
+
+    public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
+    public const int COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC = 20;
 
     /// <summary>
     ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs
@@ -520,11 +610,19 @@ public static class Constants
     public const int PATCH_HISTORY_RANGE = 10;
 
     /// <summary>
+    ///   The maximum limit for amount of events by time period to store in <see cref="GameWorld"/>.
+    /// </summary>
+    public const int GLOBAL_EVENT_LOG_CAP = 20;
+
+    /// <summary>
     ///   Extra margin used to show cells that the player hovers over with the mouse. This is done to make it easier
     ///   to see what small cells are.
     ///   Specifically for use with LengthSquared.
     /// </summary>
     public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED = 2 * 2;
+
+    public const float PROCEDURAL_CACHE_CLEAN_INTERVAL = 9.3f;
+    public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
@@ -555,6 +653,12 @@ public static class Constants
     /// <summary>
     ///   All Nodes tagged with this are considered Microbes that the AI can react to
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: quite a few of these AI_TAG starting constants need to be renamed as these are generally used to
+    ///     find relevant entities for things that aren't the AI system
+    ///   </para>
+    /// </remarks>
     public const string AI_TAG_MICROBE = "microbe";
 
     /// <summary>
@@ -572,6 +676,8 @@ public static class Constants
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 
+    public const int MAX_PATH_LENGTH = 1024;
+
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
     public const string LOGS_FOLDER_NAME = "logs";
@@ -586,6 +692,8 @@ public static class Constants
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
     public const string OFL_LICENSE_FILE = "res://assets/OFL.txt";
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
+
+    public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
 
     /// <summary>
     ///   Internal Godot name for the default audio output device
@@ -657,6 +765,10 @@ public static class Constants
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 600f;
 
+    public const float PHOTO_STUDIO_CAMERA_FOV = 70;
+    public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
+    public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 0.80f;
+
     /// <summary>
     ///   Regex for species name validation.
     /// </summary>
@@ -668,6 +780,10 @@ public static class Constants
     ///   Minimum hex distance before the same render priority.
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
+
+    public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
+
+    public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

@@ -9,18 +9,18 @@ using Newtonsoft.Json;
 /// </summary>
 public class PatchMap
 {
-    private Patch currentPatch;
+    private Patch? currentPatch;
 
     /// <summary>
     ///   The  list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
     /// </summary>
     [JsonProperty]
-    public Dictionary<int, Patch> Patches { get; private set; } = new Dictionary<int, Patch>();
+    public Dictionary<int, Patch> Patches { get; private set; } = new();
 
     /// <summary>
     ///   Currently active patch (the one player is in)
     /// </summary>
-    public Patch CurrentPatch
+    public Patch? CurrentPatch
     {
         get => currentPatch;
         set
@@ -46,7 +46,10 @@ public class PatchMap
     public void AddPatch(Patch patch)
     {
         if (Patches.ContainsKey(patch.ID))
-            throw new ArgumentException("patch cannot be added to this map");
+        {
+            throw new ArgumentException(
+                "patch cannot be added to this map, the ID is already in use: " + patch.ID);
+        }
 
         Patches[patch.ID] = patch;
     }
@@ -149,7 +152,7 @@ public class PatchMap
     ///     looked up.
     ///   </para>
     /// </remarks>
-    public Species FindSpeciesByID(uint id)
+    public Species? FindSpeciesByID(uint id)
     {
         if (CurrentPatch != null)
         {
@@ -202,6 +205,21 @@ public class PatchMap
     }
 
     /// <summary>
+    ///   Gets the species population in all patches.
+    /// </summary>
+    public long GetSpeciesGlobalPopulation(Species species)
+    {
+        long sum = 0;
+
+        foreach (var entry in Patches.Values)
+        {
+            sum += entry.GetSpeciesPopulation(species);
+        }
+
+        return sum;
+    }
+
+    /// <summary>
     ///   Removes species from patches where their population is &lt;= 0
     /// </summary>
     /// <returns>
@@ -225,7 +243,7 @@ public class PatchMap
                 patch.Value.RemoveSpecies(speciesEntry.Key);
 
                 GD.Print("Species ", speciesEntry.Key.FormattedName, " has gone extinct in ",
-                    TranslationServer.Translate(patch.Value.Name));
+                    patch.Value.Name);
 
                 if (!nonExtinctSpecies.Contains(speciesEntry.Key))
                 {
@@ -288,5 +306,18 @@ public class PatchMap
         }
 
         return false;
+    }
+
+    /// <summary>
+    ///   Replaces a species with a different one. This is done when the class of a species needs to change
+    /// </summary>
+    /// <param name="old">The old species to remove</param>
+    /// <param name="newSpecies">The new species to put in place of the old species</param>
+    public void ReplaceSpecies(Species old, Species newSpecies)
+    {
+        foreach (var patch in Patches.Values)
+        {
+            patch.ReplaceSpecies(old, newSpecies);
+        }
     }
 }

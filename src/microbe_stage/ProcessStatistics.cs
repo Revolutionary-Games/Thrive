@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Nito.Collections;
 
@@ -7,8 +8,7 @@ using Nito.Collections;
 /// </summary>
 public class ProcessStatistics
 {
-    public Dictionary<TweakedProcess, SingleProcessStatistics> Processes { get; } =
-        new Dictionary<TweakedProcess, SingleProcessStatistics>();
+    public Dictionary<TweakedProcess, SingleProcessStatistics> Processes { get; } = new();
 
     public void MarkAllUnused()
     {
@@ -28,17 +28,16 @@ public class ProcessStatistics
 
     public SingleProcessStatistics GetAndMarkUsed(TweakedProcess forProcess)
     {
-        if (Processes.ContainsKey(forProcess))
+        if (Processes.TryGetValue(forProcess, out var entry))
         {
-            var result = Processes[forProcess];
-            result.Used = true;
-            return result;
+            entry.Used = true;
+            return entry;
         }
 
-        var newEntry = new SingleProcessStatistics(forProcess.Process);
-        Processes[forProcess] = newEntry;
-        newEntry.Used = true;
-        return newEntry;
+        entry = new SingleProcessStatistics(forProcess.Process);
+        Processes[forProcess] = entry;
+        entry.Used = true;
+        return entry;
     }
 }
 
@@ -48,14 +47,14 @@ public class ProcessStatistics
 public class SingleProcessStatistics : IProcessDisplayInfo
 {
     private readonly float keepSnapshotTime;
-    private readonly Deque<SingleProcessStatisticsSnapshot> snapshots = new Deque<SingleProcessStatisticsSnapshot>();
+    private readonly Deque<SingleProcessStatisticsSnapshot> snapshots = new();
 
     /// <summary>
     ///   Cached statistics object to not need to recreate this each time the average statistics are computed.
     /// </summary>
     private AverageProcessStatistics computedStatistics;
 
-    private Dictionary<Compound, float> precomputedEnvironmentInputs = new Dictionary<Compound, float>();
+    private Dictionary<Compound, float>? precomputedEnvironmentInputs;
 
     public SingleProcessStatistics(BioProcess process,
         float keepSnapshotTime = Constants.DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL)
@@ -75,32 +74,36 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     public string Name => Process.Name;
 
     public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
-        LatestSnapshot?.Inputs.Where(p => !p.Key.IsEnvironmental);
+        LatestSnapshot?.Inputs.Where(p => !p.Key.IsEnvironmental) ??
+        throw new InvalidOperationException("No snapshot set");
 
     public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs =>
-        LatestSnapshot?.Inputs.Where(p => p.Key.IsEnvironmental);
+        LatestSnapshot?.Inputs.Where(p => p.Key.IsEnvironmental) ??
+        throw new InvalidOperationException("No snapshot set");
 
-    public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs
-    {
-        get
-        {
-            return precomputedEnvironmentInputs ??= Process.Inputs
-                .Where(p => p.Key.IsEnvironmental)
-                .ToDictionary(p => p.Key, p => p.Value);
-        }
-    }
+    public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
+        precomputedEnvironmentInputs ??= Process.Inputs
+            .Where(p => p.Key.IsEnvironmental)
+            .ToDictionary(p => p.Key, p => p.Value);
 
-    public IEnumerable<KeyValuePair<Compound, float>> Outputs => LatestSnapshot?.Outputs;
+    public IEnumerable<KeyValuePair<Compound, float>> Outputs =>
+        LatestSnapshot?.Outputs ?? throw new InvalidOperationException("No snapshot set");
 
     public float CurrentSpeed
     {
         get => LatestSnapshot?.CurrentSpeed ?? 0;
-        set => LatestSnapshot.CurrentSpeed = value;
+        set
+        {
+            if (LatestSnapshot == null)
+                throw new InvalidOperationException("Snapshot needs to be set before recording current speed");
+
+            LatestSnapshot.CurrentSpeed = value;
+        }
     }
 
-    public IReadOnlyList<Compound> LimitingCompounds => LatestSnapshot?.LimitingCompounds;
+    public IReadOnlyList<Compound>? LimitingCompounds => LatestSnapshot?.LimitingCompounds;
 
-    private SingleProcessStatisticsSnapshot LatestSnapshot =>
+    private SingleProcessStatisticsSnapshot? LatestSnapshot =>
         snapshots.Count > 0 ? snapshots[snapshots.Count - 1] : null;
 
     /// <summary>
@@ -131,14 +134,9 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
             foreach (var limit in entry.LimitingCompounds)
             {
-                if (seenLimiters.ContainsKey(limit))
-                {
-                    seenLimiters[limit] += 1;
-                }
-                else
-                {
-                    seenLimiters[limit] = 1;
-                }
+                seenLimiters.TryGetValue(limit, out var existing);
+
+                seenLimiters[limit] = existing + 1;
             }
 
             ++entriesProcessed;
@@ -169,7 +167,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     public void BeginFrame(float delta)
     {
         // Prepare the next snapshot object to fill
-        SingleProcessStatisticsSnapshot existing = null;
+        SingleProcessStatisticsSnapshot? existing = null;
 
         float seenTime = 0;
 
@@ -206,22 +204,34 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
     public void AddLimitingFactor(Compound compound)
     {
+        if (LatestSnapshot == null)
+            throw new InvalidOperationException("Snapshot needs to be set before recording data into it");
+
         LatestSnapshot.LimitingCompounds.Add(compound);
     }
 
     public void AddCapacityProblem(Compound compound)
     {
+        if (LatestSnapshot == null)
+            throw new InvalidOperationException("Snapshot needs to be set before recording data into it");
+
         // For now this is shown to the user the same way as limit problems
         LatestSnapshot.LimitingCompounds.Add(compound);
     }
 
     public void AddInputAmount(Compound compound, float amount)
     {
+        if (LatestSnapshot == null)
+            throw new InvalidOperationException("Snapshot needs to be set before recording data into it");
+
         LatestSnapshot.Inputs[compound] = amount;
     }
 
     public void AddOutputAmount(Compound compound, float amount)
     {
+        if (LatestSnapshot == null)
+            throw new InvalidOperationException("Snapshot needs to be set before recording data into it");
+
         LatestSnapshot.Outputs[compound] = amount;
     }
 
@@ -247,7 +257,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
     public override int GetHashCode()
     {
-        return 37 ^ (Process?.GetHashCode() ?? 947);
+        return 37 ^ Process.GetHashCode();
     }
 
     /// <summary>
@@ -255,9 +265,9 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     /// </summary>
     private class SingleProcessStatisticsSnapshot
     {
-        public readonly Dictionary<Compound, float> Inputs = new Dictionary<Compound, float>();
-        public readonly Dictionary<Compound, float> Outputs = new Dictionary<Compound, float>();
-        public readonly List<Compound> LimitingCompounds = new List<Compound>();
+        public readonly Dictionary<Compound, float> Inputs = new();
+        public readonly Dictionary<Compound, float> Outputs = new();
+        public readonly List<Compound> LimitingCompounds = new();
         public float CurrentSpeed;
         public float Delta;
 
@@ -280,9 +290,9 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 /// </summary>
 public class AverageProcessStatistics : IProcessDisplayInfo
 {
-    public readonly Dictionary<Compound, float> WritableInputs = new Dictionary<Compound, float>();
-    public readonly Dictionary<Compound, float> WritableOutputs = new Dictionary<Compound, float>();
-    public readonly List<Compound> WritableLimitingCompounds = new List<Compound>();
+    public readonly Dictionary<Compound, float> WritableInputs = new();
+    public readonly Dictionary<Compound, float> WritableOutputs = new();
+    public readonly List<Compound> WritableLimitingCompounds = new();
 
     private readonly SingleProcessStatistics owner;
 

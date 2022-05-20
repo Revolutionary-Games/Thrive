@@ -15,15 +15,13 @@ anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 EditorEntryReportPath = NodePath("EditorEntryReport")
 PatchMapPath = NodePath("PatchMapTutorial")
 CellEditorIntroductionPath = NodePath("CellEditorIntro")
 CellEditorUndoPath = NodePath("UndoTutorial")
 CellEditorUndoHighlightPath = NodePath("UndoButtonHighlight")
 CellEditorRedoPath = NodePath("RedoTutorial")
+CellEditorRedoHighlightPath = NodePath("RedoButtonHighlight")
 CellEditorClosingWordsPath = NodePath("CellEditorClosingWords")
 AutoEvoPredictionPath = NodePath("AutoEvoPrediction")
 AutoEvoPredictionHighlightPath = NodePath("AutoEvoPredictionHighlight")
@@ -102,7 +100,7 @@ margin_bottom = 670.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
-text = "EDITOR_TUTORIAL_PATCH_TEXT"
+text = "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 autowrap = true
 
 [node name="CellEditorIntro" parent="." instance=ExtResource( 4 )]
@@ -137,7 +135,7 @@ margin_bottom = 670.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
-text = "EDITOR_TUTORIAL_CELL_TEXT"
+text = "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 autowrap = true
 
 [node name="UndoTutorial" parent="." instance=ExtResource( 4 )]
@@ -177,7 +175,7 @@ margin_bottom = 670.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
-text = "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+text = "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 autowrap = true
 
 [node name="UndoButtonHighlight" parent="." instance=ExtResource( 3 )]
@@ -199,6 +197,7 @@ script = ExtResource( 7 )
 WindowTitle = "TUTORIAL"
 Resizable = true
 ShowCloseButton = false
+ShowDelay = 0.3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="RedoTutorial"]
 anchor_right = 1.0
@@ -219,8 +218,10 @@ margin_bottom = 710.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
-text = "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+text = "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 autowrap = true
+
+[node name="RedoButtonHighlight" parent="." instance=ExtResource( 3 )]
 
 [node name="CellEditorClosingWords" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
@@ -263,7 +264,7 @@ __meta__ = {
 margin_right = 350.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 5 )
-text = "EDITOR_TUTORIAL_ENDING_TEXT"
+text = "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 autowrap = true
 
 [node name="Control" type="Control" parent="CellEditorClosingWords/ScrollContainer/VBoxContainer"]
@@ -327,7 +328,7 @@ __meta__ = {
 margin_right = 710.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 5 )
-text = "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
+text = "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 autowrap = true
 
 [node name="StaySmall" parent="." instance=ExtResource( 4 )]
@@ -371,7 +372,7 @@ __meta__ = {
 margin_right = 710.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 5 )
-text = "EDITOR_TUTORIAL_STAY_SMALL"
+text = "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 autowrap = true
 
 [node name="Control" type="Control" parent="StaySmall/ScrollContainer/VBoxContainer"]

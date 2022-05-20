@@ -13,7 +13,7 @@ public class ChildObjectCache<TKey, TNode>
     private readonly Node parentObject;
     private readonly CreateNewChildNode childCreator;
 
-    private readonly Dictionary<TKey, CreatedNode> createdChildren = new Dictionary<TKey, CreatedNode>();
+    private readonly Dictionary<TKey, CreatedNode> createdChildren = new();
 
     private int nextAccessOrder;
 
@@ -63,11 +63,8 @@ public class ChildObjectCache<TKey, TNode>
 
     public TNode GetChild(TKey child)
     {
-        CreatedNode entry;
-
-        if (createdChildren.ContainsKey(child))
+        if (createdChildren.TryGetValue(child, out var entry))
         {
-            entry = createdChildren[child];
             entry.Marked = true;
             entry.AccessOrder = nextAccessOrder++;
             return entry.Node;

@@ -6,53 +6,58 @@
 public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 {
     [Export]
-    public NodePath EditorEntryReportPath;
+    public NodePath EditorEntryReportPath = null!;
 
     [Export]
-    public NodePath PatchMapPath;
+    public NodePath PatchMapPath = null!;
 
     [Export]
-    public NodePath CellEditorIntroductionPath;
+    public NodePath CellEditorIntroductionPath = null!;
 
     [Export]
-    public NodePath CellEditorUndoPath;
+    public NodePath CellEditorUndoPath = null!;
 
     [Export]
-    public NodePath CellEditorUndoHighlightPath;
+    public NodePath CellEditorUndoHighlightPath = null!;
 
     [Export]
-    public NodePath CellEditorRedoPath;
+    public NodePath CellEditorRedoPath = null!;
 
     [Export]
-    public NodePath CellEditorClosingWordsPath;
+    public NodePath CellEditorRedoHighlightPath = null!;
 
     [Export]
-    public NodePath AutoEvoPredictionPath;
+    public NodePath CellEditorClosingWordsPath = null!;
 
     [Export]
-    public NodePath AutoEvoPredictionHighlightPath;
+    public NodePath AutoEvoPredictionPath = null!;
 
     [Export]
-    public NodePath StaySmallTutorialPath;
+    public NodePath AutoEvoPredictionHighlightPath = null!;
 
-    private CustomDialog editorEntryReport;
-    private CustomDialog patchMap;
-    private CustomDialog cellEditorIntroduction;
-    private CustomDialog cellEditorUndo;
-    private CustomDialog cellEditorRedo;
-    private CustomDialog cellEditorClosingWords;
-    private CustomDialog autoEvoPrediction;
-    private CustomDialog staySmallTutorial;
+    [Export]
+    public NodePath StaySmallTutorialPath = null!;
 
-    public MainGameState AssociatedGameState { get; } = MainGameState.MicrobeEditor;
-    public ITutorialInput EventReceiver { get; set; }
+    private CustomDialog editorEntryReport = null!;
+    private CustomDialog patchMap = null!;
+    private CustomDialog cellEditorIntroduction = null!;
+    private CustomDialog cellEditorUndo = null!;
+    private CustomDialog cellEditorRedo = null!;
+    private CustomDialog cellEditorClosingWords = null!;
+    private CustomDialog autoEvoPrediction = null!;
+    private CustomDialog staySmallTutorial = null!;
+
+    public MainGameState AssociatedGameState => MainGameState.MicrobeEditor;
+    public ITutorialInput? EventReceiver { get; set; }
     public bool IsClosingAutomatically { get; set; }
     public bool TutorialEnabledSelected { get; private set; } = true;
     public Node GUINode => this;
 
-    public ControlHighlight CellEditorUndoHighlight { get; private set; }
+    public ControlHighlight? CellEditorUndoHighlight { get; private set; }
 
-    public ControlHighlight AutoEvoPredictionHighlight { get; private set; }
+    public ControlHighlight? CellEditorRedoHighlight { get; private set; }
+
+    public ControlHighlight? AutoEvoPredictionHighlight { get; private set; }
 
     public bool EditorEntryReportVisible
     {
@@ -218,7 +223,10 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         staySmallTutorial = GetNode<CustomDialog>(StaySmallTutorialPath);
 
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
+        CellEditorRedoHighlight = GetNode<ControlHighlight>(CellEditorRedoHighlightPath);
         AutoEvoPredictionHighlight = GetNode<ControlHighlight>(AutoEvoPredictionHighlightPath);
+
+        PauseMode = PauseModeEnum.Process;
     }
 
     public override void _Process(float delta)

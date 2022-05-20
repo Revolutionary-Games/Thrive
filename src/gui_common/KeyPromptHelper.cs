@@ -34,7 +34,7 @@ public static class KeyPromptHelper
     /// <summary>
     ///   Event triggered when the key icons change, any GUI
     /// </summary>
-    public static event EventHandler IconsChanged;
+    public static event EventHandler? IconsChanged;
 
     public enum ActiveInputMethod
     {
@@ -130,7 +130,8 @@ public static class KeyPromptHelper
                     {
                         return GetPathForKeyboardKey(OS.GetScancodeString(key.Scancode));
                     }
-                    else if (action is InputEventMouseButton button)
+
+                    if (action is InputEventMouseButton button)
                     {
                         return GetPathForMouseButton((ButtonList)button.ButtonIndex);
                     }

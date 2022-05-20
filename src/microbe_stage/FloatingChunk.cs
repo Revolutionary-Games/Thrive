@@ -12,29 +12,26 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 {
     [Export]
     [JsonProperty]
-    public PackedScene GraphicsScene;
+    public PackedScene GraphicsScene = null!;
 
     /// <summary>
     ///   If this is null, a sphere shape is used as a default for collision detections.
     /// </summary>
     [Export]
     [JsonProperty]
-    public ConvexPolygonShape ConvexPhysicsMesh;
+    public ConvexPolygonShape? ConvexPhysicsMesh;
 
     /// <summary>
     ///   The node path to the mesh of this chunk
     /// </summary>
-    public string ModelNodePath;
-
-    [JsonProperty]
-    private CompoundCloudSystem compoundClouds;
+    public string? ModelNodePath;
 
     /// <summary>
     ///   Used to check if a microbe wants to engulf this
     /// </summary>
-    private HashSet<Microbe> touchingMicrobes = new HashSet<Microbe>();
+    private HashSet<Microbe> touchingMicrobes = new();
 
-    private MeshInstance chunkMesh;
+    private MeshInstance? chunkMesh;
 
     [JsonProperty]
     private bool isDissolving;
@@ -51,6 +48,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     [JsonProperty]
     private bool isParticles;
 
+    [JsonProperty]
+    private float elapsedSinceProcess;
+
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
@@ -64,7 +64,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     /// <summary>
     ///   Compounds this chunk contains, and vents
     /// </summary>
-    public CompoundBag ContainedCompounds { get; set; }
+    public CompoundBag? ContainedCompounds { get; set; }
 
     /// <summary>
     ///   How much of each compound is vented per second
@@ -101,10 +101,15 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
     public float ChunkScale { get; set; }
 
+    /// <summary>
+    ///   The name of kind of damage type this chunk inflicts. Default is "chunk".
+    /// </summary>
+    public string DamageType { get; set; } = "chunk";
+
     public bool IsLoadedFromSave { get; set; }
 
     [JsonIgnore]
-    public AliveMarker AliveMarker { get; } = new AliveMarker();
+    public AliveMarker AliveMarker { get; } = new();
 
     /// <summary>
     ///   Grabs data from the type to initialize this
@@ -114,17 +119,15 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     ///     Doesn't initialize the graphics scene which needs to be set separately
     ///   </para>
     /// </remarks>
-    public void Init(ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds,
-        string modelPath)
+    public void Init(ChunkConfiguration chunkType, string? modelPath)
     {
-        this.compoundClouds = compoundClouds;
-
         // Grab data
         VentPerSecond = chunkType.VentAmount;
         Dissolves = chunkType.Dissolves;
         Size = chunkType.Size;
         Damages = chunkType.Damages;
         DeleteOnTouch = chunkType.DeleteOnTouch;
+        DamageType = string.IsNullOrEmpty(chunkType.DamageType) ? "chunk" : chunkType.DamageType;
 
         Mass = chunkType.Mass;
 
@@ -162,6 +165,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         config.Damages = Damages;
         config.DeleteOnTouch = DeleteOnTouch;
         config.Mass = Mass;
+        config.DamageType = DamageType;
 
         config.Radius = Radius;
         config.ChunkScale = ChunkScale;
@@ -192,9 +196,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
     public override void _Ready()
     {
-        if (compoundClouds == null)
-            throw new InvalidOperationException("init hasn't been called on a FloatingChunk");
-
         var graphicsNode = GraphicsScene.Instance();
         GetNode("NodeToScale").AddChild(graphicsNode);
 
@@ -224,20 +225,33 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         InitPhysics();
     }
 
-    public override void _Process(float delta)
+    public void ProcessChunk(float delta, CompoundCloudSystem compoundClouds)
     {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        if (ContainedCompounds != null)
-            VentCompounds(delta);
-
         if (isDissolving)
             HandleDissolving(delta);
 
+        if (isFadingParticles)
+        {
+            particleFadeTimer -= delta;
+
+            if (particleFadeTimer <= 0)
+            {
+                this.DestroyDetachAndQueueFree();
+            }
+        }
+
+        elapsedSinceProcess += delta;
+
+        // Skip some of our more expensive operations if not enough time has passed
+        // This doesn't actually seem to have that much effect with reasonable chunk counts... but doesn't seem
+        // to hurt either, so for the future I think we should keep this -hhyyrylainen
+        if (elapsedSinceProcess < Constants.FLOATING_CHUNK_PROCESS_INTERVAL)
+            return;
+
+        VentCompounds(elapsedSinceProcess, compoundClouds);
+
         if (UsesDespawnTimer)
-            DespawnTimer += delta;
+            DespawnTimer += elapsedSinceProcess;
 
         // Check contacts
         foreach (var microbe in touchingMicrobes)
@@ -249,14 +263,13 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             // Damage
             if (Damages > 0)
             {
-                // TODO: Not the cleanest way to play the damage sound
                 if (DeleteOnTouch)
                 {
-                    microbe.Damage(Damages, "toxin");
+                    microbe.Damage(Damages, DamageType);
                 }
                 else
                 {
-                    microbe.Damage(Damages * delta, "chunk");
+                    microbe.Damage(Damages * elapsedSinceProcess, DamageType);
                 }
             }
 
@@ -276,7 +289,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
                             var added = microbe.Compounds.AddCompound(entry.Key, entry.Value /
                                 Constants.CHUNK_ENGULF_COMPOUND_DIVISOR) * Constants.CHUNK_ENGULF_COMPOUND_DIVISOR;
 
-                            VentCompound(Translation, entry.Key, entry.Value - added);
+                            VentCompound(Translation, entry.Key, entry.Value - added, compoundClouds);
                         }
                     }
 
@@ -294,16 +307,30 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         if (DespawnTimer > Constants.DESPAWNING_CHUNK_LIFETIME)
             DissolveOrRemove();
 
-        if (isFadingParticles)
-        {
-            particleFadeTimer -= delta;
+        elapsedSinceProcess = 0;
+    }
 
-            if (particleFadeTimer <= 0)
+    public void PopImmediately(CompoundCloudSystem compoundClouds)
+    {
+        // Vent all remaining compounds immediately
+        if (ContainedCompounds != null)
+        {
+            var pos = Translation;
+
+            var keys = new List<Compound>(ContainedCompounds.Compounds.Keys);
+
+            foreach (var compound in keys)
             {
-                OnDestroyed();
-                this.DetachAndFree();
+                var amount = ContainedCompounds.GetCompoundAmount(compound);
+
+                if (amount < MathUtils.EPSILON)
+                    continue;
+
+                VentCompound(pos, compound, amount, compoundClouds);
             }
         }
+
+        this.DestroyDetachAndQueueFree();
     }
 
     public void OnDestroyed()
@@ -314,8 +341,11 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     /// <summary>
     ///   Vents compounds if this is a chunk that contains compounds
     /// </summary>
-    private void VentCompounds(float delta)
+    private void VentCompounds(float delta, CompoundCloudSystem compoundClouds)
     {
+        if (ContainedCompounds == null)
+            return;
+
         var pos = Translation;
 
         var keys = new List<Compound>(ContainedCompounds.Compounds.Keys);
@@ -333,7 +363,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
             if (got > MathUtils.EPSILON)
             {
-                VentCompound(pos, compound, got);
+                VentCompound(pos, compound, got, compoundClouds);
                 vented = true;
             }
         }
@@ -346,10 +376,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         }
     }
 
-    private void VentCompound(Vector3 pos, Compound compound, float amount)
+    private void VentCompound(Vector3 pos, Compound compound, float amount, CompoundCloudSystem compoundClouds)
     {
-        compoundClouds.AddCloud(
-            compound, amount * Constants.CHUNK_VENT_COMPOUND_MULTIPLIER, pos);
+        compoundClouds.AddCloud(compound, amount * Constants.CHUNK_VENT_COMPOUND_MULTIPLIER, pos);
     }
 
     /// <summary>
@@ -357,6 +386,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     /// </summary>
     private void HandleDissolving(float delta)
     {
+        if (chunkMesh == null)
+            throw new InvalidOperationException("Chunk without a mesh can't dissolve");
+
         // Disable collisions
         CollisionLayer = 0;
         CollisionMask = 0;
@@ -384,6 +416,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         }
         else
         {
+            if (chunkMesh == null)
+                throw new InvalidOperationException("Can't use convex physics shape without mesh for chunk");
+
             shape.Shape = ConvexPhysicsMesh;
             shape.Transform = chunkMesh.Transform;
         }
@@ -408,9 +443,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             if (microbe.IsPilus(microbe.ShapeFindOwner(bodyShape)))
                 return;
 
-            microbe = microbe.GetMicrobeFromShape(bodyShape);
-            if (microbe != null)
-                touchingMicrobes.Add(microbe);
+            var target = microbe.GetMicrobeFromShape(bodyShape);
+            if (target != null)
+                touchingMicrobes.Add(target);
         }
     }
 
@@ -435,7 +470,10 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             if (microbe.IsPilus(shapeOwner))
                 return;
 
-            touchingMicrobes.Remove(microbe.GetMicrobeFromShape(bodyShape));
+            var target = microbe.GetMicrobeFromShape(bodyShape);
+
+            if (target != null)
+                touchingMicrobes.Remove(target);
         }
     }
 

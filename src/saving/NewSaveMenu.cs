@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using Godot;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Menu for managing making a new save
@@ -9,21 +10,25 @@ using Godot;
 public class NewSaveMenu : Control
 {
     [Export]
-    public NodePath SaveListPath;
+    public NodePath SaveListPath = null!;
 
     [Export]
-    public NodePath SaveNameBoxPath;
+    public NodePath SaveNameBoxPath = null!;
 
     [Export]
-    public NodePath OverwriteConfirmPath;
+    public NodePath OverwriteConfirmPath = null!;
 
     [Export]
-    public NodePath SaveButtonPath;
+    public NodePath AttemptWriteFailAcceptPath = null!;
 
-    private SaveList saveList;
-    private LineEdit saveNameBox;
-    private Button saveButton;
-    private CustomConfirmationDialog overwriteConfirm;
+    [Export]
+    public NodePath SaveButtonPath = null!;
+
+    private SaveList saveList = null!;
+    private LineEdit saveNameBox = null!;
+    private Button saveButton = null!;
+    private CustomConfirmationDialog overwriteConfirm = null!;
+    private CustomConfirmationDialog attemptWriteFailAccept = null!;
 
     private bool usingSelectedSaveName;
 
@@ -39,6 +44,7 @@ public class NewSaveMenu : Control
         saveNameBox = GetNode<LineEdit>(SaveNameBoxPath);
         saveButton = GetNode<Button>(SaveButtonPath);
         overwriteConfirm = GetNode<CustomConfirmationDialog>(OverwriteConfirmPath);
+        attemptWriteFailAccept = GetNode<CustomConfirmationDialog>(AttemptWriteFailAcceptPath);
     }
 
     public override void _Notification(int what)
@@ -67,6 +73,15 @@ public class NewSaveMenu : Control
         return !string.IsNullOrWhiteSpace(name) && !name.Any(Constants.FILE_NAME_DISALLOWED_CHARACTERS.Contains);
     }
 
+    private void ShowOverwriteConfirm(string name)
+    {
+        // The chosen filename ({0}) already exists. Overwrite?
+        overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("CHOSEN_FILENAME_ALREADY_EXISTS"),
+            name);
+        overwriteConfirm.PopupCenteredShrink();
+    }
+
     private void ClosePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -80,13 +95,9 @@ public class NewSaveMenu : Control
 
         var name = GetSaveName();
 
-        if (FileHelpers.Exists(PathUtils.Join(Constants.SAVE_FOLDER, name)))
+        if (FileHelpers.Exists(Path.Combine(Constants.SAVE_FOLDER, name)))
         {
-            // The chosen filename ({0}) already exists. Overwrite?
-            overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("THE_CHOSEN_FILENAME_ALREADY_EXISTS"),
-                name);
-            overwriteConfirm.PopupCenteredShrink();
+            ShowOverwriteConfirm(name);
         }
         else
         {
@@ -96,9 +107,16 @@ public class NewSaveMenu : Control
 
     private void OnConfirmSaveName()
     {
-        GUICommon.Instance.PlayButtonPressSound();
+        // Verify name is writable
+        var name = GetSaveName();
+        var path = Path.Combine(Constants.SAVE_FOLDER, name);
+        if (!FileHelpers.Exists(path) && FileHelpers.TryWriteFile(path) != Error.Ok)
+        {
+            attemptWriteFailAccept.PopupCenteredShrink();
+            return;
+        }
 
-        EmitSignal(nameof(OnSaveNameChosen), GetSaveName());
+        EmitSignal(nameof(OnSaveNameChosen), name);
     }
 
     private string GetSaveName()
@@ -166,5 +184,11 @@ public class NewSaveMenu : Control
         {
             ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SAVE_NAME_POPUP"), 2.5f);
         }
+    }
+
+    private void OnSaveListItemConfirmed(SaveListItem item)
+    {
+        saveNameBox.Text = item.SaveName;
+        ShowOverwriteConfirm(item.SaveName);
     }
 }

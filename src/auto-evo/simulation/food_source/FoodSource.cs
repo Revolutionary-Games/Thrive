@@ -28,25 +28,45 @@
         /// <returns>A formattable that has the description in it</returns>
         public abstract IFormattable GetDescription();
 
-        protected float EnergyGenerationScore(MicrobeSpecies species, Compound compound)
+        protected float EnergyGenerationScore(MicrobeSpecies species, Compound compound, Patch patch)
         {
             var energyCreationScore = 0.0f;
+
             foreach (var organelle in species.Organelles)
             {
                 foreach (var process in organelle.Definition.RunnableProcesses)
                 {
-                    if (process.Process.Inputs.ContainsKey(compound))
+                    if (process.Process.Inputs.TryGetValue(compound, out var inputAmount))
                     {
-                        if (process.Process.Outputs.ContainsKey(glucose))
+                        var processEfficiency = ProcessSystem.CalculateProcessMaximumSpeed(
+                            process, patch.Biome).Efficiency;
+
+                        if (process.Process.Outputs.TryGetValue(glucose, out var glucoseAmount))
                         {
-                            energyCreationScore += process.Process.Outputs[glucose]
-                                / process.Process.Inputs[compound] * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
+                            // Better ratio means that we transform stuff more efficiently and need less input
+                            var compoundRatio = glucoseAmount / inputAmount;
+
+                            // Better output is a proxy for more time dedicated to reproduction than energy production
+                            var absoluteOutput = glucoseAmount * processEfficiency;
+
+                            energyCreationScore += (float)(
+                                Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
+                                * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
+                                * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER);
                         }
 
-                        if (process.Process.Outputs.ContainsKey(atp))
+                        if (process.Process.Outputs.TryGetValue(atp, out var atpAmount))
                         {
-                            energyCreationScore += process.Process.Outputs[atp]
-                                / process.Process.Inputs[compound] * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
+                            // Better ratio means that we transform stuff more efficiently and need less input
+                            var compoundRatio = atpAmount / inputAmount;
+
+                            // Better output is a proxy for more time dedicated to reproduction than energy production
+                            var absoluteOutput = atpAmount * processEfficiency;
+
+                            energyCreationScore += (float)(
+                                Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
+                                * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
+                                * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER);
                         }
                     }
                 }

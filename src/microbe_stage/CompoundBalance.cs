@@ -5,9 +5,9 @@
 /// </summary>
 public class CompoundBalance
 {
-    public readonly Dictionary<string, float> Consumption = new Dictionary<string, float>();
+    public readonly Dictionary<string, float> Consumption = new();
 
-    public readonly Dictionary<string, float> Production = new Dictionary<string, float>();
+    public readonly Dictionary<string, float> Production = new();
 
     /// <summary>
     ///   Total balance of this compound
@@ -16,28 +16,18 @@ public class CompoundBalance
 
     public void AddConsumption(string organelleName, float amount)
     {
-        if (Consumption.ContainsKey(organelleName))
-        {
-            Consumption[organelleName] += amount;
-        }
-        else
-        {
-            Consumption[organelleName] = amount;
-        }
+        Consumption.TryGetValue(organelleName, out var existing);
+
+        Consumption[organelleName] = existing + amount;
 
         Balance -= amount;
     }
 
     public void AddProduction(string organelleName, float amount)
     {
-        if (Production.ContainsKey(organelleName))
-        {
-            Production[organelleName] += amount;
-        }
-        else
-        {
-            Production[organelleName] = amount;
-        }
+        Production.TryGetValue(organelleName, out var existing);
+
+        Production[organelleName] = existing + amount;
 
         Balance += amount;
     }

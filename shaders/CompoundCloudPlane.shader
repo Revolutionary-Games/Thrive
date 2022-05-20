@@ -6,11 +6,13 @@ uniform sampler2D densities;
 uniform sampler2D noise;
 
 uniform vec4 colour1 : hint_color = vec4(0, 0, 0, 0);
-uniform vec4 colour2 : hint_color  = vec4(0, 0, 0, 0);
-uniform vec4 colour3 : hint_color  = vec4(0, 0, 0, 0);
-uniform vec4 colour4 : hint_color  = vec4(0, 0, 0, 0);
+uniform vec4 colour2 : hint_color = vec4(0, 0, 0, 0);
+uniform vec4 colour3 : hint_color = vec4(0, 0, 0, 0);
+uniform vec4 colour4 : hint_color = vec4(0, 0, 0, 0);
 
 uniform vec2 UVOffset = vec2(0, 0);
+
+uniform float BrightnessMultiplier = 1.0f;
 
 // Setting this too low makes the clouds invisible
 const float CLOUD_DISSIPATION = 0.9f;
@@ -29,7 +31,7 @@ const float NOISE_ZERO_OFFSET = 0.45f;
 const float NOISE_UV_SCALE = 2.5f;
 
 float getIntensity(float value){
-    return min(DENSITY_MULTIPLIER * atan(0.006f * CLOUD_MAX_INTENSITY_SHOWN * value), 1.0f);
+    return min(DENSITY_MULTIPLIER * atan(0.006f * CLOUD_MAX_INTENSITY_SHOWN * value), 1.0f) * BrightnessMultiplier;
 }
 
 void fragment(){

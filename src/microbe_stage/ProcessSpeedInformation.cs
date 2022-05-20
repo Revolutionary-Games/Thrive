@@ -16,17 +16,16 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
 
     public string Name => Process.Name;
 
-    public Dictionary<Compound, float> WritableInputs { get; } = new Dictionary<Compound, float>();
-    public Dictionary<Compound, float> WritableOutputs { get; } = new Dictionary<Compound, float>();
-    public List<Compound> WritableLimitingCompounds { get; } = new List<Compound>();
+    public Dictionary<Compound, float> WritableInputs { get; } = new();
+    public Dictionary<Compound, float> WritableOutputs { get; } = new();
+    public List<Compound> WritableLimitingCompounds { get; } = new();
 
-    public Dictionary<Compound, float> WritableFullSpeedRequiredEnvironmentalInputs { get; } =
-        new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> WritableFullSpeedRequiredEnvironmentalInputs { get; } = new();
 
-    public Dictionary<Compound, float> AvailableAmounts { get; } = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> AvailableAmounts { get; } = new();
 
     // ReSharper disable once CollectionNeverQueried.Global
-    public Dictionary<Compound, float> AvailableRates { get; } = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> AvailableRates { get; } = new();
 
     public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
         WritableInputs.Where(p => !p.Key.IsEnvironmental);
@@ -40,6 +39,17 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     public IEnumerable<KeyValuePair<Compound, float>> Outputs => WritableOutputs;
 
     public float CurrentSpeed { get; set; }
+
+    /// <summary>
+    ///   Efficiency is a measure of how well the environment is favourable to the process.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     It is computed as the product of the available amounts of environmental compounds
+    ///     at instantiation and stored here.
+    ///   </para>
+    /// </remarks>
+    public float Efficiency { get; set; }
 
     public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
 }

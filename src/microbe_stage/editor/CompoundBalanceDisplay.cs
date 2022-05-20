@@ -7,11 +7,11 @@ using Godot;
 public class CompoundBalanceDisplay : VBoxContainer
 {
     [Export]
-    public NodePath CompoundListContainerPath;
+    public NodePath CompoundListContainerPath = null!;
 
-    private VBoxContainer compoundListContainer;
+    private VBoxContainer compoundListContainer = null!;
 
-    private ChildObjectCache<Compound, CompoundAmount> childCache;
+    private ChildObjectCache<Compound, CompoundAmount> childCache = null!;
 
     public override void _Ready()
     {

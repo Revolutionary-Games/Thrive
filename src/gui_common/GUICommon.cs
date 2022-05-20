@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Array = Godot.Collections.Array;
 using Object = Godot.Object;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
 /// </summary>
 public class GUICommon : NodeWithInput
 {
-    private static GUICommon instance;
+    private static GUICommon? instance;
 
     private AudioStream buttonPressSound;
 
@@ -16,13 +18,7 @@ public class GUICommon : NodeWithInput
     {
         instance = this;
 
-        AudioSource = new AudioStreamPlayer();
-        AudioSource.Bus = "GUI";
-        AddChild(AudioSource);
-
-        AudioSource2 = new AudioStreamPlayer();
-        AudioSource2.Bus = "GUI";
-        AddChild(AudioSource2);
+        AudioSources = new List<AudioStreamPlayer>();
 
         Tween = new Tween();
         AddChild(Tween);
@@ -34,7 +30,7 @@ public class GUICommon : NodeWithInput
             "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
 
-    public static GUICommon Instance => instance;
+    public static GUICommon Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   General purpose Tween node for use in various places.
@@ -47,20 +43,9 @@ public class GUICommon : NodeWithInput
     public bool IsAnyExclusivePopupActive => GetCurrentlyActiveExclusivePopup() != null;
 
     /// <summary>
-    ///   The audio player for UI sound effects.
+    ///   The audio players for UI sound effects.
     /// </summary>
-    private AudioStreamPlayer AudioSource { get; }
-
-    /// <summary>
-    ///   Second audio player for GUI effects. This is used if the primary one is still playing the previous effect.
-    /// </summary>
-    /// <remarks>
-    ///    <para>
-    ///      If the user is really fast with the mouse they can click buttons so fast that two sounds need to play at
-    ///      once.
-    ///    </para>
-    /// </remarks>
-    private AudioStreamPlayer AudioSource2 { get; }
+    private List<AudioStreamPlayer> AudioSources { get; }
 
     public static Vector2 GetFirstChildMinSize(Control control)
     {
@@ -90,6 +75,33 @@ public class GUICommon : NodeWithInput
     }
 
     /// <summary>
+    ///   Loads a Texture from predefined GUI asset texture folder path.
+    /// </summary>
+    public static Texture? LoadGuiTexture(string file)
+    {
+        var assumedPath = Path.Combine(Constants.ASSETS_GUI_BEVEL_FOLDER, file);
+
+        if (ResourceLoader.Exists(assumedPath, "Texture"))
+            return GD.Load<Texture>(assumedPath);
+
+        // Fail-safe if file itself is the absolute path
+        if (ResourceLoader.Exists(file, "Texture"))
+            return GD.Load<Texture>(file);
+
+        return GD.Load(file) as Texture;
+    }
+
+    public static void MarkInputAsInvalid(LineEdit control)
+    {
+        control.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
+    }
+
+    public static void MarkInputAsValid(LineEdit control)
+    {
+        control.Set("custom_colors/font_color", new Color(1, 1, 1));
+    }
+
+    /// <summary>
     ///   Closes any currently active exclusive modal popups.
     /// </summary>
     [RunOnKeyDown("ui_cancel", Priority = Constants.POPUP_CANCEL_PRIORITY)]
@@ -98,13 +110,13 @@ public class GUICommon : NodeWithInput
         var popup = GetCurrentlyActiveExclusivePopup();
         var customPopup = popup as ICustomPopup;
 
-        if (!IsAnyExclusivePopupActive || (customPopup != null &&
-                !customPopup.ExclusiveAllowCloseOnEscape))
+        if (!IsAnyExclusivePopupActive || customPopup is { ExclusiveAllowCloseOnEscape: false })
         {
             return false;
         }
 
-        popup.Hide();
+        popup!.Hide();
+        popup.EmitSignal(nameof(CustomDialog.Closed));
 
         return true;
     }
@@ -112,7 +124,7 @@ public class GUICommon : NodeWithInput
     /// <summary>
     ///   Returns the top-most exclusive popup in the current Viewport's modal stack. Null if there is none.
     /// </summary>
-    public Popup GetCurrentlyActiveExclusivePopup()
+    public Popup? GetCurrentlyActiveExclusivePopup()
     {
         if (GetViewport().GetModalStackTop() is Popup popup && popup.PopupExclusive)
             return popup;
@@ -135,22 +147,25 @@ public class GUICommon : NodeWithInput
     {
         volume = Mathf.Clamp(volume, 0.0f, 1.0f);
 
-        if (AudioSource.Playing)
-        {
-            // Use backup player if it is available
-            if (!AudioSource2.Playing)
-            {
-                AudioSource2.Stream = sound;
-                AudioSource2.VolumeDb = GD.Linear2Db(volume);
-                AudioSource2.Play();
-            }
+        // Find a player not in use or create a new one if none are available.
+        var player = AudioSources.Find(nextPlayer => !nextPlayer.Playing);
 
-            return;
+        if (player == null)
+        {
+            // If we hit the player limit just return and ignore the sound.
+            if (AudioSources.Count >= Constants.MAX_CONCURRENT_UI_AUDIO_PLAYERS)
+                return;
+
+            player = new AudioStreamPlayer();
+            player.Bus = "GUI";
+
+            AddChild(player);
+            AudioSources.Add(player);
         }
 
-        AudioSource.Stream = sound;
-        AudioSource.VolumeDb = GD.Linear2Db(volume);
-        AudioSource.Play();
+        player.VolumeDb = GD.Linear2Db(volume);
+        player.Stream = sound;
+        player.Play();
     }
 
     /// <summary>
