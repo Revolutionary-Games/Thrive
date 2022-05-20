@@ -432,16 +432,16 @@ msgstr "Pohjassapidettynä näytä lauman komentovalikko"
 #: ../simulation_parameters/common/input_options.json:50
 #: ../src/microbe_stage/MicrobeStage.tscn:2153
 msgid "TOGGLE_BINDING"
-msgstr "Aloita/lopeta yhdistyminen"
+msgstr "Aloita/lopeta kiinnittyminen"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "TOGGLE_UNBINDING"
-msgstr "Aloita/Lopeta yhdistyminen"
+msgstr "Aloita/Lopeta erkanemistila"
 
 #: ../simulation_parameters/common/input_options.json:58
 #: ../src/microbe_stage/MicrobeStage.tscn:2165
 msgid "UNBIND_ALL"
-msgstr "Irrota kaikki"
+msgstr "Erkane kaikista"
 
 #: ../simulation_parameters/common/input_options.json:62
 msgid "PERFORM_UNBINDING"
@@ -885,7 +885,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:509
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1244
 msgid "BINDING_AGENT"
-msgstr "Yhdistymisen elimet"
+msgstr "Kiinnittymisen elimet"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:551
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1508
@@ -1888,7 +1888,7 @@ msgstr "Ei mitään"
 
 #: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_PROTANOPE"
-msgstr "Protanopia (punaviherheikkous)"
+msgstr "Protanopia (punavihersokeus)"
 
 #: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_TRITANOPE"
@@ -2192,15 +2192,15 @@ msgstr "@"
 
 #: ../src/gui_common/CreditsScroll.cs:223
 msgid "LEAD_DEVELOPERS"
-msgstr ""
+msgstr "Pääkehittäjät"
 
 #: ../src/gui_common/CreditsScroll.cs:229
 msgid "LEAD_PROGRAMMER"
-msgstr ""
+msgstr "Pääohjelmoija"
 
 #: ../src/gui_common/CreditsScroll.cs:230
 msgid "LEAD_PROGRAMMERS"
-msgstr ""
+msgstr "Pääohjelmoijat"
 
 #: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_THEORIST"
@@ -3416,7 +3416,8 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2170
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
-"{0} energiaa: {1} (kunro: {2}) kokonaisenergia: {3} (kokonaiskunto: {4})"
+"{0} energiaa: {1} (sopivuus: {2}) kokonaisenergia: {3} (kokonaissopivuus: "
+"{4})"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:379
 msgid "MEMBRANE"
@@ -3550,7 +3551,7 @@ msgstr ""
 "tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin "
 "menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen "
 "ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin "
-"\"kunto\" kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä "
+"sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä "
 "ravinnon lähteitä."
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
