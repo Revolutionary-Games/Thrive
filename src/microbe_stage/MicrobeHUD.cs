@@ -650,11 +650,7 @@ public class MicrobeHUD : Control
         // To prevent being clicked twice
         editorButton.Disabled = true;
 
-        // Make sure the game is unpaused
-        if (GetTree().Paused)
-        {
-            PauseButtonPressed();
-        }
+        EnsureGameIsUnpausedForEditor();
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
@@ -1295,7 +1291,7 @@ public class MicrobeHUD : Control
             pauseButton.Pressed = false;
 
             // Pause the game
-            GetTree().Paused = true;
+            PauseManager.Instance.AddPause(nameof(MicrobeHUD));
         }
         else
         {
@@ -1304,7 +1300,7 @@ public class MicrobeHUD : Control
             resumeButton.Pressed = false;
 
             // Unpause the game
-            GetTree().Paused = false;
+            PauseManager.Instance.Resume(nameof(MicrobeHUD));
         }
     }
 
@@ -1409,7 +1405,7 @@ public class MicrobeHUD : Control
 
     private void OnBecomeMulticellularPressed()
     {
-        if (!GetTree().Paused)
+        if (!PauseManager.Instance.Paused)
         {
             // The button press sound will play along with this
             PauseButtonPressed();
@@ -1425,7 +1421,7 @@ public class MicrobeHUD : Control
     private void OnBecomeMulticellularCancelled()
     {
         // The game should have been paused already but just in case
-        if (GetTree().Paused)
+        if (PauseManager.Instance.Paused)
         {
             // The button press sound will play along with this
             PauseButtonPressed();
@@ -1448,16 +1444,26 @@ public class MicrobeHUD : Control
         // To prevent being clicked twice
         multicellularButton.Disabled = true;
 
-        // Make sure the game is unpaused
-        if (GetTree().Paused)
-        {
-            PauseButtonPressed();
-        }
+        EnsureGameIsUnpausedForEditor();
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToMulticellular));
 
         stage.MovingToEditor = true;
+    }
+
+    /// <summary>
+    ///   Makes sure the game is unpaused (at least by us)
+    /// </summary>
+    private void EnsureGameIsUnpausedForEditor()
+    {
+        if (PauseManager.Instance.Paused)
+        {
+            PauseButtonPressed();
+
+            if (PauseManager.Instance.Paused)
+                GD.PrintErr("Unpausing the game after editor button press didn't work");
+        }
     }
 
     private void OnBecomeMacroscopicPressed()
@@ -1466,12 +1472,6 @@ public class MicrobeHUD : Control
 
         // TODO: late multicellular not done yet
         ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("TO_BE_IMPLEMENTED"), 2.5f);
-    }
-
-    private void FixPauseStateOnPauseMenuClose()
-    {
-        if (paused)
-            GetTree().Paused = true;
     }
 
     private class HoveredCompoundControl : HBoxContainer
