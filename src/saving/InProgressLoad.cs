@@ -201,6 +201,10 @@ public class InProgressLoad
 
                 SaveHelper.MarkLastSaveToCurrentTime();
 
+                // Make certain that if some game element paused and we unloaded it without it realizing that, we
+                // don't get stuck in paused mode
+                PauseManager.Instance.ForceClear();
+
                 return;
             }
 
