@@ -56,19 +56,8 @@ public class MicrobeSpecies : Species, ICellProperties
         var chemoreceptedCompounds = new List<Compound>();
         foreach (var organelle in Organelles)
         {
-            // Check if organelle has chemorecepting abilities
-            var isChemoreceptor = false;
-            foreach (var componentFactory in organelle.Definition.ComponentFactories)
-            {
-                if (componentFactory is ChemoreceptorComponentFactory _)
-                {
-                    isChemoreceptor = true;
-                    break;
-                }
-            }
-
             // Nothing to do if it can't chemorecept
-            if (!isChemoreceptor)
+            if (!organelle.Definition.HasComponentFactory<ChemoreceptorComponentFactory>())
                 continue;
 
             var chemoreceptorConfiguration = organelle.Upgrades?.CustomUpgradeData;
