@@ -12,7 +12,6 @@ using Path = System.IO.Path;
 /// </summary>
 public class InProgressSave : IDisposable
 {
-    private readonly Func<Node> currentGameRoot;
     private readonly Func<InProgressSave, Save> createSaveData;
     private readonly Action<InProgressSave, Save> performSave;
 
@@ -24,8 +23,6 @@ public class InProgressSave : IDisposable
     ///   Raw save name, that is processed by saveNameTask
     /// </summary>
     private readonly string? saveName;
-
-    private bool returnToPauseState;
 
     private State state = State.Initial;
     private Save? save;
@@ -48,7 +45,10 @@ public class InProgressSave : IDisposable
     public InProgressSave(SaveInformation.SaveType type, Func<Node> currentGameRoot,
         Func<InProgressSave, Save> createSaveData, Action<InProgressSave, Save> performSave, string? saveName)
     {
-        this.currentGameRoot = currentGameRoot;
+        // This was used for game pausing / unpausing. Now this is unneeded but let's keep this here for a while still
+        // to see if there's some other use for this...
+        _ = currentGameRoot;
+
         this.createSaveData = createSaveData;
         this.performSave = performSave;
         this.saveName = saveName;
@@ -81,8 +81,7 @@ public class InProgressSave : IDisposable
 
     public void Start()
     {
-        returnToPauseState = currentGameRoot.Invoke().GetTree().Paused;
-        currentGameRoot.Invoke().GetTree().Paused = true;
+        PauseManager.Instance.AddPause(nameof(InProgressSave));
 
         IsSaving = true;
         Invoke.Instance.Perform(Step);
@@ -232,11 +231,11 @@ public class InProgressSave : IDisposable
 
                 JSONDebug.FlushJSONTracesOut();
 
+                PauseManager.Instance.Resume(nameof(InProgressSave));
+
                 if (success)
                 {
                     SaveStatusOverlay.Instance.ShowMessage(message);
-
-                    currentGameRoot.Invoke().GetTree().Paused = returnToPauseState;
                 }
                 else
                 {

@@ -113,8 +113,7 @@ public class Mutations
         mutated.MembraneRigidity = Math.Max(Math.Min(parent.MembraneRigidity +
             random.Next(-25, 26) / 100.0f, 1), -1);
 
-        mutated.RepositionToOrigin();
-        mutated.UpdateInitialCompounds();
+        mutated.OnEdited();
 
         return mutated;
     }
@@ -169,96 +168,139 @@ public class Mutations
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
-        for (var iteration = 0; iteration < 10; iteration++)
+        mutatedOrganelles.Clear();
+
+        // Chance to replace each organelle randomly
+        foreach (var parentOrganelle in parentOrganelles)
         {
-            mutatedOrganelles.Clear();
+            var organelle = (OrganelleTemplate)parentOrganelle.Clone();
 
-            // Chance to replace each organelle randomly
-            foreach (var parentOrganelle in parentOrganelles)
+            // Chance to replace or remove if not a nucleus
+            if (organelle.Definition != nucleus)
             {
-                var organelle = (OrganelleTemplate)parentOrganelle.Clone();
-
-                // Chance to replace or remove if not a nucleus
-                if (organelle.Definition != nucleus)
+                if (random.Next(0.0f, 1.0f) < Constants.MUTATION_DELETION_RATE / Math.Sqrt(parentOrganelles.Count))
                 {
-                    if (random.Next(0.0f, 1.0f) < Constants.MUTATION_DELETION_RATE / Math.Sqrt(parentOrganelles.Count))
-                    {
-                        // Don't copy over this organelle, removing this one from the new species
-                        continue;
-                    }
-
-                    if (random.Next(0.0f, 1.0f) < Constants.MUTATION_REPLACEMENT_RATE)
-                    {
-                        organelle = new OrganelleTemplate(GetRandomOrganelle(isBacteria),
-                            organelle.Position, organelle.Orientation);
-                    }
+                    // Don't copy over this organelle, removing this one from the new species
+                    continue;
                 }
 
-                // Copy the organelle
-                try
+                if (random.Next(0.0f, 1.0f) < Constants.MUTATION_REPLACEMENT_RATE)
                 {
-                    mutatedOrganelles.Add(organelle);
-                }
-                catch (ArgumentException)
-                {
-                    // Add the organelle randomly back to the list to make
-                    // sure we don't throw it away
-                    AddNewOrganelle(mutatedOrganelles, organelle.Definition);
+                    organelle = new OrganelleTemplate(GetRandomOrganelle(isBacteria),
+                        organelle.Position, organelle.Orientation);
                 }
             }
 
-            // We can insert new organelles at the end of the list
-            for (int i = 0; i < 6; ++i)
+            // Copy the organelle
+            try
             {
-                if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
+                mutatedOrganelles.Add(organelle);
+            }
+            catch (ArgumentException)
+            {
+                // Add the organelle randomly back to the list to make
+                // sure we don't throw it away
+                AddNewOrganelle(mutatedOrganelles, organelle.Definition);
+            }
+        }
+
+        // We can insert new organelles at the end of the list
+        for (int i = 0; i < 6; ++i)
+        {
+            if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
+            {
+                if (random.Next(0.0f, 1.0f) < Constants.MUTATION_NEW_ORGANELLE_CHANCE)
                 {
-                    if (random.Next(0.0f, 1.0f) < Constants.MUTATION_NEW_ORGANELLE_CHANCE)
+                    AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
+                }
+                else
+                {
+                    // Duplicate an existing organelle, but only if there are any organelles where that is legal
+                    var organellesThatCanBeDuplicated =
+                        parentOrganelles.Organelles.Where(organelle => !organelle.Definition.Unique).ToList();
+                    if (organellesThatCanBeDuplicated.Any())
                     {
-                        AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
+                        AddNewOrganelle(mutatedOrganelles,
+                            organellesThatCanBeDuplicated.Random(random).Definition);
                     }
                     else
                     {
-                        // Duplicate an existing organelle, but only if there are any organelles where that is legal
-                        var organellesThatCanBeDuplicated =
-                            parentOrganelles.Organelles.Where(organelle => !organelle.Definition.Unique).ToList();
-                        if (organellesThatCanBeDuplicated.Any())
-                        {
-                            AddNewOrganelle(mutatedOrganelles,
-                                organellesThatCanBeDuplicated.Random(random).Definition);
-                        }
-                        else
-                        {
-                            AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
-                        }
+                        AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
                     }
                 }
             }
-
-            if (isBacteria)
-            {
-                if (random.Next(0.0f, 1.0f) <= Constants.MUTATION_BACTERIA_TO_EUKARYOTE)
-                {
-                    AddNewOrganelle(mutatedOrganelles, nucleus);
-                }
-            }
-
-            // Disallow creating empty species as that throws an exception when trying to spawn
-            if (mutatedOrganelles.Count < 1)
-            {
-                // Add the first parent species organelle
-                AddNewOrganelle(mutatedOrganelles, parentOrganelles[0].Definition);
-
-                // If still empty, copy the first organelle of the parent
-                if (mutatedOrganelles.Count < 1)
-                    mutatedOrganelles.Add((OrganelleTemplate)parentOrganelles[0].Clone());
-            }
-
-            // If the mutation has no islands, we can use this iteration
-            if (mutatedOrganelles.GetIslandHexes().Count == 0)
-                return;
         }
 
-        GD.PrintErr("Could not create a valid mutation after 10 retries.");
+        if (isBacteria)
+        {
+            if (random.Next(0.0f, 1.0f) <= Constants.MUTATION_BACTERIA_TO_EUKARYOTE)
+            {
+                AddNewOrganelle(mutatedOrganelles, nucleus);
+            }
+        }
+
+        // Disallow creating empty species as that throws an exception when trying to spawn
+        if (mutatedOrganelles.Count < 1)
+        {
+            // Add the first parent species organelle
+            AddNewOrganelle(mutatedOrganelles, parentOrganelles[0].Definition);
+
+            // If still empty, copy the first organelle of the parent
+            if (mutatedOrganelles.Count < 1)
+                mutatedOrganelles.Add((OrganelleTemplate)parentOrganelles[0].Clone());
+        }
+
+        var islandHexes = mutatedOrganelles.GetIslandHexes();
+
+        // Attach islands
+        while (islandHexes.Count > 0)
+        {
+            var mainHexes = mutatedOrganelles.ComputeHexCache().Except(islandHexes);
+
+            // Compute shortest hex distance
+            Hex minSubHex = default;
+            int minDistance = int.MaxValue;
+            foreach (var mainHex in mainHexes)
+            {
+                foreach (var islandHex in islandHexes)
+                {
+                    var sub = islandHex - mainHex;
+                    int distance = (Math.Abs(sub.Q) + Math.Abs(sub.Q + sub.R) + Math.Abs(sub.R)) / 2;
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        minSubHex = sub;
+
+                        // early exit if minDistance == 2 (distance 1 == direct neighbour => not an island)
+                        if (minDistance == 2)
+                            break;
+                    }
+                }
+
+                // early exit if minDistance == 2 (distance 1 == direct neighbour => not an island)
+                if (minDistance == 2)
+                    break;
+            }
+
+            minSubHex.Q = (int)(minSubHex.Q * (minDistance - 1.0) / minDistance);
+            minSubHex.R = (int)(minSubHex.R * (minDistance - 1.0) / minDistance);
+
+            if (minSubHex.Q == 0 && minSubHex.R == 0)
+            {
+                // Exactly symmetrical islands. Avoid infinite loop by using this value
+                minSubHex = new Hex(1, 0);
+            }
+
+            // Move all island organelles by minSubHex
+            foreach (var organelle in mutatedOrganelles.Where(
+                         o => islandHexes.Any(h =>
+                             o.Definition.GetRotatedHexes(o.Orientation).Contains(h - o.Position))))
+            {
+                organelle.Position -= minSubHex;
+            }
+
+            islandHexes = mutatedOrganelles.GetIslandHexes();
+        }
     }
 
     /// <summary>

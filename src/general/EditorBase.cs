@@ -31,7 +31,7 @@ using Newtonsoft.Json;
 /// </remarks>
 public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState,
     IGodotEarlyNodeResolve
-    where TAction : CellEditorAction
+    where TAction : EditorAction
     where TStage : Node, IReturnableGameState
 {
     [Export]
@@ -51,7 +51,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     ///   Where all user actions will  be registered
     /// </summary>
     [JsonProperty]
-    protected ActionHistory<TAction> history = null!;
+    protected EditorActionHistory<TAction> history = null!;
 
     protected bool ready;
 
@@ -77,6 +77,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     private Control editorGUIBaseNode = null!;
 
+    private int? mutationPointsCache;
+
     /// <summary>
     ///   Base Node where all dynamically created world Nodes in the editor should go. Optionally grouped under
     ///   a one more level of parent nodes so that different editor components can have their things visible at
@@ -87,8 +89,16 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     [JsonIgnore]
     public bool TransitionFinished { get; protected set; }
 
-    [JsonProperty]
-    public int MutationPoints { get; set; }
+    [JsonIgnore]
+    public int MutationPoints
+    {
+        get => mutationPointsCache ?? CalculateMutationPointsLeft();
+        set
+        {
+            _ = value;
+            DirtyMutationPointsCache();
+        }
+    }
 
     [JsonProperty]
     public bool FreeBuilding { get; protected set; }
@@ -292,14 +302,24 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Individual editor parts may have a
-    ///     <see cref="HexEditorComponentBase{TEditor,TAction,THexMove}.SetEditorWorldTabSpecificObjectVisibility"/>
+    ///     Individual editor parts may have a SetEditorWorldTabSpecificObjectVisibility
     ///     method to be able to set the visibility per editor component
     ///   </para>
     /// </remarks>
     public virtual void SetEditorObjectVisibility(bool shown)
     {
         RootOfDynamicallySpawned.Visible = shown;
+    }
+
+    public void DirtyMutationPointsCache()
+    {
+        mutationPointsCache = null;
+    }
+
+    public bool HexPlacedThisSession<THex>(THex hex)
+        where THex : class, IActionHex
+    {
+        return history.HexPlacedThisSession(hex);
     }
 
     [RunOnKeyDown("e_redo")]
@@ -349,32 +369,40 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     public abstract bool CancelCurrentAction();
 
-    public void EnqueueAction(TAction action)
+    public abstract int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions);
+
+    public virtual bool EnqueueAction(TAction action)
     {
         // A sanity check to not let an action proceed if we don't have enough mutation points
-        if (!CheckEnoughMPForAction(action.Cost))
-            return;
+        if (!CheckEnoughMPForAction(WhatWouldActionsCost(action.Data)))
+            return false;
 
         if (HasInProgressAction)
         {
             GD.Print("Editor action blocked due to an in-progress action");
             OnActionBlockedWhileMoving();
-            return;
+            return false;
         }
 
         history.AddAction(action);
 
         NotifyUndoRedoStateChanged();
+
+        DirtyMutationPointsCache();
+
+        return true;
     }
 
-    public void EnqueueAction(ReversibleAction action)
+    public bool EnqueueAction(ReversibleAction action)
     {
-        EnqueueAction((TAction)action);
+        return EnqueueAction((TAction)action);
     }
 
     public bool CheckEnoughMPForAction(int cost)
     {
-        if (MutationPoints < cost)
+        // Freebuilding check is here because in freebuild we are allowed to make edits that consume more than the max
+        // MP in a single go, and those wouldn't work without this freebuilding check here
+        if (MutationPoints < cost && !FreeBuilding)
         {
             // Flash the MP bar and play sound
             OnInsufficientMP();
@@ -420,6 +448,18 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         }
     }
 
+    public virtual void OnValidAction()
+    {
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            if (editorComponent.Visible)
+            {
+                editorComponent.OnValidAction();
+                break;
+            }
+        }
+    }
+
     public bool RequestFinishEditingWithOverride(List<EditorUserOverride> userOverrides)
     {
         if (userOverrides.Count < 1)
@@ -436,16 +476,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         }
 
         return OnFinishEditing(userOverrides);
-    }
-
-    public void ChangeMutationPoints(int change)
-    {
-        if (FreeBuilding || CheatManager.InfiniteMP)
-            return;
-
-        MutationPoints = (MutationPoints + change).Clamp(0, Constants.BASE_MUTATION_POINTS);
-
-        OnMutationPointsChanged();
     }
 
     protected abstract void InitEditorGUI(bool fresh);
@@ -472,7 +502,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         if (!IsLoadedFromSave)
         {
-            history = new ActionHistory<TAction>();
+            history = new EditorActionHistory<TAction>();
 
             // Start a new game if no game has been started
             if (currentGame == null)
@@ -505,14 +535,13 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         {
             // Auto save is wanted once possible
             wantsToSave = true;
-
-            // This needs to be setup before the GUI in case there is an element there whose initial state depends on
-            // how much MP is remaining
-            MutationPoints = Constants.BASE_MUTATION_POINTS;
         }
 
         InitEditorGUI(fresh);
         NotifyUndoRedoStateChanged();
+
+        // TODO: dynamic MP changes
+        // NotifySymmetryButtonState();
 
         // Set the right active tab if it isn't the default or we loaded a save
         ApplyEditorTab();
@@ -607,6 +636,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         {
             // Make sure button status is reset so that it doesn't look like the wrong tab button is now active
             editorTabSelector?.SetCurrentTab(selectedEditorTab);
+
+            ToolTipManager.Instance.ShowPopup(
+                TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
             return;
         }
 
@@ -638,14 +670,22 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     protected virtual void OnUndoPerformed()
     {
+        DirtyMutationPointsCache();
     }
 
     protected virtual void OnRedoPerformed()
     {
+        DirtyMutationPointsCache();
     }
 
     protected virtual void UpdateEditor(float delta)
     {
+        if (mutationPointsCache == null)
+        {
+            // This calls OnMutationPointsChanged anyway so we call this directly here to save a duplicate callback
+            // dispatch to editor components
+            CalculateMutationPointsLeft();
+        }
     }
 
     protected abstract void ElapseEditorEntryTime();
@@ -768,6 +808,28 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
         // Clear the run to make the cell stage start a new run when we go back there
         CurrentGame.GameWorld.ResetAutoEvoRun();
+    }
+
+    /// <summary>
+    ///   Calculates the remaining MP from the action history
+    /// </summary>
+    /// <returns>The remaining MP</returns>
+    private int CalculateMutationPointsLeft()
+    {
+        if (FreeBuilding || CheatManager.InfiniteMP)
+            return Constants.BASE_MUTATION_POINTS;
+
+        mutationPointsCache = history.CalculateMutationPointsLeft();
+
+        if (mutationPointsCache.Value < 0 || mutationPointsCache > Constants.BASE_MUTATION_POINTS)
+        {
+            GD.PrintErr("Invalid MP amount: ", mutationPointsCache,
+                " This should only happen if the user disabled the Infinite MP cheat while having mutated too much.");
+        }
+
+        OnMutationPointsChanged();
+
+        return mutationPointsCache.Value;
     }
 
     /// <summary>

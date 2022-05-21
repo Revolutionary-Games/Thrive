@@ -120,6 +120,8 @@ public class TransitionManager : NodeWithInput
             TransitionSequence.Add(entry);
         }
 
+        SaveHelper.AllowQuickSavingAndLoading = false;
+
         // Begin the first transition in the queue
         StartNextQueuedTransition();
     }
@@ -154,6 +156,7 @@ public class TransitionManager : NodeWithInput
         {
             EmitSignal(nameof(QueuedTransitionsFinished));
             TransitionSequence.Clear();
+            SaveHelper.AllowQuickSavingAndLoading = true;
             return;
         }
 
