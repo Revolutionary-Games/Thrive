@@ -80,7 +80,7 @@ public class MainMenu : NodeWithInput
     public override void _Ready()
     {
         // Unpause the game as the MainMenu should never be paused.
-        GetTree().Paused = false;
+        PauseManager.Instance.ForceClear();
 
         RunMenuSetup();
 

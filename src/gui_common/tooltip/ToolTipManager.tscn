@@ -1226,22 +1226,48 @@ margin_bottom = 209.0
 [node name="cilia" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
 DisplayName = "CILIA"
-Description = "TO_BE_IMPLEMENTED"
+ProcessesDescription = "CILIA_PROCESSES_DESCRIPTION"
+Description = "CILIA_DESCRIPTION"
+MutationPointCost = 40
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/cilia/MarginContainer" index="0"]
-margin_bottom = 164.0
+margin_bottom = 184.0
 
-[node name="CustomRichTextLabel" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="1"]
-visible = false
+[node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList" index="0"]
+margin_top = 48.0
+margin_right = 318.0
+margin_bottom = 68.0
+mouse_filter = 2
+script = ExtResource( 21 )
+DisplayName = "OSMOREGULATION_COST"
+ModifierValue = "+1"
+ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
 
-[node name="ProcessList" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="2"]
-visible = false
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_top = 1.0
+margin_right = 16.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+1"
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="3"]
-visible = false
+[node name="Name" type="Label" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 20.0
+margin_right = 167.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "Osmoregulation Cost"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="4"]
-visible = false
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 171.0
+margin_right = 191.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
 
 [node name="bindingAgent" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -3647,6 +3673,11 @@ DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/oxyto
 visible = false
 DisplayDelay = 0.5
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/flagellum/MarginContainer/VBoxContainer/Description")
+
+[node name="cilia" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
+visible = false
+DisplayDelay = 0.5
+DescriptionLabelPath = NodePath("../flagellum/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenfixingplastid" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
