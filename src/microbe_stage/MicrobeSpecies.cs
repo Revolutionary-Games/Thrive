@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -41,6 +42,49 @@ public class MicrobeSpecies : Species, ICellProperties
     }
 
     public bool IsBacteria { get; set; }
+
+    /// <summary>
+    ///   Returns the list of compounds chemorecepted by this species
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Not stored to avoid it getting dirty if organelle list is modified afterwards.
+    ///   </para>
+    /// </remarks>
+    public List<Compound> ComputeChemoreceptedCompounds()
+    {
+        var chemoreceptedCompounds = new List<Compound>();
+        foreach (var organelle in Organelles)
+        {
+            // Check if organelle has chemorecepting abilities
+            var isChemoreceptor = false;
+            foreach (var componentFactory in organelle.Definition.ComponentFactories)
+            {
+                if (componentFactory is ChemoreceptorComponentFactory _)
+                {
+                    isChemoreceptor = true;
+                    break;
+                }
+            }
+
+            // Nothing to do if it can't chemorecept
+            if (!isChemoreceptor)
+                continue;
+
+            var chemoreceptorConfiguration = organelle.Upgrades?.CustomUpgradeData;
+
+            if (chemoreceptorConfiguration == null)
+            {
+                chemoreceptedCompounds.Add(ChemoreceptorComponent.DefaultTargetCompound);
+            }
+            else
+            {
+                chemoreceptedCompounds.Add(((ChemoreceptorUpgrades)chemoreceptorConfiguration).TargetCompound);
+            }
+        }
+
+        return chemoreceptedCompounds;
+    }
 
     /// <summary>
     ///   Needs to be set before using this class

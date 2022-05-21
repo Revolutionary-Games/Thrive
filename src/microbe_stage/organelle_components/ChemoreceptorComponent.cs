@@ -11,6 +11,9 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     private float searchAmount;
     private Color lineColour = Colors.White;
 
+    public static Compound DefaultTargetCompound => SimulationParameters.Instance.GetCompound(
+        Constants.CHEMORECEPTOR_DEFAULT_COMPOUND_NAME);
+
     public override void UpdateAsync(float delta)
     {
         base.UpdateAsync(delta);
@@ -56,7 +59,7 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
 
     private void SetDefaultConfiguration()
     {
-        targetCompound = SimulationParameters.Instance.GetCompound(Constants.CHEMORECEPTOR_DEFAULT_COMPOUND_NAME);
+        targetCompound = DefaultTargetCompound;
         searchRange = Constants.CHEMORECEPTOR_RANGE_DEFAULT;
         searchAmount = Constants.CHEMORECEPTOR_AMOUNT_DEFAULT;
         lineColour = Colors.White;

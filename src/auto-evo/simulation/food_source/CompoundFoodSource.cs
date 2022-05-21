@@ -26,13 +26,28 @@
         {
             var microbeSpecies = (MicrobeSpecies)species;
 
+            float compoundFindScore = 0.0f;
+            if (patch.Biome.Compounds.TryGetValue(compound, out var compoundData))
+            {
+                if (microbeSpecies.ComputeChemoreceptedCompounds().Contains(compound))
+                {
+                    compoundFindScore = Constants.AUTO_EVO_CHEMORECEPTOR_FIND_SCORE;
+                }
+                else
+                {
+                    // Score if you have to find the compound by chance
+                    // Scales with concentration (= density) but never outmatches chemoreceptor.
+                    compoundFindScore = Math.Max(compoundData.Density, Constants.AUTO_EVO_CHEMORECEPTOR_FIND_SCORE);
+                }
+            }
+
             var compoundUseScore = EnergyGenerationScore(microbeSpecies, compound, patch);
 
             var energyCost = simulationCache
                 .GetEnergyBalanceForSpecies(microbeSpecies, patch)
                 .TotalConsumptionStationary;
 
-            return compoundUseScore / energyCost;
+            return compoundFindScore * compoundUseScore / energyCost;
         }
 
         public override IFormattable GetDescription()
