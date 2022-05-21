@@ -14,6 +14,11 @@ public abstract class CombinableActionData
     public virtual bool ResetsHistory => false;
 
     /// <summary>
+    ///   Should this action be merged with the previous one if possible?
+    /// </summary>
+    public virtual bool WantsMerge => false;
+
+    /// <summary>
     ///   How does this action interfere with the <paramref name="other"/> action?
     /// </summary>
     /// <returns>
@@ -43,6 +48,21 @@ public abstract class CombinableActionData
         return CombineGuaranteed(other);
     }
 
+    /// <summary>
+    ///   Merge the other data into this if possible.
+    /// </summary>
+    /// <param name="other">The action to merge into this</param>
+    /// <returns>If a merge has been conducted</returns>
+    public virtual bool TryMerge(CombinableActionData other)
+    {
+        var mode = GetInterferenceModeWith(other);
+        if (mode != ActionInterferenceMode.Combinable && mode != ActionInterferenceMode.CancelsOut)
+            return false;
+
+        MergeGuaranteed(other);
+        return true;
+    }
+
     protected abstract ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other);
 
     /// <summary>
@@ -51,4 +71,13 @@ public abstract class CombinableActionData
     /// <param name="other">The action this should be combined with. Guaranteed to be combinable</param>
     /// <returns>Returns the combined action</returns>
     protected abstract CombinableActionData CombineGuaranteed(CombinableActionData other);
+
+    /// <summary>
+    ///   Merges the other data into this
+    /// </summary>
+    /// <param name="other">The action to merge into this. Guaranteed to be mergeable</param>
+    protected virtual void MergeGuaranteed(CombinableActionData other)
+    {
+        throw new NotSupportedException();
+    }
 }
