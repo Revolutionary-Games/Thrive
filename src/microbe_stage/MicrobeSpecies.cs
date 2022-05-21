@@ -44,38 +44,6 @@ public class MicrobeSpecies : Species, ICellProperties
     public bool IsBacteria { get; set; }
 
     /// <summary>
-    ///   Returns the list of compounds chemorecepted by this species
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Not stored to avoid it getting dirty if organelle list is modified afterwards.
-    ///   </para>
-    /// </remarks>
-    public List<Compound> ComputeChemoreceptedCompounds()
-    {
-        var chemoreceptedCompounds = new List<Compound>();
-        foreach (var organelle in Organelles)
-        {
-            // Nothing to do if it can't chemorecept
-            if (!organelle.Definition.HasComponentFactory<ChemoreceptorComponentFactory>())
-                continue;
-
-            var chemoreceptorConfiguration = organelle.Upgrades?.CustomUpgradeData;
-
-            if (chemoreceptorConfiguration == null)
-            {
-                chemoreceptedCompounds.Add(ChemoreceptorComponent.DefaultTargetCompound);
-            }
-            else
-            {
-                chemoreceptedCompounds.Add(((ChemoreceptorUpgrades)chemoreceptorConfiguration).TargetCompound);
-            }
-        }
-
-        return chemoreceptedCompounds;
-    }
-
-    /// <summary>
     ///   Needs to be set before using this class
     /// </summary>
     public MembraneType MembraneType { get; set; } = null!;
@@ -161,6 +129,38 @@ public class MicrobeSpecies : Species, ICellProperties
         {
             SetInitialCompoundsForDefault();
         }
+    }
+
+    /// <summary>
+    ///   Returns the list of compounds chemorecepted by this species
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Not stored to avoid it getting dirty if organelle list is modified afterwards.
+    ///   </para>
+    /// </remarks>
+    public List<Compound> ComputeChemoreceptedCompounds()
+    {
+        var chemoreceptedCompounds = new List<Compound>();
+        foreach (var organelle in Organelles)
+        {
+            // Nothing to do if it can't chemorecept
+            if (!organelle.Definition.HasComponentFactory<ChemoreceptorComponentFactory>())
+                continue;
+
+            var chemoreceptorConfiguration = organelle.Upgrades?.CustomUpgradeData;
+
+            if (chemoreceptorConfiguration == null)
+            {
+                chemoreceptedCompounds.Add(ChemoreceptorComponent.DefaultTargetCompound);
+            }
+            else
+            {
+                chemoreceptedCompounds.Add(((ChemoreceptorUpgrades)chemoreceptorConfiguration).TargetCompound);
+            }
+        }
+
+        return chemoreceptedCompounds;
     }
 
     public override void ApplyMutation(Species mutation)
