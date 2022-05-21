@@ -27,12 +27,6 @@ FullRect = true
 Movable = false
 GalleryGridPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer/GridContainer")
 GalleryItemScene = ExtResource( 1 )
-SlideTextureRectPath = NodePath("SlideshowScreen/Overlay/FullRectImage")
-SlideToolbarPath = NodePath("SlideshowScreen/Overlay/Toolbar")
-SlideNextButtonPath = NodePath("SlideshowScreen/Overlay/Toolbar/HBoxContainer/NextButton")
-SlidePrevButtonPath = NodePath("SlideshowScreen/Overlay/Toolbar/HBoxContainer/PreviousButton")
-SlideCloseButtonPath = NodePath("SlideshowScreen/Overlay/MarginContainer/CloseButton")
-SlideShowModeButtonPath = NodePath("SlideshowScreen/Overlay/Toolbar/HBoxContainer/SlideshowModeButton")
 GalleryDetailsToolTipScene = ExtResource( 8 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -169,6 +163,12 @@ __meta__ = {
 Movable = false
 ShowCloseButton = false
 Decorate = false
+SlideTextureRectPath = NodePath("Overlay/FullRectImage")
+SlideToolbarPath = NodePath("Overlay/Toolbar")
+SlideNextButtonPath = NodePath("Overlay/Toolbar/HBoxContainer/NextButton")
+SlidePrevButtonPath = NodePath("Overlay/Toolbar/HBoxContainer/PreviousButton")
+SlideCloseButtonPath = NodePath("Overlay/MarginContainer/CloseButton")
+SlideShowModeButtonPath = NodePath("Overlay/Toolbar/HBoxContainer/SlideshowModeButton")
 
 [node name="Overlay" type="PanelContainer" parent="SlideshowScreen"]
 anchor_right = 1.0
@@ -277,12 +277,14 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Tween" type="Tween" parent="."]
+[node name="PopupTween" type="Tween" parent="SlideshowScreen"]
+
+[node name="SlideshowTween" type="Tween" parent="SlideshowScreen"]
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="OnCloseButtonPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SlideshowButton" to="." method="OnStartSlideshowButtonPressed"]
-[connection signal="popup_hide" from="SlideshowScreen" to="." method="OnSlideHidden"]
-[connection signal="pressed" from="SlideshowScreen/Overlay/MarginContainer/CloseButton" to="." method="OnSlideCloseButtonPressed"]
-[connection signal="pressed" from="SlideshowScreen/Overlay/Toolbar/HBoxContainer/PreviousButton" to="." method="OnPreviousSlideButtonPressed"]
-[connection signal="toggled" from="SlideshowScreen/Overlay/Toolbar/HBoxContainer/SlideshowModeButton" to="." method="OnSlideshowModeButtonToggled"]
-[connection signal="pressed" from="SlideshowScreen/Overlay/Toolbar/HBoxContainer/NextButton" to="." method="OnNextSlideButtonPressed"]
+[connection signal="popup_hide" from="SlideshowScreen" to="SlideshowScreen" method="OnHidden"]
+[connection signal="pressed" from="SlideshowScreen/Overlay/MarginContainer/CloseButton" to="SlideshowScreen" method="OnCloseButtonPressed"]
+[connection signal="pressed" from="SlideshowScreen/Overlay/Toolbar/HBoxContainer/PreviousButton" to="SlideshowScreen" method="OnPreviousSlideButtonPressed"]
+[connection signal="toggled" from="SlideshowScreen/Overlay/Toolbar/HBoxContainer/SlideshowModeButton" to="SlideshowScreen" method="OnSlideshowModeButtonToggled"]
+[connection signal="pressed" from="SlideshowScreen/Overlay/Toolbar/HBoxContainer/NextButton" to="SlideshowScreen" method="OnNextSlideButtonPressed"]
