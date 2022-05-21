@@ -16,7 +16,9 @@ public class GalleryViewer : CustomDialog
     [Export]
     public Category ShownCategory = Category.ConceptArt;
 
+    // TODO: Replace GridContainer with FlowContainer https://github.com/godotengine/godot/pull/57960
     private GridContainer gridContainer = null!;
+
     private SlideshowScreen slideshowScreen = null!;
 
     private List<GalleryItem> galleryItems = new();

@@ -92,7 +92,7 @@ public class SlideshowScreen : CustomDialog
 
     public override void _Process(float delta)
     {
-        if (toolbarHideTimer >= 0)
+        if (toolbarHideTimer >= 0 && Visible)
         {
             toolbarHideTimer -= delta;
 

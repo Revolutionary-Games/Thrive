@@ -141,7 +141,7 @@ margin_left = 580.0
 margin_right = 758.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 5 )
-text = "START_SLIDESHOW"
+text = "SLIDESHOW"
 
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 762.0
@@ -264,7 +264,7 @@ mouse_filter = 1
 size_flags_horizontal = 8
 custom_fonts/font = ExtResource( 6 )
 toggle_mode = true
-text = "SLIDESHOW_MODE"
+text = "SLIDESHOW"
 
 [node name="NextButton" type="Button" parent="SlideshowScreen/Overlay/Toolbar/HBoxContainer"]
 margin_left = 205.0
