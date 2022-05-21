@@ -55,7 +55,7 @@ public class GalleryViewer : CustomDialog
                 var box = GalleryItemScene.Instance<GalleryItem>();
                 box.Asset = asset;
                 box.Group = buttonGroup;
-                box.OnFullscreenView += new EventHandler<GalleryItemSelectedCallbackData>(OnAssetPreviewOpened);
+                box.Connect(nameof(GalleryItem.OnFullscreenView), this, nameof(OnAssetPreviewOpened));
 
                 var tooltip = GalleryDetailsToolTipScene.Instance<GalleryDetailsTooltip>();
                 tooltip.Name = "galleryItem_" + asset.ResourcePath.GetFile();
@@ -73,13 +73,8 @@ public class GalleryViewer : CustomDialog
         slideshowScreen.SlideItems = galleryItems;
     }
 
-    private void OnAssetPreviewOpened(object sender, GalleryItemSelectedCallbackData data)
+    private void OnAssetPreviewOpened(GalleryItem item)
     {
-        // TODO: Clean this up
-        _ = data;
-
-        var item = (GalleryItem)sender;
-
         slideshowScreen.CurrentSlideIndex = galleryItems.IndexOf(item);
         slideshowScreen.CustomShow();
     }

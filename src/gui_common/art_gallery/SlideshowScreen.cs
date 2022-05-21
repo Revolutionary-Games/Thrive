@@ -25,9 +25,6 @@ public class SlideshowScreen : CustomDialog
     [Export]
     public NodePath SlideShowModeButtonPath = null!;
 
-    [Signal]
-    public delegate void SlideChanged(int index);
-
     private TextureRect fullscreenRect = null!;
     private Control slideToolbar = null!;
     private Button slideNextButton = null!;
@@ -39,7 +36,6 @@ public class SlideshowScreen : CustomDialog
     private Tween slideshowTween = null!;
 
     private float toolbarHideTimer;
-    private bool toolbarHovered;
     private float slideshowTimer;
 
     private int currentSlideIndex;
@@ -96,7 +92,7 @@ public class SlideshowScreen : CustomDialog
 
     public override void _Process(float delta)
     {
-        if (toolbarHideTimer >= 0 && !toolbarHovered)
+        if (toolbarHideTimer >= 0)
         {
             toolbarHideTimer -= delta;
 
@@ -136,13 +132,13 @@ public class SlideshowScreen : CustomDialog
             toolbarHideTimer = TOOLBAR_DISPLAY_DURATION;
     }
 
-    [RunOnKeyDownWithRepeat("ui_right")]
+    [RunOnKeyDownWithRepeat("ui_right", OnlyUnhandled = false)]
     public void OnSlideToRight()
     {
         AdvanceSlide();
     }
 
-    [RunOnKeyDownWithRepeat("ui_left")]
+    [RunOnKeyDownWithRepeat("ui_left", OnlyUnhandled = false)]
     public void OnSlideToLeft()
     {
         RetreatSlide();
@@ -150,8 +146,6 @@ public class SlideshowScreen : CustomDialog
 
     public override void CustomShow()
     {
-        // TODO: Clean this up
-
         base.CustomShow();
 
         RectClipContent = true;
@@ -175,8 +169,6 @@ public class SlideshowScreen : CustomDialog
 
     public override void CustomHide()
     {
-        // TODO: Clean this up
-
         FullRect = false;
         RectClipContent = true;
 

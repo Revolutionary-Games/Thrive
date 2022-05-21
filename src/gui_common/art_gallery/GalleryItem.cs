@@ -18,7 +18,8 @@ public class GalleryItem : Button
 
     private Asset asset = null!;
 
-    public event EventHandler<GalleryItemSelectedCallbackData>? OnFullscreenView;
+    [Signal]
+    public delegate void OnFullscreenView(GalleryItem item);
 
     public Asset Asset
     {
@@ -47,7 +48,7 @@ public class GalleryItem : Button
             if (mouse.Doubleclick)
             {
                 GUICommon.Instance.PlayButtonPressSound();
-                OnFullscreenView?.Invoke(this, new GalleryItemSelectedCallbackData(asset));
+                EmitSignal(nameof(OnFullscreenView), this);
             }
         }
     }
@@ -72,14 +73,4 @@ public class GalleryItem : Button
         GUICommon.Instance.Tween.InterpolateProperty(imagePreview, "modulate", null, Colors.White, 0.5f);
         GUICommon.Instance.Tween.Start();
     }
-}
-
-public class GalleryItemSelectedCallbackData : EventArgs
-{
-    public GalleryItemSelectedCallbackData(Asset asset)
-    {
-        Asset = asset;
-    }
-
-    public Asset Asset { get; set; }
 }

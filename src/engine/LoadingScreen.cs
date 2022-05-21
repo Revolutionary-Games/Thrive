@@ -178,7 +178,7 @@ public class LoadingScreen : Control
     public void RandomizeArt()
     {
         var gallery = SimulationParameters.Instance.GetGallery("ConceptArt");
-        var artwork = gallery.Assets.Random(random).Random(random);
+        var artwork = gallery.Assets!.Random(random)!.Random(random);
 
         artworkRect.Texture = GD.Load<Texture>(artwork.ResourcePath);
         ArtDescription = artwork.BuildDescription(true);

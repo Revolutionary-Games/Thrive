@@ -283,7 +283,7 @@ __meta__ = {
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="OnCloseButtonPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SlideshowButton" to="." method="OnStartSlideshowButtonPressed"]
-[connection signal="popup_hide" from="SlideshowScreen" to="SlideshowScreen" method="OnHidden"]
+[connection signal="hide" from="SlideshowScreen" to="SlideshowScreen" method="OnHidden"]
 [connection signal="pressed" from="SlideshowScreen/Overlay/MarginContainer/CloseButton" to="SlideshowScreen" method="OnCloseButtonPressed"]
 [connection signal="pressed" from="SlideshowScreen/Overlay/Toolbar/HBoxContainer/PreviousButton" to="SlideshowScreen" method="OnPreviousSlideButtonPressed"]
 [connection signal="toggled" from="SlideshowScreen/Overlay/Toolbar/HBoxContainer/SlideshowModeButton" to="SlideshowScreen" method="OnSlideshowModeButtonToggled"]

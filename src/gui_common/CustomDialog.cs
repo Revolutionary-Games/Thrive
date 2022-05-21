@@ -372,9 +372,7 @@ public class CustomDialog : Popup, ICustomPopup
     public virtual void CustomShow()
     {
         // TODO: implement default show animation(?)
-
-        // TODO: Explain why Popup_() is needed
-        Popup_();
+        ShowModal(PopupExclusive);
     }
 
     public virtual void CustomHide()
