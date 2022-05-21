@@ -31,6 +31,7 @@
         protected float EnergyGenerationScore(MicrobeSpecies species, Compound compound, Patch patch)
         {
             var energyCreationScore = 0.0f;
+
             foreach (var organelle in species.Organelles)
             {
                 foreach (var process in organelle.Definition.RunnableProcesses)
@@ -42,14 +43,30 @@
 
                         if (process.Process.Outputs.TryGetValue(glucose, out var glucoseAmount))
                         {
-                            energyCreationScore += glucoseAmount / inputAmount
-                                * processEfficiency * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
+                            // Better ratio means that we transform stuff more efficiently and need less input
+                            var compoundRatio = glucoseAmount / inputAmount;
+
+                            // Better output is a proxy for more time dedicated to reproduction than energy production
+                            var absoluteOutput = glucoseAmount * processEfficiency;
+
+                            energyCreationScore += (float)(
+                                Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
+                                * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
+                                * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER);
                         }
 
                         if (process.Process.Outputs.TryGetValue(atp, out var atpAmount))
                         {
-                            energyCreationScore += atpAmount / inputAmount
-                                * processEfficiency * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
+                            // Better ratio means that we transform stuff more efficiently and need less input
+                            var compoundRatio = atpAmount / inputAmount;
+
+                            // Better output is a proxy for more time dedicated to reproduction than energy production
+                            var absoluteOutput = atpAmount * processEfficiency;
+
+                            energyCreationScore += (float)(
+                                Math.Pow(compoundRatio, Constants.AUTO_EVO_COMPOUND_RATIO_POWER_BIAS)
+                                * Math.Pow(absoluteOutput, Constants.AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS)
+                                * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER);
                         }
                     }
                 }

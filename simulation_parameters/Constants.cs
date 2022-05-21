@@ -70,6 +70,28 @@ public static class Constants
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
+    public const float CELL_BASE_ROTATION = 0.2f;
+    public const float CELL_MAX_ROTATION = 0.40f;
+    public const float CELL_MIN_ROTATION = 0.0001f;
+    public const float CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER = 0.8f;
+    public const float CILIA_ROTATION_FACTOR = 0.035f;
+    public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 0.7f;
+
+    public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
+    public const float CELL_COLONY_MIN_ROTATION_MULTIPLIER = 0.05f;
+    public const float CELL_COLONY_MAX_ROTATION_HELP = 2.5f;
+    public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 45.0f;
+
+    public const float CILIA_ENERGY_COST = 3.0f;
+    public const float CILIA_ROTATION_NEEDED_FOR_ATP_COST = 0.03f;
+    public const float CILIA_ROTATION_ENERGY_BASE_MULTIPLIER = 6.0f;
+
+    public const float CILIA_DEFAULT_ANIMATION_SPEED = 0.3f;
+    public const float CILIA_MIN_ANIMATION_SPEED = 0.15f;
+    public const float CILIA_MAX_ANIMATION_SPEED = 1.2f;
+    public const float CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER = 7.0f;
+    public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
+
     public const int PROCESS_OBJECTS_PER_TASK = 15;
 
     public const int MICROBE_SPAWN_RADIUS = 170;
@@ -142,6 +164,11 @@ public static class Constants
     ///   Max number of concurrent audio players that may be spawned per entity.
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
+
+    /// <summary>
+    ///   Max number of concurrent audio players that may be spawned for UI sounds.
+    /// </summary>
+    public const int MAX_CONCURRENT_UI_AUDIO_PLAYERS = 10;
 
     public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
 
@@ -488,7 +515,7 @@ public static class Constants
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
     public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
-    public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 1.0f;
+    public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 20;
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
@@ -501,6 +528,9 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
+
+    public const double AUTO_EVO_COMPOUND_RATIO_POWER_BIAS = 1;
+    public const double AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS = 0.5;
 
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
@@ -563,6 +593,11 @@ public static class Constants
     ///   Scale used for one frame while membrane data is not ready yet
     /// </summary>
     public const float MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE = 0.18f;
+
+    /// <summary>
+    ///   Multiplier for cell editor actions in multicellular editor
+    /// </summary>
+    public const float MULTICELLULAR_EDITOR_COST_FACTOR = 0.5f;
 
     public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 

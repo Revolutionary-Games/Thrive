@@ -7,6 +7,7 @@ using System.Collections.Generic;
 /// <typeparam name="TData">The type of data to hold in hexes</typeparam>
 [UseThriveSerializer]
 public class IndividualHexLayout<TData> : HexLayout<HexWithData<TData>>
+    where TData : IActionHex
 {
     public IndividualHexLayout(Action<HexWithData<TData>> onAdded, Action<HexWithData<TData>>? onRemoved = null) : base(
         onAdded, onRemoved)

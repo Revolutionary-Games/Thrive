@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-29 11:19+0300\n"
-"PO-Revision-Date: 2022-04-29 10:13+0000\n"
+"POT-Creation-Date: 2022-05-20 15:12+0300\n"
+"PO-Revision-Date: 2022-05-03 17:42+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12\n"
+"X-Generator: Poedit 3.0.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -95,7 +95,7 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Esitumallisen soluelimet\n"
 "\n"
-"Metabolomit: Tuottaa [thrive:compound type=\"atp\"][/thrive:compound] [thrive:compound type=\"glucose\"][/thrive:compound]sta\n"
+"Metabolosomit: Tuottaa [thrive:compound type=\"atp\"][/thrive:compound] [thrive:compound type=\"glucose\"][/thrive:compound]sta\n"
 "\n"
 "Kemosynteesiproteiinit: Tuottaa puolet [thrive:compound type=\"glucose\"][/thrive:compound]sta käyttäen [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]a kemoplastina, mutta aiheuttaa myös glykolyysin (tuottaa pieniä määriä [thrive:compound type=\"atp\"][/thrive:compound]:tä) vaatien yhden Hexan lisää tilaa\n"
 "\n"
@@ -137,7 +137,7 @@ msgstr ""
 "\n"
 "Vakuoli: Varastoi 8 kerättyä yhdistettä\n"
 "\n"
-"Myrkkyvakuoli: Tuottaa myrkkyä ([thrive:compound type=\"oxytoxy\"][/thrive:compound]), jota voi vapauttaa sen aiheuttaen vahinkoa suhteessa varastoituun  [thrive:compound type=\"oxytoxy\"]happimyrkkyyn[/thrive:compound]\n"
+"Myrkkyvakuoli: Tuottaa myrkkyä ([thrive:compound type=\"oxytoxy\"][/thrive:compound]), jota voi vapauttaa sen aiheuttaen vahinkoa suhteessa varastoituun [thrive:compound type=\"oxytoxy\"]happimyrkkyyn[/thrive:compound]\n"
 "\n"
 "Viestintäkeskus: Tuottaa kemikaaleja joihin toiset solut reagoivat"
 
@@ -168,9 +168,8 @@ msgid "EASTEREGG_MESSAGE_3"
 msgstr "Vinkki: Alueet ovat enemmänkin kuin vain taustoja, yhdisteet ilmestyvät eri alueille joskus eri määrinä."
 
 #: ../simulation_parameters/common/help_texts.json:135
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_4"
-msgstr "Vinkki: mitä enemmän siimoja sinulla on, sitä nopeammin liikut, vroom vroom, mutta se kuluttaa enemmän ATP:tä"
+msgstr "Vinkki: mitä enemmän siimoja sinulla on, sitä nopeammin liikut, vroom vroom, mutta se kuluttaa enemmän ATP:tä."
 
 #: ../simulation_parameters/common/help_texts.json:138
 #, fuzzy
@@ -314,24 +313,21 @@ msgstr "Pohjassapidettynä näytä lauman komentovalikko"
 
 #: ../simulation_parameters/common/input_options.json:50
 #: ../src/microbe_stage/MicrobeStage.tscn:2153
-#, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr "Aloita/lopeta nieleminen"
+msgstr "Aloita/lopeta kiinnittyminen"
 
 #: ../simulation_parameters/common/input_options.json:54
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "Aloita/lopeta nieleminen"
+msgstr "Aloita/Lopeta erkanemistila"
 
 #: ../simulation_parameters/common/input_options.json:58
 #: ../src/microbe_stage/MicrobeStage.tscn:2165
 msgid "UNBIND_ALL"
-msgstr "Irrota kaikki"
+msgstr "Erkane kaikista"
 
 #: ../simulation_parameters/common/input_options.json:62
-#, fuzzy
 msgid "PERFORM_UNBINDING"
-msgstr "Virhe ladattaessa"
+msgstr "Erkane"
 
 #: ../simulation_parameters/common/input_options.json:71
 msgid "CAMERA"
@@ -442,9 +438,8 @@ msgid "TOGGLE_FPS"
 msgstr "Näytä FPS-laskuri"
 
 #: ../simulation_parameters/common/input_options.json:188
-#, fuzzy
 msgid "TOGGLE_METRICS"
-msgstr "Näytä FPS-laskuri"
+msgstr "Näytä metriikat"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "QUICK_SAVE"
@@ -467,9 +462,8 @@ msgid "TOGGLE_FULLSCREEN"
 msgstr "Vaihda koko näytön tilaa"
 
 #: ../simulation_parameters/common/input_options.json:212
-#, fuzzy
 msgid "TOGGLE_HUD_HIDE"
-msgstr "Aloita/lopeta nieleminen"
+msgstr "Näytä/Piilota HUD"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -614,36 +608,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1300
+#: ../src/microbe_stage/MicrobeStage.tscn:1301
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "AMMONIA"
 msgstr "Ammoniakki"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1352
+#: ../src/microbe_stage/MicrobeStage.tscn:1353
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
 msgid "PHOSPHATE"
 msgstr "Fosfaatti"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1404
+#: ../src/microbe_stage/MicrobeStage.tscn:1405
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
 msgid "HYDROGEN_SULFIDE"
 msgstr "Rikkivety"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1248
+#: ../src/microbe_stage/MicrobeStage.tscn:1249
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "GLUCOSE"
 msgstr "Glukoosi"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1586
+#: ../src/microbe_stage/MicrobeStage.tscn:1587
 msgid "OXYTOXY_NT"
 msgstr "Happimyrkky"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1456
+#: ../src/microbe_stage/MicrobeStage.tscn:1457
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "IRON"
 msgstr "Rauta"
@@ -664,39 +658,39 @@ msgid "NITROGEN"
 msgstr "Typpi"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3731
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
 msgstr "Auringonvalo"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2210
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2236
 msgid "NORMAL"
 msgstr "Normaali"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2378
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2404
 msgid "DOUBLE"
 msgstr "Tupla"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2542
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2568
 msgid "CELLULOSE"
 msgstr "Selluloosa"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:57
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2777
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2803
 msgid "CHITIN"
 msgstr "Kitiini"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3012
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3038
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalsiumkarbonaatti"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:93
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3280
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3306
 msgid "SILICA"
 msgstr "Piidioksidi"
 
@@ -739,12 +733,12 @@ msgid "METABOLOSOMES"
 msgstr "Metabolosomi"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:303
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1791
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1817
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Typpeä sitova plastidi"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:342
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1707
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1733
 msgid "CHEMOPLAST"
 msgstr "Kemoplasti"
 
@@ -754,32 +748,29 @@ msgid "FLAGELLUM"
 msgstr "Siima"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:405
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1889
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1915
 msgid "VACUOLE"
 msgstr "Vakuoli"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:442
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1424
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1450
 msgid "MITOCHONDRION"
 msgstr "Mitokondrio"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:478
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1986
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2012
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Myrkky-\n"
 "vakuoli"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:509
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1244
-#, fuzzy
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1270
 msgid "BINDING_AGENT"
-msgstr ""
-"Syötteellä on conflikti: {0}.\n"
-"Haluatko poistaa syötteen {1}:lta?"
+msgstr "Kiinnittymisen elimet"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:551
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1508
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1534
 msgid "CHLOROPLAST"
 msgstr "Viherhiukkanen"
 
@@ -789,32 +780,31 @@ msgid "CYTOPLASM"
 msgstr "Solulima"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:652
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1327
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1353
 msgid "NUCLEUS"
 msgstr "Tuma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:678
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1164
-#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr "Kemoplasti"
+msgstr "Kemoreseptori"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2083
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2109
 msgid "SIGNALING_AGENT"
 msgstr "Viestintäkeskus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:727
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2181
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2207
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminesenssivä vakuoli"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:750
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1592
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1618
 msgid "THERMOPLAST"
 msgstr "Lämpöplasti"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:773
+#: ../simulation_parameters/microbe_stage/organelles.json:779
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1224
 msgid "CILIA"
 msgstr "Värekarva"
@@ -922,7 +912,7 @@ msgstr "Osa lajin [u]{0}[/u] populaatiosta on muuttanut alueelta {1} alueelle {2
 
 #: ../src/auto-evo/RunResults.cs:903
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "Osa populaatiosta ([u]{0}[/u]) ovat muuttaneet {1}"
 
 #: ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_NICHE_FILL"
@@ -954,121 +944,137 @@ msgid "PREDATION_FOOD_SOURCE"
 msgstr "Lajin {0} saalistus"
 
 #: ../src/early_multicellular_stage/CellType.cs:38
-#, fuzzy
 msgid "STEM_CELL_NAME"
-msgstr "Valittu käyttäjänimi:"
+msgstr "Kantasolu"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:297
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:358
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:299
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:360
 msgid "STRUCTURE"
 msgstr "Rakenne"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:318
-#, fuzzy
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:320
 msgid "REPRODUCTION"
-msgstr "ATP:n tuotanto"
+msgstr "Lisääntyminen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:400
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:341
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:402
 #, fuzzy
 msgid "BEHAVIOUR"
 msgstr "Käyttäytyminen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
-#, fuzzy
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:387
 msgid "CELLS"
-msgstr "Selluloosa"
+msgstr "Solut"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:403
 msgid "MODIFY_TYPE"
 msgstr "Vaihda tyyppiä"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:414
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:416
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Poista"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:421
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
 msgid "DUPLICATE_TYPE"
 msgstr "Kopioi tyyppi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:463
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
 msgid "REPRODUCTION_METHOD"
 msgstr "Lisääntyminen:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:476
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 msgid "REPRODUCTION_BUDDING"
 msgstr "Orastuminen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1199
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:520
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "PERU"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1212
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:533
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1245
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr "SEURAAVA"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 #, fuzzy
 msgid "DISCONNECTED_CELLS"
 msgstr "Irtonaiset soluelimet"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:544
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Jotkin soluelimistä eivät ole keskenään yhdessä.\n"
 "Yhdistä kaikki soluelimet toisiinsa tai kumoa muutoksesi."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Soluelimen tyyppiä ei voi poistaa"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:549
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Solutyyppiä, joka on tällä hetkellä käytössä kehon suunnitelmassa, ei voi poistaa"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:551
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Luo uusi soluelin"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:565
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:567
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Voit luoda uusia soluelimiä kopioimalla olemassa olevia tyyppejä ja antamalla niille uudet nimet. Soluelimiä voi muokata siten, että ne erikoistuvat eri tehtäviin. Kun soluelintyyppiä muokataan, kaikki sitä vastaavat nykyiset soluelimet muokkaantuvat samalla."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:578
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:580
 msgid "NEW_NAME_COLON"
 msgstr "Uusi nimi:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:585
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:587
 msgid "NEW_NAME"
 msgstr "Uusi nimi"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:72
+#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:58
+#, fuzzy
+msgid "MULTIPLE_CELLS"
+msgstr "Lisää soluelin"
+
+#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:76
+#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
+#: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:82
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:102
+msgid "MP_COST"
+msgstr "{0} MP"
+
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:88
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:65
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Ladataan mikrobieditoria"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:186
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:191
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:226
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:196
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evon suorittaminen epäonnistui"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:187
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:192
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:227
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "suorituksen status:"
+
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:376
+#: ../src/general/EditorBase.cs:641
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
+msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
+msgstr ""
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Valitse muokattavan soluelimen tyyppi editorin sivulta"
 
 #: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
-#: ../src/engine/PerformanceMetrics.tscn:60
+#: ../src/engine/PerformanceMetrics.tscn:57
 msgid "FPS"
 msgstr "FPS: {0}"
 
@@ -1077,16 +1083,15 @@ msgid "LOADING"
 msgstr "Ladataan"
 
 #: ../src/engine/PerformanceMetrics.cs:63
-#: ../src/engine/PerformanceMetrics.tscn:66
-msgid "FRAME_DELTA"
-msgstr "Muutos: {0}"
+msgid "FRAME_DURATION"
+msgstr "Ruutuaika: {0}"
 
 #: ../src/engine/PerformanceMetrics.cs:77
 #: ../src/engine/PerformanceMetrics.tscn:73
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.tscn:31
+#: ../src/engine/PerformanceMetrics.tscn:28
 #, fuzzy
 msgid "METRICS"
 msgstr "Näytä FPS-laskuri"
@@ -1223,7 +1228,7 @@ msgstr "SysRq"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
-msgstr ""
+msgstr "PgUp (sivu ylös päin)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "PAGEDOWN"
@@ -1505,7 +1510,7 @@ msgstr "Hiiren erikoispainike 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Tuntematon hiiren painike"
 
-#: ../src/general/EditorBase.cs:226
+#: ../src/general/EditorBase.cs:236
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Odotetaan auto-evoa:"
 
@@ -1525,7 +1530,7 @@ msgstr "Taidetta, jonka tekijä on {0}"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1304
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1337
 #: ../src/modding/ModManager.tscn:992
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:392
 msgid "CLOSE"
@@ -1533,11 +1538,11 @@ msgstr "Sulje"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/gui_common/CompoundAmount.cs:171
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:732
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:248
+#: ../src/microbe_stage/MicrobeHUD.cs:708
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:390
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1557,12 +1562,12 @@ msgstr "Sisäänkirjauduttu käyttäjänä: {0}"
 msgid "NEW_GAME"
 msgstr "Uusi Peli"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Lataa Peli"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
 msgid "OPTIONS"
 msgstr "Asetukset"
 
@@ -1592,7 +1597,7 @@ msgstr "Mikrobien vapaa rakentelu"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:138
+#: ../src/general/PauseMenu.tscn:254
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1628,9 +1633,8 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Yhden tai useamman modin latauksessa kohdattiin virheitä. Lokit voivat sisältää lisää tietoa."
 
 #: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
-#, fuzzy
 msgid "AUTO_RESOLUTION"
-msgstr "Tarkkuus:"
+msgstr "Automaattinen ({0}x{1})"
 
 #: ../src/general/OptionsMenu.cs:924
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1726,11 +1730,11 @@ msgstr "Ei mitään"
 
 #: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_PROTANOPE"
-msgstr ""
+msgstr "Protanopia (punavihersokeus)"
 
 #: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_TRITANOPE"
-msgstr ""
+msgstr "Tritanopia (sininen-keltainen)"
 
 #: ../src/general/OptionsMenu.tscn:363
 msgid "CHROMATIC_ABERRATION"
@@ -1965,55 +1969,55 @@ msgstr "Avaa Näyttökuva kansio"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Kokeile ottaa ruudunkaappauksia!"
 
-#: ../src/general/PauseMenu.cs:313
+#: ../src/general/PauseMenu.cs:306
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Haluatko varmasti palata päävalikkoon?\n"
 "Menetät tallentamattomat tiedot."
 
-#: ../src/general/PauseMenu.cs:329
+#: ../src/general/PauseMenu.cs:322
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Haluatko varmasti poistua pelistä?\n"
 "Menetät tallentamattomat tiedot."
 
-#: ../src/general/PauseMenu.tscn:62
+#: ../src/general/PauseMenu.tscn:178
 msgid "RESUME"
 msgstr "Jatka"
 
-#: ../src/general/PauseMenu.tscn:69
+#: ../src/general/PauseMenu.tscn:185
 msgid "SAVE_GAME"
 msgstr "Tallenna Peli"
 
-#: ../src/general/PauseMenu.tscn:84
+#: ../src/general/PauseMenu.tscn:200
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Statistiikkaa"
 
-#: ../src/general/PauseMenu.tscn:91
+#: ../src/general/PauseMenu.tscn:207
 msgid "HELP"
 msgstr "Apua"
 
-#: ../src/general/PauseMenu.tscn:105
+#: ../src/general/PauseMenu.tscn:221
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Palaa Päävalikkoon"
 
-#: ../src/general/PauseMenu.tscn:112
+#: ../src/general/PauseMenu.tscn:228
 msgid "EXIT"
 msgstr "Poistu"
 
-#: ../src/general/PauseMenu.tscn:163
+#: ../src/general/PauseMenu.tscn:279
 msgid "CONFIRM_EXIT"
 msgstr "Vahvista poistuminen"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
-msgstr "{0} mrd."
+msgstr "{0} mrd"
 
 #: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
-msgstr "{0} milj."
+msgstr "{0} milj"
 
 #: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
@@ -2030,15 +2034,15 @@ msgstr "@"
 
 #: ../src/gui_common/CreditsScroll.cs:223
 msgid "LEAD_DEVELOPERS"
-msgstr ""
+msgstr "Pääkehittäjät"
 
 #: ../src/gui_common/CreditsScroll.cs:229
 msgid "LEAD_PROGRAMMER"
-msgstr ""
+msgstr "Pääohjelmoija"
 
 #: ../src/gui_common/CreditsScroll.cs:230
 msgid "LEAD_PROGRAMMERS"
-msgstr ""
+msgstr "Pääohjelmoijat"
 
 #: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_THEORIST"
@@ -2317,9 +2321,11 @@ msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
 #: ../src/gui_common/TweakedColourPicker.cs:587
-#, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
-msgstr "Lisää uusi syöte"
+msgstr ""
+"Väri: {0}\n"
+"Vasen hiiripainike: Käytä tätä presettiä\n"
+"Oikea hiiripainike: Poista tämä presetti"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
@@ -2329,24 +2335,24 @@ msgstr "HSV"
 msgid "RAW"
 msgstr "Raaka"
 
-#: ../src/gui_common/charts/line/LineChart.cs:632
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1987
+#: ../src/gui_common/charts/line/LineChart.cs:648
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
 msgid "NO_DATA_TO_SHOW"
 msgstr "Ei dataa näytettäväksi"
 
-#: ../src/gui_common/charts/line/LineChart.cs:636
+#: ../src/gui_common/charts/line/LineChart.cs:652
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Virheellistä dataa ei voitu sovittaa kuvaajaan"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1104
-#: ../src/gui_common/charts/line/LineChart.cs:1196
+#: ../src/gui_common/charts/line/LineChart.cs:1120
+#: ../src/gui_common/charts/line/LineChart.cs:1212
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Ei ole lupaa näyttää enempää kuin {0} dataosaa!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1110
-#: ../src/gui_common/charts/line/LineChart.cs:1201
+#: ../src/gui_common/charts/line/LineChart.cs:1126
+#: ../src/gui_common/charts/line/LineChart.cs:1217
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr "Ei ole lupaa näyttää vähempää kuin {0} datajoukko(ja)!"
+msgstr "Ei ole lupaa näyttää vähempää kuin {0} datajoukko(a)!"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
@@ -2432,44 +2438,60 @@ msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:155
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2237
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2405
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2569
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2804
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3037
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3307
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2263
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2431
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2595
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2830
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3063
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3333
 msgid "MOBILITY"
 msgstr "Liikkuvuus"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:190
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2340
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2505
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2672
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2907
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3140
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3410
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2366
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2531
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2698
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2933
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3166
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3436
 msgid "HEALTH"
 msgstr "Terveys"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"Aggressiiviset mikrobit kulkevat pidempiä etäisyyksiä jahdatessaan muita\n"
+"ja taistelevat todennäköisemmin takaisin hyökkääjiäänsä vastaan.\n"
+"Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
+"käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:237
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
+"Opportunistiset mikrobit kilpailevat ahnaasti yhdisteistä ja yrittävät\n"
+"todennäköisemmin jahdata saaliitaan myrkkyillään, jos eivät pysty syömään heitä.\n"
+"Varovaiset mikrobit välttävät vaaroja ja siten kilpailutilanteita esimerkiksi ravinnon keruun yhteydessä."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:245
 msgid "FEAR_EXPLANATION"
 msgstr ""
+"Pelokkaat mikrobit pakenevat pidempiä matkoja, kuin urheat, ja\n"
+"todennäköisemmin pakenevat petoja.\n"
+"Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
+"todennäköisimmin takaisin uhattuna."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:253
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
+"Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:261
 msgid "FOCUS_EXPLANATION"
 msgstr ""
+"Keskittyneet mikrobit etsivät yhdisteitä, kappaleita ja saaliita pidemmän matkan päästä\n"
+"ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
+"Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:277
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
@@ -2477,7 +2499,7 @@ msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:c
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:278
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr ""
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:295
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:399
@@ -2487,16 +2509,16 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:793
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:891
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1026
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1257
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1346
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1621
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1721
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1810
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1908
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2005
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2102
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1283
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1372
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1464
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1548
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1647
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1747
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1836
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1934
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2031
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
 msgid "STORAGE"
 msgstr "Varastotila"
 
@@ -2510,22 +2532,23 @@ msgstr "Varastotila"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1064
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1184
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1295
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1384
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1476
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1560
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1659
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1759
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1848
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1946
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2043
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2140
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2272
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2439
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2604
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2839
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3072
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3342
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1321
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1410
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1502
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1586
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1685
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1785
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1874
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1972
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2069
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2166
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2298
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2465
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2630
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2865
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3098
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3368
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulaation energiantarve"
 
@@ -2535,20 +2558,19 @@ msgstr "Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] [t
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:377
 msgid "METABOLOSOMES_DESCRIPTION"
-msgstr ""
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:477
 msgid "THYLAKOID"
 msgstr "Tylakoidi"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:478
-#, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr "Pistä muita soluja tällä."
+msgstr "Tuottaa [thrive:compound type=\"glucose\"][/thrive:compound]a. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja [thrive:compound type=\"sunlight\"]auringon valon[/thrive:compound] saatavuudesta."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:479
 msgid "THYLAKOIDS_DESCRIPTION"
-msgstr ""
+msgstr "Yhteyttämiskalvostot eli tylakoidit ovat solukalvolla sijaitsevia, valosta energiaa kerääviä elimiä. Nämä kalvostot pystyvät hyödyntämään valon energian valmistaakseen glukoosia käyttäen vettä ja hiilidioksidia prosessissa nimeltä fotosynteesi. Tylakoidien pigmentit antavat viherhiukkasille niiden tunnusomaisen värinsä. Glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta ja saatavilla olevasta valosta. Tylakoidit sijaitsevat soluliman ympäröimänä, joka puolestaan toteuttaa glykolyysia."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:575
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
@@ -2556,21 +2578,19 @@ msgstr "Muuntaa [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]t [t
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:576
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr ""
+msgstr "Kemosyntetisoivat proteiinit ovat pieniä proteiiniryppäitä solulimassa, jotka pystyvät muuntamaan vetysulfideja, vettä ja hiilidioksidia glukoosiksi prosessissa nimeltä kemosynteesi. Kemosynteesissä, toisin kuin fotosynteesissä, ei tarvita energianlähteenä auringon valoa, vaan energia saadaan hapettamalla epäorgaanisia yhdisteitä. Vetysulfidikemosynteesissä glukoosin muunnosnopeus riippuu ympäristön hiilidioksidipitoisuudesta. Näiden proteiinien ympäröimä solulima toteuttaa myös glykolyysia."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:678
-#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "Pistä muita soluja tällä."
+msgstr "Muuntaa [thrive:compound type=\"iron\"]raudan[/thrive:compound] [thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Muunnosnopeus vaihtelee ympäristön [thrive:compound type=\"carbondioxide\"][/thrive:compound]n ja [thrive:compound type=\"oxygen\"][/thrive:compound]n mukaan."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:679
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr ""
+msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:775
-#, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr "Pistä muita soluja tällä."
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpipitoisuudesta[/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:776
 msgid "NITROGENASE_DESCRIPTION"
@@ -2578,7 +2598,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:873
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Voi päästää myrkkyjä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]n pitoisuudet ovat alhaiset, ampuminen on edelleen mahdollista, mutta aiheuttaa vähemmän vahinkoa."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:874
 msgid "OXYTOXISOME_DESC"
@@ -2615,182 +2635,186 @@ msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1698
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2182
-#: ../src/microbe_stage/MicrobeHUD.cs:1376
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Tullaan toteuttamaan tulevaisuudessa."
+#, fuzzy
+msgid "CILIA_PROCESSES_DESCRIPTION"
+msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
+#, fuzzy
+msgid "CILIA_DESCRIPTION"
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1271
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Vaihda liittymismoodia painamall [thrive:input]g_toggle_binding[/thrive:input]. Liittymismoodissa voit liittyä toisiin lajisi soluihin liikkumalla heitä kohti. Poistuaksesi ryppäästä paina [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1246
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1272
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1328
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1354
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1329
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1355
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1425
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1451
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] [thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1426
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1452
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1509
-#, fuzzy
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1535
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
-msgstr "Pistä muita soluja tällä."
+msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja [thrive:compound type=\"sunlight\"]auringon valon[/thrive:compound] saatavuudesta."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1510
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1536
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1593
-#, fuzzy
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1619
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Pistä muita soluja tällä."
+msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. Tuotannon nopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound] ja lämpötilasta."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1594
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1610
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
-#, fuzzy
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1636
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:185
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr "Lisää soluelin"
+msgstr "Ei toimintoja"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1708
-#, fuzzy
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1724
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2208
+#: ../src/microbe_stage/MicrobeHUD.cs:1474
+msgid "TO_BE_IMPLEMENTED"
+msgstr "Tullaan toteuttamaan tulevaisuudessa."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1734
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Pistä muita soluja tällä."
+msgstr "Muuntaa [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]n [thrive:compound type=\"glucose\"]glukoosiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"carbondioxide\"]hiilidioksidipitoisuudesta[/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1709
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1735
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1792
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1818
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpi-[/thrive:compound] ja [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1793
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1819
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1890
-#, fuzzy
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1916
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "Pistä muita soluja tällä."
+msgstr "Lisää solun varastointitilaa kerätyille yhdisteille."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1891
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1917
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1987
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2013
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Ampuu myrkkyä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]varastot ovat alhaiset, ampuminen on edelleen mahdollista tuottaen vähemmän vahinkoa kohteelle."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1988
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2014
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2084
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2110
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Pidä [thrive:input]g_pack_commands[/thrive:input] pohjassa avataksesi valikon, josta voit jakaa lajisi soluille komentoja."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2085
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2111
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2211
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2237
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2306
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2472
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2638
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2873
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3106
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3376
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2332
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2498
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2664
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2899
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3132
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3402
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Resurssien imeytymisen nopeus"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2379
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2405
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2543
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2569
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2706
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3174
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3444
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2732
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3200
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3470
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fyysinen kestävyys"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2740
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2975
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3242
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3512
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2766
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3001
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3268
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3538
 msgid "CANNOT_ENGULF"
 msgstr "Ei voi niellä"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2778
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2804
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2941
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3208
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3478
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2967
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3234
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3504
 msgid "TOXIN_RESISTANCE"
 msgstr "Myrkyn kestävyys"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3013
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3039
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3281
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3307
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3663
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3694
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3669
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Tämä arvo vaikuttaa vain uusiin peleihin, jotka on aloitettu tämän muuttamisen jälkeen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3675
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3706
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3681
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3712
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Hyperthreadingin päällä oloa ei voida automaattisesti tunnistaa.\n"
 "Tämä säätää kuinka monta taustatyöskentelijää käytetään oletusarvoisesti, koska hyperthreading ei ole yhtä tehokasta kuin oikeat prosessoriytimet."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3686
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3717
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 "Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
 "Haluatko jatkaa?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3726
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
@@ -2798,27 +2822,27 @@ msgid "TEMPERATURE"
 msgstr "Lämpötila"
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn:95
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:81
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:78
 msgid "N_A_MP"
 msgstr "- MP"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:564
+#: ../src/microbe_stage/Microbe.Contact.cs:588
 msgid "DEATH"
 msgstr "kuolema"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:690
+#: ../src/microbe_stage/Microbe.Contact.cs:718
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "onnistunut raadonsyönti"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:697
+#: ../src/microbe_stage/Microbe.Contact.cs:725
 msgid "SUCCESSFUL_KILL"
 msgstr "onnistunut tappo"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:935
+#: ../src/microbe_stage/Microbe.Contact.cs:963
 msgid "ESCAPE_ENGULFING"
 msgstr "pakeni nielaisulta"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:777
+#: ../src/microbe_stage/Microbe.Interior.cs:780
 msgid "REPRODUCED"
 msgstr "jatkoi sukuaan"
 
@@ -2849,122 +2873,122 @@ msgstr "pelaaja kuoli"
 msgid "SPAWN_ENEMY"
 msgstr "Luo vihollinen"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:488
+#: ../src/microbe_stage/MicrobeHUD.cs:543
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:489
+#: ../src/microbe_stage/MicrobeHUD.cs:544
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:490
+#: ../src/microbe_stage/MicrobeHUD.cs:545
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:491
+#: ../src/microbe_stage/MicrobeHUD.cs:546
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:492
+#: ../src/microbe_stage/MicrobeHUD.cs:547
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:495
+#: ../src/microbe_stage/MicrobeHUD.cs:550
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:811
+#: ../src/microbe_stage/MicrobeHUD.cs:877
 msgid "STUFF_AT"
 msgstr "Juttuja sijainnissa {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:844
+#: ../src/microbe_stage/MicrobeHUD.cs:910
 msgid "PLAYER_CELL"
 msgstr "Pelaajan solu"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:861
+#: ../src/microbe_stage/MicrobeHUD.cs:927
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:906
+#: ../src/microbe_stage/MicrobeHUD.cs:972
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:908
+#: ../src/microbe_stage/MicrobeHUD.cs:974
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:910
+#: ../src/microbe_stage/MicrobeHUD.cs:976
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "kohtuullisesti"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:912
+#: ../src/microbe_stage/MicrobeHUD.cs:978
 msgid "CATEGORY_SOME"
 msgstr "hieman"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:914
+#: ../src/microbe_stage/MicrobeHUD.cs:980
 msgid "CATEGORY_LITTLE"
 msgstr "vähän"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:916
+#: ../src/microbe_stage/MicrobeHUD.cs:982
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "erittäin vähän"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1170
-#: ../src/microbe_stage/MicrobeStage.tscn:1772
+#: ../src/microbe_stage/MicrobeHUD.cs:1233
+#: ../src/microbe_stage/MicrobeStage.tscn:1788
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1206
-#: ../src/microbe_stage/MicrobeStage.tscn:1788
+#: ../src/microbe_stage/MicrobeHUD.cs:1269
+#: ../src/microbe_stage/MicrobeStage.tscn:1799
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:756
+#: ../src/microbe_stage/MicrobeStage.cs:755
 msgid "PLAYER_REPRODUCED"
 msgstr "pelaaja jatkoi sukuaan"
 
-#: ../src/microbe_stage/MicrobeStage.cs:770
+#: ../src/microbe_stage/MicrobeStage.cs:769
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Luo vihollinen"
 
-#: ../src/microbe_stage/MicrobeStage.cs:793
+#: ../src/microbe_stage/MicrobeStage.cs:792
 msgid "PLAYER_DIED"
 msgstr "pelaaja kuoli"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:516
+#: ../src/microbe_stage/MicrobeStage.tscn:518
 msgid "AT_CURSOR"
 msgstr "Kursorin alla:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:542
+#: ../src/microbe_stage/MicrobeStage.tscn:544
 msgid "NOTHING_HERE"
 msgstr "Ei mitään täällä"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:567
+#: ../src/microbe_stage/MicrobeStage.tscn:569
 msgid "COMPOUNDS_COLON"
 msgstr "Yhdisteet:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:607
+#: ../src/microbe_stage/MicrobeStage.tscn:609
 msgid "SPECIES_COLON"
 msgstr "Lajit:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:687
+#: ../src/microbe_stage/MicrobeStage.tscn:689
 msgid "ENVIRONMENT"
 msgstr "Ympäristö"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:956
+#: ../src/microbe_stage/MicrobeStage.tscn:957
 msgid "TEMPERATURE_SHORT"
 msgstr "Lämpö."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1012
+#: ../src/microbe_stage/MicrobeStage.tscn:1013
 msgid "LIGHT"
 msgstr "Valo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1067
+#: ../src/microbe_stage/MicrobeStage.tscn:1068
 msgid "PRESSURE_SHORT"
 msgstr "Paine"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1150
+#: ../src/microbe_stage/MicrobeStage.tscn:1151
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
@@ -2972,97 +2996,48 @@ msgstr "Paine"
 msgid "COMPOUNDS"
 msgstr "Yhdisteet"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1526
+#: ../src/microbe_stage/MicrobeStage.tscn:1527
 msgid "AGENTS"
 msgstr "Välittäjäaineet"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1624
-#, fuzzy
+#: ../src/microbe_stage/MicrobeStage.tscn:1625
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
-msgstr "Lisää uusi syöte"
+msgstr "Pysäytysmenu"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1642
+#: ../src/microbe_stage/MicrobeStage.tscn:1643
 msgid "PAUSE_TOOLTIP"
 msgstr "Laita peli tauolle"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1655
+#: ../src/microbe_stage/MicrobeStage.tscn:1656
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "Jatka"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1668
-#, fuzzy
+#: ../src/microbe_stage/MicrobeStage.tscn:1669
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Lisää uusi syöte"
+msgstr "Näytä / piilota ympäristö ja yhdisteet"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1683
-#, fuzzy
+#: ../src/microbe_stage/MicrobeStage.tscn:1684
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr "Lisää uusi syöte"
+msgstr "Näytä / piilota solun toiminnot"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1720
-#, fuzzy
+#: ../src/microbe_stage/MicrobeStage.tscn:1721
 msgid "HELP_BUTTON_TOOLTIP"
-msgstr "Lisää uusi syöte"
+msgstr "Help"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1732
-#, fuzzy
+#: ../src/microbe_stage/MicrobeStage.tscn:1733
 msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr "Lisää uusi syöte"
+msgstr "Kuole"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1771
+#: ../src/microbe_stage/MicrobeStage.tscn:1784
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1816
+#: ../src/microbe_stage/MicrobeStage.tscn:1819
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAATIO:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:188
-msgid "PATCH_PANGONIAN_VENTS"
-msgstr "Pangonian Syvänmeren tupruttajat"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:189
-msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:190
-msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:191
-msgid "PATCH_PANGONIAN_TIDEPOOL"
-msgstr "Pangonian vuorovesiallas"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:192
-msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:193
-msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr ""
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:194
-msgid "PATCH_PANGONIAN_COAST"
-msgstr "Pangonian Rannikko"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:195
-msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr "Pangonian Estuaari"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:196
-msgid "PATCH_CAVE"
-msgstr "Luola"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:197
-msgid "PATCH_ICE_SHELF"
-msgstr "Jäähylly"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:198
-msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr "Pangonian Merenpohja"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:203
+#: ../src/microbe_stage/PatchMapGenerator.cs:187
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -3112,208 +3087,209 @@ msgstr "Reagoiva"
 
 #: ../src/microbe_stage/editor/BehaviourEditorSubComponent.tscn:300
 msgid "FOCUSED"
-msgstr ""
+msgstr "Keskittynyt"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:195
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:200
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:322
 msgid "ATP_PRODUCTION"
 msgstr "ATP:n tuotanto"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:201
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:323
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP:n TUOTANTO ON LIIAN ALHAINEN!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:230
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:352
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:250
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:372
 msgid "OSMOREGULATION"
 msgstr "Osmoregulaatio"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:256
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:378
 msgid "BASE_MOVEMENT"
 msgstr "Perus liikkuminen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:268
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:390
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:504
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:520
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1823
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2002
 #, fuzzy
 msgid "FAILED"
 msgstr "Tallennus epäonnistui"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1829
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1841
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1835
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1847
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
 #, fuzzy
 msgid "N_A"
 msgstr "Ei tekoälyä"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1955
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2134
 msgid "ENERGY_IN_PATCH_FOR"
-msgstr ""
+msgstr "Energiaa {0} jota käytetään {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1959
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2138
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1966
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2145
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1972
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
 msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr ""
+msgstr "{0} energiaa: {1} (sopivuus: {2}) kokonaisenergia: {3} (kokonaissopivuus: {4})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:379
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:381
 msgid "MEMBRANE"
 msgstr "Solukalvo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:452
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:454
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Hae..."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:459
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:461
 msgid "STRUCTURAL"
 msgstr "Rakenteellinen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:468
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
 msgid "PROTEINS"
 msgstr "Proteiini"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:477
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:479
 msgid "EXTERNAL"
 msgstr "Ulkoinen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:486
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:488
 msgid "ORGANELLES"
 msgstr "Soluelin"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:527
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:529
 msgid "MEMBRANE_TYPES"
 msgstr "Solukalvotyypit"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:545
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:547
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Valuvuus / jäykkyys"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:565
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:567
 msgid "FLUID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:578
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:580
 msgid "RIGID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:611
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:613
 msgid "COLOUR"
 msgstr "Väri"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:679
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:681
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistiikkaa organismista"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:741
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:743
 msgid "SPEED_COLON"
 msgstr "Nopeus:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
+#, fuzzy
+msgid "ROTATION_COLON"
+msgstr "populaatio:"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:804
 msgid "HP_COLON"
 msgstr "Terv.:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:801
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:834
 msgid "SIZE_COLON"
 msgstr "Koko:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:831
-#, fuzzy
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:864
 msgid "STORAGE_COLON"
-msgstr "Varastotila"
+msgstr "Varastotila:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:852
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:885
 msgid "GENERATION_COLON"
 msgstr "Sukupolvi:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:894
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:927
 msgid "ATP_BALANCE"
 msgstr "ATP Tasapaino"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1007
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1040
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Tämä paneeli näyttää ennusteen muokatun lajin populaatiolle auto-evon mukaan.\n"
 "Auto-evo ajaa populaatiosimulaatiota, joka oman suoriutumisen lisäksi vaikuttaa lajisi populaatioon."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1011
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
-#, fuzzy
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1044
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1279
 msgid "AUTO-EVO_PREDICTION"
-msgstr "{0:F1}% valmis. {1:n0}/{2:n0} vaihetta."
+msgstr "Auto-Evon simuloitu ennuste"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1052
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Jatka"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1089
-#, fuzzy
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1122
 msgid "TOTAL_POPULATION_COLON"
-msgstr "{0} populaatio muuttui {1} syystä: {2}"
+msgstr "Kanta:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1113
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1146
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "Lajit:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1138
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1171
 #, fuzzy
 msgid "WORST_PATCH_COLON"
 msgstr "Lajit:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1254
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatiivinen ATP:n tasapaino"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1222
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Mikrobi ei tuota tarpeeksi ATP:tä selviytyäkseen!\n"
 "Haluatko varmasti jatkaa?"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1228
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1261
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Irtonaiset soluelimet"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1230
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1263
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Jotkin soluelimistä eivät ole yhtydessä muihin.\n"
 "Yhdistä kaikki soluelimet toisiinsa tai kumoa muutoksesi."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1295
-#, fuzzy
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "{0} populaatio muuttui {1} syystä: {2}"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Yhdisteiden tasapainopisteet"
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:265
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:266
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:172
+#: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:174
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Lajin nimi..."
 
@@ -3440,15 +3416,8 @@ msgid "PATCH_MAP"
 msgstr "Aluekartta"
 
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:173
-#, fuzzy
 msgid "CELL"
-msgstr "Selluloosa"
-
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:255
-msgid "MP_COST"
-msgstr "{0} MP"
+msgstr "Solu"
 
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:46
 msgid "FREEBUILDING"
@@ -3458,6 +3427,10 @@ msgstr "Vapaa rakentelu"
 msgid "MUTATION_POINTS"
 msgstr "Mutaatiopisteet"
 
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:62
+msgid "MULTIPLE_ORGANELLES"
+msgstr "Useita elimiä"
+
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 msgid "MOVE"
 msgstr "Siirrä"
@@ -3466,22 +3439,21 @@ msgstr "Siirrä"
 msgid "MODIFY"
 msgstr "Muokkaa"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:383
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:387
 msgid "BIOME_LABEL"
 msgstr "Biomi: {0}"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:387
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:391
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m merenpinnan alapuolella"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:425
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:429
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0}:n populaatio: {1}"
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
-#, fuzzy
 msgid "EXTINCT_SPECIES"
-msgstr "SUKUPUUTTO"
+msgstr "Sukupuuttoon kuolleet lajit"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
@@ -3505,9 +3477,8 @@ msgid "LINE_COLOUR"
 msgstr "Väri"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
-#, fuzzy
 msgid "MODIFY_ORGANELLE"
-msgstr "Poista soluelin"
+msgstr "Muokkaa soluelintä"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:125
 msgid "EXTINCTION_CAPITAL"
@@ -3519,55 +3490,55 @@ msgstr "Kuten 99% kaikista lajeista jotka ovat joskus olleet, sinun lajisi on ku
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
-msgstr "OLET VOITTANUT!"
+msgstr "OLET SELVIYTYNYT!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:91
 msgid "WIN_TEXT"
 msgstr "Onnittelut, olet voittanyt tämän version Thrivesta! Halutessasi voit jatkaa pelaamistä tämän ikkunan sulkeuduttua, tai voit aloittaa uuden pelin uudessa maailmassa."
 
-#: ../src/modding/ModLoader.cs:218 ../src/modding/ModLoader.cs:271
+#: ../src/modding/ModLoader.cs:226 ../src/modding/ModLoader.cs:279
 msgid "CANT_LOAD_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:242
+#: ../src/modding/ModLoader.cs:250
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:259
+#: ../src/modding/ModLoader.cs:267
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:286
+#: ../src/modding/ModLoader.cs:294
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:294
+#: ../src/modding/ModLoader.cs:302
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:376
+#: ../src/modding/ModLoader.cs:384
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:389
+#: ../src/modding/ModLoader.cs:397
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:405
+#: ../src/modding/ModLoader.cs:413
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:430
+#: ../src/modding/ModLoader.cs:438
 #, fuzzy
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
 msgstr "Pistä muita soluja tällä."
 
-#: ../src/modding/ModLoader.cs:453
+#: ../src/modding/ModLoader.cs:461
 #, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
 msgstr "Pistä muita soluja tällä."
 
-#: ../src/modding/ModLoader.cs:465
+#: ../src/modding/ModLoader.cs:473
 #, fuzzy
 msgid "PCK_LOAD_FAILED"
 msgstr "Lataus on valmistunut"
@@ -3702,7 +3673,7 @@ msgstr "Lataa"
 
 #: ../src/modding/ModManager.tscn:517
 msgid "NEW"
-msgstr ""
+msgstr "Uusi"
 
 #: ../src/modding/ModManager.tscn:530
 #, fuzzy
@@ -3885,9 +3856,8 @@ msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
 #: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:307
-#, fuzzy
 msgid "FORM_ERROR_MESSAGE"
-msgstr "Virhe tallennettaessa"
+msgstr "Virhe: {0}"
 
 #: ../src/modding/ModUploader.tscn:44
 msgid "MOD_UPLOADER"
@@ -4077,36 +4047,34 @@ msgstr "Poikkeus tapahtui prosessoidessa ladattuja objekteja"
 msgid "LOAD_FINISHED"
 msgstr "Lataus on valmistunut"
 
-#: ../src/saving/InProgressLoad.cs:196
+#: ../src/saving/InProgressLoad.cs:195
 msgid "ERROR_LOADING"
 msgstr "Virhe ladattaessa"
 
-#: ../src/saving/InProgressLoad.cs:228
+#: ../src/saving/InProgressLoad.cs:227
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Virhe vapautettaessa jo ladattuja resursseja: {0}"
 
-#: ../src/saving/InProgressSave.cs:204
+#: ../src/saving/InProgressSave.cs:203
 #, fuzzy
 msgid "SAVING_DOT_DOT_DOT"
 msgstr "Hae..."
 
-#: ../src/saving/InProgressSave.cs:243
+#: ../src/saving/InProgressSave.cs:242
 msgid "SAVE_FAILED"
 msgstr "Tallennus epäonnistui"
 
-#: ../src/saving/InProgressSave.cs:244
+#: ../src/saving/InProgressSave.cs:243
 msgid "ERROR_SAVING"
 msgstr "Virhe tallennettaessa"
 
 #: ../src/saving/NewSaveMenu.cs:80
-#, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr "Valittu tiedoston nimi ({0}) on jo olemassa. Ylikirjoita?"
+msgstr "Valittu tiedostonimi ({0}) on jo olemassa. Kirjoitetaanko yli?"
 
 #: ../src/saving/NewSaveMenu.cs:185
-#, fuzzy
 msgid "INVALID_SAVE_NAME_POPUP"
-msgstr "Lataa rikkinäinen tallennus?"
+msgstr "Tiedostonimessä ei voi käyttää erikoismerkkejä (<>:\"/\\|?*)"
 
 #: ../src/saving/NewSaveMenu.tscn:32
 msgid "CREATE_NEW_SAVE"
@@ -4138,25 +4106,25 @@ msgstr "Ei voi niellä"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Auto-evon suorittaminen epäonnistui"
 
-#: ../src/saving/SaveHelper.cs:444 ../src/saving/SaveHelper.cs:488
+#: ../src/saving/SaveHelper.cs:485 ../src/saving/SaveHelper.cs:536
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
-#: ../src/saving/SaveHelper.cs:453 ../src/saving/SaveHelper.cs:469
+#: ../src/saving/SaveHelper.cs:494 ../src/saving/SaveHelper.cs:513
 #, fuzzy
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
-#: ../src/saving/SaveHelper.cs:454
+#: ../src/saving/SaveHelper.cs:495
 #, fuzzy
 msgid "PLAYER_EXTINCT"
 msgstr "pelaaja kuoli"
 
-#: ../src/saving/SaveHelper.cs:470
+#: ../src/saving/SaveHelper.cs:514
 msgid "IN_PROTOTYPE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:478
+#: ../src/saving/SaveHelper.cs:526
 msgid "SAVING_SUCCEEDED"
 msgstr "Tallennus onnistui"
 
@@ -4176,76 +4144,86 @@ msgstr "Tallenna Peli"
 msgid "SAVE_INVALID"
 msgstr "Virheellinen"
 
-#: ../src/saving/SaveList.cs:208
+#: ../src/saving/SaveList.cs:215
 msgid "SAVE_DELETE_WARNING"
 msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti lopullisesti poistaa {0}?"
 
-#: ../src/saving/SaveList.tscn:53
+#: ../src/saving/SaveList.tscn:51
 msgid "NO_SAVEGAMES_FOUND"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
 #, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Ladataan..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 #, fuzzy
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Poista tämä tallennus?"
 
-#: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
+#: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
 #, fuzzy
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Lataa epäyhteensopiva tallennus?"
 
-#: ../src/saving/SaveList.tscn:80
+#: ../src/saving/SaveList.tscn:78
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Tämä tallennus on uudemmasta Thriven versiosta ja erittäin todennäköisesti\n"
 "se ei ole yhteensopiva. Lataa kuitenkin?"
 
-#: ../src/saving/SaveList.tscn:88
+#: ../src/saving/SaveList.tscn:86
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:95
+#: ../src/saving/SaveList.tscn:93
 #, fuzzy
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Lataa rikkinäinen tallennus?"
 
-#: ../src/saving/SaveList.tscn:96
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:101
 #, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Valittu tallennus ei ole yhteensopiva"
 
-#: ../src/saving/SaveList.tscn:105
+#: ../src/saving/SaveList.tscn:103
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:114
+#: ../src/saving/SaveList.tscn:112
 #, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Valittu tallennus ei ole yhteensopiva"
 
-#: ../src/saving/SaveList.tscn:115
+#: ../src/saving/SaveList.tscn:113
 #, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
-#: ../src/saving/SaveList.tscn:121
+#: ../src/saving/SaveList.tscn:119
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Tallennus epäonnistui"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:120
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
+
+#: ../src/saving/SaveList.tscn:127
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
+msgstr "Valittu tallennus ei ole yhteensopiva"
+
+#: ../src/saving/SaveList.tscn:129
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
+msgstr "Lataa epäyhteensopiva tallennus?"
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
@@ -4427,6 +4405,13 @@ msgstr "Tutoriaali"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
+"Tervetuloa mikrobieditoriin.\n"
+"\n"
+"Täällä voit tarkastaa miten edelliset sukupolvesi ovat onnistuneet, ja tehdä muutoksia seuraavaan lajisi sukupolveen.\n"
+"\n"
+"Tarjolla on lista muutoksista ympäristössä, jossa parhaillaan elät. Kokeile ja tutki erilaisia työkaluja solun ympäristön ja rakenteen muutoksiin!\n"
+"\n"
+"Kun olet valmis jatkamaan, paina \"jatka\" painiketta alhaalla oikealla."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
@@ -4451,10 +4436,22 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
+"Soluelimien poistaminen kuluttaa MP:tä sillä se mutaatioaskel lajillesi - paitsi silloin kun ne on tehty nykyisessä editorin sessiossa.\n"
+"\n"
+"Voit klikata oikealla hiirinapilla soluelimiä avataksesi soluelimien valikon, josta soluelimen voi poistaa.\n"
+"\n"
+"Jos teet muutoksen, jonka haluat peruuttaa, voit tehdä sen vapaasti editorista (undo).\n"
+"\n"
+"Paina undo-painiketta jatkaaksesi."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
+"Valitessasi osia valikosta, huomioi avautuvat selitteet ymmärtääksesi mitä kukin osa tekee. Joistakin osista voi olla enemmän haittaa kuin hyötyä, jos niiden soveltuvuutta ei harkitse tarkoin.\n"
+"\n"
+"ATP tuotannon palkki oikealla kertoo kuinka paljon energiaa soluelimesi pystyvät tuottamaan suhteessa kuinka paljon ne kuluttavat yhdessä. Jos ylempi palkeista on alempaa lyhyempi, et tuota tarpeeksi energiaa.\n"
+"\n"
+"Paina redo-painiketta jatkaaksesi (undo-painikkeen vieressä)."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:267
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
@@ -4494,6 +4491,13 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 #, fuzzy
@@ -4507,14 +4511,26 @@ msgstr "Aloita selviytyminen"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
+"Liikkuaksesi käytä solun ympärillä näkyviä näppäimiä yhdessä hiiren kursorin kanssa.\n"
+"\n"
+"Kokeile painella näytettyjä painikeita muutaman sekunnin jatkaaksesi."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
+"Kerää glukooria (valkeat yhdistepilvet) liikkumalla niihin.\n"
+"\n"
+"Solusi tarvitsee glukoosia tuottaakseen energiaa pysyäkseen hengissä.\n"
+"\n"
+"Seuraa viivaa, joka kulkee solustasi lähimpään glukoosipilveen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
+"Seuraa tarkoin alhaalla oikealla näkyviä palkkeja.\n"
+"Solusi kuolee, jos sen terveyspalkki loppuu.\n"
+"Terveyspalkkisi kasvaa silloin kun solullasi on ATP:tä.\n"
+"Pidä huolta, että keräät tarpeeksi glukoosia tuottaaksesi ATP:tä."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
@@ -4547,6 +4563,30 @@ msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jo
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Katso nyt"
+
+#~ msgid "PATCH_PANGONIAN_VENTS"
+#~ msgstr "Pangonian Syvänmeren tupruttajat"
+
+#~ msgid "PATCH_PANGONIAN_TIDEPOOL"
+#~ msgstr "Pangonian vuorovesiallas"
+
+#~ msgid "PATCH_PANGONIAN_COAST"
+#~ msgstr "Pangonian Rannikko"
+
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "Pangonian Estuaari"
+
+#~ msgid "PATCH_CAVE"
+#~ msgstr "Luola"
+
+#~ msgid "PATCH_ICE_SHELF"
+#~ msgstr "Jäähylly"
+
+#~ msgid "PATCH_PANGONIAN_SEAFLOOR"
+#~ msgstr "Pangonian Merenpohja"
+
+#~ msgid "FRAME_DELTA"
+#~ msgstr "Muutos: {0}"
 
 #~ msgid "AUTO"
 #~ msgstr "automaattinen"

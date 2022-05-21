@@ -76,7 +76,7 @@ public class MainMenu : NodeWithInput
     public override void _Ready()
     {
         // Unpause the game as the MainMenu should never be paused.
-        GetTree().Paused = false;
+        PauseManager.Instance.ForceClear();
 
         RunMenuSetup();
 
@@ -278,8 +278,8 @@ public class MainMenu : NodeWithInput
     private void OnIntroEnded()
     {
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ?
-            0.3f :
-            0.5f, false);
+            0.5f :
+            1.0f, false);
         TransitionManager.Instance.StartTransitions(null);
 
         // Start music after the video

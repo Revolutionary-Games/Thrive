@@ -48,6 +48,7 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public float MembraneRigidity { get; set; }
     public Color Colour { get; set; }
     public bool IsBacteria { get; set; }
+    public float BaseRotationSpeed { get; set; }
 
     [JsonIgnore]
     public string FormattedName => TypeName;
@@ -58,6 +59,11 @@ public class CellType : ICellProperties, IPhotographable, ICloneable
     public void RepositionToOrigin()
     {
         Organelles.RepositionToOrigin();
+    }
+
+    public void CalculateRotationSpeed()
+    {
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
     }
 
     public void UpdateNameIfValid(string newName)

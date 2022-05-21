@@ -58,16 +58,19 @@ public interface IEditor : ISaveLoadedTracked
     /// <returns>True if canceled</returns>
     public bool CancelCurrentAction();
 
+    int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions);
+
     /// <summary>
     ///   Perform all actions through this to make undo and redo work
     /// </summary>
+    /// <returns>True when the action was successful</returns>
     /// <remarks>
     ///   <para>
     ///     This takes in a base action type so that this interface doesn't need to depend on the specific action
     ///     type of the editor which causes some pretty nasty generic constraint interdependencies
     ///   </para>
     /// </remarks>
-    public void EnqueueAction(ReversibleAction action);
+    public bool EnqueueAction(ReversibleAction action);
 
     public void NotifyUndoRedoStateChanged();
 
@@ -78,6 +81,8 @@ public interface IEditor : ISaveLoadedTracked
     public void OnActionBlockedWhileMoving();
 
     public void OnInvalidAction();
+
+    public void OnValidAction();
 
     /// <summary>
     ///   Request from the user to exit the editor anyway
