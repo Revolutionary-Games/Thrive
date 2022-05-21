@@ -65,7 +65,7 @@ public class PauseManager : Node
         if (activeLocks.Count < 1)
             return;
 
-        GD.Print("Force clearing remaining pause locks");
+        GD.PrintErr("Force clearing remaining pause locks: ", string.Join(", ", activeLocks));
         activeLocks.Clear();
         ApplyPauseState();
     }
