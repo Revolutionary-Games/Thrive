@@ -3577,52 +3577,62 @@ mouse_filter = 2
 
 [node name="cytoplasm" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/cytoplasm/MarginContainer/VBoxContainer/Description")
 
 [node name="metabolosome" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/metabolosome/MarginContainer/VBoxContainer/Description")
 
 [node name="chromatophore" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/chromatophore/MarginContainer/VBoxContainer/Description")
 
 [node name="chemoSynthesizingProteins" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="rusticyanin" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/rusticyanin/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenase" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/nitrogenase/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxyProteins" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/oxytoxyProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="mitochondrion" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/mitochondrion/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenfixingplastid" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/nitrogenfixingplastid/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxy" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/oxytoxy/MarginContainer/VBoxContainer/Description")
 
 [node name="processesConsumption" type="Control" parent="GroupHolder"]
@@ -3632,57 +3642,68 @@ mouse_filter = 2
 
 [node name="osmoregulation" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/osmoregulation/MarginContainer/VBoxContainer/Description")
 
 [node name="baseMovement" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/baseMovement/MarginContainer/VBoxContainer/Description")
 
 [node name="chromatophore" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/chromatophore/MarginContainer/VBoxContainer/Description")
 
 [node name="chemoSynthesizingProteins" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="rusticyanin" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/rusticyanin/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenase" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/nitrogenase/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxyProteins" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/oxytoxyProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="flagellum" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/flagellum/MarginContainer/VBoxContainer/Description")
 
 [node name="cilia" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../flagellum/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenfixingplastid" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/nitrogenfixingplastid/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxy" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/oxytoxy/MarginContainer/VBoxContainer/Description")
 
 [node name="options" type="Control" parent="GroupHolder"]
