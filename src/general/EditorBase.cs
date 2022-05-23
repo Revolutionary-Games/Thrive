@@ -238,7 +238,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
                 return;
             }
 
-            OnEditorReady();
+            Ready = true;
+            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f, false);
+            TransitionManager.Instance.StartTransitions(this, nameof(OnEditorReady));
         }
 
         // Auto save after editor entry is complete
@@ -558,6 +560,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
 
                 CurrentGame.GameWorld.FinishAutoEvoRunAtFullSpeed();
+
+                TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f, false);
+                TransitionManager.Instance.StartTransitions();
             }
             else
             {

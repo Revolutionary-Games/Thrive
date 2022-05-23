@@ -5,7 +5,7 @@ using Godot;
 ///   Manages the screen transitions, usually used for when
 ///   switching scenes. This is autoloaded
 /// </summary>
-public class TransitionManager : NodeWithInput
+public class TransitionManager : ControlWithInput
 {
     private static TransitionManager? instance;
 

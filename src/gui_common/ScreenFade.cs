@@ -3,11 +3,10 @@
 /// <summary>
 ///   Controls the screen fade transition
 /// </summary>
-public class ScreenFade : CanvasLayer, ITransition
+public class ScreenFade : Control, ITransition
 {
     private ColorRect rect = null!;
     private Tween fader = null!;
-    private Control controlNode = null!;
 
     private FadeType currentFadeType;
 
@@ -28,12 +27,6 @@ public class ScreenFade : CanvasLayer, ITransition
     }
 
     public bool Skippable { get; set; } = true;
-
-    public bool Visible
-    {
-        get => controlNode.Visible;
-        set => controlNode.Visible = value;
-    }
 
     public float FadeDuration { get; set; }
 
@@ -58,9 +51,8 @@ public class ScreenFade : CanvasLayer, ITransition
 
     public override void _Ready()
     {
-        controlNode = GetNode<Control>("Control");
-        rect = GetNode<ColorRect>("Control/Rect");
-        fader = GetNode<Tween>("Control/Fader");
+        rect = GetNode<ColorRect>("Rect");
+        fader = GetNode<Tween>("Fader");
 
         fader.Connect("tween_all_completed", this, nameof(OnFinished));
 

@@ -3,21 +3,14 @@
 /// <summary>
 ///   Controls a video cutscene
 /// </summary>
-public class Cutscene : CanvasLayer, ITransition
+public class Cutscene : Control, ITransition
 {
     private VideoPlayer cutsceneVideoPlayer = null!;
-    private Control controlNode = null!;
 
     [Signal]
     public delegate void OnFinishedSignal();
 
     public bool Skippable { get; set; } = true;
-
-    public bool Visible
-    {
-        get => controlNode.Visible;
-        set => controlNode.Visible = value;
-    }
 
     public VideoStream Stream
     {
@@ -36,8 +29,7 @@ public class Cutscene : CanvasLayer, ITransition
 
     public override void _Ready()
     {
-        controlNode = GetNode<Control>("Control");
-        cutsceneVideoPlayer = GetNode<VideoPlayer>("Control/VideoPlayer");
+        cutsceneVideoPlayer = GetNode<VideoPlayer>("VideoPlayer");
 
         cutsceneVideoPlayer.Connect("finished", this, nameof(OnFinished));
     }
