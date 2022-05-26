@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-20 22:13+0100\n"
+"POT-Creation-Date: 2022-05-26 18:51+0100\n"
 "PO-Revision-Date: 2022-04-08 11:52+0000\n"
 "Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -649,7 +649,7 @@ msgid "NITROGEN"
 msgstr "Stickstoff"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3763
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
@@ -1956,13 +1956,13 @@ msgstr "Kein Bildschirmfotoverzeichnis gefunden"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Versuche ein paar Screenshots zu machen!"
 
-#: ../src/general/PauseMenu.cs:306
+#: ../src/general/PauseMenu.cs:329
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Bist du sicher, dass du zum Hauptmenü zurückkehren willst?\n"
 "Alle nicht gespeicherten Fortschritte gehen verloren."
 
-#: ../src/general/PauseMenu.cs:322
+#: ../src/general/PauseMenu.cs:345
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Bist du sicher, dass du das Spiel beenden willst?\n"
@@ -2320,7 +2320,7 @@ msgid "RAW"
 msgstr "Roh"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "NO_DATA_TO_SHOW"
 msgstr "Keine Daten zu zeigen"
 
@@ -2770,15 +2770,15 @@ msgstr "Diese Membran hat eine starke Schale aus Kalziumkarbonat. Sie kann Besch
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Diese Membran hat eine starke Wand aus Siliciumdioxid. Sie widersteht gut gegen allgemeine Beschädigungen und ist sehr widerstandsfähig gegen physische Schäden. Sie benötigt auch weniger Energie, um ihre Form zu erhalten. Allerdings verlangsamt sie die Zelle um einen großen Faktor und die Zelle absorbiert Ressourcen mit einer reduzierten Geschwindigkeit."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3705
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3726
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Eingabemethode hinzufügen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3711
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3732
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Diese Option wird erst nach einem Neustart angewendet"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3717
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3738
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Aktiviert die Blinkeffekte auf GUIs (z.B. blinken von Editor-Schaltflächen).\n"
@@ -2786,17 +2786,17 @@ msgstr ""
 "Wenn Sie einen Fehler feststellen, bei dem Teile von Editor-Schaltflächen verschwinden,\n"
 "kannst du versuchen, dies zu deaktivieren, um zu sehen, ob das Problem verschwunden ist."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3744
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Es kann nicht automatisch erkannt werden, ob Hyperthreading aktiviert ist.\n"
 "Dies wirkt sich auf die Standardanzahl von Threads aus, da Hyperthreading-Threads nicht so schnell sind wie echte CPU-Kerne."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3728
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3749
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Aktiviert/deaktiviert das Popup-Fenster mit der Warnung vor ungespeichertem Fortschritt, wenn der Spieler versucht, das Spiel zu beenden."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3737
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3758
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
@@ -2808,7 +2808,7 @@ msgstr "Temperatur"
 msgid "REQUIRES_NUCLEUS"
 msgstr "Nukleus"
 
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn:94
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn:97
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:78
 msgid "N_A_MP"
 msgstr "N/V MP"
@@ -3073,28 +3073,28 @@ msgstr "Responsiv"
 msgid "FOCUSED"
 msgstr "Fokussiert"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:322
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "ATP-Produktion"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:323
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP-PRODUKTION ZU NIEDRIG!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:352
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:372
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
 msgid "OSMOREGULATION"
 msgstr "Osmoregulation"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:378
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
 msgid "BASE_MOVEMENT"
 msgstr "Basisbewegung"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:390
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:406
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -3102,33 +3102,33 @@ msgstr "{0}: -{1} ATP"
 msgid "CELL_TYPE_NAME"
 msgstr "Zellentypname"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2002
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
 msgid "FAILED"
 msgstr "Gescheitert"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
 msgid "N_A"
 msgstr "N/V"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2134
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2140
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie in {0} für {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2138
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2144
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Die gesammelte Gesamtenergie beträgt {0} mit individuellen Kosten von {1}, was zu einer unbereinigten Bevölkerung von {2} führt"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2145
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
 msgid "ENERGY_SOURCES"
 msgstr "Energiequellen:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2157
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}Energie:{1}(Fitness:{2})insgesamt verfügbare Energie:{3} (gesamte Fitness:{4})"
 
@@ -3988,7 +3988,7 @@ msgstr "Laden beendet"
 msgid "ERROR_LOADING"
 msgstr "Fehler beim Laden"
 
-#: ../src/saving/InProgressLoad.cs:227
+#: ../src/saving/InProgressLoad.cs:231
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Die bereits geladenen Ressourcen konnten nicht freigegeben werden: {0}"
 
@@ -4079,7 +4079,7 @@ msgstr "Schnellspeicherung"
 msgid "SAVE_INVALID"
 msgstr "Ungülig"
 
-#: ../src/saving/SaveList.cs:215
+#: ../src/saving/SaveList.cs:219
 msgid "SAVE_DELETE_WARNING"
 msgstr "Das Löschen dieses Spielstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du {0} dauerhaft löschen willst?"
 

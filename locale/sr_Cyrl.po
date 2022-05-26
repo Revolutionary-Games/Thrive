@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-20 22:13+0100\n"
+"POT-Creation-Date: 2022-05-26 18:51+0100\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -651,7 +651,7 @@ msgid "NITROGEN"
 msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3763
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
@@ -2024,12 +2024,12 @@ msgstr "Отворите Сачувај Директоријум"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Направите снимак екрана"
 
-#: ../src/general/PauseMenu.cs:306
+#: ../src/general/PauseMenu.cs:329
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "Вратите се у Мени"
 
-#: ../src/general/PauseMenu.cs:322
+#: ../src/general/PauseMenu.cs:345
 #, fuzzy
 msgid "QUIT_GAME_WARNING"
 msgstr "Упозорење у режиму GLES2"
@@ -2389,7 +2389,7 @@ msgid "RAW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -2852,31 +2852,31 @@ msgstr "Ова мембрана има јаку љуску направљену 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ова мембрана има јак зид од силицијум диоксида. Може се добро одупрети укупној штети и врло је отпоран на физичка оштећења. Такође захтева мање енергије за одржавање форме. Међутим, успорава ћелију великим фактором и ћелија апсорбује ресурсе смањеном брзином."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3705
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3726
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3711
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3732
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3717
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3738
 #, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr "Моћ ћелије. Митохондрион (множина: митохондрије) је двострука мембранска структура испуњена протеинима и ензимима. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. У стању је да претвори глукозу у ATP са много већом ефикасношћу него што се то може учинити у цитоплазми у процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3723
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3744
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3728
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3749
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 "Имате несачуване промене које ће бити одбачене.\n"
 "Да ли желите да наставите?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3737
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3758
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
@@ -2888,7 +2888,7 @@ msgstr "Температура"
 msgid "REQUIRES_NUCLEUS"
 msgstr "Ћелијско Језгро"
 
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn:94
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn:97
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:78
 msgid "N_A_MP"
 msgstr "- МП"
@@ -3170,28 +3170,28 @@ msgstr ""
 msgid "FOCUSED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:322
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "ATP Производња"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:323
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP ПРОИЗВОДЊА ПРЕНИЗАК!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:352
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:372
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
 msgid "OSMOREGULATION"
 msgstr "Осморегулација"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:378
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
 msgid "BASE_MOVEMENT"
 msgstr "Подразумевано Кретање"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:390
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:406
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
@@ -3199,36 +3199,36 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2002
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
 #, fuzzy
 msgid "FAILED"
 msgstr "Сачување није успело"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "ПОПУЛАЦИЈА:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
 #, fuzzy
 msgid "N_A"
 msgstr "- МП"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2134
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2140
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2138
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2144
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2145
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2157
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -4149,7 +4149,7 @@ msgstr "Учитавање завршено"
 msgid "ERROR_LOADING"
 msgstr "Грешка при учитавању"
 
-#: ../src/saving/InProgressLoad.cs:227
+#: ../src/saving/InProgressLoad.cs:231
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
@@ -4246,7 +4246,7 @@ msgstr "Брзог чување"
 msgid "SAVE_INVALID"
 msgstr "Неважеће"
 
-#: ../src/saving/SaveList.cs:215
+#: ../src/saving/SaveList.cs:219
 msgid "SAVE_DELETE_WARNING"
 msgstr "Брисање овог чувања не може се опозвати. Да ли сте сигурни да желите трајно избрисати {0}?"
 
