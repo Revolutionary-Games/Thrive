@@ -529,6 +529,8 @@ public partial class CellEditorComponent :
         // After the if multicellular check so the tooltip cost factors are correct
         // on changing editor types, as tooltip manager is persistent while the game is running
         UpdateTooltipMPCostFactors();
+
+        UpdateOrganelleUnlockTooltips();
     }
 
     public override void ResolveNodeReferences()
@@ -1639,6 +1641,7 @@ public partial class CellEditorComponent :
         UpdateSize(MicrobeHexSize);
 
         UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
+        UpdateOrganelleUnlockTooltips();
 
         UpdatePatchDependentBalanceData();
 
