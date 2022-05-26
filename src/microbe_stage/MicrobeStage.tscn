@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaInv.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/PhosphateInv.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/PhosphatesBW.png" type="Texture" id=5]
-[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=6]
 [ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
 [ext_resource path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" type="AudioStream" id=8]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
@@ -92,6 +92,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/unbind.png" type="Texture" id=90]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=91]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=92]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=93]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -2123,7 +2124,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PauseInfo" parent="MicrobeHUD/PausePrompt" instance=ExtResource( 6 )]
+[node name="PauseInfo" parent="MicrobeHUD/PausePrompt" instance=ExtResource( 93 )]
 margin_top = 60.0
 margin_right = 400.0
 margin_bottom = 100.0
@@ -2144,7 +2145,6 @@ scroll_vertical_enabled = false
 
 [node name="HotBar" type="HBoxContainer" parent="MicrobeHUD/ScrollContainer"]
 margin_right = 600.0
-margin_bottom = 51.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 1
@@ -2153,6 +2153,7 @@ __meta__ = {
 }
 
 [node name="Engulfment" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 277.0
@@ -2283,7 +2284,6 @@ custom_styles/separator = SubResource( 36 )
 anims/FadeInOut = SubResource( 37 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
-visible = true
 
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
