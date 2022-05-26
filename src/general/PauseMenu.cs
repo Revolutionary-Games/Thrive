@@ -41,6 +41,8 @@ public class PauseMenu : CustomDialog
     private CustomConfirmationDialog unsavedProgressWarning = null!;
     private AnimationPlayer animationPlayer = null!;
 
+    private bool paused;
+
     /// <summary>
     ///   The assigned pending exit type, will be used to specify what kind of
     ///   game exit will be performed on exit confirmation.
@@ -159,6 +161,26 @@ public class PauseMenu : CustomDialog
         }
     }
 
+    private bool Paused
+    {
+        set
+        {
+            if (paused == value)
+                return;
+
+            if (paused)
+            {
+                PauseManager.Instance.Resume(nameof(PauseMenu));
+            }
+            else
+            {
+                PauseManager.Instance.AddPause(nameof(PauseMenu));
+            }
+
+            paused = value;
+        }
+    }
+
     public override void _EnterTree()
     {
         // This needs to be done early here to make sure the help screen loads the right text
@@ -174,6 +196,7 @@ public class PauseMenu : CustomDialog
         base._ExitTree();
 
         InputManager.UnregisterReceiver(this);
+        Paused = false;
     }
 
     public override void _Ready()
@@ -236,7 +259,7 @@ public class PauseMenu : CustomDialog
             return;
 
         animationPlayer.Play("Open");
-        PauseManager.Instance.AddPause(nameof(PauseMenu));
+        Paused = true;
     }
 
     public void Close()
@@ -245,7 +268,7 @@ public class PauseMenu : CustomDialog
             return;
 
         animationPlayer.Play("Close");
-        PauseManager.Instance.Resume(nameof(PauseMenu));
+        Paused = false;
     }
 
     public void OpenToHelp()
@@ -347,8 +370,7 @@ public class PauseMenu : CustomDialog
 
     private void ReturnToMenu()
     {
-        // Unpause the game
-        PauseManager.Instance.Resume(nameof(PauseMenu));
+        Paused = false;
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
@@ -414,6 +436,7 @@ public class PauseMenu : CustomDialog
         Hide();
         EmitSignal(nameof(OnResumed));
         EmitSignal(nameof(MakeSave), name);
+        Paused = false;
     }
 
     /// <summary>
@@ -427,5 +450,11 @@ public class PauseMenu : CustomDialog
     private void OnLoadSaveConfirmed(SaveListItem item)
     {
         item.LoadThisSave();
+    }
+
+    private void OnSaveLoaded(string saveName)
+    {
+        _ = saveName;
+        Paused = false;
     }
 }
