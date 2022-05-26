@@ -71,6 +71,10 @@
         "GroupName": "CAMERA",
         "Actions": [
             {
+                "InputName": "g_pause",
+                "Name": "TOGGLE_PAUSE"
+            },
+            {
                 "InputName": "g_zoom_out",
                 "Name": "ZOOM_OUT"
             },
