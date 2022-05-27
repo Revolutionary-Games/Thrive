@@ -1690,6 +1690,7 @@ texture_hover = ExtResource( 31 )
 expand = true
 
 [node name="StatisticsButton" type="TextureButton" parent="MicrobeHUD/BottomLeft/BottomBar"]
+modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
 margin_left = 161.0
 margin_right = 196.0
 margin_bottom = 35.0
@@ -1702,6 +1703,7 @@ texture_hover = ExtResource( 34 )
 expand = true
 
 [node name="SearchButton" type="TextureButton" parent="MicrobeHUD/BottomLeft/BottomBar"]
+modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
 margin_left = 200.0
 margin_right = 235.0
 margin_bottom = 35.0
