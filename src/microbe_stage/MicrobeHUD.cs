@@ -204,9 +204,6 @@ public class MicrobeHUD : Control
     public NodePath PausePromptPath = null!;
 
     [Export]
-    public NodePath PausePromptLabelPath = null!;
-
-    [Export]
     public NodePath PauseInfoPath = null!;
 
     // Formatter and code checks disagree here
@@ -307,7 +304,6 @@ public class MicrobeHUD : Control
     private TextureButton processPanelButton = null!;
 
     private Control pausePrompt = null!;
-    private Label pausePromptLabel = null!;
     private CustomRichTextLabel pauseInfo = null!;
 
     /// <summary>
@@ -453,7 +449,6 @@ public class MicrobeHUD : Control
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
 
         pausePrompt = GetNode<Control>(PausePromptPath);
-        pausePromptLabel = GetNode<Label>(PausePromptLabelPath);
         pauseInfo = GetNode<CustomRichTextLabel>(PauseInfoPath);
 
         OnAbilitiesHotBarDisplayChanged(Settings.Instance.DisplayAbilitiesHotBar);
@@ -813,7 +808,6 @@ public class MicrobeHUD : Control
 
     private void UpdatePausePrompt()
     {
-        pausePromptLabel.Text = TranslationServer.Translate("PAUSED");
         pauseInfo.ExtendedBbcode = TranslationServer.Translate("PAUSE_PROMPT");
     }
 

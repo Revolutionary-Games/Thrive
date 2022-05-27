@@ -472,7 +472,6 @@ UnbindAllHotkeyPath = NodePath("ScrollContainer/HotBar/UnbindAll")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
 MicrobeControlRadialPath = NodePath("../RadialPopup")
 PausePromptPath = NodePath("PausePrompt")
-PausePromptLabelPath = NodePath("PausePrompt/PausePromptLabel")
 PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 
 [node name="MouseHoverPanel" type="MarginContainer" parent="MicrobeHUD"]
@@ -2119,6 +2118,7 @@ margin_right = 400.0
 margin_bottom = 59.0
 rect_min_size = Vector2( 0, 20 )
 custom_fonts/font = ExtResource( 92 )
+text = "PAUSED"
 align = 1
 valign = 1
 __meta__ = {
