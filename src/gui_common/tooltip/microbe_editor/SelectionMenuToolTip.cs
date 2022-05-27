@@ -328,7 +328,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (requiresNucleusLabel == null)
             return;
 
-        requiresNucleusLabel.Text = TranslationServer.Translate("REQUIRES_NUCLEUS");
         requiresNucleusLabel.Visible = requiresNucleus;
     }
 
