@@ -688,6 +688,8 @@ public static class Constants
     /// </summary>
     public const string AI_TAG_CHUNK = "chunk";
 
+    public const string PLAYER_GROUP = "player";
+
     public const string DELETION_HOLD_LOAD = "load";
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
 

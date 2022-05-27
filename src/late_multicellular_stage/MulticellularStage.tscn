@@ -1,0 +1,137 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
+[ext_resource path="res://src/late_multicellular_stage/MulticellularCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/late_multicellular_stage/MulticellularHUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
+[ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=13]
+[ext_resource path="res://src/microbe_stage/PlayerHoverInfo.cs" type="Script" id=84]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-HugePlus.tres" type="DynamicFont" id=85]
+[ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
+
+[sub_resource type="Gradient" id=33]
+offsets = PoolRealArray( 0, 0.1, 0.5, 0.9, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 0.588235, 0, 0, 0, 0.627451, 0, 0, 0, 0.588235, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=34]
+gradient = SubResource( 33 )
+
+[sub_resource type="StyleBoxTexture" id=35]
+texture = SubResource( 34 )
+region_rect = Rect2( 0, 0, 2048, 1 )
+
+[sub_resource type="StyleBoxTexture" id=36]
+texture = ExtResource( 13 )
+region_rect = Rect2( 0, 0, 429, 1 )
+
+[sub_resource type="Animation" id=37]
+resource_name = "FadeInOut"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7, 1.2, 3.5, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="MulticellularStage" type="Node"]
+process_priority = -1
+script = ExtResource( 1 )
+GuidanceLinePath = NodePath("")
+PauseMenuPath = NodePath("PauseMenu")
+HUDRootPath = NodePath("MulticellularHUD")
+
+[node name="World" type="Node" parent="."]
+
+[node name="NoPlayerCamera" parent="World" instance=ExtResource( 2 )]
+
+[node name="DynamicallySpawned" type="Node" parent="World"]
+
+[node name="WorldLight" type="DirectionalLight" parent="World"]
+transform = Transform( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
+shadow_enabled = true
+
+[node name="PlayerLookingAtInfo" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 84 )
+
+[node name="PlayerMulticellularInput" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="MulticellularHUD" parent="." instance=ExtResource( 3 )]
+
+[node name="RadialPopup" parent="." instance=ExtResource( 87 )]
+
+[node name="WinExtinctBoxHolder" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PatchNameOverlay" type="PanelContainer" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -65.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 0, 130 )
+mouse_filter = 2
+custom_styles/panel = SubResource( 35 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PatchNameOverlay"]
+margin_right = 1280.0
+margin_bottom = 130.0
+mouse_filter = 2
+alignment = 1
+
+[node name="PatchLabel" type="Label" parent="PatchNameOverlay/VBoxContainer"]
+margin_top = 28.0
+margin_right = 1280.0
+margin_bottom = 94.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 85 )
+text = "Insert Patch Name"
+align = 1
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HSeparator" type="HSeparator" parent="PatchNameOverlay/VBoxContainer"]
+margin_top = 98.0
+margin_right = 1280.0
+margin_bottom = 102.0
+mouse_filter = 2
+custom_styles/separator = SubResource( 36 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PatchNameOverlay"]
+anims/FadeInOut = SubResource( 37 )
+
+[node name="PauseMenu" parent="." instance=ExtResource( 11 )]
+visible = true
+
+[connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]

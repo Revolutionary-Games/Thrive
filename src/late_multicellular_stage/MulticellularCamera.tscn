@@ -1,0 +1,27 @@
+[gd_scene format=2]
+
+[node name="MulticellularCamera" type="Spatial"]
+pause_mode = 2
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+__meta__ = {
+"_editor_description_": "Base rotation of the camera
+"
+}
+
+[node name="CameraPosition" type="Spatial" parent="."]
+__meta__ = {
+"_editor_description_": "Base camera position offset from the player"
+}
+
+[node name="SpringArm" type="SpringArm" parent="CameraPosition"]
+spring_length = 3.0
+margin = 0.08
+
+[node name="Camera" type="Camera" parent="CameraPosition/SpringArm"]
+process_priority = 100
+doppler_tracking = 2
+current = true
+fov = 90.0
+
+[node name="Listener" type="Listener" parent="CameraPosition/SpringArm/Camera"]
+current = true

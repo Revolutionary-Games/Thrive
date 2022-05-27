@@ -133,11 +133,15 @@
     <Compile Include="src\general\IndividualHexLayout.cs" />
     <Compile Include="src\general\IPositionedHex.cs" />
     <Compile Include="src\general\IReturnableGameState.cs" />
+    <Compile Include="src\general\IStage.cs" />
+    <Compile Include="src\general\IStageHUD.cs" />
     <Compile Include="src\general\JSONHelpers.cs" />
     <Compile Include="src\general\ActionInterferenceMode.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
+    <Compile Include="src\general\StageBase.cs" />
+    <Compile Include="src\general\StageHUDBase.cs" />
     <Compile Include="src\general\StringUtils.cs" />
     <Compile Include="src\general\TranslationHelper.cs" />
     <Compile Include="src\general\TypeUtils.cs" />
@@ -195,8 +199,11 @@
     <Compile Include="src\late_multicellular_stage\LateMulticellularSpecies.cs" />
     <Compile Include="src\late_multicellular_stage\Metaball.cs" />
     <Compile Include="src\late_multicellular_stage\MetaballLayout.cs" />
+    <Compile Include="src\late_multicellular_stage\MulticellularCreature.cs" />
+    <Compile Include="src\late_multicellular_stage\MulticellularHUD.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularMetaball.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularMetaballLayout.cs" />
+    <Compile Include="src\late_multicellular_stage\MulticellularStage.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\HexMoveActionData.cs" />
@@ -228,6 +235,7 @@
     <Compile Include="src\microbe_stage\editor\PatchMapEditorComponent.cs" />
     <Compile Include="src\microbe_stage\editor\EditorActionHistory.cs" />
     <Compile Include="src\microbe_stage\FloatingChunkSystem.cs" />
+    <Compile Include="src\microbe_stage\HoveredCompoundControl.cs" />
     <Compile Include="src\microbe_stage\ICellProperties.cs" />
     <Compile Include="src\microbe_stage\IComputedMembraneData.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
