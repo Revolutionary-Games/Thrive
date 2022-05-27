@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Object = Godot.Object;
 
@@ -14,23 +15,15 @@ public class SlideshowScreen : CustomDialog
     public NodePath SlideToolbarPath = null!;
 
     [Export]
-    public NodePath SlideNextButtonPath = null!;
-
-    [Export]
-    public NodePath SlidePrevButtonPath = null!;
-
-    [Export]
     public NodePath SlideCloseButtonPath = null!;
 
     [Export]
     public NodePath SlideShowModeButtonPath = null!;
 
-    private TextureRect fullscreenRect = null!;
-    private Control slideToolbar = null!;
-    private Button slideNextButton = null!;
-    private Button slidePrevButton = null!;
-    private Button slideCloseButton = null!;
-    private Button slideShowModeButton = null!;
+    private TextureRect? fullscreenRect;
+    private Control? slideToolbar;
+    private Button? slideCloseButton;
+    private Button? slideShowModeButton;
 
     private Tween popupTween = null!;
     private Tween slideshowTween = null!;
@@ -40,8 +33,9 @@ public class SlideshowScreen : CustomDialog
 
     private int currentSlideIndex;
     private bool slideshowMode;
+    private bool handlesVisible;
 
-    public List<GalleryItem> SlideItems { get; set; } = null!;
+    public List<GalleryItem>? SlideItems { get; set; }
 
     public int CurrentSlideIndex
     {
@@ -63,6 +57,20 @@ public class SlideshowScreen : CustomDialog
         }
     }
 
+    /// <summary>
+    ///   Handles means the UI elements on the slideshow screen (e.g next and prev slide button). If false they'll
+    ///   be hidden.
+    /// </summary>
+    public bool HandlesVisible
+    {
+        get => handlesVisible;
+        set
+        {
+            handlesVisible = value;
+            UpdateHandles();
+        }
+    }
+
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -79,8 +87,6 @@ public class SlideshowScreen : CustomDialog
     {
         fullscreenRect = GetNode<TextureRect>(SlideTextureRectPath);
         slideToolbar = GetNode<Control>(SlideToolbarPath);
-        slideNextButton = GetNode<Button>(SlideNextButtonPath);
-        slidePrevButton = GetNode<Button>(SlidePrevButtonPath);
         slideCloseButton = GetNode<Button>(SlideCloseButtonPath);
         slideShowModeButton = GetNode<Button>(SlideShowModeButtonPath);
 
@@ -88,6 +94,7 @@ public class SlideshowScreen : CustomDialog
         slideshowTween = GetNode<Tween>("SlideshowTween");
 
         UpdateSlideshow();
+        UpdateHandles();
     }
 
     public override void _Process(float delta)
@@ -96,7 +103,7 @@ public class SlideshowScreen : CustomDialog
         {
             toolbarHideTimer -= delta;
 
-            if (slideToolbar.Modulate.a < 1)
+            if (slideToolbar?.Modulate.a < 1)
             {
                 slideshowTween.InterpolateProperty(slideToolbar, "modulate:a", null, 1, 0.5f);
                 slideshowTween.InterpolateProperty(slideCloseButton, "modulate:a", null, 1, 0.5f);
@@ -146,12 +153,12 @@ public class SlideshowScreen : CustomDialog
 
     public override void CustomShow()
     {
+        if (SlideItems == null)
+            return;
+
         base.CustomShow();
 
-        RectClipContent = true;
-
-        slideToolbar.Visible = false;
-        slideCloseButton.Visible = false;
+        HandlesVisible = false;
 
         var currentItemRect = SlideItems[currentSlideIndex].GetGlobalRect();
         RectGlobalPosition = currentItemRect.Position;
@@ -169,11 +176,11 @@ public class SlideshowScreen : CustomDialog
 
     public override void CustomHide()
     {
-        FullRect = false;
-        RectClipContent = true;
+        if (SlideItems == null)
+            return;
 
-        slideToolbar.Visible = false;
-        slideCloseButton.Visible = false;
+        FullRect = false;
+        HandlesVisible = false;
 
         var currentItemRect = SlideItems[currentSlideIndex].GetGlobalRect();
 
@@ -190,6 +197,9 @@ public class SlideshowScreen : CustomDialog
 
     public void AdvanceSlide(bool fade = false)
     {
+        if (SlideItems == null)
+            return;
+
         currentSlideIndex = (currentSlideIndex + 1) % SlideItems.Count;
 
         ChangeSlide(fade);
@@ -197,6 +207,9 @@ public class SlideshowScreen : CustomDialog
 
     public void RetreatSlide(bool fade = false)
     {
+        if (SlideItems == null)
+            return;
+
         --currentSlideIndex;
 
         if (currentSlideIndex < 0)
@@ -226,14 +239,26 @@ public class SlideshowScreen : CustomDialog
     private void UpdateSlideshow()
     {
         if (fullscreenRect != null && SlideItems != null)
-            fullscreenRect.Texture = GD.Load(SlideItems[currentSlideIndex].Asset.ResourcePath) as Texture;
+            fullscreenRect.Texture = SlideItems[currentSlideIndex].Image;
 
         slideshowTimer = slideshowMode ? SLIDESHOW_INTERVAL : 0;
         slideShowModeButton?.SetPressedNoSignal(slideshowMode);
     }
 
+    private void UpdateHandles()
+    {
+        if (slideToolbar == null || slideCloseButton == null)
+            return;
+
+        slideToolbar.Visible = handlesVisible;
+        slideCloseButton.Visible = handlesVisible;
+    }
+
     private void OnSlideFaded(Object @object, NodePath key)
     {
+        _ = @object;
+        _ = key;
+
         UpdateSlideshow();
         slideshowTween.InterpolateProperty(fullscreenRect, "modulate", null, Colors.White, 0.5f);
         slideshowTween.Start();
@@ -241,19 +266,19 @@ public class SlideshowScreen : CustomDialog
 
     private void OnScaledUp(Object @object, NodePath key)
     {
-        slideToolbar.Visible = true;
-        slideCloseButton.Visible = true;
+        _ = @object;
+        _ = key;
 
-        RectClipContent = false;
+        HandlesVisible = true;
         FullRect = true;
     }
 
     private void OnScaledDown(Object @object, NodePath key)
     {
-        slideToolbar.Visible = true;
-        slideCloseButton.Visible = true;
+        _ = @object;
+        _ = key;
 
-        RectClipContent = false;
+        HandlesVisible = true;
         Hide();
     }
 

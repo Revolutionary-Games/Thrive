@@ -11,9 +11,9 @@ public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
     [Export]
     public NodePath ArtistLabelPath = null!;
 
-    private Label titleLabel = null!;
-    private Label descriptionLabel = null!;
-    private Label artistLabel = null!;
+    private Label? titleLabel;
+    private Label? descriptionLabel;
+    private Label? artistLabel;
 
     private string? title;
     private string? description;

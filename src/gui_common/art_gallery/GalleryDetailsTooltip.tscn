@@ -21,7 +21,7 @@ ArtistLabelPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/Label2"
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 361.0
-margin_bottom = 80.0
+margin_bottom = 105.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -31,12 +31,24 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 350.0
-margin_bottom = 69.0
+margin_bottom = 94.0
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 340.0
 margin_bottom = 17.0
+custom_fonts/font = ExtResource( 2 )
+text = "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+margin_top = 21.0
+margin_right = 340.0
+margin_bottom = 21.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 25.0
+margin_right = 340.0
+margin_bottom = 42.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 146.0
@@ -61,9 +73,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 21.0
+margin_top = 46.0
 margin_right = 340.0
-margin_bottom = 38.0
+margin_bottom = 63.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_right = 146.0
@@ -88,9 +100,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 42.0
+margin_top = 67.0
 margin_right = 340.0
-margin_bottom = 59.0
+margin_bottom = 84.0
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
 margin_right = 146.0

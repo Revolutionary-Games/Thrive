@@ -1,6 +1,4 @@
-﻿using System;
-using Godot;
-using Asset = Gallery.Asset;
+﻿using Godot;
 
 public class GalleryItem : Button
 {
@@ -11,22 +9,32 @@ public class GalleryItem : Button
     public NodePath TextureRectPath = null!;
 
     [Export]
-    public NodePath InspectButtonPath = null!;
+    public Texture MissingTexture = null!;
 
-    private Label titleLabel = null!;
-    private TextureRect imagePreview = null!;
-
-    private Asset asset = null!;
+    private Label? titleLabel;
+    private TextureRect? imagePreview;
+    private string? title;
+    private Texture? image;
 
     [Signal]
     public delegate void OnFullscreenView(GalleryItem item);
 
-    public Asset Asset
+    public string Title
     {
-        get => asset;
+        get => title ?? TranslationServer.Translate("UNTITLED");
         set
         {
-            asset = value;
+            title = value;
+            UpdatePreview();
+        }
+    }
+
+    public Texture Image
+    {
+        get => image ?? MissingTexture;
+        set
+        {
+            image = value;
             UpdatePreview();
         }
     }
@@ -55,11 +63,11 @@ public class GalleryItem : Button
 
     private void UpdatePreview()
     {
-        if (asset == null || titleLabel == null)
+        if (titleLabel == null || imagePreview == null)
             return;
 
-        titleLabel.Text = string.IsNullOrEmpty(asset.Title) ? TranslationServer.Translate("UNTITLED") : asset.Title;
-        imagePreview.Texture = GD.Load(asset.ResourcePath) as Texture;
+        titleLabel.Text = Title;
+        imagePreview.Texture = Image;
     }
 
     private void OnMouseEnter()

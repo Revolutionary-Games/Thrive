@@ -9,8 +9,7 @@
 [ext_resource path="res://src/gui_common/art_gallery/GalleryViewer.cs" type="Script" id=7]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryDetailsTooltip.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=9]
-
-[sub_resource type="ButtonGroup" id=1]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 1 )
@@ -25,6 +24,8 @@ WindowTitle = "GALLERY_VIEWER"
 FullRect = true
 Movable = false
 GalleryGridPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer/GridContainer")
+TabButtonsContainerPath = NodePath("MarginContainer/VBoxContainer/TabButtons")
+AssetsCategoryDropdownPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/OptionButton")
 GalleryItemScene = ExtResource( 1 )
 GalleryDetailsToolTipScene = ExtResource( 8 )
 
@@ -32,9 +33,6 @@ GalleryDetailsToolTipScene = ExtResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_left = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 10.0
@@ -47,57 +45,38 @@ __meta__ = {
 
 [node name="TabButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 1270.0
-margin_bottom = 35.0
-
-[node name="ConceptArt" type="Button" parent="MarginContainer/VBoxContainer/TabButtons"]
-margin_right = 149.0
-margin_bottom = 35.0
-toggle_mode = true
-pressed = true
-action_mode = 0
-group = SubResource( 1 )
-text = "CONCEPT_ART"
-
-[node name="Models" type="Button" parent="MarginContainer/VBoxContainer/TabButtons"]
-margin_left = 153.0
-margin_right = 244.0
-margin_bottom = 35.0
-disabled = true
-toggle_mode = true
-action_mode = 0
-group = SubResource( 1 )
-text = "MODELS"
-
-[node name="Musics" type="Button" parent="MarginContainer/VBoxContainer/TabButtons"]
-margin_left = 248.0
-margin_right = 336.0
-margin_bottom = 35.0
-disabled = true
-toggle_mode = true
-action_mode = 0
-group = SubResource( 1 )
-text = "MUSICS"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
-margin_top = 40.0
+margin_top = 5.0
 margin_right = 1270.0
-margin_bottom = 44.0
+margin_bottom = 9.0
 
-[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
-margin_top = 49.0
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 14.0
 margin_right = 1270.0
-margin_bottom = 52.0
-rect_min_size = Vector2( 0, 3 )
+margin_bottom = 33.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_top = 1.0
+margin_right = 249.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 10 )
+text = "FILTER_ITEMS_BY_CATEGORY_COLON"
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 253.0
+margin_right = 287.0
+margin_bottom = 19.0
 
 [node name="HBoxContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 57.0
+margin_top = 38.0
 margin_right = 1270.0
 margin_bottom = 683.0
 size_flags_vertical = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_right = 1270.0
-margin_bottom = 626.0
+margin_bottom = 645.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -106,7 +85,7 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer"]
 margin_right = 1270.0
-margin_bottom = 626.0
+margin_bottom = 645.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 5
@@ -164,8 +143,6 @@ ShowCloseButton = false
 Decorate = false
 SlideTextureRectPath = NodePath("Overlay/FullRectImage")
 SlideToolbarPath = NodePath("Overlay/Toolbar")
-SlideNextButtonPath = NodePath("Overlay/Toolbar/HBoxContainer/NextButton")
-SlidePrevButtonPath = NodePath("Overlay/Toolbar/HBoxContainer/PreviousButton")
 SlideCloseButtonPath = NodePath("Overlay/MarginContainer/CloseButton")
 SlideShowModeButtonPath = NodePath("Overlay/Toolbar/HBoxContainer/SlideshowModeButton")
 
@@ -280,6 +257,7 @@ __meta__ = {
 
 [node name="SlideshowTween" type="Tween" parent="SlideshowScreen"]
 
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer3/OptionButton" to="." method="OnCategorySelected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="OnCloseButtonPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SlideshowButton" to="." method="OnStartSlideshowButtonPressed"]
 [connection signal="hide" from="SlideshowScreen" to="SlideshowScreen" method="OnHidden"]
