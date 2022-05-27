@@ -359,18 +359,69 @@ public class GameWorld : ISaveLoadable
         if (earlySpecies == null)
             throw new ArgumentException("Only early multicellular species can become late multicellular species");
 
-        /*
         var lateVersion = new LateMulticellularSpecies(species.ID, species.Genus, species.Epithet);
         species.CopyDataToConvertedSpecies(lateVersion);
 
-        var stemCellType = new CellType(earlySpecies);
+        // Copy all the cell types, even ones that are unused so the player doesn't lose any when moving stages
+        // in case they want to place them later
+        lateVersion.CellTypes.AddRange(earlySpecies.CellTypes);
 
-        lateVersion.Cells.Add(new CellTemplate(stemCellType));
-        lateVersion.CellTypes.Add(stemCellType);
+        // Create initial metaball layout from the cell layout
+        // TODO: improve this algorithm
+
+        // Create metaballs for everything first
+        var metaballs = new List<MulticellularMetaball>();
+
+        foreach (var cellTemplate in earlySpecies.Cells)
+        {
+            var metaball = new MulticellularMetaball(cellTemplate.CellType)
+            {
+                Position = Hex.AxialToCartesian(cellTemplate.Position),
+                Size = 1,
+            };
+
+            metaballs.Add(metaball);
+        }
+
+        // Then create the parent structure
+        // Root is the closest metaball to the origin
+        var rootMetaball = metaballs.OrderBy(m => m.Position.LengthSquared()).First();
+
+        foreach (var metaball in metaballs)
+        {
+            if (metaball == rootMetaball)
+                continue;
+
+            if (metaball.Parent != null)
+                throw new Exception("Logic error in metaball initial parent calculation");
+
+            // For now just pick the closest (and in case of ties, the closer to origin) metaball as the parent
+            var parent = metaballs.Where(m => m != metaball)
+                .OrderBy(m => m.Position.DistanceSquaredTo(metaball.Position)).ThenBy(m => m.Position.LengthSquared())
+                .First();
+
+            metaball.Parent = parent;
+        }
+
+        // Fix root to be at 0,0
+        rootMetaball.Position = Vector3.Zero;
+
+        // And finally move the metaballs to touch each other
+        // Do this from the root down to not need to process metaballs multiple times
+        foreach (var metaball in metaballs.Where(m => m != rootMetaball).OrderBy(m => m.CalculateTreeDepth()))
+        {
+
+        }
+
+        // Finish off by adding the metaballs to the layout in an order where all parents are added before the other
+        // ones
+        lateVersion.BodyLayout.Add(rootMetaball);
+
+        foreach (var metaball in metaballs)
+            RecursivelyAddBallsToLayout(lateVersion.BodyLayout, metaball);
 
         SwitchSpecies(species, lateVersion);
         return lateVersion;
-        */
     }
 
     /// <summary>
@@ -439,5 +490,20 @@ public class GameWorld : ISaveLoadable
 
         if (PlayerSpecies == old)
             PlayerSpecies = newSpecies;
+    }
+
+    private void RecursivelyAddBallsToLayout(MetaballLayout<MulticellularMetaball> layout,
+        MulticellularMetaball metaball)
+    {
+        if (layout.Contains(metaball))
+            return;
+
+        if (metaball.Parent != null)
+        {
+            // Need to recursively add parents first to the layout
+            RecursivelyAddBallsToLayout(layout, (MulticellularMetaball)metaball.Parent);
+        }
+
+        layout.Add(metaball);
     }
 }

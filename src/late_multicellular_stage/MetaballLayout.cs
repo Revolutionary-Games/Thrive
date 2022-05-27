@@ -37,6 +37,15 @@ public class MetaballLayout<T> : ICollection<T>
 
     public bool CanAdd(T metaball)
     {
+        // First metaball can be placed anywhere
+        if (Count < 1 && metaball.Parent == null)
+            return true;
+
+        if (metaball.Parent == null)
+            return false;
+
+        // Metaballs need to be touching (close enough) to their parent metaball (that needs to be in this layout)
+
         throw new NotImplementedException();
     }
 
