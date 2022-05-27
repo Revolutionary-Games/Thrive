@@ -71,10 +71,6 @@
         "GroupName": "CAMERA",
         "Actions": [
             {
-                "InputName": "g_pause",
-                "Name": "TOGGLE_PAUSE"
-            },
-            {
                 "InputName": "g_zoom_out",
                 "Name": "ZOOM_OUT"
             },
@@ -183,6 +179,10 @@
         ],
         "GroupName": "MISCELLANEOUS",
         "Actions": [
+            {
+                "InputName": "g_pause",
+                "Name": "TOGGLE_PAUSE"
+            },
             {
                 "InputName": "toggle_FPS",
                 "Name": "TOGGLE_FPS"
