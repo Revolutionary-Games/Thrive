@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class GalleryItem : Button
+public class GalleryCard : Button
 {
     [Export]
     public NodePath TitleLabelPath = null!;
@@ -13,28 +13,19 @@ public class GalleryItem : Button
 
     private Label? titleLabel;
     private TextureRect? imagePreview;
-    private string? title;
-    private Texture? image;
+    private Texture? thumbnail;
 
     [Signal]
-    public delegate void OnFullscreenView(GalleryItem item);
+    public delegate void OnFullscreenView(GalleryCard item);
 
-    public string Title
+    public Asset Asset { get; set; } = null!;
+
+    public Texture Thumbnail
     {
-        get => title ?? TranslationServer.Translate("UNTITLED");
+        get => thumbnail ?? MissingTexture;
         set
         {
-            title = value;
-            UpdatePreview();
-        }
-    }
-
-    public Texture Image
-    {
-        get => image ?? MissingTexture;
-        set
-        {
-            image = value;
+            thumbnail = value;
             UpdatePreview();
         }
     }
@@ -66,8 +57,8 @@ public class GalleryItem : Button
         if (titleLabel == null || imagePreview == null)
             return;
 
-        titleLabel.Text = Title;
-        imagePreview.Texture = Image;
+        titleLabel.Text = Asset.Title;
+        imagePreview.Texture = Thumbnail;
     }
 
     private void OnMouseEnter()

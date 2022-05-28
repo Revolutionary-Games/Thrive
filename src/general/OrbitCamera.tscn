@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/general/OrbitCamera.cs" type="Script" id=1]
+
+[node name="OrbitCamera" type="Spatial"]
+script = ExtResource( 1 )
+RotationSpeed = 0.6
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/gui_common/art_gallery/GalleryItem.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/art_gallery/GalleryCard.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/TestIcon.png" type="Texture" id=3]
 
@@ -26,7 +26,7 @@ border_color = Color( 0, 0, 0, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 
-[node name="GalleryItem" type="Button"]
+[node name="GalleryCard" type="Button"]
 margin_right = 172.0
 margin_bottom = 182.0
 rect_min_size = Vector2( 172, 182 )
@@ -81,6 +81,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 2 )
 text = "INSERT_TITLE"
 align = 1
+clip_text = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }

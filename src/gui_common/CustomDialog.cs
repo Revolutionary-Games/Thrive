@@ -340,7 +340,7 @@ public class CustomDialog : Popup, ICustomPopup
     public override Vector2 _GetMinimumSize()
     {
         var buttonWidth = closeButton?.GetCombinedMinimumSize().x;
-        var titleWidth = titleFont?.GetStringSize(TranslationServer.Translate(windowTitle)).x;
+        var titleWidth = titleFont?.GetStringSize(translatedWindowTitle).x;
         var buttonArea = buttonWidth + (buttonWidth / 2);
 
         var contentSize = Vector2.Zero;

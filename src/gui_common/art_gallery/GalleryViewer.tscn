@@ -1,18 +1,14 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://src/gui_common/art_gallery/GalleryItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/gui_common/art_gallery/GalleryCard.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://src/gui_common/art_gallery/SlideshowScreen.cs" type="Script" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=4]
+[ext_resource path="res://src/gui_common/art_gallery/Slidescreen.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/art_gallery/GalleryCardModel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/art_gallery/GalleryCardAudio.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryViewer.cs" type="Script" id=7]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryDetailsTooltip.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0, 0, 1 )
 
 [node name="GalleryViewer" type="Popup"]
 anchor_right = 1.0
@@ -26,7 +22,9 @@ Movable = false
 GalleryGridPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer/GridContainer")
 TabButtonsContainerPath = NodePath("MarginContainer/VBoxContainer/TabButtons")
 AssetsCategoryDropdownPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/OptionButton")
-GalleryItemScene = ExtResource( 1 )
+GalleryCardScene = ExtResource( 1 )
+GalleryCardModelScene = ExtResource( 4 )
+GalleryCardAudioScene = ExtResource( 6 )
 GalleryDetailsToolTipScene = ExtResource( 8 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -127,141 +125,8 @@ margin_right = 1270.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
-[node name="SlideshowScreen" type="Popup" parent="."]
-margin_left = 15.0
-margin_top = 15.0
-margin_right = 963.0
-margin_bottom = 611.0
-theme = ExtResource( 2 )
-popup_exclusive = true
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-Movable = false
-ShowCloseButton = false
-Decorate = false
-SlideTextureRectPath = NodePath("Overlay/FullRectImage")
-SlideToolbarPath = NodePath("Overlay/Toolbar")
-SlideCloseButtonPath = NodePath("Overlay/MarginContainer/CloseButton")
-SlideShowModeButtonPath = NodePath("Overlay/Toolbar/HBoxContainer/SlideshowModeButton")
-
-[node name="Overlay" type="PanelContainer" parent="SlideshowScreen"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="FullRectImage" type="TextureRect" parent="SlideshowScreen/Overlay"]
-margin_right = 948.0
-margin_bottom = 596.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="SlideshowScreen/Overlay"]
-margin_left = 910.0
-margin_right = 948.0
-margin_bottom = 38.0
-mouse_filter = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-
-[node name="CloseButton" type="Button" parent="SlideshowScreen/Overlay/MarginContainer"]
-margin_top = 10.0
-margin_right = 28.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 28, 28 )
-size_flags_horizontal = 0
-size_flags_vertical = 0
-custom_fonts/font = ExtResource( 9 )
-
-[node name="TextureRect" type="TextureRect" parent="SlideshowScreen/Overlay/MarginContainer/CloseButton"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -9.0
-margin_top = -9.0
-margin_right = 9.0
-margin_bottom = 9.0
-rect_min_size = Vector2( 18, 18 )
-mouse_filter = 2
-texture = ExtResource( 4 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Toolbar" type="MarginContainer" parent="SlideshowScreen/Overlay"]
-margin_top = 554.0
-margin_right = 948.0
-margin_bottom = 596.0
-mouse_filter = 1
-size_flags_vertical = 8
-custom_constants/margin_right = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SlideshowScreen/Overlay/Toolbar"]
-margin_left = 392.0
-margin_right = 555.0
-margin_bottom = 32.0
-size_flags_horizontal = 4
-alignment = 1
-
-[node name="PreviousButton" type="Button" parent="SlideshowScreen/Overlay/Toolbar/HBoxContainer"]
-margin_right = 20.0
-margin_bottom = 32.0
-mouse_filter = 1
-custom_fonts/font = ExtResource( 6 )
-text = "<"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="SlideshowModeButton" type="Button" parent="SlideshowScreen/Overlay/Toolbar/HBoxContainer"]
-margin_left = 24.0
-margin_right = 139.0
-margin_bottom = 32.0
-mouse_filter = 1
-size_flags_horizontal = 8
-custom_fonts/font = ExtResource( 6 )
-toggle_mode = true
-text = "SLIDESHOW"
-
-[node name="NextButton" type="Button" parent="SlideshowScreen/Overlay/Toolbar/HBoxContainer"]
-margin_left = 143.0
-margin_right = 163.0
-margin_bottom = 32.0
-mouse_filter = 1
-custom_fonts/font = ExtResource( 6 )
-text = ">"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="PopupTween" type="Tween" parent="SlideshowScreen"]
-
-[node name="SlideshowTween" type="Tween" parent="SlideshowScreen"]
+[node name="Slidescreen" parent="." instance=ExtResource( 3 )]
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer3/OptionButton" to="." method="OnCategorySelected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="OnCloseButtonPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SlideshowButton" to="." method="OnStartSlideshowButtonPressed"]
-[connection signal="hide" from="SlideshowScreen" to="SlideshowScreen" method="OnHidden"]
-[connection signal="pressed" from="SlideshowScreen/Overlay/MarginContainer/CloseButton" to="SlideshowScreen" method="OnCloseButtonPressed"]
-[connection signal="pressed" from="SlideshowScreen/Overlay/Toolbar/HBoxContainer/PreviousButton" to="SlideshowScreen" method="OnPreviousSlideButtonPressed"]
-[connection signal="toggled" from="SlideshowScreen/Overlay/Toolbar/HBoxContainer/SlideshowModeButton" to="SlideshowScreen" method="OnSlideshowModeButtonToggled"]
-[connection signal="pressed" from="SlideshowScreen/Overlay/Toolbar/HBoxContainer/NextButton" to="SlideshowScreen" method="OnNextSlideButtonPressed"]

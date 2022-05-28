@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 using Object = Godot.Object;
 
-public class SlideshowScreen : CustomDialog
+/// <summary>
+///   Screen capable of moving slides of gallery items.
+/// </summary>
+public class Slidescreen : CustomDialog
 {
     public const float SLIDESHOW_INTERVAL = 6f;
     public const float TOOLBAR_DISPLAY_DURATION = 4f;
@@ -20,10 +22,36 @@ public class SlideshowScreen : CustomDialog
     [Export]
     public NodePath SlideShowModeButtonPath = null!;
 
-    private TextureRect? fullscreenRect;
-    private Control? slideToolbar;
-    private Button? slideCloseButton;
+    [Export]
+    public NodePath SlideTitleLabelPath = null!;
+
+    [Export]
+    public NodePath ModelViewerContainerPath = null!;
+
+    [Export]
+    public NodePath ModelViewerPath = null!;
+
+    [Export]
+    public NodePath ModelHolderPath = null!;
+
+    [Export]
+    public NodePath ModelViewerCameraPath = null!;
+
+    [Export]
+    public NodePath AudioPlayerSliderPath = null!;
+
+    [Export]
+    public NodePath PlayButtonPath = null!;
+
+    private TextureRect? fullscreenTextureRect;
+    private Control? toolbar;
+    private Button? closeButton;
     private Button? slideShowModeButton;
+    private Label? slideTitleLabel;
+    private ViewportContainer? modelViewerContainer;
+    private Viewport? modelViewer;
+    private Spatial? modelHolder;
+    private OrbitCamera? modelViewerCamera;
 
     private Tween popupTween = null!;
     private Tween slideshowTween = null!;
@@ -35,7 +63,7 @@ public class SlideshowScreen : CustomDialog
     private bool slideshowMode;
     private bool handlesVisible;
 
-    public List<GalleryItem>? SlideItems { get; set; }
+    public List<GalleryCard>? Items { get; set; }
 
     public int CurrentSlideIndex
     {
@@ -43,7 +71,8 @@ public class SlideshowScreen : CustomDialog
         set
         {
             currentSlideIndex = value;
-            UpdateSlideshow();
+            UpdateSlide();
+            UpdateModelViewer();
         }
     }
 
@@ -53,7 +82,7 @@ public class SlideshowScreen : CustomDialog
         set
         {
             slideshowMode = value;
-            UpdateSlideshow();
+            UpdateSlide();
         }
     }
 
@@ -85,15 +114,21 @@ public class SlideshowScreen : CustomDialog
 
     public override void _Ready()
     {
-        fullscreenRect = GetNode<TextureRect>(SlideTextureRectPath);
-        slideToolbar = GetNode<Control>(SlideToolbarPath);
-        slideCloseButton = GetNode<Button>(SlideCloseButtonPath);
+        fullscreenTextureRect = GetNode<TextureRect>(SlideTextureRectPath);
+        toolbar = GetNode<Control>(SlideToolbarPath);
+        closeButton = GetNode<Button>(SlideCloseButtonPath);
         slideShowModeButton = GetNode<Button>(SlideShowModeButtonPath);
+        slideTitleLabel = GetNode<Label>(SlideTitleLabelPath);
+        modelViewerContainer = GetNode<ViewportContainer>(ModelViewerContainerPath);
+        modelViewer = GetNode<Viewport>(ModelViewerPath);
+        modelHolder = GetNode<Spatial>(ModelHolderPath);
+        modelViewerCamera = GetNode<OrbitCamera>(ModelViewerCameraPath);
 
         popupTween = GetNode<Tween>("PopupTween");
         slideshowTween = GetNode<Tween>("SlideshowTween");
 
-        UpdateSlideshow();
+        UpdateSlide();
+        UpdateModelViewer();
         UpdateHandles();
     }
 
@@ -103,10 +138,10 @@ public class SlideshowScreen : CustomDialog
         {
             toolbarHideTimer -= delta;
 
-            if (slideToolbar?.Modulate.a < 1)
+            if (toolbar?.Modulate.a < 1)
             {
-                slideshowTween.InterpolateProperty(slideToolbar, "modulate:a", null, 1, 0.5f);
-                slideshowTween.InterpolateProperty(slideCloseButton, "modulate:a", null, 1, 0.5f);
+                slideshowTween.InterpolateProperty(toolbar, "modulate:a", null, 1, 0.5f);
+                slideshowTween.InterpolateProperty(closeButton, "modulate:a", null, 1, 0.5f);
                 slideshowTween.Start();
             }
 
@@ -116,9 +151,9 @@ public class SlideshowScreen : CustomDialog
             if (toolbarHideTimer < 0)
             {
                 slideshowTween.InterpolateProperty(
-                    slideToolbar, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+                    toolbar, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
                 slideshowTween.InterpolateProperty(
-                    slideCloseButton, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
+                    closeButton, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
                 slideshowTween.Start();
                 Input.SetMouseMode(Input.MouseMode.Hidden);
             }
@@ -153,14 +188,14 @@ public class SlideshowScreen : CustomDialog
 
     public override void CustomShow()
     {
-        if (SlideItems == null)
+        if (Items == null)
             return;
 
         base.CustomShow();
 
         HandlesVisible = false;
 
-        var currentItemRect = SlideItems[currentSlideIndex].GetGlobalRect();
+        var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
         RectGlobalPosition = currentItemRect.Position;
         RectSize = currentItemRect.Size;
 
@@ -176,13 +211,13 @@ public class SlideshowScreen : CustomDialog
 
     public override void CustomHide()
     {
-        if (SlideItems == null)
+        if (Items == null)
             return;
 
         FullRect = false;
         HandlesVisible = false;
 
-        var currentItemRect = SlideItems[currentSlideIndex].GetGlobalRect();
+        var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
 
         popupTween.InterpolateProperty(this, "rect_position", null, currentItemRect.Position, 0.2f,
             Tween.TransitionType.Sine, Tween.EaseType.Out);
@@ -197,23 +232,23 @@ public class SlideshowScreen : CustomDialog
 
     public void AdvanceSlide(bool fade = false)
     {
-        if (SlideItems == null)
+        if (Items == null)
             return;
 
-        currentSlideIndex = (currentSlideIndex + 1) % SlideItems.Count;
+        currentSlideIndex = (currentSlideIndex + 1) % Items.Count;
 
         ChangeSlide(fade);
     }
 
     public void RetreatSlide(bool fade = false)
     {
-        if (SlideItems == null)
+        if (Items == null)
             return;
 
         --currentSlideIndex;
 
         if (currentSlideIndex < 0)
-            currentSlideIndex = SlideItems.Count - 1;
+            currentSlideIndex = Items.Count - 1;
 
         ChangeSlide(fade);
     }
@@ -225,33 +260,72 @@ public class SlideshowScreen : CustomDialog
 
         if (!fade)
         {
-            UpdateSlideshow();
+            UpdateSlide();
+            UpdateModelViewer();
             return;
         }
 
-        slideshowTween.InterpolateProperty(fullscreenRect, "modulate", null, Colors.Black, 0.5f);
+        slideshowTween.InterpolateProperty(fullscreenTextureRect, "modulate", null, Colors.Black, 0.5f);
         slideshowTween.Start();
 
         if (!slideshowTween.IsConnected("tween_completed", this, nameof(OnSlideFaded)))
             slideshowTween.Connect("tween_completed", this, nameof(OnSlideFaded), null, (uint)ConnectFlags.Oneshot);
     }
 
-    private void UpdateSlideshow()
+    private void UpdateSlide()
     {
-        if (fullscreenRect != null && SlideItems != null)
-            fullscreenRect.Texture = SlideItems[currentSlideIndex].Image;
+        if (Items == null || slideTitleLabel == null || fullscreenTextureRect == null)
+            return;
+
+        var item = Items[currentSlideIndex];
 
         slideshowTimer = slideshowMode ? SLIDESHOW_INTERVAL : 0;
         slideShowModeButton?.SetPressedNoSignal(slideshowMode);
+
+        slideTitleLabel.Text = item.Asset.Title;
+        fullscreenTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture;
+    }
+
+    private void UpdateModelViewer()
+    {
+        if (Items == null)
+            return;
+
+        var item = Items[currentSlideIndex];
+
+        if (item.Asset.Type != AssetType.ModelScene || modelViewerContainer == null || modelHolder == null ||
+            modelViewer == null || modelViewerCamera == null)
+        {
+            modelViewerContainer?.Hide();
+            return;
+        }
+
+        modelViewerContainer.Show();
+        modelHolder.QueueFreeChildren();
+
+        modelViewer.Msaa = Settings.Instance.MSAAResolution;
+
+        var scene = GD.Load<PackedScene>(item.Asset.ResourcePath);
+        var instanced = scene.Instance();
+
+        modelHolder.AddChild(instanced);
+
+        var mesh = instanced.GetNode<MeshInstance>(item.Asset.MeshNodePath!);
+        var minDistance = mesh.GetTransformedAabb().Size.Length();
+        var maxDistance = PhotoStudio.CameraDistanceFromRadiusOfObject(minDistance);
+
+        modelViewerCamera.MinCameraDistance = minDistance;
+        modelViewerCamera.MaxCameraDistance = maxDistance;
+        modelViewerCamera.Distance = maxDistance;
     }
 
     private void UpdateHandles()
     {
-        if (slideToolbar == null || slideCloseButton == null)
+        if (toolbar == null || closeButton == null)
             return;
 
-        slideToolbar.Visible = handlesVisible;
-        slideCloseButton.Visible = handlesVisible;
+        toolbar.Visible = handlesVisible;
+        closeButton.Visible = handlesVisible;
     }
 
     private void OnSlideFaded(Object @object, NodePath key)
@@ -259,8 +333,9 @@ public class SlideshowScreen : CustomDialog
         _ = @object;
         _ = key;
 
-        UpdateSlideshow();
-        slideshowTween.InterpolateProperty(fullscreenRect, "modulate", null, Colors.White, 0.5f);
+        UpdateSlide();
+        UpdateModelViewer();
+        slideshowTween.InterpolateProperty(fullscreenTextureRect, "modulate", null, Colors.White, 0.5f);
         slideshowTween.Start();
     }
 

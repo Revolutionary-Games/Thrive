@@ -53,5 +53,140 @@
                 ]
             }
         }
+    },
+    "models": {
+        "name": "MODELS",
+        "assetCategories": {
+            "microbe_stage": {
+                "name": "MICROBE_STAGE",
+                "assets": [
+                    {
+                        "Artist": "Uniow",
+                        "ResourcePath": "res://assets/models/Iceshard1.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/Iron3.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/Iron4.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/Iron5.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/IronRock1.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/IronRock2.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/BindingAgent.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Chemoplast.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Chemoreceptor.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Chloroplast.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Chromatophore.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Cilia.tscn",
+                        "Type": "ModelScene",
+                        "MeshNodePath": "Armature001/Skeleton2/Cube001"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Cytoplasm.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Flagellum.tscn",
+                        "Type": "ModelScene",
+                        "MeshNodePath": "Armature001/Skeleton/flagella"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Metabolosome.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Mitochondrion.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Nitrogenase.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Nucleus.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Oxytoxy.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/OxytoxyProteins.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Pilus.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Rusticyanin.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/SignalingAgent.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Vacuole.tscn",
+                        "Type": "ModelScene"
+                    }
+                ]
+            }
+        }
+    },
+    "musics": {
+        "name": "MUSICS",
+        "assetCategories": {
+            "menu": {
+                "name": "MENU",
+                "assets": [
+                    {
+                        "ResourcePath": "res://assets/sounds/main-menu-theme-1.ogg",
+                        "Type": "AudioPlayback"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/main-menu-theme-2.ogg",
+                        "Type": "AudioPlayback"
+                    }
+                ]
+            }
+        }
     }
 }

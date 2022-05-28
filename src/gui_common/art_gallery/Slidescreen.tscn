@@ -1,0 +1,205 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/PlayButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/general/OrbitCamera.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/gui_common/art_gallery/Slidescreen.cs" type="Script" id=7]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Environment" id=4]
+ambient_light_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="World" id=3]
+environment = SubResource( 4 )
+
+[node name="Slidescreen" type="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+popup_exclusive = true
+script = ExtResource( 7 )
+Movable = false
+ShowCloseButton = false
+Decorate = false
+SlideTextureRectPath = NodePath("Overlay/FullRectImage")
+SlideToolbarPath = NodePath("Overlay/Toolbar")
+SlideCloseButtonPath = NodePath("Overlay/MarginContainer/CloseButton")
+SlideShowModeButtonPath = NodePath("Overlay/Toolbar/VBoxContainer/HBoxContainer/SlideshowModeButton")
+SlideTitleLabelPath = NodePath("Overlay/Toolbar/VBoxContainer/SlideTitle")
+ModelViewerContainerPath = NodePath("Overlay/ViewportContainer")
+ModelViewerPath = NodePath("Overlay/ViewportContainer/ModelViewer")
+ModelHolderPath = NodePath("Overlay/ViewportContainer/ModelViewer/ModelHolder")
+ModelViewerCameraPath = NodePath("Overlay/ViewportContainer/ModelViewer/OrbitCamera")
+
+[node name="Overlay" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FullRectImage" type="TextureRect" parent="Overlay"]
+margin_right = 1280.0
+margin_bottom = 720.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Overlay"]
+margin_right = 1280.0
+margin_bottom = 720.0
+stretch = true
+
+[node name="ModelViewer" type="Viewport" parent="Overlay/ViewportContainer"]
+size = Vector2( 1280, 720 )
+own_world = true
+world = SubResource( 3 )
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="ModelHolder" type="Spatial" parent="Overlay/ViewportContainer/ModelViewer"]
+
+[node name="OrbitCamera" parent="Overlay/ViewportContainer/ModelViewer" instance=ExtResource( 6 )]
+
+[node name="MarginContainer" type="MarginContainer" parent="Overlay"]
+margin_left = 1242.0
+margin_right = 1280.0
+margin_bottom = 38.0
+mouse_filter = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+
+[node name="CloseButton" type="Button" parent="Overlay/MarginContainer"]
+margin_top = 10.0
+margin_right = 28.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 28, 28 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="Overlay/MarginContainer/CloseButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -9.0
+margin_top = -9.0
+margin_right = 9.0
+margin_bottom = 9.0
+rect_min_size = Vector2( 18, 18 )
+mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Toolbar" type="MarginContainer" parent="Overlay"]
+margin_top = 643.0
+margin_right = 1280.0
+margin_bottom = 720.0
+mouse_filter = 1
+size_flags_vertical = 8
+custom_constants/margin_right = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/Toolbar"]
+margin_left = 10.0
+margin_right = 1270.0
+margin_bottom = 67.0
+custom_constants/separation = 10
+
+[node name="SlideTitle" type="Label" parent="Overlay/Toolbar/VBoxContainer"]
+margin_right = 1260.0
+margin_bottom = 25.0
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Overlay/Toolbar/VBoxContainer"]
+margin_left = 296.0
+margin_top = 35.0
+margin_right = 963.0
+margin_bottom = 67.0
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="PreviousButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 32.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 3 )
+text = "<"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="SlideshowModeButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer"]
+margin_left = 24.0
+margin_right = 139.0
+margin_bottom = 32.0
+mouse_filter = 1
+size_flags_horizontal = 8
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = true
+text = "SLIDESHOW"
+
+[node name="AudioPlayerHandles" type="HBoxContainer" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 143.0
+margin_right = 643.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 500, 0 )
+custom_constants/separation = 5
+
+[node name="HSlider" type="HSlider" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer/AudioPlayerHandles"]
+margin_top = 8.0
+margin_right = 470.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 0.01
+
+[node name="PlayButton" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer/AudioPlayerHandles" instance=ExtResource( 5 )]
+margin_left = 475.0
+margin_top = 3.0
+margin_right = 500.0
+margin_bottom = 28.0
+size_flags_vertical = 4
+
+[node name="NextButton" type="Button" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer"]
+margin_left = 647.0
+margin_right = 667.0
+margin_bottom = 32.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 3 )
+text = ">"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="PopupTween" type="Tween" parent="."]
+
+[node name="SlideshowTween" type="Tween" parent="."]
+
+[connection signal="hide" from="." to="." method="OnHidden"]
+[connection signal="pressed" from="Overlay/MarginContainer/CloseButton" to="." method="OnCloseButtonPressed"]
+[connection signal="pressed" from="Overlay/Toolbar/VBoxContainer/HBoxContainer/PreviousButton" to="." method="OnPreviousSlideButtonPressed"]
+[connection signal="toggled" from="Overlay/Toolbar/VBoxContainer/HBoxContainer/SlideshowModeButton" to="." method="OnSlideshowModeButtonToggled"]
+[connection signal="pressed" from="Overlay/Toolbar/VBoxContainer/HBoxContainer/NextButton" to="." method="OnNextSlideButtonPressed"]

@@ -13,30 +13,36 @@ public class GalleryViewer : CustomDialog
     public NodePath AssetsCategoryDropdownPath = null!;
 
     [Export]
-    public PackedScene GalleryItemScene = null!;
+    public PackedScene GalleryCardScene = null!;
+
+    [Export]
+    public PackedScene GalleryCardModelScene = null!;
+
+    [Export]
+    public PackedScene GalleryCardAudioScene = null!;
 
     [Export]
     public PackedScene GalleryDetailsToolTipScene = null!;
 
     // TODO: Replace GridContainer with FlowContainer https://github.com/godotengine/godot/pull/57960
-    private GridContainer gridContainer = null!;
+    private GridContainer cardTile = null!;
 
     private HBoxContainer tabButtonsContainer = null!;
     private OptionButton assetsCategoryDropdown = null!;
-    private SlideshowScreen slideshowScreen = null!;
+    private Slidescreen slidescreen = null!;
 
     private Dictionary<string, Dictionary<int, string>> galleries = new();
-    private List<GalleryItem> galleryItems = new();
+    private List<GalleryCard> galleryCards = new();
     private string currentGallery = string.Empty;
     private int previouslySelectedAssetsCategory;
 
     private ButtonGroup? buttonGroup;
-    private GalleryItem? lastSelected;
+    private GalleryCard? lastSelected;
 
     public override void _Ready()
     {
-        slideshowScreen = GetNode<SlideshowScreen>("SlideshowScreen");
-        gridContainer = GetNode<GridContainer>(GalleryGridPath);
+        slidescreen = GetNode<Slidescreen>("Slidescreen");
+        cardTile = GetNode<GridContainer>(GalleryGridPath);
         tabButtonsContainer = GetNode<HBoxContainer>(TabButtonsContainerPath);
         assetsCategoryDropdown = GetNode<OptionButton>(AssetsCategoryDropdownPath);
 
@@ -53,8 +59,8 @@ public class GalleryViewer : CustomDialog
 
     public void UpdateGalleryTile(string selectedCategory = "all")
     {
-        gridContainer.FreeChildren();
-        galleryItems.Clear();
+        cardTile.FreeChildren();
+        galleryCards.Clear();
 
         buttonGroup = new ButtonGroup();
         buttonGroup.Connect("pressed", this, nameof(OnGalleryItemPressed));
@@ -68,26 +74,46 @@ public class GalleryViewer : CustomDialog
 
             foreach (var asset in category.Value.Assets)
             {
-                var box = GalleryItemScene.Instance<GalleryItem>();
-                box.Title = asset.Title!;
-                box.Image = GD.Load<Texture>(asset.ResourcePath);
-                box.Group = buttonGroup;
-                box.Connect(nameof(GalleryItem.OnFullscreenView), this, nameof(OnAssetPreviewOpened));
-
-                var tooltip = GalleryDetailsToolTipScene.Instance<GalleryDetailsTooltip>();
-                tooltip.Name = "galleryItem_" + asset.ResourcePath.GetFile();
-                tooltip.DisplayName = asset.Title!;
-                tooltip.Description = asset.Description;
-                tooltip.Artist = asset.Artist!;
-                box.RegisterToolTipForControl(tooltip);
-                ToolTipManager.Instance.AddToolTip(tooltip, "artGallery");
-
-                gridContainer.AddChild(box);
-                galleryItems.Add(box);
+                var item = CreateGalleryItem(asset);
+                cardTile.AddChild(item);
+                galleryCards.Add(item);
             }
         }
 
-        slideshowScreen.SlideItems = galleryItems;
+        slidescreen.Items = galleryCards;
+    }
+
+    private GalleryCard CreateGalleryItem(Asset asset)
+    {
+        GalleryCard item = null!;
+
+        switch (asset.Type)
+        {
+            case AssetType.Texture:
+                item = GalleryCardScene.Instance<GalleryCard>();
+                item.Thumbnail = GD.Load<Texture>(asset.ResourcePath);
+                break;
+            case AssetType.ModelScene:
+                item = GalleryCardModelScene.Instance<GalleryCardModel>();
+                break;
+            case AssetType.AudioPlayback:
+                item = GalleryCardAudioScene.Instance<GalleryCardAudio>();
+                break;
+        }
+
+        item.Asset = asset;
+        item.Group = buttonGroup;
+        item.Connect(nameof(GalleryCard.OnFullscreenView), this, nameof(OnAssetPreviewOpened));
+
+        var tooltip = GalleryDetailsToolTipScene.Instance<GalleryDetailsTooltip>();
+        tooltip.Name = "galleryCard_" + asset.ResourcePath.GetFile();
+        tooltip.DisplayName = asset.Title;
+        tooltip.Description = asset.Description;
+        tooltip.Artist = asset.Artist!;
+        item.RegisterToolTipForControl(tooltip);
+        ToolTipManager.Instance.AddToolTip(tooltip, "artGallery");
+
+        return item;
     }
 
     private void InitializeGallery()
@@ -95,17 +121,18 @@ public class GalleryViewer : CustomDialog
         galleries.Clear();
         tabButtonsContainer.QueueFreeChildren();
 
-        var id = 0;
-        Button firstEntry = null!;
-
         buttonGroup = new ButtonGroup();
         buttonGroup.Connect("pressed", this, nameof(OnGallerySelected));
+
+        Button firstEntry = null!;
 
         foreach (var gallery in SimulationParameters.Instance.GetGalleries())
         {
             galleries[gallery.Key] = new Dictionary<int, string>();
 
             var categories = galleries[gallery.Key];
+            var id = 0;
+
             categories.Add(id, "all");
 
             var tabButton = new Button
@@ -131,13 +158,13 @@ public class GalleryViewer : CustomDialog
         firstEntry.Pressed = true;
     }
 
-    private void OnAssetPreviewOpened(GalleryItem item)
+    private void OnAssetPreviewOpened(GalleryCard item)
     {
-        slideshowScreen.CurrentSlideIndex = galleryItems.IndexOf(item);
-        slideshowScreen.CustomShow();
+        slidescreen.CurrentSlideIndex = galleryCards.IndexOf(item);
+        slidescreen.CustomShow();
     }
 
-    private void OnGalleryItemPressed(GalleryItem item)
+    private void OnGalleryItemPressed(GalleryCard item)
     {
         if (lastSelected == item)
         {
@@ -147,7 +174,7 @@ public class GalleryViewer : CustomDialog
         else
         {
             lastSelected = item;
-            slideshowScreen.CurrentSlideIndex = galleryItems.IndexOf(item);
+            slidescreen.CurrentSlideIndex = galleryCards.IndexOf(item);
         }
     }
 
@@ -194,9 +221,9 @@ public class GalleryViewer : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        slideshowScreen.CurrentSlideIndex = 0;
-        slideshowScreen.SlideshowMode = true;
-        slideshowScreen.CustomShow();
+        slidescreen.CurrentSlideIndex = 0;
+        slidescreen.SlideshowMode = true;
+        slidescreen.CustomShow();
     }
 
     private void OnCloseButtonPressed()
