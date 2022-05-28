@@ -62,7 +62,7 @@ public class InProgressLoad
 
         IsLoading = true;
         SceneManager.Instance.DetachCurrentScene();
-        SceneManager.Instance.GetTree().Paused = true;
+        PauseManager.Instance.AddPause(nameof(InProgressLoad));
 
         Invoke.Instance.Perform(Step);
     }
@@ -183,13 +183,12 @@ public class InProgressLoad
 
                 JSONDebug.FlushJSONTracesOut();
 
+                PauseManager.Instance.Resume(nameof(InProgressLoad));
+
                 if (success)
                 {
                     LoadingScreen.Instance.Hide();
                     SaveStatusOverlay.Instance.ShowMessage(message);
-
-                    // TODO: does this cause problems if the game was paused when saving?
-                    loadedState!.GameStateRoot.GetTree().Paused = false;
                 }
                 else
                 {
@@ -201,6 +200,10 @@ public class InProgressLoad
                 IsLoading = false;
 
                 SaveHelper.MarkLastSaveToCurrentTime();
+
+                // Make certain that if some game element paused and we unloaded it without it realizing that, we
+                // don't get stuck in paused mode
+                PauseManager.Instance.ForceClear();
 
                 return;
             }

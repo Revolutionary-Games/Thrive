@@ -1,7 +1,7 @@
 ﻿using System;
 
 [JSONAlwaysDynamicType]
-public class RigidityActionData : MicrobeEditorCombinableActionData
+public class RigidityActionData : EditorCombinableActionData
 {
     public float NewRigidity;
     public float PreviousRigidity;
@@ -12,7 +12,7 @@ public class RigidityActionData : MicrobeEditorCombinableActionData
         PreviousRigidity = previousRigidity;
     }
 
-    public override int CalculateCost()
+    protected override int CalculateCostInternal()
     {
         return (int)Math.Abs((NewRigidity - PreviousRigidity) * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO) *
             Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;

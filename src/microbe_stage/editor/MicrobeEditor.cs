@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -9,7 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
-public class MicrobeEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
+public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     [Export]
     public NodePath ReportTabPath = null!;
@@ -40,8 +39,6 @@ public class MicrobeEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditor
     [JsonProperty]
     private MicrobeSpecies? editedSpecies;
 
-    private int? mutationPointsCache;
-
     [JsonIgnore]
     public TutorialState TutorialState => CurrentGame.TutorialState ??
         throw new InvalidOperationException("Editor doesn't have current game set yet");
@@ -62,39 +59,17 @@ public class MicrobeEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditor
     [JsonIgnore]
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
-    [JsonIgnore]
-    public override int MutationPoints
-    {
-        get => mutationPointsCache ?? CalculateMutationPointsLeft();
-        set
-        {
-            _ = value;
-            DirtyMutationPointsCache();
-        }
-    }
-
     protected override string MusicCategory => "MicrobeEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
     protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MICROBE_EDITOR");
-    protected override bool HasInProgressAction { get; }
+    protected override bool HasInProgressAction => CanCancelAction;
 
     public override void _Ready()
     {
         base._Ready();
 
         tutorialGUI.Visible = true;
-    }
-
-    public override bool EnqueueAction(CellEditorAction action)
-    {
-        if (base.EnqueueAction(action))
-        {
-            DirtyMutationPointsCache();
-            return true;
-        }
-
-        return false;
     }
 
     public void SendAutoEvoResultsToReportComponent()
@@ -129,19 +104,9 @@ public class MicrobeEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditor
         return cellEditorTab.CancelCurrentAction();
     }
 
-    public bool OrganellePlacedThisSession(OrganelleTemplate organelle)
+    public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
     {
-        return history.OrganellePlacedThisSession(organelle);
-    }
-
-    public void DirtyMutationPointsCache()
-    {
-        mutationPointsCache = null;
-    }
-
-    public override int WhatWouldActionsCost(IEnumerable<CombinableActionData> actions)
-    {
-        return history.WhatWouldActionsCost(actions.Cast<MicrobeEditorCombinableActionData>());
+        return history.WhatWouldActionsCost(actions);
     }
 
     protected override void ResolveDerivedTypeNodeReferences()
@@ -160,7 +125,7 @@ public class MicrobeEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditor
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
     }
 
-    protected override void UpdateHistoryCallbackTargets(ActionHistory<CellEditorAction> actionHistory)
+    protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
     {
         // TODO: figure out why the callbacks are correctly pointing to the cell editor instance even without this
         // actionHistory.ReTargetCallbacksInHistory(cellEditorTab);
@@ -346,28 +311,6 @@ public class MicrobeEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditor
 #pragma warning restore 162
 
         base.SetupEditedSpecies();
-    }
-
-    /// <summary>
-    ///   Calculates the remaining MP from the action history
-    /// </summary>
-    /// <returns>The remaining MP</returns>
-    private int CalculateMutationPointsLeft()
-    {
-        if (FreeBuilding || CheatManager.InfiniteMP)
-            return Constants.BASE_MUTATION_POINTS;
-
-        mutationPointsCache = history.CalculateMutationPointsLeft();
-
-        if (mutationPointsCache.Value < 0 || mutationPointsCache > Constants.BASE_MUTATION_POINTS)
-        {
-            GD.PrintErr("Invalid MP amount: ", mutationPointsCache,
-                " This should only happen if the user disabled the Infinite MP cheat while having mutated too much.");
-        }
-
-        OnMutationPointsChanged();
-
-        return mutationPointsCache.Value;
     }
 
     private void CreateMutatedSpeciesCopy(Species species)

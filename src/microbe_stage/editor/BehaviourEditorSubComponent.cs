@@ -93,6 +93,12 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
     {
     }
 
+    public void ResetBehaviour()
+    {
+        behaviour = new BehaviourDictionary();
+        UpdateAllBehaviouralSliders(behaviour);
+    }
+
     public void SetBehaviouralValue(BehaviouralValueType type, float value)
     {
         UpdateBehaviourSlider(type, value);
@@ -105,7 +111,7 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
         if (Math.Abs(value - oldValue) < MathUtils.EPSILON)
             return;
 
-        var action = new SingleCellEditorAction<BehaviourActionData>(DoBehaviourChangeAction, UndoBehaviourChangeAction,
+        var action = new SingleEditorAction<BehaviourActionData>(DoBehaviourChangeAction, UndoBehaviourChangeAction,
             new BehaviourActionData(value, oldValue, type));
 
         Editor.EnqueueAction(action);

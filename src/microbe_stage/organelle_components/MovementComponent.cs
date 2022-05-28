@@ -39,7 +39,7 @@ public class MovementComponent : ExternallyPositionedComponent
     protected override void CustomAttach()
     {
         if (organelle?.OrganelleGraphics == null)
-            throw new InvalidOperationException("Pilus needs parent organelle to have graphics");
+            throw new InvalidOperationException("Flagellum needs parent organelle to have graphics");
 
         force = CalculateForce(organelle!.Position, Momentum);
 
@@ -94,7 +94,6 @@ public class MovementComponent : ExternallyPositionedComponent
         }
     }
 
-    // ReSharper disable once UnusedParameter.Local
     /// <summary>
     ///   The final calculated force is multiplied by elapsed before
     ///   applying. So we don't have to do that. But we need to take
