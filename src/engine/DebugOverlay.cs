@@ -1,8 +1,11 @@
-﻿using Godot;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using Godot;
 
 /// <summary>
 ///   Main script for debugging.
-///   Partial class: Debug panel
+///   Partial class: Override functions, debug panel
 /// </summary>
 public partial class DebugOverlay : Control
 {
@@ -47,10 +50,12 @@ public partial class DebugOverlay : Control
         debugPanelDialog = GetNode<CustomDialog>(DebugPanelDialogPath);
         fpsCounter = GetNode<Control>(FPSCounterPath);
         performanceMetrics = GetNode<CustomDialog>(PerformanceMetricsPath);
-
-        EntityLabelReady();
-        PerformanceMetricsReady();
-        FPSCounterReady();
+        labelsLayer = GetNode<Control>(EntityLabelsPath);
+        smallerFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Tiny.tres");
+        fpsLabel = GetNode<Label>(FPSLabelPath);
+        deltaLabel = GetNode<Label>(DeltaLabelPath);
+        metricsText = GetNode<Label>(MetricsTextPath);
+        fpsDisplayLabel = GetNode<Label>(FPSDisplayLabelPath);
 
         base._Ready();
     }
@@ -62,14 +67,20 @@ public partial class DebugOverlay : Control
         Show();
         InputManager.RegisterReceiver(this);
 
-        EntityLabelEnterTree();
+        // Entity label
+        var rootTree = GetTree();
+        rootTree.Connect("node_added", this, nameof(OnNodeAdded));
+        rootTree.Connect("node_removed", this, nameof(OnNodeRemoved));
     }
 
     public override void _ExitTree()
     {
         InputManager.UnregisterReceiver(this);
 
-        EntityLabelExitTree();
+        // Entity label
+        var rootTree = GetTree();
+        rootTree.Disconnect("node_added", this, nameof(OnNodeAdded));
+        rootTree.Disconnect("node_removed", this, nameof(OnNodeRemoved));
 
         base._ExitTree();
     }
@@ -78,9 +89,66 @@ public partial class DebugOverlay : Control
     {
         base._Process(delta);
 
-        EntityLabelProcess();
-        PerformanceMetricsProcess(delta);
-        FPSCounterProcess();
+        if (activeCamera is not { Current: true })
+            activeCamera = GetViewport().GetCamera();
+
+        // Entity label
+        if (showEntityLabels)
+            UpdateEntityLabels();
+
+        // Performance metrics
+        if (performanceMetrics.Visible)
+        {
+            fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
+            deltaLabel.Text = new LocalizedString("FRAME_DURATION", delta).ToString();
+
+            var currentProcess = Process.GetCurrentProcess();
+
+            var processorTime = currentProcess.TotalProcessorTime;
+            var threads = currentProcess.Threads.Count;
+            var usedMemory = Math.Round(currentProcess.WorkingSet64 / (double)Constants.MEBIBYTE, 1);
+
+            // These don't seem to work:
+            // Performance.GetMonitor(Performance.Monitor.Physics3dActiveObjects),
+            // Performance.GetMonitor(Performance.Monitor.Physics3dCollisionPairs),
+            // Performance.GetMonitor(Performance.Monitor.Physics3dIslandCount),
+
+            metricsText.Text =
+                new LocalizedString("METRICS_CONTENT", Performance.GetMonitor(Performance.Monitor.TimeProcess),
+                        Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess),
+                        entities, children, spawnHistory.Sum(), despawnHistory.Sum(),
+                        Performance.GetMonitor(Performance.Monitor.ObjectNodeCount), usedMemory,
+                        Math.Round(Performance.GetMonitor(Performance.Monitor.RenderVideoMemUsed) / Constants.MEBIBYTE,
+                            1),
+                        Performance.GetMonitor(Performance.Monitor.RenderObjectsInFrame),
+                        Performance.GetMonitor(Performance.Monitor.RenderDrawCallsInFrame),
+                        Performance.GetMonitor(Performance.Monitor.Render2dDrawCallsInFrame),
+                        Performance.GetMonitor(Performance.Monitor.RenderVerticesInFrame),
+                        Performance.GetMonitor(Performance.Monitor.RenderMaterialChangesInFrame),
+                        Performance.GetMonitor(Performance.Monitor.RenderShaderChangesInFrame),
+                        Performance.GetMonitor(Performance.Monitor.ObjectOrphanNodeCount),
+                        Performance.GetMonitor(Performance.Monitor.AudioOutputLatency) * 1000, threads, processorTime)
+                    .ToString();
+
+            entities = 0;
+            children = 0;
+
+            spawnHistory.AddToBack(currentSpawned);
+            despawnHistory.AddToBack(currentDespawned);
+
+            while (spawnHistory.Count > SpawnHistoryLength)
+                spawnHistory.RemoveFromFront();
+
+            while (despawnHistory.Count > SpawnHistoryLength)
+                despawnHistory.RemoveFromFront();
+
+            currentSpawned = 0;
+            currentDespawned = 0;
+        }
+
+        // FPS counter
+        if (fpsCounter.Visible)
+            fpsDisplayLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
     }
 
     [RunOnKeyDown("toggle_metrics", OnlyUnhandled = false)]

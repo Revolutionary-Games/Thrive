@@ -22,37 +22,6 @@ public partial class DebugOverlay
         }
     }
 
-    private void EntityLabelReady()
-    {
-        labelsLayer = GetNode<Control>(EntityLabelsPath);
-        smallerFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Tiny.tres");
-    }
-
-    private void EntityLabelEnterTree()
-    {
-        var rootTree = GetTree();
-        rootTree.Connect("node_added", this, nameof(OnNodeAdded));
-        rootTree.Connect("node_removed", this, nameof(OnNodeRemoved));
-    }
-
-    private void EntityLabelExitTree()
-    {
-        var rootTree = GetTree();
-        rootTree.Disconnect("node_added", this, nameof(OnNodeAdded));
-        rootTree.Disconnect("node_removed", this, nameof(OnNodeRemoved));
-    }
-
-    private void EntityLabelProcess()
-    {
-        if (activeCamera is not { Current: true })
-            activeCamera = GetViewport().GetCamera();
-
-        if (showEntityLabels)
-        {
-            UpdateEntityLabels();
-        }
-    }
-
     private void UpdateEntityLabels()
     {
         if (activeCamera == null)

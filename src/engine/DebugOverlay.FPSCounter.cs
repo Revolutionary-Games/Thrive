@@ -10,15 +10,4 @@ public partial class DebugOverlay
     public NodePath FPSDisplayLabelPath = null!;
 
     private Label fpsDisplayLabel = null!;
-
-    private void FPSCounterReady()
-    {
-        fpsDisplayLabel = GetNode<Label>(FPSDisplayLabelPath);
-    }
-
-    private void FPSCounterProcess()
-    {
-        if (fpsCounter.Visible)
-            fpsDisplayLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
-    }
 }

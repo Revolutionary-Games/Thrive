@@ -455,7 +455,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="shaders\" />
-    <Folder Include="src\engine\debugging" />
     <Folder Include="src\microbe_stage\organelle_components\" />
     <Folder Include="src\auto-evo\steps\" />
     <Folder Include="src\auto-evo\simulation\" />
@@ -501,5 +500,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="third_party\ThirdParty.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="src\engine\debugging\**" />
   </ItemGroup>
 </Project>
