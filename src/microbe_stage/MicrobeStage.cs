@@ -511,7 +511,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             wantsToSave = false;
         }
 
-        var debugOverlay = DebugOverlay.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
         if (debugOverlay.PerformanceMetricsVisible)
         {

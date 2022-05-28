@@ -682,7 +682,7 @@ public partial class CellEditorComponent :
         if (!Visible)
             return;
 
-        var debugOverlay = DebugOverlay.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
         if (debugOverlay.PerformanceMetricsVisible)
         {

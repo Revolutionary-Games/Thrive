@@ -159,7 +159,7 @@ public class SpawnSystem
             }
         }
 
-        var debugOverlay = DebugOverlay.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
         if (debugOverlay.PerformanceMetricsVisible)
             debugOverlay.ReportDespawns(despawned);
@@ -244,7 +244,7 @@ public class SpawnSystem
 
         if (initialSpawns != spawnsLeftThisFrame)
         {
-            var debugOverlay = DebugOverlay.Instance;
+            var debugOverlay = DebugOverlays.Instance;
 
             if (debugOverlay.PerformanceMetricsVisible)
                 debugOverlay.ReportSpawns(initialSpawns - spawnsLeftThisFrame);
@@ -345,7 +345,7 @@ public class SpawnSystem
 
         estimateEntityCountInSpawnRadius += spawned;
 
-        var debugOverlay = DebugOverlay.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
         if (debugOverlay.PerformanceMetricsVisible)
             debugOverlay.ReportSpawns(spawned);
@@ -430,7 +430,7 @@ public class SpawnSystem
             }
         }
 
-        var debugOverlay = DebugOverlay.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
         if (debugOverlay.PerformanceMetricsVisible)
             debugOverlay.ReportDespawns(entitiesDeleted);

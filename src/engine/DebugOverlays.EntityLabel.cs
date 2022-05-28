@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Partial class: Entity label
 /// </summary>
-public partial class DebugOverlay
+public partial class DebugOverlays
 {
     private readonly Dictionary<IEntity, Label> entityLabels = new();
 
@@ -32,37 +32,36 @@ public partial class DebugOverlay
             var body = pair.Key.EntityNode;
             var label = pair.Value;
 
+            label.RectPosition = activeCamera.UnprojectPosition(body.Transform.origin);
+
             // Update names
-            if (label.Text.Empty())
+            if (!label.Text.Empty())
+                continue;
+
+            switch (body)
             {
-                switch (body)
+                case Microbe microbe:
                 {
-                    case Microbe microbe:
+                    if (microbe.Species != null!)
                     {
-                        if (microbe.Species != null!)
-                        {
-                            label.Text =
-                                $"[{microbe.Name}:{microbe.Species.Genus[0]}.{microbe.Species.Epithet.Left(4)}]";
-                        }
-
-                        break;
+                        label.Text = $"[{microbe.Name}:{microbe.Species.Genus[0]}.{microbe.Species.Epithet.Left(4)}]";
                     }
 
-                    case FloatingChunk chunk:
-                    {
-                        label.Text = $"[{chunk.Name}:{chunk.ChunkName}]";
-                        break;
-                    }
+                    break;
+                }
 
-                    default:
-                    {
-                        label.Text = $"[{body.Name}]";
-                        break;
-                    }
+                case FloatingChunk chunk:
+                {
+                    label.Text = $"[{chunk.Name}:{chunk.ChunkName}]";
+                    break;
+                }
+
+                default:
+                {
+                    label.Text = $"[{body.Name}]";
+                    break;
                 }
             }
-
-            label.RectPosition = activeCamera.UnprojectPosition(body.Transform.origin);
         }
     }
 
@@ -92,6 +91,7 @@ public partial class DebugOverlay
             case FloatingChunk:
             case AgentProjectile:
             {
+                // To reduce the labels overlapping each other
                 label.AddFontOverride("font", smallerFont);
                 break;
             }
@@ -106,6 +106,7 @@ public partial class DebugOverlay
             // This makes sure the active camera is not disposed so we don't check it in _Process().
             if (activeCamera == camera)
                 activeCamera = null;
+
             return;
         }
 

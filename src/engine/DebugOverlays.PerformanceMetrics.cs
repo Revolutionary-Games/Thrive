@@ -4,7 +4,7 @@ using Nito.Collections;
 /// <summary>
 ///   Partial class: Performance metrics
 /// </summary>
-public partial class DebugOverlay
+public partial class DebugOverlays
 {
     [Export]
     public NodePath FPSLabelPath = null!;

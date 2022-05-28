@@ -7,7 +7,7 @@ using Godot;
 ///   Main script for debugging.
 ///   Partial class: Override functions, debug panel
 /// </summary>
-public partial class DebugOverlay : Control
+public partial class DebugOverlays : Control
 {
     [Export]
     public NodePath FPSCheckBoxPath = null!;
@@ -27,7 +27,7 @@ public partial class DebugOverlay : Control
     [Export]
     public NodePath EntityLabelsPath = null!;
 
-    private static DebugOverlay? instance;
+    private static DebugOverlays? instance;
 
     private CustomDialog debugPanelDialog = null!;
     private CustomCheckBox fpsCheckBox = null!;
@@ -36,12 +36,12 @@ public partial class DebugOverlay : Control
     private CustomDialog performanceMetrics = null!;
     private Control labelsLayer = null!;
 
-    private DebugOverlay()
+    private DebugOverlays()
     {
         instance = this;
     }
 
-    public static DebugOverlay Instance => instance ?? throw new InstanceNotLoadedYetException();
+    public static DebugOverlays Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public override void _Ready()
     {
