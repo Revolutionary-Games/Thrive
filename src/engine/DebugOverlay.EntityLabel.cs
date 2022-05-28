@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 public partial class DebugOverlay
 {
-    private readonly Dictionary<RigidBody, Label> entityLabels = new();
+    private readonly Dictionary<IEntity, Label> entityLabels = new();
 
     private bool showEntityLabels;
     private Font smallerFont = null!;
@@ -29,7 +29,7 @@ public partial class DebugOverlay
 
         foreach (var pair in entityLabels)
         {
-            var body = pair.Key;
+            var body = pair.Key.EntityNode;
             var label = pair.Value;
 
             // Update names
@@ -74,7 +74,7 @@ public partial class DebugOverlay
 
     private void OnNodeAdded(Node node)
     {
-        if (node is not RigidBody body)
+        if (node is not IEntity body)
             return;
 
         var label = new Label();
@@ -109,7 +109,7 @@ public partial class DebugOverlay
             return;
         }
 
-        if (node is not RigidBody body)
+        if (node is not IEntity body)
             return;
 
         if (entityLabels.TryGetValue(body, out var label))

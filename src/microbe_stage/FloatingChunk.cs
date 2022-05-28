@@ -54,7 +54,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
-    public Node EntityNode => this;
+    public Spatial EntityNode => this;
 
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable

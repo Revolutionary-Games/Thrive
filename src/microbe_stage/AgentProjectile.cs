@@ -16,7 +16,7 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
     public AgentProperties? Properties { get; set; }
     public EntityReference<IEntity> Emitter { get; set; } = new();
 
-    public Node EntityNode { get; private set; } = null!;
+    public Spatial EntityNode => this;
 
     public AliveMarker AliveMarker { get; } = new();
 
@@ -31,8 +31,6 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
 
     public override void _Ready()
     {
-        EntityNode = this;
-
         if (Properties == null)
             throw new InvalidOperationException($"{nameof(Properties)} is required");
 
