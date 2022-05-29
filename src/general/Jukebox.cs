@@ -29,6 +29,7 @@ public class Jukebox : Node
     private float linearVolume = 1.0f;
 
     private bool paused = true;
+    private bool pausing = false;
 
     private string? playingCategory;
 
@@ -103,6 +104,18 @@ public class Jukebox : Node
         UpdateStreamsPauseStatus();
     }
 
+    public void SmoothResume()
+    {
+        if (!paused)
+            return;
+
+        paused = false;
+        pausing = false;
+        operations.Clear();
+        UpdateStreamsPauseStatus();
+        AddFadeIn();
+    }
+
     /// <summary>
     ///   Pause the currently playing songs
     /// </summary>
@@ -113,6 +126,23 @@ public class Jukebox : Node
 
         paused = true;
         UpdateStreamsPauseStatus();
+    }
+
+    public void SmoothPause()
+    {
+        if (pausing)
+            return;
+
+        pausing = true;
+        operations.Clear();
+        AddFadeOut();
+        operations.Enqueue(new Operation(_ =>
+        {
+            pausing = false;
+            paused = true;
+            UpdateStreamsPauseStatus();
+            return true;
+        }));
     }
 
     /// <summary>

@@ -96,6 +96,7 @@
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\NodeHelpers.cs" />
+    <Compile Include="src\engine\ObjectHelpers.cs" />
     <Compile Include="src\engine\PauseManager.cs" />
     <Compile Include="src\engine\PerformanceMetrics.cs" />
     <Compile Include="src\engine\PhotoStudio.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="src\gui_common\dialogs\CustomConfirmationDialog.cs" />
     <Compile Include="src\gui_common\dialogs\ErrorDialog.cs" />
     <Compile Include="src\gui_common\dialogs\LicensesDisplay.cs" />
+    <Compile Include="src\gui_common\PlaybackBar.cs" />
     <Compile Include="src\gui_common\PlayButton.cs" />
     <Compile Include="src\gui_common\RadialMenu.cs" />
     <Compile Include="src\gui_common\RadialPopup.cs" />

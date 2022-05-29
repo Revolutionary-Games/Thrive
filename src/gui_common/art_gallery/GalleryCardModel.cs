@@ -46,18 +46,16 @@ public class GalleryCardModel : GalleryCard
             this.meshNodePath = meshNodePath;
         }
 
-        public MeshInstance InstancedMesh { get; private set; } = null!;
-
         public string SceneToPhotographPath => resourcePath;
 
         public void ApplySceneParameters(Spatial instancedScene)
         {
-            InstancedMesh = instancedScene.GetNode<MeshInstance>(meshNodePath);
         }
 
         public float CalculatePhotographDistance(Spatial instancedScene)
         {
-            return InstancedMesh.GetTransformedAabb().Size.Length();
+            var instancedMesh = instancedScene.GetNode<MeshInstance>(meshNodePath);
+            return instancedMesh.GetTransformedAabb().Size.Length();
         }
     }
 }

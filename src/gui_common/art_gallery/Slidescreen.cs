@@ -38,10 +38,7 @@ public class Slidescreen : CustomDialog
     public NodePath ModelViewerCameraPath = null!;
 
     [Export]
-    public NodePath AudioPlayerSliderPath = null!;
-
-    [Export]
-    public NodePath PlayButtonPath = null!;
+    public NodePath PlaybackBarPath = null!;
 
     private TextureRect? fullscreenTextureRect;
     private Control? toolbar;
@@ -52,6 +49,7 @@ public class Slidescreen : CustomDialog
     private Viewport? modelViewer;
     private Spatial? modelHolder;
     private OrbitCamera? modelViewerCamera;
+    private PlaybackBar? playbackBar;
 
     private Tween popupTween = null!;
     private Tween slideshowTween = null!;
@@ -59,11 +57,20 @@ public class Slidescreen : CustomDialog
     private float toolbarHideTimer;
     private float slideshowTimer;
 
+    private List<GalleryCard>? items;
     private int currentSlideIndex;
     private bool slideshowMode;
     private bool handlesVisible;
 
-    public List<GalleryCard>? Items { get; set; }
+    public List<GalleryCard>? Items
+    {
+        get => items;
+        set
+        {
+            items = value;
+            UpdateScreen();
+        }
+    }
 
     public int CurrentSlideIndex
     {
@@ -71,8 +78,7 @@ public class Slidescreen : CustomDialog
         set
         {
             currentSlideIndex = value;
-            UpdateSlide();
-            UpdateModelViewer();
+            UpdateScreen();
         }
     }
 
@@ -123,13 +129,12 @@ public class Slidescreen : CustomDialog
         modelViewer = GetNode<Viewport>(ModelViewerPath);
         modelHolder = GetNode<Spatial>(ModelHolderPath);
         modelViewerCamera = GetNode<OrbitCamera>(ModelViewerCameraPath);
+        playbackBar = GetNode<PlaybackBar>(PlaybackBarPath);
 
         popupTween = GetNode<Tween>("PopupTween");
         slideshowTween = GetNode<Tween>("SlideshowTween");
 
-        UpdateSlide();
-        UpdateModelViewer();
-        UpdateHandles();
+        UpdateScreen();
     }
 
     public override void _Process(float delta)
@@ -216,6 +221,7 @@ public class Slidescreen : CustomDialog
 
         FullRect = false;
         HandlesVisible = false;
+        BoundToScreenArea = false;
 
         var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
 
@@ -260,8 +266,7 @@ public class Slidescreen : CustomDialog
 
         if (!fade)
         {
-            UpdateSlide();
-            UpdateModelViewer();
+            UpdateScreen();
             return;
         }
 
@@ -270,6 +275,13 @@ public class Slidescreen : CustomDialog
 
         if (!slideshowTween.IsConnected("tween_completed", this, nameof(OnSlideFaded)))
             slideshowTween.Connect("tween_completed", this, nameof(OnSlideFaded), null, (uint)ConnectFlags.Oneshot);
+    }
+
+    private void UpdateScreen()
+    {
+        UpdateSlide();
+        UpdateModelViewer();
+        UpdatePlayback();
     }
 
     private void UpdateSlide()
@@ -288,15 +300,15 @@ public class Slidescreen : CustomDialog
 
     private void UpdateModelViewer()
     {
-        if (Items == null)
+        if (Items == null || modelViewerContainer == null)
             return;
 
-        var item = Items[currentSlideIndex];
+        var item = Items[currentSlideIndex] as GalleryCardModel;
 
-        if (item.Asset.Type != AssetType.ModelScene || modelViewerContainer == null || modelHolder == null ||
-            modelViewer == null || modelViewerCamera == null)
+        if (item == null || item.Asset.Type != AssetType.ModelScene || modelHolder == null || modelViewer == null ||
+            modelViewerCamera == null)
         {
-            modelViewerContainer?.Hide();
+            modelViewerContainer.Hide();
             return;
         }
 
@@ -319,6 +331,31 @@ public class Slidescreen : CustomDialog
         modelViewerCamera.Distance = maxDistance;
     }
 
+    private void UpdatePlayback()
+    {
+        if (Items == null || playbackBar == null)
+            return;
+
+        var item = Items[currentSlideIndex] as GalleryCardAudio;
+
+        if (item == null || item.Asset.Type != AssetType.AudioPlayback)
+        {
+            slideShowModeButton?.Show();
+            playbackBar.Hide();
+            playbackBar.AudioPlayer = null;
+            return;
+        }
+
+        playbackBar.DisconnectSignals(nameof(PlaybackBar.Started));
+        playbackBar.DisconnectSignals(nameof(PlaybackBar.Stopped));
+        playbackBar.Connect(nameof(PlaybackBar.Started), item, "OnStarted");
+        playbackBar.Connect(nameof(PlaybackBar.Stopped), item, "OnStopped");
+
+        playbackBar.AudioPlayer = item.Player;
+        slideShowModeButton?.Hide();
+        playbackBar?.Show();
+    }
+
     private void UpdateHandles()
     {
         if (toolbar == null || closeButton == null)
@@ -333,8 +370,7 @@ public class Slidescreen : CustomDialog
         _ = @object;
         _ = key;
 
-        UpdateSlide();
-        UpdateModelViewer();
+        UpdateScreen();
         slideshowTween.InterpolateProperty(fullscreenTextureRect, "modulate", null, Colors.White, 0.5f);
         slideshowTween.Start();
     }
@@ -346,6 +382,7 @@ public class Slidescreen : CustomDialog
 
         HandlesVisible = true;
         FullRect = true;
+        BoundToScreenArea = true;
     }
 
     private void OnScaledDown(Object @object, NodePath key)

@@ -68,9 +68,9 @@ public class PlayButton : MarginContainer
         if (pauseButton == null || playButton == null)
             return;
 
-        pauseButton.Pressed = !paused;
+        pauseButton.SetPressedNoSignal(!paused);
         pauseButton.Visible = !paused;
-        playButton.Pressed = paused;
+        playButton.SetPressedNoSignal(paused);
         playButton.Visible = paused;
     }
 

@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=3]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryDetailsTooltip.cs" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="GalleryDetailsTooltip" type="PanelContainer"]
 margin_right = 362.0
@@ -12,6 +24,7 @@ rect_min_size = Vector2( 300, 0 )
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme = ExtResource( 3 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 4 )
 TitleLabelPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Label2")
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Label2")

@@ -35,6 +35,7 @@ public class GalleryViewer : CustomDialog
     private List<GalleryCard> galleryCards = new();
     private string currentGallery = string.Empty;
     private int previouslySelectedAssetsCategory;
+    private int activeAudioPlayers;
 
     private ButtonGroup? buttonGroup;
     private GalleryCard? lastSelected;
@@ -47,6 +48,18 @@ public class GalleryViewer : CustomDialog
         assetsCategoryDropdown = GetNode<OptionButton>(AssetsCategoryDropdownPath);
 
         InitializeGallery();
+    }
+
+    public override void _Process(float delta)
+    {
+        if (activeAudioPlayers > 0)
+        {
+            Jukebox.Instance.SmoothPause();
+        }
+        else
+        {
+            Jukebox.Instance.SmoothResume();
+        }
     }
 
     public override void _Notification(int what)
@@ -98,6 +111,9 @@ public class GalleryViewer : CustomDialog
                 break;
             case AssetType.AudioPlayback:
                 item = GalleryCardAudioScene.Instance<GalleryCardAudio>();
+                var casted = (GalleryCardAudio)item;
+                casted.Connect(nameof(GalleryCardAudio.OnAudioStarted), this, nameof(OnAudioStarted));
+                casted.Connect(nameof(GalleryCardAudio.OnAudioStopped), this, nameof(OnAudioStopped));
                 break;
         }
 
@@ -150,6 +166,9 @@ public class GalleryViewer : CustomDialog
 
             foreach (var category in gallery.Value.AssetCategories)
             {
+                if (category.Key == "all")
+                    continue;
+
                 ++id;
                 categories.Add(id, category.Key);
             }
@@ -224,6 +243,19 @@ public class GalleryViewer : CustomDialog
         slidescreen.CurrentSlideIndex = 0;
         slidescreen.SlideshowMode = true;
         slidescreen.CustomShow();
+    }
+
+    private void OnAudioStarted()
+    {
+        ++activeAudioPlayers;
+    }
+
+    private void OnAudioStopped()
+    {
+        --activeAudioPlayers;
+
+        if (activeAudioPlayers < 0)
+            activeAudioPlayers = 0;
     }
 
     private void OnCloseButtonPressed()

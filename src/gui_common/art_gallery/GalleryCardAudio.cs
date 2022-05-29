@@ -5,93 +5,63 @@ public class GalleryCardAudio : GalleryCard
     [Export]
     public NodePath PlaybackBarPath = null!;
 
-    [Export]
-    public NodePath PlayButtonPath = null!;
+    [Signal]
+    public delegate void OnAudioStarted();
 
-    private HSlider playbackBar = null!;
-    private PlayButton playButton = null!;
-    private AudioStreamPlayer audioPlayer = null!;
+    [Signal]
+    public delegate void OnAudioStopped();
 
-    private float scaledPlaybackPos;
-    private bool dragging;
+    private PlaybackBar? playbackBar;
+    private AudioStreamPlayer ownPlayer = null!;
 
-    public float ScaledPlaybackPosition => scaledPlaybackPos;
+    public AudioStreamPlayer Player
+    {
+        get
+        {
+            EnsurePlayerExist();
+            return ownPlayer;
+        }
+        set
+        {
+            ownPlayer = value;
+            UpdatePlaybackBar();
+        }
+    }
 
     public override void _Ready()
     {
         base._Ready();
 
-        audioPlayer = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
-        playbackBar = GetNode<HSlider>(PlaybackBarPath);
-        playButton = GetNode<PlayButton>(PlayButtonPath);
+        playbackBar = GetNode<PlaybackBar>(PlaybackBarPath);
 
-        audioPlayer.Stream = GD.Load<AudioStream>(Asset.ResourcePath);
+        EnsurePlayerExist();
     }
 
-    public override void _PhysicsProcess(float delta)
+    private void EnsurePlayerExist()
     {
-        base._PhysicsProcess(delta);
+        ownPlayer ??= new AudioStreamPlayer { Stream = GD.Load<AudioStream>(Asset.ResourcePath) };
 
-        if (audioPlayer?.Stream == null)
+        UpdatePlaybackBar();
+
+        if (IsInsideTree() && !ownPlayer.IsInsideTree())
+            AddChild(ownPlayer);
+    }
+
+    private void UpdatePlaybackBar()
+    {
+        if (playbackBar == null)
             return;
 
-        if (!audioPlayer.StreamPaused && audioPlayer.Playing)
-        {
-            scaledPlaybackPos = FixedScaleFromPlaybackPos(audioPlayer.GetPlaybackPosition());
-            playbackBar.Value = scaledPlaybackPos;
-        }
+        playbackBar.AudioPlayer = ownPlayer;
     }
 
-    private float FixedScaleFromPlaybackPos(float value)
+    private void OnStarted()
     {
-        return (value / audioPlayer.Stream.GetLength()) * (float)playbackBar.MaxValue;
+        EmitSignal(nameof(OnAudioStarted));
     }
 
-    private float PlaybackPosFromFixedScale(float value)
+    private void OnStopped()
     {
-        return (value * audioPlayer.Stream.GetLength()) / (float)playbackBar.MaxValue;
-    }
-
-    private void OnPlayButtonPressed(bool paused)
-    {
-        if (audioPlayer?.Stream == null)
-            return;
-
-        if (paused)
-        {
-            audioPlayer.StreamPaused = true;
-            scaledPlaybackPos = FixedScaleFromPlaybackPos(audioPlayer.GetPlaybackPosition());
-            Jukebox.Instance.Resume();
-        }
-        else
-        {
-            audioPlayer.StreamPaused = false;
-            audioPlayer.Play(PlaybackPosFromFixedScale(scaledPlaybackPos));
-            Jukebox.Instance.Pause();
-        }
-    }
-
-    private void OnSliderInput(InputEvent @event)
-    {
-        // TODO: Explain this
-        if (@event is InputEventMouseButton button && button.ButtonIndex == (int)ButtonList.Left)
-            dragging = button.Pressed;
-    }
-
-    private void OnSliderChanged(float value)
-    {
-        // Only set the playback position if we really are dragging the slider
-        if (dragging)
-            audioPlayer.Seek(PlaybackPosFromFixedScale(value));
-    }
-
-    private void OnAudioFinished()
-    {
-        playButton.Paused = true;
-        audioPlayer.StreamPaused = false;
-        audioPlayer.Stop();
-        audioPlayer.Seek(0);
-        scaledPlaybackPos = 0;
-        playbackBar.Value = 0;
+        EmitSignal(nameof(OnAudioStopped));
     }
 }
