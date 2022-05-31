@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-27 12:34+0100\n"
+"POT-Creation-Date: 2022-05-31 15:29+0100\n"
 "PO-Revision-Date: 2022-05-20 13:35+0300\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -116,7 +116,9 @@ msgstr ""
 "\n"
 "Pilus: Can be used to stab other cells\n"
 "\n"
-"Chemoreceptor: Allows detecting compounds from farther away"
+"Chemoreceptor: Allows detecting compounds from farther away\n"
+"\n"
+"Cilia: Increases turning speed of cells"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -426,8 +428,9 @@ msgid "MISCELLANEOUS"
 msgstr "Miscellaneous"
 
 #: ../simulation_parameters/common/input_options.json:184
+#, fuzzy
 msgid "TOGGLE_PAUSE"
-msgstr "Pause"
+msgstr "Toggle FPS display"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "TOGGLE_FPS"
@@ -2902,8 +2905,9 @@ msgid "SIGNAL_TO_EMIT"
 msgstr "Signal To Emit"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:811
+#, fuzzy
 msgid "PAUSE_PROMPT"
-msgstr "[center]Press [thrive:input]g_pause[/thrive:input] to unpause[/center]"
+msgstr "Pause the game"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:925
 msgid "STUFF_AT"
@@ -3044,8 +3048,9 @@ msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:2121
+#, fuzzy
 msgid "PAUSED"
-msgstr "PAUSED"
+msgstr "Pause"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:187
 msgid "PATCH_NAME"

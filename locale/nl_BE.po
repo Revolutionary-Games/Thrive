@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-27 12:34+0100\n"
+"POT-Creation-Date: 2022-05-31 15:29+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -2929,7 +2929,7 @@ msgstr "Verbindings agent"
 #: ../src/microbe_stage/MicrobeHUD.cs:811
 #, fuzzy
 msgid "PAUSE_PROMPT"
-msgstr ""
+msgstr "Pauzeer het spel"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:925
 msgid "STUFF_AT"
@@ -4137,7 +4137,7 @@ msgstr "Opslaan geslaagd"
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
-msgstr "Handleiding"
+msgstr "Handmatig"
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
@@ -4160,9 +4160,8 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
-#, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
-msgstr "Uploaden..."
+msgstr "Laden..."
 
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 #, fuzzy
@@ -4231,14 +4230,11 @@ msgstr "Het upgraden van de save is mislukt"
 
 #: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr ""
-"Het upgraden van de geselecteerde save is gefaald door de volgende error:\n"
-"{0}"
+msgstr "Het upgraden van de geselecteerde save is gefaald door de volgende error:"
 
 #: ../src/saving/SaveList.tscn:127
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
-msgstr "Geselecteerde opgeslagen bestand is niet-compatibel"
+msgstr "Geselecteerd opgeslagen bestand is een niet-compatibel prototype"
 
 #: ../src/saving/SaveList.tscn:129
 #, fuzzy

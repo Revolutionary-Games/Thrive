@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-27 12:34+0100\n"
+"POT-Creation-Date: 2022-05-31 15:29+0100\n"
 "PO-Revision-Date: 2022-05-20 06:07+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -112,11 +112,13 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Външни органели\n"
 "\n"
-"Флагела: Придвижва клетката по-бързо, използвайки [thrive:compound type=\"atp\"]АТФ[/thrive:compound]\n"
+"Камшиче: Придвижва клетката по-бързо, използвайки [thrive:compound type=\"atp\"]АТФ[/thrive:compound]\n"
 "\n"
 "Пили: Пробожда другите клетки с острия си връх\n"
 "\n"
-"Хеморецептор: Осигурява напътствия за откриването на химичните съединения"
+"Хеморецептор: Осигурява напътствия за откриването на химичните съединения\n"
+"\n"
+"Реснички: Увеличават скоростта на завъртане на клетките"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -207,7 +209,7 @@ msgstr "Ето един съвет — биомите са нещо повече
 
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Ето един съвет — с повече флагели ще се движите по-бързо, бръм, бръм, но това ще Ви струва повече АТФ"
+msgstr "Ето един съвет — с повече камшичета ще се движите по-бързо, бръм, бръм, но това ще Ви струва повече АТФ"
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
@@ -742,7 +744,7 @@ msgstr "Хемопласт"
 #: ../simulation_parameters/microbe_stage/organelles.json:376
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:969
 msgid "FLAGELLUM"
-msgstr "Флагела"
+msgstr "Камшиче"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:405
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1922
@@ -2392,7 +2394,7 @@ msgstr ""
 "Достигнахте края на „завършената“ част на „Thrive“.\n"
 "Ако искате, може да продължите към следващите етапи на играта. Те все още са в процес на разбработка и са включени само за демонстрационни цели. Искаме да Ви покажем бъдещото развитие на играта и цялостната ни визия за това как са свързани етапите помежду си.\n"
 "\n"
-"Преди да продължете, запазете текущата си игра, защото създаването на запис по време на следващите етапи на играта не е възможно.\n"
+"Преди да продължете, запазете текущата си игра, защото създаването на запис по време на следващите етапи на играта не винаги е възможно.\n"
 "\n"
 "Моля, обърнете внимание, че следващите етапи на играта не са завършени и може да не функционират правилно."
 
@@ -2617,7 +2619,7 @@ msgstr "Използва [thrive:compound type=\"atp\"]АТФ[/thrive:compound] 
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:971
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr "Флагелата е протеин с формата на камшик, който се разпростира извън клетъчната мембрана и използва АТФ за да придвижва клетката, чрез вълнообразни движения. Позицията на флагелата определя посоката, в която тя осигурява тласък за движение на клетката. Той винаги е противоположен на позицията на флагелата (например, ако е поставена от лявата страна на клетката, флагелата ще осигурява тласък за движение надясно)."
+msgstr "Камшичето е протеин с формата на камшик, който се разпростира извън клетъчната мембрана и използва АТФ за да придвижва клетката, чрез вълнообразни движения. Позицията на камшичето определя посоката, в която то осигурява тласък за движение на клетката. Той винаги е противоположен на позицията на камшичето (например, ако е поставено от лявата страна на клетката, камшичето ще осигурява тласък за движение надясно)."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:988
 msgid "SPEED"
@@ -2640,14 +2642,12 @@ msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Това е „зрението“ на клетката. Хеморецепторът възприема информацията за околната среда на клетката. Добавянето на този органел представлява специализирана еволюция на хеморецепцията. Той осигурява напътствия за откриването на химичните съединения, които са извън текущото зрително поле на клетката."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
-#, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
+msgstr "Увеличават скоростта на завъртане на големите клетки."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
-#, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr "Това е вътрешността на клетката. Цитоплазмата е комбинация от разтворени във вода йони, протеини и други вещества. Една от функциите, които изпълнява е гликолизата — превръщането на глюкоза в АТФ. Клетките, които нямат органели, разчитат на цитоплазмата за да произвеждат енергия. Също така, цитоплазмата служи за съхранение на молекули в клетката за да може тя да увеличава размера си."
+msgstr "Ресничките са подобни на камшичетата, но те увеличават само скоростта на завъртане на клетките."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1272
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
@@ -2908,7 +2908,7 @@ msgstr "Сигнал за излъчване"
 #: ../src/microbe_stage/MicrobeHUD.cs:811
 #, fuzzy
 msgid "PAUSE_PROMPT"
-msgstr ""
+msgstr "Прекъсване на играта"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:925
 msgid "STUFF_AT"
@@ -3217,9 +3217,8 @@ msgid "SPEED_COLON"
 msgstr "Скорост:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
-#, fuzzy
 msgid "ROTATION_COLON"
-msgstr "популация:"
+msgstr "Завъртане:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:804
 msgid "HP_COLON"
@@ -4080,8 +4079,9 @@ msgstr "измиране на създанията"
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Това са следващите етапи на играта.\n"
-"Те все още са в процес на разбработка и са включени само за демонстрационни цели.\n"
-"Запазването в момента не е възможно."
+"Те все още са в процес на разбработка\n"
+"и са включени само за демонстрационни цели.\n"
+"Запазването в момента не винаги е възможно."
 
 #: ../src/saving/SaveHelper.cs:526
 msgid "SAVING_SUCCEEDED"
@@ -4180,17 +4180,15 @@ msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "Надграждането на записа е неуспешно поради следната грешка:"
 
 #: ../src/saving/SaveList.tscn:127
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
-msgstr "Избраният запис е несъвместим"
+msgstr "Избраният запис е от следващите етапи на играта и е несъвместим"
 
 #: ../src/saving/SaveList.tscn:129
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
-"Избраният запис е несъвместим с тази версия на „Thrive“.\n"
+"Избраният запис е създаден в следващите етапи на играта и е несъвместим с тази версия на „Thrive“.\n"
 "Надграждането не е възможно.\n"
-"Понеже играта е в начален етап на разработка и съвместимостта не е приоритет, някои записи не могат да бъдат надградени."
+"Понеже играта е в начален етап на разработка и съвместимостта не е приоритет, записите от следващите етапи на играта не могат да бъдат надградени."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"

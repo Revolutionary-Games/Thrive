@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-27 12:34+0100\n"
-"PO-Revision-Date: 2022-05-20 06:07+0000\n"
+"POT-Creation-Date: 2022-05-31 15:29+0100\n"
+"PO-Revision-Date: 2022-05-27 14:07+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
 "Language: he\n"
@@ -116,7 +116,9 @@ msgstr ""
 "\n"
 "פילוס: ניתן להשתמש בו בשביל לדקור תאים אחרים\n"
 "\n"
-"כימורצפטור: מאפשר לאתר תרכובות ממרחק גדול"
+"כימורצפטור: מאפשר לאתר תרכובות ממרחק גדול\n"
+"\n"
+"ריסון: משפר מהירות סיבוב של התא"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -2392,7 +2394,7 @@ msgstr ""
 "אתה הגעת לסוף של החלק ה\"מוכן\" של Thrive.\n"
 "אם אתה רוצה, אתה יכול להמשיך לשלבי האבטיפוס המקדמים יותר הכוללים במשחק. הם יכולים להיות מאוד לא מוכנים, להשתמש בגרפיקה של מצייני מיקום ויכול בכללי להיות מאוד קשוח. אלה כלולים כחלק מהמשחק כדי להראות את הכיוון העתידי האפשרי של המשחק ואת החזון הכללי שלנו לגבי איך השלבים יתחברו.\n"
 "\n"
-"אתה לא תוכל לשמור אם אתה רוצה להמשיך או לחזור ברגע שתמשיך. אם אתה רוצה לחזור לשלב זה, בבקשה תשמור לפני שתתמשיך.\n"
+"אתה לא תוכל לשמור, ברוב האבטיפוסים, אם אתה רוצה להמשיך או לחזור ברגע שתמשיך. אם אתה רוצה לחזור לשלב זה, בבקשה תשמור לפני שתתמשיך.\n"
 "\n"
 "אם אתה בחרת להמשיך, בבקשה תבין שזה שלב אבטיפוס ובבקשה על תתלונן על כמה זה לא מושלם."
 
@@ -2640,14 +2642,12 @@ msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "כל התאים מסוגלים \"לראות\" דרך הכימורצפטור. זה איך התא אוסף מידע סביבו. הוספת אברון זה מאפשרת לכימורצפטור להיות יותר מדויק. מכיוון שהשחקן מסוגל לראות אפילו בשלב התא, זה מיוצג על ידי קו שמצביע מחוץ להמסך הנראה לעין המראה תרכובות קרובים שהשחקן עדיין לא ראה."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
-#, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "מגדיל את מהירות הסיבוב של תאים גדולים."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
-#, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr "הקרביים הדביקים של התא. הציטופלזמה היא התערובת בסיסית של יונים, חלבונים ותרכובות אחרות המומסים במים הממלאים את פנים התא. אחד התפקידים שהוא מבצע הוא גליקליזה, המרת הגלוקוז לאנרגיית ATP. לתאים שחסרים האברונים למטבוליזם מתקדמת יותר, מסתמכים על תהליך התסיסה ליצור אנרגיה. הוא גם משומש לאחסון מולקולות בתא ולגדילתו."
+msgstr "ריסונים דומים לשוטונים אבל במקום שהם מספקים דחף לכיוון מסוים הם עוזרים לתא להסתובב ולפנות."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1272
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
@@ -2831,9 +2831,8 @@ msgid "N_A_MP"
 msgstr "אין נקמ\"ו"
 
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn:126
-#, fuzzy
 msgid "REQUIRES_NUCLEUS"
-msgstr "גרעין התא"
+msgstr "נדרש גרעין התא"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:588
 msgid "DEATH"
@@ -2908,7 +2907,7 @@ msgstr "איתות לפליטה"
 #: ../src/microbe_stage/MicrobeHUD.cs:811
 #, fuzzy
 msgid "PAUSE_PROMPT"
-msgstr ""
+msgstr "השהה את המשחק"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:925
 msgid "STUFF_AT"
@@ -3217,9 +3216,8 @@ msgid "SPEED_COLON"
 msgstr "מהירות:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
-#, fuzzy
 msgid "ROTATION_COLON"
-msgstr "אוכלוסיה:"
+msgstr "רוטציה:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:804
 msgid "HP_COLON"
@@ -4080,8 +4078,9 @@ msgstr "השחקן נכחד"
 msgid "IN_PROTOTYPE"
 msgstr ""
 "אתה משחק באבטיפוס של השלב המאוחר יותר הכלול במשחק.\n"
-"אלה עשויים להיות מאוד לא שלמים, להשתמש בגרפיקה של מציין מיקום, ולהיות נוקשים מאוד באופן כללי.\n"
-"כך ששמירה אינו אפשרי כרגע."
+"אלה עשויים להיות מאוד לא שלמים, להשתמש בגרפיקה של מציין מיקום, נוקשים מאוד בכללי,\n"
+"ולא תמיד ניתן לשחק בו בצורה חלקה. כך ששמירה אינו אפשרי כרגע.\n"
+"חלקים מהאבטיפוס ניתן לשמור באופן חלקי."
 
 #: ../src/saving/SaveHelper.cs:526
 msgid "SAVING_SUCCEEDED"
@@ -4180,17 +4179,15 @@ msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "שדרוג שמירה שצוינה נכשלה בעקבות השגיאה הבאה:"
 
 #: ../src/saving/SaveList.tscn:127
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
-msgstr "השמירה שנבחרה אנו תואם"
+msgstr "שמירה שנבחרה היינו גרסת אבטיפוס לא תואם"
 
 #: ../src/saving/SaveList.tscn:129
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
-"השמירה שנבחרה לטעינה ידועה שלא מתאימה לגרסה זו של Thrive.\n"
-"ואין שדרוג שמירה לשמירה זו.\n"
-"בגלל שThrive עדין בשלבי פיתוח ראשונים, התאמה שמירות אינו בעדיפות גבוהה, ובשל כך ,אין שדרוג שמירה לכל הגרסאות."
+"השמירה שנבחרה לטעינה נעשתה באבטיפוס שבגרסת Thrive שונה.\n"
+"בגלל זה השמירה לא יכלה לטעון ששמירות אבטיפוס לא ניתנות לעדכון.\n"
+"תחזוק יכולות שמירה בשביל אבטיפוס עלול להיות נטל גדול שדברים ועבוד מחדש נעשה בתכופות מרבית ושכתוב שלהם יכולה להאט את פיתוח האבטיפוס בהרבה."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"

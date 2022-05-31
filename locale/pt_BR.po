@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-27 12:34+0100\n"
+"POT-Creation-Date: 2022-05-31 15:29+0100\n"
 "PO-Revision-Date: 2022-05-08 18:10+0000\n"
 "Last-Translator: Igor Silva <igorkcs@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -1029,9 +1029,8 @@ msgid "NEW_NAME"
 msgstr "Novo Nome"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_CELLS"
-msgstr "Colocar organela"
+msgstr "Múltiplas Células"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:76
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
@@ -1076,7 +1075,6 @@ msgid "LOADING"
 msgstr "Carregando"
 
 #: ../src/engine/PerformanceMetrics.cs:63
-#, fuzzy
 msgid "FRAME_DURATION"
 msgstr "Delta: {0}"
 
@@ -2394,7 +2392,7 @@ msgstr ""
 "Você terminou a parte “completa” de Thrive.\n"
 "Se quiser, você pode jogar os protótipos dos estágios seguintes que estão incluídos no jogo. Eles podem estar incompletos e usar gráficos temporários. Os protótipos estão incluídos para mostrar como será o possível futuro do jogo, e como os estágios estarão conectados.\n"
 "\n"
-"Não será possível salvar o jogo ou sair dos protótipos caso prosseguir. Se quiser voltar, salve o jogo antes de continuar.\n"
+"Não será possível salvar o jogo na maioria dos protótipos, ou sair deles caso prosseguir. Se quiser voltar, salve o jogo antes de continuar.\n"
 "\n"
 "Ao continuar, entenda que os estágios seguintes são protótipos e não reclame se estiverem incompletos."
 
@@ -2642,14 +2640,12 @@ msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "A “visão” das células é, na verdade, a quimiorrecepção. É assim que elas obtêm informações do ambiente. Adicionar essa organela representa evoluir uma quimiorrecepção melhor. Como o jogador já consegue ver o que está ao redor da célula, a quimiorrecepção é representada por uma linha apontando para compostos fora da tela."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
-#, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Aumenta a velocidade de rotação das células maiores."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
-#, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de íons, proteínas, e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que realiza é a Fermentação, a conversão de glicose em ATP. Para as células que carecem de organelas para ter metabolismos avançados, é disso que elas dependem para produzir energia. Também é usado para armazenar moléculas na célula para aumentar o tamanho dela."
+msgstr "Os cílios são semelhantes aos flagelos, mas ao invés de fornecerem força de impulso direcional, eles fornecem força rotacional para ajudar as células a girar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1272
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
@@ -2910,7 +2906,7 @@ msgstr "Sinal a Emitir"
 #: ../src/microbe_stage/MicrobeHUD.cs:811
 #, fuzzy
 msgid "PAUSE_PROMPT"
-msgstr ""
+msgstr "Pausar o jogo"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:925
 msgid "STUFF_AT"
@@ -3219,9 +3215,8 @@ msgid "SPEED_COLON"
 msgstr "Velocidade:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
-#, fuzzy
 msgid "ROTATION_COLON"
-msgstr "população:"
+msgstr "Rotação:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:804
 msgid "HP_COLON"
@@ -4186,17 +4181,15 @@ msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "A atualização do arquivo salvo falhou devido ao seguinte erro:"
 
 #: ../src/saving/SaveList.tscn:127
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
-msgstr "O jogo salvo selecionado é incompatível"
+msgstr "O jogo salvo selecionado é um protótipo incompatível"
 
 #: ../src/saving/SaveList.tscn:129
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
-"O jogo salvo a ser carregado não é compatível com esta versão de Thrive.\n"
-"E não há atualizador de jogo salvo para atualizar este jogo salvo.\n"
-"Como Thrive está em desenvolvimento inicial, a compatibilidade entre salvamentos não é prioridade, já que não há um atualizador para todas as versões."
+"O jogo salvo selecionado foi feito em um protótipo com uma versão diferente do jogo.\n"
+"Por causa disso, esse salvamento não pôde ser carregado, porque salvamentos de protótipos não são atualizáveis.\n"
+"Manter a compatibilidade dos jogos salvos para os protótipos seria um fardo, pois seu conteúdo é reformulado frequentemente e mantê-la tornaria o desenvolvimento dos protótipos mais lento."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-27 12:34+0100\n"
+"POT-Creation-Date: 2022-05-31 15:29+0100\n"
 "PO-Revision-Date: 2022-05-19 13:19+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -116,7 +116,9 @@ msgstr ""
 "\n"
 "- pilo: può essere usato per trafiggere altre cellule;\n"
 "\n"
-"- chemiorecettore: permette di tracciare i composti da distanze maggiori."
+"- chemiorecettore: permette di tracciare i composti da distanze maggiori;\n"
+"\n"
+"- cilia: aumentano la velocità rotazionale delle cellule."
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -2640,14 +2642,12 @@ msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "La \"vista\" delle cellule è in realtà chemioricezione. È così che loro acquisiscono informazioni sui loro dintorni. Di conseguenza, quello che vedi in gioco è una rappresentazione di ciò che la tua cellula può percepire. L'aggiunta di questo organulo alla tua cellula le conferisce una chemioricezione ancora più potente: con esso, avrai a disposizione una linea che ti indicherà la posizione di un composto anche fuori del tuo campo visivo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
-#, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Aumentano la velocità di viraggio. Utile per cellule molto grandi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
-#, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr "Le interiora gelatinose della cellula. Il citoplasma è la soluzione di ioni, proteine e altre sostanze disciolte nell'acqua al suo interno. Una delle sue funzioni è la glicolisi, cioè la conversione del glucosio in ATP. Per le cellule prive di organuli (in favore di metabolismi più avanzati) questa è la fonte di energia. Il citoplasma è anche usato per immagazzinare molecole nella cellula e accrescere le sue dimensioni."
+msgstr "Le cilia, come strutture, sono simili ai flagelli. Tuttavia, invece che fornire una spinta direzionale, aiutano le cellule a roteare meglio."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1272
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
@@ -2908,7 +2908,7 @@ msgstr "Segnale da emettere"
 #: ../src/microbe_stage/MicrobeHUD.cs:811
 #, fuzzy
 msgid "PAUSE_PROMPT"
-msgstr ""
+msgstr "Metti in pausa il gioco"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:925
 msgid "STUFF_AT"
@@ -3217,9 +3217,8 @@ msgid "SPEED_COLON"
 msgstr "Velocità:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
-#, fuzzy
 msgid "ROTATION_COLON"
-msgstr "popolazione:"
+msgstr "Rotazione:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:804
 msgid "HP_COLON"

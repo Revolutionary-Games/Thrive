@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-27 12:34+0100\n"
+"POT-Creation-Date: 2022-05-31 15:29+0100\n"
 "PO-Revision-Date: 2022-04-12 16:14+0000\n"
 "Last-Translator: swedneck <github@swedneck.xyz>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -299,14 +299,12 @@ msgstr "Håll för att visa grupp commando menyn"
 
 #: ../simulation_parameters/common/input_options.json:50
 #: ../src/microbe_stage/MicrobeStage.tscn:2189
-#, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr "Växla uppslukarläge av och på"
+msgstr "Växla bindning av och på"
 
 #: ../simulation_parameters/common/input_options.json:54
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "Växla uppslukarläge av och på"
+msgstr "Växla avbindning av och på"
 
 #: ../simulation_parameters/common/input_options.json:58
 #: ../src/microbe_stage/MicrobeStage.tscn:2201
@@ -982,9 +980,8 @@ msgstr "Producerar"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:520
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
-#, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr "Avbryt"
+msgstr "AVBRYT"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:533
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1245
@@ -1058,8 +1055,9 @@ msgstr "Auto-evo kunde inte köras"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:227
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:197
+#, fuzzy
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr ""
+msgstr "status:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:376
 #: ../src/general/EditorBase.cs:641
@@ -2126,8 +2124,9 @@ msgstr ""
 "Du kan bidra med ett pull request utan att ansöka till teamet."
 
 #: ../src/gui_common/CreditsScroll.cs:329
+#, fuzzy
 msgid "PATRONS"
-msgstr ""
+msgstr "Patrons"
 
 #: ../src/gui_common/CreditsScroll.cs:335
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
@@ -2405,7 +2404,7 @@ msgstr "Öppna hjälpmenyn"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:67
 msgid "WILL_YOU_THRIVE"
-msgstr "Kan du thrivas?"
+msgstr "Kommer du thrivas?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:84
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"

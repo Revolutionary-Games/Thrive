@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-27 12:34+0100\n"
+"POT-Creation-Date: 2022-05-31 15:29+0100\n"
 "PO-Revision-Date: 2022-04-07 14:12+0000\n"
 "Last-Translator: DannyNohuman <damianbouras@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -4155,27 +4155,27 @@ msgstr ""
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
-msgstr ""
+msgstr "Handmatig"
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
-msgstr ""
+msgstr "Automatisch opslaan"
 
 #: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
-msgstr ""
+msgstr "Snel opslaan"
 
 #: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
-msgstr ""
+msgstr "Ongeldig"
 
 #: ../src/saving/SaveList.cs:219
 msgid "SAVE_DELETE_WARNING"
-msgstr ""
+msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je {0} definitief wilt verwijderen?"
 
 #: ../src/saving/SaveList.tscn:51
 msgid "NO_SAVEGAMES_FOUND"
-msgstr ""
+msgstr "Geen Opslagen Bestanden Gevonden"
 
 #: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
 #, fuzzy
@@ -4184,68 +4184,80 @@ msgstr "Laden..."
 
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
-msgstr ""
+msgstr "Dit opgeslagen bestand verwijderen?"
 
 #: ../src/saving/SaveList.tscn:77 ../src/saving/SaveList.tscn:85
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
-msgstr ""
+msgstr "Niet-compatibel opgeslagen bestand laden?"
 
 #: ../src/saving/SaveList.tscn:78
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
+"Dit opgeslagen bestand is van een nieuwere versie van Thrive en is waarschijnlijk niet-compatibel.\n"
+"Wil je toch proberen het opgeslagen bestand te laden?"
 
 #: ../src/saving/SaveList.tscn:86
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
+"Dit opgeslagen bestand is van een oudere versie van Thrive en kan niet-compatibel zijn.\n"
+"Aangezien Thrive momenteel in een vroeg stadium van zijn ontwikkeling is, is opslagcompatibiliteit geen prioriteit.\n"
+"Je kan alle problemen die je tegenkomt melden, maar ze zijn momenteel niet de hoogste prioriteit.\n"
+"Wil je toch proberen om het opgeslagen bestand te laden?"
 
 #: ../src/saving/SaveList.tscn:93
 msgid "LOAD_INVALID_SAVE_PROMPT"
-msgstr ""
+msgstr "Ongeldig opgeslagen bestand laden?"
 
 #: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
+"Opgeslagen informatie kon niet worden geladen van dit bestand.\n"
+"Dit opgeslagen bestand is hoogstwaarschijnlijk corrupt of van een nieuwer formaat dat niet wordt begrepen door deze versie van Thrive.\n"
+"Wil je toch proberen om het opgeslagen bestand te laden?"
 
 #: ../src/saving/SaveList.tscn:101
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
-msgstr ""
+msgstr "Geselecteerd opgeslagen bestand is niet-compatibel"
 
 #: ../src/saving/SaveList.tscn:103
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:112
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr "Geselecteerd opgeslagen bestand is upgradebaar"
 
 #: ../src/saving/SaveList.tscn:113
-#, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De geselecteerde save is van een oudere versie van Thrive maar kan worden geüpgraded.\n"
+"Een backup bestand zal worden gemaakt voor de upgrade als deze nog niet is gemaakt.\n"
+"Als je upgraden skipt, wordt geprobeerd de save normaal te laden.\n"
+"Probeer deze save te upgraden?"
 
 #: ../src/saving/SaveList.tscn:119
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr "Het upgraden van de save is mislukt"
 
 #: ../src/saving/SaveList.tscn:120
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr "Het upgraden van de geselecteerde save is gefaald door de volgende error:"
 
 #: ../src/saving/SaveList.tscn:127
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr "Geselecteerd opgeslagen bestand is een niet-compatibel prototype"
 
 #: ../src/saving/SaveList.tscn:129
+#, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
+"De geselecteerde save die moet worden geladen is een save gemaakt in een prototype met een andere Thrive versie.\n"
+"Daarom kan deze save niet geladen worden, omdat prototype saves niet upgradebaar zijn.\n"
+"Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
-msgstr ""
+msgstr "Gemaakt op:"
 
 #: ../src/saving/SaveListItem.tscn:139 ../src/saving/SaveListItem.tscn:158
 #: ../src/saving/SaveListItem.tscn:177 ../src/saving/SaveListItem.tscn:200
