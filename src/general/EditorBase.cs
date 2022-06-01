@@ -239,8 +239,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             }
 
             Ready = true;
-            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f, false);
-            TransitionManager.Instance.StartTransitions(this, nameof(OnEditorReady));
+            TransitionManager.Instance.AddSequence(new List<ITransition>()
+            {
+                TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.5f),
+            }, OnEditorReady, false);
         }
 
         // Auto save after editor entry is complete
@@ -286,8 +288,11 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         if (EditedBaseSpecies == null)
             throw new InvalidOperationException("Editor not initialized, missing edited species");
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(this, nameof(MicrobeEditor.OnEditorExitTransitionFinished));
+        TransitionManager.Instance.AddSequence(new List<ITransition>()
+        {
+            TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.3f),
+        }, OnEditorExitTransitionFinished, false);
+
         return true;
     }
 
@@ -561,8 +566,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
                 CurrentGame.GameWorld.FinishAutoEvoRunAtFullSpeed();
 
-                TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f, false);
-                TransitionManager.Instance.StartTransitions();
+                TransitionManager.Instance.AddSequence(new List<ITransition>()
+                {
+                    TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeIn, 0.5f),
+                }, null, false);
             }
             else
             {
@@ -763,11 +770,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         stage.OnReturnFromEditor();
     }
 
-    private void OnFinishTransitioning()
-    {
-        TransitionFinished = true;
-    }
-
     private void MakeSureEditorReturnIsGood()
     {
         if (currentGame == null)
@@ -842,8 +844,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     /// </summary>
     private void FadeIn()
     {
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f);
-        TransitionManager.Instance.StartTransitions(this, nameof(OnFinishTransitioning));
+        TransitionManager.Instance.AddSequence(new List<ITransition>()
+        {
+            TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeIn, 0.5f),
+        }, () => TransitionFinished = true, false);
     }
 
     private void StartMusic()

@@ -83,8 +83,10 @@ public class MainMenu : NodeWithInput
         // Start intro video
         if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu)
         {
-            TransitionManager.Instance.AddCutscene("res://assets/videos/intro.ogv", 0.65f);
-            TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));
+            TransitionManager.Instance.AddSequence(new List<ITransition>
+            {
+                TransitionManager.CreateCutscene("res://assets/videos/intro.ogv", 0.65f),
+            }, OnIntroEnded);
         }
         else
         {
@@ -277,35 +279,13 @@ public class MainMenu : NodeWithInput
 
     private void OnIntroEnded()
     {
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ?
-            0.5f :
-            1.0f, false);
-        TransitionManager.Instance.StartTransitions(null);
+        TransitionManager.Instance.AddSequence(new List<ITransition>()
+        {
+            TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ? 0.5f : 1.0f),
+        }, null, false);
 
         // Start music after the video
         StartMusic();
-    }
-
-    private void OnMicrobeIntroEnded()
-    {
-        OnEnteringGame();
-
-        // TODO: Add loading screen while changing between scenes
-        SceneManager.Instance.SwitchToScene(MainGameState.MicrobeStage);
-    }
-
-    private void OnFreebuildFadeInEnded()
-    {
-        OnEnteringGame();
-
-        // Instantiate a new editor scene
-        var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
-
-        // Start freebuild game
-        editor.CurrentGame = GameProperties.StartNewMicrobeGame(true);
-
-        // Switch to the editor scene
-        SceneManager.Instance.SwitchToScene(editor);
     }
 
     private void NewGamePressed()
@@ -319,18 +299,26 @@ public class MainMenu : NodeWithInput
         // before the stage music starts)
         Jukebox.Instance.SmoothStop();
 
+        var transitions = new List<ITransition>();
+
         if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
         {
-            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 1.5f);
-            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f);
+            transitions.Add(TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
+            transitions.Add(TransitionManager.CreateCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f));
         }
         else
         {
             // People who disable the cutscene are impatient anyway so use a reduced fade time
-            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.2f);
+            transitions.Add(TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
         }
 
-        TransitionManager.Instance.StartTransitions(this, nameof(OnMicrobeIntroEnded));
+        TransitionManager.Instance.AddSequence(transitions, () =>
+        {
+            OnEnteringGame();
+
+            // TODO: Add loading screen while changing between scenes
+            SceneManager.Instance.SwitchToScene(MainGameState.MicrobeStage);
+        });
     }
 
     private void ToolsPressed()
@@ -352,8 +340,22 @@ public class MainMenu : NodeWithInput
         // Disable the button to prevent it being executed again.
         freebuildButton.Disabled = true;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
-        TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
+        TransitionManager.Instance.AddSequence(new List<ITransition>()
+        {
+            TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.1f),
+        }, () =>
+        {
+            OnEnteringGame();
+
+            // Instantiate a new editor scene
+            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
+
+            // Start freebuild game
+            editor.CurrentGame = GameProperties.StartNewMicrobeGame(true);
+
+            // Switch to the editor scene
+            SceneManager.Instance.SwitchToScene(editor);
+        }, false);
     }
 
     // TODO: this is now used by another sub menu as well so renaming this to be more generic would be good

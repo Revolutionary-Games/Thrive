@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Godot;
 
@@ -372,8 +373,10 @@ public class PauseMenu : CustomDialog
     {
         Paused = false;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
-        TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
+        TransitionManager.Instance.AddSequence(new List<ITransition>()
+        {
+            TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.1f),
+        }, OnSwitchToMenu, false);
     }
 
     private void Quit()

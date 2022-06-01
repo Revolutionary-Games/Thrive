@@ -26,7 +26,7 @@ public class ScreenFade : Control, ITransition
         FadeOut,
     }
 
-    public bool Skippable { get; set; } = true;
+    public bool Finished { get; private set; }
 
     public float FadeDuration { get; set; }
 
@@ -36,16 +36,7 @@ public class ScreenFade : Control, ITransition
         set
         {
             currentFadeType = value;
-
-            // Apply initial colors
-            if (currentFadeType == FadeType.FadeIn)
-            {
-                rect.Color = new Color(0, 0, 0, 1);
-            }
-            else if (currentFadeType == FadeType.FadeOut)
-            {
-                rect.Color = new Color(0, 0, 0, 0);
-            }
+            SetInitialColours();
         }
     }
 
@@ -58,29 +49,32 @@ public class ScreenFade : Control, ITransition
 
         // Keep this node running while paused
         PauseMode = PauseModeEnum.Process;
+
+        SetInitialColours();
+        Hide();
     }
 
     public void FadeToBlack()
     {
-        FadeTo(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1));
+        FadeTo(new Color(0, 0, 0, 1));
     }
 
     public void FadeToWhite()
     {
-        FadeTo(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0));
+        FadeTo(new Color(0, 0, 0, 0));
     }
 
-    public void FadeTo(Color initial, Color final)
+    public void FadeTo(Color final)
     {
-        rect.Color = initial;
-
-        fader.InterpolateProperty(rect, "color", initial, final, FadeDuration);
+        fader.InterpolateProperty(rect, "color", null, final, FadeDuration);
 
         fader.Start();
     }
 
-    public void OnStarted()
+    public void Begin()
     {
+        Show();
+
         switch (CurrentFadeType)
         {
             case FadeType.FadeIn:
@@ -92,10 +86,34 @@ public class ScreenFade : Control, ITransition
         }
     }
 
-    public void OnFinished()
+    public void Skip()
     {
-        EmitSignal(nameof(OnFinishedSignal));
+        OnFinished();
+    }
 
+    public void Clear()
+    {
         this.DetachAndQueueFree();
+    }
+
+    private void SetInitialColours()
+    {
+        if (rect == null)
+            return;
+
+        // Apply initial colors
+        if (currentFadeType == FadeType.FadeIn)
+        {
+            rect.Color = new Color(0, 0, 0, 1);
+        }
+        else if (currentFadeType == FadeType.FadeOut)
+        {
+            rect.Color = new Color(0, 0, 0, 0);
+        }
+    }
+
+    private void OnFinished()
+    {
+        Finished = true;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 
 public class ExtinctionBox : CustomDialog
 {
@@ -67,8 +68,10 @@ public class ExtinctionBox : CustomDialog
         if (PauseManager.Instance.Paused)
             GD.PrintErr("Game is unexpectedly paused when closing the extinction screen");
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
-        TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
+        TransitionManager.Instance.AddSequence(new List<ITransition>()
+        {
+            TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.1f),
+        }, OnSwitchToMenu, false);
     }
 
     /// <summary>

@@ -5,17 +5,24 @@
 /// </summary>
 public class Cutscene : Control, ITransition
 {
-    private VideoPlayer cutsceneVideoPlayer = null!;
+    private VideoPlayer? cutsceneVideoPlayer;
+
+    private VideoStream? stream;
+    private float volume;
 
     [Signal]
     public delegate void OnFinishedSignal();
 
-    public bool Skippable { get; set; } = true;
+    public bool Finished { get; private set; }
 
-    public VideoStream Stream
+    public VideoStream? Stream
     {
-        get => cutsceneVideoPlayer.Stream;
-        set => cutsceneVideoPlayer.Stream = value;
+        get => stream;
+        set
+        {
+            stream = value;
+            UpdateVideoPlayer();
+        }
     }
 
     /// <summary>
@@ -23,8 +30,12 @@ public class Cutscene : Control, ITransition
     /// </summary>
     public float Volume
     {
-        get => cutsceneVideoPlayer.Volume;
-        set => cutsceneVideoPlayer.Volume = value;
+        get => volume;
+        set
+        {
+            volume = value;
+            UpdateVideoPlayer();
+        }
     }
 
     public override void _Ready()
@@ -32,16 +43,38 @@ public class Cutscene : Control, ITransition
         cutsceneVideoPlayer = GetNode<VideoPlayer>("VideoPlayer");
 
         cutsceneVideoPlayer.Connect("finished", this, nameof(OnFinished));
+
+        UpdateVideoPlayer();
+        Hide();
     }
 
-    public void OnStarted()
+    public void Begin()
     {
-        cutsceneVideoPlayer.Play();
+        Show();
+        cutsceneVideoPlayer?.Play();
     }
 
-    public void OnFinished()
+    public void Skip()
     {
-        EmitSignal(nameof(OnFinishedSignal));
+        OnFinished();
+    }
+
+    public void Clear()
+    {
         this.DetachAndQueueFree();
+    }
+
+    private void UpdateVideoPlayer()
+    {
+        if (cutsceneVideoPlayer == null)
+            return;
+
+        cutsceneVideoPlayer.Stream = stream;
+        cutsceneVideoPlayer.Volume = volume;
+    }
+
+    private void OnFinished()
+    {
+        Finished = true;
     }
 }

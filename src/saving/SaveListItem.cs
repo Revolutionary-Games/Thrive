@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using Godot;
@@ -296,8 +297,10 @@ public class SaveListItem : PanelContainer
             return;
         }
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, true);
-        TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
+        TransitionManager.Instance.AddSequence(new List<ITransition>()
+        {
+            TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.3f),
+        }, LoadSave, true);
     }
 
     private void LoadSave()

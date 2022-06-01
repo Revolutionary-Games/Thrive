@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -9,20 +11,17 @@ public class TransitionManager : ControlWithInput
 {
     private static TransitionManager? instance;
 
-    private readonly PackedScene screenFadeScene;
-    private readonly PackedScene cutsceneScene;
+    private static readonly PackedScene screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/ScreenFade.tscn");
+    private static readonly PackedScene cutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
 
     /// <summary>
-    ///   Transitions waiting to be executed.
+    ///   List of all the existing transitions after calling StartTransitions.
     /// </summary>
-    private readonly Queue<ITransition> queuedTransitions = new();
+    private readonly Queue<Sequence> transitionSequences = new();
 
     private TransitionManager()
     {
         instance = this;
-
-        screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/ScreenFade.tscn");
-        cutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
     }
 
     [Signal]
@@ -30,12 +29,23 @@ public class TransitionManager : ControlWithInput
 
     public static TransitionManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
-    /// <summary>
-    ///   List of all the existing transitions after calling StartTransitions.
-    /// </summary>
-    public List<ITransition> TransitionSequence { get; } = new();
+    public bool HasQueuedTransitions => transitionSequences.Count > 0;
 
-    public bool HasQueuedTransitions => TransitionSequence.Count > 0;
+    public override void _Process(float delta)
+    {
+        if (transitionSequences.Count > 0)
+        {
+            var sequence = transitionSequences.Peek();
+
+            sequence.Process();
+
+            if (sequence.Finished)
+            {
+                transitionSequences.Dequeue();
+                SaveHelper.AllowQuickSavingAndLoading = !HasQueuedTransitions;
+            }
+        }
+    }
 
     [RunOnKeyDown("ui_cancel", OnlyUnhandled = false)]
     public bool CancelTransitionPressed()
@@ -43,125 +53,150 @@ public class TransitionManager : ControlWithInput
         if (!HasQueuedTransitions)
             return false;
 
-        CancelQueuedTransitions();
+        CancelSequences();
         return true;
     }
 
     /// <summary>
-    ///   Creates and queues a screen fade.
+    ///   Helper method for creating a screen fade.
     /// </summary>
     /// <param name="type">The type of fade to transition to</param>
     /// <param name="fadeDuration">How long the fade lasts</param>
     /// <param name="allowSkipping">Allow the user to skip this</param>
-    public void AddScreenFade(ScreenFade.FadeType type, float fadeDuration, bool allowSkipping = true)
+    public static ScreenFade CreateScreenFade(ScreenFade.FadeType type, float fadeDuration)
     {
         // Instantiate scene
         var screenFade = (ScreenFade)screenFadeScene.Instance();
-        AddChild(screenFade);
 
-        screenFade.Skippable = allowSkipping;
         screenFade.CurrentFadeType = type;
         screenFade.FadeDuration = fadeDuration;
 
-        screenFade.Connect("OnFinishedSignal", this, nameof(StartNextQueuedTransition));
-
-        queuedTransitions.Enqueue(screenFade);
+        return screenFade;
     }
 
     /// <summary>
-    ///   Creates and queues a video cutscene.
+    ///   Helper method for creating a video cutscene.
     /// </summary>
     /// <param name="path">The video file to play</param>
     /// <param name="volume">The video player's volume in linear value</param>
     /// <param name="allowSkipping">Allow the user to skip this</param>
-    public void AddCutscene(string path, float volume = 1.0f, bool allowSkipping = true)
+    public static Cutscene CreateCutscene(string path, float volume = 1.0f)
     {
         // Instantiate scene
         var cutscene = (Cutscene)cutsceneScene.Instance();
-        AddChild(cutscene);
 
-        cutscene.Skippable = allowSkipping;
         cutscene.Volume = volume;
         cutscene.Stream = GD.Load<VideoStream>(path);
 
-        cutscene.Connect("OnFinishedSignal", this, nameof(StartNextQueuedTransition));
-
-        queuedTransitions.Enqueue(cutscene);
+        return cutscene;
     }
 
     /// <summary>
-    ///   Executes queued transitions.
-    ///   Calls the specified method when all transitions are finished.
+    ///   Enqueues a new <see cref="Sequence"/> from the given list of transitions.
+    ///   Invokes the specified action when the sequence is finished.
     /// </summary>
-    /// <param name="target">The target object to connect to</param>
-    /// <param name="onFinishedMethod">The name of the method on the target object</param>
-    public void StartTransitions(Object? target = null, string? onFinishedMethod = null)
+    /// <param name="onFinishedCallback">The action to invoke when the sequence finished</param>
+    public void AddSequence(List<ITransition> transitions, Action? onFinishedCallback = null, bool skippable = true)
     {
-        if (queuedTransitions.Count == 0)
+        if (transitions.Count <= 0 || transitions == null)
         {
-            GD.PrintErr("No transitions found in the queue, can't execute transitions");
+            GD.PrintErr("The given array of transitions are either empty or null, can't add sequence");
             return;
         }
 
-        if (!string.IsNullOrEmpty(onFinishedMethod))
+        foreach (var transition in transitions)
         {
-            if (!IsConnected(nameof(QueuedTransitionsFinished), target, onFinishedMethod))
-            {
-                Connect(nameof(QueuedTransitionsFinished), target, onFinishedMethod, null,
-                    (uint)ConnectFlags.Oneshot);
-            }
+            if (transition is Node node)
+                AddChild(node);
         }
 
-        foreach (var entry in queuedTransitions)
-        {
-            entry.Visible = false;
-
-            // Add the transitions to the list for reference
-            TransitionSequence.Add(entry);
-        }
+        var sequence = new Sequence(transitions, onFinishedCallback) { Skippable = skippable };
+        transitionSequences.Enqueue(sequence);
 
         SaveHelper.AllowQuickSavingAndLoading = false;
-
-        // Begin the first transition in the queue
-        StartNextQueuedTransition();
     }
 
     /// <summary>
-    ///   Skips all the running and remaining transitions.
+    ///   Skips all the running and remaining transition sequences.
     /// </summary>
-    private void CancelQueuedTransitions()
+    private void CancelSequences()
     {
-        if (!HasQueuedTransitions)
-            return;
+        foreach (var sequence in transitionSequences)
+            sequence.Skip();
+    }
 
-        var transitions = new List<ITransition>(TransitionSequence);
+    /// <summary>
+    ///   A sequence of <see cref="ITransition"/>s. Has its own on finished callback.
+    /// </summary>
+    public class Sequence
+    {
+        private Queue<ITransition> queuedTransitions = new();
+        private Action? onFinishedCallback;
 
-        foreach (var entry in transitions)
+        public Sequence(List<ITransition> transitions, Action? onFinishedCallback)
         {
-            if (IsInstanceValid((Node)entry))
+            foreach (var transition in transitions)
             {
-                if (entry.Skippable)
-                    entry.OnFinished();
+                queuedTransitions.Enqueue(transition);
+            }
+
+            this.onFinishedCallback = onFinishedCallback;
+        }
+
+        public bool Skippable { get; set; }
+
+        public bool Finished { get; private set; }
+
+        public bool Running { get; private set; }
+
+        public void Skip()
+        {
+            if (!Skippable)
+                return;
+
+            foreach (var transition in queuedTransitions)
+                transition.Skip();
+        }
+
+        public void Process()
+        {
+            if (queuedTransitions.Count > 0)
+            {
+                if (!Running)
+                {
+                    Running = true;
+                    StartNext();
+                    return;
+                }
+
+                if (queuedTransitions.Peek().Finished)
+                {
+                    var previous = queuedTransitions.Dequeue();
+
+                    // Defer call to avoid possible "flickers"
+                    Invoke.Instance.Queue(() => previous.Clear());
+
+                    StartNext();
+                }
             }
         }
-    }
 
-    /// <summary>
-    ///   Starts the next queued transition when the previous ends.
-    /// </summary>
-    private void StartNextQueuedTransition()
-    {
-        // Assume all transitions are finished if the queue is empty.
-        if (queuedTransitions.Count == 0)
+        /// <summary>
+        ///   Starts the frontmost transition on the queue.
+        /// </summary>
+        private void StartNext()
         {
-            EmitSignal(nameof(QueuedTransitionsFinished));
-            TransitionSequence.Clear();
-            SaveHelper.AllowQuickSavingAndLoading = true;
-            return;
-        }
+            if (queuedTransitions.Count > 0)
+            {
+                var front = queuedTransitions.Peek();
+                front.Begin();
+                return;
+            }
 
-        var currentTransition = queuedTransitions.Dequeue();
-        currentTransition.Visible = true;
-        currentTransition.OnStarted();
+            // Assume all transitions are finished if the queue is empty.
+            Finished = true;
+            Running = false;
+            onFinishedCallback?.Invoke();
+        }
     }
 }

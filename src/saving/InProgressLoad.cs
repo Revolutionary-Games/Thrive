@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using Godot;
@@ -79,6 +80,11 @@ public class InProgressLoad
                 LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_GAME"),
                     MainGameState.Invalid,
                     TranslationServer.Translate("READING_SAVE_DATA"));
+
+                TransitionManager.Instance.AddSequence(new List<ITransition>()
+                {
+                    TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeIn, 0.5f),
+                }, null, false);
 
                 // Let all suppressed deletions happen
                 TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
@@ -187,8 +193,15 @@ public class InProgressLoad
 
                 if (success)
                 {
-                    LoadingScreen.Instance.Hide();
-                    SaveStatusOverlay.Instance.ShowMessage(message);
+                    TransitionManager.Instance.AddSequence(new List<ITransition>()
+                    {
+                        TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.5f),
+                    }, () => LoadingScreen.Instance.Hide(), false);
+
+                    TransitionManager.Instance.AddSequence(new List<ITransition>()
+                    {
+                        TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeIn, 0.5f),
+                    }, () => SaveStatusOverlay.Instance.ShowMessage(message), false);
                 }
                 else
                 {

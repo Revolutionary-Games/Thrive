@@ -371,8 +371,10 @@ public class SaveList : ScrollContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, true);
-        TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
+        TransitionManager.Instance.AddSequence(new List<ITransition>()
+        {
+            TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.3f),
+        }, LoadSave, true);
     }
 
     private void OnItemDoubleClicked(SaveListItem item)
