@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=13]
 [ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/general/NewGameSettings.tscn" type="PackedScene" id=17]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -419,6 +420,9 @@ visible = false
 [node name="SaveManagerGUI" parent="." instance=ExtResource( 2 )]
 visible = false
 
+[node name="NewGameSettings" parent="." instance=ExtResource( 17 )]
+visible = false
+
 [node name="LicensesDisplay" parent="." instance=ExtResource( 12 )]
 margin_top = 28.0
 margin_bottom = 628.0
@@ -514,6 +518,7 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
+[connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
 [connection signal="popup_hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]

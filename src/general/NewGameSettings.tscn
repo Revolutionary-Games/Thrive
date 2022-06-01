@@ -1,0 +1,259 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/general/NewGameSettings.cs" type="Script" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostTiny.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonActive.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/gui/bevel/randomizeButton.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/gui/bevel/randomizeButtonHover.png" type="Texture" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="NewGameSettings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+LAWKButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/VBoxContainer2/LAWK")
+GameSeedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
+ConfirmButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Confirm")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 365.0
+margin_top = 236.0
+margin_right = 915.0
+margin_bottom = 484.0
+custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 550.0
+margin_bottom = 208.0
+rect_min_size = Vector2( 550, 200 )
+
+[node name="Main" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 549.0
+margin_bottom = 207.0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Main"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 533.0
+margin_bottom = 191.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer"]
+margin_right = 518.0
+margin_bottom = 45.0
+
+[node name="LAWK" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/VBoxContainer2" instance=ExtResource( 4 )]
+margin_right = 125.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+text = "LAWK only"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/VBoxContainer2"]
+margin_top = 29.0
+margin_right = 518.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+text = "(restricts parts and abilities to only life as we know it)"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer"]
+margin_top = 55.0
+margin_right = 518.0
+margin_bottom = 80.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer"]
+margin_right = 250.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 250, 0 )
+text = "Difficulty preset"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer"]
+margin_left = 254.0
+margin_right = 314.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 2 )
+
+[node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer"]
+margin_left = 318.0
+margin_right = 518.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+text = "Normal"
+items = [ "Easy", null, false, 0, null, "Normal", null, false, 1, null, "Hard", null, false, 2, null ]
+selected = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer"]
+margin_top = 90.0
+margin_right = 518.0
+margin_bottom = 135.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer2"]
+margin_right = 151.0
+margin_bottom = 45.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_right = 151.0
+margin_bottom = 25.0
+mouse_filter = 0
+text = "Life origins"
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 29.0
+margin_right = 151.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+text = "(changes starting location)"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer2"]
+margin_left = 155.0
+margin_right = 314.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 3 )
+
+[node name="LifeOrigin" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer2"]
+margin_left = 318.0
+margin_right = 518.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+size_flags_vertical = 0
+text = "Hydrothermal vents"
+items = [ "Hydrothermal vents", null, false, 0, null, "Warm pond", null, false, 1, null, "Panspermia (random)", null, false, 2, null ]
+selected = 0
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer"]
+margin_top = 145.0
+margin_right = 518.0
+margin_bottom = 176.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer3"]
+margin_top = 3.0
+margin_right = 136.0
+margin_bottom = 28.0
+text = "Random seed"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer3"]
+margin_left = 140.0
+margin_right = 314.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 4 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer3"]
+margin_left = 318.0
+margin_right = 518.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 200, 0 )
+
+[node name="GameSeed" type="LineEdit" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer3/HBoxContainer"]
+margin_right = 155.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 155, 0 )
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer3/HBoxContainer"]
+margin_left = 159.0
+margin_right = 165.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 4 )
+
+[node name="RandomizeButton" type="TextureButton" parent="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer3/HBoxContainer"]
+margin_left = 169.0
+margin_right = 200.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 31, 31 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 8 )
+texture_disabled = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 213.0
+margin_right = 550.0
+margin_bottom = 248.0
+
+[node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 100.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 100, 35 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 104.0
+margin_right = 298.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 1 )
+
+[node name="Advanced" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 302.0
+margin_right = 459.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 100, 35 )
+focus_mode = 0
+disabled = true
+text = "Advanced view"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Confirm" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 463.0
+margin_right = 550.0
+margin_bottom = 35.0
+text = "Confirm"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/VBoxContainer2/LAWK" to="." method="OnLAWKToggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer/DifficultyPreset" to="." method="OnDifficultyPresetSelected"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer2/LifeOrigin" to="." method="OnLifeOriginSelected"]
+[connection signal="text_changed" from="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed" to="." method="OnGameSeedChanged"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Main/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButton" to="." method="OnRandomisedGameSeedPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Advanced" to="." method="OnAdvancedPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Confirm" to="." method="OnConfirmPressed"]

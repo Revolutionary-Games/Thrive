@@ -57,6 +57,7 @@ public class MainMenu : NodeWithInput
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
+    private NewGameSettings newGameSettings = null!;
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
     private ModManager modManager = null!;
@@ -188,6 +189,7 @@ public class MainMenu : NodeWithInput
         RandomizeBackground();
 
         options = GetNode<OptionsMenu>("OptionsMenu");
+        newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
@@ -286,7 +288,7 @@ public class MainMenu : NodeWithInput
         StartMusic();
     }
 
-    private void OnMicrobeIntroEnded()
+    public void OnMicrobeIntroEnded()
     {
         OnEnteringGame();
 
@@ -312,12 +314,25 @@ public class MainMenu : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Disable the button to prevent it being executed again.
-        newGameButton.Disabled = true;
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the options
+        newGameSettings.OpenFromMainMenu();
+
+        thriveLogo.Hide();
+    }
+
+    public void NewGameSetupDone(WorldGenerationSettings settings)
+    {
+        GUICommon.Instance.PlayButtonPressSound();
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
         Jukebox.Instance.SmoothStop();
+
+        // TBA do something with the settings
+        GD.Print(settings);
 
         if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
         {
@@ -390,6 +405,15 @@ public class MainMenu : NodeWithInput
     private void OnReturnFromOptions()
     {
         options.Visible = false;
+
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
+    }
+
+    private void OnReturnFromNewGameSettings()
+    {
+        newGameSettings.Visible = false;
 
         SetCurrentMenu(0, false);
 
