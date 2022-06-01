@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 public class Endosome : Spatial
 {
     [JsonIgnore]
-    public MeshInstance Mesh { get; private set; } = null!;
+    public MeshInstance? Mesh { get; private set; }
 
     public override void _Ready()
     {
@@ -18,10 +18,7 @@ public class Endosome : Spatial
 
     public void UpdateTint(Color colour)
     {
-        if (Mesh == null)
-            return;
-
-        var material = (ShaderMaterial)Mesh.MaterialOverride;
-        material.SetShaderParam("tint", colour);
+        var material = Mesh?.MaterialOverride as ShaderMaterial;
+        material?.SetShaderParam("tint", colour);
     }
 }
