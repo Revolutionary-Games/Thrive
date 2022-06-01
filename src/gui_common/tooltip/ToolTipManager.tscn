@@ -136,15 +136,15 @@ margin_bottom = 168.0
 [node name="VBoxContainer" parent="GroupHolder/editor/rigiditySlider/MarginContainer" index="0"]
 margin_bottom = 156.0
 
-[node name="CustomRichTextLabel" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="2"]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="3"]
 visible = false
 margin_top = 42.0
 margin_bottom = 42.0
 
-[node name="ModifierList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="4"]
 margin_top = 42.0
 margin_bottom = 86.0
 
@@ -216,11 +216,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="5"]
 margin_top = 101.0
 margin_bottom = 105.0
 
-[node name="Description" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="6"]
 margin_top = 120.0
 margin_bottom = 137.0
 
@@ -285,7 +285,7 @@ margin_bottom = 220.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer" index="0"]
 margin_bottom = 208.0
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 138.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -361,11 +361,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer" index="5"]
 margin_top = 153.0
 margin_bottom = 157.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer" index="6"]
 margin_top = 172.0
 margin_bottom = 189.0
 
@@ -389,7 +389,7 @@ margin_right = 299.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 210, 0 )
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -465,11 +465,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
 margin_bottom = 153.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer" index="6"]
 margin_top = 168.0
 margin_bottom = 185.0
 
@@ -486,7 +486,7 @@ margin_bottom = 220.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer" index="0"]
 margin_bottom = 208.0
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 138.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -562,11 +562,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer" index="5"]
 margin_top = 153.0
 margin_bottom = 157.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer" index="6"]
 margin_top = 172.0
 margin_bottom = 189.0
 
@@ -589,7 +589,7 @@ margin_right = 349.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 260, 0 )
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 138.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -665,11 +665,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer" index="5"]
 margin_top = 153.0
 margin_bottom = 157.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer" index="6"]
 margin_top = 172.0
 margin_bottom = 189.0
 
@@ -686,7 +686,7 @@ margin_bottom = 220.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer" index="0"]
 margin_bottom = 208.0
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 138.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -762,11 +762,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer" index="5"]
 margin_top = 153.0
 margin_bottom = 157.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer" index="6"]
 margin_top = 172.0
 margin_bottom = 189.0
 
@@ -783,7 +783,7 @@ margin_bottom = 216.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer" index="0"]
 margin_bottom = 208.0
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -859,11 +859,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
 margin_bottom = 153.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer" index="6"]
 margin_top = 168.0
 margin_bottom = 185.0
 
@@ -881,7 +881,7 @@ margin_bottom = 216.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer" index="0"]
 margin_bottom = 208.0
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -957,11 +957,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
 margin_bottom = 153.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer" index="6"]
 margin_top = 168.0
 margin_bottom = 185.0
 
@@ -978,7 +978,7 @@ margin_bottom = 240.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer" index="0"]
 margin_bottom = 232.0
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 158.0
 
 [node name="speed" type="HBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -1092,11 +1092,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer" index="5"]
 margin_top = 173.0
 margin_bottom = 177.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer" index="6"]
 margin_top = 192.0
 margin_bottom = 209.0
 
@@ -1113,7 +1113,7 @@ margin_bottom = 240.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/pilus/MarginContainer" index="0"]
 margin_bottom = 224.0
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 158.0
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -1152,11 +1152,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="5"]
 margin_top = 173.0
 margin_bottom = 177.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="6"]
 margin_top = 192.0
 margin_bottom = 209.0
 
@@ -1173,7 +1173,7 @@ margin_bottom = 240.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer" index="0"]
 margin_bottom = 224.0
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 158.0
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -1212,33 +1212,60 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="5"]
 margin_top = 173.0
 margin_bottom = 177.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="6"]
 margin_top = 192.0
 margin_bottom = 209.0
 
 [node name="cilia" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
 DisplayName = "CILIA"
-Description = "TO_BE_IMPLEMENTED"
+ProcessesDescription = "CILIA_PROCESSES_DESCRIPTION"
+Description = "CILIA_DESCRIPTION"
+MutationPointCost = 40
+RequiresNucleus = true
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/cilia/MarginContainer" index="0"]
-margin_bottom = 164.0
+margin_bottom = 184.0
 
-[node name="CustomRichTextLabel" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="1"]
-visible = false
+[node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList" index="0"]
+margin_top = 48.0
+margin_right = 318.0
+margin_bottom = 68.0
+mouse_filter = 2
+script = ExtResource( 21 )
+DisplayName = "OSMOREGULATION_COST"
+ModifierValue = "+1"
+ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
 
-[node name="ProcessList" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="2"]
-visible = false
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_top = 1.0
+margin_right = 16.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+1"
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="3"]
-visible = false
+[node name="Name" type="Label" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 20.0
+margin_right = 167.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "Osmoregulation Cost"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer" index="4"]
-visible = false
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 171.0
+margin_right = 191.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
 
 [node name="bindingAgent" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
@@ -1246,6 +1273,7 @@ DisplayName = "BINDING_AGENT"
 ProcessesDescription = "BINDING_AGENT_PROCESSES_DESCRIPTION"
 Description = "BINDING_AGENT_DESCRIPTION"
 MutationPointCost = 55
+RequiresNucleus = true
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer" index="0"]
 margin_bottom = 208.0
@@ -1336,7 +1364,7 @@ margin_bottom = 216.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/nucleus/MarginContainer" index="0"]
 margin_bottom = 208.0
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -1412,11 +1440,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
 margin_bottom = 153.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer" index="6"]
 margin_top = 168.0
 margin_bottom = 185.0
 
@@ -1426,6 +1454,7 @@ DisplayName = "MITOCHONDRION"
 ProcessesDescription = "MITOCHONDRION_PROCESSES_DESCRIPTION"
 Description = "MITOCHONDRION_DESCRIPTION"
 MutationPointCost = 45
+RequiresNucleus = true
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer" index="0"]
 margin_bottom = 208.0
@@ -1510,6 +1539,7 @@ DisplayName = "CHLOROPLAST"
 ProcessesDescription = "CHLOROPLAST_PROCESSES_DESCRIPTION"
 Description = "CHLOROPLAST_DESCRIPTION"
 MutationPointCost = 50
+RequiresNucleus = true
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer" index="0"]
 margin_bottom = 208.0
@@ -1594,6 +1624,7 @@ DisplayName = "THERMOPLAST"
 ProcessesDescription = "THERMOPLAST_PROCESSES_DESCRIPTION"
 Description = "THERMOPLAST_DESCRIPTION"
 MutationPointCost = 40
+RequiresNucleus = true
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/thermoplast" index="0"]
 margin_bottom = 271.0
@@ -1601,7 +1632,7 @@ margin_bottom = 271.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer" index="0"]
 margin_bottom = 259.0
 
-[node name="ProcessList" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessList" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="3"]
 margin_bottom = 98.0
 
 [node name="Label" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer/ProcessList" index="0"]
@@ -1610,7 +1641,7 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 27 )
 text = "NO_ORGANELLE_PROCESSES"
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="4"]
 margin_top = 113.0
 margin_bottom = 157.0
 
@@ -1687,7 +1718,7 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="6"]
 margin_top = 172.0
 margin_bottom = 176.0
 
@@ -1699,7 +1730,7 @@ custom_fonts/font = ExtResource( 26 )
 text = "TO_BE_IMPLEMENTED"
 autowrap = true
 
-[node name="Description" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="6"]
+[node name="Description" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="7"]
 margin_top = 223.0
 margin_bottom = 240.0
 
@@ -1709,6 +1740,7 @@ DisplayName = "CHEMOPLAST"
 ProcessesDescription = "CHEMOPLAST_PROCESSES_DESCRIPTION"
 Description = "CHEMOPLAST_DESCRIPTION"
 MutationPointCost = 45
+RequiresNucleus = true
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer" index="0"]
 margin_bottom = 208.0
@@ -1793,6 +1825,7 @@ DisplayName = "NITROGEN_FIXING_PLASTID"
 ProcessesDescription = "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 Description = "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 MutationPointCost = 50
+RequiresNucleus = true
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/nitrogenfixingplastid" index="0"]
 margin_bottom = 216.0
@@ -1800,7 +1833,7 @@ margin_bottom = 216.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer" index="0"]
 margin_bottom = 208.0
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -1876,11 +1909,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
 margin_bottom = 153.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer" index="6"]
 margin_top = 168.0
 margin_bottom = 185.0
 
@@ -1891,6 +1924,7 @@ DisplayName = "VACUOLE"
 ProcessesDescription = "VACUOLE_PROCESSES_DESCRIPTION"
 Description = "VACUOLE_DESCRIPTION"
 MutationPointCost = 50
+RequiresNucleus = true
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/vacuole" index="0"]
 margin_bottom = 216.0
@@ -1898,7 +1932,7 @@ margin_bottom = 216.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/vacuole/MarginContainer" index="0"]
 margin_bottom = 208.0
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -1974,11 +2008,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
 margin_bottom = 153.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer" index="6"]
 margin_top = 168.0
 margin_bottom = 185.0
 
@@ -1988,6 +2022,7 @@ DisplayName = "TOXIN_VACUOLE"
 ProcessesDescription = "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 Description = "TOXIN_VACUOLE_DESCRIPTION"
 MutationPointCost = 55
+RequiresNucleus = true
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/oxytoxy" index="0"]
 margin_bottom = 216.0
@@ -1995,7 +2030,7 @@ margin_bottom = 216.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer" index="0"]
 margin_bottom = 208.0
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -2071,11 +2106,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
 margin_bottom = 153.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer" index="6"]
 margin_top = 168.0
 margin_bottom = 185.0
 
@@ -2085,6 +2120,7 @@ DisplayName = "SIGNALING_AGENT"
 ProcessesDescription = "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 Description = "SIGNALING_AGENT_DESCRIPTION"
 MutationPointCost = 45
+RequiresNucleus = true
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/signalingAgent" index="0"]
 margin_bottom = 216.0
@@ -2092,7 +2128,7 @@ margin_bottom = 216.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer" index="0"]
 margin_bottom = 208.0
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer/VBoxContainer/ModifierList" index="0"]
@@ -2168,11 +2204,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
 margin_bottom = 153.0
 
-[node name="Description" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer/VBoxContainer" index="6"]
 margin_top = 168.0
 margin_bottom = 185.0
 
@@ -2181,23 +2217,24 @@ visible = false
 margin_bottom = 173.0
 DisplayName = "BIOLUMINESCENT_VACUOLE"
 Description = "TO_BE_IMPLEMENTED"
+RequiresNucleus = true
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer" index="0"]
 margin_bottom = 164.0
 
-[node name="CustomRichTextLabel" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="2"]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessList" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="3"]
 visible = false
 
-[node name="ModifierList" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="4"]
 visible = false
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="5"]
 visible = false
 
-[node name="Description" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/organelleSelection/bioluminescentVacuole/MarginContainer/VBoxContainer" index="6"]
 margin_top = 42.0
 margin_bottom = 59.0
 
@@ -2254,15 +2291,15 @@ margin_bottom = 264.0
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer" index="0"]
 margin_bottom = 248.0
 
-[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="2"]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="3"]
 visible = false
 margin_top = 42.0
 margin_bottom = 42.0
 
-[node name="ModifierList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="4"]
 margin_top = 42.0
 margin_bottom = 134.0
 
@@ -2402,11 +2439,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
 margin_bottom = 153.0
 
-[node name="Description" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer" index="6"]
 margin_top = 168.0
 margin_bottom = 185.0
 
@@ -2422,15 +2459,15 @@ margin_bottom = 264.0
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer" index="0"]
 margin_bottom = 248.0
 
-[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="2"]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="3"]
 visible = false
 margin_top = 42.0
 margin_bottom = 42.0
 
-[node name="ModifierList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="4"]
 margin_top = 42.0
 margin_bottom = 134.0
 
@@ -2566,11 +2603,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="5"]
 margin_top = 149.0
 margin_bottom = 153.0
 
-[node name="Description" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer" index="6"]
 margin_top = 168.0
 margin_bottom = 185.0
 
@@ -2586,15 +2623,15 @@ margin_bottom = 312.0
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer" index="0"]
 margin_bottom = 296.0
 
-[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="2"]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="3"]
 visible = false
 margin_top = 42.0
 margin_bottom = 42.0
 
-[node name="ModifierList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="4"]
 margin_top = 42.0
 margin_bottom = 182.0
 
@@ -2801,11 +2838,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="5"]
 margin_top = 197.0
 margin_bottom = 201.0
 
-[node name="Description" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer" index="6"]
 margin_top = 216.0
 margin_bottom = 233.0
 
@@ -2821,15 +2858,15 @@ margin_bottom = 264.0
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer" index="0"]
 margin_bottom = 252.0
 
-[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="2"]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="3"]
 visible = false
 margin_top = 42.0
 margin_bottom = 42.0
 
-[node name="ModifierList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="4"]
 margin_top = 42.0
 margin_bottom = 182.0
 
@@ -3036,11 +3073,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="5"]
 margin_top = 197.0
 margin_bottom = 201.0
 
-[node name="Description" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="6"]
 margin_top = 216.0
 margin_bottom = 233.0
 
@@ -3056,13 +3093,13 @@ margin_bottom = 288.0
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer" index="0"]
 margin_bottom = 276.0
 
-[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="2"]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="3"]
 visible = false
 
-[node name="ModifierList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="4"]
 margin_top = 42.0
 margin_bottom = 206.0
 
@@ -3303,11 +3340,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="5"]
 margin_top = 221.0
 margin_bottom = 225.0
 
-[node name="Description" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="6"]
 margin_top = 240.0
 margin_bottom = 257.0
 
@@ -3324,15 +3361,15 @@ margin_bottom = 288.0
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer" index="0"]
 margin_bottom = 276.0
 
-[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="1"]
+[node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="2"]
 visible = false
 
-[node name="ProcessList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="2"]
+[node name="ProcessList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="3"]
 visible = false
 margin_top = 42.0
 margin_bottom = 42.0
 
-[node name="ModifierList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="3"]
+[node name="ModifierList" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="4"]
 margin_top = 42.0
 margin_bottom = 206.0
 
@@ -3573,11 +3610,11 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="4"]
+[node name="HSeparator" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="5"]
 margin_top = 221.0
 margin_bottom = 225.0
 
-[node name="Description" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="5"]
+[node name="Description" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="6"]
 margin_top = 240.0
 margin_bottom = 257.0
 
@@ -3588,52 +3625,62 @@ mouse_filter = 2
 
 [node name="cytoplasm" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/cytoplasm/MarginContainer/VBoxContainer/Description")
 
 [node name="metabolosome" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/metabolosome/MarginContainer/VBoxContainer/Description")
 
 [node name="chromatophore" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/chromatophore/MarginContainer/VBoxContainer/Description")
 
 [node name="chemoSynthesizingProteins" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="rusticyanin" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/rusticyanin/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenase" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/nitrogenase/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxyProteins" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/oxytoxyProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="mitochondrion" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/mitochondrion/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenfixingplastid" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/nitrogenfixingplastid/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxy" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../processesProduction/oxytoxy/MarginContainer/VBoxContainer/Description")
 
 [node name="processesConsumption" type="Control" parent="GroupHolder"]
@@ -3643,52 +3690,68 @@ mouse_filter = 2
 
 [node name="osmoregulation" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/osmoregulation/MarginContainer/VBoxContainer/Description")
 
 [node name="baseMovement" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/baseMovement/MarginContainer/VBoxContainer/Description")
 
 [node name="chromatophore" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/chromatophore/MarginContainer/VBoxContainer/Description")
 
 [node name="chemoSynthesizingProteins" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="rusticyanin" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/rusticyanin/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenase" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/nitrogenase/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxyProteins" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/oxytoxyProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="flagellum" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/flagellum/MarginContainer/VBoxContainer/Description")
+
+[node name="cilia" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
+visible = false
+DisplayDelay = 0.0
+Positioning = 1
+DescriptionLabelPath = NodePath("../flagellum/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenfixingplastid" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/nitrogenfixingplastid/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxy" parent="GroupHolder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
-DisplayDelay = 0.5
+DisplayDelay = 0.0
+Positioning = 1
 DescriptionLabelPath = NodePath("../../../GroupHolder/processesConsumption/oxytoxy/MarginContainer/VBoxContainer/Description")
 
 [node name="options" type="Control" parent="GroupHolder"]

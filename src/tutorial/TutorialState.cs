@@ -12,16 +12,10 @@ using Tutorial;
 public class TutorialState : ITutorialInput
 {
     /// <summary>
-    ///   Pause state to return the game to when a tutorial popup that paused the game is closed
+    ///   True when the tutorial has paused the game
     /// </summary>
     [JsonProperty]
     private bool hasPaused;
-
-    /// <summary>
-    ///   Pause state to return the game to when a tutorial popup that paused the game is closed
-    /// </summary>
-    [JsonProperty]
-    private bool returnToPauseState;
 
     private bool needsToApplyEvenIfDisabled;
 
@@ -200,7 +194,7 @@ public class TutorialState : ITutorialInput
         HandlePausing(gui);
 
         // Pause if the game is paused, but we didn't want to pause things
-        if (gui.GUINode.GetTree().Paused && !WantsGamePaused)
+        if (PauseManager.Instance.Paused && !WantsGamePaused)
         {
             // Apply GUI states anyway to not have a chance of locking a tutorial on screen
             ApplyGUIState(gui);
@@ -317,18 +311,7 @@ public class TutorialState : ITutorialInput
                     return;
 
                 // Pause
-                returnToPauseState = gui.GUINode.GetTree().Paused;
-
-                if (InProgressSave.IsSaving)
-                {
-                    // I'd hope this never happens but at least in developing individual scenes and things this can
-                    // happen, so we don't at least want to softlock here
-                    GD.Print("Overriding tutorial return pause state as save is in progress, " +
-                        "this shouldn't happen in normal gameplay");
-                    returnToPauseState = false;
-                }
-
-                gui.GUINode.GetTree().Paused = true;
+                PauseManager.Instance.AddPause(nameof(TutorialState));
                 hasPaused = true;
             }
         }
@@ -336,7 +319,8 @@ public class TutorialState : ITutorialInput
 
     private void UnPause(ITutorialGUI gui)
     {
-        gui.GUINode.GetTree().Paused = returnToPauseState;
+        if (hasPaused)
+            PauseManager.Instance.Resume(nameof(TutorialState));
         hasPaused = false;
     }
 

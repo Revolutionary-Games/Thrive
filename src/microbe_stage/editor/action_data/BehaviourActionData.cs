@@ -1,20 +1,20 @@
 ﻿using System;
 
 [JSONAlwaysDynamicType]
-public class BehaviourActionData : MicrobeEditorCombinableActionData
+public class BehaviourActionData : EditorCombinableActionData
 {
-    public float OldValue;
     public float NewValue;
+    public float OldValue;
     public BehaviouralValueType Type;
 
-    public BehaviourActionData(float oldValue, float newValue, BehaviouralValueType type)
+    public BehaviourActionData(float newValue, float oldValue, BehaviouralValueType type)
     {
         OldValue = oldValue;
         NewValue = newValue;
         Type = type;
     }
 
-    public override int CalculateCost()
+    protected override int CalculateCostInternal()
     {
         // TODO: should this be free?
         return 0;

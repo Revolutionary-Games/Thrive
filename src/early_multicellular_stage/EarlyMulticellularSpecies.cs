@@ -31,6 +31,18 @@ public class EarlyMulticellularSpecies : Species
     [JsonIgnore]
     public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
 
+    public override void OnEdited()
+    {
+        RepositionToOrigin();
+        UpdateInitialCompounds();
+
+        // Make certain these are all up to date
+        foreach (var cellType in CellTypes)
+        {
+            cellType.CalculateRotationSpeed();
+        }
+    }
+
     public override void RepositionToOrigin()
     {
         // TODO: should this actually reposition things as the cell at index 0 is always the colony leader so if it

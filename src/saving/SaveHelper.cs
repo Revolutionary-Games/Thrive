@@ -22,6 +22,11 @@ public static class SaveHelper
         "0.5.9.0-alpha",
     };
 
+    private static readonly IReadOnlyList<MainGameState> StagesAllowingPrototypeSaving = new[]
+    {
+        MainGameState.MicrobeStage,
+    };
+
     private static DateTime? lastSave;
 
     public enum SaveOrder
@@ -496,6 +501,9 @@ public static class SaveHelper
         if (!save.SavedProperties!.InPrototypes)
             return false;
 
+        if (StagesAllowingPrototypeSaving.Contains(save.GameState))
+            return false;
+
         SetMessageAboutPrototypeSaving(inProgress);
         return true;
     }
@@ -508,6 +516,10 @@ public static class SaveHelper
 
     private static void PerformSave(InProgressSave inProgress, Save save)
     {
+        // Ensure prototype state flag is also in the info data for use by the save list
+        save.Info.IsPrototype = save.SavedProperties?.InPrototypes ??
+            throw new InvalidOperationException("Saved properties of a save to write to disk is unset");
+
         try
         {
             save.SaveToFile();

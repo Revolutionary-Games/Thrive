@@ -54,8 +54,13 @@ public class MicrobeSpecies : Species, ICellProperties
     [JsonIgnore]
     public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
 
+    // Even though these properties say "base" it includes the specialized organelle factors. Base refers here to
+    // the fact that these are the values when a cell is freshly spawned and has no reproduction progress.
     [JsonIgnore]
     public float BaseSpeed => MicrobeInternalCalculations.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
+
+    [JsonProperty]
+    public float BaseRotationSpeed { get; set; } = Constants.CELL_BASE_ROTATION;
 
     /// <summary>
     ///   This is the base size of this species. Meaning that this is the engulf size of microbes of this species when
@@ -66,9 +71,21 @@ public class MicrobeSpecies : Species, ICellProperties
     public float BaseHexSize => Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount)
         * (IsBacteria ? 0.5f : 1.0f);
 
+    public override void OnEdited()
+    {
+        RepositionToOrigin();
+        UpdateInitialCompounds();
+        CalculateRotationSpeed();
+    }
+
     public override void RepositionToOrigin()
     {
         Organelles.RepositionToOrigin();
+    }
+
+    public void CalculateRotationSpeed()
+    {
+        BaseRotationSpeed = MicrobeInternalCalculations.CalculateRotationSpeed(Organelles);
     }
 
     public void SetInitialCompoundsForDefault()

@@ -96,7 +96,7 @@ public class GameProperties
         playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
             new Hex(0, 1), 0));
 
-        playerSpecies.RepositionToOrigin();
+        playerSpecies.OnEdited();
 
         game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
 

@@ -112,6 +112,15 @@ public class ProcessSystem
                 }
             }
 
+            if (organelle.Definition.HasComponentFactory<CiliaComponentFactory>())
+            {
+                var amount = Constants.CILIA_ENERGY_COST;
+
+                movementATPConsumption += amount;
+                result.Cilia += amount;
+                result.AddConsumption(organelle.Definition.InternalName, amount);
+            }
+
             // Store hex count
             hexCount += organelle.Definition.HexCount;
         }

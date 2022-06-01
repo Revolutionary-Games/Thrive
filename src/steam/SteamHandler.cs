@@ -186,15 +186,15 @@ public class SteamHandler : Node, ISteamSignalReceiver
     /// <param name="active">True if overlay active</param>
     public void OverlayStatusChanged(bool active)
     {
-        if (active && !GetTree().Paused)
+        if (active && !wePaused)
         {
+            PauseManager.Instance.AddPause(nameof(SteamHandler));
             wePaused = true;
-            GetTree().Paused = true;
         }
-        else if (!active && GetTree().Paused && wePaused)
+        else if (!active && wePaused)
         {
+            PauseManager.Instance.Resume(nameof(SteamHandler));
             wePaused = false;
-            GetTree().Paused = false;
         }
 
         steamClient?.OverlayStatusChanged(active);
