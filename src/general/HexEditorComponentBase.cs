@@ -23,9 +23,6 @@ public abstract class
     public NodePath EditorArrowPath = null!;
 
     [Export]
-    public NodePath EditorGridPath = null!;
-
-    [Export]
     public NodePath CameraFollowPath = null!;
 
     [Export]
@@ -56,6 +53,8 @@ public abstract class
     /// </summary>
     protected readonly List<SceneDisplayer> placedModels = new();
 
+    protected readonly List<MeshInstance> hoverGrids = new();
+
     /// <summary>
     ///   Object camera is over. Used to mov ethe camera around
     /// </summary>
@@ -66,8 +65,6 @@ public abstract class
     [JsonIgnore]
     protected MeshInstance editorArrow = null!;
 
-    protected MeshInstance editorGrid = null!;
-
     protected Material invalidMaterial = null!;
     protected Material validMaterial = null!;
     protected Material oldMaterial = null!;
@@ -75,6 +72,7 @@ public abstract class
 
     protected PackedScene hexScene = null!;
     protected PackedScene modelScene = null!;
+    protected PackedScene editorGridScene = null!;
 
     protected AudioStream hexPlacementSound = null!;
 
@@ -93,6 +91,8 @@ public abstract class
     protected int usedHoverHex;
 
     protected int usedHoverModel;
+
+    protected int usedhoverGrids;
 
     [JsonProperty]
     protected int placementRotation;
@@ -210,7 +210,6 @@ public abstract class
 
         camera = GetNode<MicrobeCamera>(CameraPath);
         editorArrow = GetNode<MeshInstance>(EditorArrowPath);
-        editorGrid = GetNode<MeshInstance>(EditorGridPath);
         cameraFollow = GetNode<Spatial>(CameraFollowPath);
 
         camera.Connect(nameof(MicrobeCamera.OnZoomChanged), this, nameof(OnZoomChanged));
@@ -251,6 +250,7 @@ public abstract class
         for (int i = 0; i < Constants.MAX_SYMMETRY; ++i)
         {
             hoverModels.Add(CreatePreviewModelHolder());
+            hoverGrids.Add(CreateEditorGrid());
         }
 
         // The world is reset each time so these are gone. We throw an exception if that's not the case as that
@@ -300,7 +300,11 @@ public abstract class
     public void SetEditorWorldGuideObjectVisibility(bool shown)
     {
         editorArrow.Visible = shown;
-        editorGrid.Visible = shown;
+
+        foreach (var hoverGrid in hoverGrids)
+        {
+            hoverGrid.Visible = shown;
+        }
     }
 
     public void UpdateCamera()
@@ -613,6 +617,12 @@ public abstract class
             model.Visible = false;
         }
 
+        foreach (var grid in hoverGrids)
+        {
+            grid.Translation = new Vector3(0, 0, 0);
+            grid.Visible = false;
+        }
+
         // This is also highly non-optimal to update the hex locations
         // and materials all the time
 
@@ -626,9 +636,7 @@ public abstract class
 
         usedHoverHex = 0;
         usedHoverModel = 0;
-
-        editorGrid.Translation = camera!.CursorWorldPos;
-        editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
+        usedhoverGrids = 0;
     }
 
     public void OnNoPropertiesLoaded()
@@ -683,6 +691,13 @@ public abstract class
         return node;
     }
 
+    protected MeshInstance CreateEditorGrid()
+    {
+        var grid = (MeshInstance)editorGridScene.Instance();
+        Editor.RootOfDynamicallySpawned.AddChild(grid);
+        return grid;
+    }
+
     protected virtual void LoadHexMaterials()
     {
         invalidMaterial = GD.Load<Material>("res://src/microbe_stage/editor/InvalidHex.material");
@@ -695,6 +710,7 @@ public abstract class
     {
         hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
+        editorGridScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorGrid.tscn");
     }
 
     protected virtual void LoadAudioStreams()
@@ -962,6 +978,11 @@ public abstract class
 
             hoverHex.MaterialOverride = canPlace ? validMaterial : invalidMaterial;
         }
+
+        var hoverGrid = hoverGrids[usedhoverGrids++];
+
+        hoverGrid.Translation = Hex.AxialToCartesian(new Hex(q, r));
+        hoverGrid.Visible = true;
     }
 
     protected void UpdateAlreadyPlacedHexes(

@@ -43,7 +43,6 @@ __meta__ = {
 visible = false
 CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
 EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
-EditorGridPath = NodePath("../../EditorWorld/Grid")
 CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
 
 [node name="Report" parent="MicrobeEditorGUI" instance=ExtResource( 6 )]
