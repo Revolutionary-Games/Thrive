@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-27 11:33+0100\n"
+"POT-Creation-Date: 2022-05-31 15:29+0100\n"
 "PO-Revision-Date: 2022-03-14 21:22+0000\n"
 "Last-Translator: Lazare Chikhradze <lazaresali@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -243,12 +243,12 @@ msgid "ABILITIES"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2142
+#: ../src/microbe_stage/MicrobeStage.tscn:2178
 msgid "FIRE_TOXIN"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2130
+#: ../src/microbe_stage/MicrobeStage.tscn:2166
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
@@ -257,7 +257,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2153
+#: ../src/microbe_stage/MicrobeStage.tscn:2189
 msgid "TOGGLE_BINDING"
 msgstr ""
 
@@ -266,7 +266,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2165
+#: ../src/microbe_stage/MicrobeStage.tscn:2201
 msgid "UNBIND_ALL"
 msgstr ""
 
@@ -379,34 +379,38 @@ msgid "MISCELLANEOUS"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:184
-msgid "TOGGLE_FPS"
+msgid "TOGGLE_PAUSE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:188
-msgid "TOGGLE_METRICS"
+msgid "TOGGLE_FPS"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:192
-msgid "QUICK_SAVE"
+msgid "TOGGLE_METRICS"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:196
-msgid "QUICK_LOAD"
+msgid "QUICK_SAVE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:200
-msgid "TAKE_SCREENSHOT"
+msgid "QUICK_LOAD"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:204
-msgid "SHOW_HELP"
+msgid "TAKE_SCREENSHOT"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:208
-msgid "TOGGLE_FULLSCREEN"
+msgid "SHOW_HELP"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:212
+msgid "TOGGLE_FULLSCREEN"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:216
 msgid "TOGGLE_HUD_HIDE"
 msgstr ""
 
@@ -553,36 +557,36 @@ msgid "ATP"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1301
+#: ../src/microbe_stage/MicrobeStage.tscn:1305
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "AMMONIA"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1353
+#: ../src/microbe_stage/MicrobeStage.tscn:1357
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
 msgid "PHOSPHATE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1405
+#: ../src/microbe_stage/MicrobeStage.tscn:1409
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1249
+#: ../src/microbe_stage/MicrobeStage.tscn:1253
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "GLUCOSE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1587
+#: ../src/microbe_stage/MicrobeStage.tscn:1591
 msgid "OXYTOXY_NT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1457
+#: ../src/microbe_stage/MicrobeStage.tscn:1461
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "IRON"
 msgstr ""
@@ -1472,7 +1476,7 @@ msgstr ""
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:265
-#: ../src/microbe_stage/MicrobeHUD.cs:708
+#: ../src/microbe_stage/MicrobeHUD.cs:721
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
@@ -2575,7 +2579,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1474
+#: ../src/microbe_stage/MicrobeHUD.cs:1497
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
@@ -2751,121 +2755,125 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:543
+#: ../src/microbe_stage/MicrobeHUD.cs:556
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:544
+#: ../src/microbe_stage/MicrobeHUD.cs:557
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:545
+#: ../src/microbe_stage/MicrobeHUD.cs:558
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:546
+#: ../src/microbe_stage/MicrobeHUD.cs:559
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:547
+#: ../src/microbe_stage/MicrobeHUD.cs:560
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:550
+#: ../src/microbe_stage/MicrobeHUD.cs:563
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:877
+#: ../src/microbe_stage/MicrobeHUD.cs:811
+msgid "PAUSE_PROMPT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:925
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:910
+#: ../src/microbe_stage/MicrobeHUD.cs:958
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:927
+#: ../src/microbe_stage/MicrobeHUD.cs:975
 msgid "SPECIES_N_TIMES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:972
+#: ../src/microbe_stage/MicrobeHUD.cs:1020
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:974
+#: ../src/microbe_stage/MicrobeHUD.cs:1022
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:976
+#: ../src/microbe_stage/MicrobeHUD.cs:1024
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:978
+#: ../src/microbe_stage/MicrobeHUD.cs:1026
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:980
+#: ../src/microbe_stage/MicrobeHUD.cs:1028
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:982
+#: ../src/microbe_stage/MicrobeHUD.cs:1030
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1233
-#: ../src/microbe_stage/MicrobeStage.tscn:1788
+#: ../src/microbe_stage/MicrobeHUD.cs:1281
+#: ../src/microbe_stage/MicrobeStage.tscn:1792
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1269
-#: ../src/microbe_stage/MicrobeStage.tscn:1799
+#: ../src/microbe_stage/MicrobeHUD.cs:1317
+#: ../src/microbe_stage/MicrobeStage.tscn:1803
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:755
+#: ../src/microbe_stage/MicrobeStage.cs:765
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:769
+#: ../src/microbe_stage/MicrobeStage.cs:779
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:792
+#: ../src/microbe_stage/MicrobeStage.cs:802
 msgid "PLAYER_DIED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:518
+#: ../src/microbe_stage/MicrobeStage.tscn:522
 msgid "AT_CURSOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:544
+#: ../src/microbe_stage/MicrobeStage.tscn:548
 msgid "NOTHING_HERE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:569
+#: ../src/microbe_stage/MicrobeStage.tscn:573
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:609
+#: ../src/microbe_stage/MicrobeStage.tscn:613
 msgid "SPECIES_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:689
+#: ../src/microbe_stage/MicrobeStage.tscn:693
 msgid "ENVIRONMENT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:957
+#: ../src/microbe_stage/MicrobeStage.tscn:961
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1013
+#: ../src/microbe_stage/MicrobeStage.tscn:1017
 msgid "LIGHT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1068
+#: ../src/microbe_stage/MicrobeStage.tscn:1072
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1151
+#: ../src/microbe_stage/MicrobeStage.tscn:1155
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
@@ -2873,44 +2881,48 @@ msgstr ""
 msgid "COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1527
+#: ../src/microbe_stage/MicrobeStage.tscn:1531
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1625
+#: ../src/microbe_stage/MicrobeStage.tscn:1629
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1643
+#: ../src/microbe_stage/MicrobeStage.tscn:1647
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeStage.tscn:1660
 msgid "RESUME_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1669
+#: ../src/microbe_stage/MicrobeStage.tscn:1673
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1684
+#: ../src/microbe_stage/MicrobeStage.tscn:1688
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1721
+#: ../src/microbe_stage/MicrobeStage.tscn:1725
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1733
+#: ../src/microbe_stage/MicrobeStage.tscn:1737
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1784
+#: ../src/microbe_stage/MicrobeStage.tscn:1788
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1819
+#: ../src/microbe_stage/MicrobeStage.tscn:1823
 msgid "POPULATION_CAPITAL"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:2121
+msgid "PAUSED"
 msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:187
