@@ -1402,7 +1402,7 @@ public partial class Microbe
         engulfable.EntityGraphics.AddChild(engulfedObject.Endosome);
 
         var endosomeMesh = engulfedObject.Endosome.Mesh;
-        var endosomeMaterial = (ShaderMaterial)endosomeMesh.MaterialOverride;
+        var endosomeMaterial = (ShaderMaterial)endosomeMesh!.MaterialOverride;
 
         endosomeMaterial.RenderPriority = Mathf.Max(
             endosomeMaterial.RenderPriority, target.EntityMaterial.RenderPriority + 1);
