@@ -394,7 +394,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
                 AddChild(engulfable.EntityNode);
                 engulfable.EntityGraphics.AddChild(engulfed.Endosome);
-                engulfed.Endosome.Mesh.MaterialOverride = endosomeMaterial;
+                engulfed.Endosome.UpdateTint(CellTypeProperties.Colour);
             }
         }
 
@@ -622,13 +622,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             }
         }
 
-        // Disable membrane wigglyness and restore membrane color if this cell got engulfed
-        if (CurrentEngulfmentStep != EngulfmentStep.NotEngulfed && Membrane.WigglyNess > 0 &&
-            Membrane.Tint != CellTypeProperties.Colour)
-        {
+        if (CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)
             Membrane.WigglyNess = 0;
-            Membrane.Tint = CellTypeProperties.Colour;
-        }
 
         // The code below starting from here is not needed for a display-only or engulfed cell
         if (IsForPreviewOnly || CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)

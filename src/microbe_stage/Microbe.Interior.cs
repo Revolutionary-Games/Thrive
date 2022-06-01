@@ -1160,7 +1160,7 @@ public partial class Microbe
             if (totalAmountLeft <= 0 || engulfable.DigestionProgress >= 1)
             {
                 engulfStorage -= engulfable.Size;
-                engulfable.CurrentEngulfmentStep = EngulfmentStep.FullyDigested;
+                engulfable.CurrentEngulfmentStep = EngulfmentStep.Digested;
             }
 
             // Eject this object as it has no use

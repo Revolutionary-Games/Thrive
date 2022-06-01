@@ -52,7 +52,6 @@ public partial class Microbe
     // private MeshInstance pseudopodTarget = null!;
 
     private PackedScene endosomeScene = null!;
-    private SpatialMaterial? endosomeMaterial;
 
     /// <summary>
     ///   The available space left to store engulfable objects from engulfment.
@@ -436,6 +435,8 @@ public partial class Microbe
     {
         OnIngested?.Invoke(this, HostileEngulfer.Value!);
 
+        Membrane.WigglyNess = 0;
+
         // Make the render priority of our organelles be on top of the highest possible render priority
         // of the hostile engulfer's organelles
         if (HostileEngulfer.Value != null)
@@ -451,6 +452,9 @@ public partial class Microbe
 
     public void OnEjected()
     {
+        // Reset wigglyness
+        ApplyMembraneWigglyness();
+
         // Reset our organelles' render priority back to their original value
         foreach (var organelle in organelles!)
         {
@@ -831,8 +835,10 @@ public partial class Microbe
         Membrane.Dirty = true;
         ApplyMembraneWigglyness();
 
-        endosomeMaterial ??= new SpatialMaterial { FlagsTransparent = true };
-        endosomeMaterial.AlbedoColor = new Color(CellTypeProperties.Colour, 0.3f);
+        foreach (var engulfed in engulfedObjects)
+        {
+            engulfed.Endosome.UpdateTint(CellTypeProperties.Colour);
+        }
     }
 
     private void CheckEngulfShape()
@@ -1023,7 +1029,7 @@ public partial class Microbe
 
             body.Mode = ModeEnum.Static;
 
-            if (engulfable?.CurrentEngulfmentStep == EngulfmentStep.FullyDigested)
+            if (engulfable?.CurrentEngulfmentStep == EngulfmentStep.Digested)
             {
                 engulfedObject.ValuesToLerp = (null, null, Vector3.One * Mathf.Epsilon);
                 StartEngulfmentLerp(engulfedObject, 1.0f, false);
@@ -1040,7 +1046,7 @@ public partial class Microbe
                     case EngulfmentStep.BeingEngulfed:
                         CompleteIngestion(engulfedObject);
                         break;
-                    case EngulfmentStep.FullyDigested:
+                    case EngulfmentStep.Digested:
                         engulfable.DestroyDetachAndQueueFree();
                         engulfedObjects.Remove(engulfedObject);
                         break;
@@ -1362,22 +1368,19 @@ public partial class Microbe
             body.Translation.y,
             random.Next(0.0f, viableStoringAreaEdge.z));
 
-        var aabb = target.EntityGraphics.GetAabb().Size;
+        var boundingBoxSize = target.EntityGraphics.GetAabb().Size;
 
         // In the case of flat mesh (like membrane) we don't want the endosome to end up completely flat
         // as it can cause unwanted visual glitch
-        var aabbClamped = new Vector3(aabb.x, Mathf.Clamp(aabb.y, Mathf.Epsilon, Mathf.Inf), aabb.z);
+        if (boundingBoxSize.y < Mathf.Epsilon)
+            boundingBoxSize = new Vector3(boundingBoxSize.x, 0.1f, boundingBoxSize.z);
 
         var engulfedObject = new EngulfedObject(target)
         {
-            ValuesToLerp = (finalPosition, body.Scale / 2, aabbClamped),
+            ValuesToLerp = (finalPosition, body.Scale / 2, boundingBoxSize),
             OriginalScale = body.Scale,
             OriginalRenderPriority = target.EntityMaterial.RenderPriority,
         };
-
-        engulfedObjects.Add(engulfedObject);
-
-        StartEngulfmentLerp(engulfedObject, 3.0f);
 
         // Set the render priority of the ingested object higher than all of our organelles' so it
         // stays visible on top of our insides
@@ -1395,9 +1398,15 @@ public partial class Microbe
         engulfable.EntityGraphics.AddChild(engulfedObject.Endosome);
 
         var endosomeMesh = engulfedObject.Endosome.Mesh;
-        endosomeMesh.MaterialOverride = endosomeMaterial;
-        endosomeMesh.MaterialOverride!.RenderPriority = Mathf.Max(
-            endosomeMesh.MaterialOverride.RenderPriority, target.EntityMaterial.RenderPriority + 1);
+        var endosomeMaterial = (ShaderMaterial)endosomeMesh.MaterialOverride;
+
+        endosomeMaterial.RenderPriority = Mathf.Max(
+            endosomeMaterial.RenderPriority, target.EntityMaterial.RenderPriority + 1);
+        engulfedObject.Endosome.UpdateTint(CellTypeProperties.Colour);
+
+        engulfedObjects.Add(engulfedObject);
+
+        StartEngulfmentLerp(engulfedObject, 3.0f);
     }
 
     /// <summary>
@@ -1586,9 +1595,6 @@ public partial class Microbe
             engulfed.AnimationTimeElapsed += delta;
 
             var fraction = engulfed.AnimationTimeElapsed / engulfed.LerpDuration;
-
-            // Smoothstep
-            fraction *= fraction * fraction * (fraction * (6f * fraction - 15f) + 10f);
 
             if (engulfed.ValuesToLerp.Translation.HasValue)
             {

@@ -13,6 +13,15 @@ public class Endosome : Spatial
 
     public override void _Ready()
     {
-        Mesh = GetNode<MeshInstance>("SphereMesh");
+        Mesh = GetNode<MeshInstance>("Vacuole");
+    }
+
+    public void UpdateTint(Color colour)
+    {
+        if (Mesh == null)
+            return;
+
+        var material = (ShaderMaterial)Mesh.MaterialOverride;
+        material.SetShaderParam("tint", colour);
     }
 }
