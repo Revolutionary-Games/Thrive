@@ -9,10 +9,10 @@ using Godot;
 /// </summary>
 public class TransitionManager : ControlWithInput
 {
-    private static TransitionManager? instance;
+    private static readonly PackedScene ScreenFadeScene = GD.Load<PackedScene>("res://src/gui_common/ScreenFade.tscn");
+    private static readonly PackedScene CutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
 
-    private static readonly PackedScene screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/ScreenFade.tscn");
-    private static readonly PackedScene cutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
+    private static TransitionManager? instance;
 
     /// <summary>
     ///   List of all the existing transitions after calling StartTransitions.
@@ -30,6 +30,40 @@ public class TransitionManager : ControlWithInput
     public static TransitionManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public bool HasQueuedTransitions => transitionSequences.Count > 0;
+
+    /// <summary>
+    ///   Helper method for creating a screen fade.
+    /// </summary>
+    /// <param name="type">The type of fade to transition to</param>
+    /// <param name="fadeDuration">How long the fade lasts</param>
+    /// <param name="allowSkipping">Allow the user to skip this</param>
+    public static ScreenFade CreateScreenFade(ScreenFade.FadeType type, float fadeDuration)
+    {
+        // Instantiate scene
+        var screenFade = (ScreenFade)ScreenFadeScene.Instance();
+
+        screenFade.CurrentFadeType = type;
+        screenFade.FadeDuration = fadeDuration;
+
+        return screenFade;
+    }
+
+    /// <summary>
+    ///   Helper method for creating a video cutscene.
+    /// </summary>
+    /// <param name="path">The video file to play</param>
+    /// <param name="volume">The video player's volume in linear value</param>
+    /// <param name="allowSkipping">Allow the user to skip this</param>
+    public static Cutscene CreateCutscene(string path, float volume = 1.0f)
+    {
+        // Instantiate scene
+        var cutscene = (Cutscene)CutsceneScene.Instance();
+
+        cutscene.Volume = volume;
+        cutscene.Stream = GD.Load<VideoStream>(path);
+
+        return cutscene;
+    }
 
     public override void _Process(float delta)
     {
@@ -55,40 +89,6 @@ public class TransitionManager : ControlWithInput
 
         CancelSequences();
         return true;
-    }
-
-    /// <summary>
-    ///   Helper method for creating a screen fade.
-    /// </summary>
-    /// <param name="type">The type of fade to transition to</param>
-    /// <param name="fadeDuration">How long the fade lasts</param>
-    /// <param name="allowSkipping">Allow the user to skip this</param>
-    public static ScreenFade CreateScreenFade(ScreenFade.FadeType type, float fadeDuration)
-    {
-        // Instantiate scene
-        var screenFade = (ScreenFade)screenFadeScene.Instance();
-
-        screenFade.CurrentFadeType = type;
-        screenFade.FadeDuration = fadeDuration;
-
-        return screenFade;
-    }
-
-    /// <summary>
-    ///   Helper method for creating a video cutscene.
-    /// </summary>
-    /// <param name="path">The video file to play</param>
-    /// <param name="volume">The video player's volume in linear value</param>
-    /// <param name="allowSkipping">Allow the user to skip this</param>
-    public static Cutscene CreateCutscene(string path, float volume = 1.0f)
-    {
-        // Instantiate scene
-        var cutscene = (Cutscene)cutsceneScene.Instance();
-
-        cutscene.Volume = volume;
-        cutscene.Stream = GD.Load<VideoStream>(path);
-
-        return cutscene;
     }
 
     /// <summary>
