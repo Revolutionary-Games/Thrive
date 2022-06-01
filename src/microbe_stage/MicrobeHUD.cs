@@ -744,31 +744,31 @@ public class MicrobeHUD : Control
 
     public void PauseButtonPressed()
     {
-        if (!menu.Visible)
+        if (menu.Visible)
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        paused = !paused;
+        if (paused)
         {
-            GUICommon.Instance.PlayButtonPressSound();
+            pauseButton.Hide();
+            resumeButton.Show();
+            pausePrompt.Show();
+            pauseButton.Pressed = false;
 
-            paused = !paused;
-            if (paused)
-            {
-                pauseButton.Hide();
-                resumeButton.Show();
-                pausePrompt.Show();
-                pauseButton.Pressed = false;
+            // Pause the game
+            PauseManager.Instance.AddPause(nameof(MicrobeHUD));
+        }
+        else
+        {
+            pauseButton.Show();
+            resumeButton.Hide();
+            pausePrompt.Hide();
+            resumeButton.Pressed = false;
 
-                // Pause the game
-                PauseManager.Instance.AddPause(nameof(MicrobeHUD));
-            }
-            else
-            {
-                pauseButton.Show();
-                resumeButton.Hide();
-                pausePrompt.Hide();
-                resumeButton.Pressed = false;
-
-                // Unpause the game
-                PauseManager.Instance.Resume(nameof(MicrobeHUD));
-            }
+            // Unpause the game
+            PauseManager.Instance.Resume(nameof(MicrobeHUD));
         }
     }
 
