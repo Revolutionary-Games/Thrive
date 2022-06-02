@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -10,44 +10,22 @@
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" type="Texture" id=10]
-[ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=11]
-[ext_resource path="res://assets/textures/gui/bevel/MainMenu.png" type="Texture" id=12]
+[ext_resource path="res://src/late_multicellular_stage/MulticellularHUD.cs" type="Script" id=11]
+[ext_resource path="res://src/microbe_stage/PatchNameOverlay.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/microbe_stage/ProcessPanel.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=14]
 [ext_resource path="res://assets/textures/gui/bevel/PhosphatesBW.png" type="Texture" id=15]
-[ext_resource path="res://assets/textures/gui/bevel/helpButton.png" type="Texture" id=16]
-[ext_resource path="res://assets/textures/gui/bevel/suicideButton.png" type="Texture" id=17]
 [ext_resource path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" type="AudioStream" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaInv.png" type="Texture" id=20]
 [ext_resource path="res://assets/textures/gui/bevel/PhosphateInv.png" type="Texture" id=21]
-[ext_resource path="res://assets/textures/gui/bevel/searchButton.png" type="Texture" id=22]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=23]
-[ext_resource path="res://assets/textures/gui/bevel/compoundsButtonActive.png" type="Texture" id=24]
-[ext_resource path="res://assets/textures/gui/bevel/statisticsButtonHover.png" type="Texture" id=25]
 [ext_resource path="res://assets/textures/gui/bevel/dataValueBackground.png" type="Texture" id=26]
-[ext_resource path="res://assets/textures/gui/bevel/pauseButton.png" type="Texture" id=27]
-[ext_resource path="res://assets/textures/gui/bevel/statisticsButton.png" type="Texture" id=28]
-[ext_resource path="res://assets/textures/gui/bevel/compoundsButton.png" type="Texture" id=29]
-[ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture" id=30]
 [ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=31]
-[ext_resource path="res://assets/textures/gui/bevel/MainMenuActive.png" type="Texture" id=32]
-[ext_resource path="res://assets/textures/gui/bevel/MainMenuHover.png" type="Texture" id=33]
-[ext_resource path="res://assets/textures/gui/bevel/searchButtonHover.png" type="Texture" id=34]
-[ext_resource path="res://assets/textures/gui/bevel/compoundsButtonHover.png" type="Texture" id=35]
-[ext_resource path="res://assets/textures/gui/bevel/suicideButtonHover.png" type="Texture" id=36]
-[ext_resource path="res://assets/textures/gui/bevel/statisticsButtonActive.png" type="Texture" id=37]
-[ext_resource path="res://assets/textures/gui/bevel/chemicalButtonActive.png" type="Texture" id=38]
-[ext_resource path="res://assets/textures/gui/bevel/chemicalButtonHover.png" type="Texture" id=39]
-[ext_resource path="res://assets/textures/gui/bevel/searchButtonActive.png" type="Texture" id=40]
-[ext_resource path="res://assets/textures/gui/bevel/pauseButtonHover.png" type="Texture" id=41]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=42]
-[ext_resource path="res://assets/textures/gui/bevel/pauseButtonActive.png" type="Texture" id=43]
-[ext_resource path="res://assets/textures/gui/bevel/helpButtonActive.png" type="Texture" id=44]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=45]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=46]
 [ext_resource path="res://assets/textures/gui/bevel/atp.png" type="Texture" id=47]
-[ext_resource path="res://assets/textures/gui/bevel/helpButtonHover.png" type="Texture" id=48]
 [ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture" id=49]
 [ext_resource path="res://assets/textures/gui/bevel/Temperature.png" type="Texture" id=50]
 [ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=51]
@@ -68,13 +46,11 @@
 [ext_resource path="res://assets/textures/gui/bevel/ammonia.png" type="Texture" id=66]
 [ext_resource path="res://assets/textures/gui/bevel/expandPanelActive.png" type="Texture" id=67]
 [ext_resource path="res://assets/textures/gui/bevel/expandPanel.png" type="Texture" id=68]
-[ext_resource path="res://src/microbe_stage/gui/WinBox.tscn" type="PackedScene" id=69]
+[ext_resource path="res://src/microbe_stage/HUDBottomBar.tscn" type="PackedScene" id=69]
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
 [ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=71]
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=72]
 [ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=73]
-[ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=74]
-[ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=75]
 [ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=76]
 [ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=77]
 [ext_resource path="res://src/gui_common/ActionButton.tscn" type="PackedScene" id=78]
@@ -180,8 +156,6 @@ bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
 
 [sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0, 0, 0, 0.196078 )
-
-[sub_resource type="StyleBoxEmpty" id=27]
 
 [sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.47451, 0.560784, 0.588235, 0.392157 )
@@ -344,13 +318,10 @@ LeftPanelsPath = NodePath("BottomLeft/LeftPanels")
 MouseHoverPanelPath = NodePath("MouseHoverPanel")
 HoveredCellsContainerPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells/List")
 MenuPath = NodePath("../PauseMenu")
-PauseButtonPath = NodePath("BottomLeft/BottomBar/PauseButtonMargin/Pause")
-ResumeButtonPath = NodePath("BottomLeft/BottomBar/PauseButtonMargin/Resume")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
-PatchLabelPath = NodePath("../PatchNameOverlay/VBoxContainer/PatchLabel")
-PatchOverlayAnimatorPath = NodePath("../PatchNameOverlay/AnimationPlayer")
+PatchOverlayPath = NodePath("PatchNameOverlay")
 EditorButtonPath = NodePath("BottomRight/EditorButton")
 EnvironmentPanelPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 OxygenBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen")
@@ -376,8 +347,7 @@ HealthBarPath = NodePath("BottomRight/HealthBar")
 AmmoniaReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/AmmoniaReproductionBar")
 PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/PhosphateReproductionBar")
 EditorButtonFlashPath = NodePath("BottomRight/EditorButton/Highlight/Light2D")
-ProcessPanelPath = NodePath("")
-ProcessPanelButtonPath = NodePath("BottomLeft/BottomBar/ChemicalButton")
+ProcessPanelPath = NodePath("ProcessPanel")
 HintTextPath = NodePath("HintText")
 MicrobePickupOrganelleSound = ExtResource( 18 )
 AmmoniaBW = ExtResource( 23 )
@@ -397,12 +367,7 @@ OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/
 AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer")
 ExtinctionBoxScene = ExtResource( 70 )
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
-MulticellularButtonPath = NodePath("BottomRight/VBoxContainer/Control/Aware")
-MulticellularConfirmPopupPath = NodePath("")
-MacroscopicButtonPath = NodePath("BottomRight/VBoxContainer/Control/Awaken")
-WinBoxScene = ExtResource( 69 )
-BindingModeHotkeyPath = NodePath("")
-UnbindAllHotkeyPath = NodePath("")
+BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
 
 [node name="MouseHoverPanel" type="MarginContainer" parent="."]
 anchor_left = 1.0
@@ -1537,138 +1502,9 @@ __meta__ = {
 
 [node name="PanelsTween" type="Tween" parent="BottomLeft/LeftPanels"]
 
-[node name="BottomBar" type="HBoxContainer" parent="BottomLeft"]
-margin_left = 10.0
-margin_top = 587.0
-margin_right = 455.0
-margin_bottom = 622.0
-rect_min_size = Vector2( 0, 35 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OpenMicrobeMenu" type="TextureButton" parent="BottomLeft/BottomBar"]
-margin_right = 50.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 50, 35 )
-hint_tooltip = "STAGE_MENU_BUTTON_TOOLTIP"
-texture_normal = ExtResource( 12 )
-texture_pressed = ExtResource( 32 )
-texture_hover = ExtResource( 33 )
-expand = true
-
-[node name="PauseButtonMargin" type="MarginContainer" parent="BottomLeft/BottomBar"]
-margin_left = 54.0
-margin_top = 10.0
-margin_right = 79.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 25, 25 )
-size_flags_vertical = 8
-
-[node name="Pause" type="TextureButton" parent="BottomLeft/BottomBar/PauseButtonMargin"]
-margin_right = 25.0
-margin_bottom = 25.0
-hint_tooltip = "PAUSE_TOOLTIP"
-toggle_mode = true
-action_mode = 0
-texture_normal = ExtResource( 27 )
-texture_pressed = ExtResource( 43 )
-texture_hover = ExtResource( 41 )
-expand = true
-
-[node name="Resume" type="TextureButton" parent="BottomLeft/BottomBar/PauseButtonMargin"]
-visible = false
-margin_right = 25.0
-margin_bottom = 25.0
-hint_tooltip = "RESUME_TOOLTIP"
-toggle_mode = true
-action_mode = 0
-texture_normal = ExtResource( 75 )
-texture_pressed = ExtResource( 75 )
-texture_hover = ExtResource( 74 )
-expand = true
-
-[node name="CompoundsButton" type="TextureButton" parent="BottomLeft/BottomBar"]
-margin_left = 83.0
-margin_right = 118.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-toggle_mode = true
-pressed = true
-action_mode = 0
-texture_normal = ExtResource( 29 )
-texture_pressed = ExtResource( 24 )
-texture_hover = ExtResource( 35 )
-expand = true
-
-[node name="ChemicalButton" type="TextureButton" parent="BottomLeft/BottomBar"]
-modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
-margin_left = 122.0
-margin_right = 157.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-toggle_mode = true
-texture_normal = ExtResource( 30 )
-texture_pressed = ExtResource( 38 )
-texture_hover = ExtResource( 39 )
-expand = true
-
-[node name="StatisticsButton" type="TextureButton" parent="BottomLeft/BottomBar"]
-modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
-margin_left = 161.0
-margin_right = 196.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-focus_mode = 0
-disabled = true
-texture_normal = ExtResource( 28 )
-texture_pressed = ExtResource( 37 )
-texture_hover = ExtResource( 25 )
-expand = true
-
-[node name="SearchButton" type="TextureButton" parent="BottomLeft/BottomBar"]
-modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
-margin_left = 200.0
-margin_right = 235.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-focus_mode = 0
-disabled = true
-texture_normal = ExtResource( 22 )
-texture_pressed = ExtResource( 40 )
-texture_hover = ExtResource( 34 )
-expand = true
-
-[node name="QuestionMarkButton" type="TextureButton" parent="BottomLeft/BottomBar"]
-margin_left = 239.0
-margin_right = 274.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "HELP_BUTTON_TOOLTIP"
-texture_normal = ExtResource( 16 )
-texture_pressed = ExtResource( 44 )
-texture_hover = ExtResource( 48 )
-expand = true
-
-[node name="SuicideButton" type="TextureButton" parent="BottomLeft/BottomBar"]
-margin_left = 278.0
-margin_right = 313.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 35, 35 )
-hint_tooltip = "SUICIDE_BUTTON_TOOLTIP"
-texture_normal = ExtResource( 17 )
-texture_pressed = ExtResource( 36 )
-texture_hover = ExtResource( 36 )
-expand = true
-
-[node name="HSeparator" type="HSeparator" parent="BottomLeft/BottomBar"]
-margin_left = 317.0
-margin_right = 332.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 15, 0 )
-custom_styles/separator = SubResource( 27 )
+[node name="HUDBottomBar" parent="BottomLeft" instance=ExtResource( 69 )]
+margin_top = -43.0
+margin_bottom = -8.0
 
 [node name="BottomRight" type="Control" parent="."]
 anchor_left = 1.0
@@ -2081,17 +1917,14 @@ __meta__ = {
 [node name="PausePrompt" parent="." instance=ExtResource( 77 )]
 visible = false
 
+[node name="PatchNameOverlay" parent="." instance=ExtResource( 12 )]
+visible = false
+
 [connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
 [connection signal="pressed" from="BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="." method="OnCompoundsPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="." method="OnCompoundsPanelSizeButtonPressed" binds= [ "compress" ]]
-[connection signal="pressed" from="BottomLeft/BottomBar/OpenMicrobeMenu" to="." method="OpenMicrobeStageMenuPressed"]
-[connection signal="pressed" from="BottomLeft/BottomBar/PauseButtonMargin/Pause" to="." method="PauseButtonPressed"]
-[connection signal="pressed" from="BottomLeft/BottomBar/PauseButtonMargin/Resume" to="." method="PauseButtonPressed"]
-[connection signal="pressed" from="BottomLeft/BottomBar/CompoundsButton" to="." method="CompoundButtonPressed"]
-[connection signal="pressed" from="BottomLeft/BottomBar/ChemicalButton" to="." method="ProcessPanelButtonPressed"]
-[connection signal="pressed" from="BottomLeft/BottomBar/QuestionMarkButton" to="." method="HelpButtonPressed"]
-[connection signal="pressed" from="BottomLeft/BottomBar/SuicideButton" to="." method="OnSuicide"]
+[connection signal="OnMenuPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenMenu"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Aware" to="." method="OnBecomeMulticellularPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnBecomeMacroscopicPressed"]
 [connection signal="mouse_entered" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseEnter"]

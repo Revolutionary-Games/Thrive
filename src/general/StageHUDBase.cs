@@ -177,7 +177,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     [Export]
     public NodePath FireToxinHotkeyPath = null!;
-    
+
     [Export]
     public NodePath BottomLeftBarPath = null!;
 
@@ -243,7 +243,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected RadialPopup packControlRadial = null!;
 
     protected HUDBottomBar bottomLeftBar = null!;
-    
+
     protected Control winExtinctBoxHolder = null!;
 
     /// <summary>
@@ -291,6 +291,13 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
     /// </summary>
     protected float hoverInfoTimeElapsed;
+
+    // These signals need to be copied to inheriting classes for Godot editor to pick them up
+    [Signal]
+    public delegate void OnOpenMenu();
+
+    [Signal]
+    public delegate void OnOpenMenuToHelp();
 
     public string HintText
     {
@@ -474,7 +481,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         if (paused)
         {
             pausePrompt.Show();
-
 
             // Pause the game
             PauseManager.Instance.AddPause(nameof(IStageHUD));
@@ -1192,6 +1198,16 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         engulfHotkey.Pressed = engulfOn;
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
         signallingAgentsHotkey.Pressed = Input.IsActionPressed(signallingAgentsHotkey.ActionName);
+    }
+
+    protected void OpenMenu()
+    {
+        EmitSignal(nameof(OnOpenMenu));
+    }
+
+    protected void OpenHelp()
+    {
+        EmitSignal(nameof(OnOpenMenuToHelp));
     }
 
     private void UpdatePausePrompt()

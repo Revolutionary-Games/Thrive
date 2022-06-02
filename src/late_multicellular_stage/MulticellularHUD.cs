@@ -8,6 +8,13 @@ using Newtonsoft.Json;
 [JsonObject(MemberSerialization.OptIn)]
 public class MulticellularHUD : StageHUDBase<MulticellularStage>
 {
+    // These signals need to be copied to inheriting classes for Godot editor to pick them up
+    [Signal]
+    public new delegate void OnOpenMenu();
+
+    [Signal]
+    public new delegate void OnOpenMenuToHelp();
+
     protected override string? UnPauseHelpText => null;
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)

@@ -45,6 +45,13 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     /// </summary>
     private Microbe? signalingAgentMenuOpenForMicrobe;
 
+    // These signals need to be copied to inheriting classes for Godot editor to pick them up
+    [Signal]
+    public new delegate void OnOpenMenu();
+
+    [Signal]
+    public new delegate void OnOpenMenuToHelp();
+
     protected override string? UnPauseHelpText => TranslationServer.Translate("PAUSE_PROMPT");
 
     public override void _Ready()

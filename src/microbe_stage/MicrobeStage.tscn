@@ -2010,15 +2010,16 @@ __meta__ = {
 }
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
-visible = true
 
+[connection signal="OnOpenMenu" from="MicrobeHUD" to="PauseMenu" method="Open"]
+[connection signal="OnOpenMenuToHelp" from="MicrobeHUD" to="PauseMenu" method="OpenToHelp"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "compress" ]]
 [connection signal="OnCompoundsToggled" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="CompoundButtonPressed"]
-[connection signal="OnHelpPressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="PauseMenu" method="OpenToHelp"]
-[connection signal="OnMenuPressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="PauseMenu" method="Open"]
+[connection signal="OnHelpPressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="OpenHelp"]
+[connection signal="OnMenuPressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="OpenMenu"]
 [connection signal="OnPausePressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="OnProcessesPressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="ProcessPanelButtonPressed"]
 [connection signal="OnSuicidePressed" from="MicrobeHUD/BottomLeft/HUDBottomBar" to="MicrobeHUD" method="OnSuicide"]
