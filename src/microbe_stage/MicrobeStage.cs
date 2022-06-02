@@ -79,6 +79,9 @@ public class MicrobeStage : StageBase<Microbe>
 
     protected override IStageHUD BaseHUD => HUD;
 
+    private LocalizedString CurrentPatchName =>
+        GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
+
     /// <summary>
     ///   This should get called the first time the stage scene is put
     ///   into an active scene tree. So returning from the editor
@@ -142,7 +145,8 @@ public class MicrobeStage : StageBase<Microbe>
     {
         base.OnFinishTransitioning();
         TutorialState.SendEvent(
-            TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
+            TutorialEventType.EnteredMicrobeStage,
+            new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())), this);
     }
 
     public override void OnFinishLoading(Save save)
@@ -250,7 +254,7 @@ public class MicrobeStage : StageBase<Microbe>
         // Check nothing else has keyboard focus and pause the game
         if (HUD.GetFocusOwner() == null)
         {
-            HUD.PauseButtonPressed();
+            HUD.PauseButtonPressed(!HUD.Paused);
         }
     }
 
@@ -569,11 +573,10 @@ public class MicrobeStage : StageBase<Microbe>
         // going back to the stage
         if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!) && promptPatchNameChange)
         {
-            HUD.PopupPatchInfo();
+            HUD.ShowPatchName(CurrentPatchName.ToString());
         }
 
-        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch!.Name.ToString());
-        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
+        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);
 
         UpdateBackground();
     }

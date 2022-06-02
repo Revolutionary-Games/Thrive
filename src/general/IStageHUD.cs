@@ -1,5 +1,5 @@
 /// <summary>
-///   Interface for <see cref="StageHUDBase{TStage,TPlayer}"/> to make complex inter dependencies work like with
+///   Interface for <see cref="StageHUDBase{TStage}"/> to make complex inter dependencies work like with
 ///   <see cref="IEditor"/>
 /// </summary>
 public interface IStageHUD
@@ -9,7 +9,7 @@ public interface IStageHUD
     /// </summary>
     public string HintText { get; set; }
 
-    public void UpdatePatchInfo(string localizedPatchName);
+    public void ShowPatchName(string localizedPatchName);
     public void ShowExtinctionBox();
     public void OnEnterStageTransition(bool longerDuration);
     public void ShowReproductionDialog();

@@ -284,8 +284,6 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         {
             if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
                 throw new InvalidOperationException("Stage not initialized properly");
-
-            BaseHUD.UpdatePatchInfo(CurrentGame.GameWorld.Map.CurrentPatch.Name.ToString());
         }
     }
 

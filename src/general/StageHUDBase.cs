@@ -32,12 +32,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath MenuPath = null!;
 
     [Export]
-    public NodePath PauseButtonPath = null!;
-
-    [Export]
-    public NodePath ResumeButtonPath = null!;
-
-    [Export]
     public NodePath AtpLabelPath = null!;
 
     [Export]
@@ -47,10 +41,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath PopulationLabelPath = null!;
 
     [Export]
-    public NodePath PatchLabelPath = null!;
-
-    [Export]
-    public NodePath PatchOverlayAnimatorPath = null!;
+    public NodePath PatchOverlayPath = null!;
 
     [Export]
     public NodePath EditorButtonPath = null!;
@@ -131,9 +122,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public NodePath ProcessPanelPath = null!;
 
     [Export]
-    public NodePath ProcessPanelButtonPath = null!;
-
-    [Export]
     public NodePath HintTextPath = null!;
 
     [Export]
@@ -189,6 +177,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     [Export]
     public NodePath FireToxinHotkeyPath = null!;
+    
+    [Export]
+    public NodePath BottomLeftBarPath = null!;
 
     protected readonly Dictionary<Species, int> hoveredSpeciesCounts = new();
 
@@ -242,17 +233,17 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected TextureProgress phosphateReproductionBar = null!;
     protected Light2D editorButtonFlash = null!;
     protected PauseMenu menu = null!;
-    protected TextureButton pauseButton = null!;
-    protected TextureButton resumeButton = null!;
     protected Label atpLabel = null!;
     protected Label hpLabel = null!;
     protected Label populationLabel = null!;
-    protected Label patchLabel = null!;
+    protected PatchNameOverlay patchNameOverlay = null!;
     protected TextureButton editorButton = null!;
     protected Tween panelsTween = null!;
     protected Label hintText = null!;
     protected RadialPopup packControlRadial = null!;
 
+    protected HUDBottomBar bottomLeftBar = null!;
+    
     protected Control winExtinctBoxHolder = null!;
 
     /// <summary>
@@ -278,6 +269,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     private bool environmentCompressed;
     private bool compoundCompressed;
+
+    /// <summary>
+    ///   This is opposite of the expected value, ie. this is true when the panels are collapsed
+    /// </summary>
     private bool leftPanelsActive;
 
     protected VBoxContainer hoveredCompoundsContainer = null!;
@@ -288,11 +283,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected ActionButton fireToxinHotkey = null!;
     protected Control agentsPanel = null!;
     protected ProgressBar oxytoxyBar = null!;
-    protected AnimationPlayer patchOverlayAnimator = null!;
     private CustomDialog? extinctionBox;
     protected Array compoundBars = null!;
     protected ProcessPanel processPanel = null!;
-    protected TextureButton processPanelButton = null!;
 
     /// <summary>
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
@@ -333,6 +326,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         }
     }
 
+    [JsonIgnore]
+    public bool Paused => paused;
+
     /// <summary>
     ///   If this returns non-null value the help text / prompt for unpausing is shown when paused
     /// </summary>
@@ -348,8 +344,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         panelsTween = GetNode<Tween>(PanelsTweenPath);
         mouseHoverPanel = GetNode<MarginContainer>(MouseHoverPanelPath);
-        pauseButton = GetNode<TextureButton>(PauseButtonPath);
-        resumeButton = GetNode<TextureButton>(ResumeButtonPath);
         agentsPanel = GetNode<Control>(AgentsPanelPath);
 
         environmentPanel = GetNode<Panel>(EnvironmentPanelPath);
@@ -389,8 +383,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         hoveredCellsSeparator = GetNode<HSeparator>(HoverPanelSeparatorPath);
         hoveredCellsContainer = GetNode<VBoxContainer>(HoveredCellsContainerPath);
         populationLabel = GetNode<Label>(PopulationLabelPath);
-        patchLabel = GetNode<Label>(PatchLabelPath);
-        patchOverlayAnimator = GetNode<AnimationPlayer>(PatchOverlayAnimatorPath);
+        patchNameOverlay = GetNode<PatchNameOverlay>(PatchOverlayPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
         hintText = GetNode<Label>(HintTextPath);
         hotBar = GetNode<HBoxContainer>(HotBarPath);
@@ -400,12 +393,13 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         packControlRadial = GetNode<RadialPopup>(MicrobeControlRadialPath);
 
+        bottomLeftBar = GetNode<HUDBottomBar>(BottomLeftBarPath);
+
         engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
         fireToxinHotkey = GetNode<ActionButton>(FireToxinHotkeyPath);
         signallingAgentsHotkey = GetNode<ActionButton>(SignallingAgentsHotkeyPath);
 
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
-        processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
 
         OnAbilitiesHotBarDisplayChanged(Settings.Instance.DisplayAbilitiesHotBar);
         Settings.Instance.DisplayAbilitiesHotBar.OnChanged += OnAbilitiesHotBarDisplayChanged;
@@ -464,30 +458,30 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         UpdatePanelSizing(delta);
     }
 
-    public void PauseButtonPressed()
+    public void PauseButtonPressed(bool buttonState)
     {
         if (menu.Visible)
+        {
+            bottomLeftBar.Paused = paused;
             return;
+        }
 
         GUICommon.Instance.PlayButtonPressSound();
 
         paused = !paused;
+        bottomLeftBar.Paused = paused;
+
         if (paused)
         {
-            pauseButton.Hide();
-            resumeButton.Show();
             pausePrompt.Show();
-            pauseButton.Pressed = false;
+
 
             // Pause the game
             PauseManager.Instance.AddPause(nameof(IStageHUD));
         }
         else
         {
-            pauseButton.Show();
-            resumeButton.Hide();
             pausePrompt.Hide();
-            resumeButton.Pressed = false;
 
             // Unpause the game
             PauseManager.Instance.Resume(nameof(IStageHUD));
@@ -496,21 +490,21 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     private void ProcessPanelButtonPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
         if (processPanel.Visible)
         {
             processPanel.Visible = false;
+            bottomLeftBar.ProcessesPressed = false;
         }
         else
         {
             processPanel.Show();
+            bottomLeftBar.ProcessesPressed = true;
         }
     }
 
     private void OnProcessPanelClosed()
     {
-        processPanelButton.Pressed = false;
+        bottomLeftBar.ProcessesPressed = false;
     }
 
     private void OnAbilitiesHotBarDisplayChanged(bool displayed)
@@ -523,9 +517,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     /// </summary>
     protected void EnsureGameIsUnpausedForEditor()
     {
-        if (PauseManager.Instance.Paused)
+        if (Paused)
         {
-            PauseButtonPressed();
+            PauseButtonPressed(!Paused);
 
             if (PauseManager.Instance.Paused)
                 GD.PrintErr("Unpausing the game after editor button press didn't work");
@@ -691,18 +685,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         populationLabel.Text = stage!.GameWorld.PlayerSpecies.Population.FormatNumber();
     }
 
-    /// <summary>
-    ///   Received for button that opens the menu inside the Microbe Stage.
-    /// </summary>
-    private void OpenMicrobeStageMenuPressed()
+    private void CompoundButtonPressed(bool wantedState)
     {
-        GUICommon.Instance.PlayButtonPressSound();
-        menu.Open();
-    }
-
-    private void CompoundButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+        if (leftPanelsActive == !wantedState)
+            return;
 
         if (!leftPanelsActive)
         {
@@ -791,16 +777,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         stage?.OnSuicide();
     }
 
-    public void UpdatePatchInfo(string patchName)
-    {
-        patchLabel.Text = patchName;
-    }
-
-    public void PopupPatchInfo()
-    {
-        patchOverlayAnimator.Play("FadeInOut");
-    }
-
     public void EditorButtonPressed()
     {
         GD.Print("Move to editor pressed");
@@ -831,6 +807,11 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             GD.Print("Starting auto-evo while fading into the editor as mitigation for issue #3006");
             stage.GameWorld.IsAutoEvoFinished(true);
         }
+    }
+
+    public void ShowPatchName(string localizedPatchName)
+    {
+        patchNameOverlay.ShowName(localizedPatchName);
     }
 
     public void ShowExtinctionBox()

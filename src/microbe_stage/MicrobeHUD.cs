@@ -311,10 +311,10 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
 
     private void OnBecomeMulticellularPressed()
     {
-        if (!PauseManager.Instance.Paused)
+        if (!Paused)
         {
             // The button press sound will play along with this
-            PauseButtonPressed();
+            PauseButtonPressed(!Paused);
         }
         else
         {
@@ -327,10 +327,10 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     private void OnBecomeMulticellularCancelled()
     {
         // The game should have been paused already but just in case
-        if (PauseManager.Instance.Paused)
+        if (Paused)
         {
             // The button press sound will play along with this
-            PauseButtonPressed();
+            PauseButtonPressed(!Paused);
         }
     }
 
