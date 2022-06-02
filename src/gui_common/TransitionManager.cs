@@ -8,19 +8,22 @@ using Godot;
 /// </summary>
 public class TransitionManager : ControlWithInput
 {
-    private static readonly PackedScene ScreenFadeScene = GD.Load<PackedScene>("res://src/gui_common/ScreenFade.tscn");
-    private static readonly PackedScene CutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
+    private readonly PackedScene screenFadeScene;
+    private readonly PackedScene cutsceneScene;
 
     private static TransitionManager? instance;
 
     /// <summary>
-    ///   List of all the existing transitions after calling StartTransitions.
+    ///   A queue of running and pending transition sequences.
     /// </summary>
-    private readonly Queue<Sequence> transitionSequences = new();
+    private readonly Queue<Sequence> queuedSequences = new();
 
     private TransitionManager()
     {
         instance = this;
+
+        screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/ScreenFade.tscn");
+        cutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
     }
 
     [Signal]
@@ -28,17 +31,17 @@ public class TransitionManager : ControlWithInput
 
     public static TransitionManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
-    public bool HasQueuedTransitions => transitionSequences.Count > 0;
+    public bool HasQueuedTransitions => queuedSequences.Count > 0;
 
     /// <summary>
     ///   Helper method for creating a screen fade.
     /// </summary>
     /// <param name="type">The type of fade to transition to</param>
     /// <param name="fadeDuration">How long the fade lasts</param>
-    public static ScreenFade CreateScreenFade(ScreenFade.FadeType type, float fadeDuration)
+    public ScreenFade CreateScreenFade(ScreenFade.FadeType type, float fadeDuration)
     {
         // Instantiate scene
-        var screenFade = (ScreenFade)ScreenFadeScene.Instance();
+        var screenFade = (ScreenFade)screenFadeScene.Instance();
 
         screenFade.CurrentFadeType = type;
         screenFade.FadeDuration = fadeDuration;
@@ -51,10 +54,10 @@ public class TransitionManager : ControlWithInput
     /// </summary>
     /// <param name="path">The video file to play</param>
     /// <param name="volume">The video player's volume in linear value</param>
-    public static Cutscene CreateCutscene(string path, float volume = 1.0f)
+    public Cutscene CreateCutscene(string path, float volume = 1.0f)
     {
         // Instantiate scene
-        var cutscene = (Cutscene)CutsceneScene.Instance();
+        var cutscene = (Cutscene)cutsceneScene.Instance();
 
         cutscene.Volume = volume;
         cutscene.Stream = GD.Load<VideoStream>(path);
@@ -64,15 +67,15 @@ public class TransitionManager : ControlWithInput
 
     public override void _Process(float delta)
     {
-        if (transitionSequences.Count > 0)
+        if (queuedSequences.Count > 0)
         {
-            var sequence = transitionSequences.Peek();
+            var sequence = queuedSequences.Peek();
 
             sequence.Process();
 
             if (sequence.Finished)
             {
-                transitionSequences.Dequeue();
+                queuedSequences.Dequeue();
                 SaveHelper.AllowQuickSavingAndLoading = !HasQueuedTransitions;
             }
         }
@@ -95,12 +98,20 @@ public class TransitionManager : ControlWithInput
     /// <param name="transitions">Order of transitions</param>
     /// <param name="onFinishedCallback">The action to invoke when the sequence finished</param>
     /// <param name="skippable">If true, the sequence can be skipped</param>
-    public void AddSequence(List<ITransition> transitions, Action? onFinishedCallback = null, bool skippable = true)
+    /// <param name="skipPrevious">If true, any previously added sequences are skipped. Default is true</param>
+    public void AddSequence(List<ITransition> transitions, Action? onFinishedCallback = null, bool skippable = true,
+        bool skipPrevious = true)
     {
         if (transitions.Count <= 0)
         {
             GD.PrintErr("The given list of transitions is empty, can't add sequence to the queue");
             return;
+        }
+
+        if (skipPrevious)
+        {
+            foreach (var entry in queuedSequences)
+                entry.Skip();
         }
 
         foreach (var transition in transitions)
@@ -110,7 +121,7 @@ public class TransitionManager : ControlWithInput
         }
 
         var sequence = new Sequence(transitions, onFinishedCallback) { Skippable = skippable };
-        transitionSequences.Enqueue(sequence);
+        queuedSequences.Enqueue(sequence);
 
         SaveHelper.AllowQuickSavingAndLoading = false;
     }
@@ -120,7 +131,7 @@ public class TransitionManager : ControlWithInput
     /// </summary>
     private void CancelSequences()
     {
-        foreach (var sequence in transitionSequences)
+        foreach (var sequence in queuedSequences)
             sequence.Skip();
     }
 
@@ -181,7 +192,7 @@ public class TransitionManager : ControlWithInput
         }
 
         /// <summary>
-        ///   Starts the frontmost transition on the queue.
+        ///   Starts the front-most transition on the queue.
         /// </summary>
         private void StartNext()
         {

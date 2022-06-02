@@ -373,9 +373,9 @@ public class PauseMenu : CustomDialog
     {
         Paused = false;
 
-        TransitionManager.Instance.AddSequence(new List<ITransition>()
+        TransitionManager.Instance.AddSequence(new List<ITransition>
         {
-            TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.1f),
+            TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.1f),
         }, OnSwitchToMenu, false);
     }
 

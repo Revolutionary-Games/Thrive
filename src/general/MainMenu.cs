@@ -85,7 +85,7 @@ public class MainMenu : NodeWithInput
         {
             TransitionManager.Instance.AddSequence(new List<ITransition>
             {
-                TransitionManager.CreateCutscene("res://assets/videos/intro.ogv", 0.65f),
+                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv", 0.65f),
             }, OnIntroEnded);
         }
         else
@@ -279,9 +279,9 @@ public class MainMenu : NodeWithInput
 
     private void OnIntroEnded()
     {
-        TransitionManager.Instance.AddSequence(new List<ITransition>()
+        TransitionManager.Instance.AddSequence(new List<ITransition>
         {
-            TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ? 0.5f : 1.0f),
+            TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ? 0.5f : 1.0f),
         }, null, false);
 
         // Start music after the video
@@ -303,13 +303,14 @@ public class MainMenu : NodeWithInput
 
         if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
         {
-            transitions.Add(TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
-            transitions.Add(TransitionManager.CreateCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f));
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
+            transitions.Add(TransitionManager.Instance.CreateCutscene(
+                "res://assets/videos/microbe_intro2.ogv", 0.65f));
         }
         else
         {
             // People who disable the cutscene are impatient anyway so use a reduced fade time
-            transitions.Add(TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
         }
 
         TransitionManager.Instance.AddSequence(transitions, () =>
@@ -340,9 +341,9 @@ public class MainMenu : NodeWithInput
         // Disable the button to prevent it being executed again.
         freebuildButton.Disabled = true;
 
-        TransitionManager.Instance.AddSequence(new List<ITransition>()
+        TransitionManager.Instance.AddSequence(new List<ITransition>
         {
-            TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.1f),
+            TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.1f),
         }, () =>
         {
             OnEnteringGame();

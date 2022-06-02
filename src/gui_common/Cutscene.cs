@@ -50,8 +50,14 @@ public class Cutscene : Control, ITransition
 
     public void Begin()
     {
+        if (cutsceneVideoPlayer == null)
+        {
+            GD.Print("Video player missing, can't play cutscene");
+            return;
+        }
+
         Show();
-        cutsceneVideoPlayer?.Play();
+        cutsceneVideoPlayer.Play();
     }
 
     public void Skip()

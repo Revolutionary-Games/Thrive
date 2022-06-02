@@ -297,9 +297,9 @@ public class SaveListItem : PanelContainer
             return;
         }
 
-        TransitionManager.Instance.AddSequence(new List<ITransition>()
+        TransitionManager.Instance.AddSequence(new List<ITransition>
         {
-            TransitionManager.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.3f),
+            TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.3f),
         }, LoadSave, true);
     }
 
