@@ -38,6 +38,8 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
 
     private CustomDialog? winBox;
 
+
+
     private int? playerColonySize;
 
     /// <summary>
@@ -157,6 +159,8 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             UpdateColonySizeForMacroscopic();
         }
     }
+
+
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)
     {

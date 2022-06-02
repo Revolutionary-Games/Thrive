@@ -163,6 +163,33 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     [Export]
     public NodePath MicrobeControlRadialPath = null!;
 
+    [Export]
+    public NodePath PausePromptPath = null!;
+
+    [Export]
+    public NodePath PauseInfoPath = null!;
+
+    [Export]
+    public NodePath HoveredCompoundsContainerPath = null!;
+
+    [Export]
+    public NodePath HoverPanelSeparatorPath = null!;
+
+    [Export]
+    public NodePath AgentsPanelPath = null!;
+
+    [Export]
+    public NodePath OxytoxyBarPath = null!;
+
+    [Export]
+    public NodePath AgentsPanelBarContainerPath = null!;
+
+    [Export]
+    public PackedScene ExtinctionBoxScene = null!;
+
+    [Export]
+    public NodePath FireToxinHotkeyPath = null!;
+
     protected readonly Dictionary<Species, int> hoveredSpeciesCounts = new();
 
     protected readonly Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls = new();
@@ -241,6 +268,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected bool showMouseCoordinates;
 #pragma warning restore 649
 
+    private Control pausePrompt = null!;
+    private CustomRichTextLabel pauseInfo = null!;
+
     /// <summary>
     ///   For toggling paused with the pause button.
     /// </summary>
@@ -249,27 +279,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     private bool environmentCompressed;
     private bool compoundCompressed;
     private bool leftPanelsActive;
-
-    [Export]
-    public NodePath HoveredCompoundsContainerPath = null!;
-
-    [Export]
-    public NodePath HoverPanelSeparatorPath = null!;
-
-    [Export]
-    public NodePath AgentsPanelPath = null!;
-
-    [Export]
-    public NodePath OxytoxyBarPath = null!;
-
-    [Export]
-    public NodePath AgentsPanelBarContainerPath = null!;
-
-    [Export]
-    public PackedScene ExtinctionBoxScene = null!;
-
-    [Export]
-    public NodePath FireToxinHotkeyPath = null!;
 
     protected VBoxContainer hoveredCompoundsContainer = null!;
     protected HSeparator hoveredCellsSeparator = null!;
@@ -381,6 +390,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         hintText = GetNode<Label>(HintTextPath);
         hotBar = GetNode<HBoxContainer>(HotBarPath);
 
+        pausePrompt = GetNode<Control>(PausePromptPath);
+        pauseInfo = GetNode<CustomRichTextLabel>(PauseInfoPath);
+
         packControlRadial = GetNode<RadialPopup>(MicrobeControlRadialPath);
 
         engulfHotkey = GetNode<ActionButton>(EngulfHotkeyPath);
@@ -417,6 +429,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         UpdateEnvironmentPanelState();
         UpdateCompoundsPanelState();
+        UpdatePausePrompt();
     }
 
     public void Init(TStage containedInStage)
@@ -444,6 +457,36 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         UpdatePopulation();
         UpdateProcessPanel();
         UpdatePanelSizing(delta);
+    }
+
+    public void PauseButtonPressed()
+    {
+        if (menu.Visible)
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        paused = !paused;
+        if (paused)
+        {
+            pauseButton.Hide();
+            resumeButton.Show();
+            pausePrompt.Show();
+            pauseButton.Pressed = false;
+
+            // Pause the game
+            PauseManager.Instance.AddPause(nameof(IStageHUD));
+        }
+        else
+        {
+            pauseButton.Show();
+            resumeButton.Hide();
+            pausePrompt.Hide();
+            resumeButton.Pressed = false;
+
+            // Unpause the game
+            PauseManager.Instance.Resume(nameof(IStageHUD));
+        }
     }
 
     private void ProcessPanelButtonPressed()
@@ -650,31 +693,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     {
         GUICommon.Instance.PlayButtonPressSound();
         menu.Open();
-    }
-
-    protected void PauseButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        paused = !paused;
-        if (paused)
-        {
-            pauseButton.Hide();
-            resumeButton.Show();
-            pauseButton.Pressed = false;
-
-            // Pause the game
-            PauseManager.Instance.AddPause(nameof(MicrobeHUD));
-        }
-        else
-        {
-            pauseButton.Show();
-            resumeButton.Hide();
-            resumeButton.Pressed = false;
-
-            // Unpause the game
-            PauseManager.Instance.Resume(nameof(MicrobeHUD));
-        }
     }
 
     private void CompoundButtonPressed()
@@ -1188,5 +1206,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         engulfHotkey.Pressed = engulfOn;
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
         signallingAgentsHotkey.Pressed = Input.IsActionPressed(signallingAgentsHotkey.ActionName);
+    }
+
+    private void UpdatePausePrompt()
+    {
+        pauseInfo.ExtendedBbcode = TranslationServer.Translate("PAUSE_PROMPT");
     }
 }

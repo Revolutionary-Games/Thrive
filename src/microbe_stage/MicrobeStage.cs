@@ -244,6 +244,16 @@ public class MicrobeStage : StageBase<Microbe>
         UpdateLinePlayerPosition();
     }
 
+    [RunOnKeyDown("g_pause")]
+    public void PauseKeyPressed()
+    {
+        // Check nothing else has keyboard focus and pause the game
+        if (HUD.GetFocusOwner() == null)
+        {
+            HUD.PauseButtonPressed();
+        }
+    }
+
     /// <summary>
     ///   Switches to the editor
     /// </summary>
