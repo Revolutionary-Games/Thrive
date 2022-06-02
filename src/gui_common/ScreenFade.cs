@@ -5,7 +5,7 @@
 /// </summary>
 public class ScreenFade : Control, ITransition
 {
-    private ColorRect rect = null!;
+    private ColorRect? rect;
     private Tween fader = null!;
 
     private FadeType currentFadeType;

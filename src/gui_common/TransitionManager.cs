@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
 /// <summary>
@@ -36,7 +35,6 @@ public class TransitionManager : ControlWithInput
     /// </summary>
     /// <param name="type">The type of fade to transition to</param>
     /// <param name="fadeDuration">How long the fade lasts</param>
-    /// <param name="allowSkipping">Allow the user to skip this</param>
     public static ScreenFade CreateScreenFade(ScreenFade.FadeType type, float fadeDuration)
     {
         // Instantiate scene
@@ -53,7 +51,6 @@ public class TransitionManager : ControlWithInput
     /// </summary>
     /// <param name="path">The video file to play</param>
     /// <param name="volume">The video player's volume in linear value</param>
-    /// <param name="allowSkipping">Allow the user to skip this</param>
     public static Cutscene CreateCutscene(string path, float volume = 1.0f)
     {
         // Instantiate scene
@@ -95,12 +92,14 @@ public class TransitionManager : ControlWithInput
     ///   Enqueues a new <see cref="Sequence"/> from the given list of transitions.
     ///   Invokes the specified action when the sequence is finished.
     /// </summary>
+    /// <param name="transitions">Order of transitions</param>
     /// <param name="onFinishedCallback">The action to invoke when the sequence finished</param>
+    /// <param name="skippable">If true, the sequence can be skipped</param>
     public void AddSequence(List<ITransition> transitions, Action? onFinishedCallback = null, bool skippable = true)
     {
-        if (transitions.Count <= 0 || transitions == null)
+        if (transitions.Count <= 0)
         {
-            GD.PrintErr("The given array of transitions are either empty or null, can't add sequence");
+            GD.PrintErr("The given list of transitions is empty, can't add sequence to the queue");
             return;
         }
 
