@@ -598,8 +598,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             // Make sure non-default tab button is highlighted right if we loaded a save where the tab was changed
             editorTabSelector?.SetCurrentTab(selectedEditorTab);
 
-            // Just assume that a transition is finished (even though one may still be running after save load is complete).
-            // This should be fine as it will just be skipped if the player immediately exits the editor to the stage
+            // Just assume that a transition is finished (even though one may still be running after save load is
+            // complete).  This should be fine as it will just be skipped if the player immediately exits the editor
+            // to the stage
             TransitionFinished = true;
         }
 

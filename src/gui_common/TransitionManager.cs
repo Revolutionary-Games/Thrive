@@ -8,10 +8,10 @@ using Godot;
 /// </summary>
 public class TransitionManager : ControlWithInput
 {
+    private static TransitionManager? instance;
+
     private readonly PackedScene screenFadeScene;
     private readonly PackedScene cutsceneScene;
-
-    private static TransitionManager? instance;
 
     /// <summary>
     ///   A queue of running and pending transition sequences.
