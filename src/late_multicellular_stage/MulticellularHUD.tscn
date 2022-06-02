@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=2]
+[gd_scene load_steps=113 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -76,6 +76,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=74]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=75]
 [ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=76]
+[ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=77]
 [ext_resource path="res://src/gui_common/ActionButton.tscn" type="PackedScene" id=78]
 
 [sub_resource type="Theme" id=1]
@@ -400,6 +401,8 @@ BindingModeHotkeyPath = NodePath("")
 UnbindAllHotkeyPath = NodePath("")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
 MicrobeControlRadialPath = NodePath("../RadialPopup")
+PausePromptPath = NodePath("PausePrompt")
+PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 
 [node name="MouseHoverPanel" type="MarginContainer" parent="."]
 anchor_left = 1.0
@@ -2075,6 +2078,9 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
+[node name="PausePrompt" parent="." instance=ExtResource( 77 )]
+visible = false
+
 [connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
 [connection signal="pressed" from="BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="." method="OnCompoundsPanelSizeButtonPressed" binds= [ "expand" ]]
@@ -2091,3 +2097,5 @@ __meta__ = {
 [connection signal="mouse_entered" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
+
+[editable path="PausePrompt"]

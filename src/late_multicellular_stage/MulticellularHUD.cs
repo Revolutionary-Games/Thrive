@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 [JsonObject(MemberSerialization.OptIn)]
 public class MulticellularHUD : StageHUDBase<MulticellularStage>
 {
+    protected override string? UnPauseHelpText => null;
+
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)
     {
         throw new System.NotImplementedException();

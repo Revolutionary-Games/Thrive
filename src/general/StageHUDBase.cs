@@ -333,6 +333,11 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         }
     }
 
+    /// <summary>
+    ///   If this returns non-null value the help text / prompt for unpausing is shown when paused
+    /// </summary>
+    protected abstract string? UnPauseHelpText { get; }
+
     public override void _Ready()
     {
         base._Ready();
@@ -1210,6 +1215,15 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     private void UpdatePausePrompt()
     {
-        pauseInfo.ExtendedBbcode = TranslationServer.Translate("PAUSE_PROMPT");
+        var text = UnPauseHelpText;
+
+        if (text != null)
+        {
+            pauseInfo.ExtendedBbcode = text;
+        }
+        else
+        {
+            pauseInfo.Visible = false;
+        }
     }
 }

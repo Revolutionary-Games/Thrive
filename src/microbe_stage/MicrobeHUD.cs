@@ -38,14 +38,14 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
 
     private CustomDialog? winBox;
 
-
-
     private int? playerColonySize;
 
     /// <summary>
     ///   If not null the signaling agent radial menu is open for the given microbe, which should be the player
     /// </summary>
     private Microbe? signalingAgentMenuOpenForMicrobe;
+
+    protected override string? UnPauseHelpText => TranslationServer.Translate("PAUSE_PROMPT");
 
     public override void _Ready()
     {
@@ -159,8 +159,6 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
             UpdateColonySizeForMacroscopic();
         }
     }
-
-
 
     protected override void ReadPlayerHitpoints(out float hp, out float maxHP)
     {
