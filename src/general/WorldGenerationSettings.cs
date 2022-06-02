@@ -8,6 +8,7 @@ public class WorldGenerationSettings
         Easy,
         Normal,
         Hard,
+        Custom,
     }
 
     public enum LifeOrigin

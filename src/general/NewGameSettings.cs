@@ -4,6 +4,27 @@ using Godot;
 public class NewGameSettings : ControlWithInput
 {
     [Export]
+    public NodePath BasicOptionsPath = null!;
+
+    [Export]
+    public NodePath AdvancedOptionsPath = null!;
+
+    [Export]
+    public NodePath BasicButtonPath = null!;
+
+    [Export]
+    public NodePath AdvancedButtonPath = null!;
+
+    [Export]
+    public NodePath TabButtonsPath = null!;
+
+    [Export]
+    public NodePath DifficultyPresetButtonPath = null!;
+
+    [Export]
+    public NodePath LifeOriginButtonPath = null!;
+
+    [Export]
     public NodePath LAWKButtonPath = null!;
 
     [Export]
@@ -12,9 +33,18 @@ public class NewGameSettings : ControlWithInput
     [Export]
     public NodePath ConfirmButtonPath = null!;
 
+    private PanelContainer basicOptions = null!;
+    private PanelContainer advancedOptions = null!;
+    private HBoxContainer tabButtons = null!;
+    private Button basicButton = null!;
+    private Button advancedButton = null!;
+    private OptionButton difficultyPresetButton = null!;
+    private OptionButton lifeOriginButton = null!;
     private Button lawkButton = null!;
     private LineEdit gameSeed = null!;
     private Button confirmButton = null!;
+
+    private SelectedOptionsTab selectedOptionsTab;
 
     [Signal]
     public delegate void OnNewGameSettingsClosed();
@@ -25,6 +55,13 @@ public class NewGameSettings : ControlWithInput
 
     public override void _Ready()
     {
+        basicOptions = GetNode<PanelContainer>(BasicOptionsPath);
+        advancedOptions = GetNode<PanelContainer>(AdvancedOptionsPath);
+        basicButton = GetNode<Button>(BasicButtonPath);
+        advancedButton = GetNode<Button>(AdvancedButtonPath);
+        tabButtons = GetNode<HBoxContainer>(TabButtonsPath);
+        difficultyPresetButton = GetNode<OptionButton>(DifficultyPresetButtonPath);
+        lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lawkButton = GetNode<Button>(LAWKButtonPath);
         gameSeed = GetNode<LineEdit>(GameSeedPath);
         confirmButton = GetNode<Button>(ConfirmButtonPath);
@@ -42,7 +79,7 @@ public class NewGameSettings : ControlWithInput
     private void SetSeed(string text)
     {
         int seed;
-        isGameSeedValid = int.TryParse(text, out seed);
+        isGameSeedValid = int.TryParse(text, out seed) && seed > 0;
         ReportValidityOfGameSeed(isGameSeedValid);
         if (isGameSeedValid)
             settings.seed = seed;
@@ -88,6 +125,64 @@ public class NewGameSettings : ControlWithInput
         }
     }
 
+    private enum SelectedOptionsTab
+    {
+        Difficulty,
+        Planet,
+        Miscellaneous,
+    }
+
+    /// <summary>
+    ///   Changes the active settings tab that is displayed, or returns if the tab is already active.
+    /// </summary>
+    private void ChangeSettingsTab(string newTabName)
+    {
+        // Convert from the string binding to an enum.
+        SelectedOptionsTab selection = (SelectedOptionsTab)Enum.Parse(typeof(SelectedOptionsTab), newTabName);
+
+        // Pressing the same button that's already active, so just return.
+        if (selection == selectedOptionsTab)
+            return;
+
+/*
+        graphicsTab.Hide();
+        soundTab.Hide();
+        performanceTab.Hide();
+        inputsTab.Hide();
+        miscTab.Hide();
+
+        switch (selection)
+        {
+            case SelectedOptionsTab.Graphics:
+                graphicsTab.Show();
+                graphicsButton.Pressed = true;
+                break;
+            case SelectedOptionsTab.Sound:
+                soundTab.Show();
+                soundButton.Pressed = true;
+                break;
+            case SelectedOptionsTab.Performance:
+                performanceTab.Show();
+                performanceButton.Pressed = true;
+                break;
+            case SelectedOptionsTab.Inputs:
+                inputsTab.Show();
+                inputsButton.Pressed = true;
+                break;
+            case SelectedOptionsTab.Miscellaneous:
+                miscTab.Show();
+                miscButton.Pressed = true;
+                break;
+            default:
+                GD.PrintErr("Invalid tab");
+                break;
+        }
+        */
+
+        GUICommon.Instance.PlayButtonPressSound();
+        selectedOptionsTab = selection;
+    }
+
     /*
       GUI Control Callbacks
     */
@@ -109,7 +204,24 @@ public class NewGameSettings : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // TBA
+        basicOptions.Visible = false;
+        advancedButton.Visible = false;
+
+        advancedOptions.Visible = true;
+        basicButton.Visible = true;
+        tabButtons.Visible = true;
+    }
+
+    private void OnBasicPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        advancedOptions.Visible = false;
+        basicButton.Visible = false;
+        tabButtons.Visible = false;
+
+        advancedButton.Visible = true;
+        basicOptions.Visible = true;
     }
 
     private void OnConfirmPressed()
@@ -120,6 +232,11 @@ public class NewGameSettings : ControlWithInput
         // Disable the button to prevent it being executed again.
         confirmButton.Disabled = true;
 
+        settings.difficultyPreset = DifficultyPresetIndexToValue(difficultyPresetButton.Selected);
+        settings.lifeOrigin = LifeOriginIndexToValue(lifeOriginButton.Selected);
+        settings.LAWK = lawkButton.Pressed;
+        SetSeed(gameSeed.Text);
+
         var scene = GD.Load<PackedScene>("res://src/general/MainMenu.tscn");
         var mainMenu = (MainMenu)scene.Instance();
         mainMenu.NewGameSetupDone(settings);
@@ -127,33 +244,43 @@ public class NewGameSettings : ControlWithInput
 
     private void OnDifficultyPresetSelected(int index)
     {
+        settings.difficultyPreset = DifficultyPresetIndexToValue(index);
+
+        // If custom was selected, open the advanced view
+        if (DifficultyPresetIndexToValue(index) == WorldGenerationSettings.DifficultyPreset.Custom)
+            OnAdvancedPressed();
+    }
+
+    private WorldGenerationSettings.DifficultyPreset DifficultyPresetIndexToValue(int index)
+    {
         switch (index)
         {
             case 0:
-                settings.difficultyPreset = WorldGenerationSettings.DifficultyPreset.Easy;
-                break;
+                return WorldGenerationSettings.DifficultyPreset.Easy;
             case 2:
-                settings.difficultyPreset = WorldGenerationSettings.DifficultyPreset.Hard;
-                break;
+                return WorldGenerationSettings.DifficultyPreset.Hard;
+            case 3:
+                return WorldGenerationSettings.DifficultyPreset.Custom;
             default:
-                settings.difficultyPreset = WorldGenerationSettings.DifficultyPreset.Normal;
-                break;
+                return WorldGenerationSettings.DifficultyPreset.Normal;
         }
     }
 
     private void OnLifeOriginSelected(int index)
     {
+        settings.lifeOrigin = LifeOriginIndexToValue(index);
+    }
+
+    private WorldGenerationSettings.LifeOrigin LifeOriginIndexToValue(int index)
+    {
         switch (index)
         {
             case 1:
-                settings.lifeOrigin = WorldGenerationSettings.LifeOrigin.Pond;
-                break;
+                return WorldGenerationSettings.LifeOrigin.Pond;
             case 2:
-                settings.lifeOrigin = WorldGenerationSettings.LifeOrigin.Panspermia;
-                break;
+                return WorldGenerationSettings.LifeOrigin.Panspermia;
             default:
-                settings.lifeOrigin = WorldGenerationSettings.LifeOrigin.Vent;
-                break;
+                return WorldGenerationSettings.LifeOrigin.Vent;
         }
     }
 
