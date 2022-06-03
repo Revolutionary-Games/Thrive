@@ -282,6 +282,8 @@ public class Mutations
                     break;
             }
 
+            // Calculate the path to move island organelles.
+            // If statement is there because otherwise the path could be (0, 0).
             if (minSubHex.Q != minSubHex.R)
                 minSubHex.Q = (int)(minSubHex.Q * (minDistance - 1.0) / minDistance);
 
