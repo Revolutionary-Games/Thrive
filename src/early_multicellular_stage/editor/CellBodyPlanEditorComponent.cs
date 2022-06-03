@@ -174,7 +174,7 @@ public partial class CellBodyPlanEditorComponent :
             }
             else
             {
-                GD.Print("Loaded cell editor with no cell to edit set");
+                GD.Print("Loaded body plan editor with no cell to edit set");
             }
         }
 
@@ -561,7 +561,7 @@ public partial class CellBodyPlanEditorComponent :
             highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.z);
         }
 
-        return highestPointInMiddleRows - Constants.EDITOR_ARROW_OFFSET;
+        return highestPointInMiddleRows;
     }
 
     private void UpdateGUIAfterLoadingSpecies(Species species)

@@ -55,11 +55,11 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     {
         get
         {
-            if (cellEditorTab.Visible)
-                return cellEditorTab.CanCancelAction;
-
             if (bodyPlanEditorTab.Visible)
                 return bodyPlanEditorTab.CanCancelAction;
+
+            if (cellEditorTab.Visible)
+                return cellEditorTab.CanCancelAction;
 
             return false;
         }
@@ -399,7 +399,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         if (selectedCellTypeToEdit == null)
             return;
 
-        // Only do something if the user did has done any action in the past
+        // Only do something if the user has done any action in the past
         if (!history.CanUndo())
             return;
 

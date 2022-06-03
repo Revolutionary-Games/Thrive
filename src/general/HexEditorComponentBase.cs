@@ -57,7 +57,7 @@ public abstract class
     protected readonly List<SceneDisplayer> placedModels = new();
 
     /// <summary>
-    ///   Object camera is over. Used to mov ethe camera around
+    ///   Object camera is over. Used to move the camera around
     /// </summary>
     protected Spatial cameraFollow = null!;
 
@@ -644,8 +644,7 @@ public abstract class
     }
 
     /// <summary>
-    ///   Updates the forward pointing arrow to not overlap the edited species
-    ///   Should be called on any layout change
+    ///   Updates the forward pointing arrow to not overlap the edited species. Should be called on any layout change.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -654,7 +653,7 @@ public abstract class
     /// </remarks>
     public void UpdateArrow(bool animateMovement = true)
     {
-        var arrowPosition = CalculateEditorArrowZPosition();
+        var arrowPosition = CalculateEditorArrowZPosition() - Constants.EDITOR_ARROW_OFFSET;
 
         if (animateMovement)
         {
@@ -665,7 +664,7 @@ public abstract class
         }
         else
         {
-            editorArrow.Translation = new Vector3(0, 0, arrowPosition - Constants.EDITOR_ARROW_OFFSET);
+            editorArrow.Translation = new Vector3(0, 0, arrowPosition);
         }
     }
 
