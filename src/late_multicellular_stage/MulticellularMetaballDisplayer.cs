@@ -12,6 +12,15 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
         Height = 1,
         Radius = 0.5f,
 
+        // TODO: reduce the vertex further of the shape if we can without much visual impact for more performance
+        // or maybe we should make a graphics option to select from a few levels of vertices
+        RadialSegments = 48,
+        Rings = 24,
+
+        // These are the defaults
+        // RadialSegments = 64,
+        // Rings = 32,
+
         // This is here in case we need custom shader effects at some point
         // Material = new ShaderMaterial()
         // {
