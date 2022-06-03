@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/models/EditorArrow.mesh" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/models/EditorArrow.tscn" type="PackedScene" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 0.129412, 0.141176, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+albedo_color = Color( 0.0666667, 1, 0.835294, 0.337255 )
+
+[node name="3DEditorWorld" type="Node"]
+
+[node name="PrimaryCamera" type="Camera" parent="."]
+current = true
+fov = 90.0
+near = 0.01
+
+[node name="CameraRotationCenter" type="Spatial" parent="."]
+__meta__ = {
+"_editor_description_": "Just something to make the microbe camera look at the right place"
+}
+
+[node name="EditorArrow" type="MeshInstance" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 0, 0.2, 0 )
+mesh = ExtResource( 1 )
+skeleton = NodePath("")
+material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )
+
+[node name="EditorLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 100.0
+omni_attenuation = 0.420448
+
+[node name="DynamicallySpawned" type="Spatial" parent="."]

@@ -195,12 +195,24 @@
     <Compile Include="src\engine\CursorLoader.cs" />
     <Compile Include="src\general\OptionsMenu.cs" />
     <Compile Include="src\general\SceneDisplayer.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\action_data\MetaballMoveActionData.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\action_data\MetaballPlacementActionData.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\action_data\MetaballRemoveActionData.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\action_data\MetaballResizeActionData.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\EditorCamera3D.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\LateMulticellularEditor.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\MetaballBodyEditorComponent.Callbacks.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\MetaballBodyEditorComponent.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\MetaballEditorComponentBase.cs" />
+    <Compile Include="src\late_multicellular_stage\editor\MetaballPopupMenu.cs" />
+    <Compile Include="src\late_multicellular_stage\IMetaballDisplayer.cs" />
     <Compile Include="src\late_multicellular_stage\LateMulticellularSpecies.cs" />
     <Compile Include="src\late_multicellular_stage\Metaball.cs" />
     <Compile Include="src\late_multicellular_stage\MetaballLayout.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularCreature.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularHUD.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularMetaball.cs" />
+    <Compile Include="src\late_multicellular_stage\MulticellularMetaballDisplayer.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularMetaballLayout.cs" />
     <Compile Include="src\late_multicellular_stage\MulticellularStage.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
@@ -473,6 +485,7 @@
     <Compile Include="src\tutorial\TutorialPhase.cs" />
     <Compile Include="src\tutorial\TutorialState.cs" />
     <Compile Include="src\saving\serializers\RandomConverter.cs" />
+    <Compile Include="test\MetaballTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />

@@ -381,6 +381,11 @@ public static class Constants
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
 
+    public const int METABALL_ADD_COST = 7;
+    public const int METABALL_REMOVE_COST = 5;
+    public const int METABALL_MOVE_COST = 3;
+    public const int METABALL_RESIZE_COST = 3;
+
     public const float COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET = 1;
 
     // Corpse info

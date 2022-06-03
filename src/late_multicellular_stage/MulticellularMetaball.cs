@@ -19,8 +19,23 @@ public class MulticellularMetaball : Metaball, ICloneable
     [JsonIgnore]
     public override Color Color => CellType.Colour;
 
+    public override bool MatchesDefinition(Metaball other)
+    {
+        if (other is MulticellularMetaball asMulticellular)
+        {
+            return CellType == asMulticellular.CellType;
+        }
+
+        return false;
+    }
+
     public object Clone()
     {
-        throw new NotImplementedException();
+        return new MulticellularMetaball(CellType)
+        {
+            Position = Position,
+            Parent = Parent,
+            Size = Size,
+        };
     }
 }

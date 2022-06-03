@@ -9,7 +9,20 @@ using Newtonsoft.Json;
 public class MetaballLayout<T> : ICollection<T>
     where T : Metaball
 {
-    private readonly List<T> metaballs = new();
+    [JsonProperty]
+    protected Action<T>? onAdded;
+
+    [JsonProperty]
+    protected Action<T>? onRemoved;
+
+    [JsonProperty]
+    private List<T> metaballs = new();
+
+    public MetaballLayout(Action<T>? onAdded = null, Action<T>? onRemoved = null)
+    {
+        this.onAdded = onAdded;
+        this.onRemoved = onRemoved;
+    }
 
     [JsonIgnore]
     public int Count => metaballs.Count;
@@ -33,6 +46,7 @@ public class MetaballLayout<T> : ICollection<T>
             throw new ArgumentException("Can't place metaball at specified position");
 
         metaballs.Add(metaball);
+        onAdded?.Invoke(metaball);
     }
 
     public bool CanAdd(T metaball)
@@ -69,6 +83,12 @@ public class MetaballLayout<T> : ICollection<T>
 
     public bool Remove(T metaball)
     {
-        return metaballs.Remove(metaball);
+        if (metaballs.Remove(metaball))
+        {
+            onRemoved?.Invoke(metaball);
+            return true;
+        }
+
+        return false;
     }
 }
