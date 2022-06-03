@@ -82,7 +82,7 @@ public class MetaballTest : Node
                                 // Could set the parents more intelligently here...
                                 Parent = root,
                                 Position = new Vector3(x, 0, z),
-                                Size = 0.3f,
+                                Size = 1.0f,
                             });
 
                             type1 = !type1;

@@ -5,7 +5,7 @@
 /// </summary>
 public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDisplayer<MulticellularMetaball>
 {
-    private const float AABBMargin = 1;
+    private const float AABBMargin = 0.1f;
 
     private static readonly Mesh MetaballSphere = new SphereMesh()
     {
@@ -36,16 +36,13 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
             ColorFormat = MultiMesh.ColorFormatEnum.Color8bit,
             CustomDataFormat = MultiMesh.CustomDataFormatEnum.None,
         };
+
+        ExtraCullMargin = AABBMargin;
     }
 
     public void DisplayFromLayout(MetaballLayout<Metaball> layout)
     {
-        // Clear previous
         var mesh = Multimesh;
-        if (mesh.InstanceCount != 0)
-        {
-            mesh.InstanceCount = 0;
-        }
 
         int instances = layout.Count;
         mesh.InstanceCount = instances;
@@ -69,6 +66,7 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
 
             basis.Scale = new Vector3(metaball.Size, metaball.Size, metaball.Size);
 
+            // TODO: check if using SetAsBulkArray is faster
             mesh.SetInstanceTransform(i, new Transform(basis, metaball.Position));
             mesh.SetInstanceColor(i, metaball.Color);
 
@@ -83,10 +81,10 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
             if (absPosition.y > extends.y)
                 extends.y = absPosition.y;
 
-            if (absPosition.y > extends.y)
-                extends.y = absPosition.y;
+            if (absPosition.z > extends.z)
+                extends.z = absPosition.z;
         }
 
-        SetCustomAabb(new AABB(0, 0, 0, extends + new Vector3(AABBMargin, AABBMargin, AABBMargin)));
+        SetCustomAabb(new AABB(-extends, extends * 2));
     }
 }
