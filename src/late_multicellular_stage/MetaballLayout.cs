@@ -30,6 +30,8 @@ public class MetaballLayout<T> : ICollection<T>
     [JsonIgnore]
     public bool IsReadOnly => false;
 
+    public T this[int index] => metaballs[index];
+
     public IEnumerator<T> GetEnumerator()
     {
         return metaballs.GetEnumerator();

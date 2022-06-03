@@ -362,6 +362,8 @@ public abstract class
     [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
     public bool PanCameraWithMouse(float delta)
     {
+        // TODO: somehow this doesn't seem to experience the same bug as there is in EditorCamera3D where this needs a
+        // workaround
         if (!Visible)
             return false;
 
