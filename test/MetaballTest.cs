@@ -5,13 +5,16 @@ public class MetaballTest : Node
 {
     private MulticellularMetaballDisplayer metaballDisplayer = null!;
 
-    private DisplayLayout wantedLayout = DisplayLayout.Simple;
+    private DisplayLayout wantedLayout = DisplayLayout.PerformanceTest;
     private DisplayLayout currentLayout = DisplayLayout.None;
 
     private enum DisplayLayout
     {
         None,
         Simple,
+
+        // TODO: add some kind of GUI to select the wanted mode
+        PerformanceTest,
     }
 
     public override void _Ready()
@@ -34,13 +37,59 @@ public class MetaballTest : Node
                 case DisplayLayout.Simple:
                 {
                     var cellType = CreateDummyCellType(Colors.Azure);
-                    layout.Add(new MulticellularMetaball(cellType)
+                    var root = new MulticellularMetaball(cellType)
                     {
                         Parent = null,
                         Position = new Vector3(0, 0, 0),
                         Size = 1,
+                    };
+
+                    layout.Add(root);
+                    layout.Add(new MulticellularMetaball(cellType)
+                    {
+                        Parent = root,
+                        Position = new Vector3(1, 0, 0),
+                        Size = 0.5f,
                     });
 
+                    break;
+                }
+
+                case DisplayLayout.PerformanceTest:
+                {
+                    var cellType1 = CreateDummyCellType(Colors.Azure);
+                    var cellType2 = CreateDummyCellType(Colors.Chocolate);
+
+                    var root = new MulticellularMetaball(cellType1)
+                    {
+                        Parent = null,
+                        Position = new Vector3(0, 0, 0),
+                        Size = 1,
+                    };
+                    layout.Add(root);
+
+                    bool type1 = true;
+
+                    for (int x = -100; x < 100; ++x)
+                    {
+                        for (int z = -100; z < 100; ++z)
+                        {
+                            if (x == 0 && z == 0)
+                                continue;
+
+                            layout.Add(new MulticellularMetaball(type1 ? cellType1 : cellType2)
+                            {
+                                // Could set the parents more intelligently here...
+                                Parent = root,
+                                Position = new Vector3(x, 0, z),
+                                Size = 0.3f,
+                            });
+
+                            type1 = !type1;
+                        }
+                    }
+
+                    GD.Print("Total metaballs: ", layout.Count);
                     break;
                 }
 

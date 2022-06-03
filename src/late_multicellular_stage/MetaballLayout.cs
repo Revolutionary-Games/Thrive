@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -60,9 +61,14 @@ public class MetaballLayout<T> : ICollection<T>
         if (metaball.Parent == null)
             return false;
 
-        // Metaballs need to be touching (close enough) to their parent metaball (that needs to be in this layout)
+        // Fail if parent missing
+        var parent = metaball.Parent;
+        if (metaballs.All(m => m != parent))
+            return false;
 
-        throw new NotImplementedException();
+        // TODO: distance check to parent?
+        // Metaballs need to be touching (close enough) to their parent metaball
+        return true;
     }
 
     public void Clear()
