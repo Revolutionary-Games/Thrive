@@ -391,7 +391,9 @@ public class CreditsScroll : Container
         offset += (int)currentLabel.Height + OffsetAfterSection;
 
         var licenseTextLabel =
-            CreateFileLoadedPart(offset, steamVersion ? Constants.STEAM_LICENSE_FILE : Constants.LICENSE_FILE);
+            steamVersion ?
+                CreateTextPart(offset, LicensesDisplay.LoadSteamLicenseFile()) :
+                CreateFileLoadedPart(offset, Constants.LICENSE_FILE);
         offset += (int)licenseTextLabel.Height + ExtraOffsetAfterTeam;
 
         // This is purposefully not translatable
@@ -622,6 +624,11 @@ public class CreditsScroll : Container
             GD.PrintErr("Can't load file to show in credits: ", file);
         }
 
+        return CreateTextPart(offset, text);
+    }
+
+    private DynamicPart CreateTextPart(int offset, string text)
+    {
         var label = new DynamicPart(offset, new Label
         {
             Text = text,

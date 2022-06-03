@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -35,11 +36,23 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     private bool onReadyCalled;
 
+    /// <summary>
+    ///   We need to know when we should process ourselves or we are ran through <see cref="MicrobeSystem"/>.
+    ///   This is this way as microbes can be used for editor previews and also in <see cref="PhotoStudio"/>.
+    /// </summary>
+    private bool usesExternalProcess;
+
+    private bool absorptionSkippedEarly;
+
     private bool processesDirty = true;
     private List<TweakedProcess>? processes;
 
     private bool cachedHexCountDirty = true;
     private int cachedHexCount;
+
+    private float? cachedRotationSpeed;
+
+    private float? cachedColonyRotationMultiplier;
 
     private float collisionForce;
 
@@ -138,6 +151,15 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             return radius;
         }
     }
+
+    [JsonIgnore]
+    public float RotationSpeed => cachedRotationSpeed ??=
+        MicrobeInternalCalculations.CalculateRotationSpeed(organelles ??
+            throw new InvalidOperationException("Organelles not initialized yet"));
+
+    [JsonIgnore]
+    public float MassFromOrganelles => organelles?.Sum(o => o.Definition.Mass) ??
+        throw new InvalidOperationException("organelles not initialized");
 
     [JsonIgnore]
     public bool HasSignalingAgent
@@ -395,6 +417,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             throw new ArgumentException("Microbe can only be a microbe or early multicellular species");
         }
 
+        cachedRotationSpeed = CellTypeProperties.BaseRotationSpeed;
+
         FinishSpeciesSetup();
     }
 
@@ -445,7 +469,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 return;
 
             player = new AudioStreamPlayer3D();
-            player.UnitDb = GD.Linear2Db(volume);
             player.MaxDistance = 100.0f;
             player.Bus = "SFX";
 
@@ -453,6 +476,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             otherAudioPlayers.Add(player);
         }
 
+        player.UnitDb = GD.Linear2Db(volume);
         player.Stream = sound;
         player.Play();
     }
@@ -472,18 +496,96 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 return;
 
             player = new AudioStreamPlayer();
-            player.VolumeDb = GD.Linear2Db(volume);
             player.Bus = "SFX";
 
             AddChild(player);
             nonPositionalAudioPlayers.Add(player);
         }
 
+        player.VolumeDb = GD.Linear2Db(volume);
         player.Stream = sound;
         player.Play();
     }
 
-    public override void _Process(float delta)
+    public void NotifyExternalProcessingIsUsed()
+    {
+        if (usesExternalProcess)
+            return;
+
+        usesExternalProcess = true;
+        SetProcess(false);
+    }
+
+    /// <summary>
+    ///   Async part of microbe processing
+    /// </summary>
+    /// <param name="delta">Time since the last call</param>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: microbe processing needs more refactoring in the individual operation methods to really allow more
+    ///     work to be put in this asynchronous processing method
+    ///   </para>
+    /// </remarks>
+    public void ProcessEarlyAsync(float delta)
+    {
+        if (membraneOrganellePositionsAreDirty)
+        {
+            // Redo the cell membrane.
+            SendOrganellePositionsToMembrane();
+
+            membraneOrganellesWereUpdatedThisFrame = true;
+        }
+        else
+        {
+            membraneOrganellesWereUpdatedThisFrame = false;
+        }
+
+        // The code below starting from here is not needed for a display-only cell
+        if (IsForPreviewOnly)
+            return;
+
+        // Movement factor is reset here. HandleEngulfing will set the right value
+        MovementFactor = 1.0f;
+        queuedMovementForce = new Vector3(0, 0, 0);
+
+        // Reduce agent emission cooldown
+        AgentEmissionCooldown -= delta;
+        if (AgentEmissionCooldown < 0)
+            AgentEmissionCooldown = 0;
+
+        lastCheckedATPDamage += delta;
+
+        if (!Membrane.Dirty)
+        {
+            HandleCompoundAbsorbing(delta);
+        }
+        else
+        {
+            absorptionSkippedEarly = true;
+        }
+
+        // Colony members have their movement update before organelle update,
+        // so that the movement organelles see the direction
+        // The colony master should be already updated as the movement direction is either set by the player input or
+        // microbe AI, neither of which will happen concurrently, so this should always get the up to date value
+        if (Colony != null && Colony.Master != this)
+            MovementDirection = Colony.Master.MovementDirection;
+
+        // Let organelles do stuff (this for example gets the movement force from flagella)
+        foreach (var organelle in organelles!.Organelles)
+        {
+            organelle.UpdateAsync(delta);
+        }
+
+        HandleHitpointsRegeneration(delta);
+
+        HandleOsmoregulation(delta);
+
+        if (!Membrane.Dirty)
+            HandleCompoundVenting(delta);
+    }
+
+    public void ProcessSync(float delta)
     {
         // Updates the listener if this is the player owned microbe.
         if (listener != null)
@@ -496,19 +598,16 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             listener.GlobalTransform = transform;
         }
 
-        if (membraneOrganellePositionsAreDirty)
+        if (membraneOrganellesWereUpdatedThisFrame && IsForPreviewOnly)
         {
-            // Redo the cell membrane.
-            SendOrganellePositionsToMembrane();
+            if (organelles == null)
+                throw new InvalidOperationException("Preview microbe was not initialized with organelles list");
 
-            if (IsForPreviewOnly)
+            // Update once for the positioning of external organelles
+            foreach (var organelle in organelles.Organelles)
             {
-                if (organelles == null)
-                    throw new InvalidOperationException("Preview microbe was not initialized with organelles list");
-
-                // Update once for the positioning of external organelles
-                foreach (var organelle in organelles.Organelles)
-                    organelle.Update(delta);
+                organelle.UpdateAsync(delta);
+                organelle.UpdateSync();
             }
         }
 
@@ -518,21 +617,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         CheckEngulfShapeSize();
 
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        HandleCompoundAbsorbing(delta);
-
-        // Movement factor is reset here. HandleEngulfing will set the right value
-        MovementFactor = 1.0f;
-        queuedMovementForce = new Vector3(0, 0, 0);
-
-        // Reduce agent emission cooldown
-        AgentEmissionCooldown -= delta;
-        if (AgentEmissionCooldown < 0)
-            AgentEmissionCooldown = 0;
-
         // Fire queued agents
         if (queuedToxinToEmit != null)
         {
@@ -540,33 +624,30 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             queuedToxinToEmit = null;
         }
 
+        // If we didn't have our membrane ready yet in the async process we need to do these now
+        if (absorptionSkippedEarly)
+        {
+            HandleCompoundAbsorbing(delta);
+            HandleCompoundVenting(delta);
+            absorptionSkippedEarly = false;
+        }
+
         HandleFlashing(delta);
-        HandleHitpointsRegeneration(delta);
+
         HandleReproduction(delta);
 
-        // Handles engulfing related stuff as well as modifies the
-        // movement factor. This needs to be done before Update is
-        // called on organelles as movement organelles will use
-        // MovementFactor.
+        // Handles engulfing related stuff as well as modifies the movement factor.
+        // This needs to be done before Update is called on organelles as movement organelles will use MovementFactor.
         HandleEngulfing(delta);
 
         // Handles binding related stuff
         HandleBinding(delta);
         HandleUnbinding();
 
-        HandleOsmoregulation(delta);
-
-        // Colony members have their movement update before organelle update,
-        // so that the movement organelles see the direction
-        // The colony master should be updated first, if not, theres an engine bug
-        // because the master is the parent node of the members.
-        if (Colony != null && Colony.Master != this)
-            MovementDirection = Colony.Master.MovementDirection;
-
         // Let organelles do stuff (this for example gets the movement force from flagella)
         foreach (var organelle in organelles!.Organelles)
         {
-            organelle.Update(delta);
+            organelle.UpdateSync();
         }
 
         if (QueuedSignalingCommand != null)
@@ -575,18 +656,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             QueuedSignalingCommand = null;
         }
 
-        // Rotation is applied in the physics force callback as that's
-        // the place where the body rotation can be directly set
-        // without problems
+        // Rotation is applied in the physics force callback as that's the place where the body rotation
+        // can be directly set without problems
 
         HandleChemoreceptorLines(delta);
 
-        HandleCompoundVenting(delta);
-
         if (Colony != null && Colony.Master == this)
             Colony.Process(delta);
-
-        lastCheckedATPDamage += delta;
 
         while (lastCheckedATPDamage >= Constants.ATP_DAMAGE_CHECK_INTERVAL)
         {
@@ -610,6 +686,22 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
     }
 
+    public override void _Process(float delta)
+    {
+        if (usesExternalProcess)
+        {
+            GD.PrintErr("_Process was called for microbe that uses external processing");
+            return;
+        }
+
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
+        ProcessEarlyAsync(delta);
+        ProcessSync(delta);
+    }
+
     public override void _PhysicsProcess(float delta)
     {
         linearAcceleration = (LinearVelocity - lastLinearVelocity) / delta;
@@ -630,16 +722,18 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     public override void _EnterTree()
     {
+        base._EnterTree();
+
         if (IsPlayerMicrobe)
             CheatManager.OnPlayerDuplicationCheatUsed += OnPlayerDuplicationCheat;
     }
 
     public override void _ExitTree()
     {
+        base._ExitTree();
+
         if (IsPlayerMicrobe)
             CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
-
-        base._ExitTree();
     }
 
     public void AIThink(float delta, Random random, MicrobeAICommonData data)
@@ -864,15 +958,60 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     }
 
     /// <summary>
-    ///   Just slerps towards a fixed amount the target point
+    ///   Just slerps towards the target point with the amount being defined by the cell rotation speed.
+    ///   For now, eventually we want to use physics forces to turn
     /// </summary>
     private Transform GetNewPhysicsRotation(Transform transform)
     {
         var target = transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
 
+        float speed = RotationSpeed;
+        var ownRotation = RotationSpeed;
+
+        if (Colony != null && ColonyParent == null)
+        {
+            // Calculate help and extra inertia caused by the colony member cells
+            if (cachedColonyRotationMultiplier == null)
+            {
+                // TODO: move this to MicrobeInternalCalculations once this is needed to be shown in the multicellular
+                // editor
+                float colonyInertia = 0.1f;
+                float colonyRotationHelp = 0;
+
+                foreach (var colonyMember in Colony.ColonyMembers)
+                {
+                    if (colonyMember == this)
+                        continue;
+
+                    var distance = colonyMember.Transform.origin.LengthSquared();
+
+                    if (distance < MathUtils.EPSILON)
+                        continue;
+
+                    colonyInertia += distance * colonyMember.MassFromOrganelles *
+                        Constants.CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER;
+
+                    // TODO: should this use the member rotation speed (which is dependent on its size and how many
+                    // cilia there are that far away) or just a count of cilia and the distance
+                    colonyRotationHelp += colonyMember.RotationSpeed *
+                        Constants.CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER * Mathf.Sqrt(distance);
+                }
+
+                var multiplier = colonyRotationHelp / colonyInertia;
+
+                cachedColonyRotationMultiplier = Mathf.Clamp(multiplier, Constants.CELL_COLONY_MIN_ROTATION_MULTIPLIER,
+                    Constants.CELL_COLONY_MAX_ROTATION_MULTIPLIER);
+            }
+
+            speed *= cachedColonyRotationMultiplier.Value;
+
+            speed = Mathf.Clamp(speed, Constants.CELL_MIN_ROTATION,
+                Math.Min(ownRotation * Constants.CELL_COLONY_MAX_ROTATION_HELP, Constants.CELL_MAX_ROTATION));
+        }
+
         // Need to manually normalize everything, otherwise the slerp fails
-        Quat slerped = transform.basis.Quat().Normalized().Slerp(
-            target.basis.Quat().Normalized(), 0.2f);
+        // Delta is not used here as the physics frames occur at a fixed number of times per second
+        Quat slerped = transform.basis.Quat().Normalized().Slerp(target.basis.Quat().Normalized(), speed);
 
         return new Transform(new Basis(slerped), transform.origin);
     }

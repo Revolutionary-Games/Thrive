@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [TypeConverter(typeof(ThriveTypeConverter))]
-[JSONDynamicTypeAllowedAttribute]
+[JSONDynamicTypeAllowed]
 [UseThriveConverter]
 public class EarlyMulticellularSpecies : Species
 {
@@ -30,6 +30,18 @@ public class EarlyMulticellularSpecies : Species
 
     [JsonIgnore]
     public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
+
+    public override void OnEdited()
+    {
+        RepositionToOrigin();
+        UpdateInitialCompounds();
+
+        // Make certain these are all up to date
+        foreach (var cellType in CellTypes)
+        {
+            cellType.CalculateRotationSpeed();
+        }
+    }
 
     public override void RepositionToOrigin()
     {

@@ -32,7 +32,6 @@ anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_edit_vertical_guides_": [ -85.3295 ]
 }
 ResetButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Reset")
@@ -46,6 +45,7 @@ GraphicsTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphic
 VSyncPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/Vsync")
 FullScreenPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/Fullscreen")
 MSAAResolutionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer/MSAAResolution")
+ResolutionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer4/Resolution")
 MaxFramesPerSecondPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer3/MaxFramesPerSecond")
 ColourblindSettingPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer2/ColourblindSetting")
 ChromaticAberrationSliderPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount")
@@ -278,16 +278,16 @@ text = "RESOLUTION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer4"]
 margin_left = 128.0
-margin_right = 599.0
+margin_right = 466.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer4"]
-margin_left = 603.0
+[node name="Resolution" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer4"]
+margin_left = 470.0
 margin_right = 657.0
 margin_bottom = 25.0
-text = "AUTO"
+text = "AUTO_RESOLUTION"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
 margin_top = 174.0

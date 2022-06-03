@@ -185,6 +185,9 @@ public class ModManager : Control
     public NodePath FullInfoIncompatibleModsPath = null!;
 
     [Export]
+    public NodePath FullInfoAutoHarmonyPath = null!;
+
+    [Export]
     public NodePath OpenWorkshopButtonPath = null!;
 
     [Export]
@@ -309,6 +312,7 @@ public class ModManager : Control
     private Label fullInfoLoadBefore = null!;
     private Label fullInfoLoadAfter = null!;
     private Label fullInfoIncompatibleMods = null!;
+    private Label fullInfoAutoHarmony = null!;
 
     private Button openWorkshopButton = null!;
     private Button modUploaderButton = null!;
@@ -447,14 +451,25 @@ public class ModManager : Control
             }
         }
 
-        if (info.ModAssembly != null && info.AssemblyModClass == null)
+        if (info.ModAssembly != null && info.AssemblyModClass == null && info.UseAutoHarmony != true)
         {
             if (throwOnError)
             {
                 throw new ArgumentException(TranslationServer.Translate("ASSEMBLY_CLASS_REQUIRED"));
             }
 
-            GD.PrintErr("AssemblyModClass must be set if ModAssembly is set");
+            GD.PrintErr("AssemblyModClass must be set if ModAssembly is set (and auto harmony is not used)");
+            return false;
+        }
+
+        if (info.UseAutoHarmony == true && string.IsNullOrEmpty(info.ModAssembly))
+        {
+            if (throwOnError)
+            {
+                throw new ArgumentException(TranslationServer.Translate("ASSEMBLY_REQUIRED_WITH_HARMONY"));
+            }
+
+            GD.PrintErr("ModAssembly must be set if UseAutoHarmony is true");
             return false;
         }
 
@@ -539,6 +554,7 @@ public class ModManager : Control
         fullInfoLoadBefore = GetNode<Label>(FullInfoLoadBeforePath);
         fullInfoLoadAfter = GetNode<Label>(FullInfoLoadAfterPath);
         fullInfoIncompatibleMods = GetNode<Label>(FullInfoIncompatibleModsPath);
+        fullInfoAutoHarmony = GetNode<Label>(FullInfoAutoHarmonyPath);
 
         modLoaderContainer = GetNode<TabContainer>(ModLoaderContainerPath);
 
@@ -1607,6 +1623,10 @@ public class ModManager : Control
         string fullInfoIncompatibleModsText = string.Empty;
         info.IncompatibleMods?.ForEach(s => fullInfoIncompatibleModsText += "* " + s + "\n");
         fullInfoIncompatibleMods.Text = fullInfoIncompatibleModsText;
+
+        fullInfoAutoHarmony.Text = info.UseAutoHarmony == true ?
+            TranslationServer.Translate("USES_FEATURE") :
+            TranslationServer.Translate("DOES_NOT_USE_FEATURE");
 
         modFullInfoPopup.PopupCenteredShrink();
     }

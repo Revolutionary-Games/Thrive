@@ -72,6 +72,9 @@ public class CustomDialog : Popup, ICustomPopup
     private bool showCloseButton = true;
     private bool decorate = true;
 
+    [Signal]
+    public delegate void Closed();
+
     [Flags]
     private enum DragType
     {
@@ -613,6 +616,7 @@ public class CustomDialog : Popup, ICustomPopup
     private void OnCloseButtonPressed()
     {
         Hide();
+        EmitSignal(nameof(Closed));
     }
 
     private void OnViewportResized()

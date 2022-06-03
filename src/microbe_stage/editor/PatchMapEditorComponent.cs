@@ -270,6 +270,10 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     {
     }
 
+    public override void OnValidAction()
+    {
+    }
+
     protected virtual void UpdateShownPatchDetails()
     {
         var patch = mapDrawer.SelectedPatch;

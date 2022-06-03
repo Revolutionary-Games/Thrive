@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.cs" type="Script" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
+[ext_resource path="res://src/early_multicellular_stage/editor/CellPopupMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=7]
@@ -190,6 +191,7 @@ DuplicateTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginCont
 CannotDeleteInUseTypeDialogPath = NodePath("CannotDeleteInUseType")
 DuplicateCellTypeDialogPath = NodePath("NewCellTypeSetup")
 DuplicateCellTypeNamePath = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
+CellPopupMenuPath = NodePath("CellPopupMenu")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 anchor_bottom = 1.0
@@ -591,6 +593,8 @@ margin_bottom = 147.0
 rect_min_size = Vector2( 0, 45 )
 mouse_filter = 2
 
+[node name="CellPopupMenu" parent="." instance=ExtResource( 3 )]
+
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]
@@ -604,7 +608,11 @@ mouse_filter = 2
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
 [connection signal="OnSymmetryChanged" from="EditorComponentBottomLeftButtons" to="." method="OnSymmetryPressed"]
 [connection signal="OnUndo" from="EditorComponentBottomLeftButtons" to="." method="Undo"]
+[connection signal="pressed" from="BottomRight/HBoxContainer/CancelButton" to="." method="OnCancelActionClicked"]
 [connection signal="pressed" from="BottomRight/HBoxContainer/ConfirmButton" to="." method="NextOrFinishClicked"]
 [connection signal="Confirmed" from="NewCellTypeSetup" to="." method="OnNewCellTypeConfirmed"]
 [connection signal="text_changed" from="NewCellTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTypeNameChanged"]
 [connection signal="text_entered" from="NewCellTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTextAccepted"]
+[connection signal="DeletePressed" from="CellPopupMenu" to="." method="OnDeletePressed"]
+[connection signal="ModifyPressed" from="CellPopupMenu" to="." method="OnModifyPressed"]
+[connection signal="MovePressed" from="CellPopupMenu" to="." method="OnMovePressed"]

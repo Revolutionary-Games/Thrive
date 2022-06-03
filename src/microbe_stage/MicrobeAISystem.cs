@@ -39,18 +39,21 @@ public class MicrobeAISystem
         // The objects are processed here in order to take advantage of threading
         var executor = TaskExecutor.Instance;
 
+        var random = new Random();
+
         for (int i = 0; i < nodes.Count; i += Constants.MICROBE_AI_OBJECTS_PER_TASK)
         {
             int start = i;
+            int seed = random.Next();
 
             var task = new Task(() =>
             {
-                var random = new Random();
+                var tasksRandom = new Random(seed);
                 for (int a = start;
                      a < start + Constants.MICROBE_AI_OBJECTS_PER_TASK && a < nodes.Count;
                      ++a)
                 {
-                    RunAIFor(nodes[a], delta, random, data);
+                    RunAIFor(nodes[a], delta, tasksRandom, data);
                 }
             });
 

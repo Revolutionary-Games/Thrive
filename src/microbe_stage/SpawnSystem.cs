@@ -17,6 +17,9 @@ public class SpawnSystem
     [JsonProperty]
     private float elapsed;
 
+    [JsonProperty]
+    private float despawnElapsed;
+
     /// <summary>
     ///   Root node to parent all spawned things to
     /// </summary>
@@ -86,10 +89,9 @@ public class SpawnSystem
     /// <summary>
     ///   Adds an externally spawned entity to be despawned
     /// </summary>
-    public static void AddEntityToTrack(ISpawned entity,
-        float radius = Constants.MICROBE_SPAWN_RADIUS)
+    public static void AddEntityToTrack(ISpawned entity)
     {
-        entity.DespawnRadiusSquared = (int)(radius * radius);
+        entity.DespawnRadiusSquared = Constants.MICROBE_DESPAWN_RADIUS_SQUARED;
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
@@ -136,6 +138,7 @@ public class SpawnSystem
         spawnTypes.Clear();
         queuedSpawns = null;
         elapsed = 0;
+        despawnElapsed = 0;
     }
 
     /// <summary>
@@ -145,13 +148,21 @@ public class SpawnSystem
     {
         queuedSpawns = null;
 
+        int despawned = 0;
+
         foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
         {
             if (!spawned.EntityNode.IsQueuedForDeletion())
             {
                 spawned.DestroyDetachAndQueueFree();
+                ++despawned;
             }
         }
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportDespawns(despawned);
     }
 
     /// <summary>
@@ -160,6 +171,7 @@ public class SpawnSystem
     public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation)
     {
         elapsed += delta;
+        despawnElapsed += delta;
 
         // Remove the y-position from player position
         playerPosition.y = 0;
@@ -187,10 +199,18 @@ public class SpawnSystem
 
             SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
         }
+        else if (despawnElapsed > Constants.DESPAWN_INTERVAL)
+        {
+            despawnElapsed = 0;
+
+            DespawnEntities(playerPosition);
+        }
     }
 
     private int HandleQueuedSpawns(int spawnsLeftThisFrame)
     {
+        int initialSpawns = spawnsLeftThisFrame;
+
         if (queuedSpawns == null)
             return spawnsLeftThisFrame;
 
@@ -222,12 +242,20 @@ public class SpawnSystem
             --spawnsLeftThisFrame;
         }
 
+        if (initialSpawns != spawnsLeftThisFrame)
+        {
+            var metrics = PerformanceMetrics.Instance;
+
+            if (metrics.Visible)
+                metrics.ReportSpawns(initialSpawns - spawnsLeftThisFrame);
+        }
+
         return spawnsLeftThisFrame;
     }
 
     private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame)
     {
-        // If  there are already too many entities, don't spawn more
+        // If there are already too many entities, don't spawn more
         if (existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
             return;
 
@@ -303,7 +331,7 @@ public class SpawnSystem
                         squaredDistance >= spawnType.MinSpawnRadiusSquared)
                     {
                         // Second condition passed. Spawn the entity.
-                        if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
+                        if (SpawnWithSpawner(spawnType, playerPosition + displacement, playerPosition, existing,
                                 ref spawnsLeftThisFrame, ref spawned))
                         {
                             estimateEntityCountInSpawnRadius += spawned;
@@ -316,16 +344,21 @@ public class SpawnSystem
         }
 
         estimateEntityCountInSpawnRadius += spawned;
+
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportSpawns(spawned);
     }
 
     /// <summary>
     ///   Does a single spawn with a spawner
     /// </summary>
     /// <returns>True if we have exceeded the spawn limit and no further spawns should be done this frame</returns>
-    private bool SpawnWithSpawner(Spawner spawnType, Vector3 location, int existing, ref int spawnsLeftThisFrame,
-        ref int spawned)
+    private bool SpawnWithSpawner(Spawner spawnType, Vector3 location, Vector3 playerPosition, int existing,
+        ref int spawnsLeftThisFrame, ref int spawned)
     {
-        var enumerable = spawnType.Spawn(worldRoot, location);
+        var enumerable = spawnType.Spawn(worldRoot, location, playerPosition);
 
         if (enumerable == null)
             return false;
@@ -397,6 +430,11 @@ public class SpawnSystem
             }
         }
 
+        var metrics = PerformanceMetrics.Instance;
+
+        if (metrics.Visible)
+            metrics.ReportDespawns(entitiesDeleted);
+
         return spawnedCount - entitiesDeleted;
     }
 
@@ -405,11 +443,8 @@ public class SpawnSystem
     /// </summary>
     private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
     {
-        // I don't understand why the same
-        // value is used for spawning and
-        // despawning, but apparently it works
-        // just fine
-        entity.DespawnRadiusSquared = spawnType.SpawnRadiusSquared;
+        float radius = spawnType.SpawnRadius + Constants.DESPAWN_RADIUS_OFFSET;
+        entity.DespawnRadiusSquared = (int)(radius * radius);
 
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }

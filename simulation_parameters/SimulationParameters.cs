@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using File = Godot.File;
@@ -31,6 +32,8 @@ public class SimulationParameters : Node
     private float prokaryoticOrganellesTotalChance;
     private List<OrganelleDefinition> eukaryoticOrganelles = null!;
     private float eukaryoticOrganellesChance;
+
+    private List<Compound>? cachedCloudCompounds;
 
     public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
 
@@ -181,17 +184,7 @@ public class SimulationParameters : Node
     /// </summary>
     public List<Compound> GetCloudCompounds()
     {
-        var result = new List<Compound>();
-
-        foreach (var entry in compounds)
-        {
-            if (entry.Value.IsCloud)
-            {
-                result.Add(entry.Value);
-            }
-        }
-
-        return result;
+        return cachedCloudCompounds ??= ComputeCloudCompounds();
     }
 
     public Dictionary<string, MusicCategory> GetMusicCategories()
@@ -445,5 +438,10 @@ public class SimulationParameters : Node
                 prokaryoticOrganellesTotalChance += organelle.ChanceToCreate;
             }
         }
+    }
+
+    private List<Compound> ComputeCloudCompounds()
+    {
+        return compounds.Where(p => p.Value.IsCloud).Select(p => p.Value).ToList();
     }
 }

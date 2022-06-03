@@ -2,10 +2,11 @@
 using Godot;
 using Newtonsoft.Json;
 
-public class CellTemplate : IPositionedCell, ICloneable
+public class CellTemplate : IPositionedCell, ICloneable, IActionHex
 {
     private int orientation;
 
+    [JsonConstructor]
     public CellTemplate(CellType cellType, Hex position, int orientation)
     {
         CellType = cellType;
@@ -44,6 +45,9 @@ public class CellTemplate : IPositionedCell, ICloneable
     public bool IsBacteria { get => CellType.IsBacteria; set => CellType.IsBacteria = value; }
 
     [JsonIgnore]
+    public float BaseRotationSpeed { get => CellType.BaseRotationSpeed; set => CellType.BaseRotationSpeed = value; }
+
+    [JsonIgnore]
     public string FormattedName => CellType.TypeName;
 
     [JsonIgnore]
@@ -54,9 +58,19 @@ public class CellTemplate : IPositionedCell, ICloneable
         CellType.RepositionToOrigin();
     }
 
+    public void CalculateRotationSpeed()
+    {
+        CellType.CalculateRotationSpeed();
+    }
+
     public void UpdateNameIfValid(string newName)
     {
         CellType.UpdateNameIfValid(newName);
+    }
+
+    public bool MatchesDefinition(IActionHex other)
+    {
+        return CellType == ((CellTemplate)other).CellType;
     }
 
     public object Clone()

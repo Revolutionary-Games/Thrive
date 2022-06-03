@@ -1,17 +1,14 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Godot;
 
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
+[SuppressMessage("Usage", "CA2213:Disposable fields should be disposed", Justification =
+    "We don't manually dispose Godot derived types")]
 public class PauseMenu : CustomDialog
 {
-    /// <summary>
-    ///   Causes various things to automatically happen to reduce the code duplication needed for the various editors
-    /// </summary>
-    [Export]
-    public bool IsEditorPauseMenu;
-
     [Export]
     public string HelpCategory = null!;
 
@@ -42,6 +39,9 @@ public class PauseMenu : CustomDialog
     private OptionsMenu optionsMenu = null!;
     private NewSaveMenu saveMenu = null!;
     private CustomConfirmationDialog unsavedProgressWarning = null!;
+    private AnimationPlayer animationPlayer = null!;
+
+    private bool paused;
 
     /// <summary>
     ///   The assigned pending exit type, will be used to specify what kind of
@@ -50,7 +50,7 @@ public class PauseMenu : CustomDialog
     private ExitType exitType;
 
     [Signal]
-    public delegate void OnClosed();
+    public delegate void OnResumed();
 
     /// <summary>
     ///   Triggered when the user hits ESC to open the pause menu
@@ -161,6 +161,26 @@ public class PauseMenu : CustomDialog
         }
     }
 
+    private bool Paused
+    {
+        set
+        {
+            if (paused == value)
+                return;
+
+            if (paused)
+            {
+                PauseManager.Instance.Resume(nameof(PauseMenu));
+            }
+            else
+            {
+                PauseManager.Instance.AddPause(nameof(PauseMenu));
+            }
+
+            paused = value;
+        }
+    }
+
     public override void _EnterTree()
     {
         // This needs to be done early here to make sure the help screen loads the right text
@@ -176,6 +196,7 @@ public class PauseMenu : CustomDialog
         base._ExitTree();
 
         InputManager.UnregisterReceiver(this);
+        Paused = false;
     }
 
     public override void _Ready()
@@ -185,6 +206,7 @@ public class PauseMenu : CustomDialog
         optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
         unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
+        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
@@ -194,10 +216,8 @@ public class PauseMenu : CustomDialog
         {
             ActiveMenu = ActiveMenuType.Primary;
 
-            EmitSignal(nameof(OnClosed));
-
-            if (IsEditorPauseMenu)
-                CloseFromEditor();
+            Close();
+            EmitSignal(nameof(OnResumed));
 
             return true;
         }
@@ -205,10 +225,8 @@ public class PauseMenu : CustomDialog
         if (IsPausingBlocked)
             return false;
 
+        Open();
         EmitSignal(nameof(OnOpenWithKeyPress));
-
-        if (IsEditorPauseMenu)
-            OpenFromEditor();
 
         return true;
     }
@@ -219,10 +237,8 @@ public class PauseMenu : CustomDialog
         if (IsPausingBlocked)
             return false;
 
+        Open();
         EmitSignal(nameof(OnOpenWithKeyPress));
-
-        if (IsEditorPauseMenu)
-            OpenFromEditor();
 
         ShowHelpScreen();
         return true;
@@ -237,25 +253,27 @@ public class PauseMenu : CustomDialog
         helpScreen.RandomizeEasterEgg();
     }
 
-    public void OpenFromEditor()
+    public void Open()
     {
-        GUICommon.Instance.PlayButtonPressSound();
+        if (Visible)
+            return;
 
-        Show();
-        GetTree().Paused = true;
+        animationPlayer.Play("Open");
+        Paused = true;
     }
 
-    public void CloseFromEditor()
+    public void Close()
     {
-        Hide();
-        GetTree().Paused = false;
+        if (!Visible)
+            return;
+
+        animationPlayer.Play("Close");
+        Paused = false;
     }
 
-    public void OpenFromEditorToHelp()
+    public void OpenToHelp()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        OpenFromEditor();
+        Open();
         ShowHelpScreen();
     }
 
@@ -292,10 +310,8 @@ public class PauseMenu : CustomDialog
     private void ClosePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnClosed));
-
-        if (IsEditorPauseMenu)
-            CloseFromEditor();
+        Close();
+        EmitSignal(nameof(OnResumed));
     }
 
     private void ReturnToMenuPressed()
@@ -354,8 +370,7 @@ public class PauseMenu : CustomDialog
 
     private void ReturnToMenu()
     {
-        // Unpause the game
-        GetTree().Paused = false;
+        Paused = false;
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
@@ -418,8 +433,10 @@ public class PauseMenu : CustomDialog
         ActiveMenu = ActiveMenuType.Primary;
 
         // Close this first to get the menus out of the way to capture the save screenshot
-        EmitSignal(nameof(OnClosed));
+        Hide();
+        EmitSignal(nameof(OnResumed));
         EmitSignal(nameof(MakeSave), name);
+        Paused = false;
     }
 
     /// <summary>
@@ -433,5 +450,11 @@ public class PauseMenu : CustomDialog
     private void OnLoadSaveConfirmed(SaveListItem item)
     {
         item.LoadThisSave();
+    }
+
+    private void OnSaveLoaded(string saveName)
+    {
+        _ = saveName;
+        Paused = false;
     }
 }

@@ -52,6 +52,9 @@ public class SaveList : ScrollContainer
     [Export]
     public NodePath UpgradeFailedDialogPath = null!;
 
+    [Export]
+    public NodePath LoadIncompatiblePrototypeDialogPath = null!;
+
     private Control loadingItem = null!;
     private Control noSavesItem = null!;
     private BoxContainer savesList = null!;
@@ -61,6 +64,7 @@ public class SaveList : ScrollContainer
     private CustomConfirmationDialog loadInvalidConfirmDialog = null!;
     private CustomConfirmationDialog loadIncompatibleDialog = null!;
     private CustomConfirmationDialog upgradeSaveDialog = null!;
+    private CustomConfirmationDialog loadIncompatiblePrototypeDialog = null!;
     private ErrorDialog upgradeFailedDialog = null!;
 
     private PackedScene listItemScene = null!;
@@ -86,6 +90,9 @@ public class SaveList : ScrollContainer
     [Signal]
     public delegate void OnConfirmed(SaveListItem item);
 
+    [Signal]
+    public delegate void OnSaveLoaded(string saveName);
+
     public override void _Ready()
     {
         loadingItem = GetNode<Control>(LoadingItemPath);
@@ -98,6 +105,7 @@ public class SaveList : ScrollContainer
         loadIncompatibleDialog = GetNode<CustomConfirmationDialog>(LoadIncompatibleDialogPath);
         upgradeSaveDialog = GetNode<CustomConfirmationDialog>(UpgradeSaveDialogPath);
         upgradeFailedDialog = GetNode<ErrorDialog>(UpgradeFailedDialogPath);
+        loadIncompatiblePrototypeDialog = GetNode<CustomConfirmationDialog>(LoadIncompatiblePrototypeDialogPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -153,6 +161,9 @@ public class SaveList : ScrollContainer
                 item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded),
                     new Array { save });
                 item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
+                item.Connect(nameof(SaveListItem.OnDifferentVersionPrototypeLoaded), this,
+                    nameof(OnDifferentVersionPrototypeLoaded));
+                item.Connect(nameof(SaveListItem.OnProblemFreeSaveLoaded), this, nameof(OnSaveLoadedWithoutProblems));
 
                 item.SaveName = save;
                 savesList.AddChild(item);
@@ -256,6 +267,11 @@ public class SaveList : ScrollContainer
     private void OnKnownIncompatibleLoaded()
     {
         loadIncompatibleDialog.PopupCenteredShrink();
+    }
+
+    private void OnDifferentVersionPrototypeLoaded()
+    {
+        loadIncompatiblePrototypeDialog.PopupCenteredShrink();
     }
 
     private void OnConfirmLoadOlder()
@@ -373,6 +389,12 @@ public class SaveList : ScrollContainer
         }
 
         SaveHelper.LoadSave(saveToBeLoaded);
+        EmitSignal(nameof(OnSaveLoaded), saveToBeLoaded);
         saveToBeLoaded = null;
+    }
+
+    private void OnSaveLoadedWithoutProblems(string saveName)
+    {
+        EmitSignal(nameof(OnSaveLoaded), saveName);
     }
 }

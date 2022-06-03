@@ -60,6 +60,8 @@
                 { "0.5.7.0", new UpgradeStep057To058() },
                 { "0.5.8.0-alpha", new UpgradeJustVersionNumber("0.5.8.0-rc1") },
                 { "0.5.8.0-rc1", new UpgradeJustVersionNumber("0.5.8.0") },
+                { "0.5.8.0", new UpgradeJustVersionNumber("0.5.8.1-alpha") },
+                { "0.5.8.1-alpha", new UpgradeJustVersionNumber("0.5.8.1") },
             };
         }
     }
@@ -235,7 +237,7 @@
             };
 
             MoveObjectProperties(editor, cellEditorTab,
-                "colour", "rigidity", "editedMicrobeOrganelles", "organelleRot", "activeActionName",
+                "colour", "rigidity", "editedMicrobeOrganelles", "placementRotation", "activeActionName",
                 "Membrane", "Symmetry", "MicrobePreviewMode");
 
             // Remove the organelle change callbacks which will be redone anyway on load

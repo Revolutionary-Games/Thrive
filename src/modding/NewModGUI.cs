@@ -88,6 +88,9 @@ public class NewModGUI : Control
     public NodePath PreviewFileDialogPath = null!;
 
     [Export]
+    public NodePath AssemblyModAutoHarmonyPath = null!;
+
+    [Export]
     public NodePath ErrorDisplayPath = null!;
 
     private CustomDialog dialog = null!;
@@ -108,6 +111,7 @@ public class NewModGUI : Control
     private LineEdit pckName = null!;
     private LineEdit modAssembly = null!;
     private LineEdit assemblyModClass = null!;
+    private CheckBox assemblyModAutoHarmony = null!;
     private LineEdit dependencies = null!;
     private LineEdit requiredMods = null!;
     private LineEdit loadBefore = null!;
@@ -157,6 +161,7 @@ public class NewModGUI : Control
         loadBefore = GetNode<LineEdit>(LoadBeforePath);
         loadAfter = GetNode<LineEdit>(LoadAfterPath);
         incompatibleMods = GetNode<LineEdit>(IncompatibleModsPath);
+        assemblyModAutoHarmony = GetNode<CheckBox>(AssemblyModAutoHarmonyPath);
 
         iconFileDialog = GetNode<FileDialog>(IconFileDialogPath);
         iconFileDialog.CurrentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
@@ -265,6 +270,7 @@ public class NewModGUI : Control
         incompatibleMods.Text = editedInfo.IncompatibleMods == null ?
             string.Empty :
             string.Join(", ", editedInfo.IncompatibleMods);
+        assemblyModAutoHarmony.Pressed = editedInfo.UseAutoHarmony ?? false;
     }
 
     private bool ReadControlsToEditedInfo()
@@ -289,6 +295,7 @@ public class NewModGUI : Control
         editedInfo.LoadBefore = SeperateFieldByComma(loadBefore.Text);
         editedInfo.LoadAfter = SeperateFieldByComma(loadAfter.Text);
         editedInfo.IncompatibleMods = SeperateFieldByComma(incompatibleMods.Text);
+        editedInfo.UseAutoHarmony = assemblyModAutoHarmony.Pressed;
 
         if (string.IsNullOrWhiteSpace(infoUrl.Text))
         {

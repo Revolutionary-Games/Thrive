@@ -1,26 +1,9 @@
-﻿using Godot;
-
-/// <summary>
+﻿/// <summary>
 ///   Literally does nothing anymore. If this isn't used as PlacedOrganelle.HasComponent type
 ///   This serves no purpose anymore.
 /// </summary>
-public class NucleusComponent : IOrganelleComponent
+public class NucleusComponent : EmptyOrganelleComponent
 {
-    public void OnAttachToCell(PlacedOrganelle organelle)
-    {
-    }
-
-    public void OnDetachFromCell(PlacedOrganelle organelle)
-    {
-    }
-
-    public void Update(float elapsed)
-    {
-    }
-
-    public void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
-    {
-    }
 }
 
 public class NucleusComponentFactory : IOrganelleComponentFactory

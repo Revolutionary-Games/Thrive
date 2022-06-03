@@ -180,8 +180,16 @@
         "GroupName": "MISCELLANEOUS",
         "Actions": [
             {
+                "InputName": "g_pause",
+                "Name": "TOGGLE_PAUSE"
+            },
+            {
                 "InputName": "toggle_FPS",
                 "Name": "TOGGLE_FPS"
+            },
+            {
+                "InputName": "toggle_metrics",
+                "Name": "TOGGLE_METRICS"
             },
             {
                 "InputName": "g_quick_save",

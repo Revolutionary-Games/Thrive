@@ -52,6 +52,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath MSAAResolutionPath = null!;
 
     [Export]
+    public NodePath ResolutionPath = null!;
+
+    [Export]
     public NodePath MaxFramesPerSecondPath = null!;
 
     [Export]
@@ -227,6 +230,7 @@ public class OptionsMenu : ControlWithInput
     private Control graphicsTab = null!;
     private CustomCheckBox vsync = null!;
     private CustomCheckBox fullScreen = null!;
+    private Label? resolution;
     private OptionButton msaaResolution = null!;
     private OptionButton maxFramesPerSecond = null!;
     private OptionButton colourblindSetting = null!;
@@ -350,6 +354,7 @@ public class OptionsMenu : ControlWithInput
         vsync = GetNode<CustomCheckBox>(VSyncPath);
         fullScreen = GetNode<CustomCheckBox>(FullScreenPath);
         msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
+        resolution = GetNode<Label>(ResolutionPath);
         maxFramesPerSecond = GetNode<OptionButton>(MaxFramesPerSecondPath);
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
@@ -428,6 +433,11 @@ public class OptionsMenu : ControlWithInput
         {
             BuildInputRebindControls();
             UpdateDefaultAudioOutputDeviceText();
+            DisplayResolution();
+        }
+        else if (what == NotificationResized)
+        {
+            DisplayResolution();
         }
     }
 
@@ -498,6 +508,7 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
         displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
+        DisplayResolution();
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -598,6 +609,19 @@ public class OptionsMenu : ControlWithInput
             default:
                 throw new ArgumentException("Options menu SwitchMode called with an invalid mode argument");
         }
+    }
+
+    /// <summary>
+    /// Displays the current viewport resolution
+    /// </summary>
+    private void DisplayResolution()
+    {
+        if (resolution == null)
+            return;
+
+        var screenResolution = OS.WindowSize * OS.GetScreenScale();
+        resolution.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("AUTO_RESOLUTION"),
+            screenResolution.x, screenResolution.y);
     }
 
     /// <summary>

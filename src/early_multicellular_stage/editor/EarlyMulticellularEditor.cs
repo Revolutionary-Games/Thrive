@@ -6,7 +6,8 @@ using Newtonsoft.Json;
 
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn")]
-public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
+[DeserializedCallbackTarget]
+public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData, ICellEditorData
 {
     [Export]
     public NodePath ReportTabPath = null!;
@@ -47,7 +48,22 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
     [JsonProperty]
     private CellType? selectedCellTypeToEdit;
 
-    public override bool CanCancelAction => cellEditorTab.Visible && cellEditorTab.CanCancelAction;
+    [JsonProperty]
+    private bool newCellTypeEditHasStarted;
+
+    public override bool CanCancelAction
+    {
+        get
+        {
+            if (cellEditorTab.Visible)
+                return cellEditorTab.CanCancelAction;
+
+            if (bodyPlanEditorTab.Visible)
+                return bodyPlanEditorTab.CanCancelAction;
+
+            return false;
+        }
+    }
 
     [JsonIgnore]
     public override Species EditedBaseSpecies =>
@@ -70,7 +86,7 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
     protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MICROBE_EDITOR");
-    protected override bool HasInProgressAction { get; }
+    protected override bool HasInProgressAction => CanCancelAction;
 
     public void SendAutoEvoResultsToReportComponent()
     {
@@ -92,6 +108,30 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
 
         reportTab.UpdateReportTabPatchSelectorSelection(patch.ID);
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
+    }
+
+    public override int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions)
+    {
+        return history.WhatWouldActionsCost(actions);
+    }
+
+    public override bool EnqueueAction(EditorAction action)
+    {
+        // If we performed the first action on the cell editor tab, we want to combine that with the start edit action
+        // so that we can keep undo working in complex situations
+        if (selectedEditorTab == EditorTab.CellTypeEditor && newCellTypeEditHasStarted)
+        {
+            if (selectedCellTypeToEdit != null)
+            {
+                action = new CombinedEditorAction(
+                    new SingleEditorAction<StartCellTypeEditActionData>(DoStartCellTypeEditAction,
+                        UndoStartCellTypeEditAction, new StartCellTypeEditActionData(selectedCellTypeToEdit)), action);
+            }
+
+            newCellTypeEditHasStarted = false;
+        }
+
+        return base.EnqueueAction(action);
     }
 
     public override bool CancelCurrentAction()
@@ -119,7 +159,7 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
         noCellTypeSelected = GetNode<Control>(NoCellTypeSelectedPath);
     }
 
-    protected override void UpdateHistoryCallbackTargets(ActionHistory<CellEditorAction> actionHistory)
+    protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
     {
         // See TODO comment in MicrobeEditor.UpdateHistoryCallbackTargets
     }
@@ -198,6 +238,20 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
 
         reportTab.UpdateReportTabStatistics(CurrentPatch);
         reportTab.UpdateTimeline(patchMapTab.SelectedPatch);
+    }
+
+    protected override void OnUndoPerformed()
+    {
+        base.OnUndoPerformed();
+
+        CheckDidActionAffectCellTypes(history.ActionToRedo());
+    }
+
+    protected override void OnRedoPerformed()
+    {
+        base.OnRedoPerformed();
+
+        CheckDidActionAffectCellTypes(history.ActionToUndo());
     }
 
     protected override void ElapseEditorEntryTime()
@@ -316,14 +370,28 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
 
     private void OnStartEditingCellType(string name)
     {
-        selectedCellTypeToEdit = EditedSpecies.CellTypes.First(c => c.TypeName == name);
+        if (CanCancelAction)
+        {
+            ToolTipManager.Instance.ShowPopup(
+                TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
+            return;
+        }
 
-        GD.Print("Start editing cell type: ", selectedCellTypeToEdit.TypeName);
+        var newTypeToEdit = EditedSpecies.CellTypes.First(c => c.TypeName == name);
+
+        // Only reinitialize the editor when required
+        if (selectedCellTypeToEdit == null || selectedCellTypeToEdit != newTypeToEdit)
+        {
+            selectedCellTypeToEdit = newTypeToEdit;
+            newCellTypeEditHasStarted = true;
+
+            GD.Print("Start editing cell type: ", selectedCellTypeToEdit.TypeName);
+
+            // Reinitialize the cell editor to be able to edit the new cell type
+            cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+        }
 
         SetEditorTab(EditorTab.CellTypeEditor);
-
-        // Reinitialize the cell editor to be able to edit the new cell type
-        cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
     }
 
     private void CheckAndApplyCellTypeEdit()
@@ -331,31 +399,136 @@ public class EarlyMulticellularEditor : EditorBase<CellEditorAction, MicrobeStag
         if (selectedCellTypeToEdit == null)
             return;
 
+        // Only do something if the user did has done any action in the past
+        if (!history.CanUndo())
+            return;
+
         // TODO: only apply if there were changes
-        GD.Print("Applying changes to cell type: ", selectedCellTypeToEdit.TypeName);
+        GD.Print("Creating cell type change action for type: ", selectedCellTypeToEdit.TypeName);
+
+        // Combine the topmost action in the stack with this new one to make sure finishing editing a cell doesn't
+        // cause a separate step
+        var action = new CombinedEditorAction(history.PopTopAction(),
+            new SingleEditorAction<EndCellTypeEditActionData>(DoEndCellTypeEditAction, UndoEndCellTypeEditAction,
+                new EndCellTypeEditActionData(selectedCellTypeToEdit)));
+
+        // We need to do this here to free up the MP that is now in the undone action, otherwise it won't succeed in
+        // all cases
+        DirtyMutationPointsCache();
+
+        if (!EnqueueAction(action))
+            GD.PrintErr("Combined action, with 0 cost added cell edit finish, could not be performed again");
+    }
+
+    /// <summary>
+    ///   Detects if a cell edit was done that requires us to re-apply cell graphics
+    /// </summary>
+    private void CheckDidActionAffectCellTypes(EditorAction? action)
+    {
+        if (action == null)
+        {
+            GD.PrintErr("Action to check for cell type changes is null");
+            return;
+        }
+
+        // We don't need to care while in the cell editor tab
+        if (selectedEditorTab == EditorTab.CellTypeEditor)
+            return;
+
+        // Or if no type is selected to edit
+        if (selectedCellTypeToEdit == null)
+            return;
+
+        bool affectedACell = false;
+
+        foreach (var actionData in action.Data)
+        {
+            switch (actionData)
+            {
+                case OrganelleMoveActionData:
+                case OrganelleRemoveActionData:
+                case OrganellePlacementActionData:
+                case MembraneActionData:
+                case RigidityActionData:
+                case NewMicrobeActionData:
+                    affectedACell = true;
+                    break;
+            }
+
+            if (affectedACell)
+                break;
+        }
+
+        if (affectedACell)
+        {
+            GD.Print("Undone / redone action affected cell types");
+            cellEditorTab.OnFinishEditing();
+
+            // cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+            bodyPlanEditorTab.OnCellTypeEdited(selectedCellTypeToEdit);
+        }
+    }
+
+    [DeserializedCallbackAllowed]
+    private void DoEndCellTypeEditAction(EndCellTypeEditActionData data)
+    {
+        if (selectedCellTypeToEdit != data.FinishedCellType)
+        {
+            if (selectedCellTypeToEdit != null)
+            {
+                GD.Print("Previous cell type to edit needs cleaning up before applying this action");
+                cellEditorTab.OnFinishEditing();
+                bodyPlanEditorTab.OnCellTypeEdited(selectedCellTypeToEdit);
+            }
+
+            selectedCellTypeToEdit = data.FinishedCellType;
+            newCellTypeEditHasStarted = true;
+            cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+        }
 
         // We need to handle the renaming here as the cell editor doesn't really know what other cell types exist
         // so it can't check if the name is unique or not
         // TODO: would be nice to re-architecture this so that the cell editor could show if the new name is valid
         // or not
-        var oldName = selectedCellTypeToEdit.TypeName;
-
-        // TODO: this should be converted to be an editor action to not crash when undoing / redoing organelle
-        // placements after re-entering the cell editor
-        // For now just nuke the history
-        history.Nuke();
-        NotifyUndoRedoStateChanged();
+        var oldName = data.FinishedCellType.TypeName;
 
         cellEditorTab.OnFinishEditing();
 
         // Revert to old name if the name is a duplicate
         if (EditedSpecies.CellTypes.Any(c =>
-                c != selectedCellTypeToEdit && c.TypeName == selectedCellTypeToEdit.TypeName))
+                c != selectedCellTypeToEdit && c.TypeName == data.FinishedCellType.TypeName))
         {
             GD.Print("Cell editor renamed a cell type to a duplicate name, reverting");
-            selectedCellTypeToEdit.TypeName = oldName;
+            data.FinishedCellType.TypeName = oldName;
         }
 
-        bodyPlanEditorTab.OnCellTypeEdited(selectedCellTypeToEdit);
+        bodyPlanEditorTab.OnCellTypeEdited(data.FinishedCellType);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoEndCellTypeEditAction(EndCellTypeEditActionData data)
+    {
+        if (selectedCellTypeToEdit == data.FinishedCellType)
+            return;
+
+        // Reinitialize the cell editor to be able to apply further undo operations to the previous type
+        selectedCellTypeToEdit = data.FinishedCellType;
+        cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void DoStartCellTypeEditAction(StartCellTypeEditActionData data)
+    {
+        if (selectedCellTypeToEdit == data.StartedCellTypeEdit)
+            return;
+
+        // This fixes complex cases where multiple types are redoing actions
+        selectedCellTypeToEdit = data.StartedCellTypeEdit;
+        cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoStartCellTypeEditAction(StartCellTypeEditActionData data)
+    {
     }
 }

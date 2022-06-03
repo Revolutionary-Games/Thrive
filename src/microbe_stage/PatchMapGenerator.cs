@@ -182,22 +182,6 @@ public static class PatchMapGenerator
         patch2.AddNeighbour(patch1);
     }
 
-    private static void TranslatePatchNames()
-    {
-        // TODO: remove this entire method, see: https://github.com/Revolutionary-Games/Thrive/issues/3146
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_VENTS");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_MESOPELAGIC");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_EPIPELAGIC");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_TIDEPOOL");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_BATHYPELAGIC");
-        _ = TranslationServer.Translate("PATHCH_PANGONIAN_ABYSSOPELAGIC");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_COAST");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_ESTUARY");
-        _ = TranslationServer.Translate("PATCH_CAVE");
-        _ = TranslationServer.Translate("PATCH_ICE_SHELF");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
-    }
-
     private static LocalizedString GetPatchLocalizedName(string name, string biomeKey)
     {
         return new LocalizedString("PATCH_NAME", name, new LocalizedString(biomeKey));
