@@ -33,7 +33,7 @@ public class TransitionManager : ControlWithInput
 
     public bool HasQueuedTransitions => queuedSequences.Count > 0;
 
-    public ScreenFade.FadeType? LastFadedType { get; set; }
+    private ScreenFade.FadeType? LastFadedType { get; set; }
 
     /// <summary>
     ///   Helper method for creating a screen fade.
