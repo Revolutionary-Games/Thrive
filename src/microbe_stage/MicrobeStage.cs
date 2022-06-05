@@ -387,6 +387,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         Camera.ObjectToFollow = Player;
 
+        spawner.DespawnAll();
+
         if (spawnedPlayer)
         {
             // Random location on respawn
