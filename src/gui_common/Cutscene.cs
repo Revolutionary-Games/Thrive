@@ -52,7 +52,7 @@ public class Cutscene : Control, ITransition
     {
         if (cutsceneVideoPlayer == null)
         {
-            GD.Print("Video player missing, can't play cutscene");
+            GD.PrintErr("Video player missing, can't play cutscene");
             return;
         }
 
