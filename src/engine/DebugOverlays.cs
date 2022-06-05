@@ -55,18 +55,20 @@ public partial class DebugOverlays : Control
 
     public override void _ExitTree()
     {
+        base._ExitTree();
+
         InputManager.UnregisterReceiver(this);
 
         // Entity label
         var rootTree = GetTree();
         rootTree.Disconnect("node_added", this, nameof(OnNodeAdded));
         rootTree.Disconnect("node_removed", this, nameof(OnNodeRemoved));
-
-        base._ExitTree();
     }
 
     public override void _Ready()
     {
+        base._Ready();
+
         fpsCheckBox = GetNode<CustomCheckBox>(FPSCheckBoxPath);
         performanceMetricsCheckBox = GetNode<CustomCheckBox>(PerformanceMetricsCheckBoxPath);
         debugPanelDialog = GetNode<CustomDialog>(DebugPanelDialogPath);
@@ -78,8 +80,6 @@ public partial class DebugOverlays : Control
         deltaLabel = GetNode<Label>(DeltaLabelPath);
         metricsText = GetNode<Label>(MetricsTextPath);
         fpsDisplayLabel = GetNode<Label>(FPSDisplayLabelPath);
-
-        base._Ready();
     }
 
     public override void _Process(float delta)
