@@ -292,7 +292,7 @@ public class CustomRichTextLabel : RichTextLabel
             if (pairs.TryGetValue("ascent", out string ascentInput))
                 ascent = ascentInput.ToInt();
 
-            var ascentFont = $"res://src/gui_common/fonts/dynamically_created/BBCode-Image-" +
+            var ascentFont = "res://src/gui_common/fonts/dynamically_created/BBCode-Image-" +
                 $"VerticalCenterAlign-{ascent}.tres";
 
             if (!ResourceLoader.Exists(ascentFont))
