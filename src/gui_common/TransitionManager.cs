@@ -227,7 +227,7 @@ public class TransitionManager : ControlWithInput
                 Invoke.Instance.Queue(() => previous.Clear());
 
                 if (previous is ScreenFade fade)
-                    TransitionManager.Instance.LastFadedType = fade.CurrentFadeType;
+                    Instance.LastFadedType = fade.CurrentFadeType;
 
                 StartNext();
             }
@@ -243,18 +243,18 @@ public class TransitionManager : ControlWithInput
                 var front = queuedTransitions.Peek();
 
                 // Hard disallow incorrect fade order
-                if (front is ScreenFade fade && fade.CurrentFadeType == TransitionManager.Instance.LastFadedType)
+                if (front is ScreenFade fade && fade.CurrentFadeType == Instance.LastFadedType)
                 {
                     front.Skip();
                     return;
                 }
 
-                TransitionManager.Instance.LastFadedType = null;
+                Instance.LastFadedType = null;
                 front.Begin();
                 return;
             }
 
-            TransitionManager.Instance.LastFadedType = null;
+            Instance.LastFadedType = null;
 
             // Assume all transitions are finished if the queue is empty.
             Finished = true;
