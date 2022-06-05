@@ -471,12 +471,12 @@ public class MicrobeHUD : Control
         UpdateCompoundsPanelState();
     }
 
-    public void OnEnterStageTransition(bool longerDuration)
+    public void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
     {
         if (stage == null)
             throw new InvalidOperationException("Stage not setup for HUD");
 
-        if (stage.IsLoadedFromSave)
+        if (stage.IsLoadedFromSave && !returningFromEditor)
             return;
 
         // Fade out for that smooth satisfying transition
