@@ -29,16 +29,16 @@ public partial class DebugOverlays
 
         foreach (var pair in entityLabels)
         {
-            var body = pair.Key.EntityNode;
+            var entity = pair.Key.EntityNode;
             var label = pair.Value;
 
-            label.RectPosition = activeCamera.UnprojectPosition(body.Transform.origin);
+            label.RectPosition = activeCamera.UnprojectPosition(entity.Transform.origin);
 
-            // Update names
             if (!label.Text.Empty())
                 continue;
 
-            switch (body)
+            // Update names
+            switch (entity)
             {
                 case Microbe microbe:
                 {
@@ -58,7 +58,7 @@ public partial class DebugOverlays
 
                 default:
                 {
-                    label.Text = $"[{body.Name}]";
+                    label.Text = $"[{entity.Name}]";
                     break;
                 }
             }
@@ -73,14 +73,14 @@ public partial class DebugOverlays
 
     private void OnNodeAdded(Node node)
     {
-        if (node is not IEntity body)
+        if (node is not IEntity entity)
             return;
 
         var label = new Label();
         labelsLayer.AddChild(label);
-        entityLabels.Add(body, label);
+        entityLabels.Add(entity, label);
 
-        switch (body)
+        switch (entity)
         {
             case Microbe microbe:
             {
@@ -110,16 +110,15 @@ public partial class DebugOverlays
             return;
         }
 
-        if (node is not IEntity body)
+        if (node is not IEntity entity)
             return;
 
-        if (entityLabels.TryGetValue(body, out var label))
+        if (entityLabels.TryGetValue(entity, out var label))
         {
-            labelsLayer.RemoveChild(label);
-            label.QueueFree();
-            entityLabels.Remove(body);
+            label.DetachAndQueueFree();
+            entityLabels.Remove(entity);
 
-            if (body is Microbe microbe)
+            if (entity is Microbe microbe)
             {
                 microbe.OnDeath -= UpdateLabelOnMicrobeDeath;
             }
