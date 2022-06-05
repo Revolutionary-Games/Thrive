@@ -514,7 +514,4 @@
   <ItemGroup>
     <ProjectReference Include="third_party\ThirdParty.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Remove="src\engine\debugging\**" />
-  </ItemGroup>
 </Project>
