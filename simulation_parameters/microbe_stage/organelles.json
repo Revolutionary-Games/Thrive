@@ -767,14 +767,21 @@
             }
         ],
         "processes": {},
-        "components": {},
+        "components": {
+            "cilia": {}
+        },
         "prokaryoteChance": 0,
-        "chanceToCreate": 0,
+        "chanceToCreate": 6,
+        "mass": 0.22,
+        "displayScene": "res://assets/models/organelles/Cilia.tscn",
+        "displaySceneModelPath": "Armature/Skeleton/Cube003",
+        "displaySceneAnimation": "AnimationPlayer",
         "name": "CILIA",
+        "productionColour": "#ffae21",
+        "consumptionColour": "#ffae21",
         "iconPath": "res://assets/textures/gui/bevel/parts/CiliaIcon.png",
         "requiresNucleus": true,
         "editorButtonGroup": "External",
-        "editorButtonOrder": 4,
-        "unimplemented": true
+        "editorButtonOrder": 4
     }
 }

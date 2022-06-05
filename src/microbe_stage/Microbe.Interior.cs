@@ -205,8 +205,8 @@ public partial class Microbe
 
         var props = new AgentProperties(Species, agentType);
 
-        // Find the direction the microbe is facing
-        var direction = (LookAtPoint - Translation).Normalized();
+        // Find the direction the microbe is facing (actual rotation, not LookAtPoint)
+        var direction = GlobalTransform.basis.Quat().Xform(Vector3.Forward);
 
         var position = Translation + (direction * ejectionDistance);
 
@@ -896,6 +896,7 @@ public partial class Microbe
         cachedHexCountDirty = true;
         membraneOrganellePositionsAreDirty = true;
         hasSignalingAgent = null;
+        cachedRotationSpeed = null;
 
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount += 1;
@@ -921,6 +922,7 @@ public partial class Microbe
         cachedHexCountDirty = true;
         membraneOrganellePositionsAreDirty = true;
         hasSignalingAgent = null;
+        cachedRotationSpeed = null;
 
         Compounds.Capacity = organellesCapacity;
     }

@@ -4,6 +4,4 @@
 public interface ICellEditorData : IHexEditor, IEditorWithPatches, IEditorWithActions
 {
     public ICellProperties? EditedCellProperties { get; }
-
-    public bool OrganellePlacedThisSession(OrganelleTemplate organelle);
 }

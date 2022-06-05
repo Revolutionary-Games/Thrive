@@ -113,8 +113,7 @@ public class Mutations
         mutated.MembraneRigidity = Math.Max(Math.Min(parent.MembraneRigidity +
             random.Next(-25, 26) / 100.0f, 1), -1);
 
-        mutated.RepositionToOrigin();
-        mutated.UpdateInitialCompounds();
+        mutated.OnEdited();
 
         return mutated;
     }
@@ -283,7 +282,11 @@ public class Mutations
                     break;
             }
 
-            minSubHex.Q = (int)(minSubHex.Q * (minDistance - 1.0) / minDistance);
+            // Calculate the path to move island organelles.
+            // If statement is there because otherwise the path could be (0, 0).
+            if (minSubHex.Q != minSubHex.R)
+                minSubHex.Q = (int)(minSubHex.Q * (minDistance - 1.0) / minDistance);
+
             minSubHex.R = (int)(minSubHex.R * (minDistance - 1.0) / minDistance);
 
             // Move all island organelles by minSubHex

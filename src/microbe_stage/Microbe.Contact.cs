@@ -290,6 +290,9 @@ public partial class Microbe
             return;
         }
 
+        // Damage reduction is only wanted for non-starving damage
+        bool canApplyDamageReduction = true;
+
         if (source is "toxin" or "oxytoxy")
         {
             // TODO: Replace this take damage sound with a more appropriate one.
@@ -322,6 +325,7 @@ public partial class Microbe
         else if (source == "atpDamage")
         {
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg");
+            canApplyDamageReduction = false;
         }
         else if (source == "ice")
         {
@@ -329,6 +333,11 @@ public partial class Microbe
 
             // Divide damage by physical resistance
             amount /= CellTypeProperties.MembraneType.PhysicalResistance;
+        }
+
+        if (!CellTypeProperties.IsBacteria && canApplyDamageReduction)
+        {
+            amount /= 2;
         }
 
         Hitpoints -= amount;
@@ -639,6 +648,8 @@ public partial class Microbe
 
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
+        cachedColonyRotationMultiplier = null;
+
         if (microbe == this)
         {
             OnUnbound?.Invoke(this);
@@ -674,6 +685,8 @@ public partial class Microbe
 
     internal void OnColonyMemberAdded(Microbe microbe)
     {
+        cachedColonyRotationMultiplier = null;
+
         if (microbe == this)
         {
             if (Colony == null)

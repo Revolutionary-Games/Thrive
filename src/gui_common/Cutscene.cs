@@ -3,26 +3,26 @@
 /// <summary>
 ///   Controls a video cutscene
 /// </summary>
-public class Cutscene : CanvasLayer, ITransition
+public class Cutscene : Control, ITransition
 {
-    private VideoPlayer cutsceneVideoPlayer = null!;
-    private Control controlNode = null!;
+    private VideoPlayer? cutsceneVideoPlayer;
+
+    private VideoStream? stream;
+    private float volume;
 
     [Signal]
     public delegate void OnFinishedSignal();
 
-    public bool Skippable { get; set; } = true;
+    public bool Finished { get; private set; }
 
-    public bool Visible
+    public VideoStream? Stream
     {
-        get => controlNode.Visible;
-        set => controlNode.Visible = value;
-    }
-
-    public VideoStream Stream
-    {
-        get => cutsceneVideoPlayer.Stream;
-        set => cutsceneVideoPlayer.Stream = value;
+        get => stream;
+        set
+        {
+            stream = value;
+            UpdateVideoPlayer();
+        }
     }
 
     /// <summary>
@@ -30,26 +30,57 @@ public class Cutscene : CanvasLayer, ITransition
     /// </summary>
     public float Volume
     {
-        get => cutsceneVideoPlayer.Volume;
-        set => cutsceneVideoPlayer.Volume = value;
+        get => volume;
+        set
+        {
+            volume = value;
+            UpdateVideoPlayer();
+        }
     }
 
     public override void _Ready()
     {
-        controlNode = GetNode<Control>("Control");
-        cutsceneVideoPlayer = GetNode<VideoPlayer>("Control/VideoPlayer");
+        cutsceneVideoPlayer = GetNode<VideoPlayer>("VideoPlayer");
 
         cutsceneVideoPlayer.Connect("finished", this, nameof(OnFinished));
+
+        UpdateVideoPlayer();
+        Hide();
     }
 
-    public void OnStarted()
+    public void Begin()
     {
+        if (cutsceneVideoPlayer == null)
+        {
+            GD.PrintErr("Video player missing, can't play cutscene");
+            return;
+        }
+
+        Show();
         cutsceneVideoPlayer.Play();
     }
 
-    public void OnFinished()
+    public void Skip()
     {
-        EmitSignal(nameof(OnFinishedSignal));
+        OnFinished();
+    }
+
+    public void Clear()
+    {
         this.DetachAndQueueFree();
+    }
+
+    private void UpdateVideoPlayer()
+    {
+        if (cutsceneVideoPlayer == null)
+            return;
+
+        cutsceneVideoPlayer.Stream = stream;
+        cutsceneVideoPlayer.Volume = volume;
+    }
+
+    private void OnFinished()
+    {
+        Finished = true;
     }
 }

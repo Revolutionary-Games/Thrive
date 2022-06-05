@@ -62,7 +62,7 @@ public class InProgressLoad
 
         IsLoading = true;
         SceneManager.Instance.DetachCurrentScene();
-        SceneManager.Instance.GetTree().Paused = true;
+        PauseManager.Instance.AddPause(nameof(InProgressLoad));
 
         Invoke.Instance.Perform(Step);
     }
@@ -79,6 +79,8 @@ public class InProgressLoad
                 LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_GAME"),
                     MainGameState.Invalid,
                     TranslationServer.Translate("READING_SAVE_DATA"));
+
+                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, null, false, false);
 
                 // Let all suppressed deletions happen
                 TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
@@ -183,13 +185,15 @@ public class InProgressLoad
 
                 JSONDebug.FlushJSONTracesOut();
 
+                PauseManager.Instance.Resume(nameof(InProgressLoad));
+
                 if (success)
                 {
-                    LoadingScreen.Instance.Hide();
-                    SaveStatusOverlay.Instance.ShowMessage(message);
+                    TransitionManager.Instance.AddSequence(
+                        ScreenFade.FadeType.FadeOut, 0.5f, () => LoadingScreen.Instance.Hide(), false, false);
 
-                    // TODO: does this cause problems if the game was paused when saving?
-                    loadedState!.GameStateRoot.GetTree().Paused = false;
+                    TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f,
+                        () => SaveStatusOverlay.Instance.ShowMessage(message), false, false);
                 }
                 else
                 {
@@ -201,6 +205,10 @@ public class InProgressLoad
                 IsLoading = false;
 
                 SaveHelper.MarkLastSaveToCurrentTime();
+
+                // Make certain that if some game element paused and we unloaded it without it realizing that, we
+                // don't get stuck in paused mode
+                PauseManager.Instance.ForceClear();
 
                 return;
             }
