@@ -304,7 +304,7 @@ public class CustomRichTextLabel : RichTextLabel
                 if (string.IsNullOrEmpty(input))
                     input = compound.Name;
 
-                output = $"[b]{(input)}[/b] [font=res://src/gui_common/fonts/" +
+                output = $"[b]{input}[/b] [font=res://src/gui_common/fonts/" +
                     $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
 
                 break;
