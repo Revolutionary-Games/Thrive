@@ -313,12 +313,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         if (IsLoadedFromSave)
         {
-            HUD.OnEnterStageTransition(false);
+            HUD.OnEnterStageTransition(false, false);
             UpdatePatchSettings();
         }
         else
         {
-            HUD.OnEnterStageTransition(true);
+            HUD.OnEnterStageTransition(true, false);
         }
     }
 
@@ -711,7 +711,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // Reset all the duplicates organelles of the player
         Player.ResetOrganelleLayout();
 
-        HUD.OnEnterStageTransition(false);
+        HUD.OnEnterStageTransition(false, true);
         HUD.HideReproductionDialog();
 
         if (!CurrentGame.TutorialState.Enabled)

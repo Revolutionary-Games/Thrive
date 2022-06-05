@@ -80,6 +80,8 @@ public class InProgressLoad
                     MainGameState.Invalid,
                     TranslationServer.Translate("READING_SAVE_DATA"));
 
+                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, null, false, false);
+
                 // Let all suppressed deletions happen
                 TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
                 JSONDebug.FlushJSONTracesOut();
@@ -187,8 +189,11 @@ public class InProgressLoad
 
                 if (success)
                 {
-                    LoadingScreen.Instance.Hide();
-                    SaveStatusOverlay.Instance.ShowMessage(message);
+                    TransitionManager.Instance.AddSequence(
+                        ScreenFade.FadeType.FadeOut, 0.5f, () => LoadingScreen.Instance.Hide(), false, false);
+
+                    TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f,
+                        () => SaveStatusOverlay.Instance.ShowMessage(message), false, false);
                 }
                 else
                 {
