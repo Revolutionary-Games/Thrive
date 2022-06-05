@@ -94,7 +94,7 @@ public class CustomRichTextLabel : RichTextLabel
     /// </summary>
     /// <param name="extendedBbcode">The extended bbcode string</param>
     /// <returns>Parsed bbcode string in standard format</returns>
-    private static string ParseCustomTagsString(string extendedBbcode)
+    private string ParseCustomTagsString(string extendedBbcode)
     {
         var result = new StringBuilder(extendedBbcode.Length);
         var currentTagBlock = new StringBuilder(50);
@@ -262,7 +262,7 @@ public class CustomRichTextLabel : RichTextLabel
     /// <param name="input">The string enclosed by the custom tags</param>
     /// <param name="bbcode">Custom Thrive bbcode-styled tags</param>
     /// <param name="attributes">Attributes specifying additional functionalities to the bbcode.</param>
-    private static string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes)
+    private string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes)
     {
         // Defaults to input so if something fails output returns unchanged
         var output = input;
@@ -270,6 +270,41 @@ public class CustomRichTextLabel : RichTextLabel
         var simulationParameters = SimulationParameters.Instance;
 
         var pairs = StringUtils.ParseKeyValuePairs(attributes);
+
+        string GetResizedImage(string imagePath, int width, int height, int ascent)
+        {
+            if (pairs.TryGetValue("size", out string sizeInput))
+            {
+                var separator = sizeInput.Find("x");
+
+                if (separator == -1)
+                {
+                    width = sizeInput.ToInt();
+                }
+                else
+                {
+                    var split = sizeInput.Split("x");
+                    width = split[0].ToInt();
+                    height = split[1].ToInt();
+                }
+            }
+
+            if (pairs.TryGetValue("ascent", out string ascentInput))
+                ascent = ascentInput.ToInt();
+
+            var ascentFont = $"res://src/gui_common/fonts/dynamically_created/BBCode-Image-" +
+                $"VerticalCenterAlign-{ascent}.tres";
+
+            if (!ResourceLoader.Exists(ascentFont))
+            {
+                // TODO: Remove this horrible hack once proper bbcode vertical image alignment is available in Godot 4
+                GD.PrintErr($"Input Action: No ascent font found for {ascent}, creating a new one");
+                var newAscentFont = new BitmapFont { Ascent = ascent };
+                ResourceSaver.Save(ascentFont, newAscentFont);
+            }
+
+            return $"[font={ascentFont}][img={width}x{height}]{imagePath}[/img][/font]";
+        }
 
         switch (bbcode)
         {
@@ -304,8 +339,7 @@ public class CustomRichTextLabel : RichTextLabel
                 if (string.IsNullOrEmpty(input))
                     input = compound.Name;
 
-                output = $"[b]{input}[/b] [font=res://src/gui_common/fonts/" +
-                    $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
+                output = $"[b]{input}[/b] {GetResizedImage(compound.IconPath, 20, 0, 3)}";
 
                 break;
             }
@@ -318,21 +352,7 @@ public class CustomRichTextLabel : RichTextLabel
                     break;
                 }
 
-                var size = 30;
-                var ascent = 9;
-
-                if (pairs.TryGetValue("size", out string sizeInput))
-                    size = sizeInput.ToInt();
-
-                if (pairs.TryGetValue("ascent", out string ascentInput))
-                    ascent = ascentInput.ToInt();
-
-                var ascentFont = $"res://src/gui_common/fonts/BBCode-Image-VerticalCenterAlign-{ascent}.tres";
-
-                if (!ResourceLoader.Exists(ascentFont))
-                    GD.PrintErr($"Input Action: No ascent font found for {ascent}, fallback to using default");
-
-                output = $"[font={ascentFont}][img={size}]{KeyPromptHelper.GetPathForAction(input)}[/img][/font]";
+                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input), 30, 0, 9);
 
                 break;
             }

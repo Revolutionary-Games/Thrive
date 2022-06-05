@@ -2125,7 +2125,7 @@ __meta__ = {
 }
 
 [node name="PauseInfo" parent="MicrobeHUD/PausePrompt" instance=ExtResource( 93 )]
-margin_top = 54.0
+margin_top = 58.0
 margin_right = 400.0
 margin_bottom = 100.0
 rect_clip_content = false
@@ -2287,6 +2287,7 @@ custom_styles/separator = SubResource( 36 )
 anims/FadeInOut = SubResource( 37 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
+visible = true
 
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
