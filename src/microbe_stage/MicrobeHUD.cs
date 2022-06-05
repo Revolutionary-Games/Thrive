@@ -484,15 +484,19 @@ public class MicrobeHUD : Control
         UpdateCompoundsPanelState();
     }
 
-    public void OnEnterStageTransition(bool longerDuration)
+    public void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
     {
         if (stage == null)
             throw new InvalidOperationException("Stage not setup for HUD");
 
+        if (stage.IsLoadedFromSave && !returningFromEditor)
+            return;
+
         // Fade out for that smooth satisfying transition
         stage.TransitionFinished = false;
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f);
-        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.OnFinishTransitioning));
+
+        TransitionManager.Instance.AddSequence(
+            ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f, stage.OnFinishTransitioning);
     }
 
     public override void _Process(float delta)
@@ -665,8 +669,7 @@ public class MicrobeHUD : Control
 
         EnsureGameIsUnpausedForEditor();
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToEditor, false);
 
         stage.MovingToEditor = true;
 
@@ -1469,8 +1472,7 @@ public class MicrobeHUD : Control
 
         EnsureGameIsUnpausedForEditor();
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToMulticellular));
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToMulticellular, false);
 
         stage.MovingToEditor = true;
     }
