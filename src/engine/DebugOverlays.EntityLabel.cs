@@ -24,6 +24,9 @@ public partial class DebugOverlays
 
     private void UpdateEntityLabels()
     {
+        if (activeCamera is not { Current: true })
+            activeCamera = GetViewport().GetCamera();
+
         if (activeCamera == null)
             return;
 
@@ -123,5 +126,38 @@ public partial class DebugOverlays
                 microbe.OnDeath -= UpdateLabelOnMicrobeDeath;
             }
         }
+    }
+
+    private void SearchSceneTreeForEntity(Node node)
+    {
+        if (node is IEntity)
+            OnNodeAdded(node);
+
+        foreach (Node child in node.GetChildren())
+            SearchSceneTreeForEntity(child);
+    }
+
+    private void InitiateEntityLabels()
+    {
+        var rootTree = GetTree();
+
+        SearchSceneTreeForEntity(rootTree.Root);
+
+        rootTree.Connect("node_added", this, nameof(OnNodeAdded));
+        rootTree.Connect("node_removed", this, nameof(OnNodeRemoved));
+    }
+
+    private void CleanEntityLabels()
+    {
+        foreach (var label in entityLabels.Values)
+            label.DetachAndQueueFree();
+
+        entityLabels.Clear();
+
+        activeCamera = null;
+
+        var rootTree = GetTree();
+        rootTree.Disconnect("node_added", this, nameof(OnNodeAdded));
+        rootTree.Disconnect("node_removed", this, nameof(OnNodeRemoved));
     }
 }

@@ -46,11 +46,6 @@ public partial class DebugOverlays : Control
 
         Show();
         InputManager.RegisterReceiver(this);
-
-        // Entity label
-        var rootTree = GetTree();
-        rootTree.Connect("node_added", this, nameof(OnNodeAdded));
-        rootTree.Connect("node_removed", this, nameof(OnNodeRemoved));
     }
 
     public override void _ExitTree()
@@ -58,11 +53,6 @@ public partial class DebugOverlays : Control
         base._ExitTree();
 
         InputManager.UnregisterReceiver(this);
-
-        // Entity label
-        var rootTree = GetTree();
-        rootTree.Disconnect("node_added", this, nameof(OnNodeAdded));
-        rootTree.Disconnect("node_removed", this, nameof(OnNodeRemoved));
     }
 
     public override void _Ready()
@@ -85,9 +75,6 @@ public partial class DebugOverlays : Control
     public override void _Process(float delta)
     {
         base._Process(delta);
-
-        if (activeCamera is not { Current: true })
-            activeCamera = GetViewport().GetCamera();
 
         // Entity label
         if (showEntityLabels)
@@ -155,6 +142,15 @@ public partial class DebugOverlays : Control
     private void OnEntityLabelCheckBoxToggled(bool state)
     {
         ShowEntityLabels = state;
+
+        if (state)
+        {
+            InitiateEntityLabels();
+        }
+        else
+        {
+            CleanEntityLabels();
+        }
     }
 
     private void OnTransparencySliderValueChanged(float value)
