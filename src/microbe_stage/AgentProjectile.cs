@@ -51,12 +51,12 @@ public class AgentProjectile : RigidBody, ITimedLife, IEntity
 
         FadeTimeRemaining -= delta;
         if (FadeTimeRemaining <= 0)
-            OnDestroyed();
+            this.DestroyDetachAndQueueFree();
     }
 
     public void OnDestroyed()
     {
-        this.DetachAndQueueFree();
+        AliveMarker.Alive = false;
     }
 
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)

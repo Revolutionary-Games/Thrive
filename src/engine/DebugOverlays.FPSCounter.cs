@@ -10,4 +10,9 @@ public partial class DebugOverlays
     public NodePath FPSDisplayLabelPath = null!;
 
     private Label fpsDisplayLabel = null!;
+
+    private void UpdateFPS()
+    {
+        fpsDisplayLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
+    }
 }

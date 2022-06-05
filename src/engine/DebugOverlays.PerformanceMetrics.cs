@@ -1,4 +1,7 @@
-﻿using Godot;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using Godot;
 using Nito.Collections;
 
 /// <summary>
@@ -56,5 +59,54 @@ public partial class DebugOverlays
     public void ReportDespawns(int newDespawns)
     {
         currentDespawned += newDespawns;
+    }
+
+    private void UpdateMetrics(float delta)
+    {
+        fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
+        deltaLabel.Text = new LocalizedString("FRAME_DURATION", delta).ToString();
+
+        var currentProcess = Process.GetCurrentProcess();
+
+        var processorTime = currentProcess.TotalProcessorTime;
+        var threads = currentProcess.Threads.Count;
+        var usedMemory = Math.Round(currentProcess.WorkingSet64 / (double)Constants.MEBIBYTE, 1);
+
+        // These don't seem to work:
+        // Performance.GetMonitor(Performance.Monitor.Physics3dActiveObjects),
+        // Performance.GetMonitor(Performance.Monitor.Physics3dCollisionPairs),
+        // Performance.GetMonitor(Performance.Monitor.Physics3dIslandCount),
+
+        metricsText.Text =
+            new LocalizedString("METRICS_CONTENT", Performance.GetMonitor(Performance.Monitor.TimeProcess),
+                    Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess),
+                    entities, children, spawnHistory.Sum(), despawnHistory.Sum(),
+                    Performance.GetMonitor(Performance.Monitor.ObjectNodeCount), usedMemory,
+                    Math.Round(Performance.GetMonitor(Performance.Monitor.RenderVideoMemUsed) / Constants.MEBIBYTE,
+                        1),
+                    Performance.GetMonitor(Performance.Monitor.RenderObjectsInFrame),
+                    Performance.GetMonitor(Performance.Monitor.RenderDrawCallsInFrame),
+                    Performance.GetMonitor(Performance.Monitor.Render2dDrawCallsInFrame),
+                    Performance.GetMonitor(Performance.Monitor.RenderVerticesInFrame),
+                    Performance.GetMonitor(Performance.Monitor.RenderMaterialChangesInFrame),
+                    Performance.GetMonitor(Performance.Monitor.RenderShaderChangesInFrame),
+                    Performance.GetMonitor(Performance.Monitor.ObjectOrphanNodeCount),
+                    Performance.GetMonitor(Performance.Monitor.AudioOutputLatency) * 1000, threads, processorTime)
+                .ToString();
+
+        entities = 0;
+        children = 0;
+
+        spawnHistory.AddToBack(currentSpawned);
+        despawnHistory.AddToBack(currentDespawned);
+
+        while (spawnHistory.Count > SpawnHistoryLength)
+            spawnHistory.RemoveFromFront();
+
+        while (despawnHistory.Count > SpawnHistoryLength)
+            despawnHistory.RemoveFromFront();
+
+        currentSpawned = 0;
+        currentDespawned = 0;
     }
 }
