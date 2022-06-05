@@ -81,10 +81,7 @@ public class InProgressLoad
                     MainGameState.Invalid,
                     TranslationServer.Translate("READING_SAVE_DATA"));
 
-                TransitionManager.Instance.AddSequence(new List<ITransition>
-                {
-                    TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeIn, 0.5f),
-                }, null, false, false);
+                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, null, false, false);
 
                 // Let all suppressed deletions happen
                 TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
@@ -193,15 +190,11 @@ public class InProgressLoad
 
                 if (success)
                 {
-                    TransitionManager.Instance.AddSequence(new List<ITransition>
-                    {
-                        TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.5f),
-                    }, () => LoadingScreen.Instance.Hide(), false, false);
+                    TransitionManager.Instance.AddSequence(
+                        ScreenFade.FadeType.FadeOut, 0.5f, () => LoadingScreen.Instance.Hide(), false, false);
 
-                    TransitionManager.Instance.AddSequence(new List<ITransition>
-                    {
-                        TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeIn, 0.5f),
-                    }, () => SaveStatusOverlay.Instance.ShowMessage(message), false, false);
+                    TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f,
+                        () => SaveStatusOverlay.Instance.ShowMessage(message), false, false);
                 }
                 else
                 {

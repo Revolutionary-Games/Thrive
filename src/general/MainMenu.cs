@@ -83,10 +83,8 @@ public class MainMenu : NodeWithInput
         // Start intro video
         if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu)
         {
-            TransitionManager.Instance.AddSequence(new List<ITransition>
-            {
-                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv", 0.65f),
-            }, OnIntroEnded);
+            TransitionManager.Instance.AddSequence(
+                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv", 0.65f), OnIntroEnded);
         }
         else
         {
@@ -279,10 +277,8 @@ public class MainMenu : NodeWithInput
 
     private void OnIntroEnded()
     {
-        TransitionManager.Instance.AddSequence(new List<ITransition>
-        {
-            TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ? 0.5f : 1.0f),
-        }, null, false);
+        TransitionManager.Instance.AddSequence(
+            ScreenFade.FadeType.FadeIn, IsReturningToMenu ? 0.5f : 1.0f, null, false);
 
         // Start music after the video
         StartMusic();
@@ -341,10 +337,7 @@ public class MainMenu : NodeWithInput
         // Disable the button to prevent it being executed again.
         freebuildButton.Disabled = true;
 
-        TransitionManager.Instance.AddSequence(new List<ITransition>
-        {
-            TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.1f),
-        }, () =>
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
         {
             OnEnteringGame();
 

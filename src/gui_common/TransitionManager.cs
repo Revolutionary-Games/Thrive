@@ -33,6 +33,8 @@ public class TransitionManager : ControlWithInput
 
     public bool HasQueuedTransitions => queuedSequences.Count > 0;
 
+    public ScreenFade.FadeType? LastFadedType { get; set; }
+
     /// <summary>
     ///   Helper method for creating a screen fade.
     /// </summary>
@@ -92,13 +94,14 @@ public class TransitionManager : ControlWithInput
     }
 
     /// <summary>
-    ///   Enqueues a new <see cref="Sequence"/> from the given list of transitions.
+    ///   Enqueues a new <see cref="Sequence"/> from the given list of transitions. This defaults to skipping any
+    ///   previous sequences, can be changed with <paramref name="skipPrevious"/> parameter.
     ///   Invokes the specified action when the sequence is finished.
     /// </summary>
     /// <param name="transitions">Order of transitions</param>
-    /// <param name="onFinishedCallback">The action to invoke when the sequence finished</param>
+    /// <param name="onFinishedCallback">The action to invoke when the sequence is finished</param>
     /// <param name="skippable">If true, the sequence can be skipped</param>
-    /// <param name="skipPrevious">If true, any previously added sequences are skipped. Default is true</param>
+    /// <param name="skipPrevious">If false, will not skip any previously added sequences</param>
     public void AddSequence(List<ITransition> transitions, Action? onFinishedCallback = null, bool skippable = true,
         bool skipPrevious = true)
     {
@@ -124,6 +127,37 @@ public class TransitionManager : ControlWithInput
         queuedSequences.Enqueue(sequence);
 
         SaveHelper.AllowQuickSavingAndLoading = false;
+    }
+
+    /// <summary>
+    ///   Enqueues a new <see cref="Sequence"/> from the given transition. This defaults to skipping any
+    ///   previous sequences, can be changed with <paramref name="skipPrevious"/> parameter.
+    ///   Invokes the specified action when the sequence is finished.
+    /// </summary>
+    /// <param name="transition">The specified transition</param>
+    /// <param name="onFinishedCallback">The action to invoke when the sequence is finished</param>
+    /// <param name="skippable">If true, the sequence can be skipped</param>
+    /// <param name="skipPrevious">If false, will not skip any previously added sequences</param>
+    public void AddSequence(ITransition transition, Action? onFinishedCallback = null, bool skippable = true,
+        bool skipPrevious = true)
+    {
+        AddSequence(new List<ITransition> { transition }, onFinishedCallback, skippable, skipPrevious);
+    }
+
+    /// <summary>
+    ///   Enqueues a new <see cref="Sequence"/> from the given type of screen fade.
+    ///   Invokes the specified action when the sequence is finished.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     A single screen fade is commonly used which is why a dedicated overload method is
+    ///     supported to make it easier to invoke with less verbosity.
+    ///   </para>
+    /// </remarks>
+    public void AddSequence(ScreenFade.FadeType fadeType, float duration, Action? onFinishedCallback = null,
+        bool skippable = true, bool skipPrevious = true)
+    {
+        AddSequence(CreateScreenFade(fadeType, duration), onFinishedCallback, skippable, skipPrevious);
     }
 
     /// <summary>
@@ -157,6 +191,9 @@ public class TransitionManager : ControlWithInput
 
         public bool Finished { get; private set; }
 
+        /// <summary>
+        ///   If true this means this sequence is in the state of executing/has executed a transition.
+        /// </summary>
         public bool Running { get; private set; }
 
         public void Skip()
@@ -168,26 +205,31 @@ public class TransitionManager : ControlWithInput
                 transition.Skip();
         }
 
+        /// <summary>
+        ///   Awaits for one transition to finish before moving on to the next and clears the previous.
+        /// </summary>
         public void Process()
         {
-            if (queuedTransitions.Count > 0)
+            if (queuedTransitions.Count <= 0)
+                return;
+
+            if (!Running)
             {
-                if (!Running)
-                {
-                    Running = true;
-                    StartNext();
-                    return;
-                }
+                Running = true;
+                StartNext();
+            }
 
-                if (queuedTransitions.Peek().Finished)
-                {
-                    var previous = queuedTransitions.Dequeue();
+            if (queuedTransitions.Peek().Finished)
+            {
+                var previous = queuedTransitions.Dequeue();
 
-                    // Defer call to avoid possible "flickers"
-                    Invoke.Instance.Queue(() => previous.Clear());
+                // Defer call to avoid possible "flickers"
+                Invoke.Instance.Queue(() => previous.Clear());
 
-                    StartNext();
-                }
+                if (previous is ScreenFade fade)
+                    TransitionManager.Instance.LastFadedType = fade.CurrentFadeType;
+
+                StartNext();
             }
         }
 
@@ -199,9 +241,20 @@ public class TransitionManager : ControlWithInput
             if (queuedTransitions.Count > 0)
             {
                 var front = queuedTransitions.Peek();
+
+                // Hard disallow incorrect fade order
+                if (front is ScreenFade fade && fade.CurrentFadeType == TransitionManager.Instance.LastFadedType)
+                {
+                    front.Skip();
+                    return;
+                }
+
+                TransitionManager.Instance.LastFadedType = null;
                 front.Begin();
                 return;
             }
+
+            TransitionManager.Instance.LastFadedType = null;
 
             // Assume all transitions are finished if the queue is empty.
             Finished = true;

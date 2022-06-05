@@ -68,10 +68,7 @@ public class ExtinctionBox : CustomDialog
         if (PauseManager.Instance.Paused)
             GD.PrintErr("Game is unexpectedly paused when closing the extinction screen");
 
-        TransitionManager.Instance.AddSequence(new List<ITransition>
-        {
-            TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.1f),
-        }, OnSwitchToMenu, false);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, OnSwitchToMenu, false);
     }
 
     /// <summary>
