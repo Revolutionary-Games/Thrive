@@ -226,13 +226,13 @@ public class MicrobeAI
                 break;
         }
 
-        // If I'm very far from the player, get on stage
+        // If I'm very far from the player, and I have not been near the player yet, get on stage
         if (!hasBeenNearPlayer)
         {
             var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).FirstOrDefault();
             if (player != null)
             {
-                if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 2.25f)
+                if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 1.75f)
                 {
                     MoveToLocation(player.GlobalTransform.origin);
                     return;
