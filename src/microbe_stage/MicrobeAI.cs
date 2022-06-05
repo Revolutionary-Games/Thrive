@@ -232,13 +232,15 @@ public class MicrobeAI
             var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).FirstOrDefault();
             if (player != null)
             {
-                if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 1.75f)
+                if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f)
                 {
                     MoveToLocation(player.GlobalTransform.origin);
                     return;
                 }
-
-                hasBeenNearPlayer = true;
+                else
+                {
+                    hasBeenNearPlayer = true;
+                }
             }
         }
 
