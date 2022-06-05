@@ -405,7 +405,6 @@ size_flags_vertical = 3
 theme = ExtResource( 72 )
 script = ExtResource( 9 )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 AnimationPlayerPath = NodePath("AnimationPlayer")
@@ -2103,13 +2102,13 @@ margin_right = 207.0
 [node name="PausePrompt" type="Control" parent="MicrobeHUD"]
 visible = false
 anchor_left = 0.5
-anchor_top = 0.697
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.776
+anchor_bottom = 1.0
 margin_left = -200.0
-margin_top = 48.16
+margin_top = -170.0
 margin_right = 200.0
-margin_bottom = 70.16
+margin_bottom = -91.12
 mouse_filter = 2
 
 [node name="PausePromptLabel" type="Label" parent="MicrobeHUD/PausePrompt"]
@@ -2126,7 +2125,7 @@ __meta__ = {
 }
 
 [node name="PauseInfo" parent="MicrobeHUD/PausePrompt" instance=ExtResource( 93 )]
-margin_top = 60.0
+margin_top = 54.0
 margin_right = 400.0
 margin_bottom = 100.0
 rect_clip_content = false

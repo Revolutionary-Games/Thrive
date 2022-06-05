@@ -269,18 +269,12 @@ public class CustomRichTextLabel : RichTextLabel
 
         var simulationParameters = SimulationParameters.Instance;
 
+        var pairs = StringUtils.ParseKeyValuePairs(attributes);
+
         switch (bbcode)
         {
             case ThriveBbCode.Compound:
             {
-                var pairs = StringUtils.ParseKeyValuePairs(attributes);
-
-                // Used to fallback to the old method if type attribute is not specified. Should be removed in
-                // roughly 6 months to give time for translations to be updated
-                // TODO: remove this fallback once it makes sense to do so
-                // https://github.com/Revolutionary-Games/Thrive/issues/2434
-                var fallback = false;
-
                 var internalName = string.Empty;
 
                 if (pairs.TryGetValue("type", out string value))
@@ -291,29 +285,26 @@ public class CustomRichTextLabel : RichTextLabel
                     internalName = value.Substring(1, value.Length - 2);
                 }
 
-                // Handle fallback
-                if (!string.IsNullOrEmpty(input) && string.IsNullOrEmpty(internalName))
+                if (string.IsNullOrEmpty(internalName))
                 {
-                    GD.Print("Compound type not specified in bbcode, fallback to using input as " +
-                        $"the internal name: {input}");
-                    internalName = input;
-                    fallback = true;
+                    GD.PrintErr("Compound: Type not specified in bbcode");
+                    break;
                 }
 
                 // Check compound existence and aborts if it's not valid
                 if (!simulationParameters.DoesCompoundExist(internalName))
                 {
-                    GD.Print($"Compound: \"{internalName}\" doesn't exist, referenced in bbcode");
+                    GD.PrintErr($"Compound: \"{internalName}\" doesn't exist, referenced in bbcode");
                     break;
                 }
 
                 var compound = simulationParameters.GetCompound(internalName);
 
-                // Just use the default compound's display name if input text is not specified
-                if (!fallback && string.IsNullOrEmpty(input))
+                // Just use the compound's default readable name if input text is not specified
+                if (string.IsNullOrEmpty(input))
                     input = compound.Name;
 
-                output = $"[b]{(fallback ? compound.Name : input)}[/b] [font=res://src/gui_common/fonts/" +
+                output = $"[b]{(input)}[/b] [font=res://src/gui_common/fonts/" +
                     $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
 
                 break;
@@ -323,12 +314,25 @@ public class CustomRichTextLabel : RichTextLabel
             {
                 if (!InputMap.HasAction(input))
                 {
-                    GD.Print($"Input action: \"{input}\" doesn't exist, referenced in bbcode");
+                    GD.PrintErr($"Input action: \"{input}\" doesn't exist, referenced in bbcode");
                     break;
                 }
 
-                output = "[font=res://src/gui_common/fonts/BBCode-Image-VerticalCenterAlign-9.tres]" +
-                    $"[img=30]{KeyPromptHelper.GetPathForAction(input)}[/img][/font]";
+                var size = 30;
+                var ascent = 9;
+
+                if (pairs.TryGetValue("size", out string sizeInput))
+                    size = sizeInput.ToInt();
+
+                if (pairs.TryGetValue("ascent", out string ascentInput))
+                    ascent = ascentInput.ToInt();
+
+                var ascentFont = $"res://src/gui_common/fonts/BBCode-Image-VerticalCenterAlign-{ascent}.tres";
+
+                if (!ResourceLoader.Exists(ascentFont))
+                    GD.PrintErr($"Input Action: No ascent font found for {ascent}, fallback to using default");
+
+                output = $"[font={ascentFont}][img={size}]{KeyPromptHelper.GetPathForAction(input)}[/img][/font]";
 
                 break;
             }
@@ -377,7 +381,7 @@ public class CustomRichTextLabel : RichTextLabel
 
                     default:
                     {
-                        GD.Print($"Constant: \"{input}\" doesn't exist, referenced in bbcode");
+                        GD.PrintErr($"Constant: \"{input}\" doesn't exist, referenced in bbcode");
                         break;
                     }
                 }
