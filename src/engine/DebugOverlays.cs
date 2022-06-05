@@ -141,6 +141,9 @@ public partial class DebugOverlays : Control
 
     private void OnEntityLabelCheckBoxToggled(bool state)
     {
+        if (showEntityLabels == state)
+            return;
+
         ShowEntityLabels = state;
 
         if (state)
