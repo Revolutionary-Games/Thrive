@@ -237,10 +237,8 @@ public class MicrobeAI
                     MoveToLocation(player.GlobalTransform.origin);
                     return;
                 }
-                else
-                {
-                    hasBeenNearPlayer = true;
-                }
+                
+                hasBeenNearPlayer = true;
             }
         }
 
