@@ -146,6 +146,14 @@ public class SpawnSystem
         if (metrics.Visible)
             metrics.ReportDespawns(despawned);
 
+        ClearSpawnCoordinates();
+    }
+
+    /// <summary>
+    ///   Forgets all record of where clouds have spawned, so clouds can spawn anywhere.
+    /// </summary>
+    public void ClearSpawnCoordinates()
+    {
         coordinatesSpawned = new HashSet<Tuple<int, int>>();
     }
 

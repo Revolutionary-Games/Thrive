@@ -868,7 +868,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         else
         {
             // Player is not extinct, so can respawn
-            spawner.DespawnAll();
+            spawner.ClearSpawnCoordinates();
             SpawnPlayer();
         }
     }
