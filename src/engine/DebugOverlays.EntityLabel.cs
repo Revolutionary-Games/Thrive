@@ -45,7 +45,7 @@ public partial class DebugOverlays
             {
                 case Microbe microbe:
                 {
-                    if (microbe.Species != null!)
+                    if (microbe.Species != null)
                     {
                         label.Text = $"[{microbe.Name}:{microbe.Species.Genus[0]}.{microbe.Species.Epithet.Left(4)}]";
                     }
