@@ -296,8 +296,7 @@ public class SaveListItem : PanelContainer
             return;
         }
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, true);
-        TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, LoadSave, true);
     }
 
     private void LoadSave()

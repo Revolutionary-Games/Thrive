@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-27 11:33+0100\n"
+"POT-Creation-Date: 2022-06-06 12:48+0700\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -285,12 +285,12 @@ msgid "ABILITIES"
 msgstr "ความสามารถ"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2142
+#: ../src/microbe_stage/MicrobeStage.tscn:2178
 msgid "FIRE_TOXIN"
 msgstr "ยิงสารพิษ"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2130
+#: ../src/microbe_stage/MicrobeStage.tscn:2166
 msgid "TOGGLE_ENGULF"
 msgstr "สลับเขมือบ"
 
@@ -299,7 +299,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2153
+#: ../src/microbe_stage/MicrobeStage.tscn:2189
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "สลับเขมือบ"
@@ -310,7 +310,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "สลับเขมือบ"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2165
+#: ../src/microbe_stage/MicrobeStage.tscn:2201
 msgid "UNBIND_ALL"
 msgstr ""
 
@@ -426,35 +426,39 @@ msgid "MISCELLANEOUS"
 msgstr "เบ็ดเตล็ด"
 
 #: ../simulation_parameters/common/input_options.json:184
+msgid "TOGGLE_PAUSE"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:188
 msgid "TOGGLE_FPS"
 msgstr "สลับการแสดง FPS"
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:192
 #, fuzzy
 msgid "TOGGLE_METRICS"
 msgstr "สลับการแสดง FPS"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 msgid "QUICK_SAVE"
 msgstr "บันทึกด่วน"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "QUICK_LOAD"
 msgstr "โหลดด่วน"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "TAKE_SCREENSHOT"
 msgstr "จับภาพหน้าจอ"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "SHOW_HELP"
 msgstr "แสดงความช่วยเหลือ"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "TOGGLE_FULLSCREEN"
 msgstr "สลับเต็มหน้าจอ"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:216
 #, fuzzy
 msgid "TOGGLE_HUD_HIDE"
 msgstr "สลับเขมือบ"
@@ -602,36 +606,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1301
+#: ../src/microbe_stage/MicrobeStage.tscn:1305
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "AMMONIA"
 msgstr "แอมโมเนีย"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1353
+#: ../src/microbe_stage/MicrobeStage.tscn:1357
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
 msgid "PHOSPHATE"
 msgstr "ฟอสเฟต"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1405
+#: ../src/microbe_stage/MicrobeStage.tscn:1409
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
 msgid "HYDROGEN_SULFIDE"
 msgstr "ไฮโดรเจนซัลไฟด์"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1249
+#: ../src/microbe_stage/MicrobeStage.tscn:1253
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "GLUCOSE"
 msgstr "กลูโคส"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1587
+#: ../src/microbe_stage/MicrobeStage.tscn:1591
 msgid "OXYTOXY_NT"
 msgstr "ออกซิโทซินเอ็นที"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1457
+#: ../src/microbe_stage/MicrobeStage.tscn:1461
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "IRON"
 msgstr "เหล็ก"
@@ -1067,23 +1071,22 @@ msgstr "วางออร์แกเนลล์"
 msgid "MP_COST"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:88
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:65
-msgid "LOADING_MICROBE_EDITOR"
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:89
+msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:226
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:227
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:196
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:227
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:228
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:376
-#: ../src/general/EditorBase.cs:641
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:377
+#: ../src/general/EditorBase.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
@@ -1560,7 +1563,7 @@ msgstr "ปิด"
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:265
-#: ../src/microbe_stage/MicrobeHUD.cs:708
+#: ../src/microbe_stage/MicrobeHUD.cs:724
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
@@ -2711,7 +2714,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1474
+#: ../src/microbe_stage/MicrobeHUD.cs:1499
 msgid "TO_BE_IMPLEMENTED"
 msgstr "ที่จะดำเนินการ"
 
@@ -2898,128 +2901,132 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:543
+#: ../src/microbe_stage/MicrobeHUD.cs:560
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:544
+#: ../src/microbe_stage/MicrobeHUD.cs:561
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:545
+#: ../src/microbe_stage/MicrobeHUD.cs:562
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:546
+#: ../src/microbe_stage/MicrobeHUD.cs:563
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:547
+#: ../src/microbe_stage/MicrobeHUD.cs:564
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 "มีข้อขัดแย้งกับ {0}\n"
 "คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:550
+#: ../src/microbe_stage/MicrobeHUD.cs:567
 #, fuzzy
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 "มีข้อขัดแย้งกับ {0}\n"
 "คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:877
+#: ../src/microbe_stage/MicrobeHUD.cs:814
+msgid "PAUSE_PROMPT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:928
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:910
+#: ../src/microbe_stage/MicrobeHUD.cs:961
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:927
+#: ../src/microbe_stage/MicrobeHUD.cs:978
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "เมาส์ขวา"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:972
+#: ../src/microbe_stage/MicrobeHUD.cs:1023
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:974
+#: ../src/microbe_stage/MicrobeHUD.cs:1025
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:976
+#: ../src/microbe_stage/MicrobeHUD.cs:1027
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:978
+#: ../src/microbe_stage/MicrobeHUD.cs:1029
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:980
+#: ../src/microbe_stage/MicrobeHUD.cs:1031
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:982
+#: ../src/microbe_stage/MicrobeHUD.cs:1033
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1233
-#: ../src/microbe_stage/MicrobeStage.tscn:1788
+#: ../src/microbe_stage/MicrobeHUD.cs:1284
+#: ../src/microbe_stage/MicrobeStage.tscn:1792
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1269
-#: ../src/microbe_stage/MicrobeStage.tscn:1799
+#: ../src/microbe_stage/MicrobeHUD.cs:1320
+#: ../src/microbe_stage/MicrobeStage.tscn:1803
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:755
+#: ../src/microbe_stage/MicrobeStage.cs:765
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:769
+#: ../src/microbe_stage/MicrobeStage.cs:779
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:792
+#: ../src/microbe_stage/MicrobeStage.cs:802
 msgid "PLAYER_DIED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:518
+#: ../src/microbe_stage/MicrobeStage.tscn:522
 msgid "AT_CURSOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:544
+#: ../src/microbe_stage/MicrobeStage.tscn:548
 msgid "NOTHING_HERE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:569
+#: ../src/microbe_stage/MicrobeStage.tscn:573
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:609
+#: ../src/microbe_stage/MicrobeStage.tscn:613
 msgid "SPECIES_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:689
+#: ../src/microbe_stage/MicrobeStage.tscn:693
 msgid "ENVIRONMENT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:957
+#: ../src/microbe_stage/MicrobeStage.tscn:961
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1013
+#: ../src/microbe_stage/MicrobeStage.tscn:1017
 msgid "LIGHT"
 msgstr "แสง"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1068
+#: ../src/microbe_stage/MicrobeStage.tscn:1072
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1151
+#: ../src/microbe_stage/MicrobeStage.tscn:1155
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
@@ -3027,45 +3034,49 @@ msgstr ""
 msgid "COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1527
+#: ../src/microbe_stage/MicrobeStage.tscn:1531
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1625
+#: ../src/microbe_stage/MicrobeStage.tscn:1629
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1643
+#: ../src/microbe_stage/MicrobeStage.tscn:1647
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeStage.tscn:1660
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1669
+#: ../src/microbe_stage/MicrobeStage.tscn:1673
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1684
+#: ../src/microbe_stage/MicrobeStage.tscn:1688
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1721
+#: ../src/microbe_stage/MicrobeStage.tscn:1725
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1733
+#: ../src/microbe_stage/MicrobeStage.tscn:1737
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1784
+#: ../src/microbe_stage/MicrobeStage.tscn:1788
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1819
+#: ../src/microbe_stage/MicrobeStage.tscn:1823
 msgid "POPULATION_CAPITAL"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:2121
+msgid "PAUSED"
 msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:187
@@ -3317,6 +3328,10 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:174
 msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:65
+msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
@@ -4021,8 +4036,8 @@ msgstr ""
 msgid "CREATE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:79 ../src/saving/InProgressLoad.cs:99
-#: ../src/saving/InProgressLoad.cs:148
+#: ../src/saving/InProgressLoad.cs:79 ../src/saving/InProgressLoad.cs:101
+#: ../src/saving/InProgressLoad.cs:150
 msgid "LOADING_GAME"
 msgstr ""
 
@@ -4030,39 +4045,39 @@ msgstr ""
 msgid "READING_SAVE_DATA"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:101
+#: ../src/saving/InProgressLoad.cs:103
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:110
+#: ../src/saving/InProgressLoad.cs:112
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:136
+#: ../src/saving/InProgressLoad.cs:138
 msgid "SAVE_IS_INVALID"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:137
+#: ../src/saving/InProgressLoad.cs:139
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:150
+#: ../src/saving/InProgressLoad.cs:152
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:165
+#: ../src/saving/InProgressLoad.cs:167
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:171
+#: ../src/saving/InProgressLoad.cs:173
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:195
+#: ../src/saving/InProgressLoad.cs:200
 msgid "ERROR_LOADING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:231
+#: ../src/saving/InProgressLoad.cs:236
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 

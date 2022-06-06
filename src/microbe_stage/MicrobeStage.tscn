@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=2]
+[gd_scene load_steps=131 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -91,6 +91,8 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=89]
 [ext_resource path="res://assets/textures/gui/bevel/unbind.png" type="Texture" id=90]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=91]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=92]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=93]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -403,7 +405,6 @@ size_flags_vertical = 3
 theme = ExtResource( 72 )
 script = ExtResource( 9 )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 AnimationPlayerPath = NodePath("AnimationPlayer")
@@ -469,6 +470,8 @@ BindingModeHotkeyPath = NodePath("ScrollContainer/HotBar/BindingMode")
 UnbindAllHotkeyPath = NodePath("ScrollContainer/HotBar/UnbindAll")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
 MicrobeControlRadialPath = NodePath("../RadialPopup")
+PausePromptPath = NodePath("PausePrompt")
+PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 
 [node name="MouseHoverPanel" type="MarginContainer" parent="MicrobeHUD"]
 anchor_left = 1.0
@@ -2095,6 +2098,38 @@ anims/ShowLeftPanels = SubResource( 32 )
 margin_left = 10.0
 margin_top = 30.0
 margin_right = 207.0
+
+[node name="PausePrompt" type="Control" parent="MicrobeHUD"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -200.0
+margin_top = -170.0
+margin_right = 200.0
+margin_bottom = -91.12
+mouse_filter = 2
+
+[node name="PausePromptLabel" type="Label" parent="MicrobeHUD/PausePrompt"]
+margin_top = 18.0
+margin_right = 400.0
+margin_bottom = 59.0
+rect_min_size = Vector2( 0, 20 )
+custom_fonts/font = ExtResource( 92 )
+text = "PAUSED"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseInfo" parent="MicrobeHUD/PausePrompt" instance=ExtResource( 93 )]
+margin_top = 58.0
+margin_right = 400.0
+margin_bottom = 100.0
+rect_clip_content = false
+mouse_filter = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeHUD"]
 anchor_left = 0.5
