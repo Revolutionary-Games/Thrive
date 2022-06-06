@@ -1452,6 +1452,11 @@ public class MicrobeHUD : Control
         stage.MovingToEditor = true;
     }
 
+    public void SetupPressEditorTutorial(TutorialState tutorialState)
+    {
+        tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
+    }
+
     /// <summary>
     ///   Makes sure the game is unpaused (at least by us)
     /// </summary>
