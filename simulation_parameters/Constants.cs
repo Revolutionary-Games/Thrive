@@ -20,7 +20,7 @@ public static class Constants
     public const float MAX_SPAWN_DISTANCE = 5000.0f;
 
     /// <summary>
-    ///     Size of "chunks" used for spawning entities
+    ///   Size of "chunks" used for spawning entities
     /// </summary>
     public const float SPAWN_SECTOR_SIZE = 120.0f;
 
