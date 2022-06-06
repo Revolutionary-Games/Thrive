@@ -1,18 +1,38 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/gui_common/PlaybackBar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/textures/gui/bevel/musicNote.png" type="Texture" id=2]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryCardAudio.cs" type="Script" id=3]
 [ext_resource path="res://src/gui_common/art_gallery/GalleryCard.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=5]
 
 [node name="GalleryCardAudio" instance=ExtResource( 4 )]
 script = ExtResource( 3 )
-MissingTexture = ExtResource( 5 )
+CanBeSlideshown = false
+MissingTexture = ExtResource( 2 )
 PlaybackBarPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PlaybackBar")
 
+[node name="MarginContainer" parent="MarginContainer/VBoxContainer" index="1"]
+custom_constants/margin_right = 5
+custom_constants/margin_left = 5
+
+[node name="PreviewMargin" parent="MarginContainer/VBoxContainer/MarginContainer" index="0"]
+margin_left = 5.0
+margin_right = 163.0
+custom_constants/margin_right = 40
+custom_constants/margin_top = 45
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 45
+
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin" index="0"]
+margin_left = 40.0
+margin_top = 45.0
+margin_right = 118.0
+margin_bottom = 104.0
+
 [node name="PlaybackBar" parent="MarginContainer/VBoxContainer/MarginContainer" index="1" instance=ExtResource( 1 )]
+margin_left = 5.0
 margin_top = 124.0
-margin_right = 168.0
+margin_right = 163.0
 margin_bottom = 149.0
 
 [connection signal="Started" from="MarginContainer/VBoxContainer/MarginContainer/PlaybackBar" to="." method="OnStarted"]

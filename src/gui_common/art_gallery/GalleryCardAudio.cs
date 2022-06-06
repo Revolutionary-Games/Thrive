@@ -5,14 +5,14 @@ public class GalleryCardAudio : GalleryCard
     [Export]
     public NodePath PlaybackBarPath = null!;
 
+    private PlaybackBar? playbackBar;
+    private AudioStreamPlayer ownPlayer = null!;
+
     [Signal]
     public delegate void OnAudioStarted();
 
     [Signal]
     public delegate void OnAudioStopped();
-
-    private PlaybackBar? playbackBar;
-    private AudioStreamPlayer ownPlayer = null!;
 
     public AudioStreamPlayer Player
     {

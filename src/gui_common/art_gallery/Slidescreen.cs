@@ -243,6 +243,14 @@ public class Slidescreen : CustomDialog
 
         currentSlideIndex = (currentSlideIndex + 1) % Items.Count;
 
+        // Can be slideshown check is only done here because slideshow only moves forward
+        if (!Items[CurrentSlideIndex].CanBeSlideshown && SlideshowMode)
+        {
+            // Keep advancing until we found an item that allows slideshow
+            AdvanceSlide(fade);
+            return;
+        }
+
         ChangeSlide(fade);
     }
 
@@ -286,13 +294,14 @@ public class Slidescreen : CustomDialog
 
     private void UpdateSlide()
     {
-        if (Items == null || slideTitleLabel == null || fullscreenTextureRect == null)
+        if (Items == null || slideTitleLabel == null || fullscreenTextureRect == null || slideShowModeButton == null)
             return;
 
         var item = Items[currentSlideIndex];
 
         slideshowTimer = slideshowMode ? SLIDESHOW_INTERVAL : 0;
-        slideShowModeButton?.SetPressedNoSignal(slideshowMode);
+        slideShowModeButton.SetPressedNoSignal(slideshowMode);
+        slideShowModeButton.Visible = item.CanBeSlideshown;
 
         slideTitleLabel.Text = item.Asset.Title;
         fullscreenTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture;
@@ -340,7 +349,6 @@ public class Slidescreen : CustomDialog
 
         if (item == null || item.Asset.Type != AssetType.AudioPlayback)
         {
-            slideShowModeButton?.Show();
             playbackBar.Hide();
             playbackBar.AudioPlayer = null;
             return;
@@ -352,7 +360,6 @@ public class Slidescreen : CustomDialog
         playbackBar.Connect(nameof(PlaybackBar.Stopped), item, "OnStopped");
 
         playbackBar.AudioPlayer = item.Player;
-        slideShowModeButton?.Hide();
         playbackBar?.Show();
     }
 
@@ -415,6 +422,20 @@ public class Slidescreen : CustomDialog
     private void OnCloseButtonPressed()
     {
         CustomHide();
+    }
+
+    private void OnCloseButtonUpdate()
+    {
+        var icon = closeButton!.GetChild<TextureRect>(0);
+
+        if (closeButton?.GetDrawMode() == BaseButton.DrawMode.Pressed)
+        {
+            icon.Modulate = Colors.Black;
+        }
+        else
+        {
+            icon.Modulate = Colors.White;
+        }
     }
 
     private void OnHidden()

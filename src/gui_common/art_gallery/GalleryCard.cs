@@ -20,6 +20,12 @@ public class GalleryCard : Button
 
     public Asset Asset { get; set; } = null!;
 
+    /// <summary>
+    ///   If this is true, this item can be featured in slideshow.
+    /// </summary>
+    [Export]
+    public bool CanBeSlideshown { get; set; } = true;
+
     public Texture Thumbnail
     {
         get => thumbnail ?? MissingTexture;

@@ -1,10 +1,10 @@
 {
-    "concept_art": {
-        "name": "CONCEPT_ART",
-        "assetCategories": {
-            "general": {
-                "name": "GENERAL",
-                "assets": [
+    "ConceptArt": {
+        "Name": "CONCEPT_ART",
+        "AssetCategories": {
+            "General": {
+                "Name": "General",
+                "Assets": [
                     {
                         "ResourcePath": "res://assets/textures/gui/planet.png"
                     },
@@ -15,9 +15,9 @@
                     }
                 ]
             },
-            "cells": {
-                "name": "CELLS",
-                "assets": [
+            "Cells": {
+                "Name": "CELLS",
+                "Assets": [
                     {
                         "ResourcePath": "res://assets/concept_art/cell.jpeg"
                     },
@@ -27,6 +27,7 @@
                         "ResourcePath": "res://assets/concept_art/cells2.jpg"
                     },
                     {
+                        "TItle": "Even More Cells",
                         "Artist": "Uniow",
                         "ResourcePath": "res://assets/concept_art/even-more-cells.jpg"
                     },
@@ -54,14 +55,13 @@
             }
         }
     },
-    "models": {
-        "name": "MODELS",
-        "assetCategories": {
-            "microbe_stage": {
-                "name": "MICROBE_STAGE",
-                "assets": [
+    "Models": {
+        "Name": "MODELS",
+        "AssetCategories": {
+            "MicrobeStage": {
+                "Name": "MICROBE_STAGE",
+                "Assets": [
                     {
-                        "Artist": "Uniow",
                         "ResourcePath": "res://assets/models/Iceshard1.tscn",
                         "Type": "ModelScene"
                     },
@@ -171,21 +171,21 @@
             }
         }
     },
-    "musics": {
-        "name": "MUSICS",
-        "assetCategories": {
-            "all": {
-                "name": "ALL",
-                "assets": [
+    "Musics": {
+        "Name": "MUSICS",
+        "AssetCategories": {
+            "All": {
+                "Name": "ALL",
+                "Assets": [
                     {
                         "ResourcePath": "res://assets/sounds/extinct2.ogg",
                         "Type": "AudioPlayback"
                     }
                 ]
             },
-            "menu": {
-                "name": "MENU",
-                "assets": [
+            "Menu": {
+                "Name": "MENU",
+                "Assets": [
                     {
                         "ResourcePath": "res://assets/sounds/main-menu-theme-1.ogg",
                         "Type": "AudioPlayback"
@@ -196,9 +196,9 @@
                     }
                 ]
             },
-            "microbe_stage": {
-                "name": "MICROBE_STAGE",
-                "assets": [
+            "MicrobeStage": {
+                "Name": "MICROBE_STAGE",
+                "Assets": [
                     {
                         "ResourcePath": "res://assets/sounds/microbe-theme-1.ogg",
                         "Type": "AudioPlayback"
@@ -225,9 +225,9 @@
                     }
                 ]
             },
-            "microbe_editor": {
-                "name": "MICROBE_EDITOR",
-                "assets": [
+            "MicrobeEditor": {
+                "Name": "MICROBE_EDITOR",
+                "Assets": [
                     {
                         "ResourcePath": "res://assets/sounds/microbe-editor-theme-1.ogg",
                         "Type": "AudioPlayback"
@@ -250,9 +250,9 @@
                     }
                 ]
             },
-            "multicellular_stage": {
-                "name": "MULTICELLULAR_STAGE",
-                "assets": [
+            "MulticellularStage": {
+                "Name": "MULTICELLULAR_STAGE",
+                "Assets": [
                     {
                         "ResourcePath": "res://assets/sounds/multicellular-theme-1.ogg",
                         "Type": "AudioPlayback"
@@ -267,9 +267,9 @@
                     }
                 ]
             },
-            "multicellular_editor": {
-                "name": "MULTICELLULAR_EDITOR",
-                "assets": [
+            "MulticellularEditor": {
+                "Name": "MULTICELLULAR_EDITOR",
+                "Assets": [
                     {
                         "ResourcePath": "res://assets/sounds/multicellular-editor-theme-1.ogg",
                         "Type": "AudioPlayback"

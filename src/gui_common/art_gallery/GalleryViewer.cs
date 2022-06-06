@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public class GalleryViewer : CustomDialog
 {
+    public const string ALL_CATEGORY = "All";
+
     [Export]
     public NodePath GalleryGridPath = null!;
 
@@ -11,6 +14,9 @@ public class GalleryViewer : CustomDialog
 
     [Export]
     public NodePath AssetsCategoryDropdownPath = null!;
+
+    [Export]
+    public NodePath SlideshowButtonPath = null!;
 
     [Export]
     public PackedScene GalleryCardScene = null!;
@@ -30,6 +36,7 @@ public class GalleryViewer : CustomDialog
     private HBoxContainer tabButtonsContainer = null!;
     private OptionButton assetsCategoryDropdown = null!;
     private Slidescreen slidescreen = null!;
+    private Button slideshowButton = null!;
 
     private Dictionary<string, Dictionary<int, string>> galleries = new();
     private List<GalleryCard> galleryCards = new();
@@ -46,6 +53,7 @@ public class GalleryViewer : CustomDialog
         cardTile = GetNode<GridContainer>(GalleryGridPath);
         tabButtonsContainer = GetNode<HBoxContainer>(TabButtonsContainerPath);
         assetsCategoryDropdown = GetNode<OptionButton>(AssetsCategoryDropdownPath);
+        slideshowButton = GetNode<Button>(SlideshowButtonPath);
 
         InitializeGallery();
     }
@@ -70,7 +78,7 @@ public class GalleryViewer : CustomDialog
             InitializeGallery();
     }
 
-    public void UpdateGalleryTile(string selectedCategory = "all")
+    public void UpdateGalleryTile(string selectedCategory = ALL_CATEGORY)
     {
         cardTile.FreeChildren();
         galleryCards.Clear();
@@ -82,7 +90,7 @@ public class GalleryViewer : CustomDialog
 
         foreach (var category in gallery.AssetCategories)
         {
-            if (selectedCategory != "all" && selectedCategory != category.Key)
+            if (selectedCategory != ALL_CATEGORY && selectedCategory != category.Key)
                 continue;
 
             foreach (var asset in category.Value.Assets)
@@ -93,7 +101,10 @@ public class GalleryViewer : CustomDialog
             }
         }
 
+        slidescreen.CurrentSlideIndex = 0;
         slidescreen.Items = galleryCards;
+
+        UpdateSlideshowButton();
     }
 
     private GalleryCard CreateGalleryItem(Asset asset)
@@ -149,7 +160,7 @@ public class GalleryViewer : CustomDialog
             var categories = galleries[gallery.Key];
             var id = 0;
 
-            categories.Add(id, "all");
+            categories.Add(id, ALL_CATEGORY);
 
             var tabButton = new Button
             {
@@ -166,7 +177,7 @@ public class GalleryViewer : CustomDialog
 
             foreach (var category in gallery.Value.AssetCategories)
             {
-                if (category.Key == "all")
+                if (category.Key == ALL_CATEGORY)
                     continue;
 
                 ++id;
@@ -175,6 +186,11 @@ public class GalleryViewer : CustomDialog
         }
 
         firstEntry.Pressed = true;
+    }
+
+    private void UpdateSlideshowButton()
+    {
+        slideshowButton.Disabled = galleryCards.All(g => !g.CanBeSlideshown);
     }
 
     private void OnAssetPreviewOpened(GalleryCard item)
@@ -211,7 +227,7 @@ public class GalleryViewer : CustomDialog
 
         foreach (var entry in galleries[selected])
         {
-            if (entry.Key == 0 && entry.Value == "all")
+            if (entry.Key == 0 && entry.Value == ALL_CATEGORY)
             {
                 assetsCategoryDropdown.AddItem(TranslationServer.Translate("ALL"), entry.Key);
                 continue;
@@ -240,7 +256,7 @@ public class GalleryViewer : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        slidescreen.CurrentSlideIndex = 0;
+        slidescreen.CurrentSlideIndex = galleryCards.FindIndex(g => g.CanBeSlideshown);
         slidescreen.SlideshowMode = true;
         slidescreen.CustomShow();
     }

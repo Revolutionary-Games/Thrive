@@ -37,13 +37,13 @@ toggle_mode = true
 action_mode = 0
 script = ExtResource( 1 )
 TitleLabelPath = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/Label")
-TextureRectPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/TextureRect")
+TextureRectPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PreviewMargin/TextureRect")
 MissingTexture = ExtResource( 3 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
+mouse_filter = 2
 custom_constants/margin_right = 2
 custom_constants/margin_top = 2
 custom_constants/margin_left = 2
@@ -54,18 +54,19 @@ margin_left = 2.0
 margin_top = 2.0
 margin_right = 170.0
 margin_bottom = 180.0
+mouse_filter = 2
 custom_constants/separation = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 168.0
 margin_bottom = 24.0
-mouse_filter = 1
+mouse_filter = 2
 custom_styles/panel = SubResource( 30 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
 margin_right = 168.0
 margin_bottom = 21.0
-mouse_filter = 1
+mouse_filter = 2
 custom_constants/margin_right = 2
 custom_constants/margin_top = 2
 custom_constants/margin_left = 2
@@ -90,13 +91,19 @@ __meta__ = {
 margin_top = 24.0
 margin_right = 168.0
 margin_bottom = 178.0
-mouse_filter = 1
+mouse_filter = 2
 size_flags_vertical = 3
 custom_constants/margin_bottom = 5
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="PreviewMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
 margin_right = 168.0
 margin_bottom = 149.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin"]
+margin_right = 168.0
+margin_bottom = 149.0
+mouse_filter = 2
 expand = true
 stretch_mode = 7
 

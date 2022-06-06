@@ -73,7 +73,7 @@ public class PlaybackBar : HBoxContainer
             return;
 
         AudioPlayer.StreamPaused = false;
-        AudioPlayer.Playing = true;
+        AudioPlayer.Play(PlaybackPosFromProgress(playbackProgress).GetValueOrDefault());
     }
 
     public void StopPlayback()
@@ -149,7 +149,7 @@ public class PlaybackBar : HBoxContainer
             playbackProgress = value;
             AudioPlayer?.Seek(PlaybackPosFromProgress(value).GetValueOrDefault());
         }
-        else if (!dragging && Playing && value == playbackSlider!.MaxValue)
+        else if (!dragging && value == playbackSlider!.MaxValue)
         {
             StopPlayback();
         }
