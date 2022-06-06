@@ -225,6 +225,8 @@ public partial class CellEditorComponent :
 
     private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements = new();
 
+    private Dictionary<OrganelleDefinition, MicrobePartSelection> allPartSelectionElements = new();
+
     private Dictionary<MembraneType, MicrobePartSelection> membraneSelectionElements = new();
 
     [JsonProperty]
@@ -531,6 +533,7 @@ public partial class CellEditorComponent :
         UpdateTooltipMPCostFactors();
 
         UpdateOrganelleUnlockTooltips();
+        UpdateOrganelleLAWKSettings();
     }
 
     public override void ResolveNodeReferences()
@@ -1839,6 +1842,8 @@ public partial class CellEditorComponent :
             control.RegisterToolTipForControl(organelle.InternalName, "organelleSelection");
 
             group.AddItem(control);
+
+            allPartSelectionElements.Add(organelle, control);
 
             if (organelle.Unimplemented)
                 continue;

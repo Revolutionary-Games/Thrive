@@ -248,7 +248,10 @@ public class NewGameSettings : ControlWithInput
 
         // If custom was selected, open the advanced view
         if (DifficultyPresetIndexToValue(index) == WorldGenerationSettings.DifficultyPreset.Custom)
+        {
+            // TODO: set open tab to difficulty first
             OnAdvancedPressed();
+        }
     }
 
     private WorldGenerationSettings.DifficultyPreset DifficultyPresetIndexToValue(int index)

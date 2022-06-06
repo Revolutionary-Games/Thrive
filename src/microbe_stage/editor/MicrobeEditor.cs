@@ -218,7 +218,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
     protected override GameProperties StartNewGameForEditor()
     {
-        return GameProperties.StartNewMicrobeGame();
+        return GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
     }
 
     protected override void OnUndoPerformed()

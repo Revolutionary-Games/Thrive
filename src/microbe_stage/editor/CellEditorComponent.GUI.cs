@@ -285,6 +285,16 @@ public partial class CellEditorComponent
         }
     }
 
+    private void UpdateOrganelleLAWKSettings()
+    {
+        // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
+        foreach (var organelle in allPartSelectionElements.Keys)
+        {
+            var control = allPartSelectionElements[organelle];
+            control.Visible = !Editor.CurrentGame.WorldSettings.LAWK || organelle.LAWK;
+        }
+    }
+
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
     {
         return (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(name, group);

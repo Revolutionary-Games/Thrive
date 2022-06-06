@@ -23,7 +23,8 @@
         "name": "PREDATORY_PILUS",
         "iconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png",
         "editorButtonGroup": "External",
-        "editorButtonOrder": 2
+        "editorButtonOrder": 2,
+        "lawk": true
     },
     "rusticyanin": {
         "mpCost": 45,
@@ -57,7 +58,8 @@
         "consumptionColour": "#f04681",
         "iconPath": "res://assets/textures/gui/bevel/parts/RusticyaninIcon.png",
         "editorButtonGroup": "Protein",
-        "editorButtonOrder": 4
+        "editorButtonOrder": 4,
+        "lawk": true
     },
     "nitrogenase": {
         "mpCost": 55,
@@ -92,7 +94,8 @@
         "consumptionColour": "#ff8425",
         "iconPath": "res://assets/textures/gui/bevel/parts/NitrogenaseIcon.png",
         "editorButtonGroup": "Protein",
-        "editorButtonOrder": 5
+        "editorButtonOrder": 5,
+        "lawk": true
     },
     "protoplasm": {
         "mpCost": 55,
@@ -124,7 +127,8 @@
         "corpseChunkScene": "res://assets/models/organelles/Cytoplasm.tscn",
         "name": "PROTOPLASM",
         "editorButtonGroup": "Hidden",
-        "editorButtonOrder": 5
+        "editorButtonOrder": 5,
+        "lawk": true
     },
     "chemoSynthesizingProteins": {
         "mpCost": 45,
@@ -159,7 +163,8 @@
         "consumptionColour": "#ff7248",
         "iconPath": "res://assets/textures/gui/bevel/parts/ChemoproteinsIcon.png",
         "editorButtonGroup": "Protein",
-        "editorButtonOrder": 3
+        "editorButtonOrder": 3,
+        "lawk": true
     },
     "oxytoxyProteins": {
         "mpCost": 55,
@@ -198,7 +203,8 @@
         "consumptionColour": "#c4303d",
         "iconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
         "editorButtonGroup": "Protein",
-        "editorButtonOrder": 6
+        "editorButtonOrder": 6,
+        "lawk": true
     },
     "chromatophore": {
         "mpCost": 50,
@@ -233,7 +239,8 @@
         "consumptionColour": "#fbae3a",
         "iconPath": "res://assets/textures/gui/bevel/parts/ChromatophoreIcon.png",
         "editorButtonGroup": "Protein",
-        "editorButtonOrder": 2
+        "editorButtonOrder": 2,
+        "lawk": true
     },
     "metabolosome": {
         "mpCost": 45,
@@ -267,7 +274,8 @@
         "consumptionColour": "#ff5649",
         "iconPath": "res://assets/textures/gui/bevel/parts/MetabolosomeIcon.png",
         "editorButtonGroup": "Protein",
-        "editorButtonOrder": 1
+        "editorButtonOrder": 1,
+        "lawk": true
     },
     "nitrogenfixingplastid": {
         "mpCost": 50,
@@ -306,7 +314,8 @@
         "iconPath": "res://assets/textures/gui/bevel/parts/NitroplastidIcon.png",
         "requiresNucleus": true,
         "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 7
+        "editorButtonOrder": 7,
+        "lawk": true
     },
     "chemoplast": {
         "mpCost": 45,
@@ -343,7 +352,8 @@
         "iconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png",
         "requiresNucleus": true,
         "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 6
+        "editorButtonOrder": 6,
+        "lawk": true
     },
     "flagellum": {
         "mpCost": 55,
@@ -378,7 +388,8 @@
         "consumptionColour": "#ff9721",
         "iconPath": "res://assets/textures/gui/bevel/parts/FlagellumIcon.png",
         "editorButtonGroup": "External",
-        "editorButtonOrder": 1
+        "editorButtonOrder": 1,
+        "lawk": true
     },
     "vacuole": {
         "mpCost": 50,
@@ -406,7 +417,8 @@
         "iconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png",
         "requiresNucleus": true,
         "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 8
+        "editorButtonOrder": 8,
+        "lawk": true
     },
     "mitochondrion": {
         "mpCost": 45,
@@ -445,7 +457,8 @@
         "iconPath": "res://assets/textures/gui/bevel/parts/MitochondrionIcon.png",
         "requiresNucleus": true,
         "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 3
+        "editorButtonOrder": 3,
+        "lawk": true
     },
     "oxytoxy": {
         "mpCost": 55,
@@ -481,7 +494,8 @@
         "iconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
         "requiresNucleus": true,
         "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 9
+        "editorButtonOrder": 9,
+        "lawk": true
     },
     "bindingAgent": {
         "mpCost": 55,
@@ -511,7 +525,8 @@
         "requiresNucleus": true,
         "unique": true,
         "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 2
+        "editorButtonOrder": 2,
+        "lawk": true
     },
     "chloroplast": {
         "mpCost": 50,
@@ -552,7 +567,8 @@
         "iconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png",
         "requiresNucleus": true,
         "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 4
+        "editorButtonOrder": 4,
+        "lawk": true
     },
     "cytoplasm": {
         "mpCost": 22,
@@ -587,7 +603,8 @@
         "consumptionColour": "#c51d38",
         "iconPath": "res://assets/textures/gui/bevel/parts/CytoplasmIcon.png",
         "editorButtonGroup": "Structural",
-        "editorButtonOrder": 1
+        "editorButtonOrder": 1,
+        "lawk": true
     },
     "nucleus": {
         "mpCost": 70,
@@ -653,7 +670,8 @@
         "iconPath": "res://assets/textures/gui/bevel/parts/NucleusIcon.png",
         "unique": true,
         "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 1
+        "editorButtonOrder": 1,
+        "lawk": true
     },
     "chemoreceptor": {
         "mpCost": 45,
@@ -679,7 +697,8 @@
         "iconPath": "res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png",
         "upgradeGUI": "res://src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn",
         "editorButtonGroup": "External",
-        "editorButtonOrder": 3
+        "editorButtonOrder": 3,
+        "lawk": true
     },
     "signalingAgent": {
         "mpCost": 45,
@@ -706,7 +725,8 @@
         "requiresNucleus": true,
         "unique": true,
         "editorButtonGroup": "Organelle",
-        "editorButtonOrder": 10
+        "editorButtonOrder": 10,
+        "lawk": true
     },
     "bioluminescentVacuole": {
         "mpCost": 40,
@@ -729,7 +749,8 @@
         "requiresNucleus": true,
         "editorButtonGroup": "Organelle",
         "editorButtonOrder": 11,
-        "unimplemented": true
+        "unimplemented": true,
+        "lawk": true
     },
     "thermoplast": {
         "mpCost": 40,
@@ -752,7 +773,8 @@
         "requiresNucleus": true,
         "editorButtonGroup": "Organelle",
         "editorButtonOrder": 5,
-        "unimplemented": true
+        "unimplemented": true,
+        "lawk": false
     },
     "cilia": {
         "mpCost": 40,
@@ -782,6 +804,7 @@
         "iconPath": "res://assets/textures/gui/bevel/parts/CiliaIcon.png",
         "requiresNucleus": true,
         "editorButtonGroup": "External",
-        "editorButtonOrder": 4
+        "editorButtonOrder": 4,
+        "lawk": true
     }
 }
