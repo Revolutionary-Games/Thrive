@@ -2,8 +2,8 @@
 
 public class PlayButton : MarginContainer
 {
-    private Button pauseButton = null!;
-    private Button playButton = null!;
+    private Button? pauseButton;
+    private Button? playButton;
 
     private string? pauseButtonTooltip;
     private string? playButtonTooltip;
@@ -71,9 +71,6 @@ public class PlayButton : MarginContainer
     /// </summary>
     public void Toggle()
     {
-        if (pauseButton == null || playButton == null)
-            return;
-
         Paused = !Paused;
         OnButtonPressed(Paused ? "pause" : "play");
     }
@@ -94,21 +91,24 @@ public class PlayButton : MarginContainer
 
     private void OnButtonUpdate()
     {
+        if (pauseButton == null || playButton == null)
+            return;
+
         var pauseButtonDrawMode = pauseButton.GetDrawMode();
         var playButtonDrawMode = playButton.GetDrawMode();
 
         var pauseButtonIcon = pauseButton.GetChild<TextureRect>(0);
         var playButtonIcon = playButton.GetChild<TextureRect>(0);
 
-        if (pauseButton.GetDrawMode() is BaseButton.DrawMode.Pressed or BaseButton.DrawMode.HoverPressed)
+        if (pauseButtonDrawMode is BaseButton.DrawMode.Pressed or BaseButton.DrawMode.HoverPressed)
         {
             pauseButtonIcon.Modulate = Colors.Black;
         }
-        else if (playButton.GetDrawMode() is BaseButton.DrawMode.Pressed or BaseButton.DrawMode.HoverPressed)
+        else if (playButtonDrawMode is BaseButton.DrawMode.Pressed or BaseButton.DrawMode.HoverPressed)
         {
             playButtonIcon.Modulate = Colors.Black;
         }
-        else if (playButton.GetDrawMode() == BaseButton.DrawMode.Hover)
+        else if (playButtonDrawMode == BaseButton.DrawMode.Hover)
         {
             playButtonIcon.Modulate = Colors.White;
         }

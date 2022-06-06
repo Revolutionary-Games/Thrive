@@ -1,5 +1,4 @@
-﻿using Godot;
-using Dictionary = Godot.Collections.Dictionary;
+﻿using Dictionary = Godot.Collections.Dictionary;
 using Object = Godot.Object;
 
 public static class ObjectHelpers

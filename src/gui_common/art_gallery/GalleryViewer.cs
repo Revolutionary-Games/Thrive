@@ -151,7 +151,7 @@ public class GalleryViewer : CustomDialog
         buttonGroup = new ButtonGroup();
         buttonGroup.Connect("pressed", this, nameof(OnGallerySelected));
 
-        Button firstEntry = null!;
+        Button? firstEntry = null;
 
         foreach (var gallery in SimulationParameters.Instance.GetGalleries())
         {
@@ -185,7 +185,7 @@ public class GalleryViewer : CustomDialog
             }
         }
 
-        firstEntry.Pressed = true;
+        firstEntry!.Pressed = true;
     }
 
     private void UpdateSlideshowButton()

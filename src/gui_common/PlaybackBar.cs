@@ -3,8 +3,7 @@
 public class PlaybackBar : HBoxContainer
 {
     private HSlider? playbackSlider;
-    private PlayButton playButton = null!;
-    private Button stopButton = null!;
+    private PlayButton? playButton;
 
     private float playbackProgress;
     private bool dragging;
@@ -52,7 +51,6 @@ public class PlaybackBar : HBoxContainer
     {
         playbackSlider = GetNode<HSlider>("PlaybackSlider");
         playButton = GetNode<PlayButton>("PlayButton");
-        stopButton = GetNode<Button>("StopButton");
 
         UpdatePlaybackState();
         UpdateSlider();
@@ -98,6 +96,9 @@ public class PlaybackBar : HBoxContainer
 
     private void UpdatePlaybackState()
     {
+        if (playButton == null)
+            return;
+
         playButton.Paused = !Playing;
 
         if (Playing != lastState)

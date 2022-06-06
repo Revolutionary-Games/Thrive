@@ -6,7 +6,7 @@ public class GalleryCardAudio : GalleryCard
     public NodePath PlaybackBarPath = null!;
 
     private PlaybackBar? playbackBar;
-    private AudioStreamPlayer ownPlayer = null!;
+    private AudioStreamPlayer? ownPlayer;
 
     [Signal]
     public delegate void OnAudioStarted();
@@ -19,7 +19,7 @@ public class GalleryCardAudio : GalleryCard
         get
         {
             EnsurePlayerExist();
-            return ownPlayer;
+            return ownPlayer!;
         }
         set
         {

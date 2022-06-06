@@ -17,9 +17,6 @@ public class GalleryCardModel : GalleryCard
     {
         base._Process(delta);
 
-        if (Asset == null)
-            return;
-
         if (imageTask != null)
         {
             if (imageTask.Finished)
@@ -37,8 +34,8 @@ public class GalleryCardModel : GalleryCard
 
     public class ModelPreview : IPhotographable
     {
-        private string resourcePath = null!;
-        private string meshNodePath = null!;
+        private string resourcePath;
+        private string meshNodePath;
 
         public ModelPreview(string resourcePath, string meshNodePath)
         {

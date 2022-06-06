@@ -309,19 +309,16 @@ public class Slidescreen : CustomDialog
 
     private void UpdateModelViewer()
     {
-        if (Items == null || modelViewerContainer == null)
-            return;
-
-        var item = Items[currentSlideIndex] as GalleryCardModel;
+        var item = Items?[currentSlideIndex] as GalleryCardModel;
 
         if (item == null || item.Asset.Type != AssetType.ModelScene || modelHolder == null || modelViewer == null ||
             modelViewerCamera == null)
         {
-            modelViewerContainer.Hide();
+            modelViewerContainer?.Hide();
             return;
         }
 
-        modelViewerContainer.Show();
+        modelViewerContainer?.Show();
         modelHolder.QueueFreeChildren();
 
         modelViewer.Msaa = Settings.Instance.MSAAResolution;
@@ -342,11 +339,12 @@ public class Slidescreen : CustomDialog
 
     private void UpdatePlayback()
     {
-        if (Items == null || playbackBar == null || fullscreenTextureRect == null)
+        var item = Items?[currentSlideIndex] as GalleryCardAudio;
+
+        if (playbackBar == null || fullscreenTextureRect == null)
             return;
 
-        var item = Items[currentSlideIndex] as GalleryCardAudio;
-
+        // ReSharper disable once MergeSequentialChecksWhenPossible
         if (item == null || item.Asset.Type != AssetType.AudioPlayback)
         {
             playbackBar.Hide();
