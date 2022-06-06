@@ -2,19 +2,13 @@
 
 [ext_resource path="res://src/gui_common/ScreenFade.cs" type="Script" id=1]
 
-[node name="ScreenFade" type="CanvasLayer"]
-layer = 10
-script = ExtResource( 1 )
-
-[node name="Control" type="Control" parent="."]
+[node name="ScreenFade" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource( 1 )
 
-[node name="Rect" type="ColorRect" parent="Control"]
+[node name="Rect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -23,7 +17,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Fader" type="Tween" parent="Control"]
+[node name="Fader" type="Tween" parent="."]
 __meta__ = {
 "_editor_description_": "Fades the screen"
 }

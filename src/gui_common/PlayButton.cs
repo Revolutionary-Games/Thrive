@@ -66,6 +66,18 @@ public class PlayButton : MarginContainer
             UpdateTooltips();
     }
 
+    /// <summary>
+    ///   Toggles pause state. Emits paused signal.
+    /// </summary>
+    public void Toggle()
+    {
+        if (pauseButton == null || playButton == null)
+            return;
+
+        Paused = !Paused;
+        OnButtonPressed(Paused ? "pause" : "play");
+    }
+
     private void UpdateButton()
     {
         if (pauseButton == null || playButton == null)

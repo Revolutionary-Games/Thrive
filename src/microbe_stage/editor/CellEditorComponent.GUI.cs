@@ -269,6 +269,22 @@ public partial class CellEditorComponent
         }
     }
 
+    private void UpdateOrganelleUnlockTooltips()
+    {
+        var organelles = SimulationParameters.Instance.GetAllOrganelles();
+        foreach (var organelle in organelles)
+        {
+            if (organelle.InternalName == protoplasm.InternalName)
+                continue;
+
+            var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
+            if (tooltip != null)
+            {
+                tooltip.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
+            }
+        }
+    }
+
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
     {
         return (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(name, group);
