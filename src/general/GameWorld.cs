@@ -29,6 +29,8 @@ public class GameWorld : ISaveLoadable
     [JsonProperty]
     private Dictionary<double, List<GameEventDescription>> eventsLog = new();
 
+    public WorldGenerationSettings WorldSettings = new WorldGenerationSettings();
+
     /// <summary>
     ///   This world's auto-evo run
     /// </summary>
@@ -46,12 +48,13 @@ public class GameWorld : ISaveLoadable
     /// <param name="settings">Settings to generate the world with</param>
     public GameWorld(WorldGenerationSettings settings) : this()
     {
+        WorldSettings = settings;
         PlayerSpecies = CreatePlayerSpecies();
 
         if (!PlayerSpecies.PlayerSpecies)
             throw new Exception("PlayerSpecies flag for being player species is not set");
 
-        Map = PatchMapGenerator.Generate(settings, PlayerSpecies);
+        Map = PatchMapGenerator.Generate(se, PlayerSpecies);
 
         if (!Map.Verify())
             throw new ArgumentException("generated patch map with settings is not valid");

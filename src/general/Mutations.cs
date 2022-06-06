@@ -319,12 +319,15 @@ public class Mutations
 
     private OrganelleDefinition GetRandomOrganelle(bool isBacteria)
     {
+        // TODO: Fix this!
+        bool lawkOnly = false;
+
         if (isBacteria)
         {
-            return SimulationParameters.Instance.GetRandomProkaryoticOrganelle(random);
+            return SimulationParameters.Instance.GetRandomProkaryoticOrganelle(random, lawkOnly);
         }
 
-        return SimulationParameters.Instance.GetRandomEukaryoticOrganelle(random);
+        return SimulationParameters.Instance.GetRandomEukaryoticOrganelle(random, lawkOnly);
     }
 
     private OrganelleTemplate GetRealisticPosition(OrganelleDefinition organelle,

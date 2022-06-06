@@ -15,6 +15,7 @@ public class GameProperties
     [JsonProperty]
     private bool freeBuild;
 
+    [JsonConstructor]
     private GameProperties(WorldGenerationSettings? settings = null)
     {
         settings ??= new WorldGenerationSettings();

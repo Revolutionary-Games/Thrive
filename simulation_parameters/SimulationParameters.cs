@@ -212,33 +212,55 @@ public class SimulationParameters : Node
         return gameCredits;
     }
 
-    public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
+    public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random, bool lawkOnly)
     {
         float valueLeft = random.Next(0.0f, prokaryoticOrganellesTotalChance);
 
         foreach (var organelle in prokaryoticOrganelles)
         {
+            if (!organelle.LAWK && lawkOnly)
+                continue;
+
             valueLeft -= organelle.ProkaryoteChance;
 
             if (valueLeft <= 0.00001f)
                 return organelle;
         }
 
+        for (int i = 0; i < prokaryoticOrganelles.Count; i++)
+        {
+            var organelle = prokaryoticOrganelles[prokaryoticOrganelles.Count - i - 1];
+            if (organelle.LAWK || !lawkOnly)
+                return organelle;
+        }
+
+        // Should be unreachable, since at least one organelle is available for LAWK-only games
         return prokaryoticOrganelles[prokaryoticOrganelles.Count - 1];
     }
 
-    public OrganelleDefinition GetRandomEukaryoticOrganelle(Random random)
+    public OrganelleDefinition GetRandomEukaryoticOrganelle(Random random, bool lawkOnly)
     {
         float valueLeft = random.Next(0.0f, eukaryoticOrganellesChance);
 
         foreach (var organelle in eukaryoticOrganelles)
         {
+            if (!organelle.LAWK && lawkOnly)
+                continue;
+
             valueLeft -= organelle.ChanceToCreate;
 
             if (valueLeft <= 0.00001f)
                 return organelle;
         }
 
+        for (int i = 0; i < eukaryoticOrganelles.Count; i++)
+        {
+            var organelle = eukaryoticOrganelles[eukaryoticOrganelles.Count - i - 1];
+            if (organelle.LAWK || !lawkOnly)
+                return organelle;
+        }
+
+        // Should be unreachable, since at least one organelle is available for LAWK-only games
         return eukaryoticOrganelles[eukaryoticOrganelles.Count - 1];
     }
 
