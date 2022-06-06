@@ -158,6 +158,10 @@ public class Mutations
     {
         mutated.Behaviour = parent.Behaviour.CloneObject();
         mutated.Behaviour.Mutate(random);
+
+        // Evolve cannibalism (or remove it if already evolved) with fixed probability
+        var shouldMutateCannibalism = random.Next(0.0f, 1.0f) <= Constants.MUTATION_CANNIBALISM_CHANCE;
+        mutated.IsCannibalistic = shouldMutateCannibalism ? !parent.IsCannibalistic : parent.IsCannibalistic;
     }
 
     /// <summary>

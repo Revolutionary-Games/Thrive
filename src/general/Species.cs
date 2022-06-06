@@ -43,7 +43,7 @@ public abstract class Species : ICloneable
     ///   Determines whether members of this species can hunt and kill their own kind.
     /// </summary>
     [JsonProperty]
-    public bool IsCannibalistic;
+    public bool IsCannibalistic { get; set; }
 
     /// <summary>
     ///   This is the global population (the sum of population in all patches)

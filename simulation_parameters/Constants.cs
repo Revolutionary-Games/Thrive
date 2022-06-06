@@ -446,6 +446,7 @@ public static class Constants
     public const float MUTATION_NEW_ORGANELLE_CHANCE = 0.25f;
     public const float MUTATION_DELETION_RATE = 0.05f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
+    public const float MUTATION_CANNIBALISM_CHANCE = 0.1f;
 
     // Max fear and aggression and activity
     public const float MAX_SPECIES_AGGRESSION = 400.0f;
@@ -531,6 +532,7 @@ public static class Constants
 
     public const double AUTO_EVO_COMPOUND_RATIO_POWER_BIAS = 1;
     public const double AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS = 0.5;
+    public const double AUTO_EVO_CANNIBALISM_POPULATION_PENALTY = 0.003;
 
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount

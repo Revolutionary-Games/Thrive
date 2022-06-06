@@ -243,8 +243,13 @@
                 var individualCost = energyBalanceInfo.TotalConsumptionStationary;
 
                 // Modify populations based on energy
-                var newPopulation = (long)(energyBySpecies[currentSpecies]
-                    / individualCost);
+                var newPopulation = (long)(energyBySpecies[currentSpecies] / individualCost);
+
+                // Apply cannibalism effects if applicable
+                if (currentSpecies.IsCannibalistic)
+                {
+                    newPopulation = (long)(newPopulation * Math.Exp(-Constants.AUTO_EVO_CANNIBALISM_POPULATION_PENALTY * newPopulation));
+                }
 
                 if (trackEnergy)
                 {
