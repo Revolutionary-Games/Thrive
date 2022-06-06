@@ -94,7 +94,7 @@ public class CustomRichTextLabel : RichTextLabel
     /// </summary>
     /// <param name="extendedBbcode">The extended bbcode string</param>
     /// <returns>Parsed bbcode string in standard format</returns>
-    private string ParseCustomTagsString(string extendedBbcode)
+    private static string ParseCustomTagsString(string extendedBbcode)
     {
         var result = new StringBuilder(extendedBbcode.Length);
         var currentTagBlock = new StringBuilder(50);
@@ -262,7 +262,7 @@ public class CustomRichTextLabel : RichTextLabel
     /// <param name="input">The string enclosed by the custom tags</param>
     /// <param name="bbcode">Custom Thrive bbcode-styled tags</param>
     /// <param name="attributes">Attributes specifying additional functionalities to the bbcode.</param>
-    private string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes)
+    private static string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes)
     {
         // Defaults to input so if something fails output returns unchanged
         var output = input;
