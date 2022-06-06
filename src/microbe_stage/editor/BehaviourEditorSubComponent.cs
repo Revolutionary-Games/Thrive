@@ -22,11 +22,15 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
     [Export]
     public NodePath FocusSliderPath = null!;
 
+    [Export]
+    public NodePath EnableCannibalismButtonPath = null!;
+
     private Slider aggressionSlider = null!;
     private Slider opportunismSlider = null!;
     private Slider fearSlider = null!;
     private Slider activitySlider = null!;
     private Slider focusSlider = null!;
+    private Button enableCannibalismButton = null!;
 
     private BehaviourDictionary? behaviour;
 
@@ -45,6 +49,9 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
         private set => behaviour = value;
     }
 
+    [JsonProperty]
+    public bool IsCannibalistic { get; private set; }
+
     public override void _Ready()
     {
         base._Ready();
@@ -54,6 +61,7 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
         fearSlider = GetNode<Slider>(FearSliderPath);
         activitySlider = GetNode<Slider>(ActivitySliderPath);
         focusSlider = GetNode<Slider>(FocusSliderPath);
+        enableCannibalismButton = GetNode<Button>(EnableCannibalismButtonPath);
 
         RegisterTooltips();
     }
@@ -65,12 +73,16 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
         editedSpecies = Editor.EditedBaseSpecies;
 
         Behaviour = editedSpecies.Behaviour;
+        IsCannibalistic = editedSpecies.IsCannibalistic;
+        UpdateCannibalismButton(IsCannibalistic);
     }
 
     public override void OnFinishEditing()
     {
         Editor.EditedBaseSpecies.Behaviour =
             Behaviour ?? throw new Exception("Editor has not created behaviour object");
+
+        Editor.EditedBaseSpecies.IsCannibalistic = IsCannibalistic;
     }
 
     public override void UpdateUndoRedoButtons(bool canUndo, bool canRedo)
@@ -117,6 +129,14 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
         Editor.EnqueueAction(action);
     }
 
+    public void SetCannibalism(bool value)
+    {
+        UpdateCannibalismButton(value);
+
+        var action = new SingleEditorAction<CheckboxActionData>(DoCannibalismChangeAction, UndoCannibalismChangeAction, new CheckboxActionData(value));
+        Editor.EnqueueAction(action);
+    }
+
     public void UpdateAllBehaviouralSliders(BehaviourDictionary behaviour)
     {
         foreach (var pair in behaviour)
@@ -147,6 +167,12 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
         }
     }
 
+    public void UpdateCannibalismButton(bool value)
+    {
+        // Don't emit a toggle signal, otherwise we end up queueing extra actions
+        enableCannibalismButton.SetPressedNoSignal(value);
+    }
+
     protected override void OnTranslationsChanged()
     {
     }
@@ -160,6 +186,7 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
         fearSlider.RegisterToolTipForControl("fearSlider", "editor");
         activitySlider.RegisterToolTipForControl("activitySlider", "editor");
         focusSlider.RegisterToolTipForControl("focusSlider", "editor");
+        enableCannibalismButton.RegisterToolTipForControl("enableCannibalismButton", "editor");
     }
 
     private void OnBehaviourValueChanged(float value, string behaviourName)
@@ -168,6 +195,11 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
             throw new ArgumentException($"{behaviourName} is not a valid BehaviouralValueType");
 
         SetBehaviouralValue(behaviouralValueType, value);
+    }
+
+    private void OnCannibalismToggled(bool pressed)
+    {
+        SetCannibalism(pressed);
     }
 
     [DeserializedCallbackAllowed]
@@ -188,5 +220,19 @@ public class BehaviourEditorSubComponent : EditorComponentBase<ICellEditorData>
 
         Behaviour[data.Type] = data.OldValue;
         UpdateBehaviourSlider(data.Type, data.OldValue);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void DoCannibalismChangeAction(CheckboxActionData data)
+    {
+        IsCannibalistic = data.Value;
+        UpdateCannibalismButton(data.Value);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoCannibalismChangeAction(CheckboxActionData data)
+    {
+        IsCannibalistic = !data.Value;
+        UpdateCannibalismButton(!data.Value);
     }
 }

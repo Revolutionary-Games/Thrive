@@ -40,6 +40,12 @@ public abstract class Species : ICloneable
     public BehaviourDictionary Behaviour { get; set; } = new();
 
     /// <summary>
+    ///   Determines whether members of this species can hunt and kill their own kind.
+    /// </summary>
+    [JsonProperty]
+    public bool IsCannibalistic;
+
+    /// <summary>
     ///   This is the global population (the sum of population in all patches)
     /// </summary>
     /// <remarks>
@@ -145,6 +151,8 @@ public abstract class Species : ICloneable
         foreach (var entry in mutation.Behaviour)
             Behaviour[entry.Key] = entry.Value;
 
+        IsCannibalistic = mutation.IsCannibalistic;
+
         Colour = mutation.Colour;
 
         // These don't mutate for a species
@@ -242,6 +250,8 @@ public abstract class Species : ICloneable
         foreach (var entry in Behaviour)
             species.Behaviour[entry.Key] = entry.Value;
 
+        species.IsCannibalistic = IsCannibalistic;
+
         // Genus and epithet aren't copied as they are required constructor parameters
         species.Colour = Colour;
         species.Population = Population;
@@ -259,6 +269,8 @@ public abstract class Species : ICloneable
 
         foreach (var entry in Behaviour)
             species.Behaviour[entry.Key] = entry.Value;
+
+        species.IsCannibalistic = IsCannibalistic;
 
         // Genus and epithet aren't copied as they are required constructor parameters
         species.Colour = Colour;

@@ -263,6 +263,14 @@ DisplayDelay = 0.0
 Positioning = 2
 DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
 
+[node name="enableCannibalismButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+visible = false
+custom_styles/panel = SubResource( 1 )
+Description = "CANNIBALISM_EXPLANATION"
+DisplayDelay = 0.0
+Positioning = 2
+DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
+
 [node name="organelleSelection" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0
