@@ -85,7 +85,8 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     protected override string MusicCategory => "EarlyMulticellularEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
-    protected override string EditorLoadingMessage => TranslationServer.Translate("LOADING_MICROBE_EDITOR");
+    protected override string EditorLoadingMessage =>
+        TranslationServer.Translate("LOADING_EARLY_MULTICELLULAR_EDITOR");
     protected override bool HasInProgressAction => CanCancelAction;
 
     public void SendAutoEvoResultsToReportComponent()
