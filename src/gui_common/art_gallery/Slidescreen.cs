@@ -342,7 +342,7 @@ public class Slidescreen : CustomDialog
 
     private void UpdatePlayback()
     {
-        if (Items == null || playbackBar == null)
+        if (Items == null || playbackBar == null || fullscreenTextureRect == null)
             return;
 
         var item = Items[currentSlideIndex] as GalleryCardAudio;
@@ -361,6 +361,9 @@ public class Slidescreen : CustomDialog
 
         playbackBar.AudioPlayer = item.Player;
         playbackBar?.Show();
+
+        // TODO: Temporary until there's a proper "album" art for audios
+        fullscreenTextureRect.Texture = item.MissingTexture;
     }
 
     private void UpdateHandles()
