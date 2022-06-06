@@ -729,6 +729,11 @@ public class MicrobeHUD : Control
         // TODO: pressure?
     }
 
+    public void SetupPressEditorTutorial(TutorialState tutorialState)
+    {
+        tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
+    }
+
     /// <summary>
     ///   Updates the GUI bars to show only needed compounds
     /// </summary>
@@ -1450,11 +1455,6 @@ public class MicrobeHUD : Control
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToMulticellular));
 
         stage.MovingToEditor = true;
-    }
-
-    public void SetupPressEditorTutorial(TutorialState tutorialState)
-    {
-        tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
     }
 
     /// <summary>
