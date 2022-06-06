@@ -415,7 +415,7 @@ public class MicrobeAI
                 continue;
 
             // Based on species fear, threshold to be afraid ranges from 0.8 to 1.8 microbe size.
-            if (otherMicrobe.Species != microbe.Species
+            if ((otherMicrobe.Species != microbe.Species || microbe.Species.IsCannibalistic)
                 && !otherMicrobe.Dead
                 && otherMicrobe.EngulfSize > microbe.EngulfSize * fleeThreshold)
             {
@@ -781,7 +781,7 @@ public class MicrobeAI
     {
         var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
 
-        return targetMicrobe.Species != microbe.Species && (
+        return (targetMicrobe.Species != microbe.Species || microbe.Species.IsCannibalistic) && (
             (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin())
             || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
     }

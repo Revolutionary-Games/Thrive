@@ -16,12 +16,17 @@ public class CheckboxActionData : EditorCombinableActionData
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
-        // Subsequent actions will always cancel out since a checkbox is a boolean toggle
-        return ActionInterferenceMode.CancelsOut;
+        if (other is CheckboxActionData)
+        {
+            // Subsequent actions will always cancel out since a checkbox is a boolean toggle
+            return ActionInterferenceMode.CancelsOut;
+        }
+
+        return ActionInterferenceMode.NoInterference;
     }
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
-        return this;
+        return new CheckboxActionData(Value);
     }
 }

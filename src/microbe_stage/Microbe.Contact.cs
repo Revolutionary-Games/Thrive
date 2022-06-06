@@ -383,8 +383,8 @@ public partial class Microbe
             return false;
         }
 
-        // Disallow cannibalism
-        if (target.Species == Species)
+        // Disallow cannibalism unless specified
+        if (target.Species == Species && !Species.IsCannibalistic)
             return false;
 
         // Membranes with Cell Wall cannot engulf
@@ -1140,8 +1140,8 @@ public partial class Microbe
             {
                 // Us attacking the other microbe, or it is attacking us
 
-                // Disallow cannibalism
-                if (touchedMicrobe.Species == thisMicrobe.Species)
+                // Disallow cannibalism unless specified
+                if (touchedMicrobe.Species == thisMicrobe.Species && !Species.IsCannibalistic)
                     return;
 
                 var target = otherIsPilus ? thisMicrobe : touchedMicrobe;

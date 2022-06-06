@@ -388,6 +388,9 @@ public partial class CellEditorComponent :
     [JsonIgnore]
     public override bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
 
+    [JsonIgnore]
+    public bool IsCannibalistic { get; private set; }
+
     /// <summary>
     ///   Number of organelles in the microbe
     /// </summary>
@@ -1935,6 +1938,7 @@ public partial class CellEditorComponent :
         target.MembraneType = Membrane;
         target.MembraneRigidity = Rigidity;
         target.IsBacteria = true;
+        target.IsCannibalistic = IsCannibalistic;
 
         target.Organelles.Clear();
 

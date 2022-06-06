@@ -57,7 +57,7 @@ public class AgentProjectile : RigidBody, ITimedLife
 
         if (body is Microbe microbe)
         {
-            if (microbe.Species != Properties!.Species)
+            if (microbe.Species != Properties!.Species || microbe.Species.IsCannibalistic)
             {
                 // If more stuff needs to be damaged we could make an IAgentDamageable interface.
                 var target = microbe.GetMicrobeFromShape(bodyShape);
