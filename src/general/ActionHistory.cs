@@ -10,61 +10,85 @@ using Newtonsoft.Json;
 public class ActionHistory<T>
     where T : ReversibleAction
 {
-    [JsonProperty]
-    private List<T> actions = new();
-
     /// <summary>
     ///   marks the last action that has been done (not undone, but
     ///   possibly redone), is 0 if there is none.
     /// </summary>
     [JsonProperty]
-    private int actionIndex;
+    protected int ActionIndex { get; private set; }
+
+    [JsonProperty]
+    protected List<T> Actions { get; private set; } = new();
 
     public bool CanRedo()
     {
-        return actionIndex < actions.Count;
+        return ActionIndex < Actions.Count;
     }
 
     public bool CanUndo()
     {
-        return actionIndex > 0;
+        return ActionIndex > 0;
     }
 
-    public bool Redo()
+    public virtual bool Redo()
     {
         if (!CanRedo())
             return false;
 
-        var action = actions[actionIndex++];
-        action.Perform();
+        Actions[ActionIndex++].Perform();
+
         return true;
     }
 
-    public bool Undo()
+    public virtual bool Undo()
     {
         if (!CanUndo())
             return false;
 
-        var action = actions[--actionIndex];
-        action.Undo();
+        Actions[--ActionIndex].Undo();
+
         return true;
+    }
+
+    /// <summary>
+    ///   Gets the action that would be performed with <see cref="Redo"/>
+    /// </summary>
+    /// <returns>The action or null if there is nothing to redo</returns>
+    public T? ActionToRedo()
+    {
+        if (!CanRedo())
+            return null;
+
+        return Actions[ActionIndex];
+    }
+
+    /// <summary>
+    ///   Gets the action that would be performed with <see cref="Undo"/>
+    /// </summary>
+    /// <returns>The action or null if there is nothing to undo</returns>
+    public T? ActionToUndo()
+    {
+        if (!CanUndo())
+            return null;
+
+        return Actions[ActionIndex - 1];
     }
 
     /// <summary>
     ///   Adds a new action and performs it
     /// </summary>
-    public void AddAction(T action)
+    public virtual void AddAction(T action)
     {
         // Throw away old actions if we are not at the end of the action list
-        while (actionIndex < actions.Count)
-            actions.RemoveAt(actions.Count - 1);
+        while (ActionIndex < Actions.Count)
+            Actions.RemoveAt(Actions.Count - 1);
 
-        if (actionIndex != actions.Count)
+        if (ActionIndex != Actions.Count)
             throw new Exception("action history logic is wrong");
 
         action.Perform();
-        actions.Add(action);
-        ++actionIndex;
+        Actions.Add(action);
+        ++ActionIndex;
     }
 
     /// <summary>
@@ -74,7 +98,7 @@ public class ActionHistory<T>
     /// <typeparam name="TTarget">The type of objects in the callbacks to override</typeparam>
     public void ReTargetCallbacksInHistory<TTarget>(TTarget newTarget)
     {
-        foreach (var action in actions)
+        foreach (var action in Actions)
         {
             SaveApplyHelper.ReTargetCallbacks(action, newTarget);
         }
@@ -85,11 +109,11 @@ public class ActionHistory<T>
     /// </summary>
     internal void Nuke()
     {
-        if (actions.Count < 1)
+        if (Actions.Count < 1)
             return;
 
         GD.Print("Action history nuked");
-        actions.Clear();
-        actionIndex = 0;
+        Actions.Clear();
+        ActionIndex = 0;
     }
 }

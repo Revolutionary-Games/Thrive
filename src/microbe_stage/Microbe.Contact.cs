@@ -290,6 +290,9 @@ public partial class Microbe
             return;
         }
 
+        // Damage reduction is only wanted for non-starving damage
+        bool canApplyDamageReduction = true;
+
         if (source is "toxin" or "oxytoxy")
         {
             // TODO: Replace this take damage sound with a more appropriate one.
@@ -322,6 +325,7 @@ public partial class Microbe
         else if (source == "atpDamage")
         {
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg");
+            canApplyDamageReduction = false;
         }
         else if (source == "ice")
         {
@@ -329,6 +333,11 @@ public partial class Microbe
 
             // Divide damage by physical resistance
             amount /= CellTypeProperties.MembraneType.PhysicalResistance;
+        }
+
+        if (!CellTypeProperties.IsBacteria && canApplyDamageReduction)
+        {
+            amount /= 2;
         }
 
         Hitpoints -= amount;
@@ -351,6 +360,11 @@ public partial class Microbe
     /// </summary>
     public bool CanEngulf(Microbe target)
     {
+        // Can't engulf already destroyed microbes. We don't use entity references so we need to manually check if
+        // something is destroyed or not here (especially now that the Invoke the engulf start callback)
+        if (target.destroyed)
+            return false;
+
         // Log error if trying to engulf something that is disposed, we got a crash log trace with an error with that
         // TODO: find out why disposed microbes can be attempted to be engulfed
         try
@@ -634,6 +648,8 @@ public partial class Microbe
 
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
+        cachedColonyRotationMultiplier = null;
+
         if (microbe == this)
         {
             OnUnbound?.Invoke(this);
@@ -669,6 +685,8 @@ public partial class Microbe
 
     internal void OnColonyMemberAdded(Microbe microbe)
     {
+        cachedColonyRotationMultiplier = null;
+
         if (microbe == this)
         {
             if (Colony == null)
@@ -1128,21 +1146,25 @@ public partial class Microbe
 
                 var target = otherIsPilus ? thisMicrobe : touchedMicrobe;
 
-                target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus");
+                Invoke.Instance.Perform(() => target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus"));
                 return;
             }
 
             // Pili don't stop engulfing
             if (thisMicrobe.touchedMicrobes.Add(touchedMicrobe))
             {
-                thisMicrobe.CheckStartEngulfingOnCandidates();
-                thisMicrobe.CheckBinding();
+                Invoke.Instance.Perform(() =>
+                {
+                    thisMicrobe.CheckStartEngulfingOnCandidates();
+                    thisMicrobe.CheckBinding();
+                });
             }
 
             // Play bump sound if certain total collision impulse is reached (adjusted by mass)
             if (thisMicrobe.collisionForce / Mass > Constants.CONTACT_IMPULSE_TO_BUMP_SOUND)
             {
-                thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg");
+                Invoke.Instance.Perform(() =>
+                    thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg"));
             }
         }
     }
@@ -1177,7 +1199,7 @@ public partial class Microbe
 
             if (otherMicrobesInEngulfRange.Add(microbe))
             {
-                CheckStartEngulfingOnCandidates();
+                Invoke.Instance.Perform(CheckStartEngulfingOnCandidates);
             }
         }
     }
@@ -1295,6 +1317,13 @@ public partial class Microbe
         // foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
         foreach (var microbe in touchedMicrobes)
         {
+            if (microbe.destroyed)
+            {
+                GD.Print($"Removed destroyed microbe from {nameof(touchedMicrobes)}");
+                touchedMicrobes.Remove(microbe);
+                break;
+            }
+
             if (!attemptingToEngulf.Contains(microbe) && CanEngulf(microbe))
             {
                 StartEngulfingTarget(microbe);

@@ -72,12 +72,11 @@ CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
 
 [node name="PauseMenu" parent="." instance=ExtResource( 52 )]
 theme = ExtResource( 53 )
-IsEditorPauseMenu = true
 HelpCategory = "MicrobeEditor"
 
 [connection signal="OnTabSelected" from="MicrobeEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]
-[connection signal="OnOpenHelp" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenFromEditorToHelp"]
-[connection signal="OnOpenMenu" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenFromEditor"]
+[connection signal="OnOpenHelp" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenToHelp"]
+[connection signal="OnOpenMenu" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="Open"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 
 [editable path="EditorWorld"]

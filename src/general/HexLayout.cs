@@ -220,12 +220,28 @@ public abstract class HexLayout<T> : ICollection<T>
         var hexesWithNeighbours = new List<Hex> { initHex };
 
         // These are all of the existing hexes, that if there are no islands will all be visited
-        var shouldBeVisited = existingHexes.Select(p => p.Position).ToList();
+        var shouldBeVisited = ComputeHexCache();
 
         CheckmarkNeighbors(hexesWithNeighbours);
 
         // Return the difference of the lists (hexes that were not visited)
         return shouldBeVisited.Except(hexesWithNeighbours).ToList();
+    }
+
+    /// <summary>
+    ///   Computes all the hex positions
+    /// </summary>
+    /// <returns>The set of hex positions</returns>
+    public HashSet<Hex> ComputeHexCache()
+    {
+        var set = new HashSet<Hex>();
+
+        foreach (var hex in existingHexes.SelectMany(o => GetHexComponentPositions(o).Select(h => h + o.Position)))
+        {
+            set.Add(hex);
+        }
+
+        return set;
     }
 
     protected abstract IEnumerable<Hex> GetHexComponentPositions(T hex);
@@ -250,22 +266,6 @@ public abstract class HexLayout<T> : ICollection<T>
                 @checked.Add(neighbor);
             }
         }
-    }
-
-    /// <summary>
-    ///   Computes all the hex positions
-    /// </summary>
-    /// <returns>The set of hex positions</returns>
-    private HashSet<Hex> ComputeHexCache()
-    {
-        var set = new HashSet<Hex>();
-
-        foreach (var hex in existingHexes.SelectMany(o => GetHexComponentPositions(o).Select(h => h + o.Position)))
-        {
-            set.Add(hex);
-        }
-
-        return set;
     }
 
     /// <summary>

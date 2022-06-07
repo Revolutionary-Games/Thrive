@@ -104,7 +104,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [AssignOnlyChildItemsOnDeserialize]
     public MicrobeCamera Camera { get; private set; } = null!;
 
-    [JsonIgnore]
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     public MicrobeHUD HUD { get; private set; } = null!;
 
     /// <summary>
@@ -312,12 +313,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         if (IsLoadedFromSave)
         {
-            HUD.OnEnterStageTransition(false);
+            HUD.OnEnterStageTransition(false, false);
             UpdatePatchSettings();
         }
         else
         {
-            HUD.OnEnterStageTransition(true);
+            HUD.OnEnterStageTransition(true, false);
         }
     }
 
@@ -539,6 +540,16 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         hudRoot.Visible = !hudRoot.Visible;
     }
 
+    [RunOnKeyDown("g_pause")]
+    public void PauseKeyPressed()
+    {
+        // Check nothing else has keyboard focus and pause the game
+        if (HUD.GetFocusOwner() == null)
+        {
+            HUD.PauseButtonPressed();
+        }
+    }
+
     /// <summary>
     ///   Switches to the editor
     /// </summary>
@@ -700,7 +711,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // Reset all the duplicates organelles of the player
         Player.ResetOrganelleLayout();
 
-        HUD.OnEnterStageTransition(false);
+        HUD.OnEnterStageTransition(false, true);
         HUD.HideReproductionDialog();
 
         if (!CurrentGame.TutorialState.Enabled)

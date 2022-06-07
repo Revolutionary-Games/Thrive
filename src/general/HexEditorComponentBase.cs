@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -7,11 +8,13 @@ using Newtonsoft.Json;
 ///   Editor component that specializes in hex-based stuff editing
 /// </summary>
 public abstract class
-    HexEditorComponentBase<TEditor, TAction, THexMove> : EditorComponentWithActionsBase<TEditor, TAction>,
+    HexEditorComponentBase<TEditor, TCombinedAction, TAction, THexMove> :
+        EditorComponentWithActionsBase<TEditor, TCombinedAction>,
         ISaveLoadedTracked, IChildPropertiesLoadCallback
     where TEditor : class, IHexEditor, IEditorWithActions
-    where TAction : CellEditorAction
-    where THexMove : class
+    where TCombinedAction : CombinedEditorAction
+    where TAction : EditorAction
+    where THexMove : class, IActionHex
 {
     [Export]
     public NodePath CameraPath = null!;
@@ -73,6 +76,8 @@ public abstract class
     protected PackedScene hexScene = null!;
     protected PackedScene modelScene = null!;
 
+    protected AudioStream hexPlacementSound = null!;
+
     [JsonProperty]
     protected string? activeActionName;
 
@@ -89,13 +94,14 @@ public abstract class
 
     protected int usedHoverModel;
 
-    // TODO: rename this to placementRotation in the future (for now old name is kept to keep save compatibility)
     [JsonProperty]
-    protected int organelleRot;
+    protected int placementRotation;
 
     private CustomConfirmationDialog islandPopup = null!;
 
     private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
+
+    private IEnumerable<(Hex Hex, int Orientation)>? mouseHoverPositions;
 
     private Vector3 cameraPosition;
 
@@ -145,6 +151,23 @@ public abstract class
     [JsonProperty]
     public float CameraHeight { get; private set; } = Constants.EDITOR_DEFAULT_CAMERA_HEIGHT;
 
+    [JsonIgnore]
+    public IEnumerable<(Hex Hex, int Orientation)>? MouseHoverPositions
+    {
+        get => mouseHoverPositions;
+        set
+        {
+            if (mouseHoverPositions == null && value == null)
+                return;
+
+            if (mouseHoverPositions != null && value != null && mouseHoverPositions.SequenceEqual(value))
+                return;
+
+            mouseHoverPositions = value;
+            UpdateMutationPointsBar();
+        }
+    }
+
     /// <summary>
     ///   If true a hex move is in progress and can be canceled
     /// </summary>
@@ -152,14 +175,14 @@ public abstract class
     public bool CanCancelMove => MovingPlacedHex != null;
 
     [JsonIgnore]
+    public override bool CanCancelAction => CanCancelMove;
+
+    [JsonIgnore]
     public abstract bool HasIslands { get; }
 
     public bool IsLoadedFromSave { get; set; }
 
     protected abstract bool ForceHideHover { get; }
-
-    // TODO: remove
-    // protected override bool HasInProgressAction => CanCancelMove;
 
     public override void _Ready()
     {
@@ -169,6 +192,7 @@ public abstract class
 
         LoadHexMaterials();
         LoadScenes();
+        LoadAudioStreams();
 
         UpdateCamera();
     }
@@ -206,7 +230,7 @@ public abstract class
 
         if (fresh)
         {
-            organelleRot = 0;
+            placementRotation = 0;
 
             ResetSymmetryButton();
         }
@@ -389,7 +413,7 @@ public abstract class
         if (!Visible)
             return false;
 
-        organelleRot = (organelleRot + 1) % 6;
+        placementRotation = (placementRotation + 1) % 6;
         return true;
     }
 
@@ -399,10 +423,10 @@ public abstract class
         if (!Visible)
             return false;
 
-        --organelleRot;
+        --placementRotation;
 
-        if (organelleRot < 0)
-            organelleRot = 5;
+        if (placementRotation < 0)
+            placementRotation = 5;
 
         return true;
     }
@@ -472,13 +496,63 @@ public abstract class
 
         OnMoveActionStarted();
 
-        // Disable undo/redo button while moving (enabled after finishing move)
+        // Disable undo/redo/symmetry button while moving (enabled after finishing move)
         Editor.NotifyUndoRedoStateChanged();
+
+        // TODO: change this to go through the editor as well for consistency
+        UpdateSymmetryButton();
+    }
+
+    public void StartHexMoveWithSymmetry(IEnumerable<THexMove> selectedHexes)
+    {
+        // TODO: implement: https://github.com/Revolutionary-Games/Thrive/issues/3318
+        throw new NotImplementedException();
+
+        /*
+        if (MovingOrganelles != null)
+        {
+            // Already moving something! some code went wrong
+            throw new InvalidOperationException("Can't begin organelle move while another in progress");
+        }
+        MovingOrganelles = new List<OrganelleTemplate?>();
+        foreach (var organelle in selectedOrganelles)
+        {
+            MovingOrganelles.Add(organelle);
+            if (organelle != null)
+                     editedMicrobeOrganelles.Remove(organelle);
+        }
+
+        if (MovingOrganelles.Count == 0)
+        {
+            MovingOrganelles = null;
+            return;
+        }
+
+        // Disable undo/redo/symmetry button while moving (enabled after finishing move)
+        Editor.NotifyUndoRedoStateChanged();
+        Editor.NotifySymmetryAllowedStateChanged();
+        */
     }
 
     public void RemoveHex(Hex hex)
     {
-        RunWithSymmetry(hex.Q, hex.R, (q, r, _) => TryRemoveHexAt(new Hex(q, r)));
+        var actions = new List<TAction>();
+        int alreadyDeleted = 0;
+
+        RunWithSymmetry(hex.Q, hex.R, (q, r, _) =>
+        {
+            var removed = TryCreateRemoveHexAtAction(new Hex(q, r), ref alreadyDeleted);
+
+            if (removed != null)
+                actions.Add(removed);
+        });
+
+        if (actions.Count < 1)
+            return;
+
+        var combinedAction = CreateCombinedAction(actions);
+
+        EnqueueAction(combinedAction);
     }
 
     /// <summary>
@@ -512,6 +586,11 @@ public abstract class
         }
 
         return true;
+    }
+
+    public override void OnValidAction()
+    {
+        GUICommon.Instance.PlayCustomSound(hexPlacementSound);
     }
 
     public override void _Process(float delta)
@@ -618,10 +697,15 @@ public abstract class
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
     }
 
-    protected override void EnqueueAction(TAction action)
+    protected virtual void LoadAudioStreams()
     {
-        if (!Editor.CheckEnoughMPForAction(action.Cost))
-            return;
+        hexPlacementSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_success.ogg");
+    }
+
+    protected override bool EnqueueAction(TCombinedAction action)
+    {
+        if (!Editor.CheckEnoughMPForAction(Editor.WhatWouldActionsCost(action.Data)))
+            return false;
 
         if (CanCancelMove)
         {
@@ -629,11 +713,21 @@ public abstract class
             {
                 // Play sound
                 Editor.OnActionBlockedWhileMoving();
-                return;
+                return false;
             }
         }
 
+        OnMoveWillSucceed();
+
         Editor.EnqueueAction(action);
+        Editor.OnValidAction();
+        UpdateSymmetryButton();
+        return true;
+    }
+
+    protected virtual TCombinedAction CreateCombinedAction(IEnumerable<EditorAction> actions)
+    {
+        return (TCombinedAction)new CombinedEditorAction(actions);
     }
 
     protected void OnSymmetryPressed()
@@ -726,17 +820,17 @@ public abstract class
         {
             case HexEditorSymmetry.None:
             {
-                callback(q, r, organelleRot);
+                callback(q, r, placementRotation);
                 break;
             }
 
             case HexEditorSymmetry.XAxisSymmetry:
             {
-                callback(q, r, organelleRot);
+                callback(q, r, placementRotation);
 
                 if (q != -1 * q || r != r + q)
                 {
-                    callback(-1 * q, r + q, 6 + (-1 * organelleRot));
+                    callback(-1 * q, r + q, 6 + (-1 * placementRotation));
                 }
 
                 break;
@@ -744,17 +838,17 @@ public abstract class
 
             case HexEditorSymmetry.FourWaySymmetry:
             {
-                callback(q, r, organelleRot);
+                callback(q, r, placementRotation);
 
                 if (q != -1 * q || r != r + q)
                 {
-                    callback(-1 * q, r + q, 6 + (-1 * organelleRot));
-                    callback(-1 * q, -1 * r, (organelleRot + 3) % 6);
-                    callback(q, -1 * (r + q), 9 + (-1 * organelleRot) % 6);
+                    callback(-1 * q, r + q, 6 + (-1 * placementRotation));
+                    callback(-1 * q, -1 * r, (placementRotation + 3) % 6);
+                    callback(q, -1 * (r + q), 9 + (-1 * placementRotation) % 6);
                 }
                 else
                 {
-                    callback(-1 * q, -1 * r, (organelleRot + 3) % 6);
+                    callback(-1 * q, -1 * r, (placementRotation + 3) % 6);
                 }
 
                 break;
@@ -762,12 +856,12 @@ public abstract class
 
             case HexEditorSymmetry.SixWaySymmetry:
             {
-                callback(q, r, organelleRot);
-                callback(-1 * r, r + q, (organelleRot + 1) % 6);
-                callback(-1 * (r + q), q, (organelleRot + 2) % 6);
-                callback(-1 * q, -1 * r, (organelleRot + 3) % 6);
-                callback(r, -1 * (r + q), (organelleRot + 4) % 6);
-                callback(r + q, -1 * q, (organelleRot + 5) % 6);
+                callback(q, r, placementRotation);
+                callback(-1 * r, r + q, (placementRotation + 1) % 6);
+                callback(-1 * (r + q), q, (placementRotation + 2) % 6);
+                callback(-1 * q, -1 * r, (placementRotation + 3) % 6);
+                callback(r, -1 * (r + q), (placementRotation + 4) % 6);
+                callback(r + q, -1 * q, (placementRotation + 5) % 6);
                 break;
             }
         }
@@ -776,6 +870,21 @@ public abstract class
     protected virtual void OnCurrentActionCanceled()
     {
         UpdateCancelButtonVisibility();
+
+        // TODO: switch to this going through the editor
+        UpdateSymmetryButton();
+    }
+
+    protected virtual void OnMoveWillSucceed()
+    {
+        MovingPlacedHex = null;
+
+        // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
+        // TODO: should this call be made through Editor here?
+        UpdateCancelButtonVisibility();
+
+        // Re-enable undo/redo button
+        Editor.NotifyUndoRedoStateChanged();
     }
 
     /// <summary>
@@ -906,7 +1015,12 @@ public abstract class
     }
 
     protected abstract void PerformActiveAction();
-    protected abstract bool DoesActionEndInProgressAction(TAction action);
+
+    protected virtual bool DoesActionEndInProgressAction(TCombinedAction action)
+    {
+        // Allow only move actions with an in-progress move
+        return action.Data.Any(d => d is HexMoveActionData<THexMove>);
+    }
 
     /// <summary>
     ///   Checks if the target position is valid to place hex.
@@ -922,13 +1036,18 @@ public abstract class
     protected abstract void OnMoveActionStarted();
     protected abstract void PerformMove(int q, int r);
     protected abstract THexMove? GetHexAt(Hex position);
-    protected abstract void TryRemoveHexAt(Hex location);
+    protected abstract TAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted);
 
     protected abstract float CalculateEditorArrowZPosition();
 
     protected virtual void UpdateCancelState()
     {
         UpdateCancelButtonVisibility();
+    }
+
+    protected void UpdateSymmetryButton()
+    {
+        componentBottomLeftButtons.SymmetryEnabled = MovingPlacedHex == null;
     }
 
     /// <summary>

@@ -108,6 +108,68 @@ public static class MicrobeInternalCalculations
         return finalSpeed;
     }
 
+    /// <summary>
+    ///   Calculates the rotation speed for a cell
+    /// </summary>
+    /// <param name="organelles">The organelles the cell has with their positions for the calculations</param>
+    /// <returns>The rotation slerp factor (speed)</returns>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: should this also be affected by the membrane type?
+    ///   </para>
+    /// </remarks>
+    public static float CalculateRotationSpeed(IEnumerable<IPositionedOrganelle> organelles)
+    {
+        float inertia = 1;
+
+        int ciliaCount = 0;
+
+        // For simplicity we calculate all cilia af if they are at a uniform (max radius) distance from the center
+        float radiusSquared = 1;
+
+        // Simple moment of inertia calculation. Note that it is mass multiplied by square of the distance, so we can
+        // use the cheaper distance calculations
+        foreach (var organelle in organelles)
+        {
+            var distance = Hex.AxialToCartesian(organelle.Position).LengthSquared();
+
+            if (organelle.Definition.HasComponentFactory<CiliaComponentFactory>())
+            {
+                ++ciliaCount;
+
+                if (radiusSquared < distance)
+                    radiusSquared = distance;
+            }
+
+            // Ignore the center organelle in rotation calculations
+            if (distance < MathUtils.EPSILON)
+                continue;
+
+            inertia += distance * organelle.Definition.Mass * Constants.CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER;
+        }
+
+        float speed = Constants.CELL_BASE_ROTATION / inertia;
+
+        // Add the extra speed from cilia after we took away some with the rotational inertia calculation
+        if (ciliaCount > 0)
+        {
+            speed += ciliaCount * Mathf.Sqrt(radiusSquared) * Constants.CILIA_RADIUS_FACTOR_MULTIPLIER *
+                Constants.CILIA_ROTATION_FACTOR;
+        }
+
+        return Mathf.Clamp(speed, Constants.CELL_MIN_ROTATION, Constants.CELL_MAX_ROTATION);
+    }
+
+    /// <summary>
+    ///   Converts the speed from <see cref="CalculateRotationSpeed"/> to a user displayable form
+    /// </summary>
+    /// <param name="rawSpeed">The raw speed value</param>
+    /// <returns>Converted value to be shown in the GUI</returns>
+    public static float RotationSpeedToUserReadableNumber(float rawSpeed)
+    {
+        return rawSpeed * 500;
+    }
+
     private static float MovementForce(float movementForce, float directionFactor)
     {
         if (directionFactor < 0)

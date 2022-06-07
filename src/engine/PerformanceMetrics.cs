@@ -60,7 +60,7 @@ public class PerformanceMetrics : ControlWithInput
             return;
 
         fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
-        deltaLabel.Text = new LocalizedString("FRAME_DELTA", delta).ToString();
+        deltaLabel.Text = new LocalizedString("FRAME_DURATION", delta).ToString();
 
         var currentProcess = Process.GetCurrentProcess();
 

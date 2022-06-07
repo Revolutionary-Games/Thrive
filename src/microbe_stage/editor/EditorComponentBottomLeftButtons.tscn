@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/textures/gui/bevel/redoButton.png" type="Texture" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/buttonActive.png" type="Texture" id=20]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=21]
 [ext_resource path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs" type="Script" id=22]
+[ext_resource path="res://assets/textures/gui/bevel/buttonDisabled.png" type="Texture" id=23]
 
 [sub_resource type="Animation" id=22]
 resource_name = "invalidSpeciesNameFlash"
@@ -86,6 +87,7 @@ action_mode = 0
 texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 20 )
 texture_hover = ExtResource( 16 )
+texture_disabled = ExtResource( 23 )
 expand = true
 
 [node name="SymmetryIcon" type="TextureRect" parent="HBoxContainer/SymmetryButton"]

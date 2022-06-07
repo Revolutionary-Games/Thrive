@@ -25,6 +25,9 @@ public class CustomConfirmationDialog : CustomDialog
     [Signal]
     public delegate void Confirmed();
 
+    [Signal]
+    public delegate void Cancelled();
+
     /// <summary>
     ///   If true, turns this dialog into its AcceptDialog form (only Ok button visible).
     /// </summary>
@@ -163,5 +166,6 @@ public class CustomConfirmationDialog : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
         Hide();
+        EmitSignal(nameof(Cancelled));
     }
 }

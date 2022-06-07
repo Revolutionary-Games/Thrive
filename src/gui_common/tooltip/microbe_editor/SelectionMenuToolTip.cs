@@ -17,6 +17,9 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     public NodePath MpLabelPath = null!;
 
     [Export]
+    public NodePath RequiresNucleusPath = null!;
+
+    [Export]
     public NodePath DescriptionLabelPath = null!;
 
     [Export]
@@ -38,7 +41,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
     private Label? nameLabel;
     private Label? mpLabel;
-
+    private Label? requiresNucleusLabel;
     private Label? descriptionLabel;
     private CustomRichTextLabel? processesDescriptionLabel;
     private VBoxContainer modifierInfoList = null!;
@@ -48,6 +51,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private string? description;
     private string processesDescription = string.Empty;
     private int mpCost;
+    private bool requiresNucleus;
+    private float editorCostFactor = 1.0f;
 
     [Export]
     public string DisplayName
@@ -103,6 +108,28 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
+    public bool RequiresNucleus
+    {
+        get => requiresNucleus;
+        set
+        {
+            requiresNucleus = value;
+            UpdateRequiresNucleus();
+        }
+    }
+
+    [Export]
+    public float EditorCostFactor
+    {
+        get => editorCostFactor;
+        set
+        {
+            editorCostFactor = value;
+            UpdateMpCost();
+        }
+    }
+
+    [Export]
     public float DisplayDelay { get; set; } = 0.0f;
 
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.ControlBottomRightCorner;
@@ -117,6 +144,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     {
         nameLabel = GetNode<Label>(NameLabelPath);
         mpLabel = GetNode<Label>(MpLabelPath);
+        requiresNucleusLabel = GetNode<Label>(RequiresNucleusPath);
         descriptionLabel = GetNode<Label>(DescriptionLabelPath);
         processesDescriptionLabel = GetNode<CustomRichTextLabel>(ProcessesDescriptionLabelPath);
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
@@ -129,6 +157,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         UpdateDescription();
         UpdateProcessesDescription();
         UpdateMpCost();
+        UpdateRequiresNucleus();
         UpdateLists();
     }
 
@@ -291,7 +320,15 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (mpLabel == null)
             return;
 
-        mpLabel.Text = MutationPointCost.ToString(CultureInfo.CurrentCulture);
+        mpLabel.Text = ((int)(mpCost * editorCostFactor)).ToString(CultureInfo.CurrentCulture);
+    }
+
+    private void UpdateRequiresNucleus()
+    {
+        if (requiresNucleusLabel == null)
+            return;
+
+        requiresNucleusLabel.Visible = requiresNucleus;
     }
 
     private void UpdateLists()

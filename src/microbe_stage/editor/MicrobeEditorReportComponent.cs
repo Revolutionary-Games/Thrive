@@ -403,6 +403,10 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     {
     }
 
+    public override void OnValidAction()
+    {
+    }
+
     protected override void OnTranslationsChanged()
     {
         Editor.SendAutoEvoResultsToReportComponent();
