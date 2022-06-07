@@ -1966,6 +1966,7 @@ margin_top = -178.0
 margin_right = -18.0
 margin_bottom = -18.0
 rect_min_size = Vector2( 160, 160 )
+hint_tooltip = "EDITOR_BUTTON_TOOLTIP"
 focus_mode = 0
 disabled = true
 texture_normal = ExtResource( 39 )
@@ -1973,9 +1974,6 @@ texture_pressed = ExtResource( 59 )
 texture_hover = ExtResource( 40 )
 texture_disabled = ExtResource( 41 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Highlight" type="TextureRect" parent="MicrobeHUD/BottomRight/EditorButton"]
 visible = false
@@ -2055,9 +2053,6 @@ tint_progress = Color( 0.690196, 0.423529, 1, 1 )
 radial_initial_angle = 180.0
 radial_fill_degrees = 180.0
 nine_patch_stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AmmoniaIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar"]
 margin_left = 70.0
