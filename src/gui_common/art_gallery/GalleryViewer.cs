@@ -39,8 +39,10 @@ public class GalleryViewer : CustomDialog
     private Button slideshowButton = null!;
 
     private Dictionary<string, Dictionary<int, string>> galleries = new();
-    private List<GalleryCard> galleryCards = new();
+    private Dictionary<string, List<GalleryCard>> galleryCards = new();
+
     private string currentGallery = string.Empty;
+
     private int previouslySelectedAssetsCategory;
     private int activeAudioPlayers;
 
@@ -80,13 +82,17 @@ public class GalleryViewer : CustomDialog
 
     public void UpdateGalleryTile(string selectedCategory = ALL_CATEGORY)
     {
-        cardTile.FreeChildren();
-        galleryCards.Clear();
-
         buttonGroup = new ButtonGroup();
         buttonGroup.Connect("pressed", this, nameof(OnGalleryItemPressed));
 
+        foreach (var key in galleryCards.Keys)
+        {
+            foreach (var card in galleryCards[key])
+                card.Visible = false;
+        }
+
         var gallery = SimulationParameters.Instance.GetGallery(currentGallery);
+        var cards = galleryCards[currentGallery];
 
         foreach (var category in gallery.AssetCategories)
         {
@@ -95,14 +101,22 @@ public class GalleryViewer : CustomDialog
 
             foreach (var asset in category.Value.Assets)
             {
+                var card = cards.Find(c => c.Asset == asset);
+
+                if (card != null)
+                {
+                    card.Visible = true;
+                    continue;
+                }
+
                 var item = CreateGalleryItem(asset);
                 cardTile.AddChild(item);
-                galleryCards.Add(item);
+                cards.Add(item);
             }
         }
 
         slidescreen.CurrentSlideIndex = 0;
-        slidescreen.Items = galleryCards;
+        slidescreen.Items = cards;
 
         UpdateSlideshowButton();
     }
@@ -156,6 +170,7 @@ public class GalleryViewer : CustomDialog
         foreach (var gallery in SimulationParameters.Instance.GetGalleries())
         {
             galleries[gallery.Key] = new Dictionary<int, string>();
+            galleryCards[gallery.Key] = new List<GalleryCard>();
 
             var categories = galleries[gallery.Key];
             var id = 0;
@@ -190,12 +205,12 @@ public class GalleryViewer : CustomDialog
 
     private void UpdateSlideshowButton()
     {
-        slideshowButton.Disabled = galleryCards.All(g => !g.CanBeSlideshown);
+        slideshowButton.Disabled = galleryCards[currentGallery].All(g => !g.CanBeSlideshown);
     }
 
     private void OnAssetPreviewOpened(GalleryCard item)
     {
-        slidescreen.CurrentSlideIndex = galleryCards.IndexOf(item);
+        slidescreen.CurrentSlideIndex = galleryCards[currentGallery].IndexOf(item);
         slidescreen.CustomShow();
     }
 
@@ -209,7 +224,7 @@ public class GalleryViewer : CustomDialog
         else
         {
             lastSelected = item;
-            slidescreen.CurrentSlideIndex = galleryCards.IndexOf(item);
+            slidescreen.CurrentSlideIndex = galleryCards[currentGallery].IndexOf(item);
         }
     }
 
@@ -256,7 +271,7 @@ public class GalleryViewer : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        slidescreen.CurrentSlideIndex = galleryCards.FindIndex(g => g.CanBeSlideshown);
+        slidescreen.CurrentSlideIndex = galleryCards[currentGallery].FindIndex(g => g.CanBeSlideshown);
         slidescreen.SlideshowMode = true;
         slidescreen.CustomShow();
     }
