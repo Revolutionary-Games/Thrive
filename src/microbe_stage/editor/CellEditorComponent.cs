@@ -423,6 +423,8 @@ public partial class CellEditorComponent :
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
 
+    public Func<string, bool>? ValidateNewCellTypeName { get; set; }
+
     protected override bool ForceHideHover => MicrobePreviewMode;
 
     private float CostMultiplier => IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f;
@@ -1874,8 +1876,14 @@ public partial class CellEditorComponent :
 
         if (IsMulticellularEditor)
         {
-            // TODO: somehow update the architecture so that we can know here if the name conflicts with another type
-            componentBottomLeftButtons.ReportValidityOfName(!string.IsNullOrWhiteSpace(newText));
+            if (ValidateNewCellTypeName != null)
+            {
+                componentBottomLeftButtons.ReportValidityOfName(ValidateNewCellTypeName(newText));
+            }
+            else
+            {
+                componentBottomLeftButtons.ReportValidityOfName(!string.IsNullOrWhiteSpace(newText));
+            }
         }
     }
 

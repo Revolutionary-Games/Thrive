@@ -1041,7 +1041,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnNewCellTypeNameChanged(string newText)
     {
-        if (!IsNewCellTypeNameValid(newText))
+        if (!Editor.IsNewCellTypeNameValid(newText))
         {
             GUICommon.MarkInputAsInvalid(duplicateCellTypeName);
         }
@@ -1049,14 +1049,6 @@ public partial class CellBodyPlanEditorComponent :
         {
             GUICommon.MarkInputAsValid(duplicateCellTypeName);
         }
-    }
-
-    private bool IsNewCellTypeNameValid(string text)
-    {
-        // Name is invalid if it is empty or a duplicate
-        // TODO: should this ensure the name doesn't have trailing whitespace?
-        return !string.IsNullOrWhiteSpace(text) && !Editor.EditedSpecies.CellTypes.Any(c =>
-            c.TypeName.Equals(text, StringComparison.InvariantCultureIgnoreCase));
     }
 
     private void OnNewCellTextAccepted(string text)
@@ -1072,7 +1064,7 @@ public partial class CellBodyPlanEditorComponent :
     {
         var newTypeName = duplicateCellTypeName.Text;
 
-        if (!IsNewCellTypeNameValid(newTypeName))
+        if (!Editor.IsNewCellTypeNameValid(newTypeName))
         {
             GD.Print("Bad name for new cell type");
             Editor.OnInvalidAction();

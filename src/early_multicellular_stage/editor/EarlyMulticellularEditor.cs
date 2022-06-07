@@ -153,6 +153,13 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         return false;
     }
 
+    public bool IsNewCellTypeNameValid(string newName)
+    {
+        return !string.IsNullOrWhiteSpace(newName) && !EditedSpecies.CellTypes.Any(c =>
+            c != selectedCellTypeToEdit &&
+            c.TypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
+    }
+
     protected override void ResolveDerivedTypeNodeReferences()
     {
         reportTab = GetNode<MicrobeEditorReportComponent>(ReportTabPath);
@@ -212,6 +219,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         patchMapTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
         bodyPlanEditorTab.OnFinish = ForwardEditorComponentFinishRequest;
         cellEditorTab.OnNextTab = () => SetEditorTab(EditorTab.CellEditor);
+        cellEditorTab.ValidateNewCellTypeName = IsNewCellTypeNameValid;
 
         foreach (var editorComponent in GetAllEditorComponents())
         {
@@ -489,10 +497,6 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
             cellEditorTab.OnEditorSpeciesSetup(EditedBaseSpecies);
         }
 
-        // We need to handle the renaming here as the cell editor doesn't really know what other cell types exist
-        // so it can't check if the name is unique or not
-        // TODO: would be nice to re-architecture this so that the cell editor could show if the new name is valid
-        // or not
         var oldName = data.FinishedCellType.TypeName;
 
         cellEditorTab.OnFinishEditing();
