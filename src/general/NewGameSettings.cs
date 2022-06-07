@@ -290,12 +290,11 @@ public class NewGameSettings : ControlWithInput
         difficultyPresetButton.Selected = index;
         difficultyPresetAdvancedButton.Selected = index;
 
-        WorldGenerationSettings.DifficultyPreset preset = DifficultyPresetIndexToValue(index);
+        DifficultyPreset preset = DifficultyPresetIndexToValue(index);
         settings.Difficulty = preset;
-        GD.Print(settings.Difficulty);
 
         // If custom was selected, open the advanced view to the difficulty tab
-        if (preset == WorldGenerationSettings.DifficultyPreset.Custom)
+        if (preset == DifficultyPreset.Custom)
         {
             ChangeSettingsTab("Difficulty");
             ProcessAdvancedSelection(false);
@@ -305,30 +304,30 @@ public class NewGameSettings : ControlWithInput
         mpMultiplier.Value = WorldGenerationSettings.GetMPMultiplier(preset);
     }
 
-    private WorldGenerationSettings.DifficultyPreset DifficultyPresetIndexToValue(int index)
+    private DifficultyPreset DifficultyPresetIndexToValue(int index)
     {
         switch (index)
         {
             case 0:
-                return WorldGenerationSettings.DifficultyPreset.Easy;
+                return DifficultyPreset.Easy;
             case 2:
-                return WorldGenerationSettings.DifficultyPreset.Hard;
+                return DifficultyPreset.Hard;
             case 3:
-                return WorldGenerationSettings.DifficultyPreset.Custom;
+                return DifficultyPreset.Custom;
             default:
-                return WorldGenerationSettings.DifficultyPreset.Normal;
+                return DifficultyPreset.Normal;
         }
     }
 
-    private int DifficultyPresetValueToIndex(WorldGenerationSettings.DifficultyPreset preset)
+    private int DifficultyPresetValueToIndex(DifficultyPreset preset)
     {
         switch (preset)
         {
-            case WorldGenerationSettings.DifficultyPreset.Easy:
+            case DifficultyPreset.Easy:
                 return 0;
-            case WorldGenerationSettings.DifficultyPreset.Hard:
+            case DifficultyPreset.Hard:
                 return 2;
-            case WorldGenerationSettings.DifficultyPreset.Custom:
+            case DifficultyPreset.Custom:
                 return 3;
             default:
                 return 1;
@@ -337,9 +336,9 @@ public class NewGameSettings : ControlWithInput
 
     private void UpdateDifficultyPreset()
     {
-        var custom = WorldGenerationSettings.DifficultyPreset.Custom;
+        var custom = DifficultyPreset.Custom;
 
-        foreach (WorldGenerationSettings.DifficultyPreset preset in Enum.GetValues(typeof(WorldGenerationSettings.DifficultyPreset)))
+        foreach (DifficultyPreset preset in Enum.GetValues(typeof(DifficultyPreset)))
         {
             if (preset == custom)
                 continue;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/NewGameSettings.cs" type="Script" id=2]
@@ -17,6 +17,8 @@
 
 [sub_resource type="ButtonGroup" id=5]
 
+[sub_resource type="StyleBoxEmpty" id=6]
+
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="NewGameSettings" type="Control"]
@@ -29,7 +31,16 @@ AdvancedOptionsPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions")
 BasicButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Basic")
 AdvancedButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Advanced")
 TabButtonsPath = NodePath("CenterContainer/VBoxContainer/TabButtons")
+DifficultyTabPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty")
+PlanetTabPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet")
+MiscTabPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc")
+DifficultyTabButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/DifficultyButton")
+PlanetTabButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/PlanetButton")
+MiscTabButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/MiscButton")
 DifficultyPresetButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer/DifficultyPreset")
+DifficultyPresetAdvancedButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer/DifficultyPreset")
+MPMultiplierPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2/MPMultiplier")
+MPMultiplierReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2/MPMultiplierReadout")
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin")
 LAWKButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK")
 GameSeedPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
@@ -218,8 +229,9 @@ __meta__ = {
 
 [node name="TabButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
-margin_right = 398.0
-margin_bottom = 35.0
+margin_top = 213.0
+margin_right = 550.0
+margin_bottom = 248.0
 size_flags_horizontal = 3
 alignment = 1
 __meta__ = {
@@ -227,7 +239,8 @@ __meta__ = {
 }
 
 [node name="DifficultyButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_right = 130.0
+margin_left = 76.0
+margin_right = 206.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
@@ -237,8 +250,8 @@ group = SubResource( 5 )
 text = "Difficulty"
 
 [node name="PlanetButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 134.0
-margin_right = 264.0
+margin_left = 210.0
+margin_right = 340.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
@@ -247,8 +260,8 @@ group = SubResource( 5 )
 text = "Planet"
 
 [node name="MiscButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 268.0
-margin_right = 398.0
+margin_left = 344.0
+margin_right = 474.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
@@ -258,10 +271,141 @@ text = "Misc"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
-margin_top = 40.0
-margin_right = 689.0
-margin_bottom = 640.0
-rect_min_size = Vector2( 689, 600 )
+margin_top = 253.0
+margin_right = 550.0
+margin_bottom = 853.0
+rect_min_size = Vector2( 550, 600 )
+
+[node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 549.0
+margin_bottom = 599.0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 533.0
+margin_bottom = 583.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+margin_right = 518.0
+margin_bottom = 25.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer"]
+margin_right = 250.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 250, 0 )
+text = "Difficulty preset"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer"]
+margin_left = 254.0
+margin_right = 314.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 2 )
+
+[node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer"]
+margin_left = 318.0
+margin_right = 518.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+text = "Normal"
+items = [ "Easy", null, false, 0, null, "Normal", null, false, 1, null, "Hard", null, false, 2, null, "Custom", null, false, 3, null ]
+selected = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+margin_top = 35.0
+margin_right = 518.0
+margin_bottom = 66.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2"]
+margin_top = 3.0
+margin_right = 250.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 250, 0 )
+text = "Mutation cost multiplier"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2"]
+margin_left = 254.0
+margin_right = 314.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 6 )
+
+[node name="MPMultiplier" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2"]
+margin_left = 318.0
+margin_right = 458.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.2
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="MPMultiplierReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2"]
+margin_left = 462.0
+margin_right = 518.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 20, 0 )
+text = "1"
+editable = false
+
+[node name="Planet" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
+visible = false
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 549.0
+margin_bottom = 599.0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 533.0
+margin_bottom = 583.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Misc" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
+visible = false
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 549.0
+margin_bottom = 599.0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 533.0
+margin_bottom = 583.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 213.0
@@ -320,6 +464,11 @@ __meta__ = {
 [connection signal="toggled" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK" to="." method="OnLAWKToggled"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed" to="." method="OnGameSeedChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButton" to="." method="OnRandomisedGameSeedPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/DifficultyButton" to="." method="ChangeSettingsTab" binds= [ "Difficulty" ]]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PlanetButton" to="." method="ChangeSettingsTab" binds= [ "Planet" ]]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="ChangeSettingsTab" binds= [ "Miscellaneous" ]]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer/DifficultyPreset" to="." method="OnDifficultyPresetSelected"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2/MPMultiplier" to="." method="OnMPMultiplierValueChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Advanced" to="." method="OnAdvancedPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Basic" to="." method="OnBasicPressed"]

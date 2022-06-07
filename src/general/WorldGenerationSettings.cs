@@ -5,14 +5,6 @@
 /// </summary>
 public class WorldGenerationSettings
 {
-    public enum DifficultyPreset
-    {
-        Easy,
-        Normal,
-        Hard,
-        Custom,
-    }
-
     public enum LifeOrigin
     {
         Vent,
@@ -25,6 +17,7 @@ public class WorldGenerationSettings
     public LifeOrigin Origin { get; set; } = LifeOrigin.Vent;
     public int Seed { get; set; } = new Random().Next();
     public double MPMultiplier { get; set; } = 1;
+    public double CompoundCloudDensityMultiplier { get; set; } = 1;
 
     public override string ToString()
     {
@@ -41,6 +34,21 @@ public class WorldGenerationSettings
                 return 1;
             case DifficultyPreset.Hard:
                 return 1.5;
+            default:
+                return 1;
+        }
+    }
+
+    private static double GetCompoundCloudDensityMultiplier(DifficultyPreset preset)
+    {
+        switch (preset)
+        {
+            case DifficultyPreset.Easy:
+                return 1.5;
+            case DifficultyPreset.Normal:
+                return 1;
+            case DifficultyPreset.Hard:
+                return 0.5;
             default:
                 return 1;
         }
