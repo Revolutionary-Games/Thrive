@@ -311,7 +311,7 @@ public class Slidescreen : CustomDialog
     {
         var item = Items?[currentSlideIndex] as GalleryCardModel;
 
-        if (item == null || item.Asset.Type != AssetType.ModelScene || modelHolder == null || modelViewer == null ||
+        if (item?.Asset.Type != AssetType.ModelScene || modelHolder == null || modelViewer == null ||
             modelViewerCamera == null)
         {
             modelViewerContainer?.Hide();
@@ -344,8 +344,7 @@ public class Slidescreen : CustomDialog
         if (playbackBar == null || fullscreenTextureRect == null)
             return;
 
-        // ReSharper disable once MergeSequentialChecksWhenPossible
-        if (item == null || item.Asset.Type != AssetType.AudioPlayback)
+        if (item?.Asset.Type != AssetType.AudioPlayback)
         {
             playbackBar.Hide();
             playbackBar.AudioPlayer = null;
