@@ -214,6 +214,13 @@ public class PatchManager : IChildPropertiesLoadCallback
         if (existing != null)
         {
             existing.Marked = true;
+
+            if (existing.Spawner.Density != density)
+            {
+                GD.Print("Changing spawn density of ", existing.Name, " from ",
+                    existing.Spawner.Density, " to ", density);
+                existing.Spawner.Density = density;
+            }
         }
         else
         {
