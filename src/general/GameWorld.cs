@@ -54,7 +54,7 @@ public class GameWorld : ISaveLoadable
         if (!PlayerSpecies.PlayerSpecies)
             throw new Exception("PlayerSpecies flag for being player species is not set");
 
-        Map = PatchMapGenerator.Generate(se, PlayerSpecies);
+        Map = PatchMapGenerator.Generate(settings, PlayerSpecies);
 
         if (!Map.Verify())
             throw new ArgumentException("generated patch map with settings is not valid");

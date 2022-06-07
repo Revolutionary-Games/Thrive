@@ -320,7 +320,7 @@ public class Mutations
     private OrganelleDefinition GetRandomOrganelle(bool isBacteria)
     {
         // TODO: Fix this!
-        bool lawkOnly = false;
+        bool lawkOnly = true;
 
         if (isBacteria)
         {
