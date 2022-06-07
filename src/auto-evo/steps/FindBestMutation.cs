@@ -17,12 +17,15 @@
 
         private readonly Mutations mutations = new();
 
-        public FindBestMutation(AutoEvoConfiguration configuration, PatchMap map, Species species,
+        private WorldGenerationSettings settings;
+
+        public FindBestMutation(AutoEvoConfiguration configuration, WorldGenerationSettings settings, PatchMap map, Species species,
             int mutationsToTry, bool allowNoMutation,
             float splitThresholdFraction, int splitThresholdAmount)
             : base(mutationsToTry, allowNoMutation, splitThresholdAmount > 0)
         {
             this.configuration = configuration;
+            this.settings = settings;
             this.map = map;
             this.species = species;
             this.splitThresholdFraction = splitThresholdFraction;
@@ -56,7 +59,7 @@
         protected override IAttemptResult TryVariant()
         {
             var mutated = (MicrobeSpecies)species.Clone();
-            mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated);
+            mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated, settings.LAWK);
 
             var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 

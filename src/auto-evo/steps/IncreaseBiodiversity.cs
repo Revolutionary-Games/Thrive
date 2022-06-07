@@ -20,8 +20,11 @@
         private bool tryCurrentPatch = true;
         private bool createdASpecies;
 
-        public IncreaseBiodiversity(AutoEvoConfiguration configuration, PatchMap map, Patch patch, Random random)
+        private WorldGenerationSettings settings;
+
+        public IncreaseBiodiversity(AutoEvoConfiguration configuration, WorldGenerationSettings settings, PatchMap map, Patch patch, Random random)
         {
+            this.settings = settings;
             this.map = map;
             this.patch = patch;
             this.configuration = configuration;
@@ -121,7 +124,7 @@
             var split = (MicrobeSpecies)fromMicrobe.Clone();
 
             if (configuration.BiodiversitySplitIsMutated)
-                mutations.CreateMutatedSpecies(fromMicrobe, split);
+                mutations.CreateMutatedSpecies(fromMicrobe, split, settings.LAWK);
 
             // Set the starting population in the patch
             split.Population = configuration.NewBiodiversityIncreasingSpeciesPopulation;
