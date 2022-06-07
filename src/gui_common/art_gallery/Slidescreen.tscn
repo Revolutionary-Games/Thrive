@@ -207,6 +207,8 @@ __meta__ = {
 
 [node name="SlideshowTween" type="Tween" parent="."]
 
+[node name="ToolbarTween" type="Tween" parent="."]
+
 [connection signal="hide" from="." to="." method="OnHidden"]
 [connection signal="draw" from="Overlay/MarginContainer/CloseButton" to="." method="OnCloseButtonUpdate"]
 [connection signal="pressed" from="Overlay/MarginContainer/CloseButton" to="." method="OnCloseButtonPressed"]

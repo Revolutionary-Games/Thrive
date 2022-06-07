@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Godot;
-using Object = Godot.Object;
 
 /// <summary>
 ///   Screen capable of moving slides of gallery items.
@@ -53,6 +52,7 @@ public class Slidescreen : CustomDialog
 
     private Tween popupTween = null!;
     private Tween slideshowTween = null!;
+    private Tween toolbarTween = null!;
 
     private float toolbarHideTimer;
     private float slideshowTimer;
@@ -133,6 +133,7 @@ public class Slidescreen : CustomDialog
 
         popupTween = GetNode<Tween>("PopupTween");
         slideshowTween = GetNode<Tween>("SlideshowTween");
+        toolbarTween = GetNode<Tween>("ToolbarTween");
 
         UpdateScreen();
     }
@@ -145,9 +146,9 @@ public class Slidescreen : CustomDialog
 
             if (toolbar?.Modulate.a < 1)
             {
-                slideshowTween.InterpolateProperty(toolbar, "modulate:a", null, 1, 0.5f);
-                slideshowTween.InterpolateProperty(closeButton, "modulate:a", null, 1, 0.5f);
-                slideshowTween.Start();
+                toolbarTween.InterpolateProperty(toolbar, "modulate:a", null, 1, 0.5f);
+                toolbarTween.InterpolateProperty(closeButton, "modulate:a", null, 1, 0.5f);
+                toolbarTween.Start();
             }
 
             if (Input.GetMouseMode() == Input.MouseMode.Hidden)
@@ -155,11 +156,11 @@ public class Slidescreen : CustomDialog
 
             if (toolbarHideTimer < 0)
             {
-                slideshowTween.InterpolateProperty(
+                toolbarTween.InterpolateProperty(
                     toolbar, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
-                slideshowTween.InterpolateProperty(
+                toolbarTween.InterpolateProperty(
                     closeButton, "modulate:a", null, 0, 0.5f, Tween.TransitionType.Linear, Tween.EaseType.InOut);
-                slideshowTween.Start();
+                toolbarTween.Start();
                 Input.SetMouseMode(Input.MouseMode.Hidden);
             }
         }

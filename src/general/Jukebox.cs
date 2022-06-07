@@ -29,7 +29,7 @@ public class Jukebox : Node
     private float linearVolume = 1.0f;
 
     private bool paused = true;
-    private bool pausing = false;
+    private bool pausing;
 
     private string? playingCategory;
 
