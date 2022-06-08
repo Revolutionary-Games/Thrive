@@ -24,9 +24,6 @@ public class MainMenu : NodeWithInput
     public List<Texture> MenuBackgrounds = null!;
 
     [Export]
-    public NodePath NewGameButtonPath = null!;
-
-    [Export]
     public NodePath FreebuildButtonPath = null!;
 
     [Export]
@@ -65,8 +62,6 @@ public class MainMenu : NodeWithInput
     private Control creditsContainer = null!;
     private CreditsScroll credits = null!;
     private LicensesDisplay licensesDisplay = null!;
-
-    private Button newGameButton = null!;
     private Button freebuildButton = null!;
 
     private Label storeLoggedInDisplay = null!;
@@ -159,6 +154,39 @@ public class MainMenu : NodeWithInput
         return false;
     }
 
+    public void NewGameSetupDone(WorldGenerationSettings settings)
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
+        // before the stage music starts)
+        Jukebox.Instance.SmoothStop();
+
+        var transitions = new List<ITransition>();
+
+        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
+        {
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
+            transitions.Add(TransitionManager.Instance.CreateCutscene(
+                "res://assets/videos/microbe_intro2.ogv", 0.65f));
+        }
+        else
+        {
+            // People who disable the cutscene are impatient anyway so use a reduced fade time
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
+        }
+
+        TransitionManager.Instance.AddSequence(transitions, () =>
+        {
+            OnEnteringGame();
+
+            // TODO: Add loading screen while changing between scenes
+            var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
+            microbeStage.WorldSettings = settings;
+            SceneManager.Instance.SwitchToScene(microbeStage);
+        });
+    }
+
     /// <summary>
     ///   Setup the main menu.
     /// </summary>
@@ -167,7 +195,6 @@ public class MainMenu : NodeWithInput
         Background = GetNode<TextureRect>("Background");
         guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
-        newGameButton = GetNode<Button>(NewGameButtonPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
@@ -297,39 +324,6 @@ public class MainMenu : NodeWithInput
         newGameSettings.OpenFromMainMenu();
 
         thriveLogo.Hide();
-    }
-
-    public void NewGameSetupDone(WorldGenerationSettings settings)
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
-        // before the stage music starts)
-        Jukebox.Instance.SmoothStop();
-
-        var transitions = new List<ITransition>();
-
-        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
-        {
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
-            transitions.Add(TransitionManager.Instance.CreateCutscene(
-                "res://assets/videos/microbe_intro2.ogv", 0.65f));
-        }
-        else
-        {
-            // People who disable the cutscene are impatient anyway so use a reduced fade time
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
-        }
-
-        TransitionManager.Instance.AddSequence(transitions, () =>
-        {
-            OnEnteringGame();
-
-            // TODO: Add loading screen while changing between scenes
-            var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
-            microbeStage.WorldSettings = settings;
-            SceneManager.Instance.SwitchToScene(microbeStage);
-        });
     }
 
     private void ToolsPressed()

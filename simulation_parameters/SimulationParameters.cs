@@ -217,13 +217,13 @@ public class SimulationParameters : Node
         float valueLeft = random.Next(0.0f, prokaryoticOrganellesTotalChance);
 
         // Filter to only LAWK organelles if necessary
-        var organelles = prokaryoticOrganelles;
+        var usedOrganelles = prokaryoticOrganelles;
         if (lawkOnly)
         {
-            organelles = organelles.Where(o => o.LAWK).ToList();
+            usedOrganelles = usedOrganelles.Where(o => o.Lawk).ToList();
         }
 
-        foreach (var organelle in organelles)
+        foreach (var organelle in usedOrganelles)
         {
             valueLeft -= organelle.ProkaryoteChance;
 
@@ -231,7 +231,7 @@ public class SimulationParameters : Node
                 return organelle;
         }
 
-        return organelles[organelles.Count - 1];
+        return usedOrganelles[usedOrganelles.Count - 1];
     }
 
     public OrganelleDefinition GetRandomEukaryoticOrganelle(Random random, bool lawkOnly)
@@ -239,13 +239,13 @@ public class SimulationParameters : Node
         float valueLeft = random.Next(0.0f, eukaryoticOrganellesChance);
 
         // Filter to only LAWK organelles if necessary
-        var organelles = eukaryoticOrganelles;
+        var usedOrganelles = eukaryoticOrganelles;
         if (lawkOnly)
         {
-            organelles = organelles.Where(o => o.LAWK).ToList();
+            usedOrganelles = usedOrganelles.Where(o => o.Lawk).ToList();
         }
 
-        foreach (var organelle in organelles)
+        foreach (var organelle in usedOrganelles)
         {
             valueLeft -= organelle.ChanceToCreate;
 
@@ -253,7 +253,7 @@ public class SimulationParameters : Node
                 return organelle;
         }
 
-        return organelles[organelles.Count - 1];
+        return usedOrganelles[usedOrganelles.Count - 1];
     }
 
     public PatchMapNameGenerator GetPatchMapNameGenerator()

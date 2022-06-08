@@ -8,7 +8,7 @@ using Godot;
 [SuppressMessage("ReSharper", "StringLiteralTypo", Justification = "Patch names aren't proper words")]
 public static class PatchMapGenerator
 {
-    public static WorldGenerationSettings WorldSettings = new WorldGenerationSettings();
+    public static WorldGenerationSettings WorldSettings = new();
 
     public static PatchMap Generate(WorldGenerationSettings settings, Species defaultSpecies, Random? random = null)
     {
@@ -20,7 +20,7 @@ public static class PatchMapGenerator
 
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
 
-        string areaName = "";
+        string areaName = string.Empty;
         switch (WorldSettings.MapType)
         {
             case WorldGenerationSettings.PatchMapType.Classic:

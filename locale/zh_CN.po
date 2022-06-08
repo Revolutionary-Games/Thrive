@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-06 12:48+0700\n"
+"POT-Creation-Date: 2022-06-08 17:43+0100\n"
 "PO-Revision-Date: 2022-03-26 14:06+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -290,12 +290,12 @@ msgid "ABILITIES"
 msgstr "能力"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2178
+#: ../src/microbe_stage/MicrobeStage.tscn:2177
 msgid "FIRE_TOXIN"
 msgstr "发射毒素"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2166
+#: ../src/microbe_stage/MicrobeStage.tscn:2165
 msgid "TOGGLE_ENGULF"
 msgstr "切换吞噬模式"
 
@@ -304,7 +304,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "按住以显示群体指令菜单"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2189
+#: ../src/microbe_stage/MicrobeStage.tscn:2188
 msgid "TOGGLE_BINDING"
 msgstr "切换连接模式"
 
@@ -313,7 +313,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "切换解除连接模式"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2201
+#: ../src/microbe_stage/MicrobeStage.tscn:2200
 msgid "UNBIND_ALL"
 msgstr "取消所有连接"
 
@@ -604,36 +604,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1305
+#: ../src/microbe_stage/MicrobeStage.tscn:1304
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "AMMONIA"
 msgstr "氨"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1357
+#: ../src/microbe_stage/MicrobeStage.tscn:1356
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
 msgid "PHOSPHATE"
 msgstr "磷酸盐"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1409
+#: ../src/microbe_stage/MicrobeStage.tscn:1408
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氢"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1253
+#: ../src/microbe_stage/MicrobeStage.tscn:1252
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1591
+#: ../src/microbe_stage/MicrobeStage.tscn:1590
 msgid "OXYTOXY_NT"
 msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1461
+#: ../src/microbe_stage/MicrobeStage.tscn:1460
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "IRON"
 msgstr "铁"
@@ -695,110 +695,110 @@ msgstr "二氧化硅"
 msgid "PREDATORY_PILUS"
 msgstr "掠食性菌毛"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:55
+#: ../simulation_parameters/microbe_stage/organelles.json:56
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:677
 msgid "RUSTICYANIN"
 msgstr "铁硫菌蓝蛋白"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:90
+#: ../simulation_parameters/microbe_stage/organelles.json:92
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:774
 msgid "NITROGENASE"
 msgstr "固氮酶"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:125
+#: ../simulation_parameters/microbe_stage/organelles.json:128
 msgid "PROTOPLASM"
 msgstr "原生质"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:157
+#: ../simulation_parameters/microbe_stage/organelles.json:161
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:574
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "化学合成蛋白"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:196
+#: ../simulation_parameters/microbe_stage/organelles.json:201
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:872
 msgid "OXYTOXISOME"
 msgstr "毒素体"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:231
+#: ../simulation_parameters/microbe_stage/organelles.json:237
 msgid "THYLAKOIDS"
 msgstr "类囊体"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:265
+#: ../simulation_parameters/microbe_stage/organelles.json:272
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:375
 msgid "METABOLOSOMES"
 msgstr "代谢体"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:303
+#: ../simulation_parameters/microbe_stage/organelles.json:311
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1823
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "固氮质体"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:342
+#: ../simulation_parameters/microbe_stage/organelles.json:351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1738
 msgid "CHEMOPLAST"
 msgstr "化学质体"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:376
+#: ../simulation_parameters/microbe_stage/organelles.json:386
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:969
 msgid "FLAGELLUM"
 msgstr "鞭毛"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:405
+#: ../simulation_parameters/microbe_stage/organelles.json:416
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1922
 msgid "VACUOLE"
 msgstr "液泡"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:442
+#: ../simulation_parameters/microbe_stage/organelles.json:454
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1452
 msgid "MITOCHONDRION"
 msgstr "线粒体"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:478
+#: ../simulation_parameters/microbe_stage/organelles.json:491
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2020
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:509
+#: ../simulation_parameters/microbe_stage/organelles.json:523
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1271
 msgid "BINDING_AGENT"
 msgstr "连接器"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:551
+#: ../simulation_parameters/microbe_stage/organelles.json:566
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1537
 msgid "CHLOROPLAST"
 msgstr "叶绿体"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:585
+#: ../simulation_parameters/microbe_stage/organelles.json:601
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:276
 msgid "CYTOPLASM"
 msgstr "细胞质"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:652
+#: ../simulation_parameters/microbe_stage/organelles.json:669
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1355
 msgid "NUCLEUS"
 msgstr "细胞核"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:678
+#: ../simulation_parameters/microbe_stage/organelles.json:696
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1164
 msgid "CHEMORECEPTOR"
 msgstr "化学感受器"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:704
+#: ../simulation_parameters/microbe_stage/organelles.json:723
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2118
 msgid "SIGNALING_AGENT"
 msgstr "信号剂"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:727
+#: ../simulation_parameters/microbe_stage/organelles.json:747
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2217
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物发光液泡"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:750
+#: ../simulation_parameters/microbe_stage/organelles.json:771
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1622
 msgid "THERMOPLAST"
 msgstr "热能体"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:779
+#: ../simulation_parameters/microbe_stage/organelles.json:801
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1224
 msgid "CILIA"
 msgstr "纤毛"
@@ -1037,22 +1037,22 @@ msgstr "多个细胞"
 msgid "MP_COST"
 msgstr "{0} 变异点"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:89
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
 #, fuzzy
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "载入微生物编辑器中"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:227
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:196
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo未能正常运行"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:228
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "运行状态："
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:377
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:379
 #: ../src/general/EditorBase.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -1542,83 +1542,286 @@ msgstr "{0}的浓度已减少了{1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "葡萄糖的浓度大幅度降低了！"
 
-#: ../src/general/MainMenu.cs:234
+#: ../src/general/MainMenu.cs:236
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登录为：{0}"
 
-#: ../src/general/MainMenu.tscn:178
+#: ../src/general/MainMenu.tscn:179
 msgid "NEW_GAME"
 msgstr "新游戏"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "载入游戏"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
+#: ../src/general/MainMenu.tscn:203 ../src/general/PauseMenu.tscn:214
 msgid "OPTIONS"
 msgstr "选项"
 
-#: ../src/general/MainMenu.tscn:213
+#: ../src/general/MainMenu.tscn:214
 msgid "TOOLS"
 msgstr "工具"
 
-#: ../src/general/MainMenu.tscn:224
+#: ../src/general/MainMenu.tscn:225
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看源代码"
 
-#: ../src/general/MainMenu.tscn:235
+#: ../src/general/MainMenu.tscn:236
 msgid "EXTRAS"
 msgstr "额外内容"
 
-#: ../src/general/MainMenu.tscn:246
+#: ../src/general/MainMenu.tscn:247
 msgid "CREDITS"
 msgstr "制作人名单"
 
-#: ../src/general/MainMenu.tscn:257
+#: ../src/general/MainMenu.tscn:258
 msgid "QUIT"
 msgstr "退出"
 
-#: ../src/general/MainMenu.tscn:277
+#: ../src/general/MainMenu.tscn:278
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
-#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
-#: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:254
+#: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:873
+#: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:254
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "返回"
 
-#: ../src/general/MainMenu.tscn:358
+#: ../src/general/MainMenu.tscn:359
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:373
 msgid "ART_GALLERY"
 msgstr "艺术画廊"
 
-#: ../src/general/MainMenu.tscn:384
+#: ../src/general/MainMenu.tscn:385
 msgid "LICENSES"
 msgstr "许可"
 
-#: ../src/general/MainMenu.tscn:493
+#: ../src/general/MainMenu.tscn:497
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:495
+#: ../src/general/MainMenu.tscn:499
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
-#: ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:503
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod加载错误"
 
-#: ../src/general/MainMenu.tscn:500
+#: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加载一个或多个mod时发生了错误。日志可能包含其它信息。"
+
+#: ../src/general/NewGameSettings.tscn:112
+#: ../src/general/NewGameSettings.tscn:326
+msgid "DIFFICULTY_PRESET"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:126
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:340
+#: ../src/general/NewGameSettings.tscn:341
+msgid "DIFFICULTY_PRESET_NORMAL"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:341
+msgid "DIFFICULTY_PRESET_EASY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:341
+msgid "DIFFICULTY_PRESET_HARD"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:341
+msgid "DIFFICULTY_PRESET_CUSTOM"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:147
+#: ../src/general/NewGameSettings.tscn:701
+msgid "LIFE_ORIGIN"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:154
+#: ../src/general/NewGameSettings.tscn:708
+#, fuzzy
+msgid "LIFE_ORIGIN_EXPLANATION"
+msgstr ""
+"胆小型微生物会逃到更远的地方，\n"
+"并且总体上更有可能逃离掠食者。\n"
+"勇敢型微生物则不会被靠近的掠食者吓到\n"
+"而且更有可能反击。"
+
+#: ../src/general/NewGameSettings.tscn:169
+#: ../src/general/NewGameSettings.tscn:170
+#: ../src/general/NewGameSettings.tscn:723
+#: ../src/general/NewGameSettings.tscn:724
+msgid "LIFE_ORIGIN_VENTS"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:170
+#: ../src/general/NewGameSettings.tscn:724
+msgid "LIFE_ORIGIN_POND"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:170
+#: ../src/general/NewGameSettings.tscn:724
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:185
+#: ../src/general/NewGameSettings.tscn:739
+msgid "LAWK_ONLY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:192
+#: ../src/general/NewGameSettings.tscn:746
+#, fuzzy
+msgid "LAWK_ONLY_EXPLANATION"
+msgstr ""
+"胆小型微生物会逃到更远的地方，\n"
+"并且总体上更有可能逃离掠食者。\n"
+"勇敢型微生物则不会被靠近的掠食者吓到\n"
+"而且更有可能反击。"
+
+#: ../src/general/NewGameSettings.tscn:203
+#: ../src/general/NewGameSettings.tscn:757
+msgid "PLANET_RANDOM_SEED"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:266
+msgid "DIFFICULTY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:276
+msgid "PLANET"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:286 ../src/general/OptionsMenu.tscn:179
+msgid "MISC"
+msgstr "杂项"
+
+#: ../src/general/NewGameSettings.tscn:368
+msgid "MUTATION_COST_MULTIPLIER"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:402
+#, fuzzy
+msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
+msgstr ""
+"活泼型细胞在周围没啥事的时候会四处乱跑。\n"
+"沉着型微生物将静止不动，等待环境变化后才行动。"
+
+#: ../src/general/NewGameSettings.tscn:419
+#, fuzzy
+msgid "COMPOUND_CLOUD_DENSITY"
+msgstr "化合物云"
+
+#: ../src/general/NewGameSettings.tscn:453
+#, fuzzy
+msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
+msgstr ""
+"机会主义型微生物会和竞争对手争夺物质块\n"
+"并且会在猎物过大无法吞噬的情况下使用毒素攻击。\n"
+"谨慎型微生物则不大可能冒风险争夺物质块。"
+
+#: ../src/general/NewGameSettings.tscn:470
+msgid "PLAYER_DEATH_POPULATION_PENALTY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:503
+#, fuzzy
+msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
+msgstr "这个板块显示了auto-evo预测工作所依据的数字。一个物种能够捕获的总能量以及该物种个体的成本决定最终的人口。Auto-evo使用一个简化的现实模型，根据物种能够采集的能量来计算其表现如何。对于每个食物来源，它显示了该物种从其获得的能量以及该食物来源能提供的总能量。物种从总能量中获得的量基于与总适应性相比的适应性的大小。适应性是衡量该物种对该食物来源的利用程度的指标。"
+
+#: ../src/general/NewGameSettings.tscn:520
+msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:553
+#, fuzzy
+msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
+msgstr "这个板块显示了auto-evo预测工作所依据的数字。一个物种能够捕获的总能量以及该物种个体的成本决定最终的人口。Auto-evo使用一个简化的现实模型，根据物种能够采集的能量来计算其表现如何。对于每个食物来源，它显示了该物种从其获得的能量以及该食物来源能提供的总能量。物种从总能量中获得的量基于与总适应性相比的适应性的大小。适应性是衡量该物种对该食物来源的利用程度的指标。"
+
+#: ../src/general/NewGameSettings.tscn:570
+#, fuzzy
+msgid "OSMOREGULATION_COST_MULTIPLIER"
+msgstr "渗透调节消耗"
+
+#: ../src/general/NewGameSettings.tscn:604
+#, fuzzy
+msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+msgstr "渗透调节消耗"
+
+#: ../src/general/NewGameSettings.tscn:615
+msgid "FREE_GLUCOSE_CLOUD"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:622
+#, fuzzy
+msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
+msgstr ""
+"专注型微生物会在更远的距离里追击猎物或物质块\n"
+"并且对物质块更有渴求。\n"
+"应变型微生物将更快的转向新的目标。"
+
+#: ../src/general/NewGameSettings.tscn:658
+#, fuzzy
+msgid "PATCH_MAP_TYPE"
+msgstr "地区图"
+
+#: ../src/general/NewGameSettings.tscn:665
+#, fuzzy
+msgid "PATCH_MAP_TYPE_EXPLANATION"
+msgstr ""
+"活泼型细胞在周围没啥事的时候会四处乱跑。\n"
+"沉着型微生物将静止不动，等待环境变化后才行动。"
+
+#: ../src/general/NewGameSettings.tscn:680
+#: ../src/general/NewGameSettings.tscn:681
+msgid "PATCH_MAP_TYPE_PROCEDURAL"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:681
+#, fuzzy
+msgid "PATCH_MAP_TYPE_CLASSIC"
+msgstr "远古半深海带"
+
+#: ../src/general/NewGameSettings.tscn:823
+msgid "PLANET_GENERATION_TEASER"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:855
+#, fuzzy
+msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+msgstr "成为多细胞（{0}/{1}）"
+
+#: ../src/general/NewGameSettings.tscn:862
+msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:891
+msgid "ADVANCED_VIEW"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:902
+msgid "BASIC_VIEW"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:911
+#, fuzzy
+msgid "CONFIRM"
+msgstr "确认退出"
 
 #: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
 msgid "AUTO_RESOLUTION"
@@ -1655,10 +1858,6 @@ msgstr "性能"
 #: ../src/general/OptionsMenu.tscn:168
 msgid "INPUTS"
 msgstr "输入"
-
-#: ../src/general/OptionsMenu.tscn:179
-msgid "MISC"
-msgstr "杂项"
 
 #: ../src/general/OptionsMenu.tscn:211
 msgid "VSYNC"
@@ -2318,7 +2517,7 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2180
 msgid "NO_DATA_TO_SHOW"
 msgstr "没有数据可显示"
 
@@ -2925,60 +3124,60 @@ msgid "CATEGORY_VERY_LITTLE"
 msgstr "很少"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1284
-#: ../src/microbe_stage/MicrobeStage.tscn:1792
+#: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr "成为多细胞（{0}/{1}）"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1320
-#: ../src/microbe_stage/MicrobeStage.tscn:1803
+#: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr "成为宏观生物（{0}/{1}）"
 
-#: ../src/microbe_stage/MicrobeStage.cs:765
+#: ../src/microbe_stage/MicrobeStage.cs:777
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
-#: ../src/microbe_stage/MicrobeStage.cs:779
+#: ../src/microbe_stage/MicrobeStage.cs:791
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "无法使用生成敌人作弊，因为这个地区没有任何敌对物种"
 
-#: ../src/microbe_stage/MicrobeStage.cs:802
+#: ../src/microbe_stage/MicrobeStage.cs:815
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:522
+#: ../src/microbe_stage/MicrobeStage.tscn:521
 msgid "AT_CURSOR"
 msgstr "鼠标指针处："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:548
+#: ../src/microbe_stage/MicrobeStage.tscn:547
 msgid "NOTHING_HERE"
 msgstr "这里啥都没有"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:573
+#: ../src/microbe_stage/MicrobeStage.tscn:572
 msgid "COMPOUNDS_COLON"
 msgstr "化合物："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:613
+#: ../src/microbe_stage/MicrobeStage.tscn:612
 msgid "SPECIES_COLON"
 msgstr "物种："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:693
+#: ../src/microbe_stage/MicrobeStage.tscn:692
 msgid "ENVIRONMENT"
 msgstr "环境"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:961
+#: ../src/microbe_stage/MicrobeStage.tscn:960
 msgid "TEMPERATURE_SHORT"
 msgstr "温度"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1017
+#: ../src/microbe_stage/MicrobeStage.tscn:1016
 msgid "LIGHT"
 msgstr "光强"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1072
+#: ../src/microbe_stage/MicrobeStage.tscn:1071
 msgid "PRESSURE_SHORT"
 msgstr "压力"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1155
+#: ../src/microbe_stage/MicrobeStage.tscn:1154
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
@@ -2986,51 +3185,51 @@ msgstr "压力"
 msgid "COMPOUNDS"
 msgstr "化合物"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1531
+#: ../src/microbe_stage/MicrobeStage.tscn:1530
 msgid "AGENTS"
 msgstr "物质"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1629
+#: ../src/microbe_stage/MicrobeStage.tscn:1628
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "暂停菜单"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1647
+#: ../src/microbe_stage/MicrobeStage.tscn:1646
 msgid "PAUSE_TOOLTIP"
 msgstr "暂停游戏"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1660
+#: ../src/microbe_stage/MicrobeStage.tscn:1659
 msgid "RESUME_TOOLTIP"
 msgstr "返回游戏"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1673
+#: ../src/microbe_stage/MicrobeStage.tscn:1672
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "显示/隐藏环境和化合物"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1688
+#: ../src/microbe_stage/MicrobeStage.tscn:1687
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "显示/隐藏细胞过程"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1725
+#: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "帮助菜单"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1737
+#: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "自杀"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1788
+#: ../src/microbe_stage/MicrobeStage.tscn:1787
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "进入游戏的下一个阶段（多细胞）。在你有一个足够大的细胞群后就可以使用。"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1823
+#: ../src/microbe_stage/MicrobeStage.tscn:1822
 msgid "POPULATION_CAPITAL"
 msgstr "种群数量："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2121
+#: ../src/microbe_stage/MicrobeStage.tscn:2120
 msgid "PAUSED"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:187
+#: ../src/microbe_stage/PatchMapGenerator.cs:214
 msgid "PATCH_NAME"
 msgstr "{0}{1}"
 
@@ -3082,62 +3281,62 @@ msgstr "应变"
 msgid "FOCUSED"
 msgstr "专注"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
 msgid "ATP_PRODUCTION"
 msgstr "ATP产出"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP产出不足！"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}： +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:424
 msgid "OSMOREGULATION"
 msgstr "渗透调节"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:430
 msgid "BASE_MOVEMENT"
 msgstr "移动需求"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:406
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:442
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:520
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:522
 msgid "CELL_TYPE_NAME"
 msgstr "细胞类型名称"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2016
 msgid "FAILED"
 msgstr "失败"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2022
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} （{1}）"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2140
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2148
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1}在{0}的能量"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2144
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的总能量为{0}，每个体的成本为{1}，在修正前的种群数量为{2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
 msgid "ENERGY_SOURCES"
 msgstr "能量来源："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2157
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}能量：{1}（适应性：{2}）总可用能量：{3}（总适应性：{4}）"
 
@@ -4511,9 +4710,6 @@ msgstr "现在就查看"
 
 #~ msgid "PATCH_PANGONIAN_TIDEPOOL"
 #~ msgstr "远古潮池"
-
-#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-#~ msgstr "远古半深海带"
 
 #~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 #~ msgstr "远古深海带"

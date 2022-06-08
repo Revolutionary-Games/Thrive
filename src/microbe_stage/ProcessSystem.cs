@@ -48,7 +48,8 @@ public class ProcessSystem
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
-        BiomeConditions biome, MembraneType membrane, WorldGenerationSettings? worldSettings = null, bool isPlayer = false)
+        BiomeConditions biome, MembraneType membrane, WorldGenerationSettings? worldSettings = null,
+        bool isPlayer = false)
     {
         var organellesList = organelles.ToList();
 

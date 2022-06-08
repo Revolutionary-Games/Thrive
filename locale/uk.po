@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-06 12:48+0700\n"
+"POT-Creation-Date: 2022-06-08 17:43+0100\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -291,12 +291,12 @@ msgid "ABILITIES"
 msgstr "Здібності"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2178
+#: ../src/microbe_stage/MicrobeStage.tscn:2177
 msgid "FIRE_TOXIN"
 msgstr "Вивести токсин"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2166
+#: ../src/microbe_stage/MicrobeStage.tscn:2165
 msgid "TOGGLE_ENGULF"
 msgstr "Перемкнути поглинання"
 
@@ -305,7 +305,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Утримуйте для показу меню пакету команд"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2189
+#: ../src/microbe_stage/MicrobeStage.tscn:2188
 msgid "TOGGLE_BINDING"
 msgstr "Перемкнути з'єднування"
 
@@ -314,7 +314,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Перемкнути роз'єднання"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2201
+#: ../src/microbe_stage/MicrobeStage.tscn:2200
 msgid "UNBIND_ALL"
 msgstr "Роз'єднати всіх"
 
@@ -605,36 +605,36 @@ msgid "ATP"
 msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1305
+#: ../src/microbe_stage/MicrobeStage.tscn:1304
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "AMMONIA"
 msgstr "Аміак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1357
+#: ../src/microbe_stage/MicrobeStage.tscn:1356
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1409
+#: ../src/microbe_stage/MicrobeStage.tscn:1408
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сірководень"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1253
+#: ../src/microbe_stage/MicrobeStage.tscn:1252
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1591
+#: ../src/microbe_stage/MicrobeStage.tscn:1590
 msgid "OXYTOXY_NT"
 msgstr "Окситоциновий нуклеотид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1461
+#: ../src/microbe_stage/MicrobeStage.tscn:1460
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "IRON"
 msgstr "Залізо"
@@ -696,112 +696,112 @@ msgstr "Кремнезій"
 msgid "PREDATORY_PILUS"
 msgstr "Хижі ворсинки"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:55
+#: ../simulation_parameters/microbe_stage/organelles.json:56
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:677
 msgid "RUSTICYANIN"
 msgstr "Заліокисні білки"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:90
+#: ../simulation_parameters/microbe_stage/organelles.json:92
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:774
 msgid "NITROGENASE"
 msgstr "Нітрогеназа"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:125
+#: ../simulation_parameters/microbe_stage/organelles.json:128
 msgid "PROTOPLASM"
 msgstr "Протоплазма"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:157
+#: ../simulation_parameters/microbe_stage/organelles.json:161
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:574
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Хемосинтезуючі білки"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:196
+#: ../simulation_parameters/microbe_stage/organelles.json:201
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:872
 msgid "OXYTOXISOME"
 msgstr "Окситоксисома"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:231
+#: ../simulation_parameters/microbe_stage/organelles.json:237
 msgid "THYLAKOIDS"
 msgstr "Тилакоїди"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:265
+#: ../simulation_parameters/microbe_stage/organelles.json:272
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:375
 msgid "METABOLOSOMES"
 msgstr "Метаболосоми"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:303
+#: ../simulation_parameters/microbe_stage/organelles.json:311
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1823
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Азотофіксуючі пластиди"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:342
+#: ../simulation_parameters/microbe_stage/organelles.json:351
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1738
 msgid "CHEMOPLAST"
 msgstr "Хемопласт"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:376
+#: ../simulation_parameters/microbe_stage/organelles.json:386
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:969
 msgid "FLAGELLUM"
 msgstr "Джгутик"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:405
+#: ../simulation_parameters/microbe_stage/organelles.json:416
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1922
 msgid "VACUOLE"
 msgstr "Вакуоля"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:442
+#: ../simulation_parameters/microbe_stage/organelles.json:454
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1452
 msgid "MITOCHONDRION"
 msgstr "Мітохондрія"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:478
+#: ../simulation_parameters/microbe_stage/organelles.json:491
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2020
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Токсинова\n"
 "вакуоля"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:509
+#: ../simulation_parameters/microbe_stage/organelles.json:523
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1271
 msgid "BINDING_AGENT"
 msgstr "З'єднувальний агент"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:551
+#: ../simulation_parameters/microbe_stage/organelles.json:566
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1537
 msgid "CHLOROPLAST"
 msgstr "Хлоропласт"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:585
+#: ../simulation_parameters/microbe_stage/organelles.json:601
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:276
 msgid "CYTOPLASM"
 msgstr "Цитоплазма"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:652
+#: ../simulation_parameters/microbe_stage/organelles.json:669
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1355
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:678
+#: ../simulation_parameters/microbe_stage/organelles.json:696
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1164
 msgid "CHEMORECEPTOR"
 msgstr "Хеморецептор"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:704
+#: ../simulation_parameters/microbe_stage/organelles.json:723
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2118
 msgid "SIGNALING_AGENT"
 msgstr "Сигнальний агент"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:727
+#: ../simulation_parameters/microbe_stage/organelles.json:747
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2217
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Біолюмісцентна вакуоля"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:750
+#: ../simulation_parameters/microbe_stage/organelles.json:771
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1622
 msgid "THERMOPLAST"
 msgstr "Термопласт"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:779
+#: ../simulation_parameters/microbe_stage/organelles.json:801
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1224
 msgid "CILIA"
 msgstr "Війки"
@@ -1041,22 +1041,22 @@ msgstr "Місце для органели"
 msgid "MP_COST"
 msgstr "{0} ОM"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:89
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
 #, fuzzy
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Завантаження мікробного редактору"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:227
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:196
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-ево не почалась"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:228
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус виконання:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:377
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:379
 #: ../src/general/EditorBase.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -1563,83 +1563,286 @@ msgstr "{0} концентрація зменшилась на {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Концентрація глюкози раптово впала!"
 
-#: ../src/general/MainMenu.cs:234
+#: ../src/general/MainMenu.cs:236
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ви увійшли як:{0}"
 
-#: ../src/general/MainMenu.tscn:178
+#: ../src/general/MainMenu.tscn:179
 msgid "NEW_GAME"
 msgstr "Нова гра"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Завантажити гру"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
+#: ../src/general/MainMenu.tscn:203 ../src/general/PauseMenu.tscn:214
 msgid "OPTIONS"
 msgstr "Налаштування"
 
-#: ../src/general/MainMenu.tscn:213
+#: ../src/general/MainMenu.tscn:214
 msgid "TOOLS"
 msgstr "Інструменти"
 
-#: ../src/general/MainMenu.tscn:224
+#: ../src/general/MainMenu.tscn:225
 msgid "VIEW_SOURCE_CODE"
 msgstr "Перегляд вихідного коду"
 
-#: ../src/general/MainMenu.tscn:235
+#: ../src/general/MainMenu.tscn:236
 msgid "EXTRAS"
 msgstr "Додаткове"
 
-#: ../src/general/MainMenu.tscn:246
+#: ../src/general/MainMenu.tscn:247
 msgid "CREDITS"
 msgstr "Титри"
 
-#: ../src/general/MainMenu.tscn:257
+#: ../src/general/MainMenu.tscn:258
 msgid "QUIT"
 msgstr "Вихід"
 
-#: ../src/general/MainMenu.tscn:277
+#: ../src/general/MainMenu.tscn:278
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Режим творчого мікробного редактор"
 
-#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
-#: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:254
+#: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:873
+#: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:254
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
 
-#: ../src/general/MainMenu.tscn:358
+#: ../src/general/MainMenu.tscn:359
 msgid "MODS"
 msgstr "Моди"
 
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:373
 msgid "ART_GALLERY"
 msgstr "Галерея"
 
-#: ../src/general/MainMenu.tscn:384
+#: ../src/general/MainMenu.tscn:385
 msgid "LICENSES"
 msgstr "Ліцензія"
 
-#: ../src/general/MainMenu.tscn:493
+#: ../src/general/MainMenu.tscn:497
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Режим попереджень"
 
-#: ../src/general/MainMenu.tscn:495
+#: ../src/general/MainMenu.tscn:499
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Ви використовуєте з Thrive задопомогою GLES2. Це неперевірено та може викликати проблеми. Спробуйте оновити свої відеодрайвери та/або використати графіку від Nvidia або AMD для запуску Trive."
 
-#: ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:503
 msgid "MOD_LOAD_ERRORS"
 msgstr "Помилка завантаження модифікації"
 
-#: ../src/general/MainMenu.tscn:500
+#: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Виникла помилка коли завантажувалися кілька модифікацій. Додаткова інформація міститься у журналах."
+
+#: ../src/general/NewGameSettings.tscn:112
+#: ../src/general/NewGameSettings.tscn:326
+msgid "DIFFICULTY_PRESET"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:126
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:340
+#: ../src/general/NewGameSettings.tscn:341
+msgid "DIFFICULTY_PRESET_NORMAL"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:341
+msgid "DIFFICULTY_PRESET_EASY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:341
+msgid "DIFFICULTY_PRESET_HARD"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:127
+#: ../src/general/NewGameSettings.tscn:341
+msgid "DIFFICULTY_PRESET_CUSTOM"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:147
+#: ../src/general/NewGameSettings.tscn:701
+msgid "LIFE_ORIGIN"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:154
+#: ../src/general/NewGameSettings.tscn:708
+#, fuzzy
+msgid "LIFE_ORIGIN_EXPLANATION"
+msgstr ""
+"Боязкі мікроби будуть триматися на відстані\n"
+"та взагалі частіше тікатимуть від хижаків.\n"
+"Хоробрі мікроби не бояться близьких хижаків,\n"
+"та ймовірно атакуватимуть у відповідь."
+
+#: ../src/general/NewGameSettings.tscn:169
+#: ../src/general/NewGameSettings.tscn:170
+#: ../src/general/NewGameSettings.tscn:723
+#: ../src/general/NewGameSettings.tscn:724
+msgid "LIFE_ORIGIN_VENTS"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:170
+#: ../src/general/NewGameSettings.tscn:724
+msgid "LIFE_ORIGIN_POND"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:170
+#: ../src/general/NewGameSettings.tscn:724
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:185
+#: ../src/general/NewGameSettings.tscn:739
+msgid "LAWK_ONLY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:192
+#: ../src/general/NewGameSettings.tscn:746
+#, fuzzy
+msgid "LAWK_ONLY_EXPLANATION"
+msgstr ""
+"Боязкі мікроби будуть триматися на відстані\n"
+"та взагалі частіше тікатимуть від хижаків.\n"
+"Хоробрі мікроби не бояться близьких хижаків,\n"
+"та ймовірно атакуватимуть у відповідь."
+
+#: ../src/general/NewGameSettings.tscn:203
+#: ../src/general/NewGameSettings.tscn:757
+msgid "PLANET_RANDOM_SEED"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:266
+msgid "DIFFICULTY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:276
+msgid "PLANET"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:286 ../src/general/OptionsMenu.tscn:179
+msgid "MISC"
+msgstr "Інше"
+
+#: ../src/general/NewGameSettings.tscn:368
+msgid "MUTATION_COST_MULTIPLIER"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:402
+#, fuzzy
+msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
+msgstr ""
+"Рухливі мікроби будуть більше плавати та безлаодно тинятися.\n"
+"Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
+
+#: ../src/general/NewGameSettings.tscn:419
+#, fuzzy
+msgid "COMPOUND_CLOUD_DENSITY"
+msgstr "Хмари сполук"
+
+#: ../src/general/NewGameSettings.tscn:453
+#, fuzzy
+msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
+msgstr ""
+"Упереджені мікроби будуть влаштовувати змагання за брили,\n"
+"та полювати за допомогою токсинів, якщо не вдасться поглинути здобич.\n"
+"Обережні мікроби старатимуться не наражатись на небезпеку через брили."
+
+#: ../src/general/NewGameSettings.tscn:470
+msgid "PLAYER_DEATH_POPULATION_PENALTY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:503
+#, fuzzy
+msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
+msgstr "Ця панель відображає числа, за якими передбачено авто-ево. Загальна енергії, яку ви може поглинути і вартість особини виду– визначають фінальну популяцію. Автоеволюція використовує спрощену модель реальності для обчислення продуктивності видів на основі енергії, яку ті здатні отримати. Для кожного джерела їжі показано хвеличину енергії, яку вид отримує від нього. Додатково загальна енергія доступна з цього джерела показується. Частка, яку види отримують базується на тому, яка величина пристосованості в порівнянні із загальною пристосованістю. Пристосованість– це величина, що показує на скільки добре вид засвоює джерело їжі."
+
+#: ../src/general/NewGameSettings.tscn:520
+msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:553
+#, fuzzy
+msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
+msgstr "Ця панель відображає числа, за якими передбачено авто-ево. Загальна енергії, яку ви може поглинути і вартість особини виду– визначають фінальну популяцію. Автоеволюція використовує спрощену модель реальності для обчислення продуктивності видів на основі енергії, яку ті здатні отримати. Для кожного джерела їжі показано хвеличину енергії, яку вид отримує від нього. Додатково загальна енергія доступна з цього джерела показується. Частка, яку види отримують базується на тому, яка величина пристосованості в порівнянні із загальною пристосованістю. Пристосованість– це величина, що показує на скільки добре вид засвоює джерело їжі."
+
+#: ../src/general/NewGameSettings.tscn:570
+#, fuzzy
+msgid "OSMOREGULATION_COST_MULTIPLIER"
+msgstr "Вартість осморегуляції"
+
+#: ../src/general/NewGameSettings.tscn:604
+#, fuzzy
+msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+msgstr "Вартість осморегуляції"
+
+#: ../src/general/NewGameSettings.tscn:615
+msgid "FREE_GLUCOSE_CLOUD"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:622
+#, fuzzy
+msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
+msgstr ""
+"Зосереджені мікроби будуть шукати брили на більшій відстані\n"
+"та можуть бути вимогливішими щодо брил.\n"
+"Розсіяні мікроби швидче відволікатимуться на нові цілі."
+
+#: ../src/general/NewGameSettings.tscn:658
+#, fuzzy
+msgid "PATCH_MAP_TYPE"
+msgstr "Мапа Ділянок"
+
+#: ../src/general/NewGameSettings.tscn:665
+#, fuzzy
+msgid "PATCH_MAP_TYPE_EXPLANATION"
+msgstr ""
+"Рухливі мікроби будуть більше плавати та безлаодно тинятися.\n"
+"Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
+
+#: ../src/general/NewGameSettings.tscn:680
+#: ../src/general/NewGameSettings.tscn:681
+msgid "PATCH_MAP_TYPE_PROCEDURAL"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:681
+#, fuzzy
+msgid "PATCH_MAP_TYPE_CLASSIC"
+msgstr "Пангонійське придоння"
+
+#: ../src/general/NewGameSettings.tscn:823
+msgid "PLANET_GENERATION_TEASER"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:855
+#, fuzzy
+msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+msgstr "Перейти до багатоклітиності ({0}/{1})"
+
+#: ../src/general/NewGameSettings.tscn:862
+msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:891
+msgid "ADVANCED_VIEW"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:902
+msgid "BASIC_VIEW"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:911
+#, fuzzy
+msgid "CONFIRM"
+msgstr "Підтвердити вихід"
 
 #: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
 msgid "AUTO_RESOLUTION"
@@ -1676,10 +1879,6 @@ msgstr "Продуктивність"
 #: ../src/general/OptionsMenu.tscn:168
 msgid "INPUTS"
 msgstr "Керування"
-
-#: ../src/general/OptionsMenu.tscn:179
-msgid "MISC"
-msgstr "Інше"
 
 #: ../src/general/OptionsMenu.tscn:211
 msgid "VSYNC"
@@ -2339,7 +2538,7 @@ msgid "RAW"
 msgstr "Необроблений"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2180
 msgid "NO_DATA_TO_SHOW"
 msgstr "Немає даних для показу"
 
@@ -2947,60 +3146,60 @@ msgid "CATEGORY_VERY_LITTLE"
 msgstr "дуже мало"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1284
-#: ../src/microbe_stage/MicrobeStage.tscn:1792
+#: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr "Перейти до багатоклітиності ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1320
-#: ../src/microbe_stage/MicrobeStage.tscn:1803
+#: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стати макроскопічним ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:765
+#: ../src/microbe_stage/MicrobeStage.cs:777
 msgid "PLAYER_REPRODUCED"
 msgstr "гравець розмножився"
 
-#: ../src/microbe_stage/MicrobeStage.cs:779
+#: ../src/microbe_stage/MicrobeStage.cs:791
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Неможливо використати спавн ворога тому що в цій ділянці немає ворожих видів"
 
-#: ../src/microbe_stage/MicrobeStage.cs:802
+#: ../src/microbe_stage/MicrobeStage.cs:815
 msgid "PLAYER_DIED"
 msgstr "гравець помер"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:522
+#: ../src/microbe_stage/MicrobeStage.tscn:521
 msgid "AT_CURSOR"
 msgstr "Курсорі на:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:548
+#: ../src/microbe_stage/MicrobeStage.tscn:547
 msgid "NOTHING_HERE"
 msgstr "Тут нічого"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:573
+#: ../src/microbe_stage/MicrobeStage.tscn:572
 msgid "COMPOUNDS_COLON"
 msgstr "Сполуки:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:613
+#: ../src/microbe_stage/MicrobeStage.tscn:612
 msgid "SPECIES_COLON"
 msgstr "Види:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:693
+#: ../src/microbe_stage/MicrobeStage.tscn:692
 msgid "ENVIRONMENT"
 msgstr "Оточення"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:961
+#: ../src/microbe_stage/MicrobeStage.tscn:960
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1017
+#: ../src/microbe_stage/MicrobeStage.tscn:1016
 msgid "LIGHT"
 msgstr "Світло"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1072
+#: ../src/microbe_stage/MicrobeStage.tscn:1071
 msgid "PRESSURE_SHORT"
 msgstr "Тиск."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1155
+#: ../src/microbe_stage/MicrobeStage.tscn:1154
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
@@ -3008,51 +3207,51 @@ msgstr "Тиск."
 msgid "COMPOUNDS"
 msgstr "Сполуки"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1531
+#: ../src/microbe_stage/MicrobeStage.tscn:1530
 msgid "AGENTS"
 msgstr "Агенти"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1629
+#: ../src/microbe_stage/MicrobeStage.tscn:1628
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Меню паузи"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1647
+#: ../src/microbe_stage/MicrobeStage.tscn:1646
 msgid "PAUSE_TOOLTIP"
 msgstr "Пауза"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1660
+#: ../src/microbe_stage/MicrobeStage.tscn:1659
 msgid "RESUME_TOOLTIP"
 msgstr "Продовжити"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1673
+#: ../src/microbe_stage/MicrobeStage.tscn:1672
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати/ приховати оточення та сполуки"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1688
+#: ../src/microbe_stage/MicrobeStage.tscn:1687
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати /приховати клітинні процеси"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1725
+#: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Допомога"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1737
+#: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Суїцид"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1788
+#: ../src/microbe_stage/MicrobeStage.tscn:1787
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Перейдіть до наступного сходинки гри (багатоклітиності). Доступний при достатньому розмірі колонії."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1823
+#: ../src/microbe_stage/MicrobeStage.tscn:1822
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦІЯ:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2121
+#: ../src/microbe_stage/MicrobeStage.tscn:2120
 msgid "PAUSED"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:187
+#: ../src/microbe_stage/PatchMapGenerator.cs:214
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -3104,62 +3303,62 @@ msgstr "Розсіяні"
 msgid "FOCUSED"
 msgstr "Зосереджені"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
 msgid "ATP_PRODUCTION"
 msgstr "Продукування АТф"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "Продукування АТФ вкрай мала!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:424
 msgid "OSMOREGULATION"
 msgstr "Осморегуляція"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:430
 msgid "BASE_MOVEMENT"
 msgstr "Базова швидкість"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:406
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:442
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:520
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:522
 msgid "CELL_TYPE_NAME"
 msgstr "Назва типу клітини"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2016
 msgid "FAILED"
 msgstr "Провалено"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2022
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
 msgid "N_A"
 msgstr "Н/Є"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2140
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2148
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергія в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2144
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Загальна зібрана енергія становить{0} з індивідуальною вартістю {1}, врезультаті чого– некоригована популяція з {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
 msgid "ENERGY_SOURCES"
 msgstr "Джерела енергії:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2157
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} енергії: {1} (пристосованість: {2}) загальної доступної енергії: {3}(загальна пристосованість:{4})"
 
@@ -4537,9 +4736,6 @@ msgstr "Переглянути зараз"
 
 #~ msgid "PATCH_PANGONIAN_TIDEPOOL"
 #~ msgstr "Пангонійський припливний басейн"
-
-#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-#~ msgstr "Пангонійське придоння"
 
 #~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 #~ msgstr "Пангонійське глибокомор'я"

@@ -285,13 +285,13 @@ public partial class CellEditorComponent
         }
     }
 
-    private void UpdateOrganelleLAWKSettings()
+    private void UpdateOrganelleLawkSettings()
     {
         // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
         foreach (var organelle in allPartSelectionElements.Keys)
         {
             var control = allPartSelectionElements[organelle];
-            control.Visible = !Editor.CurrentGame.WorldSettings.LAWK || organelle.LAWK;
+            control.Visible = !Editor.CurrentGame.WorldSettings.Lawk || organelle.Lawk;
         }
     }
 
@@ -308,8 +308,6 @@ public partial class CellEditorComponent
             var control = membraneSelectionElements[membrane];
             control.MPCost = Math.Min((int)(control.MPCost * CostMultiplier), 100);
         }
-
-
     }
 
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
@@ -351,7 +349,8 @@ public partial class CellEditorComponent
         if (rigidityTooltip != null)
         {
             rigidityTooltip.EditorCostFactor = editorCostFactor;
-            rigidityTooltip.MutationPointCost = Math.Min((int)(rigidityTooltip.MutationPointCost * CostMultiplier), 100);
+            rigidityTooltip.MutationPointCost =
+                Math.Min((int)(rigidityTooltip.MutationPointCost * CostMultiplier), 100);
         }
     }
 

@@ -1,4 +1,4 @@
-public enum DifficultyPreset
+﻿public enum DifficultyPreset
 {
     Easy,
     Normal,

@@ -811,7 +811,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // Decrease the population by the constant for the player dying
         GameWorld.AlterSpeciesPopulation(
             GameWorld.PlayerSpecies,
-            CurrentGame == null ? Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT : -CurrentGame.WorldSettings.PlayerDeathPopulationPenalty,
+            CurrentGame == null ?
+                Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT :
+                -CurrentGame.WorldSettings.PlayerDeathPopulationPenalty,
             TranslationServer.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
 

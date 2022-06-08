@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Globalization;
 using Godot;
 
 public class NewGameSettings : ControlWithInput
@@ -59,13 +60,13 @@ public class NewGameSettings : ControlWithInput
 
     [Export]
     public NodePath PlayerDeathPopulationPenaltyReadoutPath = null!;
-    
+
     [Export]
     public NodePath GlucoseDecayRatePath = null!;
 
     [Export]
     public NodePath GlucoseDecayRateReadoutPath = null!;
-    
+
     [Export]
     public NodePath OsmoregulationMultiplierPath = null!;
 
@@ -85,10 +86,10 @@ public class NewGameSettings : ControlWithInput
     public NodePath LifeOriginButtonAdvancedPath = null!;
 
     [Export]
-    public NodePath LAWKButtonPath = null!;
+    public NodePath LawkButtonPath = null!;
 
     [Export]
-    public NodePath LAWKAdvancedButtonPath = null!;
+    public NodePath LawkAdvancedButtonPath = null!;
 
     [Export]
     public NodePath GameSeedPath = null!;
@@ -138,12 +139,19 @@ public class NewGameSettings : ControlWithInput
 
     private SelectedOptionsTab selectedOptionsTab;
 
+    private WorldGenerationSettings settings = new();
+
+    private bool isGameSeedValid;
+
     [Signal]
     public delegate void OnNewGameSettingsClosed();
 
-    private WorldGenerationSettings settings = new WorldGenerationSettings();
-
-    private bool isGameSeedValid;
+    private enum SelectedOptionsTab
+    {
+        Difficulty,
+        Planet,
+        Miscellaneous,
+    }
 
     public override void _Ready()
     {
@@ -175,8 +183,8 @@ public class NewGameSettings : ControlWithInput
         mapTypeButton = GetNode<OptionButton>(MapTypeButtonPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
-        lawkButton = GetNode<Button>(LAWKButtonPath);
-        lawkAdvancedButton = GetNode<Button>(LAWKAdvancedButtonPath);
+        lawkButton = GetNode<Button>(LawkButtonPath);
+        lawkAdvancedButton = GetNode<Button>(LawkAdvancedButtonPath);
         gameSeed = GetNode<LineEdit>(GameSeedPath);
         gameSeedAdvanced = GetNode<LineEdit>(GameSeedAdvancedPath);
         includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
@@ -197,21 +205,6 @@ public class NewGameSettings : ControlWithInput
         gameSeed.Text = seed;
         gameSeedAdvanced.Text = seed;
         SetSeed(seed);
-    }
-
-    private string GenerateNewRandomSeed()
-    {
-        var random = new Random();
-        return random.Next().ToString();
-    }
-
-    private void SetSeed(string text)
-    {
-        int seed;
-        isGameSeedValid = int.TryParse(text, out seed) && seed > 0;
-        ReportValidityOfGameSeed(isGameSeedValid);
-        if (isGameSeedValid)
-            settings.Seed = seed;
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -256,11 +249,18 @@ public class NewGameSettings : ControlWithInput
         }
     }
 
-    private enum SelectedOptionsTab
+    private string GenerateNewRandomSeed()
     {
-        Difficulty,
-        Planet,
-        Miscellaneous,
+        var random = new Random();
+        return random.Next().ToString();
+    }
+
+    private void SetSeed(string text)
+    {
+        isGameSeedValid = int.TryParse(text, out int seed) && seed > 0;
+        ReportValidityOfGameSeed(isGameSeedValid);
+        if (isGameSeedValid)
+            settings.Seed = seed;
     }
 
     /// <summary>
@@ -359,7 +359,7 @@ public class NewGameSettings : ControlWithInput
 
         settings.Difficulty = DifficultyPresetIndexToValue(difficultyPresetButton.Selected);
         settings.Origin = LifeOriginIndexToValue(lifeOriginButton.Selected);
-        settings.LAWK = lawkButton.Pressed;
+        settings.Lawk = lawkButton.Pressed;
         SetSeed(gameSeed.Text);
 
         settings.MPMultiplier = mpMultiplier.Value;
@@ -447,18 +447,25 @@ public class NewGameSettings : ControlWithInput
 
             if (Math.Abs(mpMultiplier.Value - WorldGenerationSettings.GetMPMultiplier(preset)) > MathUtils.EPSILON)
                 continue;
-            
-            if (Math.Abs(compoundDensity.Value - WorldGenerationSettings.GetCompoundDensity(preset)) > MathUtils.EPSILON)
+
+            if (Math.Abs(compoundDensity.Value - WorldGenerationSettings.GetCompoundDensity(preset)) >
+                MathUtils.EPSILON)
                 continue;
 
-            if ((int)playerDeathPopulationPenalty.Value != WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset))
+            if ((int)playerDeathPopulationPenalty.Value !=
+                WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset))
+            {
                 continue;
+            }
 
             if ((int)glucoseDecayRate.Value != WorldGenerationSettings.GetGlucoseDecay(preset) * 100)
                 continue;
 
-            if (Math.Abs(osmoregulationMultiplier.Value - WorldGenerationSettings.GetOsmoregulationMultiplier(preset)) > MathUtils.EPSILON)
+            if (Math.Abs(osmoregulationMultiplier.Value -
+                    WorldGenerationSettings.GetOsmoregulationMultiplier(preset)) > MathUtils.EPSILON)
+            {
                 continue;
+            }
 
             if (freeGlucoseCloudButton.Pressed != WorldGenerationSettings.GetFreeGlucoseCloud(preset))
                 continue;
@@ -476,7 +483,7 @@ public class NewGameSettings : ControlWithInput
 
     private void OnMPMultiplierValueChanged(double amount)
     {
-        mpMultiplierReadout.Text = amount.ToString();
+        mpMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.MPMultiplier = amount;
 
         UpdateDifficultyPreset();
@@ -484,7 +491,7 @@ public class NewGameSettings : ControlWithInput
 
     private void OnCompoundDensityValueChanged(double amount)
     {
-        compoundDensityReadout.Text = amount.ToString();
+        compoundDensityReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.CompoundDensity = amount;
 
         UpdateDifficultyPreset();
@@ -500,7 +507,9 @@ public class NewGameSettings : ControlWithInput
 
     private void OnGlucoseDecayRateValueChanged(double percentage)
     {
-        glucoseDecayRateReadout.Text = percentage.ToString() + "%";
+        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+        glucoseDecayRateReadout.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
+            percentage);
         settings.GlucoseDecay = percentage * 0.01;
 
         UpdateDifficultyPreset();
@@ -508,7 +517,7 @@ public class NewGameSettings : ControlWithInput
 
     private void OnOsmoregulationMultiplierValueChanged(double amount)
     {
-        osmoregulationMultiplierReadout.Text = amount.ToString();
+        osmoregulationMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.OsmoregulationMultiplier = amount;
 
         UpdateDifficultyPreset();
@@ -565,7 +574,7 @@ public class NewGameSettings : ControlWithInput
         lawkButton.Pressed = pressed;
         lawkAdvancedButton.Pressed = pressed;
 
-        settings.LAWK = lawkButton.Pressed;
+        settings.Lawk = lawkButton.Pressed;
     }
 
     private void OnGameSeedChangedFromBasic(string text)

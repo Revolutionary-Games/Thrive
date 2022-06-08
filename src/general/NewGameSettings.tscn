@@ -55,8 +55,8 @@ FreeGlucoseCloudButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOpt
 MapTypeButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/MapType")
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin")
 LifeOriginButtonAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced")
-LAWKButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK")
-LAWKAdvancedButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer/LAWKAdvanced")
+LawkButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK")
+LawkAdvancedButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer/LAWKAdvanced")
 GameSeedPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
 GameSeedAdvancedPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeedAdvanced")
 IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular")
@@ -109,22 +109,22 @@ margin_bottom = 25.0
 margin_right = 250.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 250, 0 )
-text = "Difficulty preset"
+text = "DIFFICULTY_PRESET"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer"]
 margin_left = 254.0
-margin_right = 314.0
+margin_right = 280.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer"]
-margin_left = 318.0
+margin_left = 284.0
 margin_right = 518.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
-text = "Normal"
-items = [ "Easy", null, false, 0, null, "Normal", null, false, 1, null, "Hard", null, false, 2, null, "Custom", null, false, 3, null ]
+text = "DIFFICULTY_PRESET_NORMAL"
+items = [ "DIFFICULTY_PRESET_EASY", null, false, 0, null, "DIFFICULTY_PRESET_NORMAL", null, false, 1, null, "DIFFICULTY_PRESET_HARD", null, false, 2, null, "DIFFICULTY_PRESET_CUSTOM", null, false, 3, null ]
 selected = 1
 __meta__ = {
 "_editor_description_": ""
@@ -137,24 +137,24 @@ margin_bottom = 80.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
-margin_right = 109.0
+margin_right = 173.0
 margin_bottom = 45.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_right = 109.0
+margin_right = 173.0
 margin_bottom = 25.0
 mouse_filter = 0
-text = "Life origins"
+text = "LIFE_ORIGIN"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 29.0
-margin_right = 109.0
+margin_right = 173.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
-text = "(starting location)"
+text = "LIFE_ORIGIN_EXPLANATION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
-margin_left = 113.0
+margin_left = 177.0
 margin_right = 314.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
@@ -166,8 +166,8 @@ margin_right = 518.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
-text = "Hydrothermal vents"
-items = [ "Hydrothermal vents", null, false, 0, null, "Warm pond", null, false, 1, null, "Panspermia (random)", null, false, 2, null ]
+text = "LIFE_ORIGIN_VENTS"
+items = [ "LIFE_ORIGIN_VENTS", null, false, 0, null, "LIFE_ORIGIN_POND", null, false, 1, null, "LIFE_ORIGIN_PANSPERMIA", null, false, 2, null ]
 selected = 0
 __meta__ = {
 "_editor_description_": ""
@@ -179,17 +179,17 @@ margin_right = 518.0
 margin_bottom = 135.0
 
 [node name="LAWK" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2" instance=ExtResource( 4 )]
-margin_right = 125.0
+margin_right = 135.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
-text = "LAWK only"
+text = "LAWK_ONLY"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2"]
 margin_top = 29.0
 margin_right = 518.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
-text = "(restrict parts and abilities to only life as we know it)"
+text = "LAWK_ONLY_EXPLANATION"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 margin_top = 145.0
@@ -198,12 +198,12 @@ margin_bottom = 176.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3"]
 margin_top = 3.0
-margin_right = 203.0
+margin_right = 229.0
 margin_bottom = 28.0
-text = "Planet random seed"
+text = "PLANET_RANDOM_SEED"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3"]
-margin_left = 207.0
+margin_left = 233.0
 margin_right = 314.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
@@ -245,8 +245,9 @@ __meta__ = {
 
 [node name="TabButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
-margin_right = 650.0
-margin_bottom = 35.0
+margin_top = 213.0
+margin_right = 550.0
+margin_bottom = 248.0
 size_flags_horizontal = 3
 alignment = 1
 __meta__ = {
@@ -254,35 +255,35 @@ __meta__ = {
 }
 
 [node name="DifficultyButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 126.0
-margin_right = 256.0
+margin_left = 76.0
+margin_right = 206.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
 pressed = true
 action_mode = 0
 group = SubResource( 5 )
-text = "Difficulty"
+text = "DIFFICULTY"
 
 [node name="PlanetButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 260.0
-margin_right = 390.0
+margin_left = 210.0
+margin_right = 340.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 5 )
-text = "Planet"
+text = "PLANET"
 
 [node name="MiscButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 394.0
-margin_right = 524.0
+margin_left = 344.0
+margin_right = 474.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 5 )
-text = "Misc"
+text = "MISC"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
@@ -322,22 +323,22 @@ margin_bottom = 25.0
 margin_right = 250.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 250, 0 )
-text = "Difficulty preset"
+text = "DIFFICULTY_PRESET"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer6/HBoxContainer"]
 margin_left = 254.0
-margin_right = 414.0
+margin_right = 380.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer6/HBoxContainer"]
-margin_left = 418.0
+margin_left = 384.0
 margin_right = 618.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
-text = "Normal"
-items = [ "Easy", null, false, 0, null, "Normal", null, false, 1, null, "Hard", null, false, 2, null, "Custom", null, false, 3, null ]
+text = "DIFFICULTY_PRESET_NORMAL"
+items = [ "DIFFICULTY_PRESET_EASY", null, false, 0, null, "DIFFICULTY_PRESET_NORMAL", null, false, 1, null, "DIFFICULTY_PRESET_HARD", null, false, 2, null, "DIFFICULTY_PRESET_CUSTOM", null, false, 3, null ]
 selected = 1
 __meta__ = {
 "_editor_description_": ""
@@ -361,20 +362,20 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_top = 3.0
-margin_right = 250.0
+margin_right = 285.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-text = "Mutation cost multiplier"
+text = "MUTATION_COST_MULTIPLIER"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 254.0
-margin_right = 404.0
+margin_left = 289.0
+margin_right = 414.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 6 )
 
 [node name="MPMultiplier" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 408.0
+margin_left = 418.0
 margin_right = 558.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 140, 0 )
@@ -398,7 +399,7 @@ margin_top = 35.0
 margin_right = 618.0
 margin_bottom = 51.0
 custom_fonts/font = ExtResource( 3 )
-text = "(cost of organelles, membranes and other items in the editor)"
+text = "MUTATION_COST_MULTIPLIER_EXPLANATION"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
 margin_top = 116.0
@@ -412,20 +413,20 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_top = 3.0
-margin_right = 253.0
+margin_right = 284.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-text = "Compound cloud density"
+text = "COMPOUND_CLOUD_DENSITY"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_left = 257.0
-margin_right = 405.0
+margin_left = 288.0
+margin_right = 414.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 6 )
 
 [node name="CompoundDensity" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_left = 409.0
+margin_left = 418.0
 margin_right = 558.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 140, 0 )
@@ -449,7 +450,7 @@ margin_top = 35.0
 margin_right = 618.0
 margin_bottom = 51.0
 custom_fonts/font = ExtResource( 3 )
-text = "(density of compound clouds in the environment)"
+text = "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
 margin_top = 177.0
@@ -463,13 +464,13 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer3/HBoxContainer"]
 margin_top = 3.0
-margin_right = 330.0
+margin_right = 375.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-text = "Player death population penalty"
+text = "PLAYER_DEATH_POPULATION_PENALTY"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer3/HBoxContainer"]
-margin_left = 334.0
+margin_left = 379.0
 margin_right = 414.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
@@ -499,7 +500,7 @@ margin_top = 35.0
 margin_right = 618.0
 margin_bottom = 51.0
 custom_fonts/font = ExtResource( 3 )
-text = "(player's species population loss when the player dies)"
+text = "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
 margin_top = 238.0
@@ -513,13 +514,13 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4/HBoxContainer"]
 margin_top = 3.0
-margin_right = 328.0
+margin_right = 386.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-text = "Environmental glucose retention"
+text = "ENVIRONMENTAL_GLUCOSE_RETENTION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4/HBoxContainer"]
-margin_left = 332.0
+margin_left = 390.0
 margin_right = 414.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
@@ -549,7 +550,7 @@ margin_top = 35.0
 margin_right = 618.0
 margin_bottom = 51.0
 custom_fonts/font = ExtResource( 3 )
-text = "(how much glucose the environment retains each generation)"
+text = "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 
 [node name="VBoxContainer7" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
 margin_top = 299.0
@@ -563,13 +564,13 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7/HBoxContainer"]
 margin_top = 3.0
-margin_right = 312.0
+margin_right = 364.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
-text = "Osmoregulation cost multiplier"
+text = "OSMOREGULATION_COST_MULTIPLIER"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7/HBoxContainer"]
-margin_left = 316.0
+margin_left = 368.0
 margin_right = 414.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
@@ -600,7 +601,7 @@ margin_top = 35.0
 margin_right = 618.0
 margin_bottom = 51.0
 custom_fonts/font = ExtResource( 3 )
-text = "(cost of player cell osmoregulation)"
+text = "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
 margin_top = 360.0
@@ -608,17 +609,17 @@ margin_right = 618.0
 margin_bottom = 405.0
 
 [node name="FreeGlucoseCloud" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer5" instance=ExtResource( 4 )]
-margin_right = 415.0
+margin_right = 247.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
-text = "Free glucose cloud when leaving editor"
+text = "FREE_GLUCOSE_CLOUD"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer5"]
 margin_top = 29.0
 margin_right = 618.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
-text = "(start with a glucose cloud nearby each generation)"
+text = "FREE_GLUCOSE_CLOUD_EXPLANATION"
 
 [node name="Planet" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
 visible = false
@@ -647,37 +648,37 @@ margin_bottom = 45.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer"]
-margin_right = 346.0
+margin_right = 211.0
 margin_bottom = 45.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 346.0
+margin_right = 211.0
 margin_bottom = 25.0
 mouse_filter = 0
-text = "Patch map type"
+text = "PATCH_MAP_TYPE"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 29.0
-margin_right = 346.0
+margin_right = 211.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
-text = "(generate a patch map procedurally or use the classic layout)"
+text = "PATCH_MAP_TYPE_EXPLANATION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer"]
-margin_left = 350.0
-margin_right = 414.0
+margin_left = 215.0
+margin_right = 356.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 3 )
 
 [node name="MapType" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer"]
-margin_left = 418.0
+margin_left = 360.0
 margin_right = 618.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
-text = "Procedural"
-items = [ "Procedural", null, false, 0, null, "Classic", null, false, 1, null ]
+text = "PATCH_MAP_TYPE_PROCEDURAL"
+items = [ "PATCH_MAP_TYPE_PROCEDURAL", null, false, 0, null, "PATCH_MAP_TYPE_CLASSIC", null, false, 1, null ]
 selected = 0
 __meta__ = {
 "_editor_description_": ""
@@ -690,24 +691,24 @@ margin_bottom = 100.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2"]
-margin_right = 109.0
+margin_right = 173.0
 margin_bottom = 45.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_right = 109.0
+margin_right = 173.0
 margin_bottom = 25.0
 mouse_filter = 0
-text = "Life origins"
+text = "LIFE_ORIGIN"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 29.0
-margin_right = 109.0
+margin_right = 173.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
-text = "(starting location)"
+text = "LIFE_ORIGIN_EXPLANATION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2"]
-margin_left = 113.0
+margin_left = 177.0
 margin_right = 414.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
@@ -719,8 +720,8 @@ margin_right = 618.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
-text = "Hydrothermal vents"
-items = [ "Hydrothermal vents", null, false, 0, null, "Warm pond", null, false, 1, null, "Panspermia (random)", null, false, 2, null ]
+text = "LIFE_ORIGIN_VENTS"
+items = [ "LIFE_ORIGIN_VENTS", null, false, 0, null, "LIFE_ORIGIN_POND", null, false, 1, null, "LIFE_ORIGIN_PANSPERMIA", null, false, 2, null ]
 selected = 0
 __meta__ = {
 "_editor_description_": ""
@@ -732,17 +733,17 @@ margin_right = 618.0
 margin_bottom = 155.0
 
 [node name="LAWKAdvanced" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer" instance=ExtResource( 4 )]
-margin_right = 125.0
+margin_right = 135.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
-text = "LAWK only"
+text = "LAWK_ONLY"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer"]
 margin_top = 29.0
 margin_right = 618.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
-text = "(restrict parts and abilities to only life as we know it)"
+text = "LAWK_ONLY_EXPLANATION"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
 margin_top = 165.0
@@ -751,12 +752,12 @@ margin_bottom = 196.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3"]
 margin_top = 3.0
-margin_right = 203.0
+margin_right = 229.0
 margin_bottom = 28.0
-text = "Planet random seed"
+text = "PLANET_RANDOM_SEED"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3"]
-margin_left = 207.0
+margin_left = 233.0
 margin_right = 414.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
@@ -813,13 +814,13 @@ expand = true
 stretch_mode = 6
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/CenterContainer"]
-margin_left = 36.0
+margin_left = 63.0
 margin_top = 154.0
-margin_right = 582.0
+margin_right = 555.0
 margin_bottom = 195.0
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 9 )
-text = "Planet generation coming soon!"
+text = "PLANET_GENERATION_TEASER"
 
 [node name="Misc" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
 visible = false
@@ -847,18 +848,18 @@ margin_right = 618.0
 margin_bottom = 45.0
 
 [node name="IncludeMulticellular" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2" instance=ExtResource( 4 )]
-margin_right = 400.0
+margin_right = 394.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
 pressed = true
-text = "Include Multicellular Stage prototype"
+text = "INCLUDE_MULTICELLULAR_PROTOTYPE"
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2"]
 margin_top = 29.0
 margin_right = 618.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
-text = "(features such as saving and loading will be unavailable once you reach the next stage)"
+text = "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 213.0
@@ -869,25 +870,25 @@ margin_bottom = 248.0
 margin_right = 100.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
-text = "Back"
+text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 104.0
-margin_right = 298.0
+margin_right = 270.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 1 )
 
 [node name="Advanced" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 302.0
-margin_right = 459.0
+margin_left = 274.0
+margin_right = 449.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 focus_mode = 0
-text = "Advanced view"
+text = "ADVANCED_VIEW"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -898,16 +899,16 @@ margin_left = 346.0
 margin_right = 459.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
-text = "Basic view"
+text = "BASIC_VIEW"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Confirm" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 463.0
+margin_left = 453.0
 margin_right = 550.0
 margin_bottom = 35.0
-text = "Confirm"
+text = "CONFIRM"
 __meta__ = {
 "_edit_use_anchors_": false
 }
