@@ -8,14 +8,15 @@ using Godot;
 [SuppressMessage("ReSharper", "StringLiteralTypo", Justification = "Patch names aren't proper words")]
 public static class PatchMapGenerator
 {
+    public static WorldGenerationSettings WorldSettings = new WorldGenerationSettings();
+
     public static PatchMap Generate(WorldGenerationSettings settings, Species defaultSpecies, Random? random = null)
     {
-        // TODO: implement actual generation based on settings
-        _ = settings;
+        WorldSettings = settings;
 
         var map = new PatchMap();
 
-        random ??= new Random();
+        random ??= new Random(WorldSettings.Seed);
 
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
         var areaName = nameGenerator.Next(random);
@@ -31,7 +32,6 @@ public static class PatchMapGenerator
             },
             ScreenCoordinates = new Vector2(100, 400),
         };
-        vents.AddSpecies(defaultSpecies);
         map.AddPatch(vents);
 
         var mesopelagic = new Patch(GetPatchLocalizedName(areaName, "MESOPELAGIC"), 1,
@@ -154,6 +154,24 @@ public static class PatchMapGenerator
         };
         map.AddPatch(seafloor);
 
+        // Starting patch based on new game settings
+        switch (WorldSettings.Origin)
+        {
+            case WorldGenerationSettings.LifeOrigin.Vent:
+                vents.AddSpecies(defaultSpecies);
+                map.CurrentPatch = vents;
+                break;
+            case WorldGenerationSettings.LifeOrigin.Pond:
+                tidepool.AddSpecies(defaultSpecies);
+                map.CurrentPatch = tidepool;
+                break;
+            case WorldGenerationSettings.LifeOrigin.Panspermia:
+                var startingPatch = map.Patches.Random(random);
+                startingPatch!.AddSpecies(defaultSpecies);
+                map.CurrentPatch = startingPatch;
+                break;
+        }
+
         // Connections
         LinkPatches(vents, seafloor);
         LinkPatches(seafloor, bathypelagic);
@@ -167,7 +185,6 @@ public static class PatchMapGenerator
         LinkPatches(epipelagic, coast);
         LinkPatches(coast, estuary);
 
-        map.CurrentPatch = vents;
         return map;
     }
 

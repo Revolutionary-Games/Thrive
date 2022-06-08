@@ -58,17 +58,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 315.0
-margin_top = 20.0
-margin_right = 965.0
-margin_bottom = 700.0
+margin_left = 365.0
+margin_top = 236.0
+margin_right = 915.0
+margin_bottom = 484.0
 custom_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BasicOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
-visible = false
 margin_right = 550.0
 margin_bottom = 208.0
 rect_min_size = Vector2( 550, 200 )
@@ -236,7 +235,8 @@ __meta__ = {
 }
 
 [node name="TabButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_right = 650.0
+visible = false
+margin_right = 398.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 alignment = 1
@@ -245,8 +245,7 @@ __meta__ = {
 }
 
 [node name="DifficultyButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 126.0
-margin_right = 256.0
+margin_right = 130.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
@@ -256,8 +255,8 @@ group = SubResource( 5 )
 text = "Difficulty"
 
 [node name="PlanetButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 260.0
-margin_right = 390.0
+margin_left = 134.0
+margin_right = 264.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
@@ -266,8 +265,8 @@ group = SubResource( 5 )
 text = "Planet"
 
 [node name="MiscButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 394.0
-margin_right = 524.0
+margin_left = 268.0
+margin_right = 398.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
@@ -276,6 +275,7 @@ group = SubResource( 5 )
 text = "Misc"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
 margin_top = 40.0
 margin_right = 650.0
 margin_bottom = 640.0
@@ -493,7 +493,7 @@ margin_top = 199.0
 margin_right = 387.0
 margin_bottom = 224.0
 size_flags_horizontal = 0
-text = "Free glucose cloud on leaving editor"
+text = "Free glucose cloud when leaving editor"
 
 [node name="Planet" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
 visible = false
@@ -538,9 +538,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 645.0
-margin_right = 650.0
-margin_bottom = 680.0
+margin_top = 213.0
+margin_right = 550.0
+margin_bottom = 248.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_right = 100.0
@@ -553,14 +553,14 @@ __meta__ = {
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 104.0
-margin_right = 398.0
+margin_right = 298.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 1 )
 
 [node name="Advanced" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 402.0
-margin_right = 559.0
+margin_left = 302.0
+margin_right = 459.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 focus_mode = 0
@@ -581,8 +581,8 @@ __meta__ = {
 }
 
 [node name="Confirm" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 563.0
-margin_right = 650.0
+margin_left = 463.0
+margin_right = 550.0
 margin_bottom = 35.0
 text = "Confirm"
 __meta__ = {
