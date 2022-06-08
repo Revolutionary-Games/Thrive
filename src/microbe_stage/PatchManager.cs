@@ -121,7 +121,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         foreach (var entry in biome.Chunks)
         {
-            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
+            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
@@ -139,7 +139,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         foreach (var entry in biome.Compounds)
         {
-            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, entry.Value.Density,
+            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Key.InternalName,
