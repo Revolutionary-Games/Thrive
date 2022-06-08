@@ -49,6 +49,12 @@ public class NewGameSettings : ControlWithInput
     public NodePath MPMultiplierReadoutPath = null!;
 
     [Export]
+    public NodePath CompoundDensityPath = null!;
+
+    [Export]
+    public NodePath CompoundDensityReadoutPath = null!;
+
+    [Export]
     public NodePath LifeOriginButtonPath = null!;
 
     [Export]
@@ -75,6 +81,8 @@ public class NewGameSettings : ControlWithInput
     private OptionButton difficultyPresetAdvancedButton = null!;
     private HSlider mpMultiplier = null!;
     private LineEdit mpMultiplierReadout = null!;
+    private HSlider compoundDensity = null!;
+    private LineEdit compoundDensityReadout = null!;
     private OptionButton lifeOriginButton = null!;
     private Button lawkButton = null!;
     private LineEdit gameSeed = null!;
@@ -107,10 +115,17 @@ public class NewGameSettings : ControlWithInput
         difficultyPresetAdvancedButton = GetNode<OptionButton>(DifficultyPresetAdvancedButtonPath);
         mpMultiplier = GetNode<HSlider>(MPMultiplierPath);
         mpMultiplierReadout = GetNode<LineEdit>(MPMultiplierReadoutPath);
+        compoundDensity = GetNode<HSlider>(CompoundDensityPath);
+        compoundDensityReadout = GetNode<LineEdit>(CompoundDensityReadoutPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lawkButton = GetNode<Button>(LAWKButtonPath);
         gameSeed = GetNode<LineEdit>(GameSeedPath);
         confirmButton = GetNode<Button>(ConfirmButtonPath);
+
+        mpMultiplier.MinValue = WorldGenerationSettings.MIN_MP_MULTIPLIER;
+        mpMultiplier.MaxValue = WorldGenerationSettings.MAX_MP_MULTIPLIER;
+        compoundDensity.MinValue = WorldGenerationSettings.MIN_COMPOUND_DENSITY;
+        compoundDensity.MaxValue = WorldGenerationSettings.MAX_COMPOUND_DENSITY;
 
         gameSeed.Text = GenerateNewRandomSeed();
         SetSeed(gameSeed.Text);
@@ -278,6 +293,7 @@ public class NewGameSettings : ControlWithInput
         SetSeed(gameSeed.Text);
 
         settings.MPMultiplier = mpMultiplier.Value;
+        settings.CompoundDensity = compoundDensity.Value;
 
         var scene = GD.Load<PackedScene>("res://src/general/MainMenu.tscn");
         var mainMenu = (MainMenu)scene.Instance();
@@ -302,6 +318,7 @@ public class NewGameSettings : ControlWithInput
         }
 
         mpMultiplier.Value = WorldGenerationSettings.GetMPMultiplier(preset);
+        compoundDensity.Value = WorldGenerationSettings.GetCompoundDensity(preset);
     }
 
     private DifficultyPreset DifficultyPresetIndexToValue(int index)
@@ -340,17 +357,23 @@ public class NewGameSettings : ControlWithInput
 
         foreach (DifficultyPreset preset in Enum.GetValues(typeof(DifficultyPreset)))
         {
+            // Ignore custom until the end
             if (preset == custom)
                 continue;
 
-            if (mpMultiplier.Value != WorldGenerationSettings.GetMPMultiplier(preset))
+            if (Math.Abs(mpMultiplier.Value - WorldGenerationSettings.GetMPMultiplier(preset)) > MathUtils.EPSILON)
+                continue;
+            
+            if (Math.Abs(compoundDensity.Value - WorldGenerationSettings.GetCompoundDensity(preset)) > MathUtils.EPSILON)
                 continue;
 
+            // If all values are equal to the values for a preset, use that preset
             difficultyPresetButton.Selected = DifficultyPresetValueToIndex(preset);
             difficultyPresetAdvancedButton.Selected = DifficultyPresetValueToIndex(preset);
             return;
         }
 
+        // If there is no preset with all values equal to the values set, use custom
         difficultyPresetButton.Selected = DifficultyPresetValueToIndex(custom);
         difficultyPresetAdvancedButton.Selected = DifficultyPresetValueToIndex(custom);
     }
@@ -359,6 +382,14 @@ public class NewGameSettings : ControlWithInput
     {
         mpMultiplierReadout.Text = amount.ToString();
         settings.MPMultiplier = amount;
+
+        UpdateDifficultyPreset();
+    }
+
+    private void OnCompoundDensityValueChanged(double amount)
+    {
+        compoundDensityReadout.Text = amount.ToString();
+        settings.CompoundDensity = amount;
 
         UpdateDifficultyPreset();
     }

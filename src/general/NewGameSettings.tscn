@@ -41,6 +41,8 @@ DifficultyPresetButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOption
 DifficultyPresetAdvancedButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer/DifficultyPreset")
 MPMultiplierPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2/MPMultiplier")
 MPMultiplierReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2/MPMultiplierReadout")
+CompoundDensityPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3/CompoundDensity")
+CompoundDensityReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3/CompoundDensityReadout")
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin")
 LAWKButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK")
 GameSeedPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
@@ -271,9 +273,8 @@ text = "Misc"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
-margin_top = 253.0
 margin_right = 550.0
-margin_bottom = 853.0
+margin_bottom = 600.0
 rect_min_size = Vector2( 550, 600 )
 
 [node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
@@ -358,6 +359,46 @@ step = 0.1
 value = 1.0
 
 [node name="MPMultiplierReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2"]
+margin_left = 462.0
+margin_right = 518.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 20, 0 )
+text = "1"
+editable = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+margin_top = 76.0
+margin_right = 518.0
+margin_bottom = 107.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3"]
+margin_top = 3.0
+margin_right = 253.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 250, 0 )
+text = "Compound cloud density"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3"]
+margin_left = 257.0
+margin_right = 314.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 6 )
+
+[node name="CompoundDensity" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3"]
+margin_left = 318.0
+margin_right = 458.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.2
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="CompoundDensityReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3"]
 margin_left = 462.0
 margin_right = 518.0
 margin_bottom = 31.0
@@ -469,6 +510,7 @@ __meta__ = {
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="ChangeSettingsTab" binds= [ "Miscellaneous" ]]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer/DifficultyPreset" to="." method="OnDifficultyPresetSelected"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2/MPMultiplier" to="." method="OnMPMultiplierValueChanged"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3/CompoundDensity" to="." method="OnCompoundDensityValueChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Advanced" to="." method="OnAdvancedPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Basic" to="." method="OnBasicPressed"]
