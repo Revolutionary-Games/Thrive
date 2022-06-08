@@ -70,13 +70,25 @@ public class NewGameSettings : ControlWithInput
     public NodePath FreeGlucoseCloudButtonPath = null!;
 
     [Export]
+    public NodePath MapTypeButtonPath = null!;
+
+    [Export]
     public NodePath LifeOriginButtonPath = null!;
+
+    [Export]
+    public NodePath LifeOriginButtonAdvancedPath = null!;
 
     [Export]
     public NodePath LAWKButtonPath = null!;
 
     [Export]
+    public NodePath LAWKAdvancedButtonPath = null!;
+
+    [Export]
     public NodePath GameSeedPath = null!;
+
+    [Export]
+    public NodePath GameSeedAdvancedPath = null!;
 
     [Export]
     public NodePath IncludeMulticellularButtonPath = null!;
@@ -106,9 +118,13 @@ public class NewGameSettings : ControlWithInput
     private HSlider glucoseDecayRate = null!;
     private LineEdit glucoseDecayRateReadout = null!;
     private Button freeGlucoseCloudButton = null!;
+    private OptionButton mapTypeButton = null!;
     private OptionButton lifeOriginButton = null!;
+    private OptionButton lifeOriginButtonAdvanced = null!;
     private Button lawkButton = null!;
+    private Button lawkAdvancedButton = null!;
     private LineEdit gameSeed = null!;
+    private LineEdit gameSeedAdvanced = null!;
     private Button includeMulticellularButton = null!;
     private Button confirmButton = null!;
 
@@ -146,9 +162,13 @@ public class NewGameSettings : ControlWithInput
         glucoseDecayRate = GetNode<HSlider>(GlucoseDecayRatePath);
         glucoseDecayRateReadout = GetNode<LineEdit>(GlucoseDecayRateReadoutPath);
         freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
+        mapTypeButton = GetNode<OptionButton>(MapTypeButtonPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
+        lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
         lawkButton = GetNode<Button>(LAWKButtonPath);
+        lawkAdvancedButton = GetNode<Button>(LAWKAdvancedButtonPath);
         gameSeed = GetNode<LineEdit>(GameSeedPath);
+        gameSeedAdvanced = GetNode<LineEdit>(GameSeedAdvancedPath);
         includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
         confirmButton = GetNode<Button>(ConfirmButtonPath);
 
@@ -161,8 +181,10 @@ public class NewGameSettings : ControlWithInput
         glucoseDecayRate.MinValue = WorldGenerationSettings.MIN_GLUCOSE_DECAY * 100;
         glucoseDecayRate.MaxValue = WorldGenerationSettings.MAX_GLUCOSE_DECAY * 100;
 
-        gameSeed.Text = GenerateNewRandomSeed();
-        SetSeed(gameSeed.Text);
+        var seed = GenerateNewRandomSeed();
+        gameSeed.Text = seed;
+        gameSeedAdvanced.Text = seed;
+        SetSeed(seed);
     }
 
     private string GenerateNewRandomSeed()
@@ -211,11 +233,13 @@ public class NewGameSettings : ControlWithInput
         if (valid)
         {
             GUICommon.MarkInputAsValid(gameSeed);
+            GUICommon.MarkInputAsValid(gameSeedAdvanced);
             confirmButton.Disabled = false;
         }
         else
         {
             GUICommon.MarkInputAsInvalid(gameSeed);
+            GUICommon.MarkInputAsInvalid(gameSeedAdvanced);
             confirmButton.Disabled = true;
         }
     }
@@ -332,6 +356,8 @@ public class NewGameSettings : ControlWithInput
         settings.GlucoseDecay = glucoseDecayRate.Value * 0.01;
         settings.FreeGlucoseCloud = freeGlucoseCloudButton.Pressed;
 
+        settings.MapType = MapTypeIndexToValue(mapTypeButton.Selected);
+
         settings.IncludeMulticellular = includeMulticellularButton.Pressed;
 
         var scene = GD.Load<PackedScene>("res://src/general/MainMenu.tscn");
@@ -361,6 +387,8 @@ public class NewGameSettings : ControlWithInput
         playerDeathPopulationPenalty.Value = WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset);
         glucoseDecayRate.Value = WorldGenerationSettings.GetGlucoseDecay(preset) * 100;
         freeGlucoseCloudButton.Pressed = WorldGenerationSettings.GetFreeGlucoseCloud(preset);
+
+        UpdateDifficultyPreset();
     }
 
     private DifficultyPreset DifficultyPresetIndexToValue(int index)
@@ -461,15 +489,19 @@ public class NewGameSettings : ControlWithInput
         UpdateDifficultyPreset();
     }
 
-    private void OnFreeGlucoseCloudToggled()
+    private void OnFreeGlucoseCloudToggled(bool pressed)
     {
-        settings.FreeGlucoseCloud = freeGlucoseCloudButton.Pressed;
+        settings.FreeGlucoseCloud = pressed;
 
         UpdateDifficultyPreset();
     }
 
     private void OnLifeOriginSelected(int index)
     {
+        // Set both buttons here as we only received a signal from one of them
+        lifeOriginButton.Selected = index;
+        lifeOriginButtonAdvanced.Selected = index;
+
         settings.Origin = LifeOriginIndexToValue(index);
     }
 
@@ -486,23 +518,52 @@ public class NewGameSettings : ControlWithInput
         }
     }
 
-    private void OnLAWKToggled()
+    private void OnMapTypeSelected(int index)
     {
+        settings.MapType = MapTypeIndexToValue(index);
+    }
+
+    private WorldGenerationSettings.PatchMapType MapTypeIndexToValue(int index)
+    {
+        switch (index)
+        {
+            case 1:
+                return WorldGenerationSettings.PatchMapType.Classic;
+            default:
+                return WorldGenerationSettings.PatchMapType.Procedural;
+        }
+    }
+
+    private void OnLAWKToggled(bool pressed)
+    {
+        // Set both buttons here as we only received a signal from one of them
+        lawkButton.Pressed = pressed;
+        lawkAdvancedButton.Pressed = pressed;
+
         settings.LAWK = lawkButton.Pressed;
     }
 
-    private void OnGameSeedChanged(string text)
+    private void OnGameSeedChangedFromBasic(string text)
     {
+        gameSeedAdvanced.Text = text;
+        SetSeed(text);
+    }
+
+    private void OnGameSeedChangedFromAdvanced(string text)
+    {
+        gameSeed.Text = text;
         SetSeed(text);
     }
 
     private void OnRandomisedGameSeedPressed()
     {
-        gameSeed.Text = GenerateNewRandomSeed();
+        var seed = GenerateNewRandomSeed();
+        gameSeed.Text = seed;
+        gameSeedAdvanced.Text = seed;
     }
 
-    private void OnIncludeMulticellularToggled()
+    private void OnIncludeMulticellularToggled(bool pressed)
     {
-        settings.IncludeMulticellular = includeMulticellularButton.Pressed;
+        settings.IncludeMulticellular = pressed;
     }
 }

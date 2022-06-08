@@ -12,6 +12,12 @@ public class WorldGenerationSettings
         Panspermia,
     }
 
+    public enum PatchMapType
+    {
+        Procedural,
+        Classic,
+    }
+
     /*
     Static values for min/max and each difficulty preset
     */
@@ -103,6 +109,7 @@ public class WorldGenerationSettings
     public int PlayerDeathPopulationPenalty { get; set; } = 20;
     public double GlucoseDecay { get; set; } = 0.8;
     public bool FreeGlucoseCloud { get; set; }
+    public PatchMapType MapType { get; set; } = PatchMapType.Procedural;
     public bool IncludeMulticellular { get; set; } = true;
 
     public override string ToString()
@@ -117,6 +124,7 @@ public class WorldGenerationSettings
         ", Player death population penalty: " + PlayerDeathPopulationPenalty +
         ", Glucose decay: " + GlucoseDecay +
         ", Free glucose cloud: " + FreeGlucoseCloud +
+        ", Map type: " + MapType + 
         ", Include Multicellular: " + IncludeMulticellular +
         "]";
     }

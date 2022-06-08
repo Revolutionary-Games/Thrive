@@ -327,7 +327,6 @@ public class MainMenu : NodeWithInput
 
             // TODO: Add loading screen while changing between scenes
             var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
-            GD.Print(settings);
             microbeStage.WorldSettings = settings;
             SceneManager.Instance.SwitchToScene(microbeStage);
         });

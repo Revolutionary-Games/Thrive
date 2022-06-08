@@ -19,7 +19,17 @@ public static class PatchMapGenerator
         random ??= new Random(WorldSettings.Seed);
 
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
-        var areaName = nameGenerator.Next(random);
+
+        string areaName = "";
+        switch (WorldSettings.MapType)
+        {
+            case WorldGenerationSettings.PatchMapType.Classic:
+                areaName = "Pangonian";
+                break;
+            case WorldGenerationSettings.PatchMapType.Procedural:
+                areaName = nameGenerator.Next(random);
+                break;
+        }
 
         // Predefined patches
         var vents = new Patch(GetPatchLocalizedName(areaName, "VOLCANIC_VENT"), 0,

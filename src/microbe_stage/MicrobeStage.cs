@@ -302,6 +302,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             }
         }
 
+        GD.Print(WorldSettings);
+
         pauseMenu.GameProperties = CurrentGame ?? throw new InvalidOperationException("current game is not set");
 
         tutorialGUI.EventReceiver = TutorialState;
