@@ -100,6 +100,7 @@ public class Jukebox : Node
         if (!paused)
             return;
 
+        pausing = false;
         paused = false;
         UpdateStreamsPauseStatus();
     }

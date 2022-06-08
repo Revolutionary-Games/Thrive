@@ -137,14 +137,15 @@ public class PlaybackBar : HBoxContainer
 
     private void OnSliderInput(InputEvent @event)
     {
-        // TODO: Explain this
+        // Need to know if user is currently interacting with the slider (holding down left mouse)
         if (@event is InputEventMouseButton button && button.ButtonIndex == (int)ButtonList.Left)
             dragging = button.Pressed;
     }
 
     private void OnSliderChanged(float value)
     {
-        // Only set the playback position if we really are dragging the slider
+        // Only set the playback position if we really are dragging the slider as this method is always
+        // called when the value of slider changes
         if (dragging)
         {
             playbackProgress = value;

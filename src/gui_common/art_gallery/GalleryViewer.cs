@@ -85,9 +85,9 @@ public class GalleryViewer : CustomDialog
         buttonGroup = new ButtonGroup();
         buttonGroup.Connect("pressed", this, nameof(OnGalleryItemPressed));
 
-        foreach (var key in galleryCards.Keys)
+        foreach (var entry in galleryCards)
         {
-            foreach (var card in galleryCards[key])
+            foreach (var card in entry.Value)
                 card.Visible = false;
         }
 
@@ -119,6 +119,21 @@ public class GalleryViewer : CustomDialog
         slidescreen.Items = cards;
 
         UpdateSlideshowButton();
+    }
+
+    public void StopAllPlayback()
+    {
+        foreach (var gallery in galleryCards)
+        {
+            foreach (var card in gallery.Value)
+            {
+                if (card is GalleryCardAudio audioPlayer)
+                {
+                    audioPlayer.Player.Stop();
+                    audioPlayer.Player.StreamPaused = true;
+                }
+            }
+        }
     }
 
     private GalleryCard CreateGalleryItem(Asset asset)
@@ -293,5 +308,10 @@ public class GalleryViewer : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
         Hide();
+    }
+
+    private void OnHidden()
+    {
+        StopAllPlayback();
     }
 }
