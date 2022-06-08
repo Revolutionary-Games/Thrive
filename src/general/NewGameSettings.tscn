@@ -49,6 +49,8 @@ PlayerDeathPopulationPenaltyPath = NodePath("CenterContainer/VBoxContainer/Advan
 PlayerDeathPopulationPenaltyReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer3/HBoxContainer/PopulationPenaltyReadout")
 GlucoseDecayRatePath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4/HBoxContainer/GlucoseDecayRate")
 GlucoseDecayRateReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4/HBoxContainer/GlucoseDecayRateReadout")
+OsmoregulationMultiplierPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7/HBoxContainer/OsmoregulationMultiplier")
+OsmoregulationMultiplierReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7/HBoxContainer/OsmoregulationMultiplierReadout")
 FreeGlucoseCloudButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer5/FreeGlucoseCloud")
 MapTypeButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/MapType")
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin")
@@ -243,7 +245,7 @@ __meta__ = {
 
 [node name="TabButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 visible = false
-margin_right = 398.0
+margin_right = 650.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 alignment = 1
@@ -252,7 +254,8 @@ __meta__ = {
 }
 
 [node name="DifficultyButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_right = 130.0
+margin_left = 126.0
+margin_right = 256.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
@@ -262,8 +265,8 @@ group = SubResource( 5 )
 text = "Difficulty"
 
 [node name="PlanetButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 134.0
-margin_right = 264.0
+margin_left = 260.0
+margin_right = 390.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
@@ -272,8 +275,8 @@ group = SubResource( 5 )
 text = "Planet"
 
 [node name="MiscButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 268.0
-margin_right = 398.0
+margin_left = 394.0
+margin_right = 524.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 toggle_mode = true
@@ -548,10 +551,61 @@ margin_bottom = 51.0
 custom_fonts/font = ExtResource( 3 )
 text = "(how much glucose the environment retains each generation)"
 
-[node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+[node name="VBoxContainer7" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
 margin_top = 299.0
 margin_right = 618.0
-margin_bottom = 344.0
+margin_bottom = 350.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7"]
+margin_right = 618.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7/HBoxContainer"]
+margin_top = 3.0
+margin_right = 312.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 250, 0 )
+text = "Osmoregulation cost multiplier"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7/HBoxContainer"]
+margin_left = 316.0
+margin_right = 414.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 6 )
+
+[node name="OsmoregulationMultiplier" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7/HBoxContainer"]
+margin_left = 418.0
+margin_right = 558.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.2
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="OsmoregulationMultiplierReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7/HBoxContainer"]
+margin_left = 562.0
+margin_right = 618.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 20, 0 )
+text = "1"
+editable = false
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7"]
+margin_top = 35.0
+margin_right = 618.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 3 )
+text = "(cost of player cell osmoregulation)"
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+margin_top = 360.0
+margin_right = 618.0
+margin_bottom = 405.0
 
 [node name="FreeGlucoseCloud" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer5" instance=ExtResource( 4 )]
 margin_right = 415.0
@@ -871,6 +925,7 @@ __meta__ = {
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer2/HBoxContainer/CompoundDensity" to="." method="OnCompoundDensityValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer3/HBoxContainer/PopulationPenalty" to="." method="OnPlayerDeathPopulationPenaltyValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4/HBoxContainer/GlucoseDecayRate" to="." method="OnGlucoseDecayRateValueChanged"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7/HBoxContainer/OsmoregulationMultiplier" to="." method="OnOsmoregulationMultiplierValueChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer5/FreeGlucoseCloud" to="." method="OnFreeGlucoseCloudToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/MapType" to="." method="OnMapTypeSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced" to="." method="OnLifeOriginSelected"]

@@ -65,6 +65,12 @@ public class NewGameSettings : ControlWithInput
 
     [Export]
     public NodePath GlucoseDecayRateReadoutPath = null!;
+    
+    [Export]
+    public NodePath OsmoregulationMultiplierPath = null!;
+
+    [Export]
+    public NodePath OsmoregulationMultiplierReadoutPath = null!;
 
     [Export]
     public NodePath FreeGlucoseCloudButtonPath = null!;
@@ -117,6 +123,8 @@ public class NewGameSettings : ControlWithInput
     private LineEdit playerDeathPopulationPenaltyReadout = null!;
     private HSlider glucoseDecayRate = null!;
     private LineEdit glucoseDecayRateReadout = null!;
+    private HSlider osmoregulationMultiplier = null!;
+    private LineEdit osmoregulationMultiplierReadout = null!;
     private Button freeGlucoseCloudButton = null!;
     private OptionButton mapTypeButton = null!;
     private OptionButton lifeOriginButton = null!;
@@ -161,6 +169,8 @@ public class NewGameSettings : ControlWithInput
         playerDeathPopulationPenaltyReadout = GetNode<LineEdit>(PlayerDeathPopulationPenaltyReadoutPath);
         glucoseDecayRate = GetNode<HSlider>(GlucoseDecayRatePath);
         glucoseDecayRateReadout = GetNode<LineEdit>(GlucoseDecayRateReadoutPath);
+        osmoregulationMultiplier = GetNode<HSlider>(OsmoregulationMultiplierPath);
+        osmoregulationMultiplierReadout = GetNode<LineEdit>(OsmoregulationMultiplierReadoutPath);
         freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
         mapTypeButton = GetNode<OptionButton>(MapTypeButtonPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
@@ -180,6 +190,8 @@ public class NewGameSettings : ControlWithInput
         playerDeathPopulationPenalty.MaxValue = WorldGenerationSettings.MAX_PLAYER_DEATH_POPULATION_PENALTY;
         glucoseDecayRate.MinValue = WorldGenerationSettings.MIN_GLUCOSE_DECAY * 100;
         glucoseDecayRate.MaxValue = WorldGenerationSettings.MAX_GLUCOSE_DECAY * 100;
+        osmoregulationMultiplier.MinValue = WorldGenerationSettings.MIN_OSMOREGULATION_MULTIPLIER;
+        osmoregulationMultiplier.MaxValue = WorldGenerationSettings.MAX_OSMOREGULATION_MULTIPLIER;
 
         var seed = GenerateNewRandomSeed();
         gameSeed.Text = seed;
@@ -354,6 +366,7 @@ public class NewGameSettings : ControlWithInput
         settings.CompoundDensity = compoundDensity.Value;
         settings.PlayerDeathPopulationPenalty = (int)playerDeathPopulationPenalty.Value;
         settings.GlucoseDecay = glucoseDecayRate.Value * 0.01;
+        settings.OsmoregulationMultiplier = osmoregulationMultiplier.Value;
         settings.FreeGlucoseCloud = freeGlucoseCloudButton.Pressed;
 
         settings.MapType = MapTypeIndexToValue(mapTypeButton.Selected);
@@ -386,6 +399,7 @@ public class NewGameSettings : ControlWithInput
         compoundDensity.Value = WorldGenerationSettings.GetCompoundDensity(preset);
         playerDeathPopulationPenalty.Value = WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset);
         glucoseDecayRate.Value = WorldGenerationSettings.GetGlucoseDecay(preset) * 100;
+        osmoregulationMultiplier.Value = WorldGenerationSettings.GetOsmoregulationMultiplier(preset);
         freeGlucoseCloudButton.Pressed = WorldGenerationSettings.GetFreeGlucoseCloud(preset);
 
         UpdateDifficultyPreset();
@@ -443,6 +457,9 @@ public class NewGameSettings : ControlWithInput
             if ((int)glucoseDecayRate.Value != WorldGenerationSettings.GetGlucoseDecay(preset) * 100)
                 continue;
 
+            if (Math.Abs(osmoregulationMultiplier.Value - WorldGenerationSettings.GetOsmoregulationMultiplier(preset)) > MathUtils.EPSILON)
+                continue;
+
             if (freeGlucoseCloudButton.Pressed != WorldGenerationSettings.GetFreeGlucoseCloud(preset))
                 continue;
 
@@ -485,6 +502,14 @@ public class NewGameSettings : ControlWithInput
     {
         glucoseDecayRateReadout.Text = percentage.ToString() + "%";
         settings.GlucoseDecay = percentage * 0.01;
+
+        UpdateDifficultyPreset();
+    }
+
+    private void OnOsmoregulationMultiplierValueChanged(double amount)
+    {
+        osmoregulationMultiplierReadout.Text = amount.ToString();
+        settings.OsmoregulationMultiplier = amount;
 
         UpdateDifficultyPreset();
     }

@@ -48,12 +48,12 @@ public class ProcessSystem
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
-        BiomeConditions biome, MembraneType membrane)
+        BiomeConditions biome, MembraneType membrane, WorldGenerationSettings? worldSettings = null, bool isPlayer = false)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
-        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection);
+        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, worldSettings, isPlayer);
     }
 
     /// <summary>
@@ -66,8 +66,11 @@ public class ProcessSystem
     ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
     ///   movement organelles are assumed to be inactive in the balance calculation.
     /// </param>
+    /// <param name="worldSettings">The wprld generation settings for this game</param>
+    /// <param name="isPlayer">Whether this microbe is the player cell</param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
-        BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection)
+        BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
+        WorldGenerationSettings? worldSettings, bool isPlayer = false)
     {
         var result = new EnergyBalanceInfo();
 
@@ -133,6 +136,11 @@ public class ProcessSystem
         // Add osmoregulation
         result.Osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
             membrane.OsmoregulationFactor;
+
+        if (isPlayer && worldSettings != null)
+        {
+            result.Osmoregulation *= (float)worldSettings.OsmoregulationMultiplier;
+        }
 
         result.AddConsumption("osmoregulation", result.Osmoregulation);
 

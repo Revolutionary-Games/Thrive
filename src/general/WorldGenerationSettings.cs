@@ -30,6 +30,8 @@ public class WorldGenerationSettings
     public const int MAX_PLAYER_DEATH_POPULATION_PENALTY = 100;
     public const double MIN_GLUCOSE_DECAY = 0.3;
     public const double MAX_GLUCOSE_DECAY = 0.95;
+    public const double MIN_OSMOREGULATION_MULTIPLIER = 0.2;
+    public const double MAX_OSMOREGULATION_MULTIPLIER = 2;
 
     public static double GetMPMultiplier(DifficultyPreset preset)
     {
@@ -91,6 +93,21 @@ public class WorldGenerationSettings
         }
     }
 
+    public static double GetOsmoregulationMultiplier(DifficultyPreset preset)
+    {
+        switch (preset)
+        {
+            case DifficultyPreset.Easy:
+                return 0.5;
+            case DifficultyPreset.Normal:
+                return 1;
+            case DifficultyPreset.Hard:
+                return 1.5;
+            default:
+                return 1;
+        }
+    }
+
     public static bool GetFreeGlucoseCloud(DifficultyPreset preset)
     {
         return preset == DifficultyPreset.Easy;
@@ -108,6 +125,7 @@ public class WorldGenerationSettings
     public double CompoundDensity { get; set; } = 1;
     public int PlayerDeathPopulationPenalty { get; set; } = 20;
     public double GlucoseDecay { get; set; } = 0.8;
+    public double OsmoregulationMultiplier { get; set; } = 1;
     public bool FreeGlucoseCloud { get; set; }
     public PatchMapType MapType { get; set; } = PatchMapType.Procedural;
     public bool IncludeMulticellular { get; set; } = true;
@@ -123,6 +141,7 @@ public class WorldGenerationSettings
         ", Compound density: " + CompoundDensity +
         ", Player death population penalty: " + PlayerDeathPopulationPenalty +
         ", Glucose decay: " + GlucoseDecay +
+        ", Osmoregulation multiplier: " + OsmoregulationMultiplier +
         ", Free glucose cloud: " + FreeGlucoseCloud +
         ", Map type: " + MapType + 
         ", Include Multicellular: " + IncludeMulticellular +
