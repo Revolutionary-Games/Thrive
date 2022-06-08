@@ -55,6 +55,21 @@ public class NewGameSettings : ControlWithInput
     public NodePath CompoundDensityReadoutPath = null!;
 
     [Export]
+    public NodePath PlayerDeathPopulationPenaltyPath = null!;
+
+    [Export]
+    public NodePath PlayerDeathPopulationPenaltyReadoutPath = null!;
+    
+    [Export]
+    public NodePath GlucoseDecayRatePath = null!;
+
+    [Export]
+    public NodePath GlucoseDecayRateReadoutPath = null!;
+
+    [Export]
+    public NodePath FreeGlucoseCloudButtonPath = null!;
+
+    [Export]
     public NodePath LifeOriginButtonPath = null!;
 
     [Export]
@@ -83,6 +98,11 @@ public class NewGameSettings : ControlWithInput
     private LineEdit mpMultiplierReadout = null!;
     private HSlider compoundDensity = null!;
     private LineEdit compoundDensityReadout = null!;
+    private HSlider playerDeathPopulationPenalty = null!;
+    private LineEdit playerDeathPopulationPenaltyReadout = null!;
+    private HSlider glucoseDecayRate = null!;
+    private LineEdit glucoseDecayRateReadout = null!;
+    private Button freeGlucoseCloudButton = null!;
     private OptionButton lifeOriginButton = null!;
     private Button lawkButton = null!;
     private LineEdit gameSeed = null!;
@@ -117,6 +137,11 @@ public class NewGameSettings : ControlWithInput
         mpMultiplierReadout = GetNode<LineEdit>(MPMultiplierReadoutPath);
         compoundDensity = GetNode<HSlider>(CompoundDensityPath);
         compoundDensityReadout = GetNode<LineEdit>(CompoundDensityReadoutPath);
+        playerDeathPopulationPenalty = GetNode<HSlider>(PlayerDeathPopulationPenaltyPath);
+        playerDeathPopulationPenaltyReadout = GetNode<LineEdit>(PlayerDeathPopulationPenaltyReadoutPath);
+        glucoseDecayRate = GetNode<HSlider>(GlucoseDecayRatePath);
+        glucoseDecayRateReadout = GetNode<LineEdit>(GlucoseDecayRateReadoutPath);
+        freeGlucoseCloudButton = GetNode<Button>(FreeGlucoseCloudButtonPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lawkButton = GetNode<Button>(LAWKButtonPath);
         gameSeed = GetNode<LineEdit>(GameSeedPath);
@@ -126,6 +151,10 @@ public class NewGameSettings : ControlWithInput
         mpMultiplier.MaxValue = WorldGenerationSettings.MAX_MP_MULTIPLIER;
         compoundDensity.MinValue = WorldGenerationSettings.MIN_COMPOUND_DENSITY;
         compoundDensity.MaxValue = WorldGenerationSettings.MAX_COMPOUND_DENSITY;
+        playerDeathPopulationPenalty.MinValue = WorldGenerationSettings.MIN_PLAYER_DEATH_POPULATION_PENALTY;
+        playerDeathPopulationPenalty.MaxValue = WorldGenerationSettings.MAX_PLAYER_DEATH_POPULATION_PENALTY;
+        glucoseDecayRate.MinValue = WorldGenerationSettings.MIN_GLUCOSE_DECAY * 100;
+        glucoseDecayRate.MaxValue = WorldGenerationSettings.MAX_GLUCOSE_DECAY * 100;
 
         gameSeed.Text = GenerateNewRandomSeed();
         SetSeed(gameSeed.Text);
@@ -294,6 +323,9 @@ public class NewGameSettings : ControlWithInput
 
         settings.MPMultiplier = mpMultiplier.Value;
         settings.CompoundDensity = compoundDensity.Value;
+        settings.PlayerDeathPopulationPenalty = (int)playerDeathPopulationPenalty.Value;
+        settings.GlucoseDecay = glucoseDecayRate.Value * 0.01;
+        settings.FreeGlucoseCloud = freeGlucoseCloudButton.Pressed;
 
         var scene = GD.Load<PackedScene>("res://src/general/MainMenu.tscn");
         var mainMenu = (MainMenu)scene.Instance();
@@ -319,6 +351,9 @@ public class NewGameSettings : ControlWithInput
 
         mpMultiplier.Value = WorldGenerationSettings.GetMPMultiplier(preset);
         compoundDensity.Value = WorldGenerationSettings.GetCompoundDensity(preset);
+        playerDeathPopulationPenalty.Value = WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset);
+        glucoseDecayRate.Value = WorldGenerationSettings.GetGlucoseDecay(preset) * 100;
+        freeGlucoseCloudButton.Pressed = WorldGenerationSettings.GetFreeGlucoseCloud(preset);
     }
 
     private DifficultyPreset DifficultyPresetIndexToValue(int index)
@@ -367,6 +402,15 @@ public class NewGameSettings : ControlWithInput
             if (Math.Abs(compoundDensity.Value - WorldGenerationSettings.GetCompoundDensity(preset)) > MathUtils.EPSILON)
                 continue;
 
+            if ((int)playerDeathPopulationPenalty.Value != WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset))
+                continue;
+
+            if ((int)glucoseDecayRate.Value != WorldGenerationSettings.GetGlucoseDecay(preset) * 100)
+                continue;
+
+            if (freeGlucoseCloudButton.Pressed != WorldGenerationSettings.GetFreeGlucoseCloud(preset))
+                continue;
+
             // If all values are equal to the values for a preset, use that preset
             difficultyPresetButton.Selected = DifficultyPresetValueToIndex(preset);
             difficultyPresetAdvancedButton.Selected = DifficultyPresetValueToIndex(preset);
@@ -390,6 +434,29 @@ public class NewGameSettings : ControlWithInput
     {
         compoundDensityReadout.Text = amount.ToString();
         settings.CompoundDensity = amount;
+
+        UpdateDifficultyPreset();
+    }
+
+    private void OnPlayerDeathPopulationPenaltyValueChanged(double amount)
+    {
+        playerDeathPopulationPenaltyReadout.Text = ((int)amount).ToString();
+        settings.PlayerDeathPopulationPenalty = (int)amount;
+
+        UpdateDifficultyPreset();
+    }
+
+    private void OnGlucoseDecayRateValueChanged(double percentage)
+    {
+        glucoseDecayRateReadout.Text = percentage.ToString() + "%";
+        settings.GlucoseDecay = percentage * 0.01;
+
+        UpdateDifficultyPreset();
+    }
+
+    private void OnFreeGlucoseCloudToggled(bool toggled)
+    {
+        settings.FreeGlucoseCloud = toggled;
 
         UpdateDifficultyPreset();
     }

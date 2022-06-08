@@ -689,6 +689,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // Make sure player is spawned
         SpawnPlayer();
 
+        // Add a cloud of glucose if difficulty settings call for it
+        if (WorldSettings!.FreeGlucoseCloud)
+        {
+            Clouds.AddCloud(glucose, 200000.0f, Player!.Translation + new Vector3(0.0f, 0.0f, -25.0f));
+        }
+
         // Check win conditions
         if (!CurrentGame.FreeBuild && Player!.Species.Generation >= 20 &&
             Player.Species.Population >= 300 && !wonOnce)
@@ -802,7 +808,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         // Decrease the population by the constant for the player dying
         GameWorld.AlterSpeciesPopulation(
-            GameWorld.PlayerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
+            GameWorld.PlayerSpecies,
+            CurrentGame == null ? Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT : -CurrentGame.WorldSettings.PlayerDeathPopulationPenalty,
             TranslationServer.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
 

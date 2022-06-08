@@ -411,7 +411,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     {
         Editor.SendAutoEvoResultsToReportComponent();
         UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
-        UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
+        UpdateGlucoseReduction((float)Editor.CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
         UpdateTimeline(Editor.SelectedPatch);
         UpdateReportTabPatchSelector();
     }
