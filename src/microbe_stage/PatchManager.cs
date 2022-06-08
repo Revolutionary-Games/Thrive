@@ -139,7 +139,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         foreach (var entry in biome.Compounds)
         {
-            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, 
+            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName,
                 entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
                 () =>
                 {
