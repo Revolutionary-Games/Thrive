@@ -103,6 +103,7 @@ public class WorldGenerationSettings
     public int PlayerDeathPopulationPenalty { get; set; } = 20;
     public double GlucoseDecay { get; set; } = 0.8;
     public bool FreeGlucoseCloud { get; set; }
+    public bool IncludeMulticellular { get; set; } = true;
 
     public override string ToString()
     {
@@ -116,6 +117,7 @@ public class WorldGenerationSettings
         ", Player death population penalty: " + PlayerDeathPopulationPenalty +
         ", Glucose decay: " + GlucoseDecay +
         ", Free glucose cloud: " + FreeGlucoseCloud +
+        ", Include Multicellular: " + IncludeMulticellular +
         "]";
     }
 }

@@ -79,6 +79,9 @@ public class NewGameSettings : ControlWithInput
     public NodePath GameSeedPath = null!;
 
     [Export]
+    public NodePath IncludeMulticellularButtonPath = null!;
+
+    [Export]
     public NodePath ConfirmButtonPath = null!;
 
     private PanelContainer basicOptions = null!;
@@ -106,6 +109,7 @@ public class NewGameSettings : ControlWithInput
     private OptionButton lifeOriginButton = null!;
     private Button lawkButton = null!;
     private LineEdit gameSeed = null!;
+    private Button includeMulticellularButton = null!;
     private Button confirmButton = null!;
 
     private SelectedOptionsTab selectedOptionsTab;
@@ -145,6 +149,7 @@ public class NewGameSettings : ControlWithInput
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lawkButton = GetNode<Button>(LAWKButtonPath);
         gameSeed = GetNode<LineEdit>(GameSeedPath);
+        includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
         confirmButton = GetNode<Button>(ConfirmButtonPath);
 
         mpMultiplier.MinValue = WorldGenerationSettings.MIN_MP_MULTIPLIER;
@@ -327,6 +332,8 @@ public class NewGameSettings : ControlWithInput
         settings.GlucoseDecay = glucoseDecayRate.Value * 0.01;
         settings.FreeGlucoseCloud = freeGlucoseCloudButton.Pressed;
 
+        settings.IncludeMulticellular = includeMulticellularButton.Pressed;
+
         var scene = GD.Load<PackedScene>("res://src/general/MainMenu.tscn");
         var mainMenu = (MainMenu)scene.Instance();
         mainMenu.NewGameSetupDone(settings);
@@ -454,9 +461,9 @@ public class NewGameSettings : ControlWithInput
         UpdateDifficultyPreset();
     }
 
-    private void OnFreeGlucoseCloudToggled(bool toggled)
+    private void OnFreeGlucoseCloudToggled()
     {
-        settings.FreeGlucoseCloud = toggled;
+        settings.FreeGlucoseCloud = freeGlucoseCloudButton.Pressed;
 
         UpdateDifficultyPreset();
     }
@@ -479,7 +486,7 @@ public class NewGameSettings : ControlWithInput
         }
     }
 
-    private void OnLAWKToggled(int index)
+    private void OnLAWKToggled()
     {
         settings.LAWK = lawkButton.Pressed;
     }
@@ -492,5 +499,10 @@ public class NewGameSettings : ControlWithInput
     private void OnRandomisedGameSeedPressed()
     {
         gameSeed.Text = GenerateNewRandomSeed();
+    }
+
+    private void OnIncludeMulticellularToggled()
+    {
+        settings.IncludeMulticellular = includeMulticellularButton.Pressed;
     }
 }

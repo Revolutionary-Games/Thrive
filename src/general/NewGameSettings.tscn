@@ -38,19 +38,20 @@ DifficultyTabButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/Dif
 PlanetTabButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/PlanetButton")
 MiscTabButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/MiscButton")
 DifficultyPresetButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer/DifficultyPreset")
-DifficultyPresetAdvancedButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer/DifficultyPreset")
-MPMultiplierPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2/MPMultiplier")
-MPMultiplierReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2/MPMultiplierReadout")
-CompoundDensityPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3/CompoundDensity")
-CompoundDensityReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3/CompoundDensityReadout")
-PlayerDeathPopulationPenaltyPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer4/PopulationPenalty")
-PlayerDeathPopulationPenaltyReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer4/PopulationPenaltyReadout")
-GlucoseDecayRatePath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer5/GlucoseDecayRate")
-GlucoseDecayRateReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer5/GlucoseDecayRateReadout")
-FreeGlucoseCloudButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/FreeGlucoseCloud")
+DifficultyPresetAdvancedButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer6/HBoxContainer/DifficultyPreset")
+MPMultiplierPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer/HBoxContainer/MPMultiplier")
+MPMultiplierReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer/HBoxContainer/MPMultiplierReadout")
+CompoundDensityPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer2/HBoxContainer/CompoundDensity")
+CompoundDensityReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer2/HBoxContainer/CompoundDensityReadout")
+PlayerDeathPopulationPenaltyPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer3/HBoxContainer/PopulationPenalty")
+PlayerDeathPopulationPenaltyReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer3/HBoxContainer/PopulationPenaltyReadout")
+GlucoseDecayRatePath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4/HBoxContainer/GlucoseDecayRate")
+GlucoseDecayRateReadoutPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4/HBoxContainer/GlucoseDecayRateReadout")
+FreeGlucoseCloudButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer5/FreeGlucoseCloud")
 LifeOriginButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin")
 LAWKButtonPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK")
 GameSeedPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed")
+IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular")
 ConfirmButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Confirm")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -58,16 +59,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 365.0
-margin_top = 236.0
-margin_right = 915.0
-margin_bottom = 484.0
+margin_left = 315.0
+margin_top = 40.0
+margin_right = 965.0
+margin_bottom = 680.0
 custom_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BasicOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
 margin_right = 550.0
 margin_bottom = 208.0
 rect_min_size = Vector2( 550, 200 )
@@ -128,24 +130,24 @@ margin_bottom = 80.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
-margin_right = 151.0
+margin_right = 109.0
 margin_bottom = 45.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_right = 151.0
+margin_right = 109.0
 margin_bottom = 25.0
 mouse_filter = 0
 text = "Life origins"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 29.0
-margin_right = 151.0
+margin_right = 109.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
-text = "(changes starting location)"
+text = "(starting location)"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
-margin_left = 155.0
+margin_left = 113.0
 margin_right = 314.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
@@ -180,7 +182,7 @@ margin_top = 29.0
 margin_right = 518.0
 margin_bottom = 45.0
 custom_fonts/font = ExtResource( 3 )
-text = "(restricts parts and abilities to only life as we know it)"
+text = "(restrict parts and abilities to only life as we know it)"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 margin_top = 145.0
@@ -275,10 +277,8 @@ group = SubResource( 5 )
 text = "Misc"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
-visible = false
-margin_top = 40.0
 margin_right = 650.0
-margin_bottom = 640.0
+margin_bottom = 600.0
 rect_min_size = Vector2( 650, 600 )
 
 [node name="Difficulty" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
@@ -301,24 +301,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+[node name="VBoxContainer6" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+margin_right = 618.0
+margin_bottom = 45.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer6"]
 margin_right = 618.0
 margin_bottom = 25.0
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer6/HBoxContainer"]
 margin_right = 250.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 250, 0 )
 text = "Difficulty preset"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer6/HBoxContainer"]
 margin_left = 254.0
 margin_right = 414.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
-[node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer"]
+[node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer6/HBoxContainer"]
 margin_left = 418.0
 margin_right = 618.0
 margin_bottom = 25.0
@@ -330,27 +334,37 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
-margin_top = 35.0
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer6"]
+margin_top = 29.0
 margin_right = 618.0
-margin_bottom = 66.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+margin_top = 55.0
+margin_right = 618.0
+margin_bottom = 106.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer"]
+margin_right = 618.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_top = 3.0
 margin_right = 250.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
 text = "Mutation cost multiplier"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2"]
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 254.0
 margin_right = 404.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 6 )
 
-[node name="MPMultiplier" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2"]
+[node name="MPMultiplier" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 408.0
 margin_right = 558.0
 margin_bottom = 31.0
@@ -362,7 +376,7 @@ max_value = 2.0
 step = 0.1
 value = 1.0
 
-[node name="MPMultiplierReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2"]
+[node name="MPMultiplierReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 562.0
 margin_right = 618.0
 margin_bottom = 31.0
@@ -370,27 +384,38 @@ rect_min_size = Vector2( 20, 0 )
 text = "1"
 editable = false
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
-margin_top = 76.0
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer"]
+margin_top = 35.0
 margin_right = 618.0
-margin_bottom = 107.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 3 )
+text = "(cost of organelles, membranes and other items in the editor)"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+margin_top = 116.0
+margin_right = 618.0
+margin_bottom = 167.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer2"]
+margin_right = 618.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_top = 3.0
 margin_right = 253.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
 text = "Compound cloud density"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3"]
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 257.0
 margin_right = 405.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 6 )
 
-[node name="CompoundDensity" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3"]
+[node name="CompoundDensity" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 409.0
 margin_right = 558.0
 margin_bottom = 31.0
@@ -402,7 +427,7 @@ max_value = 2.0
 step = 0.1
 value = 1.0
 
-[node name="CompoundDensityReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3"]
+[node name="CompoundDensityReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 562.0
 margin_right = 618.0
 margin_bottom = 31.0
@@ -410,27 +435,38 @@ rect_min_size = Vector2( 20, 0 )
 text = "1"
 editable = false
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
-margin_top = 117.0
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer2"]
+margin_top = 35.0
 margin_right = 618.0
-margin_bottom = 148.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 3 )
+text = "(density of compound clouds in the environment)"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+margin_top = 177.0
+margin_right = 618.0
+margin_bottom = 228.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer3"]
+margin_right = 618.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer3/HBoxContainer"]
 margin_top = 3.0
 margin_right = 330.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
 text = "Player death population penalty"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer4"]
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer3/HBoxContainer"]
 margin_left = 334.0
 margin_right = 414.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 6 )
 
-[node name="PopulationPenalty" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer4"]
+[node name="PopulationPenalty" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer3/HBoxContainer"]
 margin_left = 418.0
 margin_right = 558.0
 margin_bottom = 31.0
@@ -441,7 +477,7 @@ min_value = 10.0
 value = 20.0
 rounded = true
 
-[node name="PopulationPenaltyReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer4"]
+[node name="PopulationPenaltyReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer3/HBoxContainer"]
 margin_left = 562.0
 margin_right = 618.0
 margin_bottom = 31.0
@@ -449,27 +485,38 @@ rect_min_size = Vector2( 20, 0 )
 text = "20"
 editable = false
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
-margin_top = 158.0
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer3"]
+margin_top = 35.0
 margin_right = 618.0
-margin_bottom = 189.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 3 )
+text = "(player's species population loss when the player dies)"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+margin_top = 238.0
+margin_right = 618.0
+margin_bottom = 289.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4"]
+margin_right = 618.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer5"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4/HBoxContainer"]
 margin_top = 3.0
 margin_right = 328.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 250, 0 )
 text = "Environmental glucose retention"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer5"]
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4/HBoxContainer"]
 margin_left = 332.0
 margin_right = 414.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 6 )
 
-[node name="GlucoseDecayRate" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer5"]
+[node name="GlucoseDecayRate" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4/HBoxContainer"]
 margin_left = 418.0
 margin_right = 558.0
 margin_bottom = 31.0
@@ -480,7 +527,7 @@ min_value = 20.0
 value = 80.0
 rounded = true
 
-[node name="GlucoseDecayRateReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer5"]
+[node name="GlucoseDecayRateReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4/HBoxContainer"]
 margin_left = 562.0
 margin_right = 618.0
 margin_bottom = 31.0
@@ -488,12 +535,30 @@ rect_min_size = Vector2( 20, 0 )
 text = "80%"
 editable = false
 
-[node name="FreeGlucoseCloud" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer" instance=ExtResource( 4 )]
-margin_top = 199.0
-margin_right = 387.0
-margin_bottom = 224.0
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4"]
+margin_top = 35.0
+margin_right = 618.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 3 )
+text = "(how much glucose the environment retains each generation)"
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+margin_top = 299.0
+margin_right = 618.0
+margin_bottom = 344.0
+
+[node name="FreeGlucoseCloud" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer5" instance=ExtResource( 4 )]
+margin_right = 415.0
+margin_bottom = 25.0
 size_flags_horizontal = 0
 text = "Free glucose cloud when leaving editor"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer5"]
+margin_top = 29.0
+margin_right = 618.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+text = "(start with a glucose cloud nearby each generation)"
 
 [node name="Planet" type="MarginContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions"]
 visible = false
@@ -520,7 +585,7 @@ __meta__ = {
 visible = false
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 549.0
+margin_right = 649.0
 margin_bottom = 599.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -530,17 +595,35 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 533.0
+margin_right = 633.0
 margin_bottom = 583.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
+margin_right = 618.0
+margin_bottom = 45.0
+
+[node name="IncludeMulticellular" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2" instance=ExtResource( 4 )]
+margin_right = 400.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+pressed = true
+text = "Include Multicellular Stage prototype"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2"]
+margin_top = 29.0
+margin_right = 618.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+text = "(features such as saving and loading will be unavailable once you reach the next stage)"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 213.0
-margin_right = 550.0
-margin_bottom = 248.0
+margin_top = 605.0
+margin_right = 650.0
+margin_bottom = 640.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_right = 100.0
@@ -553,14 +636,14 @@ __meta__ = {
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 104.0
-margin_right = 298.0
+margin_right = 398.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 1 )
 
 [node name="Advanced" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 302.0
-margin_right = 459.0
+margin_left = 402.0
+margin_right = 559.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 focus_mode = 0
@@ -581,8 +664,8 @@ __meta__ = {
 }
 
 [node name="Confirm" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 463.0
-margin_right = 550.0
+margin_left = 563.0
+margin_right = 650.0
 margin_bottom = 35.0
 text = "Confirm"
 __meta__ = {
@@ -597,12 +680,13 @@ __meta__ = {
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/DifficultyButton" to="." method="ChangeSettingsTab" binds= [ "Difficulty" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PlanetButton" to="." method="ChangeSettingsTab" binds= [ "Planet" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="ChangeSettingsTab" binds= [ "Miscellaneous" ]]
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer/DifficultyPreset" to="." method="OnDifficultyPresetSelected"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer2/MPMultiplier" to="." method="OnMPMultiplierValueChanged"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer3/CompoundDensity" to="." method="OnCompoundDensityValueChanged"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer4/PopulationPenalty" to="." method="OnPlayerDeathPopulationPenaltyValueChanged"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/HBoxContainer5/GlucoseDecayRate" to="." method="OnGlucoseDecayRateValueChanged"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/FreeGlucoseCloud" to="." method="OnFreeGlucoseCloudToggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer6/HBoxContainer/DifficultyPreset" to="." method="OnDifficultyPresetSelected"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer/HBoxContainer/MPMultiplier" to="." method="OnMPMultiplierValueChanged"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer2/HBoxContainer/CompoundDensity" to="." method="OnCompoundDensityValueChanged"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer3/HBoxContainer/PopulationPenalty" to="." method="OnPlayerDeathPopulationPenaltyValueChanged"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer4/HBoxContainer/GlucoseDecayRate" to="." method="OnGlucoseDecayRateValueChanged"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer5/FreeGlucoseCloud" to="." method="OnFreeGlucoseCloudToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular" to="." method="OnIncludeMulticellularToggled"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Advanced" to="." method="OnAdvancedPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Basic" to="." method="OnBasicPressed"]
