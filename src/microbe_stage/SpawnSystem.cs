@@ -255,19 +255,25 @@ public class SpawnSystem
             Constants.SPAWN_SECTOR_SIZE), Mathf.RoundToInt(playerPosition.z / Constants.SPAWN_SECTOR_SIZE));
 
         // Spawn for all sectors immediately outside a 3x3 box around the player
-        var sectorsToSpawn = new List<Tuple<int, int>>();
-        sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 - 1));
-        sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2));
-        sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 + 1));
-        sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2 - 1));
-        sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2));
-        sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2 + 1));
-        sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 - 1, playerCoordinatePoint.Item2 - 2));
-        sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1, playerCoordinatePoint.Item2 - 2));
-        sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 + 1, playerCoordinatePoint.Item2 - 2));
-        sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 - 1, playerCoordinatePoint.Item2 + 2));
-        sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1, playerCoordinatePoint.Item2 + 2));
-        sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 + 1, playerCoordinatePoint.Item2 + 2));
+        var sectorsToSpawn = new List<Tuple<int, int>>(12);
+        for (var i = -1; i <= 1; i++){
+            sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 + i));
+        }
+
+        for (var i = -1; i <= 1; i++)
+        {
+            sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2 + i));
+        }
+
+        for (var i = -1; i <= 1; i++)
+        {
+            sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 + i, playerCoordinatePoint.Item2 - 2));
+        }
+
+        for (var i = -1; i <= 1; i++)
+        {
+            sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 + i, playerCoordinatePoint.Item2 + 2));
+        }
 
         foreach (var newSector in sectorsToSpawn)
         {
