@@ -11,6 +11,8 @@ public class WorldGenerationSettings
 
     public const double MIN_MP_MULTIPLIER = 0.2;
     public const double MAX_MP_MULTIPLIER = 2;
+    public const double MIN_AI_MUTATION_RATE = 0.5;
+    public const double MAX_AI_MUTATION_RATE = 5;
     public const double MIN_COMPOUND_DENSITY = 0.2;
     public const double MAX_COMPOUND_DENSITY = 2;
     public const int MIN_PLAYER_DEATH_POPULATION_PENALTY = 10;

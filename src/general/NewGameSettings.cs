@@ -118,6 +118,7 @@ public class NewGameSettings : ControlWithInput
     private OptionButton difficultyPresetAdvancedButton = null!;
     private HSlider mpMultiplier = null!;
     private LineEdit mpMultiplierReadout = null!;
+    private HSlider aiMutationRate = null!;
     private HSlider compoundDensity = null!;
     private LineEdit compoundDensityReadout = null!;
     private HSlider playerDeathPopulationPenalty = null!;
@@ -171,6 +172,7 @@ public class NewGameSettings : ControlWithInput
         difficultyPresetAdvancedButton = GetNode<OptionButton>(DifficultyPresetAdvancedButtonPath);
         mpMultiplier = GetNode<HSlider>(MPMultiplierPath);
         mpMultiplierReadout = GetNode<LineEdit>(MPMultiplierReadoutPath);
+        aiMutationRate = GetNode<HSlider>(MPMultiplierPath);
         compoundDensity = GetNode<HSlider>(CompoundDensityPath);
         compoundDensityReadout = GetNode<LineEdit>(CompoundDensityReadoutPath);
         playerDeathPopulationPenalty = GetNode<HSlider>(PlayerDeathPopulationPenaltyPath);
@@ -192,6 +194,8 @@ public class NewGameSettings : ControlWithInput
 
         mpMultiplier.MinValue = WorldGenerationSettings.MIN_MP_MULTIPLIER;
         mpMultiplier.MaxValue = WorldGenerationSettings.MAX_MP_MULTIPLIER;
+        aiMutationRate.MinValue = WorldGenerationSettings.MIN_AI_MUTATION_RATE;
+        aiMutationRate.MaxValue = WorldGenerationSettings.MAX_AI_MUTATION_RATE;
         compoundDensity.MinValue = WorldGenerationSettings.MIN_COMPOUND_DENSITY;
         compoundDensity.MaxValue = WorldGenerationSettings.MAX_COMPOUND_DENSITY;
         playerDeathPopulationPenalty.MinValue = WorldGenerationSettings.MIN_PLAYER_DEATH_POPULATION_PENALTY;
@@ -363,6 +367,7 @@ public class NewGameSettings : ControlWithInput
         SetSeed(gameSeed.Text);
 
         settings.MPMultiplier = mpMultiplier.Value;
+        settings.AIMutationMultiplier = aiMutationRate.Value;
         settings.CompoundDensity = compoundDensity.Value;
         settings.PlayerDeathPopulationPenalty = (int)playerDeathPopulationPenalty.Value;
         settings.GlucoseDecay = glucoseDecayRate.Value * 0.01;
@@ -396,6 +401,7 @@ public class NewGameSettings : ControlWithInput
         }
 
         mpMultiplier.Value = WorldGenerationSettings.GetMPMultiplier(preset);
+        aiMutationRate.Value = WorldGenerationSettings.GetAIMutationMultiplier(preset);
         compoundDensity.Value = WorldGenerationSettings.GetCompoundDensity(preset);
         playerDeathPopulationPenalty.Value = WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset);
         glucoseDecayRate.Value = WorldGenerationSettings.GetGlucoseDecay(preset) * 100;
@@ -446,6 +452,9 @@ public class NewGameSettings : ControlWithInput
                 continue;
 
             if (Math.Abs(mpMultiplier.Value - WorldGenerationSettings.GetMPMultiplier(preset)) > MathUtils.EPSILON)
+                continue;
+
+            if (Math.Abs(aiMutationRate.Value - WorldGenerationSettings.GetAIMutationMultiplier(preset)) > MathUtils.EPSILON)
                 continue;
 
             if (Math.Abs(compoundDensity.Value - WorldGenerationSettings.GetCompoundDensity(preset)) >
