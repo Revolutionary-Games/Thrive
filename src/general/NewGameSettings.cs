@@ -50,6 +50,12 @@ public class NewGameSettings : ControlWithInput
     public NodePath MPMultiplierReadoutPath = null!;
 
     [Export]
+    public NodePath AIMutationRatePath = null!;
+
+    [Export]
+    public NodePath AIMutationRateReadoutPath = null!;
+
+    [Export]
     public NodePath CompoundDensityPath = null!;
 
     [Export]
@@ -119,6 +125,7 @@ public class NewGameSettings : ControlWithInput
     private HSlider mpMultiplier = null!;
     private LineEdit mpMultiplierReadout = null!;
     private HSlider aiMutationRate = null!;
+    private LineEdit aiMutationRateReadout = null!;
     private HSlider compoundDensity = null!;
     private LineEdit compoundDensityReadout = null!;
     private HSlider playerDeathPopulationPenalty = null!;
@@ -172,7 +179,8 @@ public class NewGameSettings : ControlWithInput
         difficultyPresetAdvancedButton = GetNode<OptionButton>(DifficultyPresetAdvancedButtonPath);
         mpMultiplier = GetNode<HSlider>(MPMultiplierPath);
         mpMultiplierReadout = GetNode<LineEdit>(MPMultiplierReadoutPath);
-        aiMutationRate = GetNode<HSlider>(MPMultiplierPath);
+        aiMutationRate = GetNode<HSlider>(AIMutationRatePath);
+        aiMutationRateReadout = GetNode<LineEdit>(AIMutationRateReadoutPath);
         compoundDensity = GetNode<HSlider>(CompoundDensityPath);
         compoundDensityReadout = GetNode<LineEdit>(CompoundDensityReadoutPath);
         playerDeathPopulationPenalty = GetNode<HSlider>(PlayerDeathPopulationPenaltyPath);
@@ -494,6 +502,14 @@ public class NewGameSettings : ControlWithInput
     {
         mpMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.MPMultiplier = amount;
+
+        UpdateDifficultyPreset();
+    }
+
+    private void OnAIMutationRateValueChanged(double amount)
+    {
+        aiMutationRateReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
+        settings.AIMutationMultiplier = amount;
 
         UpdateDifficultyPreset();
     }

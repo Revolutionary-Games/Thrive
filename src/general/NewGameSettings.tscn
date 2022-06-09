@@ -424,6 +424,14 @@ max_value = 2.0
 step = 0.1
 value = 1.0
 
+[node name="AIMutationRateReadout" type="LineEdit" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer/HBoxContainer1"]
+margin_left = 562.0
+margin_right = 618.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 20, 0 )
+text = "1"
+editable = false
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
 margin_top = 116.0
 margin_right = 618.0
