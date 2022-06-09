@@ -125,7 +125,7 @@
             var split = (MicrobeSpecies)fromMicrobe.Clone();
 
             if (configuration.BiodiversitySplitIsMutated)
-                mutations.CreateMutatedSpecies(fromMicrobe, split, settings.Lawk);
+                mutations.CreateMutatedSpecies(fromMicrobe, split, settings.AIMutationMultiplier, settings.Lawk);
 
             // Set the starting population in the patch
             split.Population = configuration.NewBiodiversityIncreasingSpeciesPopulation;
