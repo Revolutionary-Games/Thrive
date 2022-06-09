@@ -289,7 +289,7 @@ public class SpawnSystem
     {
         foreach (var spawnType in spawnTypes)
         {
-            Vector3 sectorCenter = new Vector3(sector.Item1 * Constants.SPAWN_SECTOR_SIZE, 0,
+            var sectorCenter = new Vector3(sector.Item1 * Constants.SPAWN_SECTOR_SIZE, 0,
                 sector.Item2 * Constants.SPAWN_SECTOR_SIZE);
 
             // Distance from the sector center.
