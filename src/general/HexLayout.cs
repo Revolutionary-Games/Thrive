@@ -220,7 +220,7 @@ public abstract class HexLayout<T> : ICollection<T>
         var hexesWithNeighbours = new List<Hex> { initHex };
 
         // These are all of the existing hexes, that if there are no islands will all be visited
-        var shouldBeVisited = existingHexes.Select(p => p.Position).ToList();
+        var shouldBeVisited = ComputeHexCache();
 
         CheckmarkNeighbors(hexesWithNeighbours);
 

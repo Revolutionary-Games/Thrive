@@ -676,7 +676,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         healthBar.MaxValue = maxHP;
         GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
-        hpLabel.Text = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+        var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+        hpLabel.Text = hpText;
+        hpLabel.HintTooltip = hpText;
     }
 
     protected abstract void ReadPlayerHitpoints(out float hp, out float maxHP);
@@ -756,15 +758,19 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play();
     }
 
-    public void OnEnterStageTransition(bool longerDuration)
+    public void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
     {
         if (stage == null)
             throw new InvalidOperationException("Stage not setup for HUD");
 
+        if (stage.IsLoadedFromSave && !returningFromEditor)
+            return;
+
         // Fade out for that smooth satisfying transition
         stage.TransitionFinished = false;
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f);
-        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.OnFinishTransitioning));
+
+        TransitionManager.Instance.AddSequence(
+            ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f, stage.OnFinishTransitioning);
     }
 
     public override void _Notification(int what)
@@ -800,8 +806,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         EnsureGameIsUnpausedForEditor();
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToEditor, false);
 
         stage.MovingToEditor = true;
 
@@ -1049,8 +1054,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         }
 
         GUICommon.SmoothlyUpdateBar(atpBar, atpAmount * 10.0f, delta);
-        atpLabel.Text = atpAmount.ToString("F1", CultureInfo.CurrentCulture) + " / "
+        var atpText = atpAmount.ToString("F1", CultureInfo.CurrentCulture) + " / "
             + maxATP.ToString("F1", CultureInfo.CurrentCulture);
+        atpLabel.Text = atpText;
+        atpLabel.HintTooltip = atpText;
     }
 
     protected abstract ICompoundStorage GetPlayerColonyOrPlayerStorage();

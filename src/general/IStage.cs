@@ -17,4 +17,11 @@ public interface IStage : IReturnableGameState
     public GameWorld GameWorld { get; }
 
     public void OnSuicide();
+
+    /// <summary>
+    ///   Called by the HUD when the stage has faded in from a black screen
+    /// </summary>
+    public void OnFinishTransitioning();
+
+    public void MoveToEditor();
 }

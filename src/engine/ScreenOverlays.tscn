@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/engine/FPSCounter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/saving/SaveStatusOverlay.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/gui_common/QuickLoadHandler.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=6]
 [ext_resource path="res://src/engine/PerformanceMetrics.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/gui_common/TransitionManager.cs" type="Script" id=8]
 
 [node name="ScreenOverlays" type="Node"]
 pause_mode = 2
@@ -17,6 +18,13 @@ layer = 128
 
 [node name="LoadingScreen" parent="CanvasLayer" instance=ExtResource( 3 )]
 visible = false
+
+[node name="TransitionManager" type="Control" parent="CanvasLayer"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 8 )
 
 [node name="SaveStatusOverlay" parent="CanvasLayer" instance=ExtResource( 2 )]
 visible = false

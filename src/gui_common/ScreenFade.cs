@@ -3,11 +3,10 @@
 /// <summary>
 ///   Controls the screen fade transition
 /// </summary>
-public class ScreenFade : CanvasLayer, ITransition
+public class ScreenFade : Control, ITransition
 {
-    private ColorRect rect = null!;
+    private ColorRect? rect;
     private Tween fader = null!;
-    private Control controlNode = null!;
 
     private FadeType currentFadeType;
 
@@ -27,13 +26,7 @@ public class ScreenFade : CanvasLayer, ITransition
         FadeOut,
     }
 
-    public bool Skippable { get; set; } = true;
-
-    public bool Visible
-    {
-        get => controlNode.Visible;
-        set => controlNode.Visible = value;
-    }
+    public bool Finished { get; private set; }
 
     public float FadeDuration { get; set; }
 
@@ -43,52 +36,45 @@ public class ScreenFade : CanvasLayer, ITransition
         set
         {
             currentFadeType = value;
-
-            // Apply initial colors
-            if (currentFadeType == FadeType.FadeIn)
-            {
-                rect.Color = new Color(0, 0, 0, 1);
-            }
-            else if (currentFadeType == FadeType.FadeOut)
-            {
-                rect.Color = new Color(0, 0, 0, 0);
-            }
+            SetInitialColours();
         }
     }
 
     public override void _Ready()
     {
-        controlNode = GetNode<Control>("Control");
-        rect = GetNode<ColorRect>("Control/Rect");
-        fader = GetNode<Tween>("Control/Fader");
+        rect = GetNode<ColorRect>("Rect");
+        fader = GetNode<Tween>("Fader");
 
         fader.Connect("tween_all_completed", this, nameof(OnFinished));
 
         // Keep this node running while paused
         PauseMode = PauseModeEnum.Process;
+
+        SetInitialColours();
+        Hide();
     }
 
     public void FadeToBlack()
     {
-        FadeTo(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1));
+        FadeTo(new Color(0, 0, 0, 1));
     }
 
     public void FadeToWhite()
     {
-        FadeTo(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0));
+        FadeTo(new Color(0, 0, 0, 0));
     }
 
-    public void FadeTo(Color initial, Color final)
+    public void FadeTo(Color final)
     {
-        rect.Color = initial;
-
-        fader.InterpolateProperty(rect, "color", initial, final, FadeDuration);
+        fader.InterpolateProperty(rect, "color", null, final, FadeDuration);
 
         fader.Start();
     }
 
-    public void OnStarted()
+    public void Begin()
     {
+        Show();
+
         switch (CurrentFadeType)
         {
             case FadeType.FadeIn:
@@ -100,10 +86,34 @@ public class ScreenFade : CanvasLayer, ITransition
         }
     }
 
-    public void OnFinished()
+    public void Skip()
     {
-        EmitSignal(nameof(OnFinishedSignal));
+        OnFinished();
+    }
 
+    public void Clear()
+    {
         this.DetachAndQueueFree();
+    }
+
+    private void SetInitialColours()
+    {
+        if (rect == null)
+            return;
+
+        // Apply initial colors
+        if (currentFadeType == FadeType.FadeIn)
+        {
+            rect.Color = new Color(0, 0, 0, 1);
+        }
+        else if (currentFadeType == FadeType.FadeOut)
+        {
+            rect.Color = new Color(0, 0, 0, 0);
+        }
+    }
+
+    private void OnFinished()
+    {
+        Finished = true;
     }
 }

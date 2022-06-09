@@ -261,7 +261,7 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         // Make sure player is spawned
         SpawnPlayer();
 
-        BaseHUD.OnEnterStageTransition(false);
+        BaseHUD.OnEnterStageTransition(false, true);
         BaseHUD.HideReproductionDialog();
 
         StartMusic();
@@ -334,14 +334,7 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
 
         StartMusic();
 
-        if (IsLoadedFromSave)
-        {
-            BaseHUD.OnEnterStageTransition(false);
-        }
-        else
-        {
-            BaseHUD.OnEnterStageTransition(true);
-        }
+        BaseHUD.OnEnterStageTransition(!IsLoadedFromSave, false);
     }
 
     /// <summary>

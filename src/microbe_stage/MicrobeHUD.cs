@@ -359,8 +359,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
 
         EnsureGameIsUnpausedForEditor();
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToMulticellular));
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToMulticellular, false);
 
         stage.MovingToEditor = true;
     }
@@ -383,8 +382,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
 
         EnsureGameIsUnpausedForEditor();
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToMacroscopic));
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToMacroscopic, false);
 
         stage.MovingToEditor = true;
     }
