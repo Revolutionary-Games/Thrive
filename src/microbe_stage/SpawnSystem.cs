@@ -305,8 +305,12 @@ public class SpawnSystem
                 (Constants.SPAWN_SECTOR_SIZE / 2), 0,
                 random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
 
-            // Second condition passed. Spawn the entity.
-            SpawnWithSpawner(spawnType, sectorCenter + displacement);
+            var spawns = SpawnWithSpawner(spawnType, sectorCenter + displacement);
+
+            var debugOverlay = DebugOverlays.Instance;
+
+            if (debugOverlay.PerformanceMetricsVisible)
+                debugOverlay.ReportSpawns(spawns);
         }
     }
 
