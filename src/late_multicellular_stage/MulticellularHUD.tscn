@@ -1609,6 +1609,7 @@ margin_left = -90.0
 margin_top = -235.0
 margin_right = -10.0
 margin_bottom = -183.0
+mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 29 )
@@ -1616,6 +1617,7 @@ custom_styles/panel = SubResource( 29 )
 [node name="Margin" type="MarginContainer" parent="BottomRight/DataValue"]
 margin_right = 80.0
 margin_bottom = 52.0
+mouse_filter = 2
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -1632,8 +1634,10 @@ alignment = 1
 [node name="HPValue" type="Label" parent="BottomRight/DataValue/Margin/VBox"]
 margin_right = 70.0
 margin_bottom = 17.0
+mouse_filter = 0
 custom_fonts/font = ExtResource( 2 )
 text = "Hitpoints"
+clip_text = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
@@ -1642,8 +1646,10 @@ __meta__ = {
 margin_top = 25.0
 margin_right = 70.0
 margin_bottom = 42.0
+mouse_filter = 0
 custom_fonts/font = ExtResource( 2 )
 text = "ATP"
+clip_text = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
@@ -1924,7 +1930,6 @@ visible = false
 [connection signal="pressed" from="BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="." method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
 [connection signal="pressed" from="BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="." method="OnCompoundsPanelSizeButtonPressed" binds= [ "expand" ]]
 [connection signal="pressed" from="BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="." method="OnCompoundsPanelSizeButtonPressed" binds= [ "compress" ]]
-[connection signal="OnMenuPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenMenu"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Aware" to="." method="OnBecomeMulticellularPressed"]
 [connection signal="pressed" from="BottomRight/VBoxContainer/Control/Awaken" to="." method="OnBecomeMacroscopicPressed"]
 [connection signal="mouse_entered" from="BottomRight/EditorButton" to="." method="OnEditorButtonMouseEnter"]
