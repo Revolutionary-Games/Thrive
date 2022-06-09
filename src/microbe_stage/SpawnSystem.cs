@@ -291,7 +291,7 @@ public class SpawnSystem
     ///   Handles all spawning for this section of the play area, as it will look when the player enters. Does NOT
     ///   handle recording that the sector was spawned.
     /// </summary>
-    /// <param name="sector">X/Y coordinates of the sector to be spawned, in <see cref="Constants.SECTOR_SIZE" />
+    /// <param name="sector">X/Y coordinates of the sector to be spawned, in <see cref="Constants.SPAWN_SECTOR_SIZE" />
     /// units</param>
     private void SpawnInSector(Tuple<int, int> sector)
     {
