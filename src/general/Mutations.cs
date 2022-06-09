@@ -33,7 +33,8 @@ public class Mutations
     /// <summary>
     ///   Creates a mutated version of a species
     /// </summary>
-    public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated, double creationRate, bool lawkOnly)
+    public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated, double creationRate,
+        bool lawkOnly)
     {
         if (parent.Organelles.Count < 1)
         {

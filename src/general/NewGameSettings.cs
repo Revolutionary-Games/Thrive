@@ -462,7 +462,8 @@ public class NewGameSettings : ControlWithInput
             if (Math.Abs(mpMultiplier.Value - WorldGenerationSettings.GetMPMultiplier(preset)) > MathUtils.EPSILON)
                 continue;
 
-            if (Math.Abs(aiMutationRate.Value - WorldGenerationSettings.GetAIMutationMultiplier(preset)) > MathUtils.EPSILON)
+            if (Math.Abs(aiMutationRate.Value - WorldGenerationSettings.GetAIMutationMultiplier(preset))
+                > MathUtils.EPSILON)
                 continue;
 
             if (Math.Abs(compoundDensity.Value - WorldGenerationSettings.GetCompoundDensity(preset)) >
