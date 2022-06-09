@@ -256,7 +256,8 @@ public class SpawnSystem
 
         // Spawn for all sectors immediately outside a 3x3 box around the player
         var sectorsToSpawn = new List<Tuple<int, int>>(12);
-        for (var i = -1; i <= 1; i++){
+        for (var i = -1; i <= 1; i++)
+        {
             sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 + i));
         }
 
