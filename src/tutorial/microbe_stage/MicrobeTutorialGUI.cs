@@ -77,6 +77,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public Node GUINode => this;
 
     public ControlHighlight? PressEditorButtonHighlight { get; private set; }
+
     public bool IsClosingAutomatically { get; set; }
 
     public bool MicrobeWelcomeVisible
