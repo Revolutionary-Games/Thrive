@@ -269,7 +269,7 @@ public class SpawnSystem
         sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1, playerCoordinatePoint.Item2 + 2));
         sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 + 1, playerCoordinatePoint.Item2 + 2));
 
-        foreach (Tuple<int, int> newSector in sectorsToSpawn)
+        foreach (var newSector in sectorsToSpawn)
         {
             if (!coordinatesSpawned.Contains(newSector))
             {
