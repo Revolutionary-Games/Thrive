@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Manages the screen transitions, usually used for when
 ///   switching scenes. This is autoloaded
 /// </summary>
-public class TransitionManager : NodeWithInput
+public class TransitionManager : ControlWithInput
 {
     private static TransitionManager? instance;
 
@@ -13,9 +14,9 @@ public class TransitionManager : NodeWithInput
     private readonly PackedScene cutsceneScene;
 
     /// <summary>
-    ///   Transitions waiting to be executed.
+    ///   A queue of running and pending transition sequences.
     /// </summary>
-    private readonly Queue<ITransition> queuedTransitions = new();
+    private readonly Queue<Sequence> queuedSequences = new();
 
     private TransitionManager()
     {
@@ -30,12 +31,57 @@ public class TransitionManager : NodeWithInput
 
     public static TransitionManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
-    /// <summary>
-    ///   List of all the existing transitions after calling StartTransitions.
-    /// </summary>
-    public List<ITransition> TransitionSequence { get; } = new();
+    public bool HasQueuedTransitions => queuedSequences.Count > 0;
 
-    public bool HasQueuedTransitions => TransitionSequence.Count > 0;
+    private ScreenFade.FadeType? LastFadedType { get; set; }
+
+    /// <summary>
+    ///   Helper method for creating a screen fade.
+    /// </summary>
+    /// <param name="type">The type of fade to transition to</param>
+    /// <param name="fadeDuration">How long the fade lasts</param>
+    public ScreenFade CreateScreenFade(ScreenFade.FadeType type, float fadeDuration)
+    {
+        // Instantiate scene
+        var screenFade = (ScreenFade)screenFadeScene.Instance();
+
+        screenFade.CurrentFadeType = type;
+        screenFade.FadeDuration = fadeDuration;
+
+        return screenFade;
+    }
+
+    /// <summary>
+    ///   Helper method for creating a video cutscene.
+    /// </summary>
+    /// <param name="path">The video file to play</param>
+    /// <param name="volume">The video player's volume in linear value</param>
+    public Cutscene CreateCutscene(string path, float volume = 1.0f)
+    {
+        // Instantiate scene
+        var cutscene = (Cutscene)cutsceneScene.Instance();
+
+        cutscene.Volume = volume;
+        cutscene.Stream = GD.Load<VideoStream>(path);
+
+        return cutscene;
+    }
+
+    public override void _Process(float delta)
+    {
+        if (queuedSequences.Count > 0)
+        {
+            var sequence = queuedSequences.Peek();
+
+            sequence.Process();
+
+            if (sequence.Finished)
+            {
+                queuedSequences.Dequeue();
+                SaveHelper.AllowQuickSavingAndLoading = !HasQueuedTransitions;
+            }
+        }
+    }
 
     [RunOnKeyDown("ui_cancel", OnlyUnhandled = false)]
     public bool CancelTransitionPressed()
@@ -43,125 +89,177 @@ public class TransitionManager : NodeWithInput
         if (!HasQueuedTransitions)
             return false;
 
-        CancelQueuedTransitions();
+        CancelSequences();
         return true;
     }
 
     /// <summary>
-    ///   Creates and queues a screen fade.
+    ///   Enqueues a new <see cref="Sequence"/> from the given list of transitions. This defaults to skipping any
+    ///   previous sequences, can be changed with <paramref name="skipPrevious"/> parameter.
+    ///   Invokes the specified action when the sequence is finished.
     /// </summary>
-    /// <param name="type">The type of fade to transition to</param>
-    /// <param name="fadeDuration">How long the fade lasts</param>
-    /// <param name="allowSkipping">Allow the user to skip this</param>
-    public void AddScreenFade(ScreenFade.FadeType type, float fadeDuration, bool allowSkipping = true)
+    /// <param name="transitions">Order of transitions</param>
+    /// <param name="onFinishedCallback">The action to invoke when the sequence is finished</param>
+    /// <param name="skippable">If true, the sequence can be skipped</param>
+    /// <param name="skipPrevious">If false, will not skip any previously added sequences</param>
+    public void AddSequence(List<ITransition> transitions, Action? onFinishedCallback = null, bool skippable = true,
+        bool skipPrevious = true)
     {
-        // Instantiate scene
-        var screenFade = (ScreenFade)screenFadeScene.Instance();
-        AddChild(screenFade);
-
-        screenFade.Skippable = allowSkipping;
-        screenFade.CurrentFadeType = type;
-        screenFade.FadeDuration = fadeDuration;
-
-        screenFade.Connect("OnFinishedSignal", this, nameof(StartNextQueuedTransition));
-
-        queuedTransitions.Enqueue(screenFade);
-    }
-
-    /// <summary>
-    ///   Creates and queues a video cutscene.
-    /// </summary>
-    /// <param name="path">The video file to play</param>
-    /// <param name="volume">The video player's volume in linear value</param>
-    /// <param name="allowSkipping">Allow the user to skip this</param>
-    public void AddCutscene(string path, float volume = 1.0f, bool allowSkipping = true)
-    {
-        // Instantiate scene
-        var cutscene = (Cutscene)cutsceneScene.Instance();
-        AddChild(cutscene);
-
-        cutscene.Skippable = allowSkipping;
-        cutscene.Volume = volume;
-        cutscene.Stream = GD.Load<VideoStream>(path);
-
-        cutscene.Connect("OnFinishedSignal", this, nameof(StartNextQueuedTransition));
-
-        queuedTransitions.Enqueue(cutscene);
-    }
-
-    /// <summary>
-    ///   Executes queued transitions.
-    ///   Calls the specified method when all transitions are finished.
-    /// </summary>
-    /// <param name="target">The target object to connect to</param>
-    /// <param name="onFinishedMethod">The name of the method on the target object</param>
-    public void StartTransitions(Object? target = null, string? onFinishedMethod = null)
-    {
-        if (queuedTransitions.Count == 0)
+        if (transitions.Count <= 0)
         {
-            GD.PrintErr("No transitions found in the queue, can't execute transitions");
+            GD.PrintErr("The given list of transitions is empty, can't add sequence to the queue");
             return;
         }
 
-        if (!string.IsNullOrEmpty(onFinishedMethod))
+        if (skipPrevious)
         {
-            if (!IsConnected(nameof(QueuedTransitionsFinished), target, onFinishedMethod))
-            {
-                Connect(nameof(QueuedTransitionsFinished), target, onFinishedMethod, null,
-                    (uint)ConnectFlags.Oneshot);
-            }
+            foreach (var entry in queuedSequences)
+                entry.Skip();
         }
 
-        foreach (var entry in queuedTransitions)
+        foreach (var transition in transitions)
         {
-            entry.Visible = false;
-
-            // Add the transitions to the list for reference
-            TransitionSequence.Add(entry);
+            if (transition is Node node)
+                AddChild(node);
         }
+
+        var sequence = new Sequence(transitions, onFinishedCallback) { Skippable = skippable };
+        queuedSequences.Enqueue(sequence);
 
         SaveHelper.AllowQuickSavingAndLoading = false;
-
-        // Begin the first transition in the queue
-        StartNextQueuedTransition();
     }
 
     /// <summary>
-    ///   Skips all the running and remaining transitions.
+    ///   Enqueues a new <see cref="Sequence"/> from the given transition. This defaults to skipping any
+    ///   previous sequences, can be changed with <paramref name="skipPrevious"/> parameter.
+    ///   Invokes the specified action when the sequence is finished.
     /// </summary>
-    private void CancelQueuedTransitions()
+    /// <param name="transition">The specified transition</param>
+    /// <param name="onFinishedCallback">The action to invoke when the sequence is finished</param>
+    /// <param name="skippable">If true, the sequence can be skipped</param>
+    /// <param name="skipPrevious">If false, will not skip any previously added sequences</param>
+    public void AddSequence(ITransition transition, Action? onFinishedCallback = null, bool skippable = true,
+        bool skipPrevious = true)
     {
-        if (!HasQueuedTransitions)
-            return;
+        AddSequence(new List<ITransition> { transition }, onFinishedCallback, skippable, skipPrevious);
+    }
 
-        var transitions = new List<ITransition>(TransitionSequence);
+    /// <summary>
+    ///   Enqueues a new <see cref="Sequence"/> from the given type of screen fade.
+    ///   Invokes the specified action when the sequence is finished.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     A single screen fade is commonly used which is why a dedicated overload method is
+    ///     supported to make it easier to invoke with less verbosity.
+    ///   </para>
+    /// </remarks>
+    public void AddSequence(ScreenFade.FadeType fadeType, float duration, Action? onFinishedCallback = null,
+        bool skippable = true, bool skipPrevious = true)
+    {
+        AddSequence(CreateScreenFade(fadeType, duration), onFinishedCallback, skippable, skipPrevious);
+    }
 
-        foreach (var entry in transitions)
+    /// <summary>
+    ///   Skips all the running and remaining transition sequences.
+    /// </summary>
+    private void CancelSequences()
+    {
+        foreach (var sequence in queuedSequences)
+            sequence.Skip();
+    }
+
+    /// <summary>
+    ///   A sequence of <see cref="ITransition"/>s. Has its own on finished callback.
+    /// </summary>
+    public class Sequence
+    {
+        private Queue<ITransition> queuedTransitions = new();
+        private Action? onFinishedCallback;
+
+        public Sequence(List<ITransition> transitions, Action? onFinishedCallback)
         {
-            if (IsInstanceValid((Node)entry))
+            foreach (var transition in transitions)
             {
-                if (entry.Skippable)
-                    entry.OnFinished();
+                queuedTransitions.Enqueue(transition);
+            }
+
+            this.onFinishedCallback = onFinishedCallback;
+        }
+
+        public bool Skippable { get; set; }
+
+        public bool Finished { get; private set; }
+
+        /// <summary>
+        ///   If true this means this sequence is in the state of executing/has executed a transition.
+        /// </summary>
+        public bool Running { get; private set; }
+
+        public void Skip()
+        {
+            if (!Skippable)
+                return;
+
+            foreach (var transition in queuedTransitions)
+                transition.Skip();
+        }
+
+        /// <summary>
+        ///   Awaits for one transition to finish before moving on to the next and clears the previous.
+        /// </summary>
+        public void Process()
+        {
+            if (queuedTransitions.Count <= 0)
+                return;
+
+            if (!Running)
+            {
+                Running = true;
+                StartNext();
+            }
+
+            if (queuedTransitions.Peek().Finished)
+            {
+                var previous = queuedTransitions.Dequeue();
+
+                // Defer call to avoid possible "flickers"
+                Invoke.Instance.Queue(() => previous.Clear());
+
+                if (previous is ScreenFade fade)
+                    Instance.LastFadedType = fade.CurrentFadeType;
+
+                StartNext();
             }
         }
-    }
 
-    /// <summary>
-    ///   Starts the next queued transition when the previous ends.
-    /// </summary>
-    private void StartNextQueuedTransition()
-    {
-        // Assume all transitions are finished if the queue is empty.
-        if (queuedTransitions.Count == 0)
+        /// <summary>
+        ///   Starts the front-most transition on the queue.
+        /// </summary>
+        private void StartNext()
         {
-            EmitSignal(nameof(QueuedTransitionsFinished));
-            TransitionSequence.Clear();
-            SaveHelper.AllowQuickSavingAndLoading = true;
-            return;
-        }
+            if (queuedTransitions.Count > 0)
+            {
+                var front = queuedTransitions.Peek();
 
-        var currentTransition = queuedTransitions.Dequeue();
-        currentTransition.Visible = true;
-        currentTransition.OnStarted();
+                // Hard disallow incorrect fade order
+                if (front is ScreenFade fade && fade.CurrentFadeType == Instance.LastFadedType)
+                {
+                    front.Skip();
+                    return;
+                }
+
+                Instance.LastFadedType = null;
+                front.Begin();
+                return;
+            }
+
+            Instance.LastFadedType = null;
+
+            // Assume all transitions are finished if the queue is empty.
+            Finished = true;
+            Running = false;
+            onFinishedCallback?.Invoke();
+        }
     }
 }

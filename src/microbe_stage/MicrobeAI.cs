@@ -516,6 +516,7 @@ public class MicrobeAI
             SmellForCompounds(data);
         }
 
+        // If the AI has smelled a compound (currently only possible with a chemoreceptor), go towards it.
         if (lastSmelledCompoundPosition != null)
         {
             var distance = DistanceFromMe(lastSmelledCompoundPosition.Value);
