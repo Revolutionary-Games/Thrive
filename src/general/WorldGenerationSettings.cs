@@ -42,6 +42,7 @@ public class WorldGenerationSettings
     public LifeOrigin Origin { get; set; } = LifeOrigin.Vent;
     public int Seed { get; set; } = new Random().Next();
     public double MPMultiplier { get; set; } = 1;
+    public double AIMutationMultiplier { get; set; } = 1;
     public double CompoundDensity { get; set; } = 1;
     public int PlayerDeathPopulationPenalty { get; set; } = 20;
     public double GlucoseDecay { get; set; } = 0.8;
@@ -64,6 +65,21 @@ public class WorldGenerationSettings
                 return 1;
             case DifficultyPreset.Hard:
                 return 1.2;
+            default:
+                return 1;
+        }
+    }
+
+    public static double GetAIMutationMultiplier(DifficultyPreset preset)
+    {
+        switch (preset)
+        {
+            case DifficultyPreset.Easy:
+                return 1;
+            case DifficultyPreset.Normal:
+                return 1;
+            case DifficultyPreset.Hard:
+                return 2.0;
             default:
                 return 1;
         }

@@ -33,7 +33,7 @@ public class Mutations
     /// <summary>
     ///   Creates a mutated version of a species
     /// </summary>
-    public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated, bool lawkOnly)
+    public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated, double creationRate, bool lawkOnly)
     {
         if (parent.Organelles.Count < 1)
         {
@@ -66,7 +66,7 @@ public class Mutations
 
         MutateBehaviour(parent, mutated);
 
-        MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria, lawkOnly);
+        MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria, creationRate, lawkOnly);
 
         // Update the genus if the new species is different enough
         if (NewGenus(mutated, parent))
@@ -121,7 +121,7 @@ public class Mutations
     /// <summary>
     ///   Creates a fully random species starting with one cytoplasm
     /// </summary>
-    public MicrobeSpecies CreateRandomSpecies(MicrobeSpecies mutated, bool lawkOnly, int steps = 5)
+    public MicrobeSpecies CreateRandomSpecies(MicrobeSpecies mutated, double creationRate, bool lawkOnly, int steps = 5)
     {
         // Temporarily create species with just cytoplasm to start mutating from
         var temp = new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty);
@@ -135,7 +135,7 @@ public class Mutations
 
         for (int step = 0; step < steps; ++step)
         {
-            CreateMutatedSpecies(temp, mutated, lawkOnly);
+            CreateMutatedSpecies(temp, mutated, creationRate, lawkOnly);
 
             temp = (MicrobeSpecies)mutated.Clone();
         }
@@ -164,7 +164,7 @@ public class Mutations
     ///   Creates a mutated version of parentOrganelles in organelles
     /// </summary>
     private void MutateMicrobeOrganelles(OrganelleLayout<OrganelleTemplate> parentOrganelles,
-        OrganelleLayout<OrganelleTemplate> mutatedOrganelles, bool isBacteria, bool lawkOnly)
+        OrganelleLayout<OrganelleTemplate> mutatedOrganelles, bool isBacteria, double creationRate, bool lawkOnly)
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
@@ -205,7 +205,7 @@ public class Mutations
         }
 
         // We can insert new organelles at the end of the list
-        for (int i = 0; i < 6; ++i)
+        for (int i = 0; i < Math.Ceiling(6 * creationRate); ++i)
         {
             if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
             {

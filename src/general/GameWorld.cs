@@ -188,7 +188,7 @@ public class GameWorld : ISaveLoadable
                         Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX + 1);
 
                 entry.Value.AddSpecies(mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty),
-                    WorldSettings.Lawk), population);
+                    WorldSettings.AIMutationMultiplier, WorldSettings.Lawk), population);
             }
         }
     }

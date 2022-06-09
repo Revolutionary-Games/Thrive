@@ -60,7 +60,7 @@
         protected override IAttemptResult TryVariant()
         {
             var mutated = (MicrobeSpecies)species.Clone();
-            mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated, settings.Lawk);
+            mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated, settings.AIMutationMultiplier, settings.Lawk);
 
             var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
