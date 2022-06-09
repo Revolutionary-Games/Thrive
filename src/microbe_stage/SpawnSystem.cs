@@ -293,7 +293,7 @@ public class SpawnSystem
                 sector.Item2 * Constants.SPAWN_SECTOR_SIZE);
 
             // Distance from the sector center.
-            Vector3 displacement = new Vector3(random.NextFloat() * Constants.SPAWN_SECTOR_SIZE -
+            var displacement = new Vector3(random.NextFloat() * Constants.SPAWN_SECTOR_SIZE -
                 (Constants.SPAWN_SECTOR_SIZE / 2), 0,
                 random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
 
