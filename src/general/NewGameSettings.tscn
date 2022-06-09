@@ -402,7 +402,17 @@ margin_bottom = 51.0
 custom_fonts/font = ExtResource( 3 )
 text = "MUTATION_COST_MULTIPLIER_EXPLANATION"
 
-[node name="AIMutationRate" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer1" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer"]
+margin_top = 116.0
+margin_right = 618.0
+margin_bottom = 167.0
+
+[node name="HBoxContainer1" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer1"]
+margin_right = 618.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+
+[node name="AIMutationRate" type="HSlider" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer1/HBoxContainer1"]
 margin_left = 418.0
 margin_right = 558.0
 margin_bottom = 60.0
