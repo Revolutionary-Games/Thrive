@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-07 15:09+0700\n"
+"POT-Creation-Date: 2022-06-09 14:12+0300\n"
 "PO-Revision-Date: 2022-06-03 13:31+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -292,12 +292,12 @@ msgid "ABILITIES"
 msgstr "Способности"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2172
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "FIRE_TOXIN"
 msgstr "Изстрелване на токсин"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2160
+#: ../src/microbe_stage/MicrobeStage.tscn:2164
 msgid "TOGGLE_ENGULF"
 msgstr "Поглъщане"
 
@@ -306,7 +306,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Командно меню"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2183
+#: ../src/microbe_stage/MicrobeStage.tscn:2187
 msgid "TOGGLE_BINDING"
 msgstr "Свързване"
 
@@ -315,7 +315,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Отделяне"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2195
+#: ../src/microbe_stage/MicrobeStage.tscn:2199
 msgid "UNBIND_ALL"
 msgstr "Разпадане"
 
@@ -432,34 +432,39 @@ msgid "TOGGLE_PAUSE"
 msgstr "Прекъсване на играта"
 
 #: ../simulation_parameters/common/input_options.json:188
+#, fuzzy
+msgid "TOGGLE_DEBUG_PANEL"
+msgstr "Прекъсване на играта"
+
+#: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
 msgstr "Превключване на ЧКС"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 msgid "TOGGLE_METRICS"
 msgstr "Превключване на показателите"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "QUICK_SAVE"
 msgstr "Бързо записване"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "QUICK_LOAD"
 msgstr "Бързо зареждане"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "TAKE_SCREENSHOT"
 msgstr "Снимка на екрана"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SHOW_HELP"
 msgstr "Показване на ръководството"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:216
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Превключване на резолюцията"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:220
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Превключване на потребителския интерфейс"
 
@@ -1066,21 +1071,18 @@ msgstr "Последното действие не е завършено"
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Изберете клетка от редактора за да промените нейните свойства"
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
-#: ../src/engine/PerformanceMetrics.tscn:57
+#: ../src/engine/DebugOverlays.FPSCounter.cs:16
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
+#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "ЧКС: {0}"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
-msgid "LOADING"
-msgstr "Зареждане"
-
-#: ../src/engine/PerformanceMetrics.cs:63
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 msgid "FRAME_DURATION"
 msgstr "Δ: {0}"
 
-#: ../src/engine/PerformanceMetrics.cs:77
-#: ../src/engine/PerformanceMetrics.tscn:73
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
+#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 "Процесорно време: {0} с\n"
@@ -1101,9 +1103,37 @@ msgstr ""
 "Общо време на ЦП:\n"
 "{18}"
 
-#: ../src/engine/PerformanceMetrics.tscn:28
+#: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
+#: ../src/engine/PerformanceMetrics.tscn:30
 msgid "METRICS"
 msgstr "Показатели"
+
+#: ../src/engine/DebugOverlays.tscn:86
+msgid "DEBUG_PANEL"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:96
+#, fuzzy
+msgid "FPS_DISPLAY"
+msgstr "Клавиш „Media Play“"
+
+#: ../src/engine/DebugOverlays.tscn:110
+msgid "COLLISION_SHAPE"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:117
+#, fuzzy
+msgid "ENTITY_LABEL"
+msgstr "Биом: {0}"
+
+#: ../src/engine/DebugOverlays.tscn:128
+#, fuzzy
+msgid "TRANSPARENCY"
+msgstr "Преводачи"
+
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
+msgid "LOADING"
+msgstr "Зареждане"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1576,22 +1606,22 @@ msgstr "Отваряне на менюто"
 msgid "NEW_GAME"
 msgstr "Нова игра"
 
-#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:195
+#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Отваряне на менюто"
 
-#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:196
+#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:195
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Зареждане"
 
-#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:220
+#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Отваряне на ръководството"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:221
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS"
 msgstr "Настройки"
 
@@ -1611,7 +1641,7 @@ msgstr "Екстри"
 msgid "CREDITS"
 msgstr "Екип"
 
-#: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:236
+#: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:235
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Извършване на самоубийство"
@@ -1626,7 +1656,7 @@ msgstr "Микробен редактор"
 
 #: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
 #: ../src/general/MainMenu.tscn:453 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:263
+#: ../src/general/PauseMenu.tscn:262
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -2007,58 +2037,58 @@ msgstr ""
 "Сигурни ли сте, че искате да излезете от играта?\n"
 "Всички незапазени промени ще бъдат изгубени."
 
-#: ../src/general/PauseMenu.tscn:179
+#: ../src/general/PauseMenu.tscn:178
 #, fuzzy
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Продължаване на играта"
 
-#: ../src/general/PauseMenu.tscn:180
+#: ../src/general/PauseMenu.tscn:179
 msgid "RESUME"
 msgstr "Продължаване"
 
-#: ../src/general/PauseMenu.tscn:187
+#: ../src/general/PauseMenu.tscn:186
 #, fuzzy
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr "Отваряне на менюто"
 
-#: ../src/general/PauseMenu.tscn:188
+#: ../src/general/PauseMenu.tscn:187
 msgid "SAVE_GAME"
 msgstr "Запазване"
 
-#: ../src/general/PauseMenu.tscn:203
+#: ../src/general/PauseMenu.tscn:202
 #, fuzzy
 msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr "Извършване на самоубийство"
 
-#: ../src/general/PauseMenu.tscn:205
+#: ../src/general/PauseMenu.tscn:204
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Статистика"
 
-#: ../src/general/PauseMenu.tscn:212
+#: ../src/general/PauseMenu.tscn:211
 #: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Отваряне на ръководството"
 
-#: ../src/general/PauseMenu.tscn:213
+#: ../src/general/PauseMenu.tscn:212
 msgid "HELP"
 msgstr "Ръководство"
 
-#: ../src/general/PauseMenu.tscn:228
+#: ../src/general/PauseMenu.tscn:227
 #, fuzzy
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Главно меню"
 
-#: ../src/general/PauseMenu.tscn:229
+#: ../src/general/PauseMenu.tscn:228
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Главно меню"
 
-#: ../src/general/PauseMenu.tscn:237
+#: ../src/general/PauseMenu.tscn:236
 msgid "EXIT"
 msgstr "Изход"
 
-#: ../src/general/PauseMenu.tscn:288
+#: ../src/general/PauseMenu.tscn:287
 msgid "CONFIRM_EXIT"
 msgstr "Потвърждение за изход"
 
@@ -2740,7 +2770,7 @@ msgstr "Не се осъществяват клетъчни процеси"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1499
+#: ../src/microbe_stage/MicrobeHUD.cs:1505
 msgid "TO_BE_IMPLEMENTED"
 msgstr "В процес на разработка."
 
@@ -2988,12 +3018,12 @@ msgstr "в ограничено количество"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "в оскъдно количество"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1284
+#: ../src/microbe_stage/MicrobeHUD.cs:1290
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr "Превръщане в многоклетъчен организъм ({0} от {1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1320
+#: ../src/microbe_stage/MicrobeHUD.cs:1326
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr "Превръщане в макроскопичен организъм ({0} от {1})"
@@ -3086,12 +3116,12 @@ msgstr "Трябва да създадете достатъчно голяма �
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛАЦИЯ:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1969
+#: ../src/microbe_stage/MicrobeStage.tscn:1973
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Добавяне на нов клавиш"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2115
+#: ../src/microbe_stage/MicrobeStage.tscn:2119
 msgid "PAUSED"
 msgstr "НА ПАУЗА"
 
