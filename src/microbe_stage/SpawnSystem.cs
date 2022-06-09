@@ -154,7 +154,7 @@ public class SpawnSystem
     /// </summary>
     public void ClearSpawnCoordinates()
     {
-        coordinatesSpawned = new HashSet<Tuple<int, int>>();
+        coordinatesSpawned.Clear();
     }
 
     /// <summary>
