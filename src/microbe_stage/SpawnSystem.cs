@@ -141,10 +141,10 @@ public class SpawnSystem
             }
         }
 
-        var metrics = PerformanceMetrics.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
-        if (metrics.Visible)
-            metrics.ReportDespawns(despawned);
+        if (debugOverlay.PerformanceMetricsVisible)
+            debugOverlay.ReportDespawns(despawned);
 
         ClearSpawnCoordinates();
     }
@@ -236,10 +236,10 @@ public class SpawnSystem
 
         if (initialSpawns != spawnsLeftThisFrame)
         {
-            var metrics = PerformanceMetrics.Instance;
+            var debugOverlay = DebugOverlays.Instance;
 
-            if (metrics.Visible)
-                metrics.ReportSpawns(initialSpawns - spawnsLeftThisFrame);
+            if (debugOverlay.PerformanceMetricsVisible)
+                debugOverlay.ReportSpawns(initialSpawns - spawnsLeftThisFrame);
         }
 
         return spawnsLeftThisFrame;
@@ -317,10 +317,10 @@ public class SpawnSystem
             }
         }
 
-        var metrics = PerformanceMetrics.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
-        if (metrics.Visible)
-            metrics.ReportSpawns(spawns);
+        if (debugOverlay.PerformanceMetricsVisible)
+            debugOverlay.ReportSpawns(spawned);
     }
 
     /// <summary>
@@ -390,10 +390,10 @@ public class SpawnSystem
             }
         }
 
-        var metrics = PerformanceMetrics.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
-        if (metrics.Visible)
-            metrics.ReportDespawns(entitiesDeleted);
+        if (debugOverlay.PerformanceMetricsVisible)
+            debugOverlay.ReportDespawns(entitiesDeleted);
 
         return spawnedCount - entitiesDeleted;
     }
