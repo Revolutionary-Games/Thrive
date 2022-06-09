@@ -31,6 +31,9 @@ public partial class Microbe
     [JsonProperty]
     private OrganelleLayout<PlacedOrganelle>? organelles;
 
+    private bool enzymesDirty = true;
+    private Dictionary<Enzyme, int>? enzymes;
+
     [JsonProperty]
     private float lastCheckedATPDamage;
 
@@ -105,21 +108,27 @@ public partial class Microbe
     [JsonProperty]
     public float AgentEmissionCooldown { get; private set; }
 
-    /// <summary>
-    ///   Called when the reproduction status of this microbe changes
-    /// </summary>
-    [JsonProperty]
-    public Action<Microbe, bool>? OnReproductionStatus { get; set; }
-
-    /// <summary>
-    ///   Called periodically to report the chemoreception settings of the microbe
-    /// </summary>
-    [JsonProperty]
-    public Action<Microbe, IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>>?
-        OnCompoundChemoreceptionInfo { get; set; }
-
     [JsonProperty]
     public float TotalAvailableCompoundsOnEngulfed { get; set; }
+
+    [JsonIgnore]
+    public bool Digestible
+    {
+        get
+        {
+            var hostile = HostileEngulfer.Value;
+            var dissolverEnzyme = Membrane.Type.DissolverEnzyme;
+
+            if (!string.IsNullOrEmpty(dissolverEnzyme) &&
+                SimulationParameters.Instance.DoesEnzymeExist(dissolverEnzyme))
+            {
+                var enzyme = SimulationParameters.Instance.GetEnzyme(dissolverEnzyme);
+                return hostile?.ActiveEnzymes.ContainsKey(enzyme) ?? false;
+            }
+
+            return true;
+        }
+    }
 
     [JsonIgnore]
     public float DigestionProgress
@@ -131,6 +140,20 @@ public partial class Microbe
             UpdateDissolveEffect();
         }
     }
+
+    /// <summary>
+    ///   Called when the reproduction status of this microbe changes
+    /// </summary>
+    [JsonProperty]
+    public Action<Microbe, bool>? OnReproductionStatus { get; set; }
+
+    /// <summary>
+    ///   Called periodically to report the chemoreception settings of the microbe
+    /// </summary>
+    [JsonProperty]
+    public Action<Microbe, IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>>?
+        OnCompoundChemoreceptionInfo
+    { get; set; }
 
     /// <summary>
     ///   Resets the organelles in this microbe to match the species definition
@@ -955,6 +978,7 @@ public partial class Microbe
     {
         organelle.OnAddedToMicrobe(this);
         processesDirty = true;
+        enzymesDirty = true;
         cachedHexCountDirty = true;
         membraneOrganellePositionsAreDirty = true;
         hasSignalingAgent = null;
@@ -989,6 +1013,7 @@ public partial class Microbe
         organelle.DetachAndQueueFree();
 
         processesDirty = true;
+        enzymesDirty = true;
         cachedHexCountDirty = true;
         membraneOrganellePositionsAreDirty = true;
         hasSignalingAgent = null;
@@ -1102,6 +1127,12 @@ public partial class Microbe
 
             if (engulfable?.CurrentEngulfmentStep != EngulfmentStep.Ingested)
                 continue;
+
+            if (!engulfable.Digestible)
+            {
+                EjectEngulfable(engulfable);
+                continue;
+            }
 
             var hasAnyUsefulCompounds = false;
 

@@ -232,6 +232,17 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
     }
 
+    [JsonIgnore]
+    public Dictionary<Enzyme, int> ActiveEnzymes
+    {
+        get
+        {
+            if (enzymesDirty)
+                RefreshEnzymes();
+            return enzymes!;
+        }
+    }
+
     /// <summary>
     ///   Process running statistics for this cell. For now only computed for the player cell
     /// </summary>
@@ -1092,6 +1103,43 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         processesDirty = false;
+    }
+
+    private void RefreshEnzymes()
+    {
+        if (enzymes == null)
+        {
+            enzymes = new Dictionary<Enzyme, int>();
+        }
+        else
+        {
+            enzymes.Clear();
+        }
+
+        if (organelles == null)
+            return;
+
+        foreach (var organelle in organelles.Organelles)
+        {
+            if (organelle.Definition.Enzymes == null)
+                continue;
+
+            foreach (var entry in organelle.Definition.Enzymes)
+            {
+                // Active enzymes should at least have a minimum of one unit
+                if (entry.Value <= 0)
+                    continue;
+
+                var enzyme = SimulationParameters.Instance.GetEnzyme(entry.Key);
+
+                if (!enzymes.TryGetValue(enzyme, out int count))
+                    count = 0;
+
+                enzymes[enzyme] = count + 1;
+            }
+        }
+
+        enzymesDirty = false;
     }
 
     private void CountHexes()

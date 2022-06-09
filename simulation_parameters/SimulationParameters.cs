@@ -19,6 +19,7 @@ public class SimulationParameters : Node
     private Dictionary<string, BioProcess> bioProcesses = null!;
     private Dictionary<string, Compound> compounds = null!;
     private Dictionary<string, OrganelleDefinition> organelles = null!;
+    private Dictionary<string, Enzyme> enzymes = null!;
     private Dictionary<string, MusicCategory> musicCategories = null!;
     private Dictionary<string, HelpTexts> helpTexts = null!;
     private AutoEvoConfiguration autoEvoConfiguration = null!;
@@ -34,6 +35,7 @@ public class SimulationParameters : Node
     private float eukaryoticOrganellesChance;
 
     private List<Compound>? cachedCloudCompounds;
+    private List<Enzyme>? cachedDigestiveEnzymes;
 
     public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
 
@@ -67,16 +69,12 @@ public class SimulationParameters : Node
                 "res://simulation_parameters/microbe_stage/compounds.json", compoundDeserializer);
         }
 
-        membranes = LoadRegistry<MembraneType>(
-            "res://simulation_parameters/microbe_stage/membranes.json");
-        backgrounds = LoadRegistry<Background>(
-            "res://simulation_parameters/microbe_stage/backgrounds.json");
-        biomes = LoadRegistry<Biome>(
-            "res://simulation_parameters/microbe_stage/biomes.json");
-        bioProcesses = LoadRegistry<BioProcess>(
-            "res://simulation_parameters/microbe_stage/bio_processes.json");
-        organelles = LoadRegistry<OrganelleDefinition>(
-            "res://simulation_parameters/microbe_stage/organelles.json");
+        membranes = LoadRegistry<MembraneType>("res://simulation_parameters/microbe_stage/membranes.json");
+        backgrounds = LoadRegistry<Background>("res://simulation_parameters/microbe_stage/backgrounds.json");
+        biomes = LoadRegistry<Biome>("res://simulation_parameters/microbe_stage/biomes.json");
+        bioProcesses = LoadRegistry<BioProcess>("res://simulation_parameters/microbe_stage/bio_processes.json");
+        organelles = LoadRegistry<OrganelleDefinition>("res://simulation_parameters/microbe_stage/organelles.json");
+        enzymes = LoadRegistry<Enzyme>("res://simulation_parameters/microbe_stage/enzymes.json");
 
         NameGenerator = LoadDirectObject<NameGenerator>(
             "res://simulation_parameters/microbe_stage/species_names.json");
@@ -179,12 +177,32 @@ public class SimulationParameters : Node
         return compounds.ContainsKey(name);
     }
 
+    public Enzyme GetEnzyme(string name)
+    {
+        return enzymes[name];
+    }
+
+    public IEnumerable<Enzyme> GetAllEnzymes()
+    {
+        return enzymes.Values;
+    }
+
+    public bool DoesEnzymeExist(string name)
+    {
+        return enzymes.ContainsKey(name);
+    }
+
     /// <summary>
     ///   Returns all compounds that are clouds
     /// </summary>
     public List<Compound> GetCloudCompounds()
     {
         return cachedCloudCompounds ??= ComputeCloudCompounds();
+    }
+
+    public List<Enzyme> GetDigestiveEnzymes()
+    {
+        return cachedDigestiveEnzymes ??= ComputeDigestiveEnzymes();
     }
 
     public Dictionary<string, MusicCategory> GetMusicCategories()
@@ -258,6 +276,7 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(bioProcesses);
         ApplyRegistryObjectTranslations(compounds);
         ApplyRegistryObjectTranslations(organelles);
+        ApplyRegistryObjectTranslations(enzymes);
         ApplyRegistryObjectTranslations(musicCategories);
         ApplyRegistryObjectTranslations(helpTexts);
         ApplyRegistryObjectTranslations(inputGroups);
@@ -363,6 +382,7 @@ public class SimulationParameters : Node
         CheckRegistryType(bioProcesses);
         CheckRegistryType(compounds);
         CheckRegistryType(organelles);
+        CheckRegistryType(enzymes);
         CheckRegistryType(musicCategories);
         CheckRegistryType(helpTexts);
         CheckRegistryType(inputGroups);
@@ -443,5 +463,10 @@ public class SimulationParameters : Node
     private List<Compound> ComputeCloudCompounds()
     {
         return compounds.Where(p => p.Value.IsCloud).Select(p => p.Value).ToList();
+    }
+
+    private List<Enzyme> ComputeDigestiveEnzymes()
+    {
+        return enzymes.Where(e => e.Value.Property == "digestive").Select(e => e.Value).ToList();
     }
 }

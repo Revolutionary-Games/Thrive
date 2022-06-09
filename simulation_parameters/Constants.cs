@@ -365,6 +365,8 @@ public static class Constants
     /// </summary>
     public const float LYSOSOME_DIGESTION_EFFICIENCY_BUFF_FRACTION = 0.2f;
 
+    public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
+
     /// <summary>
     ///   How much ATP does binding mode cost per second
     /// </summary>

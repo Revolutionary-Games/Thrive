@@ -123,6 +123,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     [JsonProperty]
     public EntityReference<Microbe> HostileEngulfer { get; private set; } = new();
 
+    [JsonIgnore]
+    public bool Digestible => true;
+
     /// <summary>
     ///   This is both the digestion and dissolve effect progress value for now.
     /// </summary>

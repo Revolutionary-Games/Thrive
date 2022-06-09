@@ -56,6 +56,8 @@ public interface IEngulfable : IGraphicalEntity
     /// </summary>
     public EngulfmentStep CurrentEngulfmentStep { get; set; }
 
+    public bool Digestible { get; }
+
     /// <summary>
     ///   The value for how much this engulfable has been digested on the range of 0 to 1,
     ///   where 1 means fully digested.

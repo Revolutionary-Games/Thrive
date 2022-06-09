@@ -128,6 +128,8 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public List<Hex> Hexes = null!;
 
+    public Dictionary<string, int>? Enzymes;
+
     /// <summary>
     ///   The compounds this organelle consists of (how many resources are needed to duplicate this)
     /// </summary>

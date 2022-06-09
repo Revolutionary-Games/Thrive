@@ -29,6 +29,7 @@ public class MembraneType : IRegistryType
     public bool CellWall;
     public float BaseWigglyness = 1.0f;
     public float MovementWigglyness = 1.0f;
+    public string DissolverEnzyme = null!;
 
     public int EditorButtonOrder;
 

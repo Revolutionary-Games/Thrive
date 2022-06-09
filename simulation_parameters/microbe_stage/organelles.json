@@ -800,12 +800,16 @@
         "components": {
             "lysosome": {}
         },
+        "enzymes": {
+            "lipase": 1
+        },
         "prokaryoteChance": 0,
         "chanceToCreate": 0.4,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Lysosome.tscn",
         "name": "LYSOSOME",
         "iconPath": "res://assets/textures/gui/bevel/parts/LysosomeIcon.png",
+        "upgradeGUI": "res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn",
         "requiresNucleus": true,
         "editorButtonGroup": "Organelle",
         "editorButtonOrder": 5
