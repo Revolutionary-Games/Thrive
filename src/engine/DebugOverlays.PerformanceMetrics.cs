@@ -4,11 +4,11 @@ using System.Linq;
 using Godot;
 using Nito.Collections;
 
-public class PerformanceMetrics : ControlWithInput
+/// <summary>
+///   Partial class: Performance metrics
+/// </summary>
+public partial class DebugOverlays
 {
-    [Export]
-    public NodePath DialogPath = null!;
-
     [Export]
     public NodePath FPSLabelPath = null!;
 
@@ -21,12 +21,9 @@ public class PerformanceMetrics : ControlWithInput
     // TODO: make this time based
     private const int SpawnHistoryLength = 300;
 
-    private static PerformanceMetrics? instance;
-
     private readonly Deque<int> spawnHistory = new(SpawnHistoryLength);
     private readonly Deque<int> despawnHistory = new(SpawnHistoryLength);
 
-    private CustomDialog dialog = null!;
     private Label fpsLabel = null!;
     private Label deltaLabel = null!;
     private Label metricsText = null!;
@@ -36,29 +33,36 @@ public class PerformanceMetrics : ControlWithInput
     private int currentSpawned;
     private int currentDespawned;
 
-    private PerformanceMetrics()
+    public bool PerformanceMetricsVisible
     {
-        instance = this;
+        get => performanceMetrics.Visible;
+        private set
+        {
+            if (performanceMetricsCheckBox.Pressed == value)
+                return;
+
+            performanceMetricsCheckBox.Pressed = value;
+        }
     }
 
-    public static PerformanceMetrics Instance => instance ?? throw new InstanceNotLoadedYetException();
-
-    public override void _Ready()
+    public void ReportEntities(int totalEntities, int otherChildren)
     {
-        dialog = GetNode<CustomDialog>(DialogPath);
-        fpsLabel = GetNode<Label>(FPSLabelPath);
-        deltaLabel = GetNode<Label>(DeltaLabelPath);
-        metricsText = GetNode<Label>(MetricsTextPath);
-
-        if (Visible)
-            dialog.Show();
+        entities = totalEntities;
+        children = otherChildren;
     }
 
-    public override void _Process(float delta)
+    public void ReportSpawns(int newSpawns)
     {
-        if (!Visible)
-            return;
+        currentSpawned += newSpawns;
+    }
 
+    public void ReportDespawns(int newDespawns)
+    {
+        currentDespawned += newDespawns;
+    }
+
+    private void UpdateMetrics(float delta)
+    {
         fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
         deltaLabel.Text = new LocalizedString("FRAME_DURATION", delta).ToString();
 
@@ -78,7 +82,8 @@ public class PerformanceMetrics : ControlWithInput
                     Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess),
                     entities, children, spawnHistory.Sum(), despawnHistory.Sum(),
                     Performance.GetMonitor(Performance.Monitor.ObjectNodeCount), usedMemory,
-                    Math.Round(Performance.GetMonitor(Performance.Monitor.RenderVideoMemUsed) / Constants.MEBIBYTE, 1),
+                    Math.Round(Performance.GetMonitor(Performance.Monitor.RenderVideoMemUsed) / Constants.MEBIBYTE,
+                        1),
                     Performance.GetMonitor(Performance.Monitor.RenderObjectsInFrame),
                     Performance.GetMonitor(Performance.Monitor.RenderDrawCallsInFrame),
                     Performance.GetMonitor(Performance.Monitor.Render2dDrawCallsInFrame),
@@ -103,44 +108,5 @@ public class PerformanceMetrics : ControlWithInput
 
         currentSpawned = 0;
         currentDespawned = 0;
-    }
-
-    public void ReportEntities(int totalEntities, int otherChildren)
-    {
-        entities = totalEntities;
-        children = otherChildren;
-    }
-
-    public void ReportSpawns(int newSpawns)
-    {
-        currentSpawned += newSpawns;
-    }
-
-    public void ReportDespawns(int newDespawns)
-    {
-        currentDespawned += newDespawns;
-    }
-
-    [RunOnKeyToggle("toggle_metrics", OnlyUnhandled = false)]
-    public void Toggle(bool state)
-    {
-        if (Visible == state)
-            return;
-
-        if (state)
-        {
-            Show();
-            dialog.Show();
-        }
-        else
-        {
-            Hide();
-            dialog.Hide();
-        }
-    }
-
-    private void DialogHidden()
-    {
-        Visible = false;
     }
 }

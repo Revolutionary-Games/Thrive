@@ -20,8 +20,7 @@ public class TimedLifeSystem
 
             if (timed == null)
             {
-                GD.PrintErr("A node has been put in the timed group " +
-                    "but it isn't derived from ITimedLife");
+                GD.PrintErr("A node has been put in the timed group but it isn't derived from ITimedLife");
                 continue;
             }
 
@@ -41,8 +40,18 @@ public class TimedLifeSystem
     {
         foreach (var entity in worldRoot.GetChildrenToProcess<Node>(Constants.TIMED_GROUP))
         {
-            if (!entity.IsQueuedForDeletion())
+            if (entity.IsQueuedForDeletion())
+                continue;
+
+            var asProperEntity = entity as IEntity;
+
+            if (asProperEntity == null)
+            {
                 entity.DetachAndQueueFree();
+                continue;
+            }
+
+            asProperEntity.DestroyDetachAndQueueFree();
         }
     }
 }

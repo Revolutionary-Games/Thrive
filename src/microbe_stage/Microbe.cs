@@ -208,7 +208,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public bool IsForPreviewOnly { get; set; }
 
     [JsonIgnore]
-    public Node EntityNode => this;
+    public Spatial EntityNode => this;
 
     [JsonIgnore]
     public List<TweakedProcess> ActiveProcesses
