@@ -271,9 +271,8 @@ public class SpawnSystem
 
         foreach (var newSector in sectorsToSpawn)
         {
-            if (!coordinatesSpawned.Contains(newSector))
+            if (coordinatesSpawned.Add(newSector))
             {
-                coordinatesSpawned.Add(newSector);
                 SpawnInSector(newSector);
             }
         }
