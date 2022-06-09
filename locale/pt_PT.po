@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-08 17:43+0100\n"
+"POT-Creation-Date: 2022-06-09 11:10+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -1543,6 +1543,7 @@ msgid "CLOSE"
 msgstr "Fechar"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
+#: ../src/general/NewGameSettings.cs:536
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/MicrobeHUD.cs:724
@@ -1560,49 +1561,49 @@ msgstr "{0} concentrações diminuíram em {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "As concentrações de glicose caíram drasticamente!"
 
-#: ../src/general/MainMenu.cs:236
+#: ../src/general/MainMenu.cs:263
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Entrou como: {0}"
 
-#: ../src/general/MainMenu.tscn:179
+#: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "Novo Jogo"
 
-#: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Carregar Jogo"
 
-#: ../src/general/MainMenu.tscn:203 ../src/general/PauseMenu.tscn:214
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
 msgid "OPTIONS"
 msgstr "Opções"
 
-#: ../src/general/MainMenu.tscn:214
+#: ../src/general/MainMenu.tscn:213
 msgid "TOOLS"
 msgstr "Ferramentas"
 
-#: ../src/general/MainMenu.tscn:225
+#: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
 msgstr "Ver Código Fonte"
 
-#: ../src/general/MainMenu.tscn:236
+#: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
 msgstr "Extras"
 
-#: ../src/general/MainMenu.tscn:247
+#: ../src/general/MainMenu.tscn:246
 msgid "CREDITS"
 msgstr "Créditos"
 
-#: ../src/general/MainMenu.tscn:258
+#: ../src/general/MainMenu.tscn:257
 msgid "QUIT"
 msgstr "Sair"
 
-#: ../src/general/MainMenu.tscn:278
+#: ../src/general/MainMenu.tscn:277
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor livre para micróbios"
 
-#: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:873
+#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:455 ../src/general/NewGameSettings.tscn:926
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:254
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1610,68 +1611,68 @@ msgstr "Editor livre para micróbios"
 msgid "BACK"
 msgstr "Voltar"
 
-#: ../src/general/MainMenu.tscn:359
+#: ../src/general/MainMenu.tscn:358
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:372
 msgid "ART_GALLERY"
 msgstr "Galeria de Arte"
 
-#: ../src/general/MainMenu.tscn:385
+#: ../src/general/MainMenu.tscn:384
 msgid "LICENSES"
 msgstr "Licenças"
 
-#: ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:496
 msgid "GLES2_MODE_WARNING"
 msgstr "Aviso do modo GLES2"
 
-#: ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Estás a executar o Thrive com GLES2. Esta versão não foi testada severamente e pode causar problemas. Experimente atualizar os drivers da placa gráfica e/ou forçar a utilização da placa gráfica da AMD ou Nvidia."
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:502
 msgid "MOD_LOAD_ERRORS"
 msgstr "Erro ao carregar Mods"
 
-#: ../src/general/MainMenu.tscn:504
+#: ../src/general/MainMenu.tscn:503
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Ocorreram erros ao carregar um ou mais mods. Os logs podem conter informações adicionais."
 
-#: ../src/general/NewGameSettings.tscn:112
-#: ../src/general/NewGameSettings.tscn:326
+#: ../src/general/NewGameSettings.tscn:115
+#: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:126
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:340
-#: ../src/general/NewGameSettings.tscn:341
+#: ../src/general/NewGameSettings.tscn:129
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:342
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:341
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:341
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_HARD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:341
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:147
-#: ../src/general/NewGameSettings.tscn:701
+#: ../src/general/NewGameSettings.tscn:150
+#: ../src/general/NewGameSettings.tscn:754
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:708
+#: ../src/general/NewGameSettings.tscn:157
+#: ../src/general/NewGameSettings.tscn:761
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -1680,30 +1681,30 @@ msgstr ""
 "Os micróbios corajosos não se deixam intimidar pelos predadores próximos\n"
 "e, mais provavelmente, irão atacar de volta."
 
-#: ../src/general/NewGameSettings.tscn:169
-#: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:723
-#: ../src/general/NewGameSettings.tscn:724
+#: ../src/general/NewGameSettings.tscn:172
+#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:776
+#: ../src/general/NewGameSettings.tscn:777
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:724
+#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:777
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:724
+#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:777
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:185
-#: ../src/general/NewGameSettings.tscn:739
+#: ../src/general/NewGameSettings.tscn:188
+#: ../src/general/NewGameSettings.tscn:792
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:192
-#: ../src/general/NewGameSettings.tscn:746
+#: ../src/general/NewGameSettings.tscn:195
+#: ../src/general/NewGameSettings.tscn:799
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -1712,40 +1713,52 @@ msgstr ""
 "Os micróbios corajosos não se deixam intimidar pelos predadores próximos\n"
 "e, mais provavelmente, irão atacar de volta."
 
-#: ../src/general/NewGameSettings.tscn:203
-#: ../src/general/NewGameSettings.tscn:757
+#: ../src/general/NewGameSettings.tscn:206
+#: ../src/general/NewGameSettings.tscn:810
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:266
+#: ../src/general/NewGameSettings.tscn:269
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:276
+#: ../src/general/NewGameSettings.tscn:279
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:286 ../src/general/OptionsMenu.tscn:179
+#: ../src/general/NewGameSettings.tscn:289 ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
 msgstr "Diversos"
 
-#: ../src/general/NewGameSettings.tscn:368
+#: ../src/general/NewGameSettings.tscn:370
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:402
+#: ../src/general/NewGameSettings.tscn:404
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 "Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
 "Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
 
-#: ../src/general/NewGameSettings.tscn:419
+#: ../src/general/NewGameSettings.tscn:421
+#, fuzzy
+msgid "AI_MUTATION_RATE"
+msgstr "Pontos de Mutação"
+
+#: ../src/general/NewGameSettings.tscn:455
+#, fuzzy
+msgid "AI_MUTATION_RATE_EXPLANATION"
+msgstr ""
+"Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
+"Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
+
+#: ../src/general/NewGameSettings.tscn:472
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Nuvens de compostos"
 
-#: ../src/general/NewGameSettings.tscn:453
+#: ../src/general/NewGameSettings.tscn:506
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -1753,39 +1766,39 @@ msgstr ""
 "e tentarão caçar presas com toxinas se não as conseguirem engolir.\n"
 "Os micróbios cautelosos podem não se colocar em perigo por causa de pedaços."
 
-#: ../src/general/NewGameSettings.tscn:470
+#: ../src/general/NewGameSettings.tscn:523
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:503
+#: ../src/general/NewGameSettings.tscn:556
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "Este painel mostra os números a partir dos quais a previsão de auto-evo funciona. A energia total que uma espécie é capaz de capturar e o custo por indivíduo da espécie determinam a população final. O Auto-evo usa um modelo simplificado da realidade para calcular o desempenho das espécies com base na energia que conseguem obter. Para cada fonte de alimento, mostra quanta energia é que a espécie ganha com isso. Além disso, aparece o total de energia disponível na fonte. A fração que a espécie ganha da energia total é baseada em quão grande a aptidão é comparada com a aptidão total. A aptidão é uma métrica de quão bem a espécie pode utilizar essa fonte de alimento."
 
-#: ../src/general/NewGameSettings.tscn:520
+#: ../src/general/NewGameSettings.tscn:573
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:553
+#: ../src/general/NewGameSettings.tscn:606
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "Este painel mostra os números a partir dos quais a previsão de auto-evo funciona. A energia total que uma espécie é capaz de capturar e o custo por indivíduo da espécie determinam a população final. O Auto-evo usa um modelo simplificado da realidade para calcular o desempenho das espécies com base na energia que conseguem obter. Para cada fonte de alimento, mostra quanta energia é que a espécie ganha com isso. Além disso, aparece o total de energia disponível na fonte. A fração que a espécie ganha da energia total é baseada em quão grande a aptidão é comparada com a aptidão total. A aptidão é uma métrica de quão bem a espécie pode utilizar essa fonte de alimento."
 
-#: ../src/general/NewGameSettings.tscn:570
+#: ../src/general/NewGameSettings.tscn:623
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Custo de Osmorregulação"
 
-#: ../src/general/NewGameSettings.tscn:604
+#: ../src/general/NewGameSettings.tscn:657
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Custo de Osmorregulação"
 
-#: ../src/general/NewGameSettings.tscn:615
+#: ../src/general/NewGameSettings.tscn:668
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:622
+#: ../src/general/NewGameSettings.tscn:675
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -1793,53 +1806,53 @@ msgstr ""
 "e podem ser mais ambicioso em relação aos pedaços.\n"
 "Micróbios reativos mudarão para novos alvos depois de algum tempo."
 
-#: ../src/general/NewGameSettings.tscn:658
+#: ../src/general/NewGameSettings.tscn:711
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Mapa de Regiões"
 
-#: ../src/general/NewGameSettings.tscn:665
+#: ../src/general/NewGameSettings.tscn:718
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "Micróbios ativos irão correr e cair quando nada de interessante acontecer.\n"
 "Micróbios sésseis ficarão parados e esperarão que o ambiente mude antes de agir."
 
-#: ../src/general/NewGameSettings.tscn:680
-#: ../src/general/NewGameSettings.tscn:681
+#: ../src/general/NewGameSettings.tscn:733
+#: ../src/general/NewGameSettings.tscn:734
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:681
+#: ../src/general/NewGameSettings.tscn:734
 #, fuzzy
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Batipelágico Pangoniano"
 
-#: ../src/general/NewGameSettings.tscn:823
+#: ../src/general/NewGameSettings.tscn:876
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:855
+#: ../src/general/NewGameSettings.tscn:908
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "A carregar o Editor de Micróbio"
 
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:915
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:891
+#: ../src/general/NewGameSettings.tscn:944
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:902
+#: ../src/general/NewGameSettings.tscn:955
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:911
+#: ../src/general/NewGameSettings.tscn:964
 #, fuzzy
-msgid "CONFIRM"
-msgstr "Confirmar Saída"
+msgid "CONFIRM_NORMAL"
+msgstr "CONFIRMAR"
 
 #: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
 #, fuzzy
@@ -2538,7 +2551,7 @@ msgid "RAW"
 msgstr "Cru"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2180
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2184
 msgid "NO_DATA_TO_SHOW"
 msgstr "Sem Dados a Mostrar"
 
@@ -2893,7 +2906,7 @@ msgstr "Sem processos"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1499
+#: ../src/microbe_stage/MicrobeHUD.cs:1500
 msgid "TO_BE_IMPLEMENTED"
 msgstr "A ser implementado."
 
@@ -3144,12 +3157,12 @@ msgstr "pouco"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "muito pouco"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1284
+#: ../src/microbe_stage/MicrobeHUD.cs:1285
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1320
+#: ../src/microbe_stage/MicrobeHUD.cs:1321
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
@@ -3163,7 +3176,7 @@ msgstr "jogador reproduzido"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Impossível de usar o cheat de spawn inimigo porque esta região não contém nenhuma espécie inimiga"
 
-#: ../src/microbe_stage/MicrobeStage.cs:815
+#: ../src/microbe_stage/MicrobeStage.cs:817
 msgid "PLAYER_DIED"
 msgstr "jogador morreu"
 
@@ -3304,62 +3317,62 @@ msgstr "Reactivo"
 msgid "FOCUSED"
 msgstr "Focado"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
 msgid "ATP_PRODUCTION"
 msgstr "Produção de ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUÇÃO DE ATP MUITO BAIXA!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:403
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:424
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:423
 msgid "OSMOREGULATION"
 msgstr "Osmorregulação"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:430
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:429
 msgid "BASE_MOVEMENT"
 msgstr "Movimento Base"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:442
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:441
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:522
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:524
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2016
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
 msgid "FAILED"
 msgstr "Falhou"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2022
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2038
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2044
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2148
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia em {0} para {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2156
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "A energia total recolhida é {0} com custo individual de {1} resultando em população inalterada de {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2163
 msgid "ENERGY_SOURCES"
 msgstr "Fontes de energia:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2169
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (aptidão: {2}) energia total disponível: {3} (aptidão total: {4})"
 
@@ -4752,6 +4765,10 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Ver Agora"
+
+#, fuzzy
+#~ msgid "CONFIRM"
+#~ msgstr "Confirmar Saída"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Chaminés Pangonianas"

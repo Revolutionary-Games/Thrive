@@ -50,10 +50,10 @@ public class NewGameSettings : ControlWithInput
     public NodePath MPMultiplierReadoutPath = null!;
 
     [Export]
-    public NodePath AIMutationRatePath = null!;
+    public NodePath MutationRatePath = null!;
 
     [Export]
-    public NodePath AIMutationRateReadoutPath = null!;
+    public NodePath MutationRateReadoutPath = null!;
 
     [Export]
     public NodePath CompoundDensityPath = null!;
@@ -179,8 +179,8 @@ public class NewGameSettings : ControlWithInput
         difficultyPresetAdvancedButton = GetNode<OptionButton>(DifficultyPresetAdvancedButtonPath);
         mpMultiplier = GetNode<HSlider>(MPMultiplierPath);
         mpMultiplierReadout = GetNode<LineEdit>(MPMultiplierReadoutPath);
-        aiMutationRate = GetNode<HSlider>(AIMutationRatePath);
-        aiMutationRateReadout = GetNode<LineEdit>(AIMutationRateReadoutPath);
+        aiMutationRate = GetNode<HSlider>(MutationRatePath);
+        aiMutationRateReadout = GetNode<LineEdit>(MutationRateReadoutPath);
         compoundDensity = GetNode<HSlider>(CompoundDensityPath);
         compoundDensityReadout = GetNode<LineEdit>(CompoundDensityReadoutPath);
         playerDeathPopulationPenalty = GetNode<HSlider>(PlayerDeathPopulationPenaltyPath);

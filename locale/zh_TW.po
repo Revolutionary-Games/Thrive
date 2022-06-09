@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-08 17:43+0100\n"
+"POT-Creation-Date: 2022-06-09 11:10+0100\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1552,6 +1552,7 @@ msgid "CLOSE"
 msgstr "關閉"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
+#: ../src/general/NewGameSettings.cs:536
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/MicrobeHUD.cs:724
@@ -1569,49 +1570,49 @@ msgstr "{0} 濃度降低了 {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "葡萄糖濃度急劇下降！"
 
-#: ../src/general/MainMenu.cs:236
+#: ../src/general/MainMenu.cs:263
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登錄為：{0}"
 
-#: ../src/general/MainMenu.tscn:179
+#: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "新遊戲"
 
-#: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "讀取遊戲"
 
-#: ../src/general/MainMenu.tscn:203 ../src/general/PauseMenu.tscn:214
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
 msgid "OPTIONS"
 msgstr "選項"
 
-#: ../src/general/MainMenu.tscn:214
+#: ../src/general/MainMenu.tscn:213
 msgid "TOOLS"
 msgstr "工具"
 
-#: ../src/general/MainMenu.tscn:225
+#: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看源代碼"
 
-#: ../src/general/MainMenu.tscn:236
+#: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
 msgstr "額外內容"
 
-#: ../src/general/MainMenu.tscn:247
+#: ../src/general/MainMenu.tscn:246
 msgid "CREDITS"
 msgstr "鳴謝"
 
-#: ../src/general/MainMenu.tscn:258
+#: ../src/general/MainMenu.tscn:257
 msgid "QUIT"
 msgstr "離開"
 
-#: ../src/general/MainMenu.tscn:278
+#: ../src/general/MainMenu.tscn:277
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物階段自由編輯器"
 
-#: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:873
+#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:455 ../src/general/NewGameSettings.tscn:926
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:254
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1619,68 +1620,68 @@ msgstr "微生物階段自由編輯器"
 msgid "BACK"
 msgstr "返回"
 
-#: ../src/general/MainMenu.tscn:359
+#: ../src/general/MainMenu.tscn:358
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:372
 msgid "ART_GALLERY"
 msgstr "藝術畫廊"
 
-#: ../src/general/MainMenu.tscn:385
+#: ../src/general/MainMenu.tscn:384
 msgid "LICENSES"
 msgstr "許可"
 
-#: ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:496
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式運行Thrive。這種情況沒有被測試過並且很可能導致種種問題。你應該考慮更新下你的顯卡驅動，或者強制使用你的AMD/Nvidia顯卡來運行Thrive。"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:502
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod加載錯誤"
 
-#: ../src/general/MainMenu.tscn:504
+#: ../src/general/MainMenu.tscn:503
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加載一個或多個mods時發生錯誤。日誌可能包含其他信息。"
 
-#: ../src/general/NewGameSettings.tscn:112
-#: ../src/general/NewGameSettings.tscn:326
+#: ../src/general/NewGameSettings.tscn:115
+#: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:126
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:340
-#: ../src/general/NewGameSettings.tscn:341
+#: ../src/general/NewGameSettings.tscn:129
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:342
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:341
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:341
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_HARD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:341
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:147
-#: ../src/general/NewGameSettings.tscn:701
+#: ../src/general/NewGameSettings.tscn:150
+#: ../src/general/NewGameSettings.tscn:754
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:708
+#: ../src/general/NewGameSettings.tscn:157
+#: ../src/general/NewGameSettings.tscn:761
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -1689,30 +1690,30 @@ msgstr ""
 "勇敢型微生物則不會被靠近的掠食者嚇到\n"
 "而且更有可能反擊。"
 
-#: ../src/general/NewGameSettings.tscn:169
-#: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:723
-#: ../src/general/NewGameSettings.tscn:724
+#: ../src/general/NewGameSettings.tscn:172
+#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:776
+#: ../src/general/NewGameSettings.tscn:777
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:724
+#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:777
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:724
+#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:777
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:185
-#: ../src/general/NewGameSettings.tscn:739
+#: ../src/general/NewGameSettings.tscn:188
+#: ../src/general/NewGameSettings.tscn:792
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:192
-#: ../src/general/NewGameSettings.tscn:746
+#: ../src/general/NewGameSettings.tscn:195
+#: ../src/general/NewGameSettings.tscn:799
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -1721,40 +1722,52 @@ msgstr ""
 "勇敢型微生物則不會被靠近的掠食者嚇到\n"
 "而且更有可能反擊。"
 
-#: ../src/general/NewGameSettings.tscn:203
-#: ../src/general/NewGameSettings.tscn:757
+#: ../src/general/NewGameSettings.tscn:206
+#: ../src/general/NewGameSettings.tscn:810
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:266
+#: ../src/general/NewGameSettings.tscn:269
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:276
+#: ../src/general/NewGameSettings.tscn:279
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:286 ../src/general/OptionsMenu.tscn:179
+#: ../src/general/NewGameSettings.tscn:289 ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
 msgstr "雜項"
 
-#: ../src/general/NewGameSettings.tscn:368
+#: ../src/general/NewGameSettings.tscn:370
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:402
+#: ../src/general/NewGameSettings.tscn:404
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 "活潑型細胞在周圍沒啥事的時候會四處亂跑。\n"
 "沉著型微生物將靜止不動，等待環境變化後才行動。"
 
-#: ../src/general/NewGameSettings.tscn:419
+#: ../src/general/NewGameSettings.tscn:421
+#, fuzzy
+msgid "AI_MUTATION_RATE"
+msgstr "突變點數"
+
+#: ../src/general/NewGameSettings.tscn:455
+#, fuzzy
+msgid "AI_MUTATION_RATE_EXPLANATION"
+msgstr ""
+"活潑型細胞在周圍沒啥事的時候會四處亂跑。\n"
+"沉著型微生物將靜止不動，等待環境變化後才行動。"
+
+#: ../src/general/NewGameSettings.tscn:472
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "化合物雲"
 
-#: ../src/general/NewGameSettings.tscn:453
+#: ../src/general/NewGameSettings.tscn:506
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -1762,39 +1775,39 @@ msgstr ""
 "並且會在獵物過大無法吞噬的情況下使用毒素攻擊。\n"
 "謹慎型微生物則不大可能冒風險爭奪物質塊。"
 
-#: ../src/general/NewGameSettings.tscn:470
+#: ../src/general/NewGameSettings.tscn:523
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:503
+#: ../src/general/NewGameSettings.tscn:556
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
 
-#: ../src/general/NewGameSettings.tscn:520
+#: ../src/general/NewGameSettings.tscn:573
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:553
+#: ../src/general/NewGameSettings.tscn:606
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "這個板塊顯示了auto-evo預測工作所依據的數字。一個物種能夠捕獲的總能量以及該物種個體的成本決定最終的人口。 Auto-evo使用一個簡化的現實模型，根據物種能夠採集的能量來計算其表現如何。對於每個食物來源，它顯示了該物種從其獲得的能量以及該食物來源能提供的總能量。物種從總能量中獲得的量基於與總適應性相比的適應性的大小。適應性是衡量該物種對該食物來源的利用程度的指標。"
 
-#: ../src/general/NewGameSettings.tscn:570
+#: ../src/general/NewGameSettings.tscn:623
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "滲透調節消耗"
 
-#: ../src/general/NewGameSettings.tscn:604
+#: ../src/general/NewGameSettings.tscn:657
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "滲透調節消耗"
 
-#: ../src/general/NewGameSettings.tscn:615
+#: ../src/general/NewGameSettings.tscn:668
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:622
+#: ../src/general/NewGameSettings.tscn:675
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -1802,53 +1815,53 @@ msgstr ""
 "並且對物質塊更有渴求。\n"
 "應變型微生物將更快的轉向新的目標。"
 
-#: ../src/general/NewGameSettings.tscn:658
+#: ../src/general/NewGameSettings.tscn:711
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "區域地圖"
 
-#: ../src/general/NewGameSettings.tscn:665
+#: ../src/general/NewGameSettings.tscn:718
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "活潑型細胞在周圍沒啥事的時候會四處亂跑。\n"
 "沉著型微生物將靜止不動，等待環境變化後才行動。"
 
-#: ../src/general/NewGameSettings.tscn:680
-#: ../src/general/NewGameSettings.tscn:681
+#: ../src/general/NewGameSettings.tscn:733
+#: ../src/general/NewGameSettings.tscn:734
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:681
+#: ../src/general/NewGameSettings.tscn:734
 #, fuzzy
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "遠古半深海帶"
 
-#: ../src/general/NewGameSettings.tscn:823
+#: ../src/general/NewGameSettings.tscn:876
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:855
+#: ../src/general/NewGameSettings.tscn:908
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "在加載微生物編輯器"
 
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:915
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:891
+#: ../src/general/NewGameSettings.tscn:944
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:902
+#: ../src/general/NewGameSettings.tscn:955
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:911
+#: ../src/general/NewGameSettings.tscn:964
 #, fuzzy
-msgid "CONFIRM"
-msgstr "確認退出"
+msgid "CONFIRM_NORMAL"
+msgstr "確認"
 
 #: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
 #, fuzzy
@@ -2548,7 +2561,7 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2180
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2184
 msgid "NO_DATA_TO_SHOW"
 msgstr "沒有數據可顯示"
 
@@ -2902,7 +2915,7 @@ msgstr "沒有處理"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1499
+#: ../src/microbe_stage/MicrobeHUD.cs:1500
 msgid "TO_BE_IMPLEMENTED"
 msgstr "等待實現。"
 
@@ -3155,12 +3168,12 @@ msgstr "少"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "很少"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1284
+#: ../src/microbe_stage/MicrobeHUD.cs:1285
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1320
+#: ../src/microbe_stage/MicrobeHUD.cs:1321
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
@@ -3173,7 +3186,7 @@ msgstr "玩家繁殖"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "無法使用生成敵人作弊，因為這個地區沒有任何敵對物種"
 
-#: ../src/microbe_stage/MicrobeStage.cs:815
+#: ../src/microbe_stage/MicrobeStage.cs:817
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
@@ -3314,62 +3327,62 @@ msgstr "響應"
 msgid "FOCUSED"
 msgstr "專注"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
 msgid "ATP_PRODUCTION"
 msgstr "ATP產出"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP產出太低！"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:403
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:424
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:423
 msgid "OSMOREGULATION"
 msgstr "滲透調節"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:430
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:429
 msgid "BASE_MOVEMENT"
 msgstr "Base Movement"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:442
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:441
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:522
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:524
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2016
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
 msgid "FAILED"
 msgstr "失敗"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2022
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2038
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2044
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2148
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1}在{0}的能量"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2156
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的總能量為{0}，每個體的成本為{1}，在修正前的種群數量為{2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2163
 msgid "ENERGY_SOURCES"
 msgstr "能量來源："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2169
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}能量：{1}（適應性：{2}）總可用能量：{3}（總適應性：{4}）"
 
@@ -4776,6 +4789,10 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "教學"
+
+#, fuzzy
+#~ msgid "CONFIRM"
+#~ msgstr "確認退出"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "遠古熱泉"

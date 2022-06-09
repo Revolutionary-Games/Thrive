@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-08 17:43+0100\n"
+"POT-Creation-Date: 2022-06-09 11:10+0100\n"
 "PO-Revision-Date: 2022-04-15 14:50+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1532,6 +1532,7 @@ msgid "CLOSE"
 msgstr "Tancar"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
+#: ../src/general/NewGameSettings.cs:536
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/MicrobeHUD.cs:724
@@ -1549,49 +1550,49 @@ msgstr "{0} concentrations han disminuït per {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Les concentracions de Glucosa han disminuït dràsticament!"
 
-#: ../src/general/MainMenu.cs:236
+#: ../src/general/MainMenu.cs:263
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Registrat com a: {0}"
 
-#: ../src/general/MainMenu.tscn:179
+#: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "Nova partida"
 
-#: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:192
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Carregar una partida"
 
-#: ../src/general/MainMenu.tscn:203 ../src/general/PauseMenu.tscn:214
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
 msgid "OPTIONS"
 msgstr "Opcions"
 
-#: ../src/general/MainMenu.tscn:214
+#: ../src/general/MainMenu.tscn:213
 msgid "TOOLS"
 msgstr "Eines"
 
-#: ../src/general/MainMenu.tscn:225
+#: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
 msgstr "Veure Codi Font"
 
-#: ../src/general/MainMenu.tscn:236
+#: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
 msgstr "Extres"
 
-#: ../src/general/MainMenu.tscn:247
+#: ../src/general/MainMenu.tscn:246
 msgid "CREDITS"
 msgstr "Crèdits"
 
-#: ../src/general/MainMenu.tscn:258
+#: ../src/general/MainMenu.tscn:257
 msgid "QUIT"
 msgstr "Sortir"
 
-#: ../src/general/MainMenu.tscn:278
+#: ../src/general/MainMenu.tscn:277
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Lliure de Microbi"
 
-#: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:873
+#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:455 ../src/general/NewGameSettings.tscn:926
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:254
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1599,68 +1600,68 @@ msgstr "Editor Lliure de Microbi"
 msgid "BACK"
 msgstr "Enrere"
 
-#: ../src/general/MainMenu.tscn:359
+#: ../src/general/MainMenu.tscn:358
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:372
 msgid "ART_GALLERY"
 msgstr "Galeria d'art"
 
-#: ../src/general/MainMenu.tscn:385
+#: ../src/general/MainMenu.tscn:384
 msgid "LICENSES"
 msgstr "Llicències"
 
-#: ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:496
 msgid "GLES2_MODE_WARNING"
 msgstr "Mode d'Alerta GLES2"
 
-#: ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Esteu executant el programa Thrive amb GLES2. Aquesta tecnologia encara no ha estat del tot validada i, per tant, pot originar alguns problemes. Intenteu actualitzar els vostres drivers de vídeo i/o forçar l'ús de gràfics AMD o Nvidia per executar Thrive."
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:502
 msgid "MOD_LOAD_ERRORS"
 msgstr "Errors en Carregar el Mod"
 
-#: ../src/general/MainMenu.tscn:504
+#: ../src/general/MainMenu.tscn:503
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Hi han hagut errors en carregar un o més mods. Els logs poden tenir més informació."
 
-#: ../src/general/NewGameSettings.tscn:112
-#: ../src/general/NewGameSettings.tscn:326
+#: ../src/general/NewGameSettings.tscn:115
+#: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:126
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:340
-#: ../src/general/NewGameSettings.tscn:341
+#: ../src/general/NewGameSettings.tscn:129
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:342
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:341
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:341
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_HARD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:127
-#: ../src/general/NewGameSettings.tscn:341
+#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:147
-#: ../src/general/NewGameSettings.tscn:701
+#: ../src/general/NewGameSettings.tscn:150
+#: ../src/general/NewGameSettings.tscn:754
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:708
+#: ../src/general/NewGameSettings.tscn:157
+#: ../src/general/NewGameSettings.tscn:761
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -1669,30 +1670,30 @@ msgstr ""
 "Els microbis valents no se senten intimidats per depredadors propers\n"
 "i és més probable que contraataquin si són agredits."
 
-#: ../src/general/NewGameSettings.tscn:169
-#: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:723
-#: ../src/general/NewGameSettings.tscn:724
+#: ../src/general/NewGameSettings.tscn:172
+#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:776
+#: ../src/general/NewGameSettings.tscn:777
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:724
+#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:777
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:724
+#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:777
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:185
-#: ../src/general/NewGameSettings.tscn:739
+#: ../src/general/NewGameSettings.tscn:188
+#: ../src/general/NewGameSettings.tscn:792
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:192
-#: ../src/general/NewGameSettings.tscn:746
+#: ../src/general/NewGameSettings.tscn:195
+#: ../src/general/NewGameSettings.tscn:799
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -1701,40 +1702,52 @@ msgstr ""
 "Els microbis valents no se senten intimidats per depredadors propers\n"
 "i és més probable que contraataquin si són agredits."
 
-#: ../src/general/NewGameSettings.tscn:203
-#: ../src/general/NewGameSettings.tscn:757
+#: ../src/general/NewGameSettings.tscn:206
+#: ../src/general/NewGameSettings.tscn:810
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:266
+#: ../src/general/NewGameSettings.tscn:269
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:276
+#: ../src/general/NewGameSettings.tscn:279
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:286 ../src/general/OptionsMenu.tscn:179
+#: ../src/general/NewGameSettings.tscn:289 ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
 msgstr "Misc"
 
-#: ../src/general/NewGameSettings.tscn:368
+#: ../src/general/NewGameSettings.tscn:370
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:402
+#: ../src/general/NewGameSettings.tscn:404
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 "Els microbis actius es mouran continuament per trobar recursos.\n"
 "Els microbis sèssils es mantindran relativament quiets, esperant a que l'entorn canviï abans d'actuar."
 
-#: ../src/general/NewGameSettings.tscn:419
+#: ../src/general/NewGameSettings.tscn:421
+#, fuzzy
+msgid "AI_MUTATION_RATE"
+msgstr "Punts de Mutació"
+
+#: ../src/general/NewGameSettings.tscn:455
+#, fuzzy
+msgid "AI_MUTATION_RATE_EXPLANATION"
+msgstr ""
+"Els microbis actius es mouran continuament per trobar recursos.\n"
+"Els microbis sèssils es mantindran relativament quiets, esperant a que l'entorn canviï abans d'actuar."
+
+#: ../src/general/NewGameSettings.tscn:472
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Núvols de Compostos"
 
-#: ../src/general/NewGameSettings.tscn:453
+#: ../src/general/NewGameSettings.tscn:506
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -1742,39 +1755,39 @@ msgstr ""
 "e intentaran caçar preses amb toxines si no les poden engolir.\n"
 "Els microbis prudents normalment no es posaran a si mateixos en perill per uns mateixos recursos."
 
-#: ../src/general/NewGameSettings.tscn:470
+#: ../src/general/NewGameSettings.tscn:523
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:503
+#: ../src/general/NewGameSettings.tscn:556
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "Aquest tauler mostra els nombres que fa servir l'algorisme auto-evo per fer la seva predicció. L'energia total que una espècie pot recol·lectar i el cost energètic per individu d'aquesta espècie, en determinen la població final. L'algorisme auto-evo fa servir un model simplificat de la realitat per a calcular el rendiment de les espècies basat en l'energia que són capaces de recol·lectar. Per cada font d'alimentació, es mostra quanta energia en guanya l'espècie. A més a més, es mostra l'energia total disponible per aquesta font. La fracció de l'energia total que guanyen les espècies es basa en la magnitud del seu 'rendiment' respecte al 'rendiment total'. El 'rendiment' és una mètrica de com de bé les espècies poden utilitzar aquesta font d'alimentació."
 
-#: ../src/general/NewGameSettings.tscn:520
+#: ../src/general/NewGameSettings.tscn:573
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:553
+#: ../src/general/NewGameSettings.tscn:606
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "Aquest tauler mostra els nombres que fa servir l'algorisme auto-evo per fer la seva predicció. L'energia total que una espècie pot recol·lectar i el cost energètic per individu d'aquesta espècie, en determinen la població final. L'algorisme auto-evo fa servir un model simplificat de la realitat per a calcular el rendiment de les espècies basat en l'energia que són capaces de recol·lectar. Per cada font d'alimentació, es mostra quanta energia en guanya l'espècie. A més a més, es mostra l'energia total disponible per aquesta font. La fracció de l'energia total que guanyen les espècies es basa en la magnitud del seu 'rendiment' respecte al 'rendiment total'. El 'rendiment' és una mètrica de com de bé les espècies poden utilitzar aquesta font d'alimentació."
 
-#: ../src/general/NewGameSettings.tscn:570
+#: ../src/general/NewGameSettings.tscn:623
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Cost d'Osmoregulació"
 
-#: ../src/general/NewGameSettings.tscn:604
+#: ../src/general/NewGameSettings.tscn:657
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Cost d'Osmoregulació"
 
-#: ../src/general/NewGameSettings.tscn:615
+#: ../src/general/NewGameSettings.tscn:668
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:622
+#: ../src/general/NewGameSettings.tscn:675
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -1782,53 +1795,53 @@ msgstr ""
 "i és possible que siguin molt més ambiciosos respecte a uns mateixos recursos.\n"
 "Els microbis sensibles canviaran d'objectius més aviat."
 
-#: ../src/general/NewGameSettings.tscn:658
+#: ../src/general/NewGameSettings.tscn:711
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Mapa d'Indrets del món"
 
-#: ../src/general/NewGameSettings.tscn:665
+#: ../src/general/NewGameSettings.tscn:718
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "Els microbis actius es mouran continuament per trobar recursos.\n"
 "Els microbis sèssils es mantindran relativament quiets, esperant a que l'entorn canviï abans d'actuar."
 
-#: ../src/general/NewGameSettings.tscn:680
-#: ../src/general/NewGameSettings.tscn:681
+#: ../src/general/NewGameSettings.tscn:733
+#: ../src/general/NewGameSettings.tscn:734
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:681
+#: ../src/general/NewGameSettings.tscn:734
 #, fuzzy
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Zona Batipelàgica de Pangònia"
 
-#: ../src/general/NewGameSettings.tscn:823
+#: ../src/general/NewGameSettings.tscn:876
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:855
+#: ../src/general/NewGameSettings.tscn:908
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Esdevenir un Organisme Multicel·lular ({0}/{1})"
 
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:915
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:891
+#: ../src/general/NewGameSettings.tscn:944
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:902
+#: ../src/general/NewGameSettings.tscn:955
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:911
+#: ../src/general/NewGameSettings.tscn:964
 #, fuzzy
-msgid "CONFIRM"
-msgstr "Confirmar Sortida"
+msgid "CONFIRM_NORMAL"
+msgstr "CONFIRMAR"
 
 #: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
 #, fuzzy
@@ -2525,7 +2538,7 @@ msgid "RAW"
 msgstr "\"Raw\""
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2180
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2184
 msgid "NO_DATA_TO_SHOW"
 msgstr "No hi ha dades a mostrar"
 
@@ -2883,7 +2896,7 @@ msgstr "Cap procés"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1499
+#: ../src/microbe_stage/MicrobeHUD.cs:1500
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Encara no s'ha implementat."
 
@@ -3132,12 +3145,12 @@ msgstr "poc"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "molt poc"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1284
+#: ../src/microbe_stage/MicrobeHUD.cs:1285
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr "Esdevenir un Organisme Multicel·lular ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1320
+#: ../src/microbe_stage/MicrobeHUD.cs:1321
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr "Esdevenir un Organisme Macroscòpic ({0}/{1})"
@@ -3150,7 +3163,7 @@ msgstr "el jugador ha aconseguit reproduïr-se"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "No es pot fer servir el truc de generar un enemic ja que aquest medi no conté cap espècie enemiga"
 
-#: ../src/microbe_stage/MicrobeStage.cs:815
+#: ../src/microbe_stage/MicrobeStage.cs:817
 msgid "PLAYER_DIED"
 msgstr "el jugador ha mort"
 
@@ -3290,62 +3303,62 @@ msgstr "Reactiu"
 msgid "FOCUSED"
 msgstr "Centrat"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:369
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
 msgid "ATP_PRODUCTION"
 msgstr "Producció d'ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:375
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:374
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "LA PRODUCCIÓ D'ATP ÉS MASSA BAIXA!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:404
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:403
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:424
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:423
 msgid "OSMOREGULATION"
 msgstr "Osmoregulació"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:430
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:429
 msgid "BASE_MOVEMENT"
 msgstr "Capacitat de moviment"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:442
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:441
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:522
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:524
 msgid "CELL_TYPE_NAME"
 msgstr "Nom del Tipus de Cèl·lula"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2016
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
 msgid "FAILED"
 msgstr "Error"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2022
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2038
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2044
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2148
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia a {0} per {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2156
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "L'energia total recol·lectada és {0} amb un cost individual de {1} resultant en una població no ajustada de {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2163
 msgid "ENERGY_SOURCES"
 msgstr "Fonts d'energia:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2169
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (rendiment: {2}) energia total disponible: {3} (rendiment total: {4})"
 
@@ -4722,6 +4735,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Veure ara"
+
+#, fuzzy
+#~ msgid "CONFIRM"
+#~ msgstr "Confirmar Sortida"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Fumeroles volcàniques de Pangònia"
