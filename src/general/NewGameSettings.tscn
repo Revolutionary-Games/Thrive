@@ -69,17 +69,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 315.0
-margin_top = 40.0
-margin_right = 965.0
-margin_bottom = 680.0
+margin_left = 365.0
+margin_top = 236.0
+margin_right = 915.0
+margin_bottom = 484.0
 custom_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BasicOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
-visible = false
 margin_right = 550.0
 margin_bottom = 208.0
 rect_min_size = Vector2( 550, 200 )
@@ -289,6 +288,7 @@ group = SubResource( 5 )
 text = "MISC"
 
 [node name="AdvancedOptions" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
 margin_right = 650.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 650, 600 )
@@ -915,9 +915,9 @@ custom_fonts/font = ExtResource( 3 )
 text = "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 605.0
-margin_right = 650.0
-margin_bottom = 640.0
+margin_top = 213.0
+margin_right = 550.0
+margin_bottom = 248.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_right = 100.0
@@ -930,14 +930,14 @@ __meta__ = {
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 104.0
-margin_right = 280.0
+margin_right = 180.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 1 )
 
 [node name="Advanced" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 284.0
-margin_right = 459.0
+margin_left = 184.0
+margin_right = 359.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 focus_mode = 0
@@ -958,8 +958,8 @@ __meta__ = {
 }
 
 [node name="Confirm" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 463.0
-margin_right = 650.0
+margin_left = 363.0
+margin_right = 550.0
 margin_bottom = 35.0
 text = "CONFIRM_NORMAL"
 __meta__ = {
