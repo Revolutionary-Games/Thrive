@@ -320,7 +320,7 @@ public class SpawnSystem
         var debugOverlay = DebugOverlays.Instance;
 
         if (debugOverlay.PerformanceMetricsVisible)
-            debugOverlay.ReportSpawns(spawned);
+            debugOverlay.ReportSpawns(spawns);
     }
 
     /// <summary>
