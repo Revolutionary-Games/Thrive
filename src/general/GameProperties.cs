@@ -76,27 +76,8 @@ public class GameProperties
     {
         var game = new GameProperties();
 
-        var simulationParameters = SimulationParameters.Instance;
-
         // Modify the player species to actually make sense to be in the multicellular stage
-        var playerSpecies = (MicrobeSpecies)game.GameWorld.PlayerSpecies;
-
-        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"),
-            new Hex(0, -3), 0));
-        playerSpecies.IsBacteria = false;
-
-        var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
-
-        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
-            new Hex(-1, 1), 0));
-
-        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
-            new Hex(1, 0), 0));
-
-        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
-            new Hex(0, 1), 0));
-
-        playerSpecies.OnEdited();
+        var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
 
         game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
 
@@ -119,27 +100,10 @@ public class GameProperties
 
         var simulationParameters = SimulationParameters.Instance;
 
-        // Modify the player species to actually make sense to be in the multicellular stage
-        var playerSpecies = (MicrobeSpecies)game.GameWorld.PlayerSpecies;
-
-        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"),
-            new Hex(0, -3), 0));
-        playerSpecies.IsBacteria = false;
-
-        var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
-
-        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
-            new Hex(-1, 1), 0));
-
-        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
-            new Hex(1, 0), 0));
-
-        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
-            new Hex(0, 1), 0));
-
-        playerSpecies.OnEdited();
+        var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
 
         game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
+        game.GameWorld.ChangeSpeciesToLateMulticellular(playerSpecies);
 
         game.EnterPrototypes();
 
@@ -177,5 +141,29 @@ public class GameProperties
     {
         GD.Print("Game is in now in prototypes. EXPECT MAJOR BUGS!");
         InPrototypes = true;
+    }
+
+    private static MicrobeSpecies MakePlayerOrganellesMakeSenseForMulticellular(GameProperties game)
+    {
+        var simulationParameters = SimulationParameters.Instance;
+        var playerSpecies = (MicrobeSpecies)game.GameWorld.PlayerSpecies;
+
+        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("nucleus"),
+            new Hex(0, -3), 0));
+        playerSpecies.IsBacteria = false;
+
+        var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
+
+        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
+            new Hex(-1, 1), 0));
+
+        playerSpecies.Organelles.Add(new OrganelleTemplate(mitochondrion,
+            new Hex(1, 0), 0));
+
+        playerSpecies.Organelles.Add(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
+            new Hex(0, 1), 0));
+
+        playerSpecies.OnEdited();
+        return playerSpecies;
     }
 }

@@ -57,10 +57,6 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
 
     protected MeshInstance editorGround = null!;
 
-    protected Material invalidMaterial = null!;
-    protected Material validMaterial = null!;
-    protected Material islandMaterial = null!;
-
     protected AudioStream hexPlacementSound = null!;
 
     [JsonProperty]
@@ -77,6 +73,9 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     protected int usedHoverHex;
 
     protected int usedHoverModel;
+
+    protected IMetaballDisplayer<TMetaball>? alreadyPlacedVisuals;
+    protected IMetaballDisplayer<TMetaball>? hoverMetaballs;
 
     private CustomConfirmationDialog islandPopup = null!;
 
@@ -169,7 +168,6 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
 
         ResolveNodeReferences();
 
-        LoadHexMaterials();
         LoadScenes();
         LoadAudioStreams();
 
@@ -197,6 +195,8 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     public override void Init(TEditor owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
+
+        LoadMetaballDisplayers();
 
         if (camera == null)
         {
@@ -533,14 +533,11 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
 
     protected abstract IMetaballDisplayer<TMetaball> CreateMetaballDisplayer();
 
-    protected virtual void LoadHexMaterials()
+    protected virtual void LoadMetaballDisplayers()
     {
-        // TODO: materials:
-        throw new NotImplementedException();
-
-        invalidMaterial = GD.Load<Material>("res://src/microbe_stage/editor/InvalidHex.material");
-        validMaterial = GD.Load<Material>("res://src/microbe_stage/editor/ValidHex.material");
-        islandMaterial = GD.Load<Material>("res://src/microbe_stage/editor/IslandHex.material");
+        alreadyPlacedVisuals = CreateMetaballDisplayer();
+        hoverMetaballs = CreateMetaballDisplayer();
+        hoverMetaballs.OverrideColourAlpha = 0.7f;
     }
 
     protected virtual void LoadScenes()

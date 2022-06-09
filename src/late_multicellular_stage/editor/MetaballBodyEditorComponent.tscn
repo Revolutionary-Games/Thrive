@@ -188,7 +188,7 @@ DuplicateTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginCont
 CannotDeleteInUseTypeDialogPath = NodePath("CannotDeleteInUseType")
 DuplicateCellTypeDialogPath = NodePath("NewTissueTypeSetup")
 DuplicateCellTypeNamePath = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName")
-CellPopupMenuPath = NodePath("MetaballPopupMenu")
+MetaballPopupMenuPath = NodePath("MetaballPopupMenu")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 anchor_bottom = 1.0

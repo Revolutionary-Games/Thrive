@@ -341,6 +341,7 @@ public class GameWorld : ISaveLoadable
         multicellularVersion.Cells.Add(new CellTemplate(stemCellType));
         multicellularVersion.CellTypes.Add(stemCellType);
 
+        multicellularVersion.OnEdited();
         SwitchSpecies(species, multicellularVersion);
         return multicellularVersion;
     }
@@ -408,9 +409,19 @@ public class GameWorld : ISaveLoadable
 
         // And finally move the metaballs to touch each other
         // Do this from the root down to not need to process metaballs multiple times
+        // TODO: should this logic be in OnEdited for general use?
         foreach (var metaball in metaballs.Where(m => m != rootMetaball).OrderBy(m => m.CalculateTreeDepth()))
         {
+            if (metaball.Parent == null)
+                throw new Exception("logic error in metaball generation");
 
+            var vectorToParent = metaball.Position - metaball.Parent.Position;
+
+            float wantedDistance = metaball.Parent.Size / 2 + metaball.Size / 2;
+
+            var offset = vectorToParent.Normalized() * wantedDistance;
+
+            metaball.Position = metaball.Parent.Position + offset;
         }
 
         // Finish off by adding the metaballs to the layout in an order where all parents are added before the other
@@ -420,6 +431,7 @@ public class GameWorld : ISaveLoadable
         foreach (var metaball in metaballs)
             RecursivelyAddBallsToLayout(lateVersion.BodyLayout, metaball);
 
+        lateVersion.OnEdited();
         SwitchSpecies(species, lateVersion);
         return lateVersion;
     }

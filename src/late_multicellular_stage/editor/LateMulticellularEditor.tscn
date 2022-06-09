@@ -37,10 +37,9 @@ theme = ExtResource( 1 )
 
 [node name="MetaballBodyEditorComponent" parent="LateMulticellularEditorGUI" instance=ExtResource( 11 )]
 visible = false
-CameraPath = NodePath("")
+CameraPath = NodePath("../../3DEditorWorld/PrimaryCamera")
 EditorArrowPath = NodePath("../../3DEditorWorld/EditorArrow")
-EditorGridPath = NodePath("")
-CameraFollowPath = NodePath("../../3DEditorWorld/CameraRotationCenter")
+EditorGroundPath = NodePath("../../3DEditorWorld/Ground")
 
 [node name="CellEditor" parent="LateMulticellularEditorGUI" instance=ExtResource( 9 )]
 visible = false

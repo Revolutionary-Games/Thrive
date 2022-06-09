@@ -33,6 +33,8 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
         },
     };
 
+    public float? OverrideColourAlpha { get; set; }
+
     public override void _Ready()
     {
         base._Ready();
@@ -75,9 +77,15 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
 
             basis.Scale = new Vector3(metaball.Size, metaball.Size, metaball.Size);
 
+            var colour = metaball.Color;
+
+            if (OverrideColourAlpha != null)
+                colour.a = OverrideColourAlpha.Value;
+
             // TODO: check if using SetAsBulkArray is faster
             mesh.SetInstanceTransform(i, new Transform(basis, metaball.Position));
-            mesh.SetInstanceColor(i, metaball.Color);
+
+            mesh.SetInstanceColor(i, colour);
 
             // mesh.SetInstanceCustomData();
 
