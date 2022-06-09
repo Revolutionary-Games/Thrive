@@ -213,7 +213,7 @@ public class GameWorld : ISaveLoadable
             case MicrobeSpecies s:
                 // Mutator will mutate the name
                 return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies(species.Genus, species.Epithet),
-                    WorldSettings.Lawk);
+                    WorldSettings.AIMutationMultiplier, WorldSettings.Lawk);
             default:
                 throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
         }
