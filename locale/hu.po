@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-08 16:49+0700\n"
+"POT-Creation-Date: 2022-06-10 20:48+0700\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -56,7 +56,7 @@ msgid "MUSIC"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:187
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:262
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:341
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
@@ -350,12 +350,12 @@ msgid "ABILITIES"
 msgstr "Képességek"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2150
+#: ../src/microbe_stage/MicrobeStage.tscn:2149
 msgid "FIRE_TOXIN"
 msgstr "Méreg lövése"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2138
+#: ../src/microbe_stage/MicrobeStage.tscn:2137
 msgid "TOGGLE_ENGULF"
 msgstr "Elnyelés be/ki"
 
@@ -364,7 +364,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Tartsd lenyomva a csoport parancsok menü megjelenítéséhez"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2161
+#: ../src/microbe_stage/MicrobeStage.tscn:2160
 msgid "TOGGLE_BINDING"
 msgstr "Összekapcsolás be/ki"
 
@@ -373,7 +373,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Szétválás be/ki"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2173
+#: ../src/microbe_stage/MicrobeStage.tscn:2172
 msgid "UNBIND_ALL"
 msgstr "Összes szétválasztása"
 
@@ -490,35 +490,40 @@ msgid "TOGGLE_PAUSE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:188
+#, fuzzy
+msgid "TOGGLE_DEBUG_PANEL"
+msgstr "Elnyelés be/ki"
+
+#: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
 msgstr "FPS mutatása be/ki"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 #, fuzzy
 msgid "TOGGLE_METRICS"
 msgstr "FPS mutatása be/ki"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "QUICK_SAVE"
 msgstr "Gyorsmentés"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "QUICK_LOAD"
 msgstr "Gyorstöltés"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "TAKE_SCREENSHOT"
 msgstr "Képernyőkép készítése"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SHOW_HELP"
 msgstr "Segítség mutatása"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:216
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Teljes képernyő be/ki"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:220
 msgid "TOGGLE_HUD_HIDE"
 msgstr "HUD be/ki"
 
@@ -1124,28 +1129,53 @@ msgstr ""
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Válassz ki egy sejttípust, hogy szerkeszteni tudd"
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
-#: ../src/engine/PerformanceMetrics.tscn:57
+#: ../src/engine/DebugOverlays.FPSCounter.cs:16
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
+#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
-msgid "LOADING"
-msgstr "Betöltés"
-
-#: ../src/engine/PerformanceMetrics.cs:63
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 #, fuzzy
 msgid "FRAME_DURATION"
 msgstr "Delta: {0}"
 
-#: ../src/engine/PerformanceMetrics.cs:77
-#: ../src/engine/PerformanceMetrics.tscn:73
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
+#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.tscn:28
+#: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
+#: ../src/engine/PerformanceMetrics.tscn:30
 msgid "METRICS"
 msgstr "Teljesítmény metrikák"
+
+#: ../src/engine/DebugOverlays.tscn:86
+msgid "DEBUG_PANEL"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:96
+#, fuzzy
+msgid "FPS_DISPLAY"
+msgstr "Média lejátszás"
+
+#: ../src/engine/DebugOverlays.tscn:110
+msgid "COLLISION_SHAPE"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:117
+#, fuzzy
+msgid "ENTITY_LABEL"
+msgstr "Biom: {0}"
+
+#: ../src/engine/DebugOverlays.tscn:128
+#, fuzzy
+msgid "TRANSPARENCY"
+msgstr "Fordítók"
+
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
+msgid "LOADING"
+msgstr "Betöltés"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1561,11 +1591,11 @@ msgstr "Speciál egér 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Ismeretlen egér"
 
-#: ../src/general/Asset.cs:47
+#: ../src/general/Asset.cs:48
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/general/Asset.cs:51
+#: ../src/general/Asset.cs:52
 msgid "ART_BY"
 msgstr "A rajzot {0} készítette"
 
@@ -1610,16 +1640,31 @@ msgstr "A glükóz koncentrációk drasztikusan csökkentek!"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Belépve mint: {0}"
 
-#: ../src/general/MainMenu.tscn:180
+#: ../src/general/MainMenu.tscn:175
+#, fuzzy
+msgid "NEW_GAME_BUTTON_TOOLTIP"
+msgstr "Menü"
+
+#: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "Új játék"
 
-#: ../src/general/MainMenu.tscn:193 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:194
+#, fuzzy
+msgid "LOAD_GAME_BUTTON_TOOLTIP"
+msgstr "Menü"
+
+#: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:195
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Játék betöltése"
 
-#: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:214
+#: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:219
+#, fuzzy
+msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr "Segítség"
+
+#: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS"
 msgstr "Beállítások"
 
@@ -1639,48 +1684,53 @@ msgstr "Extrák"
 msgid "CREDITS"
 msgstr "Stáblista"
 
-#: ../src/general/MainMenu.tscn:259
+#: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:235
+#, fuzzy
+msgid "QUIT_BUTTON_TOOLTIP"
+msgstr "Öngyilkosság"
+
+#: ../src/general/MainMenu.tscn:260
 msgid "QUIT"
 msgstr "Kilépés"
 
-#: ../src/general/MainMenu.tscn:279
+#: ../src/general/MainMenu.tscn:280
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Sejtszerkesztő"
 
-#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:415
-#: ../src/general/MainMenu.tscn:455 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:254
+#: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
+#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/PauseMenu.tscn:262
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Vissza"
 
-#: ../src/general/MainMenu.tscn:360
+#: ../src/general/MainMenu.tscn:361
 msgid "MODS"
 msgstr "Modok"
 
-#: ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:374
 msgid "ART_GALLERY"
 msgstr "Rajz galéria"
 
-#: ../src/general/MainMenu.tscn:385
+#: ../src/general/MainMenu.tscn:386
 msgid "LICENSES"
 msgstr "Licenszek"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 mód figyelmeztetés"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:500
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "A Thrive-ot GLES2 módban futtatod. Ennek a módnak a használata nincs letesztelve, és nagy eséllyel hibákat okozhat. Próbáld meg frissíteni a videókártyád driverét vagy/és kényszerítsd az AMD vagy Nvidia grafikai szoftverét a Thrive futtatására."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod betöltési hibák"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:505
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Hiba történt a mod/modok betöltése közben. A hibáról több információt találhatsz a logok között."
 
@@ -1997,7 +2047,7 @@ msgid "DISCARD_AND_CONTINUE"
 msgstr "Elvet és folytatás"
 
 #: ../src/general/OptionsMenu.tscn:1324
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Mégse"
@@ -2031,32 +2081,57 @@ msgstr ""
 "A nem mentett játékállásaid el fognak veszni."
 
 #: ../src/general/PauseMenu.tscn:178
+#, fuzzy
+msgid "PAUSE_MENU_RESUME_TOOLTIP"
+msgstr "Játék folytatása"
+
+#: ../src/general/PauseMenu.tscn:179
 msgid "RESUME"
 msgstr "Folytatás"
 
-#: ../src/general/PauseMenu.tscn:185
+#: ../src/general/PauseMenu.tscn:186
+#, fuzzy
+msgid "SAVE_GAME_BUTTON_TOOLTIP"
+msgstr "Menü"
+
+#: ../src/general/PauseMenu.tscn:187
 msgid "SAVE_GAME"
 msgstr "Játék mentése"
 
-#: ../src/general/PauseMenu.tscn:200
+#: ../src/general/PauseMenu.tscn:202
+#, fuzzy
+msgid "STATISTICS_BUTTON_TOOLTIP"
+msgstr "Öngyilkosság"
+
+#: ../src/general/PauseMenu.tscn:204
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Statisztikák"
 
-#: ../src/general/PauseMenu.tscn:207
+#: ../src/general/PauseMenu.tscn:211
+#: ../src/microbe_stage/MicrobeStage.tscn:1697
+msgid "HELP_BUTTON_TOOLTIP"
+msgstr "Segítség"
+
+#: ../src/general/PauseMenu.tscn:212
 msgid "HELP"
 msgstr "Segítség"
 
-#: ../src/general/PauseMenu.tscn:221
+#: ../src/general/PauseMenu.tscn:227
+#, fuzzy
+msgid "RETURN_TO_MENU_TOOLTIP"
+msgstr "Vissza a menübe"
+
+#: ../src/general/PauseMenu.tscn:228
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Vissza a menübe"
 
-#: ../src/general/PauseMenu.tscn:228
+#: ../src/general/PauseMenu.tscn:236
 msgid "EXIT"
 msgstr "Kilépés"
 
-#: ../src/general/PauseMenu.tscn:279
+#: ../src/general/PauseMenu.tscn:287
 msgid "CONFIRM_EXIT"
 msgstr "Kilépés elfogadása"
 
@@ -2303,7 +2378,7 @@ msgstr "A játékot a Revolutionary Games Studio ry fejleszti"
 msgid "DEVELOPERS"
 msgstr "Fejlesztők"
 
-#: ../src/gui_common/PlaybackBar.tscn:107
+#: ../src/gui_common/PlaybackControls.tscn:107
 #, fuzzy
 msgid "STOP"
 msgstr "Stop"
@@ -2445,7 +2520,7 @@ msgstr ""
 msgid "INSPECT"
 msgstr "Ellenőriz"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
@@ -2778,7 +2853,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1487
+#: ../src/microbe_stage/MicrobeHUD.cs:1493
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Fejlesztés alatt."
 
@@ -3024,12 +3099,12 @@ msgstr "Elméleti csapat"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "nagyon kicsi mennyiség"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1252
+#: ../src/microbe_stage/MicrobeHUD.cs:1258
 #: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1288
+#: ../src/microbe_stage/MicrobeHUD.cs:1294
 #: ../src/microbe_stage/MicrobeStage.tscn:1775
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
@@ -3111,10 +3186,6 @@ msgstr "A környezet és a vegyületek mutatása / elrejtése"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "A sejt folyamatainak mutatása/elrejtése"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1697
-msgid "HELP_BUTTON_TOOLTIP"
-msgstr "Segítség"
-
 #: ../src/microbe_stage/MicrobeStage.tscn:1709
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Öngyilkosság"
@@ -3127,7 +3198,12 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr "POPULÁCIÓ:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2093
+#: ../src/microbe_stage/MicrobeStage.tscn:1946
+#, fuzzy
+msgid "EDITOR_BUTTON_TOOLTIP"
+msgstr "Segítség"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:2092
 msgid "PAUSED"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-08 16:49+0700\n"
+"POT-Creation-Date: 2022-06-10 20:48+0700\n"
 "PO-Revision-Date: 2022-03-26 14:06+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -56,7 +56,7 @@ msgid "MUSIC"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:187
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:262
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:341
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
@@ -79,7 +79,7 @@ msgstr "进入游戏的下一个阶段（多细胞）。在你有一个足够大
 #: ../simulation_parameters/common/gallery.json:280
 #, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "载入微生物编辑器中"
+msgstr "载入早期多细胞编辑器中"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
@@ -352,12 +352,12 @@ msgid "ABILITIES"
 msgstr "能力"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2150
+#: ../src/microbe_stage/MicrobeStage.tscn:2149
 msgid "FIRE_TOXIN"
 msgstr "发射毒素"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2138
+#: ../src/microbe_stage/MicrobeStage.tscn:2137
 msgid "TOGGLE_ENGULF"
 msgstr "切换吞噬模式"
 
@@ -366,7 +366,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "按住以显示群体指令菜单"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2161
+#: ../src/microbe_stage/MicrobeStage.tscn:2160
 msgid "TOGGLE_BINDING"
 msgstr "切换连接模式"
 
@@ -375,7 +375,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "切换解除连接模式"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2173
+#: ../src/microbe_stage/MicrobeStage.tscn:2172
 msgid "UNBIND_ALL"
 msgstr "取消所有连接"
 
@@ -489,37 +489,42 @@ msgstr "杂项"
 
 #: ../simulation_parameters/common/input_options.json:184
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "暂停"
 
 #: ../simulation_parameters/common/input_options.json:188
+#, fuzzy
+msgid "TOGGLE_DEBUG_PANEL"
+msgstr "切换吞噬模式"
+
+#: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
 msgstr "切换帧数显示"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 msgid "TOGGLE_METRICS"
 msgstr "切换参数显示"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "QUICK_SAVE"
 msgstr "快速保存"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "QUICK_LOAD"
 msgstr "快速读档"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "TAKE_SCREENSHOT"
 msgstr "截图"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SHOW_HELP"
 msgstr "显示帮助"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:216
 msgid "TOGGLE_FULLSCREEN"
 msgstr "切换全屏"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:220
 msgid "TOGGLE_HUD_HIDE"
 msgstr "切换HUD"
 
@@ -1096,9 +1101,8 @@ msgid "MP_COST"
 msgstr "{0} 变异点"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
-#, fuzzy
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "载入微生物编辑器中"
+msgstr "载入早期多细胞编辑器中"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:196
@@ -1120,27 +1124,52 @@ msgstr "当另一个行动在进行时无法进行行动"
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "从编辑器选项卡中选择要在此处编辑的细胞类型"
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
-#: ../src/engine/PerformanceMetrics.tscn:57
+#: ../src/engine/DebugOverlays.FPSCounter.cs:16
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
+#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "帧率：{0}"
+
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
+msgid "FRAME_DURATION"
+msgstr "帧时长：{0}"
+
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
+#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
+msgid "METRICS_CONTENT"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
+#: ../src/engine/PerformanceMetrics.tscn:30
+msgid "METRICS"
+msgstr "性能参数"
+
+#: ../src/engine/DebugOverlays.tscn:86
+msgid "DEBUG_PANEL"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:96
+#, fuzzy
+msgid "FPS_DISPLAY"
+msgstr "媒体播放"
+
+#: ../src/engine/DebugOverlays.tscn:110
+msgid "COLLISION_SHAPE"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:117
+#, fuzzy
+msgid "ENTITY_LABEL"
+msgstr "生物群系：{0}"
+
+#: ../src/engine/DebugOverlays.tscn:128
+#, fuzzy
+msgid "TRANSPARENCY"
+msgstr "翻译者"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
 msgid "LOADING"
 msgstr "载入中"
-
-#: ../src/engine/PerformanceMetrics.cs:63
-msgid "FRAME_DURATION"
-msgstr "帧时长：{0}"
-
-#: ../src/engine/PerformanceMetrics.cs:77
-#: ../src/engine/PerformanceMetrics.tscn:73
-msgid "METRICS_CONTENT"
-msgstr ""
-
-#: ../src/engine/PerformanceMetrics.tscn:28
-msgid "METRICS"
-msgstr "性能参数"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1556,11 +1585,11 @@ msgstr "鼠标侧键2"
 msgid "UNKNOWN_MOUSE"
 msgstr "鼠标未知键"
 
-#: ../src/general/Asset.cs:47
+#: ../src/general/Asset.cs:48
 msgid "ARTWORK_TITLE"
 msgstr "“{0}” - {1}"
 
-#: ../src/general/Asset.cs:51
+#: ../src/general/Asset.cs:52
 msgid "ART_BY"
 msgstr "由{0}创作"
 
@@ -1605,16 +1634,31 @@ msgstr "葡萄糖的浓度大幅度降低了！"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登录为：{0}"
 
-#: ../src/general/MainMenu.tscn:180
+#: ../src/general/MainMenu.tscn:175
+#, fuzzy
+msgid "NEW_GAME_BUTTON_TOOLTIP"
+msgstr "暂停菜单"
+
+#: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "新游戏"
 
-#: ../src/general/MainMenu.tscn:193 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:194
+#, fuzzy
+msgid "LOAD_GAME_BUTTON_TOOLTIP"
+msgstr "暂停菜单"
+
+#: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:195
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "载入游戏"
 
-#: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:214
+#: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:219
+#, fuzzy
+msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr "帮助菜单"
+
+#: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS"
 msgstr "选项"
 
@@ -1634,48 +1678,53 @@ msgstr "额外内容"
 msgid "CREDITS"
 msgstr "制作人名单"
 
-#: ../src/general/MainMenu.tscn:259
+#: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:235
+#, fuzzy
+msgid "QUIT_BUTTON_TOOLTIP"
+msgstr "自杀"
+
+#: ../src/general/MainMenu.tscn:260
 msgid "QUIT"
 msgstr "退出"
 
-#: ../src/general/MainMenu.tscn:279
+#: ../src/general/MainMenu.tscn:280
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
-#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:415
-#: ../src/general/MainMenu.tscn:455 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:254
+#: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
+#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/PauseMenu.tscn:262
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "返回"
 
-#: ../src/general/MainMenu.tscn:360
+#: ../src/general/MainMenu.tscn:361
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:374
 msgid "ART_GALLERY"
 msgstr "艺术画廊"
 
-#: ../src/general/MainMenu.tscn:385
+#: ../src/general/MainMenu.tscn:386
 msgid "LICENSES"
 msgstr "许可"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:500
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod加载错误"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:505
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加载一个或多个mod时发生了错误。日志可能包含其它信息。"
 
@@ -1992,7 +2041,7 @@ msgid "DISCARD_AND_CONTINUE"
 msgstr "放弃更改并继续"
 
 #: ../src/general/OptionsMenu.tscn:1324
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "取消"
@@ -2026,32 +2075,57 @@ msgstr ""
 "你会失去任何未保存的进度。"
 
 #: ../src/general/PauseMenu.tscn:178
+#, fuzzy
+msgid "PAUSE_MENU_RESUME_TOOLTIP"
+msgstr "返回游戏"
+
+#: ../src/general/PauseMenu.tscn:179
 msgid "RESUME"
 msgstr "返回"
 
-#: ../src/general/PauseMenu.tscn:185
+#: ../src/general/PauseMenu.tscn:186
+#, fuzzy
+msgid "SAVE_GAME_BUTTON_TOOLTIP"
+msgstr "暂停菜单"
+
+#: ../src/general/PauseMenu.tscn:187
 msgid "SAVE_GAME"
 msgstr "保存游戏"
 
-#: ../src/general/PauseMenu.tscn:200
+#: ../src/general/PauseMenu.tscn:202
+#, fuzzy
+msgid "STATISTICS_BUTTON_TOOLTIP"
+msgstr "自杀"
+
+#: ../src/general/PauseMenu.tscn:204
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "统计数据"
 
-#: ../src/general/PauseMenu.tscn:207
+#: ../src/general/PauseMenu.tscn:211
+#: ../src/microbe_stage/MicrobeStage.tscn:1697
+msgid "HELP_BUTTON_TOOLTIP"
+msgstr "帮助菜单"
+
+#: ../src/general/PauseMenu.tscn:212
 msgid "HELP"
 msgstr "帮助"
 
-#: ../src/general/PauseMenu.tscn:221
+#: ../src/general/PauseMenu.tscn:227
+#, fuzzy
+msgid "RETURN_TO_MENU_TOOLTIP"
+msgstr "返回主菜单"
+
+#: ../src/general/PauseMenu.tscn:228
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "返回主菜单"
 
-#: ../src/general/PauseMenu.tscn:228
+#: ../src/general/PauseMenu.tscn:236
 msgid "EXIT"
 msgstr "退出"
 
-#: ../src/general/PauseMenu.tscn:279
+#: ../src/general/PauseMenu.tscn:287
 msgid "CONFIRM_EXIT"
 msgstr "确认退出"
 
@@ -2297,7 +2371,7 @@ msgstr "由Revolutionary Games Studio ry支持的开发"
 msgid "DEVELOPERS"
 msgstr "开发者"
 
-#: ../src/gui_common/PlaybackBar.tscn:107
+#: ../src/gui_common/PlaybackControls.tscn:107
 #, fuzzy
 msgid "STOP"
 msgstr "停下"
@@ -2444,7 +2518,7 @@ msgstr "不允许显示少于{0}个数据集！"
 msgid "INSPECT"
 msgstr "检查"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
@@ -2780,7 +2854,7 @@ msgstr "不参与细胞过程"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1487
+#: ../src/microbe_stage/MicrobeHUD.cs:1493
 msgid "TO_BE_IMPLEMENTED"
 msgstr "仍在开发中。"
 
@@ -2990,7 +3064,7 @@ msgstr "要发出的信号"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:782
 msgid "PAUSE_PROMPT"
-msgstr ""
+msgstr "[center]按[thrive:input]g_pause[/thrive:input]以解除暂停[/center]"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:896
 msgid "STUFF_AT"
@@ -3028,12 +3102,12 @@ msgstr "少"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "很少"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1252
+#: ../src/microbe_stage/MicrobeHUD.cs:1258
 #: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "BECOME_MULTICELLULAR"
 msgstr "成为多细胞（{0}/{1}）"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1288
+#: ../src/microbe_stage/MicrobeHUD.cs:1294
 #: ../src/microbe_stage/MicrobeStage.tscn:1775
 msgid "BECOME_MACROSCOPIC"
 msgstr "成为宏观生物（{0}/{1}）"
@@ -3114,10 +3188,6 @@ msgstr "显示/隐藏环境和化合物"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "显示/隐藏细胞过程"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1697
-msgid "HELP_BUTTON_TOOLTIP"
-msgstr "帮助菜单"
-
 #: ../src/microbe_stage/MicrobeStage.tscn:1709
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "自杀"
@@ -3130,9 +3200,14 @@ msgstr "进入游戏的下一个阶段（多细胞）。在你有一个足够大
 msgid "POPULATION_CAPITAL"
 msgstr "种群数量："
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2093
+#: ../src/microbe_stage/MicrobeStage.tscn:1946
+#, fuzzy
+msgid "EDITOR_BUTTON_TOOLTIP"
+msgstr "添加新的绑定键位"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:2092
 msgid "PAUSED"
-msgstr ""
+msgstr "暂停中"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:187
 msgid "PATCH_NAME"

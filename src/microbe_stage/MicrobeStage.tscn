@@ -1823,6 +1823,7 @@ margin_left = -90.0
 margin_top = -235.0
 margin_right = -10.0
 margin_bottom = -183.0
+mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 29 )
@@ -1830,6 +1831,7 @@ custom_styles/panel = SubResource( 29 )
 [node name="Margin" type="MarginContainer" parent="MicrobeHUD/BottomRight/DataValue"]
 margin_right = 80.0
 margin_bottom = 52.0
+mouse_filter = 2
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -1846,8 +1848,10 @@ alignment = 1
 [node name="HPValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
 margin_right = 70.0
 margin_bottom = 17.0
+mouse_filter = 0
 custom_fonts/font = ExtResource( 80 )
 text = "Hitpoints"
+clip_text = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
@@ -1856,8 +1860,10 @@ __meta__ = {
 margin_top = 25.0
 margin_right = 70.0
 margin_bottom = 42.0
+mouse_filter = 0
 custom_fonts/font = ExtResource( 80 )
 text = "ATP"
+clip_text = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
@@ -1881,9 +1887,6 @@ tint_under = Color( 0, 0, 0, 0.752941 )
 tint_progress = Color( 0.960784, 0.270588, 0.478431, 1 )
 radial_initial_angle = 237.0
 radial_fill_degrees = 126.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HitpointIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/HealthBar"]
 margin_left = 21.46
@@ -1905,6 +1908,7 @@ margin_left = -202.756
 margin_top = -201.525
 margin_right = 6.24402
 margin_bottom = 7.47501
+mouse_filter = 2
 step = 0.1
 value = 100.0
 texture_under = ExtResource( 63 )
@@ -1939,6 +1943,7 @@ margin_top = -178.0
 margin_right = -18.0
 margin_bottom = -18.0
 rect_min_size = Vector2( 160, 160 )
+hint_tooltip = "EDITOR_BUTTON_TOOLTIP"
 focus_mode = 0
 disabled = true
 texture_normal = ExtResource( 39 )
@@ -1946,9 +1951,6 @@ texture_pressed = ExtResource( 59 )
 texture_hover = ExtResource( 40 )
 texture_disabled = ExtResource( 41 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Highlight" type="TextureRect" parent="MicrobeHUD/BottomRight/EditorButton"]
 visible = false
@@ -2028,9 +2030,6 @@ tint_progress = Color( 0.690196, 0.423529, 1, 1 )
 radial_initial_angle = 180.0
 radial_fill_degrees = 180.0
 nine_patch_stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AmmoniaIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar"]
 margin_left = 70.0

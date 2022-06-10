@@ -1115,8 +1115,11 @@ public class MicrobeHUD : Control
         }
 
         GUICommon.SmoothlyUpdateBar(atpBar, atpAmount * 10.0f, delta);
-        atpLabel.Text = atpAmount.ToString("F1", CultureInfo.CurrentCulture) + " / "
+
+        var atpText = atpAmount.ToString("F1", CultureInfo.CurrentCulture) + " / "
             + maxATP.ToString("F1", CultureInfo.CurrentCulture);
+        atpLabel.Text = atpText;
+        atpLabel.HintTooltip = atpText;
     }
 
     private ICompoundStorage GetPlayerColonyOrPlayerStorage()
@@ -1141,7 +1144,10 @@ public class MicrobeHUD : Control
 
         healthBar.MaxValue = maxHP;
         GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
-        hpLabel.Text = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+
+        var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+        hpLabel.Text = hpText;
+        hpLabel.HintTooltip = hpText;
     }
 
     private void SetEditorButtonFlashEffect(bool enabled)

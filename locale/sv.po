@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-08 16:49+0700\n"
+"POT-Creation-Date: 2022-06-10 20:48+0700\n"
 "PO-Revision-Date: 2022-04-12 16:14+0000\n"
 "Last-Translator: swedneck <github@swedneck.xyz>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -49,7 +49,7 @@ msgid "MUSIC"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:187
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:262
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:341
 #, fuzzy
 msgid "ALL"
 msgstr "ALT"
@@ -339,12 +339,12 @@ msgid "ABILITIES"
 msgstr "Förmågor"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2150
+#: ../src/microbe_stage/MicrobeStage.tscn:2149
 msgid "FIRE_TOXIN"
 msgstr "Skjut gift"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2138
+#: ../src/microbe_stage/MicrobeStage.tscn:2137
 msgid "TOGGLE_ENGULF"
 msgstr "Växla uppslukarläge av och på"
 
@@ -353,7 +353,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Håll för att visa grupp commando menyn"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2161
+#: ../src/microbe_stage/MicrobeStage.tscn:2160
 msgid "TOGGLE_BINDING"
 msgstr "Växla bindning av och på"
 
@@ -362,7 +362,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Växla avbindning av och på"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2173
+#: ../src/microbe_stage/MicrobeStage.tscn:2172
 msgid "UNBIND_ALL"
 msgstr "Lösgör alla"
 
@@ -479,35 +479,40 @@ msgid "TOGGLE_PAUSE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:188
+#, fuzzy
+msgid "TOGGLE_DEBUG_PANEL"
+msgstr "Växla uppslukarläge av och på"
+
+#: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
 msgstr "Växla FPS display"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 #, fuzzy
 msgid "TOGGLE_METRICS"
 msgstr "Växla FPS display"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "QUICK_SAVE"
 msgstr "Snabbspara"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "QUICK_LOAD"
 msgstr "Snabbladda"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "TAKE_SCREENSHOT"
 msgstr "Ta ett screenshot"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SHOW_HELP"
 msgstr "Visa hjälp"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:216
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Växla fullskärm av och på"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:220
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Växla HUD av och på"
 
@@ -1119,30 +1124,55 @@ msgstr ""
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Välj en celltyp att redigera här från redigerarfliken"
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
-#: ../src/engine/PerformanceMetrics.tscn:57
+#: ../src/engine/DebugOverlays.FPSCounter.cs:16
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
+#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 #, fuzzy
 msgid "FPS"
 msgstr "Max Frames Per Sekund:"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
-msgid "LOADING"
-msgstr "Laddar"
-
-#: ../src/engine/PerformanceMetrics.cs:63
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 #, fuzzy
 msgid "FRAME_DURATION"
 msgstr "Anding"
 
-#: ../src/engine/PerformanceMetrics.cs:77
-#: ../src/engine/PerformanceMetrics.tscn:73
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
+#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.tscn:28
+#: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
+#: ../src/engine/PerformanceMetrics.tscn:30
 #, fuzzy
 msgid "METRICS"
 msgstr "Växla FPS display"
+
+#: ../src/engine/DebugOverlays.tscn:86
+msgid "DEBUG_PANEL"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:96
+#, fuzzy
+msgid "FPS_DISPLAY"
+msgstr "Media Spela"
+
+#: ../src/engine/DebugOverlays.tscn:110
+msgid "COLLISION_SHAPE"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:117
+#, fuzzy
+msgid "ENTITY_LABEL"
+msgstr "Omgivning: {0}"
+
+#: ../src/engine/DebugOverlays.tscn:128
+#, fuzzy
+msgid "TRANSPARENCY"
+msgstr "Översättare"
+
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
+msgid "LOADING"
+msgstr "Laddar"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1561,11 +1591,11 @@ msgstr "Mus Special 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Okänd mus"
 
-#: ../src/general/Asset.cs:47
+#: ../src/general/Asset.cs:48
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/general/Asset.cs:51
+#: ../src/general/Asset.cs:52
 msgid "ART_BY"
 msgstr "Konst av {0}"
 
@@ -1610,16 +1640,31 @@ msgstr "Glukoskoncentrationerna har sjunkit drastiskt!"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Inloggad som: {0}"
 
-#: ../src/general/MainMenu.tscn:180
+#: ../src/general/MainMenu.tscn:175
+#, fuzzy
+msgid "NEW_GAME_BUTTON_TOOLTIP"
+msgstr "Hjälp"
+
+#: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "Nytt spel"
 
-#: ../src/general/MainMenu.tscn:193 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:194
+#, fuzzy
+msgid "LOAD_GAME_BUTTON_TOOLTIP"
+msgstr "Hjälp"
+
+#: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:195
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Ladda Spel"
 
-#: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:214
+#: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:219
+#, fuzzy
+msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr "Hjälp"
+
+#: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS"
 msgstr "Inställningar"
 
@@ -1639,48 +1684,53 @@ msgstr "Extra"
 msgid "CREDITS"
 msgstr "Eftertext"
 
-#: ../src/general/MainMenu.tscn:259
+#: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:235
+#, fuzzy
+msgid "QUIT_BUTTON_TOOLTIP"
+msgstr "Självmord"
+
+#: ../src/general/MainMenu.tscn:260
 msgid "QUIT"
 msgstr "Lämna"
 
-#: ../src/general/MainMenu.tscn:279
+#: ../src/general/MainMenu.tscn:280
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrob Fri Byggredigerare"
 
-#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:415
-#: ../src/general/MainMenu.tscn:455 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:254
+#: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
+#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/PauseMenu.tscn:262
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Backåt"
 
-#: ../src/general/MainMenu.tscn:360
+#: ../src/general/MainMenu.tscn:361
 msgid "MODS"
 msgstr "Mod"
 
-#: ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:374
 msgid "ART_GALLERY"
 msgstr "Konst Galleri"
 
-#: ../src/general/MainMenu.tscn:385
+#: ../src/general/MainMenu.tscn:386
 msgid "LICENSES"
 msgstr "Licenser"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Läges Varning"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:500
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Du kör just nu Thrive med GLES2. Detta är väldigt otestat och kommer troligen att orsaka problem. Försök att updatera dina video drivers och/eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod Inladdningsfel"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:505
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Fel uppstod när en eller flera mod laddades. Loggen kan innehålla ytterligare information."
 
@@ -2003,7 +2053,7 @@ msgid "DISCARD_AND_CONTINUE"
 msgstr "Radera och fortsätt"
 
 #: ../src/general/OptionsMenu.tscn:1324
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Avbryt"
@@ -2037,32 +2087,57 @@ msgstr ""
 "Du kommer att förlora alla osparade framsteg."
 
 #: ../src/general/PauseMenu.tscn:178
+#, fuzzy
+msgid "PAUSE_MENU_RESUME_TOOLTIP"
+msgstr "Fortsätt"
+
+#: ../src/general/PauseMenu.tscn:179
 msgid "RESUME"
 msgstr "Fortsätt"
 
-#: ../src/general/PauseMenu.tscn:185
+#: ../src/general/PauseMenu.tscn:186
+#, fuzzy
+msgid "SAVE_GAME_BUTTON_TOOLTIP"
+msgstr "Hjälp"
+
+#: ../src/general/PauseMenu.tscn:187
 msgid "SAVE_GAME"
 msgstr "Spara Spel"
 
-#: ../src/general/PauseMenu.tscn:200
+#: ../src/general/PauseMenu.tscn:202
+#, fuzzy
+msgid "STATISTICS_BUTTON_TOOLTIP"
+msgstr "Självmord"
+
+#: ../src/general/PauseMenu.tscn:204
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Statistik"
 
-#: ../src/general/PauseMenu.tscn:207
+#: ../src/general/PauseMenu.tscn:211
+#: ../src/microbe_stage/MicrobeStage.tscn:1697
+msgid "HELP_BUTTON_TOOLTIP"
+msgstr "Hjälp"
+
+#: ../src/general/PauseMenu.tscn:212
 msgid "HELP"
 msgstr "Hjälp"
 
-#: ../src/general/PauseMenu.tscn:221
+#: ../src/general/PauseMenu.tscn:227
+#, fuzzy
+msgid "RETURN_TO_MENU_TOOLTIP"
+msgstr "Tillbaka till Menyn"
+
+#: ../src/general/PauseMenu.tscn:228
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Tillbaka till Menyn"
 
-#: ../src/general/PauseMenu.tscn:228
+#: ../src/general/PauseMenu.tscn:236
 msgid "EXIT"
 msgstr "Lämna"
 
-#: ../src/general/PauseMenu.tscn:279
+#: ../src/general/PauseMenu.tscn:287
 #, fuzzy
 msgid "CONFIRM_EXIT"
 msgstr "Bekräfta Stängning"
@@ -2310,7 +2385,7 @@ msgstr "Utvecklingen stöds av Revolutionary Games Studio ry"
 msgid "DEVELOPERS"
 msgstr "Utvecklare"
 
-#: ../src/gui_common/PlaybackBar.tscn:107
+#: ../src/gui_common/PlaybackControls.tscn:107
 #, fuzzy
 msgid "STOP"
 msgstr "Stopp"
@@ -2459,7 +2534,7 @@ msgstr "Inte tillåtet att visa mindre än {0} datauppsättning(ar)!"
 msgid "INSPECT"
 msgstr "Inspektera"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
@@ -2796,7 +2871,7 @@ msgstr "Placera organell"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1487
+#: ../src/microbe_stage/MicrobeHUD.cs:1493
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Ej implementerat än."
 
@@ -3054,12 +3129,12 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1252
+#: ../src/microbe_stage/MicrobeHUD.cs:1258
 #: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1288
+#: ../src/microbe_stage/MicrobeHUD.cs:1294
 #: ../src/microbe_stage/MicrobeStage.tscn:1775
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
@@ -3141,10 +3216,6 @@ msgstr ""
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1697
-msgid "HELP_BUTTON_TOOLTIP"
-msgstr "Hjälp"
-
 #: ../src/microbe_stage/MicrobeStage.tscn:1709
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Självmord"
@@ -3157,7 +3228,12 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr "INVÅNARE:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2093
+#: ../src/microbe_stage/MicrobeStage.tscn:1946
+#, fuzzy
+msgid "EDITOR_BUTTON_TOOLTIP"
+msgstr "Hjälp"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:2092
 msgid "PAUSED"
 msgstr ""
 

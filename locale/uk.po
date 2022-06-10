@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-08 16:49+0700\n"
+"POT-Creation-Date: 2022-06-10 20:48+0700\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -56,7 +56,7 @@ msgid "MUSIC"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:187
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:262
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:341
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
@@ -353,12 +353,12 @@ msgid "ABILITIES"
 msgstr "Здібності"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2150
+#: ../src/microbe_stage/MicrobeStage.tscn:2149
 msgid "FIRE_TOXIN"
 msgstr "Вивести токсин"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2138
+#: ../src/microbe_stage/MicrobeStage.tscn:2137
 msgid "TOGGLE_ENGULF"
 msgstr "Перемкнути поглинання"
 
@@ -367,7 +367,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Утримуйте для показу меню пакету команд"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2161
+#: ../src/microbe_stage/MicrobeStage.tscn:2160
 msgid "TOGGLE_BINDING"
 msgstr "Перемкнути з'єднування"
 
@@ -376,7 +376,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Перемкнути роз'єднання"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2173
+#: ../src/microbe_stage/MicrobeStage.tscn:2172
 msgid "UNBIND_ALL"
 msgstr "Роз'єднати всіх"
 
@@ -493,34 +493,39 @@ msgid "TOGGLE_PAUSE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:188
+#, fuzzy
+msgid "TOGGLE_DEBUG_PANEL"
+msgstr "Перемкнути поглинання"
+
+#: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
 msgstr "Перемикання FPS дисплаю"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 msgid "TOGGLE_METRICS"
 msgstr "Увімкнути панель показників"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "QUICK_SAVE"
 msgstr "Швидке збереження"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "QUICK_LOAD"
 msgstr "Швидке завантаження"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "TAKE_SCREENSHOT"
 msgstr "Зробити знімок екрана"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SHOW_HELP"
 msgstr "Надати допомогу"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:216
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Змінити повноекранність"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:220
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Перемкнути HUD"
 
@@ -1124,21 +1129,18 @@ msgstr "Дія заблокована, поки не завершилася ін
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Оберіть тип клітин для редагування у вкладці редактору"
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
-#: ../src/engine/PerformanceMetrics.tscn:57
+#: ../src/engine/DebugOverlays.FPSCounter.cs:16
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
+#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
-msgid "LOADING"
-msgstr "Завантаження"
-
-#: ../src/engine/PerformanceMetrics.cs:63
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 msgid "FRAME_DURATION"
 msgstr "Дельта: {0}"
 
-#: ../src/engine/PerformanceMetrics.cs:77
-#: ../src/engine/PerformanceMetrics.tscn:73
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
+#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 "Час процесу: {0}с\n"
@@ -1159,9 +1161,37 @@ msgstr ""
 "Загальний час ЦП:\n"
 " {18}"
 
-#: ../src/engine/PerformanceMetrics.tscn:28
+#: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
+#: ../src/engine/PerformanceMetrics.tscn:30
 msgid "METRICS"
 msgstr "Панель змін"
+
+#: ../src/engine/DebugOverlays.tscn:86
+msgid "DEBUG_PANEL"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:96
+#, fuzzy
+msgid "FPS_DISPLAY"
+msgstr "Програти медіа"
+
+#: ../src/engine/DebugOverlays.tscn:110
+msgid "COLLISION_SHAPE"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:117
+#, fuzzy
+msgid "ENTITY_LABEL"
+msgstr "Біом: {0}"
+
+#: ../src/engine/DebugOverlays.tscn:128
+#, fuzzy
+msgid "TRANSPARENCY"
+msgstr "Перекладачі"
+
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
+msgid "LOADING"
+msgstr "Завантаження"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1577,11 +1607,11 @@ msgstr "Спеціальна миша 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Невідома миша"
 
-#: ../src/general/Asset.cs:47
+#: ../src/general/Asset.cs:48
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/general/Asset.cs:51
+#: ../src/general/Asset.cs:52
 msgid "ART_BY"
 msgstr "Малюнок від {0}"
 
@@ -1626,16 +1656,31 @@ msgstr "Концентрація глюкози раптово впала!"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ви увійшли як:{0}"
 
-#: ../src/general/MainMenu.tscn:180
+#: ../src/general/MainMenu.tscn:175
+#, fuzzy
+msgid "NEW_GAME_BUTTON_TOOLTIP"
+msgstr "Меню паузи"
+
+#: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "Нова гра"
 
-#: ../src/general/MainMenu.tscn:193 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:194
+#, fuzzy
+msgid "LOAD_GAME_BUTTON_TOOLTIP"
+msgstr "Меню паузи"
+
+#: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:195
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Завантажити гру"
 
-#: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:214
+#: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:219
+#, fuzzy
+msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr "Допомога"
+
+#: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS"
 msgstr "Налаштування"
 
@@ -1655,48 +1700,53 @@ msgstr "Додаткове"
 msgid "CREDITS"
 msgstr "Титри"
 
-#: ../src/general/MainMenu.tscn:259
+#: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:235
+#, fuzzy
+msgid "QUIT_BUTTON_TOOLTIP"
+msgstr "Суїцид"
+
+#: ../src/general/MainMenu.tscn:260
 msgid "QUIT"
 msgstr "Вихід"
 
-#: ../src/general/MainMenu.tscn:279
+#: ../src/general/MainMenu.tscn:280
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Режим творчого мікробного редактор"
 
-#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:415
-#: ../src/general/MainMenu.tscn:455 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:254
+#: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
+#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/PauseMenu.tscn:262
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
 
-#: ../src/general/MainMenu.tscn:360
+#: ../src/general/MainMenu.tscn:361
 msgid "MODS"
 msgstr "Моди"
 
-#: ../src/general/MainMenu.tscn:373
+#: ../src/general/MainMenu.tscn:374
 msgid "ART_GALLERY"
 msgstr "Галерея"
 
-#: ../src/general/MainMenu.tscn:385
+#: ../src/general/MainMenu.tscn:386
 msgid "LICENSES"
 msgstr "Ліцензія"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Режим попереджень"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:500
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Ви використовуєте з Thrive задопомогою GLES2. Це неперевірено та може викликати проблеми. Спробуйте оновити свої відеодрайвери та/або використати графіку від Nvidia або AMD для запуску Trive."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS"
 msgstr "Помилка завантаження модифікації"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:505
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Виникла помилка коли завантажувалися кілька модифікацій. Додаткова інформація міститься у журналах."
 
@@ -2013,7 +2063,7 @@ msgid "DISCARD_AND_CONTINUE"
 msgstr "Відмінити й продовжити"
 
 #: ../src/general/OptionsMenu.tscn:1324
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
 #: ../src/modding/NewModGUI.tscn:472
 msgid "CANCEL"
 msgstr "Скасувати"
@@ -2047,32 +2097,57 @@ msgstr ""
 "Весь незбережений процес буде втрачено."
 
 #: ../src/general/PauseMenu.tscn:178
+#, fuzzy
+msgid "PAUSE_MENU_RESUME_TOOLTIP"
+msgstr "Продовжити"
+
+#: ../src/general/PauseMenu.tscn:179
 msgid "RESUME"
 msgstr "Продовжити"
 
-#: ../src/general/PauseMenu.tscn:185
+#: ../src/general/PauseMenu.tscn:186
+#, fuzzy
+msgid "SAVE_GAME_BUTTON_TOOLTIP"
+msgstr "Меню паузи"
+
+#: ../src/general/PauseMenu.tscn:187
 msgid "SAVE_GAME"
 msgstr "Зберегти гру"
 
-#: ../src/general/PauseMenu.tscn:200
+#: ../src/general/PauseMenu.tscn:202
+#, fuzzy
+msgid "STATISTICS_BUTTON_TOOLTIP"
+msgstr "Суїцид"
+
+#: ../src/general/PauseMenu.tscn:204
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Статистика"
 
-#: ../src/general/PauseMenu.tscn:207
+#: ../src/general/PauseMenu.tscn:211
+#: ../src/microbe_stage/MicrobeStage.tscn:1697
+msgid "HELP_BUTTON_TOOLTIP"
+msgstr "Допомога"
+
+#: ../src/general/PauseMenu.tscn:212
 msgid "HELP"
 msgstr "Допомога"
 
-#: ../src/general/PauseMenu.tscn:221
+#: ../src/general/PauseMenu.tscn:227
+#, fuzzy
+msgid "RETURN_TO_MENU_TOOLTIP"
+msgstr "Повернутись до меню"
+
+#: ../src/general/PauseMenu.tscn:228
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Повернутись до меню"
 
-#: ../src/general/PauseMenu.tscn:228
+#: ../src/general/PauseMenu.tscn:236
 msgid "EXIT"
 msgstr "Вихід"
 
-#: ../src/general/PauseMenu.tscn:279
+#: ../src/general/PauseMenu.tscn:287
 msgid "CONFIRM_EXIT"
 msgstr "Підтвердити вихід"
 
@@ -2318,7 +2393,7 @@ msgstr "Розробницька підтримка від Revolutionary Games S
 msgid "DEVELOPERS"
 msgstr "Розробники"
 
-#: ../src/gui_common/PlaybackBar.tscn:107
+#: ../src/gui_common/PlaybackControls.tscn:107
 #, fuzzy
 msgid "STOP"
 msgstr "Стоп"
@@ -2465,7 +2540,7 @@ msgstr "Не дозволено показувати менше {0} наборі
 msgid "INSPECT"
 msgstr "Оглянути"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 #: ../src/modding/ModUploader.tscn:357
 msgid "OK"
@@ -2801,7 +2876,7 @@ msgstr "Процеси не відбуваються"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1487
+#: ../src/microbe_stage/MicrobeHUD.cs:1493
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Буде реалізованим."
 
@@ -3050,12 +3125,12 @@ msgstr "мало"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "дуже мало"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1252
+#: ../src/microbe_stage/MicrobeHUD.cs:1258
 #: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "BECOME_MULTICELLULAR"
 msgstr "Перейти до багатоклітиності ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1288
+#: ../src/microbe_stage/MicrobeHUD.cs:1294
 #: ../src/microbe_stage/MicrobeStage.tscn:1775
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стати макроскопічним ({0}/{1})"
@@ -3136,10 +3211,6 @@ msgstr "Показати/ приховати оточення та сполук�
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати /приховати клітинні процеси"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1697
-msgid "HELP_BUTTON_TOOLTIP"
-msgstr "Допомога"
-
 #: ../src/microbe_stage/MicrobeStage.tscn:1709
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Суїцид"
@@ -3152,7 +3223,12 @@ msgstr "Перейдіть до наступного сходинки гри (б
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦІЯ:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2093
+#: ../src/microbe_stage/MicrobeStage.tscn:1946
+#, fuzzy
+msgid "EDITOR_BUTTON_TOOLTIP"
+msgstr "Додати нову прив'язку клавіші"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:2092
 msgid "PAUSED"
 msgstr ""
 
