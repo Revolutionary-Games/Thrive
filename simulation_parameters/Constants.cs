@@ -110,6 +110,8 @@ public static class Constants
     public const float MAX_SPAWN_DENSITY = 20000.0f;
     public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
 
+    public const float EASTER_EGG_SPAWN_PROBABILITY = 0.1f;
+
     /// <summary>
     ///   Radius of the zone where the player is considered immobile as he remains inside.
     ///   Used to not overgenerate when the player doesn't move.

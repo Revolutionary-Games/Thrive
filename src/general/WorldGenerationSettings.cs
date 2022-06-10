@@ -52,6 +52,7 @@ public class WorldGenerationSettings
     public bool FreeGlucoseCloud { get; set; }
     public PatchMapType MapType { get; set; } = PatchMapType.Procedural;
     public bool IncludeMulticellular { get; set; } = true;
+    public bool EasterEggs { get; set; } = true;
 
     /*
     Static values for each difficulty preset
@@ -167,6 +168,7 @@ public class WorldGenerationSettings
             ", Free glucose cloud: " + FreeGlucoseCloud +
             ", Map type: " + MapType +
             ", Include Multicellular: " + IncludeMulticellular +
+            ", Easter eggs: " + EasterEggs +
             "]";
     }
 }

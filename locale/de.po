@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-10 10:46+0100\n"
+"POT-Creation-Date: 2022-06-10 14:12+0100\n"
 "PO-Revision-Date: 2022-04-08 11:52+0000\n"
 "Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1560,7 +1560,7 @@ msgid "CLOSE"
 msgstr "Schließen"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:536
+#: ../src/general/NewGameSettings.cs:537
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/MicrobeHUD.cs:724
@@ -1640,7 +1640,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikroben-Sandboxeditor"
 
 #: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:926
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1013
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:262
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1704,12 +1704,12 @@ msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:149
-#: ../src/general/NewGameSettings.tscn:754
+#: ../src/general/NewGameSettings.tscn:822
 msgid "LIFE_ORIGIN"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:156
-#: ../src/general/NewGameSettings.tscn:761
+#: ../src/general/NewGameSettings.tscn:829
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -1720,28 +1720,28 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:171
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:776
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:844
+#: ../src/general/NewGameSettings.tscn:845
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:845
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:845
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:187
-#: ../src/general/NewGameSettings.tscn:792
+#: ../src/general/NewGameSettings.tscn:860
 msgid "LAWK_ONLY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:194
-#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:867
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -1751,7 +1751,7 @@ msgstr ""
 "und werden eher zurückschlagen."
 
 #: ../src/general/NewGameSettings.tscn:205
-#: ../src/general/NewGameSettings.tscn:810
+#: ../src/general/NewGameSettings.tscn:878
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
@@ -1771,31 +1771,31 @@ msgstr "Sonstiges"
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:404
+#: ../src/general/NewGameSettings.tscn:415
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 "Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
 "Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
 
-#: ../src/general/NewGameSettings.tscn:421
+#: ../src/general/NewGameSettings.tscn:432
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Mutationspunkte"
 
-#: ../src/general/NewGameSettings.tscn:455
+#: ../src/general/NewGameSettings.tscn:477
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr ""
 "Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
 "Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
 
-#: ../src/general/NewGameSettings.tscn:472
+#: ../src/general/NewGameSettings.tscn:494
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Verbindungswolken"
 
-#: ../src/general/NewGameSettings.tscn:506
+#: ../src/general/NewGameSettings.tscn:539
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -1803,39 +1803,39 @@ msgstr ""
 "und werden versuchen, ihre Beute mit Giften zu erlegen, wenn sie sie nicht verschlingen können.\n"
 "Vorsichtige Mikroben setzen sich wegen Brocken möglicherweise nicht in Gefahr."
 
-#: ../src/general/NewGameSettings.tscn:523
+#: ../src/general/NewGameSettings.tscn:556
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:556
+#: ../src/general/NewGameSettings.tscn:601
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeitet. Die Gesamtenergie, die eine Spezies aufnehmen kann, und die Kosten pro Einzeltier der Spezies bestimmen die endgültige Population. Auto-Evo verwendet ein vereinfachtes Modell der Realität, um zu berechnen, wie gut die Spezies auf der Basis der von ihnen erbeuteten Energie abschneiden. Für jede Nahrungsquelle wird angezeigt, wie viel Energie die Art aus ihr gewinnt. Zusätzlich wird die Gesamtenergie, die aus dieser Quelle zur Verfügung steht, angezeigt. Der Anteil, den die Art an der Gesamtenergie gewinnt, basiert darauf, wie groß die Fitness im Vergleich zur Gesamtfitness ist. Die Fitness ist ein Maß dafür, wie gut die Spezies diese Nahrungsquelle verwerten kann."
 
-#: ../src/general/NewGameSettings.tscn:573
+#: ../src/general/NewGameSettings.tscn:618
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:606
+#: ../src/general/NewGameSettings.tscn:662
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeitet. Die Gesamtenergie, die eine Spezies aufnehmen kann, und die Kosten pro Einzeltier der Spezies bestimmen die endgültige Population. Auto-Evo verwendet ein vereinfachtes Modell der Realität, um zu berechnen, wie gut die Spezies auf der Basis der von ihnen erbeuteten Energie abschneiden. Für jede Nahrungsquelle wird angezeigt, wie viel Energie die Art aus ihr gewinnt. Zusätzlich wird die Gesamtenergie, die aus dieser Quelle zur Verfügung steht, angezeigt. Der Anteil, den die Art an der Gesamtenergie gewinnt, basiert darauf, wie groß die Fitness im Vergleich zur Gesamtfitness ist. Die Fitness ist ein Maß dafür, wie gut die Spezies diese Nahrungsquelle verwerten kann."
 
-#: ../src/general/NewGameSettings.tscn:623
+#: ../src/general/NewGameSettings.tscn:679
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Osmoregulierungskosten"
 
-#: ../src/general/NewGameSettings.tscn:657
+#: ../src/general/NewGameSettings.tscn:724
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Osmoregulierungskosten"
 
-#: ../src/general/NewGameSettings.tscn:668
+#: ../src/general/NewGameSettings.tscn:736
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:675
+#: ../src/general/NewGameSettings.tscn:743
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -1843,50 +1843,64 @@ msgstr ""
 "und sind möglicherweise sehr viel ehrgeiziger, wenn es um Brocken geht.\n"
 "Responsive Mikroben wechseln schneller zu neuen Zielen."
 
-#: ../src/general/NewGameSettings.tscn:711
+#: ../src/general/NewGameSettings.tscn:779
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Gebietskarte"
 
-#: ../src/general/NewGameSettings.tscn:718
+#: ../src/general/NewGameSettings.tscn:786
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "Aktive Mikroben taumeln umher, wenn nichts Interessantes passiert.\n"
 "Sessile Mikroben sind stationär und warten darauf, dass sich die Umgebung verändert, bevor sie handeln."
 
-#: ../src/general/NewGameSettings.tscn:733
-#: ../src/general/NewGameSettings.tscn:734
+#: ../src/general/NewGameSettings.tscn:801
+#: ../src/general/NewGameSettings.tscn:802
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:734
+#: ../src/general/NewGameSettings.tscn:802
 #, fuzzy
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Pangonische Bathypelagie"
 
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:944
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:908
+#: ../src/general/NewGameSettings.tscn:976
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Multizellulär werden ({0}/{1})"
 
-#: ../src/general/NewGameSettings.tscn:915
+#: ../src/general/NewGameSettings.tscn:983
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/NewGameSettings.tscn:995
+#, fuzzy
+msgid "EASTER_EGGS"
+msgstr "Interessanter Fakt: Das Nasentierchen und Pantoffeltierchen sind ein Musterbeispiel für ein Raubtier-Beute-Verhältnis, das jahrzehntelang untersucht wurde. Bist du nun das Nasentierchen oder das Pantoffeltierchen? Jäger oder Gejagter?"
+
+#: ../src/general/NewGameSettings.tscn:1002
+#, fuzzy
+msgid "EASTER_EGGS_EXPLANATION"
+msgstr ""
+"Furchtsame Mikroben fliehen über größere Entfernungen\n"
+"und fliehen im Allgemeinen eher vor Angreifern.\n"
+"Mutige Mikroben lassen sich von Raubtieren in der Nähe nicht einschüchtern\n"
+"und werden eher zurückschlagen."
+
+#: ../src/general/NewGameSettings.tscn:1031
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:955
+#: ../src/general/NewGameSettings.tscn:1042
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:964
+#: ../src/general/NewGameSettings.tscn:1051
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "BESTÄTIGEN"
@@ -3232,7 +3246,7 @@ msgstr "Spieler reproduziert"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Der Cheat Code zum Spawnen von Gegnern kann in diesem Gebiet nicht genutzt werden, da hier keine feindlichen Spezies leben"
 
-#: ../src/microbe_stage/MicrobeStage.cs:817
+#: ../src/microbe_stage/MicrobeStage.cs:815
 msgid "PLAYER_DIED"
 msgstr "Spieler starb"
 

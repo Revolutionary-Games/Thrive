@@ -107,6 +107,9 @@ public class NewGameSettings : ControlWithInput
     public NodePath IncludeMulticellularButtonPath = null!;
 
     [Export]
+    public NodePath EasterEggsButtonPath = null!;
+
+    [Export]
     public NodePath ConfirmButtonPath = null!;
 
     private PanelContainer basicOptions = null!;
@@ -143,6 +146,7 @@ public class NewGameSettings : ControlWithInput
     private LineEdit gameSeed = null!;
     private LineEdit gameSeedAdvanced = null!;
     private Button includeMulticellularButton = null!;
+    private Button easterEggsButton = null!;
     private Button confirmButton = null!;
 
     private SelectedOptionsTab selectedOptionsTab;
@@ -198,6 +202,7 @@ public class NewGameSettings : ControlWithInput
         gameSeed = GetNode<LineEdit>(GameSeedPath);
         gameSeedAdvanced = GetNode<LineEdit>(GameSeedAdvancedPath);
         includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
+        easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
         confirmButton = GetNode<Button>(ConfirmButtonPath);
 
         mpMultiplier.MinValue = WorldGenerationSettings.MIN_MP_MULTIPLIER;
@@ -384,6 +389,7 @@ public class NewGameSettings : ControlWithInput
         settings.MapType = MapTypeIndexToValue(mapTypeButton.Selected);
 
         settings.IncludeMulticellular = includeMulticellularButton.Pressed;
+        settings.EasterEggs = easterEggsButton.Pressed;
 
         var scene = GD.Load<PackedScene>("res://src/general/MainMenu.tscn");
         var mainMenu = (MainMenu)scene.Instance();
@@ -621,5 +627,10 @@ public class NewGameSettings : ControlWithInput
     private void OnIncludeMulticellularToggled(bool pressed)
     {
         settings.IncludeMulticellular = pressed;
+    }
+
+    private void OnEasterEggsToggled(bool pressed)
+    {
+        settings.EasterEggs = pressed;
     }
 }

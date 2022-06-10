@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-10 10:46+0100\n"
+"POT-Creation-Date: 2022-06-10 14:12+0100\n"
 "PO-Revision-Date: 2022-06-03 13:31+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1576,7 +1576,7 @@ msgid "CLOSE"
 msgstr "Затваряне"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:536
+#: ../src/general/NewGameSettings.cs:537
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/MicrobeHUD.cs:724
@@ -1656,7 +1656,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробен редактор"
 
 #: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:926
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1013
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:262
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1720,12 +1720,12 @@ msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:149
-#: ../src/general/NewGameSettings.tscn:754
+#: ../src/general/NewGameSettings.tscn:822
 msgid "LIFE_ORIGIN"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:156
-#: ../src/general/NewGameSettings.tscn:761
+#: ../src/general/NewGameSettings.tscn:829
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -1736,28 +1736,28 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:171
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:776
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:844
+#: ../src/general/NewGameSettings.tscn:845
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:845
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:845
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:187
-#: ../src/general/NewGameSettings.tscn:792
+#: ../src/general/NewGameSettings.tscn:860
 msgid "LAWK_ONLY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:194
-#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:867
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -1767,7 +1767,7 @@ msgstr ""
 "и са склонни да се защитят, когато са нападнати."
 
 #: ../src/general/NewGameSettings.tscn:205
-#: ../src/general/NewGameSettings.tscn:810
+#: ../src/general/NewGameSettings.tscn:878
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
@@ -1787,31 +1787,31 @@ msgstr "Разни"
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:404
+#: ../src/general/NewGameSettings.tscn:415
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 "Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
 "Мудните микроби не са в движение, докато няма промени в околната среда."
 
-#: ../src/general/NewGameSettings.tscn:421
+#: ../src/general/NewGameSettings.tscn:432
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Мутационни точки"
 
-#: ../src/general/NewGameSettings.tscn:455
+#: ../src/general/NewGameSettings.tscn:477
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr ""
 "Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
 "Мудните микроби не са в движение, докато няма промени в околната среда."
 
-#: ../src/general/NewGameSettings.tscn:472
+#: ../src/general/NewGameSettings.tscn:494
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Облаци"
 
-#: ../src/general/NewGameSettings.tscn:506
+#: ../src/general/NewGameSettings.tscn:539
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -1819,39 +1819,39 @@ msgstr ""
 "и са склонни да използват токсини срещу по-големите микроби.\n"
 "Предпазливите микроби не се излагат на опасност за своята плячка."
 
-#: ../src/general/NewGameSettings.tscn:523
+#: ../src/general/NewGameSettings.tscn:556
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:556
+#: ../src/general/NewGameSettings.tscn:601
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "Това са стойностите, които използва прогнозата на автоматичната еволюция. Размерът на некоригираната популация се определя от общата усвоена енергийна стойност и индивидуалния разход на Вашите създания. Автоматичната еволюция използва опростен еволюционен модел, за да изчисли тяхното представяне на база общата усвоена енергийна стойност. Всеки източник на енергия има обща енергийна стойност, като част от нея се усвоява от Вашите създания. Усвоената енергийна стойност се определя от стойността на усвояване, сравнена с общата стойност на усвояване. Стойността на усвояване определя колко добре Вашите създания могат да използват този източник на енергия."
 
-#: ../src/general/NewGameSettings.tscn:573
+#: ../src/general/NewGameSettings.tscn:618
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:606
+#: ../src/general/NewGameSettings.tscn:662
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "Това са стойностите, които използва прогнозата на автоматичната еволюция. Размерът на некоригираната популация се определя от общата усвоена енергийна стойност и индивидуалния разход на Вашите създания. Автоматичната еволюция използва опростен еволюционен модел, за да изчисли тяхното представяне на база общата усвоена енергийна стойност. Всеки източник на енергия има обща енергийна стойност, като част от нея се усвоява от Вашите създания. Усвоената енергийна стойност се определя от стойността на усвояване, сравнена с общата стойност на усвояване. Стойността на усвояване определя колко добре Вашите създания могат да използват този източник на енергия."
 
-#: ../src/general/NewGameSettings.tscn:623
+#: ../src/general/NewGameSettings.tscn:679
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Осморегулационен разход"
 
-#: ../src/general/NewGameSettings.tscn:657
+#: ../src/general/NewGameSettings.tscn:724
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Осморегулационен разход"
 
-#: ../src/general/NewGameSettings.tscn:668
+#: ../src/general/NewGameSettings.tscn:736
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:675
+#: ../src/general/NewGameSettings.tscn:743
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -1859,50 +1859,64 @@ msgstr ""
 "и са склонни да постигнат целта си.\n"
 "Бдителните микроби бързо променят намеренията си."
 
-#: ../src/general/NewGameSettings.tscn:711
+#: ../src/general/NewGameSettings.tscn:779
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Карта"
 
-#: ../src/general/NewGameSettings.tscn:718
+#: ../src/general/NewGameSettings.tscn:786
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
 "Мудните микроби не са в движение, докато няма промени в околната среда."
 
-#: ../src/general/NewGameSettings.tscn:733
-#: ../src/general/NewGameSettings.tscn:734
+#: ../src/general/NewGameSettings.tscn:801
+#: ../src/general/NewGameSettings.tscn:802
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:734
+#: ../src/general/NewGameSettings.tscn:802
 #, fuzzy
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Пангонски батиал"
 
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:944
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:908
+#: ../src/general/NewGameSettings.tscn:976
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Превръщане в многоклетъчен организъм ({0} от {1})"
 
-#: ../src/general/NewGameSettings.tscn:915
+#: ../src/general/NewGameSettings.tscn:983
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/NewGameSettings.tscn:995
+#, fuzzy
+msgid "EASTER_EGGS"
+msgstr "Забавен факт е, че Дидиний и Парамеций са давани за пример като ловец и плячка. Вие от коя страна сте — ловецът или плячката?"
+
+#: ../src/general/NewGameSettings.tscn:1002
+#, fuzzy
+msgid "EASTER_EGGS_EXPLANATION"
+msgstr ""
+"Плашливите микроби отстъпват при опасност\n"
+"и са склонни да избягат, когато са нападнати.\n"
+"Безрасъдните микроби не отстъпват при опасност\n"
+"и са склонни да се защитят, когато са нападнати."
+
+#: ../src/general/NewGameSettings.tscn:1031
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:955
+#: ../src/general/NewGameSettings.tscn:1042
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:964
+#: ../src/general/NewGameSettings.tscn:1051
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "ГОТОВО"
@@ -3248,7 +3262,7 @@ msgstr "възпроизвеждане"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Съперничеството в тази зона не е възможно, защото няма други създания"
 
-#: ../src/microbe_stage/MicrobeStage.cs:817
+#: ../src/microbe_stage/MicrobeStage.cs:815
 msgid "PLAYER_DIED"
 msgstr "измиране"
 

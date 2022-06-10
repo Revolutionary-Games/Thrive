@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-10 10:46+0100\n"
+"POT-Creation-Date: 2022-06-10 14:12+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1568,7 +1568,7 @@ msgid "CLOSE"
 msgstr "Закрыть"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:536
+#: ../src/general/NewGameSettings.cs:537
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:265
 #: ../src/microbe_stage/MicrobeHUD.cs:724
@@ -1648,7 +1648,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробный Креативный Редактор"
 
 #: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
-#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:926
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:1013
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:262
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1712,12 +1712,12 @@ msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:149
-#: ../src/general/NewGameSettings.tscn:754
+#: ../src/general/NewGameSettings.tscn:822
 msgid "LIFE_ORIGIN"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:156
-#: ../src/general/NewGameSettings.tscn:761
+#: ../src/general/NewGameSettings.tscn:829
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -1728,28 +1728,28 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:171
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:776
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:844
+#: ../src/general/NewGameSettings.tscn:845
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:845
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:845
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:187
-#: ../src/general/NewGameSettings.tscn:792
+#: ../src/general/NewGameSettings.tscn:860
 msgid "LAWK_ONLY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:194
-#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:867
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -1759,7 +1759,7 @@ msgstr ""
 "и более склонны атаковать в ответ."
 
 #: ../src/general/NewGameSettings.tscn:205
-#: ../src/general/NewGameSettings.tscn:810
+#: ../src/general/NewGameSettings.tscn:878
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
@@ -1779,31 +1779,31 @@ msgstr "Дополнительное"
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:404
+#: ../src/general/NewGameSettings.tscn:415
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 "Энергичные микробы будут в движении, пока поблизости ничего не происходит.\n"
 "Инертные микробы будут стоять и ждать, пока не изменится окружающая их среда."
 
-#: ../src/general/NewGameSettings.tscn:421
+#: ../src/general/NewGameSettings.tscn:432
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Очки мутации"
 
-#: ../src/general/NewGameSettings.tscn:455
+#: ../src/general/NewGameSettings.tscn:477
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr ""
 "Энергичные микробы будут в движении, пока поблизости ничего не происходит.\n"
 "Инертные микробы будут стоять и ждать, пока не изменится окружающая их среда."
 
-#: ../src/general/NewGameSettings.tscn:472
+#: ../src/general/NewGameSettings.tscn:494
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Облака из Компонентов"
 
-#: ../src/general/NewGameSettings.tscn:506
+#: ../src/general/NewGameSettings.tscn:539
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -1811,39 +1811,39 @@ msgstr ""
 "и будут пытаться загнать добычу токсинами, если не могут поглотить их.\n"
 "Осторожные микробы, вероятно, не будут рисковать за куски."
 
-#: ../src/general/NewGameSettings.tscn:523
+#: ../src/general/NewGameSettings.tscn:556
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:556
+#: ../src/general/NewGameSettings.tscn:601
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "На этой панели показаны числа, на основе которых работает предсказание авто-эво. Общая энергия, которую способен улавливать вид, и стоимость на особь вида определяют конечную популяцию. Авто-эво использует упрощенную модель реальности, чтобы рассчитать, насколько эффективны виды, основываясь на энергии, которую они способны собирать. Для каждого источника пищи показано, сколько энергии получает от него вид. Дополнительно отображается общая энергия, доступная из этого источника. Доля, которую вид получает от общей энергии, зависит от того, насколько велика его физическая форма по сравнению с общей пригодностью. Пригодность - это показатель того, насколько хорошо вид может использовать этот источник пищи."
 
-#: ../src/general/NewGameSettings.tscn:573
+#: ../src/general/NewGameSettings.tscn:618
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:606
+#: ../src/general/NewGameSettings.tscn:662
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "На этой панели показаны числа, на основе которых работает предсказание авто-эво. Общая энергия, которую способен улавливать вид, и стоимость на особь вида определяют конечную популяцию. Авто-эво использует упрощенную модель реальности, чтобы рассчитать, насколько эффективны виды, основываясь на энергии, которую они способны собирать. Для каждого источника пищи показано, сколько энергии получает от него вид. Дополнительно отображается общая энергия, доступная из этого источника. Доля, которую вид получает от общей энергии, зависит от того, насколько велика его физическая форма по сравнению с общей пригодностью. Пригодность - это показатель того, насколько хорошо вид может использовать этот источник пищи."
 
-#: ../src/general/NewGameSettings.tscn:623
+#: ../src/general/NewGameSettings.tscn:679
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Стоимость Осморегуляции"
 
-#: ../src/general/NewGameSettings.tscn:657
+#: ../src/general/NewGameSettings.tscn:724
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Стоимость Осморегуляции"
 
-#: ../src/general/NewGameSettings.tscn:668
+#: ../src/general/NewGameSettings.tscn:736
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:675
+#: ../src/general/NewGameSettings.tscn:743
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -1851,50 +1851,64 @@ msgstr ""
 "и будут соперничать за куски с большим рвением.\n"
 "Бдительные микробы будут быстрее переключаться на новые цели."
 
-#: ../src/general/NewGameSettings.tscn:711
+#: ../src/general/NewGameSettings.tscn:779
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Карта Биомов"
 
-#: ../src/general/NewGameSettings.tscn:718
+#: ../src/general/NewGameSettings.tscn:786
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "Энергичные микробы будут в движении, пока поблизости ничего не происходит.\n"
 "Инертные микробы будут стоять и ждать, пока не изменится окружающая их среда."
 
-#: ../src/general/NewGameSettings.tscn:733
-#: ../src/general/NewGameSettings.tscn:734
+#: ../src/general/NewGameSettings.tscn:801
+#: ../src/general/NewGameSettings.tscn:802
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:734
+#: ../src/general/NewGameSettings.tscn:802
 #, fuzzy
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Пангонская Толща Воды (от 2 км)"
 
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:944
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:908
+#: ../src/general/NewGameSettings.tscn:976
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Стать многоклеточным ({0}/{1})"
 
-#: ../src/general/NewGameSettings.tscn:915
+#: ../src/general/NewGameSettings.tscn:983
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/NewGameSettings.tscn:995
+#, fuzzy
+msgid "EASTER_EGGS"
+msgstr "Забавный Факт: Дидинии и Парамеции - наглядный пример взаимоотношений \"хищник - жертва\", которые изучали на протяжении десятилетий. А кто же вы - хищник или жертва?"
+
+#: ../src/general/NewGameSettings.tscn:1002
+#, fuzzy
+msgid "EASTER_EGGS_EXPLANATION"
+msgstr ""
+"Боязливые микроорганизмы будут дальше убегать\n"
+"и более склонны к побегу от хищников в общем.\n"
+"Храбрые микроорганизмы не будут напуганы хищниками поблизости\n"
+"и более склонны атаковать в ответ."
+
+#: ../src/general/NewGameSettings.tscn:1031
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:955
+#: ../src/general/NewGameSettings.tscn:1042
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:964
+#: ../src/general/NewGameSettings.tscn:1051
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "ПОДТВЕРДИТЬ"
@@ -3246,7 +3260,7 @@ msgstr "игрок размножился"
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Невозможно использовать чит Создать Противника, так как этот биом не содержит каких-либо видов противников"
 
-#: ../src/microbe_stage/MicrobeStage.cs:817
+#: ../src/microbe_stage/MicrobeStage.cs:815
 msgid "PLAYER_DIED"
 msgstr "игрок умер"
 
