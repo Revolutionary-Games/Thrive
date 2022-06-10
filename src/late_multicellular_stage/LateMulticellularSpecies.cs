@@ -46,9 +46,7 @@ public class LateMulticellularSpecies : Species
 
     public override void RepositionToOrigin()
     {
-        throw new NotImplementedException();
-
-        // BodyLayout.RepositionToOrigin();
+        BodyLayout.RepositionToGround();
     }
 
     public override void UpdateInitialCompounds()
@@ -103,9 +101,11 @@ public class LateMulticellularSpecies : Species
             result.CellTypes.Add((CellType)cellType.Clone());
         }
 
+        var metaballMapping = new Dictionary<Metaball, MulticellularMetaball>();
+
         foreach (var metaball in BodyLayout)
         {
-            result.BodyLayout.Add((MulticellularMetaball)metaball.Clone());
+            result.BodyLayout.Add(metaball.Clone(metaballMapping));
         }
 
         return result;

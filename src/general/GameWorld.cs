@@ -397,7 +397,8 @@ public class GameWorld : ISaveLoadable
                 throw new Exception("Logic error in metaball initial parent calculation");
 
             // For now just pick the closest (and in case of ties, the closer to origin) metaball as the parent
-            var parent = metaballs.Where(m => m != metaball)
+            // Also avoid accidentally making short parent loops
+            var parent = metaballs.Where(m => m != metaball && m.Parent != metaball)
                 .OrderBy(m => m.Position.DistanceSquaredTo(metaball.Position)).ThenBy(m => m.Position.LengthSquared())
                 .First();
 

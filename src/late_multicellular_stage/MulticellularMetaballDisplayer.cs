@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using System;
+using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Displays a layout of metaballs using multimeshing for more efficient rendering
@@ -51,7 +53,7 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
         ExtraCullMargin = AABBMargin;
     }
 
-    public void DisplayFromLayout(MetaballLayout<Metaball> layout)
+    public void DisplayFromList(IReadOnlyCollection<MulticellularMetaball> layout)
     {
         var mesh = Multimesh;
 
@@ -70,10 +72,13 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
 
         var extends = Vector3.Zero;
 
+        int i = 0;
+
         // Setup the metaball parameters for drawing
-        for (int i = 0; i < instances; i++)
+        foreach (var metaball in layout)
         {
-            var metaball = layout[i];
+            if (i >= instances)
+                throw new ArgumentException("List count doesn't matches indexes when setting parameters");
 
             basis.Scale = new Vector3(metaball.Size, metaball.Size, metaball.Size);
 
@@ -100,6 +105,8 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
 
             if (absPosition.z > extends.z)
                 extends.z = absPosition.z;
+
+            ++i;
         }
 
         SetCustomAabb(new AABB(-extends, extends * 2));

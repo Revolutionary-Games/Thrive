@@ -28,7 +28,7 @@ public class MetaballTest : Node
         {
             // Create the test layout for display
             currentLayout = wantedLayout;
-            var layout = new MetaballLayout<Metaball>();
+            var layout = new MetaballLayout<MulticellularMetaball>();
 
             switch (currentLayout)
             {
@@ -97,7 +97,7 @@ public class MetaballTest : Node
                     throw new ArgumentOutOfRangeException();
             }
 
-            metaballDisplayer.DisplayFromLayout(layout);
+            metaballDisplayer.DisplayFromList(layout);
         }
     }
 

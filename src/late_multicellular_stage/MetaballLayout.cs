@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A species shape specified by metaballs
 /// </summary>
-public class MetaballLayout<T> : ICollection<T>
+public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     where T : Metaball
 {
     [JsonProperty]
@@ -66,7 +66,7 @@ public class MetaballLayout<T> : ICollection<T>
         if (metaballs.All(m => m != parent))
             return false;
 
-        // TODO: distance check to parent?
+        // TODO: distance check to parent? (need to fix MetaballTest if this is changed)
         // Metaballs need to be touching (close enough) to their parent metaball
         return true;
     }

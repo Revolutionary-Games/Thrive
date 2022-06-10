@@ -30,26 +30,6 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     [Export]
     public float ForwardArrowOffsetFromGround = 0.1f;
 
-    /// <summary>
-    ///   The hexes that are positioned under the cursor to show where the player is about to place something.
-    /// </summary>
-    protected readonly List<MeshInstance> hoverHexes = new();
-
-    /// <summary>
-    ///   The sample models that are positioned to show what the player is about to place.
-    /// </summary>
-    protected readonly List<SceneDisplayer> hoverModels = new();
-
-    /// <summary>
-    ///   This is the hexes for the edited thing that are placed; this is the already placed hexes
-    /// </summary>
-    protected readonly List<MeshInstance> placedHexes = new();
-
-    /// <summary>
-    ///   This is the placed down version of models, compare to <see cref="hoverModels"/>
-    /// </summary>
-    protected readonly List<SceneDisplayer> placedModels = new();
-
     protected EditorCamera3D? camera;
 
     [JsonIgnore]
@@ -68,22 +48,25 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     protected bool isPlacementProbablyValid;
 
     /// <summary>
-    ///   This is used to keep track of used hover hexes
+    ///   This is used to keep track of used hover metaballs
     /// </summary>
-    protected int usedHoverHex;
+    protected int usedHoverMetaballIndex;
 
-    protected int usedHoverModel;
+    protected bool hoverMetaballsChanged = true;
+
+    protected List<TMetaball> hoverMetaballData = new();
 
     protected IMetaballDisplayer<TMetaball>? alreadyPlacedVisuals;
-    protected IMetaballDisplayer<TMetaball>? hoverMetaballs;
+    protected IMetaballDisplayer<TMetaball>? hoverMetaballDisplayer;
+
+    private const float DefaultHoverAlpha = 0.7f;
+    private const float CannotPlaceHoverAlpha = 0.7f;
 
     private CustomConfirmationDialog islandPopup = null!;
 
     private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
 
-    private IEnumerable<(Vector3 Position, MulticellularMetaball? Parent)>? mouseHoverPositions;
-
-    private Transform cameraPosition;
+    private IEnumerable<(Vector3 Position, TMetaball? Parent)>? mouseHoverPositions;
 
     /// <summary>
     ///   The symmetry setting of the editor.
@@ -108,29 +91,10 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     [JsonProperty]
     public TMetaball? MovingPlacedMetaball { get; protected set; }
 
-    /// <summary>
-    ///   Camera position
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This is a separate property instead of using <see cref="AssignOnlyChildItemsOnDeserializeAttribute"/>
-    ///     as this component derived scenes don't have the camera paths set (as they are on the higher level).
-    ///     This approach also allows different editor components to remember where they placed the camera.
-    ///   </para>
-    /// </remarks>
-    [JsonProperty]
-    public Transform CameraPosition
-    {
-        get => cameraPosition;
-        set
-        {
-            cameraPosition = value;
-            UpdateCamera();
-        }
-    }
+    // TODO: implement 3D editor camera position and rotation saving
 
     [JsonIgnore]
-    public IEnumerable<(Vector3 Position, MulticellularMetaball? Parent)>? MouseHoverPositions
+    public IEnumerable<(Vector3 Position, TMetaball? Parent)>? MouseHoverPositions
     {
         get => mouseHoverPositions;
         set
@@ -170,8 +134,6 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
 
         LoadScenes();
         LoadAudioStreams();
-
-        UpdateCamera();
     }
 
     public virtual void ResolveNodeReferences()
@@ -196,8 +158,6 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     {
         base.Init(owningEditor, fresh);
 
-        LoadMetaballDisplayers();
-
         if (camera == null)
         {
             throw new InvalidOperationException(
@@ -211,29 +171,10 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
 
         UpdateSymmetryIcon();
 
-        // For now we never reuse editors so it isn't worth the trouble to have code to properly clear these
-        throw new NotImplementedException();
-        /*
-        if (hoverHexes.Count > 0 || hoverModels.Count > 0 || hoverOverriddenMaterials.Count > 0)
-            throw new InvalidOperationException("This editor has already been initialized (hexes not empty)");
+        LoadMetaballDisplayers();
 
-        // Create new hover hexes. See the TODO comment in _Process
-        // This seems really cluttered, there must be a better way.
-        for (int i = 0; i < Constants.MAX_HOVER_HEXES; ++i)
-        {
-            hoverHexes.Add(CreateEditorHex());
-        }
-
-        for (int i = 0; i < Constants.MAX_SYMMETRY; ++i)
-        {
-            hoverModels.Add(CreatePreviewModelHolder());
-        }
-
-        // The world is reset each time so these are gone. We throw an exception if that's not the case as that
-        // indicates a programming bug
-        if (placedHexes.Count > 0 || placedModels.Count > 0)
-            throw new InvalidOperationException("This editor has already been initialized (placed hexes not empty)");
-        */
+        hoverMetaballsChanged = true;
+        hoverMetaballData.Clear();
     }
 
     public void ResetSymmetryButton()
@@ -250,27 +191,10 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     {
         SetEditorWorldGuideObjectVisibility(shown);
 
-        if (!shown)
+        if (alreadyPlacedVisuals != null)
         {
-            foreach (var hoverHex in hoverHexes)
-            {
-                hoverHex.Visible = false;
-            }
-
-            foreach (var hoverModel in hoverModels)
-            {
-                hoverModel.Visible = false;
-            }
-        }
-
-        foreach (var placedHex in placedHexes)
-        {
-            placedHex.Visible = shown;
-        }
-
-        foreach (var placedModel in placedModels)
-        {
-            placedModel.Visible = shown;
+            alreadyPlacedVisuals.Visible = shown;
+            hoverMetaballDisplayer!.Visible = shown;
         }
     }
 
@@ -278,14 +202,6 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     {
         editorArrow.Visible = shown;
         editorGround.Visible = shown;
-    }
-
-    public void UpdateCamera()
-    {
-        if (camera == null)
-            return;
-
-        camera.Transform = CameraPosition;
     }
 
     /// <summary>
@@ -469,29 +385,23 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     {
         base._Process(delta);
 
-        // We move all the hexes and the hover hexes to 0,0,0 so that
-        // the editor is free to replace them wherever
-        // TODO: it would be way better if we didn't have to do this and instead only updated
-        // the hover hexes and models when there is some change to them
-        throw new NotImplementedException();
+        if (hoverMetaballDisplayer == null)
+            throw new InvalidOperationException($"{GetType().Name} not initialized");
 
-        foreach (var hex in hoverHexes)
+        // TODO: should we display the hover metaballs setup on the previous frame here?
+        if (hoverMetaballsChanged)
         {
-            hex.Translation = new Vector3(0, 0, 0);
-            hex.Visible = false;
+            hoverMetaballDisplayer.OverrideColourAlpha =
+                isPlacementProbablyValid ? DefaultHoverAlpha : CannotPlaceHoverAlpha;
+
+            hoverMetaballDisplayer.DisplayFromList(hoverMetaballData);
+
+            hoverMetaballsChanged = false;
         }
 
-        foreach (var model in hoverModels)
-        {
-            model.Translation = new Vector3(0, 0, 0);
-            model.Visible = false;
-        }
-
-        // This is also highly non-optimal to update the hex locations
-        // and materials all the time
-
-        usedHoverHex = 0;
-        usedHoverModel = 0;
+        // Clear the hover metaballs for the concrete editor type to use
+        hoverMetaballsChanged = false;
+        usedHoverMetaballIndex = 0;
     }
 
     public void OnNoPropertiesLoaded()
@@ -536,8 +446,8 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     protected virtual void LoadMetaballDisplayers()
     {
         alreadyPlacedVisuals = CreateMetaballDisplayer();
-        hoverMetaballs = CreateMetaballDisplayer();
-        hoverMetaballs.OverrideColourAlpha = 0.7f;
+        hoverMetaballDisplayer = CreateMetaballDisplayer();
+        hoverMetaballDisplayer.OverrideColourAlpha = DefaultHoverAlpha;
     }
 
     protected virtual void LoadScenes()
@@ -750,7 +660,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
 
     private void OnCameraPositionChanged(Transform newPosition)
     {
-        cameraPosition = newPosition;
+        // TODO: implement camera position saving
     }
 
     // TODO: make this method trigger automatically on Symmetry assignment

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -98,12 +99,11 @@ public class GameProperties
     {
         var game = new GameProperties();
 
-        var simulationParameters = SimulationParameters.Instance;
-
         var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
 
-        game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
-        game.GameWorld.ChangeSpeciesToLateMulticellular(playerSpecies);
+        var earlySpecies = game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
+        MakeCellPlacementMakeSenseForLateMulticellular(earlySpecies);
+        game.GameWorld.ChangeSpeciesToLateMulticellular(earlySpecies);
 
         game.EnterPrototypes();
 
@@ -165,5 +165,73 @@ public class GameProperties
 
         playerSpecies.OnEdited();
         return playerSpecies;
+    }
+
+    private static void MakeCellPlacementMakeSenseForLateMulticellular(EarlyMulticellularSpecies species)
+    {
+        // We want at least COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC cells in a kind of long pattern
+        species.Cells.Clear();
+
+        var type = species.CellTypes.First();
+
+        int onEachRow = 3;
+
+        var rows = Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC / onEachRow;
+
+        species.Cells.Add(new CellTemplate(type, new Hex(0, 0), 0));
+
+        for (int i = 0; i < rows; ++i)
+        {
+            int r;
+
+            if (i % 2 == 0)
+            {
+                r = i / 2;
+            }
+            else
+            {
+                r = -(i / 2) - 1;
+            }
+
+            for (int q = -1; q <= 1; ++q)
+            {
+                if (q == 0 && r == 0)
+                    continue;
+
+                var direction = new Vector2(q, r).Normalized();
+
+                for (int distance = 1; distance < 1000; ++distance)
+                {
+                    var finalPos = direction * distance;
+                    var template = new CellTemplate(type,
+                        new Hex(Mathf.RoundToInt(finalPos.x), Mathf.RoundToInt(finalPos.y)), 0);
+
+                    if (species.Cells.CanPlace(template))
+                    {
+                        species.Cells.Add(template);
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Make sure we hit the required cell count
+        while (species.Cells.Count < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)
+        {
+            var direction = new Vector2(0, -1);
+
+            for (int distance = 1; distance < 1000; ++distance)
+            {
+                var finalPos = direction * distance;
+                var template = new CellTemplate(type,
+                    new Hex(Mathf.RoundToInt(finalPos.x), Mathf.RoundToInt(finalPos.y)), 0);
+
+                if (species.Cells.CanPlace(template))
+                {
+                    species.Cells.Add(template);
+                    break;
+                }
+            }
+        }
     }
 }

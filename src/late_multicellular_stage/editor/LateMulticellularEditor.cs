@@ -318,7 +318,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 // TODO: fix the arrow positioning when switching tabs (it fixes itself only when placing something)
                 // This line (and also in CellTypeEditor) doesn't help:
                 bodyPlanEditorTab.UpdateArrow();
-                bodyPlanEditorTab.UpdateCamera();
+                // bodyPlanEditorTab.UpdateCamera();
 
                 // If we have an edited cell type, then we can apply those changes when we go back to the main editor
                 // tab as that's the only exit point and the point where we actually need to use the edited cell
@@ -326,6 +326,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 CheckAndApplyCellTypeEdit();
 
                 // TODO: set right active camera
+
                 throw new NotImplementedException();
 
                 break;

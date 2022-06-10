@@ -215,9 +215,11 @@ public partial class MetaballBodyEditorComponent :
 
         behaviourEditor.OnEditorSpeciesSetup(species);
 
+        var metaballMapping = new Dictionary<Metaball, MulticellularMetaball>();
+
         foreach (var metaball in Editor.EditedSpecies.BodyLayout)
         {
-            editedMetaballs.Add((MulticellularMetaball)metaball.Clone());
+            editedMetaballs.Add(metaball.Clone(metaballMapping));
         }
 
         newName = species.FormattedName;
@@ -233,9 +235,14 @@ public partial class MetaballBodyEditorComponent :
 
         editedSpecies.BodyLayout.Clear();
 
-        foreach (var metaball in editedMetaballs)
+        var metaballMapping = new Dictionary<Metaball, MulticellularMetaball>();
+
+        // Make sure we process things with parents first
+        // TODO: if the tree depth calculation is too expensive here, we'll need to cache the values in the metaball
+        // objects
+        foreach (var metaball in editedMetaballs.OrderBy(m => m.CalculateTreeDepth()))
         {
-            editedSpecies.BodyLayout.Add((MulticellularMetaball)metaball.Clone());
+            editedSpecies.BodyLayout.Add(metaball.Clone(metaballMapping));
         }
 
         editedSpecies.OnEdited();

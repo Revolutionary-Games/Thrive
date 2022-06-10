@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
 [UseThriveConverter]
-public class MulticellularMetaball : Metaball, ICloneable
+public class MulticellularMetaball : Metaball
 {
     public MulticellularMetaball(CellType cellType)
     {
@@ -29,13 +30,32 @@ public class MulticellularMetaball : Metaball, ICloneable
         return false;
     }
 
-    public object Clone()
+    /// <summary>
+    ///   Clones this metaball while keeping the parent references intact.
+    /// </summary>
+    /// <param name="oldToNewMapping">
+    ///   Where to find new reference to parent nodes. This will also add the newly cloned object here.
+    /// </param>
+    /// <returns>The clone of this</returns>
+    public MulticellularMetaball Clone(Dictionary<Metaball, MulticellularMetaball> oldToNewMapping)
     {
-        return new MulticellularMetaball(CellType)
+        var clone = new MulticellularMetaball(CellType)
         {
             Position = Position,
             Parent = Parent,
             Size = Size,
         };
+
+        if (Parent != null)
+        {
+            if (oldToNewMapping.TryGetValue(Parent, out var newParent))
+            {
+                clone.Parent = newParent;
+            }
+        }
+
+        oldToNewMapping[this] = clone;
+
+        return clone;
     }
 }
