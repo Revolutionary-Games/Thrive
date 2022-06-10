@@ -31,15 +31,16 @@ public class EditorCamera3D : Camera
     public float MouseRotateSpeed = 0.03f;
 
     [Export]
-    public bool UseLookAtForRotationCalculation = true;
-
-    [Export]
     public Transform DefaultPosition =
         new(new Basis(new Quat(new Vector3(1, 0, 0), MathUtils.DEGREES_TO_RADIANS * -20)),
             new Vector3(0, 2, 2.5f));
 
     [Export]
     public Vector3 RotateAroundPoint = Vector3.Zero;
+
+    private const float VERTICAL_DIRECTION_THRESHOLD = (float)MathUtils.FULL_CIRCLE * 0.05f;
+
+    private bool reversedXControl;
 
     /// <summary>
     ///   Where the user started rotating (or panning) with the mouse. Null if the user is not rotating with the mouse
@@ -123,8 +124,7 @@ public class EditorCamera3D : Camera
         else
         {
             // TODO: check if multiplying by delta is a good idea here
-            RotateCamera(new Quat(new Vector3(1, 0, 0), RotateSpeed * upDown * delta),
-                new Quat(new Vector3(0, 1, 0), RotateSpeed * leftRight * delta));
+            RotateCamera(RotateSpeed * upDown * delta, RotateSpeed * leftRight * delta);
         }
 
         return true;
@@ -152,8 +152,7 @@ public class EditorCamera3D : Camera
         else
         {
             var mouseDirection = (viewPort.GetMousePosition() - mousePanningStart.Value) * delta * MouseRotateSpeed;
-            RotateCamera(new Quat(new Vector3(1, 0, 0), -mouseDirection.y),
-                new Quat(new Vector3(0, 1, 0), mouseDirection.x));
+            RotateCamera(-mouseDirection.y, mouseDirection.x);
         }
 
         return true;
@@ -228,56 +227,83 @@ public class EditorCamera3D : Camera
         // TODO: rotate the pan vector with the current camera orientation, check this math is right
         var basis = Transform.basis;
         var rotation = basis.Quat();
+
         panAmount = rotation.Xform(panAmount);
         Transform = new Transform(basis, Transform.origin + panAmount);
         EmitSignal(nameof(OnPositionChanged), Transform);
     }
 
-    private void RotateCamera(Quat localRotation, Quat globalRotation)
+    private void RotateCamera(float xAngle, float yAngle)
     {
-        ApplyLocalRotation(localRotation);
-        ApplyGlobalRotation(globalRotation);
+        var currentTransform = Transform;
+
+        var up = new Vector3(0, 1, 0);
+        var down = new Vector3(0, -1, 0);
+        var left = new Vector3(1, 0, 0);
+        var right = new Vector3(-1, 0, 0);
+        var forward = new Vector3(0, 0, 1);
+        var backwards = new Vector3(0, 0, -1);
+
+        // If we have passed the straight up view, we need to invert xAngle
+        if (reversedXControl)
+            xAngle = -xAngle;
+
+        // // If we are basically looking top down, we need to set forward as the up direction
+        // if (currentTransform.basis.Xform(forward).AngleTo(up) < STRAIGHT_DOWN_ANGLE_THRESHOLD)
+        var angle = currentTransform.basis.Xform(forward).SignedAngleTo(up, right);
+        // var angle = currentTransform.basis.Xform(forward).AngleTo(up);
+
+        /*if (angle is <= VERTICAL_DIRECTION_THRESHOLD or >= (float)MathUtils.FULL_CIRCLE - VERTICAL_DIRECTION_THRESHOLD)
+        {
+            // reversedXControl = !reversedXControl;
+
+
+            // up = forward;
+            up = backwards;
+
+            xAngle = -xAngle;
+            GD.Print("Angle: ", angle, " (if passed)");
+        }
+        else
+        {
+            GD.Print("Angle: ", angle);
+        }*/
+
+        if (reversedXControl)
+        {
+            up = backwards;
+            xAngle = -xAngle;
+        }
+
+        // The up/down direction needs to be a cross vector with the towards direction to the object we are looking at
+        var lookDirection = (RotateAroundPoint - currentTransform.origin).Normalized();
+        var xAxis = lookDirection.Cross(up).Normalized();
+
+        var newTranslation = (currentTransform.origin - RotateAroundPoint).Rotated(xAxis, xAngle)
+            .Rotated(new Vector3(0, 1, 0), yAngle) +
+            RotateAroundPoint;
+        Translation = newTranslation;
+        LookAt(RotateAroundPoint, up);
+
+        // If we passed the vertical (or if we are flipped, the new "up" direction) we need to invert the controls
+        var compareDirection = reversedXControl ? left : right;
+
+        if (reversedXControl && Transform.basis.Xform(forward).AngleTo(up) < VERTICAL_DIRECTION_THRESHOLD)
+        {
+            GD.Print("horizontal passed");
+            reversedXControl = false;
+        } else
+
+        if (!reversedXControl && Math.Sign(angle) != Math.Sign(Transform.basis.Xform(forward).SignedAngleTo(up, right)))
+        // if (Math.Abs(angle - Transform.basis.Xform(forward).SignedAngleTo(up, right)) > VERTICAL_DIRECTION_THRESHOLD)
+        // GD.Print("Angle: ", angle, " new: ", Transform.basis.Xform(forward).SignedAngleTo(up, right));
+        // if (Math.Sign(angle) != Math.Sign(Transform.basis.Xform(forward).SignedAngleTo(up, right)))
+        // if (angle < Transform.basis.Xform(forward).AngleTo(up))
+        {
+            GD.Print("Vertical passed");
+            reversedXControl = true;
+        }
 
         EmitSignal(nameof(OnPositionChanged), Transform);
-    }
-
-    private void ApplyLocalRotation(Quat rotation)
-    {
-        if (rotation.IsEqualApprox(Quat.Identity))
-            return;
-
-        var currentTransform = Transform;
-        var newTranslation = rotation.Xform(currentTransform.origin);
-
-        if (UseLookAtForRotationCalculation)
-        {
-            Translation = newTranslation;
-            LookAt(RotateAroundPoint, Vector3.Up);
-        }
-        else
-        {
-            Transform = new Transform(
-                new Basis(currentTransform.basis.Quat() * rotation), newTranslation);
-        }
-    }
-
-    private void ApplyGlobalRotation(Quat rotation)
-    {
-        if (rotation.IsEqualApprox(Quat.Identity))
-            return;
-
-        var currentTransform = Transform;
-        var newTranslation = rotation.Xform(currentTransform.origin - RotateAroundPoint) + RotateAroundPoint;
-
-        if (UseLookAtForRotationCalculation)
-        {
-            Translation = newTranslation;
-            LookAt(RotateAroundPoint, Vector3.Up);
-        }
-        else
-        {
-            Transform = new Transform(
-                new Basis(rotation * currentTransform.basis.Quat()), newTranslation);
-        }
     }
 }
