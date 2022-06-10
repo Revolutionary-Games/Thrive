@@ -58,6 +58,8 @@ public class GalleryViewer : CustomDialog
     private bool hasBecomeVisibleAtLeastOnce;
     private int activeAudioPlayers;
 
+    private bool initialized;
+
     private GalleryCard? lastSelected;
 
     /// <summary>
@@ -188,6 +190,8 @@ public class GalleryViewer : CustomDialog
         }
 
         firstEntry!.Pressed = true;
+
+        initialized = true;
     }
 
     private void UpdateGalleryTile(string selectedCategory = ALL_CATEGORY)
@@ -387,7 +391,13 @@ public class GalleryViewer : CustomDialog
         activeAudioPlayers--;
 
         if (activeAudioPlayers < 0)
+        {
+            // This being decremented to below zero on init is not a logic error
+            if (initialized)
+                GD.PrintErr("Active audio player counter is being decremented to below zero");
+
             activeAudioPlayers = 0;
+        }
     }
 
     private void OnCloseButtonPressed()

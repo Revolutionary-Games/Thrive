@@ -97,7 +97,7 @@ public class Jukebox : Node
     /// </summary>
     public void Resume(bool fade = false)
     {
-        if (!paused)
+        if (!paused && !pausing)
             return;
 
         pausing = false;
