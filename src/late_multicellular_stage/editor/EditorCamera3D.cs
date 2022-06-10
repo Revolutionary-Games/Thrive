@@ -25,7 +25,13 @@ public class EditorCamera3D : Camera
     public float UpDownMoveSpeed = 0.15f;
 
     [Export]
-    public float RotateSpeed = 5.0f;
+    public float RotateSpeed = 0.8f;
+
+    [Export]
+    public float MouseRotateSpeed = 0.03f;
+
+    [Export]
+    public bool UseLookAtForRotationCalculation = true;
 
     [Export]
     public Transform DefaultPosition =
@@ -116,7 +122,9 @@ public class EditorCamera3D : Camera
         }
         else
         {
-            // TODO: rotate
+            // TODO: check if multiplying by delta is a good idea here
+            RotateCamera(new Quat(new Vector3(1, 0, 0), RotateSpeed * upDown * delta),
+                new Quat(new Vector3(0, 1, 0), RotateSpeed * leftRight * delta));
         }
 
         return true;
@@ -143,7 +151,9 @@ public class EditorCamera3D : Camera
         }
         else
         {
-            // TODO: rotating
+            var mouseDirection = (viewPort.GetMousePosition() - mousePanningStart.Value) * delta * MouseRotateSpeed;
+            RotateCamera(new Quat(new Vector3(1, 0, 0), -mouseDirection.y),
+                new Quat(new Vector3(0, 1, 0), mouseDirection.x));
         }
 
         return true;
@@ -175,6 +185,7 @@ public class EditorCamera3D : Camera
         return false;
     }
 
+    // TODO: should be instead make this zoom in and our towards the target point and have new keys for up/down?
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
     public void PanUpDown(float delta, float value)
     {
@@ -214,8 +225,59 @@ public class EditorCamera3D : Camera
 
     private void PanCamera(Vector3 panAmount)
     {
-        // TODO: rotate the pan vector with the current camera orientation
-        Transform = new Transform(Transform.basis, Transform.origin + panAmount);
+        // TODO: rotate the pan vector with the current camera orientation, check this math is right
+        var basis = Transform.basis;
+        var rotation = basis.Quat();
+        panAmount = rotation.Xform(panAmount);
+        Transform = new Transform(basis, Transform.origin + panAmount);
         EmitSignal(nameof(OnPositionChanged), Transform);
+    }
+
+    private void RotateCamera(Quat localRotation, Quat globalRotation)
+    {
+        ApplyLocalRotation(localRotation);
+        ApplyGlobalRotation(globalRotation);
+
+        EmitSignal(nameof(OnPositionChanged), Transform);
+    }
+
+    private void ApplyLocalRotation(Quat rotation)
+    {
+        if (rotation.IsEqualApprox(Quat.Identity))
+            return;
+
+        var currentTransform = Transform;
+        var newTranslation = rotation.Xform(currentTransform.origin);
+
+        if (UseLookAtForRotationCalculation)
+        {
+            Translation = newTranslation;
+            LookAt(RotateAroundPoint, Vector3.Up);
+        }
+        else
+        {
+            Transform = new Transform(
+                new Basis(currentTransform.basis.Quat() * rotation), newTranslation);
+        }
+    }
+
+    private void ApplyGlobalRotation(Quat rotation)
+    {
+        if (rotation.IsEqualApprox(Quat.Identity))
+            return;
+
+        var currentTransform = Transform;
+        var newTranslation = rotation.Xform(currentTransform.origin - RotateAroundPoint) + RotateAroundPoint;
+
+        if (UseLookAtForRotationCalculation)
+        {
+            Translation = newTranslation;
+            LookAt(RotateAroundPoint, Vector3.Up);
+        }
+        else
+        {
+            Transform = new Transform(
+                new Basis(rotation * currentTransform.basis.Quat()), newTranslation);
+        }
     }
 }
