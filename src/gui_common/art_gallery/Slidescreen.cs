@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Godot;
-using Object = Godot.Object;
 
 /// <summary>
 ///   Screen capable of moving slides of gallery items.
