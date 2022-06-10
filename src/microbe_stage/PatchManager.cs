@@ -126,10 +126,8 @@ public class PatchManager : IChildPropertiesLoadCallback
                     var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
 
                     spawnSystem.AddSpawnType(spawner.Spawner,
-                        CurrentGame == null ?
-                            entry.Value.Density :
-                            (float)(entry.Value.Density *
-                                CurrentGame.WorldSettings.CompoundDensity), Constants.MICROBE_SPAWN_RADIUS);
+                        (float)(entry.Value.Density * CurrentGame!.WorldSettings.CompoundDensity),
+                        Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 });
         }
@@ -148,10 +146,8 @@ public class PatchManager : IChildPropertiesLoadCallback
                         Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount));
 
                     spawnSystem.AddSpawnType(spawner.Spawner,
-                        CurrentGame == null ?
-                            entry.Value.Density :
-                            (float)(entry.Value.Density *
-                                CurrentGame.WorldSettings.CompoundDensity), Constants.CLOUD_SPAWN_RADIUS);
+                        (float)(entry.Value.Density * CurrentGame!.WorldSettings.CompoundDensity),
+                        Constants.CLOUD_SPAWN_RADIUS);
                     return spawner;
                 });
         }
