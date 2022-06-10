@@ -6,6 +6,8 @@ public class GalleryCardModel : GalleryCard
 
     private Texture imageLoadingIcon = null!;
 
+    private bool finishedLoadingImage;
+
     public override void _Ready()
     {
         base._Ready();
@@ -17,10 +19,16 @@ public class GalleryCardModel : GalleryCard
     {
         base._Process(delta);
 
+        if (finishedLoadingImage)
+            return;
+
         if (imageTask != null)
         {
             if (imageTask.Finished)
+            {
                 Thumbnail = imageTask.FinalImage;
+                finishedLoadingImage = true;
+            }
 
             return;
         }

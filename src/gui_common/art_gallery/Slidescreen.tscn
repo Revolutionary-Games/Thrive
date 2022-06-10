@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=4]
-[ext_resource path="res://src/gui_common/PlaybackBar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/gui_common/PlaybackControls.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/general/OrbitCamera.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/art_gallery/Slidescreen.cs" type="Script" id=7]
 
@@ -55,7 +55,7 @@ ModelViewerContainerPath = NodePath("Overlay/ViewportContainer")
 ModelViewerPath = NodePath("Overlay/ViewportContainer/ModelViewer")
 ModelHolderPath = NodePath("Overlay/ViewportContainer/ModelViewer/ModelHolder")
 ModelViewerCameraPath = NodePath("Overlay/ViewportContainer/ModelViewer/OrbitCamera")
-PlaybackBarPath = NodePath("Overlay/Toolbar/VBoxContainer/HBoxContainer/PlaybackBar")
+PlaybackControlsPath = NodePath("Overlay/Toolbar/VBoxContainer/HBoxContainer/PlaybackControls")
 
 [node name="Overlay" type="PanelContainer" parent="."]
 anchor_right = 1.0
@@ -184,7 +184,7 @@ custom_fonts/font = ExtResource( 3 )
 toggle_mode = true
 text = "SLIDESHOW"
 
-[node name="PlaybackBar" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" instance=ExtResource( 5 )]
+[node name="PlaybackControls" parent="Overlay/Toolbar/VBoxContainer/HBoxContainer" instance=ExtResource( 5 )]
 margin_left = 143.0
 margin_top = 3.0
 margin_right = 593.0
@@ -209,7 +209,6 @@ __meta__ = {
 
 [node name="ToolbarTween" type="Tween" parent="."]
 
-[connection signal="hide" from="." to="." method="OnHidden"]
 [connection signal="draw" from="Overlay/MarginContainer/CloseButton" to="." method="OnCloseButtonUpdate"]
 [connection signal="pressed" from="Overlay/MarginContainer/CloseButton" to="." method="OnCloseButtonPressed"]
 [connection signal="pressed" from="Overlay/Toolbar/VBoxContainer/HBoxContainer/PreviousButton" to="." method="OnPreviousSlideButtonPressed"]

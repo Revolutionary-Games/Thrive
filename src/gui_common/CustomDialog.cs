@@ -73,7 +73,7 @@ public class CustomDialog : Popup, ICustomPopup
     private bool decorate = true;
 
     [Signal]
-    public delegate void Closed();
+    public delegate void ClosePressed();
 
     [Flags]
     private enum DragType
@@ -219,7 +219,7 @@ public class CustomDialog : Popup, ICustomPopup
                 }
                 else
                 {
-                    closeHovered = false;
+                    OnHidden();
                 }
 
                 UpdateChildRects();
@@ -379,6 +379,14 @@ public class CustomDialog : Popup, ICustomPopup
     {
         // TODO: add proper close animation
         Hide();
+    }
+
+    /// <summary>
+    ///   Called after popup is made invisible.
+    /// </summary>
+    protected virtual void OnHidden()
+    {
+        closeHovered = false;
     }
 
     protected Rect2 GetFullRect()
@@ -625,7 +633,8 @@ public class CustomDialog : Popup, ICustomPopup
 
     private void OnCloseButtonPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
         CustomHide();
-        EmitSignal(nameof(Closed));
+        EmitSignal(nameof(ClosePressed));
     }
 }

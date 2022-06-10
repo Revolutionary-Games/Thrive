@@ -128,7 +128,6 @@ size_flags_horizontal = 3
 
 [node name="Slidescreen" parent="." instance=ExtResource( 3 )]
 
-[connection signal="popup_hide" from="." to="." method="OnHidden"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer3/OptionButton" to="." method="OnCategorySelected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="OnCloseButtonPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SlideshowButton" to="." method="OnStartSlideshowButtonPressed"]

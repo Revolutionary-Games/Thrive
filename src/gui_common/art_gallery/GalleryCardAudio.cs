@@ -1,19 +1,21 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
-public class GalleryCardAudio : GalleryCard
+public class GalleryCardAudio : GalleryCard, IGalleryCardPlayback
 {
     [Export]
-    public NodePath PlaybackBarPath = null!;
+    public NodePath PlaybackControlsPath = null!;
 
-    private PlaybackBar? playbackBar;
+    private PlaybackControls? playbackControls;
     private AudioStreamPlayer? ownPlayer;
 
-    [Signal]
-    public delegate void OnAudioStarted();
+    public event EventHandler? PlaybackStarted;
+    public event EventHandler? PlaybackStopped;
 
-    [Signal]
-    public delegate void OnAudioStopped();
-
+    /// <summary>
+    ///   NOTE: Manipulating playback shouldn't be done directly through here, instead use the provided methods
+    ///   so that controls could be updated accordingly.
+    /// </summary>
     public AudioStreamPlayer Player
     {
         get
@@ -28,40 +30,52 @@ public class GalleryCardAudio : GalleryCard
         }
     }
 
+    public bool Playing => playbackControls?.Playing ?? false;
+
     public override void _Ready()
     {
         base._Ready();
 
-        playbackBar = GetNode<PlaybackBar>(PlaybackBarPath);
+        playbackControls = GetNode<PlaybackControls>(PlaybackControlsPath);
 
         EnsurePlayerExist();
     }
 
+    public void StartPlayback()
+    {
+        playbackControls?.StartPlayback();
+    }
+
+    public void StopPlayback()
+    {
+        playbackControls?.StopPlayback();
+    }
+
     private void EnsurePlayerExist()
     {
-        ownPlayer ??= new AudioStreamPlayer { Stream = GD.Load<AudioStream>(Asset.ResourcePath) };
-
-        UpdatePlaybackBar();
-
-        if (IsInsideTree() && !ownPlayer.IsInsideTree())
+        if (ownPlayer == null)
+        {
+            ownPlayer = new AudioStreamPlayer { Stream = GD.Load<AudioStream>(Asset.ResourcePath) };
+            UpdatePlaybackBar();
             AddChild(ownPlayer);
+        }
     }
 
     private void UpdatePlaybackBar()
     {
-        if (playbackBar == null)
+        if (playbackControls == null)
             return;
 
-        playbackBar.AudioPlayer = ownPlayer;
+        playbackControls.AudioPlayer = ownPlayer;
     }
 
     private void OnStarted()
     {
-        EmitSignal(nameof(OnAudioStarted));
+        PlaybackStarted?.Invoke(this, EventArgs.Empty);
     }
 
     private void OnStopped()
     {
-        EmitSignal(nameof(OnAudioStopped));
+        PlaybackStopped?.Invoke(this, EventArgs.Empty);
     }
 }

@@ -1,9 +1,13 @@
 ﻿using Godot;
 
-public class PlaybackBar : HBoxContainer
+/// <summary>
+///   Controls for manipulating <see cref="AudioStreamPlayer"/>'s playback.
+/// </summary>
+public class PlaybackControls : HBoxContainer
 {
     private HSlider? playbackSlider;
     private PlayButton? playButton;
+    private Button? stopButton;
 
     private float playbackProgress;
     private bool dragging;
@@ -51,55 +55,81 @@ public class PlaybackBar : HBoxContainer
     {
         playbackSlider = GetNode<HSlider>("PlaybackSlider");
         playButton = GetNode<PlayButton>("PlayButton");
+        stopButton = GetNode<Button>("StopButton");
 
         UpdatePlaybackState();
         UpdateSlider();
     }
 
-    public override void _PhysicsProcess(float delta)
+    public override void _Process(float delta)
     {
         if (AudioPlayer?.Stream == null)
             return;
 
-        PlaybackProgress = ProgressFromPlaybackPos(AudioPlayer.GetPlaybackPosition()).GetValueOrDefault();
+        PlaybackProgress = ProgressFromPlaybackPos(AudioPlayer.GetPlaybackPosition());
         UpdatePlaybackState();
     }
 
     public void StartPlayback()
     {
-        if (AudioPlayer == null)
+        if (Playing)
             return;
 
+        if (AudioPlayer == null)
+        {
+            GD.PrintErr("Playback is requested to be started but audio player is missing");
+            return;
+        }
+
         AudioPlayer.StreamPaused = false;
-        AudioPlayer.Play(PlaybackPosFromProgress(playbackProgress).GetValueOrDefault());
+        AudioPlayer.Play(PlaybackPosFromProgress(playbackProgress));
     }
 
     public void StopPlayback()
     {
-        if (AudioPlayer == null)
+        if (!Playing)
             return;
+
+        if (AudioPlayer == null)
+        {
+            GD.PrintErr("Playback is requested to be stopped but audio player is missing");
+            return;
+        }
 
         AudioPlayer.StreamPaused = true;
         AudioPlayer.Playing = false;
         AudioPlayer.Seek(0);
     }
 
-    private float? ProgressFromPlaybackPos(float value)
+    private float ProgressFromPlaybackPos(float value)
     {
-        return (value / AudioPlayer?.Stream.GetLength()) * (float?)playbackSlider?.MaxValue;
+        if (AudioPlayer == null || playbackSlider == null)
+        {
+            GD.PrintErr("Elements are missing to correctly convert playback position to playback progress");
+            return 0;
+        }
+
+        return (float)((value / AudioPlayer.Stream.GetLength()) * playbackSlider.MaxValue);
     }
 
-    private float? PlaybackPosFromProgress(float value)
+    private float PlaybackPosFromProgress(float value)
     {
-        return (value * AudioPlayer?.Stream.GetLength()) / (float?)playbackSlider?.MaxValue;
+        if (AudioPlayer == null || playbackSlider == null)
+        {
+            GD.PrintErr("Elements are missing to correctly convert playback progress to playback position");
+            return 0;
+        }
+
+        return (float)((value * AudioPlayer.Stream.GetLength()) / playbackSlider.MaxValue);
     }
 
     private void UpdatePlaybackState()
     {
-        if (playButton == null)
+        if (playButton == null || stopButton == null)
             return;
 
         playButton.Paused = !Playing;
+        stopButton.Disabled = !Playing;
 
         if (Playing != lastState)
         {
@@ -149,7 +179,7 @@ public class PlaybackBar : HBoxContainer
         if (dragging)
         {
             playbackProgress = value;
-            AudioPlayer?.Seek(PlaybackPosFromProgress(value).GetValueOrDefault());
+            AudioPlayer?.Seek(PlaybackPosFromProgress(value));
         }
         else if (!dragging && value == playbackSlider!.MaxValue)
         {

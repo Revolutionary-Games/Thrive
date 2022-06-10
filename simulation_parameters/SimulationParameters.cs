@@ -207,6 +207,11 @@ public class SimulationParameters : Node
         return gallery[name];
     }
 
+    public bool DoesGalleryExist(string name)
+    {
+        return gallery.ContainsKey(name);
+    }
+
     public TranslationsInfo GetTranslationsInfo()
     {
         return translationsInfo;

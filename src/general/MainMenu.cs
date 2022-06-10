@@ -301,7 +301,7 @@ public class MainMenu : NodeWithInput
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
-        Jukebox.Instance.SmoothStop();
+        Jukebox.Instance.Stop(true);
 
         var transitions = new List<ITransition>();
 

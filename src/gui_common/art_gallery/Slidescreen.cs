@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
+using Array = Godot.Collections.Array;
+using Object = Godot.Object;
 
 /// <summary>
 ///   Screen capable of moving slides of gallery items.
 /// </summary>
 public class Slidescreen : CustomDialog
 {
-    public const float SLIDESHOW_INTERVAL = 6f;
-    public const float TOOLBAR_DISPLAY_DURATION = 4f;
+    public const float SLIDESHOW_INTERVAL = 6.0f;
+    public const float TOOLBAR_DISPLAY_DURATION = 4.0f;
 
     [Export]
     public NodePath SlideTextureRectPath = null!;
@@ -37,7 +40,7 @@ public class Slidescreen : CustomDialog
     public NodePath ModelViewerCameraPath = null!;
 
     [Export]
-    public NodePath PlaybackBarPath = null!;
+    public NodePath PlaybackControlsPath = null!;
 
     private TextureRect? fullscreenTextureRect;
     private Control? toolbar;
@@ -48,7 +51,7 @@ public class Slidescreen : CustomDialog
     private Viewport? modelViewer;
     private Spatial? modelHolder;
     private OrbitCamera? modelViewerCamera;
-    private PlaybackBar? playbackBar;
+    private PlaybackControls? playbackControls;
 
     private Tween popupTween = null!;
     private Tween slideshowTween = null!;
@@ -60,7 +63,7 @@ public class Slidescreen : CustomDialog
     private List<GalleryCard>? items;
     private int currentSlideIndex;
     private bool slideshowMode;
-    private bool handlesVisible;
+    private bool slideControlsVisible;
 
     public List<GalleryCard>? Items
     {
@@ -93,15 +96,15 @@ public class Slidescreen : CustomDialog
     }
 
     /// <summary>
-    ///   Handles means the UI elements on the slideshow screen (e.g next and prev slide button). If false they'll
+    ///   Controls means the UI elements on the slideshow screen (e.g next and prev slide button). If false they'll
     ///   be hidden.
     /// </summary>
-    public bool HandlesVisible
+    public bool SlideControlsVisible
     {
-        get => handlesVisible;
+        get => slideControlsVisible;
         set
         {
-            handlesVisible = value;
+            slideControlsVisible = value;
             UpdateHandles();
         }
     }
@@ -129,7 +132,7 @@ public class Slidescreen : CustomDialog
         modelViewer = GetNode<Viewport>(ModelViewerPath);
         modelHolder = GetNode<Spatial>(ModelHolderPath);
         modelViewerCamera = GetNode<OrbitCamera>(ModelViewerCameraPath);
-        playbackBar = GetNode<PlaybackBar>(PlaybackBarPath);
+        playbackControls = GetNode<PlaybackControls>(PlaybackControlsPath);
 
         popupTween = GetNode<Tween>("PopupTween");
         slideshowTween = GetNode<Tween>("SlideshowTween");
@@ -199,7 +202,7 @@ public class Slidescreen : CustomDialog
 
         base.CustomShow();
 
-        HandlesVisible = false;
+        SlideControlsVisible = false;
 
         var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
         RectGlobalPosition = currentItemRect.Position;
@@ -221,7 +224,7 @@ public class Slidescreen : CustomDialog
             return;
 
         FullRect = false;
-        HandlesVisible = false;
+        SlideControlsVisible = false;
         BoundToScreenArea = false;
 
         var currentItemRect = Items[currentSlideIndex].GetGlobalRect();
@@ -237,7 +240,7 @@ public class Slidescreen : CustomDialog
             popupTween.Connect("tween_completed", this, nameof(OnScaledDown), null, (uint)ConnectFlags.Oneshot);
     }
 
-    public void AdvanceSlide(bool fade = false)
+    public void AdvanceSlide(bool fade = false, int searchCounter = 0)
     {
         if (Items == null)
             return;
@@ -247,8 +250,13 @@ public class Slidescreen : CustomDialog
         // Can be slideshown check is only done here because slideshow only moves forward
         if (!Items[CurrentSlideIndex].CanBeSlideshown && SlideshowMode)
         {
-            // Keep advancing until we found an item that allows slideshow
-            AdvanceSlide(fade);
+            // Limit recursion to the number of items total
+            if (searchCounter < Items.Count)
+            {
+                // Keep advancing until we found an item that allows slideshow
+                AdvanceSlide(fade, ++searchCounter);
+            }
+
             return;
         }
 
@@ -266,6 +274,13 @@ public class Slidescreen : CustomDialog
             currentSlideIndex = Items.Count - 1;
 
         ChangeSlide(fade);
+    }
+
+    protected override void OnHidden()
+    {
+        base.OnHidden();
+        SlideshowMode = false;
+        Input.SetMouseMode(Input.MouseMode.Visible);
     }
 
     private void ChangeSlide(bool fade)
@@ -295,10 +310,10 @@ public class Slidescreen : CustomDialog
 
     private void UpdateSlide()
     {
-        if (Items == null || slideTitleLabel == null || fullscreenTextureRect == null || slideShowModeButton == null)
+        if (items == null || slideTitleLabel == null || fullscreenTextureRect == null || slideShowModeButton == null)
             return;
 
-        var item = Items[currentSlideIndex];
+        var item = items[currentSlideIndex];
 
         slideshowTimer = slideshowMode ? SLIDESHOW_INTERVAL : 0;
         slideShowModeButton.SetPressedNoSignal(slideshowMode);
@@ -310,7 +325,7 @@ public class Slidescreen : CustomDialog
 
     private void UpdateModelViewer()
     {
-        var item = Items?[currentSlideIndex] as GalleryCardModel;
+        var item = items?[currentSlideIndex] as GalleryCardModel;
 
         if (item?.Asset.Type != AssetType.ModelScene || modelHolder == null || modelViewer == null ||
             modelViewerCamera == null)
@@ -340,25 +355,20 @@ public class Slidescreen : CustomDialog
 
     private void UpdatePlayback()
     {
-        var item = Items?[currentSlideIndex] as GalleryCardAudio;
+        var item = items?[currentSlideIndex] as GalleryCardAudio;
 
-        if (playbackBar == null || fullscreenTextureRect == null)
+        if (playbackControls == null || fullscreenTextureRect == null)
             return;
 
         if (item?.Asset.Type != AssetType.AudioPlayback)
         {
-            playbackBar.Hide();
-            playbackBar.AudioPlayer = null;
+            playbackControls.Hide();
+            playbackControls.AudioPlayer = null;
             return;
         }
 
-        playbackBar.DisconnectSignals(nameof(PlaybackBar.Started));
-        playbackBar.DisconnectSignals(nameof(PlaybackBar.Stopped));
-        playbackBar.Connect(nameof(PlaybackBar.Started), item, "OnStarted");
-        playbackBar.Connect(nameof(PlaybackBar.Stopped), item, "OnStopped");
-
-        playbackBar.AudioPlayer = item.Player;
-        playbackBar?.Show();
+        playbackControls.AudioPlayer = item.Player;
+        playbackControls?.Show();
 
         // TODO: Temporary until there's a proper "album" art for audios
         fullscreenTextureRect.Texture = item.MissingTexture;
@@ -369,8 +379,8 @@ public class Slidescreen : CustomDialog
         if (toolbar == null || closeButton == null)
             return;
 
-        toolbar.Visible = handlesVisible;
-        closeButton.Visible = handlesVisible;
+        toolbar.Visible = slideControlsVisible;
+        closeButton.Visible = slideControlsVisible;
     }
 
     private void OnSlideFaded(Object @object, NodePath key)
@@ -388,7 +398,7 @@ public class Slidescreen : CustomDialog
         _ = @object;
         _ = key;
 
-        HandlesVisible = true;
+        SlideControlsVisible = true;
         FullRect = true;
         BoundToScreenArea = true;
     }
@@ -398,7 +408,7 @@ public class Slidescreen : CustomDialog
         _ = @object;
         _ = key;
 
-        HandlesVisible = true;
+        SlideControlsVisible = true;
         Hide();
     }
 
@@ -429,7 +439,7 @@ public class Slidescreen : CustomDialog
     {
         var icon = closeButton!.GetChild<TextureRect>(0);
 
-        if (closeButton?.GetDrawMode() == BaseButton.DrawMode.Pressed)
+        if (closeButton.GetDrawMode() == BaseButton.DrawMode.Pressed)
         {
             icon.Modulate = Colors.Black;
         }
@@ -437,11 +447,5 @@ public class Slidescreen : CustomDialog
         {
             icon.Modulate = Colors.White;
         }
-    }
-
-    private void OnHidden()
-    {
-        SlideshowMode = false;
-        Input.SetMouseMode(Input.MouseMode.Visible);
     }
 }

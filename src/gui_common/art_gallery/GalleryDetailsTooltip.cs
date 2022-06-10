@@ -39,7 +39,7 @@ public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
         }
     }
 
-    public string Artist
+    public string? Artist
     {
         get => artist ?? TranslationServer.Translate("N_A");
         set
@@ -66,6 +66,12 @@ public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
         artistLabel = GetNode<Label>(ArtistLabelPath);
 
         UpdateContent();
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+            UpdateContent();
     }
 
     private void UpdateContent()

@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.IO;
+using System.Text;
 using Godot;
 
 /// <summary>
@@ -39,26 +40,26 @@ public class Asset
     /// </param>
     public string BuildDescription(bool extended)
     {
-        var result = string.Empty;
+        var result = new StringBuilder(50);
 
         if (!string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Artist))
         {
-            result += string.Format(
-                CultureInfo.CurrentCulture, TranslationServer.Translate("ARTWORK_TITLE"), Title, Artist);
+            result.Append(string.Format(
+                CultureInfo.CurrentCulture, TranslationServer.Translate("ARTWORK_TITLE"), Title, Artist));
         }
         else if (string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Artist))
         {
-            result += string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("ART_BY"), Artist);
+            result.Append(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("ART_BY"), Artist));
         }
         else if (!string.IsNullOrEmpty(Title) && string.IsNullOrEmpty(Artist))
         {
-            result += Title;
+            result.Append(Title);
         }
 
         if (extended && !string.IsNullOrEmpty(Description))
-            result += $"\n{Description}";
+            result.Append($"\n{Description}");
 
-        return result;
+        return result.ToString();
     }
 
     public void Check()
@@ -97,10 +98,10 @@ public class Asset
         }
 
         if (Type is AssetType.ModelScene or AssetType.VideoPlayback && !FileHelpers.Exists(ResourcePath))
-            throw new FileNotFoundException("The given scene file in ResourcePath doesn't exist");
+            throw new FileNotFoundException("The given scene or video file in ResourcePath doesn't exist");
 
         // When exported only the .import files exist, so this check is done accordingly
         if (Type is AssetType.Texture or AssetType.AudioPlayback && !FileHelpers.Exists(ResourcePath + ".import"))
-            throw new FileNotFoundException("The given image file in ResourcePath doesn't exist");
+            throw new FileNotFoundException("The given image or audio file in ResourcePath doesn't exist");
     }
 }

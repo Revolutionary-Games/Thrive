@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -38,16 +39,43 @@ public class GalleryViewer : CustomDialog
     private Slidescreen slidescreen = null!;
     private Button slideshowButton = null!;
 
+    /// <summary>
+    ///   Holds gallery categories and their respective asset categories with their respective indexes in the category
+    ///   dropdown.
+    /// </summary>
     private Dictionary<string, Dictionary<int, string>> galleries = new();
-    private Dictionary<string, List<GalleryCard>> galleryCards = new();
 
-    private string currentGallery = string.Empty;
+    /// <summary>
+    ///   The gallery cards sorted by gallery category and asset category respectively. Organized like such for easier
+    ///   caching, trade off: nested loops.
+    /// </summary>
+    private Dictionary<string, Dictionary<string, List<GalleryCard>>> categoryCards = new();
 
-    private int previouslySelectedAssetsCategory;
+    private string? currentGallery;
+    private string currentCategory = ALL_CATEGORY;
+
+    private int previouslySelectedAssetCategoryIndex;
+    private bool hasBecomeVisibleAtLeastOnce;
     private int activeAudioPlayers;
 
-    private ButtonGroup? buttonGroup;
     private GalleryCard? lastSelected;
+
+    /// <summary>
+    ///   List of gallery cards based on the current gallery and asset category.
+    /// </summary>
+    public List<GalleryCard>? CurrentCards
+    {
+        get
+        {
+            if (!categoryCards.ContainsKey(currentGallery!))
+                return null;
+
+            if (!categoryCards[currentGallery!].ContainsKey(currentCategory))
+                return null;
+
+            return categoryCards[currentGallery!][currentCategory];
+        }
+    }
 
     public override void _Ready()
     {
@@ -56,19 +84,22 @@ public class GalleryViewer : CustomDialog
         tabButtonsContainer = GetNode<HBoxContainer>(TabButtonsContainerPath);
         assetsCategoryDropdown = GetNode<OptionButton>(AssetsCategoryDropdownPath);
         slideshowButton = GetNode<Button>(SlideshowButtonPath);
-
-        InitializeGallery();
     }
 
     public override void _Process(float delta)
     {
+        if (!Visible)
+            return;
+
+        // Actively checking for active audio players every frame eliminate the possibility of Jukebox being
+        // stuck when pausing or resuming
         if (activeAudioPlayers > 0)
         {
-            Jukebox.Instance.SmoothPause();
+            Jukebox.Instance.Pause(true);
         }
         else
         {
-            Jukebox.Instance.SmoothResume();
+            Jukebox.Instance.Resume(true);
         }
     }
 
@@ -76,116 +107,42 @@ public class GalleryViewer : CustomDialog
     {
         base._Notification(what);
 
-        if (what == NotificationTranslationChanged)
+        if (what == NotificationTranslationChanged && hasBecomeVisibleAtLeastOnce)
+        {
             InitializeGallery();
-    }
-
-    public void UpdateGalleryTile(string selectedCategory = ALL_CATEGORY)
-    {
-        buttonGroup = new ButtonGroup();
-        buttonGroup.Connect("pressed", this, nameof(OnGalleryItemPressed));
-
-        foreach (var entry in galleryCards)
-        {
-            foreach (var card in entry.Value)
-                card.Visible = false;
         }
-
-        var gallery = SimulationParameters.Instance.GetGallery(currentGallery);
-        var cards = galleryCards[currentGallery];
-
-        foreach (var category in gallery.AssetCategories)
+        else if (what == NotificationVisibilityChanged && Visible && !hasBecomeVisibleAtLeastOnce)
         {
-            if (selectedCategory != ALL_CATEGORY && selectedCategory != category.Key)
-                continue;
-
-            foreach (var asset in category.Value.Assets)
-            {
-                var card = cards.Find(c => c.Asset == asset);
-
-                if (card != null)
-                {
-                    card.Visible = true;
-                    continue;
-                }
-
-                var item = CreateGalleryItem(asset);
-                cardTile.AddChild(item);
-                cards.Add(item);
-            }
-        }
-
-        slidescreen.CurrentSlideIndex = 0;
-        slidescreen.Items = cards;
-
-        UpdateSlideshowButton();
-    }
-
-    public void StopAllPlayback()
-    {
-        foreach (var gallery in galleryCards)
-        {
-            foreach (var card in gallery.Value)
-            {
-                if (card is GalleryCardAudio audioPlayer)
-                {
-                    audioPlayer.Player.Stop();
-                    audioPlayer.Player.StreamPaused = true;
-                }
-            }
+            hasBecomeVisibleAtLeastOnce = true;
+            InitializeGallery();
         }
     }
 
-    private GalleryCard CreateGalleryItem(Asset asset)
+    protected override void OnHidden()
     {
-        GalleryCard item = null!;
-
-        switch (asset.Type)
-        {
-            case AssetType.Texture:
-                item = GalleryCardScene.Instance<GalleryCard>();
-                item.Thumbnail = GD.Load<Texture>(asset.ResourcePath);
-                break;
-            case AssetType.ModelScene:
-                item = GalleryCardModelScene.Instance<GalleryCardModel>();
-                break;
-            case AssetType.AudioPlayback:
-                item = GalleryCardAudioScene.Instance<GalleryCardAudio>();
-                var casted = (GalleryCardAudio)item;
-                casted.Connect(nameof(GalleryCardAudio.OnAudioStarted), this, nameof(OnAudioStarted));
-                casted.Connect(nameof(GalleryCardAudio.OnAudioStopped), this, nameof(OnAudioStopped));
-                break;
-        }
-
-        item.Asset = asset;
-        item.Group = buttonGroup;
-        item.Connect(nameof(GalleryCard.OnFullscreenView), this, nameof(OnAssetPreviewOpened));
-
-        var tooltip = GalleryDetailsToolTipScene.Instance<GalleryDetailsTooltip>();
-        tooltip.Name = "galleryCard_" + asset.ResourcePath.GetFile();
-        tooltip.DisplayName = asset.Title;
-        tooltip.Description = asset.Description;
-        tooltip.Artist = asset.Artist!;
-        item.RegisterToolTipForControl(tooltip);
-        ToolTipManager.Instance.AddToolTip(tooltip, "artGallery");
-
-        return item;
+        base.OnHidden();
+        StopAllPlayback();
     }
 
     private void InitializeGallery()
     {
-        galleries.Clear();
-        tabButtonsContainer.QueueFreeChildren();
+        GD.Print("Initializing gallery viewer");
 
-        buttonGroup = new ButtonGroup();
-        buttonGroup.Connect("pressed", this, nameof(OnGallerySelected));
+        tabButtonsContainer.QueueFreeChildren();
+        cardTile.QueueFreeChildren();
+
+        var tabsButtonGroup = new ButtonGroup();
+        var itemsButtonGroup = new ButtonGroup();
+
+        tabsButtonGroup.Connect("pressed", this, nameof(OnGallerySelected));
+        itemsButtonGroup.Connect("pressed", this, nameof(OnGalleryItemPressed));
 
         Button? firstEntry = null;
 
         foreach (var gallery in SimulationParameters.Instance.GetGalleries())
         {
             galleries[gallery.Key] = new Dictionary<int, string>();
-            galleryCards[gallery.Key] = new List<GalleryCard>();
+            categoryCards[gallery.Key] = new Dictionary<string, List<GalleryCard>>();
 
             var categories = galleries[gallery.Key];
             var id = 0;
@@ -199,14 +156,29 @@ public class GalleryViewer : CustomDialog
                 SizeFlagsHorizontal = 0,
                 ToggleMode = true,
                 ActionMode = BaseButton.ActionModeEnum.Press,
-                Group = buttonGroup,
+                Group = tabsButtonGroup,
             };
 
             firstEntry ??= tabButton;
             tabButtonsContainer.AddChild(tabButton);
 
+            categoryCards[gallery.Key][ALL_CATEGORY] = new List<GalleryCard>();
+
             foreach (var category in gallery.Value.AssetCategories)
             {
+                categoryCards[gallery.Key][category.Key] = new List<GalleryCard>();
+
+                foreach (var asset in category.Value.Assets)
+                {
+                    var created = CreateGalleryItem(asset, itemsButtonGroup);
+                    cardTile.AddChild(created);
+
+                    if (category.Key != ALL_CATEGORY)
+                        categoryCards[gallery.Key][ALL_CATEGORY].Add(created);
+
+                    categoryCards[gallery.Key][category.Key].Add(created);
+                }
+
                 if (category.Key == ALL_CATEGORY)
                     continue;
 
@@ -218,19 +190,139 @@ public class GalleryViewer : CustomDialog
         firstEntry!.Pressed = true;
     }
 
+    private void UpdateGalleryTile(string selectedCategory = ALL_CATEGORY)
+    {
+        currentCategory = selectedCategory;
+
+        if (CurrentCards == null)
+            return;
+
+        HideAllCards();
+
+        foreach (var card in CurrentCards)
+            card.Visible = true;
+
+        slidescreen.CurrentSlideIndex = 0;
+        slidescreen.Items = CurrentCards;
+
+        UpdateSlideshowButton();
+    }
+
+    private GalleryCard CreateGalleryItem(Asset asset, ButtonGroup buttonGroup)
+    {
+        GalleryCard item;
+
+        switch (asset.Type)
+        {
+            case AssetType.Texture:
+                item = GalleryCardScene.Instance<GalleryCard>();
+                item.Thumbnail = GD.Load<Texture>(asset.ResourcePath);
+                break;
+            case AssetType.ModelScene:
+                item = GalleryCardModelScene.Instance<GalleryCardModel>();
+                break;
+            case AssetType.AudioPlayback:
+                item = GalleryCardAudioScene.Instance<GalleryCardAudio>();
+                break;
+            default:
+                throw new InvalidOperationException("Unhandled asset type: " + asset.Type);
+        }
+
+        if (item is IGalleryCardPlayback playback)
+        {
+            playback.PlaybackStarted += OnPlaybackStarted;
+            playback.PlaybackStopped += OnPlaybackStopped;
+        }
+
+        item.Asset = asset;
+        item.Group = buttonGroup;
+        item.Connect(nameof(GalleryCard.OnFullscreenView), this, nameof(OnAssetPreviewOpened));
+
+        var tooltip = GalleryDetailsToolTipScene.Instance<GalleryDetailsTooltip>();
+        tooltip.Name = "galleryCard_" + asset.ResourcePath.GetFile();
+        tooltip.DisplayName = asset.Title;
+        tooltip.Description = asset.Description;
+        tooltip.Artist = asset.Artist;
+        item.RegisterToolTipForControl(tooltip);
+        ToolTipManager.Instance.AddToolTip(tooltip, "artGallery");
+
+        return item;
+    }
+
+    private void StopAllPlayback(IGalleryCardPlayback? exception = null)
+    {
+        foreach (var entry in categoryCards)
+        {
+            foreach (var items in entry.Value)
+            {
+                foreach (var item in items.Value)
+                {
+                    if (item is IGalleryCardPlayback playback && playback.Playing && playback != exception)
+                        playback.StopPlayback();
+                }
+            }
+        }
+    }
+
+    private void HideAllCards()
+    {
+        foreach (var entry in categoryCards)
+        {
+            foreach (var items in entry.Value)
+            {
+                foreach (var item in items.Value)
+                {
+                    if (!item.Visible)
+                        continue;
+
+                    item.Visible = false;
+
+                    if (item is IGalleryCardPlayback playback)
+                        playback.StopPlayback();
+                }
+            }
+        }
+    }
+
     private void UpdateSlideshowButton()
     {
-        slideshowButton.Disabled = galleryCards[currentGallery].All(g => !g.CanBeSlideshown);
+        if (CurrentCards == null)
+            return;
+
+        slideshowButton.Disabled = CurrentCards.All(c => !c.CanBeSlideshown);
+    }
+
+    private void ResumeJukeboxIfNoPlaybackIsActive()
+    {
+        foreach (var entry in categoryCards)
+        {
+            foreach (var items in entry.Value)
+            {
+                foreach (var item in items.Value)
+                {
+                    if (item is IGalleryCardPlayback playback && playback.Playing)
+                        return;
+                }
+            }
+        }
+
+        Jukebox.Instance.Resume(true);
     }
 
     private void OnAssetPreviewOpened(GalleryCard item)
     {
-        slidescreen.CurrentSlideIndex = galleryCards[currentGallery].IndexOf(item);
+        if (CurrentCards == null)
+            return;
+
+        slidescreen.CurrentSlideIndex = CurrentCards.IndexOf(item);
         slidescreen.CustomShow();
     }
 
     private void OnGalleryItemPressed(GalleryCard item)
     {
+        if (CurrentCards == null)
+            return;
+
         if (lastSelected == item)
         {
             lastSelected = null;
@@ -239,7 +331,7 @@ public class GalleryViewer : CustomDialog
         else
         {
             lastSelected = item;
-            slidescreen.CurrentSlideIndex = galleryCards[currentGallery].IndexOf(item);
+            slidescreen.CurrentSlideIndex = CurrentCards.IndexOf(item);
         }
     }
 
@@ -272,33 +364,44 @@ public class GalleryViewer : CustomDialog
 
     private void OnCategorySelected(int index)
     {
-        if (index == previouslySelectedAssetsCategory)
+        if (index == previouslySelectedAssetCategoryIndex || string.IsNullOrEmpty(currentGallery))
             return;
 
-        if (galleries[currentGallery].TryGetValue(index, out string category))
+        if (galleries[currentGallery!].TryGetValue(index, out string category))
         {
             UpdateGalleryTile(category);
-            previouslySelectedAssetsCategory = index;
+            previouslySelectedAssetCategoryIndex = index;
         }
     }
 
     private void OnStartSlideshowButtonPressed()
     {
+        if (CurrentCards == null)
+            return;
+
         GUICommon.Instance.PlayButtonPressSound();
 
-        slidescreen.CurrentSlideIndex = galleryCards[currentGallery].FindIndex(g => g.CanBeSlideshown);
+        slidescreen.CurrentSlideIndex = CurrentCards.FindIndex(c => c.CanBeSlideshown);
         slidescreen.SlideshowMode = true;
         slidescreen.CustomShow();
     }
 
-    private void OnAudioStarted()
+    private void OnPlaybackStarted(object sender, EventArgs args)
     {
-        ++activeAudioPlayers;
+        if (CurrentCards == null)
+            return;
+
+        // Assume sender is of playback type, as it should be
+        var playback = (IGalleryCardPlayback)sender;
+
+        slidescreen.CurrentSlideIndex = CurrentCards.IndexOf((GalleryCard)playback);
+        StopAllPlayback(playback);
+        activeAudioPlayers++;
     }
 
-    private void OnAudioStopped()
+    private void OnPlaybackStopped(object sender, EventArgs args)
     {
-        --activeAudioPlayers;
+        activeAudioPlayers--;
 
         if (activeAudioPlayers < 0)
             activeAudioPlayers = 0;
@@ -308,10 +411,5 @@ public class GalleryViewer : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
         Hide();
-    }
-
-    private void OnHidden()
-    {
-        StopAllPlayback();
     }
 }

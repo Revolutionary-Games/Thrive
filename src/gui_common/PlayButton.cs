@@ -135,12 +135,12 @@ public class PlayButton : MarginContainer
         if (what == "pause")
         {
             Paused = true;
-            EmitSignal(nameof(OnPressed), true);
         }
         else if (what == "play")
         {
             Paused = false;
-            EmitSignal(nameof(OnPressed), false);
         }
+
+        EmitSignal(nameof(OnPressed), Paused);
     }
 }

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/PlayButton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/gui_common/PlaybackBar.cs" type="Script" id=3]
+[ext_resource path="res://src/gui_common/PlaybackControls.cs" type="Script" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=4]
 
 [sub_resource type="StyleBoxFlat" id=2]
@@ -71,7 +71,7 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[node name="PlaybackBar" type="HBoxContainer"]
+[node name="PlaybackControls" type="HBoxContainer"]
 margin_right = 29.0
 margin_bottom = 25.0
 size_flags_vertical = 8

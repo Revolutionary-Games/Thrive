@@ -26,4 +26,14 @@ public static class ObjectHelpers
             }
         }
     }
+
+    /// <summary>
+    ///   Checks first if an <see cref="Object"/> connection has been made, if not this then connects the signal.
+    /// </summary>
+    public static void CheckAndConnect(this Object @object, string signal, Object target, string method,
+        Array? binds = null, uint flags = 0)
+    {
+        if (!@object.IsConnected(signal, target, method))
+            @object.Connect(signal, target, method, binds, flags);
+    }
 }

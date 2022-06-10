@@ -95,81 +95,73 @@ public class Jukebox : Node
     /// <summary>
     ///   Unpauses currently playing songs
     /// </summary>
-    public void Resume()
+    public void Resume(bool fade = false)
     {
         if (!paused)
             return;
 
         pausing = false;
         paused = false;
-        UpdateStreamsPauseStatus();
-    }
 
-    public void SmoothResume()
-    {
-        if (!paused)
-            return;
+        if (fade)
+        {
+            operations.Clear();
+            AddFadeIn();
+        }
 
-        paused = false;
-        pausing = false;
-        operations.Clear();
         UpdateStreamsPauseStatus();
-        AddFadeIn();
     }
 
     /// <summary>
     ///   Pause the currently playing songs
     /// </summary>
-    public void Pause()
+    public void Pause(bool fade = false)
     {
         if (paused)
             return;
 
-        paused = true;
-        UpdateStreamsPauseStatus();
-    }
-
-    public void SmoothPause()
-    {
-        if (pausing)
-            return;
-
-        pausing = true;
-        operations.Clear();
-        AddFadeOut();
-        operations.Enqueue(new Operation(_ =>
+        if (!fade)
         {
-            pausing = false;
             paused = true;
             UpdateStreamsPauseStatus();
-            return true;
-        }));
+        }
+        else if (fade && !pausing)
+        {
+            pausing = true;
+            operations.Clear();
+            AddFadeOut();
+            operations.Enqueue(new Operation(_ =>
+            {
+                pausing = false;
+                paused = true;
+                UpdateStreamsPauseStatus();
+                return true;
+            }));
+        }
     }
 
     /// <summary>
     ///   Stops the currently playing music (doesn't preserve positions for when Resume is called)
     /// </summary>
-    public void Stop()
+    public void Stop(bool fade = false)
     {
-        Pause();
-        StopStreams();
-        operations.Clear();
-    }
-
-    /// <summary>
-    ///   Smoothly stops the currently playing music with fade out (doesn't preserve positions for when
-    ///   Resume is called)
-    /// </summary>
-    public void SmoothStop()
-    {
-        operations.Clear();
-        AddFadeOut();
-        operations.Enqueue(new Operation(_ =>
+        if (!fade)
         {
             Pause();
             StopStreams();
-            return true;
-        }));
+            operations.Clear();
+        }
+        else
+        {
+            operations.Clear();
+            AddFadeOut();
+            operations.Enqueue(new Operation(_ =>
+            {
+                Pause();
+                StopStreams();
+                return true;
+            }));
+        }
     }
 
     public override void _Process(float delta)
