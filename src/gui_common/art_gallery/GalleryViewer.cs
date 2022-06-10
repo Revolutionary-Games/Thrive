@@ -292,23 +292,6 @@ public class GalleryViewer : CustomDialog
         slideshowButton.Disabled = CurrentCards.All(c => !c.CanBeSlideshown);
     }
 
-    private void ResumeJukeboxIfNoPlaybackIsActive()
-    {
-        foreach (var entry in categoryCards)
-        {
-            foreach (var items in entry.Value)
-            {
-                foreach (var item in items.Value)
-                {
-                    if (item is IGalleryCardPlayback playback && playback.Playing)
-                        return;
-                }
-            }
-        }
-
-        Jukebox.Instance.Resume(true);
-    }
-
     private void OnAssetPreviewOpened(GalleryCard item)
     {
         if (CurrentCards == null)
