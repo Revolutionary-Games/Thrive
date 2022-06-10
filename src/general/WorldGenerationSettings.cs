@@ -137,11 +137,11 @@ public class WorldGenerationSettings
         switch (preset)
         {
             case DifficultyPreset.Easy:
-                return 0.5;
+                return 0.8;
             case DifficultyPreset.Normal:
                 return 1;
             case DifficultyPreset.Hard:
-                return 1.5;
+                return 1.2;
             default:
                 return 1;
         }

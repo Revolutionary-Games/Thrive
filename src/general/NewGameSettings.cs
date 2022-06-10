@@ -613,6 +613,7 @@ public class NewGameSettings : ControlWithInput
     private void OnRandomisedGameSeedPressed()
     {
         var seed = GenerateNewRandomSeed();
+        SetSeed(seed);
         gameSeed.Text = seed;
         gameSeedAdvanced.Text = seed;
     }
