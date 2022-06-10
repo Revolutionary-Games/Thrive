@@ -149,7 +149,7 @@ public class WorldGenerationSettings
 
     public static bool GetFreeGlucoseCloud(DifficultyPreset preset)
     {
-        return preset == DifficultyPreset.Easy;
+        return preset == DifficultyPreset.Easy || preset == DifficultyPreset.Normal;
     }
 
     public override string ToString()
