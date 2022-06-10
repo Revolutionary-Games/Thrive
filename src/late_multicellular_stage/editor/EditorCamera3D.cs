@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using Newtonsoft.Json;
 
 public class EditorCamera3D : Camera
 {
@@ -19,32 +20,69 @@ public class EditorCamera3D : Camera
     public float PanSpeed = 5.0f;
 
     [Export]
-    public float MousePanSpeed = 0.05f;
+    public float MousePanHorizontalMultiplier = 0.5f;
 
     [Export]
-    public float UpDownMoveSpeed = 0.15f;
+    public float MousePanVerticalMultiplier = 0.8f;
 
     [Export]
-    public float RotateSpeed = 0.8f;
+    public float UpDownMoveSpeed = 1.0f;
 
     [Export]
-    public float MouseRotateSpeed = 0.03f;
+    public float ZoomSpeed = 0.20f;
 
     [Export]
-    public Transform DefaultPosition =
-        new(new Basis(new Quat(new Vector3(1, 0, 0), MathUtils.DEGREES_TO_RADIANS * -20)),
-            new Vector3(0, 2, 2.5f));
+    public float RotateSpeed = 0.85f;
+
+    [Export]
+    public float MouseRotateMultiplier = 0.3f;
+
+    [Export]
+    public bool InvertedMouseRotation;
+
+    [Export]
+    public bool InvertedMousePanning;
+
+    /// <summary>
+    ///   The current rotation around the X-axis
+    /// </summary>
+    [Export]
+    [JsonProperty]
+    public float XRotation = -(float)MathUtils.FULL_CIRCLE * 0.1f;
+
+    [Export]
+    [JsonProperty]
+    public float YRotation;
+
+    [Export]
+    public float DefaultXRotation = -(float)MathUtils.FULL_CIRCLE * 0.1f;
+
+    [Export]
+    [JsonProperty]
+    public float ViewDistance = 3.0f;
+
+    [Export]
+    public float DefaultViewDistance = 3.0f;
 
     [Export]
     public Vector3 RotateAroundPoint = Vector3.Zero;
 
-    private const float VERTICAL_DIRECTION_THRESHOLD = (float)MathUtils.FULL_CIRCLE * 0.05f;
-
-    private bool reversedXControl;
+    /// <summary>
+    ///   To make the 3D math reasonable to implement here, we use the x,y and distance values to rotate the camera
+    ///   around the target point and panning is just an offset on top of that.
+    /// </summary>
+    [JsonProperty]
+    private Vector3 panOffset;
 
     /// <summary>
-    ///   Where the user started rotating (or panning) with the mouse. Null if the user is not rotating with the mouse
+    ///   Where the user started rotating (or panning) with the mouse. Null if the user is not rotating with the mouse.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The mouse panning is not infinite in the 3D camera as that feels weird, so we store the last position
+    ///     in this variable where we panned with the mouse to be able to just add the delta of the current movement.
+    ///   </para>
+    /// </remarks>
     private Vector2? mousePanningStart;
 
     private bool panning;
@@ -68,15 +106,23 @@ public class EditorCamera3D : Camera
         InputManager.UnregisterReceiver(this);
     }
 
+    public override void _Ready()
+    {
+        base._Ready();
+        ApplyTransform();
+    }
+
     [RunOnKeyDown("e_camera_front", Priority = -1)]
     public bool ToFrontView()
     {
         if (!Current || !Visible)
             return false;
 
-        Translation = new Vector3(0, 0, SidePresetViewDistances);
-        LookAt(RotateAroundPoint, Vector3.Up);
-        EmitSignal(nameof(OnPositionChanged), Transform);
+        XRotation = 0;
+        YRotation = 0;
+        panOffset = Vector3.Zero;
+        ApplyTransform();
+
         return true;
     }
 
@@ -86,9 +132,11 @@ public class EditorCamera3D : Camera
         if (!Current || !Visible)
             return false;
 
-        Translation = new Vector3(SidePresetViewDistances, 0, 0);
-        LookAt(RotateAroundPoint, Vector3.Up);
-        EmitSignal(nameof(OnPositionChanged), Transform);
+        XRotation = 0;
+        YRotation = (float)MathUtils.FULL_CIRCLE * 0.25f;
+        panOffset = Vector3.Zero;
+        ApplyTransform();
+
         return true;
     }
 
@@ -98,9 +146,11 @@ public class EditorCamera3D : Camera
         if (!Current || !Visible)
             return false;
 
-        Translation = new Vector3(0, SidePresetViewDistances, 0);
-        LookAt(RotateAroundPoint, Vector3.Forward);
-        EmitSignal(nameof(OnPositionChanged), Transform);
+        XRotation = -(float)MathUtils.FULL_CIRCLE * 0.25f;
+        YRotation = 0;
+        panOffset = Vector3.Zero;
+        ApplyTransform();
+
         return true;
     }
 
@@ -144,16 +194,34 @@ public class EditorCamera3D : Camera
         if (viewPort == null)
             throw new InvalidOperationException("No viewport");
 
+        var newPosition = viewPort.GetMousePosition();
+
+        if (mousePanningStart == newPosition)
+            return false;
+
         if (panning)
         {
-            var mousePanDirection = (viewPort.GetMousePosition() - mousePanningStart.Value) * delta * MousePanSpeed;
-            PanCamera(new Vector3(mousePanDirection.x, 0, mousePanDirection.y));
+            // TODO: could maybe take the aspect ratio of the viewport into account rather than having two explicit
+            // variables
+            var mousePanDirection = (newPosition - mousePanningStart.Value) * delta *
+                new Vector2(MousePanHorizontalMultiplier, -MousePanVerticalMultiplier);
+
+            if (!InvertedMousePanning)
+                mousePanDirection = -mousePanDirection;
+
+            PanCamera(new Vector3(mousePanDirection.x, mousePanDirection.y, 0));
         }
         else
         {
-            var mouseDirection = (viewPort.GetMousePosition() - mousePanningStart.Value) * delta * MouseRotateSpeed;
-            RotateCamera(-mouseDirection.y, mouseDirection.x);
+            var mouseDirection = (newPosition - mousePanningStart.Value) * delta * MouseRotateMultiplier;
+
+            if (!InvertedMouseRotation)
+                mouseDirection = -mouseDirection;
+
+            RotateCamera(mouseDirection.y, mouseDirection.x);
         }
+
+        mousePanningStart = newPosition;
 
         return true;
     }
@@ -184,26 +252,19 @@ public class EditorCamera3D : Camera
         return false;
     }
 
-    // TODO: should be instead make this zoom in and our towards the target point and have new keys for up/down?
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
-    public void PanUpDown(float delta, float value)
+    public void ZoomInOrOut(float delta, float value)
     {
         _ = delta;
 
-        var height = Translation.y;
+        ViewDistance = (ViewDistance + ZoomSpeed * value).Clamp(MinDistance, MaxDistance);
+        ApplyTransform();
+    }
 
-        var old = height;
-
-        height += UpDownMoveSpeed * value;
-
-        height = height.Clamp(0, MaxDistance);
-
-        // ReSharper disable once CompareOfFloatsByEqualityOperator
-        if (height != old)
-        {
-            Translation = new Vector3(Translation.x, height, Translation.z);
-            EmitSignal(nameof(OnPositionChanged), Transform);
-        }
+    [RunOnAxis(new[] { "g_move_down", "g_move_up" }, new[] { -1.0f, 1.0f })]
+    public void PanUpDown(float delta, float value)
+    {
+        PanCamera(new Vector3(0, UpDownMoveSpeed * value * delta, 0));
     }
 
     [RunOnKeyDown("e_reset_camera", Priority = -1)]
@@ -212,8 +273,13 @@ public class EditorCamera3D : Camera
         if (!Current || !Visible)
             return false;
 
-        Transform = new Transform(DefaultPosition.basis, DefaultPosition.origin + RotateAroundPoint);
-        EmitSignal(nameof(OnPositionChanged), Transform);
+        XRotation = DefaultXRotation;
+        YRotation = 0;
+        ViewDistance = DefaultViewDistance;
+        panOffset = Vector3.Zero;
+
+        ApplyTransform();
+
         return true;
     }
 
@@ -224,86 +290,56 @@ public class EditorCamera3D : Camera
 
     private void PanCamera(Vector3 panAmount)
     {
-        // TODO: rotate the pan vector with the current camera orientation, check this math is right
-        var basis = Transform.basis;
-        var rotation = basis.Quat();
+        var yAmount = panAmount.y;
+        panAmount.y = 0;
+
+        // Only left and right look rotation is taken into account for movement, so that it feels better
+        var rotation = new Quat(new Vector3(0, 1, 0), YRotation).Normalized();
 
         panAmount = rotation.Xform(panAmount);
-        Transform = new Transform(basis, Transform.origin + panAmount);
-        EmitSignal(nameof(OnPositionChanged), Transform);
+        panOffset += panAmount;
+
+        // Y-axis panning *does* take the full rotation of the camera into account
+        if (yAmount != 0)
+        {
+            rotation = Transform.basis.Quat().Normalized();
+
+            panAmount = rotation.Xform(new Vector3(0, yAmount, 0));
+            panOffset += panAmount;
+        }
+
+        ApplyTransform();
     }
 
     private void RotateCamera(float xAngle, float yAngle)
     {
+        XRotation = (XRotation + xAngle) % (float)MathUtils.FULL_CIRCLE;
+        YRotation = (YRotation + yAngle) % (float)MathUtils.FULL_CIRCLE;
+        ApplyTransform();
+    }
+
+    private void ApplyTransform()
+    {
         var currentTransform = Transform;
 
+        var right = new Vector3(1, 0, 0);
         var up = new Vector3(0, 1, 0);
-        var down = new Vector3(0, -1, 0);
-        var left = new Vector3(1, 0, 0);
-        var right = new Vector3(-1, 0, 0);
-        var forward = new Vector3(0, 0, 1);
-        var backwards = new Vector3(0, 0, -1);
 
-        // If we have passed the straight up view, we need to invert xAngle
-        if (reversedXControl)
-            xAngle = -xAngle;
-
-        // // If we are basically looking top down, we need to set forward as the up direction
-        // if (currentTransform.basis.Xform(forward).AngleTo(up) < STRAIGHT_DOWN_ANGLE_THRESHOLD)
-        var angle = currentTransform.basis.Xform(forward).SignedAngleTo(up, right);
-        // var angle = currentTransform.basis.Xform(forward).AngleTo(up);
-
-        /*if (angle is <= VERTICAL_DIRECTION_THRESHOLD or >= (float)MathUtils.FULL_CIRCLE - VERTICAL_DIRECTION_THRESHOLD)
-        {
-            // reversedXControl = !reversedXControl;
-
-
-            // up = forward;
-            up = backwards;
-
-            xAngle = -xAngle;
-            GD.Print("Angle: ", angle, " (if passed)");
-        }
-        else
-        {
-            GD.Print("Angle: ", angle);
-        }*/
-
-        if (reversedXControl)
-        {
-            up = backwards;
-            xAngle = -xAngle;
-        }
-
-        // The up/down direction needs to be a cross vector with the towards direction to the object we are looking at
-        var lookDirection = (RotateAroundPoint - currentTransform.origin).Normalized();
-        var xAxis = lookDirection.Cross(up).Normalized();
-
-        var newTranslation = (currentTransform.origin - RotateAroundPoint).Rotated(xAxis, xAngle)
-            .Rotated(new Vector3(0, 1, 0), yAngle) +
+        var rotatedPosition = new Vector3(0, 0, ViewDistance).Rotated(right, XRotation).Rotated(up, YRotation) +
             RotateAroundPoint;
-        Translation = newTranslation;
+
+        Translation = rotatedPosition;
+
+        // "Up" being always up here makes the visuals a bit weird looking when going fully around
+        // TODO: could add a mode that clamps the XRotation to ]-0.5 * FULL_CIRCLE, 0.5 * FULL_CIRCLE[
         LookAt(RotateAroundPoint, up);
 
-        // If we passed the vertical (or if we are flipped, the new "up" direction) we need to invert the controls
-        var compareDirection = reversedXControl ? left : right;
+        var newTransform = new Transform(Transform.basis, rotatedPosition + panOffset);
 
-        if (reversedXControl && Transform.basis.Xform(forward).AngleTo(up) < VERTICAL_DIRECTION_THRESHOLD)
+        if (newTransform != currentTransform)
         {
-            GD.Print("horizontal passed");
-            reversedXControl = false;
-        } else
-
-        if (!reversedXControl && Math.Sign(angle) != Math.Sign(Transform.basis.Xform(forward).SignedAngleTo(up, right)))
-        // if (Math.Abs(angle - Transform.basis.Xform(forward).SignedAngleTo(up, right)) > VERTICAL_DIRECTION_THRESHOLD)
-        // GD.Print("Angle: ", angle, " new: ", Transform.basis.Xform(forward).SignedAngleTo(up, right));
-        // if (Math.Sign(angle) != Math.Sign(Transform.basis.Xform(forward).SignedAngleTo(up, right)))
-        // if (angle < Transform.basis.Xform(forward).AngleTo(up))
-        {
-            GD.Print("Vertical passed");
-            reversedXControl = true;
+            Transform = newTransform;
+            EmitSignal(nameof(OnPositionChanged), Transform);
         }
-
-        EmitSignal(nameof(OnPositionChanged), Transform);
     }
 }
