@@ -226,7 +226,6 @@ public class NewGameSettings : ControlWithInput
         if (!Visible)
             return false;
 
-        // TODO: Don't use bool as we don't work like settings?
         if (!Exit())
         {
             // We are prevented from exiting, consume this input
@@ -471,19 +470,15 @@ public class NewGameSettings : ControlWithInput
                 continue;
 
             if (Math.Abs(playerDeathPopulationPenalty.Value -
-                WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset)) > MathUtils.EPSILON)
-            {
+                    WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset)) > MathUtils.EPSILON)
                 continue;
-            }
 
             if ((int)glucoseDecayRate.Value != WorldGenerationSettings.GetGlucoseDecay(preset) * 100)
                 continue;
 
             if (Math.Abs(osmoregulationMultiplier.Value -
                     WorldGenerationSettings.GetOsmoregulationMultiplier(preset)) > MathUtils.EPSILON)
-            {
                 continue;
-            }
 
             if (freeGlucoseCloudButton.Pressed != WorldGenerationSettings.GetFreeGlucoseCloud(preset))
                 continue;
@@ -525,7 +520,7 @@ public class NewGameSettings : ControlWithInput
 
     private void OnPlayerDeathPopulationPenaltyValueChanged(double amount)
     {
-        playerDeathPopulationPenaltyReadout.Text = amount.ToString();
+        playerDeathPopulationPenaltyReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.PlayerDeathPopulationPenalty = amount;
 
         UpdateDifficultyPreset();
