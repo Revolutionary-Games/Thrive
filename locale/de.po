@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-09 11:10+0100\n"
+"POT-Creation-Date: 2022-06-10 10:46+0100\n"
 "PO-Revision-Date: 2022-04-08 11:52+0000\n"
 "Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -288,12 +288,12 @@ msgid "ABILITIES"
 msgstr "Fähigkeiten"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2177
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "FIRE_TOXIN"
 msgstr "Gift schießen"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2165
+#: ../src/microbe_stage/MicrobeStage.tscn:2164
 msgid "TOGGLE_ENGULF"
 msgstr "Verschlingen umschalten"
 
@@ -302,7 +302,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Gedrückt halten, um das Rudelbefehls Menü anzuzeigen"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2188
+#: ../src/microbe_stage/MicrobeStage.tscn:2187
 msgid "TOGGLE_BINDING"
 msgstr "Bindungsmodus umschalten"
 
@@ -311,7 +311,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Verbinden umschalten"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2200
+#: ../src/microbe_stage/MicrobeStage.tscn:2199
 msgid "UNBIND_ALL"
 msgstr "Alle Verbindungen lösen"
 
@@ -428,35 +428,40 @@ msgid "TOGGLE_PAUSE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:188
+#, fuzzy
+msgid "TOGGLE_DEBUG_PANEL"
+msgstr "Verschlingen umschalten"
+
+#: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
 msgstr "FPS-Anzeige umschalten"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 #, fuzzy
 msgid "TOGGLE_METRICS"
 msgstr "FPS-Anzeige umschalten"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "QUICK_SAVE"
 msgstr "Schnellspeichern"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "QUICK_LOAD"
 msgstr "Schnellladen"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "TAKE_SCREENSHOT"
 msgstr "Screenshot aufnehmen"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SHOW_HELP"
 msgstr "Hilfe anzeigen"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:216
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Vollbild umschalten"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:220
 msgid "TOGGLE_HUD_HIDE"
 msgstr "HUD umschalten"
 
@@ -1064,30 +1069,55 @@ msgstr ""
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Wähle im Editor-Tab eine Zelle aus um sie hier zu editieren"
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
-#: ../src/engine/PerformanceMetrics.tscn:57
+#: ../src/engine/DebugOverlays.FPSCounter.cs:16
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
+#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 #, fuzzy
 msgid "FPS"
 msgstr "Maximale FPS:"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
-msgid "LOADING"
-msgstr "Lädt"
-
-#: ../src/engine/PerformanceMetrics.cs:63
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 #, fuzzy
 msgid "FRAME_DURATION"
 msgstr "Aerobe Atmung"
 
-#: ../src/engine/PerformanceMetrics.cs:77
-#: ../src/engine/PerformanceMetrics.tscn:73
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
+#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.tscn:28
+#: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
+#: ../src/engine/PerformanceMetrics.tscn:30
 #, fuzzy
 msgid "METRICS"
 msgstr "FPS-Anzeige umschalten"
+
+#: ../src/engine/DebugOverlays.tscn:86
+msgid "DEBUG_PANEL"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:96
+#, fuzzy
+msgid "FPS_DISPLAY"
+msgstr "Abspielen"
+
+#: ../src/engine/DebugOverlays.tscn:110
+msgid "COLLISION_SHAPE"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:117
+#, fuzzy
+msgid "ENTITY_LABEL"
+msgstr "Biom: {0}"
+
+#: ../src/engine/DebugOverlays.tscn:128
+#, fuzzy
+msgid "TRANSPARENCY"
+msgstr "Übersetzer"
+
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
+msgid "LOADING"
+msgstr "Lädt"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1552,16 +1582,31 @@ msgstr "Die Glukosekonzentration ist drastisch gesunken!"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Angemeldet als: {0}"
 
-#: ../src/general/MainMenu.tscn:178
+#: ../src/general/MainMenu.tscn:173
+#, fuzzy
+msgid "NEW_GAME_BUTTON_TOOLTIP"
+msgstr "Pause-Menü"
+
+#: ../src/general/MainMenu.tscn:176
 msgid "NEW_GAME"
 msgstr "Neues Spiel"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
+#, fuzzy
+msgid "LOAD_GAME_BUTTON_TOOLTIP"
+msgstr "Pause-Menü"
+
+#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:195
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Spiel laden"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
+#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
+#, fuzzy
+msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr "Hilfe"
+
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS"
 msgstr "Einstellungen"
 
@@ -1581,84 +1626,89 @@ msgstr "Extras"
 msgid "CREDITS"
 msgstr "Abspann"
 
-#: ../src/general/MainMenu.tscn:257
+#: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:235
+#, fuzzy
+msgid "QUIT_BUTTON_TOOLTIP"
+msgstr "Suizid"
+
+#: ../src/general/MainMenu.tscn:258
 msgid "QUIT"
 msgstr "Verlassen"
 
-#: ../src/general/MainMenu.tscn:277
+#: ../src/general/MainMenu.tscn:278
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikroben-Sandboxeditor"
 
-#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
-#: ../src/general/MainMenu.tscn:455 ../src/general/NewGameSettings.tscn:926
-#: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:254
+#: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
+#: ../src/general/MainMenu.tscn:456 ../src/general/NewGameSettings.tscn:926
+#: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:262
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Zurück"
 
-#: ../src/general/MainMenu.tscn:358
+#: ../src/general/MainMenu.tscn:359
 msgid "MODS"
 msgstr "Modifikationen"
 
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:373
 msgid "ART_GALLERY"
 msgstr "Kunstgalerie"
 
-#: ../src/general/MainMenu.tscn:384
+#: ../src/general/MainMenu.tscn:385
 msgid "LICENSES"
 msgstr "Lizenzen"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2-Modus-Warnung"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:500
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Du betreibst Thrive mit GLES2. Dies ist schwerwiegend ungetestet und wird wahrscheinlich Probleme verursachen. Versuche deine Grafiktreiber zu aktualisieren und/oder die Verwendung von AMD- oder Nvidia-Grafiken zur Ausführung von Thrive zu erzwingen."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS"
 msgstr "Fehler beim Laden der Mods"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:505
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Ein Fehler trat beim Laden einer oder mehreren Modifikationen auf. Das Fehlerprotokoll enthält eventuell weitere informationen."
 
-#: ../src/general/NewGameSettings.tscn:115
+#: ../src/general/NewGameSettings.tscn:114
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
+#: ../src/general/NewGameSettings.tscn:128
 #: ../src/general/NewGameSettings.tscn:129
-#: ../src/general/NewGameSettings.tscn:130
 #: ../src/general/NewGameSettings.tscn:342
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:129
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:129
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_HARD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:130
+#: ../src/general/NewGameSettings.tscn:129
 #: ../src/general/NewGameSettings.tscn:343
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:150
+#: ../src/general/NewGameSettings.tscn:149
 #: ../src/general/NewGameSettings.tscn:754
 msgid "LIFE_ORIGIN"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:157
+#: ../src/general/NewGameSettings.tscn:156
 #: ../src/general/NewGameSettings.tscn:761
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
@@ -1668,29 +1718,29 @@ msgstr ""
 "Mutige Mikroben lassen sich von Raubtieren in der Nähe nicht einschüchtern\n"
 "und werden eher zurückschlagen."
 
+#: ../src/general/NewGameSettings.tscn:171
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:173
 #: ../src/general/NewGameSettings.tscn:776
 #: ../src/general/NewGameSettings.tscn:777
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:172
 #: ../src/general/NewGameSettings.tscn:777
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:173
+#: ../src/general/NewGameSettings.tscn:172
 #: ../src/general/NewGameSettings.tscn:777
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:188
+#: ../src/general/NewGameSettings.tscn:187
 #: ../src/general/NewGameSettings.tscn:792
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:195
+#: ../src/general/NewGameSettings.tscn:194
 #: ../src/general/NewGameSettings.tscn:799
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
@@ -1700,20 +1750,20 @@ msgstr ""
 "Mutige Mikroben lassen sich von Raubtieren in der Nähe nicht einschüchtern\n"
 "und werden eher zurückschlagen."
 
-#: ../src/general/NewGameSettings.tscn:206
+#: ../src/general/NewGameSettings.tscn:205
 #: ../src/general/NewGameSettings.tscn:810
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:269
+#: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:279
+#: ../src/general/NewGameSettings.tscn:278
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:289 ../src/general/OptionsMenu.tscn:179
+#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
 msgstr "Sonstiges"
 
@@ -2185,32 +2235,57 @@ msgstr ""
 "Alle nicht gespeicherten Fortschritte gehen verloren."
 
 #: ../src/general/PauseMenu.tscn:178
+#, fuzzy
+msgid "PAUSE_MENU_RESUME_TOOLTIP"
+msgstr "Spiel fortsetzen"
+
+#: ../src/general/PauseMenu.tscn:179
 msgid "RESUME"
 msgstr "Fortsetzen"
 
-#: ../src/general/PauseMenu.tscn:185
+#: ../src/general/PauseMenu.tscn:186
+#, fuzzy
+msgid "SAVE_GAME_BUTTON_TOOLTIP"
+msgstr "Pause-Menü"
+
+#: ../src/general/PauseMenu.tscn:187
 msgid "SAVE_GAME"
 msgstr "Spiel speichern"
 
-#: ../src/general/PauseMenu.tscn:200
+#: ../src/general/PauseMenu.tscn:202
+#, fuzzy
+msgid "STATISTICS_BUTTON_TOOLTIP"
+msgstr "Suizid"
+
+#: ../src/general/PauseMenu.tscn:204
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Statistiken"
 
-#: ../src/general/PauseMenu.tscn:207
+#: ../src/general/PauseMenu.tscn:211
+#: ../src/microbe_stage/MicrobeStage.tscn:1724
+msgid "HELP_BUTTON_TOOLTIP"
+msgstr "Hilfe"
+
+#: ../src/general/PauseMenu.tscn:212
 msgid "HELP"
 msgstr "Hilfe"
 
-#: ../src/general/PauseMenu.tscn:221
+#: ../src/general/PauseMenu.tscn:227
+#, fuzzy
+msgid "RETURN_TO_MENU_TOOLTIP"
+msgstr "Zurück zum Hauptmenü"
+
+#: ../src/general/PauseMenu.tscn:228
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Zurück zum Hauptmenü"
 
-#: ../src/general/PauseMenu.tscn:228
+#: ../src/general/PauseMenu.tscn:236
 msgid "EXIT"
 msgstr "Verlassen"
 
-#: ../src/general/PauseMenu.tscn:279
+#: ../src/general/PauseMenu.tscn:287
 msgid "CONFIRM_EXIT"
 msgstr "Beenden bestätigen"
 
@@ -2890,7 +2965,7 @@ msgstr "Keine Prozesse"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1500
+#: ../src/microbe_stage/MicrobeHUD.cs:1506
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Noch zu implementieren."
 
@@ -3139,12 +3214,12 @@ msgstr "wenig"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "sehr wenig"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1285
+#: ../src/microbe_stage/MicrobeHUD.cs:1291
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr "Multizellulär werden ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1321
+#: ../src/microbe_stage/MicrobeHUD.cs:1327
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopisch werden ({0}/{1})"
@@ -3225,10 +3300,6 @@ msgstr "Umgebung und Substanzen ein-/ausblenden"
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zellprozesse ein-/ausblenden"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1724
-msgid "HELP_BUTTON_TOOLTIP"
-msgstr "Hilfe"
-
 #: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Suizid"
@@ -3241,7 +3312,12 @@ msgstr "Gehe zur nächsten Stufe des Spiels über (Mehrzellig). Verfügbar, soba
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2120
+#: ../src/microbe_stage/MicrobeStage.tscn:1973
+#, fuzzy
+msgid "EDITOR_BUTTON_TOOLTIP"
+msgstr "Suizid"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:2119
 msgid "PAUSED"
 msgstr ""
 
