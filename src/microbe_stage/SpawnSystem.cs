@@ -256,24 +256,24 @@ public class SpawnSystem
 
         // Spawn for all sectors immediately outside a 3x3 box around the player
         var sectorsToSpawn = new List<Int2>(12);
-        for (var i = -1; i <= 1; i++)
+        for (int y = -1; y <= 1; y++)
         {
-            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 + i));
+            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 + y));
         }
 
-        for (var i = -1; i <= 1; i++)
+        for (int x = -1; x <= 1; x++)
         {
-            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2 + i));
+            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2 + x));
         }
 
-        for (var i = -1; i <= 1; i++)
+        for (int y = -1; y <= 1; y++)
         {
-            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + i, playerCoordinatePoint.Item2 - 2));
+            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + y, playerCoordinatePoint.Item2 - 2));
         }
 
-        for (var i = -1; i <= 1; i++)
+        for (int x = -1; x <= 1; x++)
         {
-            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + i, playerCoordinatePoint.Item2 + 2));
+            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + x, playerCoordinatePoint.Item2 + 2));
         }
 
         foreach (var newSector in sectorsToSpawn)
@@ -295,6 +295,8 @@ public class SpawnSystem
     /// units</param>
     private void SpawnInSector(Int2 sector)
     {
+        var spawns = 0;
+
         foreach (var spawnType in spawnTypes)
         {
             var sectorCenter = new Vector3(sector.x * Constants.SPAWN_SECTOR_SIZE, 0,
@@ -305,13 +307,13 @@ public class SpawnSystem
                 (Constants.SPAWN_SECTOR_SIZE / 2), 0,
                 random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
 
-            var spawns = SpawnWithSpawner(spawnType, sectorCenter + displacement);
-
-            var debugOverlay = DebugOverlays.Instance;
-
-            if (debugOverlay.PerformanceMetricsVisible)
-                debugOverlay.ReportSpawns(spawns);
+            spawns += SpawnWithSpawner(spawnType, sectorCenter + displacement);
         }
+
+        var debugOverlay = DebugOverlays.Instance;
+
+        if (debugOverlay.PerformanceMetricsVisible)
+            debugOverlay.ReportSpawns(spawns);
     }
 
     private void SpawnMicrobesAroundPlayer(Vector3 playerLocation)
