@@ -106,7 +106,6 @@ custom_styles/disabled = SubResource( 5 )
 custom_styles/normal = SubResource( 1 )
 text = "STOP"
 
-[connection signal="gui_input" from="PlaybackSlider" to="." method="OnSliderInput"]
 [connection signal="value_changed" from="PlaybackSlider" to="." method="OnSliderChanged"]
 [connection signal="OnPressed" from="PlayButton" to="." method="OnPlayButtonPressed"]
 [connection signal="pressed" from="StopButton" to="." method="OnStopPressed"]

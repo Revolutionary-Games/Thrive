@@ -10,7 +10,7 @@ public class PlaybackControls : HBoxContainer
     private Button? stopButton;
 
     private float playbackProgress;
-    private bool dragging;
+    private bool sliderAutoUpdate;
     private bool? lastState;
 
     [Signal]
@@ -151,7 +151,9 @@ public class PlaybackControls : HBoxContainer
         if (playbackSlider == null)
             return;
 
+        sliderAutoUpdate = true;
         playbackSlider.Value = playbackProgress;
+        sliderAutoUpdate = false;
     }
 
     private void OnPlayButtonPressed(bool paused)
@@ -165,26 +167,13 @@ public class PlaybackControls : HBoxContainer
             StartPlayback();
     }
 
-    private void OnSliderInput(InputEvent @event)
-    {
-        // Need to know if user is currently interacting with the slider (holding down left mouse)
-        if (@event is InputEventMouseButton button && button.ButtonIndex == (int)ButtonList.Left)
-            dragging = button.Pressed;
-    }
-
     private void OnSliderChanged(float value)
     {
-        // Only set the playback position if we really are dragging the slider as this method is always
-        // called when the value of slider changes
-        if (dragging)
-        {
-            playbackProgress = value;
-            AudioPlayer?.Seek(PlaybackPosFromProgress(value));
-        }
-        else if (!dragging && value == playbackSlider!.MaxValue)
-        {
-            StopPlayback();
-        }
+        if (sliderAutoUpdate)
+            return;
+
+        playbackProgress = value;
+        AudioPlayer?.Seek(PlaybackPosFromProgress(value));
     }
 
     private void OnStopPressed()

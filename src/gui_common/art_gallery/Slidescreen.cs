@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
-using Array = Godot.Collections.Array;
 using Object = Godot.Object;
 
 /// <summary>
