@@ -15,8 +15,8 @@ public class WorldGenerationSettings
     public const double MAX_AI_MUTATION_RATE = 5;
     public const double MIN_COMPOUND_DENSITY = 0.2;
     public const double MAX_COMPOUND_DENSITY = 2;
-    public const int MIN_PLAYER_DEATH_POPULATION_PENALTY = 10;
-    public const int MAX_PLAYER_DEATH_POPULATION_PENALTY = 100;
+    public const double MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
+    public const double MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
     public const double MIN_GLUCOSE_DECAY = 0.3;
     public const double MAX_GLUCOSE_DECAY = 0.95;
     public const double MIN_OSMOREGULATION_MULTIPLIER = 0.2;
@@ -46,7 +46,7 @@ public class WorldGenerationSettings
     public double MPMultiplier { get; set; } = 1;
     public double AIMutationMultiplier { get; set; } = 1;
     public double CompoundDensity { get; set; } = 1;
-    public int PlayerDeathPopulationPenalty { get; set; } = 20;
+    public double PlayerDeathPopulationPenalty { get; set; } = 1;
     public double GlucoseDecay { get; set; } = 0.8;
     public double OsmoregulationMultiplier { get; set; } = 1;
     public bool FreeGlucoseCloud { get; set; }
@@ -102,18 +102,18 @@ public class WorldGenerationSettings
         }
     }
 
-    public static int GetPlayerDeathPopulationPenalty(DifficultyPreset preset)
+    public static double GetPlayerDeathPopulationPenalty(DifficultyPreset preset)
     {
         switch (preset)
         {
             case DifficultyPreset.Easy:
-                return 10;
+                return 1;
             case DifficultyPreset.Normal:
-                return 20;
+                return 1;
             case DifficultyPreset.Hard:
-                return 50;
+                return 2;
             default:
-                return 20;
+                return 1;
         }
     }
 

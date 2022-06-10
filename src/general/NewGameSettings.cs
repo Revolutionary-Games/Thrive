@@ -377,7 +377,7 @@ public class NewGameSettings : ControlWithInput
         settings.MPMultiplier = mpMultiplier.Value;
         settings.AIMutationMultiplier = aiMutationRate.Value;
         settings.CompoundDensity = compoundDensity.Value;
-        settings.PlayerDeathPopulationPenalty = (int)playerDeathPopulationPenalty.Value;
+        settings.PlayerDeathPopulationPenalty = playerDeathPopulationPenalty.Value;
         settings.GlucoseDecay = glucoseDecayRate.Value * 0.01;
         settings.OsmoregulationMultiplier = osmoregulationMultiplier.Value;
         settings.FreeGlucoseCloud = freeGlucoseCloudButton.Pressed;
@@ -470,8 +470,8 @@ public class NewGameSettings : ControlWithInput
                 MathUtils.EPSILON)
                 continue;
 
-            if ((int)playerDeathPopulationPenalty.Value !=
-                WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset))
+            if (Math.Abs(playerDeathPopulationPenalty.Value -
+                WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset)) > MathUtils.EPSILON)
             {
                 continue;
             }
@@ -525,8 +525,8 @@ public class NewGameSettings : ControlWithInput
 
     private void OnPlayerDeathPopulationPenaltyValueChanged(double amount)
     {
-        playerDeathPopulationPenaltyReadout.Text = ((int)amount).ToString();
-        settings.PlayerDeathPopulationPenalty = (int)amount;
+        playerDeathPopulationPenaltyReadout.Text = amount.ToString();
+        settings.PlayerDeathPopulationPenalty = amount;
 
         UpdateDifficultyPreset();
     }
