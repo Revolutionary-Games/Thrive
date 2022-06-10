@@ -59,7 +59,7 @@ public class SpawnSystem
     ///   Used to prevent a "spawn belt" of densely spawned entities when player doesn't move.
     /// </summary>
     [JsonProperty]
-    private HashSet<Tuple<int, int>> coordinatesSpawned = new();
+    private HashSet<Int2> coordinatesSpawned = new();
 
     public SpawnSystem(Node root)
     {
@@ -255,25 +255,25 @@ public class SpawnSystem
             Constants.SPAWN_SECTOR_SIZE), Mathf.RoundToInt(playerPosition.z / Constants.SPAWN_SECTOR_SIZE));
 
         // Spawn for all sectors immediately outside a 3x3 box around the player
-        var sectorsToSpawn = new List<Tuple<int, int>>(12);
+        var sectorsToSpawn = new List<Int2>(12);
         for (var i = -1; i <= 1; i++)
         {
-            sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 + i));
+            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 + i));
         }
 
         for (var i = -1; i <= 1; i++)
         {
-            sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2 + i));
+            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2 + i));
         }
 
         for (var i = -1; i <= 1; i++)
         {
-            sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 + i, playerCoordinatePoint.Item2 - 2));
+            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + i, playerCoordinatePoint.Item2 - 2));
         }
 
         for (var i = -1; i <= 1; i++)
         {
-            sectorsToSpawn.Add(new Tuple<int, int>(playerCoordinatePoint.Item1 + i, playerCoordinatePoint.Item2 + 2));
+            sectorsToSpawn.Add(new Int2(playerCoordinatePoint.Item1 + i, playerCoordinatePoint.Item2 + 2));
         }
 
         foreach (var newSector in sectorsToSpawn)
@@ -293,12 +293,12 @@ public class SpawnSystem
     /// </summary>
     /// <param name="sector">X/Y coordinates of the sector to be spawned, in <see cref="Constants.SPAWN_SECTOR_SIZE" />
     /// units</param>
-    private void SpawnInSector(Tuple<int, int> sector)
+    private void SpawnInSector(Int2 sector)
     {
         foreach (var spawnType in spawnTypes)
         {
-            var sectorCenter = new Vector3(sector.Item1 * Constants.SPAWN_SECTOR_SIZE, 0,
-                sector.Item2 * Constants.SPAWN_SECTOR_SIZE);
+            var sectorCenter = new Vector3(sector.x * Constants.SPAWN_SECTOR_SIZE, 0,
+                sector.y * Constants.SPAWN_SECTOR_SIZE);
 
             // Distance from the sector center.
             var displacement = new Vector3(random.NextFloat() * Constants.SPAWN_SECTOR_SIZE -
