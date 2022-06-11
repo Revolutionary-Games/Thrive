@@ -28,6 +28,16 @@
         {
             switch (eventType)
             {
+                case TutorialEventType.MicrobePlayerDied:
+                {
+                    if (ShownCurrently)
+                    {
+                        Hide();
+                    }
+
+                    break;
+                }
+
                 case TutorialEventType.MicrobePlayerReadyToEdit:
                 {
                     if (!Complete && !ProcessWhileHidden)
