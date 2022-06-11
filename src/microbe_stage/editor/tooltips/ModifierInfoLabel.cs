@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Used to display a modifier info as UI element on a selection menu tooltip
