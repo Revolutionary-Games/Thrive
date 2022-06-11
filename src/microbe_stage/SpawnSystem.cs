@@ -202,6 +202,11 @@ public class SpawnSystem
     {
         int initialSpawns = spawnsLeftThisFrame;
 
+        if (queuedSpawns == null)
+        {
+            return;
+        }
+
         // Spawn from the queue
         foreach (var spawn in queuedSpawns.Spawns)
         {
