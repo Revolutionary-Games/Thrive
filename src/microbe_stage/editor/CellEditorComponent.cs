@@ -429,6 +429,19 @@ public partial class CellEditorComponent :
 
     private float CostMultiplier => IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f;
 
+    /// <summary>
+    ///   true if the name has been changed since applying new state, false otherwise
+    /// </summary>
+    public bool HasNewName()
+    {
+        if (Editor.EditedCellProperties == null)
+        {
+            return false;
+        }
+
+        return Editor.EditedCellProperties.FormattedName != newName;
+    }
+
     public override void _Ready()
     {
         base._Ready();

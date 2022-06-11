@@ -410,8 +410,8 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
         if (selectedCellTypeToEdit == null)
             return;
 
-        // Only do something if the user did has done any action in the past
-        if (!history.CanUndo())
+        // Do something if the user has done any action in the past OR changed the cell type name
+        if (!history.CanUndo() && !cellEditorTab.HasNewName())
             return;
 
         // TODO: only apply if there were changes
@@ -419,9 +419,16 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
         // Combine the topmost action in the stack with this new one to make sure finishing editing a cell doesn't
         // cause a separate step
-        var action = new CombinedEditorAction(history.PopTopAction(),
-            new SingleEditorAction<EndCellTypeEditActionData>(DoEndCellTypeEditAction, UndoEndCellTypeEditAction,
-                new EndCellTypeEditActionData(selectedCellTypeToEdit)));
+        var actionsToCombine = new List<EditorAction>();
+        if (history.CanUndo())
+        {
+            actionsToCombine.Add(history.PopTopAction());
+        }
+
+        actionsToCombine.Add(new SingleEditorAction<EndCellTypeEditActionData>(DoEndCellTypeEditAction,
+            UndoEndCellTypeEditAction, new EndCellTypeEditActionData(selectedCellTypeToEdit)));
+
+        var action = new CombinedEditorAction(actionsToCombine);
 
         // We need to do this here to free up the MP that is now in the undone action, otherwise it won't succeed in
         // all cases
