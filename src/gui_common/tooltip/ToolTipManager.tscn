@@ -2,10 +2,10 @@
 
 [ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
-[ext_resource path="res://src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/parts/FlagellumIcon.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" type="Texture" id=12]
-[ext_resource path="res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.cs" type="Script" id=21]
+[ext_resource path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.cs" type="Script" id=21]
 [ext_resource path="res://src/gui_common/tooltip/ToolTipManager.cs" type="Script" id=23]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=26]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=27]
@@ -133,7 +133,7 @@ MutationPointCost = 2
 margin_bottom = 168.0
 
 [node name="VBoxContainer" parent="GroupHolder/editor/rigiditySlider/MarginContainer" index="0"]
-margin_bottom = 156.0
+margin_bottom = 190.0
 
 [node name="CustomRichTextLabel" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="2"]
 visible = false
@@ -147,14 +147,14 @@ margin_bottom = 42.0
 margin_top = 42.0
 margin_bottom = 86.0
 
-[node name="mobility" type="HBoxContainer" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList" index="0"]
+[node name="baseMobility" type="HBoxContainer" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
-DisplayName = "MOBILITY"
+DisplayName = "BASE_MOBILITY"
 
-[node name="Value" type="Label" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Value" type="Label" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
@@ -162,7 +162,7 @@ custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 custom_fonts/font = ExtResource( 26 )
 text = "-0.4"
 
-[node name="Name" type="Label" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Name" type="Label" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 28.0
 margin_right = 86.0
 margin_bottom = 19.0
@@ -172,7 +172,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Icon" type="TextureRect" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 90.0
 margin_right = 110.0
 margin_bottom = 20.0
@@ -282,7 +282,7 @@ MutationPointCost = 22
 margin_bottom = 220.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/cytoplasm/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 138.0
@@ -381,7 +381,7 @@ MutationPointCost = 45
 margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="Title" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/Header" index="1"]
 margin_right = 299.0
@@ -483,7 +483,7 @@ MutationPointCost = 50
 margin_bottom = 220.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/chromatophore/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 138.0
@@ -581,7 +581,7 @@ margin_bottom = 220.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer" index="0"]
 margin_right = 378.0
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="Title" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Header" index="1"]
 margin_right = 349.0
@@ -683,7 +683,7 @@ MutationPointCost = 45
 margin_bottom = 220.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/rusticyanin/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 138.0
@@ -780,7 +780,7 @@ MutationPointCost = 55
 margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/nitrogenase/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
@@ -878,7 +878,7 @@ MutationPointCost = 55
 margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/oxytoxyProteins/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
@@ -975,7 +975,7 @@ MutationPointCost = 55
 margin_bottom = 240.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/flagellum/MarginContainer" index="0"]
-margin_bottom = 232.0
+margin_bottom = 266.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/flagellum/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 158.0
@@ -1228,7 +1228,7 @@ MutationPointCost = 40
 RequiresNucleus = true
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/cilia/MarginContainer" index="0"]
-margin_bottom = 184.0
+margin_bottom = 218.0
 
 [node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/cilia/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_top = 48.0
@@ -1275,7 +1275,7 @@ MutationPointCost = 55
 RequiresNucleus = true
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/bindingAgent/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_right = 318.0
@@ -1361,7 +1361,7 @@ MutationPointCost = 70
 margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/nucleus/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/nucleus/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
@@ -1456,7 +1456,7 @@ MutationPointCost = 45
 RequiresNucleus = true
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/mitochondrion/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_top = 26.0
@@ -1541,7 +1541,7 @@ MutationPointCost = 50
 RequiresNucleus = true
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/chloroplast/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_top = 50.0
@@ -1629,7 +1629,7 @@ RequiresNucleus = true
 margin_bottom = 271.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer" index="0"]
-margin_bottom = 259.0
+margin_bottom = 293.0
 
 [node name="ProcessList" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="3"]
 margin_bottom = 98.0
@@ -1717,10 +1717,6 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="6"]
-margin_top = 172.0
-margin_bottom = 176.0
-
 [node name="ToBeImplemented" type="Label" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="5"]
 margin_top = 191.0
 margin_right = 318.0
@@ -1728,6 +1724,10 @@ margin_bottom = 208.0
 custom_fonts/font = ExtResource( 26 )
 text = "TO_BE_IMPLEMENTED"
 autowrap = true
+
+[node name="HSeparator" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="6"]
+margin_top = 172.0
+margin_bottom = 176.0
 
 [node name="Description" parent="GroupHolder/organelleSelection/thermoplast/MarginContainer/VBoxContainer" index="7"]
 margin_top = 223.0
@@ -1742,7 +1742,7 @@ MutationPointCost = 45
 RequiresNucleus = true
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="storage" type="HBoxContainer" parent="GroupHolder/organelleSelection/chemoplast/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_top = 50.0
@@ -1830,7 +1830,7 @@ RequiresNucleus = true
 margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/nitrogenfixingplastid/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
@@ -1929,7 +1929,7 @@ RequiresNucleus = true
 margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/vacuole/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
@@ -2027,7 +2027,7 @@ RequiresNucleus = true
 margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/oxytoxy/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
@@ -2125,7 +2125,7 @@ RequiresNucleus = true
 margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer" index="0"]
-margin_bottom = 208.0
+margin_bottom = 242.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/signalingAgent/MarginContainer/VBoxContainer" index="4"]
 margin_bottom = 134.0
@@ -2266,14 +2266,14 @@ margin_bottom = 42.0
 margin_top = 42.0
 margin_bottom = 134.0
 
-[node name="mobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="0"]
+[node name="baseMobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
-DisplayName = "MOBILITY"
+DisplayName = "BASE_MOBILITY"
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_top = 1.0
 margin_right = 35.0
 margin_bottom = 18.0
@@ -2281,7 +2281,7 @@ custom_colors/font_color = Color( 0, 1, 0, 1 )
 custom_fonts/font = ExtResource( 26 )
 text = "+10%"
 
-[node name="Name" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Name" type="Label" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 39.0
 margin_right = 112.0
 margin_bottom = 19.0
@@ -2291,7 +2291,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 116.0
 margin_right = 136.0
 margin_bottom = 20.0
@@ -2434,21 +2434,21 @@ margin_bottom = 42.0
 margin_top = 42.0
 margin_bottom = 134.0
 
-[node name="mobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="0"]
+[node name="baseMobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
-DisplayName = "MOBILITY"
+DisplayName = "BASE_MOBILITY"
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_top = 1.0
 margin_right = 16.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 text = "+0"
 
-[node name="Name" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Name" type="Label" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 20.0
 margin_right = 93.0
 margin_bottom = 19.0
@@ -2458,7 +2458,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 97.0
 margin_right = 117.0
 margin_bottom = 20.0
@@ -2598,14 +2598,14 @@ margin_bottom = 42.0
 margin_top = 42.0
 margin_bottom = 182.0
 
-[node name="mobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="0"]
+[node name="baseMobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
-DisplayName = "MOBILITY"
+DisplayName = "BASE_MOBILITY"
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_top = 1.0
 margin_right = 32.0
 margin_bottom = 18.0
@@ -2613,7 +2613,7 @@ custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 custom_fonts/font = ExtResource( 26 )
 text = "-10%"
 
-[node name="Name" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Name" type="Label" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 36.0
 margin_right = 109.0
 margin_bottom = 19.0
@@ -2623,7 +2623,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 113.0
 margin_right = 133.0
 margin_bottom = 20.0
@@ -2819,7 +2819,7 @@ MutationPointCost = 50
 margin_bottom = 264.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer" index="0"]
-margin_bottom = 252.0
+margin_bottom = 286.0
 
 [node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer" index="2"]
 visible = false
@@ -2833,14 +2833,14 @@ margin_bottom = 42.0
 margin_top = 42.0
 margin_bottom = 182.0
 
-[node name="mobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="0"]
+[node name="baseMobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
-DisplayName = "MOBILITY"
+DisplayName = "BASE_MOBILITY"
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_top = 1.0
 margin_right = 32.0
 margin_bottom = 18.0
@@ -2848,7 +2848,7 @@ custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 custom_fonts/font = ExtResource( 26 )
 text = "-10%"
 
-[node name="Name" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Name" type="Label" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 36.0
 margin_right = 109.0
 margin_bottom = 19.0
@@ -2858,7 +2858,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 113.0
 margin_right = 133.0
 margin_bottom = 20.0
@@ -3054,7 +3054,7 @@ MutationPointCost = 50
 margin_bottom = 288.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer" index="0"]
-margin_bottom = 276.0
+margin_bottom = 310.0
 
 [node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="2"]
 visible = false
@@ -3066,14 +3066,14 @@ visible = false
 margin_top = 42.0
 margin_bottom = 206.0
 
-[node name="mobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="0"]
+[node name="baseMobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
-DisplayName = "MOBILITY"
+DisplayName = "BASE_MOBILITY"
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_top = 1.0
 margin_right = 32.0
 margin_bottom = 18.0
@@ -3081,7 +3081,7 @@ custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 custom_fonts/font = ExtResource( 26 )
 text = "-20%"
 
-[node name="Name" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Name" type="Label" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 36.0
 margin_right = 109.0
 margin_bottom = 19.0
@@ -3091,7 +3091,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 113.0
 margin_right = 133.0
 margin_bottom = 20.0
@@ -3322,7 +3322,7 @@ MutationPointCost = 50
 margin_bottom = 288.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer" index="0"]
-margin_bottom = 276.0
+margin_bottom = 310.0
 
 [node name="CustomRichTextLabel" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="2"]
 visible = false
@@ -3336,14 +3336,14 @@ margin_bottom = 42.0
 margin_top = 42.0
 margin_bottom = 206.0
 
-[node name="mobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="0"]
+[node name="baseMobility" type="HBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
-DisplayName = "MOBILITY"
+DisplayName = "BASE_MOBILITY"
 
-[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Value" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_top = 1.0
 margin_right = 32.0
 margin_bottom = 18.0
@@ -3351,7 +3351,7 @@ custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 custom_fonts/font = ExtResource( 26 )
 text = "-20%"
 
-[node name="Name" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Name" type="Label" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 36.0
 margin_right = 109.0
 margin_bottom = 19.0
@@ -3361,7 +3361,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/mobility"]
+[node name="Icon" type="TextureRect" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/baseMobility"]
 margin_left = 113.0
 margin_right = 133.0
 margin_bottom = 20.0

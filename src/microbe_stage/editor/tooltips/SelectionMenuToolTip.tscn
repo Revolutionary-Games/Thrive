@@ -6,10 +6,11 @@
 [ext_resource path="res://assets/textures/gui/bevel/MP.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=5]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs" type="Script" id=7]
+[ext_resource path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs" type="Script" id=7]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=9]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=10]
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )

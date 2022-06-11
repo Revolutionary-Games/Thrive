@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -150,7 +150,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
         processList = GetNode<ProcessList>(ProcessListPath);
 
-        modifierInfoScene = GD.Load<PackedScene>("res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.tscn");
+        modifierInfoScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn");
         latoBoldFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Bold-Smaller.tres");
 
         UpdateName();
@@ -223,7 +223,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
             switch (modifier.Name)
             {
-                case "mobility":
+                case "baseMobility":
                     deltaValue = membraneType.MovementFactor - referenceMembrane.MovementFactor;
                     break;
                 case "osmoregulationCost":
