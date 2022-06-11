@@ -206,11 +206,6 @@ public class SpawnSystem
         {
             var spawn = queuedSpawns.Dequeue();
 
-            if (spawnsLeftThisFrame < 1)
-            {
-                break;
-            }
-
             var enumerable = spawn!.Item1.Spawn(worldRoot, spawn.Item2);
 
             if (enumerable != null)
@@ -229,6 +224,11 @@ public class SpawnSystem
                 }
 
                 enumerator.Dispose();
+            }
+
+            if (spawnsLeftThisFrame < 1)
+            {
+                break;
             }
         }
 
