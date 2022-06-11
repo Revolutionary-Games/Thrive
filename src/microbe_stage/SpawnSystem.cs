@@ -45,7 +45,7 @@ public class SpawnSystem
     ///     this object so much
     ///   </para>
     /// </remarks>
-    private QueuedSpawn queuedSpawns = new QueuedSpawn();
+    private QueuedSpawn queuedSpawns = new();
 
     /// <summary>
     ///   Estimate count of existing spawned entities, cached to make delayed spawns cheaper
@@ -201,11 +201,6 @@ public class SpawnSystem
     {
         int initialSpawns = spawnsLeftThisFrame;
 
-        if (queuedSpawns == null)
-        {
-            return;
-        }
-
         // Spawn from the queue
         while (spawnsLeftThisFrame > 0 && queuedSpawns.Spawns.Count > 0)
         {
@@ -232,6 +227,7 @@ public class SpawnSystem
                     ++estimateEntityCount;
                     --spawnsLeftThisFrame;
                 }
+                enumerator.Dispose();
             }
         }
 
@@ -371,11 +367,6 @@ public class SpawnSystem
             }
             else
             {
-                if (queuedSpawns == null)
-                {
-                    queuedSpawns = new QueuedSpawn();
-                }
-
                 queuedSpawns.QueueSpawn(spawnType, location);
             }
         }
