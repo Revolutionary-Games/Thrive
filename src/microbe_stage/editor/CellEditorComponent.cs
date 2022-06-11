@@ -1887,7 +1887,8 @@ public partial class CellEditorComponent :
     {
         newName = newText;
 
-        if (IsMulticellularEditor)
+        // Validate name against other cells and if the name has changed
+        if (IsMulticellularEditor && HasNewName())
         {
             if (ValidateNewCellTypeName != null)
             {

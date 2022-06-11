@@ -156,7 +156,6 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
     public bool IsNewCellTypeNameValid(string newName)
     {
         return !string.IsNullOrWhiteSpace(newName) && !EditedSpecies.CellTypes.Any(c =>
-            c != selectedCellTypeToEdit &&
             c.TypeName.Equals(newName, StringComparison.InvariantCultureIgnoreCase));
     }
 
