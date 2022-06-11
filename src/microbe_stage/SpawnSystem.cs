@@ -118,7 +118,7 @@ public class SpawnSystem
     public void Clear()
     {
         spawnTypes.Clear();
-        queuedSpawns = null;
+        queuedSpawns.Clear();
         elapsed = 0;
         despawnElapsed = 0;
     }
@@ -128,8 +128,6 @@ public class SpawnSystem
     /// </summary>
     public void DespawnAll()
     {
-        queuedSpawns = null;
-
         int despawned = 0;
 
         foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
@@ -493,6 +491,11 @@ public class SpawnSystem
             {
                 return null;
             }
+        }
+
+        public void Clear()
+        {
+            Spawns.Clear();
         }
     }
 }
