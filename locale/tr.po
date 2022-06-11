@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-09 14:12+0300\n"
+"POT-Creation-Date: 2022-06-10 16:25+0300\n"
 "PO-Revision-Date: 2022-05-19 13:19+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -429,7 +429,7 @@ msgstr "Diğer"
 
 #: ../simulation_parameters/common/input_options.json:184
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "Oyunu duraklat"
 
 #: ../simulation_parameters/common/input_options.json:188
 #, fuzzy
@@ -446,11 +446,11 @@ msgstr "Ölçümler göstergesini aç"
 
 #: ../simulation_parameters/common/input_options.json:200
 msgid "QUICK_SAVE"
-msgstr "Çabuk kaydetme"
+msgstr "Çabuk kaydet"
 
 #: ../simulation_parameters/common/input_options.json:204
 msgid "QUICK_LOAD"
-msgstr "Çabuk yükleme"
+msgstr "Çabuk yükle"
 
 #: ../simulation_parameters/common/input_options.json:208
 msgid "TAKE_SCREENSHOT"
@@ -1047,9 +1047,8 @@ msgid "MP_COST"
 msgstr "{0} MP"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
-#, fuzzy
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Mikrop Editörü Yükleniyor"
+msgstr "Çok Hücreli Editörünün İlk Kısmı Yükleniyor"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:196
@@ -1598,18 +1597,16 @@ msgid "STORE_LOGGED_IN_AS"
 msgstr "{0} olarak giriş yapıldı"
 
 #: ../src/general/MainMenu.tscn:173
-#, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Ara menü"
+msgstr "Yeni bir oyun başlat"
 
 #: ../src/general/MainMenu.tscn:176
 msgid "NEW_GAME"
 msgstr "Yeni Oyun"
 
 #: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
-#, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr "Ara menü"
+msgstr "Daha önce kaydedilmiş oyunları yükle"
 
 #: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:195
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
@@ -1617,9 +1614,8 @@ msgid "LOAD_GAME"
 msgstr "Oyun Yükle"
 
 #: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
-#, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr "Yardım"
+msgstr "Ayarlarını değiştir"
 
 #: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS"
@@ -1642,9 +1638,8 @@ msgid "CREDITS"
 msgstr "Jenerik"
 
 #: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:235
-#, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr "İntihar Et"
+msgstr "Oyundan çık"
 
 #: ../src/general/MainMenu.tscn:258
 msgid "QUIT"
@@ -2038,7 +2033,6 @@ msgstr ""
 "Kaydedilmemiş ilerlemeler kaybedilecek."
 
 #: ../src/general/PauseMenu.tscn:178
-#, fuzzy
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Oyuna devam et"
 
@@ -2047,18 +2041,16 @@ msgid "RESUME"
 msgstr "Devam Et"
 
 #: ../src/general/PauseMenu.tscn:186
-#, fuzzy
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
-msgstr "Ara menü"
+msgstr "Oyunu kaydetmek için kaydetme menüsünü aç"
 
 #: ../src/general/PauseMenu.tscn:187
 msgid "SAVE_GAME"
 msgstr "Oyunu Kaydet"
 
 #: ../src/general/PauseMenu.tscn:202
-#, fuzzy
 msgid "STATISTICS_BUTTON_TOOLTIP"
-msgstr "İntihar Et"
+msgstr "Mevcut oyunla ilgili bilgilendirici istatistikler"
 
 #: ../src/general/PauseMenu.tscn:204
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
@@ -2068,16 +2060,15 @@ msgstr "İstatistikler"
 #: ../src/general/PauseMenu.tscn:211
 #: ../src/microbe_stage/MicrobeStage.tscn:1724
 msgid "HELP_BUTTON_TOOLTIP"
-msgstr "Yardım"
+msgstr "Oyunun nasıl oynanacağını öğren"
 
 #: ../src/general/PauseMenu.tscn:212
 msgid "HELP"
 msgstr "Yardım"
 
 #: ../src/general/PauseMenu.tscn:227
-#, fuzzy
 msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr "Menüye Dön"
+msgstr "Ana menüye dön"
 
 #: ../src/general/PauseMenu.tscn:228
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
@@ -2980,7 +2971,7 @@ msgstr "Yollanacak Sinyal"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:814
 msgid "PAUSE_PROMPT"
-msgstr ""
+msgstr "[center]Oyuna devam etmek için [thrive:input]g_pause[/thrive:input] tuşuna bas[/center]"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:928
 msgid "STUFF_AT"
@@ -3117,13 +3108,12 @@ msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1973
-#, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr "Yeni bir kontrol tuşu ekle"
+msgstr "Editöre gir ve türünde değişiklik yap"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:2119
 msgid "PAUSED"
-msgstr ""
+msgstr "DURAKLATILDI"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:187
 msgid "PATCH_NAME"

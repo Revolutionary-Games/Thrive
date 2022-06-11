@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-09 14:12+0300\n"
+"POT-Creation-Date: 2022-06-10 16:25+0300\n"
 "PO-Revision-Date: 2022-04-15 14:50+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -427,7 +427,7 @@ msgstr "Miscel·lània"
 
 #: ../simulation_parameters/common/input_options.json:184
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "Pausa"
 
 #: ../simulation_parameters/common/input_options.json:188
 #, fuzzy
@@ -439,9 +439,8 @@ msgid "TOGGLE_FPS"
 msgstr "Activar monitor FPS"
 
 #: ../simulation_parameters/common/input_options.json:196
-#, fuzzy
 msgid "TOGGLE_METRICS"
-msgstr "Activar monitor FPS"
+msgstr "Activar pestanya d'estadístiques"
 
 #: ../simulation_parameters/common/input_options.json:200
 msgid "QUICK_SAVE"
@@ -1034,9 +1033,8 @@ msgid "NEW_NAME"
 msgstr "Nou Nom"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_CELLS"
-msgstr "Col·locar orgànul"
+msgstr "Múltiples cèl·lules"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:76
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
@@ -1065,7 +1063,7 @@ msgstr "estat d'execució:"
 #: ../src/general/EditorBase.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "Acció bloquejada mentre una altra s'està duent a terme"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
@@ -1074,14 +1072,12 @@ msgstr "Selecciona un tipus de cèl·lula per editar aquí des de la pestanya Ed
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
 #: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
-#, fuzzy
 msgid "FPS"
-msgstr "Màxims FPS:"
+msgstr "FPS: {0}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
-#, fuzzy
 msgid "FRAME_DURATION"
-msgstr "Respiració aeròbica"
+msgstr "Delta: {0}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-09 14:12+0300\n"
+"POT-Creation-Date: 2022-06-10 16:25+0300\n"
 "PO-Revision-Date: 2022-03-26 14:06+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -427,7 +427,7 @@ msgstr "杂项"
 
 #: ../simulation_parameters/common/input_options.json:184
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "暂停"
 
 #: ../simulation_parameters/common/input_options.json:188
 #, fuzzy
@@ -1043,9 +1043,8 @@ msgid "MP_COST"
 msgstr "{0} 变异点"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
-#, fuzzy
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "载入微生物编辑器中"
+msgstr "载入早期多细胞编辑器中"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:196
@@ -2961,7 +2960,7 @@ msgstr "要发出的信号"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:814
 msgid "PAUSE_PROMPT"
-msgstr ""
+msgstr "[center]按[thrive:input]g_pause[/thrive:input]以解除暂停[/center]"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:928
 msgid "STUFF_AT"
@@ -3104,7 +3103,7 @@ msgstr "添加新的绑定键位"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:2119
 msgid "PAUSED"
-msgstr ""
+msgstr "暂停中"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:187
 msgid "PATCH_NAME"
