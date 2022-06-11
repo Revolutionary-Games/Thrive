@@ -167,7 +167,7 @@ public class SpawnSystem
         // Remove the y-position from player position
         playerPosition.y = 0;
 
-        spawnsLeftThisFrame = 1;
+        spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
 
         // If we have queued spawns to do spawn those
         HandleQueuedSpawns(spawnsLeftThisFrame);
