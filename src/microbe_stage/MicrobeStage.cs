@@ -51,8 +51,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     private List<GuidanceLine> chemoreceptionLines = new();
 
-    // TODO: make this be saved (and preserve old save compatibility by creating this in on save loaded callback
-    // if null)
+    [JsonProperty]
     private Random random = new();
 
     /// <summary>
