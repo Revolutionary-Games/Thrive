@@ -45,7 +45,7 @@ public class SpawnSystem
     ///     this object so much
     ///   </para>
     /// </remarks>
-    private QueuedSpawn queuedSpawns = new();
+    private QueuedSpawn queuedSpawns = new QueuedSpawn();
 
     /// <summary>
     ///   Estimate count of existing spawned entities, cached to make delayed spawns cheaper
@@ -168,7 +168,7 @@ public class SpawnSystem
         // Remove the y-position from player position
         playerPosition.y = 0;
 
-        spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
+        spawnsLeftThisFrame = 1;
 
         // If we have queued spawns to do spawn those
         HandleQueuedSpawns(spawnsLeftThisFrame);
@@ -208,23 +208,30 @@ public class SpawnSystem
         }
 
         // Spawn from the queue
-        foreach (var spawn in queuedSpawns.Spawns)
+        while (spawnsLeftThisFrame > 0 && queuedSpawns.Spawns.Count > 0)
         {
+            var spawn = queuedSpawns.Dequeue();
+
             if (spawnsLeftThisFrame < 1)
             {
                 break;
             }
 
-            var enumerator = spawn.Item2;
-            while (estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES && spawnsLeftThisFrame > 0)
-            {
-                // Next was spawned
-                ProcessSpawnedEntity(
-                    enumerator.Current ?? throw new Exception("Queued spawn enumerator returned null"),
-                    spawn.Item1);
+            var enumerable = spawn.Item1.Spawn(worldRoot, spawn.Item2);
 
-                ++estimateEntityCount;
-                --spawnsLeftThisFrame;
+            if (enumerable != null)
+            {
+                var enumerator = enumerable.GetEnumerator();
+                while (enumerator.MoveNext() && estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES && spawnsLeftThisFrame > 0)
+                {
+                    // Next was spawned
+                    ProcessSpawnedEntity(
+                        enumerator.Current ?? throw new Exception("Queued spawn enumerator returned null"),
+                        spawn.Item1);
+
+                    ++estimateEntityCount;
+                    --spawnsLeftThisFrame;
+                }
             }
         }
 
@@ -343,29 +350,33 @@ public class SpawnSystem
 
         if (spawnType is CompoundCloudSpawner || estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
         {
-            var enumerable = spawnType.Spawn(worldRoot, location);
-
-            if (enumerable == null)
-                return spawns;
-
-            using var spawner = enumerable.GetEnumerator();
-            while (spawner.MoveNext())
+            if (spawnsLeftThisFrame > 0)
             {
-                if (spawner.Current == null)
-                    throw new NullReferenceException("spawn enumerator is not allowed to return null");
+                var enumerable = spawnType.Spawn(worldRoot, location);
 
-                if (spawnsLeftThisFrame > 0)
+                if (enumerable == null)
+                    return spawns;
+
+                using var spawner = enumerable.GetEnumerator();
+                while (spawner.MoveNext())
                 {
+                    if (spawner.Current == null)
+                        throw new NullReferenceException("spawn enumerator is not allowed to return null");
+
                     ProcessSpawnedEntity(spawner.Current, spawnType);
                     spawns++;
                     estimateEntityCount++;
+                    spawnsLeftThisFrame--;
                 }
-                else
+            }
+            else
+            {
+                if (queuedSpawns == null)
                 {
-                    queuedSpawns.QueueSpawn(spawnType, spawner);
-                    break;
+                    queuedSpawns = new QueuedSpawn();
                 }
 
+                queuedSpawns.QueueSpawn(spawnType, location);
             }
         }
 
@@ -463,14 +474,15 @@ public class SpawnSystem
 
     private class QueuedSpawn
     {
-        public List<Tuple<Spawner, IEnumerator<ISpawned>>> Spawns = new();
+        public List<Tuple<Spawner, Vector3>> Spawns = new();
 
-        public void QueueSpawn(Spawner spawnType, IEnumerator<ISpawned> spawns)
+        public void QueueSpawn(Spawner spawnType, Vector3 location)
         {
-            Spawns.Add(new Tuple<Spawner, IEnumerator<ISpawned>>(spawnType, spawns));
+            GD.Print("Queue spawn");
+            Spawns.Add(new Tuple<Spawner, Vector3>(spawnType, location));
         }
 
-        public Tuple<Spawner, IEnumerator<ISpawned>>? Dequeue()
+        public Tuple<Spawner, Vector3>? Dequeue()
         {
             if (Spawns.Count > 0)
             {
