@@ -217,7 +217,7 @@ public class SpawnSystem
             {
                 var enumerator = enumerable.GetEnumerator();
                 while (enumerator.MoveNext() && estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES &&
-                    spawnsLeftThisFrame > 0)
+                       spawnsLeftThisFrame > 0)
                 {
                     // Next was spawned
                     ProcessSpawnedEntity(
@@ -227,6 +227,7 @@ public class SpawnSystem
                     ++estimateEntityCount;
                     --spawnsLeftThisFrame;
                 }
+
                 enumerator.Dispose();
             }
         }
