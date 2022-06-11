@@ -206,7 +206,7 @@ public class SpawnSystem
         {
             var spawn = queuedSpawns.Dequeue();
 
-            if (spawnsLeftThisFrame < 1 && spawn == null)
+            if (spawnsLeftThisFrame < 1)
             {
                 break;
             }
