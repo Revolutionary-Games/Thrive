@@ -775,7 +775,7 @@ public class MicrobeHUD : Control
         }
     }
 
-    public void SetupPressEditorTutorial(TutorialState tutorialState)
+    public void SendEditorButtonToTutorial(TutorialState tutorialState)
     {
         tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
     }
