@@ -216,7 +216,7 @@ public class SpawnSystem
                 break;
             }
 
-            var enumerable = spawn.Item1.Spawn(worldRoot, spawn.Item2);
+            var enumerable = spawn!.Item1.Spawn(worldRoot, spawn.Item2);
 
             if (enumerable != null)
             {
