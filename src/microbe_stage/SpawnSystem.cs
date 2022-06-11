@@ -481,10 +481,8 @@ public class SpawnSystem
                 Spawns.RemoveAt(0);
                 return retval;
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
         public void Clear()
