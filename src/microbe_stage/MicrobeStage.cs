@@ -303,6 +303,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         tutorialGUI.EventReceiver = TutorialState;
 
+        HUD.SendEditorButtonToTutorial(TutorialState);
+
         Clouds.Init(FluidSystem);
 
         patchManager.CurrentGame = CurrentGame;
@@ -822,7 +824,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         {
             if (!player.IsMulticellular)
             {
-                HUD.SetupPressEditorTutorial(TutorialState);
                 TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
             }
 
