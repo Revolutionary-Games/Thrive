@@ -128,6 +128,7 @@ public class SpawnSystem
     /// </summary>
     public void DespawnAll()
     {
+        queuedSpawns.Clear();
         int despawned = 0;
 
         foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
