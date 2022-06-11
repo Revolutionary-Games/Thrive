@@ -221,7 +221,8 @@ public class SpawnSystem
             if (enumerable != null)
             {
                 var enumerator = enumerable.GetEnumerator();
-                while (enumerator.MoveNext() && estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES && spawnsLeftThisFrame > 0)
+                while (enumerator.MoveNext() && estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES &&
+                    spawnsLeftThisFrame > 0)
                 {
                     // Next was spawned
                     ProcessSpawnedEntity(
