@@ -478,7 +478,6 @@ public class SpawnSystem
 
         public void QueueSpawn(Spawner spawnType, Vector3 location)
         {
-            GD.Print("Queue spawn");
             Spawns.Add(new Tuple<Spawner, Vector3>(spawnType, location));
         }
 
