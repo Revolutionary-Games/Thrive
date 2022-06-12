@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-06 12:48+0700\n"
+"POT-Creation-Date: 2022-06-09 14:12+0300\n"
 "PO-Revision-Date: 2022-04-15 08:28+0000\n"
 "Last-Translator: Louison Wouts <wouts.louison@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -293,12 +293,12 @@ msgid "ABILITIES"
 msgstr "Capacités"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2178
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "FIRE_TOXIN"
 msgstr "Tirer des toxines"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2166
+#: ../src/microbe_stage/MicrobeStage.tscn:2164
 msgid "TOGGLE_ENGULF"
 msgstr "Activer/désactiver Engloutir"
 
@@ -308,7 +308,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Maintenir pour faire apparaitre le menu des commandes de paquet"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2189
+#: ../src/microbe_stage/MicrobeStage.tscn:2187
 msgid "TOGGLE_BINDING"
 msgstr "Activer relieur"
 
@@ -317,7 +317,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Activer/désactiver la liaison"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2201
+#: ../src/microbe_stage/MicrobeStage.tscn:2199
 msgid "UNBIND_ALL"
 msgstr "Dissocier tout"
 
@@ -434,35 +434,40 @@ msgid "TOGGLE_PAUSE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:188
+#, fuzzy
+msgid "TOGGLE_DEBUG_PANEL"
+msgstr "Activer/désactiver Engloutir"
+
+#: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
 msgstr "Afficher/cacher les FPS"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:196
 #, fuzzy
 msgid "TOGGLE_METRICS"
 msgstr "Afficher/cacher les FPS"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:200
 msgid "QUICK_SAVE"
 msgstr "Sauvegarde rapide"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:204
 msgid "QUICK_LOAD"
 msgstr "Chargement rapide"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:208
 msgid "TAKE_SCREENSHOT"
 msgstr "Prendre une capture d'écran"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SHOW_HELP"
 msgstr "Montrer l'aide"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:216
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Plein écran"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:220
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Activer/désactiver l'ATH"
 
@@ -610,36 +615,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1305
+#: ../src/microbe_stage/MicrobeStage.tscn:1304
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "AMMONIA"
 msgstr "Ammoniaque"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1357
+#: ../src/microbe_stage/MicrobeStage.tscn:1356
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
 msgid "PHOSPHATE"
 msgstr "Phosphate"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1409
+#: ../src/microbe_stage/MicrobeStage.tscn:1408
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfure d'Hydrogène"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1253
+#: ../src/microbe_stage/MicrobeStage.tscn:1252
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "GLUCOSE"
 msgstr "Glucose"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1591
+#: ../src/microbe_stage/MicrobeStage.tscn:1590
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1461
+#: ../src/microbe_stage/MicrobeStage.tscn:1460
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "IRON"
 msgstr "Fer"
@@ -1081,22 +1086,22 @@ msgstr "Placer organite"
 msgid "MP_COST"
 msgstr "{0} MP"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:89
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
 #, fuzzy
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Chargement de l'Éditeur de Microbes"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:227
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:196
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-évo n'a pas pu se lancer"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:228
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "état de lancement :"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:377
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:379
 #: ../src/general/EditorBase.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -1107,30 +1112,55 @@ msgstr ""
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Sélectionnez un type de cellule à éditer ici depuis l'onglet de l'éditeur"
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
-#: ../src/engine/PerformanceMetrics.tscn:57
+#: ../src/engine/DebugOverlays.FPSCounter.cs:16
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
+#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 #, fuzzy
 msgid "FPS"
 msgstr "FPS max. :"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
-msgid "LOADING"
-msgstr "Chargement"
-
-#: ../src/engine/PerformanceMetrics.cs:63
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 #, fuzzy
 msgid "FRAME_DURATION"
 msgstr "Respiration aérobie"
 
-#: ../src/engine/PerformanceMetrics.cs:77
-#: ../src/engine/PerformanceMetrics.tscn:73
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
+#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.tscn:28
+#: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
+#: ../src/engine/PerformanceMetrics.tscn:30
 #, fuzzy
 msgid "METRICS"
 msgstr "Afficher/cacher les FPS"
+
+#: ../src/engine/DebugOverlays.tscn:86
+msgid "DEBUG_PANEL"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:96
+#, fuzzy
+msgid "FPS_DISPLAY"
+msgstr "Lire média"
+
+#: ../src/engine/DebugOverlays.tscn:110
+msgid "COLLISION_SHAPE"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:117
+#, fuzzy
+msgid "ENTITY_LABEL"
+msgstr "Terrain : {0}"
+
+#: ../src/engine/DebugOverlays.tscn:128
+#, fuzzy
+msgid "TRANSPARENCY"
+msgstr "Traducteurs"
+
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
+msgid "LOADING"
+msgstr "Chargement"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1595,16 +1625,31 @@ msgstr "La concentration de glucose a baissé drastiquement !"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Connecté sous le nom de : {0}"
 
-#: ../src/general/MainMenu.tscn:178
+#: ../src/general/MainMenu.tscn:173
+#, fuzzy
+msgid "NEW_GAME_BUTTON_TOOLTIP"
+msgstr "Menu de pause"
+
+#: ../src/general/MainMenu.tscn:176
 msgid "NEW_GAME"
 msgstr "Nouvelle partie"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
+#, fuzzy
+msgid "LOAD_GAME_BUTTON_TOOLTIP"
+msgstr "Menu de pause"
+
+#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:195
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Charger une partie"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
+#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
+#, fuzzy
+msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr "Aide"
+
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS"
 msgstr "Options"
 
@@ -1624,50 +1669,55 @@ msgstr "Extras"
 msgid "CREDITS"
 msgstr "Crédits"
 
-#: ../src/general/MainMenu.tscn:257
+#: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:235
+#, fuzzy
+msgid "QUIT_BUTTON_TOOLTIP"
+msgstr "Suicide"
+
+#: ../src/general/MainMenu.tscn:258
 msgid "QUIT"
 msgstr "Quitter"
 
-#: ../src/general/MainMenu.tscn:277
+#: ../src/general/MainMenu.tscn:278
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Éditeur Libre de Microbe"
 
-#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
-#: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:254
+#: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
+#: ../src/general/MainMenu.tscn:453 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/PauseMenu.tscn:262
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Revenir"
 
-#: ../src/general/MainMenu.tscn:358
+#: ../src/general/MainMenu.tscn:359
 #, fuzzy
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:373
 msgid "ART_GALLERY"
 msgstr "Galerie d'art"
 
-#: ../src/general/MainMenu.tscn:384
+#: ../src/general/MainMenu.tscn:385
 msgid "LICENSES"
 msgstr "Licences"
 
-#: ../src/general/MainMenu.tscn:493
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING"
 msgstr "Alerte Mode GLES2"
 
-#: ../src/general/MainMenu.tscn:495
+#: ../src/general/MainMenu.tscn:497
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Vous utilisez Thrive avec le GLES2. Cela demeure non testé et risque de causer des problèmes. Essayez de mettre à jour vos pilotes vidéos et/ou de forcer l'utilisation des graphiques AMD ou Nvidia pour lancer Thrive."
 
-#: ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:501
 #, fuzzy
 msgid "MOD_LOAD_ERRORS"
 msgstr "Erreurs liées au Chargement de Mods"
 
-#: ../src/general/MainMenu.tscn:500
+#: ../src/general/MainMenu.tscn:502
 #, fuzzy
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Des erreurs sont apparues lors du chargement d'un ou plusieurs mods. Les registres de jeu pourraient contenir des informations supplémentaires."
@@ -2028,32 +2078,57 @@ msgstr ""
 "Vous perdrez toute progression non sauvegardée."
 
 #: ../src/general/PauseMenu.tscn:178
+#, fuzzy
+msgid "PAUSE_MENU_RESUME_TOOLTIP"
+msgstr "Reprendre"
+
+#: ../src/general/PauseMenu.tscn:179
 msgid "RESUME"
 msgstr "Reprendre"
 
-#: ../src/general/PauseMenu.tscn:185
+#: ../src/general/PauseMenu.tscn:186
+#, fuzzy
+msgid "SAVE_GAME_BUTTON_TOOLTIP"
+msgstr "Menu de pause"
+
+#: ../src/general/PauseMenu.tscn:187
 msgid "SAVE_GAME"
 msgstr "Sauvegarder"
 
-#: ../src/general/PauseMenu.tscn:200
+#: ../src/general/PauseMenu.tscn:202
+#, fuzzy
+msgid "STATISTICS_BUTTON_TOOLTIP"
+msgstr "Suicide"
+
+#: ../src/general/PauseMenu.tscn:204
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Statistiques"
 
-#: ../src/general/PauseMenu.tscn:207
+#: ../src/general/PauseMenu.tscn:211
+#: ../src/microbe_stage/MicrobeStage.tscn:1724
+msgid "HELP_BUTTON_TOOLTIP"
+msgstr "Aide"
+
+#: ../src/general/PauseMenu.tscn:212
 msgid "HELP"
 msgstr "Aide"
 
-#: ../src/general/PauseMenu.tscn:221
+#: ../src/general/PauseMenu.tscn:227
+#, fuzzy
+msgid "RETURN_TO_MENU_TOOLTIP"
+msgstr "Retour au menu"
+
+#: ../src/general/PauseMenu.tscn:228
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Retour au menu"
 
-#: ../src/general/PauseMenu.tscn:228
+#: ../src/general/PauseMenu.tscn:236
 msgid "EXIT"
 msgstr "Quitter"
 
-#: ../src/general/PauseMenu.tscn:279
+#: ../src/general/PauseMenu.tscn:287
 #, fuzzy
 msgid "CONFIRM_EXIT"
 msgstr "ACCEPTER"
@@ -2759,7 +2834,7 @@ msgstr "Aucune action"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1499
+#: ../src/microbe_stage/MicrobeHUD.cs:1505
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Doit être implémenté."
 
@@ -3018,14 +3093,14 @@ msgstr "en faible quantité"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "en très faible quantité"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1284
-#: ../src/microbe_stage/MicrobeStage.tscn:1792
+#: ../src/microbe_stage/MicrobeHUD.cs:1290
+#: ../src/microbe_stage/MicrobeStage.tscn:1791
 #, fuzzy
 msgid "BECOME_MULTICELLULAR"
 msgstr "Devenez Multicellulaires ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1320
-#: ../src/microbe_stage/MicrobeStage.tscn:1803
+#: ../src/microbe_stage/MicrobeHUD.cs:1326
+#: ../src/microbe_stage/MicrobeStage.tscn:1802
 #, fuzzy
 msgid "BECOME_MACROSCOPIC"
 msgstr "Devenez Macroscopiques ({0}/{1})"
@@ -3042,39 +3117,39 @@ msgstr "Impossible d'invoquer une espèce ennemie, car ce milieu ne contient que
 msgid "PLAYER_DIED"
 msgstr "le joueur est mort"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:522
+#: ../src/microbe_stage/MicrobeStage.tscn:521
 msgid "AT_CURSOR"
 msgstr "Au pointeur :"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:548
+#: ../src/microbe_stage/MicrobeStage.tscn:547
 msgid "NOTHING_HERE"
 msgstr "Rien ici"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:573
+#: ../src/microbe_stage/MicrobeStage.tscn:572
 msgid "COMPOUNDS_COLON"
 msgstr "Composés :"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:613
+#: ../src/microbe_stage/MicrobeStage.tscn:612
 msgid "SPECIES_COLON"
 msgstr "Espèces :"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:693
+#: ../src/microbe_stage/MicrobeStage.tscn:692
 msgid "ENVIRONMENT"
 msgstr "Environnement"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:961
+#: ../src/microbe_stage/MicrobeStage.tscn:960
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1017
+#: ../src/microbe_stage/MicrobeStage.tscn:1016
 msgid "LIGHT"
 msgstr "Lumière"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1072
+#: ../src/microbe_stage/MicrobeStage.tscn:1071
 msgid "PRESSURE_SHORT"
 msgstr "Press."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1155
+#: ../src/microbe_stage/MicrobeStage.tscn:1154
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
@@ -3082,48 +3157,49 @@ msgstr "Press."
 msgid "COMPOUNDS"
 msgstr "Composés"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1531
+#: ../src/microbe_stage/MicrobeStage.tscn:1530
 msgid "AGENTS"
 msgstr "Agents"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1629
+#: ../src/microbe_stage/MicrobeStage.tscn:1628
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1647
+#: ../src/microbe_stage/MicrobeStage.tscn:1646
 msgid "PAUSE_TOOLTIP"
 msgstr "Mettre le jeu en pause"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1660
+#: ../src/microbe_stage/MicrobeStage.tscn:1659
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "Reprendre"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1673
+#: ../src/microbe_stage/MicrobeStage.tscn:1672
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher l'environnement et les composés"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1688
+#: ../src/microbe_stage/MicrobeStage.tscn:1687
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher les processus cellulaires"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1725
-msgid "HELP_BUTTON_TOOLTIP"
-msgstr "Aide"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1737
+#: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Suicide"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1788
+#: ../src/microbe_stage/MicrobeStage.tscn:1787
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Passer à l'étape suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1823
+#: ../src/microbe_stage/MicrobeStage.tscn:1822
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION :"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2121
+#: ../src/microbe_stage/MicrobeStage.tscn:1973
+#, fuzzy
+msgid "EDITOR_BUTTON_TOOLTIP"
+msgstr "Ajouter un nouveau raccourci clavier"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:2119
 msgid "PAUSED"
 msgstr ""
 

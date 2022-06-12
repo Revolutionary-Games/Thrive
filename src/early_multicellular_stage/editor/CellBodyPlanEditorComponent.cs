@@ -312,12 +312,12 @@ public partial class CellBodyPlanEditorComponent :
         if (!Visible)
             return;
 
-        var metrics = PerformanceMetrics.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
-        if (metrics.Visible)
+        if (debugOverlay.PerformanceMetricsVisible)
         {
             var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
-            metrics.ReportEntities(roughCount, 0);
+            debugOverlay.ReportEntities(roughCount, 0);
         }
 
         if (cellDataDirty)
