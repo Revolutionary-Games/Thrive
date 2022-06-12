@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=7]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=9]
 
 [node name="MicrobeTutorialGUI" type="Control"]
 pause_mode = 2
@@ -16,9 +17,6 @@ anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 MicrobeWelcomeMessagePath = NodePath("MicrobeWelcome")
 MicrobeMovementKeyPromptsPath = NodePath("MicrobeMovementTutorial/KeyPrompts")
 MicrobeMovementPopupPath = NodePath("MicrobeMovementTutorial/ExplainingPopup")
@@ -32,6 +30,7 @@ ReproductionTutorialPath = NodePath("ReproductionTutorial")
 EditorButtonTutorialPath = NodePath("EditorButtonTutorial")
 UnbindTutorialPath = NodePath("UnbindTutorial")
 CheckTheHelpMenuPath = NodePath("CheckHelpMenu")
+EditorButtonHighlightPath = NodePath("EditorButtonHighlight")
 
 [node name="MicrobeWelcome" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
@@ -117,9 +116,6 @@ text = "BEGIN_THRIVING"
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ExplainingPopup" parent="MicrobeMovementTutorial" instance=ExtResource( 4 )]
 anchor_left = 1.0
@@ -308,6 +304,12 @@ size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 text = "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 autowrap = true
+
+[node name="EditorButtonHighlight" parent="." instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 490.0
+margin_bottom = 490.0
 
 [node name="EditorButtonTutorial" parent="." instance=ExtResource( 4 )]
 anchor_left = 1.0

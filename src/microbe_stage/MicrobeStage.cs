@@ -52,8 +52,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     private List<GuidanceLine> chemoreceptionLines = new();
 
-    // TODO: make this be saved (and preserve old save compatibility by creating this in on save loaded callback
-    // if null)
+    [JsonProperty]
     private Random random = new();
 
     /// <summary>
@@ -304,6 +303,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         pauseMenu.GameProperties = CurrentGame ?? throw new InvalidOperationException("current game is not set");
 
         tutorialGUI.EventReceiver = TutorialState;
+
+        HUD.SendEditorButtonToTutorial(TutorialState);
 
         Clouds.Init(FluidSystem);
 
@@ -831,7 +832,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         if (ready && (player.Colony == null || player.IsMulticellular))
         {
             if (!player.IsMulticellular)
+            {
                 TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
+            }
 
             // This is to prevent the editor button being able to be clicked multiple times in freebuild mode
             if (!MovingToEditor)
