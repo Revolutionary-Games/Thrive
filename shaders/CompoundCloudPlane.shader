@@ -59,7 +59,7 @@ void fragment(){
         + // fourth
         colour4 * cloud4;
     
-    ALPHA = min(cloud1 + cloud2 + cloud3 + cloud4,  1.0f)*0.7f;
+    ALPHA = min(cloud1 + cloud2 + cloud3 + cloud4, 1.0f) * 0.7f;
     
     ALBEDO = colour.rgb;
 }
