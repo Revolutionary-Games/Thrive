@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Nito.Collections;
 
 /// <summary>
 ///   Spawns AI cells and other environmental things as the player moves around
@@ -40,19 +42,13 @@ public class SpawnSystem
     ///     Also it is probably the case that this isn't even used on most frames so it is perhaps uncommon
     ///     that there are queued things when saving.
     ///   </para>
-    ///   <para>
-    ///     TODO: it might be nice to use a struct instead and a field indicating if this is valid to not recreate
-    ///     this object so much
-    ///   </para>
     /// </remarks>
-    private QueuedSpawn queuedSpawns = new();
+    private Deque<QueuedSpawn> queuedSpawns = new();
 
     /// <summary>
     ///   Estimate count of existing spawned entities, cached to make delayed spawns cheaper
     /// </summary>
     private int estimateEntityCount;
-
-    private int spawnsLeftThisFrame;
 
     /// <summary>
     ///   Estimate count of existing spawn entities within the current spawn radius of the player;
@@ -66,8 +62,6 @@ public class SpawnSystem
         worldRoot = root;
         spawnTypes = new ShuffleBag<Spawner>(random);
     }
-
-    // Needs no params constructor for loading saves?
 
     /// <summary>
     ///   Adds an externally spawned entity to be despawned
@@ -96,8 +90,7 @@ public class SpawnSystem
     }
 
     /// <summary>
-    ///   Removes a spawn type immediately. Note that it's easier to
-    ///   just set DestroyQueued to true on an spawner.
+    ///   Removes a spawn type immediately. Note that it's easier to just set DestroyQueued to true on an spawner.
     /// </summary>
     public void RemoveSpawnType(Spawner spawner)
     {
@@ -118,7 +111,12 @@ public class SpawnSystem
     public void Clear()
     {
         spawnTypes.Clear();
+
+        foreach (var queuedSpawn in queuedSpawns)
+            queuedSpawn.Dispose();
+
         queuedSpawns.Clear();
+
         elapsed = 0;
         despawnElapsed = 0;
     }
@@ -128,6 +126,9 @@ public class SpawnSystem
     /// </summary>
     public void DespawnAll()
     {
+        foreach (var queuedSpawn in queuedSpawns)
+            queuedSpawn.Dispose();
+
         queuedSpawns.Clear();
         int despawned = 0;
 
@@ -167,10 +168,10 @@ public class SpawnSystem
         // Remove the y-position from player position
         playerPosition.y = 0;
 
-        spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
+        int spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
 
         // If we have queued spawns to do spawn those
-        HandleQueuedSpawns(spawnsLeftThisFrame);
+        HandleQueuedSpawns(ref spawnsLeftThisFrame);
 
         if (spawnsLeftThisFrame <= 0)
             return;
@@ -187,7 +188,7 @@ public class SpawnSystem
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
-            SpawnEntities(playerPosition, estimateEntityCount);
+            SpawnEntities(playerPosition, ref spawnsLeftThisFrame, estimateEntityCount);
         }
         else if (despawnElapsed > Constants.DESPAWN_INTERVAL)
         {
@@ -197,51 +198,60 @@ public class SpawnSystem
         }
     }
 
-    private void HandleQueuedSpawns(int spawnsLeftThisFrame)
+    private void HandleQueuedSpawns(ref int spawnsLeftThisFrame)
     {
-        int initialSpawns = spawnsLeftThisFrame;
+        int spawned = 0;
 
         // Spawn from the queue
-        while (spawnsLeftThisFrame > 0 && queuedSpawns.Spawns.Count > 0)
+        while (spawnsLeftThisFrame > 0 && queuedSpawns.Count > 0)
         {
-            var spawn = queuedSpawns.Dequeue();
+            var spawn = queuedSpawns.First();
+            var enumerator = spawn.Spawns;
 
-            var enumerable = spawn!.Item1.Spawn(worldRoot, spawn.Item2);
+            bool finished = false;
 
-            if (enumerable != null)
+            while (estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES &&
+                   spawnsLeftThisFrame > 0)
             {
-                var enumerator = enumerable.GetEnumerator();
-                while (enumerator.MoveNext() && estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES &&
-                       spawnsLeftThisFrame > 0)
+                if (!enumerator.MoveNext())
                 {
-                    // Next was spawned
-                    ProcessSpawnedEntity(
-                        enumerator.Current ?? throw new Exception("Queued spawn enumerator returned null"),
-                        spawn.Item1);
-
-                    ++estimateEntityCount;
-                    --spawnsLeftThisFrame;
+                    finished = true;
+                    break;
                 }
 
-                enumerator.Dispose();
+                // Next was spawned
+                ProcessSpawnedEntity(
+                    enumerator.Current ?? throw new Exception("Queued spawn enumerator returned null"),
+                    spawn.SpawnType);
+
+                ++estimateEntityCount;
+                --spawnsLeftThisFrame;
+                ++spawned;
             }
 
-            if (spawnsLeftThisFrame < 1)
+            if (finished)
+            {
+                // Finished spawning everything from this enumerator, if we didn't finish we save this spawn for the
+                // next queued spawns handling cycle
+                queuedSpawns.RemoveFromFront();
+                spawn.Dispose();
+            }
+            else
             {
                 break;
             }
         }
 
-        if (initialSpawns != spawnsLeftThisFrame)
+        if (spawned > 0)
         {
             var debugOverlay = DebugOverlays.Instance;
 
             if (debugOverlay.PerformanceMetricsVisible)
-                debugOverlay.ReportSpawns(initialSpawns - spawnsLeftThisFrame);
+                debugOverlay.ReportSpawns(spawned);
         }
     }
 
-    private void SpawnEntities(Vector3 playerPosition, int existing)
+    private void SpawnEntities(Vector3 playerPosition, ref int spawnsLeftThisFrame, int existing)
     {
         // If there are already too many entities, don't spawn more
         if (existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
@@ -276,22 +286,24 @@ public class SpawnSystem
         {
             if (coordinatesSpawned.Add(newSector))
             {
-                SpawnInSector(newSector);
+                SpawnInSector(newSector, ref spawnsLeftThisFrame);
             }
         }
 
-        SpawnMicrobesAroundPlayer(playerPosition);
+        SpawnMicrobesAroundPlayer(playerPosition, ref spawnsLeftThisFrame);
     }
 
     /// <summary>
     ///   Handles all spawning for this section of the play area, as it will look when the player enters. Does NOT
     ///   handle recording that the sector was spawned.
     /// </summary>
-    /// <param name="sector">X/Y coordinates of the sector to be spawned, in <see cref="Constants.SPAWN_SECTOR_SIZE" />
-    /// units</param>
-    private void SpawnInSector(Int2 sector)
+    /// <param name="sector">
+    ///   X/Y coordinates of the sector to be spawned, in <see cref="Constants.SPAWN_SECTOR_SIZE" /> units
+    /// </param>
+    /// <param name="spawnsLeftThisFrame">How many spawns are still allowed this frame</param>
+    private void SpawnInSector(Int2 sector, ref int spawnsLeftThisFrame)
     {
-        var spawns = 0;
+        int spawns = 0;
 
         foreach (var spawnType in spawnTypes)
         {
@@ -303,7 +315,7 @@ public class SpawnSystem
                 (Constants.SPAWN_SECTOR_SIZE / 2), 0,
                 random.NextFloat() * Constants.SPAWN_SECTOR_SIZE - (Constants.SPAWN_SECTOR_SIZE / 2));
 
-            spawns += SpawnWithSpawner(spawnType, sectorCenter + displacement);
+            spawns += SpawnWithSpawner(spawnType, sectorCenter + displacement, ref spawnsLeftThisFrame);
         }
 
         var debugOverlay = DebugOverlays.Instance;
@@ -312,18 +324,18 @@ public class SpawnSystem
             debugOverlay.ReportSpawns(spawns);
     }
 
-    private void SpawnMicrobesAroundPlayer(Vector3 playerLocation)
+    private void SpawnMicrobesAroundPlayer(Vector3 playerLocation, ref int spawnsLeftThisFrame)
     {
         var angle = random.NextFloat() * 2 * Mathf.Pi;
 
-        var spawns = 0;
+        int spawns = 0;
         foreach (var spawnType in spawnTypes)
         {
             if (spawnType is MicrobeSpawner)
             {
                 spawns += SpawnWithSpawner(spawnType,
                     playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
-                        Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2));
+                        Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2), ref spawnsLeftThisFrame);
             }
         }
 
@@ -336,7 +348,7 @@ public class SpawnSystem
     /// <summary>
     ///   Does a single spawn with a spawner
     /// </summary>
-    private int SpawnWithSpawner(Spawner spawnType, Vector3 location)
+    private int SpawnWithSpawner(Spawner spawnType, Vector3 location, ref int spawnsLeftThisFrame)
     {
         var spawns = 0;
 
@@ -347,28 +359,40 @@ public class SpawnSystem
 
         if (spawnType is CompoundCloudSpawner || estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
         {
-            if (spawnsLeftThisFrame > 0)
+            var enumerable = spawnType.Spawn(worldRoot, location);
+
+            if (enumerable == null)
+                return spawns;
+
+            bool finished = false;
+
+            var spawner = enumerable.GetEnumerator();
+
+            while (spawnsLeftThisFrame > 0)
             {
-                var enumerable = spawnType.Spawn(worldRoot, location);
-
-                if (enumerable == null)
-                    return spawns;
-
-                using var spawner = enumerable.GetEnumerator();
-                while (spawner.MoveNext())
+                if (!spawner.MoveNext())
                 {
-                    if (spawner.Current == null)
-                        throw new NullReferenceException("spawn enumerator is not allowed to return null");
-
-                    ProcessSpawnedEntity(spawner.Current, spawnType);
-                    spawns++;
-                    estimateEntityCount++;
-                    spawnsLeftThisFrame--;
+                    finished = true;
+                    break;
                 }
+
+                if (spawner.Current == null)
+                    throw new NullReferenceException("spawn enumerator is not allowed to return null");
+
+                ProcessSpawnedEntity(spawner.Current, spawnType);
+                ++spawns;
+                ++estimateEntityCount;
+                --spawnsLeftThisFrame;
+            }
+
+            if (!finished)
+            {
+                // Store the remaining items in the enumerator for later
+                queuedSpawns.AddToBack(new QueuedSpawn(spawnType, spawner));
             }
             else
             {
-                queuedSpawns.QueueSpawn(spawnType, location);
+                spawner.Dispose();
             }
         }
 
@@ -382,8 +406,6 @@ public class SpawnSystem
     private int DespawnEntities(Vector3 playerPosition)
     {
         int entitiesDeleted = 0;
-
-        // Despawn entities
         int spawnedCount = 0;
 
         foreach (var spawned in worldRoot.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP))
@@ -400,7 +422,7 @@ public class SpawnSystem
             // If the entity is too far away from the player, despawn it.
             if (squaredDistance > spawned.DespawnRadiusSquared)
             {
-                entitiesDeleted++;
+                ++entitiesDeleted;
                 spawned.DestroyDetachAndQueueFree();
 
                 if (entitiesDeleted >= Constants.MAX_DESPAWNS_PER_FRAME)
@@ -464,30 +486,21 @@ public class SpawnSystem
         return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
     }
 
-    private class QueuedSpawn
+    private class QueuedSpawn : IDisposable
     {
-        public List<Tuple<Spawner, Vector3>> Spawns = new();
-
-        public void QueueSpawn(Spawner spawnType, Vector3 location)
+        public QueuedSpawn(Spawner spawnType, IEnumerator<ISpawned> spawns)
         {
-            Spawns.Add(new Tuple<Spawner, Vector3>(spawnType, location));
+            SpawnType = spawnType;
+            Spawns = spawns;
         }
 
-        public Tuple<Spawner, Vector3>? Dequeue()
-        {
-            if (Spawns.Count > 0)
-            {
-                var retval = Spawns[0];
-                Spawns.RemoveAt(0);
-                return retval;
-            }
+        public Spawner SpawnType { get; }
 
-            return null;
-        }
+        public IEnumerator<ISpawned> Spawns { get; }
 
-        public void Clear()
+        public void Dispose()
         {
-            Spawns.Clear();
+            Spawns.Dispose();
         }
     }
 }
