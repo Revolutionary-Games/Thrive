@@ -135,7 +135,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         material.SetShaderParam("colour2", cloud2?.Colour ?? blank);
         material.SetShaderParam("colour3", cloud3?.Colour ?? blank);
         material.SetShaderParam("colour4", cloud4?.Colour ?? blank);
-        
+
         material.RenderPriority = -currentIndex;
     }
 
