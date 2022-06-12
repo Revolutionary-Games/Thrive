@@ -133,7 +133,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
                 cloud4 = allCloudCompounds[startOffset + 3];
 
             clouds[i].Init(fluidSystem, currentIndex, cloud1, cloud2, cloud3, cloud4);
-            currentIndex += 1;
+            ++currentIndex;
             clouds[i].Translation = new Vector3(0, 0, 0);
         }
     }
