@@ -103,7 +103,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
                 cloud.Init(fluidSystem, currentIndex, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
                     cloud.Compounds[3]);
 
-                currentIndex += 1;
+                ++currentIndex;
 
                 // Re-add the clouds as our children
                 AddChild(cloud);
