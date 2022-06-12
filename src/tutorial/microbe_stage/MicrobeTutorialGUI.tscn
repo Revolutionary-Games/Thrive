@@ -253,18 +253,6 @@ anchor_bottom = 1.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
-[node name="_h_scroll2" type="HScrollBar" parent="CheckHelpMenu/ScrollContainer"]
-margin_bottom = 6.0
-
-[node name="_v_scroll2" type="VScrollBar" parent="CheckHelpMenu/ScrollContainer"]
-margin_right = 6.0
-
-[node name="_h_scroll3" type="HScrollBar" parent="CheckHelpMenu/ScrollContainer"]
-margin_bottom = 6.0
-
-[node name="_v_scroll3" type="VScrollBar" parent="CheckHelpMenu/ScrollContainer"]
-margin_right = 6.0
-
 [node name="VBoxContainer" type="VBoxContainer" parent="CheckHelpMenu/ScrollContainer"]
 margin_right = 260.0
 margin_bottom = 240.0
@@ -274,20 +262,6 @@ size_flags_vertical = 3
 [node name="CustomRichTextLabel" parent="CheckHelpMenu/ScrollContainer/VBoxContainer" instance=ExtResource( 9 )]
 margin_right = 260.0
 ExtendedBbcode = ""
-
-[node name="VScrollBar2" type="VScrollBar" parent="CheckHelpMenu/ScrollContainer/VBoxContainer/CustomRichTextLabel"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-max_value = 22.0
-step = 1.0
-page = 22.0
-
-[node name="VScrollBar3" type="VScrollBar" parent="CheckHelpMenu/ScrollContainer/VBoxContainer/CustomRichTextLabel"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-step = 1.0
 
 [node name="Control" type="Control" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
 margin_top = 26.0
