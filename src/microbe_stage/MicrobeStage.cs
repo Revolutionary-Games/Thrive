@@ -303,6 +303,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         tutorialGUI.EventReceiver = TutorialState;
 
+        HUD.SendEditorButtonToTutorial(TutorialState);
+
         Clouds.Init(FluidSystem);
 
         patchManager.CurrentGame = CurrentGame;
@@ -821,7 +823,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         if (ready && (player.Colony == null || player.IsMulticellular))
         {
             if (!player.IsMulticellular)
+            {
                 TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
+            }
 
             // This is to prevent the editor button being able to be clicked multiple times in freebuild mode
             if (!MovingToEditor)
