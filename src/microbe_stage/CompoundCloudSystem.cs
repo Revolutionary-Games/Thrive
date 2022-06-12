@@ -91,7 +91,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             clouds.Remove(cloud);
         }
 
-        int currentIndex = 1;
+        int cloudPlaneIndex = 1;
 
         // TODO: if the compound types have changed since we saved, that needs to be handled
         if (IsLoadedFromSave)
@@ -100,10 +100,10 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             {
                 // Re-init with potentially changed compounds
                 // TODO: special handling is needed if the compounds actually changed
-                cloud.Init(fluidSystem, currentIndex, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
+                cloud.Init(fluidSystem, cloudPlaneIndex, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
                     cloud.Compounds[3]);
 
-                ++currentIndex;
+                ++cloudPlaneIndex;
 
                 // Re-add the clouds as our children
                 AddChild(cloud);
@@ -132,8 +132,8 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             if (startOffset + 3 < allCloudCompounds.Count)
                 cloud4 = allCloudCompounds[startOffset + 3];
 
-            clouds[i].Init(fluidSystem, currentIndex, cloud1, cloud2, cloud3, cloud4);
-            ++currentIndex;
+            clouds[i].Init(fluidSystem, cloudPlaneIndex, cloud1, cloud2, cloud3, cloud4);
+            ++cloudPlaneIndex;
             clouds[i].Translation = new Vector3(0, 0, 0);
         }
     }
