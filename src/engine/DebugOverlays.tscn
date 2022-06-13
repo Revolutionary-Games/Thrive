@@ -165,7 +165,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[connection signal="ClosePressed" from="PerformanceMetrics" to="." method="OnPerformanceMetricsToggled"]
+[connection signal="Closed" from="PerformanceMetrics" to="." method="OnPerformanceMetricsToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/FPSCheckBox" to="." method="OnFpsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/PerformanceMetricsCheckBox" to="." method="OnPerformanceMetricsCheckBoxToggled"]
 [connection signal="toggled" from="DebugPanel/VBoxContainer/CollisionShapeCheckBox" to="." method="OnCollisionShapeCheckBoxToggled"]

@@ -291,7 +291,7 @@ anims/Close = SubResource( 1 )
 anims/Open = SubResource( 2 )
 anims/RESET = SubResource( 3 )
 
-[connection signal="pressed" from="CenterContainer/PrimaryMenu/Resume" to="." method="ResumePressed"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/Resume" to="." method="ClosePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/SaveGame" to="." method="OpenSavePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/LoadGame" to="." method="OpenLoadPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Help" to="." method="OpenHelpPressed"]

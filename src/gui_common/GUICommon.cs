@@ -124,8 +124,6 @@ public class GUICommon : NodeWithInput
             popup!.Hide();
         }
 
-        popup!.EmitSignal(nameof(CustomDialog.ClosePressed));
-
         return true;
     }
 

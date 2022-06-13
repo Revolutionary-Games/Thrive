@@ -307,7 +307,7 @@ public class PauseMenu : CustomDialog
         };
     }
 
-    private void ResumePressed()
+    private void ClosePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
         Close();

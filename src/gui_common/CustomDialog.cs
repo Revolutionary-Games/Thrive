@@ -72,8 +72,12 @@ public class CustomDialog : Popup, ICustomPopup
     private bool showCloseButton = true;
     private bool decorate = true;
 
+    /// <summary>
+    ///   NOTE: This is only emitted WHEN the close button (top right corner) is pressed, this doesn't account
+    ///   for any other hiding behaviors.
+    /// </summary>
     [Signal]
-    public delegate void ClosePressed();
+    public delegate void Closed();
 
     [Flags]
     private enum DragType
@@ -635,6 +639,6 @@ public class CustomDialog : Popup, ICustomPopup
     {
         GUICommon.Instance.PlayButtonPressSound();
         CustomHide();
-        EmitSignal(nameof(ClosePressed));
+        EmitSignal(nameof(Closed));
     }
 }
