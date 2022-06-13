@@ -185,19 +185,19 @@ public partial class CellEditorComponent
             throw new InvalidOperationException("Could not find rigidity tooltip");
 
         var healthModifier = rigidityTooltip.GetModifierInfo("health");
-        var mobilityModifier = rigidityTooltip.GetModifierInfo("mobility");
+        var baseMobilityModifier = rigidityTooltip.GetModifierInfo("baseMobility");
 
         float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
-        float mobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
+        float baseMobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
 
         healthModifier.ModifierValue = ((healthChange >= 0) ? "+" : string.Empty)
             + healthChange.ToString("F0", CultureInfo.CurrentCulture);
 
-        mobilityModifier.ModifierValue = ((mobilityChange >= 0) ? "+" : string.Empty)
-            + mobilityChange.ToString("P0", CultureInfo.CurrentCulture);
+        baseMobilityModifier.ModifierValue = ((baseMobilityChange >= 0) ? "+" : string.Empty)
+            + baseMobilityChange.ToString("P0", CultureInfo.CurrentCulture);
 
         healthModifier.AdjustValueColor(healthChange);
-        mobilityModifier.AdjustValueColor(mobilityChange);
+        baseMobilityModifier.AdjustValueColor(baseMobilityChange);
     }
 
     private void UpdateRigiditySliderState(int mutationPoints)
@@ -266,6 +266,22 @@ public partial class CellEditorComponent
 
             var tooltip = GetSelectionTooltip(organelleInternalName, "organelleSelection");
             tooltip?.WriteOrganelleProcessList(organelleEfficiency[organelleInternalName].Processes);
+        }
+    }
+
+    private void UpdateOrganelleUnlockTooltips()
+    {
+        var organelles = SimulationParameters.Instance.GetAllOrganelles();
+        foreach (var organelle in organelles)
+        {
+            if (organelle.InternalName == protoplasm.InternalName)
+                continue;
+
+            var tooltip = GetSelectionTooltip(organelle.InternalName, "organelleSelection");
+            if (tooltip != null)
+            {
+                tooltip.RequiresNucleus = organelle.RequiresNucleus && !HasNucleus;
+            }
         }
     }
 

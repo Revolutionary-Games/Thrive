@@ -529,6 +529,8 @@ public partial class CellEditorComponent :
         // After the if multicellular check so the tooltip cost factors are correct
         // on changing editor types, as tooltip manager is persistent while the game is running
         UpdateTooltipMPCostFactors();
+
+        UpdateOrganelleUnlockTooltips();
     }
 
     public override void ResolveNodeReferences()
@@ -692,12 +694,12 @@ public partial class CellEditorComponent :
         if (!Visible)
             return;
 
-        var metrics = PerformanceMetrics.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
-        if (metrics.Visible)
+        if (debugOverlay.PerformanceMetricsVisible)
         {
             var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
-            metrics.ReportEntities(roughCount, 0);
+            debugOverlay.ReportEntities(roughCount, 0);
         }
 
         CheckRunningAutoEvoPrediction();
@@ -715,15 +717,15 @@ public partial class CellEditorComponent :
         }
 
         // Show the organelle that is about to be placed
-        if (ActiveActionName != null && Editor.ShowHover && !MicrobePreviewMode)
+        if (Editor.ShowHover && !MicrobePreviewMode)
         {
             GetMouseHex(out int q, out int r);
 
-            OrganelleDefinition shownOrganelle;
+            OrganelleDefinition? shownOrganelle = null;
 
             var effectiveSymmetry = Symmetry;
 
-            if (MovingPlacedHex == null)
+            if (MovingPlacedHex == null && ActiveActionName != null)
             {
                 // Can place stuff at all?
                 isPlacementProbablyValid = IsValidPlacement(new OrganelleTemplate(
@@ -731,7 +733,7 @@ public partial class CellEditorComponent :
 
                 shownOrganelle = SimulationParameters.Instance.GetOrganelleType(ActiveActionName);
             }
-            else
+            else if (MovingPlacedHex != null)
             {
                 isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), placementRotation, MovingPlacedHex);
                 shownOrganelle = MovingPlacedHex.Definition;
@@ -740,16 +742,19 @@ public partial class CellEditorComponent :
                     effectiveSymmetry = HexEditorSymmetry.None;
             }
 
-            HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
+            if (shownOrganelle != null)
+            {
+                HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
 
-            RunWithSymmetry(q, r,
-                (finalQ, finalR, rotation) =>
-                {
-                    RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle);
-                    hoveredHexes.Add((new Hex(finalQ, finalR), rotation));
-                }, effectiveSymmetry);
+                RunWithSymmetry(q, r,
+                    (finalQ, finalR, rotation) =>
+                    {
+                        RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle);
+                        hoveredHexes.Add((new Hex(finalQ, finalR), rotation));
+                    }, effectiveSymmetry);
 
-            MouseHoverPositions = hoveredHexes.ToList();
+                MouseHoverPositions = hoveredHexes.ToList();
+            }
         }
     }
 
@@ -1636,6 +1641,7 @@ public partial class CellEditorComponent :
         UpdateSize(MicrobeHexSize);
 
         UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
+        UpdateOrganelleUnlockTooltips();
 
         UpdatePatchDependentBalanceData();
 

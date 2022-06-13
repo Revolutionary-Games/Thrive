@@ -20,6 +20,13 @@ public static class Constants
     public const float MAX_SPAWN_DISTANCE = 5000.0f;
 
     /// <summary>
+    ///   Size of "chunks" used for spawning entities
+    /// </summary>
+    public const float SPAWN_SECTOR_SIZE = 120.0f;
+
+    public const int CLOUD_SPAWN_SCALE_FACTOR = 10000;
+
+    /// <summary>
     ///   The (default) size of the hexagons, used in calculations. Don't change this.
     /// </summary>
     public const float DEFAULT_HEX_SIZE = 0.75f;
@@ -72,9 +79,9 @@ public static class Constants
 
     public const float CELL_BASE_ROTATION = 0.2f;
     public const float CELL_MAX_ROTATION = 0.40f;
-    public const float CELL_MIN_ROTATION = 0.0001f;
-    public const float CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER = 0.8f;
-    public const float CILIA_ROTATION_FACTOR = 0.035f;
+    public const float CELL_MIN_ROTATION = 0.005f;
+    public const float CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER = 0.5f;
+    public const float CILIA_ROTATION_FACTOR = 0.008f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 0.7f;
 
     public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
@@ -82,9 +89,9 @@ public static class Constants
     public const float CELL_COLONY_MAX_ROTATION_HELP = 2.5f;
     public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 45.0f;
 
-    public const float CILIA_ENERGY_COST = 3.0f;
+    public const float CILIA_ENERGY_COST = 2.0f;
     public const float CILIA_ROTATION_NEEDED_FOR_ATP_COST = 0.03f;
-    public const float CILIA_ROTATION_ENERGY_BASE_MULTIPLIER = 6.0f;
+    public const float CILIA_ROTATION_ENERGY_BASE_MULTIPLIER = 4.0f;
 
     public const float CILIA_DEFAULT_ANIMATION_SPEED = 0.3f;
     public const float CILIA_MIN_ANIMATION_SPEED = 0.15f;
@@ -94,8 +101,8 @@ public static class Constants
 
     public const int PROCESS_OBJECTS_PER_TASK = 15;
 
-    public const int MICROBE_SPAWN_RADIUS = 170;
-    public const int CLOUD_SPAWN_RADIUS = 170;
+    public const int MICROBE_SPAWN_RADIUS = 350;
+    public const int CLOUD_SPAWN_RADIUS = 350;
 
     /// <summary>
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
@@ -312,7 +319,7 @@ public static class Constants
     /// <summary>
     ///   How much fully rigid membrane reduces movement factor of a cell
     /// </summary>
-    public const float MEMBRANE_RIGIDITY_MOBILITY_MODIFIER = 0.1f;
+    public const float MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER = 0.1f;
 
     /// <summary>
     ///   How much ATP does engulf mode cost per second
@@ -456,11 +463,15 @@ public static class Constants
 
     public const float DEFAULT_BEHAVIOUR_VALUE = 100.0f;
 
-    // Bacterial Colony configuration
-    public const int MIN_BACTERIAL_COLONY_SIZE = 2;
-    public const int MAX_BACTERIAL_COLONY_SIZE = 6;
-    public const int MIN_BACTERIAL_LINE_SIZE = 3;
-    public const int MAX_BACTERIAL_LINE_SIZE = 7;
+    /// <summary>
+    ///   Minimum extra microbes to spawn
+    /// </summary>
+    public const int MIN_BACTERIAL_COLONY_SIZE = 0;
+
+    /// <summary>
+    ///   Maximum extra microbes to spawn
+    /// </summary>
+    public const int MAX_BACTERIAL_COLONY_SIZE = 1;
 
     // What is divided during fear and aggression calculations in the AI
     public const float AGGRESSION_DIVISOR = 25.0f;
@@ -546,7 +557,7 @@ public static class Constants
 
     // These control how many game entities can exist at once and how fast they are allowed to spawn / despawn
     // TODO: bump this back up once we resolve the performance bottleneck
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 140;
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 70;
     public const int MAX_SPAWNS_PER_FRAME = 1;
 
     /// <summary>

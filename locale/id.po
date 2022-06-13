@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-20 15:12+0300\n"
+"POT-Creation-Date: 2022-06-12 15:04+0700\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -285,12 +285,12 @@ msgid "ABILITIES"
 msgstr "Kemampuan"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2142
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "FIRE_TOXIN"
 msgstr "Tembak toksin"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2130
+#: ../src/microbe_stage/MicrobeStage.tscn:2164
 msgid "TOGGLE_ENGULF"
 msgstr "Nyala/matikan penelanan"
 
@@ -299,7 +299,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2153
+#: ../src/microbe_stage/MicrobeStage.tscn:2187
 msgid "TOGGLE_BINDING"
 msgstr "Nyala/matikan pelekatan"
 
@@ -308,7 +308,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Nyala/matikan pelepasan"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2165
+#: ../src/microbe_stage/MicrobeStage.tscn:2199
 msgid "UNBIND_ALL"
 msgstr "Lepas semua"
 
@@ -424,35 +424,44 @@ msgid "MISCELLANEOUS"
 msgstr "Aneka ragam"
 
 #: ../simulation_parameters/common/input_options.json:184
+msgid "TOGGLE_PAUSE"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:188
+#, fuzzy
+msgid "TOGGLE_DEBUG_PANEL"
+msgstr "Nyala/matikan penelanan"
+
+#: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
 msgstr "Nyala/matikan tampilan FPS"
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:196
 #, fuzzy
 msgid "TOGGLE_METRICS"
 msgstr "Nyala/matikan tampilan FPS"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:200
 msgid "QUICK_SAVE"
 msgstr "Simpan cepat"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:204
 msgid "QUICK_LOAD"
 msgstr "Muat cepat"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:208
 msgid "TAKE_SCREENSHOT"
 msgstr "Ambil tangkapan layar"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SHOW_HELP"
 msgstr "Tampilkan bantuan"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:216
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Nyala/matikan layar penuh"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:220
 #, fuzzy
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Nyala/matikan pelepasan"
@@ -600,36 +609,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1301
+#: ../src/microbe_stage/MicrobeStage.tscn:1304
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "AMMONIA"
 msgstr "Amonia"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1353
+#: ../src/microbe_stage/MicrobeStage.tscn:1356
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:818
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1405
+#: ../src/microbe_stage/MicrobeStage.tscn:1408
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:712
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogen Sulfida"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1249
+#: ../src/microbe_stage/MicrobeStage.tscn:1252
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "GLUCOSE"
 msgstr "Glukosa"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1587
+#: ../src/microbe_stage/MicrobeStage.tscn:1590
 msgid "OXYTOXY_NT"
 msgstr "OksiToksi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1457
+#: ../src/microbe_stage/MicrobeStage.tscn:1460
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "IRON"
 msgstr "Besi"
@@ -650,54 +659,54 @@ msgid "NITROGEN"
 msgstr "Nitrogen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3731
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:430
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:625
 msgid "SUNLIGHT"
 msgstr "Sinar Matahari"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2236
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2245
 msgid "NORMAL"
 msgstr "Normal"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2404
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2416
 msgid "DOUBLE"
 msgstr "Ganda"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2568
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2583
 msgid "CELLULOSE"
 msgstr "Selulosa"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:57
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2803
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2821
 msgid "CHITIN"
 msgstr "Kitin"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3038
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalsium Karbonat"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:93
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3306
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3330
 msgid "SILICA"
 msgstr "Silika"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1104
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1105
 msgid "PREDATORY_PILUS"
 msgstr "Pilus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:55
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:677
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:678
 msgid "RUSTICYANIN"
 msgstr "Rustisianin"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:90
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:774
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:775
 msgid "NITROGENASE"
 msgstr "Nitrogenase"
 
@@ -706,12 +715,12 @@ msgid "PROTOPLASM"
 msgstr "Protoplasma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:157
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:574
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:576
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Protein Pengkemosintesis"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:872
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:873
 msgid "OXYTOXISOME"
 msgstr "Oksitoksisom"
 
@@ -720,86 +729,86 @@ msgid "THYLAKOIDS"
 msgstr "Tilakoid"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:265
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:375
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:378
 msgid "METABOLOSOMES"
 msgstr "Metabolosom"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:303
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1817
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1824
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Plastida Pengikat Nitrogen"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:342
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1733
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1739
 msgid "CHEMOPLAST"
 msgstr "Kemoplas"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:376
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:969
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:970
 msgid "FLAGELLUM"
 msgstr "Flagela"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:405
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1915
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1923
 msgid "VACUOLE"
 msgstr "Vakuola"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:442
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1450
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1453
 msgid "MITOCHONDRION"
 msgstr "Mitokondria"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:478
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2012
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2021
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Vakuola\n"
 "Racun"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:509
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1270
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1272
 msgid "BINDING_AGENT"
 msgstr "Agen Pelekat"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:551
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1534
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1538
 msgid "CHLOROPLAST"
 msgstr "Kloroplas"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:585
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:276
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
 msgid "CYTOPLASM"
 msgstr "Sitoplasma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:652
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1353
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1356
 msgid "NUCLEUS"
 msgstr "Nukleus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:678
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1164
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
 #, fuzzy
 msgid "CHEMORECEPTOR"
 msgstr "Kemoplas"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2109
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2119
 #, fuzzy
 msgid "SIGNALING_AGENT"
 msgstr "Agen Pelekat"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:727
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2207
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vakuola Bioluminesensi"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:750
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1618
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
 msgid "THERMOPLAST"
 msgstr "Termoplas"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:779
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1224
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
 msgid "CILIA"
 msgstr "Silia"
 
@@ -980,80 +989,80 @@ msgstr "Perilaku"
 msgid "CELLS"
 msgstr "Selulosa"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:403
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
 #, fuzzy
 msgid "MODIFY_TYPE"
 msgstr "Ubah"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:416
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Hapus"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
 #, fuzzy
 msgid "DUPLICATE_TYPE"
 msgstr "Gandakan Pemain"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
 msgstr "bereproduksi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 #, fuzzy
 msgid "REPRODUCTION_BUDDING"
 msgstr "bereproduksi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:520
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "BATAL TINDAKAN"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:533
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1245
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr "LANJUT"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 #, fuzzy
 msgid "DISCONNECTED_CELLS"
 msgstr "Organel Terputus"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:544
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 #, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Ada organel yang tidak tersambung dengan yang lainnya.\n"
 "Mohon untuk menyambung semua organel dengan yang lainnya atau batal perubahanmu."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:549
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:555
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:559
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Buat Save Baru"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:567
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:580
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
 #, fuzzy
 msgid "NEW_NAME_COLON"
 msgstr "Kecepatan:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:587
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:595
 #, fuzzy
 msgid "NEW_NAME"
 msgstr "Permainan Baru"
@@ -1071,23 +1080,23 @@ msgstr "Letakkan organel"
 msgid "MP_COST"
 msgstr "{0} PM"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:88
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:65
-msgid "LOADING_MICROBE_EDITOR"
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
+#, fuzzy
+msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Memuat Editor Mikroba"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:226
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:196
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo gagal bekerja"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:227
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:197
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "status auto-evo:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:376
-#: ../src/general/EditorBase.cs:641
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:379
+#: ../src/general/EditorBase.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
@@ -1096,30 +1105,55 @@ msgstr ""
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr ""
 
-#: ../src/engine/FPSCounter.cs:18 ../src/engine/PerformanceMetrics.cs:62
-#: ../src/engine/PerformanceMetrics.tscn:57
+#: ../src/engine/DebugOverlays.FPSCounter.cs:16
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
+#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 #, fuzzy
 msgid "FPS"
 msgstr "FPS Maks:"
 
-#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
-msgid "LOADING"
-msgstr "Memuat"
-
-#: ../src/engine/PerformanceMetrics.cs:63
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 #, fuzzy
 msgid "FRAME_DURATION"
 msgstr "Respirasi Aerob"
 
-#: ../src/engine/PerformanceMetrics.cs:77
-#: ../src/engine/PerformanceMetrics.tscn:73
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
+#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
-#: ../src/engine/PerformanceMetrics.tscn:28
+#: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
+#: ../src/engine/PerformanceMetrics.tscn:30
 #, fuzzy
 msgid "METRICS"
 msgstr "Nyala/matikan tampilan FPS"
+
+#: ../src/engine/DebugOverlays.tscn:86
+msgid "DEBUG_PANEL"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:96
+#, fuzzy
+msgid "FPS_DISPLAY"
+msgstr "Media Play"
+
+#: ../src/engine/DebugOverlays.tscn:110
+msgid "COLLISION_SHAPE"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.tscn:117
+#, fuzzy
+msgid "ENTITY_LABEL"
+msgstr "Bioma: {0}"
+
+#: ../src/engine/DebugOverlays.tscn:128
+#, fuzzy
+msgid "TRANSPARENCY"
+msgstr "Bantu Alih Bahasa Permainan"
+
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
+msgid "LOADING"
+msgstr "Memuat"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
@@ -1557,17 +1591,17 @@ msgstr "Seni oleh {0}"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1337
 #: ../src/modding/ModManager.tscn:992
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:392
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "CLOSE"
 msgstr "Tutup"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/gui_common/CompoundAmount.cs:171
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:248
-#: ../src/microbe_stage/MicrobeHUD.cs:708
+#: ../src/microbe_stage/MicrobeHUD.cs:724
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
 #: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:275
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1583,16 +1617,31 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:178
+#: ../src/general/MainMenu.tscn:173
+#, fuzzy
+msgid "NEW_GAME_BUTTON_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#: ../src/general/MainMenu.tscn:176
 msgid "NEW_GAME"
 msgstr "Permainan Baru"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:192
+#: ../src/general/MainMenu.tscn:187 ../src/general/PauseMenu.tscn:194
+#, fuzzy
+msgid "LOAD_GAME_BUTTON_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#: ../src/general/MainMenu.tscn:190 ../src/general/PauseMenu.tscn:195
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Muat Permainan"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:214
+#: ../src/general/MainMenu.tscn:198 ../src/general/PauseMenu.tscn:219
+#, fuzzy
+msgid "OPTIONS_BUTTON_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS"
 msgstr "Pilihan"
 
@@ -1612,48 +1661,53 @@ msgstr "Lainnya"
 msgid "CREDITS"
 msgstr "Kredit"
 
-#: ../src/general/MainMenu.tscn:257
+#: ../src/general/MainMenu.tscn:254 ../src/general/PauseMenu.tscn:235
+#, fuzzy
+msgid "QUIT_BUTTON_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#: ../src/general/MainMenu.tscn:258
 msgid "QUIT"
 msgstr "Keluar"
 
-#: ../src/general/MainMenu.tscn:277
+#: ../src/general/MainMenu.tscn:278
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Mikroba Bangun-bebas"
 
-#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
-#: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:254
+#: ../src/general/MainMenu.tscn:338 ../src/general/MainMenu.tscn:415
+#: ../src/general/MainMenu.tscn:453 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/PauseMenu.tscn:262
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Kembali"
 
-#: ../src/general/MainMenu.tscn:358
+#: ../src/general/MainMenu.tscn:359
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:373
 msgid "ART_GALLERY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:384
+#: ../src/general/MainMenu.tscn:385
 msgid "LICENSES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:493
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING"
 msgstr "Peringatan Mode GLES2"
 
-#: ../src/general/MainMenu.tscn:495
+#: ../src/general/MainMenu.tscn:497
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Kamu menjalankan Thrive dengan GLES2. Ini belum teruji secara penuh dan mungkin akan menyebabkan masalah. Coba perbarui driver dan/atau paksa grafik AMD atau Nvidia anda untuk digunakan menjalankan Thrive."
 
-#: ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:501
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:500
+#: ../src/general/MainMenu.tscn:502
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -2005,43 +2059,69 @@ msgstr "Buka Folder Tangkapan Layar"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Ambil tangkapan layar"
 
-#: ../src/general/PauseMenu.cs:306
+#: ../src/general/PauseMenu.cs:329
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "Kembali ke Menu"
 
-#: ../src/general/PauseMenu.cs:322
+#: ../src/general/PauseMenu.cs:345
 #, fuzzy
 msgid "QUIT_GAME_WARNING"
 msgstr "Peringatan Mode GLES2"
 
 #: ../src/general/PauseMenu.tscn:178
+#, fuzzy
+msgid "PAUSE_MENU_RESUME_TOOLTIP"
+msgstr "Lanjutkan"
+
+#: ../src/general/PauseMenu.tscn:179
 msgid "RESUME"
 msgstr "Lanjutkan"
 
-#: ../src/general/PauseMenu.tscn:185
+#: ../src/general/PauseMenu.tscn:186
+#, fuzzy
+msgid "SAVE_GAME_BUTTON_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#: ../src/general/PauseMenu.tscn:187
 msgid "SAVE_GAME"
 msgstr "Simpan Permainan"
 
-#: ../src/general/PauseMenu.tscn:200
+#: ../src/general/PauseMenu.tscn:202
+#, fuzzy
+msgid "STATISTICS_BUTTON_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#: ../src/general/PauseMenu.tscn:204
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:488
 msgid "STATISTICS"
 msgstr "Statistika"
 
-#: ../src/general/PauseMenu.tscn:207
+#: ../src/general/PauseMenu.tscn:211
+#: ../src/microbe_stage/MicrobeStage.tscn:1724
+#, fuzzy
+msgid "HELP_BUTTON_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#: ../src/general/PauseMenu.tscn:212
 msgid "HELP"
 msgstr "Bantuan"
 
-#: ../src/general/PauseMenu.tscn:221
+#: ../src/general/PauseMenu.tscn:227
+#, fuzzy
+msgid "RETURN_TO_MENU_TOOLTIP"
+msgstr "Kembali ke Menu"
+
+#: ../src/general/PauseMenu.tscn:228
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Kembali ke Menu"
 
-#: ../src/general/PauseMenu.tscn:228
+#: ../src/general/PauseMenu.tscn:236
 msgid "EXIT"
 msgstr "Keluar"
 
-#: ../src/general/PauseMenu.tscn:279
+#: ../src/general/PauseMenu.tscn:287
 #, fuzzy
 msgid "CONFIRM_EXIT"
 msgstr "KONFIRMASI"
@@ -2374,7 +2454,7 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "NO_DATA_TO_SHOW"
 msgstr "Tidak Ada Data Untuk Ditampilkan"
 
@@ -2428,6 +2508,15 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 
+#: ../src/gui_common/dialogs/TutorialDialog.tscn:16
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:50
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:246
+#, fuzzy
+msgid "TUTORIAL"
+msgstr "Tutorial"
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
 msgstr "Buka Menu"
@@ -2477,352 +2566,353 @@ msgstr "Ketegaran Membran"
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Membran yang lebih tegar akan lebih kebal terhadap kerusakan, tetapi akan lebih susah bagi sel untuk bergerak."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:155
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2263
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2431
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2595
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2830
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3063
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3333
-msgid "MOBILITY"
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:158
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2275
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2613
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2851
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3087
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3360
+#, fuzzy
+msgid "BASE_MOBILITY"
 msgstr "Mobilitas"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:190
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2366
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2531
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2698
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2933
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3436
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:193
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2378
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2546
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2716
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2954
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3190
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3463
 msgid "HEALTH"
 msgstr "Kesehatan"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:229
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:232
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:237
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:240
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:248
 msgid "FEAR_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:253
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:256
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:261
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:264
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:277
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:280
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:278
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:281
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:295
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:399
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:496
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:599
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:696
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:793
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:891
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1026
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1283
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1372
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1464
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1548
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1647
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1747
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1836
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1934
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2031
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:298
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:401
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:498
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:600
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:697
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:794
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:892
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1027
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1286
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1375
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1468
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1553
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1653
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1754
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1844
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2041
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2139
 msgid "STORAGE"
 msgstr "Penyimpanan"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:333
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:437
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:534
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:637
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:734
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:831
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:929
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1064
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1124
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1184
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1321
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1410
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1502
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1586
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1685
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1785
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1874
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1972
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2069
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2166
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2298
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2465
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2630
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2865
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3098
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3368
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:336
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:439
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:536
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:638
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:735
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:832
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:930
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1065
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1125
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1185
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1240
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1413
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1506
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1591
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1792
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1981
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2079
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2177
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2310
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2480
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2648
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2886
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3122
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3395
 msgid "OSMOREGULATION_COST"
 msgstr "Harga Osmoregulasi"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:376
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:379
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:377
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Metabolosom adalah gugusan protein terbungkus dalam kulit protein. Mereka dapat mengkonversi glukosa menjadi ATP pada laju yang lebih tinggi daripada yang terjadi di sitoplasma dengan proses yang dinamakan Respirasi Aerob. Namun, proses tersebut tentu membutuhkan oksigen untuk berfungsi, dan tingkat oksigen yang lebih rendah di lingkungan akan memperlambat laju produksi ATP-nya. Karena metabolosom tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:477
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:479
 msgid "THYLAKOID"
 msgstr "Tilakoid"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:478
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:480
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Memproduksi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan intensitas [thrive:compound type=\"sunlight\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:479
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Tilakoid adalah gugusan protein dan pigmen fotosensitif. Pigmen tersebut dapat menggunakan energi dari cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen-pigmen ini yang juga memberi mereka warna yang khas. Laju produksi glukosa mereka berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya. Karena tilakoid tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:575
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] menjadi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Juga mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:576
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:578
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Protein pengkemosintesis adalah gugusan kecil protein dalam sitoplasma yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosanya berbanding lurus dengan konsentrasi karbon dioksida. Karena protein pengkemosintesis tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya melakukan beberapa glikolisis."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:678
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:679
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"iron\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:679
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:680
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rustisianin adalah protein yang dapat menggunakan gas karbon dioksida dan oksigen untuk mengoksidasi besi dari satu tahap kimiawi ke tahap yang lainnya. Proses ini, yang disebut Respirasi Besi, mengeluarkan energi yang kemudian dapat diambil oleh sel."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:775
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:776
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:776
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:777
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energi selular dalam bentuk ATP untuk memproduksi amonia, sebuah nutrisi penumbuh penting bagi sel. Ini proses yang disebut Fiksasi Nitrogen Anaerob. Karena nitrogenase tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya melakukan beberapa glikolisis."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:873
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:874
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:874
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:875
 msgid "OXYTOXISOME_DESC"
 msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:970
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:971
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Menggunakan [thrive:compound type=\"atp\"][/thrive:compound] untuk menambah kecepatan gerak sel"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:971
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "Flagela adalah bundelan serat protein yang berbentuk seperti cambuk memanjang dari membran sel yang menggunakan ATP untuk berputar dan mendorong sel ke suatu arah. Posisi flagela menentukan arah mana flagela tersebut memberi daya dorong untuk pergerakan sel. Arah dorongan berlawanan dengan arah flagela tersebut menuju, contohnya sebuah flagela yang di letakkan pada sisi kiri sebuah sel menyediakan daya dorong ketika bergerak ke kanan."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:988
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:989
 msgid "SPEED"
 msgstr "Kecepatan"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1105
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
 #, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Tusuk sel lain dengan ini."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Tusuk sel lain dengan ini."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
 #, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] menjadi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 #, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
 msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1271
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Tekan [thrive:input]g_toggle_binding[/thrive:input] untuk menyalakan/matikan mode lekat. Ketika di mode lekat kamu bisa melekatkan sel lain yang satu spesies dengamu dengan cara bergerak mendekati mereka. Untuk keluar dari koloni tekan tombol [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1272
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1354
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Memungkinkan evolusi organel terikat-membran yang lebih kompleks. Menggunakan banyak ATP untuk perawatan. Ini merupakan evolusi yang tak dapat diubah."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1355
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1358
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Ciri yang mendefinisikan sel eukariota. Nukleus juga mengandung retikulum endoplasma dan badan golgi. Ia merupakan evolusi dari sel prokariota guna mengembang sebuah sistem membran internal, dilakukan dengan cara asimilasi prokariota lain ke dalam diri mereka. Ini memungkinkan eukariota untuk memilah diri atau menghindari berbagai macam proses berbeda yang terjadi dalam sel dan mencegah proses tersebut bertumpang tindih. Ini memungkinkan organel terikat-membran baru milik mereka menjadi lebih kompleks, efisien dan terspesialisasi daripada jika hanya mengambang bebas dalam sitoplasma. Namun, kekurangannya adalah memperbesar sel dan memerlukan sangat banyak energi milik sel untuk perawatan."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1451
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1452
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang terisi oleh protein dan enzim. Mitokondria merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Ia juga dapat mengkonversi glukosa menjadi ATP pada efisiensi yang lebih tinggi daripada yang dapat dilakukan oleh sitoplasma dalam proses yang disebut Respirasi Aerob. Namun, ini tentunya memerlukan oksigen untuk berfungsi dan tingkat oksigen yang lebih rendah di lingkungan dapat memperlambat laju produksi ATP-nya."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1535
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1539
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Memproduksi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan intensitas [thrive:compound type=\"sunlight\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1536
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1540
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "Kloroplas adalah struktur membran ganda mengandung pigmen fotosensitif bertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang telah terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di kloroplas dapat menggunakan energi cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen ini juga yang memberi kloroplas warna khasnya. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Memproduksi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan suhu."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif tertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di termoplas dapat menggunakan perbedaan energi panas di sekelilingnya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Termosintesis. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan suhu."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1636
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:185
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1642
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:212
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Tidak ada proses"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1724
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2208
-#: ../src/microbe_stage/MicrobeHUD.cs:1474
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1726
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
+#: ../src/microbe_stage/MicrobeHUD.cs:1505
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Untuk di implementasi."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1734
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1740
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] menjadi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1735
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1741
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1818
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1825
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1819
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1916
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1924
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Menambah ruang penyimpanan sel."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1917
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1925
 msgid "VACUOLE_DESCRIPTION"
 msgstr "Vakuola adalah organel ber-membran internal yang digunakan untuk peyimpanan dalam sel. Mereka tersusun dari beberapa gelembung (vesikel), struktur ber-membran lebih kecil yang banyak digunakan oleh sel untuk penyimpanan, yang telah menyatu. Gelembung tersebut terisi air yang digunakan untuk menampung molekul, enzim, padatan dan zat lainnya. Bentuk mereka cair dan bervariasi antar sel."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2013
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2014
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2023
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Vakuola racun adalah vakuola yang telah dimodifikasi untuk pembuatan khusus, penyimpanan dan sekresi racun oksitoksi. Vakuola racun yang lebih banyak akan mempercepat laju pengeluaran racun tersebut."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2110
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2120
 #, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Tekan [thrive:input]g_toggle_binding[/thrive:input] untuk menyalakan/matikan mode lekat. Ketika di mode lekat kamu bisa melekatkan sel lain yang satu spesies dengamu dengan cara bergerak mendekati mereka. Untuk keluar dari koloni tekan tombol [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2111
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2121
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2237
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2246
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "Bentuk membran yang paling dasar, mempunyai ketahanan yang kecil terhadap kerusakan. Juga membutuhkan energi yang lebih banyak agar tak berubah bentuk. Keuntungannya adalah memungkinkan sel bergerak dan menyerap nutrisi dengan cepat."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2332
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2498
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2664
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2899
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3132
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3402
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2344
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2513
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2682
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2920
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3156
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3429
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Kecepatan Serap Sumber Daya"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2405
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2417
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membran dengan dua lapis, memiliki perlindungan yang lebih baik terhadap kerusakan dan memerlukan lebih sedikit energi agar tak berubah bentuk. Namun, memperlambat sel dan mengurangi laju kemampuannya menyerap sumber daya."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2569
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki dinding, mengakibatkan perlindungan yang lebih baik terhadap kerusakan secara keseluruhan dan khususnya terhadap kerusakan fisik. Juga memerlukan lebih sedikit energi untuk mempertahankan bentuknya, tetapi tidak dapat menyerap sumber daya dengan cepat dan juga memperlambat sel."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2732
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3200
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3470
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2750
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3224
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3497
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Kekebalan Fisik"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2766
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3001
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3268
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3538
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2784
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3022
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3292
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3565
 msgid "CANNOT_ENGULF"
 msgstr "Tidak bisa menelan"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2804
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Membrane ini memiliki dinding, yang artinya membran ini memiliki perlindungan yang lebih baik terhadap kerusakan secara keseluruhan dan khususnya terhadap kerusakan racun. Juga membutuhkan lebih sedikit energi untuk mempertahankan bentuk, tetapi memperlambat sel dan tidak dapat menyerap sumber daya dengan cepat."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2967
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3234
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3504
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2988
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3531
 msgid "TOXIN_RESISTANCE"
 msgstr "Kekebalan Racun"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3039
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3060
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki kulit kuat yang terbuat dari kalsium karbonat. Sangat mudah menangkal kerusakan dan membutuhkan lebih sedikit energi agar tidak berubah bentuk. Kekurangan dari memiliki sebuah kulit yang berat adalah sel menjadi lebih lambat dan membutuhkan beberapa waktu untuk menyerap sumber daya."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3307
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3331
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki dinding kuat terbuat dari silika. Dapat menahan kerusakan secara keseluruhan dengan baik dan sangat kebal terhadap kerusakan fisik. Juga memerlukan lebih sedikit energi untuk mempertahankan bentuk. Namun, sangat memperlambat sel dan juga memperlambat laju kemampuan sel menyerap sumber daya."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3694
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3742
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3700
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3748
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Nilai ini hanya berlaku untuk permainan baru setelah mengubah opsi ini"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3706
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3754
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Mengaktifkan efek pendar di GUI (contohnya kedipan tombol editor).\n"
@@ -2830,30 +2920,25 @@ msgstr ""
 "Jika kamu mengalami sebuah bug dimana bagian dari tombol editor menghilang,\n"
 "kamu dapat mencoba mematikan opsi ini untuk melihat apakah bug tersebut tidak terjadi lagi."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3712
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3760
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Tidak dapat dideteksi secara otomatis apakah hyperthreading aktif atau tidak.\n"
 "Ini memengaruhi jumlah default thread karena thread dari hyperthreading tidak secepat inti CPU asli."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3717
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3765
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 "Kamu memiliki perubahan yang belum tersimpan yang akan dibuang.\n"
 "Apakah kamu ingin lanjut?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3726
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:367
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:614
 msgid "TEMPERATURE"
 msgstr "Suhu"
-
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn:95
-#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:78
-msgid "N_A_MP"
-msgstr "N/A PM"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:588
 msgid "DEATH"
@@ -2901,124 +2986,128 @@ msgstr "Gandakan Pemain"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:543
+#: ../src/microbe_stage/MicrobeHUD.cs:560
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:544
+#: ../src/microbe_stage/MicrobeHUD.cs:561
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:545
+#: ../src/microbe_stage/MicrobeHUD.cs:562
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:546
+#: ../src/microbe_stage/MicrobeHUD.cs:563
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:547
+#: ../src/microbe_stage/MicrobeHUD.cs:564
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Agen Pelekat"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:550
+#: ../src/microbe_stage/MicrobeHUD.cs:567
 #, fuzzy
 msgid "SIGNAL_TO_EMIT"
 msgstr "Agen Pelekat"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:877
+#: ../src/microbe_stage/MicrobeHUD.cs:814
+msgid "PAUSE_PROMPT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:928
 msgid "STUFF_AT"
 msgstr "Yang ada pada {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:910
+#: ../src/microbe_stage/MicrobeHUD.cs:961
 msgid "PLAYER_CELL"
 msgstr "Sel Pemain"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:927
+#: ../src/microbe_stage/MicrobeHUD.cs:978
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Daftar Spesies"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:972
+#: ../src/microbe_stage/MicrobeHUD.cs:1023
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:974
+#: ../src/microbe_stage/MicrobeHUD.cs:1025
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:976
+#: ../src/microbe_stage/MicrobeHUD.cs:1027
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:978
+#: ../src/microbe_stage/MicrobeHUD.cs:1029
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:980
+#: ../src/microbe_stage/MicrobeHUD.cs:1031
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:982
+#: ../src/microbe_stage/MicrobeHUD.cs:1033
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1233
-#: ../src/microbe_stage/MicrobeStage.tscn:1788
+#: ../src/microbe_stage/MicrobeHUD.cs:1290
+#: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1269
-#: ../src/microbe_stage/MicrobeStage.tscn:1799
+#: ../src/microbe_stage/MicrobeHUD.cs:1326
+#: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:755
+#: ../src/microbe_stage/MicrobeStage.cs:765
 msgid "PLAYER_REPRODUCED"
 msgstr "pemain bereproduksi"
 
-#: ../src/microbe_stage/MicrobeStage.cs:769
+#: ../src/microbe_stage/MicrobeStage.cs:779
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:792
+#: ../src/microbe_stage/MicrobeStage.cs:802
 msgid "PLAYER_DIED"
 msgstr "pemain mati"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:518
+#: ../src/microbe_stage/MicrobeStage.tscn:521
 msgid "AT_CURSOR"
 msgstr "Pada Kursor:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:544
+#: ../src/microbe_stage/MicrobeStage.tscn:547
 msgid "NOTHING_HERE"
 msgstr "Tidak ada apa-apa disini"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:569
+#: ../src/microbe_stage/MicrobeStage.tscn:572
 msgid "COMPOUNDS_COLON"
 msgstr "Senyawa:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:609
+#: ../src/microbe_stage/MicrobeStage.tscn:612
 msgid "SPECIES_COLON"
 msgstr "Spesies:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:689
+#: ../src/microbe_stage/MicrobeStage.tscn:692
 msgid "ENVIRONMENT"
 msgstr "Lingkungan"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:957
+#: ../src/microbe_stage/MicrobeStage.tscn:960
 msgid "TEMPERATURE_SHORT"
 msgstr "Suhu"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1013
+#: ../src/microbe_stage/MicrobeStage.tscn:1016
 msgid "LIGHT"
 msgstr "Cahaya"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1068
+#: ../src/microbe_stage/MicrobeStage.tscn:1071
 msgid "PRESSURE_SHORT"
 msgstr "Tekanan"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1151
+#: ../src/microbe_stage/MicrobeStage.tscn:1154
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:672
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:678
@@ -3026,51 +3115,55 @@ msgstr "Tekanan"
 msgid "COMPOUNDS"
 msgstr "Senyawa"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1527
+#: ../src/microbe_stage/MicrobeStage.tscn:1530
 msgid "AGENTS"
 msgstr "Agen"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1625
+#: ../src/microbe_stage/MicrobeStage.tscn:1628
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1643
+#: ../src/microbe_stage/MicrobeStage.tscn:1646
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeStage.tscn:1659
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "Lanjutkan"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1669
+#: ../src/microbe_stage/MicrobeStage.tscn:1672
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1684
+#: ../src/microbe_stage/MicrobeStage.tscn:1687
 #, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1721
-#, fuzzy
-msgid "HELP_BUTTON_TOOLTIP"
-msgstr "Tambah keybind baru"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1733
+#: ../src/microbe_stage/MicrobeStage.tscn:1736
 #, fuzzy
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1784
+#: ../src/microbe_stage/MicrobeStage.tscn:1787
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1819
+#: ../src/microbe_stage/MicrobeStage.tscn:1822
 msgid "POPULATION_CAPITAL"
 msgstr "POPULASI:"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1973
+#, fuzzy
+msgid "EDITOR_BUTTON_TOOLTIP"
+msgstr "Tambah keybind baru"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:2119
+msgid "PAUSED"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:187
 #, fuzzy
@@ -3125,28 +3218,28 @@ msgstr ""
 msgid "FOCUSED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:317
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:322
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr "Produksi ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:323
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUKSI ATP TERLALU RENDAH!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:352
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:372
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
 msgid "OSMOREGULATION"
 msgstr "Osmoregulasi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:378
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
 msgid "BASE_MOVEMENT"
 msgstr "Pergerakan Dasar"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:390
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:406
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
@@ -3154,36 +3247,36 @@ msgstr "{0}: -{1} ATP"
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2002
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
 #, fuzzy
 msgid "FAILED"
 msgstr "Gagal menyimpan"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULASI:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
 #, fuzzy
 msgid "N_A"
 msgstr "Nonaktifkan AI (kecerdasan buatan)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2134
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2140
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2138
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2144
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2145
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2157
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3333,6 +3426,10 @@ msgstr ""
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nama spesies..."
 
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:65
+msgid "LOADING_MICROBE_EDITOR"
+msgstr "Memuat Editor Mikroba"
+
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
 msgstr "PM Tak Terhingga"
@@ -3460,6 +3557,11 @@ msgstr "Peta Daerah"
 msgid "CELL"
 msgstr "Selulosa"
 
+#: ../src/microbe_stage/editor/MicrobePartSelection.tscn:78
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:94
+msgid "N_A_MP"
+msgstr "N/A PM"
+
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:46
 msgid "FREEBUILDING"
 msgstr "Bangun-bebas"
@@ -3502,6 +3604,11 @@ msgstr "KEPUNAHAN"
 #: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
+
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
+#, fuzzy
+msgid "REQUIRES_NUCLEUS"
+msgstr "Nukleus"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
 #, fuzzy
@@ -4059,8 +4166,8 @@ msgstr ""
 msgid "CREATE"
 msgstr "Dibuat pada:"
 
-#: ../src/saving/InProgressLoad.cs:79 ../src/saving/InProgressLoad.cs:99
-#: ../src/saving/InProgressLoad.cs:148
+#: ../src/saving/InProgressLoad.cs:79 ../src/saving/InProgressLoad.cs:101
+#: ../src/saving/InProgressLoad.cs:150
 msgid "LOADING_GAME"
 msgstr "Memuat Permainan"
 
@@ -4068,41 +4175,41 @@ msgstr "Memuat Permainan"
 msgid "READING_SAVE_DATA"
 msgstr "Membaca data save"
 
-#: ../src/saving/InProgressLoad.cs:101
+#: ../src/saving/InProgressLoad.cs:103
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Membuat obyek dari save"
 
-#: ../src/saving/InProgressLoad.cs:110
+#: ../src/saving/InProgressLoad.cs:112
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Sebuah eksepsi terjadi saat sedang memuat data save"
 
-#: ../src/saving/InProgressLoad.cs:136
+#: ../src/saving/InProgressLoad.cs:138
 msgid "SAVE_IS_INVALID"
 msgstr "Save tidak valid"
 
-#: ../src/saving/InProgressLoad.cs:137
+#: ../src/saving/InProgressLoad.cs:139
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Save memiliki skena game state yang tidak valid"
 
-#: ../src/saving/InProgressLoad.cs:150
+#: ../src/saving/InProgressLoad.cs:152
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Memproses obyek yang termuat"
 
-#: ../src/saving/InProgressLoad.cs:165
+#: ../src/saving/InProgressLoad.cs:167
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Sebuah eksepsi terjadi saat sedang memproses obyek yang termuat"
 
-#: ../src/saving/InProgressLoad.cs:171
+#: ../src/saving/InProgressLoad.cs:173
 msgid "LOAD_FINISHED"
 msgstr "Selesai memuat"
 
-#: ../src/saving/InProgressLoad.cs:195
+#: ../src/saving/InProgressLoad.cs:200
 msgid "ERROR_LOADING"
 msgstr "Error Memuat"
 
-#: ../src/saving/InProgressLoad.cs:227
+#: ../src/saving/InProgressLoad.cs:236
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Gagal membebaskan resource yang telah termuat: {0}"
 
@@ -4201,7 +4308,7 @@ msgstr "Save cepat"
 msgid "SAVE_INVALID"
 msgstr "Tidak valid"
 
-#: ../src/saving/SaveList.cs:215
+#: ../src/saving/SaveList.cs:219
 msgid "SAVE_DELETE_WARNING"
 msgstr "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin menghapus {0} secara permanen?"
 
@@ -4455,27 +4562,7 @@ msgstr "Gagal menyimpan! Terjadi eksepsi"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
-#, fuzzy
-msgid "TUTORIAL"
-msgstr "Tutorial"
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:64
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:40
 #, fuzzy
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
@@ -4486,7 +4573,7 @@ msgstr ""
 "\n"
 "Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:53
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
@@ -4497,7 +4584,7 @@ msgstr ""
 "\n"
 "Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:138
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
@@ -4508,7 +4595,7 @@ msgstr ""
 "\n"
 "Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah kanan bawah."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:79
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
@@ -4520,7 +4607,7 @@ msgstr ""
 "\n"
 "Klik tombol undo untuk lanjut."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:96
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
@@ -4532,7 +4619,7 @@ msgstr ""
 "\n"
 "Tekan tombol redo (disebelah tombol undo) untuk lanjut."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:267
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
@@ -4544,11 +4631,11 @@ msgstr ""
 "\n"
 "Semoga beruntung!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:284
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:152
 msgid "GOT_IT"
 msgstr "Baiklah"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:331
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:168
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
@@ -4561,7 +4648,7 @@ msgstr ""
 "\n"
 "Pilih daerah untuk lanjut."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:375
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:187
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
@@ -4571,7 +4658,7 @@ msgstr ""
 "\n"
 "Untuk lanjut, pilih organel dari panel di sebelah kiri (sitoplasma adalah pilihan yang baik). Kemudian klik kiri disebelah hex yang ditampilkan di pertengahan layar untuk menambahkan organel pada spesiesmu."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:52
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Di planet asing yang jauh, ribuan tahun lamanya aktifitas vulkanik dan tumbukan meteor menyebabkan berkembangnya sebuah fenomena baru di alam semesta.\n"
@@ -4582,30 +4669,30 @@ msgstr ""
 "\n"
 "Untuk bertahan hidup di dunia ini, kamu perlu mengumpulkan tiap senyawa yang dapat kamu temukan dan berkembang tiap generasi untuk bersaing dengan spesies mikroba lain."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:98
 #, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Tampilkan tutorial"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
 msgid "BEGIN_THRIVING"
 msgstr "Mulai Berkembang"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:126
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Untuk mengendalikan selmu gunakan tombol-tombol yang tertampil dekat selmu (pusat layar) dan gunakan mouse untuk mengendalikan orientasi sel.\n"
 "\n"
 "Coba semua tombol selama beberapa detik untuk lanjut."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:184
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Kumpulkan glukosa (awan putih) dengan bergerak ke atas mereka.\n"
 "Selmu membutuhkan glukosa agar dapat memproduksi energi untuk bertahan hidup.\n"
 "Ikuti garis yang membujur dari selmu ke glukosa terdekat."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:195
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Perhatikan bilah health di sebelah bilah ATP (kanan bawah).\n"
@@ -4613,14 +4700,14 @@ msgstr ""
 "Kamu memperbarui health ketika memiliki ATP.\n"
 "Pastikan telah mengumpulkan glukosa yang cukup untuk memproduksi ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:206
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Agar dapat reproduksi kamu butuh menggandakan semua organelmu dengan muengumpulkan amonia dan fosfat yang cukup.\n"
 "Lihat indikator di kanan bawah untuk melihat berapa banyak yang kamu perlukan."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -4630,7 +4717,7 @@ msgstr ""
 "\n"
 "Untuk memasuki editor tekan tombol editor yang sedang berpendar di kanan bawah."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:228
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -4638,12 +4725,12 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] dan mouse untuk bergerak. [thrive:input]g_fire_toxin[/thrive:input] untuk menembakkan [thrive:compound type=\"oxytoxy\"][/thrive:compound] jika kamu punya vakula toksin. [thrive:input]g_toggle_engulf[/thrive:input] untuk menyalakan/mematikan mode penelanan (engulf)."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
