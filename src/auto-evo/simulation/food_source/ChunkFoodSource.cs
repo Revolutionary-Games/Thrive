@@ -44,7 +44,7 @@
             }
         }
 
-        public float computeChunkFindScore(MicrobeSpecies microbeSpecies)
+        public float ComputeChunkFindScore(MicrobeSpecies microbeSpecies)
         {
             // Given that there is no error raised above for unfit chunkType, no error is raised here as well...
             if (energyCompounds == null)
