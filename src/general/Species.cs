@@ -80,6 +80,9 @@ public abstract class Species : ICloneable
     public string FormattedName => Genus + " " + Epithet;
 
     [JsonIgnore]
+    public string FormattedNameBbCode => PlayerSpecies ? $"[b][i]{FormattedName}[/i][/b]" : $"[i]{FormattedName}[/i]";
+
+    [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
     [JsonIgnore]
