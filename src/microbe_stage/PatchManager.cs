@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -120,12 +121,12 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         foreach (var entry in biome.Chunks)
         {
-            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
+            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
+                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
                         Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 });
@@ -138,13 +139,14 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         foreach (var entry in biome.Compounds)
         {
-            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, entry.Value.Density,
+            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName,
+                entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Key.InternalName,
                         Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
+                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
                         Constants.CLOUD_SPAWN_RADIUS);
                     return spawner;
                 });
@@ -158,7 +160,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         GD.Print("Number of species in this patch = ", patch.SpeciesInPatch.Count);
 
-        foreach (var entry in patch.SpeciesInPatch)
+        foreach (var entry in patch.SpeciesInPatch.OrderByDescending(entry => entry.Value))
         {
             var species = entry.Key;
 
@@ -168,9 +170,7 @@ public class PatchManager : IChildPropertiesLoadCallback
                 continue;
             }
 
-            var density = 1.0f / (Constants.STARTING_SPAWN_DENSITY -
-                Math.Min(Constants.MAX_SPAWN_DENSITY,
-                    species.Population * 5));
+            var density = Mathf.Max(Mathf.Log(species.Population / 50.0f) * 0.01f, 0.0f);
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
@@ -216,13 +216,11 @@ public class PatchManager : IChildPropertiesLoadCallback
         {
             existing.Marked = true;
 
-            float oldFrequency = existing.Spawner.SpawnFrequency;
-            existing.Spawner.SetFrequencyFromDensity(density);
-
-            if (oldFrequency != existing.Spawner.SpawnFrequency)
+            if (existing.Spawner.Density != density)
             {
-                GD.Print("Spawn frequency of ", existing.Name, " changed from ",
-                    oldFrequency, " to ", existing.Spawner.SpawnFrequency);
+                GD.Print("Changing spawn density of ", existing.Name, " from ",
+                    existing.Spawner.Density, " to ", density);
+                existing.Spawner.Density = density;
             }
         }
         else
