@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-09 14:12+0300\n"
+"POT-Creation-Date: 2022-06-13 12:00+0700\n"
 "PO-Revision-Date: 2022-05-03 17:42+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -975,72 +975,72 @@ msgstr "Käyttäytyminen"
 msgid "CELLS"
 msgstr "Solut"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:403
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
 msgid "MODIFY_TYPE"
 msgstr "Vaihda tyyppiä"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:416
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Poista"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
 msgid "DUPLICATE_TYPE"
 msgstr "Kopioi tyyppi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
 msgid "REPRODUCTION_METHOD"
 msgstr "Lisääntyminen:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 msgid "REPRODUCTION_BUDDING"
 msgstr "Orastuminen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:520
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "PERU"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:533
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1245
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr "SEURAAVA"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 #, fuzzy
 msgid "DISCONNECTED_CELLS"
 msgstr "Irtonaiset soluelimet"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:544
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Jotkin soluelimistä eivät ole keskenään yhdessä.\n"
 "Yhdistä kaikki soluelimet toisiinsa tai kumoa muutoksesi."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Soluelimen tyyppiä ei voi poistaa"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:549
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:555
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Solutyyppiä, joka on tällä hetkellä käytössä kehon suunnitelmassa, ei voi poistaa"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:559
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Luo uusi soluelin"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:567
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Voit luoda uusia soluelimiä kopioimalla olemassa olevia tyyppejä ja antamalla niille uudet nimet. Soluelimiä voi muokata siten, että ne erikoistuvat eri tehtäviin. Kun soluelintyyppiä muokataan, kaikki sitä vastaavat nykyiset soluelimet muokkaantuvat samalla."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:580
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
 msgid "NEW_NAME_COLON"
 msgstr "Uusi nimi:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:587
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:595
 msgid "NEW_NAME"
 msgstr "Uusi nimi"
 
@@ -1053,7 +1053,7 @@ msgstr "Lisää soluelin"
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:82
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:102
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:103
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -2415,7 +2415,7 @@ msgid "RAW"
 msgstr "Raaka"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2180
 msgid "NO_DATA_TO_SHOW"
 msgstr "Ei dataa näytettäväksi"
 
@@ -2771,7 +2771,7 @@ msgstr "Ei toimintoja"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1505
+#: ../src/microbe_stage/MicrobeHUD.cs:1510
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Tullaan toteuttamaan tulevaisuudessa."
 
@@ -2981,66 +2981,66 @@ msgstr ""
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:814
+#: ../src/microbe_stage/MicrobeHUD.cs:819
 msgid "PAUSE_PROMPT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:928
+#: ../src/microbe_stage/MicrobeHUD.cs:933
 msgid "STUFF_AT"
 msgstr "Juttuja sijainnissa {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:961
+#: ../src/microbe_stage/MicrobeHUD.cs:966
 msgid "PLAYER_CELL"
 msgstr "Pelaajan solu"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:978
+#: ../src/microbe_stage/MicrobeHUD.cs:983
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1023
+#: ../src/microbe_stage/MicrobeHUD.cs:1028
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1025
+#: ../src/microbe_stage/MicrobeHUD.cs:1030
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1027
+#: ../src/microbe_stage/MicrobeHUD.cs:1032
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "kohtuullisesti"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1029
+#: ../src/microbe_stage/MicrobeHUD.cs:1034
 msgid "CATEGORY_SOME"
 msgstr "hieman"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1031
+#: ../src/microbe_stage/MicrobeHUD.cs:1036
 msgid "CATEGORY_LITTLE"
 msgstr "vähän"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1033
+#: ../src/microbe_stage/MicrobeHUD.cs:1038
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "erittäin vähän"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1290
+#: ../src/microbe_stage/MicrobeHUD.cs:1295
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1326
+#: ../src/microbe_stage/MicrobeHUD.cs:1331
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:765
+#: ../src/microbe_stage/MicrobeStage.cs:766
 msgid "PLAYER_REPRODUCED"
 msgstr "pelaaja jatkoi sukuaan"
 
-#: ../src/microbe_stage/MicrobeStage.cs:779
+#: ../src/microbe_stage/MicrobeStage.cs:780
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Luo vihollinen"
 
-#: ../src/microbe_stage/MicrobeStage.cs:802
+#: ../src/microbe_stage/MicrobeStage.cs:803
 msgid "PLAYER_DIED"
 msgstr "pelaaja kuoli"
 
@@ -3211,35 +3211,43 @@ msgstr "{0}: -{1} ATP"
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1167
+msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1168
+msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2016
 #, fuzzy
 msgid "FAILED"
 msgstr "Tallennus epäonnistui"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2022
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
 #, fuzzy
 msgid "N_A"
 msgstr "Ei tekoälyä"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2140
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2148
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energiaa {0} jota käytetään {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2144
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2157
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energiaa: {1} (sopivuus: {2}) kokonaisenergia: {3} (kokonaissopivuus: {4})"
 
@@ -4487,14 +4495,14 @@ msgstr "Tuntematon Steam-virhe tapahtui"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:48
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:213
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:282
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:363
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:397
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutoriaali"
@@ -4585,7 +4593,7 @@ msgstr ""
 "\n"
 "Hyvä alkustrategia voi olla pysyä yksittäisenä solulimana ja suunnata ympäristöissä pinnalle, jossa voi käyttää fotosynteesin soluelimiä."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:79
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
@@ -4596,23 +4604,23 @@ msgstr ""
 "\n"
 "Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
 #, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Näytä tutoriaalit"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:113
 msgid "BEGIN_THRIVING"
 msgstr "Aloita selviytyminen"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:151
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Liikkuaksesi käytä solun ympärillä näkyviä näppäimiä yhdessä hiiren kursorin kanssa.\n"
 "\n"
 "Kokeile painella näytettyjä painikeita muutaman sekunnin jatkaaksesi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Kerää glukooria (valkeat yhdistepilvet) liikkumalla niihin.\n"
@@ -4621,7 +4629,7 @@ msgstr ""
 "\n"
 "Seuraa viivaa, joka kulkee solustasi lähimpään glukoosipilveen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:267
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Seuraa tarkoin alhaalla oikealla näkyviä palkkeja.\n"
@@ -4629,13 +4637,13 @@ msgstr ""
 "Terveyspalkkisi kasvaa silloin kun solullasi on ATP:tä.\n"
 "Pidä huolta, että keräät tarpeeksi glukoosia tuottaaksesi ATP:tä."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Lisääntyäksesi sinun on kerättävä tarpeeksi ammoniakkia ja fosfaatteja monistautumiseen.\n"
 "Seuraa alhaalla oikealla pyöreän painiketta reunustavia palkkeja tietääksesi, paljonko näitä on vielä kerättävä. Palkit muuttuvat valkoisiksi, kun ne ovat täynnä."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Olet kerännyt tarpeeksi yhdisteitä, jotta solusi voi jakaantua.\n"
@@ -4644,19 +4652,19 @@ msgstr ""
 "\n"
 "Avataksesi editorin, paina suurta vilkkuvaa painiketta alhaalla oikealla."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:383
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:424
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:433
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Katso nyt"

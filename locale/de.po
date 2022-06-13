@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-09 14:12+0300\n"
+"POT-Creation-Date: 2022-06-13 12:00+0700\n"
 "PO-Revision-Date: 2022-04-08 11:52+0000\n"
 "Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -963,71 +963,71 @@ msgstr "Verhalten"
 msgid "CELLS"
 msgstr "Zellen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:403
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
 msgid "MODIFY_TYPE"
 msgstr "Typ modifizieren"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:416
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Löschen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
 msgid "DUPLICATE_TYPE"
 msgstr "Typ duplizieren"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 msgid "REPRODUCTION_BUDDING"
 msgstr "Knospend"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:520
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "AKTION ABBRECHEN"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:533
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1245
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr "NÄCHSTE"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "DISCONNECTED_CELLS"
 msgstr "Getrennte Zellen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:544
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Es gibt Zellen, die nicht mit dem Rest verbunden sind.\n"
 "Bitte verbinde alle platzierten Zellen miteinander oder mach deine Änderungen rückgängig."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Verwendete Zellen nicht löschbar"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:549
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:555
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Ein Zelltyp, der derzeit in deinem Körperplan verwendet wird, kann nicht gelöscht werden"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:559
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Neuen Zellentyp erstellen"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:567
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Du kannst neue Zelltypen hinzufügen, indem du Bestehende duplizierst und dann benennst. Zelltypen können modifiziert werden, um sie für verschiedene Aufgaben zu spezialisieren. Wenn ein Zellentyp geändert wird, werden alle platzierten Zellen dieses Typs aktualisiert."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:580
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
 msgid "NEW_NAME_COLON"
 msgstr "Neuer Name:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:587
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:595
 msgid "NEW_NAME"
 msgstr "Neuer Name"
 
@@ -1040,7 +1040,7 @@ msgstr "Organelle platzieren"
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:82
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:102
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:103
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -2399,7 +2399,7 @@ msgid "RAW"
 msgstr "Roh"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2180
 msgid "NO_DATA_TO_SHOW"
 msgstr "Keine Daten zu zeigen"
 
@@ -2753,7 +2753,7 @@ msgstr "Keine Prozesse"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1505
+#: ../src/microbe_stage/MicrobeHUD.cs:1510
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Noch zu implementieren."
 
@@ -2962,65 +2962,65 @@ msgstr "Werde aggressiv"
 msgid "SIGNAL_TO_EMIT"
 msgstr "Signal zum aussenden"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:814
+#: ../src/microbe_stage/MicrobeHUD.cs:819
 msgid "PAUSE_PROMPT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:928
+#: ../src/microbe_stage/MicrobeHUD.cs:933
 msgid "STUFF_AT"
 msgstr "Sachen bei {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:961
+#: ../src/microbe_stage/MicrobeHUD.cs:966
 msgid "PLAYER_CELL"
 msgstr "Spielerzelle"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:978
+#: ../src/microbe_stage/MicrobeHUD.cs:983
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1023
+#: ../src/microbe_stage/MicrobeHUD.cs:1028
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "eine Fülle"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1025
+#: ../src/microbe_stage/MicrobeHUD.cs:1030
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "ziemlich viel"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1027
+#: ../src/microbe_stage/MicrobeHUD.cs:1032
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "ein gutes Stück"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1029
+#: ../src/microbe_stage/MicrobeHUD.cs:1034
 msgid "CATEGORY_SOME"
 msgstr "etwas"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1031
+#: ../src/microbe_stage/MicrobeHUD.cs:1036
 msgid "CATEGORY_LITTLE"
 msgstr "wenig"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1033
+#: ../src/microbe_stage/MicrobeHUD.cs:1038
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "sehr wenig"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1290
+#: ../src/microbe_stage/MicrobeHUD.cs:1295
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr "Multizellulär werden ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1326
+#: ../src/microbe_stage/MicrobeHUD.cs:1331
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopisch werden ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:765
+#: ../src/microbe_stage/MicrobeStage.cs:766
 msgid "PLAYER_REPRODUCED"
 msgstr "Spieler reproduziert"
 
-#: ../src/microbe_stage/MicrobeStage.cs:779
+#: ../src/microbe_stage/MicrobeStage.cs:780
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Der Cheat Code zum Spawnen von Gegnern kann in diesem Gebiet nicht genutzt werden, da hier keine feindlichen Spezies leben"
 
-#: ../src/microbe_stage/MicrobeStage.cs:802
+#: ../src/microbe_stage/MicrobeStage.cs:803
 msgid "PLAYER_DIED"
 msgstr "Spieler starb"
 
@@ -3190,33 +3190,41 @@ msgstr "{0}: -{1} ATP"
 msgid "CELL_TYPE_NAME"
 msgstr "Zellentypname"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1167
+msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1168
+msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2016
 msgid "FAILED"
 msgstr "Gescheitert"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2022
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
 msgid "N_A"
 msgstr "N/V"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2140
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2148
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie in {0} für {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2144
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Die gesammelte Gesamtenergie beträgt {0} mit individuellen Kosten von {1}, was zu einer unbereinigten Bevölkerung von {2} führt"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
 msgid "ENERGY_SOURCES"
 msgstr "Energiequellen:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2157
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}Energie:{1}(Fitness:{2})insgesamt verfügbare Energie:{3} (gesamte Fitness:{4})"
 
@@ -4419,14 +4427,14 @@ msgstr "Unbekannter Steam-Fehler ist aufgetreten"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:48
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:213
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:282
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:363
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:397
 msgid "TUTORIAL"
 msgstr "Anleitung"
 
@@ -4516,7 +4524,7 @@ msgstr ""
 "\n"
 "Eine mögliche Strategie ist es, ein einzelnes Hexagon an Cytoplasma zu bleiben um zu den Gebieten an der Oberfläche zu wandern, bevor du Organellen mit Photosynthese hinzufügst."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:79
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Auf einen uns weit entfernten Planeten, haben Jahrtausende von vulkanischer Aktivität und dem einschlagen etlicher Meteoriten zu einem ganz besonderen Phänomen im Universum geführt.\n"
@@ -4527,22 +4535,22 @@ msgstr ""
 "\n"
 "Um in dieser lebensfeindlichen Welt zu überleben, musst du jegliche Substanzen sammeln, die du finden kannst, und dich über Generationen hinweg weiterentwickeln, um gegen die anderen Arten von Mikroben zu bestehen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
 msgid "SHOW_TUTORIALS"
 msgstr "Einführung anzeigen"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:113
 msgid "BEGIN_THRIVING"
 msgstr "Gedeihe"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:151
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Um deine Zelle zu steuern, verwende die Tasten in der Nähe deiner Zelle (Mitte des Bildschirms) und die Maus, um die Ausrichtung der Zelle zu steuern.\n"
 "\n"
 "Probiere alle Tasten für einige Sekunden aus, um fortzufahren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Sammle Glukose (weiße Wolken), indem du dich über sie bewegst.\n"
@@ -4551,7 +4559,7 @@ msgstr ""
 "\n"
 "Folge der Linie von deiner Zelle bis zur einer nahe gelegenen Glukosewolke."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:267
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Achte auf deinen Gesundheitsbalken neben dem ATP-Balken (unten rechts).\n"
@@ -4559,13 +4567,13 @@ msgstr ""
 "Du regenerierst Gesundheit, solange du ATP hast.\n"
 "Achten darauf, dass du genügend Glukose sammelst, um ATP zu produzieren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Um sich zu vermehren, müssen Sie alle deiner Organellen duplizieren, indem Sie genügend Ammoniak und Phosphat sammeln.\n"
 "Schauen Sie auf die Indikatoren unten rechts, um zu sehen, wie viel mehr Sie benötigen. Diese Indikatoren werden weiß, wenn sie gefüllt sind."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Du hast genügend Ressourcen gesammelt, damit sich deine Zelle teilen kann.\n"
@@ -4574,21 +4582,21 @@ msgstr ""
 "\n"
 "Um den Editor zu öffnen, drücke auf die blinkende Schaltfläche unten rechts."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:383
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Du hast den \"Bindung aufheben\"-Modus aufgerufen. In diesem Modus kannst du auf die Mitglieder deiner Kolonie klicken, um deren Verbindung zu lösen.\n"
 "\n"
 "Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:424
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Solltest du Probleme mit den Spielmechaniken haben, kannst du jederzeit das Hilfemenü aufrufen. Dieses findest du, indem du auf das Fragezeichen in der unteren linken Ecke klickst.\n"
 "\n"
 "Ein weiterer Tipp: Du kannst mit dem Mausrad herein- und herauszoomen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:433
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial ansehen"
 

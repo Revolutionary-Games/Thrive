@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-09 14:12+0300\n"
+"POT-Creation-Date: 2022-06-13 12:00+0700\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -965,71 +965,71 @@ msgstr "Поведінка"
 msgid "CELLS"
 msgstr "Клітини"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:403
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
 msgid "MODIFY_TYPE"
 msgstr "Змінити тип"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:416
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Видалити"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
 msgid "DUPLICATE_TYPE"
 msgstr "Дублювати тип"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
 msgid "REPRODUCTION_METHOD"
 msgstr "Розмножено:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 msgid "REPRODUCTION_BUDDING"
 msgstr "Брункування"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:520
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "Скасувати дію"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:533
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1245
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr "ДАЛІ"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "DISCONNECTED_CELLS"
 msgstr "Від'єднати клітини"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:544
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Тут розміщені клітини, які не з'єднання з рештою.\n"
 "Будь-ласка приєднайте одна з одною всі розміщені клітини аби продовжити."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Неможна видалити використовуваний тип клітини"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:549
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:555
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Тип клітини, який зараз використовується на вашому плані тіла неможливо видалити"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:559
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Створити новий тип клітини"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:567
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Ви можете створювати новий тип клітини дублюючи дані та надаючи нову назву. Типи клітин можна модифікувати для спеціалізації їх до різних ролей. Коли зміниться тип клітини, такі самі розміщені клітини теж будуть оновлені."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:580
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
 msgid "NEW_NAME_COLON"
 msgstr "Нова назва:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:587
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:595
 msgid "NEW_NAME"
 msgstr "Нова назва"
 
@@ -1042,7 +1042,7 @@ msgstr "Місце для органели"
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:82
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:102
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:103
 msgid "MP_COST"
 msgstr "{0} ОM"
 
@@ -2414,7 +2414,7 @@ msgid "RAW"
 msgstr "Необроблений"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2180
 msgid "NO_DATA_TO_SHOW"
 msgstr "Немає даних для показу"
 
@@ -2772,7 +2772,7 @@ msgstr "Процеси не відбуваються"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1505
+#: ../src/microbe_stage/MicrobeHUD.cs:1510
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Буде реалізованим."
 
@@ -2981,65 +2981,65 @@ msgstr "Зробіться агресивними"
 msgid "SIGNAL_TO_EMIT"
 msgstr "Сигнал для виведення"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:814
+#: ../src/microbe_stage/MicrobeHUD.cs:819
 msgid "PAUSE_PROMPT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:928
+#: ../src/microbe_stage/MicrobeHUD.cs:933
 msgid "STUFF_AT"
 msgstr "Нахилити на {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:961
+#: ../src/microbe_stage/MicrobeHUD.cs:966
 msgid "PLAYER_CELL"
 msgstr "Клітина гравця"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:978
+#: ../src/microbe_stage/MicrobeHUD.cs:983
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1023
+#: ../src/microbe_stage/MicrobeHUD.cs:1028
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "в достатку"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1025
+#: ../src/microbe_stage/MicrobeHUD.cs:1030
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "нормально"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1027
+#: ../src/microbe_stage/MicrobeHUD.cs:1032
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "невелика кількість"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1029
+#: ../src/microbe_stage/MicrobeHUD.cs:1034
 msgid "CATEGORY_SOME"
 msgstr "трішки"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1031
+#: ../src/microbe_stage/MicrobeHUD.cs:1036
 msgid "CATEGORY_LITTLE"
 msgstr "мало"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1033
+#: ../src/microbe_stage/MicrobeHUD.cs:1038
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "дуже мало"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1290
+#: ../src/microbe_stage/MicrobeHUD.cs:1295
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr "Перейти до багатоклітиності ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1326
+#: ../src/microbe_stage/MicrobeHUD.cs:1331
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стати макроскопічним ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:765
+#: ../src/microbe_stage/MicrobeStage.cs:766
 msgid "PLAYER_REPRODUCED"
 msgstr "гравець розмножився"
 
-#: ../src/microbe_stage/MicrobeStage.cs:779
+#: ../src/microbe_stage/MicrobeStage.cs:780
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Неможливо використати спавн ворога тому що в цій ділянці немає ворожих видів"
 
-#: ../src/microbe_stage/MicrobeStage.cs:802
+#: ../src/microbe_stage/MicrobeStage.cs:803
 msgid "PLAYER_DIED"
 msgstr "гравець помер"
 
@@ -3209,33 +3209,41 @@ msgstr "{0}: -{1} АТФ"
 msgid "CELL_TYPE_NAME"
 msgstr "Назва типу клітини"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1167
+msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1168
+msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2016
 msgid "FAILED"
 msgstr "Провалено"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2022
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
 msgid "N_A"
 msgstr "Н/Є"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2140
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2148
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергія в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2144
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Загальна зібрана енергія становить{0} з індивідуальною вартістю {1}, врезультаті чого– некоригована популяція з {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
 msgid "ENERGY_SOURCES"
 msgstr "Джерела енергії:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2157
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} енергії: {1} (пристосованість: {2}) загальної доступної енергії: {3}(загальна пристосованість:{4})"
 
@@ -4427,14 +4435,14 @@ msgstr "Сталася невідома помилка Steam"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:48
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:213
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:282
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:363
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:397
 msgid "TUTORIAL"
 msgstr "Туторіал"
 
@@ -4526,7 +4534,7 @@ msgstr ""
 "\n"
 "Однією з можливих стратегій є залишатися на одному гексі цитоплазми і просто вирушати на поверхню, перш ніж отримати органели фотосинтезу."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:79
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "На далекій чужій планеті еони вулканічної активності та метеоритних дощів призвели до нового феномену у Всесвіті.\n"
@@ -4537,22 +4545,22 @@ msgstr ""
 "\n"
 "Щоб вижити в цьому суворуму світі, ви маєте збирати сполуки, які лише знайдете, та еволюціонувати протягом поколінь, аби конкурувати з іншими видами мікробів."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
 msgid "SHOW_TUTORIALS"
 msgstr "Показати туторіали"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:113
 msgid "BEGIN_THRIVING"
 msgstr "Почніть процвітання"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:151
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Для контролю вашої клітини використовуйте клавіші показані навколо неї(в центрі екрану) та мишку для контролю напряму.\n"
 "\n"
 "Затиснісніть клавіші протягом кількох секунд, щоб продовжити."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Збирайте глюкозу(білі хмари) рухаючись по них.\n"
@@ -4561,7 +4569,7 @@ msgstr ""
 "\n"
 "Слідкуйте за лінією біля вашої клітини до глюкози поблизу."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:267
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Зберігайте око на панелі зі здоров'ям поруч з панелю АТФ (знизу справа).\n"
@@ -4569,13 +4577,13 @@ msgstr ""
 "Ви відновлюєте здоров'я, поки є АТФ.\n"
 "Переконайтесь, що збираєте достатню кількість глюкози для продукування АТФ."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Для розмноження потрібно подвоїти кожну свою органелу зібравши достатньо аміаку та фосфатів.\n"
 "Погляньте на смужки навколо великої кнопки знизу справа, аби бачити як багато вам треба. Ці смужки стануть білими, коли заповняться."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Ви зібрали необхідну кількість ресурсів для поділу вашої клітини.\n"
@@ -4584,21 +4592,21 @@ msgstr ""
 "\n"
 "Для переходу в радактор натисніть блимаючу кнопку редактора знизу справа."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:383
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Ви перейшли до розв'язувального режиму. В цьому режимі ви можете клацнути на членів колонії для розв'язування з ними.\n"
 "\n"
 "Аби повністю покинути колонію ви можете клікнути на свою клітину або натиснути клавішу для розв'язування."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:424
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Труднощі? Подивіться довідкове меню. Ви можете відкрити його за допомогою кнопки із знаком питання знизу зліва.\n"
 "\n"
 "Ще одна підказка: Ви можете зменшувати зображення за допомогою колесика миші."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:433
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Переглянути зараз"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-09 14:12+0300\n"
+"POT-Creation-Date: 2022-06-13 12:00+0700\n"
 "PO-Revision-Date: 2022-03-21 22:25+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -999,80 +999,80 @@ msgstr ""
 msgid "CELLS"
 msgstr "Celuloza"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:403
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:416
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
 #, fuzzy
 msgid "DUPLICATE_TYPE"
 msgstr "igrač je umro"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
 msgstr "Proizvodi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
 #, fuzzy
 msgid "REPRODUCTION_BUDDING"
 msgstr "Proizvodi"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:520
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1232
 #, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "POTVRDI"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:533
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1245
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1015
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:737
 msgid "NEXT_CAPITAL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 #, fuzzy
 msgid "DISCONNECTED_CELLS"
 msgstr "Isključene Organele"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:544
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 #, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Postoje postavljene organele, koje nisu povezane sa ostalim.\n"
 "Povežite sve postavljene organele jedni sa drugima ili poništite promene."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:549
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:555
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:559
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Napravite novi mikrob"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:567
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:580
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
 #, fuzzy
 msgid "NEW_NAME_COLON"
 msgstr "Brzina:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:587
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:595
 #, fuzzy
 msgid "NEW_NAME"
 msgstr "Nova igra"
@@ -1086,7 +1086,7 @@ msgstr "Postavite organelu"
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:82
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:102
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:103
 msgid "MP_COST"
 msgstr ""
 
@@ -2474,7 +2474,7 @@ msgid "RAW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2180
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -2832,7 +2832,7 @@ msgstr "Postavite organelu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1729
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
-#: ../src/microbe_stage/MicrobeHUD.cs:1505
+#: ../src/microbe_stage/MicrobeHUD.cs:1510
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Da se implementira."
 
@@ -3053,66 +3053,66 @@ msgstr ""
 "Postoji sukob sa {0}.\n"
 "Da li želite da uklonite unos iz {1}?"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:814
+#: ../src/microbe_stage/MicrobeHUD.cs:819
 msgid "PAUSE_PROMPT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:928
+#: ../src/microbe_stage/MicrobeHUD.cs:933
 msgid "STUFF_AT"
 msgstr "Stvari u {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:961
+#: ../src/microbe_stage/MicrobeHUD.cs:966
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:978
+#: ../src/microbe_stage/MicrobeHUD.cs:983
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Vrste:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1023
+#: ../src/microbe_stage/MicrobeHUD.cs:1028
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1025
+#: ../src/microbe_stage/MicrobeHUD.cs:1030
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1027
+#: ../src/microbe_stage/MicrobeHUD.cs:1032
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1029
+#: ../src/microbe_stage/MicrobeHUD.cs:1034
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1031
+#: ../src/microbe_stage/MicrobeHUD.cs:1036
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1033
+#: ../src/microbe_stage/MicrobeHUD.cs:1038
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1290
+#: ../src/microbe_stage/MicrobeHUD.cs:1295
 #: ../src/microbe_stage/MicrobeStage.tscn:1791
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1326
+#: ../src/microbe_stage/MicrobeHUD.cs:1331
 #: ../src/microbe_stage/MicrobeStage.tscn:1802
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:765
+#: ../src/microbe_stage/MicrobeStage.cs:766
 msgid "PLAYER_REPRODUCED"
 msgstr "Igrač se reprodukovao"
 
-#: ../src/microbe_stage/MicrobeStage.cs:779
+#: ../src/microbe_stage/MicrobeStage.cs:780
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:802
+#: ../src/microbe_stage/MicrobeStage.cs:803
 msgid "PLAYER_DIED"
 msgstr "igrač je umro"
 
@@ -3288,35 +3288,43 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2008
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1167
+msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1168
+msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2016
 msgid "FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2014
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2026
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2022
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULACIJA:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2020
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2032
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
 #, fuzzy
 msgid "N_A"
 msgstr "- МП"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2140
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2148
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2144
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2152
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2151
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2159
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2157
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -4539,14 +4547,14 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:239
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:302
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:347
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:48
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:131
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:213
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:247
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:282
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:363
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:397
 msgid "TUTORIAL"
 msgstr ""
 
@@ -4591,51 +4599,51 @@ msgstr "{0:F1}% završeno. {1:n0}/{2:n0} koraka."
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr "Učitavanje Uređivača Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:79
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:113
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:151
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:267
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:349
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:383
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:424
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:433
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 

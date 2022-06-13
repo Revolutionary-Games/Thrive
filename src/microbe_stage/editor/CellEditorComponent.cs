@@ -1156,10 +1156,18 @@ public partial class CellEditorComponent :
 
         var count = organelles.Count;
 
+        var firstOrganelle = organelles.First();
+
         // Disable delete for nucleus or the last organelle.
         if (MicrobeSize <= count || organelles.Any(o => o.Definition == nucleus))
         {
             organelleMenu.EnableDeleteOption = false;
+
+            organelleMenu.DeleteOptionTooltip = firstOrganelle.Definition == nucleus ?
+                TranslationServer.Translate(
+                    "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP") :
+                TranslationServer.Translate(
+                    "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP");
         }
         else
         {
@@ -1172,13 +1180,15 @@ public partial class CellEditorComponent :
             {
                 organelleMenu.EnableDeleteOption = true;
             }
+
+            organelleMenu.DeleteOptionTooltip = string.Empty;
         }
 
         // Move enabled only when microbe has more than one organelle
         organelleMenu.EnableMoveOption = MicrobeSize > 1;
 
         // Modify / upgrade possible when defined on the primary organelle definition
-        if (count > 0 && !string.IsNullOrEmpty(organelles.First().Definition.UpgradeGUI))
+        if (count > 0 && !string.IsNullOrEmpty(firstOrganelle.Definition.UpgradeGUI))
         {
             organelleMenu.EnableModifyOption = true;
         }
