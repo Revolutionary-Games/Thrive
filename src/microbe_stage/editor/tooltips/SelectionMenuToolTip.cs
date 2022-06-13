@@ -42,7 +42,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private Label? nameLabel;
     private Label? mpLabel;
     private Label? requiresNucleusLabel;
-    private Label? descriptionLabel;
+    private CustomRichTextLabel? descriptionLabel;
     private CustomRichTextLabel? processesDescriptionLabel;
     private VBoxContainer modifierInfoList = null!;
     private ProcessList processList = null!;
@@ -85,6 +85,15 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         }
     }
 
+    /// <summary>
+    ///   General description of the selectable.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: description string should only be set here and not directly on the rich text label node
+    ///     as it will be overridden otherwise.
+    ///   </para>
+    /// </remarks>
     [Export]
     public string? Description
     {
@@ -145,12 +154,12 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         nameLabel = GetNode<Label>(NameLabelPath);
         mpLabel = GetNode<Label>(MpLabelPath);
         requiresNucleusLabel = GetNode<Label>(RequiresNucleusPath);
-        descriptionLabel = GetNode<Label>(DescriptionLabelPath);
+        descriptionLabel = GetNode<CustomRichTextLabel>(DescriptionLabelPath);
         processesDescriptionLabel = GetNode<CustomRichTextLabel>(ProcessesDescriptionLabelPath);
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
         processList = GetNode<ProcessList>(ProcessListPath);
 
-        modifierInfoScene = GD.Load<PackedScene>("res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.tscn");
+        modifierInfoScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn");
         latoBoldFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Bold-Smaller.tres");
 
         UpdateName();
@@ -165,6 +174,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     {
         if (what == NotificationTranslationChanged)
         {
+            UpdateDescription();
             UpdateProcessesDescription();
         }
     }
@@ -223,7 +233,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
             switch (modifier.Name)
             {
-                case "mobility":
+                case "baseMobility":
                     deltaValue = membraneType.MovementFactor - referenceMembrane.MovementFactor;
                     break;
                 case "osmoregulationCost":
@@ -297,14 +307,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (descriptionLabel == null)
             return;
 
-        if (string.IsNullOrEmpty(Description))
-        {
-            description = descriptionLabel.Text;
-        }
-        else
-        {
-            descriptionLabel.Text = description;
-        }
+        descriptionLabel.ExtendedBbcode = TranslationServer.Translate(Description);
     }
 
     private void UpdateProcessesDescription()
@@ -313,6 +316,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             return;
 
         processesDescriptionLabel.ExtendedBbcode = TranslationServer.Translate(ProcessesDescription);
+        processesDescriptionLabel.Visible = !string.IsNullOrEmpty(ProcessesDescription);
     }
 
     private void UpdateMpCost()
