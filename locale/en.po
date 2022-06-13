@@ -889,39 +889,39 @@ msgstr "went extinct from the planet"
 
 #: ../src/auto-evo/RunResults.cs:844
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr "[u]{0}[/u] has gone extinct!"
+msgstr "[b][u]{0}[/u][/b] has gone extinct!"
 
 #: ../src/auto-evo/RunResults.cs:854 ../src/auto-evo/RunResults.cs:876
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "[u]{0}[/u] population has increased to {1}"
+msgstr "[b][u]{0}[/u][/b] population has increased to {1}"
 
 #: ../src/auto-evo/RunResults.cs:860 ../src/auto-evo/RunResults.cs:882
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "[u]{0}[/u] population has decreased to {1}"
+msgstr "[b][u]{0}[/u][/b] population has decreased to {1}"
 
 #: ../src/auto-evo/RunResults.cs:868
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr "[u]{0}[/u] has disappeared from this patch"
+msgstr "[b][u]{0}[/u][/b] has disappeared from this patch"
 
 #: ../src/auto-evo/RunResults.cs:892
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr "Part of [u]{0}[/u] population has migrated into this patch from {1}"
+msgstr "Part of [b][u]{0}[/u][/b] population has migrated into this patch from {1}"
 
 #: ../src/auto-evo/RunResults.cs:897
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "Part of [u]{0}[/u] population has migrated to {1} from {2}"
+msgstr "Part of [b][u]{0}[/u][/b] population has migrated to {1} from {2}"
 
 #: ../src/auto-evo/RunResults.cs:903
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "Part of [u]{0}[/u] population has migrated to {1}"
+msgstr "Part of [b][u]{0}[/u][/b] population has migrated to {1}"
 
 #: ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_NICHE_FILL"
-msgstr "[u]{0}[/u] split off from [u]{1}[/u] as a new species to fill a niche"
+msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species to fill a niche"
 
 #: ../src/auto-evo/RunResults.cs:928
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "[u]{0}[/u] split off from [u]{1}[/u] as a new species due to differing selection pressures"
+msgstr "[b][u]{0}[/u][/b] split off from [b][u]{1}[/u][/b] as a new species due to differing selection pressures"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "NOT_FOUND_CHUNK"
@@ -3355,7 +3355,7 @@ msgstr "Compound Balances"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs:266
 msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr "Species name must conform to binomial naming system (Genus and Epithet)!"
+msgstr "Species name must conform to binomial naming system (e.g. Primum thrivium)"
 
 #: ../src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn:174
 msgid "SPECIES_NAME_DOT_DOT_DOT"
