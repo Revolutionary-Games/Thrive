@@ -13,7 +13,7 @@ uniform vec4 colour4 : hint_color = vec4(0, 0, 0, 0);
 uniform vec2 UVOffset = vec2(0, 0);
 
 uniform float BrightnessMultiplier = 1.0f;
-uniform float CloudAlpha = 0.7f
+uniform float CloudAlpha = 0.7f;
 
 // Setting this too low makes the clouds invisible
 const float CLOUD_DISSIPATION = 0.9f;
