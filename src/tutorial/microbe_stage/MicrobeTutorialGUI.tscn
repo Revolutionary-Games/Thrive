@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=11]
 
 [node name="MicrobeTutorialGUI" type="Control"]
 pause_mode = 2
@@ -30,6 +31,7 @@ ReproductionTutorialPath = NodePath("ReproductionTutorial")
 EditorButtonTutorialPath = NodePath("EditorButtonTutorial")
 UnbindTutorialPath = NodePath("UnbindTutorial")
 CheckTheHelpMenuPath = NodePath("CheckHelpMenu")
+EditorButtonHighlightPath = NodePath("EditorButtonHighlight")
 
 [node name="MicrobeWelcome" type="Popup" parent="."]
 anchor_left = 1.0
@@ -110,9 +112,6 @@ text = "BEGIN_THRIVING"
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ExplainingPopup" parent="MicrobeMovementTutorial" instance=ExtResource( 10 )]
 anchor_left = 1.0
@@ -205,6 +204,12 @@ margin_right = 0.0
 margin_bottom = 61.0
 Description = "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 
+[node name="EditorButtonHighlight" parent="." instance=ExtResource( 11 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 490.0
+margin_bottom = 490.0
+
 [node name="EditorButtonTutorial" parent="." instance=ExtResource( 10 )]
 anchor_left = 1.0
 anchor_top = 0.5
@@ -228,7 +233,6 @@ margin_bottom = 61.0
 Description = "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 
 [node name="CheckHelpMenu" type="Popup" parent="."]
-visible = true
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
