@@ -36,8 +36,8 @@
                 else
                 {
                     // Score if you have to find the compound by chance
-                    // Scales with concentration (= density) but never outmatches chemoreceptor.
-                    compoundFindScore = Math.Max(compoundData.Density, Constants.AUTO_EVO_CHEMORECEPTOR_FIND_SCORE);
+                    // Scales with concentration (= density * amount, in percents) but never outmatches chemoreceptor.
+                    compoundFindScore = Math.Min(totalCompound, Constants.AUTO_EVO_CHEMORECEPTOR_FIND_SCORE);
                 }
             }
 
