@@ -316,7 +316,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             return;
 
         processesDescriptionLabel.ExtendedBbcode = TranslationServer.Translate(ProcessesDescription);
-        processesDescriptionLabel.Visible = string.IsNullOrEmpty(ProcessesDescription);
+        processesDescriptionLabel.Visible = !string.IsNullOrEmpty(ProcessesDescription);
     }
 
     private void UpdateMpCost()
