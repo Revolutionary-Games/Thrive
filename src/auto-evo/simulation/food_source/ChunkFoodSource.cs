@@ -13,6 +13,7 @@
         private readonly Patch patch;
         private readonly float totalEnergy;
         private readonly float chunkSize;
+        private readonly float chunkDensity;
         private readonly string? chunkName;
         private readonly Dictionary<Compound, float>? energyCompounds;
 
@@ -24,6 +25,7 @@
             {
                 chunkSize = chunk.Size;
                 chunkName = chunk.Name;
+                chunkDensity = chunk.Density;
 
                 // NOTE: Here we use the heuristic that only iron and glucose are useful in chunks
                 energyCompounds = chunk.Compounds.Where(c => c.Key == iron || c.Key == glucose).ToDictionary(
@@ -40,6 +42,27 @@
                 var ventedEnergy = Mathf.Pow(energyCompounds.Sum(c => c.Value), Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);
                 totalEnergy = ventedEnergy * chunk.Density * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
             }
+        }
+
+        public float computeChunkFindScore(MicrobeSpecies microbeSpecies)
+        {
+            // Given that there is no error raised above for unfit chunkType, no error is raised here as well...
+            if (energyCompounds == null)
+            {
+                return Math.Min(chunkDensity, Constants.AUTO_EVO_CHEMORECEPTOR_FIND_SCORE);
+            }
+
+            foreach (var compound in energyCompounds.Keys.Intersect(patch.Biome.Compounds.Keys))
+            {
+                if (microbeSpecies.ComputeChemoreceptedCompounds().Contains(compound))
+                {
+                    return Constants.AUTO_EVO_CHEMORECEPTOR_FIND_SCORE;
+                }
+            }
+
+            // Score if you have to find the compound by chance.
+            // Scales with density of the chunks but never outmatches chemoreceptor.
+            return Math.Min(chunkDensity, Constants.AUTO_EVO_CHEMORECEPTOR_FIND_SCORE);
         }
 
         public override float FitnessScore(Species species, SimulationCache simulationCache)
@@ -70,6 +93,8 @@
 
             // Chunk (originally from marine snow) food source penalizes big creatures that try to rely on it
             score /= energyBalance.TotalConsumptionStationary;
+
+            score *= computeChunkFindScore(microbeSpecies);
 
             return score;
         }
