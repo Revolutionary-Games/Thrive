@@ -1156,14 +1156,13 @@ public partial class CellEditorComponent :
 
         var count = organelles.Count;
 
-        var firstOrganelle = organelles.First();
-
         // Disable delete for nucleus or the last organelle.
-        if (MicrobeSize <= count || organelles.Any(o => o.Definition == nucleus))
+        bool attemptingNucleusDelete = organelles.Any(o => o.Definition == nucleus);
+        if (MicrobeSize <= count || attemptingNucleusDelete)
         {
             organelleMenu.EnableDeleteOption = false;
 
-            organelleMenu.DeleteOptionTooltip = firstOrganelle.Definition == nucleus ?
+            organelleMenu.DeleteOptionTooltip = attemptingNucleusDelete ?
                 TranslationServer.Translate(
                     "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP") :
                 TranslationServer.Translate(
@@ -1188,7 +1187,7 @@ public partial class CellEditorComponent :
         organelleMenu.EnableMoveOption = MicrobeSize > 1;
 
         // Modify / upgrade possible when defined on the primary organelle definition
-        if (count > 0 && !string.IsNullOrEmpty(firstOrganelle.Definition.UpgradeGUI))
+        if (count > 0 && !string.IsNullOrEmpty(organelles.First().Definition.UpgradeGUI))
         {
             organelleMenu.EnableModifyOption = true;
         }
