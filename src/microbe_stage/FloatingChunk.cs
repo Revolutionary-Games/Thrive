@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
-public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
+public class FloatingChunk : RigidBody, ISpawned
 {
     [Export]
     [JsonProperty]
@@ -107,8 +107,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public string DamageType { get; set; } = "chunk";
 
     public string ChunkName { get; set; } = string.Empty;
-
-    public bool IsLoadedFromSave { get; set; }
 
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();

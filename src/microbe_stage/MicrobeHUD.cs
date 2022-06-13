@@ -480,11 +480,14 @@ public class MicrobeHUD : Control
             throw new InvalidOperationException("Stage not setup for HUD");
 
         if (stage.IsLoadedFromSave && !returningFromEditor)
+        {
+            stage.OnFinishTransitioning();
             return;
+        }
 
-        // Fade out for that smooth satisfying transition
         stage.TransitionFinished = false;
 
+        // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddSequence(
             ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f, stage.OnFinishTransitioning);
     }
@@ -741,6 +744,11 @@ public class MicrobeHUD : Control
             return;
 
         pauseButton.Toggle();
+    }
+
+    public void SendEditorButtonToTutorial(TutorialState tutorialState)
+    {
+        tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
     }
 
     /// <summary>
