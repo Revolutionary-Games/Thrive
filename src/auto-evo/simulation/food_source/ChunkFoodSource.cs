@@ -94,7 +94,7 @@
             // Chunk (originally from marine snow) food source penalizes big creatures that try to rely on it
             score /= energyBalance.TotalConsumptionStationary;
 
-            score *= computeChunkFindScore(microbeSpecies);
+            score *= ComputeChunkFindScore(microbeSpecies);
 
             return score;
         }
