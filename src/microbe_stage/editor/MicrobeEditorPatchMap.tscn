@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/minusButtonHover.png" type="Texture" id=26]
 [ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=27]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.cs" type="Script" id=28]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=29]
 
 [sub_resource type="StyleBoxTexture" id=32]
 texture = ExtResource( 9 )
@@ -880,7 +881,8 @@ expand = true
 [node name="SpeciesBox" type="VBoxContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 margin_top = 456.0
 margin_right = 318.0
-margin_bottom = 490.0
+margin_bottom = 536.0
+size_flags_vertical = 3
 script = ExtResource( 23 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -942,10 +944,11 @@ custom_styles/separator = SubResource( 32 )
 [node name="Clip" type="MarginContainer" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
 margin_top = 24.0
 margin_right = 318.0
-margin_bottom = 34.0
+margin_bottom = 80.0
 rect_clip_content = true
 mouse_filter = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/margin_right = 15
 custom_constants/margin_top = 5
 custom_constants/margin_left = 15
@@ -955,9 +958,15 @@ custom_constants/margin_bottom = 5
 margin_left = 15.0
 margin_top = 5.0
 margin_right = 303.0
-margin_bottom = 5.0
+margin_bottom = 51.0
 mouse_filter = 2
 theme = SubResource( 33 )
+
+[node name="SpeciesList" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/Clip/GridContainer" instance=ExtResource( 29 )]
+margin_right = 288.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Tween" type="Tween" parent="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
 
