@@ -66,8 +66,8 @@ public class ProcessSystem
     ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
     ///   movement organelles are assumed to be inactive in the balance calculation.
     /// </param>
-    /// <param name="worldSettings">The wprld generation settings for this game</param>
     /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species/param>
+    /// <param name="worldSettings">The wprld generation settings for this game</param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool isPlayerSpecies, WorldGenerationSettings? worldSettings)
