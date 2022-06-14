@@ -46,13 +46,14 @@ public abstract class CombinableActionData
     /// <summary>
     ///   Should this action be merged with the previous one if possible?
     /// </summary>
+    /// <returns>True if this action wants to be merged with <see cref="other"/></returns>
     public virtual bool WantsMergeWith(CombinableActionData other)
     {
         return false;
     }
 
     /// <summary>
-    ///   Merge the other data into this if possible.
+    ///   Merge the other data into this if possible
     /// </summary>
     /// <param name="other">The action to merge into this</param>
     /// <returns>True if a merge has been conducted</returns>
@@ -75,9 +76,12 @@ public abstract class CombinableActionData
     protected abstract CombinableActionData CombineGuaranteed(CombinableActionData other);
 
     /// <summary>
-    ///   Merges the other data into this
+    ///   Merges the other data into this action
     /// </summary>
-    /// <param name="other">The action to merge into this. Guaranteed to be mergeable</param>
+    /// <param name="other">
+    ///   The action to merge into this. Guaranteed to be mergeable by the called.
+    ///   <see cref="GetInterferenceModeWith"/> has been called to make sure this can be combined.
+    /// </param>
     protected virtual void MergeGuaranteed(CombinableActionData other)
     {
         throw new NotSupportedException();

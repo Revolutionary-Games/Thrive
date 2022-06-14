@@ -16,7 +16,7 @@ public class BehaviourActionData : EditorCombinableActionData
 
     public override bool WantsMergeWith(CombinableActionData other)
     {
-        return true;
+        return other is BehaviourActionData;
     }
 
     protected override int CalculateCostInternal()
@@ -55,6 +55,7 @@ public class BehaviourActionData : EditorCombinableActionData
     protected override void MergeGuaranteed(CombinableActionData other)
     {
         var behaviourChangeActionData = (BehaviourActionData)other;
+
         if (Math.Abs(OldValue - behaviourChangeActionData.NewValue) < MathUtils.EPSILON)
         {
             OldValue = behaviourChangeActionData.OldValue;

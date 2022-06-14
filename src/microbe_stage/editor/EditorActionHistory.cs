@@ -199,6 +199,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
         // We undo the action here as when it is added back it will be performed again
         // And we need this to adjust the ActionIndex to be right after we remove the element
+        // Note that this will clear the history cache
         if (!Undo())
             throw new Exception("Failed to undo the action we want to pop");
 
