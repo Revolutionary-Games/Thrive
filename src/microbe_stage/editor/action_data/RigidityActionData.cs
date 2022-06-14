@@ -14,7 +14,7 @@ public class RigidityActionData : EditorCombinableActionData
 
     public override bool WantsMergeWith(CombinableActionData other)
     {
-        return true;
+        return other is RigidityActionData;
     }
 
     protected override int CalculateCostInternal()
