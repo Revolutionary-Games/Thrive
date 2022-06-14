@@ -19,6 +19,5 @@ size = Vector2( 5, 5 )
 [node name="ToxinCloud" type="Particles"]
 amount = 50
 lifetime = 2.0
-local_coords = false
 process_material = ExtResource( 1 )
 draw_pass_1 = SubResource( 2 )
