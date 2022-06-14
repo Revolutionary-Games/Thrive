@@ -40,7 +40,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [AssignOnlyChildItemsOnDeserialize]
     private PatchManager patchManager = null!;
 
-    private WorldGenerationSettings worldSettings = null!;
+    private WorldGenerationSettings? worldSettings;
 
     private DirectionalLight worldLight = null!;
 
@@ -122,6 +122,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [JsonProperty]
     public WorldGenerationSettings WorldSettings
     {
+        // Need to get like this to account for returning from freebuild editor
         get => worldSettings ?? CurrentGame!.WorldSettings;
         set => worldSettings = value;
     }
@@ -708,7 +709,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         SpawnPlayer();
 
         // Add a cloud of glucose if difficulty settings call for it
-        if (WorldSettings!.FreeGlucoseCloud)
+        if (WorldSettings.FreeGlucoseCloud)
         {
             Clouds.AddCloud(glucose, 200000.0f, Player!.Translation + new Vector3(0.0f, 0.0f, -25.0f));
         }
