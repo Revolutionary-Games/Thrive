@@ -1157,9 +1157,16 @@ public partial class CellEditorComponent :
         var count = organelles.Count;
 
         // Disable delete for nucleus or the last organelle.
-        if (MicrobeSize <= count || organelles.Any(o => o.Definition == nucleus))
+        bool attemptingNucleusDelete = organelles.Any(o => o.Definition == nucleus);
+        if (MicrobeSize <= count || attemptingNucleusDelete)
         {
             organelleMenu.EnableDeleteOption = false;
+
+            organelleMenu.DeleteOptionTooltip = attemptingNucleusDelete ?
+                TranslationServer.Translate(
+                    "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP") :
+                TranslationServer.Translate(
+                    "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP");
         }
         else
         {
@@ -1172,6 +1179,8 @@ public partial class CellEditorComponent :
             {
                 organelleMenu.EnableDeleteOption = true;
             }
+
+            organelleMenu.DeleteOptionTooltip = string.Empty;
         }
 
         // Move enabled only when microbe has more than one organelle
