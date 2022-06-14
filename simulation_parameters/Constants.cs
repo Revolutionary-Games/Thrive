@@ -117,8 +117,6 @@ public static class Constants
     public const float MAX_SPAWN_DENSITY = 20000.0f;
     public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
 
-    public const float EASTER_EGG_SPAWN_PROBABILITY = 0.1f;
-
     /// <summary>
     ///   Radius of the zone where the player is considered immobile as he remains inside.
     ///   Used to not overgenerate when the player doesn't move.
@@ -551,8 +549,6 @@ public static class Constants
     public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
 
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
-
-    public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
     // These control how many game entities can exist at once and how fast they are allowed to spawn / despawn
