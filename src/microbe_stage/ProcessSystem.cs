@@ -139,9 +139,10 @@ public class ProcessSystem
         result.Osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
             membrane.OsmoregulationFactor;
 
-        if (isPlayerSpecies)
+        // World settings may be null if this is the first generation
+        if (isPlayerSpecies && worldSettings != null)
         {
-            result.Osmoregulation *= (float)worldSettings!.OsmoregulationMultiplier;
+            result.Osmoregulation *= (float)worldSettings.OsmoregulationMultiplier;
         }
 
         result.AddConsumption("osmoregulation", result.Osmoregulation);
