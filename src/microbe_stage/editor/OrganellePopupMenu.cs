@@ -82,6 +82,7 @@ public class OrganellePopupMenu : HexPopupMenu
         mpLabel.Text = new LocalizedString("MP_COST", -mpCost).ToString();
 
         deleteButton.Disabled = !EnableDeleteOption;
+        deleteButton.HintTooltip = DeleteOptionTooltip;
     }
 
     protected override void UpdateMoveButton()

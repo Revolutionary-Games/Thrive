@@ -22,6 +22,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     public NodePath HUDRootPath = null!;
 
     private Compound glucose = null!;
+    private Compound phosphate = null!;
 
     private Node world = null!;
     private Node rootOfDynamicallySpawned = null!;
@@ -51,8 +52,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     private List<GuidanceLine> chemoreceptionLines = new();
 
-    // TODO: make this be saved (and preserve old save compatibility by creating this in on save loaded callback
-    // if null)
+    [JsonProperty]
     private Random random = new();
 
     /// <summary>
@@ -225,6 +225,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         ResolveNodeReferences();
 
         glucose = SimulationParameters.Instance.GetCompound("glucose");
+        phosphate = SimulationParameters.Instance.GetCompound("phosphates");
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
@@ -308,7 +309,15 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         tutorialGUI.EventReceiver = TutorialState;
 
+        HUD.SendEditorButtonToTutorial(TutorialState);
+
         Clouds.Init(FluidSystem);
+
+        // If this is a new game, place some phosphates as a learning tool
+        if (!IsLoadedFromSave)
+        {
+            Clouds.AddCloud(phosphate, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+        }
 
         patchManager.CurrentGame = CurrentGame;
 
@@ -384,6 +393,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         Player.OnCompoundChemoreceptionInfo = HandlePlayerChemoreceptionDetection;
 
         Camera.ObjectToFollow = Player;
+
+        spawner.DespawnAll();
 
         if (spawnedPlayer)
         {
@@ -552,7 +563,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // Check nothing else has keyboard focus and pause the game
         if (HUD.GetFocusOwner() == null)
         {
-            HUD.PauseButtonPressed();
+            HUD.TogglePause();
         }
     }
 
@@ -835,7 +846,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         if (ready && (player.Colony == null || player.IsMulticellular))
         {
             if (!player.IsMulticellular)
+            {
                 TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
+            }
 
             // This is to prevent the editor button being able to be clicked multiple times in freebuild mode
             if (!MovingToEditor)
@@ -874,6 +887,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         else
         {
             // Player is not extinct, so can respawn
+            spawner.ClearSpawnCoordinates();
             SpawnPlayer();
         }
     }

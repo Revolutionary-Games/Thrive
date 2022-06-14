@@ -79,6 +79,13 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;
 
+    /// <summary>
+    ///   Returns <see cref="FormattedName"/> but includes bbcode tags for styling. Player's species will be emphasized
+    ///   with bolding.
+    /// </summary>
+    [JsonIgnore]
+    public string FormattedNameBbCode => PlayerSpecies ? $"[b][i]{FormattedName}[/i][/b]" : $"[i]{FormattedName}[/i]";
+
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 

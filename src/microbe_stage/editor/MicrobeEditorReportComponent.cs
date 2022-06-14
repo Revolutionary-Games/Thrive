@@ -71,8 +71,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
     private Label timeIndicator = null!;
     private Label glucoseReductionLabel = null!;
-    private Label autoEvoLabel = null!;
-    private Label externalEffectsLabel = null!;
+    private CustomRichTextLabel autoEvoLabel = null!;
+    private CustomRichTextLabel externalEffectsLabel = null!;
     private Label reportTabPatchName = null!;
     private OptionButton reportTabPatchSelector = null!;
 
@@ -108,8 +108,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         reportTabPatchSelector = GetNode<OptionButton>(ReportTabPatchSelectorPath);
         timeIndicator = GetNode<Label>(TimeIndicatorPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
-        autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
-        externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
+        autoEvoLabel = GetNode<CustomRichTextLabel>(AutoEvoLabelPath);
+        externalEffectsLabel = GetNode<CustomRichTextLabel>(ExternalEffectsLabelPath);
 
         physicalConditionsIconLegends = GetNode<HBoxContainer>(PhysicalConditionsIconLegendPath);
         temperatureChart = GetNode<LineChart>(TemperatureChartPath);
@@ -161,8 +161,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
     public void UpdateAutoEvoResults(string results, string external)
     {
-        autoEvoLabel.Text = results;
-        externalEffectsLabel.Text = external;
+        autoEvoLabel.ExtendedBbcode = results;
+        externalEffectsLabel.ExtendedBbcode = external;
     }
 
     public void UpdateReportTabPatchName(Patch patch)

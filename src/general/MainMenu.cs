@@ -47,6 +47,9 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath ModManagerPath = null!;
 
+    [Export]
+    public NodePath GalleryViewerPath = null!;
+
     public Array? MenuArray;
     public TextureRect Background = null!;
 
@@ -58,6 +61,7 @@ public class MainMenu : NodeWithInput
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
     private ModManager modManager = null!;
+    private GalleryViewer galleryViewer = null!;
 
     private Control creditsContainer = null!;
     private CreditsScroll credits = null!;
@@ -101,7 +105,7 @@ public class MainMenu : NodeWithInput
     /// <summary>
     ///   Sets the current menu index and then switches the menu
     /// </summary>
-    /// <param name="index">Index of the menu</param>
+    /// <param name="index">Index of the menu. Set to <see cref="uint.MaxValue"/> to hide all menus</param>
     /// <param name="slide">If false then the menu slide animation will not be played</param>
     public void SetCurrentMenu(uint index, bool slide = true)
     {
@@ -160,7 +164,7 @@ public class MainMenu : NodeWithInput
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
-        Jukebox.Instance.SmoothStop();
+        Jukebox.Instance.Stop(true);
 
         var transitions = new List<ITransition>();
 
@@ -201,6 +205,7 @@ public class MainMenu : NodeWithInput
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
+        galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
 
         MenuArray?.Clear();
 
@@ -281,6 +286,8 @@ public class MainMenu : NodeWithInput
     /// </summary>
     private void SwitchMenu()
     {
+        thriveLogo.Hide();
+
         // Hide other menus and only show the one of the current index
         foreach (Control menu in MenuArray!)
         {
@@ -289,6 +296,7 @@ public class MainMenu : NodeWithInput
             if (menu.GetIndex() == CurrentMenuIndex)
             {
                 menu.Show();
+                thriveLogo.Show();
             }
         }
     }
@@ -387,17 +395,12 @@ public class MainMenu : NodeWithInput
 
         // Show the options
         options.OpenFromMainMenu();
-
-        thriveLogo.Hide();
     }
 
     private void OnReturnFromOptions()
     {
         options.Visible = false;
-
         SetCurrentMenu(0, false);
-
-        thriveLogo.Show();
     }
 
     private void OnReturnFromNewGameSettings()
@@ -418,17 +421,12 @@ public class MainMenu : NodeWithInput
 
         // Show the options
         saves.Visible = true;
-
-        thriveLogo.Hide();
     }
 
     private void OnReturnFromLoadGame()
     {
         saves.Visible = false;
-
         SetCurrentMenu(0, false);
-
-        thriveLogo.Show();
     }
 
     private void CreditsPressed()
@@ -441,8 +439,6 @@ public class MainMenu : NodeWithInput
         // Show the credits view
         credits.Restart();
         creditsContainer.Visible = true;
-
-        thriveLogo.Hide();
     }
 
     private void OnReturnFromCredits()
@@ -451,8 +447,6 @@ public class MainMenu : NodeWithInput
         credits.Pause();
 
         SetCurrentMenu(0, false);
-
-        thriveLogo.Show();
     }
 
     private void LicensesPressed()
@@ -464,15 +458,11 @@ public class MainMenu : NodeWithInput
 
         // Show the licenses view
         licensesDisplay.PopupCenteredShrink();
-
-        thriveLogo.Hide();
     }
 
     private void OnReturnFromLicenses()
     {
         SetCurrentMenu(2, false);
-
-        thriveLogo.Show();
     }
 
     private void ModsPressed()
@@ -484,17 +474,26 @@ public class MainMenu : NodeWithInput
 
         // Show the mods view
         modManager.Visible = true;
-
-        thriveLogo.Hide();
     }
 
     private void OnReturnFromMods()
     {
         modManager.Visible = false;
-
         SetCurrentMenu(0, false);
+    }
 
-        thriveLogo.Show();
+    private void ArtGalleryPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        SetCurrentMenu(uint.MaxValue, false);
+        galleryViewer.PopupFullRect();
+        Jukebox.Instance.PlayCategory("ArtGallery");
+    }
+
+    private void OnReturnFromArtGallery()
+    {
+        SetCurrentMenu(2, false);
+        Jukebox.Instance.PlayCategory("Menu");
     }
 
     private void OnEnteringGame()

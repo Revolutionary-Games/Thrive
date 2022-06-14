@@ -58,11 +58,11 @@ public class Mutations
         // Mutate the epithet
         if (random.Next(0, 101) < Constants.MUTATION_WORD_EDIT)
         {
-            mutated.Epithet = MutateWord(parent.Epithet);
+            mutated.Epithet = MutateWord(parent.Epithet, true);
         }
         else
         {
-            mutated.Epithet = nameGenerator.GenerateNameSection();
+            mutated.Epithet = nameGenerator.GenerateNameSection(null, true);
         }
 
         MutateBehaviour(parent, mutated);
@@ -131,7 +131,7 @@ public class Mutations
 
         // Override the default species starting name to have more variability in the names
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
-        temp.Epithet = nameGenerator.GenerateNameSection();
+        temp.Epithet = nameGenerator.GenerateNameSection(null, true);
         temp.Genus = nameGenerator.GenerateNameSection();
 
         for (int step = 0; step < steps; ++step)
@@ -474,7 +474,7 @@ public class Mutations
             >= Constants.DIFFERENCES_FOR_GENUS_SPLIT;
     }
 
-    private string MutateWord(string name)
+    private string MutateWord(string name, bool lowercase = false)
     {
         StringBuilder newName = new StringBuilder(name);
         int changeLimit = 1;
@@ -658,14 +658,17 @@ public class Mutations
         if (letterChanges < letterChangeLimit && changes == 0)
         {
             // We didnt change our word at all, try recursively until we do
-            return MutateWord(name);
+            return MutateWord(name, lowercase);
         }
 
         // Convert to lower case
-        string lowercase = newName.ToString().ToLower(CultureInfo.InvariantCulture);
+        string lower = newName.ToString().ToLower(CultureInfo.InvariantCulture);
+
+        if (lowercase)
+            return lower;
 
         // Convert first letter to upper case
-        string result = char.ToUpper(lowercase[0], CultureInfo.InvariantCulture) + lowercase.Substring(1);
+        string result = char.ToUpper(lower[0], CultureInfo.InvariantCulture) + lower.Substring(1);
 
         return result;
     }
