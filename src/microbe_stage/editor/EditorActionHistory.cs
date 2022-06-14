@@ -138,6 +138,15 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
     public override void AddAction(TAction action)
     {
+        // Check if the action can be merged (for example behaviour or rigidity slider subsequent edits should
+        // merge) in a single step for undo.
+        if (ActionIndex > 0)
+        {
+            var merged = MergeNewActionIntoPreviousIfPossible(action, Actions[ActionIndex - 1]);
+            if (merged != null)
+                action = merged;
+        }
+
         // Handle adding directly the action to our history cache, this saves us from having to rebuild the cache
         if (action.Data.Any(d => d.ResetsHistory))
         {
@@ -146,39 +155,6 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         else
         {
             History.AddRange(action.Data);
-        }
-
-        // Check if the action can be merged (for example behaviour or rigidity slider subsequent edits should
-        // merge) in a single step for undo.
-        if (ActionIndex > 0)
-        {
-            var previousActionData = Actions[ActionIndex - 1].Data.First();
-            var currentActionData = action.Data.First();
-
-            if (previousActionData.WantsMergeWith(currentActionData))
-            {
-                switch (previousActionData.GetInterferenceModeWith(currentActionData))
-                {
-                    case ActionInterferenceMode.CancelsOut:
-                    {
-                        PopTopAction();
-                        return;
-                    }
-
-                    case ActionInterferenceMode.Combinable:
-                    {
-                        var previousAction = PopTopAction();
-                        if (previousActionData.TryMerge(currentActionData))
-                        {
-                            base.AddAction(previousAction);
-                            return;
-                        }
-
-                        base.AddAction(previousAction);
-                        break;
-                    }
-                }
-            }
         }
 
         base.AddAction(action);
@@ -213,6 +189,108 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         where THex : class, IActionHex
     {
         return History.OfType<HexPlacementActionData<THex>>().Any(a => a.PlacedHex == hex);
+    }
+
+    private TAction? MergeNewActionIntoPreviousIfPossible(TAction action, TAction previousAction)
+    {
+        var previousActionData = previousAction.Data.ToList();
+        var currentActionData = action.Data.ToList();
+
+        if (currentActionData.Count < 1)
+            return null;
+
+        // For now we allow combining only if all data values can be combined
+        bool matches = true;
+
+        foreach (var currentData in currentActionData)
+        {
+            bool currentMatched = false;
+
+            foreach (var previousData in previousActionData)
+            {
+                // TODO: technically we should store a list of canceled out actions that further currentData items
+                // are not allowed match against, but for now that doesn't seem necessary. This will become necessary
+                // with more complex combined actions, which is something we might have in the future.
+                if (previousData.WantsMergeWith(currentData) &&
+                    previousData.GetInterferenceModeWith(currentData) is ActionInterferenceMode.CancelsOut
+                        or ActionInterferenceMode.Combinable)
+                {
+                    currentMatched = true;
+                    break;
+                }
+            }
+
+            if (!currentMatched)
+                matches = false;
+        }
+
+        if (!matches)
+            return null;
+
+        var newDataList = new List<EditorCombinableActionData>();
+        newDataList.AddRange(previousActionData);
+
+        // We are going to replace the new action with what we had before so we always want to pop the action from
+        // history here as it will be added back when this method returns
+        PopAndConfirmMatches(previousAction);
+
+        // Perform the combining now that we've confirmed it should be supported
+        foreach (var currentData in currentActionData)
+        {
+            bool merged = false;
+
+            foreach (var newData in newDataList)
+            {
+                if (newData.WantsMergeWith(currentData))
+                {
+                    switch (newData.GetInterferenceModeWith(currentData))
+                    {
+                        case ActionInterferenceMode.CancelsOut:
+                        {
+                            merged = true;
+
+                            // To preserve inter action ordering we need to insert to the right place
+                            var insertPoint = newDataList.IndexOf(newData);
+                            newDataList.RemoveAt(insertPoint);
+                            newDataList.Insert(insertPoint, currentData);
+                            break;
+                        }
+
+                        case ActionInterferenceMode.Combinable:
+                        {
+                            if (!newData.TryMerge(currentData))
+                            {
+                                throw new InvalidOperationException(
+                                    "Action data that should have accepted a merge, didn't");
+                            }
+
+                            merged = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (merged)
+                    break;
+            }
+
+            if (!merged)
+            {
+                throw new InvalidOperationException(
+                    "Action data could not be merged after first checking that they could be merged");
+            }
+        }
+
+        previousAction.ApplyMergedData(newDataList);
+        return previousAction;
+    }
+
+    private void PopAndConfirmMatches(TAction actionInstance)
+    {
+        var previousAction = PopTopAction();
+
+        if (!ReferenceEquals(previousAction, actionInstance))
+            throw new InvalidOperationException("Popped latest action did not match expected object");
     }
 
     /// <summary>
