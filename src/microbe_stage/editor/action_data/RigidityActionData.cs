@@ -12,7 +12,10 @@ public class RigidityActionData : EditorCombinableActionData
         PreviousRigidity = previousRigidity;
     }
 
-    public override bool WantsMerge => true;
+    public override bool WantsMergeWith(CombinableActionData other)
+    {
+        return true;
+    }
 
     protected override int CalculateCostInternal()
     {
