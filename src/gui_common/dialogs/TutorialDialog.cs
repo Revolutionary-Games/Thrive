@@ -42,7 +42,7 @@ public class TutorialDialog : CustomDialog
         AddChild(tween);
     }
 
-    protected override void OnShown()
+    public override void CustomShow()
     {
         // Don't animate if currently running inside the editor
         if (Engine.EditorHint)
