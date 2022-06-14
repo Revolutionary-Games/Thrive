@@ -104,7 +104,6 @@ public class PatchManager : IChildPropertiesLoadCallback
         HandleCloudSpawns(currentPatch.Biome);
         HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
-        HandleEasterEggSpawns();
 
         RemoveNonMarkedSpawners();
 
@@ -193,28 +192,6 @@ public class PatchManager : IChildPropertiesLoadCallback
                         Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 }, new MicrobeSpawnerComparer());
-        }
-    }
-
-    private void HandleEasterEggSpawns()
-    {
-        if (CurrentGame == null)
-            throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
-
-        if (!CurrentGame.WorldSettings.EasterEggs)
-            return;
-
-        // TODO: replace with actual list of Easter eggs once they're in the game
-        string[] easterEggs = {};
-
-        // Randomly choose to spawn Easter eggs in this patch
-        var random = new Random();
-        foreach (var easterEgg in easterEggs)
-        {
-            if (random.NextDouble() < Constants.EASTER_EGG_SPAWN_PROBABILITY)
-            {
-                // TODO: spawn Easter eggs
-            }
         }
     }
 
