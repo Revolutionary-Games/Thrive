@@ -24,7 +24,8 @@
                 return cached;
             }
 
-            cached = ProcessSystem.ComputeEnergyBalance(species.Organelles, patch.Biome, species.MembraneType, species.PlayerSpecies);
+            cached = ProcessSystem.ComputeEnergyBalance(species.Organelles, patch.Biome, species.MembraneType,
+                species.PlayerSpecies);
 
             cachedEnergyBalances.Add(key, cached);
             return cached;

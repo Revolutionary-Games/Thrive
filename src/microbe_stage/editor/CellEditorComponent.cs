@@ -1375,7 +1375,7 @@ public partial class CellEditorComponent :
         patch ??= Editor.CurrentPatch;
 
         UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, patch.Biome, membrane, true,
-        Editor.CurrentGame.WorldSettings));
+            Editor.CurrentGame.WorldSettings));
     }
 
     private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles, Patch? patch = null)
