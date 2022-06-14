@@ -14,7 +14,10 @@ public class BehaviourActionData : EditorCombinableActionData
         Type = type;
     }
 
-    public override bool WantsMerge => true;
+    public override bool WantsMergeWith(CombinableActionData other)
+    {
+        return true;
+    }
 
     protected override int CalculateCostInternal()
     {

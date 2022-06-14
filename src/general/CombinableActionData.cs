@@ -14,11 +14,6 @@ public abstract class CombinableActionData
     public virtual bool ResetsHistory => false;
 
     /// <summary>
-    ///   Should this action be merged with the previous one if possible?
-    /// </summary>
-    public virtual bool WantsMerge => false;
-
-    /// <summary>
     ///   How does this action interfere with the <paramref name="other"/> action?
     /// </summary>
     /// <returns>
@@ -49,14 +44,21 @@ public abstract class CombinableActionData
     }
 
     /// <summary>
+    ///   Should this action be merged with the previous one if possible?
+    /// </summary>
+    public virtual bool WantsMergeWith(CombinableActionData other)
+    {
+        return false;
+    }
+
+    /// <summary>
     ///   Merge the other data into this if possible.
     /// </summary>
     /// <param name="other">The action to merge into this</param>
-    /// <returns>If a merge has been conducted</returns>
+    /// <returns>True if a merge has been conducted</returns>
     public virtual bool TryMerge(CombinableActionData other)
     {
-        var mode = GetInterferenceModeWith(other);
-        if (mode != ActionInterferenceMode.Combinable && mode != ActionInterferenceMode.CancelsOut)
+        if (GetInterferenceModeWith(other) != ActionInterferenceMode.Combinable)
             return false;
 
         MergeGuaranteed(other);

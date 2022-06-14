@@ -138,17 +138,6 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
     public override void AddAction(TAction action)
     {
-        // Check if the action can be combined (for example behaviour or rigidity slider subsequent edits should
-        // combine) in a single step for undo
-        if (ActionIndex > 0 && action.Data.FirstOrDefault()!.WantsMerge)
-        {
-            EditorCombinableActionData currentActionData = action.Data.FirstOrDefault()!;
-            EditorCombinableActionData lastActionData = Actions[ActionIndex - 1].Data.FirstOrDefault()!;
-
-            if (currentActionData.TryMerge(lastActionData))
-                PopTopAction();
-        }
-
         // Handle adding directly the action to our history cache, this saves us from having to rebuild the cache
         if (action.Data.Any(d => d.ResetsHistory))
         {
@@ -157,6 +146,39 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         else
         {
             History.AddRange(action.Data);
+        }
+
+        // Check if the action can be merged (for example behaviour or rigidity slider subsequent edits should
+        // merge) in a single step for undo.
+        if (ActionIndex > 0)
+        {
+            var previousActionData = Actions[ActionIndex - 1].Data.First();
+            var currentActionData = action.Data.First();
+
+            if (previousActionData.WantsMergeWith(currentActionData))
+            {
+                switch (previousActionData.GetInterferenceModeWith(currentActionData))
+                {
+                    case ActionInterferenceMode.CancelsOut:
+                    {
+                        PopTopAction();
+                        return;
+                    }
+
+                    case ActionInterferenceMode.Combinable:
+                    {
+                        var previousAction = PopTopAction();
+                        if (previousActionData.TryMerge(currentActionData))
+                        {
+                            base.AddAction(previousAction);
+                            return;
+                        }
+
+                        base.AddAction(previousAction);
+                        break;
+                    }
+                }
+            }
         }
 
         base.AddAction(action);
