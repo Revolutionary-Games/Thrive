@@ -124,13 +124,13 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         foreach (var entry in biome.Chunks)
         {
-            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
+            var density = entry.Value.Density * CurrentGame.WorldSettings.CompoundDensity *
+                Constants.CLOUD_SPAWN_SCALE_FACTOR;
+            HandleSpawnHelper(chunkSpawners, entry.Value.Name, (float)density,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
 
-                    var density = entry.Value.Density * CurrentGame.WorldSettings.CompoundDensity *
-                        Constants.CLOUD_SPAWN_SCALE_FACTOR;
                     spawnSystem.AddSpawnType(spawner.Spawner, (float)density, Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 });
@@ -146,15 +146,14 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         foreach (var entry in biome.Compounds)
         {
-            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName,
-                entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
+            var density = entry.Value.Density * CurrentGame.WorldSettings.CompoundDensity *
+                Constants.CLOUD_SPAWN_SCALE_FACTOR;
+            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, (float)density,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Key.InternalName,
                         Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount));
 
-                    var density = entry.Value.Density * CurrentGame.WorldSettings.CompoundDensity *
-                        Constants.CLOUD_SPAWN_SCALE_FACTOR;
                     spawnSystem.AddSpawnType(spawner.Spawner, (float)density, Constants.CLOUD_SPAWN_RADIUS);
                     return spawner;
                 });
