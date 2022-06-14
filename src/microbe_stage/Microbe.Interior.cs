@@ -818,7 +818,7 @@ public partial class Microbe
             osmoregulationCost *= 20f / (20f + Colony.ColonyMembers.Count);
         }
 
-        if (IsPlayerMicrobe)
+        if (Species.PlayerSpecies)
         {
             osmoregulationCost *= (float)CurrentGame.WorldSettings.OsmoregulationMultiplier;
         }
