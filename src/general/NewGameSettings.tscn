@@ -765,6 +765,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
+visible = false
 margin_right = 618.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
@@ -984,6 +985,7 @@ custom_fonts/font = ExtResource( 3 )
 text = "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer"]
+visible = false
 margin_top = 55.0
 margin_right = 668.0
 margin_bottom = 100.0
