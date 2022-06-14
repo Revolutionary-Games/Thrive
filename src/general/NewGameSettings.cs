@@ -256,12 +256,14 @@ public class NewGameSettings : ControlWithInput
             GUICommon.MarkInputAsValid(gameSeed);
             GUICommon.MarkInputAsValid(gameSeedAdvanced);
             confirmButton.Disabled = false;
+            confirmButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP");
         }
         else
         {
             GUICommon.MarkInputAsInvalid(gameSeed);
             GUICommon.MarkInputAsInvalid(gameSeedAdvanced);
             confirmButton.Disabled = true;
+            confirmButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
         }
     }
 

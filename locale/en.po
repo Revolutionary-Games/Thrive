@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-14 16:06+0100\n"
+"POT-Creation-Date: 2022-06-14 17:30+0100\n"
 "PO-Revision-Date: 2022-06-14 21:39+0700\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -1615,7 +1615,7 @@ msgid "CLOSE"
 msgstr "Close"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:537
+#: ../src/general/NewGameSettings.cs:539
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/MicrobeHUD.cs:717
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
@@ -1691,7 +1691,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1014
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1016
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1727,6 +1727,15 @@ msgstr "Mod Loading Errors"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Errors occurred when loading one or more mods. Logs may contain additional information."
 
+#: ../src/general/NewGameSettings.cs:259
+#: ../src/general/NewGameSettings.tscn:1056
+msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
+msgstr "Enter the game with these settings"
+
+#: ../src/general/NewGameSettings.cs:266
+msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
+msgstr "Some settings are invalid"
+
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:329
 msgid "DIFFICULTY_PRESET"
@@ -1755,44 +1764,44 @@ msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "Custom"
 
 #: ../src/general/NewGameSettings.tscn:150
-#: ../src/general/NewGameSettings.tscn:823
+#: ../src/general/NewGameSettings.tscn:824
 msgid "LIFE_ORIGIN"
 msgstr "Life origin"
 
 #: ../src/general/NewGameSettings.tscn:157
-#: ../src/general/NewGameSettings.tscn:830
+#: ../src/general/NewGameSettings.tscn:831
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(starting location)"
 
 #: ../src/general/NewGameSettings.tscn:172
 #: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:845
 #: ../src/general/NewGameSettings.tscn:846
+#: ../src/general/NewGameSettings.tscn:847
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Hydrothermal vents"
 
 #: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:846
+#: ../src/general/NewGameSettings.tscn:847
 msgid "LIFE_ORIGIN_POND"
 msgstr "Warm pond"
 
 #: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:846
+#: ../src/general/NewGameSettings.tscn:847
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Panspermia (random)"
 
 #: ../src/general/NewGameSettings.tscn:188
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:862
 msgid "LAWK_ONLY"
 msgstr "LAWK only"
 
 #: ../src/general/NewGameSettings.tscn:195
-#: ../src/general/NewGameSettings.tscn:868
+#: ../src/general/NewGameSettings.tscn:869
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(restrict parts and abilities to only life as we know it)"
 
 #: ../src/general/NewGameSettings.tscn:206
-#: ../src/general/NewGameSettings.tscn:879
+#: ../src/general/NewGameSettings.tscn:880
 msgid "PLANET_RANDOM_SEED"
 msgstr "Planet random seed"
 
@@ -1864,52 +1873,60 @@ msgstr "Free glucose cloud when leaving editor"
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(start with a glucose cloud nearby each generation)"
 
-#: ../src/general/NewGameSettings.tscn:780
+#: ../src/general/NewGameSettings.tscn:781
 msgid "PATCH_MAP_TYPE"
 msgstr "Patch map type"
 
-#: ../src/general/NewGameSettings.tscn:787
+#: ../src/general/NewGameSettings.tscn:788
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr "(generate a patch map procedurally or use the classic layout)"
 
-#: ../src/general/NewGameSettings.tscn:802
 #: ../src/general/NewGameSettings.tscn:803
+#: ../src/general/NewGameSettings.tscn:804
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Procedural"
 
-#: ../src/general/NewGameSettings.tscn:803
+#: ../src/general/NewGameSettings.tscn:804
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Classic"
 
-#: ../src/general/NewGameSettings.tscn:945
+#: ../src/general/NewGameSettings.tscn:946
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Planet generation coming soon!"
 
-#: ../src/general/NewGameSettings.tscn:977
+#: ../src/general/NewGameSettings.tscn:978
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Include Multicellular Stage prototype"
 
-#: ../src/general/NewGameSettings.tscn:984
+#: ../src/general/NewGameSettings.tscn:985
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(features such as saving and loading will be unavailable once you reach the next stage)"
 
-#: ../src/general/NewGameSettings.tscn:996
+#: ../src/general/NewGameSettings.tscn:998
 msgid "EASTER_EGGS"
 msgstr "Include Easter eggs"
 
-#: ../src/general/NewGameSettings.tscn:1003
+#: ../src/general/NewGameSettings.tscn:1005
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(randomly spawned secrets in the game)"
 
-#: ../src/general/NewGameSettings.tscn:1032
+#: ../src/general/NewGameSettings.tscn:1033
+msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
+msgstr "Open the advanced setup view"
+
+#: ../src/general/NewGameSettings.tscn:1035
 msgid "ADVANCED_VIEW"
 msgstr "Advanced view"
 
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:1046
+msgid "BASIC_VIEW_BUTTON_TOOLTIP"
+msgstr "Return to the basic setup view"
+
+#: ../src/general/NewGameSettings.tscn:1047
 msgid "BASIC_VIEW"
 msgstr "Basic view"
 
-#: ../src/general/NewGameSettings.tscn:1052
+#: ../src/general/NewGameSettings.tscn:1057
 msgid "CONFIRM_NORMAL"
 msgstr "Confirm"
 
