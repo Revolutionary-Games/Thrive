@@ -119,7 +119,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   Initializes this cloud. cloud2 onwards can be null
     /// </summary>
-    public void Init(FluidSystem fluidSystem, int cloudPlaneIndex, Compound cloud1, Compound? cloud2,
+    public void Init(FluidSystem fluidSystem, int renderPriority, Compound cloud1, Compound? cloud2,
         Compound? cloud3, Compound? cloud4)
     {
         this.fluidSystem = fluidSystem;
@@ -136,7 +136,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         material.SetShaderParam("colour3", cloud3?.Colour ?? blank);
         material.SetShaderParam("colour4", cloud4?.Colour ?? blank);
 
-        material.RenderPriority = -cloudPlaneIndex;
+        material.RenderPriority = renderPriority;
     }
 
     /// <summary>
