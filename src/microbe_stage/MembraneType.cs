@@ -29,7 +29,11 @@ public class MembraneType : IRegistryType
     public bool CellWall;
     public float BaseWigglyness = 1.0f;
     public float MovementWigglyness = 1.0f;
-    public string DissolverEnzyme = null!;
+
+    /// <summary>
+    ///   Type of enzyme capable of dissolving this membrane type. Default is lipase.
+    /// </summary>
+    public string DissolverEnzyme = "lipase";
 
     public int EditorButtonOrder;
 

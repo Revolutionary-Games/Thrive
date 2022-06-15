@@ -1,15 +1,18 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 public class LysosomeComponent : IOrganelleComponent
 {
     private PlacedOrganelle? organelle;
+
+    private Enzyme lipase = null!;
 
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
         this.organelle = organelle;
 
         var configuration = organelle.Upgrades?.CustomUpgradeData;
+
+        lipase = SimulationParameters.Instance.GetEnzyme("lipase");
 
         // Use default values if not configured
         if (configuration == null)
@@ -41,22 +44,24 @@ public class LysosomeComponent : IOrganelleComponent
     private void SetDefaultConfiguration()
     {
         ClearEnzymes();
-        var lipase = SimulationParameters.Instance.GetEnzyme("lipase");
-        organelle!.Definition.Enzymes![lipase.InternalName] = 1;
+        SetEnzyme(lipase);
     }
 
     private void SetConfiguration(LysosomeUpgrades configuration)
     {
         ClearEnzymes();
-        organelle!.Definition.Enzymes![configuration.Enzyme.InternalName] = 1;
+        SetEnzyme(configuration.Enzyme);
     }
 
     private void ClearEnzymes()
     {
         foreach (var enzyme in SimulationParameters.Instance.GetDigestiveEnzymes())
-        {
-            organelle!.Definition.Enzymes![enzyme.InternalName] = 0;
-        }
+            SetEnzyme(enzyme, 0);
+    }
+
+    private void SetEnzyme(Enzyme enzyme, int quantity = 1)
+    {
+        organelle!.Definition.Enzymes![enzyme.InternalName] = quantity;
     }
 }
 

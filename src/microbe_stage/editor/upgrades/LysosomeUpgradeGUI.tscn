@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs" type="Script" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
 
 [node name="LysosomeUpgradeGUI" type="VBoxContainer"]
 anchor_right = 1.0
@@ -9,13 +10,30 @@ anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 EnzymesPath = NodePath("OptionButton")
+EnzymeDescriptionPath = NodePath("Label2")
 
 [node name="Label" type="Label" parent="."]
 margin_right = 1280.0
-margin_bottom = 25.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
 text = "Select enzyme"
 
 [node name="OptionButton" type="OptionButton" parent="."]
-margin_top = 29.0
+margin_top = 21.0
 margin_right = 1280.0
-margin_bottom = 48.0
+margin_bottom = 40.0
+
+[node name="Spacer" type="Control" parent="."]
+margin_top = 44.0
+margin_right = 1280.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label2" type="Label" parent="."]
+margin_top = 53.0
+margin_right = 1280.0
+margin_bottom = 70.0
+custom_fonts/font = ExtResource( 3 )
+autowrap = true
+
+[connection signal="item_selected" from="OptionButton" to="." method="OnEnzymeSelected"]

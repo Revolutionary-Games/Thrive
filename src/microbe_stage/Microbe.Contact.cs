@@ -30,6 +30,15 @@ public partial class Microbe
     [JsonProperty]
     private bool previousEngulfMode;
 
+    [JsonProperty]
+    private bool wasBeingEngulfed;
+
+    [JsonProperty]
+    private float escapeInterval;
+
+    [JsonProperty]
+    private bool hasEscaped;
+
     /// <summary>
     ///   Tracks entities this is touching, for beginning engulfing and cell binding.
     /// </summary>
@@ -236,6 +245,9 @@ public partial class Microbe
 
     [JsonProperty]
     public Action<Microbe, Microbe>? OnIngested { get; set; }
+
+    [JsonProperty]
+    public Action<Microbe, Microbe>? OnRegurgitated { get; set; }
 
     [JsonProperty]
     public Action<Microbe>? OnEngulfmentStorageFull { get; set; }
@@ -452,6 +464,8 @@ public partial class Microbe
 
     public void OnEjected()
     {
+        OnRegurgitated?.Invoke(this,  HostileEngulfer.Value!);
+
         // Reset wigglyness
         ApplyMembraneWigglyness();
 
@@ -1017,9 +1031,32 @@ public partial class Microbe
         {
             MovementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
         }
+        else if (wasBeingEngulfed && CurrentEngulfmentStep == EngulfmentStep.NotEngulfed)
+        {
+            // Else If we were but are no longer, being engulfed
+            wasBeingEngulfed = false;
 
-        // TODO: Add back escaped from engulfment population reward. This is currently not feasible
-        // due to new engulfment behavior not allowing things to escape
+            if (!IsPlayerMicrobe && !Species.PlayerSpecies)
+            {
+                hasEscaped = true;
+                escapeInterval = 0;
+            }
+        }
+
+        // Still considered to be chased for CREATURE_ESCAPE_INTERVAL milliseconds
+        if (hasEscaped)
+        {
+            escapeInterval += delta;
+            if (escapeInterval >= Constants.CREATURE_ESCAPE_INTERVAL)
+            {
+                hasEscaped = false;
+                escapeInterval = 0;
+
+                GameWorld.AlterSpeciesPopulation(Species,
+                    Constants.CREATURE_ESCAPE_POPULATION_GAIN,
+                    TranslationServer.Translate("ESCAPE_ENGULFING"));
+            }
+        }
 
         for (int i = engulfedObjects.Count - 1; i >= 0; --i)
         {
@@ -1386,8 +1423,7 @@ public partial class Microbe
             OriginalRenderPriority = target.EntityMaterial.RenderPriority,
         };
 
-        // Set the render priority of the ingested object higher than all of our organelles' so it
-        // stays visible on top of our insides
+        // We want the ingested material always be visible over the organelles
         target.EntityMaterial.RenderPriority += organelles!.PeakRenderPriority + 1;
 
         var engulfable = engulfedObject.Object.Value;
@@ -1404,8 +1440,7 @@ public partial class Microbe
         var endosomeMesh = engulfedObject.Endosome.Mesh;
         var endosomeMaterial = (ShaderMaterial)endosomeMesh!.MaterialOverride;
 
-        endosomeMaterial.RenderPriority = Mathf.Max(
-            endosomeMaterial.RenderPriority, target.EntityMaterial.RenderPriority + 1);
+        endosomeMaterial.RenderPriority = target.EntityMaterial.RenderPriority + engulfedObjects.Count + 1;
         engulfedObject.Endosome.UpdateTint(CellTypeProperties.Colour);
 
         engulfedObjects.Add(engulfedObject);
@@ -1435,7 +1470,6 @@ public partial class Microbe
         if (engulfedObject == null)
             return;
 
-        target.HostileEngulfer.Value = null;
         target.CurrentEngulfmentStep = EngulfmentStep.BeingRegurgitated;
         engulfStorage -= target.Size;
 
@@ -1670,6 +1704,7 @@ public partial class Microbe
         engulfedObjects.Remove(engulfed);
         ejectedObjects.Add(engulfed);
 
+        engulfable.HostileEngulfer.Value = null;
         engulfable.CurrentEngulfmentStep = EngulfmentStep.NotEngulfed;
         engulfable.OnEjected();
 

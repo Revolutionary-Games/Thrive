@@ -19,6 +19,8 @@ public partial class Microbe
 
     private Compound atp = null!;
 
+    private Enzyme lipase = null!;
+
     [JsonProperty]
     private CompoundCloudSystem? cloudSystem;
 
@@ -84,13 +86,6 @@ public partial class Microbe
     public int AgentVacuoleCount { get; private set; }
 
     /// <summary>
-    ///   The number of lysosome vacuoles. Determines the speed up
-    ///   in digestion time.
-    /// </summary>
-    [JsonProperty]
-    public int LysosomeCount { get; private set; }
-
-    /// <summary>
     ///   All organelle nodes need to be added to this node to make scale work
     /// </summary>
     [JsonIgnore]
@@ -112,23 +107,7 @@ public partial class Microbe
     public float TotalAvailableCompoundsOnEngulfed { get; set; }
 
     [JsonIgnore]
-    public bool Digestible
-    {
-        get
-        {
-            var hostile = HostileEngulfer.Value;
-            var dissolverEnzyme = Membrane.Type.DissolverEnzyme;
-
-            if (!string.IsNullOrEmpty(dissolverEnzyme) &&
-                SimulationParameters.Instance.DoesEnzymeExist(dissolverEnzyme))
-            {
-                var enzyme = SimulationParameters.Instance.GetEnzyme(dissolverEnzyme);
-                return hostile?.ActiveEnzymes.ContainsKey(enzyme) ?? false;
-            }
-
-            return true;
-        }
-    }
+    public Enzyme? RequisiteEnzymeToDigest => SimulationParameters.Instance.GetEnzyme(Membrane.Type.DissolverEnzyme);
 
     [JsonIgnore]
     public float DigestionProgress
@@ -987,9 +966,6 @@ public partial class Microbe
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount += 1;
 
-        if (organelle.IsLysosome)
-            LysosomeCount += 1;
-
         // This is calculated here as it would be a bit difficult to
         // hook up computing this when the StorageBag needs this info.
         organellesCapacity += organelle.StorageCapacity;
@@ -1003,9 +979,6 @@ public partial class Microbe
 
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount -= 1;
-
-        if (organelle.IsLysosome)
-            LysosomeCount -= 1;
 
         organelle.OnRemovedFromMicrobe();
 
@@ -1128,14 +1101,22 @@ public partial class Microbe
             if (engulfable?.CurrentEngulfmentStep != EngulfmentStep.Ingested)
                 continue;
 
-            if (!engulfable.Digestible)
+            var usedEnzyme = lipase;
+
+            if (engulfable.RequisiteEnzymeToDigest != null)
             {
-                EjectEngulfable(engulfable);
-                continue;
+                if (!ActiveEnzymes.ContainsKey(engulfable.RequisiteEnzymeToDigest))
+                {
+                    EjectEngulfable(engulfable);
+                    continue;
+                }
+                else
+                {
+                    usedEnzyme = engulfable.RequisiteEnzymeToDigest;
+                }
             }
 
             var hasAnyUsefulCompounds = false;
-
             for (var c = 0; c < engulfedObject.AvailableEngulfableCompounds.Count; ++c)
             {
                 var compound = engulfedObject.AvailableEngulfableCompounds.ElementAt(c);
@@ -1148,19 +1129,16 @@ public partial class Microbe
                 var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND * delta;
                 var efficiency = Constants.ENGULF_BASE_COMPOUND_ABSORBTION_YIELD;
 
-                if (LysosomeCount > 0)
-                {
-                    var speedBuff = amount * Constants.LYSOSOME_DIGESTION_SPEED_UP_FRACTION * LysosomeCount;
-                    var efficiencyBuff = efficiency *
-                        Constants.LYSOSOME_DIGESTION_EFFICIENCY_BUFF_FRACTION * LysosomeCount;
+                var speedBuff = amount * Constants.LYSOSOME_DIGESTION_SPEED_UP_FRACTION * ActiveEnzymes[usedEnzyme];
+                var efficiencyBuff = efficiency *
+                    Constants.LYSOSOME_DIGESTION_EFFICIENCY_BUFF_FRACTION * ActiveEnzymes[usedEnzyme];
 
-                    amount += speedBuff;
+                amount += speedBuff;
 
-                    // Efficiency starts from 40% up to 100%. This means at least 8 lysosomes are needed to achieve
-                    // maximum efficiency
-                    // TODO: Maybe set max efficiency lower to 80%?
-                    efficiency = Mathf.Clamp(efficiency + efficiencyBuff, 0.0f, 1.0f);
-                }
+                // Efficiency starts from 40% up to 100%. This means at least 8 lysosomes are needed to achieve
+                // maximum efficiency
+                // TODO: Maybe set max efficiency lower to 80%?
+                efficiency = Mathf.Clamp(efficiency + efficiencyBuff, 0.0f, 1.0f);
 
                 var taken = Mathf.Min(compound.Value, amount);
 

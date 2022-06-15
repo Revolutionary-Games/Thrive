@@ -6,7 +6,11 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     [Export]
     public NodePath EnzymesPath = null!;
 
+    [Export]
+    public NodePath EnzymeDescriptionPath = null!;
+
     private OptionButton enzymes = null!;
+    private Label description = null!;
 
     private List<Enzyme>? shownChoices;
     private OrganelleTemplate? storedOrganelle;
@@ -14,6 +18,7 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     public override void _Ready()
     {
         enzymes = GetNode<OptionButton>(EnzymesPath);
+        description = GetNode<Label>(EnzymeDescriptionPath);
 
         enzymes.Clear();
     }
@@ -44,6 +49,8 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         {
             enzymes.Selected = defaultCompoundIndex;
         }
+
+        UpdateDescription();
     }
 
     public void ApplyChanges(ICellEditorData editor)
@@ -60,5 +67,31 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
         // TODO: make an undoable action
         storedOrganelle.SetCustomUpgradeObject(new LysosomeUpgrades(shownChoices[enzymes.Selected]));
+    }
+
+    private void OnEnzymeSelected(int index)
+    {
+        UpdateDescription();
+    }
+
+    private void UpdateDescription()
+    {
+        if (shownChoices == null)
+            return;
+
+        var enzyme = shownChoices[enzymes.Selected];
+
+        switch (enzyme.InternalName)
+        {
+            case "lipase":
+                description.Text = TranslationServer.Translate("LIPASE_DESCRIPTION");
+                break;
+            case "cellulase":
+                description.Text = TranslationServer.Translate("CELLULASE_DESCRIPTION");
+                break;
+            case "chitinase":
+                description.Text = TranslationServer.Translate("CHITINASE_DESCRIPTION");
+                break;
+        }
     }
 }

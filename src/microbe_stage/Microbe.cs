@@ -325,6 +325,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         atp = SimulationParameters.Instance.GetCompound("atp");
+        lipase = SimulationParameters.Instance.GetEnzyme("lipase");
 
         engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
         bindingAudio = GetNode<HybridAudioPlayer>("BindingAudio");
@@ -1118,6 +1119,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         if (organelles == null)
             return;
+
+        // Cells have a minimum of at least one unit of lipase enzyme
+        enzymes[lipase] = 1;
 
         foreach (var organelle in organelles.Organelles)
         {

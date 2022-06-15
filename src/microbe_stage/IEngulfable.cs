@@ -56,7 +56,10 @@ public interface IEngulfable : IGraphicalEntity
     /// </summary>
     public EngulfmentStep CurrentEngulfmentStep { get; set; }
 
-    public bool Digestible { get; }
+    /// <summary>
+    ///   What specific enzyme needed to digest this engulfable. If null default is used (lipase).
+    /// </summary>
+    public Enzyme? RequisiteEnzymeToDigest { get; }
 
     /// <summary>
     ///   The value for how much this engulfable has been digested on the range of 0 to 1,

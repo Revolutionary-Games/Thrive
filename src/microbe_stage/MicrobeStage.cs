@@ -370,6 +370,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         Player.OnDeath = OnPlayerDied;
 
         Player.OnIngested = OnPlayerEngulfed;
+        Player.OnRegurgitated = OnPlayerEjected;
 
         Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
 
@@ -812,11 +813,21 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [DeserializedCallbackAllowed]
     private void OnPlayerEngulfed(Microbe player, Microbe engulfer)
     {
-        // Considered as normal death
-        OnPlayerDied(player);
+        if (engulfer.ActiveEnzymes.ContainsKey(player.RequisiteEnzymeToDigest!))
+        {
+            // Considered as normal death
+            OnPlayerDied(player);
+        }
 
         // To avoid camera position being reset to world origin
         Camera.ObjectToFollow = engulfer;
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerEjected(Microbe player, Microbe engulfer)
+    {
+        _ = engulfer;
+        Camera.ObjectToFollow = player;
     }
 
     [DeserializedCallbackAllowed]
