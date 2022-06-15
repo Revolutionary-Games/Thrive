@@ -123,7 +123,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     public WorldGenerationSettings WorldSettings
     {
         // Need to get like this to account for returning from freebuild editor
-        get => worldSettings ?? CurrentGame!.WorldSettings;
+        get => worldSettings ?? CurrentGame!.GameWorld.WorldSettings;
         set => worldSettings = value;
     }
 
@@ -830,8 +830,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             GameWorld.PlayerSpecies,
             Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
-            true, (float)(Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
-                / CurrentGame!.WorldSettings.PlayerDeathPopulationPenalty));
+            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
+            / CurrentGame!.GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
 
         if (IsGameOver())
         {

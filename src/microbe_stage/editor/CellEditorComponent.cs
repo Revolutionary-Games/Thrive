@@ -429,7 +429,7 @@ public partial class CellEditorComponent :
 
     private float CostMultiplier =>
         (IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f) *
-        (float)Editor.CurrentGame.WorldSettings.MPMultiplier;
+        Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
 
     public override void _Ready()
     {
@@ -1375,7 +1375,7 @@ public partial class CellEditorComponent :
         patch ??= Editor.CurrentPatch;
 
         UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, patch.Biome, membrane, true,
-            Editor.CurrentGame.WorldSettings));
+            Editor.CurrentGame.GameWorld.WorldSettings));
     }
 
     private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles, Patch? patch = null)

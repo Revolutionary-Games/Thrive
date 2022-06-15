@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class GameWorld : ISaveLoadable
 {
+    [JsonProperty]
     public WorldGenerationSettings WorldSettings = new();
 
     [JsonProperty]

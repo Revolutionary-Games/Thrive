@@ -124,14 +124,14 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         foreach (var entry in biome.Chunks)
         {
-            var density = entry.Value.Density * CurrentGame.WorldSettings.CompoundDensity *
+            var density = entry.Value.Density * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
                 Constants.CLOUD_SPAWN_SCALE_FACTOR;
-            HandleSpawnHelper(chunkSpawners, entry.Value.Name, (float)density,
+            HandleSpawnHelper(chunkSpawners, entry.Value.Name, density,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, (float)density, Constants.MICROBE_SPAWN_RADIUS);
+                    spawnSystem.AddSpawnType(spawner.Spawner, density, Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 });
         }
@@ -146,15 +146,15 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         foreach (var entry in biome.Compounds)
         {
-            var density = entry.Value.Density * CurrentGame.WorldSettings.CompoundDensity *
+            var density = entry.Value.Density * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
                 Constants.CLOUD_SPAWN_SCALE_FACTOR;
-            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, (float)density,
+            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, density,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Key.InternalName,
                         Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, (float)density, Constants.CLOUD_SPAWN_RADIUS);
+                    spawnSystem.AddSpawnType(spawner.Spawner, density, Constants.CLOUD_SPAWN_RADIUS);
                     return spawner;
                 });
         }

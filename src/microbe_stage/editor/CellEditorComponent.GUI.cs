@@ -291,7 +291,7 @@ public partial class CellEditorComponent
         foreach (var organelle in allPartSelectionElements.Keys)
         {
             var control = allPartSelectionElements[organelle];
-            control.Visible = !Editor.CurrentGame.WorldSettings.Lawk || organelle.Lawk;
+            control.Visible = !Editor.CurrentGame.GameWorld.WorldSettings.Lawk || organelle.Lawk;
         }
     }
 

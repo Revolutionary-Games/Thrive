@@ -73,6 +73,12 @@ public class MainMenu : NodeWithInput
     private CustomConfirmationDialog gles2Popup = null!;
     private ErrorDialog modLoadFailures = null!;
 
+    public static void OnEnteringGame()
+    {
+        CheatManager.OnCheatsDisabled();
+        SaveHelper.ClearLastSaveTime();
+    }
+
     public override void _Ready()
     {
         // Unpause the game as the MainMenu should never be paused.
@@ -156,39 +162,6 @@ public class MainMenu : NodeWithInput
 
         // Not handled, pass through.
         return false;
-    }
-
-    public void NewGameSetupDone(WorldGenerationSettings settings)
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
-        // before the stage music starts)
-        Jukebox.Instance.Stop(true);
-
-        var transitions = new List<ITransition>();
-
-        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
-        {
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
-            transitions.Add(TransitionManager.Instance.CreateCutscene(
-                "res://assets/videos/microbe_intro2.ogv", 0.65f));
-        }
-        else
-        {
-            // People who disable the cutscene are impatient anyway so use a reduced fade time
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
-        }
-
-        TransitionManager.Instance.AddSequence(transitions, () =>
-        {
-            OnEnteringGame();
-
-            // TODO: Add loading screen while changing between scenes
-            var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
-            microbeStage.WorldSettings = settings;
-            SceneManager.Instance.SwitchToScene(microbeStage);
-        });
     }
 
     /// <summary>
@@ -494,11 +467,5 @@ public class MainMenu : NodeWithInput
     {
         SetCurrentMenu(2, false);
         Jukebox.Instance.PlayCategory("Menu");
-    }
-
-    private void OnEnteringGame()
-    {
-        CheatManager.OnCheatsDisabled();
-        SaveHelper.ClearLastSaveTime();
     }
 }

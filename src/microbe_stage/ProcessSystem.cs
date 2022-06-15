@@ -142,7 +142,7 @@ public class ProcessSystem
         // World settings may be null if this is the first generation
         if (isPlayerSpecies && worldSettings != null)
         {
-            result.Osmoregulation *= (float)worldSettings.OsmoregulationMultiplier;
+            result.Osmoregulation *= worldSettings.OsmoregulationMultiplier;
         }
 
         result.AddConsumption("osmoregulation", result.Osmoregulation);

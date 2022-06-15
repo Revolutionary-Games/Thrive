@@ -33,7 +33,7 @@ public class Mutations
     /// <summary>
     ///   Creates a mutated version of a species
     /// </summary>
-    public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated, double creationRate,
+    public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated, float creationRate,
         bool lawkOnly)
     {
         if (parent.Organelles.Count < 1)
@@ -122,7 +122,7 @@ public class Mutations
     /// <summary>
     ///   Creates a fully random species starting with one cytoplasm
     /// </summary>
-    public MicrobeSpecies CreateRandomSpecies(MicrobeSpecies mutated, double creationRate, bool lawkOnly, int steps = 5)
+    public MicrobeSpecies CreateRandomSpecies(MicrobeSpecies mutated, float creationRate, bool lawkOnly, int steps = 5)
     {
         // Temporarily create species with just cytoplasm to start mutating from
         var temp = new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty);

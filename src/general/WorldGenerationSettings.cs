@@ -9,18 +9,18 @@ public class WorldGenerationSettings
     Static values for min/max
     */
 
-    public const double MIN_MP_MULTIPLIER = 0.2;
-    public const double MAX_MP_MULTIPLIER = 2;
-    public const double MIN_AI_MUTATION_RATE = 0.5;
-    public const double MAX_AI_MUTATION_RATE = 5;
-    public const double MIN_COMPOUND_DENSITY = 0.2;
-    public const double MAX_COMPOUND_DENSITY = 2;
-    public const double MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
-    public const double MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
-    public const double MIN_GLUCOSE_DECAY = 0.3;
-    public const double MAX_GLUCOSE_DECAY = 0.95;
-    public const double MIN_OSMOREGULATION_MULTIPLIER = 0.2;
-    public const double MAX_OSMOREGULATION_MULTIPLIER = 2;
+    public const float MIN_MP_MULTIPLIER = 0.2f;
+    public const float MAX_MP_MULTIPLIER = 2;
+    public const float MIN_AI_MUTATION_RATE = 0.5f;
+    public const float MAX_AI_MUTATION_RATE = 5;
+    public const float MIN_COMPOUND_DENSITY = 0.2f;
+    public const float MAX_COMPOUND_DENSITY = 2;
+    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
+    public const float MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
+    public const float MIN_GLUCOSE_DECAY = 0.3f;
+    public const float MAX_GLUCOSE_DECAY = 0.95f;
+    public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
+    public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
 
     public enum LifeOrigin
     {
@@ -43,12 +43,12 @@ public class WorldGenerationSettings
     public DifficultyPreset Difficulty { get; set; } = DifficultyPreset.Normal;
     public LifeOrigin Origin { get; set; } = LifeOrigin.Vent;
     public int Seed { get; set; } = new Random().Next();
-    public double MPMultiplier { get; set; } = 1;
-    public double AIMutationMultiplier { get; set; } = 1;
-    public double CompoundDensity { get; set; } = 1;
-    public double PlayerDeathPopulationPenalty { get; set; } = 1;
-    public double GlucoseDecay { get; set; } = 0.8;
-    public double OsmoregulationMultiplier { get; set; } = 1;
+    public float MPMultiplier { get; set; } = 1;
+    public float AIMutationMultiplier { get; set; } = 1;
+    public float CompoundDensity { get; set; } = 1;
+    public float PlayerDeathPopulationPenalty { get; set; } = 1;
+    public float GlucoseDecay { get; set; } = 0.8f;
+    public float OsmoregulationMultiplier { get; set; } = 1;
     public bool FreeGlucoseCloud { get; set; }
     public PatchMapType MapType { get; set; } = PatchMapType.Procedural;
     public bool IncludeMulticellular { get; set; } = true;
@@ -58,22 +58,22 @@ public class WorldGenerationSettings
     Static values for each difficulty preset
     */
 
-    public static double GetMPMultiplier(DifficultyPreset preset)
+    public static float GetMPMultiplier(DifficultyPreset preset)
     {
         switch (preset)
         {
             case DifficultyPreset.Easy:
-                return 0.8;
+                return 0.8f;
             case DifficultyPreset.Normal:
                 return 1;
             case DifficultyPreset.Hard:
-                return 1.2;
+                return 1.2f;
             default:
                 return 1;
         }
     }
 
-    public static double GetAIMutationMultiplier(DifficultyPreset preset)
+    public static float GetAIMutationMultiplier(DifficultyPreset preset)
     {
         switch (preset)
         {
@@ -88,22 +88,22 @@ public class WorldGenerationSettings
         }
     }
 
-    public static double GetCompoundDensity(DifficultyPreset preset)
+    public static float GetCompoundDensity(DifficultyPreset preset)
     {
         switch (preset)
         {
             case DifficultyPreset.Easy:
-                return 1.5;
+                return 1.5f;
             case DifficultyPreset.Normal:
                 return 1;
             case DifficultyPreset.Hard:
-                return 0.5;
+                return 0.5f;
             default:
                 return 1;
         }
     }
 
-    public static double GetPlayerDeathPopulationPenalty(DifficultyPreset preset)
+    public static float GetPlayerDeathPopulationPenalty(DifficultyPreset preset)
     {
         switch (preset)
         {
@@ -118,31 +118,31 @@ public class WorldGenerationSettings
         }
     }
 
-    public static double GetGlucoseDecay(DifficultyPreset preset)
+    public static float GetGlucoseDecay(DifficultyPreset preset)
     {
         switch (preset)
         {
             case DifficultyPreset.Easy:
-                return 0.9;
+                return 0.9f;
             case DifficultyPreset.Normal:
-                return 0.8;
+                return 0.8f;
             case DifficultyPreset.Hard:
-                return 0.5;
+                return 0.5f;
             default:
-                return 0.8;
+                return 0.8f;
         }
     }
 
-    public static double GetOsmoregulationMultiplier(DifficultyPreset preset)
+    public static float GetOsmoregulationMultiplier(DifficultyPreset preset)
     {
         switch (preset)
         {
             case DifficultyPreset.Easy:
-                return 0.8;
+                return 0.8f;
             case DifficultyPreset.Normal:
                 return 1;
             case DifficultyPreset.Hard:
-                return 1.2;
+                return 1.2f;
             default:
                 return 1;
         }

@@ -171,7 +171,7 @@ public class OrganelleDefinition : IRegistryType
     /// <summary>
     ///   Determines whether this organelle appears in LAWK-only games
     /// </summary>
-    public bool Lawk;
+    public bool Lawk = true;
 
     /// <summary>
     ///   Path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not modifiable

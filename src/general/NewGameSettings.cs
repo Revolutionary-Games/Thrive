@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using Godot;
 
@@ -339,14 +340,12 @@ public class NewGameSettings : ControlWithInput
 
     private void OnAdvancedPressed()
     {
-        ProcessAdvancedSelection(true);
+        GUICommon.Instance.PlayButtonPressSound();
+        ProcessAdvancedSelection();
     }
 
-    private void ProcessAdvancedSelection(bool playSound)
+    private void ProcessAdvancedSelection()
     {
-        if (playSound)
-            GUICommon.Instance.PlayButtonPressSound();
-
         basicOptions.Visible = false;
         advancedButton.Visible = false;
 
@@ -369,23 +368,25 @@ public class NewGameSettings : ControlWithInput
 
     private void OnConfirmPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         if (!isGameSeedValid)
             return;
 
         // Disable the button to prevent it being executed again.
         confirmButton.Disabled = true;
 
-        settings.Difficulty = DifficultyPresetIndexToValue(difficultyPresetButton.Selected);
-        settings.Origin = LifeOriginIndexToValue(lifeOriginButton.Selected);
+        settings.Difficulty = (DifficultyPreset)difficultyPresetButton.Selected;
+        settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
         settings.Lawk = lawkButton.Pressed;
         SetSeed(gameSeed.Text);
 
-        settings.MPMultiplier = mpMultiplier.Value;
-        settings.AIMutationMultiplier = aiMutationRate.Value;
-        settings.CompoundDensity = compoundDensity.Value;
-        settings.PlayerDeathPopulationPenalty = playerDeathPopulationPenalty.Value;
-        settings.GlucoseDecay = glucoseDecayRate.Value * 0.01;
-        settings.OsmoregulationMultiplier = osmoregulationMultiplier.Value;
+        settings.MPMultiplier = (float)mpMultiplier.Value;
+        settings.AIMutationMultiplier = (float)aiMutationRate.Value;
+        settings.CompoundDensity = (float)compoundDensity.Value;
+        settings.PlayerDeathPopulationPenalty = (float)playerDeathPopulationPenalty.Value;
+        settings.GlucoseDecay = (float)glucoseDecayRate.Value * 0.01f;
+        settings.OsmoregulationMultiplier = (float)osmoregulationMultiplier.Value;
         settings.FreeGlucoseCloud = freeGlucoseCloudButton.Pressed;
 
         settings.MapType = MapTypeIndexToValue(mapTypeButton.Selected);
@@ -393,9 +394,39 @@ public class NewGameSettings : ControlWithInput
         settings.IncludeMulticellular = includeMulticellularButton.Pressed;
         settings.EasterEggs = easterEggsButton.Pressed;
 
-        var scene = GD.Load<PackedScene>("res://src/general/MainMenu.tscn");
-        var mainMenu = (MainMenu)scene.Instance();
-        mainMenu.NewGameSetupDone(settings);
+        // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
+        // before the stage music starts)
+        Jukebox.Instance.Stop(true);
+
+        var transitions = new List<ITransition>();
+
+        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
+        {
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
+            transitions.Add(TransitionManager.Instance.CreateCutscene(
+                "res://assets/videos/microbe_intro2.ogv", 0.65f));
+        }
+        else
+        {
+            // People who disable the cutscene are impatient anyway so use a reduced fade time
+            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
+        }
+
+        TransitionManager.Instance.AddSequence(transitions, () =>
+        {
+            MainMenu.OnEnteringGame();
+
+            // TODO: Add loading screen while changing between scenes
+            var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
+            microbeStage.WorldSettings = settings;
+            SceneManager.Instance.SwitchToScene(microbeStage);
+        });
+    }
+
+    private void OnEnteringGame()
+    {
+        CheatManager.OnCheatsDisabled();
+        SaveHelper.ClearLastSaveTime();
     }
 
     private void OnDifficultyPresetSelected(int index)
@@ -404,14 +435,14 @@ public class NewGameSettings : ControlWithInput
         difficultyPresetButton.Selected = index;
         difficultyPresetAdvancedButton.Selected = index;
 
-        DifficultyPreset preset = DifficultyPresetIndexToValue(index);
+        DifficultyPreset preset = (DifficultyPreset)index;
         settings.Difficulty = preset;
 
         // If custom was selected, open the advanced view to the difficulty tab
         if (preset == DifficultyPreset.Custom)
         {
             ChangeSettingsTab("Difficulty");
-            ProcessAdvancedSelection(false);
+            ProcessAdvancedSelection();
             return;
         }
 
@@ -426,36 +457,6 @@ public class NewGameSettings : ControlWithInput
         UpdateDifficultyPreset();
     }
 
-    private DifficultyPreset DifficultyPresetIndexToValue(int index)
-    {
-        switch (index)
-        {
-            case 0:
-                return DifficultyPreset.Easy;
-            case 2:
-                return DifficultyPreset.Hard;
-            case 3:
-                return DifficultyPreset.Custom;
-            default:
-                return DifficultyPreset.Normal;
-        }
-    }
-
-    private int DifficultyPresetValueToIndex(DifficultyPreset preset)
-    {
-        switch (preset)
-        {
-            case DifficultyPreset.Easy:
-                return 0;
-            case DifficultyPreset.Hard:
-                return 2;
-            case DifficultyPreset.Custom:
-                return 3;
-            default:
-                return 1;
-        }
-    }
-
     private void UpdateDifficultyPreset()
     {
         var custom = DifficultyPreset.Custom;
@@ -466,25 +467,26 @@ public class NewGameSettings : ControlWithInput
             if (preset == custom)
                 continue;
 
-            if (Math.Abs(mpMultiplier.Value - WorldGenerationSettings.GetMPMultiplier(preset)) > MathUtils.EPSILON)
-                continue;
-
-            if (Math.Abs(aiMutationRate.Value - WorldGenerationSettings.GetAIMutationMultiplier(preset))
+            if (Math.Abs((float)mpMultiplier.Value - WorldGenerationSettings.GetMPMultiplier(preset))
                 > MathUtils.EPSILON)
                 continue;
 
-            if (Math.Abs(compoundDensity.Value - WorldGenerationSettings.GetCompoundDensity(preset)) >
+            if (Math.Abs((float)aiMutationRate.Value - WorldGenerationSettings.GetAIMutationMultiplier(preset))
+                > MathUtils.EPSILON)
+                continue;
+
+            if (Math.Abs((float)compoundDensity.Value - WorldGenerationSettings.GetCompoundDensity(preset)) >
                 MathUtils.EPSILON)
                 continue;
 
-            if (Math.Abs(playerDeathPopulationPenalty.Value -
+            if (Math.Abs((float)playerDeathPopulationPenalty.Value -
                     WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset)) > MathUtils.EPSILON)
                 continue;
 
             if ((int)glucoseDecayRate.Value != WorldGenerationSettings.GetGlucoseDecay(preset) * 100)
                 continue;
 
-            if (Math.Abs(osmoregulationMultiplier.Value -
+            if (Math.Abs((float)osmoregulationMultiplier.Value -
                     WorldGenerationSettings.GetOsmoregulationMultiplier(preset)) > MathUtils.EPSILON)
                 continue;
 
@@ -492,20 +494,20 @@ public class NewGameSettings : ControlWithInput
                 continue;
 
             // If all values are equal to the values for a preset, use that preset
-            difficultyPresetButton.Selected = DifficultyPresetValueToIndex(preset);
-            difficultyPresetAdvancedButton.Selected = DifficultyPresetValueToIndex(preset);
+            difficultyPresetButton.Selected = (int)preset;
+            difficultyPresetAdvancedButton.Selected = (int)preset;
             return;
         }
 
         // If there is no preset with all values equal to the values set, use custom
-        difficultyPresetButton.Selected = DifficultyPresetValueToIndex(custom);
-        difficultyPresetAdvancedButton.Selected = DifficultyPresetValueToIndex(custom);
+        difficultyPresetButton.Selected = (int)custom;
+        difficultyPresetAdvancedButton.Selected = (int)custom;
     }
 
     private void OnMPMultiplierValueChanged(double amount)
     {
         mpMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
-        settings.MPMultiplier = amount;
+        settings.MPMultiplier = (float)amount;
 
         UpdateDifficultyPreset();
     }
@@ -513,7 +515,7 @@ public class NewGameSettings : ControlWithInput
     private void OnAIMutationRateValueChanged(double amount)
     {
         aiMutationRateReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
-        settings.AIMutationMultiplier = amount;
+        settings.AIMutationMultiplier = (float)amount;
 
         UpdateDifficultyPreset();
     }
@@ -521,7 +523,7 @@ public class NewGameSettings : ControlWithInput
     private void OnCompoundDensityValueChanged(double amount)
     {
         compoundDensityReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
-        settings.CompoundDensity = amount;
+        settings.CompoundDensity = (float)amount;
 
         UpdateDifficultyPreset();
     }
@@ -529,7 +531,7 @@ public class NewGameSettings : ControlWithInput
     private void OnPlayerDeathPopulationPenaltyValueChanged(double amount)
     {
         playerDeathPopulationPenaltyReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
-        settings.PlayerDeathPopulationPenalty = amount;
+        settings.PlayerDeathPopulationPenalty = (float)amount;
 
         UpdateDifficultyPreset();
     }
@@ -539,7 +541,7 @@ public class NewGameSettings : ControlWithInput
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
         glucoseDecayRateReadout.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
             percentage);
-        settings.GlucoseDecay = percentage * 0.01;
+        settings.GlucoseDecay = (float)percentage * 0.01f;
 
         UpdateDifficultyPreset();
     }
@@ -547,7 +549,7 @@ public class NewGameSettings : ControlWithInput
     private void OnOsmoregulationMultiplierValueChanged(double amount)
     {
         osmoregulationMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
-        settings.OsmoregulationMultiplier = amount;
+        settings.OsmoregulationMultiplier = (float)amount;
 
         UpdateDifficultyPreset();
     }
@@ -565,20 +567,7 @@ public class NewGameSettings : ControlWithInput
         lifeOriginButton.Selected = index;
         lifeOriginButtonAdvanced.Selected = index;
 
-        settings.Origin = LifeOriginIndexToValue(index);
-    }
-
-    private WorldGenerationSettings.LifeOrigin LifeOriginIndexToValue(int index)
-    {
-        switch (index)
-        {
-            case 1:
-                return WorldGenerationSettings.LifeOrigin.Pond;
-            case 2:
-                return WorldGenerationSettings.LifeOrigin.Panspermia;
-            default:
-                return WorldGenerationSettings.LifeOrigin.Vent;
-        }
+        settings.Origin = (WorldGenerationSettings.LifeOrigin)index;
     }
 
     private void OnMapTypeSelected(int index)
@@ -620,6 +609,8 @@ public class NewGameSettings : ControlWithInput
 
     private void OnRandomisedGameSeedPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         var seed = GenerateNewRandomSeed();
         SetSeed(seed);
         gameSeed.Text = seed;

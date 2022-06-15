@@ -19,8 +19,7 @@ public class GameProperties
     private GameProperties(WorldGenerationSettings? settings = null)
     {
         settings ??= new WorldGenerationSettings();
-        WorldSettings = settings;
-        GameWorld = new GameWorld(WorldSettings);
+        GameWorld = new GameWorld(settings);
         TutorialState = new TutorialState();
     }
 
@@ -29,12 +28,6 @@ public class GameProperties
     /// </summary>
     [JsonProperty]
     public GameWorld GameWorld { get; private set; }
-
-    /// <summary>
-    ///   User-defined world generation settings
-    /// </summary>
-    [JsonProperty]
-    public WorldGenerationSettings WorldSettings { get; set; }
 
     /// <summary>
     ///   When true the player is in freebuild mode and various things
