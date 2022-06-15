@@ -834,7 +834,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [DeserializedCallbackAllowed]
     private void OnPlayerEngulfed(Microbe player, Microbe engulfer)
     {
-        if (engulfer.ActiveEnzymes.ContainsKey(player.RequisiteEnzymeToDigest!))
+        if (engulfer.ActiveEnzymes.ContainsKey(player.RequisiteEnzymeToDigest))
         {
             // Considered as normal death
             OnPlayerDied(player);

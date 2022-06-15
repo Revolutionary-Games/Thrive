@@ -1109,10 +1109,8 @@ public partial class Microbe
                     EjectEngulfable(engulfable);
                     continue;
                 }
-                else
-                {
-                    usedEnzyme = engulfable.RequisiteEnzymeToDigest;
-                }
+
+                usedEnzyme = engulfable.RequisiteEnzymeToDigest;
             }
 
             var hasAnyUsefulCompounds = false;
