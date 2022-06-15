@@ -464,7 +464,7 @@ public partial class Microbe
 
     public void OnEjected()
     {
-        OnRegurgitated?.Invoke(this,  HostileEngulfer.Value!);
+        OnRegurgitated?.Invoke(this, HostileEngulfer.Value!);
 
         // Reset wigglyness
         ApplyMembraneWigglyness();

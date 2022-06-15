@@ -124,7 +124,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     public EntityReference<Microbe> HostileEngulfer { get; private set; } = new();
 
     [JsonIgnore]
-    public Enzyme? RequisiteEnzymeToDigest { get; }
+    public Enzyme? RequisiteEnzymeToDigest => null;
 
     /// <summary>
     ///   This is both the digestion and dissolve effect progress value for now.

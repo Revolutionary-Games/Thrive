@@ -71,6 +71,7 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     private void OnEnzymeSelected(int index)
     {
+        _ = index;
         UpdateDescription();
     }
 
