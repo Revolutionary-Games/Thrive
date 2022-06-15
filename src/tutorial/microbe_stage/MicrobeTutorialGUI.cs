@@ -51,6 +51,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath EngulfmentFullCapacityPath = null!;
 
+    [Export]
+    public NodePath EditorButtonHighlightPath = null!;
+
     private CustomDialog microbeWelcomeMessage = null!;
     private Control microbeMovementKeyPrompts = null!;
     private Control microbeMovementKeyForward = null!;
@@ -76,6 +79,8 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public bool TutorialEnabledSelected { get; private set; } = true;
 
     public Node GUINode => this;
+
+    public ControlHighlight? PressEditorButtonHighlight { get; private set; }
 
     public bool IsClosingAutomatically { get; set; }
 
@@ -301,6 +306,8 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         unbindTutorial = GetNode<CustomDialog>(UnbindTutorialPath);
         checkTheHelpMenu = GetNode<CustomDialog>(CheckTheHelpMenuPath);
         engulfmentFullCapacity = GetNode<CustomDialog>(EngulfmentFullCapacityPath);
+
+        PressEditorButtonHighlight = GetNode<ControlHighlight>(EditorButtonHighlightPath);
 
         PauseMode = PauseModeEnum.Process;
     }

@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=1]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/microbe_stage/editor/TimelineTab.cs" type="Script" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=6]
@@ -73,9 +73,6 @@ anchor_bottom = 1.0
 margin_top = -0.200001
 theme = ExtResource( 9 )
 script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 FinishOrNextButtonPath = NodePath("NextTabButton/Button")
 AutoEvoSubtabButtonPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton")
 TimelineSubtabButtonPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton")
@@ -256,12 +253,13 @@ margin_bottom = 481.0
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer"]
-margin_right = 494.0
-margin_bottom = 129.0
-custom_constants/separation = 0
+margin_right = 824.0
+margin_bottom = 471.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="GlucoseReduction" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_right = 494.0
+margin_right = 824.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 1 )
 text = "The amount of glucose has been reduced to ... of the previous amount."
@@ -270,43 +268,41 @@ __meta__ = {
 }
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 20.0
-margin_right = 494.0
-margin_bottom = 30.0
+margin_top = 24.0
+margin_right = 824.0
+margin_bottom = 34.0
 rect_min_size = Vector2( 0, 10 )
 custom_styles/separator = SubResource( 30 )
 
 [node name="Label" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 30.0
-margin_right = 494.0
-margin_bottom = 50.0
+margin_top = 38.0
+margin_right = 824.0
+margin_bottom = 58.0
 custom_fonts/font = ExtResource( 1 )
 text = "AUTO_EVO_RESULTS"
 
-[node name="AutoEvoResults" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 50.0
-margin_right = 494.0
-margin_bottom = 67.0
-custom_fonts/font = ExtResource( 2 )
+[node name="AutoEvoResults" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 62.0
+margin_right = 824.0
+margin_bottom = 84.0
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 67.0
-margin_right = 494.0
-margin_bottom = 92.0
+margin_top = 88.0
+margin_right = 824.0
+margin_bottom = 113.0
 rect_min_size = Vector2( 0, 25 )
 
 [node name="Label2" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 92.0
-margin_right = 494.0
-margin_bottom = 112.0
+margin_top = 117.0
+margin_right = 824.0
+margin_bottom = 137.0
 custom_fonts/font = ExtResource( 1 )
 text = "EXTERNAL_EFFECTS"
 
-[node name="ExternalEffectsList" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 112.0
-margin_right = 494.0
-margin_bottom = 129.0
-custom_fonts/font = ExtResource( 2 )
+[node name="ExternalEffectsList" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 141.0
+margin_right = 824.0
+margin_bottom = 163.0
 
 [node name="TopFade" type="TextureRect" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel"]
 modulate = Color( 1, 1, 1, 0.392157 )

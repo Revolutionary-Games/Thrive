@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/gui_common/art_gallery/GalleryCard.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/gui_common/art_gallery/GalleryCardModel.cs" type="Script" id=2]
+
+[node name="GalleryCardModel" instance=ExtResource( 1 )]
+script = ExtResource( 2 )

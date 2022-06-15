@@ -39,9 +39,6 @@ public class MicrobeHUD : Control
     public NodePath PauseButtonPath = null!;
 
     [Export]
-    public NodePath ResumeButtonPath = null!;
-
-    [Export]
     public NodePath AtpLabelPath = null!;
 
     [Export]
@@ -200,6 +197,12 @@ public class MicrobeHUD : Control
     [Export]
     public NodePath MicrobeControlRadialPath = null!;
 
+    [Export]
+    public NodePath PausePromptPath = null!;
+
+    [Export]
+    public NodePath PauseInfoPath = null!;
+
     // Formatter and code checks disagree here
     // ReSharper disable RedundantNameQualifier
     private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts = new();
@@ -272,8 +275,7 @@ public class MicrobeHUD : Control
     private Light2D editorButtonFlash = null!;
 
     private PauseMenu menu = null!;
-    private TextureButton pauseButton = null!;
-    private TextureButton resumeButton = null!;
+    private PlayButton pauseButton = null!;
     private Label atpLabel = null!;
     private Label hpLabel = null!;
     private Label populationLabel = null!;
@@ -297,6 +299,9 @@ public class MicrobeHUD : Control
     private ProcessPanel processPanel = null!;
     private TextureButton processPanelButton = null!;
 
+    private Control pausePrompt = null!;
+    private CustomRichTextLabel pauseInfo = null!;
+
     /// <summary>
     ///   Access to the stage to retrieve information for display as
     ///   well as call some player initiated actions.
@@ -310,11 +315,6 @@ public class MicrobeHUD : Control
 #pragma warning disable 649 // ignored until we get some GUI or something to change this
     private bool showMouseCoordinates;
 #pragma warning restore 649
-
-    /// <summary>
-    ///   For toggling paused with the pause button.
-    /// </summary>
-    private bool paused;
 
     // Checks
     private bool environmentCompressed;
@@ -378,8 +378,7 @@ public class MicrobeHUD : Control
 
         panelsTween = GetNode<Tween>(PanelsTweenPath);
         mouseHoverPanel = GetNode<MarginContainer>(MouseHoverPanelPath);
-        pauseButton = GetNode<TextureButton>(PauseButtonPath);
-        resumeButton = GetNode<TextureButton>(ResumeButtonPath);
+        pauseButton = GetNode<PlayButton>(PauseButtonPath);
         agentsPanel = GetNode<Control>(AgentsPanelPath);
 
         environmentPanel = GetNode<Panel>(EnvironmentPanelPath);
@@ -439,6 +438,9 @@ public class MicrobeHUD : Control
         processPanel = GetNode<ProcessPanel>(ProcessPanelPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
 
+        pausePrompt = GetNode<Control>(PausePromptPath);
+        pauseInfo = GetNode<CustomRichTextLabel>(PauseInfoPath);
+
         OnAbilitiesHotBarDisplayChanged(Settings.Instance.DisplayAbilitiesHotBar);
         Settings.Instance.DisplayAbilitiesHotBar.OnChanged += OnAbilitiesHotBarDisplayChanged;
 
@@ -467,19 +469,27 @@ public class MicrobeHUD : Control
         multicellularButton.Visible = false;
         macroscopicButton.Visible = false;
 
+        UpdatePausePrompt();
         UpdateEnvironmentPanelState();
         UpdateCompoundsPanelState();
     }
 
-    public void OnEnterStageTransition(bool longerDuration)
+    public void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
     {
         if (stage == null)
             throw new InvalidOperationException("Stage not setup for HUD");
 
-        // Fade out for that smooth satisfying transition
+        if (stage.IsLoadedFromSave && !returningFromEditor)
+        {
+            stage.OnFinishTransitioning();
+            return;
+        }
+
         stage.TransitionFinished = false;
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f);
-        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.OnFinishTransitioning));
+
+        // Fade out for that smooth satisfying transition
+        TransitionManager.Instance.AddSequence(
+            ScreenFade.FadeType.FadeIn, longerDuration ? 1.0f : 0.5f, stage.OnFinishTransitioning);
     }
 
     public override void _Process(float delta)
@@ -652,8 +662,7 @@ public class MicrobeHUD : Control
 
         EnsureGameIsUnpausedForEditor();
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToEditor, false);
 
         stage.MovingToEditor = true;
 
@@ -729,6 +738,19 @@ public class MicrobeHUD : Control
         // TODO: pressure?
     }
 
+    public void TogglePause()
+    {
+        if (menu.Visible)
+            return;
+
+        pauseButton.Toggle();
+    }
+
+    public void SendEditorButtonToTutorial(TutorialState tutorialState)
+    {
+        tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
+    }
+
     /// <summary>
     ///   Updates the GUI bars to show only needed compounds
     /// </summary>
@@ -761,6 +783,11 @@ public class MicrobeHUD : Control
                 bar.Hide();
             }
         }
+    }
+
+    private void UpdatePausePrompt()
+    {
+        pauseInfo.ExtendedBbcode = TranslationServer.Translate("PAUSE_PROMPT");
     }
 
     private void UpdateEnvironmentPanelState()
@@ -1096,8 +1123,11 @@ public class MicrobeHUD : Control
         }
 
         GUICommon.SmoothlyUpdateBar(atpBar, atpAmount * 10.0f, delta);
-        atpLabel.Text = atpAmount.ToString("F1", CultureInfo.CurrentCulture) + " / "
+
+        var atpText = atpAmount.ToString("F1", CultureInfo.CurrentCulture) + " / "
             + maxATP.ToString("F1", CultureInfo.CurrentCulture);
+        atpLabel.Text = atpText;
+        atpLabel.HintTooltip = atpText;
     }
 
     private ICompoundStorage GetPlayerColonyOrPlayerStorage()
@@ -1122,7 +1152,10 @@ public class MicrobeHUD : Control
 
         healthBar.MaxValue = maxHP;
         GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
-        hpLabel.Text = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+
+        var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+        hpLabel.Text = hpText;
+        hpLabel.HintTooltip = hpText;
     }
 
     private void SetEditorButtonFlashEffect(bool enabled)
@@ -1279,25 +1312,20 @@ public class MicrobeHUD : Control
         menu.Open();
     }
 
-    private void PauseButtonPressed()
+    private void PauseButtonPressed(bool paused)
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        paused = !paused;
         if (paused)
         {
-            pauseButton.Hide();
-            resumeButton.Show();
-            pauseButton.Pressed = false;
+            pausePrompt.Show();
 
             // Pause the game
             PauseManager.Instance.AddPause(nameof(MicrobeHUD));
         }
         else
         {
-            pauseButton.Show();
-            resumeButton.Hide();
-            resumeButton.Pressed = false;
+            pausePrompt.Hide();
 
             // Unpause the game
             PauseManager.Instance.Resume(nameof(MicrobeHUD));
@@ -1408,7 +1436,7 @@ public class MicrobeHUD : Control
         if (!PauseManager.Instance.Paused)
         {
             // The button press sound will play along with this
-            PauseButtonPressed();
+            pauseButton.Paused = true;
         }
         else
         {
@@ -1424,7 +1452,7 @@ public class MicrobeHUD : Control
         if (PauseManager.Instance.Paused)
         {
             // The button press sound will play along with this
-            PauseButtonPressed();
+            pauseButton.Paused = false;
         }
     }
 
@@ -1446,8 +1474,7 @@ public class MicrobeHUD : Control
 
         EnsureGameIsUnpausedForEditor();
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToMulticellular));
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.3f, stage.MoveToMulticellular, false);
 
         stage.MovingToEditor = true;
     }
@@ -1459,7 +1486,7 @@ public class MicrobeHUD : Control
     {
         if (PauseManager.Instance.Paused)
         {
-            PauseButtonPressed();
+            pauseButton.Paused = false;
 
             if (PauseManager.Instance.Paused)
                 GD.PrintErr("Unpausing the game after editor button press didn't work");

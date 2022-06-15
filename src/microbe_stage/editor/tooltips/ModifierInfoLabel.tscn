@@ -2,7 +2,8 @@
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmall.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.cs" type="Script" id=3]
+[ext_resource path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.cs" type="Script" id=3]
+
 
 [node name="ModifierInfo" type="HBoxContainer"]
 margin_right = 28.0

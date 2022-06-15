@@ -43,7 +43,7 @@ public class CustomRichTextLabel : RichTextLabel
     ///     NOTE: including "thrive" namespace in a tag is a must, otherwise the custom parser wouldn't parse it.
     ///   </para>
     /// </remarks>
-    [Export]
+    [Export(PropertyHint.MultilineText)]
     public string? ExtendedBbcode
     {
         get => extendedBbcode;
@@ -269,18 +269,47 @@ public class CustomRichTextLabel : RichTextLabel
 
         var simulationParameters = SimulationParameters.Instance;
 
+        var pairs = StringUtils.ParseKeyValuePairs(attributes);
+
+        string GetResizedImage(string imagePath, int width, int height, int ascent)
+        {
+            if (pairs.TryGetValue("size", out string sizeInput))
+            {
+                var separator = sizeInput.Find("x");
+
+                if (separator == -1)
+                {
+                    width = sizeInput.ToInt();
+                }
+                else
+                {
+                    var split = sizeInput.Split("x");
+                    width = split[0].ToInt();
+                    height = split[1].ToInt();
+                }
+            }
+
+            if (pairs.TryGetValue("ascent", out string ascentInput))
+                ascent = ascentInput.ToInt();
+
+            var ascentFont = "res://src/gui_common/fonts/dynamically_created/BBCode-Image-" +
+                $"VerticalCenterAlign-{ascent}.tres";
+
+            if (!ResourceLoader.Exists(ascentFont))
+            {
+                // TODO: Remove this horrible hack once proper bbcode vertical image alignment is available in Godot 4
+                GD.PrintErr($"Input Action: No ascent font found for {ascent}, creating a new one");
+                var newAscentFont = new BitmapFont { Ascent = ascent };
+                ResourceSaver.Save(ascentFont, newAscentFont);
+            }
+
+            return $"[font={ascentFont}][img={width}x{height}]{imagePath}[/img][/font]";
+        }
+
         switch (bbcode)
         {
             case ThriveBbCode.Compound:
             {
-                var pairs = StringUtils.ParseKeyValuePairs(attributes);
-
-                // Used to fallback to the old method if type attribute is not specified. Should be removed in
-                // roughly 6 months to give time for translations to be updated
-                // TODO: remove this fallback once it makes sense to do so
-                // https://github.com/Revolutionary-Games/Thrive/issues/2434
-                var fallback = false;
-
                 var internalName = string.Empty;
 
                 if (pairs.TryGetValue("type", out string value))
@@ -291,30 +320,26 @@ public class CustomRichTextLabel : RichTextLabel
                     internalName = value.Substring(1, value.Length - 2);
                 }
 
-                // Handle fallback
-                if (!string.IsNullOrEmpty(input) && string.IsNullOrEmpty(internalName))
+                if (string.IsNullOrEmpty(internalName))
                 {
-                    GD.Print("Compound type not specified in bbcode, fallback to using input as " +
-                        $"the internal name: {input}");
-                    internalName = input;
-                    fallback = true;
+                    GD.PrintErr("Compound: Type not specified in bbcode");
+                    break;
                 }
 
                 // Check compound existence and aborts if it's not valid
                 if (!simulationParameters.DoesCompoundExist(internalName))
                 {
-                    GD.Print($"Compound: \"{internalName}\" doesn't exist, referenced in bbcode");
+                    GD.PrintErr($"Compound: \"{internalName}\" doesn't exist, referenced in bbcode");
                     break;
                 }
 
                 var compound = simulationParameters.GetCompound(internalName);
 
-                // Just use the default compound's display name if input text is not specified
-                if (!fallback && string.IsNullOrEmpty(input))
+                // Just use the compound's default readable name if input text is not specified
+                if (string.IsNullOrEmpty(input))
                     input = compound.Name;
 
-                output = $"[b]{(fallback ? compound.Name : input)}[/b] [font=res://src/gui_common/fonts/" +
-                    $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
+                output = $"[b]{input}[/b] {GetResizedImage(compound.IconPath, 20, 0, 3)}";
 
                 break;
             }
@@ -323,12 +348,11 @@ public class CustomRichTextLabel : RichTextLabel
             {
                 if (!InputMap.HasAction(input))
                 {
-                    GD.Print($"Input action: \"{input}\" doesn't exist, referenced in bbcode");
+                    GD.PrintErr($"Input action: \"{input}\" doesn't exist, referenced in bbcode");
                     break;
                 }
 
-                output = "[font=res://src/gui_common/fonts/BBCode-Image-VerticalCenterAlign-9.tres]" +
-                    $"[img=30]{KeyPromptHelper.GetPathForAction(input)}[/img][/font]";
+                output = GetResizedImage(KeyPromptHelper.GetPathForAction(input), 30, 0, 9);
 
                 break;
             }
@@ -392,7 +416,7 @@ public class CustomRichTextLabel : RichTextLabel
 
                     default:
                     {
-                        GD.Print($"Constant: \"{input}\" doesn't exist, referenced in bbcode");
+                        GD.PrintErr($"Constant: \"{input}\" doesn't exist, referenced in bbcode");
                         break;
                     }
                 }

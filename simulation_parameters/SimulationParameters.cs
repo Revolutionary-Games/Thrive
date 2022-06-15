@@ -215,9 +215,19 @@ public class SimulationParameters : Node
         return helpTexts[name];
     }
 
+    public Dictionary<string, Gallery> GetGalleries()
+    {
+        return gallery;
+    }
+
     public Gallery GetGallery(string name)
     {
         return gallery[name];
+    }
+
+    public bool DoesGalleryExist(string name)
+    {
+        return gallery.ContainsKey(name);
     }
 
     public TranslationsInfo GetTranslationsInfo()

@@ -31,6 +31,8 @@ public abstract class HexPopupMenu : PopupPanel
     private bool enableMove = true;
     private bool enableModify;
 
+    private string? deleteTooltip;
+
     [Signal]
     public delegate void DeletePressed();
 
@@ -100,6 +102,16 @@ public abstract class HexPopupMenu : PopupPanel
         {
             enableModify = value;
             UpdateModifyButton();
+        }
+    }
+
+    public string? DeleteOptionTooltip
+    {
+        get => deleteTooltip;
+        set
+        {
+            deleteTooltip = value;
+            UpdateDeleteButton();
         }
     }
 

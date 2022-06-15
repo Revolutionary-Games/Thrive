@@ -210,7 +210,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public bool IsForPreviewOnly { get; set; }
 
     [JsonIgnore]
-    public Node EntityNode => this;
+    public Spatial EntityNode => this;
 
     [JsonIgnore]
     public GeometryInstance EntityGraphics => Membrane;
@@ -990,7 +990,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         return Transform.basis.Xform(MovementDirection * force) * appliedFactor *
             (CellTypeProperties.MembraneType.MovementFactor -
-                (CellTypeProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
+                (CellTypeProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER));
     }
 
     private void ApplyMovementImpulse(Vector3 movement, float delta)

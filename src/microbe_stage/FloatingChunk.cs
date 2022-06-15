@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
-public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfable
+public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 {
     [Export]
     [JsonProperty]
@@ -54,7 +54,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
-    public Node EntityNode => this;
+    public Spatial EntityNode => this;
 
     [JsonIgnore]
     public GeometryInstance EntityGraphics => chunkMesh!;
@@ -112,7 +112,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     /// </summary>
     public string DamageType { get; set; } = "chunk";
 
-    public bool IsLoadedFromSave { get; set; }
+    public string ChunkName { get; set; } = string.Empty;
 
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();
@@ -151,6 +151,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     public void Init(ChunkConfiguration chunkType, string? modelPath)
     {
         // Grab data
+        ChunkName = chunkType.Name;
         VentPerSecond = chunkType.VentAmount;
         Dissolves = chunkType.Dissolves;
         Size = chunkType.Size;
@@ -188,6 +189,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     {
         var config = default(ChunkConfiguration);
 
+        config.Name = ChunkName;
         config.VentAmount = VentPerSecond;
         config.Dissolves = Dissolves;
         config.Size = Size;

@@ -73,6 +73,9 @@ public class MicrobeAI
     [JsonIgnore]
     private MicrobeSignalCommand receivedCommand = MicrobeSignalCommand.None;
 
+    [JsonProperty]
+    private bool hasBeenNearPlayer;
+
     public MicrobeAI(Microbe microbe)
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
@@ -216,6 +219,22 @@ public class MicrobeAI
                 }
 
                 break;
+        }
+
+        // If I'm very far from the player, and I have not been near the player yet, get on stage
+        if (!hasBeenNearPlayer)
+        {
+            var player = data.AllMicrobes.Where(otherMicrobe => otherMicrobe.IsPlayerMicrobe).FirstOrDefault();
+            if (player != null)
+            {
+                if (DistanceFromMe(player.GlobalTransform.origin) > Math.Pow(Constants.SPAWN_SECTOR_SIZE, 2) * 0.75f)
+                {
+                    MoveToLocation(player.GlobalTransform.origin);
+                    return;
+                }
+
+                hasBeenNearPlayer = true;
+            }
         }
 
         // If there are no threats, look for a chunk to eat
@@ -512,6 +531,7 @@ public class MicrobeAI
             SmellForCompounds(data);
         }
 
+        // If the AI has smelled a compound (currently only possible with a chemoreceptor), go towards it.
         if (lastSmelledCompoundPosition != null)
         {
             var distance = DistanceFromMe(lastSmelledCompoundPosition.Value);
