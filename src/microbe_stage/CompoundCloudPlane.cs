@@ -136,6 +136,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         material.SetShaderParam("colour3", cloud3?.Colour ?? blank);
         material.SetShaderParam("colour4", cloud4?.Colour ?? blank);
 
+        // CompoundCloudPlanes need different render priorities to avoid the flickering effect, resulting from intersecting meshes.
         material.RenderPriority = renderPriority;
     }
 
