@@ -196,7 +196,7 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
         var previousActionData = previousAction.Data.ToList();
         var currentActionData = action.Data.ToList();
 
-        if (currentActionData.Count < 1)
+        if (!currentActionData.Any())
             return null;
 
         // For now we allow combining only if all data values can be combined
@@ -241,32 +241,16 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
             foreach (var newData in newDataList)
             {
-                if (newData.WantsMergeWith(currentData))
+                if (newData.WantsMergeWith(currentData) &&
+                    newData.GetInterferenceModeWith(currentData) is ActionInterferenceMode.CancelsOut or
+                        ActionInterferenceMode.Combinable)
                 {
-                    switch (newData.GetInterferenceModeWith(currentData))
+                    merged = true;
+
+                    if (!newData.TryMerge(currentData, true))
                     {
-                        case ActionInterferenceMode.CancelsOut:
-                        {
-                            merged = true;
-
-                            // To preserve inter action ordering we need to insert to the right place
-                            var insertPoint = newDataList.IndexOf(newData);
-                            newDataList.RemoveAt(insertPoint);
-                            newDataList.Insert(insertPoint, currentData);
-                            break;
-                        }
-
-                        case ActionInterferenceMode.Combinable:
-                        {
-                            if (!newData.TryMerge(currentData))
-                            {
-                                throw new InvalidOperationException(
-                                    "Action data that should have accepted a merge, didn't");
-                            }
-
-                            merged = true;
-                            break;
-                        }
+                        throw new InvalidOperationException(
+                            "Action data that should have accepted a merge, didn't");
                     }
                 }
 

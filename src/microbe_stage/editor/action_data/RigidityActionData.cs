@@ -51,12 +51,37 @@ public class RigidityActionData : EditorCombinableActionData
         return new RigidityActionData(rigidityChangeActionData.NewRigidity, PreviousRigidity);
     }
 
-    protected override void MergeGuaranteed(CombinableActionData other)
+    protected override void MergeGuaranteed(CombinableActionData other, bool? otherIsNewer = null)
     {
         var rigidityChangeActionData = (RigidityActionData)other;
 
         if (Math.Abs(PreviousRigidity - rigidityChangeActionData.NewRigidity) < MathUtils.EPSILON)
         {
+            // Handle cancels out
+            if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON)
+            {
+                switch (otherIsNewer)
+                {
+                    case null:
+                    {
+                        throw new InvalidOperationException(
+                            "Cancels out, but no newer instruction is given");
+                    }
+
+                    case true:
+                    {
+                        NewRigidity = rigidityChangeActionData.NewRigidity;
+                        return;
+                    }
+
+                    case false:
+                    {
+                        PreviousRigidity = rigidityChangeActionData.PreviousRigidity;
+                        return;
+                    }
+                }
+            }
+
             PreviousRigidity = rigidityChangeActionData.PreviousRigidity;
             return;
         }
