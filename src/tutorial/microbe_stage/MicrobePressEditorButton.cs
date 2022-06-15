@@ -1,6 +1,7 @@
 ﻿namespace Tutorial
 {
     using System;
+    using Godot;
 
     /// <summary>
     ///   Tells the player to press the editor button if it has been enabled too long
@@ -9,9 +10,17 @@
     {
         public override string ClosedByName { get; } = "MicrobeEditorPress";
 
+        public Control? PressEditorButtonControl { get; set; }
+
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
+            if (gui.PressEditorButtonHighlight == null)
+                throw new InvalidOperationException($"{nameof(gui.PressEditorButtonHighlight)} has not been set");
+
+            gui.PressEditorButtonHighlight.TargetControl = ShownCurrently ? PressEditorButtonControl : null;
+
             gui.EditorButtonTutorialVisible = ShownCurrently;
+            gui.PressEditorButtonHighlight.Visible = ShownCurrently;
         }
 
         public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
@@ -19,6 +28,16 @@
         {
             switch (eventType)
             {
+                case TutorialEventType.MicrobePlayerDied:
+                {
+                    if (ShownCurrently)
+                    {
+                        Hide();
+                    }
+
+                    break;
+                }
+
                 case TutorialEventType.MicrobePlayerReadyToEdit:
                 {
                     if (!Complete && !ProcessWhileHidden)

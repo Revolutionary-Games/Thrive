@@ -39,7 +39,6 @@ GUICommon="*res://src/gui_common/GUICommon.cs"
 SceneManager="*res://src/engine/SceneManager.cs"
 ScreenOverlays="*res://src/engine/ScreenOverlays.tscn"
 ToolTipManager="*res://src/gui_common/tooltip/ToolTipManager.tscn"
-TransitionManager="*res://src/gui_common/TransitionManager.cs"
 CursorLoader="*res://src/engine/CursorLoader.cs"
 ScreenShotTaker="*res://src/engine/ScreenShotTaker.cs"
 FullScreenToggle="*res://src/engine/FullScreenToggle.cs"
@@ -311,6 +310,11 @@ toggle_metrics={
 g_pause={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+toggle_debug_panel={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":16777246,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

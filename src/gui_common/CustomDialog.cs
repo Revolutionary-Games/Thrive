@@ -72,6 +72,10 @@ public class CustomDialog : Popup, ICustomPopup
     private bool showCloseButton = true;
     private bool decorate = true;
 
+    /// <summary>
+    ///   NOTE: This is only emitted WHEN the close button (top right corner) is pressed, this doesn't account
+    ///   for any other hiding behaviors.
+    /// </summary>
     [Signal]
     public delegate void Closed();
 
@@ -174,7 +178,7 @@ public class CustomDialog : Popup, ICustomPopup
     public override void _EnterTree()
     {
         // To make popup rect readjustment react to window resizing
-        GetTree().Root.Connect("size_changed", this, nameof(OnViewportResized));
+        GetTree().Root.Connect("size_changed", this, nameof(ApplyRectSettings));
 
         customPanel = GetStylebox("custom_panel", "WindowDialog");
         titleBarPanel = GetStylebox("custom_titlebar", "WindowDialog");
@@ -188,13 +192,14 @@ public class CustomDialog : Popup, ICustomPopup
 
         SetupCloseButton();
         UpdateChildRects();
+        ApplyRectSettings();
 
         base._EnterTree();
     }
 
     public override void _ExitTree()
     {
-        GetTree().Root.Disconnect("size_changed", this, nameof(OnViewportResized));
+        GetTree().Root.Disconnect("size_changed", this, nameof(ApplyRectSettings));
 
         base._ExitTree();
     }
@@ -206,10 +211,7 @@ public class CustomDialog : Popup, ICustomPopup
             case NotificationResized:
             {
                 UpdateChildRects();
-
-                if (FullRect)
-                    SetToFullRect();
-
+                ApplyRectSettings();
                 break;
             }
 
@@ -217,10 +219,7 @@ public class CustomDialog : Popup, ICustomPopup
             {
                 if (Visible)
                 {
-                    OnShown();
-
-                    if (FullRect)
-                        SetToFullRect();
+                    ApplyRectSettings();
                 }
                 else
                 {
@@ -345,7 +344,7 @@ public class CustomDialog : Popup, ICustomPopup
     public override Vector2 _GetMinimumSize()
     {
         var buttonWidth = closeButton?.GetCombinedMinimumSize().x;
-        var titleWidth = titleFont?.GetStringSize(TranslationServer.Translate(windowTitle)).x;
+        var titleWidth = titleFont?.GetStringSize(translatedWindowTitle).x;
         var buttonArea = buttonWidth + (buttonWidth / 2);
 
         var contentSize = Vector2.Zero;
@@ -369,12 +368,21 @@ public class CustomDialog : Popup, ICustomPopup
             contentSize.x + customMargin * 2), contentSize.y + customMargin * 2);
     }
 
-    /// <summary>
-    ///   Called after the popup is made visible.
-    /// </summary>
-    protected virtual void OnShown()
+    public void PopupFullRect()
+    {
+        Popup_(GetFullRect());
+    }
+
+    public virtual void CustomShow()
     {
         // TODO: implement default show animation(?)
+        ShowModal(PopupExclusive);
+    }
+
+    public virtual void CustomHide()
+    {
+        // TODO: add proper close animation
+        Hide();
     }
 
     /// <summary>
@@ -382,8 +390,13 @@ public class CustomDialog : Popup, ICustomPopup
     /// </summary>
     protected virtual void OnHidden()
     {
-        // TODO: add proper close animation
         closeHovered = false;
+    }
+
+    protected Rect2 GetFullRect()
+    {
+        var viewportSize = GetScreenSize();
+        return new Rect2(new Vector2(0, titleBarHeight), new Vector2(viewportSize.x, viewportSize.y));
     }
 
     /// <summary>
@@ -595,10 +608,19 @@ public class CustomDialog : Popup, ICustomPopup
 
     private void SetToFullRect()
     {
-        var viewportSize = GetScreenSize();
+        var fullRect = GetFullRect().Size;
 
         RectPosition = new Vector2(0, titleBarHeight);
-        RectSize = new Vector2(viewportSize.x, viewportSize.y - titleBarHeight);
+        RectSize = new Vector2(fullRect.x, fullRect.y - titleBarHeight);
+    }
+
+    private void ApplyRectSettings()
+    {
+        if (FullRect)
+            SetToFullRect();
+
+        if (BoundToScreenArea)
+            FixRect();
     }
 
     private void OnCloseButtonMouseEnter()
@@ -615,16 +637,8 @@ public class CustomDialog : Popup, ICustomPopup
 
     private void OnCloseButtonPressed()
     {
-        Hide();
+        GUICommon.Instance.PlayButtonPressSound();
+        CustomHide();
         EmitSignal(nameof(Closed));
-    }
-
-    private void OnViewportResized()
-    {
-        if (BoundToScreenArea)
-            FixRect();
-
-        if (FullRect)
-            SetToFullRect();
     }
 }

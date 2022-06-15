@@ -3,10 +3,17 @@
 /// </summary>
 public interface ITransition
 {
-    bool Skippable { get; set; }
+    public bool Finished { get; }
 
-    bool Visible { get; set; }
+    /// <summary>
+    ///   Starts this transition and displays it on the screen.
+    /// </summary>
+    public void Begin();
 
-    void OnStarted();
-    void OnFinished();
+    /// <summary>
+    ///   Clears this transition from the screen.
+    /// </summary>
+    public void Clear();
+
+    public void Skip();
 }

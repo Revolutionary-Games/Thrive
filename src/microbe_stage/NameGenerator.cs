@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Newtonsoft.Json;
 
 public class NameGenerator : IRegistryType
@@ -39,7 +40,7 @@ public class NameGenerator : IRegistryType
     /// <summary>
     ///   Generates a single name section
     /// </summary>
-    public string GenerateNameSection(Random? random = null)
+    public string GenerateNameSection(Random? random = null, bool lowercase = false)
     {
         random ??= new Random();
 
@@ -95,6 +96,11 @@ public class NameGenerator : IRegistryType
         // letters when the prefix ends with and the cofix starts with
         // the same letter Remove weird things that come up like "rc"
         // (Implemented through vowels and consonants)
+
+        // Convert first letter to lowercase
+        if (lowercase)
+            newName = char.ToLower(newName[0], CultureInfo.InvariantCulture) + newName.Substring(1);
+
         return newName;
     }
 

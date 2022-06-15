@@ -82,7 +82,7 @@
 
         public override IFormattable GetDescription()
         {
-            return new LocalizedString("PREDATION_FOOD_SOURCE", prey.FormattedName);
+            return new LocalizedString("PREDATION_FOOD_SOURCE", prey.FormattedNameBbCode);
         }
 
         public override float TotalEnergyAvailable()
