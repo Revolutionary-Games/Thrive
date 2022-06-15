@@ -26,13 +26,6 @@ public partial class Microbe
 
     private bool destroyed;
 
-    // variables for engulfing
-    [JsonProperty]
-    private bool previousEngulfMode;
-
-    [JsonProperty]
-    private bool wasBeingEngulfed;
-
     [JsonProperty]
     private float escapeInterval;
 
@@ -469,11 +462,14 @@ public partial class Microbe
         // Reset wigglyness
         ApplyMembraneWigglyness();
 
-        // Reset our organelles' render priority back to their original value
+        // Reset our organelles' render priority back to their original values
         foreach (var organelle in organelles!)
         {
             organelle.UpdateRenderPriority(Hex.GetRenderPriority(organelle.Position));
         }
+
+        hasEscaped = true;
+        escapeInterval = 0;
     }
 
     /// <summary>
@@ -1031,17 +1027,6 @@ public partial class Microbe
         {
             MovementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
         }
-        else if (wasBeingEngulfed && CurrentEngulfmentStep == EngulfmentStep.NotEngulfed)
-        {
-            // Else If we were but are no longer, being engulfed
-            wasBeingEngulfed = false;
-
-            if (!IsPlayerMicrobe && !Species.PlayerSpecies)
-            {
-                hasEscaped = true;
-                escapeInterval = 0;
-            }
-        }
 
         // Still considered to be chased for CREATURE_ESCAPE_INTERVAL milliseconds
         if (hasEscaped)
@@ -1133,8 +1118,6 @@ public partial class Microbe
         Membrane.EngulfRadius = ((SphereMesh)pseudopodTarget.Mesh).Radius;
         Membrane.EngulfOffset = 1f;
         */
-
-        previousEngulfMode = State == MicrobeState.Engulf;
     }
 
     /// <summary>
@@ -1730,9 +1713,11 @@ public partial class Microbe
         body.CollisionLayer = 3;
         body.CollisionMask = 3;
 
+        var impulse = Transform.origin.DirectionTo(body.Transform.origin) * body.Mass *
+            Constants.ENGULF_EJECTION_FORCE;
+
         // Apply outwards ejection force
-        body.ApplyCentralImpulse(Transform.origin.DirectionTo(body.Transform.origin) * body.Mass *
-            Constants.ENGULF_EJECTION_FORCE);
+        body.ApplyCentralImpulse(impulse + LinearVelocity);
     }
 
     /// <summary>
