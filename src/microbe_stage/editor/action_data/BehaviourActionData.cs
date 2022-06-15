@@ -52,12 +52,37 @@ public class BehaviourActionData : EditorCombinableActionData
         return new BehaviourActionData(behaviourChangeActionData.NewValue, OldValue, Type);
     }
 
-    protected override void MergeGuaranteed(CombinableActionData other)
+    protected override void MergeGuaranteed(CombinableActionData other, bool? otherIsNewer = null)
     {
         var behaviourChangeActionData = (BehaviourActionData)other;
 
         if (Math.Abs(OldValue - behaviourChangeActionData.NewValue) < MathUtils.EPSILON)
         {
+            // Handle cancels out
+            if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON)
+            {
+                switch (otherIsNewer)
+                {
+                    case null:
+                    {
+                        throw new InvalidOperationException(
+                            "Cancels out, but no newer instruction is given");
+                    }
+
+                    case true:
+                    {
+                        NewValue = behaviourChangeActionData.NewValue;
+                        return;
+                    }
+
+                    case false:
+                    {
+                        OldValue = behaviourChangeActionData.OldValue;
+                        return;
+                    }
+                }
+            }
+
             OldValue = behaviourChangeActionData.OldValue;
             return;
         }
