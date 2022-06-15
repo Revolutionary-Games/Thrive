@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-14 21:37+0700\n"
+"POT-Creation-Date: 2022-06-15 23:04+0700\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -57,7 +57,7 @@ msgid "MUSIC"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:187
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:341
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:342
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
@@ -1617,11 +1617,11 @@ msgstr "Muis speciaal 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Onbekende muis"
 
-#: ../src/general/Asset.cs:48
+#: ../src/general/Asset.cs:52
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/general/Asset.cs:52
+#: ../src/general/Asset.cs:56
 msgid "ART_BY"
 msgstr "Kunst door {0}"
 
@@ -2519,6 +2519,11 @@ msgstr "Omschrijving is te lang"
 msgid "ARTIST_COLON"
 msgstr "Soorten:"
 
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:247
+#, fuzzy
+msgid "UNTITLED"
+msgstr "Bioom: {0}"
+
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
 msgstr ""
@@ -2591,7 +2596,7 @@ msgstr "Protanope (Rood-Groen)"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:52
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:250
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutorial"
@@ -4713,14 +4718,14 @@ msgstr ""
 "\n"
 "Probeer alle toetsen een paar seconden om door te gaan."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:183
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:184
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Verzamel glucose (witte wolken) door eroverheen te bewegen.\n"
 "Je cel heeft glucose nodig om energie te produceren en in leven te blijven.\n"
 "Volg de lijn van uw cel naar de nabijgelegen glucose."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:194
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:195
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Houd je gezondheidsbalk naast de ATP-balk (rechtsonder) in de gaten.\n"
@@ -4728,14 +4733,14 @@ msgstr ""
 "Je regenereert gezondheid terwijl je ATP hebt.\n"
 "Zorg ervoor dat u voldoende glucose verzamelt om ATP te produceren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:206
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Om te reproduceren moet je al je organellen dupliceren door voldoende ammoniak en fosfaten te verzamelen.\n"
 "Kijk naar de indicator rechtsonder om te zien hoeveel je nog nodig hebt."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:222
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:223
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -4745,7 +4750,7 @@ msgstr ""
 "\n"
 "Om de editor te openen, drukt u op de knipperende editor-knop rechtsonder."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:233
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:234
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -4753,7 +4758,7 @@ msgstr ""
 "\n"
 "Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de unbind all-toets drukken."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:252
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
@@ -4761,7 +4766,7 @@ msgstr ""
 "\n"
 "Nog een tip: je zoomt uit met het scrollwiel."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:283
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:284
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
