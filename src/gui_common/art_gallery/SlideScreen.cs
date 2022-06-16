@@ -316,7 +316,7 @@ public class SlideScreen : CustomDialog
         slideShowModeButton.SetPressedNoSignal(slideshowMode);
         slideShowModeButton.Visible = item.CanBeShownInASlideshow;
 
-        slideTitleLabel.Text = item.Asset.Title;
+        slideTitleLabel.Text = string.IsNullOrEmpty(item.Asset.Title) ? item.Asset.FileName : item.Asset.Title;
         fullscreenTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture;
     }
 

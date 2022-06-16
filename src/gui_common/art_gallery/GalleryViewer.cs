@@ -244,7 +244,9 @@ public class GalleryViewer : CustomDialog
 
         var tooltip = GalleryDetailsToolTipScene.Instance<GalleryDetailsTooltip>();
         tooltip.Name = "galleryCard_" + asset.ResourcePath.GetFile();
-        tooltip.DisplayName = asset.Title;
+        tooltip.DisplayName = string.IsNullOrEmpty(asset.Title) ?
+            TranslationServer.Translate("UNTITLED") :
+            asset.Title!;
         tooltip.Description = asset.Description;
         tooltip.Artist = asset.Artist;
         item.RegisterToolTipForControl(tooltip);
