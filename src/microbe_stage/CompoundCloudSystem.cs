@@ -91,6 +91,9 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             clouds.Remove(cloud);
         }
 
+        // CompoundCloudPlanes have a negative render priority, so they are drawn beneath organelles
+        int renderPriority = -1;
+
         // TODO: if the compound types have changed since we saved, that needs to be handled
         if (IsLoadedFromSave)
         {
@@ -98,8 +101,10 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             {
                 // Re-init with potentially changed compounds
                 // TODO: special handling is needed if the compounds actually changed
-                cloud.Init(fluidSystem, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
+                cloud.Init(fluidSystem, renderPriority, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
                     cloud.Compounds[3]);
+
+                --renderPriority;
 
                 // Re-add the clouds as our children
                 AddChild(cloud);
@@ -128,7 +133,8 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             if (startOffset + 3 < allCloudCompounds.Count)
                 cloud4 = allCloudCompounds[startOffset + 3];
 
-            clouds[i].Init(fluidSystem, cloud1, cloud2, cloud3, cloud4);
+            clouds[i].Init(fluidSystem, renderPriority, cloud1, cloud2, cloud3, cloud4);
+            --renderPriority;
             clouds[i].Translation = new Vector3(0, 0, 0);
         }
     }
