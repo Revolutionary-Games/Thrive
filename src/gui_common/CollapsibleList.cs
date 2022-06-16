@@ -209,9 +209,7 @@ public class CollapsibleList : VBoxContainer
         tween.Start();
     }
 
-    /*
-        GUI Callbacks
-    */
+    // GUI Callbacks
 
     private void CollapseButtonPressed()
     {
