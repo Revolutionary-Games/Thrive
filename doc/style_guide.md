@@ -127,7 +127,10 @@ Code style rules
 
 - Don't place inline comments at the end of lines, place them on their
   own lines. Don't use comments after a piece of code on a single
-  line.
+  line. The exception to this rule is when using pragma warning suppressions
+  then add the reason for the suppression at the end of the line. For
+  JetBrains checks, place a separate comment before the suppression
+  explaining the reason for the suppression.
 
 - Start comments with a capital letter, unless it is a commented out
   code block or a keyword.
