@@ -36,7 +36,7 @@ public class GalleryViewer : CustomDialog
 
     private HBoxContainer tabButtonsContainer = null!;
     private OptionButton assetsCategoryDropdown = null!;
-    private Slidescreen slidescreen = null!;
+    private Slidescreen slideScreen = null!;
     private Button slideshowButton = null!;
 
     /// <summary>
@@ -81,7 +81,7 @@ public class GalleryViewer : CustomDialog
 
     public override void _Ready()
     {
-        slidescreen = GetNode<Slidescreen>("Slidescreen");
+        slideScreen = GetNode<Slidescreen>("Slidescreen");
         cardTile = GetNode<GridContainer>(GalleryGridPath);
         tabButtonsContainer = GetNode<HBoxContainer>(TabButtonsContainerPath);
         assetsCategoryDropdown = GetNode<OptionButton>(AssetsCategoryDropdownPath);
@@ -206,8 +206,8 @@ public class GalleryViewer : CustomDialog
         foreach (var card in CurrentCards)
             card.Visible = true;
 
-        slidescreen.CurrentSlideIndex = 0;
-        slidescreen.Items = CurrentCards;
+        slideScreen.CurrentSlideIndex = 0;
+        slideScreen.Items = CurrentCards;
 
         UpdateSlideshowButton();
     }
@@ -293,7 +293,7 @@ public class GalleryViewer : CustomDialog
         if (CurrentCards == null)
             return;
 
-        slideshowButton.Disabled = CurrentCards.All(c => !c.CanBeSlideshown);
+        slideshowButton.Disabled = CurrentCards.All(c => !c.CanBeShownInASlideshow);
     }
 
     private void OnAssetPreviewOpened(GalleryCard item)
@@ -301,8 +301,8 @@ public class GalleryViewer : CustomDialog
         if (CurrentCards == null)
             return;
 
-        slidescreen.CurrentSlideIndex = CurrentCards.IndexOf(item);
-        slidescreen.CustomShow();
+        slideScreen.CurrentSlideIndex = CurrentCards.IndexOf(item);
+        slideScreen.CustomShow();
     }
 
     private void OnGalleryItemPressed(GalleryCard item)
@@ -318,7 +318,7 @@ public class GalleryViewer : CustomDialog
         else
         {
             lastSelected = item;
-            slidescreen.CurrentSlideIndex = CurrentCards.IndexOf(item);
+            slideScreen.CurrentSlideIndex = CurrentCards.IndexOf(item);
         }
     }
 
@@ -368,9 +368,9 @@ public class GalleryViewer : CustomDialog
 
         GUICommon.Instance.PlayButtonPressSound();
 
-        slidescreen.CurrentSlideIndex = CurrentCards.FindIndex(c => c.CanBeSlideshown);
-        slidescreen.SlideshowMode = true;
-        slidescreen.CustomShow();
+        slideScreen.CurrentSlideIndex = CurrentCards.FindIndex(c => c.CanBeShownInASlideshow);
+        slideScreen.SlideshowMode = true;
+        slideScreen.CustomShow();
     }
 
     private void OnPlaybackStarted(object sender, EventArgs args)
@@ -381,7 +381,7 @@ public class GalleryViewer : CustomDialog
         // Assume sender is of playback type, as it should be
         var playback = (IGalleryCardPlayback)sender;
 
-        slidescreen.CurrentSlideIndex = CurrentCards.IndexOf((GalleryCard)playback);
+        slideScreen.CurrentSlideIndex = CurrentCards.IndexOf((GalleryCard)playback);
         StopAllPlayback(playback);
         activeAudioPlayers++;
     }

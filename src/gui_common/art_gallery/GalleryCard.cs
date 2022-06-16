@@ -22,7 +22,7 @@ public class GalleryCard : Button
     ///   If this is true, this item can be featured in slideshow.
     /// </summary>
     [Export]
-    public bool CanBeSlideshown { get; set; } = true;
+    public bool CanBeShownInASlideshow { get; set; } = true;
 
     public Asset Asset { get; set; } = null!;
 
