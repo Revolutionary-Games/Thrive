@@ -182,7 +182,7 @@ public partial class CellEditorComponent :
     private CompoundBalanceDisplay compoundBalance = null!;
 
     private CustomDialog autoEvoPredictionExplanationPopup = null!;
-    private Label autoEvoPredictionExplanationLabel = null!;
+    private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
 
     private Texture increaseIcon = null!;
     private Texture decreaseIcon = null!;
@@ -589,7 +589,7 @@ public partial class CellEditorComponent :
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
         autoEvoPredictionExplanationPopup = GetNode<CustomDialog>(AutoEvoPredictionExplanationPopupPath);
-        autoEvoPredictionExplanationLabel = GetNode<Label>(AutoEvoPredictionExplanationLabelPath);
+        autoEvoPredictionExplanationLabel = GetNode<CustomRichTextLabel>(AutoEvoPredictionExplanationLabelPath);
     }
 
     public override void OnEditorSpeciesSetup(Species species)
@@ -1157,9 +1157,16 @@ public partial class CellEditorComponent :
         var count = organelles.Count;
 
         // Disable delete for nucleus or the last organelle.
-        if (MicrobeSize <= count || organelles.Any(o => o.Definition == nucleus))
+        bool attemptingNucleusDelete = organelles.Any(o => o.Definition == nucleus);
+        if (MicrobeSize <= count || attemptingNucleusDelete)
         {
             organelleMenu.EnableDeleteOption = false;
+
+            organelleMenu.DeleteOptionTooltip = attemptingNucleusDelete ?
+                TranslationServer.Translate(
+                    "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP") :
+                TranslationServer.Translate(
+                    "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP");
         }
         else
         {
@@ -1172,6 +1179,8 @@ public partial class CellEditorComponent :
             {
                 organelleMenu.EnableDeleteOption = true;
             }
+
+            organelleMenu.DeleteOptionTooltip = string.Empty;
         }
 
         // Move enabled only when microbe has more than one organelle
@@ -2109,7 +2118,7 @@ public partial class CellEditorComponent :
         }
 
         CreateAutoEvoPredictionDetailsText(results.GetPatchEnergyResults(run.PlayerSpeciesNew),
-            run.PlayerSpeciesOriginal.FormattedName);
+            run.PlayerSpeciesOriginal.FormattedNameBbCode);
 
         UpdateAutoEvoPredictionTranslations();
 
@@ -2167,7 +2176,7 @@ public partial class CellEditorComponent :
 
     private void UpdateAutoEvoPredictionDetailsText()
     {
-        autoEvoPredictionExplanationLabel.Text = predictionDetailsText != null ?
+        autoEvoPredictionExplanationLabel.ExtendedBbcode = predictionDetailsText != null ?
             predictionDetailsText.ToString() :
             TranslationServer.Translate("NO_DATA_TO_SHOW");
     }
