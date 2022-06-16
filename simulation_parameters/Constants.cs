@@ -816,6 +816,20 @@ public static class Constants
 
     public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
 
+    // Min/max values for each customisable difficulty option
+    public const float MIN_MP_MULTIPLIER = 0.2f;
+    public const float MAX_MP_MULTIPLIER = 2;
+    public const float MIN_AI_MUTATION_RATE = 0.5f;
+    public const float MAX_AI_MUTATION_RATE = 5;
+    public const float MIN_COMPOUND_DENSITY = 0.2f;
+    public const float MAX_COMPOUND_DENSITY = 2;
+    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
+    public const float MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
+    public const float MIN_GLUCOSE_DECAY = 0.3f;
+    public const float MAX_GLUCOSE_DECAY = 0.95f;
+    public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
+    public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
+
     /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>

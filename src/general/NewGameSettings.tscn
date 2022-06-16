@@ -116,19 +116,16 @@ text = "DIFFICULTY_PRESET"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer"]
 margin_left = 254.0
-margin_right = 280.0
+margin_right = 314.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="DifficultyPreset" type="OptionButton" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer"]
-margin_left = 284.0
+margin_left = 318.0
 margin_right = 518.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
-text = "DIFFICULTY_PRESET_NORMAL"
-items = [ "DIFFICULTY_PRESET_EASY", null, false, 0, null, "DIFFICULTY_PRESET_NORMAL", null, false, 1, null, "DIFFICULTY_PRESET_HARD", null, false, 2, null, "DIFFICULTY_PRESET_CUSTOM", null, false, 3, null ]
-selected = 1
 __meta__ = {
 "_editor_description_": ""
 }
@@ -341,9 +338,6 @@ margin_left = 434.0
 margin_right = 668.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
-text = "DIFFICULTY_PRESET_NORMAL"
-items = [ "DIFFICULTY_PRESET_EASY", null, false, 0, null, "DIFFICULTY_PRESET_NORMAL", null, false, 1, null, "DIFFICULTY_PRESET_HARD", null, false, 2, null, "DIFFICULTY_PRESET_CUSTOM", null, false, 3, null ]
-selected = 1
 __meta__ = {
 "_editor_description_": ""
 }

@@ -5,6 +5,14 @@
 /// </summary>
 public class WorldGenerationSettings
 {
+    private DifficultyPreset difficulty = null!;
+
+    public WorldGenerationSettings()
+    {
+        // Default to normal difficulty unless otherwise specified
+        Difficulty = SimulationParameters.Instance.GetDifficultyPreset("normal");
+    }
+
     public enum LifeOrigin
     {
         Vent,
@@ -23,118 +31,39 @@ public class WorldGenerationSettings
     */
 
     public bool Lawk { get; set; }
-    public DifficultyPreset Difficulty { get; set; } = DifficultyPreset.Normal;
+
+    public DifficultyPreset Difficulty
+    {
+        get => difficulty;
+        set
+        {
+            difficulty = value;
+
+            if (value.InternalName == "custom")
+                return;
+
+            MPMultiplier = value.MPMultiplier;
+            AIMutationMultiplier = value.AIMutationMultiplier;
+            CompoundDensity = value.CompoundDensity;
+            PlayerDeathPopulationPenalty = value.PlayerDeathPopulationPenalty;
+            GlucoseDecay = value.GlucoseDecay;
+            OsmoregulationMultiplier = value.OsmoregulationMultiplier;
+            FreeGlucoseCloud = value.FreeGlucoseCloud;
+        }
+    }
+
     public LifeOrigin Origin { get; set; } = LifeOrigin.Vent;
     public int Seed { get; set; } = new Random().Next();
-    public float MPMultiplier { get; set; } = 1;
-    public float AIMutationMultiplier { get; set; } = 1;
-    public float CompoundDensity { get; set; } = 1;
-    public float PlayerDeathPopulationPenalty { get; set; } = 1;
-    public float GlucoseDecay { get; set; } = 0.8f;
-    public float OsmoregulationMultiplier { get; set; } = 1;
+    public float MPMultiplier { get; set; }
+    public float AIMutationMultiplier { get; set; }
+    public float CompoundDensity { get; set; }
+    public float PlayerDeathPopulationPenalty { get; set; }
+    public float GlucoseDecay { get; set; }
+    public float OsmoregulationMultiplier { get; set; }
     public bool FreeGlucoseCloud { get; set; }
     public PatchMapType MapType { get; set; } = PatchMapType.Procedural;
     public bool IncludeMulticellular { get; set; } = true;
     public bool EasterEggs { get; set; } = true;
-
-    /*
-    Static values for each difficulty preset
-    */
-
-    public static float GetMPMultiplier(DifficultyPreset preset)
-    {
-        switch (preset)
-        {
-            case DifficultyPreset.Easy:
-                return 0.8f;
-            case DifficultyPreset.Normal:
-                return 1;
-            case DifficultyPreset.Hard:
-                return 1.2f;
-            default:
-                return 1;
-        }
-    }
-
-    public static float GetAIMutationMultiplier(DifficultyPreset preset)
-    {
-        switch (preset)
-        {
-            case DifficultyPreset.Easy:
-                return 1;
-            case DifficultyPreset.Normal:
-                return 1;
-            case DifficultyPreset.Hard:
-                return 2;
-            default:
-                return 1;
-        }
-    }
-
-    public static float GetCompoundDensity(DifficultyPreset preset)
-    {
-        switch (preset)
-        {
-            case DifficultyPreset.Easy:
-                return 1.5f;
-            case DifficultyPreset.Normal:
-                return 1;
-            case DifficultyPreset.Hard:
-                return 0.5f;
-            default:
-                return 1;
-        }
-    }
-
-    public static float GetPlayerDeathPopulationPenalty(DifficultyPreset preset)
-    {
-        switch (preset)
-        {
-            case DifficultyPreset.Easy:
-                return 1;
-            case DifficultyPreset.Normal:
-                return 1;
-            case DifficultyPreset.Hard:
-                return 2;
-            default:
-                return 1;
-        }
-    }
-
-    public static float GetGlucoseDecay(DifficultyPreset preset)
-    {
-        switch (preset)
-        {
-            case DifficultyPreset.Easy:
-                return 0.9f;
-            case DifficultyPreset.Normal:
-                return 0.8f;
-            case DifficultyPreset.Hard:
-                return 0.5f;
-            default:
-                return 0.8f;
-        }
-    }
-
-    public static float GetOsmoregulationMultiplier(DifficultyPreset preset)
-    {
-        switch (preset)
-        {
-            case DifficultyPreset.Easy:
-                return 0.8f;
-            case DifficultyPreset.Normal:
-                return 1;
-            case DifficultyPreset.Hard:
-                return 1.2f;
-            default:
-                return 1;
-        }
-    }
-
-    public static bool GetFreeGlucoseCloud(DifficultyPreset preset)
-    {
-        return preset != DifficultyPreset.Hard;
-    }
 
     public override string ToString()
     {

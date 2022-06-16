@@ -113,23 +113,6 @@ public class NewGameSettings : ControlWithInput
     [Export]
     public NodePath ConfirmButtonPath = null!;
 
-    /*
-    Static values for min/max in difficulty options
-    */
-
-    private const float MIN_MP_MULTIPLIER = 0.2f;
-    private const float MAX_MP_MULTIPLIER = 2;
-    private const float MIN_AI_MUTATION_RATE = 0.5f;
-    private const float MAX_AI_MUTATION_RATE = 5;
-    private const float MIN_COMPOUND_DENSITY = 0.2f;
-    private const float MAX_COMPOUND_DENSITY = 2;
-    private const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
-    private const float MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
-    private const float MIN_GLUCOSE_DECAY = 0.3f;
-    private const float MAX_GLUCOSE_DECAY = 0.95f;
-    private const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
-    private const float MAX_OSMOREGULATION_MULTIPLIER = 2;
-
     private PanelContainer basicOptions = null!;
     private PanelContainer advancedOptions = null!;
     private HBoxContainer tabButtons = null!;
@@ -169,7 +152,11 @@ public class NewGameSettings : ControlWithInput
 
     private SelectedOptionsTab selectedOptionsTab;
 
-    private WorldGenerationSettings settings = new();
+    private WorldGenerationSettings settings = null!;
+
+    private IEnumerable<DifficultyPreset> difficultyPresets = null!;
+    private DifficultyPreset normal = null!;
+    private DifficultyPreset custom = null!;
 
     private bool isGameSeedValid;
 
@@ -223,18 +210,32 @@ public class NewGameSettings : ControlWithInput
         easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
         confirmButton = GetNode<Button>(ConfirmButtonPath);
 
-        mpMultiplier.MinValue = MIN_MP_MULTIPLIER;
-        mpMultiplier.MaxValue = MAX_MP_MULTIPLIER;
-        aiMutationRate.MinValue = MIN_AI_MUTATION_RATE;
-        aiMutationRate.MaxValue = MAX_AI_MUTATION_RATE;
-        compoundDensity.MinValue = MIN_COMPOUND_DENSITY;
-        compoundDensity.MaxValue = MAX_COMPOUND_DENSITY;
-        playerDeathPopulationPenalty.MinValue = MIN_PLAYER_DEATH_POPULATION_PENALTY;
-        playerDeathPopulationPenalty.MaxValue = MAX_PLAYER_DEATH_POPULATION_PENALTY;
-        glucoseDecayRate.MinValue = MIN_GLUCOSE_DECAY * 100;
-        glucoseDecayRate.MaxValue = MAX_GLUCOSE_DECAY * 100;
-        osmoregulationMultiplier.MinValue = MIN_OSMOREGULATION_MULTIPLIER;
-        osmoregulationMultiplier.MaxValue = MAX_OSMOREGULATION_MULTIPLIER;
+        mpMultiplier.MinValue = Constants.MIN_MP_MULTIPLIER;
+        mpMultiplier.MaxValue = Constants.MAX_MP_MULTIPLIER;
+        aiMutationRate.MinValue = Constants.MIN_AI_MUTATION_RATE;
+        aiMutationRate.MaxValue = Constants.MAX_AI_MUTATION_RATE;
+        compoundDensity.MinValue = Constants.MIN_COMPOUND_DENSITY;
+        compoundDensity.MaxValue = Constants.MAX_COMPOUND_DENSITY;
+        playerDeathPopulationPenalty.MinValue = Constants.MIN_PLAYER_DEATH_POPULATION_PENALTY;
+        playerDeathPopulationPenalty.MaxValue = Constants.MAX_PLAYER_DEATH_POPULATION_PENALTY;
+        glucoseDecayRate.MinValue = Constants.MIN_GLUCOSE_DECAY * 100;
+        glucoseDecayRate.MaxValue = Constants.MAX_GLUCOSE_DECAY * 100;
+        osmoregulationMultiplier.MinValue = Constants.MIN_OSMOREGULATION_MULTIPLIER;
+        osmoregulationMultiplier.MaxValue = Constants.MAX_OSMOREGULATION_MULTIPLIER;
+
+        settings = new WorldGenerationSettings();
+        difficultyPresets = SimulationParameters.Instance.GetAllDifficultyPresets();
+        normal = SimulationParameters.Instance.GetDifficultyPreset("normal");
+        custom = SimulationParameters.Instance.GetDifficultyPreset("custom");
+
+        foreach (DifficultyPreset preset in difficultyPresets)
+        {
+            difficultyPresetButton.AddItem(preset.Name);
+            difficultyPresetAdvancedButton.AddItem(preset.Name);
+        }
+
+        difficultyPresetButton.Selected = normal.Index;
+        difficultyPresetAdvancedButton.Selected = normal.Index;
 
         var seed = GenerateNewRandomSeed();
         gameSeed.Text = seed;
@@ -393,7 +394,7 @@ public class NewGameSettings : ControlWithInput
         // Disable the button to prevent it being executed again.
         confirmButton.Disabled = true;
 
-        settings.Difficulty = (DifficultyPreset)difficultyPresetButton.Selected;
+        settings.Difficulty = SimulationParameters.Instance.GetDifficultyPresetByIndex(difficultyPresetButton.Selected);
         settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
         settings.Lawk = lawkButton.Pressed;
         SetSeed(gameSeed.Text);
@@ -452,77 +453,72 @@ public class NewGameSettings : ControlWithInput
         difficultyPresetButton.Selected = index;
         difficultyPresetAdvancedButton.Selected = index;
 
-        DifficultyPreset preset = (DifficultyPreset)index;
+        DifficultyPreset preset = SimulationParameters.Instance.GetDifficultyPresetByIndex(index);
         settings.Difficulty = preset;
 
         // If custom was selected, open the advanced view to the difficulty tab
-        if (preset == DifficultyPreset.Custom)
+        if (preset.InternalName == custom.InternalName)
         {
             ChangeSettingsTab("Difficulty");
             ProcessAdvancedSelection();
             return;
         }
 
-        mpMultiplier.Value = WorldGenerationSettings.GetMPMultiplier(preset);
-        aiMutationRate.Value = WorldGenerationSettings.GetAIMutationMultiplier(preset);
-        compoundDensity.Value = WorldGenerationSettings.GetCompoundDensity(preset);
-        playerDeathPopulationPenalty.Value = WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset);
-        glucoseDecayRate.Value = WorldGenerationSettings.GetGlucoseDecay(preset) * 100;
-        osmoregulationMultiplier.Value = WorldGenerationSettings.GetOsmoregulationMultiplier(preset);
-        freeGlucoseCloudButton.Pressed = WorldGenerationSettings.GetFreeGlucoseCloud(preset);
+        mpMultiplier.Value = preset.MPMultiplier;
+        aiMutationRate.Value = preset.AIMutationMultiplier;
+        compoundDensity.Value = preset.CompoundDensity;
+        playerDeathPopulationPenalty.Value = preset.PlayerDeathPopulationPenalty;
+        glucoseDecayRate.Value = preset.GlucoseDecay * 100;
+        osmoregulationMultiplier.Value = preset.OsmoregulationMultiplier;
+        freeGlucoseCloudButton.Pressed = preset.FreeGlucoseCloud;
 
         UpdateDifficultyPreset();
     }
 
     private void UpdateDifficultyPreset()
     {
-        var custom = DifficultyPreset.Custom;
-
-        foreach (DifficultyPreset preset in Enum.GetValues(typeof(DifficultyPreset)))
+        foreach (DifficultyPreset preset in difficultyPresets)
         {
             // Ignore custom until the end
-            if (preset == custom)
+            if (preset.InternalName == custom.InternalName)
                 continue;
 
-            if (Math.Abs((float)mpMultiplier.Value - WorldGenerationSettings.GetMPMultiplier(preset))
+            if (Math.Abs((float)mpMultiplier.Value - preset.MPMultiplier) > MathUtils.EPSILON)
+                continue;
+
+            if (Math.Abs((float)aiMutationRate.Value - preset.AIMutationMultiplier) > MathUtils.EPSILON)
+                continue;
+
+            if (Math.Abs((float)compoundDensity.Value - preset.CompoundDensity) > MathUtils.EPSILON)
+                continue;
+
+            if (Math.Abs((float)playerDeathPopulationPenalty.Value - preset.PlayerDeathPopulationPenalty)
                 > MathUtils.EPSILON)
                 continue;
 
-            if (Math.Abs((float)aiMutationRate.Value - WorldGenerationSettings.GetAIMutationMultiplier(preset))
-                > MathUtils.EPSILON)
+            if ((int)glucoseDecayRate.Value != (int)(preset.GlucoseDecay * 100))
                 continue;
 
-            if (Math.Abs((float)compoundDensity.Value - WorldGenerationSettings.GetCompoundDensity(preset)) >
-                MathUtils.EPSILON)
+            if (Math.Abs((float)osmoregulationMultiplier.Value - preset.OsmoregulationMultiplier) > MathUtils.EPSILON)
                 continue;
 
-            if (Math.Abs((float)playerDeathPopulationPenalty.Value -
-                    WorldGenerationSettings.GetPlayerDeathPopulationPenalty(preset)) > MathUtils.EPSILON)
-                continue;
-
-            if ((int)glucoseDecayRate.Value != WorldGenerationSettings.GetGlucoseDecay(preset) * 100)
-                continue;
-
-            if (Math.Abs((float)osmoregulationMultiplier.Value -
-                    WorldGenerationSettings.GetOsmoregulationMultiplier(preset)) > MathUtils.EPSILON)
-                continue;
-
-            if (freeGlucoseCloudButton.Pressed != WorldGenerationSettings.GetFreeGlucoseCloud(preset))
+            if (freeGlucoseCloudButton.Pressed != preset.FreeGlucoseCloud)
                 continue;
 
             // If all values are equal to the values for a preset, use that preset
-            difficultyPresetButton.Selected = (int)preset;
-            difficultyPresetAdvancedButton.Selected = (int)preset;
+            difficultyPresetButton.Selected = preset.Index;
+            difficultyPresetAdvancedButton.Selected = preset.Index;
             return;
         }
 
         // If there is no preset with all values equal to the values set, use custom
-        difficultyPresetButton.Selected = (int)custom;
-        difficultyPresetAdvancedButton.Selected = (int)custom;
+        difficultyPresetButton.Selected = custom.Index;
+        difficultyPresetAdvancedButton.Selected = custom.Index;
     }
 
     private void OnMPMultiplierValueChanged(double amount)
     {
+        amount = Math.Round(amount, 1);
         mpMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.MPMultiplier = (float)amount;
 
@@ -531,6 +527,7 @@ public class NewGameSettings : ControlWithInput
 
     private void OnAIMutationRateValueChanged(double amount)
     {
+        amount = Math.Round(amount, 1);
         aiMutationRateReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.AIMutationMultiplier = (float)amount;
 
@@ -539,6 +536,7 @@ public class NewGameSettings : ControlWithInput
 
     private void OnCompoundDensityValueChanged(double amount)
     {
+        amount = Math.Round(amount, 1);
         compoundDensityReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.CompoundDensity = (float)amount;
 
@@ -547,6 +545,7 @@ public class NewGameSettings : ControlWithInput
 
     private void OnPlayerDeathPopulationPenaltyValueChanged(double amount)
     {
+        amount = Math.Round(amount, 1);
         playerDeathPopulationPenaltyReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.PlayerDeathPopulationPenalty = (float)amount;
 
@@ -555,6 +554,7 @@ public class NewGameSettings : ControlWithInput
 
     private void OnGlucoseDecayRateValueChanged(double percentage)
     {
+        percentage = Math.Round(percentage, 2);
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
         glucoseDecayRateReadout.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
             percentage);
@@ -565,6 +565,7 @@ public class NewGameSettings : ControlWithInput
 
     private void OnOsmoregulationMultiplierValueChanged(double amount)
     {
+        amount = Math.Round(amount, 1);
         osmoregulationMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.OsmoregulationMultiplier = (float)amount;
 

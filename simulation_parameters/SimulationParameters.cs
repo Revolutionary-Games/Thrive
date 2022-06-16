@@ -26,6 +26,7 @@ public class SimulationParameters : Node
     private Dictionary<string, Gallery> gallery = null!;
     private TranslationsInfo translationsInfo = null!;
     private GameCredits gameCredits = null!;
+    private Dictionary<string, DifficultyPreset> difficultyPresets = null!;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles = null!;
@@ -97,6 +98,9 @@ public class SimulationParameters : Node
 
         gameCredits =
             LoadDirectObject<GameCredits>("res://simulation_parameters/common/credits.json");
+
+        difficultyPresets =
+            LoadRegistry<DifficultyPreset>("res://simulation_parameters/common/difficulty_presets.json");
 
         PatchMapNameGenerator = LoadDirectObject<PatchMapNameGenerator>(
             "res://simulation_parameters/microbe_stage/patch_syllables.json");
@@ -222,6 +226,21 @@ public class SimulationParameters : Node
         return gameCredits;
     }
 
+    public DifficultyPreset GetDifficultyPreset(string name)
+    {
+        return difficultyPresets[name];
+    }
+
+    public DifficultyPreset GetDifficultyPresetByIndex(int index)
+    {
+        return difficultyPresets.Values.Where(p => p.Index == index).First();
+    }
+
+    public IEnumerable<DifficultyPreset> GetAllDifficultyPresets()
+    {
+        return difficultyPresets.Values;
+    }
+
     public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random, bool lawkOnly)
     {
         float valueLeft = random.Next(0.0f, prokaryoticOrganellesTotalChance);
@@ -286,6 +305,7 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(helpTexts);
         ApplyRegistryObjectTranslations(inputGroups);
         ApplyRegistryObjectTranslations(gallery);
+        ApplyRegistryObjectTranslations(difficultyPresets);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -391,6 +411,7 @@ public class SimulationParameters : Node
         CheckRegistryType(helpTexts);
         CheckRegistryType(inputGroups);
         CheckRegistryType(gallery);
+        CheckRegistryType(difficultyPresets);
 
         NameGenerator.Check(string.Empty);
         PatchMapNameGenerator.Check(string.Empty);
