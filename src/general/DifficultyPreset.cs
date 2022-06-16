@@ -83,38 +83,38 @@ public class DifficultyPreset : IRegistryType
 
         if (MPMultiplier is > Constants.MAX_MP_MULTIPLIER or < Constants.MIN_MP_MULTIPLIER)
         {
-            throw new InvalidRegistryDataException(name, GetType().Name, "Invalid MP multiplier: " + MPMultiplier);
+            throw new InvalidRegistryDataException(name, GetType().Name, $"Invalid MP multiplier: {MPMultiplier}");
         }
 
         if (AIMutationMultiplier is > Constants.MAX_AI_MUTATION_RATE or < Constants.MIN_AI_MUTATION_RATE)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Invalid AI multiplier: " + AIMutationMultiplier);
+                $"Invalid AI multiplier: {AIMutationMultiplier}");
         }
 
         if (CompoundDensity is > Constants.MAX_COMPOUND_DENSITY or < Constants.MIN_COMPOUND_DENSITY)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Invalid compound density: " + CompoundDensity);
+                $"Invalid compound density: {CompoundDensity}");
         }
 
         if (PlayerDeathPopulationPenalty is > Constants.MAX_PLAYER_DEATH_POPULATION_PENALTY or
             < Constants.MIN_PLAYER_DEATH_POPULATION_PENALTY)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Invalid player death population penalty: " + PlayerDeathPopulationPenalty);
+                $"Invalid player death population penalty: {PlayerDeathPopulationPenalty}");
         }
 
         if (GlucoseDecay is > Constants.MAX_GLUCOSE_DECAY or < Constants.MIN_GLUCOSE_DECAY)
         {
-            throw new InvalidRegistryDataException(name, GetType().Name, "Invalid glucose decay: " + GlucoseDecay);
+            throw new InvalidRegistryDataException(name, GetType().Name, $"Invalid glucose decay: {GlucoseDecay}");
         }
 
         if (OsmoregulationMultiplier is > Constants.MAX_OSMOREGULATION_MULTIPLIER or
             < Constants.MIN_OSMOREGULATION_MULTIPLIER)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Invalid osmoregulation multiplier: " + OsmoregulationMultiplier);
+                $"Invalid osmoregulation multiplier: {OsmoregulationMultiplier}");
         }
     }
 
