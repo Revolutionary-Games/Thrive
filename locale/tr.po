@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-15 23:04+0700\n"
-"PO-Revision-Date: 2022-06-16 14:04+0000\n"
-"Last-Translator: Ahmet Erim Yüzbaşıgil <ahmeterimyuzbasi@gmail.com>\n"
+"PO-Revision-Date: 2022-06-16 15:47+0000\n"
+"Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr "Konsept Çizim"
+msgstr "Konsept Çizimi"
 
 #: ../simulation_parameters/common/gallery.json:6
 msgid "GENERAL"
@@ -1117,45 +1117,39 @@ msgstr "gezegende nesli tükendi"
 
 #: ../src/auto-evo/RunResults.cs:844
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr "[u]{0}[/u] türünün nesli tükendi!"
+msgstr "[b][u]{0}[/u][/b] türünün nesli tükendi!"
 
 #: ../src/auto-evo/RunResults.cs:854 ../src/auto-evo/RunResults.cs:876
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "[u]{0}[/u] popülasyonu {1} sayısına çıktı"
+msgstr "[b][u]{0}[/u][/b] popülasyonu, {1} sayısına çıktı"
 
 #: ../src/auto-evo/RunResults.cs:860 ../src/auto-evo/RunResults.cs:882
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "[u]{0}[/u] popülasyonu {1} sayısına düştü"
+msgstr "[b][u]{0}[/u][/b] popülasyonu, {1} sayısına düştü"
 
 #: ../src/auto-evo/RunResults.cs:868
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr "[u]{0}[/u], araziden yok oldu"
+msgstr "[b][u]{0}[/u][/b], araziden yok oldu"
 
 #: ../src/auto-evo/RunResults.cs:892
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr ""
-"[u]{0}[/u] popülasyonunun bir kısmı, {1} arazisinden bu araziye göç etti"
+msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı, {1} arazisinden bu araziye göç etti"
 
 #: ../src/auto-evo/RunResults.cs:897
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
-"[u]{0}[/u] popülasyonunun bir kısmı, {2} arazisinden {1} arazisine göç etti"
+msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı, {2} arazisinden {1} arazisine göç etti"
 
 #: ../src/auto-evo/RunResults.cs:903
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "[u]{0}[/u] popülasyonunun bir kısmı, {1} arazisine göç etti"
+msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı, {1} arazisine göç etti"
 
 #: ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_NICHE_FILL"
-msgstr ""
-"[u]{0}[/u], alanı doldurmak için, yeni bir tür olarak [u]{1}[/u] türünden "
-"ayrıldı"
+msgstr "[b][u]{0}[/u][/b], alanı doldurmak için, yeni bir tür olarak, [b][u]{1}[/u][/b] türünden ayrıldı"
 
 #: ../src/auto-evo/RunResults.cs:928
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr ""
-"[u]{0}[/u], farklı seçilim baskılarından dolayı, yeni bir tür olarak [u]{1}[/"
-"u] türünden ayrıldı"
+msgstr "[b][u]{0}[/u][/b], farklı seçilim baskılarından dolayı, yeni bir tür olarak, [b][u]{1}[/u][/b] türünden ayrıldı"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "NOT_FOUND_CHUNK"
@@ -2724,7 +2718,7 @@ msgstr "Sanatçı:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:247
 msgid "UNTITLED"
-msgstr "İsimsiz"
+msgstr "Adsız"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
