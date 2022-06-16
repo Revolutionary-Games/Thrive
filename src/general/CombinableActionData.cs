@@ -56,17 +56,20 @@ public abstract class CombinableActionData
     ///   Merge the other data into this if possible
     /// </summary>
     /// <param name="other">The action to merge into this</param>
-    /// <param name="otherIsNewer">
-    ///   If the other data is newer than the current one, use only when the two cancels out, to make sure it goes right
-    /// </param>
     /// <returns>True if a merge has been conducted</returns>
-    public virtual bool TryMerge(CombinableActionData other, bool? otherIsNewer = null)
+    /// <remarks>
+    ///   <para>
+    ///     The other action must *always* be newer than this. So the looping order must always go from an older action
+    ///     to a newer action when merging actions (the same as when using <see cref="Combine"/>)
+    ///   </para>
+    /// </remarks>
+    public virtual bool TryMerge(CombinableActionData other)
     {
         var mode = GetInterferenceModeWith(other);
         if (mode != ActionInterferenceMode.Combinable && mode != ActionInterferenceMode.CancelsOut)
             return false;
 
-        MergeGuaranteed(other, otherIsNewer);
+        MergeGuaranteed(other);
         return true;
     }
 
@@ -86,8 +89,7 @@ public abstract class CombinableActionData
     ///   The action to merge into this. Guaranteed to be mergeable by the called.
     ///   <see cref="GetInterferenceModeWith"/> has been called to make sure this can be combined.
     /// </param>
-    /// <param name="otherIsNewer">If the other data is newer than the current one</param>
-    protected virtual void MergeGuaranteed(CombinableActionData other, bool? otherIsNewer = null)
+    protected virtual void MergeGuaranteed(CombinableActionData other)
     {
         throw new NotSupportedException();
     }
