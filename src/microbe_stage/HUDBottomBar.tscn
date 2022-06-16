@@ -33,7 +33,7 @@ margin_top = -35.0
 margin_right = 455.0
 rect_min_size = Vector2( 0, 35 )
 script = ExtResource( 26 )
-PauseButtonPath = NodePath("")
+PauseButtonPath = NodePath("PauseButtonMargin/PlayButton")
 CompoundsButtonPath = NodePath("CompoundsButton")
 ProcessPanelButtonPath = NodePath("ChemicalButton")
 
