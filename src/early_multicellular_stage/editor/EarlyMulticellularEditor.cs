@@ -344,6 +344,9 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
                     bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
                     cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
 
+                    // TODO: check if this now has fixed the arrow positioning after tab change (see comment in the
+                    // above case)
+                    cellEditorTab.UpdateArrow();
                     cellEditorTab.UpdateCamera();
                 }
 

@@ -24,6 +24,12 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     [Export]
     public NodePath NoCellTypeSelectedPath = null!;
 
+    [Export]
+    public NodePath CellEditorCameraPath = null!;
+
+    [Export]
+    public NodePath Body3DEditorCameraPath = null!;
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeEditorReportComponent reportTab = null!;
@@ -39,6 +45,10 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private CellEditorComponent cellEditorTab = null!;
+
+    private Camera cellEditorCamera = null!;
+
+    private Camera body3DEditorCamera = null!;
 
     [JsonProperty]
     private LateMulticellularSpecies? editedSpecies;
@@ -159,6 +169,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         bodyPlanEditorTab = GetNode<MetaballBodyEditorComponent>(BodyPlanEditorTabPath);
         cellEditorTab = GetNode<CellEditorComponent>(CellEditorTabPath);
         noCellTypeSelected = GetNode<Control>(NoCellTypeSelectedPath);
+
+        cellEditorCamera = GetNode<Camera>(CellEditorCameraPath);
+        body3DEditorCamera = GetNode<Camera>(Body3DEditorCameraPath);
     }
 
     protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
@@ -315,9 +328,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
                 bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
 
-                // TODO: fix the arrow positioning when switching tabs (it fixes itself only when placing something)
-                // This line (and also in CellTypeEditor) doesn't help:
                 bodyPlanEditorTab.UpdateArrow();
+
+                // TODO: camera position saving
                 // bodyPlanEditorTab.UpdateCamera();
 
                 // If we have an edited cell type, then we can apply those changes when we go back to the main editor
@@ -325,9 +338,9 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 // type information
                 CheckAndApplyCellTypeEdit();
 
-                // TODO: set right active camera
-
-                throw new NotImplementedException();
+                // Set the right active camera
+                cellEditorCamera.Current = false;
+                body3DEditorCamera.Current = true;
 
                 break;
             }
@@ -347,10 +360,12 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                     bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
                     cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
 
+                    cellEditorTab.UpdateArrow();
                     cellEditorTab.UpdateCamera();
 
-                    // TODO: set right active camera
-                    throw new NotImplementedException();
+                    // Set the right active camera
+                    cellEditorCamera.Current = false;
+                    body3DEditorCamera.Current = true;
                 }
 
                 break;

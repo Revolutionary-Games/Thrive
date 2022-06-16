@@ -22,8 +22,13 @@ PatchMapTabPath = NodePath("LateMulticellularEditorGUI/PatchMap")
 BodyPlanEditorTabPath = NodePath("LateMulticellularEditorGUI/MetaballBodyEditorComponent")
 CellEditorTabPath = NodePath("LateMulticellularEditorGUI/CellEditor")
 NoCellTypeSelectedPath = NodePath("LateMulticellularEditorGUI/NoCellSelected")
+CellEditorCameraPath = NodePath("MicrobeEditorWorld/PrimaryCamera")
+Body3DEditorCameraPath = NodePath("EditorWorld/PrimaryCamera")
 
 [node name="EditorWorld" parent="." instance=ExtResource( 7 )]
+
+[node name="PrimaryCamera" parent="EditorWorld" index="0"]
+current = true
 
 [node name="MicrobeEditorWorld" parent="." instance=ExtResource( 6 )]
 
