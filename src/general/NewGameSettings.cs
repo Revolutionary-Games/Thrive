@@ -609,6 +609,23 @@ public class NewGameSettings : ControlWithInput
         lawkAdvancedButton.Pressed = pressed;
 
         settings.LAWK = lawkButton.Pressed;
+
+        UpdateLifeOriginOptions(pressed);
+    }
+
+    private void UpdateLifeOriginOptions(bool lawk)
+    {
+        // If we've switched to LAWK only, disable panspermia
+        var panspermiaIndex = (int)WorldGenerationSettings.LifeOrigin.Panspermia;
+        lifeOriginButton.SetItemDisabled(panspermiaIndex, lawk);
+        lifeOriginButtonAdvanced.SetItemDisabled(panspermiaIndex, lawk);
+
+        // If we had selected panspermia, reset to vents
+        if (lawk && lifeOriginButton.Selected == panspermiaIndex)
+        {
+            lifeOriginButton.Selected = (int)WorldGenerationSettings.LifeOrigin.Vent;
+            lifeOriginButtonAdvanced.Selected = (int)WorldGenerationSettings.LifeOrigin.Vent;
+        }
     }
 
     private void OnGameSeedChangedFromBasic(string text)

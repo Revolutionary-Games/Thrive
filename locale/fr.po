@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-16 15:56+0100\n"
+"POT-Creation-Date: 2022-06-16 17:04+0100\n"
 "PO-Revision-Date: 2022-04-15 08:28+0000\n"
 "Last-Translator: Louison Wouts <wouts.louison@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -1678,7 +1678,7 @@ msgid "CLOSE"
 msgstr "Fermer"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:558
+#: ../src/general/NewGameSettings.cs:556
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/MicrobeHUD.cs:717
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
@@ -1759,7 +1759,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Éditeur Libre de Microbe"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1013
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1799,7 +1799,7 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Des erreurs sont apparues lors du chargement d'un ou plusieurs mods. Les registres de jeu pourraient contenir des informations supplémentaires."
 
 #: ../src/general/NewGameSettings.cs:278
-#: ../src/general/NewGameSettings.tscn:1052
+#: ../src/general/NewGameSettings.tscn:1053
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
@@ -1810,49 +1810,17 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Menu de pause"
 
 #: ../src/general/NewGameSettings.tscn:115
-#: ../src/general/NewGameSettings.tscn:327
+#: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:147
-#: ../src/general/NewGameSettings.tscn:819
-msgid "LIFE_ORIGIN"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:154
-#: ../src/general/NewGameSettings.tscn:826
-#, fuzzy
-msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
-"Les microbes craintifs fuiront aussi loin qu'ils le peuvent\n"
-"et éviteront la plupart des prédateurs.\n"
-"Les microbes audacieux ne seront pas intimidés par les prédateurs\n"
-"et seront plus enclins à riposter."
-
-#: ../src/general/NewGameSettings.tscn:169
-#: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:841
-#: ../src/general/NewGameSettings.tscn:842
-msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:842
-msgid "LIFE_ORIGIN_POND"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:842
-msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
-
-#: ../src/general/NewGameSettings.tscn:185
-#: ../src/general/NewGameSettings.tscn:857
+#: ../src/general/NewGameSettings.tscn:142
+#: ../src/general/NewGameSettings.tscn:815
 msgid "LAWK_ONLY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:192
-#: ../src/general/NewGameSettings.tscn:864
+#: ../src/general/NewGameSettings.tscn:149
+#: ../src/general/NewGameSettings.tscn:822
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -1861,56 +1829,97 @@ msgstr ""
 "Les microbes audacieux ne seront pas intimidés par les prédateurs\n"
 "et seront plus enclins à riposter."
 
-#: ../src/general/NewGameSettings.tscn:203
-#: ../src/general/NewGameSettings.tscn:875
+#: ../src/general/NewGameSettings.tscn:165
+#: ../src/general/NewGameSettings.tscn:838
+msgid "LIFE_ORIGIN"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:172
+#: ../src/general/NewGameSettings.tscn:845
+#, fuzzy
+msgid "LIFE_ORIGIN_EXPLANATION"
+msgstr ""
+"Les microbes craintifs fuiront aussi loin qu'ils le peuvent\n"
+"et éviteront la plupart des prédateurs.\n"
+"Les microbes audacieux ne seront pas intimidés par les prédateurs\n"
+"et seront plus enclins à riposter."
+
+#: ../src/general/NewGameSettings.tscn:186
+#, fuzzy
+msgid "LIFE_ORIGIN_TOOLTIP"
+msgstr ""
+"Les microbes craintifs fuiront aussi loin qu'ils le peuvent\n"
+"et éviteront la plupart des prédateurs.\n"
+"Les microbes audacieux ne seront pas intimidés par les prédateurs\n"
+"et seront plus enclins à riposter."
+
+#: ../src/general/NewGameSettings.tscn:188
+#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:860
+#: ../src/general/NewGameSettings.tscn:861
+msgid "LIFE_ORIGIN_VENTS"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:861
+msgid "LIFE_ORIGIN_POND"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:861
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:204
+#: ../src/general/NewGameSettings.tscn:876
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:222
-#: ../src/general/NewGameSettings.tscn:894
+#: ../src/general/NewGameSettings.tscn:223
+#: ../src/general/NewGameSettings.tscn:895
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Mettre le jeu en pause"
 
-#: ../src/general/NewGameSettings.tscn:267
+#: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:277
+#: ../src/general/NewGameSettings.tscn:278
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:287 ../src/general/OptionsMenu.tscn:179
+#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
 msgstr "Spéc"
 
-#: ../src/general/NewGameSettings.tscn:366
+#: ../src/general/NewGameSettings.tscn:367
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:411
+#: ../src/general/NewGameSettings.tscn:412
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 "Les microbes motiles déambuleront en l'absence de cible.\n"
 "Les microbes sessiles seront immobile en l'attente d'un changement dans leur environnement."
 
-#: ../src/general/NewGameSettings.tscn:428
+#: ../src/general/NewGameSettings.tscn:429
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Points de mutation"
 
-#: ../src/general/NewGameSettings.tscn:473
+#: ../src/general/NewGameSettings.tscn:474
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "Ce panneau affiche les données qu'utilise l'auto-évo pour sa prédiction. L'énergie totale que peut accaparer une espèce, et le coût de survie pour chacun de ses individus, détermine la population finale. L'auto-évo utilise un modèle simplifié de la réalité pour calculer à quel point une espèce est adaptée à son milieu, en fonction de l'énergie qu'elle parvient à capturer. La quantité d'énergie qu'une source de nourriture fournit à l'espèce est ainsi affichée à côté de la quantité totale d'énergie que chacune d'entre elles est en mesure d'offrir. La fraction ainsi obtenue de cette énergie totale est calculée à partir de la valeur sélective de l'espèce, c'est-à-dire de sa capacité à utiliser cette source, rapportée à la valeur sélective totale de toutes les espèces."
 
-#: ../src/general/NewGameSettings.tscn:490
+#: ../src/general/NewGameSettings.tscn:491
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Nuages de composés"
 
-#: ../src/general/NewGameSettings.tscn:535
+#: ../src/general/NewGameSettings.tscn:536
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -1918,39 +1927,39 @@ msgstr ""
 "et essaieront d'éliminer avec leurs toxines les proies qu'ils ne peuvent pas absorber.\n"
 "Les microbes prudents éviteront de risquer leur vie pour accéder à ces débris."
 
-#: ../src/general/NewGameSettings.tscn:552
+#: ../src/general/NewGameSettings.tscn:553
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:597
+#: ../src/general/NewGameSettings.tscn:598
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "Ce panneau affiche les données qu'utilise l'auto-évo pour sa prédiction. L'énergie totale que peut accaparer une espèce, et le coût de survie pour chacun de ses individus, détermine la population finale. L'auto-évo utilise un modèle simplifié de la réalité pour calculer à quel point une espèce est adaptée à son milieu, en fonction de l'énergie qu'elle parvient à capturer. La quantité d'énergie qu'une source de nourriture fournit à l'espèce est ainsi affichée à côté de la quantité totale d'énergie que chacune d'entre elles est en mesure d'offrir. La fraction ainsi obtenue de cette énergie totale est calculée à partir de la valeur sélective de l'espèce, c'est-à-dire de sa capacité à utiliser cette source, rapportée à la valeur sélective totale de toutes les espèces."
 
-#: ../src/general/NewGameSettings.tscn:614
+#: ../src/general/NewGameSettings.tscn:615
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:658
+#: ../src/general/NewGameSettings.tscn:659
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "Ce panneau affiche les données qu'utilise l'auto-évo pour sa prédiction. L'énergie totale que peut accaparer une espèce, et le coût de survie pour chacun de ses individus, détermine la population finale. L'auto-évo utilise un modèle simplifié de la réalité pour calculer à quel point une espèce est adaptée à son milieu, en fonction de l'énergie qu'elle parvient à capturer. La quantité d'énergie qu'une source de nourriture fournit à l'espèce est ainsi affichée à côté de la quantité totale d'énergie que chacune d'entre elles est en mesure d'offrir. La fraction ainsi obtenue de cette énergie totale est calculée à partir de la valeur sélective de l'espèce, c'est-à-dire de sa capacité à utiliser cette source, rapportée à la valeur sélective totale de toutes les espèces."
 
-#: ../src/general/NewGameSettings.tscn:675
+#: ../src/general/NewGameSettings.tscn:676
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Coût en osmorégulation"
 
-#: ../src/general/NewGameSettings.tscn:720
+#: ../src/general/NewGameSettings.tscn:721
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Coût en osmorégulation"
 
-#: ../src/general/NewGameSettings.tscn:732
+#: ../src/general/NewGameSettings.tscn:733
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:739
+#: ../src/general/NewGameSettings.tscn:740
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -1958,47 +1967,47 @@ msgstr ""
 "et pourront se montrer bien plus ambitieux face à des débris disputés.\n"
 "Les microbes réactifs basculeront plus vite vers de nouvelles cibles."
 
-#: ../src/general/NewGameSettings.tscn:776
+#: ../src/general/NewGameSettings.tscn:777
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Carte de Parcelles"
 
-#: ../src/general/NewGameSettings.tscn:783
+#: ../src/general/NewGameSettings.tscn:784
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "Les microbes motiles déambuleront en l'absence de cible.\n"
 "Les microbes sessiles seront immobile en l'attente d'un changement dans leur environnement."
 
-#: ../src/general/NewGameSettings.tscn:798
 #: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:800
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:800
 #, fuzzy
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Bathypélagique Pangonien"
 
-#: ../src/general/NewGameSettings.tscn:942
+#: ../src/general/NewGameSettings.tscn:943
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:974
+#: ../src/general/NewGameSettings.tscn:975
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Passer à l'étape suivante du jeu (multicellulaire). Possible lorsque votre colonie de cellule est assez grande."
 
-#: ../src/general/NewGameSettings.tscn:981
+#: ../src/general/NewGameSettings.tscn:982
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:994
+#: ../src/general/NewGameSettings.tscn:995
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "Anecdote : les Didiniums et les Paramécies sont des cas d'école de la relation proie/prédateur qui a été étudiée pendant des décennies. Et vous, êtes-vous un Didinium, ou un Paramécie ? Un prédateur, ou bien une proie ?"
 
-#: ../src/general/NewGameSettings.tscn:1001
+#: ../src/general/NewGameSettings.tscn:1002
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -2007,25 +2016,25 @@ msgstr ""
 "Les microbes audacieux ne seront pas intimidés par les prédateurs\n"
 "et seront plus enclins à riposter."
 
-#: ../src/general/NewGameSettings.tscn:1029
+#: ../src/general/NewGameSettings.tscn:1030
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
 
-#: ../src/general/NewGameSettings.tscn:1031
+#: ../src/general/NewGameSettings.tscn:1032
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1042
+#: ../src/general/NewGameSettings.tscn:1043
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Suicide"
 
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:1044
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1053
+#: ../src/general/NewGameSettings.tscn:1054
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "ACCEPTER"
@@ -2819,7 +2828,7 @@ msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
-#: ../src/gui_common/art_gallery/Slidescreen.tscn:185
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:185
 msgid "SLIDESHOW"
 msgstr ""
 

@@ -130,10 +130,28 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 margin_top = 35.0
 margin_right = 518.0
 margin_bottom = 80.0
+
+[node name="LAWK" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2" instance=ExtResource( 4 )]
+margin_right = 135.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+text = "LAWK_ONLY"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2"]
+margin_top = 29.0
+margin_right = 518.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+text = "LAWK_ONLY_EXPLANATION"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
+margin_top = 90.0
+margin_right = 518.0
+margin_bottom = 135.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2"]
@@ -165,6 +183,7 @@ margin_left = 318.0
 margin_right = 518.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
+hint_tooltip = "LIFE_ORIGIN_TOOLTIP"
 size_flags_vertical = 0
 text = "LIFE_ORIGIN_VENTS"
 items = [ "LIFE_ORIGIN_VENTS", null, false, 0, null, "LIFE_ORIGIN_POND", null, false, 1, null, "LIFE_ORIGIN_PANSPERMIA", null, false, 2, null ]
@@ -172,24 +191,6 @@ selected = 0
 __meta__ = {
 "_editor_description_": ""
 }
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
-margin_top = 90.0
-margin_right = 518.0
-margin_bottom = 135.0
-
-[node name="LAWK" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2" instance=ExtResource( 4 )]
-margin_right = 135.0
-margin_bottom = 25.0
-size_flags_horizontal = 0
-text = "LAWK_ONLY"
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2"]
-margin_top = 29.0
-margin_right = 518.0
-margin_bottom = 45.0
-custom_fonts/font = ExtResource( 3 )
-text = "LAWK_ONLY_EXPLANATION"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer"]
 margin_top = 145.0
@@ -802,10 +803,29 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
+margin_top = 110.0
+margin_right = 618.0
+margin_bottom = 155.0
+
+[node name="LAWKAdvanced" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer" instance=ExtResource( 4 )]
+margin_right = 135.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+text = "LAWK_ONLY"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 618.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 3 )
+text = "LAWK_ONLY_EXPLANATION"
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
 margin_top = 55.0
 margin_right = 618.0
 margin_bottom = 100.0
+hint_tooltip = "LIFE_ORIGIN_TOOLTIP"
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2"]
@@ -844,24 +864,6 @@ selected = 0
 __meta__ = {
 "_editor_description_": ""
 }
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
-margin_top = 110.0
-margin_right = 618.0
-margin_bottom = 155.0
-
-[node name="LAWKAdvanced" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer" instance=ExtResource( 4 )]
-margin_right = 135.0
-margin_bottom = 25.0
-size_flags_horizontal = 0
-text = "LAWK_ONLY"
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer"]
-margin_top = 29.0
-margin_right = 618.0
-margin_bottom = 45.0
-custom_fonts/font = ExtResource( 3 )
-text = "LAWK_ONLY_EXPLANATION"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer"]
 margin_top = 165.0
@@ -1056,8 +1058,8 @@ __meta__ = {
 }
 
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer/DifficultyPreset" to="." method="OnDifficultyPresetSelected"]
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin" to="." method="OnLifeOriginSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/VBoxContainer2/LAWK" to="." method="OnLAWKToggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer2/LifeOrigin" to="." method="OnLifeOriginSelected"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeed" to="." method="OnGameSeedChangedFromBasic"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButton" to="." method="OnRandomisedGameSeedPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/DifficultyButton" to="." method="ChangeSettingsTab" binds= [ "Difficulty" ]]
@@ -1072,8 +1074,8 @@ __meta__ = {
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/OsmoregulationMultiplier" to="." method="OnOsmoregulationMultiplierValueChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/VBoxContainer/VBoxContainer5/FreeGlucoseCloud" to="." method="OnFreeGlucoseCloudToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer/MapType" to="." method="OnMapTypeSelected"]
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced" to="." method="OnLifeOriginSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer/LAWKAdvanced" to="." method="OnLAWKToggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2/LifeOriginAdvanced" to="." method="OnLifeOriginSelected"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3/HBoxContainer/GameSeedAdvanced" to="." method="OnGameSeedChangedFromAdvanced"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3/HBoxContainer/RandomizeButtonAdvanced" to="." method="OnRandomisedGameSeedPressed"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2/IncludeMulticellular" to="." method="OnIncludeMulticellularToggled"]
