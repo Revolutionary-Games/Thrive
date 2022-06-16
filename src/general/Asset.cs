@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   A general game asset such as models, sounds etc.
@@ -13,6 +14,9 @@ public class Asset
     /// </summary>
     public string ResourcePath { get; set; } = null!;
 
+    [JsonIgnore]
+    public string FileName { get; private set; } = null!;
+
     public AssetType Type { get; set; } = AssetType.Texture;
 
     public string? MeshNodePath { get; set; }
@@ -20,7 +24,7 @@ public class Asset
     /// <summary>
     ///   The name of this asset.
     /// </summary>
-    public string Title { get; set; } = null!;
+    public string? Title { get; set; }
 
     /// <summary>
     ///   The name of the artist behind this asset.
@@ -85,12 +89,6 @@ public class Asset
 
     public void Resolve()
     {
-        if (string.IsNullOrEmpty(Title))
-        {
-            // File name as the default title
-            Title = ResourcePath.GetFile().BaseName();
-        }
-
         if (string.IsNullOrEmpty(MeshNodePath) && Type == AssetType.ModelScene)
         {
             // This sets the visual node path to the root node itself
@@ -103,5 +101,7 @@ public class Asset
         // When exported only the .import files exist, so this check is done accordingly
         if (Type is AssetType.Texture or AssetType.AudioPlayback && !FileHelpers.Exists(ResourcePath + ".import"))
             throw new FileNotFoundException("The given image or audio file in ResourcePath doesn't exist");
+
+        FileName = ResourcePath.GetFile().BaseName();
     }
 }
