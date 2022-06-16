@@ -248,9 +248,9 @@ public class SimulationParameters : Node
         // Filter to only LAWK organelles if necessary
         IEnumerable<OrganelleDefinition> usedOrganelles = prokaryoticOrganelles;
         if (lawkOnly)
-            usedOrganelles = usedOrganelles.Where(o => o.Lawk);
+            usedOrganelles = usedOrganelles.Where(o => o.LAWK);
 
-        OrganelleDefinition chosenOrganelle = null!;
+        OrganelleDefinition? chosenOrganelle = null;
         foreach (var organelle in usedOrganelles)
         {
             chosenOrganelle = organelle;
@@ -259,6 +259,9 @@ public class SimulationParameters : Node
             if (valueLeft <= 0.00001f)
                 return chosenOrganelle;
         }
+
+        if (chosenOrganelle == null)
+            throw new InvalidOperationException("No organelle chosen to add");
 
         return chosenOrganelle;
     }
@@ -270,9 +273,9 @@ public class SimulationParameters : Node
         // Filter to only LAWK organelles if necessary
         IEnumerable<OrganelleDefinition> usedOrganelles = eukaryoticOrganelles;
         if (lawkOnly)
-            usedOrganelles = usedOrganelles.Where(o => o.Lawk);
+            usedOrganelles = usedOrganelles.Where(o => o.LAWK);
 
-        OrganelleDefinition chosenOrganelle = null!;
+        OrganelleDefinition? chosenOrganelle = null;
         foreach (var organelle in usedOrganelles)
         {
             chosenOrganelle = organelle;
@@ -281,6 +284,9 @@ public class SimulationParameters : Node
             if (valueLeft <= 0.00001f)
                 return chosenOrganelle;
         }
+
+        if (chosenOrganelle == null)
+            throw new InvalidOperationException("No organelle chosen to add");
 
         return chosenOrganelle;
     }

@@ -62,7 +62,7 @@
             var mutated = (MicrobeSpecies)species.Clone();
             mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated,
                 gameWorld.WorldSettings.AIMutationMultiplier,
-                gameWorld.WorldSettings.Lawk);
+                gameWorld.WorldSettings.LAWK);
 
             var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 

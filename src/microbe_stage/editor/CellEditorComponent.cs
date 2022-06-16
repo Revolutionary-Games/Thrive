@@ -537,7 +537,7 @@ public partial class CellEditorComponent :
         UpdateOrganelleUnlockTooltips();
 
         // Do these here as we know the editor and hence world settings have been initialised by now
-        UpdateOrganelleLawkSettings();
+        UpdateOrganelleLAWKSettings();
         UpdateDifficultyAdjustedMPCost();
     }
 

@@ -285,13 +285,13 @@ public partial class CellEditorComponent
         }
     }
 
-    private void UpdateOrganelleLawkSettings()
+    private void UpdateOrganelleLAWKSettings()
     {
         // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
         foreach (var organelle in allPartSelectionElements.Keys)
         {
             var control = allPartSelectionElements[organelle];
-            control.Visible = !Editor.CurrentGame.GameWorld.WorldSettings.Lawk || organelle.Lawk;
+            control.Visible = !Editor.CurrentGame.GameWorld.WorldSettings.LAWK || organelle.LAWK;
         }
     }
 

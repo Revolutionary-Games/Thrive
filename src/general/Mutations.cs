@@ -165,7 +165,7 @@ public class Mutations
     ///   Creates a mutated version of parentOrganelles in organelles
     /// </summary>
     private void MutateMicrobeOrganelles(OrganelleLayout<OrganelleTemplate> parentOrganelles,
-        OrganelleLayout<OrganelleTemplate> mutatedOrganelles, bool isBacteria, double creationRate, bool lawkOnly)
+        OrganelleLayout<OrganelleTemplate> mutatedOrganelles, bool isBacteria, float creationRate, bool lawkOnly)
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 

@@ -189,7 +189,7 @@ public class GameWorld : ISaveLoadable
                         Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX + 1);
 
                 entry.Value.AddSpecies(mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty),
-                    WorldSettings.AIMutationMultiplier, WorldSettings.Lawk), population);
+                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK), population);
             }
         }
     }
@@ -214,7 +214,7 @@ public class GameWorld : ISaveLoadable
             case MicrobeSpecies s:
                 // Mutator will mutate the name
                 return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies(species.Genus, species.Epithet),
-                    WorldSettings.AIMutationMultiplier, WorldSettings.Lawk);
+                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK);
             default:
                 throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
         }

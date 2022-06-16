@@ -93,10 +93,10 @@ public class NewGameSettings : ControlWithInput
     public NodePath LifeOriginButtonAdvancedPath = null!;
 
     [Export]
-    public NodePath LawkButtonPath = null!;
+    public NodePath LAWKButtonPath = null!;
 
     [Export]
-    public NodePath LawkAdvancedButtonPath = null!;
+    public NodePath LAWKAdvancedButtonPath = null!;
 
     [Export]
     public NodePath GameSeedPath = null!;
@@ -202,8 +202,8 @@ public class NewGameSettings : ControlWithInput
         mapTypeButton = GetNode<OptionButton>(MapTypeButtonPath);
         lifeOriginButton = GetNode<OptionButton>(LifeOriginButtonPath);
         lifeOriginButtonAdvanced = GetNode<OptionButton>(LifeOriginButtonAdvancedPath);
-        lawkButton = GetNode<Button>(LawkButtonPath);
-        lawkAdvancedButton = GetNode<Button>(LawkAdvancedButtonPath);
+        lawkButton = GetNode<Button>(LAWKButtonPath);
+        lawkAdvancedButton = GetNode<Button>(LAWKAdvancedButtonPath);
         gameSeed = GetNode<LineEdit>(GameSeedPath);
         gameSeedAdvanced = GetNode<LineEdit>(GameSeedAdvancedPath);
         includeMulticellularButton = GetNode<Button>(IncludeMulticellularButtonPath);
@@ -339,9 +339,7 @@ public class NewGameSettings : ControlWithInput
         selectedOptionsTab = selection;
     }
 
-    /*
-      GUI Control Callbacks
-    */
+    // GUI Control Callbacks
 
     private void OnBackPressed()
     {
@@ -396,7 +394,7 @@ public class NewGameSettings : ControlWithInput
 
         settings.Difficulty = SimulationParameters.Instance.GetDifficultyPresetByIndex(difficultyPresetButton.Selected);
         settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
-        settings.Lawk = lawkButton.Pressed;
+        settings.LAWK = lawkButton.Pressed;
         SetSeed(gameSeed.Text);
 
         settings.MPMultiplier = (float)mpMultiplier.Value;
@@ -610,7 +608,7 @@ public class NewGameSettings : ControlWithInput
         lawkButton.Pressed = pressed;
         lawkAdvancedButton.Pressed = pressed;
 
-        settings.Lawk = lawkButton.Pressed;
+        settings.LAWK = lawkButton.Pressed;
     }
 
     private void OnGameSeedChangedFromBasic(string text)

@@ -26,11 +26,7 @@ public class WorldGenerationSettings
         Classic,
     }
 
-    /*
-    Values for this particular object
-    */
-
-    public bool Lawk { get; set; }
+    public bool LAWK { get; set; }
 
     public DifficultyPreset Difficulty
     {
@@ -68,7 +64,7 @@ public class WorldGenerationSettings
     public override string ToString()
     {
         return "World generation settings: [" +
-            "LAWK: " + Lawk +
+            "LAWK: " + LAWK +
             ", Difficulty preset: " + Difficulty +
             ", Life origin: " + Origin +
             ", Seed: " + Seed +
