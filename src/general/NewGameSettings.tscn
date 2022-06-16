@@ -825,7 +825,6 @@ text = "LAWK_ONLY_EXPLANATION"
 margin_top = 55.0
 margin_right = 618.0
 margin_bottom = 100.0
-hint_tooltip = "LIFE_ORIGIN_TOOLTIP"
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer2"]
@@ -857,6 +856,7 @@ margin_left = 418.0
 margin_right = 618.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
+hint_tooltip = "LIFE_ORIGIN_TOOLTIP"
 size_flags_vertical = 0
 text = "LIFE_ORIGIN_VENTS"
 items = [ "LIFE_ORIGIN_VENTS", null, false, 0, null, "LIFE_ORIGIN_POND", null, false, 1, null, "LIFE_ORIGIN_PANSPERMIA", null, false, 2, null ]
