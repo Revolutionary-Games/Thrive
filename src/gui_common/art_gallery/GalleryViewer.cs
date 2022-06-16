@@ -36,7 +36,7 @@ public class GalleryViewer : CustomDialog
 
     private HBoxContainer tabButtonsContainer = null!;
     private OptionButton assetsCategoryDropdown = null!;
-    private Slidescreen slideScreen = null!;
+    private SlideScreen slideScreen = null!;
     private Button slideshowButton = null!;
 
     /// <summary>
@@ -81,7 +81,7 @@ public class GalleryViewer : CustomDialog
 
     public override void _Ready()
     {
-        slideScreen = GetNode<Slidescreen>("Slidescreen");
+        slideScreen = GetNode<SlideScreen>("SlideScreen");
         cardTile = GetNode<GridContainer>(GalleryGridPath);
         tabButtonsContainer = GetNode<HBoxContainer>(TabButtonsContainerPath);
         assetsCategoryDropdown = GetNode<OptionButton>(AssetsCategoryDropdownPath);
