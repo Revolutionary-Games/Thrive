@@ -47,7 +47,8 @@ public partial class DebugOverlays
                 {
                     if (microbe.Species != null)
                     {
-                        label.Text = $"[{microbe.Name}:{microbe.Species.Genus[0]}.{microbe.Species.Epithet.Left(4)}]";
+                        label.Text =
+                            $"[{microbe.Name}:{microbe.Species.Genus.Left(1)}.{microbe.Species.Epithet.Left(4)}]";
                     }
 
                     break;
