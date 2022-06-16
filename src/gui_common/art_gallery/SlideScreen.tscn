@@ -6,7 +6,7 @@
 [ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/PlaybackControls.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/general/OrbitCamera.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/gui_common/art_gallery/Slidescreen.cs" type="Script" id=7]
+[ext_resource path="res://src/gui_common/art_gallery/SlideScreen.cs" type="Script" id=7]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 1 )
@@ -37,7 +37,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="Slidescreen" type="Popup"]
+[node name="SlideScreen" type="Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
