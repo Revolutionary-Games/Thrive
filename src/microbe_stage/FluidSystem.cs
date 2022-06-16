@@ -3,9 +3,8 @@ using Godot;
 
 public class FluidSystem
 {
-    /*
-        private const float MaxForceApplied = 0.525f;
-    */
+    // private const float MaxForceApplied = 0.525f;
+
     private const float DISTURBANCE_TIMESCALE = 0.001f;
     private const float CURRENTS_TIMESCALE = 0.001f / 500.0f;
     private const float CURRENTS_STRETCHING_MULTIPLIER = 1.0f / 10.0f;
@@ -18,9 +17,7 @@ public class FluidSystem
     private readonly FastNoiseLite noiseCurrentsX;
     private readonly FastNoiseLite noiseCurrentsY;
 
-    /*
-        private readonly Vector2 scale = new Vector2(0.05f, 0.05f);
-    */
+    // private readonly Vector2 scale = new Vector2(0.05f, 0.05f);
 
     private readonly Node worldRoot;
 

@@ -10,9 +10,7 @@ using Saving;
 /// </summary>
 public class OptionsMenu : ControlWithInput
 {
-    /*
-      GUI Control Paths
-    */
+    // GUI Control Paths
 
     // Options control buttons.
 
@@ -294,9 +292,7 @@ public class OptionsMenu : ControlWithInput
     private CustomConfirmationDialog defaultsConfirmationBox = null!;
     private ErrorDialog errorAcceptBox = null!;
 
-    /*
-      Misc
-    */
+    // Misc
 
     private OptionsMode optionsMode;
     private SelectedOptionsTab selectedOptionsTab;
@@ -311,9 +307,7 @@ public class OptionsMenu : ControlWithInput
 
     private GameProperties? gameProperties;
 
-    /*
-      Signals
-    */
+    // Signals
 
     [Signal]
     public delegate void OnOptionsClosed();
@@ -967,9 +961,7 @@ public class OptionsMenu : ControlWithInput
         languageProgressLabel.Text = string.Format(CultureInfo.CurrentCulture, textFormat, Mathf.Floor(progress));
     }
 
-    /*
-      GUI Control Callbacks
-    */
+    // GUI Control Callbacks
 
     private void OnBackPressed()
     {

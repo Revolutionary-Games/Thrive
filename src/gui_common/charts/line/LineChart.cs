@@ -1000,9 +1000,7 @@ public class LineChart : VBoxContainer
         childChart.inspectButton.Hide();
     }
 
-    /*
-        GUI Callbacks
-    */
+    // GUI Callbacks
 
     private void OnInspectButtonPressed()
     {
@@ -1016,9 +1014,7 @@ public class LineChart : VBoxContainer
         chartPopup.Hide();
     }
 
-    /*
-        Subclasses
-    */
+    // Subclasses
 
     public class DatasetsIconLegend : Reference, IDataSetsLegend
     {
