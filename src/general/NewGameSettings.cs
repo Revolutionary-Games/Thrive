@@ -113,6 +113,23 @@ public class NewGameSettings : ControlWithInput
     [Export]
     public NodePath ConfirmButtonPath = null!;
 
+    /*
+    Static values for min/max in difficulty options
+    */
+
+    private const float MIN_MP_MULTIPLIER = 0.2f;
+    private const float MAX_MP_MULTIPLIER = 2;
+    private const float MIN_AI_MUTATION_RATE = 0.5f;
+    private const float MAX_AI_MUTATION_RATE = 5;
+    private const float MIN_COMPOUND_DENSITY = 0.2f;
+    private const float MAX_COMPOUND_DENSITY = 2;
+    private const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
+    private const float MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
+    private const float MIN_GLUCOSE_DECAY = 0.3f;
+    private const float MAX_GLUCOSE_DECAY = 0.95f;
+    private const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
+    private const float MAX_OSMOREGULATION_MULTIPLIER = 2;
+
     private PanelContainer basicOptions = null!;
     private PanelContainer advancedOptions = null!;
     private HBoxContainer tabButtons = null!;
@@ -206,18 +223,18 @@ public class NewGameSettings : ControlWithInput
         easterEggsButton = GetNode<Button>(EasterEggsButtonPath);
         confirmButton = GetNode<Button>(ConfirmButtonPath);
 
-        mpMultiplier.MinValue = WorldGenerationSettings.MIN_MP_MULTIPLIER;
-        mpMultiplier.MaxValue = WorldGenerationSettings.MAX_MP_MULTIPLIER;
-        aiMutationRate.MinValue = WorldGenerationSettings.MIN_AI_MUTATION_RATE;
-        aiMutationRate.MaxValue = WorldGenerationSettings.MAX_AI_MUTATION_RATE;
-        compoundDensity.MinValue = WorldGenerationSettings.MIN_COMPOUND_DENSITY;
-        compoundDensity.MaxValue = WorldGenerationSettings.MAX_COMPOUND_DENSITY;
-        playerDeathPopulationPenalty.MinValue = WorldGenerationSettings.MIN_PLAYER_DEATH_POPULATION_PENALTY;
-        playerDeathPopulationPenalty.MaxValue = WorldGenerationSettings.MAX_PLAYER_DEATH_POPULATION_PENALTY;
-        glucoseDecayRate.MinValue = WorldGenerationSettings.MIN_GLUCOSE_DECAY * 100;
-        glucoseDecayRate.MaxValue = WorldGenerationSettings.MAX_GLUCOSE_DECAY * 100;
-        osmoregulationMultiplier.MinValue = WorldGenerationSettings.MIN_OSMOREGULATION_MULTIPLIER;
-        osmoregulationMultiplier.MaxValue = WorldGenerationSettings.MAX_OSMOREGULATION_MULTIPLIER;
+        mpMultiplier.MinValue = MIN_MP_MULTIPLIER;
+        mpMultiplier.MaxValue = MAX_MP_MULTIPLIER;
+        aiMutationRate.MinValue = MIN_AI_MUTATION_RATE;
+        aiMutationRate.MaxValue = MAX_AI_MUTATION_RATE;
+        compoundDensity.MinValue = MIN_COMPOUND_DENSITY;
+        compoundDensity.MaxValue = MAX_COMPOUND_DENSITY;
+        playerDeathPopulationPenalty.MinValue = MIN_PLAYER_DEATH_POPULATION_PENALTY;
+        playerDeathPopulationPenalty.MaxValue = MAX_PLAYER_DEATH_POPULATION_PENALTY;
+        glucoseDecayRate.MinValue = MIN_GLUCOSE_DECAY * 100;
+        glucoseDecayRate.MaxValue = MAX_GLUCOSE_DECAY * 100;
+        osmoregulationMultiplier.MinValue = MIN_OSMOREGULATION_MULTIPLIER;
+        osmoregulationMultiplier.MaxValue = MAX_OSMOREGULATION_MULTIPLIER;
 
         var seed = GenerateNewRandomSeed();
         gameSeed.Text = seed;

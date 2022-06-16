@@ -5,23 +5,6 @@
 /// </summary>
 public class WorldGenerationSettings
 {
-    /*
-    Static values for min/max
-    */
-
-    public const float MIN_MP_MULTIPLIER = 0.2f;
-    public const float MAX_MP_MULTIPLIER = 2;
-    public const float MIN_AI_MUTATION_RATE = 0.5f;
-    public const float MAX_AI_MUTATION_RATE = 5;
-    public const float MIN_COMPOUND_DENSITY = 0.2f;
-    public const float MAX_COMPOUND_DENSITY = 2;
-    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
-    public const float MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
-    public const float MIN_GLUCOSE_DECAY = 0.3f;
-    public const float MAX_GLUCOSE_DECAY = 0.95f;
-    public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
-    public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
-
     public enum LifeOrigin
     {
         Vent,

@@ -831,7 +831,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
-            / CurrentGame!.GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
+            / WorldSettings.PlayerDeathPopulationPenalty);
 
         if (IsGameOver())
         {

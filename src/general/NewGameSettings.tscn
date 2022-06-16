@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonHover.png" type="Texture" id=8]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=9]
-[ext_resource path="res://assets/concept_art/planet_generation.jpeg" type="Texture" id=10]
+[ext_resource path="res://assets/concept_art/planet_generation.jpg" type="Texture" id=10]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -222,6 +222,7 @@ rect_min_size = Vector2( 200, 0 )
 margin_right = 155.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 155, 0 )
+hint_tooltip = "RANDOM_SEED_TOOLTIP"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/HBoxContainer3/HBoxContainer"]
 margin_left = 159.0
@@ -896,6 +897,7 @@ rect_min_size = Vector2( 200, 0 )
 margin_right = 155.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 155, 0 )
+hint_tooltip = "RANDOM_SEED_TOOLTIP"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/HBoxContainer3/HBoxContainer"]
 margin_left = 159.0

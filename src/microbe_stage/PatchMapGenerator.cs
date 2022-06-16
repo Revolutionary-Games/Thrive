@@ -8,20 +8,16 @@ using Godot;
 [SuppressMessage("ReSharper", "StringLiteralTypo", Justification = "Patch names aren't proper words")]
 public static class PatchMapGenerator
 {
-    public static WorldGenerationSettings WorldSettings = new();
-
     public static PatchMap Generate(WorldGenerationSettings settings, Species defaultSpecies, Random? random = null)
     {
-        WorldSettings = settings;
-
         var map = new PatchMap();
 
-        random ??= new Random(WorldSettings.Seed);
+        random ??= new Random(settings.Seed);
 
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
 
         string areaName = string.Empty;
-        switch (WorldSettings.MapType)
+        switch (settings.MapType)
         {
             case WorldGenerationSettings.PatchMapType.Classic:
                 areaName = "Pangonian";
@@ -165,7 +161,7 @@ public static class PatchMapGenerator
         map.AddPatch(seafloor);
 
         // Starting patch based on new game settings
-        switch (WorldSettings.Origin)
+        switch (settings.Origin)
         {
             case WorldGenerationSettings.LifeOrigin.Vent:
                 vents.AddSpecies(defaultSpecies);

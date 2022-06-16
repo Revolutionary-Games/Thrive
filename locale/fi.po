@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-16 09:40+0100\n"
+"POT-Creation-Date: 2022-06-16 09:54+0100\n"
 "PO-Revision-Date: 2022-05-03 17:42+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -1630,7 +1630,7 @@ msgid "CLOSE"
 msgstr "Sulje"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:541
+#: ../src/general/NewGameSettings.cs:558
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/MicrobeHUD.cs:717
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
@@ -1710,7 +1710,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrobien vapaa rakentelu"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1016
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1017
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1746,51 +1746,51 @@ msgstr "Modien latausvirheet"
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Yhden tai useamman modin latauksessa kohdattiin virheitä. Lokit voivat sisältää lisää tietoa."
 
-#: ../src/general/NewGameSettings.cs:260
-#: ../src/general/NewGameSettings.tscn:1056
+#: ../src/general/NewGameSettings.cs:277
+#: ../src/general/NewGameSettings.tscn:1057
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/NewGameSettings.cs:267
+#: ../src/general/NewGameSettings.cs:284
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Pysäytysmenu"
 
 #: ../src/general/NewGameSettings.tscn:115
-#: ../src/general/NewGameSettings.tscn:329
+#: ../src/general/NewGameSettings.tscn:330
 msgid "DIFFICULTY_PRESET"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:129
 #: ../src/general/NewGameSettings.tscn:130
-#: ../src/general/NewGameSettings.tscn:343
 #: ../src/general/NewGameSettings.tscn:344
+#: ../src/general/NewGameSettings.tscn:345
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:130
-#: ../src/general/NewGameSettings.tscn:344
+#: ../src/general/NewGameSettings.tscn:345
 msgid "DIFFICULTY_PRESET_EASY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:130
-#: ../src/general/NewGameSettings.tscn:344
+#: ../src/general/NewGameSettings.tscn:345
 msgid "DIFFICULTY_PRESET_HARD"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:130
-#: ../src/general/NewGameSettings.tscn:344
+#: ../src/general/NewGameSettings.tscn:345
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:150
-#: ../src/general/NewGameSettings.tscn:824
+#: ../src/general/NewGameSettings.tscn:825
 msgid "LIFE_ORIGIN"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:157
-#: ../src/general/NewGameSettings.tscn:831
+#: ../src/general/NewGameSettings.tscn:832
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -1801,28 +1801,28 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:172
 #: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:846
 #: ../src/general/NewGameSettings.tscn:847
+#: ../src/general/NewGameSettings.tscn:848
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:847
+#: ../src/general/NewGameSettings.tscn:848
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:173
-#: ../src/general/NewGameSettings.tscn:847
+#: ../src/general/NewGameSettings.tscn:848
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:188
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:863
 msgid "LAWK_ONLY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:195
-#: ../src/general/NewGameSettings.tscn:869
+#: ../src/general/NewGameSettings.tscn:870
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -1832,49 +1832,54 @@ msgstr ""
 "todennäköisimmin takaisin uhattuna."
 
 #: ../src/general/NewGameSettings.tscn:206
-#: ../src/general/NewGameSettings.tscn:880
+#: ../src/general/NewGameSettings.tscn:881
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:269
+#: ../src/general/NewGameSettings.tscn:225
+#, fuzzy
+msgid "RANDOM_SEED_TOOLTIP"
+msgstr "Laita peli tauolle"
+
+#: ../src/general/NewGameSettings.tscn:270
 msgid "DIFFICULTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:279
+#: ../src/general/NewGameSettings.tscn:280
 msgid "PLANET"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:289 ../src/general/OptionsMenu.tscn:179
+#: ../src/general/NewGameSettings.tscn:290 ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
 msgstr "Muut"
 
-#: ../src/general/NewGameSettings.tscn:371
+#: ../src/general/NewGameSettings.tscn:372
 msgid "MUTATION_COST_MULTIPLIER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:416
+#: ../src/general/NewGameSettings.tscn:417
 #, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 "Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
 "Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
 
-#: ../src/general/NewGameSettings.tscn:433
+#: ../src/general/NewGameSettings.tscn:434
 #, fuzzy
 msgid "AI_MUTATION_RATE"
 msgstr "Mutaatiopisteet"
 
-#: ../src/general/NewGameSettings.tscn:478
+#: ../src/general/NewGameSettings.tscn:479
 #, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/NewGameSettings.tscn:495
+#: ../src/general/NewGameSettings.tscn:496
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Yhdistepilvet"
 
-#: ../src/general/NewGameSettings.tscn:540
+#: ../src/general/NewGameSettings.tscn:541
 #, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
@@ -1882,39 +1887,39 @@ msgstr ""
 "todennäköisemmin jahdata saaliitaan myrkkyillään, jos eivät pysty syömään heitä.\n"
 "Varovaiset mikrobit välttävät vaaroja ja siten kilpailutilanteita esimerkiksi ravinnon keruun yhteydessä."
 
-#: ../src/general/NewGameSettings.tscn:557
+#: ../src/general/NewGameSettings.tscn:558
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:602
+#: ../src/general/NewGameSettings.tscn:603
 #, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/NewGameSettings.tscn:619
+#: ../src/general/NewGameSettings.tscn:620
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:663
+#: ../src/general/NewGameSettings.tscn:664
 #, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
-#: ../src/general/NewGameSettings.tscn:680
+#: ../src/general/NewGameSettings.tscn:681
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Osmoregulaation energiantarve"
 
-#: ../src/general/NewGameSettings.tscn:725
+#: ../src/general/NewGameSettings.tscn:726
 #, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Osmoregulaation energiantarve"
 
-#: ../src/general/NewGameSettings.tscn:737
+#: ../src/general/NewGameSettings.tscn:738
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:744
+#: ../src/general/NewGameSettings.tscn:745
 #, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
@@ -1922,46 +1927,46 @@ msgstr ""
 "ja voivat olla kunnianhimoisempia löytyvien palasten keruussa.\n"
 "Responssiiviset mikrobit vaihtavat kohdetta nopeammin, jos ei niitä heti saa kiinni."
 
-#: ../src/general/NewGameSettings.tscn:781
+#: ../src/general/NewGameSettings.tscn:782
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Aluekartta"
 
-#: ../src/general/NewGameSettings.tscn:788
+#: ../src/general/NewGameSettings.tscn:789
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "Aktiiviset mikrobit vilistävät ja mukeltavat, kun mitään mielenkiintoista ei tapahdu.\n"
 "Lakoniset mikrobit pysyttelevät mieluummin paikoillaan odottaen ympäristön muutoksia reagoidakseen niihin."
 
-#: ../src/general/NewGameSettings.tscn:803
 #: ../src/general/NewGameSettings.tscn:804
+#: ../src/general/NewGameSettings.tscn:805
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:804
+#: ../src/general/NewGameSettings.tscn:805
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:946
+#: ../src/general/NewGameSettings.tscn:947
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:978
+#: ../src/general/NewGameSettings.tscn:979
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Lisää soluelin"
 
-#: ../src/general/NewGameSettings.tscn:985
+#: ../src/general/NewGameSettings.tscn:986
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:998
+#: ../src/general/NewGameSettings.tscn:999
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "KIEMURTELEVIA JUTTUJA!!"
 
-#: ../src/general/NewGameSettings.tscn:1005
+#: ../src/general/NewGameSettings.tscn:1006
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -1970,25 +1975,25 @@ msgstr ""
 "Rohkeat mikrobit eivät välitä pedoista lähellään ja hyökkäävät\n"
 "todennäköisimmin takaisin uhattuna."
 
-#: ../src/general/NewGameSettings.tscn:1033
+#: ../src/general/NewGameSettings.tscn:1034
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
-#: ../src/general/NewGameSettings.tscn:1035
+#: ../src/general/NewGameSettings.tscn:1036
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1046
+#: ../src/general/NewGameSettings.tscn:1047
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Kuole"
 
-#: ../src/general/NewGameSettings.tscn:1047
+#: ../src/general/NewGameSettings.tscn:1048
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1057
+#: ../src/general/NewGameSettings.tscn:1058
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "VAHVISTA"
@@ -3484,7 +3489,7 @@ msgstr "Lisää uusi syöte"
 msgid "PAUSED"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:214
+#: ../src/microbe_stage/PatchMapGenerator.cs:210
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 

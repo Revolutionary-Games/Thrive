@@ -227,21 +227,21 @@ public class SimulationParameters : Node
         float valueLeft = random.Next(0.0f, prokaryoticOrganellesTotalChance);
 
         // Filter to only LAWK organelles if necessary
-        var usedOrganelles = prokaryoticOrganelles;
+        IEnumerable<OrganelleDefinition> usedOrganelles = prokaryoticOrganelles;
         if (lawkOnly)
-        {
-            usedOrganelles = usedOrganelles.Where(o => o.Lawk).ToList();
-        }
+            usedOrganelles = usedOrganelles.Where(o => o.Lawk);
 
+        OrganelleDefinition chosenOrganelle = null!;
         foreach (var organelle in usedOrganelles)
         {
+            chosenOrganelle = organelle;
             valueLeft -= organelle.ProkaryoteChance;
 
             if (valueLeft <= 0.00001f)
-                return organelle;
+                return chosenOrganelle;
         }
 
-        return usedOrganelles[usedOrganelles.Count - 1];
+        return chosenOrganelle;
     }
 
     public OrganelleDefinition GetRandomEukaryoticOrganelle(Random random, bool lawkOnly)
@@ -249,21 +249,21 @@ public class SimulationParameters : Node
         float valueLeft = random.Next(0.0f, eukaryoticOrganellesChance);
 
         // Filter to only LAWK organelles if necessary
-        var usedOrganelles = eukaryoticOrganelles;
+        IEnumerable<OrganelleDefinition> usedOrganelles = eukaryoticOrganelles;
         if (lawkOnly)
-        {
-            usedOrganelles = usedOrganelles.Where(o => o.Lawk).ToList();
-        }
+            usedOrganelles = usedOrganelles.Where(o => o.Lawk);
 
+        OrganelleDefinition chosenOrganelle = null!;
         foreach (var organelle in usedOrganelles)
         {
+            chosenOrganelle = organelle;
             valueLeft -= organelle.ChanceToCreate;
 
             if (valueLeft <= 0.00001f)
-                return organelle;
+                return chosenOrganelle;
         }
 
-        return usedOrganelles[usedOrganelles.Count - 1];
+        return chosenOrganelle;
     }
 
     public PatchMapNameGenerator GetPatchMapNameGenerator()
