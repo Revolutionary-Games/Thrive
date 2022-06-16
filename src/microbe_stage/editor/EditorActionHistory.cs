@@ -241,13 +241,18 @@ public class EditorActionHistory<TAction> : ActionHistory<TAction>
 
             foreach (var newData in newDataList)
             {
+                // In the cancels out case we still want to merge the data so that the action can stay as a placeholder
+                // in the history keeping the original state
                 if (newData.WantsMergeWith(currentData) &&
                     newData.GetInterferenceModeWith(currentData) is ActionInterferenceMode.CancelsOut or
                         ActionInterferenceMode.Combinable)
                 {
                     merged = true;
 
-                    if (!newData.TryMerge(currentData, true))
+                    // TryMerge assumes that the data to given as the parameter to the method is always newer
+                    // so it must absolutely guaranteed that the order we loop here is correct, ie. always going
+                    // from the oldest data towards the newer data
+                    if (!newData.TryMerge(currentData))
                     {
                         throw new InvalidOperationException(
                             "Action data that should have accepted a merge, didn't");
