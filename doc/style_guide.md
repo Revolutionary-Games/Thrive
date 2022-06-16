@@ -66,6 +66,14 @@ Code style rules
 
 - C# file lines should have a maximum width of 120 columns.
 
+- Comments should use the C++ style `//` or XML doc (when documenting
+  language constructs like classes and properties) `///`. C-style
+  comments `/*` should only be used when commenting out multiple lines
+  of code that is important to keep for future reference or similar
+  code that is only a part of a line. This comment style can also be
+  kept in copyright notice sections. Elsewhere C-style comments should
+  not be used.
+
 - C# code should by default not be in a namespace. When code is in a
   namespace all using statements should be within the namespace.
 

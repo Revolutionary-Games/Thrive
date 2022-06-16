@@ -119,9 +119,7 @@ public class HelpScreen : Control
         }
     }
 
-    /*
-        Callbacks
-    */
+    // Callbacks
 
     private void OnTimerTimeout()
     {
