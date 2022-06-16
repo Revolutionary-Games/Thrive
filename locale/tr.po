@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-15 17:33+0700\n"
+"POT-Creation-Date: 2022-06-16 15:36+0700\n"
 "PO-Revision-Date: 2022-05-19 13:19+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -56,7 +56,7 @@ msgid "MUSIC"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:187
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:341
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
@@ -725,7 +725,7 @@ msgstr "Azot"
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3817
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:431
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:621
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "Güneş ışığı"
 
@@ -1074,7 +1074,7 @@ msgstr "EYLEMİ İPTAL ET"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1024
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:733
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "SONRAKİ"
 
@@ -1626,11 +1626,11 @@ msgstr "Özel Fare Tuşu 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Bilinmeyen fare tuşu"
 
-#: ../src/general/Asset.cs:48
+#: ../src/general/Asset.cs:52
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/general/Asset.cs:52
+#: ../src/general/Asset.cs:56
 msgid "ART_BY"
 msgstr "Resmi yapan: {0}"
 
@@ -2132,7 +2132,7 @@ msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr "Mevcut oyunla ilgili bilgilendirici istatistikler"
 
 #: ../src/general/PauseMenu.tscn:205
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:484
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:485
 msgid "STATISTICS"
 msgstr "İstatistikler"
 
@@ -2515,6 +2515,11 @@ msgstr "Açıklama çok uzun"
 msgid "ARTIST_COLON"
 msgstr "önceki:"
 
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:248
+#, fuzzy
+msgid "UNTITLED"
+msgstr "Biyom: {0}"
+
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
 msgstr ""
@@ -2591,7 +2596,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:53
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:252
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
 msgid "TUTORIAL"
 msgstr "Oyun Rehberi"
 
@@ -3040,23 +3045,23 @@ msgstr "Oyuncu oyundan çıkmayı denediğinde, kaydedilmemiş ilerlemeler uyar�
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3812
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:368
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:610
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
 msgstr "Sıcaklık"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:669
+#: ../src/microbe_stage/Microbe.Contact.cs:665
 msgid "DEATH"
 msgstr "ölüm"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:799
+#: ../src/microbe_stage/Microbe.Contact.cs:795
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "başarılı yiyecek avı"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:806
+#: ../src/microbe_stage/Microbe.Contact.cs:802
 msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1057
+#: ../src/microbe_stage/Microbe.Contact.cs:1042
 msgid "ESCAPE_ENGULFING"
 msgstr "yutulmaktan kurtulma"
 
@@ -3211,8 +3216,8 @@ msgstr "Bsnç."
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:673
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:674
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:708
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
 msgid "COMPOUNDS"
 msgstr "Bileşikler"
 
@@ -3530,7 +3535,7 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "MEVCUT KONUM"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:531
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fiziksel Koşullar"
 
@@ -3540,8 +3545,8 @@ msgstr "Basınç"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:509
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:631
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:665
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferik Gazlar"
 
@@ -3608,24 +3613,24 @@ msgstr "Oto-evrim sonuçları:"
 msgid "EXTERNAL_EFFECTS"
 msgstr "Dış etkenler:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:396
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:397
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "Genel olayları göster"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:402
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:409
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Yerel olayları göster"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:417
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "Y"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:493
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:521
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:494
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:522
 msgid "SPECIES_POPULATION"
 msgstr "Tür Popülasyonu"
 
@@ -4717,7 +4722,7 @@ msgstr ""
 "Hücreni çoğaltmak için yeterli miktarda amonyak ve fosfat toplayarak bütün organellerini ikiye katlaman gerekir.\n"
 "Ne kadarına ihtiyacın olduğunu görmek için sağ alttaki büyük butonu saran çubuklara bak. Bu çubuklar dolduğunda beyaz hale gelir."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:224
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:225
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Hücrenin bölünmesi için yeterince kaynak topladın.\n"
@@ -4726,25 +4731,25 @@ msgstr ""
 "\n"
 "Hazır olunca, editöre girmek için sağ altta yanıp sönen büyük butona bas."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:236
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Bağ koparma moduna girdin. Bu modda, bağını koparmak istediğin koloni üyelerine tıklayabilirsin.\n"
 "\n"
 "Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya \"hepsinin bağını kopar\" tuşuna basabilirsin."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Zorlanıyor musun? Yardım menüsünü incele. Bu menüyü sol alttaki soru işaretli butona basarak açabilirsin.\n"
 "\n"
 "Bir ipucu daha: Fare tekeri ile görüş alanını arttırabilirsin."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Şimdi İncele"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:296
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:297
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""

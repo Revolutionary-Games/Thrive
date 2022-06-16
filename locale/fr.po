@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-15 17:33+0700\n"
+"POT-Creation-Date: 2022-06-16 15:36+0700\n"
 "PO-Revision-Date: 2022-04-15 08:28+0000\n"
 "Last-Translator: Louison Wouts <wouts.louison@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -57,7 +57,7 @@ msgid "MUSIC"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:187
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:341
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
@@ -730,7 +730,7 @@ msgstr "Azote"
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3817
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:431
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:621
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "Lumière du soleil"
 
@@ -1105,7 +1105,7 @@ msgstr "ANNULER L'ACTION"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1024
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:733
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "SUIVANT"
 
@@ -1654,11 +1654,11 @@ msgstr "Spécial 2 souris"
 msgid "UNKNOWN_MOUSE"
 msgstr "Souris inconnue"
 
-#: ../src/general/Asset.cs:48
+#: ../src/general/Asset.cs:52
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/general/Asset.cs:52
+#: ../src/general/Asset.cs:56
 msgid "ART_BY"
 msgstr "Œuvre de {0}"
 
@@ -2180,7 +2180,7 @@ msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr "Suicide"
 
 #: ../src/general/PauseMenu.tscn:205
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:484
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:485
 msgid "STATISTICS"
 msgstr "Statistiques"
 
@@ -2580,6 +2580,11 @@ msgstr "Description :"
 msgid "ARTIST_COLON"
 msgstr "Espèces :"
 
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:248
+#, fuzzy
+msgid "UNTITLED"
+msgstr "Terrain : {0}"
+
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
 msgstr ""
@@ -2656,7 +2661,7 @@ msgstr "Protanopie (Rouge-Vert)"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:53
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:252
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutoriel"
@@ -3118,23 +3123,23 @@ msgstr "Active / désactive les popup d'avertissement de progrès non sauvegard�
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3812
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:368
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:610
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
 msgstr "Température"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:669
+#: ../src/microbe_stage/Microbe.Contact.cs:665
 msgid "DEATH"
 msgstr "mort"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:799
+#: ../src/microbe_stage/Microbe.Contact.cs:795
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "récupération réussie"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:806
+#: ../src/microbe_stage/Microbe.Contact.cs:802
 msgid "SUCCESSFUL_KILL"
 msgstr "élimination réussie"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1057
+#: ../src/microbe_stage/Microbe.Contact.cs:1042
 msgid "ESCAPE_ENGULFING"
 msgstr "échapper à l'engloutissement"
 
@@ -3297,8 +3302,8 @@ msgstr "Press."
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:673
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:674
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:708
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
 msgid "COMPOUNDS"
 msgstr "Composés"
 
@@ -3627,7 +3632,7 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POSITION ACTUELLE"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:531
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Conditions Physique"
 
@@ -3637,8 +3642,8 @@ msgstr "Pression"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:509
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:631
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:665
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gaz Atmosphériques"
 
@@ -3708,28 +3713,28 @@ msgstr "Résultats de l'auto-évo :"
 msgid "EXTERNAL_EFFECTS"
 msgstr "Effets externes :"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:396
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:397
 #, fuzzy
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "Montrer les évènements globaux"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:402
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
 #, fuzzy
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:409
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
 #, fuzzy
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Montrer les évènements locaux"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:417
 #, fuzzy
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:493
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:521
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:494
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:522
 msgid "SPECIES_POPULATION"
 msgstr "Espèces"
 
@@ -4939,7 +4944,7 @@ msgstr ""
 "Afin de vous reproduire vous devez dupliquer tous vos organites en collectant assez d'ammoniaque et de phosphates.\n"
 "Regardez l'indicateur en bas à droite pour voir combien il vous en manque."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:224
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:225
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -4949,7 +4954,7 @@ msgstr ""
 "\n"
 "Pour entrer dans l'éditeur, pressez le bouton en sur-brillance en bas à droite."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:236
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -4957,17 +4962,17 @@ msgstr ""
 "\n"
 "To leave the colony completely, you can click on your own cell or press the Ungroup All button."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W,A,S,D et souris pour bouger. E pour tirer des OxyToxy NT si vous avez une vacuole à toxines. G pour passer en mode absorption."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutoriel"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:296
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:297
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""

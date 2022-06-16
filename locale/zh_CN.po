@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-15 17:33+0700\n"
+"POT-Creation-Date: 2022-06-16 15:36+0700\n"
 "PO-Revision-Date: 2022-03-26 14:06+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -56,7 +56,7 @@ msgid "MUSIC"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:187
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:341
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
@@ -723,7 +723,7 @@ msgstr "氮"
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3817
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:431
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:621
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "阳光"
 
@@ -1070,7 +1070,7 @@ msgstr "取消"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1024
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:733
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "下一个"
 
@@ -1605,11 +1605,11 @@ msgstr "鼠标侧键2"
 msgid "UNKNOWN_MOUSE"
 msgstr "鼠标未知键"
 
-#: ../src/general/Asset.cs:48
+#: ../src/general/Asset.cs:52
 msgid "ARTWORK_TITLE"
 msgstr "“{0}” - {1}"
 
-#: ../src/general/Asset.cs:52
+#: ../src/general/Asset.cs:56
 msgid "ART_BY"
 msgstr "由{0}创作"
 
@@ -2118,7 +2118,7 @@ msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr "自杀"
 
 #: ../src/general/PauseMenu.tscn:205
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:484
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:485
 msgid "STATISTICS"
 msgstr "统计数据"
 
@@ -2502,6 +2502,11 @@ msgstr "描叙过长"
 msgid "ARTIST_COLON"
 msgstr "之前："
 
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:248
+#, fuzzy
+msgid "UNTITLED"
+msgstr "生物群系：{0}"
+
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
 msgstr ""
@@ -2578,7 +2583,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:53
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:252
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
 msgid "TUTORIAL"
 msgstr "教程"
 
@@ -3029,23 +3034,23 @@ msgstr "当玩家试图退出游戏时，启用/禁用未保存的进度警告�
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3812
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:368
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:610
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
 msgstr "温度"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:669
+#: ../src/microbe_stage/Microbe.Contact.cs:665
 msgid "DEATH"
 msgstr "死亡数"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:799
+#: ../src/microbe_stage/Microbe.Contact.cs:795
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:806
+#: ../src/microbe_stage/Microbe.Contact.cs:802
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1057
+#: ../src/microbe_stage/Microbe.Contact.cs:1042
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
@@ -3200,8 +3205,8 @@ msgstr "压力"
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:673
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:674
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:708
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
 msgid "COMPOUNDS"
 msgstr "化合物"
 
@@ -3520,7 +3525,7 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "目前位置"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:531
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "物理条件"
 
@@ -3530,8 +3535,8 @@ msgstr "压力"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:509
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:631
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:665
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "大气气体"
 
@@ -3598,24 +3603,24 @@ msgstr "Auto-evo结果："
 msgid "EXTERNAL_EFFECTS"
 msgstr "外部影响："
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:396
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:397
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "显示全球事件"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:402
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:409
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "显示本地事件"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:417
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:493
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:521
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:494
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:522
 msgid "SPECIES_POPULATION"
 msgstr "该物种的种群数量"
 
@@ -4706,7 +4711,7 @@ msgstr ""
 "繁殖需要你收集足够的氨和磷酸盐以将所有细胞器都复制一份。\n"
 "看看右下角的大按钮周围的条形图，看看你还需要多少。这些条形图在填满后会变成白色。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:224
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:225
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "你已经收集了足够让你的细胞分裂的资源。\n"
@@ -4715,25 +4720,25 @@ msgstr ""
 "\n"
 "按右下角闪烁的编辑器按钮以进入编辑器。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:236
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
 "\n"
 "要完全离开细胞群，你可以点击你自己的细胞或按下“解除所有连接”键。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "遇到困难？请查看帮助菜单。你可以用左下角的问号按钮打开它。\n"
 "\n"
 "还有一个提示：你可以用滚轮放大你的视野。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "现在就查看"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:296
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:297
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""

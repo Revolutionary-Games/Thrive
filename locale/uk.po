@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-15 17:33+0700\n"
+"POT-Creation-Date: 2022-06-16 15:36+0700\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -56,7 +56,7 @@ msgid "MUSIC"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:187
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:341
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
@@ -724,7 +724,7 @@ msgstr "Азот"
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3817
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:431
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:621
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "Сонячне світло"
 
@@ -1073,7 +1073,7 @@ msgstr "Скасувати дію"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1024
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:733
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "ДАЛІ"
 
@@ -1627,11 +1627,11 @@ msgstr "Спеціальна миша 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Невідома миша"
 
-#: ../src/general/Asset.cs:48
+#: ../src/general/Asset.cs:52
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/general/Asset.cs:52
+#: ../src/general/Asset.cs:56
 msgid "ART_BY"
 msgstr "Малюнок від {0}"
 
@@ -2140,7 +2140,7 @@ msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr "Суїцид"
 
 #: ../src/general/PauseMenu.tscn:205
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:484
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:485
 msgid "STATISTICS"
 msgstr "Статистика"
 
@@ -2524,6 +2524,11 @@ msgstr "Опис надто довгий"
 msgid "ARTIST_COLON"
 msgstr "попередній:"
 
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:248
+#, fuzzy
+msgid "UNTITLED"
+msgstr "Біом: {0}"
+
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
 msgstr ""
@@ -2600,7 +2605,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:53
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:252
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
 msgid "TUTORIAL"
 msgstr "Туторіал"
 
@@ -3051,23 +3056,23 @@ msgstr "Вмикає / вимикає спливаюче вікно з попе�
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3812
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:368
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:610
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
 msgstr "Температура"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:669
+#: ../src/microbe_stage/Microbe.Contact.cs:665
 msgid "DEATH"
 msgstr "Смерть"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:799
+#: ../src/microbe_stage/Microbe.Contact.cs:795
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "вдале очищення"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:806
+#: ../src/microbe_stage/Microbe.Contact.cs:802
 msgid "SUCCESSFUL_KILL"
 msgstr "вдале очищення"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1057
+#: ../src/microbe_stage/Microbe.Contact.cs:1042
 msgid "ESCAPE_ENGULFING"
 msgstr "уникнення поглинання"
 
@@ -3222,8 +3227,8 @@ msgstr "Тиск."
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:673
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:674
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:708
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
 msgid "COMPOUNDS"
 msgstr "Сполуки"
 
@@ -3543,7 +3548,7 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "Поточна локація"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:531
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Фізичні умови"
 
@@ -3553,8 +3558,8 @@ msgstr "Тиск"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:509
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:631
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:665
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферні гази"
 
@@ -3621,24 +3626,24 @@ msgstr "Результати авто-ево:"
 msgid "EXTERNAL_EFFECTS"
 msgstr "Внутрішні ефекти:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:396
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:397
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "Показ глобальних подій"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:402
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:409
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Показ локальних подій"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:417
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:493
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:521
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:494
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:522
 msgid "SPECIES_POPULATION"
 msgstr "Видова Популяція"
 
@@ -4733,7 +4738,7 @@ msgstr ""
 "Для розмноження потрібно подвоїти кожну свою органелу зібравши достатньо аміаку та фосфатів.\n"
 "Погляньте на смужки навколо великої кнопки знизу справа, аби бачити як багато вам треба. Ці смужки стануть білими, коли заповняться."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:224
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:225
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Ви зібрали необхідну кількість ресурсів для поділу вашої клітини.\n"
@@ -4742,25 +4747,25 @@ msgstr ""
 "\n"
 "Для переходу в радактор натисніть блимаючу кнопку редактора знизу справа."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:236
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Ви перейшли до розв'язувального режиму. В цьому режимі ви можете клацнути на членів колонії для розв'язування з ними.\n"
 "\n"
 "Аби повністю покинути колонію ви можете клікнути на свою клітину або натиснути клавішу для розв'язування."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Труднощі? Подивіться довідкове меню. Ви можете відкрити його за допомогою кнопки із знаком питання знизу зліва.\n"
 "\n"
 "Ще одна підказка: Ви можете зменшувати зображення за допомогою колесика миші."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Переглянути зараз"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:296
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:297
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""

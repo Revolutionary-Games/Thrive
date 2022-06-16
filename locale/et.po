@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-15 17:33+0700\n"
+"POT-Creation-Date: 2022-06-16 15:36+0700\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -56,7 +56,7 @@ msgid "MUSIC"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:187
-#: ../src/gui_common/art_gallery/GalleryViewer.cs:341
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 #, fuzzy
 msgid "ALL"
 msgstr "ALT"
@@ -724,7 +724,7 @@ msgstr "Lämmastik"
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3817
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:431
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:621
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "Päikesevalgus"
 
@@ -1073,7 +1073,7 @@ msgstr "TÜHISTAGE TEGEVUS"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1024
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:733
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "JÄRGMINE"
 
@@ -1613,11 +1613,11 @@ msgstr "Hiire eriversioon 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Tundmatu hiir"
 
-#: ../src/general/Asset.cs:48
+#: ../src/general/Asset.cs:52
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" – {1}"
 
-#: ../src/general/Asset.cs:52
+#: ../src/general/Asset.cs:56
 msgid "ART_BY"
 msgstr "Kunst autorilt {0}"
 
@@ -2127,7 +2127,7 @@ msgid "STATISTICS_BUTTON_TOOLTIP"
 msgstr "vabasurm"
 
 #: ../src/general/PauseMenu.tscn:205
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:484
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:485
 msgid "STATISTICS"
 msgstr "Statistika"
 
@@ -2511,6 +2511,11 @@ msgstr "Kirjeldus on liiga pikk"
 msgid "ARTIST_COLON"
 msgstr "eelmine:"
 
+#: ../src/gui_common/art_gallery/GalleryViewer.cs:248
+#, fuzzy
+msgid "UNTITLED"
+msgstr "biome: {0}"
+
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
 msgstr ""
@@ -2587,7 +2592,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:53
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:252
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
 msgid "TUTORIAL"
 msgstr "Õpetus"
 
@@ -3038,23 +3043,23 @@ msgstr "Lubab/keelab salvestamata edenemise hoiatuse hüpikakna, kui mängija pr
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3812
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:368
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:610
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
 msgstr "Temperatuur"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:669
+#: ../src/microbe_stage/Microbe.Contact.cs:665
 msgid "DEATH"
 msgstr "surma"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:799
+#: ../src/microbe_stage/Microbe.Contact.cs:795
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "edukas pühkimine"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:806
+#: ../src/microbe_stage/Microbe.Contact.cs:802
 msgid "SUCCESSFUL_KILL"
 msgstr "edukas tapmine"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1057
+#: ../src/microbe_stage/Microbe.Contact.cs:1042
 msgid "ESCAPE_ENGULFING"
 msgstr "neelamisest pääsemine"
 
@@ -3209,8 +3214,8 @@ msgstr "Surve."
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:673
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:674
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:708
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
 msgid "COMPOUNDS"
 msgstr "Ühendid"
 
@@ -3531,7 +3536,7 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "PRAEGUNE ASUKOHT"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:531
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Füüsilised tingimused"
 
@@ -3541,8 +3546,8 @@ msgstr "Surve"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:509
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:631
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:665
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosfääri gaasid"
 
@@ -3609,24 +3614,24 @@ msgstr "Auto-evo tulemused:"
 msgid "EXTERNAL_EFFECTS"
 msgstr "Välised mõjud:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:396
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:397
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr "Näita globaalseid sündmusi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:402
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:403
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:409
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:410
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr "Näita kohalikke sündmusi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:416
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:417
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:493
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:521
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:494
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:522
 msgid "SPECIES_POPULATION"
 msgstr "Liikide populatsioon"
 
@@ -4729,7 +4734,7 @@ msgstr ""
 "Paljunemiseks peate dubleerima kõik oma organellid, kogudes piisavalt ammoniaaki ja fosfaate.\n"
 "Vaadake all paremal asuvat suurt nuppu ümbritsevaid ribasid, et näha, kui palju rohkem vajate. Need ribad muutuvad täitmisel valgeks."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:224
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:225
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Olete kogunud piisavalt ressursse, et teie rakk saaks paljuneda.\n"
@@ -4738,25 +4743,25 @@ msgstr ""
 "\n"
 "Redaktorisse sisenemiseks vajutage suurt vilkuvat nuppu all paremal, kui olete valmis."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:236
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Olete sisenenud sidumise tühistamise režiimi. Selles režiimis saate klõpsata koloonia liikmetel, et need lahti siduda.\n"
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:254
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Hädas? Kontrollige abimenüüd. Saate selle avada vasakus alanurgas oleva küsimärgi nupuga.\n"
 "\n"
 "Veel üks näpunäide: saate kerimisrattaga vaadet välja suumida."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Vaata nüüd"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:296
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:297
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""

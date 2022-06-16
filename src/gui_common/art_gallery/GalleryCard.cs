@@ -63,7 +63,7 @@ public class GalleryCard : Button
         if (titleLabel == null || imagePreview == null)
             return;
 
-        titleLabel.Text = Asset.Title;
+        titleLabel.Text = string.IsNullOrEmpty(Asset.Title) ? Asset.FileName : Asset.Title;
         imagePreview.Texture = Thumbnail;
     }
 

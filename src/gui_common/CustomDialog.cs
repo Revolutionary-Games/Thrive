@@ -190,10 +190,6 @@ public class CustomDialog : Popup, ICustomPopup
         scaleBorderSize = GetConstant("custom_scaleBorder_size", "WindowDialog");
         customMargin = decorate ? GetConstant("custom_margin", "Dialogs") : 0;
 
-        SetupCloseButton();
-        UpdateChildRects();
-        ApplyRectSettings();
-
         base._EnterTree();
     }
 
@@ -208,6 +204,14 @@ public class CustomDialog : Popup, ICustomPopup
     {
         switch (what)
         {
+            case NotificationReady:
+            {
+                SetupCloseButton();
+                UpdateChildRects();
+                ApplyRectSettings();
+                break;
+            }
+
             case NotificationResized:
             {
                 UpdateChildRects();
@@ -220,6 +224,7 @@ public class CustomDialog : Popup, ICustomPopup
                 if (Visible)
                 {
                     ApplyRectSettings();
+                    OnShown();
                 }
                 else
                 {
@@ -383,6 +388,10 @@ public class CustomDialog : Popup, ICustomPopup
     {
         // TODO: add proper close animation
         Hide();
+    }
+
+    protected virtual void OnShown()
+    {
     }
 
     /// <summary>
