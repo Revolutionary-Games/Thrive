@@ -36,6 +36,6 @@ public class NewMicrobeActionData : EditorCombinableActionData
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
-        throw new NotImplementedException();
+        throw new NotSupportedException();
     }
 }

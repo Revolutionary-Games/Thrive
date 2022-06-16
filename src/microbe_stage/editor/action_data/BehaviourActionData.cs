@@ -14,6 +14,11 @@ public class BehaviourActionData : EditorCombinableActionData
         Type = type;
     }
 
+    public override bool WantsMergeWith(CombinableActionData other)
+    {
+        return other is BehaviourActionData;
+    }
+
     protected override int CalculateCostInternal()
     {
         // TODO: should this be free?
@@ -45,5 +50,25 @@ public class BehaviourActionData : EditorCombinableActionData
             return new BehaviourActionData(behaviourChangeActionData.OldValue, NewValue, Type);
 
         return new BehaviourActionData(behaviourChangeActionData.NewValue, OldValue, Type);
+    }
+
+    protected override void MergeGuaranteed(CombinableActionData other)
+    {
+        var behaviourChangeActionData = (BehaviourActionData)other;
+
+        if (Math.Abs(OldValue - behaviourChangeActionData.NewValue) < MathUtils.EPSILON)
+        {
+            // Handle cancels out
+            if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON)
+            {
+                NewValue = behaviourChangeActionData.NewValue;
+                return;
+            }
+
+            OldValue = behaviourChangeActionData.OldValue;
+            return;
+        }
+
+        NewValue = behaviourChangeActionData.NewValue;
     }
 }
