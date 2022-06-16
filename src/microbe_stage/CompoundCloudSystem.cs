@@ -91,7 +91,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             clouds.Remove(cloud);
         }
 
-        // CompoundCloudPlanes have a negative render priority, so they are drawn beneath organneles.
+        // CompoundCloudPlanes have a negative render priority, so they are drawn beneath organelles
         int renderPriority = -1;
 
         // TODO: if the compound types have changed since we saved, that needs to be handled
