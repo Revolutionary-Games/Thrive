@@ -29,6 +29,7 @@ public class Jukebox : Node
     private float linearVolume = 1.0f;
 
     private bool paused = true;
+    private bool pausing;
 
     private string? playingCategory;
 
@@ -94,51 +95,73 @@ public class Jukebox : Node
     /// <summary>
     ///   Unpauses currently playing songs
     /// </summary>
-    public void Resume()
+    public void Resume(bool fade = false)
     {
-        if (!paused)
+        if (!paused && !pausing)
             return;
 
+        pausing = false;
         paused = false;
+
+        if (fade)
+        {
+            operations.Clear();
+            AddFadeIn();
+        }
+
         UpdateStreamsPauseStatus();
     }
 
     /// <summary>
     ///   Pause the currently playing songs
     /// </summary>
-    public void Pause()
+    public void Pause(bool fade = false)
     {
         if (paused)
             return;
 
-        paused = true;
-        UpdateStreamsPauseStatus();
+        if (!fade)
+        {
+            paused = true;
+            UpdateStreamsPauseStatus();
+        }
+        else if (fade && !pausing)
+        {
+            pausing = true;
+            operations.Clear();
+            AddFadeOut();
+            operations.Enqueue(new Operation(_ =>
+            {
+                pausing = false;
+                paused = true;
+                UpdateStreamsPauseStatus();
+                return true;
+            }));
+        }
     }
 
     /// <summary>
     ///   Stops the currently playing music (doesn't preserve positions for when Resume is called)
     /// </summary>
-    public void Stop()
+    public void Stop(bool fade = false)
     {
-        Pause();
-        StopStreams();
-        operations.Clear();
-    }
-
-    /// <summary>
-    ///   Smoothly stops the currently playing music with fade out (doesn't preserve positions for when
-    ///   Resume is called)
-    /// </summary>
-    public void SmoothStop()
-    {
-        operations.Clear();
-        AddFadeOut();
-        operations.Enqueue(new Operation(_ =>
+        if (!fade)
         {
             Pause();
             StopStreams();
-            return true;
-        }));
+            operations.Clear();
+        }
+        else
+        {
+            operations.Clear();
+            AddFadeOut();
+            operations.Enqueue(new Operation(_ =>
+            {
+                Pause();
+                StopStreams();
+                return true;
+            }));
+        }
     }
 
     public override void _Process(float delta)

@@ -12,6 +12,11 @@ public class RigidityActionData : EditorCombinableActionData
         PreviousRigidity = previousRigidity;
     }
 
+    public override bool WantsMergeWith(CombinableActionData other)
+    {
+        return other is RigidityActionData;
+    }
+
     protected override int CalculateCostInternal()
     {
         return (int)Math.Abs((NewRigidity - PreviousRigidity) * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO) *
@@ -44,5 +49,25 @@ public class RigidityActionData : EditorCombinableActionData
             return new RigidityActionData(NewRigidity, rigidityChangeActionData.PreviousRigidity);
 
         return new RigidityActionData(rigidityChangeActionData.NewRigidity, PreviousRigidity);
+    }
+
+    protected override void MergeGuaranteed(CombinableActionData other)
+    {
+        var rigidityChangeActionData = (RigidityActionData)other;
+
+        if (Math.Abs(PreviousRigidity - rigidityChangeActionData.NewRigidity) < MathUtils.EPSILON)
+        {
+            // Handle cancels out
+            if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON)
+            {
+                NewRigidity = rigidityChangeActionData.NewRigidity;
+                return;
+            }
+
+            PreviousRigidity = rigidityChangeActionData.PreviousRigidity;
+            return;
+        }
+
+        NewRigidity = rigidityChangeActionData.NewRigidity;
     }
 }

@@ -24,10 +24,10 @@ public abstract class Spawner
     public float MinSpawnRadiusSquared { get; set; }
 
     /// <summary>
-    ///   How much stuff spawns
+    ///   How often the SpawnSystem will call this spawner
     /// </summary>
-    /// <value>The spawn frequency.</value>
-    public int SpawnFrequency { get; set; }
+    /// <value>How often the SpawnSystem will call this spawner.</value>
+    public float Density { get; set; }
 
     /// <summary>
     ///   If this is queued to be destroyed the spawn system will remove this on next update
@@ -40,12 +40,6 @@ public abstract class Spawner
     /// </summary>
     /// <param name="worldNode">The parent node of spawned entities</param>
     /// <param name="location">Location the spawn system wants to spawn a thing at</param>
-    /// <param name="playerPosition">Player's position</param>
     /// <returns>An enumerator that on each next call spawns one thing</returns>
-    public abstract IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, Vector3 playerPosition);
-
-    public void SetFrequencyFromDensity(float spawnDensity)
-    {
-        SpawnFrequency = (int)(spawnDensity * SpawnRadiusSquared * 4);
-    }
+    public abstract IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location);
 }

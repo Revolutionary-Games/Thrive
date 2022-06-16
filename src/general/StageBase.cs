@@ -26,8 +26,7 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     private bool transitionFinished;
     protected Control hudRoot = null!;
 
-    // TODO: make this be saved (and preserve old save compatibility by creating this in on save loaded callback
-    // if null)
+    [JsonProperty]
     protected Random random = new();
 
     /// <summary>
@@ -229,13 +228,13 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
             wantsToSave = false;
         }
 
-        var metrics = PerformanceMetrics.Instance;
+        var debugOverlay = DebugOverlays.Instance;
 
-        if (metrics.Visible)
+        if (debugOverlay.PerformanceMetricsVisible)
         {
             var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP).Count();
             var childCount = rootOfDynamicallySpawned.GetChildCount();
-            metrics.ReportEntities(entities, childCount - entities);
+            debugOverlay.ReportEntities(entities, childCount - entities);
         }
     }
 

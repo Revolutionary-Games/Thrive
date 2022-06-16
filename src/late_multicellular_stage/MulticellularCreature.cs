@@ -26,7 +26,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonIgnore]
-    public Node EntityNode => this;
+    public Spatial EntityNode => this;
 
     public int DespawnRadiusSquared { get; set; }
 

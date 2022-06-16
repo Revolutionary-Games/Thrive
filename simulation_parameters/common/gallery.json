@@ -1,93 +1,298 @@
 {
-    "General": {
-        "artworks": [
-            {
-                "ResourcePath": "res://assets/textures/gui/planet.png"
+    "ConceptArt": {
+        "Name": "CONCEPT_ART",
+        "AssetCategories": {
+            "General": {
+                "Name": "GENERAL",
+                "Assets": [
+                    {
+                        "ResourcePath": "res://assets/textures/gui/planet.png"
+                    },
+                    {
+                        "Title": "Tribe Gang",
+                        "Artist": "Uniow",
+                        "ResourcePath": "res://assets/concept_art/tribe-gang.jpg"
+                    },
+                    {
+                        "ResourcePath": "res://assets/textures/gui/BG_Menu01.png"
+                    },
+                    {
+                        "ResourcePath": "res://assets/textures/gui/BG_Menu02.png"
+                    },
+                    {
+                        "ResourcePath": "res://assets/textures/gui/BG_Menu03.png"
+                    }
+                ]
             },
-            {
-                "Title": "Tribe Gang",
-                "Artist": "Uniow",
-                "ResourcePath": "res://assets/concept_art/tribe-gang.jpg"
+            "MicrobeStage": {
+                "Name": "CELLS",
+                "Assets": [
+                    {
+                        "ResourcePath": "res://assets/concept_art/cell.jpeg"
+                    },
+                    {
+                        "Title": "Cells",
+                        "Artist": "Uniow",
+                        "ResourcePath": "res://assets/concept_art/cells2.jpg"
+                    },
+                    {
+                        "TItle": "Even More Cells",
+                        "Artist": "Uniow",
+                        "ResourcePath": "res://assets/concept_art/even-more-cells.jpg"
+                    },
+                    {
+                        "Title": "Micro Nuggets",
+                        "Artist": "Uniow",
+                        "ResourcePath": "res://assets/concept_art/gameplay2.jpg"
+                    },
+                    {
+                        "Title": "Sea Floor",
+                        "Artist": "Uniow",
+                        "ResourcePath": "res://assets/concept_art/floor.jpg"
+                    },
+                    {
+                        "Title": "Floor Dance Party",
+                        "Artist": "Uniow",
+                        "ResourcePath": "res://assets/concept_art/floordanceparty.jpg"
+                    },
+                    {
+                        "Title": "Cell Gang",
+                        "Artist": "Uniow",
+                        "ResourcePath": "res://assets/concept_art/cell-gang-clean.jpg"
+                    }
+                ]
+            },
+            "MulticellularStage": {
+                "Name": "MULTICELLULAR",
+                "Assets": [
+                    {
+                        "ResourcePath": "res://assets/concept_art/cell.jpeg"
+                    }
+                ]
             }
-        ]
+        }
     },
-    "MicrobeStage": {
-        "artworks": [
-            {
-                "ResourcePath": "res://assets/concept_art/cell.jpeg"
-            },
-            {
-                "Title": "Cells",
-                "Artist": "Uniow",
-                "ResourcePath": "res://assets/concept_art/cells2.jpg"
-            },
-            {
-                "Artist": "Uniow",
-                "ResourcePath": "res://assets/concept_art/even-more-cells.jpg"
-            },
-            {
-                "Title": "Micro Nuggets",
-                "Artist": "Uniow",
-                "ResourcePath": "res://assets/concept_art/gameplay2.jpg"
-            },
-            {
-                "Title": "Sea Floor",
-                "Artist": "Uniow",
-                "ResourcePath": "res://assets/concept_art/floor.jpg"
-            },
-            {
-                "Title": "Floor Dance Party",
-                "Artist": "Uniow",
-                "ResourcePath": "res://assets/concept_art/floordanceparty.jpg"
-            },
-            {
-                "Title": "Cell Gang",
-                "Artist": "Uniow",
-                "ResourcePath": "res://assets/concept_art/cell-gang-clean.jpg"
+    "Models": {
+        "Name": "MODELS",
+        "AssetCategories": {
+            "MicrobeStage": {
+                "Name": "MICROBE_STAGE",
+                "Assets": [
+                    {
+                        "ResourcePath": "res://assets/models/Iceshard1.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/Iron3.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/Iron4.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/Iron5.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/IronRock1.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/IronRock2.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/BindingAgent.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Chemoplast.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Chemoreceptor.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Chloroplast.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Chromatophore.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Cilia.tscn",
+                        "Type": "ModelScene",
+                        "MeshNodePath": "Armature001/Skeleton2/Cube001"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Cytoplasm.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Flagellum.tscn",
+                        "Type": "ModelScene",
+                        "MeshNodePath": "Armature001/Skeleton/flagella"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Metabolosome.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Mitochondrion.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Nitrogenase.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Nucleus.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Oxytoxy.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/OxytoxyProteins.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Pilus.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Rusticyanin.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/SignalingAgent.tscn",
+                        "Type": "ModelScene"
+                    },
+                    {
+                        "ResourcePath": "res://assets/models/organelles/Vacuole.tscn",
+                        "Type": "ModelScene"
+                    }
+                ]
             }
-        ]
+        }
     },
-    "MicrobeEditor": {
-        "artworks": [
-            {
-                "ResourcePath": "res://assets/concept_art/cell.jpeg"
+    "Music": {
+        "Name": "MUSIC",
+        "AssetCategories": {
+            "All": {
+                "Name": "ALL",
+                "Assets": [
+                    {
+                        "ResourcePath": "res://assets/sounds/extinct2.ogg",
+                        "Type": "AudioPlayback"
+                    }
+                ]
             },
-            {
-                "Title": "Cells",
-                "Artist": "Uniow",
-                "ResourcePath": "res://assets/concept_art/cells2.jpg"
+            "Menu": {
+                "Name": "MENU",
+                "Assets": [
+                    {
+                        "ResourcePath": "res://assets/sounds/main-menu-theme-1.ogg",
+                        "Type": "AudioPlayback"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/main-menu-theme-2.ogg",
+                        "Type": "AudioPlayback"
+                    }
+                ]
             },
-            {
-                "Artist": "Uniow",
-                "ResourcePath": "res://assets/concept_art/even-more-cells.jpg"
+            "MicrobeStage": {
+                "Name": "MICROBE_STAGE",
+                "Assets": [
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-theme-1.ogg",
+                        "Type": "AudioPlayback"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-theme-3.ogg",
+                        "Type": "AudioPlayback"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-theme-4.ogg",
+                        "Type": "AudioPlayback"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-theme-5.ogg",
+                        "Type": "AudioPlayback"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-theme-6.ogg",
+                        "Type": "AudioPlayback"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-theme-7.ogg",
+                        "Type": "AudioPlayback"
+                    }
+                ]
             },
-            {
-                "Title": "Micro Nuggets",
-                "Artist": "Uniow",
-                "ResourcePath": "res://assets/concept_art/gameplay2.jpg"
+            "MicrobeEditor": {
+                "Name": "MICROBE_EDITOR",
+                "Assets": [
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-editor-theme-1.ogg",
+                        "Type": "AudioPlayback"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-editor-theme-2.ogg",
+                        "Type": "AudioPlayback"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-editor-theme-3.ogg",
+                        "Type": "AudioPlayback"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-editor-theme-4.ogg",
+                        "Type": "AudioPlayback"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/microbe-editor-theme-5.ogg",
+                        "Type": "AudioPlayback"
+                    }
+                ]
             },
-            {
-                "Title": "Sea Floor",
-                "Artist": "Uniow",
-                "ResourcePath": "res://assets/concept_art/floor.jpg"
+            "MulticellularStage": {
+                "Name": "MULTICELLULAR_STAGE",
+                "Assets": [
+                    {
+                        "ResourcePath": "res://assets/sounds/multicellular-theme-1.ogg",
+                        "Type": "AudioPlayback"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/multicellular-theme-2.ogg",
+                        "Type": "AudioPlayback"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/multicellular-theme-3.ogg",
+                        "Type": "AudioPlayback"
+                    }
+                ]
             },
-            {
-                "Title": "Floor Dance Party",
-                "Artist": "Uniow",
-                "ResourcePath": "res://assets/concept_art/floordanceparty.jpg"
-            },
-            {
-                "Title": "Cell Gang",
-                "Artist": "Uniow",
-                "ResourcePath": "res://assets/concept_art/cell-gang-clean.jpg"
+            "MulticellularEditor": {
+                "Name": "MULTICELLULAR_EDITOR",
+                "Assets": [
+                    {
+                        "ResourcePath": "res://assets/sounds/multicellular-editor-theme-1.ogg",
+                        "Type": "AudioPlayback"
+                    }
+                ]
             }
-        ]
-    },
-    "MulticellularStage": {
-        "artworks": [
-            {
-                "ResourcePath": "res://assets/concept_art/cell.jpeg"
-            }
-        ]
+        }
     }
 }

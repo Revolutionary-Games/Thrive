@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Text;
 using Godot;
 using Newtonsoft.Json;
 
@@ -417,19 +418,16 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         patchIron.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
             GetCompoundAmount(patch, iron.InternalName));
 
-        // Refresh species list
-        speciesListBox.ClearItems();
+        var label = speciesListBox.GetItem<CustomRichTextLabel>("SpeciesList");
+        var speciesList = new StringBuilder(100);
 
         foreach (var species in patch.SpeciesInPatch.Keys)
         {
-            var speciesLabel = new Label();
-            speciesLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
-            speciesLabel.Autowrap = true;
-            speciesLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("SPECIES_WITH_POPULATION"), species.FormattedName,
-                patch.GetSpeciesPopulation(species));
-            speciesListBox.AddItem(speciesLabel);
+            speciesList.AppendLine(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate(
+                "SPECIES_WITH_POPULATION"), species.FormattedNameBbCode, patch.GetSpeciesPopulation(species)));
         }
+
+        label.ExtendedBbcode = speciesList.ToString();
 
         UpdateConditionDifferencesBetweenPatches(patch, Editor.CurrentPatch);
     }

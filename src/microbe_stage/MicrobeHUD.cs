@@ -320,8 +320,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     {
         if (!Paused)
         {
-            // The button press sound will play along with this
-            PauseButtonPressed(!Paused);
+            bottomLeftBar.Paused = true;
         }
         else
         {
@@ -336,8 +335,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         // The game should have been paused already but just in case
         if (Paused)
         {
-            // The button press sound will play along with this
-            PauseButtonPressed(!Paused);
+            bottomLeftBar.Paused = false;
         }
     }
 

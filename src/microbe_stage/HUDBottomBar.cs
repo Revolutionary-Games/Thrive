@@ -6,21 +6,16 @@ public class HUDBottomBar : HBoxContainer
     public NodePath PauseButtonPath = null!;
 
     [Export]
-    public NodePath ResumeButtonPath = null!;
-
-    [Export]
     public NodePath CompoundsButtonPath = null!;
 
     [Export]
     public NodePath ProcessPanelButtonPath = null!;
 
-    private TextureButton? pauseButton;
-    private TextureButton resumeButton = null!;
+    private PlayButton pauseButton = null!;
 
     private TextureButton? compoundsButton;
     private TextureButton? processPanelButton;
 
-    private bool paused;
     private bool compoundsPressed = true;
     private bool processPanelPressed;
 
@@ -44,11 +39,10 @@ public class HUDBottomBar : HBoxContainer
 
     public bool Paused
     {
-        get => paused;
+        get => pauseButton.Paused;
         set
         {
-            paused = value;
-            UpdatePauseButtonState();
+            pauseButton.Paused = value;
         }
     }
 
@@ -74,13 +68,11 @@ public class HUDBottomBar : HBoxContainer
 
     public override void _Ready()
     {
-        pauseButton = GetNode<TextureButton>(PauseButtonPath);
-        resumeButton = GetNode<TextureButton>(ResumeButtonPath);
+        pauseButton = GetNode<PlayButton>(PauseButtonPath);
 
         compoundsButton = GetNode<TextureButton>(CompoundsButtonPath);
         processPanelButton = GetNode<TextureButton>(ProcessPanelButtonPath);
 
-        UpdatePauseButtonState();
         UpdateCompoundButton();
         UpdateProcessPanelButton();
     }
@@ -123,26 +115,9 @@ public class HUDBottomBar : HBoxContainer
         EmitSignal(nameof(OnHelpPressed));
     }
 
-    private void UpdatePauseButtonState()
+    private void PausePressed(bool paused)
     {
-        if (pauseButton == null)
-            return;
-
-        if (Paused)
-        {
-            resumeButton.Visible = true;
-            resumeButton.Pressed = true;
-
-            pauseButton.Visible = false;
-            pauseButton.Pressed = false;
-        }
-        else
-        {
-            resumeButton.Visible = false;
-            resumeButton.Pressed = false;
-
-            pauseButton.Visible = true;
-        }
+        EmitSignal(nameof(OnPausePressed), paused);
     }
 
     private void UpdateCompoundButton()

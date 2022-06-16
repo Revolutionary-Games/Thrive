@@ -443,6 +443,11 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         stage = containedInStage;
     }
 
+    public void SendEditorButtonToTutorial(TutorialState tutorialState)
+    {
+        tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
+    }
+
     public override void _Process(float delta)
     {
         if (stage == null)
@@ -764,7 +769,11 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             throw new InvalidOperationException("Stage not setup for HUD");
 
         if (stage.IsLoadedFromSave && !returningFromEditor)
+        {
+            // TODO: make it so that the below sequence can be added anyway to not have to have this special logic here
+            stage.OnFinishTransitioning();
             return;
+        }
 
         // Fade out for that smooth satisfying transition
         stage.TransitionFinished = false;

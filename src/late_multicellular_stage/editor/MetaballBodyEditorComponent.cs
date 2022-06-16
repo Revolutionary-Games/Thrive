@@ -259,12 +259,12 @@ public partial class MetaballBodyEditorComponent :
         if (!Visible)
             return;
 
-        var metrics = PerformanceMetrics.Instance;
+        var debugOverlays = DebugOverlays.Instance;
 
-        if (metrics.Visible)
+        if (debugOverlays.PerformanceMetricsVisible)
         {
             var roughCount = Editor.RootOfDynamicallySpawned.GetChildCount();
-            metrics.ReportEntities(roughCount, 0);
+            debugOverlays.ReportEntities(roughCount, 0);
         }
 
         if (metaballDisplayDataDirty)

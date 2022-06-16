@@ -43,7 +43,7 @@ public class CustomRichTextLabel : RichTextLabel
     ///     NOTE: including "thrive" namespace in a tag is a must, otherwise the custom parser wouldn't parse it.
     ///   </para>
     /// </remarks>
-    [Export]
+    [Export(PropertyHint.MultilineText)]
     public string? ExtendedBbcode
     {
         get => extendedBbcode;

@@ -17,6 +17,7 @@ public class MicrobeStage : StageBase<Microbe>
     public NodePath GuidanceLinePath = null!;
 
     private Compound glucose = null!;
+    private Compound phosphate = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -94,6 +95,7 @@ public class MicrobeStage : StageBase<Microbe>
         ResolveNodeReferences();
 
         glucose = SimulationParameters.Instance.GetCompound("glucose");
+        phosphate = SimulationParameters.Instance.GetCompound("phosphates");
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
@@ -493,8 +495,15 @@ public class MicrobeStage : StageBase<Microbe>
             spawner.Init();
 
         tutorialGUI.EventReceiver = TutorialState;
+        HUD.SendEditorButtonToTutorial(TutorialState);
 
         Clouds.Init(FluidSystem);
+
+        // If this is a new game, place some phosphates as a learning tool
+        if (!IsLoadedFromSave)
+        {
+            Clouds.AddCloud(phosphate, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+        }
 
         patchManager.CurrentGame = CurrentGame;
 
@@ -525,12 +534,16 @@ public class MicrobeStage : StageBase<Microbe>
 
         Camera.ObjectToFollow = Player;
 
+        spawner.DespawnAll();
+
         if (spawnedPlayer)
         {
             // Random location on respawn
             Player.Translation = new Vector3(
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
+
+            spawner.ClearSpawnCoordinates();
         }
 
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerSpawned, new MicrobeEventArgs(Player), this);
