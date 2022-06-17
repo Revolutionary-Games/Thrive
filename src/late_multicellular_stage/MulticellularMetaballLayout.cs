@@ -15,8 +15,11 @@ public class MulticellularMetaballLayout : MetaballLayout<MulticellularMetaball>
         {
             center += metaball.Position;
 
-            if (metaball.Position.y < lowestCoordinate)
-                lowestCoordinate = metaball.Position.y;
+            // Make the bottom edge of the lowest metaball touch the "ground"
+            var bottom = metaball.Position.y - metaball.Size * 0.5f;
+
+            if (bottom < lowestCoordinate)
+                lowestCoordinate = bottom;
         }
 
         var adjustment = center / Count;
