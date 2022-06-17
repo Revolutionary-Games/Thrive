@@ -398,11 +398,24 @@ public class GameWorld : ISaveLoadable
 
             // For now just pick the closest (and in case of ties, the closer to origin) metaball as the parent
             // Also avoid accidentally making short parent loops
-            var parent = metaballs.Where(m => m != metaball && m.Parent != metaball)
-                .OrderBy(m => m.Position.DistanceSquaredTo(metaball.Position)).ThenBy(m => m.Position.LengthSquared())
-                .First();
+            var potentialParents = metaballs.Where(m => m != metaball && m.Parent != metaball)
+                .OrderBy(m => m.Position.DistanceSquaredTo(metaball.Position)).ThenBy(m => m.Position.LengthSquared());
 
-            metaball.Parent = parent;
+            bool foundSuitableParent = false;
+
+            foreach (var parentCandidate in potentialParents)
+            {
+                // Prevent causing parent loops
+                if (parentCandidate.HasAncestor(metaball))
+                    continue;
+
+                metaball.Parent = parentCandidate;
+                foundSuitableParent = true;
+                break;
+            }
+
+            if (!foundSuitableParent)
+                throw new Exception("Could not find a suitable parent for metaball");
         }
 
         // Fix root to be at 0,0

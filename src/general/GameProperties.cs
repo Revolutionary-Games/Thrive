@@ -174,43 +174,60 @@ public class GameProperties
 
         var type = species.CellTypes.First();
 
-        int onEachRow = 3;
+        int columns = 3;
 
-        var rows = Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC / onEachRow;
+        var inEachColumn = Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC / columns;
 
-        species.Cells.Add(new CellTemplate(type, new Hex(0, 0), 0));
+        var startHex = new Hex(0, 0);
+        var columnCellOffset = new Hex(0, -1);
 
-        for (int i = 0; i < rows; ++i)
+        foreach (var columnDirection in new int[] { 0, 1, -1 })
         {
-            int r;
+            var columnStart = startHex + new Hex(columnDirection, 0);
 
-            if (i % 2 == 0)
+            bool placed = false;
+
+            // Find where we can place the first cell in this column
+            while (!placed)
             {
-                r = i / 2;
-            }
-            else
-            {
-                r = -(i / 2) - 1;
-            }
+                bool breakInnerLoop = false;
 
-            for (int q = -1; q <= 1; ++q)
-            {
-                if (q == 0 && r == 0)
-                    continue;
-
-                var direction = new Vector2(q, r).Normalized();
-
-                for (int distance = 1; distance < 1000; ++distance)
+                while (!placed)
                 {
-                    var finalPos = direction * distance;
-                    var template = new CellTemplate(type,
-                        new Hex(Mathf.RoundToInt(finalPos.x), Mathf.RoundToInt(finalPos.y)), 0);
-
+                    var template = new CellTemplate(type, columnStart, 0);
                     if (species.Cells.CanPlace(template))
                     {
                         species.Cells.Add(template);
+                        placed = true;
                         break;
                     }
+
+                    columnStart += new Hex(columnDirection, 0);
+
+                    if (breakInnerLoop)
+                        break;
+
+                    breakInnerLoop = true;
+                }
+
+                if (placed)
+                    break;
+
+                columnStart -= new Hex(0, -1);
+            }
+
+            int columnCellsLeft = inEachColumn - 1;
+
+            for (int distance = 0; distance < 10000; ++distance)
+            {
+                var template = new CellTemplate(type, columnStart + columnCellOffset * distance, 0);
+                if (species.Cells.CanPlace(template))
+                {
+                    species.Cells.Add(template);
+                    --columnCellsLeft;
+
+                    if (columnCellsLeft < 1)
+                        break;
                 }
             }
         }
@@ -233,5 +250,7 @@ public class GameProperties
                 }
             }
         }
+
+        species.RepositionToOrigin();
     }
 }
