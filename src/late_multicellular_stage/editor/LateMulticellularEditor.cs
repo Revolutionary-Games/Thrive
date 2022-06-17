@@ -117,7 +117,10 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         base.SetEditorObjectVisibility(shown);
 
         cellEditorTab.SetEditorWorldGuideObjectVisibility(shown && selectedEditorTab == EditorTab.CellTypeEditor);
+        cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(shown && selectedEditorTab == EditorTab.CellTypeEditor);
+
         bodyPlanEditorTab.SetEditorWorldGuideObjectVisibility(shown && selectedEditorTab == EditorTab.CellEditor);
+        bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(shown && selectedEditorTab == EditorTab.CellEditor);
     }
 
     public void OnCurrentPatchUpdated(Patch patch)

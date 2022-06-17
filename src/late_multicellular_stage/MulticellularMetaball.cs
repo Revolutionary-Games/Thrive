@@ -58,4 +58,38 @@ public class MulticellularMetaball : Metaball
 
         return clone;
     }
+
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj))
+            return false;
+        if (ReferenceEquals(this, obj))
+            return true;
+        if (obj.GetType() != GetType())
+            return false;
+
+        return Equals((MulticellularMetaball)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return CellType.GetHashCode() ^ base.GetHashCode();
+    }
+
+    protected bool Equals(MulticellularMetaball other)
+    {
+        if (!ReferenceEquals(Parent, other.Parent))
+        {
+            if (ReferenceEquals(Parent, null) && !ReferenceEquals(other.Parent, null))
+                return false;
+
+            if (!ReferenceEquals(Parent, null) && ReferenceEquals(other.Parent, null))
+                return false;
+
+            if (!Parent!.Equals(other.Parent))
+                return false;
+        }
+
+        return CellType.Equals(other.CellType) && Position == other.Position;
+    }
 }

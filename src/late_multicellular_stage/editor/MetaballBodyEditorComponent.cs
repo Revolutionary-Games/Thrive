@@ -90,11 +90,12 @@ public partial class MetaballBodyEditorComponent :
 
     private PackedScene metaballDisplayerScene = null!;
 
+    // TODO: add way to control the size of the placed metaball
     [JsonProperty]
-    private string newName = "unset";
+    private float metaballSize = 1.0f;
 
     [JsonProperty]
-    private MetaballLayout<MulticellularMetaball> editedMetaballs = null!;
+    private string newName = "unset";
 
     /// <summary>
     ///   True when visuals of already placed things need to be updated
@@ -142,33 +143,9 @@ public partial class MetaballBodyEditorComponent :
         base.Init(owningEditor, fresh);
         behaviourEditor.Init(owningEditor, fresh);
 
-        var newLayout = new MetaballLayout<MulticellularMetaball>(OnMetaballAdded, OnMetaballRemoved);
-
-        if (fresh)
+        if (!fresh)
         {
-            editedMetaballs = newLayout;
-        }
-        else
-        {
-            // We assume that the loaded save layout did not have anything weird set for the callbacks as we
-            // do this rather than use SaveApplyHelpers
-            foreach (var editedMicrobeOrganelle in editedMetaballs)
-            {
-                newLayout.Add(editedMicrobeOrganelle);
-            }
-
-            editedMetaballs = newLayout;
-
-            // TODO: check are these checks needed
-            /*if (Editor.EditedCellProperties != null)
-            {*/
             UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
-            UpdateArrow(false);
-            /*}
-            else
-            {
-                GD.Print("Loaded metaball editor with no cell to edit set");
-            }*/
         }
 
         UpdateCancelButtonVisibility();
@@ -276,9 +253,7 @@ public partial class MetaballBodyEditorComponent :
         // Show the ball that is about to be placed
         if (activeActionName != null && Editor.ShowHover)
         {
-            throw new NotImplementedException();
-
-            /*GetMouseHex(out int q, out int r);
+            GetMouseMetaball(out var position, out var parentMetaball);
 
             var effectiveSymmetry = Symmetry;
 
@@ -287,24 +262,19 @@ public partial class MetaballBodyEditorComponent :
             if (MovingPlacedMetaball == null)
             {
                 // Can place stuff at all?
-                // TODO: should placementRotation be used here in some way?
-                isPlacementProbablyValid = IsValidPlacement(
-                    new HexWithData<CellTemplate>(new CellTemplate(cellType))
-                    {
-                        Position = new Hex(q, r),
-                    });
+                isPlacementProbablyValid = IsValidPlacement(position, parentMetaball);
             }
             else
             {
-                isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), 0, MovingPlacedMetaball);
+                isPlacementProbablyValid = IsMoveTargetValid(position, parentMetaball, MovingPlacedMetaball);
 
                 if (!Settings.Instance.MoveOrganellesWithSymmetry)
                     effectiveSymmetry = HexEditorSymmetry.None;
             }
 
-            RunWithSymmetry(q, r,
-                (finalQ, finalR, rotation) => RenderHighlightedMetaball(finalQ, finalR, rotation, cellType),
-                effectiveSymmetry);*/
+            RunWithSymmetry(position, parentMetaball,
+                (finalPosition, finalParent) => RenderHighlightedMetaball(finalPosition, finalParent, cellType),
+                effectiveSymmetry);
         }
     }
 
@@ -346,11 +316,12 @@ public partial class MetaballBodyEditorComponent :
             return true;
         }
 
-        throw new NotImplementedException();
-
-        GetMouseHex(out int q, out int r);
+        GetMouseMetaball(out _, out var metaball);
 
         var metaballs = new List<MulticellularMetaball>();
+
+        if (metaball != null)
+            metaballs.Add(metaball);
 
         /*
         RunWithSymmetry(q, r, (symmetryQ, symmetryR, _) =>
@@ -420,6 +391,11 @@ public partial class MetaballBodyEditorComponent :
             GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularMetaballDisplayer.tscn");
     }
 
+    protected override MetaballLayout<MulticellularMetaball> CreateLayout()
+    {
+        return new MetaballLayout<MulticellularMetaball>(OnMetaballAdded, OnMetaballRemoved);
+    }
+
     protected override IMetaballDisplayer<MulticellularMetaball> CreateMetaballDisplayer()
     {
         var displayer = (MulticellularMetaballDisplayer)metaballDisplayerScene.Instance();
@@ -432,7 +408,7 @@ public partial class MetaballBodyEditorComponent :
         AddMetaball(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active")));
     }
 
-    protected override void PerformMove(int q, int r)
+    protected override void PerformMove(Vector3 position, MulticellularMetaball parent)
     {
         throw new NotImplementedException();
         /*if (!MoveCell(MovingPlacedMetaball!, MovingPlacedMetaball!.Position, new Hex(q, r), MovingPlacedMetaball.Data!.Orientation,
@@ -442,7 +418,8 @@ public partial class MetaballBodyEditorComponent :
         }*/
     }
 
-    protected override bool IsMoveTargetValid(Hex position, int rotation, MulticellularMetaball cell)
+    protected override bool IsMoveTargetValid(Vector3 position, MulticellularMetaball? parent,
+        MulticellularMetaball cell)
     {
         throw new NotImplementedException();
 
@@ -461,7 +438,8 @@ public partial class MetaballBodyEditorComponent :
         editedMetaballs.Remove(MovingPlacedMetaball!);
     }
 
-    protected override EditorAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted)
+    protected override EditorAction? TryCreateMetaballRemoveAction(MulticellularMetaball metaball,
+        ref int alreadyDeleted)
     {
         throw new NotImplementedException();
         /*
@@ -523,65 +501,81 @@ public partial class MetaballBodyEditorComponent :
         metaballPopupMenu.EnableMoveOption = editedMetaballs.Count > 1;
     }
 
-    private void RenderHighlightedMetaball(int q, int r, int rotation, CellType cellToPlace)
+    private Vector3 FinalMetaballPosition(Vector3 position, MulticellularMetaball parent, float? size = null)
+    {
+        size ??= metaballSize;
+        var direction = (parent.Position - position).Normalized();
+
+        // TODO: figure out why this is broken
+        // return position + direction * (size.Value * 0.5f);
+        return position;
+    }
+
+    private void RenderHighlightedMetaball(Vector3 position, MulticellularMetaball? parent, CellType cellToPlace)
     {
         if (MovingPlacedMetaball == null && activeActionName == null)
             return;
 
-        throw new NotImplementedException();
-
-        /*// For now a single hex represents entire cells
-        RenderHoveredHex(q, r, new[] { new Hex(0, 0) }, isPlacementProbablyValid,
-            out bool hadDuplicate);
-
-        bool showModel = !hadDuplicate;
-
-        if (showModel)
+        var metaball = new MulticellularMetaball(cellToPlace)
         {
-            var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
+            Parent = parent,
+            Position = parent != null ? FinalMetaballPosition(position, parent) : position,
+            Size = metaballSize,
+        };
 
-            var modelHolder = hoverModels[usedHoverModel++];
+        if (hoverMetaballData.Count <= usedHoverMetaballIndex)
+        {
+            hoverMetaballData.Add(metaball);
+            hoverMetaballsChanged = true;
+        }
+        else
+        {
+            var existing = hoverMetaballData[usedHoverMetaballIndex];
 
-            
-            ShowCellTypeInModelHolder(modelHolder, cellToPlace, cartesianPosition, rotation);
+            if (!existing.Equals(metaball))
+            {
+                // TODO: should we reuse object instances when possible?
+                hoverMetaballData[usedHoverMetaballIndex] = metaball;
+                hoverMetaballsChanged = true;
+            }
+        }
 
-            modelHolder.Visible = true;
-        }*/
+        ++usedHoverMetaballIndex;
     }
 
     /// <summary>
     ///   Places a cell of the specified type under the cursor and also applies symmetry to place multiple
     /// </summary>
-    /// <returns>True when at least one hex got placed</returns>
+    /// <returns>True when at least one metaball got placed</returns>
     private bool AddMetaball(CellType cellType)
     {
-        GetMouseHex(out int q, out int r);
+        GetMouseMetaball(out var position, out var parentMetaball);
 
         var placementActions = new List<EditorAction>();
 
         // For symmetrically placed cells keep track of where we already placed something
-        var usedHexes = new HashSet<Hex>();
+        var usedPositions = new HashSet<Vector3>();
 
-        RunWithSymmetry(q, r,
-            (attemptQ, attemptR, rotation) =>
+        RunWithSymmetry(position, parentMetaball,
+            (symmetryPosition, symmetryParent) =>
             {
-                var hex = new Hex(attemptQ, attemptR);
+                if (symmetryParent == null)
+                    return;
 
-                if (usedHexes.Contains(hex))
+                if (usedPositions.Contains(symmetryPosition))
                 {
                     // Duplicate with already placed
                     return;
                 }
 
-                throw new NotImplementedException();
-                /*var placed = CreatePlaceActionIfPossible(cellType, attemptQ, attemptR, rotation);
+                var placed = CreatePlaceActionIfPossible(cellType, symmetryPosition, metaballSize, symmetryParent);
 
                 if (placed != null)
                 {
                     placementActions.Add(placed);
 
-                    usedHexes.Add(hex);
-                }*/
+                    usedPositions.Add(symmetryPosition);
+                }
             });
 
         if (placementActions.Count < 1)
@@ -600,7 +594,7 @@ public partial class MetaballBodyEditorComponent :
     {
         var metaball = new MulticellularMetaball(cellType)
         {
-            Position = position,
+            Position = FinalMetaballPosition(position, parent, size),
             Parent = parent,
             Size = size,
         };
@@ -617,9 +611,14 @@ public partial class MetaballBodyEditorComponent :
 
     private bool IsValidPlacement(MulticellularMetaball metaball)
     {
+        return IsValidPlacement(metaball.Position, metaball.Parent);
+    }
+
+    private bool IsValidPlacement(Vector3 position, Metaball? parent)
+    {
         // TODO: in the future we might want to prevent metaballs from overlapping too much, for now just check it has
         // a parent
-        return metaball.Parent != null;
+        return parent != null;
     }
 
     private EditorAction CreateAddCellAction(MulticellularMetaball metaball, MulticellularMetaball parent)
@@ -740,7 +739,7 @@ public partial class MetaballBodyEditorComponent :
         /*int alreadyDeleted = 0;
         var action =
             new CombinedEditorAction(metaballPopupMenu.SelectedMetaballs
-                .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull());
+                .Select(o => TryCreateMetaballRemoveAction(o.Position, ref alreadyDeleted)).WhereNotNull());
         EnqueueAction(action);*/
     }
 

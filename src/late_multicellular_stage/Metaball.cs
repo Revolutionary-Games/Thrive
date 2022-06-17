@@ -5,7 +5,11 @@ using Newtonsoft.Json;
 public abstract class Metaball
 {
     public Vector3 Position { get; set; }
-    public float Size { get; set; }
+
+    /// <summary>
+    ///   The diameter of the metaball
+    /// </summary>
+    public float Size { get; set; } = 1.0f;
 
     /// <summary>
     ///   For animation and convolution surfaces we need to know the structure of metaballs
@@ -36,5 +40,21 @@ public abstract class Metaball
             return 0;
 
         return 1 + Parent.CalculateTreeDepth();
+    }
+
+    /// <summary>
+    ///   Checks the parent tree if the value is an ancestor of this
+    /// </summary>
+    /// <param name="potentialAncestor">The metaball to look for</param>
+    /// <returns>True if the given metaball is this metaball's ancestor</returns>
+    public bool HasAncestor(Metaball potentialAncestor)
+    {
+        if (Parent == null)
+            return false;
+
+        if (Parent == potentialAncestor)
+            return true;
+
+        return Parent.HasAncestor(potentialAncestor);
     }
 }

@@ -47,6 +47,9 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     /// </summary>
     protected bool isPlacementProbablyValid;
 
+    [JsonProperty]
+    protected MetaballLayout<TMetaball> editedMetaballs = null!;
+
     /// <summary>
     ///   This is used to keep track of used hover metaballs
     /// </summary>
@@ -61,6 +64,15 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
 
     private const float DefaultHoverAlpha = 0.7f;
     private const float CannotPlaceHoverAlpha = 0.7f;
+
+    private readonly List<Plane> cursorHitWorldPlanes = new()
+    {
+        new Plane(new Vector3(0, 0, -1), 0.0f),
+        new Plane(new Vector3(1, 0, 0), 0.0f),
+        new Plane(new Vector3(0, 0, 1), 0.0f),
+        new Plane(new Vector3(-1, 0, 0), 0.0f),
+        new Plane(new Vector3(0, 1, 0), 0.0f),
+    };
 
     private CustomConfirmationDialog islandPopup = null!;
 
@@ -164,9 +176,33 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
                 "This editor component was loaded from a save and is not fully functional");
         }
 
+        var newLayout = CreateLayout();
+
         if (fresh)
         {
             ResetSymmetryButton();
+            editedMetaballs = newLayout;
+        }
+        else
+        {
+            // We assume that the loaded save layout did not have anything weird set for the callbacks as we
+            // do this rather than use SaveApplyHelpers
+            foreach (var editedMicrobeOrganelle in editedMetaballs)
+            {
+                newLayout.Add(editedMicrobeOrganelle);
+            }
+
+            editedMetaballs = newLayout;
+
+            // TODO: check are these checks needed
+            /*if (Editor.EditedCellProperties != null)
+            {*/
+            UpdateArrow(false);
+            /*}
+            else
+            {
+                GD.Print("Loaded metaball editor with no cell to edit set");
+            }*/
         }
 
         UpdateSymmetryIcon();
@@ -218,12 +254,12 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         if (!Visible)
             return false;
 
-        throw new NotImplementedException();
-
         if (MovingPlacedMetaball != null)
         {
-            GetMouseHex(out int q, out int r);
-            PerformMove(q, r);
+            GetMouseMetaball(out var position, out var parent);
+
+            if (parent != null)
+                PerformMove(position, parent);
         }
         else
         {
@@ -278,7 +314,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         throw new NotImplementedException();
 
         /*
-        GetMouseHex(out int q, out int r);
+        GetMouseMetaball(out int q, out int r);
 
         var hex = GetHexAt(new Hex(q, r));
 
@@ -318,14 +354,17 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         throw new NotImplementedException();
     }
 
-    public void RemoveHex(Hex hex)
+    public void RemoveAtPosition(Vector3 basePosition, TMetaball? baseMetaball)
     {
         var actions = new List<TAction>();
         int alreadyDeleted = 0;
 
-        RunWithSymmetry(hex.Q, hex.R, (q, r, _) =>
+        RunWithSymmetry(basePosition, baseMetaball, (_, metaball) =>
         {
-            var removed = TryCreateRemoveHexAtAction(new Hex(q, r), ref alreadyDeleted);
+            if (metaball == null)
+                return;
+
+            var removed = TryCreateMetaballRemoveAction(metaball, ref alreadyDeleted);
 
             if (removed != null)
                 actions.Add(removed);
@@ -348,7 +387,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         throw new NotImplementedException();
 
         /*
-        GetMouseHex(out int q, out int r);
+        GetMouseMetaball(out int q, out int r);
 
         Hex mouseHex = new Hex(q, r);
 
@@ -357,7 +396,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         if (hex == null)
             return;
 
-        RemoveHex(mouseHex);
+        RemoveAtPosition(mouseHex);
         */
     }
 
@@ -389,10 +428,15 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
             throw new InvalidOperationException($"{GetType().Name} not initialized");
 
         // TODO: should we display the hover metaballs setup on the previous frame here?
+        hoverMetaballsChanged = true;
         if (hoverMetaballsChanged)
         {
             hoverMetaballDisplayer.OverrideColourAlpha =
                 isPlacementProbablyValid ? DefaultHoverAlpha : CannotPlaceHoverAlpha;
+
+            // Remove excess hover metaball data
+            while (hoverMetaballData.Count > usedHoverMetaballIndex)
+                hoverMetaballData.RemoveAt(hoverMetaballData.Count - 1);
 
             hoverMetaballDisplayer.DisplayFromList(hoverMetaballData);
 
@@ -441,6 +485,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         }
     }
 
+    protected abstract MetaballLayout<TMetaball> CreateLayout();
     protected abstract IMetaballDisplayer<TMetaball> CreateMetaballDisplayer();
 
     protected virtual void LoadMetaballDisplayers()
@@ -541,33 +586,79 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     }
 
     /// <summary>
-    ///   Returns the hex position the mouse is over
+    ///   Returns the world position the mouse is pointing at (and if any) the hit metaball
     /// </summary>
-    protected void GetMouseHex(out int q, out int r)
+    protected void GetMouseMetaball(out Vector3 position, out TMetaball? metaball, float maxIntersectDistance = 1000)
     {
-        // TODO: need to change to a ray cast from the camera
-        throw new NotImplementedException();
+        var viewPort = GetViewport();
+
+        if (viewPort == null)
+            throw new InvalidOperationException("No viewport");
+
+        if (camera == null)
+            throw new InvalidOperationException("No camera");
+
+        var mousePos = viewPort.GetMousePosition();
+
+        var rayOrigin = camera.ProjectRayOrigin(mousePos);
+        var rayNormal = camera.ProjectRayNormal(mousePos);
+        var rayEnd = rayOrigin + rayNormal * maxIntersectDistance;
+
+        foreach (var testedMetaball in editedMetaballs)
+        {
+            // TODO: check if the math is faster if we roll our custom sphere intersection rather than call into native
+            // Godot code here
+            var potentialIntersection = Geometry.SegmentIntersectsSphere(rayOrigin, rayEnd, testedMetaball.Position,
+                testedMetaball.Size * 0.5f);
+
+            if (potentialIntersection.Length < 1)
+                continue;
+
+            metaball = testedMetaball;
+            position = potentialIntersection[0];
+            return;
+        }
+
+        // If the ray didn't hit any metaball, hit some helper planes
+        metaball = null;
+
+        foreach (var plane in cursorHitWorldPlanes)
+        {
+            var intersection = plane.IntersectRay(rayOrigin, rayNormal);
+
+            if (intersection != null)
+            {
+                position = intersection.Value;
+                return;
+            }
+        }
+
+        GD.PrintErr("No mouse ray intersection with anything");
+        position = new Vector3(0, 0, 0);
     }
 
     /// <summary>
     ///   Runs given callback for all symmetry positions
     /// </summary>
-    /// <param name="q">The base q</param>
-    /// <param name="r">The base r value of the coordinate</param>
+    /// <param name="position">The base position</param>
+    /// <param name="parent">The base parent</param>
     /// <param name="callback">The callback that is called based on symmetry, parameters are: q, r, rotation</param>
     /// <param name="overrideSymmetry">If set, overrides the current symmetry</param>
-    protected void RunWithSymmetry(int q, int r, Action<int, int, int> callback,
+    /// <remarks>
+    ///   <para>
+    ///     TODO: this is not implemented currently and just returns the given primary position
+    ///   </para>
+    /// </remarks>
+    protected void RunWithSymmetry(Vector3 position, TMetaball? parent, Action<Vector3, TMetaball?> callback,
         HexEditorSymmetry? overrideSymmetry = null)
     {
-        throw new NotImplementedException();
-
         overrideSymmetry ??= Symmetry;
 
         switch (overrideSymmetry)
         {
             case HexEditorSymmetry.None:
             {
-                callback(q, r, 0);
+                callback(position, parent);
                 break;
             }
 
@@ -636,15 +727,15 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     /// </summary>
     /// <param name="position">Position to check</param>
     /// <param name="rotation">
-    ///   The rotation to check for the hex (only makes sense when placing a group of hexes)
+    ///     The rotation to check for the hex (only makes sense when placing a group of hexes)
     /// </param>
     /// <param name="hex">The move data to try to move to the position</param>
     /// <returns>True if valid</returns>
-    protected abstract bool IsMoveTargetValid(Hex position, int rotation, TMetaball hex);
+    protected abstract bool IsMoveTargetValid(Vector3 position, MulticellularMetaball? rotation, TMetaball hex);
 
     protected abstract void OnMoveActionStarted();
-    protected abstract void PerformMove(int q, int r);
-    protected abstract TAction? TryCreateRemoveHexAtAction(Hex location, ref int alreadyDeleted);
+    protected abstract void PerformMove(Vector3 position, TMetaball parent);
+    protected abstract TAction? TryCreateMetaballRemoveAction(TMetaball metaball, ref int alreadyDeleted);
 
     protected abstract float CalculateEditorArrowZPosition();
 
