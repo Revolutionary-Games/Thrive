@@ -46,7 +46,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     [AssignOnlyChildItemsOnDeserialize]
     private CellEditorComponent cellEditorTab = null!;
 
-    private Camera cellEditorCamera = null!;
+    private MicrobeCamera cellEditorCamera = null!;
 
     private Camera body3DEditorCamera = null!;
 
@@ -170,7 +170,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         cellEditorTab = GetNode<CellEditorComponent>(CellEditorTabPath);
         noCellTypeSelected = GetNode<Control>(NoCellTypeSelectedPath);
 
-        cellEditorCamera = GetNode<Camera>(CellEditorCameraPath);
+        cellEditorCamera = GetNode<MicrobeCamera>(CellEditorCameraPath);
         body3DEditorCamera = GetNode<Camera>(Body3DEditorCameraPath);
     }
 
@@ -339,7 +339,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 CheckAndApplyCellTypeEdit();
 
                 // Set the right active camera
-                cellEditorCamera.Current = false;
+                cellEditorCamera.SetCustomCurrentStatus(false);
                 body3DEditorCamera.Current = true;
 
                 break;
@@ -364,8 +364,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                     cellEditorTab.UpdateCamera();
 
                     // Set the right active camera
-                    cellEditorCamera.Current = false;
-                    body3DEditorCamera.Current = true;
+                    body3DEditorCamera.Current = false;
+                    cellEditorCamera.SetCustomCurrentStatus(true);
                 }
 
                 break;
