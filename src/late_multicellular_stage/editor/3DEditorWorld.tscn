@@ -23,8 +23,14 @@ MinDistance = 1.1
 MaxDistance = 100.0
 SidePresetViewDistances = 15.0
 UpDownMoveSpeed = 2.0
-ViewDistance = 8.0
-DefaultViewDistance = 10.0
+ZoomSpeed = 0.3
+MouseRotateMultiplier = 0.7
+XRotation = -0.658
+YRotation = 3.142
+DefaultXRotation = -0.658
+DefaultYRotation = 3.142
+ViewDistance = 12.0
+DefaultViewDistance = 12.0
 
 [node name="CameraRotationCenter" type="Spatial" parent="."]
 __meta__ = {

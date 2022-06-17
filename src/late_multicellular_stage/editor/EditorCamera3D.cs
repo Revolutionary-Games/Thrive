@@ -58,6 +58,9 @@ public class EditorCamera3D : Camera
     public float DefaultXRotation = -(float)MathUtils.FULL_CIRCLE * 0.1f;
 
     [Export]
+    public float DefaultYRotation;
+
+    [Export]
     [JsonProperty]
     public float ViewDistance = 3.0f;
 
@@ -119,7 +122,7 @@ public class EditorCamera3D : Camera
             return false;
 
         XRotation = 0;
-        YRotation = 0;
+        YRotation = DefaultYRotation;
         panOffset = Vector3.Zero;
         ApplyTransform();
 
@@ -147,7 +150,7 @@ public class EditorCamera3D : Camera
             return false;
 
         XRotation = -(float)MathUtils.FULL_CIRCLE * 0.25f;
-        YRotation = 0;
+        YRotation = DefaultYRotation;
         panOffset = Vector3.Zero;
         ApplyTransform();
 
@@ -274,7 +277,7 @@ public class EditorCamera3D : Camera
             return false;
 
         XRotation = DefaultXRotation;
-        YRotation = 0;
+        YRotation = DefaultYRotation;
         ViewDistance = DefaultViewDistance;
         panOffset = Vector3.Zero;
 
