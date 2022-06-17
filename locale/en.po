@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-15 23:04+0700\n"
-"PO-Revision-Date: 2022-06-15 23:05+0700\n"
-"Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
+"PO-Revision-Date: 2022-06-17 13:53+0000\n"
+"Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Weblate 4.12\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/gallery.json:3
@@ -135,7 +135,7 @@ msgstr "Be wary because your competitors are evolving alongside you. Every time 
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "By binding with other cells, you can build a cell colony where the cells share the compounds they absorb and produce with each other. In order to be able to bind with another cell, you need to have the binding agents organelle and move into them after entering binding mode. You can only bind with cells of your own species. While in a colony, you can't divide your cell and enter the editor (for now). To enter the editor, first leave the colony once you have collected enough compounds, and then enter the editor. Large cell colonies are the way towards multicellularity (not in the game yet)."
+msgstr "By binding with other cells, you can build a cell colony where the cells share the compounds they absorb and produce with each other. In order to be able to bind with another cell, you need to have the binding agents organelle and move into them after entering binding mode by pressing [thrive:input]g_toggle_binding[/thrive:input]. You can only bind with cells of your own species. While in a colony, you can't divide your cell and enter the editor (for now). To enter the editor, collect the required compounds and leave the colony by pressing [thrive:input]g_unbind_all[/thrive:input]. Large cell colonies are the way towards multicellularity (not in the game yet)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -161,7 +161,7 @@ msgstr ""
 "\n"
 "Flagellum: Moves your cell faster by consuming [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Pilus: Can be used to stab other cells\n"
+"Pilus: Can be used to stab the other cells or to defend against their toxins\n"
 "\n"
 "Chemoreceptor: Allows detecting compounds from farther away\n"
 "\n"
@@ -172,7 +172,7 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Membrane Bound Organelles\n"
 "\n"
-"Nucleus: Takes up 11 hexes and allows for evolution of membrane bound organelles, and also doubles your cell's size (can only be evolved once)\n"
+"Nucleus: Takes up 11 hexes and allows for evolution of membrane bound organelles, doubles your cell's size and reduces the damage taken by 50% (can only be evolved once)\n"
 "\n"
 "Binding Agent: Allows binding with other cells\n"
 "\n"
@@ -2785,7 +2785,7 @@ msgstr "Speed"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr "Stab other cells with this."
+msgstr "Can be used to stab the other cells or to defend against their toxins."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
 msgid "PREDATORY_PILUS_DESCRIPTION"
@@ -2817,7 +2817,7 @@ msgstr "Allows binding with other cells. This is the first step towards multicel
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
 msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr "Allows for the evolution of more complex, membrane-bound organelles. Costs a lot of ATP to maintain. This is an irreversible evolution."
+msgstr "Allows for the evolution of more complex, membrane-bound organelles and reduces the damage taken by 50%. Costs a lot of ATP to maintain. This is an irreversible evolution."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1358
 msgid "NUCLEUS_DESCRIPTION"
