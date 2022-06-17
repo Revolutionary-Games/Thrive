@@ -159,6 +159,8 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     {
         Current = current;
         UpdateBackgroundVisibility();
+
+        // TODO: set listener node current status
     }
 
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true)]

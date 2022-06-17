@@ -11,13 +11,20 @@ flags_transparent = true
 albedo_color = Color( 0.0666667, 1, 0.835294, 0.337255 )
 
 [sub_resource type="PlaneMesh" id=3]
+size = Vector2( 10, 10 )
 
 [sub_resource type="SpatialMaterial" id=4]
-albedo_color = Color( 0.635294, 1, 0.898039, 1 )
+albedo_color = Color( 0.278431, 0.294118, 0.290196, 1 )
 
 [node name="3DEditorWorld" type="Node"]
 
 [node name="PrimaryCamera" parent="." instance=ExtResource( 1 )]
+MinDistance = 1.1
+MaxDistance = 100.0
+SidePresetViewDistances = 15.0
+UpDownMoveSpeed = 2.0
+ViewDistance = 8.0
+DefaultViewDistance = 10.0
 
 [node name="CameraRotationCenter" type="Spatial" parent="."]
 __meta__ = {

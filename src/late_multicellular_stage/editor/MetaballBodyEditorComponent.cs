@@ -861,38 +861,10 @@ public partial class MetaballBodyEditorComponent :
     /// </summary>
     private void UpdateAlreadyPlacedVisuals()
     {
-        throw new NotImplementedException();
+        if (alreadyPlacedVisuals == null)
+            throw new InvalidOperationException("Editor component not initialized");
 
-        /*var islands = editedMetaballs.GetIslandHexes();
-
-        // Build the entities to show the current microbe
-        UpdateAlreadyPlacedHexes(
-            editedMetaballs.Select(o =>
-                (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(), Editor.HexPlacedThisSession(o))), islands);
-
-        int nextFreeCell = 0;
-
-        foreach (var hexWithData in editedMetaballs)
-        {
-            var pos = Hex.AxialToCartesian(hexWithData.Position) + microbeModelOffset;
-
-            if (nextFreeCell >= placedModels.Count)
-            {
-                placedModels.Add(CreatePreviewModelHolder());
-            }
-
-            var modelHolder = placedModels[nextFreeCell++];
-
-            ShowCellTypeInModelHolder(modelHolder, hexWithData.Data!.CellType, pos, hexWithData.Data!.Orientation);
-
-            modelHolder.Visible = true;
-        }
-
-        while (nextFreeCell < placedModels.Count)
-        {
-            placedModels[placedModels.Count - 1].DetachAndQueueFree();
-            placedModels.RemoveAt(placedModels.Count - 1);
-        }*/
+        alreadyPlacedVisuals.DisplayFromList(editedMetaballs);
     }
 
     private void OnSpeciesNameChanged(string newText)

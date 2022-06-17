@@ -23,7 +23,9 @@ BodyPlanEditorTabPath = NodePath("LateMulticellularEditorGUI/MetaballBodyEditorC
 CellEditorTabPath = NodePath("LateMulticellularEditorGUI/CellEditor")
 NoCellTypeSelectedPath = NodePath("LateMulticellularEditorGUI/NoCellSelected")
 CellEditorCameraPath = NodePath("MicrobeEditorWorld/PrimaryCamera")
+CellEditorLightPath = NodePath("MicrobeEditorWorld/EditorLight")
 Body3DEditorCameraPath = NodePath("EditorWorld/PrimaryCamera")
+BodyEditorLightPath = NodePath("EditorWorld/EditorLight")
 
 [node name="EditorWorld" parent="." instance=ExtResource( 7 )]
 
@@ -49,9 +51,9 @@ EditorGroundPath = NodePath("../../EditorWorld/Ground")
 [node name="CellEditor" parent="LateMulticellularEditorGUI" instance=ExtResource( 9 )]
 visible = false
 CameraPath = NodePath("../../MicrobeEditorWorld/PrimaryCamera")
-EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
+EditorArrowPath = NodePath("../../MicrobeEditorWorld/EditorArrow")
 EditorGridPath = NodePath("../../MicrobeEditorWorld/Grid")
-CameraFollowPath = NodePath("../../EditorWorld/CameraRotationCenter")
+CameraFollowPath = NodePath("../../MicrobeEditorWorld/CameraLookAt")
 IsMulticellularEditor = true
 
 [node name="Report" parent="LateMulticellularEditorGUI" instance=ExtResource( 10 )]

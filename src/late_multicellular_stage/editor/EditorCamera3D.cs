@@ -20,7 +20,7 @@ public class EditorCamera3D : Camera
     public float PanSpeed = 5.0f;
 
     [Export]
-    public float MousePanHorizontalMultiplier = 0.5f;
+    public float MousePanHorizontalMultiplier = 0.6f;
 
     [Export]
     public float MousePanVerticalMultiplier = 0.8f;
@@ -35,7 +35,7 @@ public class EditorCamera3D : Camera
     public float RotateSpeed = 0.85f;
 
     [Export]
-    public float MouseRotateMultiplier = 0.3f;
+    public float MouseRotateMultiplier = 0.5f;
 
     [Export]
     public bool InvertedMouseRotation;

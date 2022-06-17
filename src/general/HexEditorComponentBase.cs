@@ -629,6 +629,9 @@ public abstract class
         usedHoverHex = 0;
         usedHoverModel = 0;
 
+        if (!Visible)
+            return;
+
         editorGrid.Translation = camera!.CursorWorldPos;
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
     }

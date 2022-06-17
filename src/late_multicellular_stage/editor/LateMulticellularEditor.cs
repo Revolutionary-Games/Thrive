@@ -28,7 +28,13 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     public NodePath CellEditorCameraPath = null!;
 
     [Export]
+    public NodePath CellEditorLightPath = null!;
+
+    [Export]
     public NodePath Body3DEditorCameraPath = null!;
+
+    [Export]
+    public NodePath BodyEditorLightPath = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -47,8 +53,10 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     private CellEditorComponent cellEditorTab = null!;
 
     private MicrobeCamera cellEditorCamera = null!;
+    private Light cellEditorLight = null!;
 
     private Camera body3DEditorCamera = null!;
+    private Light bodyEditorLight = null!;
 
     [JsonProperty]
     private LateMulticellularSpecies? editedSpecies;
@@ -108,8 +116,8 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
     {
         base.SetEditorObjectVisibility(shown);
 
-        bodyPlanEditorTab.SetEditorWorldGuideObjectVisibility(shown);
-        cellEditorTab.SetEditorWorldGuideObjectVisibility(shown);
+        cellEditorTab.SetEditorWorldGuideObjectVisibility(shown && selectedEditorTab == EditorTab.CellTypeEditor);
+        bodyPlanEditorTab.SetEditorWorldGuideObjectVisibility(shown && selectedEditorTab == EditorTab.CellEditor);
     }
 
     public void OnCurrentPatchUpdated(Patch patch)
@@ -171,7 +179,10 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         noCellTypeSelected = GetNode<Control>(NoCellTypeSelectedPath);
 
         cellEditorCamera = GetNode<MicrobeCamera>(CellEditorCameraPath);
+        cellEditorLight = GetNode<Light>(CellEditorLightPath);
+
         body3DEditorCamera = GetNode<Camera>(Body3DEditorCameraPath);
+        bodyEditorLight = GetNode<Light>(BodyEditorLightPath);
     }
 
     protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
@@ -325,8 +336,6 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
             {
                 bodyPlanEditorTab.Show();
                 SetEditorObjectVisibility(true);
-                cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
-                bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
 
                 bodyPlanEditorTab.UpdateArrow();
 
@@ -338,9 +347,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 // type information
                 CheckAndApplyCellTypeEdit();
 
-                // Set the right active camera
-                cellEditorCamera.SetCustomCurrentStatus(false);
-                body3DEditorCamera.Current = true;
+                SetWorldSceneObjectVisibilityWeControl();
 
                 break;
             }
@@ -357,15 +364,11 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 {
                     cellEditorTab.Show();
                     SetEditorObjectVisibility(true);
-                    bodyPlanEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
-                    cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(true);
 
                     cellEditorTab.UpdateArrow();
                     cellEditorTab.UpdateCamera();
 
-                    // Set the right active camera
-                    body3DEditorCamera.Current = false;
-                    cellEditorCamera.SetCustomCurrentStatus(true);
+                    SetWorldSceneObjectVisibilityWeControl();
                 }
 
                 break;
@@ -397,6 +400,28 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
 
         // TODO: 3D editor backgrounds for patches
+    }
+
+    private void SetWorldSceneObjectVisibilityWeControl()
+    {
+        bool cellEditor = selectedEditorTab == EditorTab.CellTypeEditor;
+        bool bodyEditor = selectedEditorTab == EditorTab.CellEditor;
+
+        // Set the right active camera
+        if (cellEditor)
+        {
+            body3DEditorCamera.Current = false;
+            cellEditorCamera.SetCustomCurrentStatus(true);
+        }
+        else
+        {
+            cellEditorCamera.SetCustomCurrentStatus(false);
+            body3DEditorCamera.Current = true;
+        }
+
+        cellEditorLight.Visible = cellEditor;
+
+        bodyEditorLight.Visible = bodyEditor;
     }
 
     private void OnStartEditingCellType(string name)
