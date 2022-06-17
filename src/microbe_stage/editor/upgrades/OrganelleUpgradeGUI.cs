@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class OrganelleUpgradeGUI : Control
+public class OrganelleUpgradeGUI : Control, IOrganelleUpgradeDialog
 {
     [Export]
     public NodePath PopupPath = null!;
@@ -8,12 +8,8 @@ public class OrganelleUpgradeGUI : Control
     [Export]
     public NodePath OrganelleSpecificContentPath = null!;
 
-    [Export]
-    public NodePath ScrollContainerPath = null!;
-
     private CustomConfirmationDialog popup = null!;
     private Container organelleSpecificContent = null!;
-    private ScrollContainer scrollContainer = null!;
 
     private ICellEditorData? storedEditor;
     private IOrganelleUpgrader? upgrader;
@@ -22,7 +18,6 @@ public class OrganelleUpgradeGUI : Control
     {
         popup = GetNode<CustomConfirmationDialog>(PopupPath);
         organelleSpecificContent = GetNode<Container>(OrganelleSpecificContentPath);
-        scrollContainer = GetNode<ScrollContainer>(ScrollContainerPath);
     }
 
     public void OpenForOrganelle(OrganelleTemplate organelle, string upgraderScene, ICellEditorData editor)
@@ -43,9 +38,13 @@ public class OrganelleUpgradeGUI : Control
 
         popup.PopupCenteredShrink();
 
-        scrollContainer.ScrollVertical = 0;
-        upgrader.OnStartFor(organelle);
+        upgrader.OnStartFor(organelle, this);
         storedEditor = editor;
+    }
+
+    public void Redraw()
+    {
+        popup.PopupCenteredShrink();
     }
 
     private void OnAccept()

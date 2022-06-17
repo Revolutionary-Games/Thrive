@@ -13,8 +13,6 @@ uniform vec4 growColor : hint_color;
 
 uniform vec4 tint : hint_color = vec4(1, 1, 1, 1);
 
-uniform bool jiggleOffset = true;
-
 const float jiggleAmount = 0.0005f;
 const float jiggleMaxAngle = 15.f;
 const float jiggleTimeMultiplier = 0.5f;
@@ -22,12 +20,9 @@ const float jiggleTimeMultiplier = 0.5f;
 const float PI = 3.14159265358979323846;
 
 void vertex(){
-    if (jiggleOffset)
-    {
-        // Offset animation
-        VERTEX.x += sin(TIME * 3.0f * jiggleTimeMultiplier) * jiggleAmount;
-        VERTEX.y += sin(TIME * 2.0f * jiggleTimeMultiplier) * jiggleAmount;
-    }
+    // Offset animation
+    VERTEX.x += sin(TIME * 3.0f * jiggleTimeMultiplier) * jiggleAmount;
+    VERTEX.y += sin(TIME * 2.0f * jiggleTimeMultiplier) * jiggleAmount;
 
     // Rotation animation
     float angle = cos(TIME * jiggleTimeMultiplier) * PI * jiggleMaxAngle / 360.f;

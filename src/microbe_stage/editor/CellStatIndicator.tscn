@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/microbe_stage/editor/CellStatIndicator.cs" type="Script" id=3]
+
+[node name="CellStatIndicator" type="HBoxContainer"]
+margin_right = 123.0
+margin_bottom = 19.0
+script = ExtResource( 3 )
+
+[node name="Indicator" type="TextureRect" parent="."]
+visible = false
+margin_top = 3.0
+margin_right = 10.0
+margin_bottom = 13.0
+rect_min_size = Vector2( 10, 10 )
+size_flags_vertical = 4
+expand = true
+
+[node name="Description" type="Label" parent="."]
+margin_top = 1.0
+margin_right = 174.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 1 )
+text = "CELL_STAT_PLACEHOLDER"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Value" type="Label" parent="."]
+margin_left = 178.0
+margin_right = 199.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 2 )
+text = "n/a"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}

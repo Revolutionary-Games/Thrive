@@ -170,6 +170,46 @@ public static class MicrobeInternalCalculations
         return rawSpeed * 500;
     }
 
+    public static float CalculateDigestionSpeed(float enzymeCount)
+    {
+        var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
+        var speedBuff = amount * Constants.LYSOSOME_DIGESTION_SPEED_UP_FRACTION * enzymeCount;
+
+        return amount + speedBuff;
+    }
+
+    public static float CalculateTotalDigestionSpeed(ICollection<OrganelleTemplate> organelles)
+    {
+        var multiplier = 0;
+        foreach (var organelle in organelles)
+        {
+            if (organelle.Definition.HasComponentFactory<LysosomeComponentFactory>())
+                ++multiplier;
+        }
+
+        return CalculateDigestionSpeed(multiplier);
+    }
+
+    public static float CalculateDigestionEfficiency(float enzymeCount)
+    {
+        var absorption = Constants.ENGULF_BASE_COMPOUND_ABSORBTION_YIELD;
+        var buff = absorption * Constants.LYSOSOME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount;
+
+        return Mathf.Clamp(absorption + buff, 0.0f, 1.0f);
+    }
+
+    public static float CalculateTotalDigestionEfficiency(ICollection<OrganelleTemplate> organelles)
+    {
+        var multiplier = 0;
+        foreach (var organelle in organelles)
+        {
+            if (organelle.Definition.HasComponentFactory<LysosomeComponentFactory>())
+                ++multiplier;
+        }
+
+        return CalculateDigestionEfficiency(multiplier);
+    }
+
     private static float MovementForce(float movementForce, float directionFactor)
     {
         if (directionFactor < 0)

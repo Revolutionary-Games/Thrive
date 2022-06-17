@@ -354,10 +354,13 @@ public static class Constants
     public const float ENGULF_EJECTION_FORCE = 20f;
 
     /// <summary>
-    ///   How much compounds a cell can absorb per second from digestible engulfed objects.
+    ///   The speed of which a cell can absorb compounds from digestible engulfed objects.
     /// </summary>
     public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.3f;
 
+    /// <summary>
+    ///   How much compounds a cell can absorb per second from digestible engulfed objects.
+    /// </summary>
     public const float ENGULF_BASE_COMPOUND_ABSORBTION_YIELD = 0.4f;
 
     public const float ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION = 0.9f;

@@ -1123,19 +1123,13 @@ public partial class Microbe
 
                 hasAnyUsefulCompounds = true;
 
-                var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND * delta;
-                var efficiency = Constants.ENGULF_BASE_COMPOUND_ABSORBTION_YIELD;
-
-                var speedBuff = amount * Constants.LYSOSOME_DIGESTION_SPEED_UP_FRACTION * ActiveEnzymes[usedEnzyme];
-                var efficiencyBuff = efficiency *
-                    Constants.LYSOSOME_DIGESTION_EFFICIENCY_BUFF_FRACTION * ActiveEnzymes[usedEnzyme];
-
-                amount += speedBuff;
+                var amount = MicrobeInternalCalculations.CalculateDigestionSpeed(ActiveEnzymes[usedEnzyme]);
+                amount *= delta;
 
                 // Efficiency starts from 40% up to 100%. This means at least 8 lysosomes are needed to achieve
                 // maximum efficiency
                 // TODO: Maybe set max efficiency lower to 80%?
-                efficiency = Mathf.Clamp(efficiency + efficiencyBuff, 0.0f, 1.0f);
+                var efficiency = MicrobeInternalCalculations.CalculateDigestionEfficiency(ActiveEnzymes[usedEnzyme]);
 
                 var taken = Mathf.Min(compound.Value, amount);
 

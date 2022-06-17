@@ -9,6 +9,7 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     [Export]
     public NodePath EnzymeDescriptionPath = null!;
 
+    private IOrganelleUpgradeDialog dialog = null!;
     private OptionButton enzymes = null!;
     private Label description = null!;
 
@@ -23,8 +24,9 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         enzymes.Clear();
     }
 
-    public void OnStartFor(OrganelleTemplate organelle)
+    public void OnStartFor(OrganelleTemplate organelle, IOrganelleUpgradeDialog dialog)
     {
+        this.dialog = dialog;
         storedOrganelle = organelle;
         shownChoices = SimulationParameters.Instance.GetDigestiveEnzymes();
 
@@ -73,6 +75,7 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         _ = index;
         UpdateDescription();
+        dialog.Redraw();
     }
 
     private void UpdateDescription()

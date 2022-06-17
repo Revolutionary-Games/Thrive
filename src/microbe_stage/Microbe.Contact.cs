@@ -1057,8 +1057,8 @@ public partial class Microbe
 
             if (engulfable?.CurrentEngulfmentStep == EngulfmentStep.Digested)
             {
-                engulfedObject.ValuesToLerp = (null, null, Vector3.One * Mathf.Epsilon);
-                StartEngulfmentLerp(engulfedObject, 1.0f, false);
+                engulfedObject.TargetValuesToLerp = (null, null, Vector3.One * Mathf.Epsilon);
+                StartEngulfmentLerp(engulfedObject, 1.5f, false);
             }
 
             if (!engulfedObject.Interpolate)
@@ -1078,7 +1078,7 @@ public partial class Microbe
                         break;
                     case EngulfmentStep.BeingRegurgitated:
                         engulfedObject.Endosome.Hide();
-                        engulfedObject.ValuesToLerp = (null, engulfedObject.OriginalScale, null);
+                        engulfedObject.TargetValuesToLerp = (null, engulfedObject.OriginalScale, null);
                         StartEngulfmentLerp(engulfedObject, 1.0f);
                         engulfable.CurrentEngulfmentStep = EngulfmentStep.PreparingEjection;
                         continue;
@@ -1401,7 +1401,7 @@ public partial class Microbe
 
         var engulfedObject = new EngulfedObject(target)
         {
-            ValuesToLerp = (finalPosition, body.Scale / 2, boundingBoxSize),
+            TargetValuesToLerp = (finalPosition, body.Scale / 2, boundingBoxSize),
             OriginalScale = body.Scale,
             OriginalRenderPriority = target.EntityMaterial.RenderPriority,
         };
@@ -1428,7 +1428,7 @@ public partial class Microbe
 
         engulfedObjects.Add(engulfedObject);
 
-        StartEngulfmentLerp(engulfedObject, 3.0f);
+        StartEngulfmentLerp(engulfedObject, 2.0f);
     }
 
     /// <summary>
@@ -1475,8 +1475,8 @@ public partial class Microbe
         }
 
         // Animate object move to the nearest point of the membrane
-        engulfedObject.ValuesToLerp = (nearestPointOfMembraneToTarget, null, Vector3.One * Mathf.Epsilon);
-        StartEngulfmentLerp(engulfedObject, 3.0f);
+        engulfedObject.TargetValuesToLerp = (nearestPointOfMembraneToTarget, null, Vector3.One * Mathf.Epsilon);
+        StartEngulfmentLerp(engulfedObject, 2.0f);
 
         // The rest of the operation is done in CompleteEjection
     }
@@ -1617,33 +1617,37 @@ public partial class Microbe
 
             var fraction = engulfed.AnimationTimeElapsed / engulfed.LerpDuration;
 
-            if (engulfed.ValuesToLerp.Translation.HasValue)
+            // Ease out
+            fraction = Mathf.Sin(fraction * Mathf.Pi * 0.5f);
+
+            if (engulfed.TargetValuesToLerp.Translation.HasValue)
             {
-                body.Translation = body.Translation.LinearInterpolate(engulfed.ValuesToLerp.Translation.Value,
-                    fraction);
+                body.Translation = engulfed.InitialValuesToLerp.Translation.LinearInterpolate(
+                    engulfed.TargetValuesToLerp.Translation.Value, fraction);
             }
 
-            if (engulfed.ValuesToLerp.Scale.HasValue)
-                body.Scale = body.Scale.LinearInterpolate(engulfed.ValuesToLerp.Scale.Value, fraction);
+            if (engulfed.TargetValuesToLerp.Scale.HasValue)
+                body.Scale = engulfed.InitialValuesToLerp.Scale.LinearInterpolate(
+                    engulfed.TargetValuesToLerp.Scale.Value, fraction);
 
-            if (engulfed.ValuesToLerp.EndosomeScale.HasValue)
+            if (engulfed.TargetValuesToLerp.EndosomeScale.HasValue)
             {
-                engulfed.Endosome.Scale = engulfed.Endosome.Scale.LinearInterpolate(
-                    engulfed.ValuesToLerp.EndosomeScale.Value, fraction);
+                engulfed.Endosome.Scale = engulfed.InitialValuesToLerp.EndosomeScale.LinearInterpolate(
+                    engulfed.TargetValuesToLerp.EndosomeScale.Value, fraction);
             }
 
             return false;
         }
 
         // Snap values
-        if (engulfed.ValuesToLerp.Translation.HasValue)
-            body.Translation = engulfed.ValuesToLerp.Translation.Value;
+        if (engulfed.TargetValuesToLerp.Translation.HasValue)
+            body.Translation = engulfed.TargetValuesToLerp.Translation.Value;
 
-        if (engulfed.ValuesToLerp.Scale.HasValue)
-            body.Scale = engulfed.ValuesToLerp.Scale.Value;
+        if (engulfed.TargetValuesToLerp.Scale.HasValue)
+            body.Scale = engulfed.TargetValuesToLerp.Scale.Value;
 
-        if (engulfed.ValuesToLerp.EndosomeScale.HasValue)
-            engulfed.Endosome.Scale = engulfed.ValuesToLerp.EndosomeScale.Value;
+        if (engulfed.TargetValuesToLerp.EndosomeScale.HasValue)
+            engulfed.Endosome.Scale = engulfed.TargetValuesToLerp.EndosomeScale.Value;
 
         StopEngulfmentLerp(engulfed);
 
@@ -1652,9 +1656,14 @@ public partial class Microbe
 
     private void StartEngulfmentLerp(EngulfedObject engulfedObject, float duration, bool resetElapsedTime = true)
     {
+        if (engulfedObject.Object.Value == null)
+            return;
+
         if (resetElapsedTime)
             engulfedObject.AnimationTimeElapsed = 0;
 
+        var body = (RigidBody)engulfedObject.Object.Value;
+        engulfedObject.InitialValuesToLerp = (body.Translation, body.Scale, engulfedObject.Endosome.Scale);
         engulfedObject.LerpDuration = duration;
         engulfedObject.Interpolate = true;
     }
@@ -1753,7 +1762,9 @@ public partial class Microbe
 
         public float TimeElapsedSinceEjection { get; set; }
 
-        public (Vector3? Translation, Vector3? Scale, Vector3? EndosomeScale) ValuesToLerp { get; set; }
+        public (Vector3? Translation, Vector3? Scale, Vector3? EndosomeScale) TargetValuesToLerp { get; set; }
+
+        public (Vector3 Translation, Vector3 Scale, Vector3 EndosomeScale) InitialValuesToLerp { get; set; }
 
         public Vector3 OriginalScale { get; set; }
 

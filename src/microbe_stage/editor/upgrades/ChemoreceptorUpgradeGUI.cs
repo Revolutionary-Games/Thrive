@@ -2,7 +2,7 @@
 using System.Linq;
 using Godot;
 
-public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
+public class ChemoreceptorUpgradeGUI : ScrollContainer, IOrganelleUpgrader
 {
     [Export]
     public NodePath CompoundsPath = null!;
@@ -40,8 +40,9 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         minimumAmount.MaxValue = Constants.CHEMORECEPTOR_AMOUNT_MAX;
     }
 
-    public void OnStartFor(OrganelleTemplate organelle)
+    public void OnStartFor(OrganelleTemplate organelle, IOrganelleUpgradeDialog dialog)
     {
+        _ = dialog;
         storedOrganelle = organelle;
         shownChoices = SimulationParameters.Instance.GetCloudCompounds();
 
