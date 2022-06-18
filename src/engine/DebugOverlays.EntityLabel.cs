@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -150,10 +151,8 @@ public partial class DebugOverlays
 
     private void CleanEntityLabels()
     {
-        foreach (var label in entityLabels.Values)
-            label.DetachAndQueueFree();
-
-        entityLabels.Clear();
+        foreach (var entityLabelsKey in entityLabels.Keys.ToList())
+            OnNodeRemoved(entityLabelsKey.EntityNode);
 
         activeCamera = null;
 
