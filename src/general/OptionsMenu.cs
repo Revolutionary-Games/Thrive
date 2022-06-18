@@ -148,7 +148,7 @@ public class OptionsMenu : ControlWithInput
     public NodePath ThreadCountSliderPath = null!;
 
     [Export]
-    public NodePath MaxSpawnedEntitiesCountPath = null!;
+    public NodePath MaxSpawnedEntitiesPath = null!;
 
     // Inputs tab.
     [Export]
@@ -268,7 +268,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox assumeHyperthreading = null!;
     private CustomCheckBox useManualThreadCount = null!;
     private Slider threadCountSlider = null!;
-    private OptionButton maxSpawnedEntitiesCount = null!;
+    private OptionButton maxSpawnedEntities = null!;
 
     // Inputs tab
     private Control inputsTab = null!;
@@ -391,7 +391,7 @@ public class OptionsMenu : ControlWithInput
         assumeHyperthreading = GetNode<CustomCheckBox>(AssumeHyperthreadingPath);
         useManualThreadCount = GetNode<CustomCheckBox>(UseManualThreadCountPath);
         threadCountSlider = GetNode<Slider>(ThreadCountSliderPath);
-        maxSpawnedEntitiesCount = GetNode<OptionButton>(MaxSpawnedEntitiesCountPath);
+        maxSpawnedEntities = GetNode<OptionButton>(MaxSpawnedEntitiesPath);
 
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
@@ -536,7 +536,7 @@ public class OptionsMenu : ControlWithInput
         useManualThreadCount.Pressed = settings.UseManualThreadCount;
         threadCountSlider.Value = settings.ThreadCount;
         threadCountSlider.Editable = settings.UseManualThreadCount;
-        maxSpawnedEntitiesCount.Selected = MaxEntitiesValueToIndex(settings.MaxSpawnedEntitiesCount);
+        maxSpawnedEntities.Selected = MaxEntitiesValueToIndex(settings.MaxSpawnedEntities);
 
         UpdateDetectedCPUCount();
 
@@ -1374,9 +1374,9 @@ public class OptionsMenu : ControlWithInput
         UpdateDetectedCPUCount();
     }
 
-    private void OnMaxSpawnedEntitiesCountSelected(int index)
+    private void OnMaxSpawnedEntitiesSelected(int index)
     {
-        Settings.Instance.MaxSpawnedEntitiesCount.Value = MaxEntitiesIndexToValue(index);
+        Settings.Instance.MaxSpawnedEntities.Value = MaxEntitiesIndexToValue(index);
 
         UpdateResetSaveButtonState();
     }

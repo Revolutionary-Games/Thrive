@@ -77,7 +77,7 @@ ActiveThreadCountPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/P
 AssumeHyperthreadingPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/AssumeHyperthreading")
 UseManualThreadCountPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/UseManualThreadCount")
 ThreadCountSliderPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer/ThreadCountSlider")
-MaxSpawnedEntitiesCountPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5/MaxSpawnedEntityCount")
+MaxSpawnedEntitiesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5/MaxSpawnedEntities")
 InputsTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs")
 InputGroupListPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList")
 MiscTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc")
@@ -912,7 +912,7 @@ margin_bottom = 27.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 4 )
 
-[node name="MaxSpawnedEntityCount" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5"]
+[node name="MaxSpawnedEntities" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5"]
 margin_left = 448.0
 margin_right = 648.0
 margin_bottom = 27.0
@@ -1423,7 +1423,7 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/AssumeHyperthreading" to="." method="OnHyperthreadingToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/UseManualThreadCount" to="." method="OnManualThreadsToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer/ThreadCountSlider" to="." method="OnManualThreadCountChanged"]
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5/MaxSpawnedEntityCount" to="." method="OnMaxSpawnedEntitiesCountSelected"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5/MaxSpawnedEntities" to="." method="OnMaxSpawnedEntitiesSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/HBoxContainer/ResetInputsButton" to="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList" method="OnResetInputs"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/Intro" to="." method="OnIntroToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/MicrobeIntro" to="." method="OnMicrobeIntroToggled"]
