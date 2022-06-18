@@ -912,15 +912,15 @@ margin_bottom = 27.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 4 )
 
-[node name="MaxSpawnedEntityCount" type="SpinBox" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5"]
+[node name="MaxSpawnedEntityCount" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5"]
 margin_left = 448.0
 margin_right = 648.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
-min_value = 25.0
-max_value = 1000.0
-value = 25.0
+text = "Tiny"
+items = [ "Tiny", null, false, 0, null, "Very Small", null, false, 1, null, "Small", null, false, 2, null, "Normal", null, false, 3, null, "Large", null, false, 4, null, "Very Large", null, false, 5, null, "Huge", null, false, 6, null, "Extreme", null, false, 7, null ]
+selected = 0
 
 [node name="Inputs" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 visible = false
@@ -1423,7 +1423,7 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/AssumeHyperthreading" to="." method="OnHyperthreadingToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/UseManualThreadCount" to="." method="OnManualThreadsToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer/ThreadCountSlider" to="." method="OnManualThreadCountChanged"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5/MaxSpawnedEntityCount" to="." method="OnMaxSpawnedEntitiesCountChanged"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer5/MaxSpawnedEntityCount" to="." method="OnMaxSpawnedEntitiesCountSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/HBoxContainer/ResetInputsButton" to="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList" method="OnResetInputs"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/Intro" to="." method="OnIntroToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/MicrobeIntro" to="." method="OnMicrobeIntroToggled"]
