@@ -504,7 +504,7 @@ public partial class Microbe
                 engulfed.Object.Value.DestroyDetachAndQueueFree();
             }
 
-            engulfed.Endosome.Value?.DetachAndQueueFree();
+            engulfed.Endosome.Value?.DestroyDetachAndQueueFree();
         }
 
         engulfedObjects.Clear();
@@ -1755,7 +1755,7 @@ public partial class Microbe
         // Reset render priority
         engulfable.RenderPriority = engulfed.OriginalRenderPriority;
 
-        engulfed.Endosome.Value?.DetachAndQueueFree();
+        engulfed.Endosome.Value?.DestroyDetachAndQueueFree();
 
         // Ignore possible invalid cast as the engulfed node should be a rigidbody either way
         var body = (RigidBody)engulfable;

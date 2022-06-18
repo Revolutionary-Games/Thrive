@@ -99,6 +99,7 @@ public class CellStatIndicator : HBoxContainer
         }
 
         valueLabel.Text = string.IsNullOrEmpty(Format) ?
-            Value.ToString(CultureInfo.CurrentCulture) : string.Format(CultureInfo.CurrentCulture, Format, Value);
+            Value.ToString(CultureInfo.CurrentCulture) :
+            string.Format(CultureInfo.CurrentCulture, Format, Value);
     }
 }
