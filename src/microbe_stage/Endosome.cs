@@ -14,6 +14,11 @@ public class Endosome : Spatial
     public override void _Ready()
     {
         Mesh = GetNode<MeshInstance>("Vacuole");
+
+        // This has to be done here because setting this in Godot editor truncates
+        // the number to only 3 decimal places.
+        var material = Mesh?.MaterialOverride as ShaderMaterial;
+        material?.SetShaderParam("jiggleAmount", 0.0001f);
     }
 
     public void UpdateTint(Color colour)

@@ -635,22 +635,22 @@ FinishOrNextButtonPath = NodePath("")
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -285.0
-margin_bottom = 617.0
-rect_min_size = Vector2( 285, 617 )
+margin_bottom = 629.0
+rect_min_size = Vector2( 285, 629 )
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RightPanel"]
 margin_top = 10.0
 margin_right = 275.0
-margin_bottom = 617.0
+margin_bottom = 629.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Statistics" type="PanelContainer" parent="RightPanel/VBoxContainer"]
 margin_right = 275.0
-margin_bottom = 377.0
+margin_bottom = 389.0
 mouse_filter = 1
 size_flags_vertical = 3
 __meta__ = {
@@ -661,7 +661,7 @@ __meta__ = {
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 274.0
-margin_bottom = 376.0
+margin_bottom = 388.0
 
 [node name="Header" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer"]
 margin_right = 273.0
@@ -690,7 +690,7 @@ custom_styles/separator = SubResource( 19 )
 [node name="Body" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer"]
 margin_top = 44.0
 margin_right = 273.0
-margin_bottom = 375.0
+margin_bottom = 387.0
 mouse_filter = 1
 size_flags_vertical = 3
 custom_constants/margin_right = 5
@@ -702,7 +702,7 @@ custom_constants/margin_bottom = 5
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 268.0
-margin_bottom = 326.0
+margin_bottom = 338.0
 mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer"]
@@ -877,9 +877,9 @@ margin_right = 246.0
 margin_bottom = 329.0
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]
-margin_top = 381.0
+margin_top = 393.0
 margin_right = 275.0
-margin_bottom = 607.0
+margin_bottom = 619.0
 grow_vertical = 0
 rect_min_size = Vector2( 0, 196 )
 mouse_filter = 1

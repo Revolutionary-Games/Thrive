@@ -1177,26 +1177,10 @@ public partial class Microbe
             if (engulfStorage > Size)
                 EjectEngulfable(engulfable);
         }
-    }
 
-    /// <summary>
-    ///   Handle decay if this cell has been regurgitated by a predator. This currently has no relation
-    ///   with post-death related functions.
-    /// </summary>
-    private void HandleDecay(float delta)
-    {
         if (CurrentEngulfmentStep == EngulfmentStep.NotEngulfed)
         {
-            if (DigestionProgress >= 0.3f)
-            {
-                // Cell is too damaged from digestion, can't live in open environment and is considered dead
-                Dead = true;
-
-                // Disable collisions
-                CollisionLayer = 0;
-                CollisionMask = 0;
-            }
-            else if (DigestionProgress > 0 && DigestionProgress < 0.3f)
+            if (DigestionProgress > 0 && DigestionProgress < 0.3f)
             {
                 // Cell is not too damaged, can heal itself in open environment and continue living
                 DigestionProgress -= delta * Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;

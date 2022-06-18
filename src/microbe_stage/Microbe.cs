@@ -683,7 +683,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         HandleEngulfing(delta);
 
         HandleDigestion(delta);
-        HandleDecay(delta);
 
         // Handles binding related stuff
         HandleBinding(delta);

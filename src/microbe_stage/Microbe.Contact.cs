@@ -468,8 +468,36 @@ public partial class Microbe
             organelle.UpdateRenderPriority(Hex.GetRenderPriority(organelle.Position));
         }
 
-        hasEscaped = true;
-        escapeInterval = 0;
+        if (DigestionProgress >= 0.3f)
+        {
+            // Cell is too damaged from digestion, can't live in open environment and is considered dead
+            Dead = true;
+
+            // Disable collisions
+            CollisionLayer = 0;
+            CollisionMask = 0;
+        }
+        else
+        {
+            hasEscaped = true;
+            escapeInterval = 0;
+        }
+    }
+
+    public void ClearEngulfedObjects()
+    {
+        foreach (var engulfed in engulfedObjects)
+        {
+            if (engulfed.Object.Value != null)
+            {
+                EjectEngulfable(engulfed.Object.Value);
+                engulfed.Object.Value.DestroyDetachAndQueueFree();
+            }
+
+            engulfed.Endosome.DetachAndQueueFree();
+        }
+
+        engulfedObjects.Clear();
     }
 
     /// <summary>
@@ -1354,7 +1382,6 @@ public partial class Microbe
 
         target.HostileEngulfer.Value = this;
         target.CurrentEngulfmentStep = EngulfmentStep.BeingEngulfed;
-        target.OnEngulfed();
 
         engulfStorage += target.Size;
 
@@ -1429,6 +1456,8 @@ public partial class Microbe
         engulfedObjects.Add(engulfedObject);
 
         StartEngulfmentLerp(engulfedObject, 2.0f);
+
+        target.OnEngulfed();
     }
 
     /// <summary>
@@ -1698,7 +1727,6 @@ public partial class Microbe
 
         engulfable.HostileEngulfer.Value = null;
         engulfable.CurrentEngulfmentStep = EngulfmentStep.NotEngulfed;
-        engulfable.OnEjected();
 
         foreach (string group in engulfed.OriginalGroups)
             engulfable.EntityNode.AddToGroup(group);
@@ -1727,6 +1755,8 @@ public partial class Microbe
 
         // Apply outwards ejection force
         body.ApplyCentralImpulse(impulse + LinearVelocity);
+
+        engulfable.OnEjected();
     }
 
     /// <summary>

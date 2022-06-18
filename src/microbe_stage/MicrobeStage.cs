@@ -913,9 +913,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     {
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
-        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!) && promptPatchNameChange)
+        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!))
         {
-            HUD.PopupPatchInfo();
+            if (promptPatchNameChange)
+                HUD.PopupPatchInfo();
+
+            Player?.ClearEngulfedObjects();
         }
 
         HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch!.Name.ToString());
