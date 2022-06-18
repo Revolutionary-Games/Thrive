@@ -1143,7 +1143,7 @@ msgstr "Истребление {0}"
 
 #: ../src/early_multicellular_stage/CellType.cs:38
 msgid "STEM_CELL_NAME"
-msgstr "Название клетки"
+msgstr "Название вида клетки"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:299
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:361
@@ -1179,9 +1179,8 @@ msgstr "Воспроизведение:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
-#, fuzzy
 msgid "REPRODUCTION_BUDDING"
-msgstr "Воспроизведено"
+msgstr "Размножение"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1233
@@ -1217,9 +1216,8 @@ msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:559
-#, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr "Создать Новое Сохранение"
+msgstr "Создать Новый Тип Клетки"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
@@ -1230,19 +1228,16 @@ msgstr ""
 "модифицированы так же, как и ваш тип клеток."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
-#, fuzzy
 msgid "NEW_NAME_COLON"
-msgstr "Скорость:"
+msgstr "Новое Название Колонии:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:595
-#, fuzzy
 msgid "NEW_NAME"
-msgstr "Новая Игра"
+msgstr "Новое имя"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_CELLS"
-msgstr "Разместить органеллу"
+msgstr "Несколько клеток"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:76
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
@@ -1253,9 +1248,8 @@ msgid "MP_COST"
 msgstr "{0} MP"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
-#, fuzzy
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Загрузка Микробного Редактора"
+msgstr "Загрузка Раннего Многоклеточного Редактора"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:196
@@ -1284,9 +1278,8 @@ msgid "FPS"
 msgstr "FPS: {0}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
-#, fuzzy
 msgid "FRAME_DURATION"
-msgstr "Аэробное Дыхание"
+msgstr "FPS: {0}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
@@ -1295,9 +1288,8 @@ msgstr ""
 
 #: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
 #: ../src/engine/PerformanceMetrics.tscn:30
-#, fuzzy
 msgid "METRICS"
-msgstr "Включить показ FPS"
+msgstr "Включить показ производительности"
 
 #: ../src/engine/DebugOverlays.tscn:86
 msgid "DEBUG_PANEL"
@@ -1310,7 +1302,7 @@ msgstr "MediaPlay"
 
 #: ../src/engine/DebugOverlays.tscn:110
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "Создавать сущности с коллизией"
 
 #: ../src/engine/DebugOverlays.tscn:117
 #, fuzzy
