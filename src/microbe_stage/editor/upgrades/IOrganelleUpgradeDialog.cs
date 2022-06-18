@@ -1,4 +1,4 @@
-public interface IOrganelleUpgradeDialog
+﻿public interface IOrganelleUpgradeDialog
 {
     void Redraw();
 }

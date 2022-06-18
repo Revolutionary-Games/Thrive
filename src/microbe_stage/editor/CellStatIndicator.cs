@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
