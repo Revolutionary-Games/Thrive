@@ -362,7 +362,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     public void UpdateGlucoseReduction(float value)
     {
         var percentage = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
-            value * 100);
+            Math.Round(value * 100));
 
         // The amount of glucose has been reduced to {0} of the previous amount.
         glucoseReductionLabel.Text =
