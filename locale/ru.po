@@ -620,7 +620,7 @@ msgstr "Разное"
 
 #: ../simulation_parameters/common/input_options.json:184
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "Пауза"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "TOGGLE_DEBUG_PANEL"
@@ -1160,9 +1160,8 @@ msgid "BEHAVIOUR"
 msgstr "Поведение"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
-#, fuzzy
 msgid "MODIFY_TYPE"
-msgstr "Модифицировать"
+msgstr "Изменить Вид"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
@@ -1195,17 +1194,14 @@ msgid "NEXT_CAPITAL"
 msgstr "ДАЛЕЕ"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
-#, fuzzy
 msgid "DISCONNECTED_CELLS"
-msgstr "Отсоединённые Органеллы"
+msgstr "Отсоединенные Клетки"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
-#, fuzzy
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
-"Среди размещённых органелл, имеются несоединённые с остальными.\n"
-"Пожалуйста соедините все размещённые органеллы с другими или отмените свои "
-"действия."
+"Среди размещённых клеток имеются несоединённые с остальными.\n"
+"Пожалуйста, соедините все размещённые клетки с другими для продолжения."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
@@ -1293,12 +1289,11 @@ msgstr "Включить показ производительности"
 
 #: ../src/engine/DebugOverlays.tscn:86
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "Консоль Отладки"
 
 #: ../src/engine/DebugOverlays.tscn:96
-#, fuzzy
 msgid "FPS_DISPLAY"
-msgstr "MediaPlay"
+msgstr "Показать FPS"
 
 #: ../src/engine/DebugOverlays.tscn:110
 msgid "COLLISION_SHAPE"
@@ -1307,12 +1302,11 @@ msgstr "Создавать сущности с коллизией"
 #: ../src/engine/DebugOverlays.tscn:117
 #, fuzzy
 msgid "ENTITY_LABEL"
-msgstr "Биом: {0}"
+msgstr "Маркировать Объекты"
 
 #: ../src/engine/DebugOverlays.tscn:128
-#, fuzzy
 msgid "TRANSPARENCY"
-msgstr "Переводчики"
+msgstr "Прозрачность"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
 msgid "LOADING"
@@ -1783,18 +1777,16 @@ msgid "STORE_LOGGED_IN_AS"
 msgstr "Авторизован как: {0}"
 
 #: ../src/general/MainMenu.tscn:175
-#, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Меню паузы"
+msgstr "Новая Игра"
 
 #: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "Новая Игра"
 
 #: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:195
-#, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr "Меню паузы"
+msgstr "Загрузить сохраненные игры"
 
 #: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
@@ -1802,9 +1794,8 @@ msgid "LOAD_GAME"
 msgstr "Загрузить игру"
 
 #: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:220
-#, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr "Помощь"
+msgstr "Сменить настройки"
 
 #: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
@@ -1827,9 +1818,8 @@ msgid "CREDITS"
 msgstr "Титры"
 
 #: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:236
-#, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr "Самоубийство"
+msgstr "Выйти из игры"
 
 #: ../src/general/MainMenu.tscn:260
 msgid "QUIT"
@@ -2155,12 +2145,9 @@ msgstr ""
 msgid "CONFIRM_NORMAL"
 msgstr "ПОДТВЕРДИТЬ"
 
-#: ../src/general/OptionsMenu.cs:629 ../src/general/OptionsMenu.tscn:292
-#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:291
 #: ../src/general/OptionsMenu.cs:617 ../src/general/OptionsMenu.tscn:290
-#, fuzzy
 msgid "AUTO_RESOLUTION"
-msgstr "Разрешение:"
+msgstr "Авто ({0}x{1})"
 
 #: ../src/general/OptionsMenu.cs:982 ../src/general/OptionsMenu.cs:976
 #: ../src/general/OptionsMenu.cs:918
@@ -2640,9 +2627,8 @@ msgid "RESUME"
 msgstr "Продолжить"
 
 #: ../src/general/PauseMenu.tscn:187
-#, fuzzy
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
-msgstr "Меню паузы"
+msgstr "Сохранить игру"
 
 #: ../src/general/PauseMenu.tscn:188
 msgid "SAVE_GAME"
@@ -3024,17 +3010,15 @@ msgstr "Нет данных"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
-msgstr ""
+msgstr "Двойной клик для полноэкранного режима"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
-#, fuzzy
 msgid "TITLE_COLON"
-msgstr "Размер:"
+msgstr "Имя:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:99
-#, fuzzy
 msgid "DESCRIPTION_COLON"
-msgstr "Описание слишком длинное"
+msgstr "Описание"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
 #, fuzzy
@@ -3042,22 +3026,21 @@ msgid "ARTIST_COLON"
 msgstr "предыдущий:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:248
-#, fuzzy
 msgid "UNTITLED"
-msgstr "Биом: {0}"
+msgstr "Без Имени"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
-msgstr ""
+msgstr "Просмотр Галереи"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
-msgstr ""
+msgstr "Фильтровать предметы по категориям:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:185
 msgid "SLIDESHOW"
-msgstr ""
+msgstr "Слайд-шоу"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2192
@@ -3151,9 +3134,8 @@ msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Закончить редактирование и вернуться в окружающую среду"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
-#, fuzzy
 msgid "NEXT_EDITOR_TAB"
-msgstr "Включить редактор"
+msgstr "Перейдите в новую вкладку редактора"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
@@ -3192,9 +3174,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2851
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3087
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3360
-#, fuzzy
 msgid "BASE_MOBILITY"
-msgstr "Мобильность"
+msgstr "Базовая Мобильность"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:193
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2378
@@ -3477,11 +3458,8 @@ msgstr ""
 "игрок еще не мог видеть."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
-#, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr ""
-"Превращает [thrive:compound type=\"=glucose\"][/thrive:compound] в [thrive:"
-"compound type=\"atp\"][/thrive:compound]."
+msgstr "Повышает скорость поворота клеток."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
 #, fuzzy
@@ -4008,9 +3986,8 @@ msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛЯЦИЯ:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1946
-#, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr "Добавить новое назначение клавиши"
+msgstr "Войдите в редактор для модификации видов"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:2092
 msgid "PAUSED"
@@ -5569,9 +5546,8 @@ msgstr ""
 "поколений, чтобы конкурировать с другими видами микробов."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:100
-#, fuzzy
 msgid "SHOW_TUTORIALS"
-msgstr "Показать руководство"
+msgstr "Показать Обучение"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
 msgid "BEGIN_THRIVING"
@@ -5626,7 +5602,7 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Вы вошли в режим отвязки. В этом режиме вы можете нажимать на членов "
-"колонии, чтобы освобождать их.\n"
+"колонии, чтобы отвязывать их.\n"
 "\n"
 "Чтобы полностью покинуть колонию, вы можете нажать на свою собственную "
 "клетку или нажать клавишу \"Отвязать всех\"."
