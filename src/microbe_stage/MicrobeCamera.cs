@@ -50,7 +50,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     [Export]
     [JsonProperty]
-    public bool DisplayBackgroundParticles;
+    public bool DisableBackgroundParticles;
 
     [Export]
     [JsonProperty]
