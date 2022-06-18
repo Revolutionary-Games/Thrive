@@ -50,7 +50,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     [Export]
     [JsonProperty]
-    public bool DisableBackgroundParticles;
+    public bool EnableBackgroundParticles;
 
     [Export]
     [JsonProperty]
@@ -118,6 +118,9 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         }
 
         materialToUpdate = (ShaderMaterial)material;
+
+        OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
+        Settings.Instance.DisplayBackgroundParticles.OnChanged += OnDisplayBackgroundParticlesChanged;
 
         ResolveNodeReferences();
 
@@ -222,12 +225,32 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
         BackgroundParticles?.DetachAndQueueFree();
 
-        if (!DisableBackgroundParticles)
+        if (EnableBackgroundParticles)
         {
             BackgroundParticles = (Particles)background.ParticleEffectScene.Instance();
             BackgroundParticles.Rotation = Rotation;
             BackgroundParticles.LocalCoords = false;
+
+            OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
+
             AddChild(BackgroundParticles);
+        }
+    }
+
+    private void OnDisplayBackgroundParticlesChanged(bool displayed)
+    {
+        if (BackgroundParticles == null)
+            return;
+
+        BackgroundParticles.Emitting = displayed;
+
+        if (displayed)
+        {
+            BackgroundParticles.Show();
+        }
+        else
+        {
+            BackgroundParticles.Hide();
         }
     }
 

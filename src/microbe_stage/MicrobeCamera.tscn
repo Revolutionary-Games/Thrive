@@ -27,6 +27,7 @@ current = true
 fov = 90.0
 script = ExtResource( 3 )
 DefaultCameraHeight = 30.0
+EnableBackgroundParticles = true
 
 [node name="BackgroundPlane" type="CSGMesh" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 5.96247e-08, -15 )
