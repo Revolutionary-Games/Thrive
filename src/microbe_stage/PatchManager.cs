@@ -147,7 +147,7 @@ public class PatchManager : IChildPropertiesLoadCallback
                 {
                     var spawner = new CreatedSpawner(entry.Key.InternalName,
                         Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem,
-                        entry.Value.Amount * Constants.CLOUD_SPAWN_AMOUNT_SCALE_FACTOR));
+                            entry.Value.Amount * Constants.CLOUD_SPAWN_AMOUNT_SCALE_FACTOR));
 
                     spawnSystem.AddSpawnType(spawner.Spawner,
                         entry.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR,
