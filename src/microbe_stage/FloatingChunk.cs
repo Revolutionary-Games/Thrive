@@ -51,6 +51,9 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     [JsonProperty]
     private float elapsedSinceProcess;
 
+    [JsonProperty]
+    private int renderPriority;
+
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
@@ -60,7 +63,15 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     public GeometryInstance EntityGraphics => chunkMesh!;
 
     [JsonIgnore]
-    public Material EntityMaterial => chunkMesh?.MaterialOverride!;
+    public int RenderPriority
+    {
+        get => renderPriority;
+        set
+        {
+            renderPriority = value;
+            ApplyRenderPriority();
+        }
+    }
 
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
@@ -446,6 +457,14 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 
         var material = (ShaderMaterial)chunkMesh.MaterialOverride;
         material.SetShaderParam("dissolveValue", dissolveEffectValue);
+    }
+
+    private void ApplyRenderPriority()
+    {
+        if (chunkMesh == null)
+            throw new InvalidOperationException("Chunk without a mesh can't be applied a render priority");
+
+        chunkMesh.MaterialOverride.RenderPriority = RenderPriority;
     }
 
     private void InitPhysics()

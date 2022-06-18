@@ -135,7 +135,7 @@ public partial class Microbe
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
     /// </summary>
     [JsonIgnore]
-    public Membrane Membrane { get; private set; } = null!;
+    public Membrane? Membrane { get; private set; }
 
     [JsonProperty]
     public float Hitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
@@ -161,7 +161,7 @@ public partial class Microbe
     {
         get
         {
-            if (Colony == null)
+            if (Colony == null || Membrane == null)
                 return state;
 
             var colonyState = Colony.State;
@@ -174,7 +174,7 @@ public partial class Microbe
         }
         set
         {
-            if (state == value)
+            if (state == value || Membrane == null)
                 return;
 
             // Engulfing is not legal for microbes will cell walls
@@ -251,6 +251,9 @@ public partial class Microbe
     /// </summary>
     public void ApplyMembraneWigglyness()
     {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         Membrane.WigglyNess = Membrane.Type.BaseWigglyness - (CellTypeProperties.MembraneRigidity /
             Membrane.Type.BaseWigglyness) * 0.2f;
         Membrane.MovementWigglyNess = Membrane.Type.MovementWigglyness - (CellTypeProperties.MembraneRigidity /
@@ -281,6 +284,9 @@ public partial class Microbe
 
     public void AbortFlash()
     {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         flashDuration = 0;
         flashColour = new Color(0, 0, 0, 0);
         flashPriority = 0;
@@ -380,6 +386,9 @@ public partial class Microbe
     /// </summary>
     public bool CanEngulf(IEngulfable target)
     {
+        if (Membrane == null)
+            return false;
+
         if (target.CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)
             return false;
 
@@ -440,7 +449,8 @@ public partial class Microbe
     {
         OnIngested?.Invoke(this, HostileEngulfer.Value!);
 
-        Membrane.WigglyNess = 0;
+        if (Membrane != null)
+            Membrane.WigglyNess = 0;
 
         // Make the render priority of our organelles be on top of the highest possible render priority
         // of the hostile engulfer's organelles
@@ -494,7 +504,7 @@ public partial class Microbe
                 engulfed.Object.Value.DestroyDetachAndQueueFree();
             }
 
-            engulfed.Endosome.DetachAndQueueFree();
+            engulfed.Endosome.Value?.DetachAndQueueFree();
         }
 
         engulfedObjects.Clear();
@@ -516,7 +526,7 @@ public partial class Microbe
     /// </summary>
     public void SendOrganellePositionsToMembrane()
     {
-        if (organelles == null)
+        if (organelles == null || Membrane == null)
             throw new InvalidOperationException("Microbe must be initialized first");
 
         var organellePositions = new List<Vector2>();
@@ -872,6 +882,9 @@ public partial class Microbe
 
     private void SetMembraneFromSpecies()
     {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         Membrane.Type = CellTypeProperties.MembraneType;
         Membrane.Tint = CellTypeProperties.Colour;
         Membrane.Dirty = true;
@@ -879,12 +892,16 @@ public partial class Microbe
 
         foreach (var engulfed in engulfedObjects)
         {
-            engulfed.Endosome.UpdateTint(CellTypeProperties.Colour);
+            if (engulfed.Endosome.Value != null)
+                engulfed.Endosome.Value.Tint = CellTypeProperties.Colour;
         }
     }
 
     private void CheckEngulfShape()
     {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         /*
         var wantedRadius = Radius * 5;
         if (pseudopodRangeSphereShape.Radius != wantedRadius)
@@ -915,6 +932,9 @@ public partial class Microbe
     /// </summary>
     private void HandleFlashing(float delta)
     {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         // Flash membrane if something happens.
         if (flashDuration > 0 && flashColour != new Color(0, 0, 0, 0))
         {
@@ -1105,7 +1125,7 @@ public partial class Microbe
                         engulfedObjects.Remove(engulfedObject);
                         break;
                     case EngulfmentStep.BeingRegurgitated:
-                        engulfedObject.Endosome.Hide();
+                        engulfedObject.Endosome.Value?.Hide();
                         engulfedObject.TargetValuesToLerp = (null, engulfedObject.OriginalScale, null);
                         StartEngulfmentLerp(engulfedObject, 1.0f);
                         engulfable.CurrentEngulfmentStep = EngulfmentStep.PreparingEjection;
@@ -1154,6 +1174,9 @@ public partial class Microbe
     /// </summary>
     private void HandleDeath(float delta)
     {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         // Spawn cell death particles. Don't spawn it if this has been digested as the membrane
         // have already broke up by then and having a bursting particles won't make sense
         if (!deathParticlesSpawned && DigestionProgress <= 0)
@@ -1366,7 +1389,7 @@ public partial class Microbe
     private void IngestEngulfable(IEngulfable target)
     {
         if (target.CurrentEngulfmentStep is EngulfmentStep.BeingEngulfed or EngulfmentStep.Ingested ||
-            target.EntityNode.GetParent() == this)
+            target.EntityNode.GetParent() == this || Membrane == null)
         {
             return;
         }
@@ -1426,32 +1449,28 @@ public partial class Microbe
         if (boundingBoxSize.y < Mathf.Epsilon)
             boundingBoxSize = new Vector3(boundingBoxSize.x, 0.1f, boundingBoxSize.z);
 
-        var engulfedObject = new EngulfedObject(target)
+        var originalRenderPriority = target.RenderPriority;
+
+        // We want the ingested material to be always visible over the organelles
+        target.RenderPriority += organelles!.PeakRenderPriority + 1;
+
+        // Form endosome
+        var endosome = endosomeScene.Instance<Endosome>();
+        endosome.Scale = Vector3.Zero;
+        endosome.Transform = target.EntityGraphics.Transform.Scaled(Vector3.Zero);
+        endosome.Tint = CellTypeProperties.Colour;
+        endosome.RenderPriority = target.RenderPriority + engulfedObjects.Count + 1;
+        target.EntityGraphics.AddChild(endosome);
+
+        var engulfedObject = new EngulfedObject(target, endosome)
         {
             TargetValuesToLerp = (finalPosition, body.Scale / 2, boundingBoxSize),
             OriginalScale = body.Scale,
-            OriginalRenderPriority = target.EntityMaterial.RenderPriority,
+            OriginalRenderPriority = originalRenderPriority,
         };
 
-        // We want the ingested material always be visible over the organelles
-        target.EntityMaterial.RenderPriority += organelles!.PeakRenderPriority + 1;
-
-        var engulfable = engulfedObject.Object.Value;
-
         foreach (string group in engulfedObject.OriginalGroups)
-            engulfable?.EntityNode.RemoveFromGroup(group);
-
-        // Form endosome
-        engulfedObject.Endosome = endosomeScene.Instance<Endosome>();
-        engulfedObject.Endosome.Scale = Vector3.Zero;
-        engulfedObject.Endosome.Transform = engulfable!.EntityGraphics.Transform.Scaled(Vector3.Zero);
-        engulfable.EntityGraphics.AddChild(engulfedObject.Endosome);
-
-        var endosomeMesh = engulfedObject.Endosome.Mesh;
-        var endosomeMaterial = (ShaderMaterial)endosomeMesh!.MaterialOverride;
-
-        endosomeMaterial.RenderPriority = target.EntityMaterial.RenderPriority + engulfedObjects.Count + 1;
-        engulfedObject.Endosome.UpdateTint(CellTypeProperties.Colour);
+            target.EntityNode.RemoveFromGroup(group);
 
         engulfedObjects.Add(engulfedObject);
 
@@ -1466,7 +1485,7 @@ public partial class Microbe
     private void EjectEngulfable(IEngulfable target)
     {
         if (target.CurrentEngulfmentStep is EngulfmentStep.BeingRegurgitated or EngulfmentStep.NotEngulfed ||
-            target.EntityNode.GetParent() != this)
+            target.EntityNode.GetParent() != this || Membrane == null)
         {
             return;
         }
@@ -1635,7 +1654,7 @@ public partial class Microbe
 
     private bool LerpEngulfmentProcess(float delta, EngulfedObject engulfed)
     {
-        if (engulfed.Object.Value == null)
+        if (engulfed.Object.Value == null || engulfed.Endosome.Value == null)
             return false;
 
         var body = (RigidBody)engulfed.Object.Value;
@@ -1661,7 +1680,7 @@ public partial class Microbe
 
             if (engulfed.TargetValuesToLerp.EndosomeScale.HasValue)
             {
-                engulfed.Endosome.Scale = engulfed.InitialValuesToLerp.EndosomeScale.LinearInterpolate(
+                engulfed.Endosome.Value.Scale = engulfed.InitialValuesToLerp.EndosomeScale.LinearInterpolate(
                     engulfed.TargetValuesToLerp.EndosomeScale.Value, fraction);
             }
 
@@ -1676,7 +1695,7 @@ public partial class Microbe
             body.Scale = engulfed.TargetValuesToLerp.Scale.Value;
 
         if (engulfed.TargetValuesToLerp.EndosomeScale.HasValue)
-            engulfed.Endosome.Scale = engulfed.TargetValuesToLerp.EndosomeScale.Value;
+            engulfed.Endosome.Value.Scale = engulfed.TargetValuesToLerp.EndosomeScale.Value;
 
         StopEngulfmentLerp(engulfed);
 
@@ -1685,14 +1704,14 @@ public partial class Microbe
 
     private void StartEngulfmentLerp(EngulfedObject engulfedObject, float duration, bool resetElapsedTime = true)
     {
-        if (engulfedObject.Object.Value == null)
+        if (engulfedObject.Object.Value == null || engulfedObject.Endosome.Value == null)
             return;
 
         if (resetElapsedTime)
             engulfedObject.AnimationTimeElapsed = 0;
 
         var body = (RigidBody)engulfedObject.Object.Value;
-        engulfedObject.InitialValuesToLerp = (body.Translation, body.Scale, engulfedObject.Endosome.Scale);
+        engulfedObject.InitialValuesToLerp = (body.Translation, body.Scale, engulfedObject.Endosome.Value.Scale);
         engulfedObject.LerpDuration = duration;
         engulfedObject.Interpolate = true;
     }
@@ -1732,9 +1751,9 @@ public partial class Microbe
             engulfable.EntityNode.AddToGroup(group);
 
         // Reset render priority
-        engulfable.EntityMaterial.RenderPriority = engulfed.OriginalRenderPriority;
+        engulfable.RenderPriority = engulfed.OriginalRenderPriority;
 
-        engulfed.Endosome.DetachAndQueueFree();
+        engulfed.Endosome.Value?.DetachAndQueueFree();
 
         // Ignore possible invalid cast as the engulfed node should be a rigidbody either way
         var body = (RigidBody)engulfable;
@@ -1760,14 +1779,15 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Holds cached and extra informations to work on in addition to the engulfed object
+    ///   Holds cached and extra information to work on in addition to the engulfed object
     /// </summary>
     private class EngulfedObject
     {
         [JsonConstructor]
-        public EngulfedObject(IEngulfable @object)
+        public EngulfedObject(IEngulfable @object, Endosome endosome)
         {
             Object = new EntityReference<IEngulfable>(@object);
+            Endosome = new EntityReference<Endosome>(endosome);
             AvailableEngulfableCompounds = @object.CalculateDigestibleCompounds();
             InitialTotalEngulfableCompounds = AvailableEngulfableCompounds.Sum(c => c.Value);
             OriginalGroups = @object.EntityNode.GetGroups();
@@ -1778,28 +1798,21 @@ public partial class Microbe
         /// </summary>
         public EntityReference<IEngulfable> Object { get; private set; }
 
-        public Endosome Endosome { get; set; } = null!;
+        /// <summary>
+        ///   Engulfed object's "shell".
+        /// </summary>
+        public EntityReference<Endosome> Endosome { get; private set; }
 
         public Dictionary<Compound, float> AvailableEngulfableCompounds { get; private set; }
-
         public float InitialTotalEngulfableCompounds { get; private set; }
-
         public bool Interpolate { get; set; }
-
         public float LerpDuration { get; set; }
-
         public float AnimationTimeElapsed { get; set; }
-
         public float TimeElapsedSinceEjection { get; set; }
-
         public (Vector3? Translation, Vector3? Scale, Vector3? EndosomeScale) TargetValuesToLerp { get; set; }
-
         public (Vector3 Translation, Vector3 Scale, Vector3 EndosomeScale) InitialValuesToLerp { get; set; }
-
         public Vector3 OriginalScale { get; set; }
-
         public int OriginalRenderPriority { get; set; }
-
         public Array OriginalGroups { get; private set; }
     }
 }

@@ -6,10 +6,44 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/Endosome.tscn", UsesEarlyResolve = false)]
-public class Endosome : Spatial
+public class Endosome : Spatial, IEntity
 {
+    [JsonProperty]
+    private Color tint;
+
+    [JsonProperty]
+    private int renderPriority;
+
     [JsonIgnore]
     public MeshInstance? Mesh { get; private set; }
+
+    [JsonIgnore]
+    public Color Tint
+    {
+        get => tint;
+        set
+        {
+            tint = value;
+            ApplyTint();
+        }
+    }
+
+    [JsonIgnore]
+    public int RenderPriority
+    {
+        get => renderPriority;
+        set
+        {
+            renderPriority = value;
+            ApplyRenderPriority();
+        }
+    }
+
+    [JsonIgnore]
+    public Spatial EntityNode => this;
+
+    [JsonIgnore]
+    public AliveMarker AliveMarker { get; } = new();
 
     public override void _Ready()
     {
@@ -19,11 +53,28 @@ public class Endosome : Spatial
         // the number to only 3 decimal places.
         var material = Mesh?.MaterialOverride as ShaderMaterial;
         material?.SetShaderParam("jiggleAmount", 0.0001f);
+
+        ApplyTint();
+        ApplyRenderPriority();
     }
 
-    public void UpdateTint(Color colour)
+    public void OnDestroyed()
+    {
+        AliveMarker.Alive = false;
+    }
+
+    private void ApplyTint()
     {
         var material = Mesh?.MaterialOverride as ShaderMaterial;
-        material?.SetShaderParam("tint", colour);
+        material?.SetShaderParam("tint", tint);
+    }
+
+    private void ApplyRenderPriority()
+    {
+        if (Mesh == null)
+            return;
+
+        var material = Mesh.MaterialOverride;
+        material.RenderPriority = renderPriority;
     }
 }

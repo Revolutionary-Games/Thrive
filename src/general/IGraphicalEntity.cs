@@ -12,9 +12,6 @@ public interface IGraphicalEntity : IEntity
     [JsonIgnore]
     public GeometryInstance EntityGraphics { get; }
 
-    /// <summary>
-    ///   The shader material that this entity's geometric instance owns.
-    /// </summary>
     [JsonIgnore]
-    public Material EntityMaterial { get; }
+    public int RenderPriority { get; set; }
 }

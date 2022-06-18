@@ -66,6 +66,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private float movementSoundCooldownTimer;
 
+    [JsonProperty]
+    private int renderPriority = 18;
+
     private Random random = new();
 
     private HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections = new();
@@ -145,6 +148,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     {
         get
         {
+            if (Membrane == null)
+                return 0;
+
             var radius = Membrane.EncompassingCircleRadius;
 
             if (CellTypeProperties.IsBacteria)
@@ -213,13 +219,18 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public Spatial EntityNode => this;
 
     [JsonIgnore]
-    public GeometryInstance EntityGraphics => Membrane;
+    public GeometryInstance EntityGraphics => Membrane!;
 
-    /// <summary>
-    ///   NOTE: This only returns the membrane material, organelles not included.
-    /// </summary>
     [JsonIgnore]
-    public Material EntityMaterial => Membrane.GetSurfaceMaterial(0)!;
+    public int RenderPriority
+    {
+        get => renderPriority;
+        set
+        {
+            renderPriority = value;
+            ApplyRenderPriority();
+        }
+    }
 
     [JsonIgnore]
     public List<TweakedProcess> ActiveProcesses
@@ -419,8 +430,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                     continue;
 
                 AddChild(engulfable.EntityNode);
-                engulfable.EntityGraphics.AddChild(engulfed.Endosome);
-                engulfed.Endosome.UpdateTint(CellTypeProperties.Colour);
+                engulfable.EntityGraphics.AddChild(engulfed.Endosome.Value);
             }
         }
 
@@ -567,6 +577,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </remarks>
     public void ProcessEarlyAsync(float delta)
     {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         if (membraneOrganellePositionsAreDirty)
         {
             // Redo the cell membrane.
@@ -626,6 +639,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     public void ProcessSync(float delta)
     {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         // Updates the listener if this is the player owned microbe.
         if (listener != null)
         {
@@ -874,6 +890,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (ColonyParent == null)
             throw new InvalidOperationException("This microbe doesn't have colony parent set");
 
+        if (ColonyParent.Membrane == null)
+            throw new InvalidOperationException("Colony parent is not initialized");
+
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         // Gets the global rotation of the parent
         var globalParentRotation = ColonyParent.GlobalTransform.basis.GetEuler();
 
@@ -916,6 +938,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (CellTypeProperties.Organelles.Count < 1)
             throw new ArgumentException("Species with no organelles is not valid");
 
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         SetScaleFromSpecies();
 
         ResetOrganelleLayout();
@@ -945,9 +970,21 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private void ApplyScale(Vector3 scale)
     {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         // Scale only the graphics parts to not have physics affected
         Membrane.Scale = scale;
         OrganelleParent.Scale = scale;
+    }
+
+    private void ApplyRenderPriority()
+    {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
+        var material = Membrane.GetSurfaceMaterial(0);
+        material.RenderPriority = RenderPriority;
     }
 
     private Node GetStageAsParent()

@@ -107,7 +107,7 @@ public partial class Microbe
     public float TotalAvailableCompoundsOnEngulfed { get; set; }
 
     [JsonIgnore]
-    public Enzyme RequisiteEnzymeToDigest => SimulationParameters.Instance.GetEnzyme(Membrane.Type.DissolverEnzyme);
+    public Enzyme RequisiteEnzymeToDigest => SimulationParameters.Instance.GetEnzyme(Membrane!.Type.DissolverEnzyme);
 
     [JsonIgnore]
     public float DigestionProgress
@@ -206,6 +206,9 @@ public partial class Microbe
     {
         if (AgentEmissionCooldown > 0)
             return;
+
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
 
         // Only shoot if you have an agent vacuole.
         if (AgentVacuoleCount < 1)
@@ -546,6 +549,9 @@ public partial class Microbe
 
     private void HandleCompoundAbsorbing(float delta)
     {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         // max here buffs compound absorbing for the smallest cells
         var grabRadius = Mathf.Max(Radius, 3.0f);
 
@@ -1037,6 +1043,9 @@ public partial class Microbe
     /// </summary>
     private Vector3 CalculateNearbyWorldPosition()
     {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         // The back of the microbe
         var exit = Hex.AxialToCartesian(new Hex(0, 1));
         var membraneCoords = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
@@ -1190,6 +1199,9 @@ public partial class Microbe
 
     private void UpdateDissolveEffect()
     {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         Membrane.DissolveEffectValue = dissolveEffectValue;
 
         foreach (var organelle in organelles!)
