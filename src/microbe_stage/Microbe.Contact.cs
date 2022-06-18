@@ -467,7 +467,8 @@ public partial class Microbe
 
     public void OnEjected()
     {
-        OnRegurgitated?.Invoke(this, HostileEngulfer.Value!);
+        var hostile = HostileEngulfer.Value;
+        OnRegurgitated?.Invoke(this, hostile!);
 
         // Reset wigglyness
         ApplyMembraneWigglyness();
@@ -481,12 +482,22 @@ public partial class Microbe
         if (DigestionProgress >= 0.3f)
         {
             // Cell is too damaged from digestion, can't live in open environment and is considered dead
-            // TODO: Temporary
-            Kill();
+            var droppedChunks = Kill();
 
-            // Disable collisions
-            CollisionLayer = 0;
-            CollisionMask = 0;
+            if (droppedChunks != null && hostile != null)
+            {
+                foreach (var chunk in droppedChunks)
+                {
+                    var direction = hostile.Transform.origin.DirectionTo(chunk.Transform.origin);
+                    chunk.Translation += direction *
+                        Constants.EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET;
+
+                    var impulse = direction * chunk.Mass * Constants.ENGULF_EJECTION_FORCE;
+
+                    // Apply outwards ejection force
+                    chunk.ApplyCentralImpulse(impulse + LinearVelocity);
+                }
+            }
         }
         else
         {
@@ -546,10 +557,13 @@ public partial class Microbe
     /// <summary>
     ///   Instantly kills this microbe and queues this entity to be destroyed
     /// </summary>
-    public void Kill()
+    /// <returns>
+    ///   The corpse chunks dropped. Null if this cell is already dead.
+    /// </returns>
+    public HashSet<FloatingChunk>? Kill()
     {
         if (Dead)
-            return;
+            return null;
 
         Dead = true;
 
@@ -616,12 +630,18 @@ public partial class Microbe
             {
                 compoundsToRelease.TryGetValue(entry.Key, out var existing);
 
-                compoundsToRelease[entry.Key] = existing + (entry.Value *
-                    Constants.COMPOUND_MAKEUP_RELEASE_FRACTION);
+                // Only add up if there's still some compounds left, otherwise
+                // we're releasing compounds out of thin air.
+                if (existing > 0)
+                {
+                    compoundsToRelease[entry.Key] = existing + (entry.Value *
+                        Constants.COMPOUND_MAKEUP_RELEASE_FRACTION);
+                }
             }
         }
 
         int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISOR);
+        var droppedCorpseChunks = new HashSet<FloatingChunk>(chunksToSpawn);
 
         var chunkScene = SpawnHelpers.LoadChunkScene();
 
@@ -652,8 +672,8 @@ public partial class Microbe
                 var compoundValue = new ChunkConfiguration.ChunkCompound
                 {
                     // Randomize compound amount a bit so things "rot away"
-                    Amount = (entry.Value / random.Next(amount / 3.0f, amount)) *
-                        Constants.CORPSE_COMPOUND_COMPENSATION,
+                    Amount = (entry.Value / (random.Next(amount / 3.0f, amount) *
+                        Constants.CHUNK_ENGULF_COMPOUND_DIVISOR)) * Constants.CORPSE_COMPOUND_COMPENSATION,
                 };
 
                 chunkType.Compounds[entry.Key] = compoundValue;
@@ -690,6 +710,7 @@ public partial class Microbe
             // Finally spawn a chunk with the settings
             var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
                 chunkScene, random);
+            droppedCorpseChunks.Add(chunk);
 
             // Add to the spawn system to make these chunks limit possible number of entities
             SpawnSystem.AddEntityToTrack(chunk);
@@ -726,6 +747,8 @@ public partial class Microbe
         CollisionMask = 0;
 
         // Post-death handling is done in HandleDeath
+
+        return droppedCorpseChunks;
     }
 
     public void OnDestroyed()
@@ -1747,7 +1770,6 @@ public partial class Microbe
         engulfedObjects.Remove(engulfed);
         ejectedObjects.Add(engulfed);
 
-        engulfable.HostileEngulfer.Value = null;
         engulfable.CurrentEngulfmentStep = EngulfmentStep.NotEngulfed;
 
         foreach (string group in engulfed.OriginalGroups)
@@ -1779,6 +1801,7 @@ public partial class Microbe
         body.ApplyCentralImpulse(impulse + LinearVelocity);
 
         engulfable.OnEjected();
+        engulfable.HostileEngulfer.Value = null;
     }
 
     /// <summary>
@@ -1791,8 +1814,8 @@ public partial class Microbe
         {
             Object = new EntityReference<IEngulfable>(@object);
             Endosome = new EntityReference<Endosome>(endosome);
-            AvailableEngulfableCompounds = @object.CalculateDigestibleCompounds();
-            InitialTotalEngulfableCompounds = AvailableEngulfableCompounds.Sum(c => c.Value);
+            AdditionalEngulfableCompounds = @object.CalculateAdditionalDigestibleCompounds();
+            InitialTotalEngulfableCompounds = @object.Compounds.Sum(c => c.Value);
             OriginalGroups = @object.EntityNode.GetGroups();
         }
 
@@ -1806,7 +1829,7 @@ public partial class Microbe
         /// </summary>
         public EntityReference<Endosome> Endosome { get; private set; }
 
-        public Dictionary<Compound, float> AvailableEngulfableCompounds { get; private set; }
+        public Dictionary<Compound, float>? AdditionalEngulfableCompounds { get; private set; }
         public float InitialTotalEngulfableCompounds { get; private set; }
         public bool Interpolate { get; set; }
         public float LerpDuration { get; set; }

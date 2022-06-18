@@ -81,7 +81,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     /// <summary>
     ///   Compounds this chunk contains, and vents
     /// </summary>
-    public CompoundBag? ContainedCompounds { get; set; }
+    public CompoundBag? Compounds { get; private set; }
 
     /// <summary>
     ///   How much of each compound is vented per second
@@ -183,11 +183,11 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         {
             // Capacity is set to 0 so that no compounds can be added
             // the normal way to the chunk
-            ContainedCompounds = new CompoundBag(0);
+            Compounds = new CompoundBag(0);
 
             foreach (var entry in chunkType.Compounds)
             {
-                ContainedCompounds.Compounds.Add(entry.Key, entry.Value.Amount);
+                Compounds.Compounds.Add(entry.Key, entry.Value.Amount);
             }
         }
     }
@@ -223,11 +223,11 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 
         config.Meshes.Add(item);
 
-        if (ContainedCompounds?.Compounds.Count > 0)
+        if (Compounds?.Compounds.Count > 0)
         {
             config.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>();
 
-            foreach (var entry in ContainedCompounds)
+            foreach (var entry in Compounds)
             {
                 config.Compounds.Add(entry.Key, new ChunkConfiguration.ChunkCompound { Amount = entry.Value });
             }
@@ -326,23 +326,33 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         }
 
         if (DespawnTimer > Constants.DESPAWNING_CHUNK_LIFETIME)
+        {
+            VentAllCompounds(compoundClouds);
             DissolveOrRemove();
+        }
 
         elapsedSinceProcess = 0;
     }
 
     public void PopImmediately(CompoundCloudSystem compoundClouds)
     {
+        VentAllCompounds(compoundClouds);
+        this.DestroyDetachAndQueueFree();
+    }
+
+    public void VentAllCompounds(CompoundCloudSystem compoundClouds)
+    {
         // Vent all remaining compounds immediately
-        if (ContainedCompounds != null)
+        if (Compounds != null)
         {
             var pos = Translation;
 
-            var keys = new List<Compound>(ContainedCompounds.Compounds.Keys);
+            var keys = new List<Compound>(Compounds.Compounds.Keys);
 
             foreach (var compound in keys)
             {
-                var amount = ContainedCompounds.GetCompoundAmount(compound);
+                var amount = Compounds.GetCompoundAmount(compound);
+                Compounds.TakeCompound(compound, amount);
 
                 if (amount < MathUtils.EPSILON)
                     continue;
@@ -350,8 +360,6 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
                 VentCompound(pos, compound, amount, compoundClouds);
             }
         }
-
-        this.DestroyDetachAndQueueFree();
     }
 
     public void OnDestroyed()
@@ -359,19 +367,9 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         AliveMarker.Alive = false;
     }
 
-    public Dictionary<Compound, float> CalculateDigestibleCompounds()
+    public Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds()
     {
-        var result = new Dictionary<Compound, float>();
-
-        if (ContainedCompounds == null)
-            return result;
-
-        foreach (var entry in ContainedCompounds)
-        {
-            result.Add(entry.Key, entry.Value / Constants.CHUNK_ENGULF_COMPOUND_DIVISOR);
-        }
-
-        return result;
+        return null;
     }
 
     public void OnEngulfed()
@@ -383,7 +381,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         if (DigestionProgress > 0)
         {
             // Just dissolve this chunk entirely (as it's already somehow broken down by digestion)
-            DissolveOrRemove();
+            DespawnTimer = Constants.DESPAWNING_CHUNK_LIFETIME + 1;
         }
     }
 
@@ -392,23 +390,23 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     /// </summary>
     private void VentCompounds(float delta, CompoundCloudSystem compoundClouds)
     {
-        if (ContainedCompounds == null)
+        if (Compounds == null)
             return;
 
         var pos = Translation;
 
-        var keys = new List<Compound>(ContainedCompounds.Compounds.Keys);
+        var keys = new List<Compound>(Compounds.Compounds.Keys);
 
         // Loop through all the compounds in the storage bag and eject them
         bool vented = false;
         foreach (var compound in keys)
         {
-            var amount = ContainedCompounds.GetCompoundAmount(compound);
+            var amount = Compounds.GetCompoundAmount(compound);
 
             if (amount <= 0)
                 continue;
 
-            var got = ContainedCompounds.TakeCompound(compound, VentPerSecond * delta);
+            var got = Compounds.TakeCompound(compound, VentPerSecond * delta);
 
             if (got > MathUtils.EPSILON)
             {

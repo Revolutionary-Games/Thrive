@@ -172,6 +172,11 @@ public class SimulationParameters : Node
         return compounds[name];
     }
 
+    public Dictionary<string, Compound> GetAllCompounds()
+    {
+        return compounds;
+    }
+
     public bool DoesCompoundExist(string name)
     {
         return compounds.ContainsKey(name);

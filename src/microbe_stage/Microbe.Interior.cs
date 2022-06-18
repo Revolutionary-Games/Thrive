@@ -11,12 +11,6 @@ using Newtonsoft.Json;
 /// </summary>
 public partial class Microbe
 {
-    /// <summary>
-    ///   The stored compounds in this microbe
-    /// </summary>
-    [JsonProperty]
-    public readonly CompoundBag Compounds = new(0.0f);
-
     private Compound atp = null!;
 
     private Enzyme lipase = null!;
@@ -70,6 +64,12 @@ public partial class Microbe
     private bool allOrganellesDivided;
 
     private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
+
+    /// <summary>
+    ///   The stored compounds in this microbe
+    /// </summary>
+    [JsonProperty]
+    public CompoundBag Compounds { get; private set; } = new(0.0f);
 
     /// <summary>
     ///   True only when this cell has been killed to let know things
@@ -519,16 +519,9 @@ public partial class Microbe
         return result;
     }
 
-    public Dictionary<Compound, float> CalculateDigestibleCompounds()
+    public Dictionary<Compound, float> CalculateAdditionalDigestibleCompounds()
     {
         var result = new Dictionary<Compound, float>();
-
-        foreach (var compound in Compounds)
-        {
-            result.Add(compound.Key, compound.Value * (compound.Key.IsCloud ?
-                Constants.COMPOUND_RELEASE_FRACTION :
-                1));
-        }
 
         // Add some part of the build cost of all the organelles
         foreach (var organelle in organelles!)
@@ -540,7 +533,7 @@ public partial class Microbe
                 if (result.ContainsKey(entry.Key))
                     existing = result[entry.Key];
 
-                result[entry.Key] = existing + (entry.Value * Constants.COMPOUND_MAKEUP_RELEASE_FRACTION);
+                result[entry.Key] = existing + entry.Value;
             }
         }
 
@@ -1098,6 +1091,7 @@ public partial class Microbe
 
     private void HandleDigestion(float delta)
     {
+        var compounds = SimulationParameters.Instance.GetAllCompounds();
         var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
         for (int i = engulfedObjects.Count - 1; i >= 0; --i)
@@ -1122,12 +1116,20 @@ public partial class Microbe
                 usedEnzyme = engulfable.RequisiteEnzymeToDigest;
             }
 
-            var hasAnyUsefulCompounds = false;
-            for (var c = 0; c < engulfedObject.AvailableEngulfableCompounds.Count; ++c)
-            {
-                var compound = engulfedObject.AvailableEngulfableCompounds.ElementAt(c);
+            var containedCompounds = engulfable.Compounds;
+            var additionalCompounds = engulfedObject.AdditionalEngulfableCompounds;
 
-                if ((compound.Key != oxytoxy && !Compounds.IsUseful(compound.Key)) || compound.Value <= 0)
+            var hasAnyUsefulCompounds = false;
+            foreach (var compound in compounds.Values)
+            {
+                var originalAmount = containedCompounds?.GetCompoundAmount(compound);
+
+                var additionalAmount = 0.0f;
+                additionalCompounds?.TryGetValue(compound, out additionalAmount);
+
+                var totalAvailable = originalAmount.GetValueOrDefault() + additionalAmount;
+
+                if ((compound != oxytoxy && !Compounds.IsUseful(compound)) || totalAvailable <= 0)
                     continue;
 
                 hasAnyUsefulCompounds = true;
@@ -1140,9 +1142,9 @@ public partial class Microbe
                 // TODO: Maybe set max efficiency lower to 80%?
                 var efficiency = MicrobeInternalCalculations.CalculateDigestionEfficiency(ActiveEnzymes[usedEnzyme]);
 
-                var taken = Mathf.Min(compound.Value, amount);
+                var taken = Mathf.Min(totalAvailable, amount);
 
-                if (compound.Key == oxytoxy && taken > 0)
+                if (compound == oxytoxy && taken > 0)
                 {
                     lastCheckedOxytoxyDigestionDamage += delta;
 
@@ -1158,14 +1160,25 @@ public partial class Microbe
                 // Don't absorb this specific compound if we have just reached max capacity. And if the compound bag is
                 // entirely full then this object won't be digested and would just be stored away until it's needed
                 // again
-                if (Compounds.GetCompoundAmount(compound.Key) > Compounds.Capacity)
+                if (Compounds.GetCompoundAmount(compound) > Compounds.Capacity)
                     continue;
 
-                engulfedObject.AvailableEngulfableCompounds[compound.Key] -= amount;
-                Compounds.AddCompound(compound.Key, taken * efficiency);
+                if (additionalCompounds?.ContainsKey(compound) == true)
+                    additionalCompounds[compound] -= taken;
+
+                engulfable.Compounds?.TakeCompound(compound, taken);
+                Compounds.AddCompound(compound, taken * efficiency);
             }
 
-            var totalAmountLeft = engulfedObject.AvailableEngulfableCompounds.Sum(compound => compound.Value);
+            var total = new Dictionary<Compound, float>();
+
+            if (containedCompounds != null)
+                total.Merge(containedCompounds.Compounds);
+
+            if (additionalCompounds != null)
+                total.Merge(additionalCompounds);
+
+            var totalAmountLeft = total.Sum(compound => compound.Value);
             engulfable.DigestionProgress = 1 - (totalAmountLeft / engulfedObject.InitialTotalEngulfableCompounds);
 
             if (totalAmountLeft <= 0 || engulfable.DigestionProgress >= 1)

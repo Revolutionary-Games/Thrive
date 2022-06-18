@@ -61,13 +61,15 @@ public interface IEngulfable : IGraphicalEntity
     /// </summary>
     public Enzyme? RequisiteEnzymeToDigest { get; }
 
+    public CompoundBag? Compounds { get; }
+
     /// <summary>
     ///   The value for how much this engulfable has been digested on the range of 0 to 1,
     ///   where 1 means fully digested.
     /// </summary>
     public float DigestionProgress { get; set; }
 
-    Dictionary<Compound, float> CalculateDigestibleCompounds();
+    Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds();
 
     /// <summary>
     ///   Called when this engulfable is being engulfed by a microbe.

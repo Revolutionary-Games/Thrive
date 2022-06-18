@@ -288,7 +288,7 @@ public class MicrobeAI
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
-            if (chunk.ContainedCompounds == null)
+            if (chunk.Compounds == null)
                 continue;
 
             if (microbe.Size > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ
@@ -296,7 +296,7 @@ public class MicrobeAI
                 <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0
                 && chunk.CurrentEngulfmentStep == EngulfmentStep.NotEngulfed)
             {
-                if (chunk.ContainedCompounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key)))
+                if (chunk.Compounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key)))
                 {
                     if (chosenChunk == null ||
                         (chosenChunk.Translation - microbe.Translation).LengthSquared() >

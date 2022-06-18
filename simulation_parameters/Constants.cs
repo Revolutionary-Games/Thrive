@@ -353,6 +353,8 @@ public static class Constants
 
     public const float ENGULF_EJECTION_FORCE = 20f;
 
+    public const float EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET = 1.5f;
+
     /// <summary>
     ///   The speed of which a cell can absorb compounds from digestible engulfed objects.
     /// </summary>
