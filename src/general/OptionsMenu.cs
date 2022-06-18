@@ -147,6 +147,9 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath ThreadCountSliderPath = null!;
 
+    [Export]
+    public NodePath MaxSpawnedEntitiesCountPath = null!;
+
     // Inputs tab.
     [Export]
     public NodePath InputsTabPath = null!;
@@ -265,6 +268,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox assumeHyperthreading = null!;
     private CustomCheckBox useManualThreadCount = null!;
     private Slider threadCountSlider = null!;
+    private SpinBox maxSpawnedEntitiesCount = null!;
 
     // Inputs tab
     private Control inputsTab = null!;
@@ -387,6 +391,7 @@ public class OptionsMenu : ControlWithInput
         assumeHyperthreading = GetNode<CustomCheckBox>(AssumeHyperthreadingPath);
         useManualThreadCount = GetNode<CustomCheckBox>(UseManualThreadCountPath);
         threadCountSlider = GetNode<Slider>(ThreadCountSliderPath);
+        maxSpawnedEntitiesCount = GetNode<SpinBox>(MaxSpawnedEntitiesCountPath);
 
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
@@ -531,6 +536,7 @@ public class OptionsMenu : ControlWithInput
         useManualThreadCount.Pressed = settings.UseManualThreadCount;
         threadCountSlider.Value = settings.ThreadCount;
         threadCountSlider.Editable = settings.UseManualThreadCount;
+        maxSpawnedEntitiesCount.Value = settings.MaxSpawnedEntitiesCount;
 
         UpdateDetectedCPUCount();
 
@@ -1314,6 +1320,13 @@ public class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDetectedCPUCount();
+    }
+
+    private void OnMaxSpawnedEntitiesCountChanged(float value)
+    {
+        Settings.Instance.MaxSpawnedEntitiesCount.Value = (int)value;
+
+        UpdateResetSaveButtonState();
     }
 
     // Input Callbacks
