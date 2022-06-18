@@ -1815,7 +1815,7 @@ public partial class Microbe
             Object = new EntityReference<IEngulfable>(@object);
             Endosome = new EntityReference<Endosome>(endosome);
             AdditionalEngulfableCompounds = @object.CalculateAdditionalDigestibleCompounds();
-            InitialTotalEngulfableCompounds = @object.Compounds.Sum(c => c.Value);
+            InitialTotalEngulfableCompounds = @object.Compounds?.Compounds.Sum(c => c.Value);
             OriginalGroups = @object.EntityNode.GetGroups();
         }
 
@@ -1830,7 +1830,7 @@ public partial class Microbe
         public EntityReference<Endosome> Endosome { get; private set; }
 
         public Dictionary<Compound, float>? AdditionalEngulfableCompounds { get; private set; }
-        public float InitialTotalEngulfableCompounds { get; private set; }
+        public float? InitialTotalEngulfableCompounds { get; private set; }
         public bool Interpolate { get; set; }
         public float LerpDuration { get; set; }
         public float AnimationTimeElapsed { get; set; }

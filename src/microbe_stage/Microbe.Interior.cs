@@ -1179,7 +1179,12 @@ public partial class Microbe
                 total.Merge(additionalCompounds);
 
             var totalAmountLeft = total.Sum(compound => compound.Value);
-            engulfable.DigestionProgress = 1 - (totalAmountLeft / engulfedObject.InitialTotalEngulfableCompounds);
+
+            if (engulfedObject.InitialTotalEngulfableCompounds.HasValue)
+            {
+                engulfable.DigestionProgress = 1 - (totalAmountLeft /
+                    engulfedObject.InitialTotalEngulfableCompounds.Value);
+            }
 
             if (totalAmountLeft <= 0 || engulfable.DigestionProgress >= 1)
             {
