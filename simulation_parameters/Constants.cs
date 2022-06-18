@@ -32,7 +32,7 @@ public static class Constants
     /// <summary>
     ///   Scale factor for amount of compound in each spawned cloud
     /// </summary>
-    public const float CLOUD_SPAWN_AMOUNT_SCALE_FACTOR = 0.25f;
+    public const float CLOUD_SPAWN_AMOUNT_SCALE_FACTOR = 0.75f;
 
     /// <summary>
     ///   The (default) size of the hexagons, used in calculations. Don't change this.

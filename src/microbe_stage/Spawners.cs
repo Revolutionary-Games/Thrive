@@ -169,7 +169,7 @@ public static class SpawnHelpers
         int resolution = Settings.Instance.CloudResolution;
 
         // Randomise amount of compound in the cloud a bit
-        amount *= random.Next(0.25f, 1);
+        amount *= random.Next(0.5f, 1);
 
         // This spreads out the cloud spawn a bit
         clouds.AddCloud(compound, amount, location + new Vector3(0 + resolution, 0, 0));

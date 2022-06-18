@@ -28,15 +28,19 @@ public class BiomeConditions : ICloneable, ISaveLoadable
         foreach (var compound in Compounds)
         {
             if (compound.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR is < 0 or > 1)
+            {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     $"Density {compound.Value.Density} invalid for {compound.Key.InternalName}");
+            }
         }
 
         foreach (var chunk in Chunks)
         {
             if (chunk.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR is < 0 or > 1)
+            {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     $"Density {chunk.Value.Density} invalid for {chunk.Key}");
+            }
         }
     }
 
