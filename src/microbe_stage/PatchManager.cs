@@ -121,12 +121,14 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         foreach (var entry in biome.Chunks)
         {
-            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
+            HandleSpawnHelper(chunkSpawners, entry.Value.Name,
+                entry.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
+                    spawnSystem.AddSpawnType(spawner.Spawner,
+                        entry.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR,
                         Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 });
@@ -140,13 +142,15 @@ public class PatchManager : IChildPropertiesLoadCallback
         foreach (var entry in biome.Compounds)
         {
             HandleSpawnHelper(cloudSpawners, entry.Key.InternalName,
-                entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
+                entry.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Key.InternalName,
-                        Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount));
+                        Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem,
+                        entry.Value.Amount * Constants.CLOUD_SPAWN_AMOUNT_SCALE_FACTOR));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
+                    spawnSystem.AddSpawnType(spawner.Spawner,
+                        entry.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR,
                         Constants.CLOUD_SPAWN_RADIUS);
                     return spawner;
                 });

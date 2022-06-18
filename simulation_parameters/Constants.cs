@@ -24,7 +24,15 @@ public static class Constants
     /// </summary>
     public const float SPAWN_SECTOR_SIZE = 120.0f;
 
-    public const int CLOUD_SPAWN_SCALE_FACTOR = 10000;
+    /// <summary>
+    ///   Scale factor for density of compound cloud spawns
+    /// </summary>
+    public const int CLOUD_SPAWN_DENSITY_SCALE_FACTOR = 10000;
+
+    /// <summary>
+    ///   Scale factor for amount of compound in each spawned cloud
+    /// </summary>
+    public const float CLOUD_SPAWN_AMOUNT_SCALE_FACTOR = 0.25f;
 
     /// <summary>
     ///   The (default) size of the hexagons, used in calculations. Don't change this.
