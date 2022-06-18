@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-16 17:04+0100\n"
+"POT-Creation-Date: 2022-06-18 11:58+0100\n"
 "PO-Revision-Date: 2022-05-19 13:19+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -37,12 +37,11 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Konsept Çizimi"
 
 #: ../simulation_parameters/common/gallery.json:6
-#, fuzzy
 msgid "GENERAL"
-msgstr "Kuşak:"
+msgstr "Genel"
 
 #: ../simulation_parameters/common/gallery.json:28
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:387
@@ -50,52 +49,39 @@ msgid "CELLS"
 msgstr "Hücreler"
 
 #: ../simulation_parameters/common/gallery.json:68
-#, fuzzy
 msgid "MODELS"
-msgstr "Tanrı Modu"
+msgstr "Modeller"
 
 #: ../simulation_parameters/common/gallery.json:71
 #: ../simulation_parameters/common/gallery.json:209
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr ""
-"Uzaklardaki bir uzaylı gezegende, sonsuz asırlar süren volkanik aktiviteler ve göktaşı darbeleri evrende yeni bir olayın gelişmesine neden oldu.\n"
-"\n"
-"Hayat.\n"
-"\n"
-"Okyanusun derinliklerinde basit mikroplar ortaya çıktı. Sen bu gezegendeki Son Evrensel Ortak Atasın (LUCA).\n"
-"\n"
-"Bu hasım dünyada hayatta kalmak için, bulabildiğin her bileşiği toplaman ve diğerleriyle rekabet etmek için kuşaktan kuşağa evrimleşmen gerekiyor."
+msgstr "Mikrop Evresi"
 
 #: ../simulation_parameters/common/gallery.json:184
 msgid "MUSIC"
-msgstr ""
+msgstr "Müzik"
 
 #: ../simulation_parameters/common/gallery.json:187
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 #, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "Tümü"
 
 #: ../simulation_parameters/common/gallery.json:196
-#, fuzzy
 msgid "MENU"
-msgstr "Menu"
+msgstr "Menü"
 
 #: ../simulation_parameters/common/gallery.json:238
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "Mikrop Editörü Yükleniyor"
+msgstr "Mikrop Editörü"
 
 #: ../simulation_parameters/common/gallery.json:263
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "Oyunun sonraki evresine git (çok hücreli). Yeterince büyük bir hücre kolonin olduğunda açılır."
+msgstr "Çok Hücreli Evresi"
 
 #: ../simulation_parameters/common/gallery.json:280
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Çok Hücreli Editörünün İlk Kısmı Yükleniyor"
+msgstr "Çok Hücreli Editörü"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
@@ -510,9 +496,8 @@ msgid "TOGGLE_PAUSE"
 msgstr "Oyunu duraklat"
 
 #: ../simulation_parameters/common/input_options.json:188
-#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr "Yutma modunu aç"
+msgstr "Hata ayıklayıcı panelini aç"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
@@ -968,39 +953,39 @@ msgstr "gezegende nesli tükendi"
 
 #: ../src/auto-evo/RunResults.cs:844
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr "[u]{0}[/u] türünün nesli tükendi!"
+msgstr "[b][u]{0}[/u][/b] türünün nesli tükendi!"
 
 #: ../src/auto-evo/RunResults.cs:854 ../src/auto-evo/RunResults.cs:876
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "[u]{0}[/u] popülasyonu {1} sayısına çıktı"
+msgstr "[b][u]{0}[/u][/b] popülasyonu, {1} sayısına çıktı"
 
 #: ../src/auto-evo/RunResults.cs:860 ../src/auto-evo/RunResults.cs:882
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "[u]{0}[/u] popülasyonu {1} sayısına düştü"
+msgstr "[b][u]{0}[/u][/b] popülasyonu, {1} sayısına düştü"
 
 #: ../src/auto-evo/RunResults.cs:868
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr "[u]{0}[/u], araziden yok oldu"
+msgstr "[b][u]{0}[/u][/b], araziden yok oldu"
 
 #: ../src/auto-evo/RunResults.cs:892
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr "[u]{0}[/u] popülasyonunun bir kısmı, {1} arazisinden bu araziye göç etti"
+msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı, {1} arazisinden bu araziye göç etti"
 
 #: ../src/auto-evo/RunResults.cs:897
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "[u]{0}[/u] popülasyonunun bir kısmı, {2} arazisinden {1} arazisine göç etti"
+msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı, {2} arazisinden {1} arazisine göç etti"
 
 #: ../src/auto-evo/RunResults.cs:903
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "[u]{0}[/u] popülasyonunun bir kısmı, {1} arazisine göç etti"
+msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı, {1} arazisine göç etti"
 
 #: ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_NICHE_FILL"
-msgstr "[u]{0}[/u], alanı doldurmak için, yeni bir tür olarak [u]{1}[/u] türünden ayrıldı"
+msgstr "[b][u]{0}[/u][/b], alanı doldurmak için, yeni bir tür olarak, [b][u]{1}[/u][/b] türünden ayrıldı"
 
 #: ../src/auto-evo/RunResults.cs:928
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "[u]{0}[/u], farklı seçilim baskılarından dolayı, yeni bir tür olarak [u]{1}[/u] türünden ayrıldı"
+msgstr "[b][u]{0}[/u][/b], farklı seçilim baskılarından dolayı, yeni bir tür olarak, [b][u]{1}[/u][/b] türünden ayrıldı"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "NOT_FOUND_CHUNK"
@@ -1183,26 +1168,23 @@ msgstr "Performans Ölçümleri"
 
 #: ../src/engine/DebugOverlays.tscn:86
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "Hata Ayıklayıcı Paneli"
 
 #: ../src/engine/DebugOverlays.tscn:96
-#, fuzzy
 msgid "FPS_DISPLAY"
-msgstr "Media Play"
+msgstr "FPS göstergesi"
 
 #: ../src/engine/DebugOverlays.tscn:110
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "Çarpışan şekillerle varlıklar oluştur"
 
 #: ../src/engine/DebugOverlays.tscn:117
-#, fuzzy
 msgid "ENTITY_LABEL"
-msgstr "Biyom: {0}"
+msgstr "Varlık etiketi"
 
 #: ../src/engine/DebugOverlays.tscn:128
-#, fuzzy
 msgid "TRANSPARENCY"
-msgstr "Çevirmenler"
+msgstr "Saydamlık"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
 msgid "LOADING"
@@ -1726,7 +1708,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrop Editörü Serbest Modu"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1013
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1014
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1763,7 +1745,7 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Bir ya da daha fazla modu yüklerken sorun oluştu. Loglar, ek bilgi içerebilir."
 
 #: ../src/general/NewGameSettings.cs:278
-#: ../src/general/NewGameSettings.tscn:1053
+#: ../src/general/NewGameSettings.tscn:1054
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Yeni bir oyun başlat"
@@ -1809,6 +1791,7 @@ msgstr ""
 "ve onların saldırılarına karşılık verir."
 
 #: ../src/general/NewGameSettings.tscn:186
+#: ../src/general/NewGameSettings.tscn:859
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr ""
@@ -1819,28 +1802,28 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:860
 #: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:877
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:223
-#: ../src/general/NewGameSettings.tscn:895
+#: ../src/general/NewGameSettings.tscn:896
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Oyunu duraklat"
@@ -1953,25 +1936,25 @@ msgstr ""
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Pangonik Batipelajik"
 
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:944
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:975
+#: ../src/general/NewGameSettings.tscn:976
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Oyunun sonraki evresine git (çok hücreli). Yeterince büyük bir hücre kolonin olduğunda açılır."
 
-#: ../src/general/NewGameSettings.tscn:982
+#: ../src/general/NewGameSettings.tscn:983
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:995
+#: ../src/general/NewGameSettings.tscn:996
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "İlginç Gerçek: Didinyum ve Paramesyum on yıllardır çalışılan av-avcı ilişkisinin bir ders kitabı örneği. Şimdi, sen Paramesyum musun yoksa Didinyum mu? Av mı, avcı mı?"
 
-#: ../src/general/NewGameSettings.tscn:1002
+#: ../src/general/NewGameSettings.tscn:1003
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -1980,46 +1963,46 @@ msgstr ""
 "Cesur mikroplar, yakında bulunan yırtıcılardan korkmaz\n"
 "ve onların saldırılarına karşılık verir."
 
-#: ../src/general/NewGameSettings.tscn:1030
+#: ../src/general/NewGameSettings.tscn:1031
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Oyunu kaydetmek için kaydetme menüsünü aç"
 
-#: ../src/general/NewGameSettings.tscn:1032
+#: ../src/general/NewGameSettings.tscn:1033
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:1044
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "İntihar Et"
 
-#: ../src/general/NewGameSettings.tscn:1044
+#: ../src/general/NewGameSettings.tscn:1045
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1054
+#: ../src/general/NewGameSettings.tscn:1055
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "ONAYLA"
 
-#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
+#: ../src/general/OptionsMenu.cs:617 ../src/general/OptionsMenu.tscn:290
 msgid "AUTO_RESOLUTION"
 msgstr "Otomatik ({0}x{1})"
 
-#: ../src/general/OptionsMenu.cs:924
+#: ../src/general/OptionsMenu.cs:918
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Varsayılan çıkış aygıtı"
 
-#: ../src/general/OptionsMenu.cs:956
+#: ../src/general/OptionsMenu.cs:950
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Bu çeviri henüz bitmemiş (%{0} tamamlandı), lütfen tamamlamamıza yardımcı ol!"
 
-#: ../src/general/OptionsMenu.cs:960
+#: ../src/general/OptionsMenu.cs:954
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Bu dilin çevirisi halen devam etmekte (%{0} tamamlandı)"
 
-#: ../src/general/OptionsMenu.cs:964
+#: ../src/general/OptionsMenu.cs:958
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Bu dil %{0} tamamlandı"
 
@@ -2639,9 +2622,8 @@ msgid "DEVELOPERS"
 msgstr "Oyun Geliştiricileri"
 
 #: ../src/gui_common/PlaybackControls.tscn:107
-#, fuzzy
 msgid "STOP"
-msgstr "Stop"
+msgstr "Durdur"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
@@ -2732,40 +2714,37 @@ msgstr "Bilinmeyen"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
-msgstr ""
+msgstr "Tam ekranda görüntülemek için çift tıkla"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
-#, fuzzy
 msgid "TITLE_COLON"
-msgstr "Büyüklük:"
+msgstr "Başlık:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:99
-#, fuzzy
 msgid "DESCRIPTION_COLON"
-msgstr "Açıklama çok uzun"
+msgstr "Açıklama:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
-#, fuzzy
 msgid "ARTIST_COLON"
-msgstr "önceki:"
+msgstr "Sanatçı:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:248
 #, fuzzy
 msgid "UNTITLED"
-msgstr "Biyom: {0}"
+msgstr "Adsız"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
-msgstr ""
+msgstr "Galeri Görüntüleyicisi"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
-msgstr ""
+msgstr "Öğeleri kategori cinsinden filtrele:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:185
 msgid "SLIDESHOW"
-msgstr ""
+msgstr "Slayt Gösterisi"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
@@ -2776,13 +2755,13 @@ msgstr "Gösterilecek Veri Yok"
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Çizmek için Geçersiz Veri"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1120
-#: ../src/gui_common/charts/line/LineChart.cs:1212
+#: ../src/gui_common/charts/line/LineChart.cs:1116
+#: ../src/gui_common/charts/line/LineChart.cs:1208
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "{0} veri kümesinden daha fazla gösterilemez!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1126
-#: ../src/gui_common/charts/line/LineChart.cs:1217
+#: ../src/gui_common/charts/line/LineChart.cs:1122
+#: ../src/gui_common/charts/line/LineChart.cs:1213
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "{0} veri kümesinden daha az gösterilemez!"
 
@@ -2889,9 +2868,8 @@ msgstr "Sert bir hücre zarı hasara karşı daha dayanıklıdır ama hücreyi e
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2851
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3087
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3360
-#, fuzzy
 msgid "BASE_MOBILITY"
-msgstr "Hareketlilik"
+msgstr "Temel Hareketlilik"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:193
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2378
@@ -3056,7 +3034,7 @@ msgstr "Hücrenin hareket hızını arttırmak için [thrive:compound type=\"atp
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:972
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr "Kamçı (veya Flagella), hücrenin bir doğrultuda kıvrılması ve ilerlemesi için ATP kullanan, hücre zarından uzanıp birbirine bağlanmış kamçı benzeri protein fiberleridir. Kamçının pozisyonu, hücre hareketi için itişi sağlayan yönü belirler. İtiş yönü, kamçının gösterdiği yönün tersidir. Örneğin, bir hücrenin sağ tarafına yerleştirilen kamçı, sağ tarafa giderken itişi sağlar."
+msgstr "Kamçı (veya Flagella), hücrenin bir doğrultuda kıvrılması ve ilerlemesi için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanan, hücre zarından uzanıp birbirine bağlanmış kamçı benzeri protein fiberleridir. Kamçının pozisyonu, hücre hareketi için itişi sağlayan yönü belirler. İtiş yönü, kamçının gösterdiği yönün tersidir. Örneğin, bir hücrenin sağ tarafına yerleştirilen kamçı, sağ tarafa giderken itişi sağlar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:989
 msgid "SPEED"
@@ -3092,11 +3070,11 @@ msgstr "Bağlanma modunu açmak için [thrive:input]g_toggle_binding[/thrive:inp
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu, çok hücrelilikte ilk adımdır. Hücren bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken editöre giremezsin. O yüzden hücreni bölmek için önce yeterli bileşik toplaman sonra koloniyle bağını koparman gerekir."
+msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu çok hücrelilikte ilk adımdır. Hücren bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken editöre giremezsin. O yüzden hücreni bölmek için önce yeterli bileşik toplaman sonra koloniyle bağını koparman gerekir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
 msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr "Daha kompleks olan zarlı organellerin evrimleşmesini sağlar. Bakımı bir sürü ATP'ye mal olur. Bu evrimden geri dönülemez."
+msgstr "Daha kompleks olan zarlı organellerin evrimleşmesini sağlar. Bakımı bir sürü ATP'ye mal olur. Bu geri dönüşü olmayan bir evrimdir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1358
 msgid "NUCLEUS_DESCRIPTION"
@@ -3549,7 +3527,7 @@ msgstr "Ozmoregülasyon"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:429
 msgid "BASE_MOVEMENT"
-msgstr "Ana Hareket"
+msgstr "Temel Hareket"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:441
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
@@ -3561,11 +3539,11 @@ msgstr "Hücre Türü İsmi"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1176
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr ""
+msgstr "Bu geri dönüşü olmayan bir evrim olduğu için çekirdek silinemez. Ancak eğer mevcut süreçte yerleştirildiyse, geri alma ya da yinelemeye izin verilir"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1178
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr ""
+msgstr "Son organel silinemez"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2029
 msgid "FAILED"
@@ -4629,7 +4607,7 @@ msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "Yüklemek için seçilen kayıt, farklı Thrive sürümüne ait bir prototipte yapılmış bir kayıt.\n"
 "Prototip kayıtları yükseltilebilir olmadığı için, bu kayıt yüklenemez.\n"
-"Bir şeyler sık sık yenilendiği ve kayıt yükseltmelerini yazmak prototip gelişimini çok yavaşlattığı için, prototipler için kayıt uyumluluğunu sürdürmek büyük bir sorumluluk gerektiriyor."
+"Bir şeyler sıklıkla yenilendiği ve kayıt yükseltmelerini yazmak prototip gelişimini çok yavaşlattığı için, prototipler için kayıt uyumluluğunu sürdürmek büyük bir sorumluluk gerektiriyor."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
@@ -4809,7 +4787,7 @@ msgstr ""
 "\n"
 "Ekranın ortasındaki altıgen senin hücren. Hücren bir tek sitoplazma parçasından oluşmakta.\n"
 "\n"
-"Devam etmek için soldaki panelden bir parça seç. Daha sonra, onu yerleştirmek için altıgenin yanına sol tıkla. A ve D tuşları (varsayılan) ile parçaları döndürebilirsin."
+"Devam etmek için soldaki panelden bir parça seç. Daha sonra, onu yerleştirmek için altıgenin yanına sol tıkla. [thrive:input]e_rotate_left[/thrive:input] ve [thrive:input]e_rotate_right[/thrive:input] tuşları ile parçaları döndürebilirsin."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:79
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
@@ -4929,7 +4907,7 @@ msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Bağ koparma moduna girdin. Bu modda, bağını koparmak istediğin koloni üyelerine tıklayabilirsin.\n"
 "\n"
-"Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya \"hepsinin bağını kopar\" tuşuna basabilirsin."
+"Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya [thrive:input]g_unbind_all[/thrive:input] tuşuna basabilirsin."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
@@ -4941,6 +4919,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Şimdi İncele"
+
+#~ msgid "MOBILITY"
+#~ msgstr "Hareketlilik"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Pangonik Bacalar"

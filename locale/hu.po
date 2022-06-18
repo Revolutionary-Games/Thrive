@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-16 17:04+0100\n"
+"POT-Creation-Date: 2022-06-18 11:58+0100\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -503,12 +503,11 @@ msgstr "Egyéb"
 
 #: ../simulation_parameters/common/input_options.json:184
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "Szünet"
 
 #: ../simulation_parameters/common/input_options.json:188
-#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr "Elnyelés be/ki"
+msgstr "Debug panel be/ki"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
@@ -875,7 +874,7 @@ msgstr "Jelző szövet"
 #: ../simulation_parameters/microbe_stage/organelles.json:727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Foszforeszkáló vakuólum"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
@@ -1073,9 +1072,8 @@ msgid "NEXT_CAPITAL"
 msgstr "KÖVETKEZŐ"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
-#, fuzzy
 msgid "DISCONNECTED_CELLS"
-msgstr "Levált sejtszervecskék"
+msgstr "Levált sejtek"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
 msgid "DISCONNECTED_CELLS_TEXT"
@@ -1108,9 +1106,8 @@ msgid "NEW_NAME"
 msgstr "Új név"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_CELLS"
-msgstr "Sejtszervecske elhelyezése"
+msgstr "Több sejt"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:76
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
@@ -1121,9 +1118,8 @@ msgid "MP_COST"
 msgstr "{0} MP"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
-#, fuzzy
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Sejtszerkesztő betöltése"
+msgstr "Többsejtes szerkesztő betöltése"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:196
@@ -1152,7 +1148,6 @@ msgid "FPS"
 msgstr "FPS: {0}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
-#, fuzzy
 msgid "FRAME_DURATION"
 msgstr "Delta: {0}"
 
@@ -1160,6 +1155,23 @@ msgstr "Delta: {0}"
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
+"Feldolgozási idő: {0} s\n"
+"Fizika ideje: {1} s\n"
+"Entitások: {2} Egyéb: {3}\n"
+"Spawnolt: {4} Despawnolt: {5}\n"
+"Használatban lévő node-ok: {6}\n"
+"Használatban lévő memória: {7} MiB\n"
+"GPU memória: {8} MiB\n"
+"Renderelt objektumok: {9}\n"
+"Draw hívások: {10} 2D: {11}\n"
+"Renderelt csúcsok: {12}\n"
+"Anyag változások: {13}\n"
+"Shader változások: {14}\n"
+"Árva node-ok: {15}\n"
+"Audió késése: {16} ms\n"
+"Összes szál: {17}\n"
+"Teljes CPU idő:\n"
+"{18}"
 
 #: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
 #: ../src/engine/PerformanceMetrics.tscn:30
@@ -1168,26 +1180,23 @@ msgstr "Teljesítmény metrikák"
 
 #: ../src/engine/DebugOverlays.tscn:86
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "Debug panel"
 
 #: ../src/engine/DebugOverlays.tscn:96
-#, fuzzy
 msgid "FPS_DISPLAY"
-msgstr "Média lejátszás"
+msgstr "FPS kijelző"
 
 #: ../src/engine/DebugOverlays.tscn:110
 msgid "COLLISION_SHAPE"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.tscn:117
-#, fuzzy
 msgid "ENTITY_LABEL"
-msgstr "Biom: {0}"
+msgstr "Entitás címke"
 
 #: ../src/engine/DebugOverlays.tscn:128
-#, fuzzy
 msgid "TRANSPARENCY"
-msgstr "Fordítók"
+msgstr "Átlátszóság"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
 msgid "LOADING"
@@ -1658,18 +1667,16 @@ msgid "STORE_LOGGED_IN_AS"
 msgstr "Belépve mint: {0}"
 
 #: ../src/general/MainMenu.tscn:175
-#, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Menü"
+msgstr "Új játék indítása"
 
 #: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "Új játék"
 
 #: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:195
-#, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr "Menü"
+msgstr "Korábbi mentett játékok betöltése"
 
 #: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
@@ -1677,9 +1684,8 @@ msgid "LOAD_GAME"
 msgstr "Játék betöltése"
 
 #: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:220
-#, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr "Segítség"
+msgstr "Változtasd meg beállításaidat"
 
 #: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
@@ -1702,9 +1708,8 @@ msgid "CREDITS"
 msgstr "Stáblista"
 
 #: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:236
-#, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr "Öngyilkosság"
+msgstr "Kilépés a játékból"
 
 #: ../src/general/MainMenu.tscn:260
 msgid "QUIT"
@@ -1715,7 +1720,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Sejtszerkesztő"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1013
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1014
 #: ../src/general/OptionsMenu.tscn:1184 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1752,7 +1757,7 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Hiba történt a mod/modok betöltése közben. A hibáról több információt találhatsz a logok között."
 
 #: ../src/general/NewGameSettings.cs:278
-#: ../src/general/NewGameSettings.tscn:1053
+#: ../src/general/NewGameSettings.tscn:1054
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Menü"
@@ -1798,6 +1803,7 @@ msgstr ""
 "így nagy eséllyel védekezésképp vissza is támadnak."
 
 #: ../src/general/NewGameSettings.tscn:186
+#: ../src/general/NewGameSettings.tscn:859
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr ""
@@ -1808,28 +1814,28 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:860
 #: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:876
+#: ../src/general/NewGameSettings.tscn:877
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:223
-#: ../src/general/NewGameSettings.tscn:895
+#: ../src/general/NewGameSettings.tscn:896
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Játék szüneteltetése"
@@ -1940,25 +1946,25 @@ msgstr ""
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:943
+#: ../src/general/NewGameSettings.tscn:944
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:975
+#: ../src/general/NewGameSettings.tscn:976
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Sejtszervecske elhelyezése"
 
-#: ../src/general/NewGameSettings.tscn:982
+#: ../src/general/NewGameSettings.tscn:983
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:995
+#: ../src/general/NewGameSettings.tscn:996
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "Érdekesség: a Didinium és a Papucsállatka kapcsolata egy tankönyvi példa a ragadozó-zsákmányállat kapcsolatra, amit már évtizedek óta tanulmányoznak. És te hova tartozol? A Didiniumhoz, vagy a Papucsállatkához? A ragadozóhoz, vagy a zsákmányhoz?"
 
-#: ../src/general/NewGameSettings.tscn:1002
+#: ../src/general/NewGameSettings.tscn:1003
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -1967,46 +1973,46 @@ msgstr ""
 "A bátor sejtek nem ijednek meg a ragadozó sejtektől,\n"
 "így nagy eséllyel védekezésképp vissza is támadnak."
 
-#: ../src/general/NewGameSettings.tscn:1030
+#: ../src/general/NewGameSettings.tscn:1031
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Menü"
 
-#: ../src/general/NewGameSettings.tscn:1032
+#: ../src/general/NewGameSettings.tscn:1033
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:1044
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Öngyilkosság"
 
-#: ../src/general/NewGameSettings.tscn:1044
+#: ../src/general/NewGameSettings.tscn:1045
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1054
+#: ../src/general/NewGameSettings.tscn:1055
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "ELFOGAD"
 
-#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:290
+#: ../src/general/OptionsMenu.cs:617 ../src/general/OptionsMenu.tscn:290
 msgid "AUTO_RESOLUTION"
 msgstr "Auto ({0}x{1})"
 
-#: ../src/general/OptionsMenu.cs:924
+#: ../src/general/OptionsMenu.cs:918
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Alap kimeneti eszköz"
 
-#: ../src/general/OptionsMenu.cs:956
+#: ../src/general/OptionsMenu.cs:950
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "A játék erre a nyelvre még nincs teljesen lefordítva ({0}% kész). Kérünk, hogy segíts nekünk ez ügyben te is!"
 
-#: ../src/general/OptionsMenu.cs:960
+#: ../src/general/OptionsMenu.cs:954
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "A játéknak erre a nyelvre való lefordítása még mindig készülőben van ({0}% kész)"
 
-#: ../src/general/OptionsMenu.cs:964
+#: ../src/general/OptionsMenu.cs:958
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Erre a nyelvre való fordítás {0}%-a van elkészülve"
 
@@ -2333,18 +2339,16 @@ msgstr ""
 "A nem mentett játékállásaid el fognak veszni."
 
 #: ../src/general/PauseMenu.tscn:179
-#, fuzzy
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
-msgstr "Játék folytatása"
+msgstr "Visszalépés a játékba"
 
 #: ../src/general/PauseMenu.tscn:180
 msgid "RESUME"
 msgstr "Folytatás"
 
 #: ../src/general/PauseMenu.tscn:187
-#, fuzzy
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
-msgstr "Menü"
+msgstr "Nyisd meg a mentés menüt, hogy elmentsd a játékot"
 
 #: ../src/general/PauseMenu.tscn:188
 msgid "SAVE_GAME"
@@ -2370,9 +2374,8 @@ msgid "HELP"
 msgstr "Segítség"
 
 #: ../src/general/PauseMenu.tscn:228
-#, fuzzy
 msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr "Vissza a menübe"
+msgstr "Kilépés a főmenübe"
 
 #: ../src/general/PauseMenu.tscn:229
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
@@ -2660,38 +2663,44 @@ msgstr "Szín beállítása előre beállítottra"
 #: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
+"HVS (Színárnyalat, Telítettség, Érték) mód ki/be kapcsolása.\n"
+"Nem lehet bekapcsolni, ha nyers módban van."
 
 #: ../src/gui_common/TweakedColourPicker.cs:397
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
+"Nyers mód ki/be kapcsolása.\n"
+"Nyers módban a piros, zöld, kék\n"
+"színek értékét 1.0 felé állíthatod.\n"
+"HSV módban nem lehet bekapcsolni."
 
 #: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr ""
+msgstr "Színárnyalat értéke, szín része"
 
 #: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr ""
+msgstr "Telítettségi érték, a szürke mennyisége egy adott színben"
 
 #: ../src/gui_common/TweakedColourPicker.cs:403
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr ""
+msgstr "Érték (fényerősség) értéke, a szín fényerőssége vagy intenzitása"
 
 #: ../src/gui_common/TweakedColourPicker.cs:407
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr ""
+msgstr "A piros csatorna színértéke"
 
 #: ../src/gui_common/TweakedColourPicker.cs:408
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr ""
+msgstr "A zöld csatorna színértéke"
 
 #: ../src/gui_common/TweakedColourPicker.cs:409
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr ""
+msgstr "A kék csatorna színértéke"
 
 #: ../src/gui_common/TweakedColourPicker.cs:412
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr ""
+msgstr "Alfa csatorna színértéke"
 
 #: ../src/gui_common/TweakedColourPicker.cs:587
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
@@ -2702,11 +2711,11 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
-msgstr ""
+msgstr "Nyers"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
@@ -2763,15 +2772,15 @@ msgstr "Nincs adat"
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Betöltöd ezt az érvénytelen mentést?"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1120
-#: ../src/gui_common/charts/line/LineChart.cs:1212
+#: ../src/gui_common/charts/line/LineChart.cs:1116
+#: ../src/gui_common/charts/line/LineChart.cs:1208
 msgid "MAX_VISIBLE_DATASET_WARNING"
-msgstr ""
+msgstr "Nem engedélyezett {0}-nál/nél több adathalmaz mutatása!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1126
-#: ../src/gui_common/charts/line/LineChart.cs:1217
+#: ../src/gui_common/charts/line/LineChart.cs:1122
+#: ../src/gui_common/charts/line/LineChart.cs:1213
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr ""
+msgstr "Nem engedélyezett {0}-nál/nél kevesebb adathalmaz mutatása!"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
@@ -2789,7 +2798,7 @@ msgstr "Hiba másolása vágólapra"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.cs:62
 msgid "GPL_LICENSE_HEADING"
-msgstr ""
+msgstr "A GLP licenc szövege a következő:"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
 msgid "THRIVE_LICENSES"
@@ -2801,12 +2810,17 @@ msgstr "A Thrive egyes részeire vonatkozó licenszek itt láthatóak"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:6
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
-msgstr ""
+msgstr "Folytatod a fázis prototípusokkal?"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
-msgstr "Protanóp (Piros-Zöld)"
+msgstr ""
+"Elérkeztél a Thrive \"teljes\" részének a végéhez.\n"
+"Ha szeretnéd, akkor továbbléphetsz a következő fázisok prototípusaiba. Ezek nagyon hiányosak lehetnek és \"placeholder\" grafikai elemeket használnak. A játék részeként szerepelnek, hogy bemutassák a játék lehetséges jövőbeli irányát és a fázisok összekapcsolásáról alkotott általános elképzelésünket.\n"
+"\n"
+"A legtöbb prototípusban nem fogsz tudni menteni ha folytatod, vagy ha később folytatni akarod. Szóval ha vissza szeretnél térni egyszer ehhez a szakaszhoz, akkor kérünk téged, mentsd el most a játékot, mielőtt folytatnád.\n"
+"\n"
+"Ha a folytatást választod, akkor kérünk vedd figyelembe, hogy ezek mind prototípusok, és ne panaszkodj a hiányosságok miatt."
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:16
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
@@ -2834,9 +2848,8 @@ msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Szerkesztés befejezése és visszatérés a környezetbe"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
-#, fuzzy
 msgid "NEXT_EDITOR_TAB"
-msgstr "Szerkesztő engedélyezése"
+msgstr "Menj a következő szerkesztő ablakba"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
@@ -3467,11 +3480,11 @@ msgstr ""
 #: ../src/microbe_stage/PatchMapGenerator.cs:210
 #, fuzzy
 msgid "PATCH_NAME"
-msgstr "Barlang"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
-msgstr ""
+msgstr "Szétkapcsolás mód"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:16
 msgid "PROCESS_PANEL_TITLE"
@@ -3544,7 +3557,7 @@ msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:524
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Sejttípus neve"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1176
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -3609,7 +3622,7 @@ msgstr "Membrán típusok"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:548
 msgid "FLUIDITY_RIGIDITY"
-msgstr ""
+msgstr "Hajlékonyság / Merevség"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:568
 msgid "FLUID"
@@ -3632,9 +3645,8 @@ msgid "SPEED_COLON"
 msgstr "Sebesség:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
-#, fuzzy
 msgid "ROTATION_COLON"
-msgstr "Populáció:"
+msgstr "Fordulás:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:805
 msgid "HP_COLON"
@@ -3645,9 +3657,8 @@ msgid "SIZE_COLON"
 msgstr "Méret:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:865
-#, fuzzy
 msgid "STORAGE_COLON"
-msgstr "Tárhely"
+msgstr "Tárhely:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:886
 msgid "GENERATION_COLON"
@@ -3669,9 +3680,8 @@ msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-evo előrejelzés"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1053
-#, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr "Játék folytatása"
+msgstr "Tekintsd meg az előrejelzés mögötti részletes információkat"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1123
 msgid "TOTAL_POPULATION_COLON"
@@ -4939,6 +4949,9 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
+
+#~ msgid "MOBILITY"
+#~ msgstr "Mozgékonyság"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Pangóniai nyílások"
