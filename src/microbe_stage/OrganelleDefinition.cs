@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 /// </remarks>
 public class OrganelleDefinition : IRegistryType
 {
+    // TODO: split the following comment to the actual properties in this class:
     /*
     Organelle attributes:
     mass:   How heavy an organelle is. Affects speed, mostly.

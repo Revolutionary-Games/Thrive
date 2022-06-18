@@ -1971,28 +1971,28 @@ public partial class CellEditorComponent :
         switch (selectedSelectionMenuTab)
         {
             case SelectionMenuTab.Structure:
-                {
-                    structureTab.Show();
-                    structureTabButton.Pressed = true;
-                    MicrobePreviewMode = false;
-                    break;
-                }
+            {
+                structureTab.Show();
+                structureTabButton.Pressed = true;
+                MicrobePreviewMode = false;
+                break;
+            }
 
             case SelectionMenuTab.Membrane:
-                {
-                    appearanceTab.Show();
-                    appearanceTabButton.Pressed = true;
-                    MicrobePreviewMode = true;
-                    break;
-                }
+            {
+                appearanceTab.Show();
+                appearanceTabButton.Pressed = true;
+                MicrobePreviewMode = true;
+                break;
+            }
 
             case SelectionMenuTab.Behaviour:
-                {
-                    behaviourEditor.Show();
-                    behaviourTabButton.Pressed = true;
-                    MicrobePreviewMode = false;
-                    break;
-                }
+            {
+                behaviourEditor.Show();
+                behaviourTabButton.Pressed = true;
+                MicrobePreviewMode = false;
+                break;
+            }
 
             default:
                 throw new Exception("Invalid selection menu tab");
