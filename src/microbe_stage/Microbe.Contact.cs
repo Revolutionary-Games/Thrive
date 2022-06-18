@@ -481,7 +481,8 @@ public partial class Microbe
         if (DigestionProgress >= 0.3f)
         {
             // Cell is too damaged from digestion, can't live in open environment and is considered dead
-            Dead = true;
+            // TODO: Temporary
+            Kill();
 
             // Disable collisions
             CollisionLayer = 0;
