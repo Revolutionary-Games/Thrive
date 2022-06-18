@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-17 23:14-0500\n"
+"POT-Creation-Date: 2022-06-18 14:27-0500\n"
 "PO-Revision-Date: 2022-06-16 15:47+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -714,6 +714,7 @@ msgid "SUNLIGHT"
 msgstr "Luce Solare"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
+#: ../src/general/OptionsMenu.tscn:922
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2245
 msgid "NORMAL"
 msgstr "Normale"
@@ -1730,19 +1731,19 @@ msgstr "Si sono verificati degli errori nel caricamento di una o più mod. I log
 msgid "AUTO_RESOLUTION"
 msgstr "Automatica ({0}x{1})"
 
-#: ../src/general/OptionsMenu.cs:924
+#: ../src/general/OptionsMenu.cs:976
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo di output audio di default"
 
-#: ../src/general/OptionsMenu.cs:956
+#: ../src/general/OptionsMenu.cs:1008
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Questa traduzione è molto incompleta ({0}% fatto). Perfavore, aiutaci!"
 
-#: ../src/general/OptionsMenu.cs:960
+#: ../src/general/OptionsMenu.cs:1012
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Questa traduzione è ancora in corso ({0}% fatto)"
 
-#: ../src/general/OptionsMenu.cs:964
+#: ../src/general/OptionsMenu.cs:1016
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Percentuale di completamento di questa traduzione: {0}%"
 
@@ -1927,6 +1928,35 @@ msgstr "Thread:"
 #: ../src/general/OptionsMenu.tscn:906
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:921 ../src/general/OptionsMenu.tscn:922
+msgid "TINY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:922
+msgid "VERY_SMALL"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:922
+msgid "SMALL"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:922
+msgid "LARGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:922
+msgid "VERY_LARGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:922
+msgid "HUGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:922
+#, fuzzy
+msgid "EXTREME"
+msgstr "Extra"
 
 #: ../src/general/OptionsMenu.tscn:996
 msgid "RESET_INPUTS"

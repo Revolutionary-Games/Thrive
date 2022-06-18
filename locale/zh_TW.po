@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-17 23:14-0500\n"
+"POT-Creation-Date: 2022-06-18 14:27-0500\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -727,6 +727,7 @@ msgid "SUNLIGHT"
 msgstr "陽光"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
+#: ../src/general/OptionsMenu.tscn:922
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2245
 msgid "NORMAL"
 msgstr "正常"
@@ -1761,19 +1762,19 @@ msgstr "在加載一個或多個mods時發生錯誤。日誌可能包含其他�
 msgid "AUTO_RESOLUTION"
 msgstr "解像度："
 
-#: ../src/general/OptionsMenu.cs:924
+#: ../src/general/OptionsMenu.cs:976
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "默認輸出設備"
 
-#: ../src/general/OptionsMenu.cs:956
+#: ../src/general/OptionsMenu.cs:1008
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "此翻譯非常不完整（已完成 {0}%）請幫助我們！"
 
-#: ../src/general/OptionsMenu.cs:960
+#: ../src/general/OptionsMenu.cs:1012
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "此語言仍在翻譯中（已完成 {0}%）"
 
-#: ../src/general/OptionsMenu.cs:964
+#: ../src/general/OptionsMenu.cs:1016
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "此語言已翻譯完成 {0}%"
 
@@ -1958,6 +1959,35 @@ msgstr "線程："
 #: ../src/general/OptionsMenu.tscn:906
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:921 ../src/general/OptionsMenu.tscn:922
+msgid "TINY"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:922
+msgid "VERY_SMALL"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:922
+msgid "SMALL"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:922
+msgid "LARGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:922
+msgid "VERY_LARGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:922
+msgid "HUGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:922
+#, fuzzy
+msgid "EXTREME"
+msgstr "額外內容"
 
 #: ../src/general/OptionsMenu.tscn:996
 msgid "RESET_INPUTS"
