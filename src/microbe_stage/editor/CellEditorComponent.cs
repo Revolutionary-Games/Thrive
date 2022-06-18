@@ -326,7 +326,7 @@ public partial class CellEditorComponent :
         {
             colour = value;
 
-            if (previewMicrobe?.Species != null)
+            if (previewMicrobe?.Species != null && previewMicrobe.Membrane != null)
             {
                 previewMicrobe.Species.Colour = value;
                 previewMicrobe.Membrane.Tint = value;

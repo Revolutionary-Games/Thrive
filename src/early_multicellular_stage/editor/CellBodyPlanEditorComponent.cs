@@ -1002,7 +1002,7 @@ public partial class CellBodyPlanEditorComponent :
         microbe.ApplySpecies(newSpecies);
 
         // Apply placeholder scale if doesn't have a scale
-        if (microbe.Membrane.Scale == Vector3.One)
+        if (microbe.Membrane?.Scale == Vector3.One)
         {
             microbe.OverrideScaleForPreview(Constants.MULTICELLULAR_EDITOR_PREVIEW_PLACEHOLDER_SCALE);
         }

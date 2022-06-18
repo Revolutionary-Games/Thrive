@@ -1675,8 +1675,10 @@ public partial class Microbe
             }
 
             if (engulfed.TargetValuesToLerp.Scale.HasValue)
+            {
                 body.Scale = engulfed.InitialValuesToLerp.Scale.LinearInterpolate(
                     engulfed.TargetValuesToLerp.Scale.Value, fraction);
+            }
 
             if (engulfed.TargetValuesToLerp.EndosomeScale.HasValue)
             {

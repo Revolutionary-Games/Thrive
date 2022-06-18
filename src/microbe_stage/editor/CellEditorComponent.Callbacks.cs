@@ -207,7 +207,7 @@ public partial class CellEditorComponent
 
         StartAutoEvoPrediction();
 
-        if (previewMicrobe != null)
+        if (previewMicrobe != null && previewMicrobe.Membrane != null)
         {
             previewMicrobe.Membrane.Type = membrane;
             previewMicrobe.Membrane.Dirty = true;
@@ -229,7 +229,7 @@ public partial class CellEditorComponent
 
         StartAutoEvoPrediction();
 
-        if (previewMicrobe != null)
+        if (previewMicrobe != null && previewMicrobe.Membrane != null)
         {
             previewMicrobe.Membrane.Type = Membrane;
             previewMicrobe.Membrane.Dirty = true;
