@@ -1300,9 +1300,8 @@ msgid "COLLISION_SHAPE"
 msgstr "Создавать сущности с коллизией"
 
 #: ../src/engine/DebugOverlays.tscn:117
-#, fuzzy
 msgid "ENTITY_LABEL"
-msgstr "Маркировать Объекты"
+msgstr "Описание объекта"
 
 #: ../src/engine/DebugOverlays.tscn:128
 msgid "TRANSPARENCY"
@@ -2618,9 +2617,8 @@ msgstr ""
 "Весь несохраненный прогресс будет утерян."
 
 #: ../src/general/PauseMenu.tscn:179
-#, fuzzy
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
-msgstr "Продолжить игру"
+msgstr "Вернуться в игру"
 
 #: ../src/general/PauseMenu.tscn:180
 msgid "RESUME"
@@ -2635,9 +2633,8 @@ msgid "SAVE_GAME"
 msgstr "Сохранить игру"
 
 #: ../src/general/PauseMenu.tscn:203
-#, fuzzy
 msgid "STATISTICS_BUTTON_TOOLTIP"
-msgstr "Самоубийство"
+msgstr "Полная статистика о текущей игре"
 
 #: ../src/general/PauseMenu.tscn:205
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:485
@@ -2654,9 +2651,8 @@ msgid "HELP"
 msgstr "Помощь"
 
 #: ../src/general/PauseMenu.tscn:228
-#, fuzzy
 msgid "RETURN_TO_MENU_TOOLTIP"
-msgstr "Вернуться в Меню"
+msgstr "Вернуться в главное меню"
 
 #: ../src/general/PauseMenu.tscn:229
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
@@ -3021,9 +3017,8 @@ msgid "DESCRIPTION_COLON"
 msgstr "Описание"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
-#, fuzzy
 msgid "ARTIST_COLON"
-msgstr "предыдущий:"
+msgstr "Создатель:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:248
 msgid "UNTITLED"
@@ -3841,6 +3836,8 @@ msgstr "Связывающий Агент"
 #: ../src/microbe_stage/MicrobeHUD.cs:790
 msgid "PAUSE_PROMPT"
 msgstr ""
+"[center]Нажмите [thrive:input]g_pause[/thrive:input] чтобы продолжить[/"
+"center]"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:904
 msgid "STUFF_AT"
@@ -3991,7 +3988,7 @@ msgstr "Войдите в редактор для модификации вид�
 
 #: ../src/microbe_stage/MicrobeStage.tscn:2092
 msgid "PAUSED"
-msgstr ""
+msgstr "В паузе"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:210
 #: ../src/microbe_stage/PatchMapGenerator.cs:187
@@ -4181,9 +4178,8 @@ msgid "SPEED_COLON"
 msgstr "Скорость:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
-#, fuzzy
 msgid "ROTATION_COLON"
-msgstr "популяция:"
+msgstr "Популяция:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:805
 msgid "HP_COLON"
@@ -4194,9 +4190,8 @@ msgid "SIZE_COLON"
 msgstr "Размер:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:865
-#, fuzzy
 msgid "STORAGE_COLON"
-msgstr "Хранилище"
+msgstr "Вместимость клетки:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:886
 msgid "GENERATION_COLON"
@@ -4428,9 +4423,8 @@ msgid "MUTATION_POINTS"
 msgstr "Очки мутации"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:62
-#, fuzzy
 msgid "MULTIPLE_ORGANELLES"
-msgstr "Разместить органеллу"
+msgstr "Разместить Органеллу"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 msgid "MOVE"
@@ -4461,9 +4455,8 @@ msgid "NO_EVENTS_RECORDED"
 msgstr "Никаких событий не зафиксировано"
 
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:119
-#, fuzzy
 msgid "REQUIRES_NUCLEUS"
-msgstr "Ядро"
+msgstr "Требуется ядро"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
 msgid "COMPOUND_TO_FIND"
@@ -4550,11 +4543,8 @@ msgstr ""
 "исключением: {1}"
 
 #: ../src/modding/ModLoader.cs:461
-#, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
-msgstr ""
-"{0}: не удалось выполнить вызов метода выгрузки сборки мода с исключением: "
-"{1}"
+msgstr "{0}: выгрузка мода Harmony не удалась с исключением: {1}"
 
 #: ../src/modding/ModLoader.cs:473
 msgid "PCK_LOAD_FAILED"
@@ -4573,9 +4563,8 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Класс сборки необходим для мода, если указана сборка"
 
 #: ../src/modding/ModManager.cs:334
-#, fuzzy
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr "Класс сборки необходим для мода, если указана сборка"
+msgstr "Сборка мода требуется c Harmony"
 
 #: ../src/modding/ModManager.cs:565
 msgid "NO_SELECTED_MOD"
@@ -4590,9 +4579,8 @@ msgid "THIS_IS_LOCAL_MOD"
 msgstr "Это локально установленный мод"
 
 #: ../src/modding/ModManager.cs:913
-#, fuzzy
 msgid "USES_FEATURE"
-msgstr "Температура"
+msgstr "Да"
 
 #: ../src/modding/ModManager.cs:914
 msgid "DOES_NOT_USE_FEATURE"
@@ -4762,9 +4750,8 @@ msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Основной класс Сборки Мода:"
 
 #: ../src/modding/ModManager.tscn:972
-#, fuzzy
 msgid "MOD_AUTO_HARMONY"
-msgstr "Автор мода:"
+msgstr "Использует Harmony автоматически:"
 
 #: ../src/modding/ModManager.tscn:999
 msgid "MOD_CREATION_FAILED"
@@ -4994,9 +4981,10 @@ msgid "OUR_WIKI"
 msgstr "наша Wiki"
 
 #: ../src/modding/NewModGUI.tscn:439
-#, fuzzy
 msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Самоубийство"
+msgstr ""
+"Автоматически загружать патчи для сборки модов от Harmony(Специальный мод не "
+"требуется)"
 
 #: ../src/modding/NewModGUI.tscn:441
 msgid "USE_AUTO_HARMONY"
@@ -5619,9 +5607,8 @@ msgstr ""
 "прокрутки."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Руководство"
+msgstr "Обучение"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Пангонские Гидротермальные Вулканы"
