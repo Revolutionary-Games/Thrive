@@ -23,11 +23,14 @@ public partial class DebugOverlays
         }
     }
 
-    private void UpdateLabelColour(IEntity iEntity, Spatial entity, Label label)
+    private void UpdateLabelColour(IEntity iEntity, Label label)
     {
+        var entity = iEntity.EntityNode;
+
         if (!iEntity.AliveMarker.Alive)
         {
-            label.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
+            label.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
+            return;
         }
 
         switch (entity)
@@ -38,25 +41,25 @@ public partial class DebugOverlays
                 {
                     case Microbe.MicrobeState.Binding:
                     {
-                        label.Set("custom_colors/font_color", new Color(0.2f, 0.5f, 0.0f));
+                        label.AddColorOverride("font_color", new Color(0.2f, 0.5f, 0.0f));
                         break;
                     }
 
                     case Microbe.MicrobeState.Engulf:
                     {
-                        label.Set("custom_colors/font_color", new Color(0.2f, 0.5f, 1.0f));
+                        label.AddColorOverride("font_color", new Color(0.2f, 0.5f, 1.0f));
                         break;
                     }
 
                     case Microbe.MicrobeState.Unbinding:
                     {
-                        label.Set("custom_colors/font_color", new Color(1.0f, 0.5f, 0.2f));
+                        label.AddColorOverride("font_color", new Color(1.0f, 0.5f, 0.2f));
                         break;
                     }
 
                     default:
                     {
-                        label.Set("custom_colors/font_color", new Color(1.0f, 1.0f, 1.0f));
+                        label.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
                         break;
                     }
                 }
@@ -82,7 +85,7 @@ public partial class DebugOverlays
 
             label.RectPosition = activeCamera.UnprojectPosition(entity.Transform.origin);
 
-            UpdateLabelColour(iEntity, entity, label);
+            UpdateLabelColour(iEntity, label);
 
             if (!label.Text.Empty())
                 continue;
