@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
-public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
+public class FloatingChunk : RigidBody, ISpawned
 {
     [Export]
     [JsonProperty]
@@ -54,7 +54,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
-    public Node EntityNode => this;
+    public Spatial EntityNode => this;
 
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
@@ -106,7 +106,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     /// </summary>
     public string DamageType { get; set; } = "chunk";
 
-    public bool IsLoadedFromSave { get; set; }
+    public string ChunkName { get; set; } = string.Empty;
 
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();
@@ -122,6 +122,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public void Init(ChunkConfiguration chunkType, string? modelPath)
     {
         // Grab data
+        ChunkName = chunkType.Name;
         VentPerSecond = chunkType.VentAmount;
         Dissolves = chunkType.Dissolves;
         Size = chunkType.Size;
@@ -159,6 +160,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     {
         var config = default(ChunkConfiguration);
 
+        config.Name = ChunkName;
         config.VentAmount = VentPerSecond;
         config.Dissolves = Dissolves;
         config.Size = Size;

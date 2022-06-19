@@ -48,6 +48,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath CheckTheHelpMenuPath = null!;
 
+    [Export]
+    public NodePath EditorButtonHighlightPath = null!;
+
     private CustomDialog microbeWelcomeMessage = null!;
     private Control microbeMovementKeyPrompts = null!;
     private Control microbeMovementKeyForward = null!;
@@ -72,6 +75,8 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public bool TutorialEnabledSelected { get; private set; } = true;
 
     public Node GUINode => this;
+
+    public ControlHighlight? PressEditorButtonHighlight { get; private set; }
 
     public bool IsClosingAutomatically { get; set; }
 
@@ -284,6 +289,8 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         editorButtonTutorial = GetNode<CustomDialog>(EditorButtonTutorialPath);
         unbindTutorial = GetNode<CustomDialog>(UnbindTutorialPath);
         checkTheHelpMenu = GetNode<CustomDialog>(CheckTheHelpMenuPath);
+
+        PressEditorButtonHighlight = GetNode<ControlHighlight>(EditorButtonHighlightPath);
 
         PauseMode = PauseModeEnum.Process;
     }
