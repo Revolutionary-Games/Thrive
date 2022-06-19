@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
@@ -1210,7 +1211,15 @@ public class MicrobeHUD : Control
     {
         engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall;
         bindingModeHotkey.Visible = player.CanBind;
-        fireToxinHotkey.Visible = player.AgentVacuoleCount > 0;
+        if (player.IsMulticellular && player.Colony != null)
+        {
+            fireToxinHotkey.Visible = player.Colony.ColonyMembers.Any(o => o.AgentVacuoleCount > 0);
+        }
+        else
+        {
+            fireToxinHotkey.Visible = player.AgentVacuoleCount > 0;
+        }
+
         unbindAllHotkey.Visible = player.CanUnbind;
         signallingAgentsHotkey.Visible = player.HasSignalingAgent;
 

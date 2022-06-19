@@ -233,8 +233,6 @@ public partial class Microbe
 
         var position = GlobalTransform.origin + (direction * ejectionDistance);
 
-        GD.Print("direction: " + direction.ToString());
-
         var agent = SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetStageAsParent(),
             SpawnHelpers.LoadAgentScene(), this);
