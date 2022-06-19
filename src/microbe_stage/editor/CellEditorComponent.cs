@@ -752,8 +752,6 @@ public partial class CellEditorComponent :
                         RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle);
                         hoveredHexes.Add((new Hex(finalQ, finalR), rotation));
                     }, effectiveSymmetry);
-
-                MouseHoverPositions = hoveredHexes.ToList();
             }
         }
     }
