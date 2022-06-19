@@ -176,6 +176,17 @@ public partial class Microbe
     /// </summary>
     public void EmitToxin(Compound? agentType = null)
     {
+        if (Colony?.Master == this && Colony != null)
+        {
+            foreach (var cell in Colony.ColonyMembers)
+            {
+                if (cell == this)
+                    continue;
+
+                cell.EmitToxin();
+            }
+        }
+
         if (AgentEmissionCooldown > 0)
             return;
 
@@ -205,10 +216,24 @@ public partial class Microbe
 
         var props = new AgentProperties(Species, agentType);
 
-        // Find the direction the microbe is facing (actual rotation, not LookAtPoint)
-        var direction = GlobalTransform.basis.Quat().Xform(Vector3.Forward);
+        // Find the direction the Species is facing (actual rotation, not LookAtPoint)
+        Vector3 direction = new Vector3( 0, 0, 0);
+        if (Colony?.Master == this)
+        {
+            direction = GlobalTransform.basis.Quat().Xform(Vector3.Forward);
+        }
+        else if (Colony != null)
+        {
+            direction = Colony.Master.GlobalTransform.basis.Quat().Xform(Vector3.Forward);
+        }
+        else
+        {
+            direction = GlobalTransform.basis.Quat().Xform(Vector3.Forward);
+        }
 
-        var position = Translation + (direction * ejectionDistance);
+        var position = GlobalTransform.origin + (direction * ejectionDistance);
+
+        GD.Print("direction: " + direction.ToString());
 
         var agent = SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetStageAsParent(),
