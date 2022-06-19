@@ -23,6 +23,49 @@ public partial class DebugOverlays
         }
     }
 
+    private void UpdateLabelColour(IEntity iEntity, Spatial entity, Label label)
+    {
+        if (!iEntity.AliveMarker.Alive)
+        {
+            label.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
+        }
+
+        switch (entity)
+        {
+            case Microbe microbe:
+            {
+                switch (microbe.State)
+                {
+                    case Microbe.MicrobeState.Binding:
+                    {
+                        label.Set("custom_colors/font_color", new Color(0.2f, 0.5f, 0.0f));
+                        break;
+                    }
+
+                    case Microbe.MicrobeState.Engulf:
+                    {
+                        label.Set("custom_colors/font_color", new Color(0.2f, 0.5f, 1.0f));
+                        break;
+                    }
+
+                    case Microbe.MicrobeState.Unbinding:
+                    {
+                        label.Set("custom_colors/font_color", new Color(1.0f, 0.5f, 0.2f));
+                        break;
+                    }
+
+                    default:
+                    {
+                        label.Set("custom_colors/font_color", new Color(1.0f, 1.0f, 1.0f));
+                        break;
+                    }
+                }
+
+                break;
+            }
+        }
+    }
+
     private void UpdateEntityLabels()
     {
         if (activeCamera is not { Current: true })
@@ -33,10 +76,13 @@ public partial class DebugOverlays
 
         foreach (var pair in entityLabels)
         {
-            var entity = pair.Key.EntityNode;
+            var iEntity = pair.Key;
+            var entity = iEntity.EntityNode;
             var label = pair.Value;
 
             label.RectPosition = activeCamera.UnprojectPosition(entity.Transform.origin);
+
+            UpdateLabelColour(iEntity, entity, label);
 
             if (!label.Text.Empty())
                 continue;
@@ -70,12 +116,6 @@ public partial class DebugOverlays
         }
     }
 
-    private void UpdateLabelOnMicrobeDeath(Microbe microbe)
-    {
-        if (entityLabels.TryGetValue(microbe, out var label))
-            label.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
-    }
-
     private void OnNodeAdded(Node node)
     {
         if (node is not IEntity entity)
@@ -87,12 +127,6 @@ public partial class DebugOverlays
 
         switch (entity)
         {
-            case Microbe microbe:
-            {
-                microbe.OnDeath += UpdateLabelOnMicrobeDeath;
-                break;
-            }
-
             case FloatingChunk:
             case AgentProjectile:
             {
@@ -122,11 +156,6 @@ public partial class DebugOverlays
         {
             label.DetachAndQueueFree();
             entityLabels.Remove(entity);
-
-            if (entity is Microbe microbe)
-            {
-                microbe.OnDeath -= UpdateLabelOnMicrobeDeath;
-            }
         }
     }
 
