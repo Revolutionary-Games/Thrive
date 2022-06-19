@@ -744,9 +744,16 @@ public partial class CellEditorComponent :
 
             if (shownOrganelle != null)
             {
+                HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
+
                 RunWithSymmetry(q, r,
-                    (finalQ, finalR, rotation) => RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle),
-                    effectiveSymmetry);
+                    (finalQ, finalR, rotation) =>
+                    {
+                        RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle);
+                        hoveredHexes.Add((new Hex(finalQ, finalR), rotation));
+                    }, effectiveSymmetry);
+
+                MouseHoverPositions = hoveredHexes.ToList();
             }
         }
     }
@@ -989,13 +996,13 @@ public partial class CellEditorComponent :
 
         if (MovingPlacedHex == null)
         {
-            moveOccupancies = GetMultiActionWithOccupancies(positions, organelleTemplates, true);
+            moveOccupancies = GetMultiActionWithOccupancies(positions, organelleTemplates, false);
         }
         else
         {
             moveOccupancies =
                 GetMultiActionWithOccupancies(positions.Take(1).ToList(),
-                    new List<OrganelleTemplate> { MovingPlacedHex }, false);
+                    new List<OrganelleTemplate> { MovingPlacedHex }, true);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
@@ -1236,7 +1243,7 @@ public partial class CellEditorComponent :
     private CombinedEditorAction GetMultiActionWithOccupancies(List<(Hex Hex, int Orientation)> hexes,
         List<OrganelleTemplate> organelles, bool moving)
     {
-        var moveActionData = new List<EditorAction>();
+        var actions = new List<EditorAction>();
         foreach (var (hex, organelle, orientation, occupied) in GetOccupancies(hexes, organelles))
         {
             EditorAction action;
@@ -1278,10 +1285,10 @@ public partial class CellEditorComponent :
                 }
             }
 
-            moveActionData.Add(action);
+            actions.Add(action);
         }
 
-        return new CombinedEditorAction(moveActionData);
+        return new CombinedEditorAction(actions);
     }
 
     private IEnumerable<OrganelleTemplate> GetReplacedCytoplasm(IEnumerable<OrganelleTemplate> organelles)
