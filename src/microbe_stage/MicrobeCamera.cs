@@ -50,10 +50,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     [Export]
     [JsonProperty]
-    public bool EnableBackgroundParticles = true;
-
-    [Export]
-    [JsonProperty]
     public float InterpolateSpeed = 0.3f;
 
     [Export]
@@ -225,22 +221,22 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
         BackgroundParticles?.DetachAndQueueFree();
 
-        if (EnableBackgroundParticles)
-        {
-            BackgroundParticles = (Particles)background.ParticleEffectScene.Instance();
-            BackgroundParticles.Rotation = Rotation;
-            BackgroundParticles.LocalCoords = false;
+        BackgroundParticles = (Particles)background.ParticleEffectScene.Instance();
+        BackgroundParticles.Rotation = Rotation;
+        BackgroundParticles.LocalCoords = false;
 
-            OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
+        AddChild(BackgroundParticles);
 
-            AddChild(BackgroundParticles);
-        }
+        OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
     }
 
     private void OnDisplayBackgroundParticlesChanged(bool displayed)
     {
         if (BackgroundParticles == null)
+        {
+            GD.PrintErr("MicrobeCamera didn't find background particles on settings change");
             return;
+        }
 
         BackgroundParticles.Emitting = displayed;
 
