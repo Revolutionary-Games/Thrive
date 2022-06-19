@@ -649,7 +649,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // This prevents previous members of the player's colony from immediately being hostile
         bool playerHandled = false;
 
-        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(Player.Species);
+        var previousSpecies = Player.Species;
+        previousSpecies.Obsolete = true;
+
+        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies);
         foreach (var microbe in playerSpeciesMicrobes)
         {
             microbe.ApplySpecies(multicellularSpecies);
