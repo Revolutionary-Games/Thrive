@@ -744,14 +744,9 @@ public partial class CellEditorComponent :
 
             if (shownOrganelle != null)
             {
-                HashSet<(Hex Hex, int Orientation)> hoveredHexes = new();
-
                 RunWithSymmetry(q, r,
-                    (finalQ, finalR, rotation) =>
-                    {
-                        RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle);
-                        hoveredHexes.Add((new Hex(finalQ, finalR), rotation));
-                    }, effectiveSymmetry);
+                    (finalQ, finalR, rotation) => RenderHighlightedOrganelle(finalQ, finalR, rotation, shownOrganelle),
+                    effectiveSymmetry);
             }
         }
     }
