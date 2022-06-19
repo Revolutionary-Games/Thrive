@@ -23,17 +23,17 @@ public partial class DebugOverlays
         }
     }
 
-    private void UpdateLabelColour(IEntity iEntity, Label label)
+    private void UpdateLabelColour(IEntity entity, Label label)
     {
-        var entity = iEntity.EntityNode;
+        var node = entity.EntityNode;
 
-        if (!iEntity.AliveMarker.Alive)
+        if (!entity.AliveMarker.Alive)
         {
             label.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
             return;
         }
 
-        switch (entity)
+        switch (node)
         {
             case Microbe microbe:
             {
@@ -79,19 +79,19 @@ public partial class DebugOverlays
 
         foreach (var pair in entityLabels)
         {
-            var iEntity = pair.Key;
-            var entity = iEntity.EntityNode;
+            var entity = pair.Key;
+            var node = entity.EntityNode;
             var label = pair.Value;
 
-            label.RectPosition = activeCamera.UnprojectPosition(entity.Transform.origin);
+            label.RectPosition = activeCamera.UnprojectPosition(node.Transform.origin);
 
-            UpdateLabelColour(iEntity, label);
+            UpdateLabelColour(entity, label);
 
             if (!label.Text.Empty())
                 continue;
 
             // Update names
-            switch (entity)
+            switch (node)
             {
                 case Microbe microbe:
                 {
@@ -112,7 +112,7 @@ public partial class DebugOverlays
 
                 default:
                 {
-                    label.Text = $"[{entity.Name}]";
+                    label.Text = $"[{node.Name}]";
                     break;
                 }
             }
