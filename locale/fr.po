@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-18 17:54+0700\n"
+"POT-Creation-Date: 2022-06-19 12:00+0700\n"
 "PO-Revision-Date: 2022-04-15 08:28+0000\n"
 "Last-Translator: Louison Wouts <wouts.louison@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -83,36 +83,64 @@ msgid "MULTICELLULAR_EDITOR"
 msgstr "Chargement de l'Éditeur de Microbes"
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
+#: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr "Utilisez [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] et la souris pour vous déplacer. Appuyez sur [thrive:input]g_fire_toxin[/thrive:input] pour tirer des [thrive:compound type=\"oxytoxy\"][/thrive:compound] si vous avez une vacuole à toxines, et [thrive:input]g_toggle_engulf[/thrive:input] pour passer en mode absorption."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
+#: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr "Vos cellules utilisent l'ATP comme source d'énergie, si elles n'en ont plus vous mourrez."
 
 #: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
+#: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr "Pour débloquer l'éditeur et vous reproduire vous devez récolter de l'[thrive:compound type=\"ammonia\"][/thrive:compound] (Nuages Oranges) et du [thrive:compound type=\"phosphates\"][/thrive:compound] (Nuages Violet)."
 
 #: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
+#: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Vous pouvez aussi absorber des cellules, des bactéries, des morceaux de fer, ainsi que des morceaux de cellules qui sont plus petit que vous en pressant [thrive:input]g_toggle_engulf[/thrive:input]. Cela vous coûtera plus d'[thrive:compound type=\"atp\"][/thrive:compound] et vous ralentira. N'oubliez pas de presser [thrive:input]g_toggle_engulf[/thrive:input] une seconde fois pour arrêter d'absorber."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+msgstr ""
+"Structures procaryotes\n"
+"\n"
+"Métabolosomes : produisent de l'[thrive:compound type=\"atp\"][/thrive:compound] à partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Protéines chimiosyntétisantes : produisent à demi-efficacité du chimioplaste du [thrive:compound type=\"glucose\"][/thrive:compound] à partir de [thrive:compound type=\"hydrogensulfide\"], mais réalisent aussi la glycolyse, et occupent un hexagone\n"
+"\n"
+"Thylacoïdes : produisent à un tiers de l'efficacité de [thrive:compound type=\"glucose\"][/thrive:compound] par rapport à un chloroplaste normal, mais réalisent aussi la glycolyse, et occupent un hexagone.\n"
+"\n"
+"Rusticyanine : convertit le [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Nitrogénèse : convertit l'azote environnant et l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] en anaérobie\n"
+"\n"
+"Cytoplasme : offre un espace de stockage et réalise la glycolyse (qui produit une faible quantité d'[thrive:compound type=\"atp\"][/thrive:compound])"
+
+#: ../simulation_parameters/common/help_texts.json:26
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+msgstr "Utilisez [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] et la souris pour vous déplacer. Appuyez sur [thrive:input]g_fire_toxin[/thrive:input] pour tirer des [thrive:compound type=\"oxytoxy\"][/thrive:compound] si vous avez une vacuole à toxines, et [thrive:input]g_toggle_engulf[/thrive:input] pour passer en mode absorption."
+
+#: ../simulation_parameters/common/help_texts.json:30
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+msgstr "Utilisez [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] et la souris pour vous déplacer. Appuyez sur [thrive:input]g_fire_toxin[/thrive:input] pour tirer des [thrive:compound type=\"oxytoxy\"][/thrive:compound] si vous avez une vacuole à toxines, et [thrive:input]g_toggle_engulf[/thrive:input] pour passer en mode absorption."
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr "L'Osmoregulation coûte de l'[thrive:compound type=\"atp\"][/thrive:compound], ce qui signifie que plus votre cellule est grande, plus vous aurez besoin de Mitochondries, de Metabolosomes ou de Rusticyanines (ou cytoplasmes, qui réalisent la Glycolyse) pour éviter de perdre de l'[thrive:compound type=\"atp\"][/thrive:compound] quand vous êtes à l'arrêt."
 
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr "Il y a plein d'Organites dans l'éditeur pour vous permettre d'évoluer, vous donnant accès à un grand panel de style de jeu."
 
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "Les différents nuages de composants sont :\n"
@@ -125,35 +153,35 @@ msgstr ""
 "\n"
 "Le [thrive:compound type=\"glucose\"][/thrive:compound] Produit de l'[thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
+#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "Le Sulfure d'Hydrogène peut être converti en glucose par les chimioplastes et les protéines chimiosynthétisantes. Le Fer peut être converti par la rusticyanine en de l'ATP."
 
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr "Pour vous reproduire vous devez diviser chacune de vos organites en deux. Les organites ont besoin d'ammoniaque et de phosphate pour se diviser."
 
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
+#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:115
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "Pour l'instant, si votre population chute à zéro, votre espèce s'éteint."
 
-#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr "Mais si vous survivez pendant vingt générations avec une population supérieure à 300, vous êtes considéré comme ayant gagné la partie en cours. Après avoir gagné vous aurez un popup et pourrez continuer de jouer si vous voulez."
 
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
+#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr "Faites attention car vos compétiteurs évoluent en même temps que vous. Chaque fois que vous entrez dans l'éditeur ils évoluent eux aussi."
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr "En vous liant à d'autres cellules, vous pouvez construire une colonie cellulaire où les cellules partagent les composés qu'elles absorbent et produisent les unes avec les autres. Afin de pouvoir se lier à une autre cellule, vous devez disposer des agents de liaison organelle et vous y déplacer après être entré en mode de liaison. Vous ne pouvez vous lier qu'avec des cellules de votre propre espèce. En colonie, vous ne pouvez pas diviser votre cellule et entrer dans l'éditeur (pour l'instant). Pour entrer dans l'éditeur, quittez d'abord la colonie une fois que vous avez collecté suffisamment de composés, puis entrez dans l'éditeur. Les grandes colonies cellulaires sont la voie vers la multicellularité (pas encore dans le jeu)."
 
-#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Structures procaryotes\n"
@@ -170,7 +198,7 @@ msgstr ""
 "\n"
 "Cytoplasme : offre un espace de stockage et réalise la glycolyse (qui produit une faible quantité d'[thrive:compound type=\"atp\"][/thrive:compound])"
 
-#: ../simulation_parameters/common/help_texts.json:66
+#: ../simulation_parameters/common/help_texts.json:78
 #, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
@@ -182,7 +210,7 @@ msgstr ""
 "\n"
 "Chémorécepteur: permet de détecter les composés depuis une plus grande distance"
 
-#: ../simulation_parameters/common/help_texts.json:70
+#: ../simulation_parameters/common/help_texts.json:82
 #, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
@@ -206,124 +234,124 @@ msgstr ""
 "\n"
 "Agent de signalisation : Permet aux cellules de créer des composés chimiques faisant réagir d'autres cellules."
 
-#: ../simulation_parameters/common/help_texts.json:74
+#: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr "À chaque génération, vous avez 100 points de mutation (PM) à dépenser, et chaque changement (ou mutation) coûtera une certaine quantité de ces PM. Ajouter ou retirer des organites coûte des PM. Cependant, retirer les organites placées lors de cette mutation vous les restituent. Vous pouvez déplacer ou retirer une organite en faisant un clic droit dessus et en sélectionnant l'action voulue. Vous pouvez faire tourner vos organites lors du placement avec [thrive:input]e_rotate_left[/thrive:input] et [thrive:input]e_rotate_right[/thrive:input]."
 
-#: ../simulation_parameters/common/help_texts.json:78
+#: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "À chaque fois que vous vous reproduisez, vous entrez dans l'Éditeur de Microbes, où vous pouvez modifier votre espèce (en ajoutant, pivotant ou retirant des organites) pour augmenter ses chances de réussite. Chaque passage dans l'éditeur du stade Microbe représente [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millions d'années d'évolution."
 
-#: ../simulation_parameters/common/help_texts.json:119
+#: ../simulation_parameters/common/help_texts.json:131
 msgid "LOADING_TIP"
 msgstr "Appuyez sur le bouton Revenir en Arrière dans l'éditeur pour corriger une erreur"
 
-#: ../simulation_parameters/common/help_texts.json:126
+#: ../simulation_parameters/common/help_texts.json:138
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Anecdote : les Didiniums et les Paramécies sont des cas d'école de la relation proie/prédateur qui a été étudiée pendant des décennies. Et vous, êtes-vous un Didinium, ou un Paramécie ? Un prédateur, ou bien une proie ?"
 
-#: ../simulation_parameters/common/help_texts.json:129
+#: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Voici une astuce, les toxines peuvent être utilisées pour envoyer d'autres toxines loin de vous si vous êtes suffisamment rapide."
 
-#: ../simulation_parameters/common/help_texts.json:132
+#: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Voici une astuce, l'Osmorégulation coûte 1 ATP par seconde par hexagone que votre cellule possède, chaque cellule vide de votre cytoplasme génère aussi 5 ATP par seconde, ce qui signifie que si vous perdez de l'ATP à cause de l'osmorégulation ajoutez juste quelques hexagones de cytoplasmes vides ou retirez quelques organites."
 
-#: ../simulation_parameters/common/help_texts.json:135
+#: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "Fait Amusant, dans la vie réelle les procaryotes ont quelque chose appelé Biocompartiments qui agissent comme des organites, et sont en fait nommés Organites Polyédraux."
 
-#: ../simulation_parameters/common/help_texts.json:138
+#: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_5"
 msgstr "Fait Amusant, le métabolosome est ce qui est appelé un Organite Polyédral."
 
-#: ../simulation_parameters/common/help_texts.json:141
+#: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Voici une astuce, parfois il vaut mieux fuir les autres cellules."
 
-#: ../simulation_parameters/common/help_texts.json:144
+#: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_7"
 msgstr "Voici une astuce, si une cellule fait moins de la moitié de votre taille, vous pouvez l'absorber."
 
-#: ../simulation_parameters/common/help_texts.json:147
+#: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_8"
 msgstr "Voici un conseil, les bactéries sont plus dangereuses qu'elles n'y paraissent, elles peuvent sembler minuscules, mais certaines d'entre elles peuvent vous transpercer avec leur pilus pour vous tuer !"
 
-#: ../simulation_parameters/common/help_texts.json:150
+#: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Voici une astuce : vous pouvez pousser d'autres espèces à l'extinction si vous n'êtes assez pas prudent en les chassant. Les autres espèces peuvent faire de même."
 
-#: ../simulation_parameters/common/help_texts.json:153
+#: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "CHOSES AGITÉES !!"
 
-#: ../simulation_parameters/common/help_texts.json:156
+#: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_11"
 msgstr "Se fombre dans l'ombre."
 
-#: ../simulation_parameters/common/help_texts.json:159
+#: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "Ces cellules bleues si."
 
-#: ../simulation_parameters/common/help_texts.json:162
+#: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_13"
 msgstr "Voici une astuce : les biomes sont plus que des arrière-plans différents ; les composés apparaissent à des taux différents selon ceux-ci."
 
-#: ../simulation_parameters/common/help_texts.json:165
+#: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_14"
 msgstr "Voici une astuce, plus vous avez de flagelles, plus vous allez vite, vroum vroum, mais cela coûte plus d'ATP"
 
-#: ../simulation_parameters/common/help_texts.json:168
+#: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Voici une astuce, vous pouvez engloutir des morceaux, de fer ou autre."
 
-#: ../simulation_parameters/common/help_texts.json:171
+#: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_16"
 msgstr "Voici une astuce, préparez vous avant d'ajouter un noyau. Ces choses coûtent cher ! À la fois en entretien et en coût initial."
 
-#: ../simulation_parameters/common/help_texts.json:174
+#: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_17"
 msgstr "Fait amusant, saviez-vous qu'il existe plus de 8000 espèces de ciliés sur la planète Terre ?"
 
-#: ../simulation_parameters/common/help_texts.json:177
+#: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Fait amusant, le Stentor est un cilié qui peut s'étirer et attraper des proies dans une sorte de trompette comme une bouche qui attire les proies en générant des courants d'eau avec des cils."
 
-#: ../simulation_parameters/common/help_texts.json:180
+#: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "Fait amusant, le Didinium est un cilié qui chasse la paramécie."
 
-#: ../simulation_parameters/common/help_texts.json:183
+#: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_20"
 msgstr "Fait amusant, l'amibe chasse et attrape ses proies à l'aide de \"jambes\" constituées de cytoplasme qu'on appelle pseudopodes, nous voulons les avoir à terme dans Thrive."
 
-#: ../simulation_parameters/common/help_texts.json:186
+#: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_21"
 msgstr "Voici un conseil, prêtez attention aux cellules plus grandes et aux grandes bactéries, c'est pas drôle de se faire digérer, et elles vont vous manger."
 
-#: ../simulation_parameters/common/help_texts.json:189
+#: ../simulation_parameters/common/help_texts.json:201
 msgid "EASTEREGG_MESSAGE_22"
 msgstr "Le chef de l'équipe sonore de Thrive a composé des sons qui n'ont pas encore été ajoutés au jeu. Vous pouvez les écouter ou le regarder composer sur sa chaîne YouTube, Olivier Lugg."
 
-#: ../simulation_parameters/common/help_texts.json:192
+#: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_23"
 msgstr "Voici une astuce : si votre cellule atteint 150 hexagones, vous pouvez engloutir les gros morceaux de fer."
 
-#: ../simulation_parameters/common/help_texts.json:195
+#: ../simulation_parameters/common/help_texts.json:207
 msgid "EASTEREGG_MESSAGE_24"
 msgstr "Thrive se veut une simulation d'une planète alien, il est donc logique que la plupart des créature que vous trouverez soit liée à une ou deux autres espèces à cause de l'évolution qui a lieu autour de vous, voyez si vous pouvez les identifier !"
 
-#: ../simulation_parameters/common/help_texts.json:198
+#: ../simulation_parameters/common/help_texts.json:210
 msgid "EASTEREGG_MESSAGE_25"
 msgstr "Fait amusant, l'équipe de Thrive podcaste assez souvent, vous devriez aller voir !"
 
-#: ../simulation_parameters/common/help_texts.json:201
+#: ../simulation_parameters/common/help_texts.json:213
 msgid "EASTEREGG_MESSAGE_26"
 msgstr "Fait amusant, Thrive est développé avec le moteur open source Godot !"
 
-#: ../simulation_parameters/common/help_texts.json:204
+#: ../simulation_parameters/common/help_texts.json:216
 msgid "EASTEREGG_MESSAGE_27"
 msgstr "Fait amusant, l'un des premiers prototypes jouables a été créé par notre merveilleux programmeur, Untrustedlife!"
 
@@ -3133,23 +3161,23 @@ msgstr "Active / désactive les popup d'avertissement de progrès non sauvegard�
 msgid "TEMPERATURE"
 msgstr "Température"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:703
+#: ../src/microbe_stage/Microbe.Contact.cs:725
 msgid "DEATH"
 msgstr "mort"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:833
+#: ../src/microbe_stage/Microbe.Contact.cs:857
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "récupération réussie"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:840
+#: ../src/microbe_stage/Microbe.Contact.cs:864
 msgid "SUCCESSFUL_KILL"
 msgstr "élimination réussie"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1090
+#: ../src/microbe_stage/Microbe.Contact.cs:1114
 msgid "ESCAPE_ENGULFING"
 msgstr "échapper à l'engloutissement"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:842
+#: ../src/microbe_stage/Microbe.Interior.cs:835
 msgid "REPRODUCED"
 msgstr "reproduit"
 

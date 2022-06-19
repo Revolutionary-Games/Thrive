@@ -173,9 +173,9 @@ public static class MicrobeInternalCalculations
     public static float CalculateDigestionSpeed(float enzymeCount)
     {
         var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
-        var speedBuff = amount * Constants.LYSOSOME_DIGESTION_SPEED_UP_FRACTION * enzymeCount;
+        var buff = amount * Constants.LYSOSOME_DIGESTION_SPEED_UP_FRACTION * enzymeCount;
 
-        return amount + speedBuff;
+        return amount + buff;
     }
 
     public static float CalculateTotalDigestionSpeed(ICollection<OrganelleTemplate> organelles)

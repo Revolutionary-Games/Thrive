@@ -387,7 +387,7 @@ public partial class Microbe
     public bool CanEngulf(IEngulfable target)
     {
         if (Membrane == null)
-            return false;
+            throw new InvalidOperationException("Microbe must be initialized first");
 
         if (target.CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)
             return false;
@@ -484,19 +484,19 @@ public partial class Microbe
             // Cell is too damaged from digestion, can't live in open environment and is considered dead
             var droppedChunks = Kill();
 
-            if (droppedChunks != null && hostile != null)
+            if (droppedChunks == null || hostile == null)
+                return;
+
+            foreach (var chunk in droppedChunks)
             {
-                foreach (var chunk in droppedChunks)
-                {
-                    var direction = hostile.Transform.origin.DirectionTo(chunk.Transform.origin);
-                    chunk.Translation += direction *
-                        Constants.EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET;
+                var direction = hostile.Transform.origin.DirectionTo(chunk.Transform.origin);
+                chunk.Translation += direction *
+                    Constants.EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET;
 
-                    var impulse = direction * chunk.Mass * Constants.ENGULF_EJECTION_FORCE;
+                var impulse = direction * chunk.Mass * Constants.ENGULF_EJECTION_FORCE;
 
-                    // Apply outwards ejection force
-                    chunk.ApplyCentralImpulse(impulse + LinearVelocity);
-                }
+                // Apply outwards ejection force
+                chunk.ApplyCentralImpulse(impulse + LinearVelocity);
             }
         }
         else
@@ -1756,9 +1756,9 @@ public partial class Microbe
 
         engulfable.CurrentEngulfmentStep = EngulfmentStep.Ingested;
 
-        // In contrast with CompleteEjection, we call OnIngested immediately when ingestion is triggered
-
         touchedEntities.Remove(engulfable);
+
+        // In contrast with CompleteEjection, we call OnIngested immediately when ingestion is triggered
     }
 
     private void CompleteEjection(EngulfedObject engulfed)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-18 17:54+0700\n"
+"POT-Creation-Date: 2022-06-19 12:00+0700\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -83,36 +83,64 @@ msgid "MULTICELLULAR_EDITOR"
 msgstr "在加載微生物編輯器"
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
+#: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]鍵和鼠標移動。如果你有一個毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]發射氧化毒素。[thrive:input]g_toggle_engulf[/thrive:input]鍵可以切換吞噬模式。可以用鼠標滾輪進行縮放。"
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
+#: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr "您的細胞使用[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷）為能量來源，如果耗盡，您將會死亡。"
 
 #: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
+#: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr "要解鎖細胞編輯器並進行繁殖，您需要收集[thrive:compound type=\"ammonia\"][/thrive:compound]（橙色雲）和[thrive:compound type=\"phosphates\"][/thrive:compound]（紫色雲）。"
 
 #: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
+#: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "按[thrive:input]g_toggle_engulf[/thrive:input]鍵會使你的细胞可以吞噬比你小的細胞、細菌、鐵塊和細胞塊。這會花費額外的[thrive:compound type=\"atp\"][/thrive:compound]，並且會讓你減慢移動。不要忘記按第二次[thrive:input]g_toggle_engulf[/thrive:input]來停止吞噬。"
 
 #: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+msgstr ""
+"原核結構\n"
+"\n"
+"代謝體：用[thrive:compound type=\"glucose\"][/thrive:compound]生產[thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"化學合成蛋白：作為化學質體使用一份[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]只生產半份[thrive:compound type=\"glucose\"][/thrive:compound]，但同時進行糖酵解。占用一个六角格。\n"
+"\n"
+"類囊體：產生的[thrive:compound type=\"glucose\"][/thrive:compound]量是正常葉綠體的1/3，但同時進行糖酵解。占用一个六角格。\n"
+"\n"
+"鐵硫菌藍蛋白：將[thrive:compound type=\"iron\"][/thrive:compound]轉化為[thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"氮化酶：將大氣中的氮和[thrive:compound type=\"atp\"][/thrive:compound]轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"\n"
+"細胞質：有儲存空間，進行糖酵解（產生少量[thrive:compound type=\"atp\"][/thrive:compound]）"
+
+#: ../simulation_parameters/common/help_texts.json:26
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]鍵和鼠標移動。如果你有一個毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]發射氧化毒素。[thrive:input]g_toggle_engulf[/thrive:input]鍵可以切換吞噬模式。可以用鼠標滾輪進行縮放。"
+
+#: ../simulation_parameters/common/help_texts.json:30
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]鍵和鼠標移動。如果你有一個毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]發射氧化毒素。[thrive:input]g_toggle_engulf[/thrive:input]鍵可以切換吞噬模式。可以用鼠標滾輪進行縮放。"
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr "滲透調節耗費[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷），，這意味著您的細胞越大，你越需要更多的線粒體/代謝體/鐵硫菌藍蛋白（或細胞質-可進行糖酵解）。以避免在你靜止時失去[thrive:compound type=\"atp\"][/thrive:compound]。"
 
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr "在編輯器中，有很多的細胞器供你進化，讓你有多種不同的玩法。"
 
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "各种化合物云分别是：\n"
@@ -125,35 +153,35 @@ msgstr ""
 "\n"
 "[thrive:compound type=\"glucose\"][/thrive:compound]用於製造[thrive:compound type=\"atp\"][/thrive:compound](三磷酸腺苷)。"
 
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
+#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]可以通過化學質體和化學合成蛋白轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。[thrive:compound type=\"iron\"][/thrive:compound]可以通過鐵硫菌藍蛋白轉化為[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷）。"
 
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr "要繁殖，您需要將每個細胞器一分為二。 細胞器需要氨和磷酸鹽才能分裂成兩半。"
 
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
+#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:115
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "現在版本，如果你的人口降到零，你就會滅絕。"
 
-#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr "但如果您以300個人口存活20代，那麼你將被視為贏得了當前遊戲，贏得遊戲后會彈出一個視窗並可以選擇是否繼續遊戲。"
 
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
+#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr "保持警惕，因為你的競爭對手也在和你一起進化。每當你進入編輯器，他們也在進化。"
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr "你可以通過與其他細胞連接來建立細胞群。細胞群中的所有細胞共享它們吸收和產生的化合物。要跟其他細胞連接，你需要擁有連接器細胞器並在進入連接模式後接觸你想要連接的細胞。你只能連接同物種細胞。 （目前）你在細胞群中無法複製並進入細胞編輯器。如果在收集了足夠多化合物後你想要進入細胞編輯器，你需要先脫離原細胞群。大的細胞群是形成多細胞生物（開發中）的基礎。"
 
-#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "原核結構\n"
@@ -170,7 +198,7 @@ msgstr ""
 "\n"
 "細胞質：有儲存空間，進行糖酵解（產生少量[thrive:compound type=\"atp\"][/thrive:compound]）"
 
-#: ../simulation_parameters/common/help_texts.json:66
+#: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "外部細胞器\n"
@@ -181,7 +209,7 @@ msgstr ""
 "\n"
 "化學感受器。允許從更遠的地方探測化合物"
 
-#: ../simulation_parameters/common/help_texts.json:70
+#: ../simulation_parameters/common/help_texts.json:82
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "膜細胞器\n"
@@ -202,123 +230,123 @@ msgstr ""
 "\n"
 "毒素液泡：生產毒素（[thrive:compound type=\"oxytoxy\"][/thrive:compound]）"
 
-#: ../simulation_parameters/common/help_texts.json:74
+#: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr "每一代，你都有100個變異點(MP)可供花費，任何變化都會花費一定量的變異點。增加或移除細胞器會花費變異點，無論如何，移除在本代放下的細胞器會返還全部的變異點。你可以通過右鍵點擊移除細胞器。你可以用[thrive:input]e_rotate_left[/thrive:input]和[thrive:input]e_rotate_right[/thrive:input]鍵旋轉你的細胞器。"
 
-#: ../simulation_parameters/common/help_texts.json:78
+#: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "你每次繁殖時都會進入微生物編輯器，你可以在那改變你的物種（通過添加，移動或刪除細胞器）以強化你物種的生存力。在微生物階段每次進入編輯器都代表[thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]億年的進化時間。"
 
-#: ../simulation_parameters/common/help_texts.json:119
+#: ../simulation_parameters/common/help_texts.json:131
 msgid "LOADING_TIP"
 msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
 
-#: ../simulation_parameters/common/help_texts.json:126
+#: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "豆知識：櫛毛蟲和草履蟲被當做教科書級的捕食者與獵物關係研究了幾十年。現在你是櫛毛蟲還是草履蟲呢？捕食者還是獵物？"
 
-#: ../simulation_parameters/common/help_texts.json:129
+#: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "一個提示：如果你速度夠快，你可以用自己的毒素把其它毒素推開。"
 
-#: ../simulation_parameters/common/help_texts.json:132
+#: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "一個提示：每一個六角格每秒需消耗一個ATP來進行滲透調節，而單格細胞質每秒產生5個ATP。這意味著如果你因為滲透調節在損失ATP的話，你只要多加幾格細胞質或移除一些細胞器就行了。"
 
-#: ../simulation_parameters/common/help_texts.json:135
+#: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "豆知識：現實中原核生物有一種叫生物區隔（Biocompartments）的結構，作用跟細胞器很相似，而且實際上也被叫做多角體細胞器（Polyhedral organelles）。"
 
-#: ../simulation_parameters/common/help_texts.json:138
+#: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_5"
 msgstr "豆知識：所謂多角體細胞器（Polyhedral organelle）就是代謝體。"
 
-#: ../simulation_parameters/common/help_texts.json:141
+#: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "一個提示：有些時候逃跑就是最佳選擇。"
 
-#: ../simulation_parameters/common/help_texts.json:144
+#: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_7"
 msgstr "一個提示：如果目標細胞大概只有你一半大，你就可以吞噬它。"
 
-#: ../simulation_parameters/common/help_texts.json:147
+#: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_8"
 msgstr "一個提示：細菌可能比它們看上去要強。它們也許體型很小，但它們中有一些可以鑽進你並把你殺掉！"
 
-#: ../simulation_parameters/common/help_texts.json:150
+#: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "一點提示，您可以獵殺其他物種到滅絕，如果您不夠謹慎的話，也會被其他物種獵殺到滅絕。"
 
-#: ../simulation_parameters/common/help_texts.json:153
+#: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "扭來扭去的東西！！"
 
-#: ../simulation_parameters/common/help_texts.json:156
+#: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_11"
 msgstr "冶煉金屬。"
 
-#: ../simulation_parameters/common/help_texts.json:159
+#: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "那些藍色的細胞。"
 
-#: ../simulation_parameters/common/help_texts.json:162
+#: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_13"
 msgstr "一個提示：生物群系可不僅僅是背景圖不同，不同生物群系的化合物生成速度有時候是不同的。"
 
-#: ../simulation_parameters/common/help_texts.json:165
+#: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_14"
 msgstr "一個提示：鞭毛越多越快，但也會消耗更多的ATP"
 
-#: ../simulation_parameters/common/help_texts.json:168
+#: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "一個提示：你可以在吞噬模式下吞進大塊東西、鐵、或者其他。"
 
-#: ../simulation_parameters/common/help_texts.json:171
+#: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_16"
 msgstr "一個提示：進化細胞核前請做好準備，這東西很貴！無論是突變點還是ATP都是如此。"
 
-#: ../simulation_parameters/common/help_texts.json:174
+#: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_17"
 msgstr "豆知識：你知道地球上有超過8000種纖毛蟲嗎？"
 
-#: ../simulation_parameters/common/help_texts.json:177
+#: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "豆知識：喇叭蟲屬是一類纖毛蟲，它們可以把自己拉開，用纖毛產生水流把獵物吸入自己喇叭形的嘴。"
 
-#: ../simulation_parameters/common/help_texts.json:180
+#: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "豆知識：櫛毛蟲是一種纖毛蟲，它們會捕獵草履蟲。"
 
-#: ../simulation_parameters/common/help_texts.json:183
+#: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_20"
 msgstr "豆知識：阿米巴變形蟲使用細胞質組成的偽足來抓捕獵物，我們希望總有一天Thrive也能做出這種效果的。"
 
-#: ../simulation_parameters/common/help_texts.json:186
+#: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_21"
 msgstr "一個提示：小心比你大尺度的細胞，它們會吃你喲，被吃可不有趣。"
 
-#: ../simulation_parameters/common/help_texts.json:189
+#: ../simulation_parameters/common/help_texts.json:201
 msgid "EASTEREGG_MESSAGE_22"
 msgstr "Thrive的聲音團隊做了很多還沒有被加進遊戲裡的曲子。你可以在他們的YouTube頻道Oliver Lugg上聽他們的音樂，或觀看他們直播編曲。"
 
-#: ../simulation_parameters/common/help_texts.json:192
+#: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_23"
 msgstr "一個提示：如果你的細胞有超過150個六角格，你可以吞噬那些大型鐵塊。"
 
-#: ../simulation_parameters/common/help_texts.json:195
+#: ../simulation_parameters/common/help_texts.json:207
 msgid "EASTEREGG_MESSAGE_24"
 msgstr "Thrive是對外星球生物進化的模擬，所以你遇上的大多數生物實際上都是之前遇到的生物的進化型，看看你是否能辨別出來！"
 
-#: ../simulation_parameters/common/help_texts.json:198
+#: ../simulation_parameters/common/help_texts.json:210
 msgid "EASTEREGG_MESSAGE_25"
 msgstr "豆知識：Thrive的開發團隊經常做播客，你應該去聽聽！"
 
-#: ../simulation_parameters/common/help_texts.json:201
+#: ../simulation_parameters/common/help_texts.json:213
 msgid "EASTEREGG_MESSAGE_26"
 msgstr "豆知識：Thrive是用開源的Godot引擎做的！"
 
-#: ../simulation_parameters/common/help_texts.json:204
+#: ../simulation_parameters/common/help_texts.json:216
 msgid "EASTEREGG_MESSAGE_27"
 msgstr "豆知識：我們最初的可玩遊戲原型是由我們了不起的程序員，untrustedlife製作的！"
 
@@ -3075,23 +3103,23 @@ msgstr "當玩家試圖退出遊戲時，啟用/禁用未保存的進度警告�
 msgid "TEMPERATURE"
 msgstr "溫度"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:703
+#: ../src/microbe_stage/Microbe.Contact.cs:725
 msgid "DEATH"
 msgstr "死亡"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:833
+#: ../src/microbe_stage/Microbe.Contact.cs:857
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功覓食"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:840
+#: ../src/microbe_stage/Microbe.Contact.cs:864
 msgid "SUCCESSFUL_KILL"
 msgstr "成功殺死"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1090
+#: ../src/microbe_stage/Microbe.Contact.cs:1114
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脫吞噬"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:842
+#: ../src/microbe_stage/Microbe.Interior.cs:835
 msgid "REPRODUCED"
 msgstr "繁殖"
 

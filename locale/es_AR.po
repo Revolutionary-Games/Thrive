@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-18 17:54+0700\n"
+"POT-Creation-Date: 2022-06-19 12:00+0700\n"
 "PO-Revision-Date: 2022-01-20 07:56+0000\n"
 "Last-Translator: Iván Sviser Lisiuk <lextromex@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -72,36 +72,62 @@ msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
+#: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
+#: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 
 #: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
+#: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr "Para desbloquear el editor y reproducir tu célula necesitas agarrar Amoníaco (Nube Naranja) y Fosfato (Nube Violeta)."
 
 #: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
+#: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Podés comerte otras células, bacterias, pedazos de hierro y pedazos de célula que sean más chicos que tu célula apretando G. Cuesta más ATP y enlentece tu célula. Acordate de apretar G de vuelta para desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#: ../simulation_parameters/common/help_texts.json:26
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#: ../simulation_parameters/common/help_texts.json:30
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr "La osmorregulación cuesta ATP, o sea que mientras más grande es tu célula, más mitocondrias, metabolosomas, rusticianina, o citoplasma vas a necesitar para evitar perder ATP."
 
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr "Hay varias organelas en el editor para que evoluciones, permitiendo diferentes modos de jugar."
 
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "Las distintas nubes de compuestos son:\n"
@@ -112,85 +138,37 @@ msgstr ""
 "Violeta – Fosfato\n"
 "Rojo Oscuro – Hierro"
 
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
+#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "Los quimioplastos y proteinas quimiosintetizadoras convierten el sulfuro de hidrógeno en glucosa. La rusticianina convierte el hierro en ATP."
 
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr "Para que tu célula se reproduzca necesita dividir todas sus organelas en dos. Para eso necesitás juntar amoníaco y fosfato."
 
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
+#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:115
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "Por ahora, si tu población llega a 0, se extingue tu especie."
 
-#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr "Pero si sobrevivís por veinte generaciones, está considerado que ganaste el juego. Cuando ganás aparece una pestaña y después podés seguir jugando."
 
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
+#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr "Cuidado porque las otras especies también evolucionan cada vez que entrás al editor."
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:66
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
-#: ../simulation_parameters/common/help_texts.json:62
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Estructuras Procarioticas\n"
-"\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
-"\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
-"\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
-"\n"
-"Rusticianina: Convierte el hierro en ATP.\n"
-"\n"
-"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
-
-#: ../simulation_parameters/common/help_texts.json:66
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Estructuras Procarioticas\n"
-"\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
-"\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
-"\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
-"\n"
-"Rusticianina: Convierte el hierro en ATP.\n"
-"\n"
-"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
-
-#: ../simulation_parameters/common/help_texts.json:70
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Estructuras Procarioticas\n"
-"\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
-"\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
-"\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
-"\n"
-"Rusticianina: Convierte el hierro en ATP.\n"
-"\n"
-"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
-
 #: ../simulation_parameters/common/help_texts.json:74
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Estructuras Procarioticas\n"
 "\n"
@@ -206,6 +184,54 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:78
 #, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#: ../simulation_parameters/common/help_texts.json:82
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#: ../simulation_parameters/common/help_texts.json:86
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#: ../simulation_parameters/common/help_texts.json:90
+#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 "Estructuras Procarioticas\n"
@@ -220,46 +246,46 @@ msgstr ""
 "\n"
 "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
 
-#: ../simulation_parameters/common/help_texts.json:119
+#: ../simulation_parameters/common/help_texts.json:131
 msgid "LOADING_TIP"
 msgstr "Presiona el botón de deshacer en el editor para corregir el error"
 
-#: ../simulation_parameters/common/help_texts.json:126
+#: ../simulation_parameters/common/help_texts.json:138
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
-#: ../simulation_parameters/common/help_texts.json:129
+#: ../simulation_parameters/common/help_texts.json:141
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 
-#: ../simulation_parameters/common/help_texts.json:132
+#: ../simulation_parameters/common/help_texts.json:144
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Para desbloquear el editor y reproducir tu célula necesitas agarrar Amoníaco (Nube Naranja) y Fosfato (Nube Violeta)."
 
-#: ../simulation_parameters/common/help_texts.json:135
+#: ../simulation_parameters/common/help_texts.json:147
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "Podés comerte otras células, bacterias, pedazos de hierro y pedazos de célula que sean más chicos que tu célula apretando G. Cuesta más ATP y enlentece tu célula. Acordate de apretar G de vuelta para desactivar el modo engullir."
 
-#: ../simulation_parameters/common/help_texts.json:138
+#: ../simulation_parameters/common/help_texts.json:150
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_5"
 msgstr "La osmorregulación cuesta ATP, o sea que mientras más grande es tu célula, más mitocondrias, metabolosomas, rusticianina, o citoplasma vas a necesitar para evitar perder ATP."
 
-#: ../simulation_parameters/common/help_texts.json:141
+#: ../simulation_parameters/common/help_texts.json:153
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Hay varias organelas en el editor para que evoluciones, permitiendo diferentes modos de jugar."
 
-#: ../simulation_parameters/common/help_texts.json:144
+#: ../simulation_parameters/common/help_texts.json:156
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_7"
 msgstr "Por ahora, si tu población llega a 0, se extingue tu especie."
 
-#: ../simulation_parameters/common/help_texts.json:147
+#: ../simulation_parameters/common/help_texts.json:159
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
@@ -271,97 +297,97 @@ msgstr ""
 "Violeta – Fosfato\n"
 "Rojo Oscuro – Hierro"
 
-#: ../simulation_parameters/common/help_texts.json:150
+#: ../simulation_parameters/common/help_texts.json:162
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Los quimioplastos y proteinas quimiosintetizadoras convierten el sulfuro de hidrógeno en glucosa. La rusticianina convierte el hierro en ATP."
 
-#: ../simulation_parameters/common/help_texts.json:153
+#: ../simulation_parameters/common/help_texts.json:165
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "Para que tu célula se reproduzca necesita dividir todas sus organelas en dos. Para eso necesitás juntar amoníaco y fosfato."
 
-#: ../simulation_parameters/common/help_texts.json:156
+#: ../simulation_parameters/common/help_texts.json:168
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_11"
 msgstr "Pero si sobrevivís por veinte generaciones, está considerado que ganaste el juego. Cuando ganás aparece una pestaña y después podés seguir jugando."
 
-#: ../simulation_parameters/common/help_texts.json:159
+#: ../simulation_parameters/common/help_texts.json:171
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "Cuidado porque las otras especies también evolucionan cada vez que entrás al editor."
 
-#: ../simulation_parameters/common/help_texts.json:162
+#: ../simulation_parameters/common/help_texts.json:174
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_13"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
-#: ../simulation_parameters/common/help_texts.json:165
+#: ../simulation_parameters/common/help_texts.json:177
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_14"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
-#: ../simulation_parameters/common/help_texts.json:168
+#: ../simulation_parameters/common/help_texts.json:180
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
-#: ../simulation_parameters/common/help_texts.json:171
+#: ../simulation_parameters/common/help_texts.json:183
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_16"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
-#: ../simulation_parameters/common/help_texts.json:174
+#: ../simulation_parameters/common/help_texts.json:186
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_17"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
-#: ../simulation_parameters/common/help_texts.json:177
+#: ../simulation_parameters/common/help_texts.json:189
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
-#: ../simulation_parameters/common/help_texts.json:180
+#: ../simulation_parameters/common/help_texts.json:192
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
-#: ../simulation_parameters/common/help_texts.json:183
+#: ../simulation_parameters/common/help_texts.json:195
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_20"
 msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 
-#: ../simulation_parameters/common/help_texts.json:186
+#: ../simulation_parameters/common/help_texts.json:198
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_21"
 msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 
-#: ../simulation_parameters/common/help_texts.json:189
+#: ../simulation_parameters/common/help_texts.json:201
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_22"
 msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 
-#: ../simulation_parameters/common/help_texts.json:192
+#: ../simulation_parameters/common/help_texts.json:204
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_23"
 msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 
-#: ../simulation_parameters/common/help_texts.json:195
+#: ../simulation_parameters/common/help_texts.json:207
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_24"
 msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 
-#: ../simulation_parameters/common/help_texts.json:198
+#: ../simulation_parameters/common/help_texts.json:210
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_25"
 msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 
-#: ../simulation_parameters/common/help_texts.json:201
+#: ../simulation_parameters/common/help_texts.json:213
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_26"
 msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 
-#: ../simulation_parameters/common/help_texts.json:204
+#: ../simulation_parameters/common/help_texts.json:216
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_27"
 msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
@@ -3074,23 +3100,23 @@ msgstr ""
 msgid "TEMPERATURE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:703
+#: ../src/microbe_stage/Microbe.Contact.cs:725
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:833
+#: ../src/microbe_stage/Microbe.Contact.cs:857
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:840
+#: ../src/microbe_stage/Microbe.Contact.cs:864
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1090
+#: ../src/microbe_stage/Microbe.Contact.cs:1114
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:842
+#: ../src/microbe_stage/Microbe.Interior.cs:835
 msgid "REPRODUCED"
 msgstr ""
 

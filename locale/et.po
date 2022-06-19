@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-18 17:54+0700\n"
+"POT-Creation-Date: 2022-06-19 12:00+0700\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -82,36 +82,64 @@ msgid "MULTICELLULAR_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
+#: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] ja hiirt liigutamiseks. [thrive:input]g_fire_toxin[/thrive:input], et tulistada [thrive:compound type=\"oxytoxy\"][/thrive:compound], kui teil on toksiinide vakuool. [thrive:input]g_toggle_engulf[/thrive:input] neelamisrežiimi sisse- ja väljalülitamiseks. Hiirerattaga saab sisse ja välja suumida."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
+#: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr "Teie rakk kasutab energiaallikana [thrive: ühendi tüüp = \"atp\"] [/ thrive: ühend], kui see saab otsa, surete."
 
 #: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
+#: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr "Redigeerija avamiseks ja reprodutseerimiseks peate koguma [thrive:compound type=\"ammonia\"][/thrive:compound] (oranž pilv) ja [thrive:compound type=\"phosphates\"][/thrive:compound] (lilla pilv) )."
 
 #: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
+#: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Sa saad kugistada rakke, baktereid, raua tükke ja raku osi mis on sinust väiksemad vajutades [thrive:input]g_lüliti_neelama[/thrive:input]. See kasutab rohkem ATP-d ja aeglustab su liikumist. Ära unusta vajutada [thrive:input]g_lüliti_neelama[/thrive:input] uuesti kui oled lõpetada."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+msgstr ""
+"Prokarüootsed struktuurid\n"
+"\n"
+"Metabolosoomid: toodab [thrive:compound type=\"atp\"][/thrive:compound] allikast [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Kemosünteesivad valgud: toodab poole [thrive:compound type=\"glucose\"][/thrive:compound]-st [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]-st kemoplastina, kuid teostab ka glükolüüsi, ja võtab enda alla 1 Hex\n"
+"\n"
+"Tülakoidid: toodab 1/3 kogusest [thrive:compound type=\"glucose\"][/thrive:compound] kui tavaline kloroplast, kuid teostab ka glükolüüsi ja võtab 1 hex.\n"
+"\n"
+"Rustitsüaniin: teisendab [thrive:compound type=\"iron\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Lämmastik: muudab õhulämmastiku ja [thrive:compound type=\"atp\"][/thrive:compound] anaeroobselt [thrive:compound type=\"ammoniaak\"][/thrive:compound]-ks\n"
+"\n"
+"Tsütoplasma: sellel on salvestusruum ja see teostab glükolüüsi (toodab väikeses koguses [thrive:compound type=\"atp\"][/thrive:compound])"
+
+#: ../simulation_parameters/common/help_texts.json:26
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] ja hiirt liigutamiseks. [thrive:input]g_fire_toxin[/thrive:input], et tulistada [thrive:compound type=\"oxytoxy\"][/thrive:compound], kui teil on toksiinide vakuool. [thrive:input]g_toggle_engulf[/thrive:input] neelamisrežiimi sisse- ja väljalülitamiseks. Hiirerattaga saab sisse ja välja suumida."
+
+#: ../simulation_parameters/common/help_texts.json:30
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] ja hiirt liigutamiseks. [thrive:input]g_fire_toxin[/thrive:input], et tulistada [thrive:compound type=\"oxytoxy\"][/thrive:compound], kui teil on toksiinide vakuool. [thrive:input]g_toggle_engulf[/thrive:input] neelamisrežiimi sisse- ja väljalülitamiseks. Hiirerattaga saab sisse ja välja suumida."
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr "Osmoregulatsioon maksab [thrive:compound type=\"atp\"][/thrive:compound], mis tähendab, et mida suurem on teie rakk, seda rohkem on teil vaja mitokondreid, metabolosoome või rustitsüaniini (või tsütoplasmat, mis teeb glükolüüsi), et vältida nende kadumist [thrive: ühend type=\"atp\"][/thrive:compound], kui olete paigal."
 
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr "Redigeerijas on palju organelle, mida saate arendada, võimaldades laia valikut erinevaid mängustiile."
 
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "Erinevad liitpilved on:\n"
@@ -124,35 +152,35 @@ msgstr ""
 "\n"
 "[thrive:compound type=\"glucose\"][/thrive:compound] muudab [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
+#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "Vesinik sulfiidist saab sünteesida glükoosi kasutades kemoplaste ja kemosünteesivaid valke. Rauaga saab toota ATP-d kasutades roote-tsüaniini."
 
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr "Paljundamiseks peate jagama kõik oma organellid kaheks. Organellid vajavad pooleks jagunemiseks ammoniaaki ja fosfaati."
 
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
+#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:115
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "(Praeguseks) Kui su rakkude arv väheneb 0-ks siis oled välja surnud."
 
-#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr "Aga kui jääte ellu kakskümmend põlvkonda 300 elanikuga, loetakse teid praeguse mängu võitnuks. Pärast võitu näete hüpikakna ja saate jätkata mängimist, nagu soovite."
 
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
+#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr "Ole teadlik et su konkurendid arenevad sinuga koos. Iga kord kui sa enda rakku muudad, arenevad nad samuti."
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr "Teiste rakkudega sidudes saate luua rakukoloonia, kus rakud jagavad omavahel neelduvaid ja toodetud ühendeid. Teise rakuga seondumiseks peavad teil olema sideainete organellid ja need pärast sidumisrežiimi sisenemist nendesse liikuma. Saate siduda ainult oma liigi rakkudega. Koloonias viibides ei saa te oma lahtrit jagada ja redaktorisse siseneda (praegu). Redaktorisse sisenemiseks lahkuge esmalt kolooniast, kui olete kogunud piisavalt ühendeid, ja seejärel sisenege redaktorisse. Suured rakukolooniad on tee mitmerakulisuse poole (pole veel mängus)."
 
-#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Prokarüootsed struktuurid\n"
@@ -169,7 +197,7 @@ msgstr ""
 "\n"
 "Tsütoplasma: sellel on salvestusruum ja see teostab glükolüüsi (toodab väikeses koguses [thrive:compound type=\"atp\"][/thrive:compound])"
 
-#: ../simulation_parameters/common/help_texts.json:66
+#: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Välised organellid\n"
@@ -180,7 +208,7 @@ msgstr ""
 "\n"
 "Kemoretseptor: võimaldab tuvastada ühendeid kaugemalt"
 
-#: ../simulation_parameters/common/help_texts.json:70
+#: ../simulation_parameters/common/help_texts.json:82
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "embrane Bound Organellid\n"
@@ -203,123 +231,123 @@ msgstr ""
 "\n"
 "Signaalagent: lubage rakkudel luua kemikaale, millele teised rakud võivad reageerida"
 
-#: ../simulation_parameters/common/help_texts.json:74
+#: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr "Igal põlvkonnal on teil kulutada 100 mutatsioonipunkti (MP) ja iga muudatus (või mutatsioon) maksab teatud summa sellest MP-st. Organellide lisamine ja eemaldamine maksab MP-d. Praeguses mutatsiooniseansis paigutatud organellide eemaldamine tagastab aga MP selle organelli eest. Organelli saab teisaldada või täielikult eemaldada, klõpsates sellel hiire parema nupuga ja valides hüpikmenüüst sobiva toimingu. Saate oma organelle pöörata, paigutades need nuppudega [thrive:input]e_pööra_vasakule[/thrive:input] ja [thrive:input]e_pööra_paremale[/thrive:input]."
 
-#: ../simulation_parameters/common/help_texts.json:78
+#: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Iga kord, kui paljunete, sisenete mikroobide redaktorisse, kus saate oma liigis muudatusi teha (lisades, liigutades või eemaldades organelle), et oma liigi edu suurendada. Iga mikroobide staadiumis toimetaja külastus tähistab [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljonit aastat evolutsiooni."
 
-#: ../simulation_parameters/common/help_texts.json:119
+#: ../simulation_parameters/common/help_texts.json:131
 msgid "LOADING_TIP"
 msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
 
-#: ../simulation_parameters/common/help_texts.json:126
+#: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Lõbus fakt: Didinium ja Paramecium on õpikunäide kiskja ja saakloomade suhetest, mida on aastakümneid uuritud. Nüüd, kas sa oled Didinium või Paramecium? Kiskja või saak?"
 
-#: ../simulation_parameters/common/help_texts.json:129
+#: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Siin on näpunäide: toksiine saab kasutada teiste eemaldamiseks, kui olete piisavalt kiire."
 
-#: ../simulation_parameters/common/help_texts.json:132
+#: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Siin on näpunäide. Osmoregulatsioon maksab 1 ATP sekundis iga kuueteistkümnendiku kohta, mis teie rakus on, iga tühi tsütoplasma kuuepunkt genereerib samuti 5 ATP-d sekundis, mis tähendab, et kui te kaotate ATP-d osmoregulatsiooni tõttu, lisage lihtsalt paar tühja tsütoplasma kuuet või eemaldage mõned organellid."
 
-#: ../simulation_parameters/common/help_texts.json:135
+#: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "Lõbus fakt, päriselus on prokarüootidel midagi, mida nimetatakse biosektsioonideks, mis toimivad nagu organellid ja mida tegelikult nimetatakse polüeedriteks organellideks."
 
-#: ../simulation_parameters/common/help_texts.json:138
+#: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_5"
 msgstr "Lõbus fakt, metabolosoomi nimetatakse polühedriliseks organelliks."
 
-#: ../simulation_parameters/common/help_texts.json:141
+#: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Siin on näpunäide, mõnikord on parem lihtsalt teiste rakkude eest põgeneda."
 
-#: ../simulation_parameters/common/help_texts.json:144
+#: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_7"
 msgstr "Siin on näpunäide. Kui rakk on umbes poole väiksem, võite need endasse neelata."
 
-#: ../simulation_parameters/common/help_texts.json:147
+#: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_8"
 msgstr "Siin on näpunäide, bakterid võivad olla tugevamad, kui nad paistavad, nad võivad tunduda väikesed, kuid mõned neist võivad teie sisse urgitseda ja teid sel viisil tappa!"
 
-#: ../simulation_parameters/common/help_texts.json:150
+#: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Siin on näpunäide. Kui te ei ole piisavalt ettevaatlik, võite teisi liike väljasuremiseni jahtida. Ka teised liigid saavad sellega hakkama."
 
-#: ../simulation_parameters/common/help_texts.json:153
+#: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "WIGGLY ASJAD!!"
 
-#: ../simulation_parameters/common/help_texts.json:156
+#: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_11"
 msgstr "Sulata metall."
 
-#: ../simulation_parameters/common/help_texts.json:159
+#: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "Need sinised rakud."
 
-#: ../simulation_parameters/common/help_texts.json:162
+#: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_13"
 msgstr "Siin on näpunäide: elustikud on midagi enamat kui lihtsalt erineva taustaga, erinevates bioomides olevad ühendid koevad mõnikord erineva kiirusega."
 
-#: ../simulation_parameters/common/help_texts.json:165
+#: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_14"
 msgstr "Siin on näpunäide, mida rohkem viburid teil on, seda kiiremini te lähete, vroom vroom, kuid see maksab ka rohkem ATP-d"
 
-#: ../simulation_parameters/common/help_texts.json:168
+#: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Siin on näpunäide, võite neelata tükke, rauta või muul viisil."
 
-#: ../simulation_parameters/common/help_texts.json:171
+#: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_16"
 msgstr "Siin on näpunäide, valmistuge enne tuuma lisamist. Need asjad on kallid! Hooldus- ja ettemaksukulu sees."
 
-#: ../simulation_parameters/common/help_texts.json:174
+#: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_17"
 msgstr "Lõbus fakt, kas teadsite, et planeedil Maa elab üle 8000 ripslooma liigi?"
 
-#: ../simulation_parameters/common/help_texts.json:177
+#: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Lõbus tõsiasi, Stentor on ripsloom, kes suudab end välja sirutada ja saaki püüda trompetilaadse suuga, mis tõmbab saaki sisse, tekitades ripsmetega veevoolusid."
 
-#: ../simulation_parameters/common/help_texts.json:180
+#: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "Lõbus tõsiasi, Didinium on ripsloom, kes jahib parametsiat."
 
-#: ../simulation_parameters/common/help_texts.json:183
+#: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_20"
 msgstr "Lõbus tõsiasi, amööb jahib ja püüab saaki tsütoplasmast koosnevate jalgadega, mida nimetatakse pseudopoodideks. Me tahame need lõpuks Thrive'i saada."
 
-#: ../simulation_parameters/common/help_texts.json:186
+#: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_21"
 msgstr "Siin on näpunäide: jälgige suuremaid rakke ja suuri baktereid, seedimine pole lõbus ja nad söövad teid ära."
 
-#: ../simulation_parameters/common/help_texts.json:189
+#: ../simulation_parameters/common/help_texts.json:201
 msgid "EASTEREGG_MESSAGE_22"
 msgstr "Thrive'i helimeeskonna juhtkond on teinud palju lugusid, mida pole veel mängu lisatud. Saate neid kuulda või vaadata vooge tema komponeerimisest oma YouTube'i kanalil Oliver Lugg."
 
-#: ../simulation_parameters/common/help_texts.json:192
+#: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_23"
 msgstr "Siin on näpunäide: kui teie raku suurus on 150 kuusnurka, võite suured rauatükid endasse neelata."
 
-#: ../simulation_parameters/common/help_texts.json:195
+#: ../simulation_parameters/common/help_texts.json:207
 msgid "EASTEREGG_MESSAGE_24"
 msgstr "Thrive on mõeldud tulnukate planeedi simulatsiooniks, seetõttu on loogiline, et enamik teie leitud olendeid on teie ümber toimuva evolutsiooni tõttu seotud ühe või kahe teise liigiga, vaadake, kas saate nad tuvastada!"
 
-#: ../simulation_parameters/common/help_texts.json:198
+#: ../simulation_parameters/common/help_texts.json:210
 msgid "EASTEREGG_MESSAGE_25"
 msgstr "Lõbus tõsiasi, Thrive'i meeskond teeb taskuhäälingusaateid nii tihti, et peaksite neid vaatama!"
 
-#: ../simulation_parameters/common/help_texts.json:201
+#: ../simulation_parameters/common/help_texts.json:213
 msgid "EASTEREGG_MESSAGE_26"
 msgstr "Lõbus tõsiasi, Thrive on tehtud avatud lähtekoodiga Godoti mootoriga!"
 
-#: ../simulation_parameters/common/help_texts.json:204
+#: ../simulation_parameters/common/help_texts.json:216
 msgid "EASTEREGG_MESSAGE_27"
 msgstr "Lõbus tõsiasi, ühe esimestest mängitavatest mänguprototüüpidest valmistas meie vinge programmeerija untrustedlife!"
 
@@ -3053,23 +3081,23 @@ msgstr "Lubab/keelab salvestamata edenemise hoiatuse hüpikakna, kui mängija pr
 msgid "TEMPERATURE"
 msgstr "Temperatuur"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:703
+#: ../src/microbe_stage/Microbe.Contact.cs:725
 msgid "DEATH"
 msgstr "surma"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:833
+#: ../src/microbe_stage/Microbe.Contact.cs:857
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "edukas pühkimine"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:840
+#: ../src/microbe_stage/Microbe.Contact.cs:864
 msgid "SUCCESSFUL_KILL"
 msgstr "edukas tapmine"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1090
+#: ../src/microbe_stage/Microbe.Contact.cs:1114
 msgid "ESCAPE_ENGULFING"
 msgstr "neelamisest pääsemine"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:842
+#: ../src/microbe_stage/Microbe.Interior.cs:835
 msgid "REPRODUCED"
 msgstr "reprodutseeritud"
 
