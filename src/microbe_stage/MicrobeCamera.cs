@@ -115,7 +115,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
         materialToUpdate = (ShaderMaterial)material;
 
-        OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
         Settings.Instance.DisplayBackgroundParticles.OnChanged += OnDisplayBackgroundParticlesChanged;
 
         ResolveNodeReferences();
