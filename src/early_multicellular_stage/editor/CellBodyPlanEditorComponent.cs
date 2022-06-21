@@ -473,13 +473,13 @@ public partial class CellBodyPlanEditorComponent :
 
         if (MovingPlacedHex == null)
         {
-            moveOccupancies = GetMultiActionWithOccupancies(positions, cellTemplates, true);
+            moveOccupancies = GetMultiActionWithOccupancies(positions, cellTemplates, false);
         }
         else
         {
             moveOccupancies = GetMultiActionWithOccupancies(positions.Take(1).ToList(),
                 new List<HexWithData<CellTemplate>>
-                    { MovingPlacedHex }, false);
+                    { MovingPlacedHex }, true);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);

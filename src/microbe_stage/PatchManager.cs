@@ -170,6 +170,12 @@ public class PatchManager : IChildPropertiesLoadCallback
                 continue;
             }
 
+            if (species.Obsolete)
+            {
+                GD.PrintErr("Obsolete species is in a patch");
+                continue;
+            }
+
             var density = Mathf.Max(Mathf.Log(species.Population / 50.0f) * 0.01f, 0.0f);
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
