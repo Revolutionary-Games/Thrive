@@ -21,12 +21,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [Export]
     public NodePath HUDRootPath = null!;
 
-    /// <summary>
-    ///   The world settings to pass to the current game if this is a newly created game
-    /// </summary>
-    [JsonIgnore]
-    public WorldGenerationSettings InitialWorldSettings = new();
-
     private Compound glucose = null!;
     private Compound phosphate = null!;
 
@@ -304,6 +298,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             {
                 StartNewGame();
             }
+            else
+            {
+                OnGameStarted();
+            }
         }
 
         GD.Print(CurrentGame!.GameWorld.WorldSettings);
@@ -351,14 +349,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public void StartNewGame()
     {
-        // Use the world settings set by the new game screen, or the default parameters if freebuilding
-        CurrentGame = GameProperties.StartNewMicrobeGame(InitialWorldSettings);
+        CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
 
-        patchManager.CurrentGame = CurrentGame;
-
-        UpdatePatchSettings(!TutorialState.Enabled);
-
-        SpawnPlayer();
+        OnGameStarted();
     }
 
     public void StartMusic()
@@ -767,6 +760,18 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         TransitionFinished = true;
         TutorialState.SendEvent(
             TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
+    }
+
+    /// <summary>
+    ///   Common logic for the case where we directly open this scene or start a new game normally from the menu
+    /// </summary>
+    private void OnGameStarted()
+    {
+        patchManager.CurrentGame = CurrentGame;
+
+        UpdatePatchSettings(!TutorialState.Enabled);
+
+        SpawnPlayer();
     }
 
     /// <summary>

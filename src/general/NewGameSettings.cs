@@ -444,7 +444,7 @@ public class NewGameSettings : ControlWithInput
 
             // TODO: Add loading screen while changing between scenes
             var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
-            microbeStage.InitialWorldSettings = settings;
+            microbeStage.CurrentGame = GameProperties.StartNewMicrobeGame(settings);
             SceneManager.Instance.SwitchToScene(microbeStage);
         });
     }
