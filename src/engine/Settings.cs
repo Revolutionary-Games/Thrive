@@ -202,7 +202,7 @@ public class Settings
     /// <summary>
     ///   Sets the maximum number of entities that can be can exist as well as their overall spawn rate
     /// </summary>
-    public SettingValue<int> MaxSpawnedEntities { get; set; } = new(Constants.DEFAULT_MAX_SPAWNED_ENTITIES);
+    public SettingValue<int> MaxSpawnedEntities { get; set; } = new(Constants.NORMAL_MAX_SPAWNED_ENTITIES);
 
     // Misc Properties
 

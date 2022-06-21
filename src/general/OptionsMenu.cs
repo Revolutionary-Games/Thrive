@@ -763,24 +763,24 @@ public class OptionsMenu : ControlWithInput
         switch (index)
         {
             case 0:
-                return 25;
+                return Constants.TINY_MAX_SPAWNED_ENTITIES;
             case 1:
-                return 40;
+                return Constants.VERY_SMALL_MAX_SPAWNED_ENTITIES;
             case 2:
-                return 55;
+                return Constants.SMALL_MAX_SPAWNED_ENTITIES;
             case 3:
-                return 70;
+                return Constants.NORMAL_MAX_SPAWNED_ENTITIES;
             case 4:
-                return 85;
+                return Constants.LARGE_MAX_SPAWNED_ENTITIES;
             case 5:
-                return 100;
+                return Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES;
             case 6:
-                return 115;
+                return Constants.HUGE_MAX_SPAWNED_ENTITIES;
             case 7:
-                return 130;
+                return Constants.EXTREME_MAX_SPAWNED_ENTITIES;
             default:
                 GD.PrintErr("invalid max entities count index");
-                return 70;
+                return Constants.NORMAL_MAX_SPAWNED_ENTITIES;
         }
     }
 
@@ -788,21 +788,21 @@ public class OptionsMenu : ControlWithInput
     {
         switch (value)
         {
-            case 25:
+            case Constants.TINY_MAX_SPAWNED_ENTITIES:
                 return 0;
-            case 40:
+            case Constants.VERY_SMALL_MAX_SPAWNED_ENTITIES:
                 return 1;
-            case 55:
+            case Constants.SMALL_MAX_SPAWNED_ENTITIES:
                 return 2;
-            case 70:
+            case Constants.NORMAL_MAX_SPAWNED_ENTITIES:
                 return 3;
-            case 85:
+            case Constants.LARGE_MAX_SPAWNED_ENTITIES:
                 return 4;
-            case 100:
+            case Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES:
                 return 5;
-            case 115:
+            case Constants.HUGE_MAX_SPAWNED_ENTITIES:
                 return 6;
-            case 130:
+            case Constants.EXTREME_MAX_SPAWNED_ENTITIES:
                 return 7;
             default:
                 GD.PrintErr("invalid max entities count value");

@@ -555,7 +555,15 @@ public static class Constants
 
     // These control how many game entities can exist at once and how fast they are allowed to spawn / despawn
     // TODO: bump this back up once we resolve the performance bottleneck
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 70;
+    public const int TINY_MAX_SPAWNED_ENTITIES = 25;
+    public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 40;
+    public const int SMALL_MAX_SPAWNED_ENTITIES = 55;
+    public const int NORMAL_MAX_SPAWNED_ENTITIES = 70;
+    public const int LARGE_MAX_SPAWNED_ENTITIES = 85;
+    public const int VERY_LARGE_MAX_SPAWNED_ENTITIES = 100;
+    public const int HUGE_MAX_SPAWNED_ENTITIES = 115;
+    public const int EXTREME_MAX_SPAWNED_ENTITIES = 130;
+
     public const int MAX_SPAWNS_PER_FRAME = 1;
 
     /// <summary>
