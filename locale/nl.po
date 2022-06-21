@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-21 15:07+0700\n"
+"POT-Creation-Date: 2022-06-21 15:50+0700\n"
 "PO-Revision-Date: 2022-04-07 14:12+0000\n"
 "Last-Translator: DannyNohuman <damianbouras@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -370,12 +370,12 @@ msgid "ABILITIES"
 msgstr "Capaciteiten"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2191
+#: ../src/microbe_stage/MicrobeStage.tscn:2188
 msgid "FIRE_TOXIN"
 msgstr "Schiet toxine"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2179
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "TOGGLE_ENGULF"
 msgstr "Overspoelen"
 
@@ -384,7 +384,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2202
+#: ../src/microbe_stage/MicrobeStage.tscn:2199
 msgid "TOGGLE_BINDING"
 msgstr "Binden aan/uit"
 
@@ -393,7 +393,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Ontbinden aan/uit"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2214
+#: ../src/microbe_stage/MicrobeStage.tscn:2211
 msgid "UNBIND_ALL"
 msgstr "Ontbind al"
 
@@ -715,7 +715,7 @@ msgid "GLUCOSE"
 msgstr "Glucose"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/microbe_stage/MicrobeStage.tscn:1627
+#: ../src/microbe_stage/MicrobeStage.tscn:1624
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
@@ -2182,7 +2182,7 @@ msgid "STATISTICS"
 msgstr "Statistieken"
 
 #: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/MicrobeStage.tscn:1739
+#: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3205,24 +3205,24 @@ msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1286
-#: ../src/microbe_stage/MicrobeStage.tscn:1806
+#: ../src/microbe_stage/MicrobeStage.tscn:1803
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1322
-#: ../src/microbe_stage/MicrobeStage.tscn:1817
+#: ../src/microbe_stage/MicrobeStage.tscn:1814
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:778
+#: ../src/microbe_stage/MicrobeStage.cs:781
 msgid "PLAYER_REPRODUCED"
 msgstr "speler reproduceerde"
 
-#: ../src/microbe_stage/MicrobeStage.cs:792
+#: ../src/microbe_stage/MicrobeStage.cs:795
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:815
+#: ../src/microbe_stage/MicrobeStage.cs:818
 msgid "PLAYER_DIED"
 msgstr "speler stierf"
 
@@ -3268,52 +3268,52 @@ msgid "COMPOUNDS"
 msgstr "Verbindingen"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1500
-msgid "INGESTED_MATTER"
+msgid "ENGULFED_MATTER"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1567
+#: ../src/microbe_stage/MicrobeStage.tscn:1564
 msgid "AGENTS"
 msgstr "Middelen"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1665
+#: ../src/microbe_stage/MicrobeStage.tscn:1662
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1678
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1679
+#: ../src/microbe_stage/MicrobeStage.tscn:1676
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "Hervat"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1687
+#: ../src/microbe_stage/MicrobeStage.tscn:1684
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1702
+#: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1751
+#: ../src/microbe_stage/MicrobeStage.tscn:1748
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1802
+#: ../src/microbe_stage/MicrobeStage.tscn:1799
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1837
+#: ../src/microbe_stage/MicrobeStage.tscn:1834
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATIE:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1988
+#: ../src/microbe_stage/MicrobeStage.tscn:1985
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Hervat"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2134
+#: ../src/microbe_stage/MicrobeStage.tscn:2131
 msgid "PAUSED"
 msgstr ""
 
@@ -4795,10 +4795,6 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr "Microbe vrij bouwen"
-
-#, fuzzy
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_17"
-#~ msgstr "Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. [thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy\"][/thrive:compound] te schieten als je een vergif vacuole hebt. [thrive:input]g_toggle_engulf[/thrive:input] om de verzwelg-modus aan en uit te zetten."
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Pangoonische Bronnen"

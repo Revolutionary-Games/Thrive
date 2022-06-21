@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-21 15:07+0700\n"
+"POT-Creation-Date: 2022-06-21 15:50+0700\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -379,12 +379,12 @@ msgid "ABILITIES"
 msgstr "Schopnosti"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2191
+#: ../src/microbe_stage/MicrobeStage.tscn:2188
 msgid "FIRE_TOXIN"
 msgstr "Ohnivé toxiny"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2179
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "TOGGLE_ENGULF"
 msgstr "Přepnout pohlcování"
 
@@ -393,7 +393,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2202
+#: ../src/microbe_stage/MicrobeStage.tscn:2199
 msgid "TOGGLE_BINDING"
 msgstr "Přepnout spojování"
 
@@ -402,7 +402,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Přepnout rozpojování"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2214
+#: ../src/microbe_stage/MicrobeStage.tscn:2211
 msgid "UNBIND_ALL"
 msgstr "Rozpojit všechny"
 
@@ -723,7 +723,7 @@ msgid "GLUCOSE"
 msgstr "Glukóza"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/microbe_stage/MicrobeStage.tscn:1627
+#: ../src/microbe_stage/MicrobeStage.tscn:1624
 msgid "OXYTOXY_NT"
 msgstr "OxyToxyn NT"
 
@@ -2184,7 +2184,7 @@ msgid "STATISTICS"
 msgstr "Statistiky"
 
 #: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/MicrobeStage.tscn:1739
+#: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Nápověda"
 
@@ -3218,24 +3218,24 @@ msgid "CATEGORY_VERY_LITTLE"
 msgstr "velmi málo"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1286
-#: ../src/microbe_stage/MicrobeStage.tscn:1806
+#: ../src/microbe_stage/MicrobeStage.tscn:1803
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1322
-#: ../src/microbe_stage/MicrobeStage.tscn:1817
+#: ../src/microbe_stage/MicrobeStage.tscn:1814
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:778
+#: ../src/microbe_stage/MicrobeStage.cs:781
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč se rozmnožil"
 
-#: ../src/microbe_stage/MicrobeStage.cs:792
+#: ../src/microbe_stage/MicrobeStage.cs:795
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Nemůžete použít cheat spawnout nepřítele, protože se v této oblasti se nevyskytují nepřátelské druhy"
 
-#: ../src/microbe_stage/MicrobeStage.cs:815
+#: ../src/microbe_stage/MicrobeStage.cs:818
 msgid "PLAYER_DIED"
 msgstr "hráč zemřel"
 
@@ -3280,51 +3280,51 @@ msgid "COMPOUNDS"
 msgstr "Sloučeniny"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1500
-msgid "INGESTED_MATTER"
+msgid "ENGULFED_MATTER"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1567
+#: ../src/microbe_stage/MicrobeStage.tscn:1564
 msgid "AGENTS"
 msgstr "Činidlo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1665
+#: ../src/microbe_stage/MicrobeStage.tscn:1662
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1678
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "PAUSE_TOOLTIP"
 msgstr "Pozastavit hru"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1679
+#: ../src/microbe_stage/MicrobeStage.tscn:1676
 msgid "RESUME_TOOLTIP"
 msgstr "Pokračovat"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1687
+#: ../src/microbe_stage/MicrobeStage.tscn:1684
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt prostředí a sloučeniny"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1702
+#: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt procesy buňky"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1751
+#: ../src/microbe_stage/MicrobeStage.tscn:1748
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Spáchat sebevraždu"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1802
+#: ../src/microbe_stage/MicrobeStage.tscn:1799
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1837
+#: ../src/microbe_stage/MicrobeStage.tscn:1834
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACE:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1988
+#: ../src/microbe_stage/MicrobeStage.tscn:1985
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2134
+#: ../src/microbe_stage/MicrobeStage.tscn:2131
 msgid "PAUSED"
 msgstr ""
 
@@ -4880,10 +4880,6 @@ msgstr ""
 "Vstoupil(a) jsi do odpojovacího módu. V tomto módu můžeš kliknout na členy kolonie, čímž je odpojíš.\n"
 "\n"
 "K rozpuštění kolonie klikni na svou buňku nebo stiskni klávesu pro odpojení všech."
-
-#, fuzzy
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_17"
-#~ msgstr "Pro pohyb použij myš a klávesy [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input]. Klávesa [thrive:input]g_fire_toxin[/thrive:input] k vystřelení [thrive:compound type=\"oxytoxy\"]toxinu[/thrive:compound], pokud máš toxinovou vakuolu. Klávesa [thrive:input]g_toggle_engulf[/thrive:input] k zapnutí režimu pohlcení. Pomocí kolečka myši můžete přibližovat a oddalovat obraz."
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Pangoniánské hydrotermální průduchy"

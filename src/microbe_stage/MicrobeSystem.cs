@@ -23,8 +23,8 @@ public class MicrobeSystem
         if (delta <= 0)
             return;
 
-        var microbes = worldRoot.GetTree().GetNodesInGroup(Constants.PROCESSABLE_MICROBE_GROUP).Cast<Microbe>().
-            ToArray();
+        var microbes = worldRoot.GetTree().GetNodesInGroup(Constants.PROCESSABLE_MICROBE_GROUP).Cast<Microbe>()
+            .ToArray();
 
         // Start of async early processing
         var executor = TaskExecutor.Instance;

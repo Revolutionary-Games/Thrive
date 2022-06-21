@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-21 15:07+0700\n"
+"POT-Creation-Date: 2022-06-21 15:50+0700\n"
 "PO-Revision-Date: 2022-04-08 11:52+0000\n"
 "Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -378,12 +378,12 @@ msgid "ABILITIES"
 msgstr "Fähigkeiten"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2191
+#: ../src/microbe_stage/MicrobeStage.tscn:2188
 msgid "FIRE_TOXIN"
 msgstr "Gift schießen"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2179
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "TOGGLE_ENGULF"
 msgstr "Verschlingen umschalten"
 
@@ -392,7 +392,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Gedrückt halten, um das Rudelbefehls Menü anzuzeigen"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2202
+#: ../src/microbe_stage/MicrobeStage.tscn:2199
 msgid "TOGGLE_BINDING"
 msgstr "Bindungsmodus umschalten"
 
@@ -401,7 +401,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Verbinden umschalten"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2214
+#: ../src/microbe_stage/MicrobeStage.tscn:2211
 msgid "UNBIND_ALL"
 msgstr "Alle Verbindungen lösen"
 
@@ -722,7 +722,7 @@ msgid "GLUCOSE"
 msgstr "Glukose"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/microbe_stage/MicrobeStage.tscn:1627
+#: ../src/microbe_stage/MicrobeStage.tscn:1624
 msgid "OXYTOXY_NT"
 msgstr "OxyToxid NT"
 
@@ -2159,7 +2159,7 @@ msgid "STATISTICS"
 msgstr "Statistiken"
 
 #: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/MicrobeStage.tscn:1739
+#: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Hilfe"
 
@@ -3186,24 +3186,24 @@ msgid "CATEGORY_VERY_LITTLE"
 msgstr "sehr wenig"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1286
-#: ../src/microbe_stage/MicrobeStage.tscn:1806
+#: ../src/microbe_stage/MicrobeStage.tscn:1803
 msgid "BECOME_MULTICELLULAR"
 msgstr "Multizellulär werden ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1322
-#: ../src/microbe_stage/MicrobeStage.tscn:1817
+#: ../src/microbe_stage/MicrobeStage.tscn:1814
 msgid "BECOME_MACROSCOPIC"
 msgstr "Makroskopisch werden ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:778
+#: ../src/microbe_stage/MicrobeStage.cs:781
 msgid "PLAYER_REPRODUCED"
 msgstr "Spieler reproduziert"
 
-#: ../src/microbe_stage/MicrobeStage.cs:792
+#: ../src/microbe_stage/MicrobeStage.cs:795
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Der Cheat Code zum Spawnen von Gegnern kann in diesem Gebiet nicht genutzt werden, da hier keine feindlichen Spezies leben"
 
-#: ../src/microbe_stage/MicrobeStage.cs:815
+#: ../src/microbe_stage/MicrobeStage.cs:818
 msgid "PLAYER_DIED"
 msgstr "Spieler starb"
 
@@ -3248,51 +3248,51 @@ msgid "COMPOUNDS"
 msgstr "Substanzen"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1500
-msgid "INGESTED_MATTER"
+msgid "ENGULFED_MATTER"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1567
+#: ../src/microbe_stage/MicrobeStage.tscn:1564
 msgid "AGENTS"
 msgstr "Mittel"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1665
+#: ../src/microbe_stage/MicrobeStage.tscn:1662
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pause-Menü"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1678
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "PAUSE_TOOLTIP"
 msgstr "Pausiere das Spiel"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1679
+#: ../src/microbe_stage/MicrobeStage.tscn:1676
 msgid "RESUME_TOOLTIP"
 msgstr "Spiel fortsetzen"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1687
+#: ../src/microbe_stage/MicrobeStage.tscn:1684
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Umgebung und Substanzen ein-/ausblenden"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1702
+#: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zellprozesse ein-/ausblenden"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1751
+#: ../src/microbe_stage/MicrobeStage.tscn:1748
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Suizid"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1802
+#: ../src/microbe_stage/MicrobeStage.tscn:1799
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Gehe zur nächsten Stufe des Spiels über (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1837
+#: ../src/microbe_stage/MicrobeStage.tscn:1834
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1988
+#: ../src/microbe_stage/MicrobeStage.tscn:1985
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Eingabemethode hinzufügen"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2134
+#: ../src/microbe_stage/MicrobeStage.tscn:2131
 msgid "PAUSED"
 msgstr ""
 
@@ -4814,10 +4814,6 @@ msgstr ""
 "Du hast den \"Bindung aufheben\"-Modus aufgerufen. In diesem Modus kannst du auf die Mitglieder deiner Kolonie klicken, um deren Verbindung zu lösen.\n"
 "\n"
 "Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
-
-#, fuzzy
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_17"
-#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] und Maus zum Bewegen. [thrive:input]g_fire_toxin[/thrive:input] drücken um [thrive:compound type=\"oxytoxy\"][/thrive:compound] zu schießen, falls eine Giftvakuole vorhanden ist. [thrive:input]g_toggle_engulf[/thrive:input] drücken um den Verschlingungsmodus umzuschalten. Mit dem Mausrad kannst du herein- und herauszoomen."
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Pangonische Schlote"

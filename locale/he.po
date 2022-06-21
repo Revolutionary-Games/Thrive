@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-21 15:07+0700\n"
+"POT-Creation-Date: 2022-06-21 15:50+0700\n"
 "PO-Revision-Date: 2022-06-03 13:31+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -382,12 +382,12 @@ msgid "ABILITIES"
 msgstr "יכולות"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2191
+#: ../src/microbe_stage/MicrobeStage.tscn:2188
 msgid "FIRE_TOXIN"
 msgstr "שחרר רעלנים"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2179
+#: ../src/microbe_stage/MicrobeStage.tscn:2176
 msgid "TOGGLE_ENGULF"
 msgstr "החלף מצב בליעה"
 
@@ -396,7 +396,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "החזק כדי להציג את תפריט פקודות"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2202
+#: ../src/microbe_stage/MicrobeStage.tscn:2199
 msgid "TOGGLE_BINDING"
 msgstr "החלף מצב קישור"
 
@@ -405,7 +405,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "בטל מצב קישור"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2214
+#: ../src/microbe_stage/MicrobeStage.tscn:2211
 msgid "UNBIND_ALL"
 msgstr "שחרר הכל"
 
@@ -725,7 +725,7 @@ msgid "GLUCOSE"
 msgstr "גלוקוז"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/microbe_stage/MicrobeStage.tscn:1627
+#: ../src/microbe_stage/MicrobeStage.tscn:1624
 msgid "OXYTOXY_NT"
 msgstr "אוקסיטוקסי נ\"ט"
 
@@ -2173,7 +2173,7 @@ msgid "STATISTICS"
 msgstr "סטטיסטיקה"
 
 #: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/MicrobeStage.tscn:1739
+#: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "עזרה"
 
@@ -3202,24 +3202,24 @@ msgid "CATEGORY_VERY_LITTLE"
 msgstr "קטן מאוד"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1286
-#: ../src/microbe_stage/MicrobeStage.tscn:1806
+#: ../src/microbe_stage/MicrobeStage.tscn:1803
 msgid "BECOME_MULTICELLULAR"
 msgstr "להפוך לרב-תאיים ({0}/{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1322
-#: ../src/microbe_stage/MicrobeStage.tscn:1817
+#: ../src/microbe_stage/MicrobeStage.tscn:1814
 msgid "BECOME_MACROSCOPIC"
 msgstr "להפוך למקרוסקופי ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:778
+#: ../src/microbe_stage/MicrobeStage.cs:781
 msgid "PLAYER_REPRODUCED"
 msgstr "השחקן התרבה"
 
-#: ../src/microbe_stage/MicrobeStage.cs:792
+#: ../src/microbe_stage/MicrobeStage.cs:795
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "אינך יכול לזמן אוייבים צ'יטים בגלל שאזור זה אינו מכיל שום מינים אויבים"
 
-#: ../src/microbe_stage/MicrobeStage.cs:815
+#: ../src/microbe_stage/MicrobeStage.cs:818
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
@@ -3264,51 +3264,51 @@ msgid "COMPOUNDS"
 msgstr "תרכובות"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1500
-msgid "INGESTED_MATTER"
+msgid "ENGULFED_MATTER"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1567
+#: ../src/microbe_stage/MicrobeStage.tscn:1564
 msgid "AGENTS"
 msgstr "חומרים"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1665
+#: ../src/microbe_stage/MicrobeStage.tscn:1662
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "תפריט השהה"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1678
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "PAUSE_TOOLTIP"
 msgstr "השהה את המשחק"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1679
+#: ../src/microbe_stage/MicrobeStage.tscn:1676
 msgid "RESUME_TOOLTIP"
 msgstr "המשך את המשחק"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1687
+#: ../src/microbe_stage/MicrobeStage.tscn:1684
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא סביבה ותרכובות"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1702
+#: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא תהליכי תא"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1751
+#: ../src/microbe_stage/MicrobeStage.tscn:1748
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "התאבדות"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1802
+#: ../src/microbe_stage/MicrobeStage.tscn:1799
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "עבור לשלב הבא של המשחק (רב תא). זמין ברגע שיש לך מושבת תאים גדולה מספיק."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1837
+#: ../src/microbe_stage/MicrobeStage.tscn:1834
 msgid "POPULATION_CAPITAL"
 msgstr "אוכלוסיה:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1988
+#: ../src/microbe_stage/MicrobeStage.tscn:1985
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "הוסף מקשר חדש"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2134
+#: ../src/microbe_stage/MicrobeStage.tscn:2131
 msgid "PAUSED"
 msgstr "מושהה"
 
@@ -4817,10 +4817,6 @@ msgstr ""
 "אתה נכנסת ל\"מצב שחרר\". במצב זה אתה יכול ללחוץ על חברי המושבה שלך על מנת להשתחרר מהם.\n"
 "\n"
 "על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש \"שחרר הכל\"."
-
-#, fuzzy
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_17"
-#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] והעכבר בשביל לנוע. [thrive:input]g_fire_toxin[/thrive:input] בשביל לירות[thrive:compound type=\"oxytoxy\"][/thrive:compound] אם יש לך חלולית רעלן. [thrive:input]g_toggle_engulf[/thrive:input] בשביל להחליף למצב בליעה. אתה יכול לעשות הגדלה והקטנה באמצעות גלגל העכבר."
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "אזור הנביעות"

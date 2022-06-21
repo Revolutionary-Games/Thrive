@@ -1406,7 +1406,8 @@ public partial class Microbe
     */
 
     /// <summary>
-    ///   Attemps to engulf the given target into the cytoplasm. Does not check whether the target can be engulfed or not.
+    ///   Attemps to engulf the given target into the cytoplasm. Does not check whether the target
+    ///   can be engulfed or not.
     /// </summary>
     private void IngestEngulfable(IEngulfable target, float animationSpeed = 2.0f)
     {

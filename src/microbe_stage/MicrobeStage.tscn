@@ -1499,9 +1499,6 @@ rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = ExtResource( 80 )
 text = "INGESTED_MATTER"
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
 anchor_left = 1.0
