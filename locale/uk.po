@@ -1329,7 +1329,7 @@ msgstr "FPS диспей"
 
 #: ../src/engine/DebugOverlays.tscn:110
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "Cпавнити сутності з формами зіткнення"
 
 #: ../src/engine/DebugOverlays.tscn:117
 msgid "ENTITY_LABEL"
@@ -3842,6 +3842,8 @@ msgstr "Сигнал для виведення"
 #: ../src/microbe_stage/MicrobeHUD.cs:790
 msgid "PAUSE_PROMPT"
 msgstr ""
+"[center]Натисніть [thrive:input]g_pause[/thrive:input], аби продовжити гру[/"
+"center]"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:904
 msgid "STUFF_AT"
@@ -5213,7 +5215,8 @@ msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "Вибране збереження для завантаження зроблене в прототипі з різними версіями "
 "Thrive.\n"
-"Тому данне збереження неможна завантажити, бо воно не придатне до оновлення. "
+"Тому данне збереження неможна завантажити, бо воно не придатне до "
+"оновлення.\n"
 "Підтримка сумісності збережень для прототипів буде великим тягарем, адже "
 "речі частенько переробляються, а написати оновлення збереженням сильно "
 "сповільнить розробку."
