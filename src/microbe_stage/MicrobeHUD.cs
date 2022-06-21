@@ -108,6 +108,9 @@ public class MicrobeHUD : Control
     public NodePath IronBarPath = null!;
 
     [Export]
+    public NodePath IngestedMatterBarPath = null!;
+
+    [Export]
     public NodePath EnvironmentPanelExpandButtonPath = null!;
 
     [Export]
@@ -259,6 +262,7 @@ public class MicrobeHUD : Control
     private ProgressBar phosphateBar = null!;
     private ProgressBar hydrogenSulfideBar = null!;
     private ProgressBar ironBar = null!;
+    private ProgressBar ingestedMatterBar = null!;
 
     private Button environmentPanelExpandButton = null!;
     private Button environmentPanelCompressButton = null!;
@@ -397,6 +401,7 @@ public class MicrobeHUD : Control
         phosphateBar = GetNode<ProgressBar>(PhosphateBarPath);
         hydrogenSulfideBar = GetNode<ProgressBar>(HydrogenSulfideBarPath);
         ironBar = GetNode<ProgressBar>(IronBarPath);
+        ingestedMatterBar = GetNode<ProgressBar>(IngestedMatterBarPath);
 
         environmentPanelExpandButton = GetNode<Button>(EnvironmentPanelExpandButtonPath);
         environmentPanelCompressButton = GetNode<Button>(EnvironmentPanelCompressButtonPath);
@@ -772,6 +777,12 @@ public class MicrobeHUD : Control
 
         foreach (ProgressBar bar in compoundBars)
         {
+            if (bar == ingestedMatterBar)
+            {
+                bar.Visible = GetPlayerIngestedSizeCount() > 0;
+                continue;
+            }
+
             var compound = SimulationParameters.Instance.GetCompound(bar.Name);
 
             if (compounds.IsUseful(compound))
@@ -1016,7 +1027,7 @@ public class MicrobeHUD : Control
     /// </summary>
     private void UpdateCompoundBars()
     {
-        var compounds = GetPlayerColonyOrPlayerStorage();
+        var compounds = GetPlayerStorage();
 
         glucoseBar.MaxValue = compounds.GetCapacityForCompound(glucose);
         glucoseBar.Value = compounds.GetCompoundAmount(glucose);
@@ -1038,6 +1049,10 @@ public class MicrobeHUD : Control
         ironBar.MaxValue = compounds.GetCapacityForCompound(iron);
         ironBar.Value = compounds.GetCompoundAmount(iron);
         ironBar.GetNode<Label>("Value").Text = ironBar.Value + " / " + ironBar.MaxValue;
+
+        ingestedMatterBar.MaxValue = stage!.Player!.Colony?.HexCount ?? stage.Player.HexCount;
+        ingestedMatterBar.Value = GetPlayerIngestedSizeCount();
+        ingestedMatterBar.GetNode<Label>("Value").Text = ingestedMatterBar.Value + " / " + ingestedMatterBar.MaxValue;
 
         oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
         oxytoxyBar.Value = compounds.GetCompoundAmount(oxytoxy);
@@ -1108,7 +1123,7 @@ public class MicrobeHUD : Control
         // Update to the player's current ATP, unless the player does not exist
         if (stage!.Player != null)
         {
-            var compounds = GetPlayerColonyOrPlayerStorage();
+            var compounds = GetPlayerStorage();
 
             atpAmount = compounds.GetCompoundAmount(atp);
             maxATP = compounds.GetCapacityForCompound(atp);
@@ -1130,9 +1145,14 @@ public class MicrobeHUD : Control
         atpLabel.HintTooltip = atpText;
     }
 
-    private ICompoundStorage GetPlayerColonyOrPlayerStorage()
+    private ICompoundStorage GetPlayerStorage()
     {
         return stage!.Player!.Colony?.ColonyCompounds ?? (ICompoundStorage)stage.Player.Compounds;
+    }
+
+    private float GetPlayerIngestedSizeCount()
+    {
+        return stage!.Player!.Colony?.IngestedSizeCount ?? stage.Player.IngestedSizeCount;
     }
 
     private void UpdateHealth(float delta)

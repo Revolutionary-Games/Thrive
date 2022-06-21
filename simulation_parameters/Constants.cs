@@ -15,6 +15,11 @@ public static class Constants
     /// </summary>
     public const float PLAYER_RESPAWN_TIME = 5.0f;
 
+    /// <summary>
+    ///   The maximum of how long the player should wait until respawn after being ingested.
+    /// </summary>
+    public const float PLAYER_ENGULFED_DEATH_DELAY_MAX = 10f;
+
     // Variance in the player position when respawning
     public const float MIN_SPAWN_DISTANCE = -5000.0f;
     public const float MAX_SPAWN_DISTANCE = 5000.0f;
@@ -347,13 +352,19 @@ public static class Constants
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
     /// <summary>
-    ///   The duration for which an engulfable object can be engulfed again after being regurgitated.
+    ///   The duration for which an engulfable object can be engulfed again after being expelled.
     /// </summary>
     public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
 
     public const float ENGULF_EJECTION_FORCE = 20f;
 
-    public const float EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET = 1.5f;
+    public const float EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET = 1.8f;
+
+    /// <summary>
+    ///   The measure of which beyond this threshold an engulfable is considered partially digested.
+    ///   Used to determine whether a cell should be able to heal after being expelled from engulfment.
+    /// </summary>
+    public const float PARTIALLY_DIGESTED_THRESHOLD = 0.3f;
 
     /// <summary>
     ///   The speed of which a cell can absorb compounds from digestible engulfed objects.
@@ -726,6 +737,8 @@ public static class Constants
     ///   </para>
     /// </remarks>
     public const string AI_TAG_MICROBE = "microbe";
+
+    public const string PROCESSABLE_MICROBE_GROUP = "microbe_process";
 
     /// <summary>
     ///   All Nodes tagged with this are considered FloatingChunks that the AI can react to

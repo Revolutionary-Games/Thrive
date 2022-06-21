@@ -9,6 +9,10 @@ public class MicrobeColony
 {
     private Microbe.MicrobeState state;
 
+    private bool hexCountDirty = true;
+    private float hexCount;
+    private float ingestedSizeCount;
+
     [JsonConstructor]
     private MicrobeColony(Microbe master)
     {
@@ -44,6 +48,31 @@ public class MicrobeColony
 
     [JsonProperty]
     public Microbe Master { get; private set; }
+
+    /// <summary>
+    ///   The total hex count from all members of this colony.
+    /// </summary>
+    [JsonIgnore]
+    public float HexCount
+    {
+        get
+        {
+            if (hexCountDirty)
+                UpdateHexCount();
+            return hexCount;
+        }
+    }
+
+    [JsonIgnore]
+    public float IngestedSizeCount
+    {
+        get
+        {
+            if (hexCountDirty)
+                UpdateHexCount();
+            return ingestedSizeCount;
+        }
+    }
 
     /// <summary>
     ///   Creates a colony for a microbe, with the given microbe as the master,
@@ -101,6 +130,8 @@ public class MicrobeColony
         microbe.ColonyChildren = null;
         if (microbe != Master)
             Master.Mass -= microbe.Mass;
+
+        hexCountDirty = true;
     }
 
     public void AddToColony(Microbe microbe, Microbe master)
@@ -117,5 +148,19 @@ public class MicrobeColony
         microbe.ColonyChildren = new List<Microbe>();
 
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
+
+        hexCountDirty = true;
+    }
+
+    private void UpdateHexCount()
+    {
+        hexCount = Master.Size;
+        ingestedSizeCount = Master.IngestedSizeCount;
+
+        foreach (var member in ColonyMembers)
+        {
+            hexCount += member.Size;
+            ingestedSizeCount += member.IngestedSizeCount;
+        }
     }
 }

@@ -241,7 +241,8 @@ public class MicrobeAI
         if (!microbe.CellTypeProperties.MembraneType.CellWall)
         {
             var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
-            if (targetChunk != null && targetChunk.CurrentEngulfmentStep == EngulfmentStep.NotEngulfed)
+            if (targetChunk != null && !microbe.IsEngulfing() &&
+                targetChunk.PhagocytizedStep == PhagocytosisProcess.None)
             {
                 PursueAndConsumeChunks(targetChunk.Translation, random);
                 return;
@@ -250,7 +251,8 @@ public class MicrobeAI
 
         // If there are no chunks, look for living prey to hunt
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
-        if (possiblePrey != null && possiblePrey.CurrentEngulfmentStep == EngulfmentStep.NotEngulfed)
+        if (possiblePrey != null && !microbe.IsEngulfing() &&
+            possiblePrey.PhagocytizedStep == PhagocytosisProcess.None)
         {
             bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
                 DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.Size;
@@ -259,6 +261,10 @@ public class MicrobeAI
             EngagePrey(prey.Value, random, engulfPrey);
             return;
         }
+
+        // Wait until we've ingested the food that we're currently engulfing
+        if (microbe.IsEngulfing())
+            return;
 
         // There is no reason to be engulfing at this stage
         microbe.State = Microbe.MicrobeState.Normal;
@@ -294,7 +300,7 @@ public class MicrobeAI
             if (microbe.Size > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ
                 && (chunk.Translation - microbe.Translation).LengthSquared()
                 <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0
-                && chunk.CurrentEngulfmentStep == EngulfmentStep.NotEngulfed)
+                && chunk.PhagocytizedStep == PhagocytosisProcess.None)
             {
                 if (chunk.Compounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key)))
                 {
@@ -366,7 +372,7 @@ public class MicrobeAI
         if (focused != null)
         {
             var distanceToFocusedPrey = DistanceFromMe(focused.GlobalTransform.origin);
-            if (!focused.Dead && focused.CurrentEngulfmentStep == EngulfmentStep.NotEngulfed && distanceToFocusedPrey <
+            if (!focused.Dead && focused.PhagocytizedStep == PhagocytosisProcess.None && distanceToFocusedPrey <
                 (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
             {
                 if (distanceToFocusedPrey < pursuitThreshold)
@@ -388,7 +394,7 @@ public class MicrobeAI
 
         foreach (var otherMicrobe in allMicrobes)
         {
-            if (!otherMicrobe.Dead && otherMicrobe.CurrentEngulfmentStep == EngulfmentStep.NotEngulfed)
+            if (!otherMicrobe.Dead && otherMicrobe.PhagocytizedStep == PhagocytosisProcess.None)
             {
                 if (DistanceFromMe(otherMicrobe.GlobalTransform.origin) <
                     (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGGRESSION)
@@ -431,7 +437,7 @@ public class MicrobeAI
 
             // Based on species fear, threshold to be afraid ranges from 0.8 to 1.8 microbe size.
             if (otherMicrobe.Species != microbe.Species
-                && !otherMicrobe.Dead && otherMicrobe.CurrentEngulfmentStep == EngulfmentStep.NotEngulfed
+                && !otherMicrobe.Dead && otherMicrobe.PhagocytizedStep == PhagocytosisProcess.None
                 && otherMicrobe.Size > microbe.Size * fleeThreshold)
             {
                 if (predator == null || DistanceFromMe(predator.GlobalTransform.origin) >

@@ -129,7 +129,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonProperty]
-    public EngulfmentStep CurrentEngulfmentStep { get; set; }
+    public PhagocytosisProcess PhagocytizedStep { get; set; }
 
     [JsonProperty]
     public EntityReference<Microbe> HostileEngulfer { get; private set; } = new();
@@ -269,7 +269,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 
     public void ProcessChunk(float delta, CompoundCloudSystem compoundClouds)
     {
-        if (CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)
+        if (PhagocytizedStep != PhagocytosisProcess.None)
             return;
 
         if (isDissolving)
@@ -376,7 +376,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     {
     }
 
-    public void OnEjected()
+    public void OnExpelled()
     {
         if (DigestionProgress > 0)
         {

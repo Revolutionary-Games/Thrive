@@ -31,8 +31,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private List<AudioStreamPlayer3D> otherAudioPlayers = new();
     private List<AudioStreamPlayer> nonPositionalAudioPlayers = new();
 
-    private Area engulfDetector = null!;
-
     /// <summary>
     ///   Init can call _Ready if it hasn't been called yet
     /// </summary>
@@ -367,9 +365,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             GD.Print("Player Microbe spawned");
         }
 
-        // Setup physics callback stuff
-        engulfDetector = GetNode<Area>("EngulfDetector");
-
         // pseudopodTarget = GetNode<MeshInstance>("PseudopodTarget");
         // var pseudopodRange = GetNode<Area>("PseudopodRange");
         // pseudopodRangeSphereShape = (SphereShape)pseudopodRange.GetNode<CollisionShape>("SphereShape").Shape;
@@ -377,6 +372,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // pseudopodRange.Connect("body_entered", this, nameof(OnBodyEnteredPseudopodRange));
         // pseudopodRange.Connect("body_exited", this, nameof(OnBodyExitedPseudopodRange));
 
+        // Setup physics callback stuff
         ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
         Connect("body_shape_entered", this, nameof(OnContactBegin));
         Connect("body_shape_exited", this, nameof(OnContactEnd));
@@ -643,7 +639,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             throw new InvalidOperationException("Microbe must be initialized first");
 
         // Updates the listener if this is the player owned microbe.
-        if (listener != null)
+        if (listener != null && IsInsideTree())
         {
             // Listener is directional and since it is a child of the microbe it will have the same forward
             // vector as the parent. Since we want sound to come from the side of the screen relative to the
@@ -666,11 +662,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             }
         }
 
-        if (CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)
-            Membrane.WigglyNess = 0;
-
-        // The code below starting from here is not needed for a display-only or engulfed cell
-        if (IsForPreviewOnly || CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)
+        // The code below starting from here is not needed for a display-only cell
+        if (IsForPreviewOnly)
             return;
 
         CheckEngulfShape();
@@ -801,7 +794,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (IsPlayerMicrobe)
             throw new InvalidOperationException("AI can't run on the player microbe");
 
-        if (Dead || IsForPreviewOnly || CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)
+        if (Dead || IsForPreviewOnly || PhagocytizedStep != PhagocytosisProcess.None)
             return;
 
         try

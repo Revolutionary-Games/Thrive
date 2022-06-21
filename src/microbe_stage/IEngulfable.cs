@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
 
 /// <summary>
-///   The endocytosis step.
+///   The ordered process of phagocytosis.
 /// </summary>
-public enum EngulfmentStep
+public enum PhagocytosisProcess
 {
     /// <summary>
-    ///   Default state for all engulfable objects.
+    ///   Not being phagocytized in any way.
     /// </summary>
-    NotEngulfed,
+    None,
 
     /// <summary>
-    ///   Engulfable is in the process of being moved into the cytoplasm for storage.
+    ///   Engulfable is in the process of being moved into the cytoplasm to be stored.
     /// </summary>
-    BeingEngulfed,
+    Ingestion,
 
     /// <summary>
-    ///   Engulfable has been moved into the cytoplasm and is completely internalized.
+    ///   Engulfable has been moved into the cytoplasm and is completely internalized. Digestion may begin.
     /// </summary>
     Ingested,
 
@@ -28,12 +28,12 @@ public enum EngulfmentStep
     /// <summary>
     ///   Engulfable is in the process of being moved into the membrane layer for ejection.
     /// </summary>
-    BeingRegurgitated,
+    Exocytosis,
 
     /// <summary>
-    ///   Intermediary step between the actual ejection for resetting this engulfable's size.
+    ///   The expulsion of the engulfable into extracellular environment.
     /// </summary>
-    PreparingEjection,
+    Ejection,
 }
 
 /// <summary>
@@ -52,9 +52,9 @@ public interface IEngulfable : IGraphicalEntity
     public EntityReference<Microbe> HostileEngulfer { get; }
 
     /// <summary>
-    ///   The particular step of endocytosis process this engulfable is currently in.
+    ///   The current step of phagocytosis process this engulfable is currently in.
     /// </summary>
-    public EngulfmentStep CurrentEngulfmentStep { get; set; }
+    public PhagocytosisProcess PhagocytizedStep { get; set; }
 
     /// <summary>
     ///   What specific enzyme needed to digest this engulfable. If null default is used (lipase).
@@ -64,7 +64,7 @@ public interface IEngulfable : IGraphicalEntity
     public CompoundBag? Compounds { get; }
 
     /// <summary>
-    ///   The value for how much this engulfable has been digested on the range of 0 to 1,
+    ///   The value for how much this engulfable has been digested in the range of 0 to 1,
     ///   where 1 means fully digested.
     /// </summary>
     public float DigestionProgress { get; set; }
@@ -72,12 +72,12 @@ public interface IEngulfable : IGraphicalEntity
     Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds();
 
     /// <summary>
-    ///   Called when this engulfable is being engulfed by a microbe.
+    ///   Called once when this engulfable is being engulfed by a microbe.
     /// </summary>
     void OnEngulfed();
 
     /// <summary>
-    ///   Called when this engulfable has been ejected/regurgitated by a microbe.
+    ///   Called once when this engulfable has been expelled by a microbe.
     /// </summary>
-    void OnEjected();
+    void OnExpelled();
 }

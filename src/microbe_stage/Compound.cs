@@ -35,6 +35,8 @@ public class Compound : IRegistryType
     /// </summary>
     public bool CanBeDistributed;
 
+    public bool Digestible;
+
     public Color Colour;
 
     /// <summary>

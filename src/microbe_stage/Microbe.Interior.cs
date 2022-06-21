@@ -39,6 +39,9 @@ public partial class Microbe
     [JsonProperty]
     private float dissolveEffectValue;
 
+    [JsonProperty]
+    private float playerEngulfedDeathTimer;
+
     private float lastCheckedReproduction;
 
     /// <summary>
@@ -638,8 +641,8 @@ public partial class Microbe
     /// </remarks>
     private void HandleReproduction(float delta)
     {
-        // Dead cells can't reproduce
-        if (Dead)
+        // Dead or engulfed cells can't reproduce
+        if (Dead || PhagocytizedStep != PhagocytosisProcess.None)
             return;
 
         if (allOrganellesDivided)
@@ -864,6 +867,9 @@ public partial class Microbe
 
     private void HandleOsmoregulation(float delta)
     {
+        if (PhagocytizedStep != PhagocytosisProcess.None)
+            return;
+
         var osmoregulationCost = (HexCount * CellTypeProperties.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
 
@@ -878,15 +884,17 @@ public partial class Microbe
 
     private void HandleMovement(float delta)
     {
+        if (PhagocytizedStep != PhagocytosisProcess.None)
+        {
+            // Reset movement
+            MovementDirection = Vector3.Zero;
+            queuedMovementForce = Vector3.Zero;
+
+            return;
+        }
+
         if (MovementDirection != Vector3.Zero || queuedMovementForce != Vector3.Zero)
         {
-            if (CurrentEngulfmentStep != EngulfmentStep.NotEngulfed)
-            {
-                // Reset movement
-                MovementDirection = Vector3.Zero;
-                queuedMovementForce = Vector3.Zero;
-            }
-
             // Movement direction should not be normalized to allow different speeds
             Vector3 totalMovement = Vector3.Zero;
 
@@ -1091,16 +1099,20 @@ public partial class Microbe
 
     private void HandleDigestion(float delta)
     {
+        if (Dead)
+            return;
+
         var compounds = SimulationParameters.Instance.GetAllCompounds();
         var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
+        // Handle logic if the objects that are being digested is the ones we have engulfed
         for (int i = engulfedObjects.Count - 1; i >= 0; --i)
         {
             var engulfedObject = engulfedObjects[i];
 
             var engulfable = engulfedObject.Object.Value;
 
-            if (engulfable?.CurrentEngulfmentStep != EngulfmentStep.Ingested)
+            if (engulfable?.PhagocytizedStep != PhagocytosisProcess.Ingested)
                 continue;
 
             var usedEnzyme = lipase;
@@ -1119,15 +1131,21 @@ public partial class Microbe
             var containedCompounds = engulfable.Compounds;
             var additionalCompounds = engulfedObject.AdditionalEngulfableCompounds;
 
+            var totalAmountLeft = 0.0f;
+
             var hasAnyUsefulCompounds = false;
             foreach (var compound in compounds.Values)
             {
+                if (!compound.Digestible)
+                    continue;
+
                 var originalAmount = containedCompounds?.GetCompoundAmount(compound);
 
                 var additionalAmount = 0.0f;
                 additionalCompounds?.TryGetValue(compound, out additionalAmount);
 
                 var totalAvailable = originalAmount.GetValueOrDefault() + additionalAmount;
+                totalAmountLeft += totalAvailable;
 
                 if ((compound != oxytoxy && !Compounds.IsUseful(compound)) || totalAvailable <= 0)
                     continue;
@@ -1170,47 +1188,54 @@ public partial class Microbe
                 Compounds.AddCompound(compound, taken * efficiency);
             }
 
-            var total = new Dictionary<Compound, float>();
-
-            if (containedCompounds != null)
-                total.Merge(containedCompounds.Compounds);
-
-            if (additionalCompounds != null)
-                total.Merge(additionalCompounds);
-
-            var totalAmountLeft = total.Sum(compound => compound.Value);
-
             if (engulfedObject.InitialTotalEngulfableCompounds.HasValue)
             {
-                engulfable.DigestionProgress = 1 - (totalAmountLeft /
-                    engulfedObject.InitialTotalEngulfableCompounds.Value);
+                engulfable.DigestionProgress = 1 -
+                    (totalAmountLeft / engulfedObject.InitialTotalEngulfableCompounds.Value);
             }
 
             if (totalAmountLeft <= 0 || engulfable.DigestionProgress >= 1)
             {
-                engulfStorage -= engulfable.Size;
-                engulfable.CurrentEngulfmentStep = EngulfmentStep.Digested;
+                IngestedSizeCount -= engulfable.Size;
+                engulfable.PhagocytizedStep = PhagocytosisProcess.Digested;
             }
 
-            // Eject this object as it has no use
-            if (!hasAnyUsefulCompounds)
+            // Expel this object as it has no use
+            if (!hasAnyUsefulCompounds && engulfable.PhagocytizedStep != PhagocytosisProcess.Digested)
             {
                 EjectEngulfable(engulfable);
                 continue;
             }
 
-            // Eject the current engulfed object if this cell loses some of its size and its ingestion capacity
+            // Expel the current engulfed object if this cell loses some of its size and its ingestion capacity
             // is overloaded
-            if (engulfStorage > Size)
+            if (IngestedSizeCount > Size)
                 EjectEngulfable(engulfable);
         }
 
-        if (CurrentEngulfmentStep == EngulfmentStep.NotEngulfed)
+        // Handle logic if the cell that's being digested is us
+        if (PhagocytizedStep == PhagocytosisProcess.None)
         {
-            if (DigestionProgress > 0 && DigestionProgress < 0.3f)
+            if (DigestionProgress > 0 && DigestionProgress < Constants.PARTIALLY_DIGESTED_THRESHOLD)
             {
                 // Cell is not too damaged, can heal itself in open environment and continue living
                 DigestionProgress -= delta * Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
+            }
+        }
+        else
+        {
+            // Species handling for the player microbe in case the process into partial digestion took too long
+            // so we want a maximum limit to how long the player should wait for respawn
+            if (IsPlayerMicrobe && PhagocytizedStep == PhagocytosisProcess.Ingested)
+                playerEngulfedDeathTimer += delta;
+
+            if (DigestionProgress >= Constants.PARTIALLY_DIGESTED_THRESHOLD || playerEngulfedDeathTimer >=
+                Constants.PLAYER_ENGULFED_DEATH_DELAY_MAX)
+            {
+                playerEngulfedDeathTimer = 0;
+
+                // Microbe is beyond repair, might as well consider it as dead
+                Kill();
             }
         }
     }
@@ -1226,7 +1251,7 @@ public partial class Microbe
         {
             organelle.DissolveEffectValue = dissolveEffectValue;
 
-            if (IsForPreviewOnly || CurrentEngulfmentStep == EngulfmentStep.Ingested)
+            if (IsForPreviewOnly || PhagocytizedStep == PhagocytosisProcess.Ingested)
             {
                 organelle.UpdateAsync(0);
                 organelle.UpdateSync();

@@ -378,9 +378,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         Player.OnDeath = OnPlayerDied;
 
-        Player.OnIngested = OnPlayerEngulfed;
-        Player.OnRegurgitated = OnPlayerEjected;
-
         Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
 
         Player.OnUnbound = OnPlayerUnbound;
@@ -442,7 +439,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         if (Player != null)
         {
-            spawner.Process(delta, Player.Translation, Player.Rotation);
+            spawner.Process(delta, Player.GlobalTransform.origin, Player.GlobalTransform.basis.GetEuler());
             Clouds.ReportPlayerPosition(Player.Translation);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
@@ -829,26 +826,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         Player = null;
         Camera.ObjectToFollow = null;
-    }
-
-    [DeserializedCallbackAllowed]
-    private void OnPlayerEngulfed(Microbe player, Microbe engulfer)
-    {
-        if (engulfer.ActiveEnzymes.ContainsKey(player.RequisiteEnzymeToDigest))
-        {
-            // Considered as normal death
-            OnPlayerDied(player);
-        }
-
-        // To avoid camera position being reset to world origin
-        Camera.ObjectToFollow = engulfer;
-    }
-
-    [DeserializedCallbackAllowed]
-    private void OnPlayerEjected(Microbe player, Microbe engulfer)
-    {
-        _ = engulfer;
-        Camera.ObjectToFollow = player;
     }
 
     [DeserializedCallbackAllowed]

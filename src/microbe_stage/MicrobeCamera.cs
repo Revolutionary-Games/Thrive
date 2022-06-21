@@ -182,7 +182,8 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
         if (ObjectToFollow != null)
         {
-            var newFloorPosition = new Vector3(ObjectToFollow.Transform.origin.x, 0, ObjectToFollow.Transform.origin.z);
+            var newFloorPosition = new Vector3(
+                ObjectToFollow.GlobalTransform.origin.x, 0, ObjectToFollow.GlobalTransform.origin.z);
 
             var target = currentFloorPosition.LinearInterpolate(newFloorPosition, InterpolateSpeed)
                 + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
