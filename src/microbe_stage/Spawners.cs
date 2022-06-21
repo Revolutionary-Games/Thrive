@@ -237,6 +237,9 @@ public class MicrobeSpawner : Spawner
 
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
+        if (Species.Obsolete)
+            GD.PrintErr("Obsolete species microbe has spawned");
+
         // The true here is that this is AI controlled
         var first = SpawnHelpers.SpawnMicrobe(Species, location, worldNode, microbeScene, true, cloudSystem,
             currentGame);
