@@ -6,7 +6,7 @@ public abstract class EditorCombinableActionData : CombinableActionData
 
     public virtual int CalculateCost()
     {
-        return (int)(Math.Min(CalculateCostInternal() * CostMultiplier, 100));
+        return (int)Math.Min(CalculateCostInternal() * CostMultiplier, 100);
     }
 
     public override CombinableActionData Combine(CombinableActionData other)
