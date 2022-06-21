@@ -604,6 +604,13 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         var rayNormal = camera.ProjectRayNormal(mousePos);
         var rayEnd = rayOrigin + rayNormal * maxIntersectDistance;
 
+        float closestMetaball = float.MaxValue;
+        metaball = null;
+
+        // This is to make the compiler realize we've assigned something to position if metaball is set after the next
+        // loop
+        position = Vector3.Zero;
+
         foreach (var testedMetaball in editedMetaballs)
         {
             // TODO: check if the math is faster if we roll our custom sphere intersection rather than call into native
@@ -614,13 +621,22 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
             if (potentialIntersection.Length < 1)
                 continue;
 
-            metaball = testedMetaball;
-            position = potentialIntersection[0];
-            return;
+            // Because multiple metaballs can be hit with a single ray, we actually want to pick the one with the hit
+            // location being closest to the camera
+            var distance = rayOrigin.DistanceSquaredTo(potentialIntersection[0]);
+
+            if (distance < closestMetaball)
+            {
+                closestMetaball = distance;
+                metaball = testedMetaball;
+                position = potentialIntersection[0];
+            }
         }
 
+        if (metaball != null)
+            return;
+
         // If the ray didn't hit any metaball, hit some helper planes
-        metaball = null;
 
         foreach (var plane in cursorHitWorldPlanes)
         {
