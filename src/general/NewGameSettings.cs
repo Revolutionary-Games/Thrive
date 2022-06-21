@@ -234,8 +234,8 @@ public class NewGameSettings : ControlWithInput
             difficultyPresetAdvancedButton.AddItem(preset.Name);
         }
 
-        difficultyPresetButton.Selected = normal.Index;
-        difficultyPresetAdvancedButton.Selected = normal.Index;
+        // Do this in case default values in NewGameSettings.tscn don't match the normal preset
+        InitialiseToPreset(normal);
 
         var seed = GenerateNewRandomSeed();
         gameSeed.Text = seed;
@@ -284,6 +284,20 @@ public class NewGameSettings : ControlWithInput
             confirmButton.Disabled = true;
             confirmButton.HintTooltip = TranslationServer.Translate("CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED");
         }
+    }
+
+    private void InitialiseToPreset(DifficultyPreset preset)
+    {
+        difficultyPresetButton.Selected = preset.Index;
+        difficultyPresetAdvancedButton.Selected = preset.Index;
+
+        OnMPMultiplierValueChanged(preset.MPMultiplier);
+        OnAIMutationRateValueChanged(preset.AIMutationMultiplier);
+        OnCompoundDensityValueChanged(preset.CompoundDensity);
+        OnPlayerDeathPopulationPenaltyValueChanged(preset.PlayerDeathPopulationPenalty);
+        OnGlucoseDecayRateValueChanged(preset.GlucoseDecay);
+        OnOsmoregulationMultiplierValueChanged(preset.OsmoregulationMultiplier);
+        OnFreeGlucoseCloudToggled(preset.FreeGlucoseCloud);
     }
 
     private string GenerateNewRandomSeed()
