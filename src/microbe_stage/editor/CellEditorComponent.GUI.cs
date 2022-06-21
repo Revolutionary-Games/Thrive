@@ -202,7 +202,7 @@ public partial class CellEditorComponent
 
     private void UpdateRigiditySliderState(int mutationPoints)
     {
-        int costPerStep = Math.Min((int)(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier), 100);
+        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
         if (mutationPoints >= costPerStep && MovingPlacedHex == null)
         {
             rigiditySlider.Editable = true;
@@ -290,23 +290,7 @@ public partial class CellEditorComponent
         // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
         foreach (var entry in allPartSelectionElements)
         {
-            var control = allPartSelectionElements[entry.Key];
-            control.Visible = !Editor.CurrentGame.GameWorld.WorldSettings.LAWK || entry.Key.LAWK;
-        }
-    }
-
-    private void UpdateDifficultyAdjustedMPCost()
-    {
-        foreach (var entry in placeablePartSelectionElements)
-        {
-            var control = placeablePartSelectionElements[entry.Key];
-            control.MPCost = Math.Min((int)(control.MPCost * CostMultiplier), 100);
-        }
-
-        foreach (var entry in membraneSelectionElements)
-        {
-            var control = membraneSelectionElements[entry.Key];
-            control.MPCost = Math.Min((int)(control.MPCost * CostMultiplier), 100);
+            entry.Value.Visible = !Editor.CurrentGame.GameWorld.WorldSettings.LAWK || entry.Key.LAWK;
         }
     }
 
@@ -316,10 +300,23 @@ public partial class CellEditorComponent
     }
 
     /// <summary>
-    ///   Updates the MP costs in organelle, membrane, and rigidity tooltips by setting the cost factor for each one
+    ///   Updates the MP costs for organelle, membrane, and rigidity button lists and tooltips
     /// </summary>
-    private void UpdateTooltipMPCostFactors()
+    private void UpdateMPCostFactors()
     {
+        // Set the cost factor for each organelle button
+        foreach (var entry in placeablePartSelectionElements)
+        {
+            entry.Value.MPCost = (int)Math.Min(entry.Value.MPCost * CostMultiplier, 100);
+        }
+
+        // Set the cost factor for each membrane button
+        foreach (var entry in membraneSelectionElements)
+        {
+            entry.Value.MPCost = (int)Math.Min(entry.Value.MPCost * CostMultiplier, 100);
+        }
+
+        // Set the cost factor for each organelle tooltip
         var organelleNames = SimulationParameters.Instance.GetAllOrganelles().Select(o => o.InternalName);
         foreach (string name in organelleNames)
         {
@@ -330,10 +327,11 @@ public partial class CellEditorComponent
             if (tooltip != null)
             {
                 tooltip.EditorCostFactor = editorCostFactor;
-                tooltip.MutationPointCost = Math.Min((int)(tooltip.MutationPointCost * CostMultiplier), 100);
+                tooltip.MutationPointCost = (int)Math.Min(tooltip.MutationPointCost * CostMultiplier, 100);
             }
         }
 
+        // Set the cost factor for each membrane tooltip
         var membraneNames = SimulationParameters.Instance.GetAllMembranes().Select(m => m.InternalName);
         foreach (var name in membraneNames)
         {
@@ -341,16 +339,17 @@ public partial class CellEditorComponent
             if (tooltip != null)
             {
                 tooltip.EditorCostFactor = editorCostFactor;
-                tooltip.MutationPointCost = Math.Min((int)(tooltip.MutationPointCost * CostMultiplier), 100);
+                tooltip.MutationPointCost = (int)Math.Min(tooltip.MutationPointCost * CostMultiplier, 100);
             }
         }
 
+        // Set the cost factor for the rigidity tooltip
         var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
         if (rigidityTooltip != null)
         {
             rigidityTooltip.EditorCostFactor = editorCostFactor;
             rigidityTooltip.MutationPointCost =
-                Math.Min((int)(rigidityTooltip.MutationPointCost * CostMultiplier), 100);
+                (int)Math.Min(rigidityTooltip.MutationPointCost * CostMultiplier, 100);
         }
     }
 

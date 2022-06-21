@@ -114,6 +114,7 @@ public class NewGameSettings : ControlWithInput
     [Export]
     public NodePath ConfirmButtonPath = null!;
 
+    // Main controls
     private PanelContainer basicOptions = null!;
     private PanelContainer advancedOptions = null!;
     private HBoxContainer tabButtons = null!;
@@ -125,6 +126,9 @@ public class NewGameSettings : ControlWithInput
     private Button miscTabButton = null!;
     private Button basicButton = null!;
     private Button advancedButton = null!;
+    private Button confirmButton = null!;
+
+    // Difficulty controls
     private OptionButton difficultyPresetButton = null!;
     private OptionButton difficultyPresetAdvancedButton = null!;
     private HSlider mpMultiplier = null!;
@@ -140,6 +144,8 @@ public class NewGameSettings : ControlWithInput
     private HSlider osmoregulationMultiplier = null!;
     private LineEdit osmoregulationMultiplierReadout = null!;
     private Button freeGlucoseCloudButton = null!;
+
+    // Planet controls
     private OptionButton mapTypeButton = null!;
     private OptionButton lifeOriginButton = null!;
     private OptionButton lifeOriginButtonAdvanced = null!;
@@ -147,9 +153,10 @@ public class NewGameSettings : ControlWithInput
     private Button lawkAdvancedButton = null!;
     private LineEdit gameSeed = null!;
     private LineEdit gameSeedAdvanced = null!;
+
+    // Misc controls
     private Button includeMulticellularButton = null!;
     private Button easterEggsButton = null!;
-    private Button confirmButton = null!;
 
     private SelectedOptionsTab selectedOptionsTab;
 

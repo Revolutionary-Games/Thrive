@@ -532,13 +532,12 @@ public partial class CellEditorComponent :
 
         // After the if multicellular check so the tooltip cost factors are correct
         // on changing editor types, as tooltip manager is persistent while the game is running
-        UpdateTooltipMPCostFactors();
+        UpdateMPCostFactors();
 
         UpdateOrganelleUnlockTooltips();
 
-        // Do these here as we know the editor and hence world settings have been initialised by now
+        // Do this here as we know the editor and hence world settings have been initialised by now
         UpdateOrganelleLAWKSettings();
-        UpdateDifficultyAdjustedMPCost();
     }
 
     public override void ResolveNodeReferences()
@@ -886,8 +885,8 @@ public partial class CellEditorComponent :
         if (intRigidity == rigidity)
             return;
 
-        int costPerStep = Math.Min((int)(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP *
-            editorCostFactor * CostMultiplier), 100);
+        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP *
+            editorCostFactor * CostMultiplier, 100);
         int cost = Math.Abs(rigidity - intRigidity) * costPerStep;
 
         if (cost > Editor.MutationPoints)
@@ -991,7 +990,7 @@ public partial class CellEditorComponent :
         var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(ActiveActionName!);
 
         // Calculated in this order to be consistent with placing unique organelles
-        var cost = Math.Min((int)(organelleDefinition.MPCost * editorCostFactor * CostMultiplier), 100);
+        var cost = (int)Math.Min(organelleDefinition.MPCost * editorCostFactor * CostMultiplier, 100);
 
         if (MouseHoverPositions == null)
             return cost * Symmetry.PositionCount();
