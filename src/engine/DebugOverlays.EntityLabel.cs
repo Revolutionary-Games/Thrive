@@ -35,7 +35,7 @@ public partial class DebugOverlays
             var entity = pair.Key.EntityNode;
             var label = pair.Value;
 
-            label.RectPosition = activeCamera.UnprojectPosition(entity.Transform.origin);
+            label.RectPosition = activeCamera.UnprojectPosition(entity.GlobalTransform.origin);
 
             if (!label.Text.Empty())
                 continue;
