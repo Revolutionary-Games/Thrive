@@ -303,6 +303,7 @@ public class AutoEvoRun
         var alreadyHandledSpecies = new HashSet<Species>();
 
         var map = Parameters.World.Map;
+        var worldSettings = Parameters.World.WorldSettings;
 
         var autoEvoConfiguration = SimulationParameters.Instance.AutoEvoConfiguration;
 
@@ -331,13 +332,14 @@ public class AutoEvoRun
                 else
                 {
                     steps.Enqueue(new FindBestMutation(autoEvoConfiguration,
-                        Parameters.World.WorldSettings, map, speciesEntry.Key,
+                        worldSettings, map, speciesEntry.Key,
                         autoEvoConfiguration.MutationsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
 
-                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, map, speciesEntry.Key, random,
+                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
+                        random,
                         autoEvoConfiguration.MoveAttemptsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration));
                 }
@@ -365,7 +367,7 @@ public class AutoEvoRun
             if (entry.Value.SpeciesInPatch.Count < autoEvoConfiguration.LowBiodiversityLimit &&
                 random.NextDouble() < autoEvoConfiguration.BiodiversityAttemptFillChance)
             {
-                steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, Parameters.World.WorldSettings,
+                steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, worldSettings,
                     map, entry.Value, random));
             }
         }
@@ -375,7 +377,7 @@ public class AutoEvoRun
         // against are the same (so we can show some performance predictions in the
         // editor and suggested changes)
         // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
-        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, map) { CanRunConcurrently = false });
+        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map) { CanRunConcurrently = false });
 
         // Due to species splitting migrations may end up being invalid
         // TODO: should this also adjust / remove migrations that are no longer possible due to updated population

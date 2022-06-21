@@ -120,7 +120,8 @@
             if (splitFrom is not MicrobeSpecies fromMicrobe)
                 return null;
 
-            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, worldSettings,
+                Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             var split = (MicrobeSpecies)fromMicrobe.Clone();
 

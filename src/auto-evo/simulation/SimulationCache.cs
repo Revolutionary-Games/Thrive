@@ -13,7 +13,13 @@
     /// </remarks>
     public class SimulationCache
     {
+        private readonly WorldGenerationSettings worldSettings;
         private readonly Dictionary<(MicrobeSpecies, Patch), EnergyBalanceInfo> cachedEnergyBalances = new();
+
+        public SimulationCache(WorldGenerationSettings worldSettings)
+        {
+            this.worldSettings = worldSettings;
+        }
 
         public EnergyBalanceInfo GetEnergyBalanceForSpecies(MicrobeSpecies species, Patch patch)
         {
@@ -25,7 +31,7 @@
             }
 
             cached = ProcessSystem.ComputeEnergyBalance(species.Organelles, patch.Biome, species.MembraneType,
-                species.PlayerSpecies);
+                species.PlayerSpecies, worldSettings);
 
             cachedEnergyBalances.Add(key, cached);
             return cached;

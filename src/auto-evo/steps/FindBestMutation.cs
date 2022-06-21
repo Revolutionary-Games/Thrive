@@ -10,14 +10,13 @@
     public class FindBestMutation : VariantTryingStep
     {
         private readonly AutoEvoConfiguration configuration;
+        private readonly WorldGenerationSettings worldSettings;
         private readonly PatchMap map;
         private readonly Species species;
         private readonly float splitThresholdFraction;
         private readonly int splitThresholdAmount;
 
         private readonly Mutations mutations = new();
-
-        private WorldGenerationSettings worldSettings;
 
         public FindBestMutation(AutoEvoConfiguration configuration,
             WorldGenerationSettings worldSettings, PatchMap map, Species species,
@@ -48,7 +47,8 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, worldSettings,
+                Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);
 
@@ -63,7 +63,8 @@
             mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated,
                 worldSettings.AIMutationMultiplier, worldSettings.LAWK);
 
-            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, worldSettings,
+                Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);
             config.ExcludedSpecies.Add(species);

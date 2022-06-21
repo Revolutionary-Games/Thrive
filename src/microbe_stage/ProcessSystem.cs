@@ -49,7 +49,7 @@ public class ProcessSystem
     /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, bool isPlayerSpecies,
-        WorldGenerationSettings? worldSettings = null)
+        WorldGenerationSettings worldSettings)
     {
         var organellesList = organelles.ToList();
 
@@ -72,7 +72,7 @@ public class ProcessSystem
     /// <param name="worldSettings">The world generation settings for this game</param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
-        bool isPlayerSpecies, WorldGenerationSettings? worldSettings)
+        bool isPlayerSpecies, WorldGenerationSettings worldSettings)
     {
         var result = new EnergyBalanceInfo();
 
@@ -140,7 +140,7 @@ public class ProcessSystem
             membrane.OsmoregulationFactor;
 
         // World settings may be null if this is the first generation
-        if (isPlayerSpecies && worldSettings != null)
+        if (isPlayerSpecies)
         {
             result.Osmoregulation *= worldSettings.OsmoregulationMultiplier;
         }
