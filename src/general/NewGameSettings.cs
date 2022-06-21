@@ -236,7 +236,10 @@ public class NewGameSettings : ControlWithInput
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
         InitialiseToPreset(normal);
 
-        SetSeed(GenerateNewRandomSeed());
+        var seed = GenerateNewRandomSeed();
+        gameSeed.Text = seed;
+        gameSeedAdvanced.Text = seed;
+        SetSeed(seed);
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -304,9 +307,6 @@ public class NewGameSettings : ControlWithInput
 
     private void SetSeed(string text)
     {
-        gameSeed.Text = text;
-        gameSeedAdvanced.Text = text;
-
         bool valid = int.TryParse(text, out int seed) && seed > 0;
         ReportValidityOfGameSeed(valid);
         if (valid)
@@ -635,8 +635,17 @@ public class NewGameSettings : ControlWithInput
         }
     }
 
-    private void OnGameSeedChanged(string text)
+    private void OnGameSeedChangedFromBasic(string text)
     {
+        // Need different methods to handle each view, otherwise we overwrite caret position
+        gameSeedAdvanced.Text = text;
+        SetSeed(text);
+    }
+
+    private void OnGameSeedChangedFromAdvanced(string text)
+    {
+        // Need different methods to handle each view, otherwise we overwrite caret position
+        gameSeed.Text = text;
         SetSeed(text);
     }
 
@@ -645,6 +654,8 @@ public class NewGameSettings : ControlWithInput
         GUICommon.Instance.PlayButtonPressSound();
 
         var seed = GenerateNewRandomSeed();
+        gameSeed.Text = seed;
+        gameSeedAdvanced.Text = seed;
         SetSeed(seed);
     }
 

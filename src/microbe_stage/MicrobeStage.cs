@@ -21,6 +21,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [Export]
     public NodePath HUDRootPath = null!;
 
+    /// <summary>
+    ///   The world settings to pass to the current game if this is a newly created game
+    /// </summary>
+    [JsonIgnore]
+    public WorldGenerationSettings InitialWorldSettings = new();
+
     private Compound glucose = null!;
     private Compound phosphate = null!;
 
@@ -39,8 +45,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private PatchManager patchManager = null!;
-
-    private WorldGenerationSettings? worldSettings;
 
     private DirectionalLight worldLight = null!;
 
@@ -118,12 +122,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     [JsonIgnore]
     public PlayerHoverInfo HoverInfo { get; private set; } = null!;
-
-    /// <summary>
-    ///   The world settings to pass to the current game if this is a newly created game
-    /// </summary>
-    [JsonIgnore]
-    public WorldGenerationSettings InitialWorldSettings = new();
 
     /// <summary>
     ///   The main current game object holding various details
