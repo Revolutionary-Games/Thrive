@@ -83,7 +83,7 @@ public partial class DebugOverlays
             var node = entity.EntityNode;
             var label = pair.Value;
 
-            label.RectPosition = activeCamera.UnprojectPosition(node.Transform.origin);
+            label.RectPosition = activeCamera.UnprojectPosition(node.GlobalTransform.origin);
 
             UpdateLabelColour(entity, label);
 
