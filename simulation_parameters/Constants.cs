@@ -24,7 +24,15 @@ public static class Constants
     /// </summary>
     public const float SPAWN_SECTOR_SIZE = 120.0f;
 
-    public const int CLOUD_SPAWN_SCALE_FACTOR = 10000;
+    /// <summary>
+    ///   Scale factor for density of compound cloud spawns
+    /// </summary>
+    public const int CLOUD_SPAWN_DENSITY_SCALE_FACTOR = 10000;
+
+    /// <summary>
+    ///   Scale factor for amount of compound in each spawned cloud
+    /// </summary>
+    public const float CLOUD_SPAWN_AMOUNT_SCALE_FACTOR = 0.75f;
 
     /// <summary>
     ///   The (default) size of the hexagons, used in calculations. Don't change this.
@@ -791,12 +799,12 @@ public static class Constants
     /// <summary>
     ///   Minimum amount for the quite a bit category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 400f;
+    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 800f;
 
     /// <summary>
     ///   Minimum amount for the an abundance category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 600f;
+    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000f;
 
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
