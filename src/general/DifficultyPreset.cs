@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     Values for each difficulty preset, as given in difficulty_preset.json
+///     Values for each difficulty preset, as given in difficulty_presets.json
 ///   </para>
 /// </remarks>
 public class DifficultyPreset : IRegistryType

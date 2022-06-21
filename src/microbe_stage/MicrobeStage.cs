@@ -119,13 +119,11 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [JsonIgnore]
     public PlayerHoverInfo HoverInfo { get; private set; } = null!;
 
-    [JsonProperty]
-    public WorldGenerationSettings WorldSettings
-    {
-        // Need to get like this to account for returning from freebuild editor
-        get => worldSettings ?? CurrentGame!.GameWorld.WorldSettings;
-        set => worldSettings = value;
-    }
+    /// <summary>
+    ///   The world settings to pass to the current game if this is a newly created game
+    /// </summary>
+    [JsonIgnore]
+    public WorldGenerationSettings InitialWorldSettings = new();
 
     /// <summary>
     ///   The main current game object holding various details
@@ -310,7 +308,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             }
         }
 
-        GD.Print(WorldSettings);
+        GD.Print(CurrentGame!.GameWorld.WorldSettings);
 
         pauseMenu.GameProperties = CurrentGame ?? throw new InvalidOperationException("current game is not set");
 
@@ -355,7 +353,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public void StartNewGame()
     {
-        CurrentGame = GameProperties.StartNewMicrobeGame(WorldSettings);
+        // Use the world settings set by the new game screen, or the default parameters if freebuilding
+        CurrentGame = GameProperties.StartNewMicrobeGame(InitialWorldSettings);
 
         patchManager.CurrentGame = CurrentGame;
 
@@ -712,7 +711,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         SpawnPlayer();
 
         // Add a cloud of glucose if difficulty settings call for it
-        if (WorldSettings.FreeGlucoseCloud)
+        if (GameWorld.WorldSettings.FreeGlucoseCloud)
         {
             Clouds.AddCloud(glucose, 200000.0f, Player!.Translation + new Vector3(0.0f, 0.0f, -25.0f));
         }
@@ -834,7 +833,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
-            / WorldSettings.PlayerDeathPopulationPenalty);
+            / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
 
         if (IsGameOver())
         {

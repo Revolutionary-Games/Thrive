@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Godot;
 
 public class NewGameSettings : ControlWithInput
@@ -158,8 +159,6 @@ public class NewGameSettings : ControlWithInput
     private DifficultyPreset normal = null!;
     private DifficultyPreset custom = null!;
 
-    private bool isGameSeedValid;
-
     [Signal]
     public delegate void OnNewGameSettingsClosed();
 
@@ -228,7 +227,7 @@ public class NewGameSettings : ControlWithInput
         normal = SimulationParameters.Instance.GetDifficultyPreset("normal");
         custom = SimulationParameters.Instance.GetDifficultyPreset("custom");
 
-        foreach (DifficultyPreset preset in difficultyPresets)
+        foreach (DifficultyPreset preset in difficultyPresets.OrderBy(p => p.Index))
         {
             difficultyPresetButton.AddItem(preset.Name);
             difficultyPresetAdvancedButton.AddItem(preset.Name);
@@ -237,10 +236,7 @@ public class NewGameSettings : ControlWithInput
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
         InitialiseToPreset(normal);
 
-        var seed = GenerateNewRandomSeed();
-        gameSeed.Text = seed;
-        gameSeedAdvanced.Text = seed;
-        SetSeed(seed);
+        SetSeed(GenerateNewRandomSeed());
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -308,9 +304,12 @@ public class NewGameSettings : ControlWithInput
 
     private void SetSeed(string text)
     {
-        isGameSeedValid = int.TryParse(text, out int seed) && seed > 0;
-        ReportValidityOfGameSeed(isGameSeedValid);
-        if (isGameSeedValid)
+        gameSeed.Text = text;
+        gameSeedAdvanced.Text = text;
+
+        bool valid = int.TryParse(text, out int seed) && seed > 0;
+        ReportValidityOfGameSeed(valid);
+        if (valid)
             settings.Seed = seed;
     }
 
@@ -400,9 +399,6 @@ public class NewGameSettings : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (!isGameSeedValid)
-            return;
-
         // Disable the button to prevent it being executed again.
         confirmButton.Disabled = true;
 
@@ -448,15 +444,9 @@ public class NewGameSettings : ControlWithInput
 
             // TODO: Add loading screen while changing between scenes
             var microbeStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
-            microbeStage.WorldSettings = settings;
+            microbeStage.InitialWorldSettings = settings;
             SceneManager.Instance.SwitchToScene(microbeStage);
         });
-    }
-
-    private void OnEnteringGame()
-    {
-        CheatManager.OnCheatsDisabled();
-        SaveHelper.ClearLastSaveTime();
     }
 
     private void OnDifficultyPresetSelected(int index)
@@ -484,10 +474,10 @@ public class NewGameSettings : ControlWithInput
         osmoregulationMultiplier.Value = preset.OsmoregulationMultiplier;
         freeGlucoseCloudButton.Pressed = preset.FreeGlucoseCloud;
 
-        UpdateDifficultyPreset();
+        UpdateSelectedDifficultyPresetControl();
     }
 
-    private void UpdateDifficultyPreset()
+    private void UpdateSelectedDifficultyPresetControl()
     {
         foreach (DifficultyPreset preset in difficultyPresets)
         {
@@ -534,7 +524,7 @@ public class NewGameSettings : ControlWithInput
         mpMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.MPMultiplier = (float)amount;
 
-        UpdateDifficultyPreset();
+        UpdateSelectedDifficultyPresetControl();
     }
 
     private void OnAIMutationRateValueChanged(double amount)
@@ -543,7 +533,7 @@ public class NewGameSettings : ControlWithInput
         aiMutationRateReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.AIMutationMultiplier = (float)amount;
 
-        UpdateDifficultyPreset();
+        UpdateSelectedDifficultyPresetControl();
     }
 
     private void OnCompoundDensityValueChanged(double amount)
@@ -552,7 +542,7 @@ public class NewGameSettings : ControlWithInput
         compoundDensityReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.CompoundDensity = (float)amount;
 
-        UpdateDifficultyPreset();
+        UpdateSelectedDifficultyPresetControl();
     }
 
     private void OnPlayerDeathPopulationPenaltyValueChanged(double amount)
@@ -561,7 +551,7 @@ public class NewGameSettings : ControlWithInput
         playerDeathPopulationPenaltyReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.PlayerDeathPopulationPenalty = (float)amount;
 
-        UpdateDifficultyPreset();
+        UpdateSelectedDifficultyPresetControl();
     }
 
     private void OnGlucoseDecayRateValueChanged(double percentage)
@@ -572,7 +562,7 @@ public class NewGameSettings : ControlWithInput
             percentage);
         settings.GlucoseDecay = (float)percentage * 0.01f;
 
-        UpdateDifficultyPreset();
+        UpdateSelectedDifficultyPresetControl();
     }
 
     private void OnOsmoregulationMultiplierValueChanged(double amount)
@@ -581,14 +571,14 @@ public class NewGameSettings : ControlWithInput
         osmoregulationMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
         settings.OsmoregulationMultiplier = (float)amount;
 
-        UpdateDifficultyPreset();
+        UpdateSelectedDifficultyPresetControl();
     }
 
     private void OnFreeGlucoseCloudToggled(bool pressed)
     {
         settings.FreeGlucoseCloud = pressed;
 
-        UpdateDifficultyPreset();
+        UpdateSelectedDifficultyPresetControl();
     }
 
     private void OnLifeOriginSelected(int index)
@@ -609,9 +599,12 @@ public class NewGameSettings : ControlWithInput
     {
         switch (index)
         {
+            case 0:
+                return WorldGenerationSettings.PatchMapType.Procedural;
             case 1:
                 return WorldGenerationSettings.PatchMapType.Classic;
             default:
+                GD.PrintErr($"Index {index} does not correspond to known map type");
                 return WorldGenerationSettings.PatchMapType.Procedural;
         }
     }
@@ -642,15 +635,8 @@ public class NewGameSettings : ControlWithInput
         }
     }
 
-    private void OnGameSeedChangedFromBasic(string text)
+    private void OnGameSeedChanged(string text)
     {
-        gameSeedAdvanced.Text = text;
-        SetSeed(text);
-    }
-
-    private void OnGameSeedChangedFromAdvanced(string text)
-    {
-        gameSeed.Text = text;
         SetSeed(text);
     }
 
@@ -660,8 +646,6 @@ public class NewGameSettings : ControlWithInput
 
         var seed = GenerateNewRandomSeed();
         SetSeed(seed);
-        gameSeed.Text = seed;
-        gameSeedAdvanced.Text = seed;
     }
 
     private void OnIncludeMulticellularToggled(bool pressed)

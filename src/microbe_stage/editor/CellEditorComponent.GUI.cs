@@ -288,24 +288,24 @@ public partial class CellEditorComponent
     private void UpdateOrganelleLAWKSettings()
     {
         // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
-        foreach (var organelle in allPartSelectionElements.Keys)
+        foreach (var entry in allPartSelectionElements)
         {
-            var control = allPartSelectionElements[organelle];
-            control.Visible = !Editor.CurrentGame.GameWorld.WorldSettings.LAWK || organelle.LAWK;
+            var control = allPartSelectionElements[entry.Key];
+            control.Visible = !Editor.CurrentGame.GameWorld.WorldSettings.LAWK || entry.Key.LAWK;
         }
     }
 
     private void UpdateDifficultyAdjustedMPCost()
     {
-        foreach (var organelle in placeablePartSelectionElements.Keys)
+        foreach (var entry in placeablePartSelectionElements)
         {
-            var control = placeablePartSelectionElements[organelle];
+            var control = placeablePartSelectionElements[entry.Key];
             control.MPCost = Math.Min((int)(control.MPCost * CostMultiplier), 100);
         }
 
-        foreach (var membrane in membraneSelectionElements.Keys)
+        foreach (var entry in membraneSelectionElements)
         {
-            var control = membraneSelectionElements[membrane];
+            var control = membraneSelectionElements[entry.Key];
             control.MPCost = Math.Min((int)(control.MPCost * CostMultiplier), 100);
         }
     }

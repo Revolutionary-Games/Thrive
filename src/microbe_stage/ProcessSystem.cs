@@ -69,7 +69,7 @@ public class ProcessSystem
     ///   movement organelles are assumed to be inactive in the balance calculation.
     /// </param>
     /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
-    /// <param name="worldSettings">The wprld generation settings for this game</param>
+    /// <param name="worldSettings">The world generation settings for this game</param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool isPlayerSpecies, WorldGenerationSettings? worldSettings)

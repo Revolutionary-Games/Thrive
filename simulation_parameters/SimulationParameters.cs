@@ -233,7 +233,7 @@ public class SimulationParameters : Node
 
     public DifficultyPreset GetDifficultyPresetByIndex(int index)
     {
-        return difficultyPresets.Values.Where(p => p.Index == index).First();
+        return difficultyPresets.Values.First(p => p.Index == index);
     }
 
     public IEnumerable<DifficultyPreset> GetAllDifficultyPresets()
