@@ -30,7 +30,8 @@ public class BiomeConditions : ICloneable, ISaveLoadable
             if (compound.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR is < 0 or > 1)
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
-                    $"Density {compound.Value.Density} invalid for {compound.Key.InternalName}");
+                    $"Density {compound.Value.Density} invalid for {compound.Key} " +
+                    $"(scale factor is {Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR})");
             }
         }
 
@@ -39,7 +40,8 @@ public class BiomeConditions : ICloneable, ISaveLoadable
             if (chunk.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR is < 0 or > 1)
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
-                    $"Density {chunk.Value.Density} invalid for {chunk.Key}");
+                    $"Density {chunk.Value.Density} invalid for {chunk.Key} " +
+                    $"(scale factor is {Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR})");
             }
         }
     }
