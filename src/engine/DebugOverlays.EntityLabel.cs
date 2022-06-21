@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -22,6 +23,52 @@ public partial class DebugOverlays
         }
     }
 
+    private void UpdateLabelColour(IEntity entity, Label label)
+    {
+        var node = entity.EntityNode;
+
+        if (!entity.AliveMarker.Alive)
+        {
+            label.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
+            return;
+        }
+
+        switch (node)
+        {
+            case Microbe microbe:
+            {
+                switch (microbe.State)
+                {
+                    case Microbe.MicrobeState.Binding:
+                    {
+                        label.AddColorOverride("font_color", new Color(0.2f, 0.5f, 0.0f));
+                        break;
+                    }
+
+                    case Microbe.MicrobeState.Engulf:
+                    {
+                        label.AddColorOverride("font_color", new Color(0.2f, 0.5f, 1.0f));
+                        break;
+                    }
+
+                    case Microbe.MicrobeState.Unbinding:
+                    {
+                        label.AddColorOverride("font_color", new Color(1.0f, 0.5f, 0.2f));
+                        break;
+                    }
+
+                    default:
+                    {
+                        label.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
+                        break;
+                    }
+                }
+
+                break;
+            }
+        }
+    }
+
     private void UpdateEntityLabels()
     {
         if (activeCamera is not { Current: true })
@@ -32,16 +79,19 @@ public partial class DebugOverlays
 
         foreach (var pair in entityLabels)
         {
-            var entity = pair.Key.EntityNode;
+            var entity = pair.Key;
+            var node = entity.EntityNode;
             var label = pair.Value;
 
-            label.RectPosition = activeCamera.UnprojectPosition(entity.Transform.origin);
+            label.RectPosition = activeCamera.UnprojectPosition(node.Transform.origin);
+
+            UpdateLabelColour(entity, label);
 
             if (!label.Text.Empty())
                 continue;
 
             // Update names
-            switch (entity)
+            switch (node)
             {
                 case Microbe microbe:
                 {
@@ -62,17 +112,11 @@ public partial class DebugOverlays
 
                 default:
                 {
-                    label.Text = $"[{entity.Name}]";
+                    label.Text = $"[{node.Name}]";
                     break;
                 }
             }
         }
-    }
-
-    private void UpdateLabelOnMicrobeDeath(Microbe microbe)
-    {
-        if (entityLabels.TryGetValue(microbe, out var label))
-            label.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
     }
 
     private void OnNodeAdded(Node node)
@@ -86,12 +130,6 @@ public partial class DebugOverlays
 
         switch (entity)
         {
-            case Microbe microbe:
-            {
-                microbe.OnDeath += UpdateLabelOnMicrobeDeath;
-                break;
-            }
-
             case FloatingChunk:
             case AgentProjectile:
             {
@@ -121,11 +159,6 @@ public partial class DebugOverlays
         {
             label.DetachAndQueueFree();
             entityLabels.Remove(entity);
-
-            if (entity is Microbe microbe)
-            {
-                microbe.OnDeath -= UpdateLabelOnMicrobeDeath;
-            }
         }
     }
 
@@ -150,10 +183,8 @@ public partial class DebugOverlays
 
     private void CleanEntityLabels()
     {
-        foreach (var label in entityLabels.Values)
-            label.DetachAndQueueFree();
-
-        entityLabels.Clear();
+        foreach (var entityLabelsKey in entityLabels.Keys.ToList())
+            OnNodeRemoved(entityLabelsKey.EntityNode);
 
         activeCamera = null;
 
