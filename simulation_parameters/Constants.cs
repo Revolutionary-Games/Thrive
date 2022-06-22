@@ -565,7 +565,7 @@ public static class Constants
     public const int EXTREME_MAX_SPAWNED_ENTITIES = 130;
 
     /// <summary>
-    ///     Controls how fast entities are allowed to spawn / despawn
+    ///   Controls how fast entities are allowed to spawn
     /// </summary>
     public const int MAX_SPAWNS_PER_FRAME = 1;
 
