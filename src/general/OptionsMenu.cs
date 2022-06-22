@@ -147,6 +147,9 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath ThreadCountSliderPath = null!;
 
+    [Export]
+    public NodePath MaxSpawnedEntitiesPath = null!;
+
     // Inputs tab.
     [Export]
     public NodePath InputsTabPath = null!;
@@ -265,6 +268,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox assumeHyperthreading = null!;
     private CustomCheckBox useManualThreadCount = null!;
     private Slider threadCountSlider = null!;
+    private OptionButton maxSpawnedEntities = null!;
 
     // Inputs tab
     private Control inputsTab = null!;
@@ -387,6 +391,7 @@ public class OptionsMenu : ControlWithInput
         assumeHyperthreading = GetNode<CustomCheckBox>(AssumeHyperthreadingPath);
         useManualThreadCount = GetNode<CustomCheckBox>(UseManualThreadCountPath);
         threadCountSlider = GetNode<Slider>(ThreadCountSliderPath);
+        maxSpawnedEntities = GetNode<OptionButton>(MaxSpawnedEntitiesPath);
 
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
@@ -531,6 +536,7 @@ public class OptionsMenu : ControlWithInput
         useManualThreadCount.Pressed = settings.UseManualThreadCount;
         threadCountSlider.Value = settings.ThreadCount;
         threadCountSlider.Editable = settings.UseManualThreadCount;
+        maxSpawnedEntities.Selected = MaxEntitiesValueToIndex(settings.MaxSpawnedEntities);
 
         UpdateDetectedCPUCount();
 
@@ -749,6 +755,58 @@ public class OptionsMenu : ControlWithInput
             default:
                 GD.PrintErr("invalid cloud resolution index");
                 return 2;
+        }
+    }
+
+    private int MaxEntitiesIndexToValue(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Constants.TINY_MAX_SPAWNED_ENTITIES;
+            case 1:
+                return Constants.VERY_SMALL_MAX_SPAWNED_ENTITIES;
+            case 2:
+                return Constants.SMALL_MAX_SPAWNED_ENTITIES;
+            case 3:
+                return Constants.NORMAL_MAX_SPAWNED_ENTITIES;
+            case 4:
+                return Constants.LARGE_MAX_SPAWNED_ENTITIES;
+            case 5:
+                return Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES;
+            case 6:
+                return Constants.HUGE_MAX_SPAWNED_ENTITIES;
+            case 7:
+                return Constants.EXTREME_MAX_SPAWNED_ENTITIES;
+            default:
+                GD.PrintErr("invalid max entities count index");
+                return Constants.NORMAL_MAX_SPAWNED_ENTITIES;
+        }
+    }
+
+    private int MaxEntitiesValueToIndex(int value)
+    {
+        switch (value)
+        {
+            case Constants.TINY_MAX_SPAWNED_ENTITIES:
+                return 0;
+            case Constants.VERY_SMALL_MAX_SPAWNED_ENTITIES:
+                return 1;
+            case Constants.SMALL_MAX_SPAWNED_ENTITIES:
+                return 2;
+            case Constants.NORMAL_MAX_SPAWNED_ENTITIES:
+                return 3;
+            case Constants.LARGE_MAX_SPAWNED_ENTITIES:
+                return 4;
+            case Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES:
+                return 5;
+            case Constants.HUGE_MAX_SPAWNED_ENTITIES:
+                return 6;
+            case Constants.EXTREME_MAX_SPAWNED_ENTITIES:
+                return 7;
+            default:
+                GD.PrintErr("invalid max entities count value");
+                return 3;
         }
     }
 
@@ -1314,6 +1372,13 @@ public class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDetectedCPUCount();
+    }
+
+    private void OnMaxSpawnedEntitiesSelected(int index)
+    {
+        Settings.Instance.MaxSpawnedEntities.Value = MaxEntitiesIndexToValue(index);
+
+        UpdateResetSaveButtonState();
     }
 
     // Input Callbacks

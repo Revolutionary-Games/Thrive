@@ -199,6 +199,11 @@ public class Settings
     /// </summary>
     public SettingValue<int> ThreadCount { get; set; } = new(4);
 
+    /// <summary>
+    ///   Sets the maximum number of entities that can exist at one time.
+    /// </summary>
+    public SettingValue<int> MaxSpawnedEntities { get; set; } = new(Constants.NORMAL_MAX_SPAWNED_ENTITIES);
+
     // Misc Properties
 
     /// <summary>
