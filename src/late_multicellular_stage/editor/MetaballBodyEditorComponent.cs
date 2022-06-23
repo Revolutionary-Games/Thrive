@@ -504,11 +504,9 @@ public partial class MetaballBodyEditorComponent :
     private Vector3 FinalMetaballPosition(Vector3 position, MulticellularMetaball parent, float? size = null)
     {
         size ??= metaballSize;
-        var direction = (parent.Position - position).Normalized();
+        var direction = (position - parent.Position).Normalized();
 
-        // TODO: figure out why this is broken
-        // return position + direction * (size.Value * 0.5f);
-        return position;
+        return parent.Position + direction * (parent.Radius + size.Value * 0.5f);
     }
 
     private void RenderHighlightedMetaball(Vector3 position, MulticellularMetaball? parent, CellType cellToPlace)
