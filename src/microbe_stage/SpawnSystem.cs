@@ -208,14 +208,22 @@ public class SpawnSystem
             var spawn = queuedSpawns.First();
             var enumerator = spawn.Spawns;
 
-            // Discard the whole spawn if we're too close to the player
-            bool finished = (playerPosition - spawn.Location).Length() < Constants.SPAWN_SECTOR_SIZE;
+            bool finished = false;
 
-            while (!finished && estimateEntityCount < Settings.Instance.MaxSpawnedEntities &&
+            while (estimateEntityCount < Settings.Instance.MaxSpawnedEntities &&
                    spawnsLeftThisFrame > 0)
             {
                 if (!enumerator.MoveNext())
                 {
+                    finished = true;
+                    break;
+                }
+
+                // Discard the whole spawn if we're too close to the player
+                var entityPosition = ((Spatial)enumerator.Current).GlobalTransform.origin;
+                if ((playerPosition - entityPosition).Length() < Constants.SPAWN_SECTOR_SIZE)
+                {
+                    enumerator.Current.DestroyDetachAndQueueFree();
                     finished = true;
                     break;
                 }
