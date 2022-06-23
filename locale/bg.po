@@ -8,10 +8,9 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-23 09:45+0300\n"
-"PO-Revision-Date: 2022-06-17 13:53+0000\n"
+"PO-Revision-Date: 2022-06-23 13:31+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
-"Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
-"projects/thrive/thrive-game/bg/>\n"
+"Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -373,9 +372,7 @@ msgstr "Ех тези сини клетки."
 
 #: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"Ето един съвет — биомите са нещо повече от фонове, химичните съединения в "
-"различните биоми не се появяват по едно и също време."
+msgstr "Ето един съвет — биомите са нещо повече от фонове, количествата на химичните съединения в различните биоми не винаги са еднакви."
 
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
@@ -751,7 +748,7 @@ msgstr "Голям железен фрагмент"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:148
 msgid "VOLCANIC_VENT"
-msgstr "Вулканичен отвор"
+msgstr "Вулканичен комин"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:223
 #: ../simulation_parameters/microbe_stage/biomes.json:615
@@ -1292,7 +1289,7 @@ msgstr ""
 "Процесорно време: {0} с\n"
 "Физическо време: {1} с\n"
 "Обекти: {2} Други: {3}\n"
-"Добавени: {4} Премахнати: {5}\n"
+"Създадени: {4} Премахнати: {5}\n"
 "Използвани възли: {6}\n"
 "Използвана памет: {7} МиБ\n"
 "Графична памет: {8} МиБ\n"
@@ -1898,14 +1895,12 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.cs:284
 #: ../src/general/NewGameSettings.tscn:1054
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Започване на нова игра"
+msgstr "Завършване на промените и започване на играта"
 
 #: ../src/general/NewGameSettings.cs:291
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr "Започване на нова игра"
+msgstr "Невалидни настройки"
 
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:328
@@ -1934,13 +1929,8 @@ msgstr "Произход на живота"
 
 #: ../src/general/NewGameSettings.tscn:172
 #: ../src/general/NewGameSettings.tscn:845
-#, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
-"Плашливите микроби отстъпват при опасност\n"
-"и са склонни да избягат, когато са нападнати.\n"
-"Безрасъдните микроби не отстъпват при опасност\n"
-"и са склонни да се защитят, когато са нападнати."
+msgstr "(начално местообитание)"
 
 #: ../src/general/NewGameSettings.tscn:186
 #: ../src/general/NewGameSettings.tscn:859
@@ -1958,23 +1948,22 @@ msgstr "Хидротермални комини"
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "Топло езерце"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr "Панспермия (произволно)"
+msgstr "Извънземен (произволен)"
 
 #: ../src/general/NewGameSettings.tscn:204
 #: ../src/general/NewGameSettings.tscn:877
 msgid "PLANET_RANDOM_SEED"
-msgstr ""
+msgstr "Произволно създаване на планетата"
 
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:896
-#, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Прекъсване на играта"
+msgstr "Тази стойност трябва да е положително цяло число"
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
@@ -2091,72 +2080,57 @@ msgstr ""
 "Бдителните микроби бързо променят намеренията си."
 
 #: ../src/general/NewGameSettings.tscn:777
-#, fuzzy
 msgid "PATCH_MAP_TYPE"
-msgstr "Карта"
+msgstr "Карта на зоните"
 
 #: ../src/general/NewGameSettings.tscn:784
-#, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
-msgstr ""
-"Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
-"Мудните микроби не са в движение, докато няма промени в околната среда."
+msgstr "(произволна или класическа карта на зоните)"
 
 #: ../src/general/NewGameSettings.tscn:799
 #: ../src/general/NewGameSettings.tscn:800
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr ""
+msgstr "Произволна"
 
 #: ../src/general/NewGameSettings.tscn:800
 msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr ""
+msgstr "Класическа"
 
 #: ../src/general/NewGameSettings.tscn:944
 msgid "PLANET_GENERATION_TEASER"
-msgstr ""
+msgstr "Създаването на планетата е в процес на разработка!"
 
 #: ../src/general/NewGameSettings.tscn:976
-#, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Многоклетъчен етап"
+msgstr "Включване на следващите етапи на играта"
 
 #: ../src/general/NewGameSettings.tscn:983
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
+msgstr "(следващите етапи на играта не са завършени и може да не функционират правилно)"
 
 #: ../src/general/NewGameSettings.tscn:996
-#, fuzzy
 msgid "EASTER_EGGS"
-msgstr ""
-"Забавен факт е, че Дидиний и Парамеций са давани за пример като ловец и "
-"плячка. Вие от коя страна сте — ловецът или плячката?"
+msgstr "Включване на тайните обекти на играта"
 
 #: ../src/general/NewGameSettings.tscn:1003
-#, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
-msgstr ""
-"Плашливите микроби отстъпват при опасност\n"
-"и са склонни да избягат, когато са нападнати.\n"
-"Безрасъдните микроби не отстъпват при опасност\n"
-"и са склонни да се защитят, когато са нападнати."
+msgstr "(произволно създаване на тайните обекти на играта)"
 
 #: ../src/general/NewGameSettings.tscn:1031
-#, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr "Запазване на текущата игра"
+msgstr "Отваряне на разширените настройки"
 
 #: ../src/general/NewGameSettings.tscn:1033
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Разширени"
 
 #: ../src/general/NewGameSettings.tscn:1044
-#, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr "Извършване на самоубийство"
+msgstr "Отваряне на основните настройки"
 
 #: ../src/general/NewGameSettings.tscn:1045
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Основни"
 
 #: ../src/general/NewGameSettings.tscn:1055
 msgid "CONFIRM_NORMAL"
@@ -2300,7 +2274,7 @@ msgstr "Лента на способностите"
 
 #: ../src/general/OptionsMenu.tscn:399
 msgid "DISPLAY_BACKGROUND_PARTICLES"
-msgstr ""
+msgstr "Фонови частици"
 
 #: ../src/general/OptionsMenu.tscn:407 ../src/general/OptionsMenu.tscn:398
 #: ../src/general/OptionsMenu.tscn:397
@@ -2408,7 +2382,7 @@ msgstr "Включване на хипернишковата технологи�
 #: ../src/general/OptionsMenu.tscn:860 ../src/general/OptionsMenu.tscn:851
 #: ../src/general/OptionsMenu.tscn:850
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr "Ръчно определяне на броя на нишките"
+msgstr "Ръчно определяне на броя на фоновите нишки"
 
 #: ../src/general/OptionsMenu.tscn:870 ../src/general/OptionsMenu.tscn:861
 #: ../src/general/OptionsMenu.tscn:860
