@@ -209,7 +209,7 @@ public class SpawnSystem
             var enumerator = spawn.Spawns;
 
             bool finished = false;
-            var spawningClouds = spawn.SpawnType is CompoundCloudSpawner;
+            bool spawningClouds = spawn.SpawnType is CompoundCloudSpawner;
 
             // Only spawn if we're far enough away to avoid pop-in
             while ((spawningClouds || estimateEntityCount < Settings.Instance.MaxSpawnedEntities) &&
