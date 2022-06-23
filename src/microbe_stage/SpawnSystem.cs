@@ -397,7 +397,7 @@ public class SpawnSystem
             if (!finished)
             {
                 // Store the remaining items in the enumerator for later
-                queuedSpawns.AddToBack(new QueuedSpawn(spawnType, spawner, location));
+                queuedSpawns.AddToBack(new QueuedSpawn(spawnType, spawner));
             }
             else
             {
@@ -497,18 +497,15 @@ public class SpawnSystem
 
     private class QueuedSpawn : IDisposable
     {
-        public QueuedSpawn(Spawner spawnType, IEnumerator<ISpawned> spawns, Vector3 location)
+        public QueuedSpawn(Spawner spawnType, IEnumerator<ISpawned> spawns)
         {
             SpawnType = spawnType;
             Spawns = spawns;
-            Location = location;
         }
 
         public Spawner SpawnType { get; }
 
         public IEnumerator<ISpawned> Spawns { get; }
-
-        public Vector3 Location { get; }
 
         public void Dispose()
         {
