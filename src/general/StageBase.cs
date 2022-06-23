@@ -243,6 +243,8 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     public virtual void StartNewGame()
     {
         SpawnPlayer();
+
+        OnGameStarted();
     }
 
     public abstract void OnFinishLoading(Save save);
@@ -325,7 +327,13 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
             {
                 StartNewGame();
             }
+            else
+            {
+                OnGameStarted();
+            }
         }
+
+        GD.Print(CurrentGame!.GameWorld.WorldSettings);
 
         pauseMenu.GameProperties = CurrentGame ?? throw new InvalidOperationException("current game is not set");
 
@@ -335,6 +343,11 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
 
         BaseHUD.OnEnterStageTransition(!IsLoadedFromSave, false);
     }
+
+    /// <summary>
+    ///   Common logic for the case where we directly open this scene or start a new game normally from the menu
+    /// </summary>
+    protected abstract void OnGameStarted();
 
     /// <summary>
     ///   Increases the population by the constant for the player reproducing
@@ -381,9 +394,11 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
 
         // Decrease the population by the constant for the player dying
         GameWorld.AlterSpeciesPopulation(
-            GameWorld.PlayerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
+            GameWorld.PlayerSpecies,
+            Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
-            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
+            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
+            / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
 
         if (IsGameOver())
         {

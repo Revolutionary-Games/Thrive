@@ -164,9 +164,12 @@ public static class SpawnHelpers
     }
 
     public static void SpawnCloud(CompoundCloudSystem clouds, Vector3 location,
-        Compound compound, float amount)
+        Compound compound, float amount, Random random)
     {
         int resolution = Settings.Instance.CloudResolution;
+
+        // Randomise amount of compound in the cloud a bit
+        amount *= random.Next(0.5f, 1);
 
         // This spreads out the cloud spawn a bit
         clouds.AddCloud(compound, amount, location + new Vector3(0 + resolution, 0, 0));
@@ -234,6 +237,9 @@ public class MicrobeSpawner : Spawner
 
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
+        if (Species.Obsolete)
+            GD.PrintErr("Obsolete species microbe has spawned");
+
         // The true here is that this is AI controlled
         var first = SpawnHelpers.SpawnMicrobe(Species, location, worldNode, microbeScene, true, cloudSystem,
             currentGame);
@@ -269,6 +275,7 @@ public class CompoundCloudSpawner : Spawner
     private readonly Compound compound;
     private readonly CompoundCloudSystem clouds;
     private readonly float amount;
+    private readonly Random random = new();
 
     public CompoundCloudSpawner(Compound compound, CompoundCloudSystem clouds, float amount)
     {
@@ -279,7 +286,7 @@ public class CompoundCloudSpawner : Spawner
 
     public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
-        SpawnHelpers.SpawnCloud(clouds, location, compound, amount);
+        SpawnHelpers.SpawnCloud(clouds, location, compound, amount, random);
 
         // We don't spawn entities
         return null;

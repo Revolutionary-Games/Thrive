@@ -16,9 +16,11 @@ public class GameProperties
     [JsonProperty]
     private bool freeBuild;
 
-    private GameProperties()
+    [JsonConstructor]
+    private GameProperties(WorldGenerationSettings? settings = null)
     {
-        GameWorld = new GameWorld(new WorldGenerationSettings());
+        settings ??= new WorldGenerationSettings();
+        GameWorld = new GameWorld(settings);
         TutorialState = new TutorialState();
     }
 
@@ -50,9 +52,9 @@ public class GameProperties
     /// <summary>
     ///   Starts a new game in the microbe stage
     /// </summary>
-    public static GameProperties StartNewMicrobeGame(bool freebuild = false)
+    public static GameProperties StartNewMicrobeGame(WorldGenerationSettings settings, bool freebuild = false)
     {
-        var game = new GameProperties();
+        var game = new GameProperties(settings);
 
         if (freebuild)
         {

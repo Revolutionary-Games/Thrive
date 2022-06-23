@@ -31,6 +31,11 @@ public class MulticellularStage : StageBase<Microbe>
         throw new System.NotImplementedException();
     }
 
+    protected override void OnGameStarted()
+    {
+        throw new System.NotImplementedException();
+    }
+
     protected override void SpawnPlayer()
     {
         throw new System.NotImplementedException();

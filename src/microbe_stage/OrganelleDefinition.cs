@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 /// </remarks>
 public class OrganelleDefinition : IRegistryType
 {
+    // TODO: split the following comment to the actual properties in this class:
     /*
     Organelle attributes:
     mass:   How heavy an organelle is. Affects speed, mostly.
@@ -167,6 +168,11 @@ public class OrganelleDefinition : IRegistryType
     ///   Can this organelle only be placed once
     /// </summary>
     public bool Unique;
+
+    /// <summary>
+    ///   Determines whether this organelle appears in LAWK-only games
+    /// </summary>
+    public bool LAWK = true;
 
     /// <summary>
     ///   Path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not modifiable

@@ -158,9 +158,7 @@ public class MicrobeStage : StageBase<Microbe>
 
     public override void StartNewGame()
     {
-        CurrentGame = GameProperties.StartNewMicrobeGame();
-
-        patchManager.CurrentGame = CurrentGame;
+        CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
 
         UpdatePatchSettings(!TutorialState.Enabled);
 
@@ -348,7 +346,10 @@ public class MicrobeStage : StageBase<Microbe>
         // This prevents previous members of the player's colony from immediately being hostile
         bool playerHandled = false;
 
-        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(Player.Species);
+        var previousSpecies = Player.Species;
+        previousSpecies.Obsolete = true;
+
+        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies);
         foreach (var microbe in playerSpeciesMicrobes)
         {
             microbe.ApplySpecies(multicellularSpecies);
@@ -450,6 +451,12 @@ public class MicrobeStage : StageBase<Microbe>
 
         base.OnReturnFromEditor();
 
+        // Add a cloud of glucose if difficulty settings call for it
+        if (GameWorld.WorldSettings.FreeGlucoseCloud)
+        {
+            Clouds.AddCloud(glucose, 200000.0f, Player!.Translation + new Vector3(0.0f, 0.0f, -25.0f));
+        }
+
         // Check win conditions
         if (!CurrentGame!.FreeBuild && Player!.Species.Generation >= 20 &&
             Player.Species.Population >= 300 && !wonOnce)
@@ -511,6 +518,15 @@ public class MicrobeStage : StageBase<Microbe>
         {
             UpdatePatchSettings();
         }
+    }
+
+    protected override void OnGameStarted()
+    {
+        patchManager.CurrentGame = CurrentGame;
+
+        UpdatePatchSettings(!TutorialState.Enabled);
+
+        SpawnPlayer();
     }
 
     protected override void SpawnPlayer()
@@ -647,6 +663,8 @@ public class MicrobeStage : StageBase<Microbe>
     [DeserializedCallbackAllowed]
     private void OnPlayerDied(Microbe player)
     {
+        HandlePlayerDeath();
+
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
 
         Player = null;

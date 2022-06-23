@@ -34,6 +34,13 @@ public abstract class Species : ICloneable
     public Color Colour { get; set; } = new(1, 1, 1);
 
     /// <summary>
+    ///   Set to true when this species has evolved to a different species class type. This is mostly used to detect
+    ///   that old species that should no longer be in use, are not used. Once this has been set to true, don't set
+    ///   this back to false.
+    /// </summary>
+    public bool Obsolete { get; set; }
+
+    /// <summary>
     ///   This holds all behavioural values and defines how this species will behave in the environment.
     /// </summary>
     [JsonProperty]

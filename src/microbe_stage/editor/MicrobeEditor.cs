@@ -139,8 +139,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
         reportTab.UpdateReportTabPatchSelector();
 
-        // TODO: this should be saved so that the text can be accurate if this is updated
-        reportTab.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
+        reportTab.UpdateGlucoseReduction(CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
 
         if (fresh)
         {
@@ -218,7 +217,7 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
     protected override GameProperties StartNewGameForEditor()
     {
-        return GameProperties.StartNewMicrobeGame();
+        return GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
     }
 
     protected override void OnUndoPerformed()
