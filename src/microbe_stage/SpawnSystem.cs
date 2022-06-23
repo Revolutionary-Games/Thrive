@@ -171,7 +171,7 @@ public class SpawnSystem
         int spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
 
         // If we have queued spawns to do spawn those
-        HandleQueuedSpawns(ref spawnsLeftThisFrame);
+        HandleQueuedSpawns(ref spawnsLeftThisFrame, playerPosition);
 
         if (spawnsLeftThisFrame <= 0)
             return;
@@ -198,7 +198,7 @@ public class SpawnSystem
         }
     }
 
-    private void HandleQueuedSpawns(ref int spawnsLeftThisFrame)
+    private void HandleQueuedSpawns(ref int spawnsLeftThisFrame, Vector3 playerPosition)
     {
         int spawned = 0;
 
@@ -209,8 +209,11 @@ public class SpawnSystem
             var enumerator = spawn.Spawns;
 
             bool finished = false;
+            var spawningClouds = spawn.SpawnType is CompoundCloudSpawner;
 
-            while (estimateEntityCount < Settings.Instance.MaxSpawnedEntities &&
+            // Only spawn if we're far enough away to avoid pop-in
+            while ((spawningClouds || estimateEntityCount < Settings.Instance.MaxSpawnedEntities) &&
+                   (playerPosition - spawn.Location).Length() > Constants.SPAWN_SECTOR_SIZE &&
                    spawnsLeftThisFrame > 0)
             {
                 if (!enumerator.MoveNext())
@@ -224,7 +227,9 @@ public class SpawnSystem
                     enumerator.Current ?? throw new Exception("Queued spawn enumerator returned null"),
                     spawn.SpawnType);
 
-                ++estimateEntityCount;
+                if (!spawningClouds)
+                    ++estimateEntityCount;
+
                 --spawnsLeftThisFrame;
                 ++spawned;
             }
@@ -388,7 +393,7 @@ public class SpawnSystem
             if (!finished)
             {
                 // Store the remaining items in the enumerator for later
-                queuedSpawns.AddToBack(new QueuedSpawn(spawnType, spawner));
+                queuedSpawns.AddToBack(new QueuedSpawn(spawnType, spawner, location));
             }
             else
             {
@@ -488,15 +493,18 @@ public class SpawnSystem
 
     private class QueuedSpawn : IDisposable
     {
-        public QueuedSpawn(Spawner spawnType, IEnumerator<ISpawned> spawns)
+        public QueuedSpawn(Spawner spawnType, IEnumerator<ISpawned> spawns, Vector3 location)
         {
             SpawnType = spawnType;
             Spawns = spawns;
+            Location = location;
         }
 
         public Spawner SpawnType { get; }
 
         public IEnumerator<ISpawned> Spawns { get; }
+
+        public Vector3 Location { get; }
 
         public void Dispose()
         {
