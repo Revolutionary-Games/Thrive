@@ -219,6 +219,9 @@ public class SpawnSystem
                     break;
                 }
 
+                if (enumerator.Current == null)
+                    throw new Exception("Queued spawn enumerator returned null");
+
                 // Discard the whole spawn if we're too close to the player
                 var entityPosition = ((Spatial)enumerator.Current).GlobalTransform.origin;
                 if ((playerPosition - entityPosition).Length() < Constants.SPAWN_SECTOR_SIZE)
@@ -229,9 +232,7 @@ public class SpawnSystem
                 }
 
                 // Next was spawned
-                ProcessSpawnedEntity(
-                    enumerator.Current ?? throw new Exception("Queued spawn enumerator returned null"),
-                    spawn.SpawnType);
+                ProcessSpawnedEntity(enumerator.Current, spawn.SpawnType);
 
                 ++estimateEntityCount;
                 --spawnsLeftThisFrame;
