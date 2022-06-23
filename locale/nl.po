@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-23 09:45+0300\n"
+"POT-Creation-Date: 2022-06-23 16:32+0300\n"
 "PO-Revision-Date: 2022-04-07 14:12+0000\n"
 "Last-Translator: DannyNohuman <damianbouras@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -37,59 +37,50 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Concept Art"
 
 #: ../simulation_parameters/common/gallery.json:6
-#, fuzzy
 msgid "GENERAL"
-msgstr "Generatie:"
+msgstr "Algemeen"
 
 #: ../simulation_parameters/common/gallery.json:28
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:387
-#, fuzzy
 msgid "CELLS"
-msgstr "Cellulose"
+msgstr "Cellen"
 
 #: ../simulation_parameters/common/gallery.json:68
-#, fuzzy
 msgid "MODELS"
-msgstr "Godmodus"
+msgstr "Modellen"
 
 #: ../simulation_parameters/common/gallery.json:71
 #: ../simulation_parameters/common/gallery.json:209
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr "Patch: {0}"
+msgstr "Microbieel Stage"
 
 #: ../simulation_parameters/common/gallery.json:184
 msgid "MUSIC"
-msgstr ""
+msgstr "Muziek"
 
 #: ../simulation_parameters/common/gallery.json:187
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "Alles"
 
 #: ../simulation_parameters/common/gallery.json:196
-#, fuzzy
 msgid "MENU"
 msgstr "Menu"
 
 #: ../simulation_parameters/common/gallery.json:238
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "Microbe-editor Laden"
+msgstr "Microbe Bewerker"
 
 #: ../simulation_parameters/common/gallery.json:263
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "Plaats organellen"
+msgstr "Meercellige Stage"
 
 #: ../simulation_parameters/common/gallery.json:280
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Microbe-editor Laden"
+msgstr "Meercellige Bewerker"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
@@ -495,12 +486,12 @@ msgstr "Overig"
 
 #: ../simulation_parameters/common/input_options.json:184
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "Pauzeren"
 
 #: ../simulation_parameters/common/input_options.json:188
 #, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr "Overspoelen"
+msgstr "Open/Sluit debug paneel"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
@@ -543,16 +534,16 @@ msgstr "aërobe ademhaling"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
-msgstr "Glycolise"
+msgstr "Glycolyse"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr "Cytoplasmaglycolise"
+msgstr "Cytoplasma Glycolyse"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:112
 msgid "PHOTOSYNTHESIS"
-msgstr "Fotosythese"
+msgstr "Fotosynthese"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
@@ -863,14 +854,13 @@ msgstr "Chemoreceptor"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:704
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2119
-#, fuzzy
 msgid "SIGNALING_AGENT"
-msgstr "Bindings-middel"
+msgstr "Signaalstof"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Bioluminescente Vacuole"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
@@ -909,18 +899,16 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} populatie veranderd met {1} vanwege: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-#, fuzzy
 msgid "POPULATION_COLON"
-msgstr "{0} populatie veranderd met {1} vanwege: {2}"
+msgstr "populatie:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "stierf uit in {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "Soorten:"
+msgstr "vorige:"
 
 #: ../src/auto-evo/RunResults.cs:587
 #, fuzzy
@@ -943,9 +931,8 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "verspreid naar patches:"
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr "heeft een mutatie"
+msgstr "is gemuteerd"
 
 #: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
@@ -1008,9 +995,8 @@ msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "verspreid naar patches:"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
-#, fuzzy
 msgid "NOT_FOUND_CHUNK"
-msgstr "Groot stuk ijzer"
+msgstr "Error: chunk niet gevonden"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
 #, fuzzy
@@ -1047,18 +1033,17 @@ msgstr "gereproduceerd"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:341
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:403
-#, fuzzy
 msgid "BEHAVIOUR"
 msgstr "Gedrag"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
 msgid "MODIFY_TYPE"
-msgstr ""
+msgstr "Pas het type aan"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
-msgstr ""
+msgstr "Verwijder"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
 #, fuzzy
@@ -1072,9 +1057,8 @@ msgstr "gereproduceerd"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
-#, fuzzy
 msgid "REPRODUCTION_BUDDING"
-msgstr "gereproduceerd"
+msgstr "Ontkiemen"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1233
@@ -1086,7 +1070,7 @@ msgstr "ANNULEER ACTIE"
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1024
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
-msgstr ""
+msgstr "VOLGENDE"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "DISCONNECTED_CELLS"

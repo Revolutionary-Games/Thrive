@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-23 09:45+0300\n"
+"POT-Creation-Date: 2022-06-23 16:32+0300\n"
 "PO-Revision-Date: 2022-06-16 15:47+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -63,7 +63,6 @@ msgstr "Müzik"
 
 #: ../simulation_parameters/common/gallery.json:187
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
-#, fuzzy
 msgid "ALL"
 msgstr "Tümü"
 
@@ -152,7 +151,7 @@ msgstr "Dikkatli ol çünkü rakiplerin seninle birlikte gelişiyor. Editöre gi
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve birbiriyle üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. Başka bir hücre ile bağ kurmak için, bağlayıcı ajan organeline sahip olman ve bağlanma moduna girdikten sonra o hücreye yaklaşman gerekir. Yalnızca kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni bölemez ve editöre giremezsin (şimdilik). Editöre girmek için, ilk önce, yeterli bileşik toplamalı ve koloniden ayrılmalısın. Böylece editöre girebilirsin. Büyük hücre kolonileri çok hücreliliğe doğru giden yoldur (henüz oyunda değil)."
+msgstr "Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve birbiriyle üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. Başka bir hücre ile bağ kurmak için, bağlayıcı ajan organeline sahip olman ve [thrive:input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna girdikten sonra o hücreye yaklaşman gerekir. Yalnızca kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni bölemez ve editöre giremezsin (şimdilik). Editöre girmek için, ilk önce, yeterli bileşik toplamalı ve [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılmalısın. Böylece editöre girebilirsin. Büyük hücre kolonileri çok hücreliliğe doğru giden yoldur (henüz oyunda değil)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -178,7 +177,7 @@ msgstr ""
 "\n"
 "Kamçı: [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketerek hücreni daha hızlı hareket ettirir\n"
 "\n"
-"Pilus: Diğer hücreleri delmek için kullanılabilir\n"
+"Pilus: Diğer hücreleri delmek veya onların toksinlerine karşı hücreyi korumak için kullanılabilir\n"
 "\n"
 "Kemoreseptör: Bileşikleri daha uzaktan algılamayı sağlar\n"
 "\n"
@@ -189,11 +188,11 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Zarlı Organeller\n"
 "\n"
-"Çekirdek: 11 altıgenlik yer kaplar ve zarlı organellerin evrimini sağlar. Ayrıca hücrenin büyüklüğünü iki katına çıkarır. (Yalnızca bir kez evrimleşilir)\n"
+"Çekirdek: 11 altıgenlik yer kaplar ve zarlı organellerin evrimini sağlar. Ayrıca hücrenin büyüklüğünü iki katına çıkarır ve hasarı %50'ye indirir. (Yalnızca bir kez evrimleşilir)\n"
 "\n"
 "Bağlayıcı Ajan: Diğer hücrelerle bağ kurmaya izin verir\n"
 "\n"
-"Mitokondri: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] ve atmosferdeki O2 gazından [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Sitoplazmadan çok daha verimli şekilde yapar.\n"
+"Mitokondri: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] ve atmosferdeki O2 gazından [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Sitoplazmadan çok daha verimli şekilde yapar\n"
 "\n"
 "Kloroplast: Güneş ışığı ve atmosferdeki CO2 gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretir\n"
 "\n"
@@ -2182,36 +2181,35 @@ msgstr "İş Parçacıkları:"
 
 #: ../src/general/OptionsMenu.tscn:915
 msgid "MAX_SPAWNED_ENTITIES"
-msgstr ""
+msgstr "Maksimum varlık sayısı"
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
 msgid "TINY"
-msgstr ""
+msgstr "Aşırı küçük"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "VERY_SMALL"
-msgstr ""
+msgstr "Çok küçük"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "SMALL"
-msgstr ""
+msgstr "Küçük"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "LARGE"
-msgstr ""
+msgstr "Büyük"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "VERY_LARGE"
-msgstr ""
+msgstr "Çok büyük"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "HUGE"
-msgstr ""
+msgstr "Aşırı büyük"
 
 #: ../src/general/OptionsMenu.tscn:931
-#, fuzzy
 msgid "EXTREME"
-msgstr "Ekstralar"
+msgstr "En büyük"
 
 #: ../src/general/OptionsMenu.tscn:1005
 msgid "RESET_INPUTS"
@@ -2762,7 +2760,6 @@ msgid "ARTIST_COLON"
 msgstr "Sanatçı:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:248
-#, fuzzy
 msgid "UNTITLED"
 msgstr "Adsız"
 
@@ -3075,7 +3072,7 @@ msgstr "Hız"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr "Bununla diğer hücreleri del."
+msgstr "Diğer hücreleri delmek veya onların toksinlerine karşı hücreyi korumak için kullanılabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
 msgid "PREDATORY_PILUS_DESCRIPTION"
@@ -3107,7 +3104,7 @@ msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu çok hücrelilikte ilk ad
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
 msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr "Daha kompleks olan zarlı organellerin evrimleşmesini sağlar. Bakımı bir sürü ATP'ye mal olur. Bu geri dönüşü olmayan bir evrimdir."
+msgstr "Daha kompleks olan zarlı organellerin evrimleşmesini sağlar ve hasarı %50'ye indirir. Bakımı bir sürü ATP'ye mal olur. Bu geri dönüşü olmayan bir evrimdir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1358
 msgid "NUCLEUS_DESCRIPTION"
@@ -3419,7 +3416,7 @@ msgstr "Bileşikler:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:607
 msgid "SPECIES_COLON"
-msgstr "Tür:"
+msgstr "Türler:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:687
 msgid "ENVIRONMENT"
@@ -5295,3 +5292,6 @@ msgstr "Şimdi İncele"
 
 #~ msgid "PLASTID"
 #~ msgstr "Plastid"
+
+#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
+#~ msgstr "Pangonik Batipelajik"
