@@ -171,7 +171,7 @@ public class SpawnSystem
         int spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
 
         // If we have queued spawns to do spawn those
-        HandleQueuedSpawns(ref spawnsLeftThisFrame);
+        HandleQueuedSpawns(ref spawnsLeftThisFrame, playerPosition);
 
         if (spawnsLeftThisFrame <= 0)
             return;
@@ -198,7 +198,7 @@ public class SpawnSystem
         }
     }
 
-    private void HandleQueuedSpawns(ref int spawnsLeftThisFrame)
+    private void HandleQueuedSpawns(ref int spawnsLeftThisFrame, Vector3 playerPosition)
     {
         int spawned = 0;
 
@@ -219,10 +219,20 @@ public class SpawnSystem
                     break;
                 }
 
+                if (enumerator.Current == null)
+                    throw new Exception("Queued spawn enumerator returned null");
+
+                // Discard the whole spawn if we're too close to the player
+                var entityPosition = ((Spatial)enumerator.Current).GlobalTransform.origin;
+                if ((playerPosition - entityPosition).Length() < Constants.SPAWN_SECTOR_SIZE)
+                {
+                    enumerator.Current.DestroyDetachAndQueueFree();
+                    finished = true;
+                    break;
+                }
+
                 // Next was spawned
-                ProcessSpawnedEntity(
-                    enumerator.Current ?? throw new Exception("Queued spawn enumerator returned null"),
-                    spawn.SpawnType);
+                ProcessSpawnedEntity(enumerator.Current, spawn.SpawnType);
 
                 ++estimateEntityCount;
                 --spawnsLeftThisFrame;
