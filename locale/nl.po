@@ -10,7 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2022-06-23 09:45+0300\n"
 "PO-Revision-Date: 2022-04-07 14:12+0000\n"
 "Last-Translator: DannyNohuman <damianbouras@gmail.com>\n"
-"Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
+"Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,89 +38,104 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Concept Art"
 
 #: ../simulation_parameters/common/gallery.json:6
-#, fuzzy
 msgid "GENERAL"
-msgstr "Generatie:"
+msgstr "Algemeen"
 
 #: ../simulation_parameters/common/gallery.json:28
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:387
-#, fuzzy
 msgid "CELLS"
-msgstr "Cellulose"
+msgstr "Cellen"
 
 #: ../simulation_parameters/common/gallery.json:68
-#, fuzzy
 msgid "MODELS"
-msgstr "Godmodus"
+msgstr "Modellen"
 
 #: ../simulation_parameters/common/gallery.json:71
 #: ../simulation_parameters/common/gallery.json:209
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr "Patch: {0}"
+msgstr "Microbieel Stage"
 
 #: ../simulation_parameters/common/gallery.json:184
 msgid "MUSIC"
-msgstr ""
+msgstr "Muziek"
 
 #: ../simulation_parameters/common/gallery.json:187
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "Alles"
 
 #: ../simulation_parameters/common/gallery.json:196
-#, fuzzy
 msgid "MENU"
 msgstr "Menu"
 
 #: ../simulation_parameters/common/gallery.json:238
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "Microbe-editor Laden"
+msgstr "Microbe Bewerker"
 
 #: ../simulation_parameters/common/gallery.json:263
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "Plaats organellen"
+msgstr "Meercellige Stage"
 
 #: ../simulation_parameters/common/gallery.json:280
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Microbe-editor Laden"
+msgstr "Meercellige Bewerker"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. [thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy\"][/thrive:compound] te schieten als je een vergif vacuole hebt. [thrive:input]g_toggle_engulf[/thrive:input] om de verzwelg-modus aan en uit te zetten."
+msgstr ""
+"Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:"
+"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
+"input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. "
+"[thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy"
+"\"][/thrive:compound] te schieten als je een vergif vacuole hebt. [thrive:"
+"input]g_toggle_engulf[/thrive:input] om de verzwelg-modus aan en uit te "
+"zetten."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Jouw cel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] als energiebron, als het opraakt ga je dood."
+msgstr ""
+"Jouw cel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] als "
+"energiebron, als het opraakt ga je dood."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Om de editor te ontgrendelen en voort te planten moet je [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranje Wolk) en [thrive:compound type=\"phosphates\"][/thrive:compound] (Paarse Wolk) verzamelen."
+msgstr ""
+"Om de editor te ontgrendelen en voort te planten moet je [thrive:compound "
+"type=\"ammonia\"][/thrive:compound] (Oranje Wolk) en [thrive:compound type="
+"\"phosphates\"][/thrive:compound] (Paarse Wolk) verzamelen."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Je kan andere cellen, bacteriën en ijzer deeltjes kleiner dan jou opnemen door op [thrive:input]g_toggle_engulf[/thrive:input] te drukken. Dit gebruikt extra [thrive:compound type=\"atp\"][/thrive:compound] en maakt je langzamer. Vergeet niet nog een keer op [thrive:input]g_toggle_engulf[/thrive:input] te drukken om te stoppen."
+msgstr ""
+"Je kan andere cellen, bacteriën en ijzer deeltjes kleiner dan jou opnemen "
+"door op [thrive:input]g_toggle_engulf[/thrive:input] te drukken. Dit "
+"gebruikt extra [thrive:compound type=\"atp\"][/thrive:compound] en maakt je "
+"langzamer. Vergeet niet nog een keer op [thrive:input]g_toggle_engulf[/"
+"thrive:input] te drukken om te stoppen."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulatie kost [thrive:compound type=\"atp\"][/thrive:compound]. Dat betekent dat hoe groter je cel is, hoe meer mitochondriën, metabolosomen of rusticyanine (of cytoplasma, dat aan glycolyse doet) je nodig hebt om te voorkomen dat je [thrive:compound type=\"atp\"][/thrive:compound] verliest als je stilstaat."
+msgstr ""
+"Osmoregulatie kost [thrive:compound type=\"atp\"][/thrive:compound]. Dat "
+"betekent dat hoe groter je cel is, hoe meer mitochondriën, metabolosomen of "
+"rusticyanine (of cytoplasma, dat aan glycolyse doet) je nodig hebt om te "
+"voorkomen dat je [thrive:compound type=\"atp\"][/thrive:compound] verliest "
+"als je stilstaat."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Er zijn veel organellen in de editor om te evolueren, wat voor een brede selectie aan speelwijzen zorgt."
+msgstr ""
+"Er zijn veel organellen in de editor om te evolueren, wat voor een brede "
+"selectie aan speelwijzen zorgt."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -132,17 +148,25 @@ msgstr ""
 "Paars - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
 "Roestbruin - [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] maakt [thrive:compound type=\"atp\"][/thrive:compound]"
+"[thrive:compound type=\"glucose\"][/thrive:compound] maakt [thrive:compound "
+"type=\"atp\"][/thrive:compound]"
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan worden omgezet naar [thrive:compound type=\"glucose\"][/thrive:compound] met chemoplasten en chemosynthesende eiwitten. [thrive:compound type=\"iron\"][/thrive:compound] kan met rusticyanin worden omgezet in [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr ""
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan worden "
+"omgezet naar [thrive:compound type=\"glucose\"][/thrive:compound] met "
+"chemoplasten en chemosynthesende eiwitten. [thrive:compound type=\"iron\"][/"
+"thrive:compound] kan met rusticyanin worden omgezet in [thrive:compound type="
+"\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Om jezelf voort te planten moet je al je organellen in tweeën delen. Organellen hebben ammoniak en fosfaat nodig om in tweeën te splitsen."
+msgstr ""
+"Om jezelf voort te planten moet je al je organellen in tweeën delen. "
+"Organellen hebben ammoniak en fosfaat nodig om in tweeën te splitsen."
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
@@ -151,40 +175,64 @@ msgstr "Voor nu, als je populatie naar nul zakt, sterf je uit."
 
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Maar als je voor twintig generaties met 300 populatie overleeft, win je deze versie van het spel. Nadat je hebt gewonnen kan je nog verder spelen als je dat wilt."
+msgstr ""
+"Maar als je voor twintig generaties met 300 populatie overleeft, win je deze "
+"versie van het spel. Nadat je hebt gewonnen kan je nog verder spelen als je "
+"dat wilt."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Wees gewaarschuwd voor je vijanden die ook evolueren. Elke keer als je in de editor komt, evolueren zij zich ook."
+msgstr ""
+"Wees gewaarschuwd voor je vijanden die ook evolueren. Elke keer als je in de "
+"editor komt, evolueren zij zich ook."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Door te binden met andere cellen kan je een kolonie maken waar de cellen hun grondstoffen die ze absorberen en produceren delen. Om met een andere cel te kunnen binden heb je een bindings-middel organel nodig en tegen een cel aan bewegen in bindings-modus. Je kan alleen binden met cellen van jouw eigen soort. Je kan niet delen of de editor in gaan in een kolonie (voor nu). Om in de editor te komen moet je eerst de kolonie uit wanneer je genoeg chemicaliën hebt. Grote kolonies zijn de weg naar meercellige organismes (nog niet in het spel)."
+msgstr ""
+"Door te binden met andere cellen kan je een kolonie maken waar de cellen hun "
+"grondstoffen die ze absorberen en produceren delen. Om met een andere cel te "
+"kunnen binden heb je een bindings-middel organel nodig en tegen een cel aan "
+"bewegen in bindings-modus. Je kan alleen binden met cellen van jouw eigen "
+"soort. Je kan niet delen of de editor in gaan in een kolonie (voor nu). Om "
+"in de editor te komen moet je eerst de kolonie uit wanneer je genoeg "
+"chemicaliën hebt. Grote kolonies zijn de weg naar meercellige organismes "
+"(nog niet in het spel)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Procaryote Structuren\n"
 "\n"
-"Metabolosomen: Produceren [thrive:compound type=\"atp\"][/thrive:compound] van [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Metabolosomen: Produceren [thrive:compound type=\"atp\"][/thrive:compound] "
+"van [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Chemosynthese-eiwitten: Produceert half keer zoveel [thrive:compound type=\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] als een chemoplast, maar voert ook glycolise uit, en neemt 1 Hex in beslag\n"
+"Chemosynthese-eiwitten: Produceert half keer zoveel [thrive:compound type="
+"\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogensulfide\"]"
+"[/thrive:compound] als een chemoplast, maar voert ook glycolise uit, en "
+"neemt 1 Hex in beslag\n"
 "\n"
-"Thylakoïden: Produceert 1/3 van de hoeveelheid [thrive:compound type=\"glucose\"][/thrive:compound] dan een normale chloroplast, maar voert ook glycolise uit. Neemt 1 Hex in beslag\n"
+"Thylakoïden: Produceert 1/3 van de hoeveelheid [thrive:compound type="
+"\"glucose\"][/thrive:compound] dan een normale chloroplast, maar voert ook "
+"glycolise uit. Neemt 1 Hex in beslag\n"
 "\n"
-"Rusticyanine: Zet [thrive:compound type=\"iron\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Rusticyanine: Zet [thrive:compound type=\"iron\"][/thrive:compound] om in "
+"[thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Nitrogenase: Zet atmosferische stikstof en [thrive:compound type=\"atp\"][/thrive:compound] anaeroob om in [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Nitrogenase: Zet atmosferische stikstof en [thrive:compound type=\"atp\"][/"
+"thrive:compound] anaeroob om in [thrive:compound type=\"ammonia\"][/thrive:"
+"compound]\n"
 "\n"
-"Cytoplasma: Bevat opslagruimte en voert glycolyse uit (Produceert kleine hoeveelheden [thrive:compound type=\"atp\"][/thrive:compound])"
+"Cytoplasma: Bevat opslagruimte en voert glycolyse uit (Produceert kleine "
+"hoeveelheden [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Externe Organellen\n"
 "\n"
-"Flagellum: Maakt bewegen sneller door [thrive:compound type=\"atp\"][/thrive:compound] te verbruiken\n"
+"Flagellum: Maakt bewegen sneller door [thrive:compound type=\"atp\"][/thrive:"
+"compound] te verbruiken\n"
 "\n"
 "Pilus: Kan worden gebruikt om andere cellen te steken"
 
@@ -193,29 +241,48 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Membraangebonden Organellen\n"
 "\n"
-"Celkern: Neemt 11 hexen in beslag en geeft toegang tot andere membraangebonden organellen, ook verdubbelt de grootte van je cel (kan maar één keer geëvolueerd worden)\n"
+"Celkern: Neemt 11 hexen in beslag en geeft toegang tot andere "
+"membraangebonden organellen, ook verdubbelt de grootte van je cel (kan maar "
+"één keer geëvolueerd worden)\n"
 "\n"
 "Bindings Middel: Geeft de mogelijkheid om te binden met andere cellen\n"
 "\n"
-"Mitochondrion: Produceert [thrive:compound type=\"atp\"][/thrive:compound] van [thrive:compound type=\"glucose\"][/thrive:compound] en atmosferische O2 veel efficiënter dan cytoplasma\n"
+"Mitochondrion: Produceert [thrive:compound type=\"atp\"][/thrive:compound] "
+"van [thrive:compound type=\"glucose\"][/thrive:compound] en atmosferische O2 "
+"veel efficiënter dan cytoplasma\n"
 "\n"
-"Chloroplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] van zonlicht en atmosferische CO2\n"
+"Chloroplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] van "
+"zonlicht en atmosferische CO2\n"
 "\n"
-"Chemoplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] van [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Chemoplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] van "
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Stikstof Fixerende Plastide: Maakt [thrive:compound type=\"ammonia\"][/thrive:compound] van [thrive:compound type=\"atp\"][/thrive:compound], atmosferische Stikstof en Zuurstof\n"
+"Stikstof Fixerende Plastide: Maakt [thrive:compound type=\"ammonia\"][/"
+"thrive:compound] van [thrive:compound type=\"atp\"][/thrive:compound], "
+"atmosferische Stikstof en Zuurstof\n"
 "\n"
 "Vacuole: Slaat vijftien verzamelde chemicaliën op\n"
 "\n"
-"Toxine vacuolen: Produceert toxine ( [thrive:compound type=\"oxytoxy\"][/thrive:compound] genoemd)"
+"Toxine vacuolen: Produceert toxine ( [thrive:compound type=\"oxytoxy\"][/"
+"thrive:compound] genoemd)"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Bij elke generatie heb je 100 mutatiepunten (MP) om te gebruiken. Elke verandering (of mutatie) kost een hoeveelheid MP. Het toevoegen en verwijderen van organellen kost MP, maar het terug draaien van veranderingen kost niks als deze verandering in de huidige mutatie sessie plaats hebben gevonden. Je kan een organel verplaatsen of verwijderen met rechtsklik. Je kan organellen ook draaien met [thrive:input]e_rotate_left[/thrive:input] en [thrive:input]e_rotate_right[/thrive:input]."
+msgstr ""
+"Bij elke generatie heb je 100 mutatiepunten (MP) om te gebruiken. Elke "
+"verandering (of mutatie) kost een hoeveelheid MP. Het toevoegen en "
+"verwijderen van organellen kost MP, maar het terug draaien van veranderingen "
+"kost niks als deze verandering in de huidige mutatie sessie plaats hebben "
+"gevonden. Je kan een organel verplaatsen of verwijderen met rechtsklik. Je "
+"kan organellen ook draaien met [thrive:input]e_rotate_left[/thrive:input] en "
+"[thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Telkens als je jezelf voortplant, open je de microbe editor waar je veranderingen aan je cel kan maken om je succes te verhogen. Elk bezoek aan de editor telt als 100 miljoen jaar."
+msgstr ""
+"Telkens als je jezelf voortplant, open je de microbe editor waar je "
+"veranderingen aan je cel kan maken om je succes te verhogen. Elk bezoek aan "
+"de editor telt als 100 miljoen jaar."
 
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
@@ -223,19 +290,31 @@ msgstr "Klik de undo-knop in de editor om een fout te corrigeren"
 
 #: ../simulation_parameters/common/help_texts.json:126
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "Wist je dat de Didinium en Paramecium voorbeelden zijn van een roofdier-prooi relatie die is gestudeerd voor tientallen jaren? Ben jij nu een nakomeling van het roofdier of de prooi?"
+msgstr ""
+"Wist je dat de Didinium en Paramecium voorbeelden zijn van een roofdier-"
+"prooi relatie die is gestudeerd voor tientallen jaren? Ben jij nu een "
+"nakomeling van het roofdier of de prooi?"
 
 #: ../simulation_parameters/common/help_texts.json:129
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Een tip: toxine kan worden gebruikt om andere toxinen af te stoten als je snel genoeg bent."
+msgstr ""
+"Een tip: toxine kan worden gebruikt om andere toxinen af te stoten als je "
+"snel genoeg bent."
 
 #: ../simulation_parameters/common/help_texts.json:132
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Tip: osmoreglatie kost 1 ATP per seconde per hex die je cel heeft. Elke lege hex aan cytoplasma genereert ook 5 ATP per seconde, wat betekent dat als je ATP verliest door osmoregulatie je gewoon wat lege hexes aan cytoplasma moet toevoegen of wat organellen moet verwijderen."
+msgstr ""
+"Tip: osmoreglatie kost 1 ATP per seconde per hex die je cel heeft. Elke lege "
+"hex aan cytoplasma genereert ook 5 ATP per seconde, wat betekent dat als je "
+"ATP verliest door osmoregulatie je gewoon wat lege hexes aan cytoplasma moet "
+"toevoegen of wat organellen moet verwijderen."
 
 #: ../simulation_parameters/common/help_texts.json:135
 msgid "EASTEREGG_MESSAGE_4"
-msgstr "Wist je dat in het echte leven prokaryoten iets hebben die biocompartementen worden genoemd? Ze gedragen zich als organellen en hun echte naam is veelvlakkig organel."
+msgstr ""
+"Wist je dat in het echte leven prokaryoten iets hebben die biocompartementen "
+"worden genoemd? Ze gedragen zich als organellen en hun echte naam is "
+"veelvlakkig organel."
 
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_5"
@@ -247,15 +326,20 @@ msgstr "Een tip, soms is het beter om weg te rennen van andere cellen."
 
 #: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "Een tip, als een cel de helft van jouw maat is, kan je die overspoelen."
+msgstr ""
+"Een tip, als een cel de helft van jouw maat is, kan je die overspoelen."
 
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
-msgstr "Tip: Bacteriën kunnen sterker zijn dan ze lijken. Ze zien er klein uit, maar sommigen van hen kunnen zich in je ingraven en je op die manier doden!"
+msgstr ""
+"Tip: Bacteriën kunnen sterker zijn dan ze lijken. Ze zien er klein uit, maar "
+"sommigen van hen kunnen zich in je ingraven en je op die manier doden!"
 
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
-msgstr "Een tip, je kan andere cellen uitroeien als je niet voorichtig bent. Anderen kunnen dat ook."
+msgstr ""
+"Een tip, je kan andere cellen uitroeien als je niet voorichtig bent. Anderen "
+"kunnen dat ook."
 
 #: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_10"
@@ -271,19 +355,27 @@ msgstr "Dat zijn wel blauwe cellen."
 
 #: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "Een tip, biomen zijn meer dan andere achtergronden. De behoeften spawnen op verschillende manieren."
+msgstr ""
+"Een tip, biomen zijn meer dan andere achtergronden. De behoeften spawnen op "
+"verschillende manieren."
 
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Een tip, hoe meer flagella je hebt, hoe sneller je gaat, vroom vroom, het kost wel veel meer ATP"
+msgstr ""
+"Een tip, hoe meer flagella je hebt, hoe sneller je gaat, vroom vroom, het "
+"kost wel veel meer ATP"
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Tip, je kan stukken zoals ijzer of organellen van dode cellen overspoelen door op \"G\" te drukken."
+msgstr ""
+"Tip, je kan stukken zoals ijzer of organellen van dode cellen overspoelen "
+"door op \"G\" te drukken."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "Een tip, bereid je voor voordat je een kern plaatst. Ze zijn duur om te plaatsen en te onderhouden."
+msgstr ""
+"Een tip, bereid je voor voordat je een kern plaatst. Ze zijn duur om te "
+"plaatsen en te onderhouden."
 
 #: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_17"
@@ -291,31 +383,47 @@ msgstr "Wist je dat er meer dan 8000 soorten ciliaat op Aarde zijn?"
 
 #: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "Wist je dat: Stentors zijn wimperdieren die zich uit te strekken en met een trompetachtige mond prooien vangen. Dit doen ze door waterstromingen te maken met hun trilharen en daarmee de prooi naar binnen zuigen."
+msgstr ""
+"Wist je dat: Stentors zijn wimperdieren die zich uit te strekken en met een "
+"trompetachtige mond prooien vangen. Dit doen ze door waterstromingen te "
+"maken met hun trilharen en daarmee de prooi naar binnen zuigen."
 
 #: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_19"
-msgstr "Wist je dat: Didinium is een trilhaardiertje die op pantoffeldieren jaagt."
+msgstr ""
+"Wist je dat: Didinium is een trilhaardiertje die op pantoffeldieren jaagt."
 
 #: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_20"
-msgstr "Wist je dat: Amoeben jagen en vangen hun prooi met 'benen' van cytoplasma, genaamd pseudopodia of schijnvoetjes. Ooit willen we ze deze in Thrive."
+msgstr ""
+"Wist je dat: Amoeben jagen en vangen hun prooi met 'benen' van cytoplasma, "
+"genaamd pseudopodia of schijnvoetjes. Ooit willen we ze deze in Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
-msgstr "Een tip, kijk uit voor grotere cellen en bacterien, want het is niet fijn om verteerd te worden, ze zullen je eten."
+msgstr ""
+"Een tip, kijk uit voor grotere cellen en bacterien, want het is niet fijn om "
+"verteerd te worden, ze zullen je eten."
 
 #: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_22"
-msgstr "Het geluidsteam van Thrive heeft veel nummers gemaakt die nog niet in de game zitten. Je kan ze luisteren op het Youtube-kanaal Oliver Lugg."
+msgstr ""
+"Het geluidsteam van Thrive heeft veel nummers gemaakt die nog niet in de "
+"game zitten. Je kan ze luisteren op het Youtube-kanaal Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_23"
-msgstr "Wist je dat: Als je cel 150 zeshoeken/velden groot is, dan kan je de grote ijzerklompen opslokken."
+msgstr ""
+"Wist je dat: Als je cel 150 zeshoeken/velden groot is, dan kan je de grote "
+"ijzerklompen opslokken."
 
 #: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive is bedoelt als een simulatie van een buitenaardse planeet, waardoor het logisch is dat de meeste wezens die je vind verwant zijn aan één of twee andere soorten die zich door evolutie hebben aangepast, kijk of je ze kan herkennen!"
+msgstr ""
+"Thrive is bedoelt als een simulatie van een buitenaardse planeet, waardoor "
+"het logisch is dat de meeste wezens die je vind verwant zijn aan één of twee "
+"andere soorten die zich door evolutie hebben aangepast, kijk of je ze kan "
+"herkennen!"
 
 #: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_25"
@@ -327,7 +435,8 @@ msgstr "Weetje, Thrive is gemaakt met de open-source Godot engine!"
 
 #: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_27"
-msgstr "Weetje, de eerste speelbare prototypes waren gemaakt door untrustedlife!"
+msgstr ""
+"Weetje, de eerste speelbare prototypes waren gemaakt door untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -495,12 +604,12 @@ msgstr "Overig"
 
 #: ../simulation_parameters/common/input_options.json:184
 msgid "TOGGLE_PAUSE"
-msgstr ""
+msgstr "Pauzeren"
 
 #: ../simulation_parameters/common/input_options.json:188
 #, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr "Overspoelen"
+msgstr "Open/Sluit debug paneel"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
@@ -543,16 +652,16 @@ msgstr "aërobe ademhaling"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
-msgstr "Glycolise"
+msgstr "Glycolyse"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr "Cytoplasmaglycolise"
+msgstr "Cytoplasma Glycolyse"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:112
 msgid "PHOTOSYNTHESIS"
-msgstr "Fotosythese"
+msgstr "Fotosynthese"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
@@ -738,6 +847,7 @@ msgstr "Zonlicht"
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/general/OptionsMenu.tscn:931
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2245
+#: ../src/general/OptionsMenu.tscn:922
 msgid "NORMAL"
 msgstr "Normaal"
 
@@ -863,14 +973,13 @@ msgstr "Chemoreceptor"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:704
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2119
-#, fuzzy
 msgid "SIGNALING_AGENT"
-msgstr "Bindings-middel"
+msgstr "Signaalstof"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:727
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Bioluminescente Vacuole"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:750
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
@@ -879,6 +988,7 @@ msgstr "Thermoplast"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:780
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
+#: ../simulation_parameters/microbe_stage/organelles.json:779
 msgid "CILIA"
 msgstr "Cilia"
 
@@ -909,18 +1019,16 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} populatie veranderd met {1} vanwege: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-#, fuzzy
 msgid "POPULATION_COLON"
-msgstr "{0} populatie veranderd met {1} vanwege: {2}"
+msgstr "populatie:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "stierf uit in {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "Soorten:"
+msgstr "vorige:"
 
 #: ../src/auto-evo/RunResults.cs:587
 #, fuzzy
@@ -943,9 +1051,8 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "verspreid naar patches:"
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr "heeft een mutatie"
+msgstr "is gemuteerd"
 
 #: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
@@ -1008,9 +1115,8 @@ msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "verspreid naar patches:"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
-#, fuzzy
 msgid "NOT_FOUND_CHUNK"
-msgstr "Groot stuk ijzer"
+msgstr "Error: chunk niet gevonden"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
 #, fuzzy
@@ -1047,18 +1153,17 @@ msgstr "gereproduceerd"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:341
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:403
-#, fuzzy
 msgid "BEHAVIOUR"
 msgstr "Gedrag"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
 msgid "MODIFY_TYPE"
-msgstr ""
+msgstr "Pas het type aan"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
-msgstr ""
+msgstr "Verwijder"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
 #, fuzzy
@@ -1072,9 +1177,8 @@ msgstr "gereproduceerd"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
-#, fuzzy
 msgid "REPRODUCTION_BUDDING"
-msgstr "gereproduceerd"
+msgstr "Ontkiemen"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1233
@@ -1086,7 +1190,7 @@ msgstr "ANNULEER ACTIE"
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1024
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
-msgstr ""
+msgstr "VOLGENDE"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 msgid "DISCONNECTED_CELLS"
@@ -1112,7 +1216,13 @@ msgstr "Maak een nieuwe microbe"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
 #, fuzzy
@@ -1675,7 +1785,7 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:241
+#: ../src/general/MainMenu.cs:241 ../src/general/MainMenu.cs:239
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -1738,7 +1848,8 @@ msgstr "Microbe vrij bouwen bewerker"
 #: ../src/general/OptionsMenu.tscn:1228 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
-#: ../src/saving/SaveManagerGUI.tscn:120
+#: ../src/saving/SaveManagerGUI.tscn:120 ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1184
 msgid "BACK"
 msgstr "Terug"
 
@@ -1754,19 +1865,22 @@ msgstr ""
 msgid "LICENSES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:501
+#: ../src/general/MainMenu.tscn:501 ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 moduswaarschuwing"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:503 ../src/general/MainMenu.tscn:500
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Je gebruikt Thrive met GLES2. Dit is niet getest en zal hoogstwaarschijnlijk voor problemen veroorzaken. Update je drivers en/of forceer je AMD of Nvidia graphics om Thrive te laten runnen."
+msgstr ""
+"Je gebruikt Thrive met GLES2. Dit is niet getest en zal hoogstwaarschijnlijk "
+"voor problemen veroorzaken. Update je drivers en/of forceer je AMD of Nvidia "
+"graphics om Thrive te laten runnen."
 
-#: ../src/general/MainMenu.tscn:507
+#: ../src/general/MainMenu.tscn:507 ../src/general/MainMenu.tscn:504
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:508
+#: ../src/general/MainMenu.tscn:508 ../src/general/MainMenu.tscn:505
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -1849,6 +1963,7 @@ msgid "PLANET"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:181
+#: ../src/general/OptionsMenu.tscn:180 ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
 msgstr "Overig"
 
@@ -1950,7 +2065,10 @@ msgstr ""
 #: ../src/general/NewGameSettings.tscn:996
 #, fuzzy
 msgid "EASTER_EGGS"
-msgstr "Wist je dat de Didinium en Paramecium voorbeelden zijn van een roofdier-prooi relatie die is gestudeerd voor tientallen jaren? Ben jij nu een nakomeling van het roofdier of de prooi?"
+msgstr ""
+"Wist je dat de Didinium en Paramecium voorbeelden zijn van een roofdier-"
+"prooi relatie die is gestudeerd voor tientallen jaren? Ben jij nu een "
+"nakomeling van het roofdier of de prooi?"
 
 #: ../src/general/NewGameSettings.tscn:1003
 #, fuzzy
@@ -1981,113 +2099,143 @@ msgid "CONFIRM_NORMAL"
 msgstr "BEVESTIGEN"
 
 #: ../src/general/OptionsMenu.cs:629 ../src/general/OptionsMenu.tscn:292
+#: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:291
+#: ../src/general/OptionsMenu.cs:617 ../src/general/OptionsMenu.tscn:290
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Resolutie:"
 
-#: ../src/general/OptionsMenu.cs:982
+#: ../src/general/OptionsMenu.cs:982 ../src/general/OptionsMenu.cs:976
+#: ../src/general/OptionsMenu.cs:918
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standaard uitvoer apparaat"
 
-#: ../src/general/OptionsMenu.cs:1014
+#: ../src/general/OptionsMenu.cs:1014 ../src/general/OptionsMenu.cs:1008
+#: ../src/general/OptionsMenu.cs:950
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
-msgstr "Deze vertaling is nog niet compleet ({0}% klaar) help ons hier alstublieft mee!"
+msgstr ""
+"Deze vertaling is nog niet compleet ({0}% klaar) help ons hier alstublieft "
+"mee!"
 
-#: ../src/general/OptionsMenu.cs:1018
+#: ../src/general/OptionsMenu.cs:1018 ../src/general/OptionsMenu.cs:1012
+#: ../src/general/OptionsMenu.cs:954
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "De vertaling van deze taal is nog niet compleet ({0}% compleet)"
 
-#: ../src/general/OptionsMenu.cs:1022
+#: ../src/general/OptionsMenu.cs:1022 ../src/general/OptionsMenu.cs:1016
+#: ../src/general/OptionsMenu.cs:958
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Deze taal is {0}% compleet"
 
-#: ../src/general/OptionsMenu.tscn:137
+#: ../src/general/OptionsMenu.tscn:137 ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:135
 msgid "GRAPHICS"
 msgstr "Grafische Kwaliteit"
 
-#: ../src/general/OptionsMenu.tscn:148
+#: ../src/general/OptionsMenu.tscn:148 ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:146
 msgid "SOUND"
 msgstr "Geluid"
 
-#: ../src/general/OptionsMenu.tscn:159
+#: ../src/general/OptionsMenu.tscn:159 ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:157
 msgid "PERFORMANCE"
 msgstr "Prestatie"
 
-#: ../src/general/OptionsMenu.tscn:170
+#: ../src/general/OptionsMenu.tscn:170 ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:168
 msgid "INPUTS"
 msgstr "Invoer"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:213 ../src/general/OptionsMenu.tscn:212
+#: ../src/general/OptionsMenu.tscn:211
 msgid "VSYNC"
 msgstr "vSync"
 
-#: ../src/general/OptionsMenu.tscn:220
+#: ../src/general/OptionsMenu.tscn:220 ../src/general/OptionsMenu.tscn:219
+#: ../src/general/OptionsMenu.tscn:218
 msgid "FULLSCREEN"
 msgstr "Volledig Scherm"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:242 ../src/general/OptionsMenu.tscn:241
+#: ../src/general/OptionsMenu.tscn:240
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-Aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:249
+#: ../src/general/OptionsMenu.tscn:249 ../src/general/OptionsMenu.tscn:248
+#: ../src/general/OptionsMenu.tscn:247
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(hogere waarden verlagen de prestatie)"
 
 #: ../src/general/OptionsMenu.tscn:264 ../src/general/OptionsMenu.tscn:265
+#: ../src/general/OptionsMenu.tscn:263 ../src/general/OptionsMenu.tscn:262
 msgid "DISABLED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:265
+#: ../src/general/OptionsMenu.tscn:265 ../src/general/OptionsMenu.tscn:264
+#: ../src/general/OptionsMenu.tscn:263
 msgid "TWO_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:265
+#: ../src/general/OptionsMenu.tscn:265 ../src/general/OptionsMenu.tscn:264
+#: ../src/general/OptionsMenu.tscn:263
 msgid "FOUR_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:265
+#: ../src/general/OptionsMenu.tscn:265 ../src/general/OptionsMenu.tscn:264
+#: ../src/general/OptionsMenu.tscn:263
 #, fuzzy
 msgid "EIGHT_TIMES"
 msgstr "Rechtermuisknop"
 
-#: ../src/general/OptionsMenu.tscn:265
+#: ../src/general/OptionsMenu.tscn:265 ../src/general/OptionsMenu.tscn:264
+#: ../src/general/OptionsMenu.tscn:263
 msgid "SIXTEEN_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:279
+#: ../src/general/OptionsMenu.tscn:279 ../src/general/OptionsMenu.tscn:278
+#: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
 msgstr "Resolutie:"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:303 ../src/general/OptionsMenu.tscn:302
+#: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
-#: ../src/general/OptionsMenu.tscn:318
+#: ../src/general/OptionsMenu.tscn:318 ../src/general/OptionsMenu.tscn:317
+#: ../src/general/OptionsMenu.tscn:316
 #, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Maximale FPS:"
 
-#: ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.tscn:334 ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.tscn:332
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Kleurenblindheid-correctie:"
 
 #: ../src/general/OptionsMenu.tscn:348 ../src/general/OptionsMenu.tscn:349
+#: ../src/general/OptionsMenu.tscn:347 ../src/general/OptionsMenu.tscn:346
 msgid "NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:349
+#: ../src/general/OptionsMenu.tscn:349 ../src/general/OptionsMenu.tscn:348
+#: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:349
+#: ../src/general/OptionsMenu.tscn:349 ../src/general/OptionsMenu.tscn:348
+#: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:365
+#: ../src/general/OptionsMenu.tscn:365 ../src/general/OptionsMenu.tscn:364
+#: ../src/general/OptionsMenu.tscn:363
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatische Aberratie:"
 
-#: ../src/general/OptionsMenu.tscn:391
+#: ../src/general/OptionsMenu.tscn:391 ../src/general/OptionsMenu.tscn:390
+#: ../src/general/OptionsMenu.tscn:389
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Toon Capaciteiten Balk"
 
@@ -2095,265 +2243,328 @@ msgstr "Toon Capaciteiten Balk"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:407
+#: ../src/general/OptionsMenu.tscn:407 ../src/general/OptionsMenu.tscn:398
+#: ../src/general/OptionsMenu.tscn:397
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Zet GUI Licht Effecten Aan"
 
-#: ../src/general/OptionsMenu.tscn:433
+#: ../src/general/OptionsMenu.tscn:433 ../src/general/OptionsMenu.tscn:424
+#: ../src/general/OptionsMenu.tscn:423
 msgid "MASTER_VOLUME"
 msgstr "Master Volume"
 
 #: ../src/general/OptionsMenu.tscn:459 ../src/general/OptionsMenu.tscn:499
 #: ../src/general/OptionsMenu.tscn:531 ../src/general/OptionsMenu.tscn:563
-#: ../src/general/OptionsMenu.tscn:595
+#: ../src/general/OptionsMenu.tscn:595 ../src/general/OptionsMenu.tscn:450
+#: ../src/general/OptionsMenu.tscn:490 ../src/general/OptionsMenu.tscn:522
+#: ../src/general/OptionsMenu.tscn:554 ../src/general/OptionsMenu.tscn:586
+#: ../src/general/OptionsMenu.tscn:449 ../src/general/OptionsMenu.tscn:489
+#: ../src/general/OptionsMenu.tscn:521 ../src/general/OptionsMenu.tscn:553
+#: ../src/general/OptionsMenu.tscn:585
 msgid "MUTE"
 msgstr "Demp"
 
-#: ../src/general/OptionsMenu.tscn:473
+#: ../src/general/OptionsMenu.tscn:473 ../src/general/OptionsMenu.tscn:464
+#: ../src/general/OptionsMenu.tscn:463
 msgid "MUSIC_VOLUME"
 msgstr "Volume muziek"
 
-#: ../src/general/OptionsMenu.tscn:505
+#: ../src/general/OptionsMenu.tscn:505 ../src/general/OptionsMenu.tscn:496
+#: ../src/general/OptionsMenu.tscn:495
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume omgeving"
 
-#: ../src/general/OptionsMenu.tscn:537
+#: ../src/general/OptionsMenu.tscn:537 ../src/general/OptionsMenu.tscn:528
+#: ../src/general/OptionsMenu.tscn:527
 msgid "SFX_VOLUME"
 msgstr "Volume SFX"
 
-#: ../src/general/OptionsMenu.tscn:569
+#: ../src/general/OptionsMenu.tscn:569 ../src/general/OptionsMenu.tscn:560
+#: ../src/general/OptionsMenu.tscn:559
 msgid "GUI_VOLUME"
 msgstr "Volume GUI"
 
-#: ../src/general/OptionsMenu.tscn:613
+#: ../src/general/OptionsMenu.tscn:613 ../src/general/OptionsMenu.tscn:604
+#: ../src/general/OptionsMenu.tscn:603
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Audio uitvoer apparaat:"
 
-#: ../src/general/OptionsMenu.tscn:641
+#: ../src/general/OptionsMenu.tscn:641 ../src/general/OptionsMenu.tscn:632
+#: ../src/general/OptionsMenu.tscn:631
 msgid "LANGUAGE"
 msgstr "Taal:"
 
 #: ../src/general/OptionsMenu.tscn:659 ../src/general/OptionsMenu.tscn:1239
+#: ../src/general/OptionsMenu.tscn:650 ../src/general/OptionsMenu.tscn:1230
+#: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:677
+#: ../src/general/OptionsMenu.tscn:677 ../src/general/OptionsMenu.tscn:668
+#: ../src/general/OptionsMenu.tscn:667
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Help met vertalen"
 
-#: ../src/general/OptionsMenu.tscn:703
+#: ../src/general/OptionsMenu.tscn:703 ../src/general/OptionsMenu.tscn:694
+#: ../src/general/OptionsMenu.tscn:693
 msgid "COMPOUND_CLOUDS"
 msgstr "Samenstellings-wolken"
 
-#: ../src/general/OptionsMenu.tscn:718
+#: ../src/general/OptionsMenu.tscn:718 ../src/general/OptionsMenu.tscn:709
+#: ../src/general/OptionsMenu.tscn:708
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Wolksimulatie minimum\n"
 "interval:"
 
 #: ../src/general/OptionsMenu.tscn:725 ../src/general/OptionsMenu.tscn:767
+#: ../src/general/OptionsMenu.tscn:716 ../src/general/OptionsMenu.tscn:758
+#: ../src/general/OptionsMenu.tscn:715 ../src/general/OptionsMenu.tscn:757
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(hogere waarden verbeteren prestatie)"
 
-#: ../src/general/OptionsMenu.tscn:760
+#: ../src/general/OptionsMenu.tscn:760 ../src/general/OptionsMenu.tscn:751
+#: ../src/general/OptionsMenu.tscn:750
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Wolk resolutiedeler:"
 
-#: ../src/general/OptionsMenu.tscn:801
+#: ../src/general/OptionsMenu.tscn:801 ../src/general/OptionsMenu.tscn:792
+#: ../src/general/OptionsMenu.tscn:791
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Voer auto-evo uit tijdens het spelen"
 
-#: ../src/general/OptionsMenu.tscn:821
+#: ../src/general/OptionsMenu.tscn:821 ../src/general/OptionsMenu.tscn:812
+#: ../src/general/OptionsMenu.tscn:811
 msgid "DETECTED_CPU_COUNT"
 msgstr "Gedetecteerde CPU count:"
 
-#: ../src/general/OptionsMenu.tscn:838
+#: ../src/general/OptionsMenu.tscn:838 ../src/general/OptionsMenu.tscn:829
+#: ../src/general/OptionsMenu.tscn:828
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Huidige threads:"
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:852 ../src/general/OptionsMenu.tscn:843
+#: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Veronderstel dat de CPU hyperthreading aan heeft staan"
 
-#: ../src/general/OptionsMenu.tscn:860
+#: ../src/general/OptionsMenu.tscn:860 ../src/general/OptionsMenu.tscn:851
+#: ../src/general/OptionsMenu.tscn:850
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Stel handmatig de nummers van achtergrond threads in"
 
-#: ../src/general/OptionsMenu.tscn:870
+#: ../src/general/OptionsMenu.tscn:870 ../src/general/OptionsMenu.tscn:861
+#: ../src/general/OptionsMenu.tscn:860
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/OptionsMenu.tscn:915
+#: ../src/general/OptionsMenu.tscn:915 ../src/general/OptionsMenu.tscn:906
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:921 ../src/general/OptionsMenu.tscn:922
 msgid "TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:931 ../src/general/OptionsMenu.tscn:922
 msgid "VERY_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:931 ../src/general/OptionsMenu.tscn:922
 msgid "SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:931 ../src/general/OptionsMenu.tscn:922
 msgid "LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:931 ../src/general/OptionsMenu.tscn:922
 msgid "VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:931 ../src/general/OptionsMenu.tscn:922
 msgid "HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:931 ../src/general/OptionsMenu.tscn:922
 #, fuzzy
 msgid "EXTREME"
 msgstr "Extra's"
 
-#: ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:1005 ../src/general/OptionsMenu.tscn:996
+#: ../src/general/OptionsMenu.tscn:961
 msgid "RESET_INPUTS"
 msgstr "Reset invoer"
 
-#: ../src/general/OptionsMenu.tscn:1032
+#: ../src/general/OptionsMenu.tscn:1032 ../src/general/OptionsMenu.tscn:1023
+#: ../src/general/OptionsMenu.tscn:988
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Speel intro video"
 
-#: ../src/general/OptionsMenu.tscn:1040
+#: ../src/general/OptionsMenu.tscn:1040 ../src/general/OptionsMenu.tscn:1031
+#: ../src/general/OptionsMenu.tscn:996
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Speel intro bij nieuw spel"
 
-#: ../src/general/OptionsMenu.tscn:1048
+#: ../src/general/OptionsMenu.tscn:1048 ../src/general/OptionsMenu.tscn:1039
+#: ../src/general/OptionsMenu.tscn:1004
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Sla automatisch op tijdens het spelen"
 
-#: ../src/general/OptionsMenu.tscn:1059
+#: ../src/general/OptionsMenu.tscn:1059 ../src/general/OptionsMenu.tscn:1050
+#: ../src/general/OptionsMenu.tscn:1015
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Aantal automatische savegames om te bewaren:"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1087 ../src/general/OptionsMenu.tscn:1078
+#: ../src/general/OptionsMenu.tscn:1043
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Aantal savegames om te bewaren:"
 
-#: ../src/general/OptionsMenu.tscn:1112
+#: ../src/general/OptionsMenu.tscn:1112 ../src/general/OptionsMenu.tscn:1103
+#: ../src/general/OptionsMenu.tscn:1068
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Laat tutorial zien bij nieuw spel"
 
-#: ../src/general/OptionsMenu.tscn:1119
+#: ../src/general/OptionsMenu.tscn:1119 ../src/general/OptionsMenu.tscn:1110
+#: ../src/general/OptionsMenu.tscn:1075
 #, fuzzy
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Laat tutorial zien in huidig spel"
 
-#: ../src/general/OptionsMenu.tscn:1125
+#: ../src/general/OptionsMenu.tscn:1125 ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1081
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 "Je hebt niet-opgeslagen instellingen.\n"
 "Doorgaan?"
 
-#: ../src/general/OptionsMenu.tscn:1137
+#: ../src/general/OptionsMenu.tscn:1137 ../src/general/OptionsMenu.tscn:1128
+#: ../src/general/OptionsMenu.tscn:1093
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat-toetsen ingeschakeld"
 
-#: ../src/general/OptionsMenu.tscn:1145
+#: ../src/general/OptionsMenu.tscn:1145 ../src/general/OptionsMenu.tscn:1136
+#: ../src/general/OptionsMenu.tscn:1101
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een eigen naam"
 
-#: ../src/general/OptionsMenu.tscn:1156
+#: ../src/general/OptionsMenu.tscn:1156 ../src/general/OptionsMenu.tscn:1147
+#: ../src/general/OptionsMenu.tscn:1112
 msgid "CUSTOM_USERNAME"
 msgstr "Gebruikersnaam:"
 
-#: ../src/general/OptionsMenu.tscn:1182
+#: ../src/general/OptionsMenu.tscn:1182 ../src/general/OptionsMenu.tscn:1173
+#: ../src/general/OptionsMenu.tscn:1138
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open screenshots"
 
-#: ../src/general/OptionsMenu.tscn:1190
+#: ../src/general/OptionsMenu.tscn:1190 ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:1146
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Open logs Folder"
 
-#: ../src/general/OptionsMenu.tscn:1200
+#: ../src/general/OptionsMenu.tscn:1200 ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1156
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1214 ../src/general/OptionsMenu.tscn:1215
+#: ../src/general/OptionsMenu.tscn:1205 ../src/general/OptionsMenu.tscn:1206
+#: ../src/general/OptionsMenu.tscn:1170 ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1215
+#: ../src/general/OptionsMenu.tscn:1215 ../src/general/OptionsMenu.tscn:1206
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1215
+#: ../src/general/OptionsMenu.tscn:1215 ../src/general/OptionsMenu.tscn:1206
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1251 ../src/saving/NewSaveMenu.tscn:74
+#: ../src/general/OptionsMenu.tscn:1242 ../src/general/OptionsMenu.tscn:1207
 msgid "SAVE"
 msgstr "Sla op"
 
-#: ../src/general/OptionsMenu.tscn:1268
+#: ../src/general/OptionsMenu.tscn:1268 ../src/general/OptionsMenu.tscn:1259
+#: ../src/general/OptionsMenu.tscn:1224
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standaard"
 
-#: ../src/general/OptionsMenu.tscn:1279
+#: ../src/general/OptionsMenu.tscn:1279 ../src/general/OptionsMenu.tscn:1270
+#: ../src/general/OptionsMenu.tscn:1235
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetten naar standaard?"
 
-#: ../src/general/OptionsMenu.tscn:1280
+#: ../src/general/OptionsMenu.tscn:1280 ../src/general/OptionsMenu.tscn:1271
+#: ../src/general/OptionsMenu.tscn:1236
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Weet je zeker dat je ALLE instellingen wilt resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1288
+#: ../src/general/OptionsMenu.tscn:1288 ../src/general/OptionsMenu.tscn:1279
+#: ../src/general/OptionsMenu.tscn:1244
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Invoer resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1289
+#: ../src/general/OptionsMenu.tscn:1289 ../src/general/OptionsMenu.tscn:1280
+#: ../src/general/OptionsMenu.tscn:1245
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Weet je zeker dat je de invoer wilt resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1298
+#: ../src/general/OptionsMenu.tscn:1298 ../src/general/OptionsMenu.tscn:1289
+#: ../src/general/OptionsMenu.tscn:1254
 msgid "CLOSE_OPTIONS"
 msgstr "Opties sluiten?"
 
-#: ../src/general/OptionsMenu.tscn:1318
+#: ../src/general/OptionsMenu.tscn:1318 ../src/general/OptionsMenu.tscn:1309
+#: ../src/general/OptionsMenu.tscn:1274
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Je hebt niet-opgeslagen instellingen.\n"
 "Doorgaan?"
 
-#: ../src/general/OptionsMenu.tscn:1341
+#: ../src/general/OptionsMenu.tscn:1341 ../src/general/OptionsMenu.tscn:1332
+#: ../src/general/OptionsMenu.tscn:1297
 msgid "SAVE_AND_CONTINUE"
 msgstr "Opslaan en doorgaan"
 
-#: ../src/general/OptionsMenu.tscn:1351
+#: ../src/general/OptionsMenu.tscn:1351 ../src/general/OptionsMenu.tscn:1342
+#: ../src/general/OptionsMenu.tscn:1307
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Annuleren en doorgaan"
 
 #: ../src/general/OptionsMenu.tscn:1368
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
-#: ../src/modding/NewModGUI.tscn:472
+#: ../src/modding/NewModGUI.tscn:472 ../src/general/OptionsMenu.tscn:1359
+#: ../src/general/OptionsMenu.tscn:1324
 msgid "CANCEL"
 msgstr "Annuleer"
 
 #: ../src/general/OptionsMenu.tscn:1379 ../src/general/OptionsMenu.tscn:1387
+#: ../src/general/OptionsMenu.tscn:1370 ../src/general/OptionsMenu.tscn:1378
+#: ../src/general/OptionsMenu.tscn:1335 ../src/general/OptionsMenu.tscn:1343
 msgid "ERROR"
 msgstr "ERROR"
 
-#: ../src/general/OptionsMenu.tscn:1389
+#: ../src/general/OptionsMenu.tscn:1389 ../src/general/OptionsMenu.tscn:1380
+#: ../src/general/OptionsMenu.tscn:1345
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "ERROR: Het opslaan van nieuwe instellingen is mislukt."
 
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1397 ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1353
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Geen screenshot directory gevonden"
 
-#: ../src/general/OptionsMenu.tscn:1399
+#: ../src/general/OptionsMenu.tscn:1399 ../src/general/OptionsMenu.tscn:1390
+#: ../src/general/OptionsMenu.tscn:1355
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Maak een screenshot!"
 
@@ -2672,7 +2883,8 @@ msgstr "Stop"
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
-"De versie van het spel wat je probeert te laden komt niet overeen met de meest recente versie van Thrive.\n"
+"De versie van het spel wat je probeert te laden komt niet overeen met de "
+"meest recente versie van Thrive.\n"
 "Laad het spel handmatig via het menu."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:22
@@ -2745,6 +2957,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2029
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2041
 #, fuzzy
 msgid "N_A"
 msgstr "Geen AI"
@@ -2787,6 +3001,7 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2192
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2181
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -2893,7 +3108,9 @@ msgstr "Membraan-stevigheid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:129
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr "Een stijver membraan geeft meer bescherming, maar maakt het lastiger om te bewegen."
+msgstr ""
+"Een stijver membraan geeft meer bescherming, maar maakt het lastiger om te "
+"bewegen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:158
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2275
@@ -2939,11 +3156,23 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:280
 #, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:281
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:298
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:401
@@ -2999,7 +3228,13 @@ msgstr "Osmoregulatiekosten"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:379
 #, fuzzy
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:380
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -3012,7 +3247,13 @@ msgstr "Thu"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:480
 #, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:481
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -3046,7 +3287,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:874
 #, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:875
 msgid "OXYTOXISOME_DESC"
@@ -3067,7 +3314,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
 #, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
 msgid "PREDATORY_PILUS_DESCRIPTION"
@@ -3076,22 +3329,46 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
 #, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 #, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
 #, fuzzy
@@ -3101,7 +3378,9 @@ msgstr "Stikstofbindende plastide"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Een stijver membraan geeft meer bescherming, maar maakt het lastiger om te bewegen."
+msgstr ""
+"Een stijver membraan geeft meer bescherming, maar maakt het lastiger om te "
+"bewegen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -3122,7 +3401,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1539
 #, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1540
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -3131,7 +3416,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
 #, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
 msgid "THERMOPLAST_DESCRIPTION"
@@ -3146,13 +3437,20 @@ msgstr "Plaats organellen"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1726
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
 #: ../src/microbe_stage/MicrobeHUD.cs:1502
+#: ../src/microbe_stage/MicrobeHUD.cs:1501
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1740
 #, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1741
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -3170,7 +3468,13 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1924
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1925
 msgid "VACUOLE_DESCRIPTION"
@@ -3192,7 +3496,9 @@ msgstr "Stikstofbindende plastide"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2121
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
-msgstr "Een stijver membraan geeft meer bescherming, maar maakt het lastiger om te bewegen."
+msgstr ""
+"Een stijver membraan geeft meer bescherming, maar maakt het lastiger om te "
+"bewegen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2246
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -3392,23 +3698,28 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1267
 #: ../src/microbe_stage/MicrobeStage.tscn:1764
+#: ../src/microbe_stage/MicrobeHUD.cs:1266
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1303
 #: ../src/microbe_stage/MicrobeStage.tscn:1775
+#: ../src/microbe_stage/MicrobeHUD.cs:1302
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:799
+#: ../src/microbe_stage/MicrobeStage.cs:776
 msgid "PLAYER_REPRODUCED"
 msgstr "speler reproduceerde"
 
 #: ../src/microbe_stage/MicrobeStage.cs:813
+#: ../src/microbe_stage/MicrobeStage.cs:790
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:837
+#: ../src/microbe_stage/MicrobeStage.cs:813
 msgid "PLAYER_DIED"
 msgstr "speler stierf"
 
@@ -3500,6 +3811,7 @@ msgid "PAUSED"
 msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:210
+#: ../src/microbe_stage/PatchMapGenerator.cs:187
 #, fuzzy
 msgid "PATCH_NAME"
 msgstr "Grot"
@@ -3554,64 +3866,81 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:372
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
 msgid "ATP_PRODUCTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:402
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:422
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
 msgid "OSMOREGULATION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:428
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
 msgid "BASE_MOVEMENT"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:440
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:406
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:524
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:520
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1175
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1167
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1177
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1169
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2017
 msgid "FAILED"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2046
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2023
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2035
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULATIE:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2160
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2149
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2153
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2171
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2160
 msgid "ENERGY_SOURCES"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2177
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3696,7 +4025,13 @@ msgstr "ATP-balans"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1041
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1045
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1280
@@ -4018,12 +4353,24 @@ msgstr ""
 #: ../src/modding/ModLoader.cs:438
 #, fuzzy
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/modding/ModLoader.cs:461
 #, fuzzy
 msgid "MOD_HARMONY_UNLOAD_FAILED_EXCEPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/modding/ModLoader.cs:473
 #, fuzzy
@@ -4133,7 +4480,13 @@ msgstr ""
 #: ../src/modding/NewModGUI.tscn:186
 #, fuzzy
 msgid "MOD_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/modding/ModManager.tscn:472
 msgid "MORE_INFO"
@@ -4176,7 +4529,13 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:578
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/modding/ModManager.tscn:579
 #, fuzzy
@@ -4198,7 +4557,9 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:736 ../src/modding/NewModGUI.tscn:209
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr "Een stijver membraan geeft meer bescherming, maar maakt het lastiger om te bewegen."
+msgstr ""
+"Een stijver membraan geeft meer bescherming, maar maakt het lastiger om te "
+"bewegen."
 
 #: ../src/modding/ModManager.tscn:774 ../src/modding/NewModGUI.tscn:233
 msgid "MOD_ICON_FILE"
@@ -4268,7 +4629,9 @@ msgstr ""
 #: ../src/modding/ModUploader.cs:311
 #, fuzzy
 msgid "MISSING_DESCRIPTION"
-msgstr "Een stijver membraan geeft meer bescherming, maar maakt het lastiger om te bewegen."
+msgstr ""
+"Een stijver membraan geeft meer bescherming, maar maakt het lastiger om te "
+"bewegen."
 
 #: ../src/modding/ModUploader.cs:319
 #, fuzzy
@@ -4329,7 +4692,13 @@ msgstr ""
 #: ../src/modding/ModUploader.cs:645
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:307
 msgid "FORM_ERROR_MESSAGE"
@@ -4377,7 +4746,13 @@ msgstr "\"{0}\" - {1}"
 #: ../src/modding/ModUploader.tscn:186
 #, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
@@ -4429,7 +4804,13 @@ msgstr ""
 #: ../src/modding/NewModGUI.cs:180
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/modding/NewModGUI.cs:239
 msgid "INVALID_URL_FORMAT"
@@ -4580,7 +4961,13 @@ msgstr "Auto-evo mislukt"
 #: ../src/saving/SaveHelper.cs:485 ../src/saving/SaveHelper.cs:536
 #, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten groeien."
+msgstr ""
+"De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van "
+"ionen, eiwitten en andere gemengd met water, wat de lege binnenkant van een "
+"cel vult. Een fuctie van cytoplasma is fermentatie, de conversie van glucose "
+"naar ATP. Sommige cellen vertrouwen op dit proces om genoeg energie te "
+"krijgen. Het wordt ook gebruikt om moleculen op te slaan en de cel te laten "
+"groeien."
 
 #: ../src/saving/SaveHelper.cs:494 ../src/saving/SaveHelper.cs:513
 msgid "SAVING_NOT_POSSIBLE"
@@ -4617,7 +5004,9 @@ msgstr "Ongeldig"
 
 #: ../src/saving/SaveList.cs:219
 msgid "SAVE_DELETE_WARNING"
-msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je {0} definitief wilt verwijderen?"
+msgstr ""
+"Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. "
+"Weet je zeker dat je {0} definitief wilt verwijderen?"
 
 #: ../src/saving/SaveList.tscn:51
 msgid "NO_SAVEGAMES_FOUND"
@@ -4639,15 +5028,19 @@ msgstr "Niet-compatibel opgeslagen bestand laden?"
 #: ../src/saving/SaveList.tscn:78
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"Dit opgeslagen bestand is van een nieuwere versie van Thrive en is waarschijnlijk niet-compatibel.\n"
+"Dit opgeslagen bestand is van een nieuwere versie van Thrive en is "
+"waarschijnlijk niet-compatibel.\n"
 "Wil je toch proberen het opgeslagen bestand te laden?"
 
 #: ../src/saving/SaveList.tscn:86
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
-"Dit opgeslagen bestand is van een oudere versie van Thrive en kan niet-compatibel zijn.\n"
-"Aangezien Thrive momenteel in een vroeg stadium van zijn ontwikkeling is, is opslagcompatibiliteit geen prioriteit.\n"
-"Je kan alle problemen die je tegenkomt melden, maar ze zijn momenteel niet de hoogste prioriteit.\n"
+"Dit opgeslagen bestand is van een oudere versie van Thrive en kan niet-"
+"compatibel zijn.\n"
+"Aangezien Thrive momenteel in een vroeg stadium van zijn ontwikkeling is, is "
+"opslagcompatibiliteit geen prioriteit.\n"
+"Je kan alle problemen die je tegenkomt melden, maar ze zijn momenteel niet "
+"de hoogste prioriteit.\n"
 "Wil je toch proberen om het opgeslagen bestand te laden?"
 
 #: ../src/saving/SaveList.tscn:93
@@ -4658,7 +5051,8 @@ msgstr "Ongeldig opgeslagen bestand laden?"
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Opgeslagen informatie kon niet worden geladen van dit bestand.\n"
-"Dit opgeslagen bestand is hoogstwaarschijnlijk corrupt of van een nieuwer formaat dat niet wordt begrepen door deze versie van Thrive.\n"
+"Dit opgeslagen bestand is hoogstwaarschijnlijk corrupt of van een nieuwer "
+"formaat dat niet wordt begrepen door deze versie van Thrive.\n"
 "Wil je toch proberen om het opgeslagen bestand te laden?"
 
 #: ../src/saving/SaveList.tscn:101
@@ -4676,8 +5070,10 @@ msgstr "Geselecteerd opgeslagen bestand is upgradebaar"
 #: ../src/saving/SaveList.tscn:113
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"De geselecteerde save is van een oudere versie van Thrive maar kan worden geüpgraded.\n"
-"Een backup bestand zal worden gemaakt voor de upgrade als deze nog niet is gemaakt.\n"
+"De geselecteerde save is van een oudere versie van Thrive maar kan worden "
+"geüpgraded.\n"
+"Een backup bestand zal worden gemaakt voor de upgrade als deze nog niet is "
+"gemaakt.\n"
 "Als je upgraden skipt, wordt geprobeerd de save normaal te laden.\n"
 "Probeer deze save te upgraden?"
 
@@ -4687,7 +5083,8 @@ msgstr "Het upgraden van de save is mislukt"
 
 #: ../src/saving/SaveList.tscn:120
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr "Het upgraden van de geselecteerde save is gefaald door de volgende error:"
+msgstr ""
+"Het upgraden van de geselecteerde save is gefaald door de volgende error:"
 
 #: ../src/saving/SaveList.tscn:127
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROTOTYPE_PROMPT"
@@ -4697,9 +5094,13 @@ msgstr "Geselecteerd opgeslagen bestand is een niet-compatibel prototype"
 #, fuzzy
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
-"De geselecteerde save die moet worden geladen is een save gemaakt in een prototype met een andere Thrive versie.\n"
-"Daarom kan deze save niet geladen worden, omdat prototype saves niet upgradebaar zijn.\n"
-"Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
+"De geselecteerde save die moet worden geladen is een save gemaakt in een "
+"prototype met een andere Thrive versie.\n"
+"Daarom kan deze save niet geladen worden, omdat prototype saves niet "
+"upgradebaar zijn.\n"
+"Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft "
+"compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen "
+"upgraders voor alle versies."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
@@ -4933,7 +5334,14 @@ msgstr "Microbe vrij bouwen"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
-msgstr "Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. [thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy\"][/thrive:compound] te schieten als je een vergif vacuole hebt. [thrive:input]g_toggle_engulf[/thrive:input] om de verzwelg-modus aan en uit te zetten."
+msgstr ""
+"Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:"
+"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
+"input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. "
+"[thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy"
+"\"][/thrive:compound] te schieten als je een vergif vacuole hebt. [thrive:"
+"input]g_toggle_engulf[/thrive:input] om de verzwelg-modus aan en uit te "
+"zetten."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
 msgid "TUTORIAL_VIEW_NOW"
