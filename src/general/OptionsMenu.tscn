@@ -51,6 +51,7 @@ ColourblindSettingPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/
 ChromaticAberrationSliderPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount")
 ChromaticAberrationTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle")
 DisplayAbilitiesBarTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayAbilitiesBar")
+DisplayBackgroundParticlesTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayBackgroundParticles")
 GUILightEffectsTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/GUILightsEffectToggle")
 SoundTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound")
 MasterVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume")
@@ -389,10 +390,18 @@ size_flags_horizontal = 0
 pressed = true
 text = "DISPLAY_ABILITIES_BAR"
 
-[node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
+[node name="DisplayBackgroundParticles" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 314.0
-margin_right = 300.0
+margin_right = 360.0
 margin_bottom = 339.0
+size_flags_horizontal = 0
+pressed = true
+text = "DISPLAY_BACKGROUND_PARTICLES"
+
+[node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
+margin_top = 349.0
+margin_right = 300.0
+margin_bottom = 374.0
 size_flags_horizontal = 0
 pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
@@ -1402,6 +1411,7 @@ DialogText = "TRY_TAKING_SOME_SCREENSHOTS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle" to="." method="OnChromaticAberrationToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount" to="." method="OnChromaticAberrationValueChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayAbilitiesBar" to="." method="OnDisplayAbilitiesHotBarToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/DisplayBackgroundParticles" to="." method="OnDisplayBackgroundParticlesToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/GUILightsEffectToggle" to="." method="OnGUILightEffectsToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]

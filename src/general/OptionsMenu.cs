@@ -68,6 +68,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath DisplayAbilitiesBarTogglePath = null!;
 
     [Export]
+    public NodePath DisplayBackgroundParticlesTogglePath = null!;
+
+    [Export]
     public NodePath GUILightEffectsTogglePath = null!;
 
     // Sound tab.
@@ -238,6 +241,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox chromaticAberrationToggle = null!;
     private Slider chromaticAberrationSlider = null!;
     private CustomCheckBox displayAbilitiesHotBarToggle = null!;
+    private CustomCheckBox displayBackgroundParticlesToggle = null!;
     private CustomCheckBox guiLightEffectsToggle = null!;
 
     // Sound tab
@@ -358,6 +362,7 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
         displayAbilitiesHotBarToggle = GetNode<CustomCheckBox>(DisplayAbilitiesBarTogglePath);
+        displayBackgroundParticlesToggle = GetNode<CustomCheckBox>(DisplayBackgroundParticlesTogglePath);
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
 
         // Sound
@@ -506,6 +511,7 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
         displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
+        displayBackgroundParticlesToggle.Pressed = settings.DisplayBackgroundParticles;
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
         DisplayResolution();
 
@@ -1229,6 +1235,13 @@ public class OptionsMenu : ControlWithInput
     private void OnDisplayAbilitiesHotBarToggled(bool toggle)
     {
         Settings.Instance.DisplayAbilitiesHotBar.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnDisplayBackgroundParticlesToggled(bool toggle)
+    {
+        Settings.Instance.DisplayBackgroundParticles.Value = toggle;
 
         UpdateResetSaveButtonState();
     }
