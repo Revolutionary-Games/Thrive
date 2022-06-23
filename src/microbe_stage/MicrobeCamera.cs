@@ -115,8 +115,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
         materialToUpdate = (ShaderMaterial)material;
 
-        Settings.Instance.DisplayBackgroundParticles.OnChanged += OnDisplayBackgroundParticlesChanged;
-
         ResolveNodeReferences();
 
         if (!IsLoadedFromSave)
@@ -125,14 +123,18 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     public override void _EnterTree()
     {
-        InputManager.RegisterReceiver(this);
         base._EnterTree();
+        InputManager.RegisterReceiver(this);
+
+        Settings.Instance.DisplayBackgroundParticles.OnChanged += OnDisplayBackgroundParticlesChanged;
     }
 
     public override void _ExitTree()
     {
-        InputManager.UnregisterReceiver(this);
         base._ExitTree();
+        InputManager.UnregisterReceiver(this);
+
+        Settings.Instance.DisplayBackgroundParticles.OnChanged -= OnDisplayBackgroundParticlesChanged;
     }
 
     public void ResolveNodeReferences()
