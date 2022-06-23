@@ -207,13 +207,12 @@ public class SpawnSystem
         {
             var spawn = queuedSpawns.First();
             var enumerator = spawn.Spawns;
-
-            bool finished = false;
             bool spawningClouds = spawn.SpawnType is CompoundCloudSpawner;
 
-            // Only spawn if we're far enough away to avoid pop-in
-            while ((spawningClouds || estimateEntityCount < Settings.Instance.MaxSpawnedEntities) &&
-                   (playerPosition - spawn.Location).Length() > Constants.SPAWN_SECTOR_SIZE &&
+            // Discard the whole spawn if we're too close to the player
+            bool finished = (playerPosition - spawn.Location).Length() < Constants.SPAWN_SECTOR_SIZE;
+
+            while (!finished && (spawningClouds || estimateEntityCount < Settings.Instance.MaxSpawnedEntities) &&
                    spawnsLeftThisFrame > 0)
             {
                 if (!enumerator.MoveNext())
