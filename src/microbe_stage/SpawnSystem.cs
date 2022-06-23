@@ -207,12 +207,11 @@ public class SpawnSystem
         {
             var spawn = queuedSpawns.First();
             var enumerator = spawn.Spawns;
-            bool spawningClouds = spawn.SpawnType is CompoundCloudSpawner;
 
             // Discard the whole spawn if we're too close to the player
             bool finished = (playerPosition - spawn.Location).Length() < Constants.SPAWN_SECTOR_SIZE;
 
-            while (!finished && (spawningClouds || estimateEntityCount < Settings.Instance.MaxSpawnedEntities) &&
+            while (!finished && estimateEntityCount < Settings.Instance.MaxSpawnedEntities &&
                    spawnsLeftThisFrame > 0)
             {
                 if (!enumerator.MoveNext())
@@ -226,9 +225,7 @@ public class SpawnSystem
                     enumerator.Current ?? throw new Exception("Queued spawn enumerator returned null"),
                     spawn.SpawnType);
 
-                if (!spawningClouds)
-                    ++estimateEntityCount;
-
+                ++estimateEntityCount;
                 --spawnsLeftThisFrame;
                 ++spawned;
             }
