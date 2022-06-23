@@ -93,8 +93,7 @@ public class Settings
     public SettingValue<bool> DisplayAbilitiesHotBar { get; set; } = new(true);
 
     /// <summary>
-    ///   Display or hide the background particles in game
-    ///   background particles can also be in foreground
+    ///   Display or hide the background particles in game background particles can also be in foreground
     /// </summary>
     public SettingValue<bool> DisplayBackgroundParticles { get; set; } = new(true);
 
