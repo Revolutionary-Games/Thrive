@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-18 14:27-0500\n"
+"POT-Creation-Date: 2022-06-22 21:02+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -18,6 +18,22 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.8.0\n"
+
+#: ../simulation_parameters/common/difficulty_presets.json:3
+msgid "DIFFICULTY_PRESET_EASY"
+msgstr ""
+
+#: ../simulation_parameters/common/difficulty_presets.json:14
+msgid "DIFFICULTY_PRESET_NORMAL"
+msgstr ""
+
+#: ../simulation_parameters/common/difficulty_presets.json:25
+msgid "DIFFICULTY_PRESET_HARD"
+msgstr ""
+
+#: ../simulation_parameters/common/difficulty_presets.json:36
+msgid "DIFFICULTY_PRESET_CUSTOM"
+msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
@@ -869,7 +885,7 @@ msgstr "Bioluminiscenční vakuola"
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:779
+#: ../simulation_parameters/microbe_stage/organelles.json:780
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
 msgid "CILIA"
 msgstr "Řasinky"
@@ -1643,6 +1659,7 @@ msgid "CLOSE"
 msgstr "Zavřít"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
+#: ../src/general/NewGameSettings.cs:567
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/MicrobeHUD.cs:717
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
@@ -1660,7 +1677,7 @@ msgstr "{0} koncentrace se snížily o {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Koncentrace glukózy drasticky klesla!"
 
-#: ../src/general/MainMenu.cs:239
+#: ../src/general/MainMenu.cs:241
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Přihlášen jako: {0}"
 
@@ -1722,8 +1739,8 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor mikrobů"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1219
-#: ../src/general/PauseMenu.tscn:263
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1219 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1742,21 +1759,258 @@ msgstr "Galerie"
 msgid "LICENSES"
 msgstr "Licence"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:501
 msgid "GLES2_MODE_WARNING"
 msgstr "Varování režimu GLES2"
 
-#: ../src/general/MainMenu.tscn:500
+#: ../src/general/MainMenu.tscn:503
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia grafiky pro spuštění Thrive."
 
-#: ../src/general/MainMenu.tscn:504
+#: ../src/general/MainMenu.tscn:507
 msgid "MOD_LOAD_ERRORS"
 msgstr "Chyby načítání módu"
 
-#: ../src/general/MainMenu.tscn:505
+#: ../src/general/MainMenu.tscn:508
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Při načítání jednoho nebo více módů došlo k chybám. Protokoly mohou obsahovat další informace."
+
+#: ../src/general/NewGameSettings.cs:284
+#: ../src/general/NewGameSettings.tscn:1054
+#, fuzzy
+msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
+msgstr "Menu"
+
+#: ../src/general/NewGameSettings.cs:291
+#, fuzzy
+msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
+msgstr "Menu"
+
+#: ../src/general/NewGameSettings.tscn:115
+#: ../src/general/NewGameSettings.tscn:328
+msgid "DIFFICULTY_PRESET"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:142
+#: ../src/general/NewGameSettings.tscn:815
+msgid "LAWK_ONLY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:149
+#: ../src/general/NewGameSettings.tscn:822
+#, fuzzy
+msgid "LAWK_ONLY_EXPLANATION"
+msgstr ""
+"Bojácní mikrobi prchají na větší vzdálenosti\n"
+"a obecně častěji prchají před predátory.\n"
+"Odvážní mikrobi se nenechají zastrašit blízkými predátory \n"
+"a spíše zaútočí zpět."
+
+#: ../src/general/NewGameSettings.tscn:165
+#: ../src/general/NewGameSettings.tscn:838
+msgid "LIFE_ORIGIN"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:172
+#: ../src/general/NewGameSettings.tscn:845
+#, fuzzy
+msgid "LIFE_ORIGIN_EXPLANATION"
+msgstr ""
+"Bojácní mikrobi prchají na větší vzdálenosti\n"
+"a obecně častěji prchají před predátory.\n"
+"Odvážní mikrobi se nenechají zastrašit blízkými predátory \n"
+"a spíše zaútočí zpět."
+
+#: ../src/general/NewGameSettings.tscn:186
+#: ../src/general/NewGameSettings.tscn:859
+#, fuzzy
+msgid "LIFE_ORIGIN_TOOLTIP"
+msgstr "Spáchat sebevraždu"
+
+#: ../src/general/NewGameSettings.tscn:188
+#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:862
+msgid "LIFE_ORIGIN_VENTS"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:862
+msgid "LIFE_ORIGIN_POND"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:862
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:204
+#: ../src/general/NewGameSettings.tscn:877
+msgid "PLANET_RANDOM_SEED"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:223
+#: ../src/general/NewGameSettings.tscn:896
+#, fuzzy
+msgid "RANDOM_SEED_TOOLTIP"
+msgstr "Pozastavit hru"
+
+#: ../src/general/NewGameSettings.tscn:268
+msgid "DIFFICULTY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:278
+msgid "PLANET"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:180
+msgid "MISC"
+msgstr "Ostatní"
+
+#: ../src/general/NewGameSettings.tscn:367
+msgid "MUTATION_COST_MULTIPLIER"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:412
+#, fuzzy
+msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
+msgstr ""
+"Aktivní mikrobi se rozběhnou, když se nic zajímavého neděje.\n"
+"Přisedlé mikroby jsou nehybné a čekají na změnu prostředí, než začnou jednat."
+
+#: ../src/general/NewGameSettings.tscn:429
+#, fuzzy
+msgid "AI_MUTATION_RATE"
+msgstr "Body mutace"
+
+#: ../src/general/NewGameSettings.tscn:474
+#, fuzzy
+msgid "AI_MUTATION_RATE_EXPLANATION"
+msgstr "Na tomto panelu jsou zobrazena čísla, na jejichž základě funguje predikce auto-evo. Celková energie, kterou je druh schopen zachytit, a náklady na jednoho jedince druhu určují konečnou populaci. Auto-evo používá zjednodušený model reality k výpočtu toho, jak dobře si druhy vedou na základě energie, kterou jsou schopny nasbírat. U každého zdroje potravy je zobrazeno, kolik energie z něj druh získá. Kromě toho je zobrazena celková energie, která je z daného zdroje k dispozici. Podíl, který druh získá z celkové energie, je založen na tom, jak velké je jeho fitness v porovnání s celkovým fitness. Fitness je měřítkem toho, jak dobře dokáže druh daný zdroj potravy využít."
+
+#: ../src/general/NewGameSettings.tscn:491
+#, fuzzy
+msgid "COMPOUND_CLOUD_DENSITY"
+msgstr "Mračna sloučenin"
+
+#: ../src/general/NewGameSettings.tscn:536
+#, fuzzy
+msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
+msgstr ""
+"Oportunističtí mikrobi budou soupeřit s konkurenty o kousky\n"
+"a pokud se jim nepodaří kořist pohltit, pokusí se ji ulovit pomocí toxinů.\n"
+"Opatrní mikrobi by se nemuseli vystavovat nebezpečí kvůli kouskům."
+
+#: ../src/general/NewGameSettings.tscn:553
+msgid "PLAYER_DEATH_POPULATION_PENALTY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:598
+#, fuzzy
+msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
+msgstr "Na tomto panelu jsou zobrazena čísla, na jejichž základě funguje predikce auto-evo. Celková energie, kterou je druh schopen zachytit, a náklady na jednoho jedince druhu určují konečnou populaci. Auto-evo používá zjednodušený model reality k výpočtu toho, jak dobře si druhy vedou na základě energie, kterou jsou schopny nasbírat. U každého zdroje potravy je zobrazeno, kolik energie z něj druh získá. Kromě toho je zobrazena celková energie, která je z daného zdroje k dispozici. Podíl, který druh získá z celkové energie, je založen na tom, jak velké je jeho fitness v porovnání s celkovým fitness. Fitness je měřítkem toho, jak dobře dokáže druh daný zdroj potravy využít."
+
+#: ../src/general/NewGameSettings.tscn:615
+msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:659
+#, fuzzy
+msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
+msgstr "Na tomto panelu jsou zobrazena čísla, na jejichž základě funguje predikce auto-evo. Celková energie, kterou je druh schopen zachytit, a náklady na jednoho jedince druhu určují konečnou populaci. Auto-evo používá zjednodušený model reality k výpočtu toho, jak dobře si druhy vedou na základě energie, kterou jsou schopny nasbírat. U každého zdroje potravy je zobrazeno, kolik energie z něj druh získá. Kromě toho je zobrazena celková energie, která je z daného zdroje k dispozici. Podíl, který druh získá z celkové energie, je založen na tom, jak velké je jeho fitness v porovnání s celkovým fitness. Fitness je měřítkem toho, jak dobře dokáže druh daný zdroj potravy využít."
+
+#: ../src/general/NewGameSettings.tscn:676
+#, fuzzy
+msgid "OSMOREGULATION_COST_MULTIPLIER"
+msgstr "Náklady na osmoregulaci"
+
+#: ../src/general/NewGameSettings.tscn:721
+#, fuzzy
+msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+msgstr "Náklady na osmoregulaci"
+
+#: ../src/general/NewGameSettings.tscn:733
+msgid "FREE_GLUCOSE_CLOUD"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:740
+#, fuzzy
+msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
+msgstr ""
+"Soustředění mikrobi budou hledat kousky nebo kořist na větší vzdálenosti \n"
+"a mohou být mnohem náročnější na kusy.\n"
+"Reagující mikroby se dříve přepnou na nové cíle."
+
+#: ../src/general/NewGameSettings.tscn:777
+#, fuzzy
+msgid "PATCH_MAP_TYPE"
+msgstr "Mapa lokací"
+
+#: ../src/general/NewGameSettings.tscn:784
+#, fuzzy
+msgid "PATCH_MAP_TYPE_EXPLANATION"
+msgstr ""
+"Aktivní mikrobi se rozběhnou, když se nic zajímavého neděje.\n"
+"Přisedlé mikroby jsou nehybné a čekají na změnu prostředí, než začnou jednat."
+
+#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:800
+msgid "PATCH_MAP_TYPE_PROCEDURAL"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:800
+msgid "PATCH_MAP_TYPE_CLASSIC"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:944
+msgid "PLANET_GENERATION_TEASER"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:976
+#, fuzzy
+msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+msgstr "Umístit organelu"
+
+#: ../src/general/NewGameSettings.tscn:983
+msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:996
+#, fuzzy
+msgid "EASTER_EGGS"
+msgstr "Vpíjenka (Didinium) a Trepka (Paramecium) jsou učebnicovým příkladem vztahu predátora a kořisti, který byl studován po celá desetiletí. A co ty, jsi Didinium nebo Paramecium? Predátor nebo kořist?"
+
+#: ../src/general/NewGameSettings.tscn:1003
+#, fuzzy
+msgid "EASTER_EGGS_EXPLANATION"
+msgstr ""
+"Bojácní mikrobi prchají na větší vzdálenosti\n"
+"a obecně častěji prchají před predátory.\n"
+"Odvážní mikrobi se nenechají zastrašit blízkými predátory \n"
+"a spíše zaútočí zpět."
+
+#: ../src/general/NewGameSettings.tscn:1031
+#, fuzzy
+msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
+msgstr "Menu"
+
+#: ../src/general/NewGameSettings.tscn:1033
+msgid "ADVANCED_VIEW"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:1044
+#, fuzzy
+msgid "BASIC_VIEW_BUTTON_TOOLTIP"
+msgstr "Spáchat sebevraždu"
+
+#: ../src/general/NewGameSettings.tscn:1045
+msgid "BASIC_VIEW"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:1055
+#, fuzzy
+msgid "CONFIRM_NORMAL"
+msgstr "POTVRDIT"
 
 #: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:291
 #, fuzzy
@@ -1794,10 +2048,6 @@ msgstr "Výkon"
 #: ../src/general/OptionsMenu.tscn:169
 msgid "INPUTS"
 msgstr "Ovládání"
-
-#: ../src/general/OptionsMenu.tscn:180
-msgid "MISC"
-msgstr "Ostatní"
 
 #: ../src/general/OptionsMenu.tscn:212
 msgid "VSYNC"
@@ -2525,8 +2775,8 @@ msgstr "RAW"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2029
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2041
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
 msgid "N_A"
 msgstr "N/A"
 
@@ -2568,7 +2818,7 @@ msgid "SLIDESHOW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2181
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2192
 msgid "NO_DATA_TO_SHOW"
 msgstr "Žádná data k zobrazení"
 
@@ -2933,7 +3183,7 @@ msgstr "Neprobíhají žádné procesy"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1726
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
-#: ../src/microbe_stage/MicrobeHUD.cs:1501
+#: ../src/microbe_stage/MicrobeHUD.cs:1502
 msgid "TO_BE_IMPLEMENTED"
 msgstr "K implementaci."
 
@@ -3176,25 +3426,25 @@ msgstr "málo"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "velmi málo"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1266
+#: ../src/microbe_stage/MicrobeHUD.cs:1267
 #: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1302
+#: ../src/microbe_stage/MicrobeHUD.cs:1303
 #: ../src/microbe_stage/MicrobeStage.tscn:1775
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:776
+#: ../src/microbe_stage/MicrobeStage.cs:799
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč se rozmnožil"
 
-#: ../src/microbe_stage/MicrobeStage.cs:790
+#: ../src/microbe_stage/MicrobeStage.cs:813
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Nemůžete použít cheat spawnout nepřítele, protože se v této oblasti se nevyskytují nepřátelské druhy"
 
-#: ../src/microbe_stage/MicrobeStage.cs:813
+#: ../src/microbe_stage/MicrobeStage.cs:837
 msgid "PLAYER_DIED"
 msgstr "hráč zemřel"
 
@@ -3283,7 +3533,7 @@ msgstr "Přidat nové tlačítko"
 msgid "PAUSED"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:187
+#: ../src/microbe_stage/PatchMapGenerator.cs:210
 #, fuzzy
 msgid "PATCH_NAME"
 msgstr "Jeskyně"
@@ -3336,66 +3586,66 @@ msgstr "Reagující"
 msgid "FOCUSED"
 msgstr "Soustředěnost"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:372
 msgid "ATP_PRODUCTION"
 msgstr "Produkce ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "VÝROBA ATP JE PŘÍLIŠ NÍZKÁ!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:402
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:422
 msgid "OSMOREGULATION"
 msgstr "Osmoregulace"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:428
 msgid "BASE_MOVEMENT"
 msgstr "Základní pohyb"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:406
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:440
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:520
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:524
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1167
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1175
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1169
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1177
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2017
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
 #, fuzzy
 msgid "FAILED"
 msgstr "Chyba ukládání"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2023
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2035
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2046
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2149
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2160
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie v {0} pro {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2153
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2164
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Celková získaná energie je {0} s individuálními náklady {1}, což vede k nekorigované populaci {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2160
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2171
 msgid "ENERGY_SOURCES"
 msgstr "Zdroje energie:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2177
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energie: {1} (fitness: {2}) celková dostupná energie: {3} (celková zdatnost: {4})"
 
@@ -4805,9 +5055,6 @@ msgstr "Tutoriál"
 
 #~ msgid "PATCH_PANGONIAN_TIDEPOOL"
 #~ msgstr "Pangoniánská přílivová jezírka"
-
-#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-#~ msgstr "Pangoniánský Batypelagiál"
 
 #~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 #~ msgstr "Pangoniánský Abysopelagiál"

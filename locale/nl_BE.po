@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-18 14:27-0500\n"
+"POT-Creation-Date: 2022-06-22 21:02+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -18,6 +18,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.11.2\n"
 "Generated-By: Babel 2.9.0\n"
+
+#: ../simulation_parameters/common/difficulty_presets.json:3
+msgid "DIFFICULTY_PRESET_EASY"
+msgstr ""
+
+#: ../simulation_parameters/common/difficulty_presets.json:14
+msgid "DIFFICULTY_PRESET_NORMAL"
+msgstr ""
+
+#: ../simulation_parameters/common/difficulty_presets.json:25
+msgid "DIFFICULTY_PRESET_HARD"
+msgstr ""
+
+#: ../simulation_parameters/common/difficulty_presets.json:36
+msgid "DIFFICULTY_PRESET_CUSTOM"
+msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
@@ -866,7 +882,7 @@ msgstr "Bioluminescente Vacuole"
 msgid "THERMOPLAST"
 msgstr "Thermoplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:779
+#: ../simulation_parameters/microbe_stage/organelles.json:780
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
 msgid "CILIA"
 msgstr "Trilharen"
@@ -1646,6 +1662,7 @@ msgid "CLOSE"
 msgstr "Sluit"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
+#: ../src/general/NewGameSettings.cs:567
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/MicrobeHUD.cs:717
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
@@ -1663,7 +1680,7 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:239
+#: ../src/general/MainMenu.cs:241
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als : {0}"
 
@@ -1725,8 +1742,8 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1219
-#: ../src/general/PauseMenu.tscn:263
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1219 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
@@ -1745,21 +1762,258 @@ msgstr "Kunst galerij"
 msgid "LICENSES"
 msgstr "Licenties"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:501
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Moduswaarschuwing"
 
-#: ../src/general/MainMenu.tscn:500
+#: ../src/general/MainMenu.tscn:503
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Je gebruikt GLES2 om Thrive uit te voeren. Dit is ernstig ongetest en zal waarschijnlijk problemen veroorzaken. Probeer je video drivers te updaten en/of gebruik te maken van AMD of Nvidia graphics om Thrive uit te voeren."
 
-#: ../src/general/MainMenu.tscn:504
+#: ../src/general/MainMenu.tscn:507
 msgid "MOD_LOAD_ERRORS"
 msgstr "Errors tijdens het laden van mods"
 
-#: ../src/general/MainMenu.tscn:505
+#: ../src/general/MainMenu.tscn:508
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Er zijn fouten opgetreden bij het laden van 1 of meer mods. Logs kunnen meer informatie bevatten."
+
+#: ../src/general/NewGameSettings.cs:284
+#: ../src/general/NewGameSettings.tscn:1054
+#, fuzzy
+msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
+msgstr "Pauze menu"
+
+#: ../src/general/NewGameSettings.cs:291
+#, fuzzy
+msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
+msgstr "Pauze menu"
+
+#: ../src/general/NewGameSettings.tscn:115
+#: ../src/general/NewGameSettings.tscn:328
+msgid "DIFFICULTY_PRESET"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:142
+#: ../src/general/NewGameSettings.tscn:815
+msgid "LAWK_ONLY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:149
+#: ../src/general/NewGameSettings.tscn:822
+#, fuzzy
+msgid "LAWK_ONLY_EXPLANATION"
+msgstr ""
+"Angstige microben zullen over grotere afstanden vluchten\n"
+"en hebben meer kans om te vluchten voor roofdieren in het algemeen.\n"
+"Dappere microben worden niet geïntimideerd door nabijgelegen roofdieren\n"
+"en zullen waarschijnlijk terug aanvallen."
+
+#: ../src/general/NewGameSettings.tscn:165
+#: ../src/general/NewGameSettings.tscn:838
+msgid "LIFE_ORIGIN"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:172
+#: ../src/general/NewGameSettings.tscn:845
+#, fuzzy
+msgid "LIFE_ORIGIN_EXPLANATION"
+msgstr ""
+"Angstige microben zullen over grotere afstanden vluchten\n"
+"en hebben meer kans om te vluchten voor roofdieren in het algemeen.\n"
+"Dappere microben worden niet geïntimideerd door nabijgelegen roofdieren\n"
+"en zullen waarschijnlijk terug aanvallen."
+
+#: ../src/general/NewGameSettings.tscn:186
+#: ../src/general/NewGameSettings.tscn:859
+#, fuzzy
+msgid "LIFE_ORIGIN_TOOLTIP"
+msgstr "Zelfmoord"
+
+#: ../src/general/NewGameSettings.tscn:188
+#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:861
+#: ../src/general/NewGameSettings.tscn:862
+msgid "LIFE_ORIGIN_VENTS"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:862
+msgid "LIFE_ORIGIN_POND"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:862
+msgid "LIFE_ORIGIN_PANSPERMIA"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:204
+#: ../src/general/NewGameSettings.tscn:877
+msgid "PLANET_RANDOM_SEED"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:223
+#: ../src/general/NewGameSettings.tscn:896
+#, fuzzy
+msgid "RANDOM_SEED_TOOLTIP"
+msgstr "Pauzeer het spel"
+
+#: ../src/general/NewGameSettings.tscn:268
+msgid "DIFFICULTY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:278
+msgid "PLANET"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:180
+msgid "MISC"
+msgstr "Varia"
+
+#: ../src/general/NewGameSettings.tscn:367
+msgid "MUTATION_COST_MULTIPLIER"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:412
+#, fuzzy
+msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
+msgstr ""
+"Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
+"Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
+
+#: ../src/general/NewGameSettings.tscn:429
+#, fuzzy
+msgid "AI_MUTATION_RATE"
+msgstr "Mutatiepunten"
+
+#: ../src/general/NewGameSettings.tscn:474
+#, fuzzy
+msgid "AI_MUTATION_RATE_EXPLANATION"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#: ../src/general/NewGameSettings.tscn:491
+#, fuzzy
+msgid "COMPOUND_CLOUD_DENSITY"
+msgstr "Wolken met chemische stoffen"
+
+#: ../src/general/NewGameSettings.tscn:536
+#, fuzzy
+msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
+msgstr ""
+"Opportunistische microben zullen concurreren met rivalen om brokken\n"
+"en zullen proberen prooien op te sporen met gifstoffen als ze hen niet kunnen verzwelgen.\n"
+"Voorzichtige microben brengen zichzelf minder in gevaar door brokken."
+
+#: ../src/general/NewGameSettings.tscn:553
+msgid "PLAYER_DEATH_POPULATION_PENALTY"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:598
+#, fuzzy
+msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#: ../src/general/NewGameSettings.tscn:615
+msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:659
+#, fuzzy
+msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
+
+#: ../src/general/NewGameSettings.tscn:676
+#, fuzzy
+msgid "OSMOREGULATION_COST_MULTIPLIER"
+msgstr "Osmoregulatiekosten"
+
+#: ../src/general/NewGameSettings.tscn:721
+#, fuzzy
+msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
+msgstr "Osmoregulatiekosten"
+
+#: ../src/general/NewGameSettings.tscn:733
+msgid "FREE_GLUCOSE_CLOUD"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:740
+#, fuzzy
+msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
+msgstr ""
+"Gefocuste microben zullen over grotere afstanden naar brokken of prooien zoeken\n"
+"en misschien veel ambitieuzer over brokken zijn.\n"
+"Responsieve microben zullen sneller overschakelen naar nieuwe doelen."
+
+#: ../src/general/NewGameSettings.tscn:777
+#, fuzzy
+msgid "PATCH_MAP_TYPE"
+msgstr "Kaart met plekken"
+
+#: ../src/general/NewGameSettings.tscn:784
+#, fuzzy
+msgid "PATCH_MAP_TYPE_EXPLANATION"
+msgstr ""
+"Actieve microben rennen en tuimelen als er niets interessants gebeurt.\n"
+"Sessiele microben zullen stationair zijn en wachten tot de omgeving verandert voordat ze handelen."
+
+#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:800
+msgid "PATCH_MAP_TYPE_PROCEDURAL"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:800
+msgid "PATCH_MAP_TYPE_CLASSIC"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:944
+msgid "PLANET_GENERATION_TEASER"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:976
+#, fuzzy
+msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
+msgstr "Organel plaatsen"
+
+#: ../src/general/NewGameSettings.tscn:983
+msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:996
+#, fuzzy
+msgid "EASTER_EGGS"
+msgstr "Leuk weetje, het Didinium en het pantoffeldiertje zijn een schoolvoorbeeld van een roofdier prooi relatie die voor tientallen jaren is bestudeerd. Ben jij het Didinium of het pantoffeldiertje? Roofdier of prooi?"
+
+#: ../src/general/NewGameSettings.tscn:1003
+#, fuzzy
+msgid "EASTER_EGGS_EXPLANATION"
+msgstr ""
+"Angstige microben zullen over grotere afstanden vluchten\n"
+"en hebben meer kans om te vluchten voor roofdieren in het algemeen.\n"
+"Dappere microben worden niet geïntimideerd door nabijgelegen roofdieren\n"
+"en zullen waarschijnlijk terug aanvallen."
+
+#: ../src/general/NewGameSettings.tscn:1031
+#, fuzzy
+msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
+msgstr "Pauze menu"
+
+#: ../src/general/NewGameSettings.tscn:1033
+msgid "ADVANCED_VIEW"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:1044
+#, fuzzy
+msgid "BASIC_VIEW_BUTTON_TOOLTIP"
+msgstr "Zelfmoord"
+
+#: ../src/general/NewGameSettings.tscn:1045
+msgid "BASIC_VIEW"
+msgstr ""
+
+#: ../src/general/NewGameSettings.tscn:1055
+#, fuzzy
+msgid "CONFIRM_NORMAL"
+msgstr "BEVESTIGEN"
 
 #: ../src/general/OptionsMenu.cs:623 ../src/general/OptionsMenu.tscn:291
 #, fuzzy
@@ -1797,10 +2051,6 @@ msgstr "Prestaties"
 #: ../src/general/OptionsMenu.tscn:169
 msgid "INPUTS"
 msgstr "Invoer"
-
-#: ../src/general/OptionsMenu.tscn:180
-msgid "MISC"
-msgstr "Varia"
 
 #: ../src/general/OptionsMenu.tscn:212
 msgid "VSYNC"
@@ -2529,8 +2779,8 @@ msgstr "Raw"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2029
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2041
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
 msgid "N_A"
 msgstr "N/A"
 
@@ -2572,7 +2822,7 @@ msgid "SLIDESHOW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2181
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2192
 msgid "NO_DATA_TO_SHOW"
 msgstr "Geen data om te tonen"
 
@@ -2940,7 +3190,7 @@ msgstr "Geen processen"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1726
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
-#: ../src/microbe_stage/MicrobeHUD.cs:1501
+#: ../src/microbe_stage/MicrobeHUD.cs:1502
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Moet nog toegevoegd worden."
 
@@ -3183,25 +3433,25 @@ msgstr "klein"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "heel klein"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1266
+#: ../src/microbe_stage/MicrobeHUD.cs:1267
 #: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1302
+#: ../src/microbe_stage/MicrobeHUD.cs:1303
 #: ../src/microbe_stage/MicrobeStage.tscn:1775
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:776
+#: ../src/microbe_stage/MicrobeStage.cs:799
 msgid "PLAYER_REPRODUCED"
 msgstr "speler reproduceerde"
 
-#: ../src/microbe_stage/MicrobeStage.cs:790
+#: ../src/microbe_stage/MicrobeStage.cs:813
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Kan geen cheat voor spawn-vijand gebruiken omdat deze patch geen vijandige soorten bevat"
 
-#: ../src/microbe_stage/MicrobeStage.cs:813
+#: ../src/microbe_stage/MicrobeStage.cs:837
 msgid "PLAYER_DIED"
 msgstr "speler stierf"
 
@@ -3290,7 +3540,7 @@ msgstr "Voeg een nieuwe sneltoets toe"
 msgid "PAUSED"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:187
+#: ../src/microbe_stage/PatchMapGenerator.cs:210
 #, fuzzy
 msgid "PATCH_NAME"
 msgstr "Grot"
@@ -3343,65 +3593,65 @@ msgstr "Snel reagerend"
 msgid "FOCUSED"
 msgstr "Gefocused"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:333
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:338
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:372
 msgid "ATP_PRODUCTION"
 msgstr "ATP Productie"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:339
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUCTIE TE LAAG!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:368
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:402
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:388
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:422
 msgid "OSMOREGULATION"
 msgstr "Osmoregulatie"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:394
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:428
 msgid "BASE_MOVEMENT"
 msgstr "Basisbeweging"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:406
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:440
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:520
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:524
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1167
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1175
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1169
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1177
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2017
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
 msgid "FAILED"
 msgstr "Mislukt"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2023
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2035
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2046
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2149
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2160
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2153
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2164
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2160
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2171
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2177
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -4816,9 +5066,6 @@ msgstr "Tutorial"
 
 #~ msgid "PATCH_PANGONIAN_TIDEPOOL"
 #~ msgstr "Pangonische getijdepoel"
-
-#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-#~ msgstr "Pangonische bathypelagische zone"
 
 #~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 #~ msgstr "Pangonische abyssopelagische zone"

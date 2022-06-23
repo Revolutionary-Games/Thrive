@@ -225,6 +225,8 @@ public partial class CellEditorComponent :
 
     private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements = new();
 
+    private Dictionary<OrganelleDefinition, MicrobePartSelection> allPartSelectionElements = new();
+
     private Dictionary<MembraneType, MicrobePartSelection> membraneSelectionElements = new();
 
     [JsonProperty]
@@ -425,7 +427,9 @@ public partial class CellEditorComponent :
 
     protected override bool ForceHideHover => MicrobePreviewMode;
 
-    private float CostMultiplier => IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f;
+    private float CostMultiplier =>
+        (IsMulticellularEditor ? Constants.MULTICELLULAR_EDITOR_COST_FACTOR : 1.0f) *
+        Editor.CurrentGame.GameWorld.WorldSettings.MPMultiplier;
 
     public override void _Ready()
     {
@@ -528,9 +532,12 @@ public partial class CellEditorComponent :
 
         // After the if multicellular check so the tooltip cost factors are correct
         // on changing editor types, as tooltip manager is persistent while the game is running
-        UpdateTooltipMPCostFactors();
+        UpdateMPCostFactors();
 
         UpdateOrganelleUnlockTooltips();
+
+        // Do this here as we know the editor and hence world settings have been initialised by now
+        UpdateOrganelleLAWKSettings();
     }
 
     public override void ResolveNodeReferences()
@@ -878,7 +885,8 @@ public partial class CellEditorComponent :
         if (intRigidity == rigidity)
             return;
 
-        int costPerStep = (int)(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * editorCostFactor);
+        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP *
+            editorCostFactor * CostMultiplier, 100);
         int cost = Math.Abs(rigidity - intRigidity) * costPerStep;
 
         if (cost > Editor.MutationPoints)
@@ -982,7 +990,7 @@ public partial class CellEditorComponent :
         var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(ActiveActionName!);
 
         // Calculated in this order to be consistent with placing unique organelles
-        var cost = (int)(organelleDefinition.MPCost * editorCostFactor);
+        var cost = (int)Math.Min(organelleDefinition.MPCost * editorCostFactor * CostMultiplier, 100);
 
         if (MouseHoverPositions == null)
             return cost * Symmetry.PositionCount();
@@ -1365,7 +1373,8 @@ public partial class CellEditorComponent :
     {
         patch ??= Editor.CurrentPatch;
 
-        UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, patch.Biome, membrane));
+        UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles, patch.Biome, membrane, true,
+            Editor.CurrentGame.GameWorld.WorldSettings));
     }
 
     private void CalculateCompoundBalanceInPatch(IReadOnlyCollection<OrganelleTemplate> organelles, Patch? patch = null)
@@ -1848,6 +1857,8 @@ public partial class CellEditorComponent :
             control.RegisterToolTipForControl(organelle.InternalName, "organelleSelection");
 
             group.AddItem(control);
+
+            allPartSelectionElements.Add(organelle, control);
 
             if (organelle.Unimplemented)
                 continue;

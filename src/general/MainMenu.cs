@@ -24,9 +24,6 @@ public class MainMenu : NodeWithInput
     public List<Texture> MenuBackgrounds = null!;
 
     [Export]
-    public NodePath NewGameButtonPath = null!;
-
-    [Export]
     public NodePath FreebuildButtonPath = null!;
 
     [Export]
@@ -60,6 +57,7 @@ public class MainMenu : NodeWithInput
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
+    private NewGameSettings newGameSettings = null!;
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
     private ModManager modManager = null!;
@@ -68,14 +66,18 @@ public class MainMenu : NodeWithInput
     private Control creditsContainer = null!;
     private CreditsScroll credits = null!;
     private LicensesDisplay licensesDisplay = null!;
-
-    private Button newGameButton = null!;
     private Button freebuildButton = null!;
 
     private Label storeLoggedInDisplay = null!;
 
     private CustomConfirmationDialog gles2Popup = null!;
     private ErrorDialog modLoadFailures = null!;
+
+    public static void OnEnteringGame()
+    {
+        CheatManager.OnCheatsDisabled();
+        SaveHelper.ClearLastSaveTime();
+    }
 
     public override void _Ready()
     {
@@ -170,7 +172,6 @@ public class MainMenu : NodeWithInput
         Background = GetNode<TextureRect>("Background");
         guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
-        newGameButton = GetNode<Button>(NewGameButtonPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
@@ -193,6 +194,7 @@ public class MainMenu : NodeWithInput
         RandomizeBackground();
 
         options = GetNode<OptionsMenu>("OptionsMenu");
+        newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
@@ -296,34 +298,13 @@ public class MainMenu : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Disable the button to prevent it being executed again.
-        newGameButton.Disabled = true;
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
 
-        // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
-        // before the stage music starts)
-        Jukebox.Instance.Stop(true);
+        // Show the options
+        newGameSettings.OpenFromMainMenu();
 
-        var transitions = new List<ITransition>();
-
-        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
-        {
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 1.5f));
-            transitions.Add(TransitionManager.Instance.CreateCutscene(
-                "res://assets/videos/microbe_intro2.ogv", 0.65f));
-        }
-        else
-        {
-            // People who disable the cutscene are impatient anyway so use a reduced fade time
-            transitions.Add(TransitionManager.Instance.CreateScreenFade(ScreenFade.FadeType.FadeOut, 0.2f));
-        }
-
-        TransitionManager.Instance.AddSequence(transitions, () =>
-        {
-            OnEnteringGame();
-
-            // TODO: Add loading screen while changing between scenes
-            SceneManager.Instance.SwitchToScene(MainGameState.MicrobeStage);
-        });
+        thriveLogo.Hide();
     }
 
     private void ToolsPressed()
@@ -353,7 +334,7 @@ public class MainMenu : NodeWithInput
             var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 
             // Start freebuild game
-            editor.CurrentGame = GameProperties.StartNewMicrobeGame(true);
+            editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true);
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);
@@ -393,6 +374,15 @@ public class MainMenu : NodeWithInput
     {
         options.Visible = false;
         SetCurrentMenu(0, false);
+    }
+
+    private void OnReturnFromNewGameSettings()
+    {
+        newGameSettings.Visible = false;
+
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
     }
 
     private void LoadGamePressed()
@@ -477,11 +467,5 @@ public class MainMenu : NodeWithInput
     {
         SetCurrentMenu(2, false);
         Jukebox.Instance.PlayCategory("Menu");
-    }
-
-    private void OnEnteringGame()
-    {
-        CheatManager.OnCheatsDisabled();
-        SaveHelper.ClearLastSaveTime();
     }
 }

@@ -19,8 +19,9 @@ public class EditorAutoEvoRun : AutoEvoRun
     {
         // Custom run setup for editor's use
         var map = Parameters.World.Map;
+        var worldSettings = Parameters.World.WorldSettings;
 
-        steps.Enqueue(new CalculatePopulation(SimulationParameters.Instance.AutoEvoConfiguration, map,
+        steps.Enqueue(new CalculatePopulation(SimulationParameters.Instance.AutoEvoConfiguration, worldSettings, map,
             new List<Species> { ModifiedProperties },
             new List<Species> { OriginalEditedSpecies }, true) { CanRunConcurrently = false });
 
