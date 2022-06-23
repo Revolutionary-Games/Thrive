@@ -62,8 +62,8 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     protected IMetaballDisplayer<TMetaball>? alreadyPlacedVisuals;
     protected IMetaballDisplayer<TMetaball>? hoverMetaballDisplayer;
 
-    private const float DefaultHoverAlpha = 0.7f;
-    private const float CannotPlaceHoverAlpha = 0.7f;
+    private const float DefaultHoverAlpha = 0.8f;
+    private const float CannotPlaceHoverAlpha = 0.2f;
 
     private readonly List<Plane> cursorHitWorldPlanes = new()
     {

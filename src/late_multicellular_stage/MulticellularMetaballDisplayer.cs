@@ -9,41 +9,62 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
 {
     private const float AABBMargin = 0.1f;
 
-    private static readonly Mesh MetaballSphere = new SphereMesh()
+    private SpatialMaterial? material;
+    private Mesh metaballSphere = null!;
+
+    private float? overrideColourAlpha;
+
+    public float? OverrideColourAlpha
     {
-        Height = 1,
-        Radius = 0.5f,
+        get => overrideColourAlpha;
+        set
+        {
+            // Due to both being nullable, this would be a bit complicated to compare with an epsilon value
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (overrideColourAlpha == value)
+                return;
 
-        // TODO: reduce the vertex further of the shape if we can without much visual impact for more performance
-        // or maybe we should make a graphics option to select from a few levels of vertices
-        RadialSegments = 48,
-        Rings = 24,
+            overrideColourAlpha = value;
+            ApplyAlpha();
+        }
+    }
 
-        // These are the defaults
-        // RadialSegments = 64,
-        // Rings = 32,
+    public override void _Ready()
+    {
+        base._Ready();
 
         // This is here in case we need custom shader effects at some point
         // Material = new ShaderMaterial()
         // {
         //     Shader = GD.Load<Shader>("res://shaders/Metaball.shader"),
         // },
-
-        Material = new SpatialMaterial()
+        material = new SpatialMaterial
         {
             VertexColorUseAsAlbedo = true,
-        },
-    };
+        };
 
-    public float? OverrideColourAlpha { get; set; }
+        ApplyAlpha();
 
-    public override void _Ready()
-    {
-        base._Ready();
+        metaballSphere = new SphereMesh()
+        {
+            Height = 1,
+            Radius = 0.5f,
+
+            // TODO: reduce the vertex further of the shape if we can without much visual impact for more performance
+            // or maybe we should make a graphics option to select from a few levels of vertices
+            RadialSegments = 48,
+            Rings = 24,
+
+            // These are the defaults
+            // RadialSegments = 64,
+            // Rings = 32,
+
+            Material = material,
+        };
 
         Multimesh = new MultiMesh()
         {
-            Mesh = MetaballSphere,
+            Mesh = metaballSphere,
             InstanceCount = 0,
             TransformFormat = MultiMesh.TransformFormatEnum.Transform3d,
             ColorFormat = MultiMesh.ColorFormatEnum.Color8bit,
@@ -110,5 +131,20 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
         }
 
         SetCustomAabb(new AABB(-extends, extends * 2));
+    }
+
+    private void ApplyAlpha()
+    {
+        if (material == null)
+            return;
+
+        if (OverrideColourAlpha == null || overrideColourAlpha >= 1)
+        {
+            material.FlagsTransparent = false;
+        }
+        else
+        {
+            material.FlagsTransparent = true;
+        }
     }
 }
