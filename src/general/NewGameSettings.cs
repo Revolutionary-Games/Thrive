@@ -301,7 +301,7 @@ public class NewGameSettings : ControlWithInput
         OnAIMutationRateValueChanged(preset.AIMutationMultiplier);
         OnCompoundDensityValueChanged(preset.CompoundDensity);
         OnPlayerDeathPopulationPenaltyValueChanged(preset.PlayerDeathPopulationPenalty);
-        OnGlucoseDecayRateValueChanged(preset.GlucoseDecay);
+        OnGlucoseDecayRateValueChanged(preset.GlucoseDecay * 100);
         OnOsmoregulationMultiplierValueChanged(preset.OsmoregulationMultiplier);
         OnFreeGlucoseCloudToggled(preset.FreeGlucoseCloud);
     }
