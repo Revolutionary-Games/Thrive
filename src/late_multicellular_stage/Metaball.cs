@@ -26,7 +26,7 @@ public abstract class Metaball
     ///   Basic rendering of the metaballs for now just uses a colour
     /// </summary>
     [JsonIgnore]
-    public abstract Color Color { get; }
+    public abstract Color Colour { get; }
 
     /// <summary>
     ///   Checks if the data of this ball matches another (parent shouldn't be checked). Used for action replacement

@@ -455,10 +455,6 @@ public class GameWorld : ISaveLoadable
             metaballParentVectors.Add(vectorToParent.Normalized());
         }
 
-        // foreach (var metaball in metaballs.Where(m => !ReferenceEquals(m, rootMetaball))
-        // .OrderBy(m => m.CalculateTreeDepth()).ThenBy(m => m.Position.LengthSquared()))
-        // .OrderBy(m => m.Position.LengthSquared()))
-
         // And finally apply the positioning
         for (int i = 0; i < metaballsToPosition.Count; ++i)
         {

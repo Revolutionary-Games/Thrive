@@ -103,7 +103,7 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
 
             basis.Scale = new Vector3(metaball.Size, metaball.Size, metaball.Size);
 
-            var colour = metaball.Color;
+            var colour = metaball.Colour;
 
             if (OverrideColourAlpha != null)
                 colour.a = OverrideColourAlpha.Value;

@@ -17,13 +17,13 @@ public partial class MetaballBodyEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoCellRemoveAction(MetaballRemoveActionData<MulticellularMetaball> data)
+    private void DoMetaballRemoveAction(MetaballRemoveActionData<MulticellularMetaball> data)
     {
         editedMetaballs.Remove(data.RemovedMetaball);
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoCellRemoveAction(MetaballRemoveActionData<MulticellularMetaball> data)
+    private void UndoMetaballRemoveAction(MetaballRemoveActionData<MulticellularMetaball> data)
     {
         editedMetaballs.Add(data.RemovedMetaball);
     }

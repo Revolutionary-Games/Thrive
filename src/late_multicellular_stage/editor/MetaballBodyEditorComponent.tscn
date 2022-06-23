@@ -723,3 +723,6 @@ mouse_filter = 2
 [connection signal="Confirmed" from="NewTissueTypeSetup" to="." method="OnNewCellTypeConfirmed"]
 [connection signal="text_changed" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTypeNameChanged"]
 [connection signal="text_entered" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTextAccepted"]
+[connection signal="DeletePressed" from="MetaballPopupMenu" to="." method="OnDeletePressed"]
+[connection signal="ModifyPressed" from="MetaballPopupMenu" to="." method="OnModifyPressed"]
+[connection signal="MovePressed" from="MetaballPopupMenu" to="." method="OnMovePressed"]

@@ -441,19 +441,13 @@ public partial class MetaballBodyEditorComponent :
     protected override EditorAction? TryCreateMetaballRemoveAction(MulticellularMetaball metaball,
         ref int alreadyDeleted)
     {
-        throw new NotImplementedException();
-        /*
-        var hexHere = editedMetaballs.GetElementAt(location);
-        if (hexHere == null)
-            return null;
-
-        // Dont allow deletion of last cell
+        // Dont allow deletion of last metaball
         if (editedMetaballs.Count - alreadyDeleted < 2)
             return null;
 
         ++alreadyDeleted;
-        return new SingleEditorAction<CellRemoveActionData>(DoCellRemoveAction, UndoCellRemoveAction,
-            new CellRemoveActionData(hexHere));*/
+        return new SingleEditorAction<MetaballRemoveActionData<MulticellularMetaball>>(DoMetaballRemoveAction, UndoMetaballRemoveAction,
+            new MetaballRemoveActionData<MulticellularMetaball>(metaball));
     }
 
     protected override float CalculateEditorArrowZPosition()

@@ -18,7 +18,7 @@ public class MulticellularMetaball : Metaball
     public CellType CellType { get; private set; }
 
     [JsonIgnore]
-    public override Color Color => CellType.Colour;
+    public override Color Colour => CellType.Colour;
 
     public override bool MatchesDefinition(Metaball other)
     {
