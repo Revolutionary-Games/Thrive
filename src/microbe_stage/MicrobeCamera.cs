@@ -259,6 +259,10 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             return;
         }
 
+        // If we are not current camera, we don't want to display the background particles
+        if (!Current)
+            displayed = false;
+
         BackgroundParticles.Emitting = displayed;
 
         if (displayed)
@@ -302,6 +306,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             BackgroundPlane.Visible = Current;
 
         if (BackgroundParticles != null)
-            BackgroundParticles.Visible = Current;
+            OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
     }
 }
