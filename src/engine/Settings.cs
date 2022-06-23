@@ -94,7 +94,7 @@ public class Settings
 
     /// <summary>
     ///   Display or hide the background particles in game
-    ///   background particles can also be in forground
+    ///   background particles can also be in foreground
     /// </summary>
     public SettingValue<bool> DisplayBackgroundParticles { get; set; } = new(true);
 
