@@ -50,10 +50,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     [Export]
     [JsonProperty]
-    public bool DisableBackgroundParticles;
-
-    [Export]
-    [JsonProperty]
     public float InterpolateSpeed = 0.3f;
 
     [Export]
@@ -127,14 +123,18 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     public override void _EnterTree()
     {
-        InputManager.RegisterReceiver(this);
         base._EnterTree();
+        InputManager.RegisterReceiver(this);
+
+        Settings.Instance.DisplayBackgroundParticles.OnChanged += OnDisplayBackgroundParticlesChanged;
     }
 
     public override void _ExitTree()
     {
-        InputManager.UnregisterReceiver(this);
         base._ExitTree();
+        InputManager.UnregisterReceiver(this);
+
+        Settings.Instance.DisplayBackgroundParticles.OnChanged -= OnDisplayBackgroundParticlesChanged;
     }
 
     public void ResolveNodeReferences()
@@ -222,12 +222,32 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
         BackgroundParticles?.DetachAndQueueFree();
 
-        if (!DisableBackgroundParticles)
+        BackgroundParticles = (Particles)background.ParticleEffectScene.Instance();
+        BackgroundParticles.Rotation = Rotation;
+        BackgroundParticles.LocalCoords = false;
+
+        AddChild(BackgroundParticles);
+
+        OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
+    }
+
+    private void OnDisplayBackgroundParticlesChanged(bool displayed)
+    {
+        if (BackgroundParticles == null)
         {
-            BackgroundParticles = (Particles)background.ParticleEffectScene.Instance();
-            BackgroundParticles.Rotation = Rotation;
-            BackgroundParticles.LocalCoords = false;
-            AddChild(BackgroundParticles);
+            GD.PrintErr("MicrobeCamera didn't find background particles on settings change");
+            return;
+        }
+
+        BackgroundParticles.Emitting = displayed;
+
+        if (displayed)
+        {
+            BackgroundParticles.Show();
+        }
+        else
+        {
+            BackgroundParticles.Hide();
         }
     }
 

@@ -102,109 +102,21 @@ public static class SpawnHelpers
     // TODO: this is likely a huge cause of lag. Would be nice to be able
     // to spawn these so that only one per tick is spawned.
     public static IEnumerable<Microbe> SpawnBacteriaColony(Species species, Vector3 location,
-        Vector3 playerPosition, Node worldRoot, PackedScene microbeScene,
-        CompoundCloudSystem cloudSystem, GameProperties currentGame, Random random)
+        Node worldRoot, PackedScene microbeScene, CompoundCloudSystem cloudSystem, GameProperties currentGame,
+        Random random)
     {
-        var locationOffset = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
+        var curSpawn = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
-        // Three kinds of colonies are supported, line colonies and clump colonies and Networks
-        if (random.Next(0, 5) < 2)
+        var clumpSize = random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
+            Constants.MAX_BACTERIAL_COLONY_SIZE + 1);
+        for (int i = 0; i < clumpSize; i++)
         {
-            // Clump
-            for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
-                     Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
-            {
-                // Skip spawning this microbe if it would spawn outside of the despawn radius
-                if (IsInsideDespawnRadius(location + locationOffset, playerPosition))
-                {
-                    // Dont spawn them on top of each other because it
-                    // causes them to bounce around and lag
-                    yield return SpawnMicrobe(species, location + locationOffset, worldRoot, microbeScene, true,
-                        cloudSystem, currentGame);
-                }
+            // Dont spawn them on top of each other because it
+            // causes them to bounce around and lag
+            yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                cloudSystem, currentGame);
 
-                locationOffset = locationOffset + new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
-            }
-        }
-        else if (random.Next(0, 31) > 2)
-        {
-            // Line
-            // Allow for many types of line
-            // (I combined the lineX and lineZ here because they have the same values)
-            var line = random.Next(-5, 6) + random.Next(-5, 6);
-
-            for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-                     Constants.MAX_BACTERIAL_LINE_SIZE + 1); i++)
-            {
-                // Skip spawning this microbe if it would spawn outside of the despawn radius
-                if (IsInsideDespawnRadius(location + locationOffset, playerPosition))
-                {
-                    // Dont spawn them on top of each other because it
-                    // Causes them to bounce around and lag
-                    yield return SpawnMicrobe(species, location + locationOffset, worldRoot, microbeScene, true,
-                        cloudSystem, currentGame);
-                }
-
-                locationOffset = locationOffset + new Vector3(line + random.Next(-2, 3), 0, line + random.Next(-2, 3));
-            }
-        }
-        else
-        {
-            // Network
-            // Allows for "jungles of cyanobacteria"
-            // Network is extremely rare
-
-            // To prevent bacteria being spawned on top of each other
-            var vertical = false;
-
-            var colony = new ColonySpawnInfo(false, random, species, cloudSystem, currentGame, locationOffset,
-                microbeScene, worldRoot);
-
-            for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
-                     Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
-            {
-                if (random.Next(0, 5) < 2 && !colony.Horizontal)
-                {
-                    colony.Horizontal = true;
-                    vertical = false;
-
-                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location, playerPosition))
-                        yield return microbe;
-                }
-                else if (random.Next(0, 5) < 2 && !vertical)
-                {
-                    colony.Horizontal = false;
-                    vertical = true;
-
-                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location, playerPosition))
-                        yield return microbe;
-                }
-                else if (random.Next(0, 5) < 2 && !colony.Horizontal)
-                {
-                    colony.Horizontal = true;
-                    vertical = false;
-
-                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location, playerPosition))
-                        yield return microbe;
-                }
-                else if (random.Next(0, 5) < 2 && !vertical)
-                {
-                    colony.Horizontal = false;
-                    vertical = true;
-
-                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location, playerPosition))
-                        yield return microbe;
-                }
-                else
-                {
-                    // Diagonal
-                    colony.Horizontal = false;
-                    vertical = false;
-
-                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location, playerPosition))
-                        yield return microbe;
-                }
-            }
+            curSpawn += new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
         }
     }
 
@@ -252,9 +164,12 @@ public static class SpawnHelpers
     }
 
     public static void SpawnCloud(CompoundCloudSystem clouds, Vector3 location,
-        Compound compound, float amount)
+        Compound compound, float amount, Random random)
     {
         int resolution = Settings.Instance.CloudResolution;
+
+        // Randomise amount of compound in the cloud a bit
+        amount *= random.Next(0.5f, 1);
 
         // This spreads out the cloud spawn a bit
         clouds.AddCloud(compound, amount, location + new Vector3(0 + resolution, 0, 0));
@@ -295,67 +210,6 @@ public static class SpawnHelpers
     {
         return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
     }
-
-    private static IEnumerable<Microbe> MicrobeColonySpawnHelper(ColonySpawnInfo colony, Vector3 location,
-        Vector3 playerPosition)
-    {
-        for (int c = 0; c < colony.Random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-                 Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
-        {
-            // Dont spawn them on top of each other because
-            // It causes them to bounce around and lag
-            // And add a little organicness to the look
-
-            if (colony.Horizontal)
-            {
-                colony.LocationOffset.x += colony.Random.Next(5, 8);
-                colony.LocationOffset.z += colony.Random.Next(-2, 3);
-            }
-            else
-            {
-                colony.LocationOffset.z += colony.Random.Next(5, 8);
-                colony.LocationOffset.x += colony.Random.Next(-2, 3);
-            }
-
-            // Skip spawning this microbe if it would spawn outside of the despawn radius
-            if (IsInsideDespawnRadius(location + colony.LocationOffset, playerPosition))
-            {
-                yield return SpawnMicrobe(colony.Species, location + colony.LocationOffset, colony.WorldRoot,
-                    colony.MicrobeScene, true, colony.CloudSystem, colony.CurrentGame);
-            }
-        }
-    }
-
-    private static bool IsInsideDespawnRadius(Vector3 location, Vector3 playerPosition)
-    {
-        float distanceSquared = (playerPosition - location).LengthSquared();
-        return distanceSquared < Constants.MICROBE_DESPAWN_RADIUS_SQUARED;
-    }
-
-    private class ColonySpawnInfo
-    {
-        public Species Species;
-        public Node WorldRoot;
-        public PackedScene MicrobeScene;
-        public Vector3 LocationOffset;
-        public bool Horizontal;
-        public Random Random;
-        public CompoundCloudSystem CloudSystem;
-        public GameProperties CurrentGame;
-
-        public ColonySpawnInfo(bool horizontal, Random random, Species species, CompoundCloudSystem cloudSystem,
-            GameProperties currentGame, Vector3 locationOffset, PackedScene microbeScene, Node worldRoot)
-        {
-            Horizontal = horizontal;
-            Random = random;
-            Species = species;
-            CloudSystem = cloudSystem;
-            CurrentGame = currentGame;
-            LocationOffset = locationOffset;
-            MicrobeScene = microbeScene;
-            WorldRoot = worldRoot;
-        }
-    }
 }
 
 /// <summary>
@@ -381,8 +235,11 @@ public class MicrobeSpawner : Spawner
 
     public Species Species { get; }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, Vector3 playerPosition)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
+        if (Species.Obsolete)
+            GD.PrintErr("Obsolete species microbe has spawned");
+
         // The true here is that this is AI controlled
         var first = SpawnHelpers.SpawnMicrobe(Species, location, worldNode, microbeScene, true, cloudSystem,
             currentGame);
@@ -399,7 +256,7 @@ public class MicrobeSpawner : Spawner
         // Just in case the is bacteria flag is not correct in a multicellular cell type, here's an extra safety check
         if (first.CellTypeProperties.IsBacteria && !first.IsMulticellular)
         {
-            foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(Species, location, playerPosition, worldNode,
+            foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(Species, location, worldNode,
                          microbeScene, cloudSystem, currentGame, random))
             {
                 yield return colonyMember;
@@ -418,6 +275,7 @@ public class CompoundCloudSpawner : Spawner
     private readonly Compound compound;
     private readonly CompoundCloudSystem clouds;
     private readonly float amount;
+    private readonly Random random = new();
 
     public CompoundCloudSpawner(Compound compound, CompoundCloudSystem clouds, float amount)
     {
@@ -426,9 +284,9 @@ public class CompoundCloudSpawner : Spawner
         this.amount = amount;
     }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, Vector3 playerPosition)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
-        SpawnHelpers.SpawnCloud(clouds, location, compound, amount);
+        SpawnHelpers.SpawnCloud(clouds, location, compound, amount, random);
 
         // We don't spawn entities
         return null;
@@ -450,7 +308,7 @@ public class ChunkSpawner : Spawner
         chunkScene = SpawnHelpers.LoadChunkScene();
     }
 
-    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location, Vector3 playerPosition)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
         var chunk = SpawnHelpers.SpawnChunk(chunkType, location, worldNode, chunkScene,
             random);

@@ -177,12 +177,11 @@ public class LoadingScreen : Control
 
     public void RandomizeArt()
     {
-        var galleryName = CurrentlyLoadingGameState == MainGameState.Invalid ?
-            "General" :
-            CurrentlyLoadingGameState.ToString();
+        var gameStateName = CurrentlyLoadingGameState.ToString();
+        var gallery = SimulationParameters.Instance.GetGallery("ConceptArt");
 
-        var gallery = SimulationParameters.Instance.GetGallery(galleryName);
-        var artwork = gallery.Artworks.Random(random);
+        var category = gallery.AssetCategories.ContainsKey(gameStateName) ? gameStateName : "General";
+        var artwork = gallery.AssetCategories[category].Assets.Random(random);
 
         artworkRect.Texture = GD.Load<Texture>(artwork.ResourcePath);
         ArtDescription = artwork.BuildDescription(true);

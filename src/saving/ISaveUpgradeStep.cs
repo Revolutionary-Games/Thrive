@@ -237,7 +237,7 @@
             };
 
             MoveObjectProperties(editor, cellEditorTab,
-                "colour", "rigidity", "editedMicrobeOrganelles", "organelleRot", "activeActionName",
+                "colour", "rigidity", "editedMicrobeOrganelles", "placementRotation", "activeActionName",
                 "Membrane", "Symmetry", "MicrobePreviewMode");
 
             // Remove the organelle change callbacks which will be redone anyway on load

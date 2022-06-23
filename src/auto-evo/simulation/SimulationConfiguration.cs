@@ -9,15 +9,17 @@
     public class SimulationConfiguration
     {
         public SimulationConfiguration(AutoEvoConfiguration autoEvoConfiguration, PatchMap initialConditions,
-            int steps = 1)
+            WorldGenerationSettings worldSettings, int steps = 1)
         {
             AutoEvoConfiguration = autoEvoConfiguration;
             OriginalMap = initialConditions;
+            WorldSettings = worldSettings;
             StepsLeft = Math.Max(1, steps);
         }
 
         public AutoEvoConfiguration AutoEvoConfiguration { get; }
         public PatchMap OriginalMap { get; }
+        public WorldGenerationSettings WorldSettings { get; }
         public int StepsLeft { get; set; }
 
         /// <summary>
