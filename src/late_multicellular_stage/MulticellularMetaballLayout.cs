@@ -16,18 +16,18 @@ public class MulticellularMetaballLayout : MetaballLayout<MulticellularMetaball>
             center += metaball.Position;
 
             // Make the bottom edge of the lowest metaball touch the "ground"
-            var bottom = metaball.Position.y - metaball.Size * 0.5f;
+            var bottom = metaball.Position.y - metaball.Radius;
 
             if (bottom < lowestCoordinate)
                 lowestCoordinate = bottom;
         }
 
         var adjustment = center / Count;
-        adjustment.y = -lowestCoordinate;
+        adjustment.y = lowestCoordinate;
 
         foreach (var metaball in this)
         {
-            metaball.Position += adjustment;
+            metaball.Position -= adjustment;
         }
     }
 }

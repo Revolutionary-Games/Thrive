@@ -12,6 +12,12 @@ public abstract class Metaball
     public float Size { get; set; } = 1.0f;
 
     /// <summary>
+    ///   The radius of the metaball
+    /// </summary>
+    [JsonIgnore]
+    public float Radius => Size * 0.5f;
+
+    /// <summary>
     ///   For animation and convolution surfaces we need to know the structure of metaballs
     /// </summary>
     public Metaball? Parent { get; set; }
@@ -56,5 +62,13 @@ public abstract class Metaball
             return true;
 
         return Parent.HasAncestor(potentialAncestor);
+    }
+
+    public override string ToString()
+    {
+        if (Parent == null)
+            return $"Root Metaball at {Position}";
+
+        return $"Metaball at {Position}";
     }
 }

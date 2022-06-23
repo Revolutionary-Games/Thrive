@@ -395,7 +395,7 @@ public class GameWorld : ISaveLoadable
 
         foreach (var metaball in metaballs)
         {
-            if (metaball == rootMetaball)
+            if (ReferenceEquals(metaball, rootMetaball))
                 continue;
 
             if (metaball.Parent != null)
@@ -403,7 +403,8 @@ public class GameWorld : ISaveLoadable
 
             // For now just pick the closest (and in case of ties, the closer to origin) metaball as the parent
             // Also avoid accidentally making short parent loops
-            var potentialParents = metaballs.Where(m => m != metaball && m.Parent != metaball)
+            var potentialParents = metaballs
+                .Where(m => !ReferenceEquals(m, metaball) && !ReferenceEquals(m.Parent, metaball))
                 .OrderBy(m => m.Position.DistanceSquaredTo(metaball.Position)).ThenBy(m => m.Position.LengthSquared());
 
             bool foundSuitableParent = false;
@@ -429,26 +430,57 @@ public class GameWorld : ISaveLoadable
         // And finally move the metaballs to touch each other
         // Do this from the root down to not need to process metaballs multiple times
         // TODO: should this logic be in OnEdited for general use?
-        foreach (var metaball in metaballs.Where(m => m != rootMetaball).OrderBy(m => m.CalculateTreeDepth()))
+
+        var metaballsToPosition = new List<MulticellularMetaball>() { Capacity = metaballs.Count };
+
+        // First build a good order to update the metaballs in
+        foreach (var metaball in metaballs.OrderBy(m => m.Position.LengthSquared()))
         {
+            RecursivelyAddBallsToList(metaballsToPosition, metaball);
+        }
+
+        // Next, calculate the direction vectors to parents
+        var metaballParentVectors = new List<Vector3>() { Capacity = metaballsToPosition.Count };
+
+        foreach (var metaball in metaballsToPosition)
+        {
+            // Add dummy value for the root to not need to worry about that in the next loop
             if (metaball.Parent == null)
-                throw new Exception("logic error in metaball generation");
+            {
+                metaballParentVectors.Add(Vector3.Zero);
+                continue;
+            }
 
             var vectorToParent = metaball.Position - metaball.Parent.Position;
+            metaballParentVectors.Add(vectorToParent.Normalized());
+        }
 
-            float wantedDistance = metaball.Parent.Size / 2 + metaball.Size / 2;
+        // foreach (var metaball in metaballs.Where(m => !ReferenceEquals(m, rootMetaball))
+        // .OrderBy(m => m.CalculateTreeDepth()).ThenBy(m => m.Position.LengthSquared()))
+        // .OrderBy(m => m.Position.LengthSquared()))
 
-            var offset = vectorToParent.Normalized() * wantedDistance;
+        // And finally apply the positioning
+        for (int i = 0; i < metaballsToPosition.Count; ++i)
+        {
+            var metaball = metaballsToPosition[i];
+
+            // Don't position the root metaball here
+            if (metaball.Parent == null)
+                continue;
+
+            float wantedDistance = metaball.Parent.Radius + metaball.Radius;
+
+            var offset = metaballParentVectors[i] * wantedDistance;
 
             metaball.Position = metaball.Parent.Position + offset;
         }
 
         // Finish off by adding the metaballs to the layout in an order where all parents are added before the other
         // ones
-        lateVersion.BodyLayout.Add(rootMetaball);
+        foreach (var metaball in metaballsToPosition)
+            lateVersion.BodyLayout.Add(metaball);
 
-        foreach (var metaball in metaballs)
-            RecursivelyAddBallsToLayout(lateVersion.BodyLayout, metaball);
+        lateVersion.BodyLayout.VerifyMetaballsAreTouching();
 
         lateVersion.OnEdited();
         SwitchSpecies(species, lateVersion);
@@ -523,18 +555,18 @@ public class GameWorld : ISaveLoadable
             PlayerSpecies = newSpecies;
     }
 
-    private void RecursivelyAddBallsToLayout(MetaballLayout<MulticellularMetaball> layout,
-        MulticellularMetaball metaball)
+    private void RecursivelyAddBallsToList(ICollection<MulticellularMetaball> list, MulticellularMetaball metaball)
     {
-        if (layout.Contains(metaball))
+        if (list.Contains(metaball))
             return;
 
         if (metaball.Parent != null)
         {
-            // Need to recursively add parents first to the layout
-            RecursivelyAddBallsToLayout(layout, (MulticellularMetaball)metaball.Parent);
+            // Need to recursively add parents first to the list, this is absolutely required for the step where
+            // these are added to the layout ultimately
+            RecursivelyAddBallsToList(list, (MulticellularMetaball)metaball.Parent);
         }
 
-        layout.Add(metaball);
+        list.Add(metaball);
     }
 }

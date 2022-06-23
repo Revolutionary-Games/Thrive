@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -98,5 +99,22 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
         }
 
         return false;
+    }
+
+    /// <summary>
+    ///   Sanity check that metaballs are touching and not detached, throws if invalid
+    /// </summary>
+    public void VerifyMetaballsAreTouching()
+    {
+        foreach (var metaball in metaballs)
+        {
+            if (metaball.Parent == null)
+                return;
+
+            var distance = (metaball.Parent.Position - metaball.Position).Length();
+
+            if (Mathf.Abs(distance - metaball.Radius - metaball.Parent.Radius) > MathUtils.EPSILON)
+                throw new Exception("Metaball is not touching its parent");
+        }
     }
 }
