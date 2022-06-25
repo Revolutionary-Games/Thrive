@@ -213,6 +213,8 @@ public class MicrobeHUD : Control
     private readonly System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls =
         new();
 
+    private readonly Color defaultHealthBarColour = new Color(0.96f, 0.27f, 0.48f);
+
     // ReSharper restore RedundantNameQualifier
 
     private Compound ammonia = null!;
@@ -336,6 +338,14 @@ public class MicrobeHUD : Control
     private Microbe? signalingAgentMenuOpenForMicrobe;
 
     private int? playerColonySize;
+
+    private bool playerWasDigested;
+
+    [JsonProperty]
+    private float healthBarFlashDuration;
+
+    [JsonProperty]
+    private Color healthBarFlashColour = new(0, 0, 0, 0);
 
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
@@ -1162,20 +1172,60 @@ public class MicrobeHUD : Control
             return;
 
         var hp = 0.0f;
+        string hpText = playerWasDigested ?
+            TranslationServer.Translate("DEVOURED") :
+            hp.ToString(CultureInfo.CurrentCulture);
+
+        var percentageValue = TranslationServer.Translate("PERCENTAGE_VALUE");
 
         // Update to the player's current HP, unless the player does not exist
         if (stage!.Player != null)
         {
-            hp = stage.Player.Hitpoints;
-            maxHP = stage.Player.MaxHitpoints;
+            // Change mode depending on whether the player is ingested or not
+            if (stage.Player.PhagocytizedStep == PhagocytosisProcess.Ingested)
+            {
+                // Show the digestion progress to the player
+                hp = 1 - (stage.Player.DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD);
+                maxHP = 1.0f;
+                hpText = string.Format(CultureInfo.CurrentCulture, percentageValue, Mathf.Round((1 - hp) * 100));
+                playerWasDigested = true;
+                FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
+            }
+            else
+            {
+                hp = stage.Player.Hitpoints;
+                maxHP = stage.Player.MaxHitpoints;
+                hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+                playerWasDigested = false;
+                healthBar.TintProgress = defaultHealthBarColour;
+            }
         }
 
         healthBar.MaxValue = maxHP;
         GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
 
-        var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
         hpLabel.Text = hpText;
         hpLabel.HintTooltip = hpText;
+    }
+
+    private void FlashHealthBar(Color colour, float delta)
+    {
+        healthBarFlashDuration -= delta;
+
+        // How frequent it flashes
+        if (healthBarFlashDuration % 0.6f < 0.3f)
+        {
+            healthBar.TintProgress = colour;
+        }
+        else
+        {
+            // Restore colour
+            healthBar.TintProgress = defaultHealthBarColour;
+        }
+
+        // Loop flash
+        if (healthBarFlashDuration <= 0)
+            healthBarFlashDuration = 2.5f;
     }
 
     private void SetEditorButtonFlashEffect(bool enabled)

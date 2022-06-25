@@ -188,7 +188,7 @@ bg_color = Color( 0.462745, 0.470588, 0.184314, 1 )
 bg_color = Color( 0.541176, 0.141176, 0.0745098, 1 )
 
 [sub_resource type="StyleBoxFlat" id=38]
-bg_color = Color( 1, 0.564706, 0.564706, 1 )
+bg_color = Color( 0.882353, 0.498039, 0.498039, 1 )
 
 [sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
@@ -1482,7 +1482,8 @@ custom_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
-[node name="IronIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
+[node name="IngestedMatterIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
+modulate = Color( 0.882353, 0.882353, 0.882353, 1 )
 margin_left = -12.0
 margin_right = 13.0
 margin_bottom = 20.0
