@@ -241,6 +241,12 @@ public partial class Microbe
     public Action<Microbe>? OnUnbound { get; set; }
 
     [JsonProperty]
+    public Action<Microbe, Microbe>? OnIngestedByHostile { get; set; }
+
+    [JsonProperty]
+    public Action<Microbe, IEngulfable>? OnSuccessfulEngulfment { get; set; }
+
+    [JsonProperty]
     public Action<Microbe>? OnEngulfmentStorageFull { get; set; }
 
     /// <summary>
@@ -444,7 +450,7 @@ public partial class Microbe
             return false;
 
         // Needs to be big enough to engulf
-        return Size >= target.Size * Constants.ENGULF_SIZE_RATIO_REQ;
+        return Size > target.Size * Constants.ENGULF_SIZE_RATIO_REQ;
     }
 
     public void OnEngulfed()
@@ -471,7 +477,12 @@ public partial class Microbe
         playerEngulfedDeathTimer = 0;
     }
 
-    public void OnExpelled()
+    public void OnIngestedFromEngulfment()
+    {
+        OnIngestedByHostile?.Invoke(this, HostileEngulfer.Value!);
+    }
+
+    public void OnExpelledFromEngulfment()
     {
         var hostile = HostileEngulfer.Value;
 
@@ -1675,7 +1686,8 @@ public partial class Microbe
         {
             IngestEngulfable(engulfable);
         }
-        else if (IngestedSizeCount >= Size || IngestedSizeCount + engulfable.Size >= Size)
+        else if (Size > engulfable.Size * Constants.ENGULF_SIZE_RATIO_REQ &&
+            (IngestedSizeCount >= Size || IngestedSizeCount + engulfable.Size >= Size))
         {
             OnEngulfmentStorageFull?.Invoke(this);
         }
@@ -1777,6 +1789,9 @@ public partial class Microbe
         IngestedSizeCount += engulfable.Size;
         IngestedSizeCount = Mathf.Clamp(IngestedSizeCount, 0, Size);
         engulfed.HasBeenIngested = true;
+
+        OnSuccessfulEngulfment?.Invoke(this, engulfable);
+        engulfable.OnIngestedFromEngulfment();
     }
 
     private void CompleteEjection(EngulfedObject engulfed)
@@ -1821,7 +1836,7 @@ public partial class Microbe
         // Apply outwards ejection force
         body.ApplyCentralImpulse(impulse + LinearVelocity);
 
-        engulfable.OnExpelled();
+        engulfable.OnExpelledFromEngulfment();
         engulfable.HostileEngulfer.Value = null;
     }
 

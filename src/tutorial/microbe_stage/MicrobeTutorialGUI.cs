@@ -49,6 +49,12 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath CheckTheHelpMenuPath = null!;
 
     [Export]
+    public NodePath EngulfmentExplanationPath = null!;
+
+    [Export]
+    public NodePath EngulfedExplanationPath = null!;
+
+    [Export]
     public NodePath EngulfmentFullCapacityPath = null!;
 
     [Export]
@@ -67,6 +73,8 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomDialog editorButtonTutorial = null!;
     private CustomDialog unbindTutorial = null!;
     private CustomDialog checkTheHelpMenu = null!;
+    private CustomDialog engulfmentExplanation = null!;
+    private CustomDialog engulfedExplanation = null!;
     private CustomDialog engulfmentFullCapacity = null!;
 
     [Signal]
@@ -278,6 +286,30 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool EngulfmentExplanationVisible
+    {
+        get => engulfmentExplanation.Visible;
+        set
+        {
+            if (value == engulfmentExplanation.Visible)
+                return;
+
+            engulfmentExplanation.Visible = value;
+        }
+    }
+
+    public bool EngulfedExplanationVisible
+    {
+        get => engulfedExplanation.Visible;
+        set
+        {
+            if (value == engulfedExplanation.Visible)
+                return;
+
+            engulfedExplanation.Visible = value;
+        }
+    }
+
     public bool EngulfmentFullCapacityVisible
     {
         get => engulfmentFullCapacity.Visible;
@@ -305,6 +337,8 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         editorButtonTutorial = GetNode<CustomDialog>(EditorButtonTutorialPath);
         unbindTutorial = GetNode<CustomDialog>(UnbindTutorialPath);
         checkTheHelpMenu = GetNode<CustomDialog>(CheckTheHelpMenuPath);
+        engulfmentExplanation = GetNode<CustomDialog>(EngulfmentExplanationPath);
+        engulfedExplanation = GetNode<CustomDialog>(EngulfedExplanationPath);
         engulfmentFullCapacity = GetNode<CustomDialog>(EngulfmentFullCapacityPath);
 
         PressEditorButtonHighlight = GetNode<ControlHighlight>(EditorButtonHighlightPath);

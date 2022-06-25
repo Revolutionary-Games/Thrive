@@ -59,7 +59,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     ///   Used to control how often compound position info is sent to the tutorial
     /// </summary>
     [JsonProperty]
-    private float elapsedSinceCompoundPositionCheck;
+    private float elapsedSinceEntityPositionCheck;
 
     /// <summary>
     ///   Used to differentiate between spawning the player and respawning
@@ -386,6 +386,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         Player.OnCompoundChemoreceptionInfo = HandlePlayerChemoreceptionDetection;
 
+        Player.OnIngestedByHostile = OnPlayerEngulfedByHostile;
+
+        Player.OnSuccessfulEngulfment = OnPlayerIngesting;
+
         Player.OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached;
 
         Camera.ObjectToFollow = Player;
@@ -437,6 +441,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             return;
         }
 
+        var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP);
+
         if (Player != null)
         {
             var globalTransform = Player.GlobalTransform;
@@ -452,18 +458,26 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerTotalCollected,
                 new CompoundEventArgs(Player.TotalAbsorbedCompounds), this);
 
-            elapsedSinceCompoundPositionCheck += delta;
+            elapsedSinceEntityPositionCheck += delta;
 
-            if (elapsedSinceCompoundPositionCheck > Constants.TUTORIAL_COMPOUND_POSITION_UPDATE_INTERVAL)
+            if (elapsedSinceEntityPositionCheck > Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL)
             {
-                elapsedSinceCompoundPositionCheck = 0;
+                elapsedSinceEntityPositionCheck = 0;
 
                 if (TutorialState.WantsNearbyCompoundInfo())
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new CompoundPositionEventArgs(Clouds.FindCompoundNearPoint(Player.GlobalTransform.origin,
+                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(Player.GlobalTransform.origin,
                             glucose)),
                         this);
+                }
+
+                if (TutorialState.WantsNearbyEngulfableInfo())
+                {
+                    var engulfables = entities.OfType<IEngulfable>().ToList();
+
+                    TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
+                        new EntityPositionEventArgs(Player.FindNearestEngulfable(engulfables)), this);
                 }
 
                 guidancePosition = TutorialState.GetPlayerGuidancePosition();
@@ -529,9 +543,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         if (debugOverlay.PerformanceMetricsVisible)
         {
-            var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP).Count();
             var childCount = rootOfDynamicallySpawned.GetChildCount();
-            debugOverlay.ReportEntities(entities, childCount - entities);
+            debugOverlay.ReportEntities(entities.Count(), childCount - entities.Count());
         }
     }
 
@@ -826,7 +839,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         HUD.HideReproductionDialog();
 
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
+        if (player.PhagocytizedStep == PhagocytosisProcess.None)
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
 
         Player = null;
         Camera.ObjectToFollow = null;
@@ -862,6 +876,18 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     private void OnPlayerUnbound(Microbe player)
     {
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerIngesting(Microbe player, IEngulfable ingested)
+    {
+        TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfing, EventArgs.Empty, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerEngulfedByHostile(Microbe player, Microbe hostile)
+    {
+        TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
     }
 
     [DeserializedCallbackAllowed]

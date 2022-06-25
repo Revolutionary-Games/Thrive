@@ -361,11 +361,15 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     {
     }
 
-    public void OnExpelled()
+    public void OnIngestedFromEngulfment()
+    {
+    }
+
+    public void OnExpelledFromEngulfment()
     {
         if (DigestedAmount > 0)
         {
-            // Just dissolve this chunk entirely (as it's already somehow broken down by digestion)
+            // Just dissolve this chunk entirely (assume that it has become unstable from digestion)
             DespawnTimer = Constants.DESPAWNING_CHUNK_LIFETIME + 1;
         }
     }

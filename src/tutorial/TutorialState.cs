@@ -50,6 +50,12 @@ public class TutorialState : ITutorialInput
     public MicrobeUnbind MicrobeUnbind { get; private set; } = new();
 
     [JsonProperty]
+    public MicrobeEngulfmentExplanation MicrobeEngulfmentExplanation { get; private set; } = new();
+
+    [JsonProperty]
+    public MicrobeEngulfedExplanation MicrobeEngulfedExplanation { get; private set; } = new();
+
+    [JsonProperty]
     public CheckTheHelpMenu CheckTheHelpMenu { get; private set; } = new();
 
     [JsonProperty]
@@ -153,6 +159,15 @@ public class TutorialState : ITutorialInput
     public bool WantsNearbyCompoundInfo()
     {
         return MicrobeMovement.Complete && !GlucoseCollecting.Complete && GlucoseCollecting.CanTrigger;
+    }
+
+    /// <summary>
+    ///   Returns true when the tutorial system is in a state where nearby engulfable entity info is wanted
+    /// </summary>
+    /// <returns>True when the tutorial system wants engulfable entity information</returns>
+    public bool WantsNearbyEngulfableInfo()
+    {
+        return GlucoseCollecting.Complete;
     }
 
     /// <summary>
@@ -336,8 +351,10 @@ public class TutorialState : ITutorialInput
             MicrobeStayingAlive,
             MicrobeReproduction,
             MicrobeUnbind,
-            CheckTheHelpMenu,
+            MicrobeEngulfmentExplanation,
+            MicrobeEngulfedExplanation,
             EngulfmentStorageFull,
+            CheckTheHelpMenu,
             EditorWelcome,
             PatchMap,
             CellEditorIntroduction,

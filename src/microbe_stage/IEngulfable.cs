@@ -77,7 +77,12 @@ public interface IEngulfable : IGraphicalEntity
     void OnEngulfed();
 
     /// <summary>
+    ///   Called once when this engulfable has been completely internalized by a microbe.
+    /// </summary>
+    void OnIngestedFromEngulfment();
+
+    /// <summary>
     ///   Called once when this engulfable has been expelled by a microbe.
     /// </summary>
-    void OnExpelled();
+    void OnExpelledFromEngulfment();
 }

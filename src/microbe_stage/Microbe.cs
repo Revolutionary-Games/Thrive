@@ -856,6 +856,59 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         return detections;
     }
 
+    /// <summary>
+    ///   Tries to find an engulfable entity as close to this microbe as possible.
+    /// </summary>
+    /// <param name="engulfables">List of all engulfable entities in the world</param>
+    /// <param name="searchRadius">How wide to search around the point</param>
+    /// <returns>The nearest found point for the engulfable entity or null</returns>
+    public Vector3? FindNearestEngulfable(List<IEngulfable> engulfables, float searchRadius = 200)
+    {
+        if (searchRadius < 1)
+            throw new ArgumentException("searchRadius must be >= 1");
+
+        // If the microbe cannot absorb, no need for this
+        if (Membrane?.Type.CellWall == true)
+            return null;
+
+        Vector3? nearestPoint = null;
+        float nearestDistanceSquared = float.MaxValue;
+
+        // Retrieve nearest potential entities
+        foreach (var entity in engulfables)
+        {
+            if (entity.Compounds == null)
+                continue;
+
+            var spatial = entity.EntityNode;
+
+            // Skip entities that are out of range
+            if ((spatial.Translation - Translation).LengthSquared() > searchRadius * searchRadius)
+                continue;
+
+            if (entity is Microbe microbe && microbe.Species.PlayerSpecies)
+                continue;
+
+            if (Size > entity.Size * Constants.ENGULF_SIZE_RATIO_REQ &&
+                entity.PhagocytizedStep == PhagocytosisProcess.None)
+            {
+                // Skip entities that have no useful compounds
+                if (!entity.Compounds.Compounds.Any(x => Compounds.IsUseful(x.Key)))
+                    continue;
+
+                var distance = (spatial.Translation - Translation).LengthSquared();
+
+                if (nearestPoint == null || distance < nearestDistanceSquared)
+                {
+                    nearestPoint = spatial.Translation;
+                    nearestDistanceSquared = distance;
+                }
+            }
+        }
+
+        return nearestPoint;
+    }
+
     public void OverrideScaleForPreview(float scale)
     {
         if (!IsForPreviewOnly)
