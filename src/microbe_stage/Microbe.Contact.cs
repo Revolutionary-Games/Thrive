@@ -48,7 +48,7 @@ public partial class Microbe
     private List<EngulfedObject> engulfedObjects = new();
 
     /// <summary>
-    ///   Tracks entities this previously engulfed.
+    ///   Tracks entities this has previously engulfed.
     /// </summary>
     [JsonProperty]
     private HashSet<EngulfedObject> expelledObjects = new();
@@ -484,9 +484,10 @@ public partial class Microbe
             organelle.UpdateRenderPriority(Hex.GetRenderPriority(organelle.Position));
         }
 
-        if (DigestionProgress >= Constants.PARTIALLY_DIGESTED_THRESHOLD)
+        if (DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD)
         {
             // Cell is too damaged from digestion, can't live in open environment and is considered dead
+            // Kill() is not called here because it's already called during partial digestion
             OnDestroyed();
             var droppedChunks = OnKilled();
 
@@ -523,7 +524,7 @@ public partial class Microbe
                 engulfed.Object.Value.DestroyDetachAndQueueFree();
             }
 
-            engulfed.Endosome.Value?.DestroyDetachAndQueueFree();
+            engulfed.Phagosome.Value?.DestroyDetachAndQueueFree();
         }
 
         engulfedObjects.Clear();
@@ -532,7 +533,7 @@ public partial class Microbe
     /// <summary>
     ///   Returns true if this microbe is currently in the process of attempting to engulf something.
     /// </summary>
-    public bool IsEngulfing()
+    public bool IsPullingInEngulfables()
     {
         return attemptingToEngulf.Any();
     }
@@ -712,7 +713,7 @@ public partial class Microbe
 
     /// <summary>
     ///   Operations that should be done when this cell is killed. ONLY use this independently of <see cref="Kill"/>
-    ///   if you've already made sure this microbe is marked as dead since this doesn't do that.
+    ///   if you've already made sure that this microbe is marked as dead since this doesn't do that.
     /// </summary>
     /// <returns>
     ///   The dropped corpse chunks.
@@ -948,8 +949,8 @@ public partial class Microbe
 
         foreach (var engulfed in engulfedObjects)
         {
-            if (engulfed.Endosome.Value != null)
-                engulfed.Endosome.Value.Tint = CellTypeProperties.Colour;
+            if (engulfed.Phagosome.Value != null)
+                engulfed.Phagosome.Value.Tint = CellTypeProperties.Colour;
         }
     }
 
@@ -1149,11 +1150,11 @@ public partial class Microbe
             if (!engulfedObject.Interpolate)
                 continue;
 
-            // Ingestion hasn't completed yet but player is no longer in engulfment mode, cancel ingestion
+            // Ingestion hasn't completed yet but player is no longer in engulfment mode, cancel ingestion.
+            // Engulfment mode must be kept until internalization is complete
             if (State != MicrobeState.Engulf && engulfable?.PhagocytizedStep == PhagocytosisProcess.Ingestion)
                 EjectEngulfable(engulfable, 1.0f);
 
-            // Interpolate values manually to make saving these values possible
             if (AnimateBulkTransport(delta, engulfedObject))
             {
                 switch (engulfable?.PhagocytizedStep)
@@ -1166,7 +1167,7 @@ public partial class Microbe
                         engulfedObjects.Remove(engulfedObject);
                         break;
                     case PhagocytosisProcess.Exocytosis:
-                        engulfedObject.Endosome.Value?.Hide();
+                        engulfedObject.Phagosome.Value?.Hide();
                         engulfedObject.TargetValuesToLerp = (null, engulfedObject.OriginalScale, null);
                         StartBulkTransport(engulfedObject, 1.0f);
                         engulfable.PhagocytizedStep = PhagocytosisProcess.Ejection;
@@ -1217,7 +1218,7 @@ public partial class Microbe
             return;
 
         // Spawn cell death particles.
-        if (!deathParticlesSpawned && DigestionProgress <= 0)
+        if (!deathParticlesSpawned && DigestedAmount <= 0)
         {
             deathParticlesSpawned = true;
 
@@ -1433,9 +1434,7 @@ public partial class Microbe
         body.CollisionLayer = 0;
         body.CollisionMask = 0;
 
-        var temp = body.GlobalTransform;
-        body.ReParent(this);
-        body.GlobalTransform = temp;
+        body.ReParentWithTransform(this);
 
         // Below is for figuring out where to place the ingested object inside the membrane and calculated
         // accordingly to hopefully minimize any part of the object sticking out the membrane.
@@ -1475,15 +1474,15 @@ public partial class Microbe
         // We want the ingested material to be always visible over the organelles
         target.RenderPriority += organelles!.PeakRenderPriority + 1;
 
-        // Form endosome
-        var endosome = endosomeScene.Instance<Endosome>();
-        endosome.Scale = Vector3.Zero;
-        endosome.Transform = target.EntityGraphics.Transform.Scaled(Vector3.Zero);
-        endosome.Tint = CellTypeProperties.Colour;
-        endosome.RenderPriority = target.RenderPriority + engulfedObjects.Count + 1;
-        target.EntityGraphics.AddChild(endosome);
+        // Form phagosome
+        var phagosome = endosomeScene.Instance<Endosome>();
+        phagosome.Scale = Vector3.Zero;
+        phagosome.Transform = target.EntityGraphics.Transform.Scaled(Vector3.Zero);
+        phagosome.Tint = CellTypeProperties.Colour;
+        phagosome.RenderPriority = target.RenderPriority + engulfedObjects.Count + 1;
+        target.EntityGraphics.AddChild(phagosome);
 
-        var engulfedObject = new EngulfedObject(target, endosome)
+        var engulfedObject = new EngulfedObject(target, phagosome)
         {
             TargetValuesToLerp = (finalPosition, body.Scale / 2, boundingBoxSize),
             OriginalScale = body.Scale,
@@ -1525,6 +1524,12 @@ public partial class Microbe
         var engulfedObject = engulfedObjects.Find(e => e.Object == target);
         if (engulfedObject == null)
             return;
+
+        if (engulfedObject.HasBeenIngested)
+        {
+            IngestedSizeCount -= target.Size;
+            IngestedSizeCount = Mathf.Clamp(IngestedSizeCount, 0, Size);
+        }
 
         target.PhagocytizedStep = PhagocytosisProcess.Exocytosis;
 
@@ -1682,7 +1687,7 @@ public partial class Microbe
     /// <returns>True when Lerp finishes.</returns>
     private bool AnimateBulkTransport(float delta, EngulfedObject engulfed)
     {
-        if (engulfed.Object.Value == null || engulfed.Endosome.Value == null)
+        if (engulfed.Object.Value == null || engulfed.Phagosome.Value == null)
             return false;
 
         var body = (RigidBody)engulfed.Object.Value;
@@ -1710,7 +1715,7 @@ public partial class Microbe
 
             if (engulfed.TargetValuesToLerp.EndosomeScale.HasValue)
             {
-                engulfed.Endosome.Value.Scale = engulfed.InitialValuesToLerp.EndosomeScale.LinearInterpolate(
+                engulfed.Phagosome.Value.Scale = engulfed.InitialValuesToLerp.EndosomeScale.LinearInterpolate(
                     engulfed.TargetValuesToLerp.EndosomeScale.Value, fraction);
             }
 
@@ -1725,7 +1730,7 @@ public partial class Microbe
             body.Scale = engulfed.TargetValuesToLerp.Scale.Value;
 
         if (engulfed.TargetValuesToLerp.EndosomeScale.HasValue)
-            engulfed.Endosome.Value.Scale = engulfed.TargetValuesToLerp.EndosomeScale.Value;
+            engulfed.Phagosome.Value.Scale = engulfed.TargetValuesToLerp.EndosomeScale.Value;
 
         StopBulkTransport(engulfed);
 
@@ -1737,14 +1742,14 @@ public partial class Microbe
     /// </summary>
     private void StartBulkTransport(EngulfedObject engulfedObject, float duration, bool resetElapsedTime = true)
     {
-        if (engulfedObject.Object.Value == null || engulfedObject.Endosome.Value == null)
+        if (engulfedObject.Object.Value == null || engulfedObject.Phagosome.Value == null)
             return;
 
         if (resetElapsedTime)
             engulfedObject.AnimationTimeElapsed = 0;
 
         var body = (RigidBody)engulfedObject.Object.Value;
-        engulfedObject.InitialValuesToLerp = (body.Translation, body.Scale, engulfedObject.Endosome.Value.Scale);
+        engulfedObject.InitialValuesToLerp = (body.Translation, body.Scale, engulfedObject.Phagosome.Value.Scale);
         engulfedObject.LerpDuration = duration;
         engulfedObject.Interpolate = true;
     }
@@ -1784,12 +1789,7 @@ public partial class Microbe
         engulfedObjects.Remove(engulfed);
         expelledObjects.Add(engulfed);
 
-        if (engulfed.HasBeenIngested)
-        {
-            IngestedSizeCount -= engulfable.Size;
-            IngestedSizeCount = Mathf.Clamp(IngestedSizeCount, 0, Size);
-        }
-
+        engulfed.TransferredHost = false;
         engulfable.PhagocytizedStep = PhagocytosisProcess.None;
 
         foreach (string group in engulfed.OriginalGroups)
@@ -1801,7 +1801,7 @@ public partial class Microbe
         // Reset render priority
         engulfable.RenderPriority = engulfed.OriginalRenderPriority;
 
-        engulfed.Endosome.Value?.DestroyDetachAndQueueFree();
+        engulfed.Phagosome.Value?.DestroyDetachAndQueueFree();
 
         // Ignore possible invalid cast as the engulfed node should be a rigidbody either way
         var body = (RigidBody)engulfable;
@@ -1809,9 +1809,7 @@ public partial class Microbe
         body.Mode = ModeEnum.Rigid;
 
         // Reparent to world node
-        var temp = body.GlobalTransform;
-        body.ReParent(GetStageAsParent());
-        body.GlobalTransform = temp;
+        body.ReParentWithTransform(GetStageAsParent());
 
         // Set to default microbe collision layer and mask values
         body.CollisionLayer = 3;
@@ -1828,7 +1826,7 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Holds cached and extra information to work on in addition to the engulfed object
+    ///   Stores extra information to the objects that have been engulfed.
     /// </summary>
     private class EngulfedObject
     {
@@ -1836,7 +1834,7 @@ public partial class Microbe
         public EngulfedObject(IEngulfable @object, Endosome endosome)
         {
             Object = new EntityReference<IEngulfable>(@object);
-            Endosome = new EntityReference<Endosome>(endosome);
+            Phagosome = new EntityReference<Endosome>(endosome);
 
             AdditionalEngulfableCompounds = @object.CalculateAdditionalDigestibleCompounds()?
                 .Where(c => c.Key.Digestible)
@@ -1853,16 +1851,17 @@ public partial class Microbe
         }
 
         /// <summary>
-        ///   The object that has been engulfed.
+        ///   The solid matter that has been engulfed.
         /// </summary>
         public EntityReference<IEngulfable> Object { get; private set; }
 
         /// <summary>
-        ///   Engulfed object's "shell".
+        ///   A vesicle surrounding the engulfed object.
         /// </summary>
-        public EntityReference<Endosome> Endosome { get; private set; }
+        public EntityReference<Endosome> Phagosome { get; private set; }
 
         public bool HasBeenIngested { get; set; }
+        public bool TransferredHost { get; set; }
         public Dictionary<Compound, float>? AdditionalEngulfableCompounds { get; private set; }
         public float? InitialTotalEngulfableCompounds { get; private set; }
         public bool Interpolate { get; set; }

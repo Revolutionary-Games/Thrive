@@ -48,6 +48,9 @@
                 "colourChangeFactor": 1
             }
         },
+        "enzymes": {
+            "rusticyanin": 1
+        },
         "prokaryoteChance": 2,
         "chanceToCreate": 0.5,
         "mass": 0.08,
@@ -804,7 +807,9 @@
             "lysosome": {}
         },
         "enzymes": {
-            "lipase": 1
+            "lipase": 1,
+            "chitinase": 0,
+            "cellulase": 0
         },
         "prokaryoteChance": 0,
         "chanceToCreate": 0.4,

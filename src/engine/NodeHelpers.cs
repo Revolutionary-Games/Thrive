@@ -77,7 +77,7 @@ public static class NodeHelpers
     }
 
     /// <summary>
-    ///   Changes parent of this Node to a new parent. The node needs to already have parent to use this.
+    ///   Changes parent of this <see cref="Node"/> to a new parent. The node needs to already have parent to use this.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -95,6 +95,23 @@ public static class NodeHelpers
 
         node.GetParent().RemoveChild(node);
         newParent.AddChild(node);
+    }
+
+    /// <summary>
+    ///   Changes parent of this <see cref="Spatial"/> to a new parent, while keeping the global position. The node
+    ///   needs to already have parent to use this.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This will likely be obsolete once https://github.com/godotengine/godot/pull/36301 is merged and
+    ///     available in upcoming Godot versions.
+    ///   </para>
+    /// </remarks>
+    public static void ReParentWithTransform(this Spatial node, Node newParent)
+    {
+        var temp = node.GlobalTransform;
+        node.ReParent(newParent);
+        node.GlobalTransform = temp;
     }
 
     /// <summary>

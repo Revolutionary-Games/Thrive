@@ -364,7 +364,12 @@ public static class Constants
     ///   The measure of which beyond this threshold an engulfable is considered partially digested.
     ///   Used to determine whether a cell should be able to heal after being expelled from engulfment.
     /// </summary>
-    public const float PARTIALLY_DIGESTED_THRESHOLD = 0.3f;
+    public const float PARTIALLY_DIGESTED_THRESHOLD = 0.5f;
+
+    /// <summary>
+    ///   The maximum of which an engulfable is considered fully digested.
+    /// </summary>
+    public const float FULLY_DIGESTED_LIMIT = 1.0f;
 
     /// <summary>
     ///   The speed of which a cell can absorb compounds from digestible engulfed objects.
@@ -379,14 +384,14 @@ public static class Constants
     public const float ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION = 0.9f;
 
     /// <summary>
-    ///   Each lysosome grants 20% increase in digestion speed.
+    ///   Each enzyme addition grants 20% increase in digestion speed.
     /// </summary>
-    public const float LYSOSOME_DIGESTION_SPEED_UP_FRACTION = 0.2f;
+    public const float ENZYME_DIGESTION_SPEED_UP_FRACTION = 0.2f;
 
     /// <summary>
-    ///   Each lysosome grants 20% increase in compounds yield.
+    ///   Each enzyme addition grants 20% increase in compounds yield.
     /// </summary>
-    public const float LYSOSOME_DIGESTION_EFFICIENCY_BUFF_FRACTION = 0.2f;
+    public const float ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION = 0.2f;
 
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
 

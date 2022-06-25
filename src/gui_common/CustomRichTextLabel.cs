@@ -376,16 +376,16 @@ public class CustomRichTextLabel : RichTextLabel
                         break;
                     }
 
-                    case "LYSOSOME_DIGESTION_SPEED_UP_PERCENTAGE":
+                    case "ENZYME_DIGESTION_SPEED_UP_FRACTION":
                     {
-                        output = (Constants.LYSOSOME_DIGESTION_SPEED_UP_FRACTION * 100).ToString(
+                        output = (Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * 100).ToString(
                             format, CultureInfo.CurrentCulture);
                         break;
                     }
 
-                    case "LYSOSOME_DIGESTION_EFFICIENCY_BUFF_FRACTION":
+                    case "ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION":
                     {
-                        output = (Constants.LYSOSOME_DIGESTION_EFFICIENCY_BUFF_FRACTION * 100).ToString(
+                        output = (Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * 100).ToString(
                             format, CultureInfo.CurrentCulture);
                         break;
                     }

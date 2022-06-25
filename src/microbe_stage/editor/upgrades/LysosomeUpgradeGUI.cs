@@ -28,7 +28,7 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     {
         this.dialog = dialog;
         storedOrganelle = organelle;
-        shownChoices = SimulationParameters.Instance.GetDigestiveEnzymes();
+        shownChoices = SimulationParameters.Instance.GetHydrolyticEnzymes();
 
         foreach (var enzyme in shownChoices)
         {

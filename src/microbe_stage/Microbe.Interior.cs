@@ -106,14 +106,11 @@ public partial class Microbe
     [JsonProperty]
     public float AgentEmissionCooldown { get; private set; }
 
-    [JsonProperty]
-    public float TotalAvailableCompoundsOnEngulfed { get; set; }
-
     [JsonIgnore]
     public Enzyme RequisiteEnzymeToDigest => SimulationParameters.Instance.GetEnzyme(Membrane!.Type.DissolverEnzyme);
 
     [JsonIgnore]
-    public float DigestionProgress
+    public float DigestedAmount
     {
         get => dissolveEffectValue;
         set
@@ -207,6 +204,9 @@ public partial class Microbe
     /// </summary>
     public void EmitToxin(Compound? agentType = null)
     {
+        if (PhagocytizedStep != PhagocytosisProcess.None)
+            return;
+
         if (AgentEmissionCooldown > 0)
             return;
 
@@ -548,6 +548,9 @@ public partial class Microbe
         if (Membrane == null)
             throw new InvalidOperationException("Microbe must be initialized first");
 
+        if (PhagocytizedStep != PhagocytosisProcess.None)
+            return;
+
         // max here buffs compound absorbing for the smallest cells
         var grabRadius = Mathf.Max(Radius, 3.0f);
 
@@ -569,6 +572,9 @@ public partial class Microbe
     {
         // Skip if process system has not run yet
         if (!Compounds.HasAnyBeenSetUseful())
+            return;
+
+        if (PhagocytizedStep != PhagocytosisProcess.None)
             return;
 
         float amountToVent = Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta;
@@ -1105,7 +1111,7 @@ public partial class Microbe
         var compounds = SimulationParameters.Instance.GetAllCompounds();
         var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
-        // Handle logic if the objects that are being digested is the ones we have engulfed
+        // Handle logic if the objects that are being digested are the ones we have engulfed
         for (int i = engulfedObjects.Count - 1; i >= 0; --i)
         {
             var engulfedObject = engulfedObjects[i];
@@ -1119,7 +1125,7 @@ public partial class Microbe
 
             if (engulfable.RequisiteEnzymeToDigest != null)
             {
-                if (!ActiveEnzymes.ContainsKey(engulfable.RequisiteEnzymeToDigest))
+                if (!Enzymes.ContainsKey(engulfable.RequisiteEnzymeToDigest))
                 {
                     EjectEngulfable(engulfable);
                     continue;
@@ -1152,13 +1158,13 @@ public partial class Microbe
 
                 hasAnyUsefulCompounds = true;
 
-                var amount = MicrobeInternalCalculations.CalculateDigestionSpeed(ActiveEnzymes[usedEnzyme]);
+                var amount = MicrobeInternalCalculations.CalculateDigestionSpeed(Enzymes[usedEnzyme]);
                 amount *= delta;
 
                 // Efficiency starts from 40% up to 100%. This means at least 8 lysosomes are needed to achieve
                 // maximum efficiency
                 // TODO: Maybe set max efficiency lower to 80%?
-                var efficiency = MicrobeInternalCalculations.CalculateDigestionEfficiency(ActiveEnzymes[usedEnzyme]);
+                var efficiency = MicrobeInternalCalculations.CalculateDigestionEfficiency(Enzymes[usedEnzyme]);
 
                 var taken = Mathf.Min(totalAvailable, amount);
 
@@ -1190,13 +1196,16 @@ public partial class Microbe
 
             if (engulfedObject.InitialTotalEngulfableCompounds.HasValue)
             {
-                engulfable.DigestionProgress = 1 -
+                engulfable.DigestedAmount = 1 -
                     (totalAmountLeft / engulfedObject.InitialTotalEngulfableCompounds.Value);
             }
 
-            if (totalAmountLeft <= 0 || engulfable.DigestionProgress >= 1)
+            if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
             {
-                IngestedSizeCount -= engulfable.Size;
+                // Ignore size from foreign-ingested objects for now
+                if (!engulfedObject.TransferredHost)
+                    IngestedSizeCount -= engulfable.Size;
+
                 engulfable.PhagocytizedStep = PhagocytosisProcess.Digested;
             }
 
@@ -1213,29 +1222,46 @@ public partial class Microbe
                 EjectEngulfable(engulfable);
         }
 
-        // Handle logic if the cell that's being digested is us
+        // Else handle logic if the cell that's being/has been digested is us
         if (PhagocytizedStep == PhagocytosisProcess.None)
         {
-            if (DigestionProgress > 0 && DigestionProgress < Constants.PARTIALLY_DIGESTED_THRESHOLD)
+            if (DigestedAmount > 0 && DigestedAmount < Constants.PARTIALLY_DIGESTED_THRESHOLD)
             {
                 // Cell is not too damaged, can heal itself in open environment and continue living
-                DigestionProgress -= delta * Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
+                DigestedAmount -= delta * Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
             }
         }
         else
         {
             // Species handling for the player microbe in case the process into partial digestion took too long
-            // so we want a maximum limit to how long the player should wait for respawn
+            // so here we want to limit how long the player should wait until they respawn
             if (IsPlayerMicrobe && PhagocytizedStep == PhagocytosisProcess.Ingested)
                 playerEngulfedDeathTimer += delta;
 
-            if (DigestionProgress >= Constants.PARTIALLY_DIGESTED_THRESHOLD || playerEngulfedDeathTimer >=
+            if (DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD || playerEngulfedDeathTimer >=
                 Constants.PLAYER_ENGULFED_DEATH_DELAY_MAX)
             {
                 playerEngulfedDeathTimer = 0;
 
                 // Microbe is beyond repair, might as well consider it as dead
                 Kill();
+
+                var hostile = HostileEngulfer.Value;
+                if (hostile == null)
+                    return;
+
+                // Transfer ownership of all the objects we engulfed to our engulfer
+                foreach (var other in engulfedObjects.ToList())
+                {
+                    var engulfed = other.Object.Value;
+                    if (engulfedObjects.Remove(other) && engulfed != null)
+                    {
+                        engulfed.HostileEngulfer.Value = hostile;
+                        hostile.engulfedObjects.Add(other);
+                        engulfed.EntityNode.ReParentWithTransform(hostile);
+                        other.TransferredHost = true;
+                    }
+                }
             }
         }
     }

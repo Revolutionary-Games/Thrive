@@ -242,7 +242,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     }
 
     [JsonIgnore]
-    public Dictionary<Enzyme, int> ActiveEnzymes
+    public Dictionary<Enzyme, int> Enzymes
     {
         get
         {
@@ -426,7 +426,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                     continue;
 
                 AddChild(engulfable.EntityNode);
-                engulfable.EntityGraphics.AddChild(engulfed.Endosome.Value);
+                engulfable.EntityGraphics.AddChild(engulfed.Phagosome.Value);
             }
         }
 
@@ -1154,21 +1154,19 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         foreach (var organelle in organelles.Organelles)
         {
-            if (organelle.Definition.Enzymes == null)
+            if (organelle.StoredEnzymes == null)
                 continue;
 
-            foreach (var entry in organelle.Definition.Enzymes)
+            foreach (var enzyme in organelle.StoredEnzymes)
             {
-                // Active enzymes should at least have a minimum of one unit
-                if (entry.Value <= 0)
+                // Should have a minimum of unit of enzyme
+                if (enzyme.Value <= 0)
                     continue;
 
-                var enzyme = SimulationParameters.Instance.GetEnzyme(entry.Key);
-
-                if (!enzymes.TryGetValue(enzyme, out int count))
+                if (!enzymes.TryGetValue(enzyme.Key, out int count))
                     count = 0;
 
-                enzymes[enzyme] = count + 1;
+                enzymes[enzyme.Key] = count + enzyme.Value;
             }
         }
 

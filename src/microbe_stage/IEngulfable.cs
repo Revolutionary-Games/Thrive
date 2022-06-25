@@ -57,7 +57,7 @@ public interface IEngulfable : IGraphicalEntity
     public PhagocytosisProcess PhagocytizedStep { get; set; }
 
     /// <summary>
-    ///   What specific enzyme needed to digest this engulfable. If null default is used (lipase).
+    ///   What specific enzyme needed to digest (break down) this engulfable. If null default is used (lipase).
     /// </summary>
     public Enzyme? RequisiteEnzymeToDigest { get; }
 
@@ -67,7 +67,7 @@ public interface IEngulfable : IGraphicalEntity
     ///   The value for how much this engulfable has been digested in the range of 0 to 1,
     ///   where 1 means fully digested.
     /// </summary>
-    public float DigestionProgress { get; set; }
+    public float DigestedAmount { get; set; }
 
     Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds();
 

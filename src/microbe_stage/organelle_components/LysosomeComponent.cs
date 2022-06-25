@@ -2,26 +2,17 @@
 
 public class LysosomeComponent : IOrganelleComponent
 {
-    private PlacedOrganelle? organelle;
-
-    private Enzyme lipase = null!;
-
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
-        this.organelle = organelle;
-
         var configuration = organelle.Upgrades?.CustomUpgradeData;
 
-        lipase = SimulationParameters.Instance.GetEnzyme("lipase");
+        var lipase = SimulationParameters.Instance.GetEnzyme("lipase");
+        var upgrades = configuration as LysosomeUpgrades;
 
-        // Use default values if not configured
-        if (configuration == null)
-        {
-            SetDefaultConfiguration();
-            return;
-        }
+        var enzyme = configuration == null ? lipase : upgrades!.Enzyme;
 
-        SetConfiguration((LysosomeUpgrades)configuration);
+        organelle.StoredEnzymes!.Clear();
+        organelle.StoredEnzymes![enzyme] = 1;
     }
 
     public void OnDetachFromCell(PlacedOrganelle organelle)
@@ -39,29 +30,6 @@ public class LysosomeComponent : IOrganelleComponent
 
     public void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
     {
-    }
-
-    private void SetDefaultConfiguration()
-    {
-        ClearEnzymes();
-        SetEnzyme(lipase);
-    }
-
-    private void SetConfiguration(LysosomeUpgrades configuration)
-    {
-        ClearEnzymes();
-        SetEnzyme(configuration.Enzyme);
-    }
-
-    private void ClearEnzymes()
-    {
-        foreach (var enzyme in SimulationParameters.Instance.GetDigestiveEnzymes())
-            SetEnzyme(enzyme, 0);
-    }
-
-    private void SetEnzyme(Enzyme enzyme, int quantity = 1)
-    {
-        organelle!.Definition.Enzymes![enzyme.InternalName] = quantity;
     }
 }
 

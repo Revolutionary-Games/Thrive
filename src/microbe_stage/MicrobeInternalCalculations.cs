@@ -173,7 +173,7 @@ public static class MicrobeInternalCalculations
     public static float CalculateDigestionSpeed(float enzymeCount)
     {
         var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
-        var buff = amount * Constants.LYSOSOME_DIGESTION_SPEED_UP_FRACTION * enzymeCount;
+        var buff = amount * Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * enzymeCount;
 
         return amount + buff;
     }
@@ -193,7 +193,7 @@ public static class MicrobeInternalCalculations
     public static float CalculateDigestionEfficiency(float enzymeCount)
     {
         var absorption = Constants.ENGULF_BASE_COMPOUND_ABSORBTION_YIELD;
-        var buff = absorption * Constants.LYSOSOME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount;
+        var buff = absorption * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount;
 
         return Mathf.Clamp(absorption + buff, 0.0f, 1.0f);
     }

@@ -40,6 +40,9 @@ public class RegistryTypeConverter : BaseThriveConverter
         if (objectType == typeof(MembraneType))
             return Context.Simulation.GetMembrane(name);
 
+        if (objectType == typeof(Enzyme))
+            return Context.Simulation.GetEnzyme(name);
+
         throw new Exception("a registry type is missing from RegistryTypeConverter");
     }
 

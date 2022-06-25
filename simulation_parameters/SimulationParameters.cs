@@ -205,9 +205,9 @@ public class SimulationParameters : Node
         return cachedCloudCompounds ??= ComputeCloudCompounds();
     }
 
-    public List<Enzyme> GetDigestiveEnzymes()
+    public List<Enzyme> GetHydrolyticEnzymes()
     {
-        return cachedDigestiveEnzymes ??= ComputeDigestiveEnzymes();
+        return cachedDigestiveEnzymes ??= ComputeHydrolyticEnzymes();
     }
 
     public Dictionary<string, MusicCategory> GetMusicCategories()
@@ -480,8 +480,8 @@ public class SimulationParameters : Node
         return compounds.Where(p => p.Value.IsCloud).Select(p => p.Value).ToList();
     }
 
-    private List<Enzyme> ComputeDigestiveEnzymes()
+    private List<Enzyme> ComputeHydrolyticEnzymes()
     {
-        return enzymes.Where(e => e.Value.Property == "digestive").Select(e => e.Value).ToList();
+        return enzymes.Where(e => e.Value.Property == "hydrolytic").Select(e => e.Value).ToList();
     }
 }

@@ -162,6 +162,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
     }
 
+    [JsonIgnore]
+    public Dictionary<Enzyme, int>? StoredEnzymes { get; private set; }
+
     /// <summary>
     ///   True if this is an agent vacuole. Number of agent vacuoles
     ///   determine how often a cell can shoot toxins.
@@ -171,13 +174,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     [JsonIgnore]
     public bool IsBindingAgent => HasComponent<BindingAgentComponent>();
-
-    /// <summary>
-    ///   True if this is a lysosome. Number of lysosomes
-    ///   determine the speed up of digestion time.
-    /// </summary>
-    [JsonIgnore]
-    public bool IsLysosome => HasComponent<LysosomeComponent>();
 
     public bool IsLoadedFromSave { get; set; }
 
@@ -550,6 +546,18 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         //     ParentMicrobe.Colony.Master.Mass += Definition.Mass;
 
         MakeCollisionShapes(ParentMicrobe!.Colony?.Master ?? ParentMicrobe);
+
+        StoredEnzymes = new Dictionary<Enzyme, int>();
+
+        if (Definition.Enzymes != null)
+        {
+            foreach (var entry in Definition.Enzymes)
+            {
+                var enzyme = SimulationParameters.Instance.GetEnzyme(entry.Key);
+
+                StoredEnzymes[enzyme] = entry.Value;
+            }
+        }
 
         // Components
         components = new List<IOrganelleComponent>();

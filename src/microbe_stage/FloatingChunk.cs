@@ -134,14 +134,14 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     [JsonProperty]
     public EntityReference<Microbe> HostileEngulfer { get; private set; } = new();
 
-    [JsonIgnore]
-    public Enzyme? RequisiteEnzymeToDigest => null;
+    [JsonProperty]
+    public Enzyme? RequisiteEnzymeToDigest { get; private set; }
 
     /// <summary>
     ///   This is both the digestion and dissolve effect progress value for now.
     /// </summary>
     [JsonIgnore]
-    public float DigestionProgress
+    public float DigestedAmount
     {
         get => dissolveEffectValue;
         set
@@ -190,6 +190,9 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
                 Compounds.Compounds.Add(entry.Key, entry.Value.Amount);
             }
         }
+
+        if (!string.IsNullOrEmpty(chunkType.DissolverEnzyme))
+            RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(chunkType.DissolverEnzyme);
     }
 
     /// <summary>
@@ -233,33 +236,15 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
             }
         }
 
+        if (RequisiteEnzymeToDigest != null)
+            config.DissolverEnzyme = RequisiteEnzymeToDigest.InternalName;
+
         return config;
     }
 
     public override void _Ready()
     {
-        var graphicsNode = GraphicsScene.Instance();
-        GetNode("NodeToScale").AddChild(graphicsNode);
-
-        if (string.IsNullOrEmpty(ModelNodePath))
-        {
-            if (graphicsNode.IsClass("MeshInstance"))
-            {
-                chunkMesh = (MeshInstance)graphicsNode;
-            }
-            else if (graphicsNode.IsClass("Particles"))
-            {
-                isParticles = true;
-            }
-            else
-            {
-                throw new Exception("Invalid class");
-            }
-        }
-        else
-        {
-            chunkMesh = graphicsNode.GetNode<MeshInstance>(ModelNodePath);
-        }
+        InitGraphics();
 
         if (chunkMesh == null && !isParticles)
             throw new InvalidOperationException("Can't make a chunk without graphics scene");
@@ -378,7 +363,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 
     public void OnExpelled()
     {
-        if (DigestionProgress > 0)
+        if (DigestedAmount > 0)
         {
             // Just dissolve this chunk entirely (as it's already somehow broken down by digestion)
             DespawnTimer = Constants.DESPAWNING_CHUNK_LIFETIME + 1;
@@ -436,13 +421,16 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         if (chunkMesh == null)
             throw new InvalidOperationException("Chunk without a mesh can't dissolve");
 
+        if (PhagocytizedStep != PhagocytosisProcess.None)
+            return;
+
         // Disable collisions
         CollisionLayer = 0;
         CollisionMask = 0;
 
-        DigestionProgress += delta * Constants.FLOATING_CHUNKS_DISSOLVE_SPEED;
+        DigestedAmount += delta * Constants.FLOATING_CHUNKS_DISSOLVE_SPEED;
 
-        if (DigestionProgress >= 1)
+        if (DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
         {
             this.DestroyDetachAndQueueFree();
         }
@@ -463,6 +451,31 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
             throw new InvalidOperationException("Chunk without a mesh can't be applied a render priority");
 
         chunkMesh.MaterialOverride.RenderPriority = RenderPriority;
+    }
+
+    private void InitGraphics()
+    {
+        var graphicsNode = GraphicsScene.Instance();
+        GetNode("NodeToScale").AddChild(graphicsNode);
+
+        if (!string.IsNullOrEmpty(ModelNodePath))
+        {
+            chunkMesh = graphicsNode.GetNode<MeshInstance>(ModelNodePath);
+            return;
+        }
+
+        if (graphicsNode.IsClass("MeshInstance"))
+        {
+            chunkMesh = (MeshInstance)graphicsNode;
+        }
+        else if (graphicsNode.IsClass("Particles"))
+        {
+            isParticles = true;
+        }
+        else
+        {
+            throw new Exception("Invalid class");
+        }
     }
 
     private void InitPhysics()
