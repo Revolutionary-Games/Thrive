@@ -29,7 +29,15 @@ public static class Constants
     /// </summary>
     public const float SPAWN_SECTOR_SIZE = 120.0f;
 
-    public const int CLOUD_SPAWN_SCALE_FACTOR = 10000;
+    /// <summary>
+    ///   Scale factor for density of compound cloud spawns
+    /// </summary>
+    public const int CLOUD_SPAWN_DENSITY_SCALE_FACTOR = 10000;
+
+    /// <summary>
+    ///   Scale factor for amount of compound in each spawned cloud
+    /// </summary>
+    public const float CLOUD_SPAWN_AMOUNT_SCALE_FACTOR = 0.75f;
 
     /// <summary>
     ///   The (default) size of the hexagons, used in calculations. Don't change this.
@@ -598,13 +606,22 @@ public static class Constants
     public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
 
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
-
-    public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
-    // These control how many game entities can exist at once and how fast they are allowed to spawn / despawn
-    // TODO: bump this back up once we resolve the performance bottleneck
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 70;
+    // These control how many game entities can exist at once
+    // TODO: bump these back up once we resolve the performance bottleneck
+    public const int TINY_MAX_SPAWNED_ENTITIES = 25;
+    public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 40;
+    public const int SMALL_MAX_SPAWNED_ENTITIES = 55;
+    public const int NORMAL_MAX_SPAWNED_ENTITIES = 70;
+    public const int LARGE_MAX_SPAWNED_ENTITIES = 85;
+    public const int VERY_LARGE_MAX_SPAWNED_ENTITIES = 100;
+    public const int HUGE_MAX_SPAWNED_ENTITIES = 115;
+    public const int EXTREME_MAX_SPAWNED_ENTITIES = 130;
+
+    /// <summary>
+    ///   Controls how fast entities are allowed to spawn
+    /// </summary>
     public const int MAX_SPAWNS_PER_FRAME = 1;
 
     /// <summary>
@@ -842,12 +859,12 @@ public static class Constants
     /// <summary>
     ///   Minimum amount for the quite a bit category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 400f;
+    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 800f;
 
     /// <summary>
     ///   Minimum amount for the an abundance category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 600f;
+    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000f;
 
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
@@ -868,6 +885,20 @@ public static class Constants
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
     public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
+
+    // Min/max values for each customisable difficulty option
+    public const float MIN_MP_MULTIPLIER = 0.2f;
+    public const float MAX_MP_MULTIPLIER = 2;
+    public const float MIN_AI_MUTATION_RATE = 0.5f;
+    public const float MAX_AI_MUTATION_RATE = 5;
+    public const float MIN_COMPOUND_DENSITY = 0.2f;
+    public const float MAX_COMPOUND_DENSITY = 2;
+    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
+    public const float MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
+    public const float MIN_GLUCOSE_DECAY = 0.3f;
+    public const float MAX_GLUCOSE_DECAY = 0.95f;
+    public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
+    public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

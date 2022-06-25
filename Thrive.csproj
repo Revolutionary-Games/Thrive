@@ -209,6 +209,7 @@
     <Compile Include="src\engine\ColourblindScreenFilter.cs" />
     <Compile Include="src\engine\CursorLoader.cs" />
     <Compile Include="src\general\OptionsMenu.cs" />
+    <Compile Include="src\general\NewGameSettings.cs" />
     <Compile Include="src\general\SceneDisplayer.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
@@ -344,6 +345,7 @@
     <Compile Include="src\microbe_stage\MicrobeSpecies.cs" />
     <Compile Include="src\general\GameWorld.cs" />
     <Compile Include="src\general\WorldGenerationSettings.cs" />
+    <Compile Include="src\general\DifficultyPreset.cs" />
     <Compile Include="src\microbe_stage\OrganelleLayout.cs" />
     <Compile Include="src\microbe_stage\ProcessSystem.cs" />
     <Compile Include="src\microbe_stage\IProcessable.cs" />
@@ -522,6 +524,7 @@
     <Content Include="export_presets.cfg" />
     <Content Include="simulation_parameters\common\auto-evo_parameters.json" />
     <Content Include="simulation_parameters\common\credits.json" />
+    <Content Include="simulation_parameters\common\difficulty_presets.json" />
     <Content Include="simulation_parameters\common\gallery.json" />
     <Content Include="simulation_parameters\common\help_texts.json" />
     <Content Include="simulation_parameters\common\input_options.json" />

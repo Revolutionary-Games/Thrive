@@ -1296,7 +1296,8 @@ public class MicrobeHUD : Control
         if (stage == null)
             throw new InvalidOperationException("Can't update multicellular button without stage set");
 
-        if (player.Colony == null || player.IsMulticellular || stage.CurrentGame!.FreeBuild)
+        if (player.Colony == null || player.IsMulticellular ||
+            !stage.CurrentGame!.GameWorld.WorldSettings.IncludeMulticellular || stage.CurrentGame!.FreeBuild)
         {
             multicellularButton.Visible = false;
             return;

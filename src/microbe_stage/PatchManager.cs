@@ -117,17 +117,22 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private void HandleChunkSpawns(BiomeConditions biome)
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
+
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
         foreach (var entry in biome.Chunks)
         {
-            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
+            var density = entry.Value.Density * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
+                Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR;
+
+            HandleSpawnHelper(chunkSpawners, entry.Value.Name, density,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
-                        Constants.MICROBE_SPAWN_RADIUS);
+                    spawnSystem.AddSpawnType(spawner.Spawner, density, Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 });
         }
@@ -135,19 +140,26 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private void HandleCloudSpawns(BiomeConditions biome)
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
+
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
         foreach (var entry in biome.Compounds)
         {
-            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName,
-                entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
+            // Density value in difficulty settings scales overall compound amount quadratically
+            var density = entry.Value.Density * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
+                Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR;
+            var amount = entry.Value.Amount * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
+                Constants.CLOUD_SPAWN_AMOUNT_SCALE_FACTOR;
+
+            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, density,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Key.InternalName,
-                        Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount));
+                        Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, amount));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density * Constants.CLOUD_SPAWN_SCALE_FACTOR,
-                        Constants.CLOUD_SPAWN_RADIUS);
+                    spawnSystem.AddSpawnType(spawner.Spawner, density, Constants.CLOUD_SPAWN_RADIUS);
                     return spawner;
                 });
         }

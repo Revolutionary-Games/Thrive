@@ -298,7 +298,13 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             {
                 StartNewGame();
             }
+            else
+            {
+                OnGameStarted();
+            }
         }
+
+        GD.Print(CurrentGame!.GameWorld.WorldSettings);
 
         pauseMenu.GameProperties = CurrentGame ?? throw new InvalidOperationException("current game is not set");
 
@@ -343,13 +349,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public void StartNewGame()
     {
-        CurrentGame = GameProperties.StartNewMicrobeGame();
+        CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
 
-        patchManager.CurrentGame = CurrentGame;
-
-        UpdatePatchSettings(!TutorialState.Enabled);
-
-        SpawnPlayer();
+        OnGameStarted();
     }
 
     public void StartMusic()
@@ -715,6 +717,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // Make sure player is spawned
         SpawnPlayer();
 
+        // Add a cloud of glucose if difficulty settings call for it
+        if (GameWorld.WorldSettings.FreeGlucoseCloud)
+        {
+            Clouds.AddCloud(glucose, 200000.0f, Player!.Translation + new Vector3(0.0f, 0.0f, -25.0f));
+        }
+
         // Check win conditions
         if (!CurrentGame.FreeBuild && Player!.Species.Generation >= 20 &&
             Player.Species.Population >= 300 && !wonOnce)
@@ -768,6 +776,18 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         TransitionFinished = true;
         TutorialState.SendEvent(
             TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
+    }
+
+    /// <summary>
+    ///   Common logic for the case where we directly open this scene or start a new game normally from the menu
+    /// </summary>
+    private void OnGameStarted()
+    {
+        patchManager.CurrentGame = CurrentGame;
+
+        UpdatePatchSettings(!TutorialState.Enabled);
+
+        SpawnPlayer();
     }
 
     /// <summary>
@@ -828,9 +848,11 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         // Decrease the population by the constant for the player dying
         GameWorld.AlterSpeciesPopulation(
-            GameWorld.PlayerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
+            GameWorld.PlayerSpecies,
+            Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
-            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
+            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
+            / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
 
         if (IsGameOver())
         {

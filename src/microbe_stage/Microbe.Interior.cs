@@ -885,6 +885,9 @@ public partial class Microbe
             osmoregulationCost *= 20f / (20f + Colony.ColonyMembers.Count);
         }
 
+        if (Species.PlayerSpecies)
+            osmoregulationCost *= CurrentGame.GameWorld.WorldSettings.OsmoregulationMultiplier;
+
         Compounds.TakeCompound(atp, osmoregulationCost);
     }
 

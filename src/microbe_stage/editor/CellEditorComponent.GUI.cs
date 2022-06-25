@@ -118,7 +118,7 @@ public partial class CellEditorComponent
 
     private void UpdateRigiditySliderState(int mutationPoints)
     {
-        int costPerStep = (int)(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * editorCostFactor);
+        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
         if (mutationPoints >= costPerStep && MovingPlacedHex == null)
         {
             rigiditySlider.Editable = true;
@@ -203,16 +203,38 @@ public partial class CellEditorComponent
         }
     }
 
+    private void UpdateOrganelleLAWKSettings()
+    {
+        // Don't use placeablePartSelectionElements as the thermoplast isn't placeable yet but is LAWK-dependent
+        foreach (var entry in allPartSelectionElements)
+        {
+            entry.Value.Visible = !Editor.CurrentGame.GameWorld.WorldSettings.LAWK || entry.Key.LAWK;
+        }
+    }
+
     private SelectionMenuToolTip? GetSelectionTooltip(string name, string group)
     {
         return (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(name, group);
     }
 
     /// <summary>
-    ///   Updates the MP costs in organelle, membrane, and rigidity tooltips by setting the cost factor for each one
+    ///   Updates the MP costs for organelle, membrane, and rigidity button lists and tooltips
     /// </summary>
-    private void UpdateTooltipMPCostFactors()
+    private void UpdateMPCostFactors()
     {
+        // Set the cost factor for each organelle button
+        foreach (var entry in placeablePartSelectionElements)
+        {
+            entry.Value.MPCost = (int)Math.Min(entry.Value.MPCost * CostMultiplier, 100);
+        }
+
+        // Set the cost factor for each membrane button
+        foreach (var entry in membraneSelectionElements)
+        {
+            entry.Value.MPCost = (int)Math.Min(entry.Value.MPCost * CostMultiplier, 100);
+        }
+
+        // Set the cost factor for each organelle tooltip
         var organelleNames = SimulationParameters.Instance.GetAllOrganelles().Select(o => o.InternalName);
         foreach (string name in organelleNames)
         {
@@ -221,20 +243,32 @@ public partial class CellEditorComponent
 
             var tooltip = GetSelectionTooltip(name, "organelleSelection");
             if (tooltip != null)
+            {
                 tooltip.EditorCostFactor = editorCostFactor;
+                tooltip.MutationPointCost = (int)Math.Min(tooltip.MutationPointCost * CostMultiplier, 100);
+            }
         }
 
+        // Set the cost factor for each membrane tooltip
         var membraneNames = SimulationParameters.Instance.GetAllMembranes().Select(m => m.InternalName);
         foreach (var name in membraneNames)
         {
             var tooltip = GetSelectionTooltip(name, "membraneSelection");
             if (tooltip != null)
+            {
                 tooltip.EditorCostFactor = editorCostFactor;
+                tooltip.MutationPointCost = (int)Math.Min(tooltip.MutationPointCost * CostMultiplier, 100);
+            }
         }
 
+        // Set the cost factor for the rigidity tooltip
         var rigidityTooltip = GetSelectionTooltip("rigiditySlider", "editor");
         if (rigidityTooltip != null)
+        {
             rigidityTooltip.EditorCostFactor = editorCostFactor;
+            rigidityTooltip.MutationPointCost =
+                (int)Math.Min(rigidityTooltip.MutationPointCost * CostMultiplier, 100);
+        }
     }
 
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
