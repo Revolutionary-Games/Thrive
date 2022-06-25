@@ -443,7 +443,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             return;
         }
 
-        var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP);
+        var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP).ToList();
 
         if (Player != null)
         {
@@ -546,7 +546,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         if (debugOverlay.PerformanceMetricsVisible)
         {
             var childCount = rootOfDynamicallySpawned.GetChildCount();
-            debugOverlay.ReportEntities(entities.Count(), childCount - entities.Count());
+            debugOverlay.ReportEntities(entities.Count, childCount - entities.Count);
         }
     }
 

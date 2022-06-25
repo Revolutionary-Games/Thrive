@@ -213,7 +213,7 @@ public class MicrobeHUD : Control
     private readonly System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls =
         new();
 
-    private readonly Color defaultHealthBarColour = new Color(0.96f, 0.27f, 0.48f);
+    private readonly Color defaultHealthBarColour = new(0.96f, 0.27f, 0.48f);
 
     // ReSharper restore RedundantNameQualifier
 

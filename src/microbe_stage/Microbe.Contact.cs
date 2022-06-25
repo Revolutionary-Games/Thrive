@@ -1687,7 +1687,7 @@ public partial class Microbe
             IngestEngulfable(engulfable);
         }
         else if (Size > engulfable.Size * Constants.ENGULF_SIZE_RATIO_REQ &&
-            (IngestedSizeCount >= Size || IngestedSizeCount + engulfable.Size >= Size))
+                (IngestedSizeCount >= Size || IngestedSizeCount + engulfable.Size >= Size))
         {
             OnEngulfmentStorageFull?.Invoke(this);
         }
