@@ -1682,12 +1682,13 @@ public partial class Microbe
             }
         }
 
+        var full = IngestedSizeCount >= Size || IngestedSizeCount + engulfable.Size >= Size;
+
         if (CanEngulf(engulfable))
         {
             IngestEngulfable(engulfable);
         }
-        else if (Size > engulfable.Size * Constants.ENGULF_SIZE_RATIO_REQ &&
-                    (IngestedSizeCount >= Size || IngestedSizeCount + engulfable.Size >= Size))
+        else if (Size > engulfable.Size * Constants.ENGULF_SIZE_RATIO_REQ && full)
         {
             OnEngulfmentStorageFull?.Invoke(this);
         }
