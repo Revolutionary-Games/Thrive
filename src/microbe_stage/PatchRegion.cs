@@ -13,24 +13,19 @@ public class PatchRegion
 {
     [JsonProperty]
     public readonly int ID;
-
-    [JsonProperty]
+    [JsonIgnore]
     public readonly ISet<PatchRegion> Adjacent = new HashSet<PatchRegion>();
-
-    [JsonProperty]
+    [JsonIgnore]
     public float PatchNodeWidth = 64.0f;
-
-    [JsonProperty]
+    [JsonIgnore]
     public float PatchNodeHeight = 64.0f;
-
-    [JsonProperty]
+    [JsonIgnore]
     public float RegionLineWidth = 4f;
+    [JsonIgnore]
+    public float PatchMargin = 4f;
 
     [JsonProperty]
     public string RegionType;
-
-    [JsonProperty]
-    public float PatchMargin = 4f;
 
     [JsonProperty]
     public float Height;
@@ -40,6 +35,20 @@ public class PatchRegion
 
     [JsonProperty]
     public List<Patch> Patches;
+
+    public PatchRegion(int id, LocalizedString name, string regionType, Vector2 coordinates, float height, float width, List<Patch> patches)
+    {
+
+        ID = id;
+        Name = name;
+        RegionType = regionType;
+        Patches = patches;
+
+    }
+    public PatchRegion()
+    {
+
+    }
 
     public PatchRegion(int id, LocalizedString name, string regionType, Vector2 coordinates)
     {
@@ -58,6 +67,7 @@ public class PatchRegion
     /// <summary>
     ///   Coordinates this region is to be displayed in the GUI
     /// </summary>
+    [JsonProperty]
     public Vector2 ScreenCoordinates { get; set; }
 
     public void BuildPatches(Random random)

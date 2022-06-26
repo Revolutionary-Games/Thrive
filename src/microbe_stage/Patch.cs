@@ -15,7 +15,6 @@ public class Patch
     [JsonProperty]
     public readonly int ID;
 
-    [JsonProperty]
     public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
 
     [JsonProperty]

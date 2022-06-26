@@ -7,7 +7,8 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A container for patches that are joined together
 /// </summary>
-public class PatchMap
+[UseThriveSerializer]
+public class PatchMap : ISaveLoadable
 {
     private Patch? currentPatch;
 
@@ -22,6 +23,15 @@ public class PatchMap
 
     [JsonProperty]
     public Dictionary<int, PatchRegion> SpecialRegions { get; private set; } = new();
+
+    [JsonProperty]
+    public Random seed = null;
+
+    [JsonProperty]
+    private List<(int, int)> PatchesAdjacencies { get; set; } = new();
+
+    [JsonProperty]
+    private List<(int, int)> RegionAdjacencies { get; set; } = new();
 
     /// <summary>
     ///   Currently active patch (the one player is in)
@@ -45,6 +55,7 @@ public class PatchMap
             currentPatch = value;
         }
     }
+
 
     /// <summary>
     ///   Adds a new patch to the map. Throws if can't add
@@ -77,15 +88,15 @@ public class PatchMap
     /// <summary>
     ///   Adds a new special region to the map. Throws if can't add
     /// </summary>
-    public void AddSpecialRegion(PatchRegion region)
+    public void AddSpecialRegion(PatchRegion specialRegion)
     {
-        if (SpecialRegions.ContainsKey(region.ID))
+        if (SpecialRegions.ContainsKey(specialRegion.ID))
         {
             throw new ArgumentException(
-                "region cannot be added to this map, the ID is already in use: " + region.ID);
+                "region cannot be added to this map, the ID is already in use: " + specialRegion.ID);
         }
 
-        SpecialRegions[region.ID] = region;
+        SpecialRegions[specialRegion.ID] = specialRegion;
     }
 
     /// <summary>
@@ -355,6 +366,14 @@ public class PatchMap
         }
     }
 
+    public void SetSeed(Random random)
+    {
+        if (seed == null)
+            seed = random;
+        else
+            throw new ArgumentException("cant set seed, seed has already been set");
+    }
+
     public void BuildSpecialRegions()
     {
         foreach (var region in SpecialRegions)
@@ -363,11 +382,11 @@ public class PatchMap
         }
     }
 
-    public void BuildPatchesInRegions(Random random)
+    public void BuildPatchesInRegions()
     {
         foreach (var region in Regions)
         {
-            region.Value.BuildPatches(random);
+            region.Value.BuildPatches(seed);
             foreach (var patch in region.Value.Patches)
             {
                 AddPatch(patch);
@@ -375,11 +394,11 @@ public class PatchMap
         }
     }
 
-    public void BuildPatchesInSpecialRegions(Random random)
+    public void BuildPatchesInSpecialRegions()
     {
         foreach (var region in SpecialRegions)
         {
-            region.Value.BuildPatches(random);
+            region.Value.BuildPatches(seed);
             foreach (var patch in region.Value.Patches)
             {
                 AddPatch(patch);
@@ -387,11 +406,80 @@ public class PatchMap
         }
     }
 
-    public void ConnectPatchesBetweenRegions(Random random)
+    public void ConnectPatchesBetweenRegions()
     {
         foreach (var region in Regions)
         {
-            region.Value.ConnectPatchesBetweenRegions(random);
+            region.Value.ConnectPatchesBetweenRegions(seed);
         }
+    }
+
+    public bool ContainsPatchAdjency(int id1, int id2)
+    {
+        if (PatchesAdjacencies.Contains((id1, id2)) || PatchesAdjacencies.Contains((id2, id1)))
+            return true;
+        return false;
+    }
+
+    public bool ContainsRegionAdjency(int id1, int id2)
+    {
+        if (RegionAdjacencies.Contains((id1, id2)) || RegionAdjacencies.Contains((id2, id1)))
+            return true;
+        return false;
+    }
+
+    public void CreateAdjacencies()
+    {
+        foreach (var entry in Patches)
+        {
+            foreach (var adjacent in entry.Value.Adjacent)
+            {
+                if (!ContainsPatchAdjency(entry.Value.ID, adjacent.ID))
+                    PatchesAdjacencies.Add((entry.Value.ID, adjacent.ID));
+            }
+        }
+
+        foreach (var entry in Regions)
+        {
+            foreach (var adjacent in entry.Value.Adjacent)
+            {
+                if (!ContainsRegionAdjency(entry.Value.ID, adjacent.ID))
+                    RegionAdjacencies.Add((entry.Value.ID, adjacent.ID));
+            }
+        }
+    }
+
+    public void RecreateAdjencies()
+    {
+        foreach (var (id1, id2) in PatchesAdjacencies)
+        {
+            var patch1 = Patches[id1];
+            var patch2 = Patches[id2];
+            patch1.AddNeighbour(patch2);
+            patch2.AddNeighbour(patch1);
+        }
+
+        foreach (var (id1, id2) in RegionAdjacencies)
+        {
+            PatchRegion region1;
+            if (id1 > -1)
+                region1 = Regions[id1];
+            else
+                region1 = SpecialRegions[id1];
+            
+            PatchRegion region2;
+            if (id2 > -1)
+                region2 = Regions[id2];
+            else
+                region2 = SpecialRegions[id2];
+
+            region1.AddNeighbour(region2);
+            region2.AddNeighbour(region1);
+        }
+    }
+
+    public void FinishLoading(ISaveContext? context)
+    {
+        RecreateAdjencies();
     }
 }

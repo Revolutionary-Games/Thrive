@@ -141,9 +141,10 @@ public static class PatchMapGenerator
         }
 
         // After building the normal regions we build the special ones and the patches
-        map.BuildPatchesInRegions(random);
+        map.SetSeed(random);
+        map.BuildPatchesInRegions();
         map.BuildSpecialRegions();
-        map.BuildPatchesInSpecialRegions(random);
+        map.BuildPatchesInSpecialRegions();
 
         map.CurrentPatch = map.Patches[random.Next(0, currentPatchId)];
         map.CurrentPatch.AddSpecies(defaultSpecies);
@@ -163,7 +164,8 @@ public static class PatchMapGenerator
             }
         }
 
-        map.ConnectPatchesBetweenRegions(random);
+        map.ConnectPatchesBetweenRegions();
+        map.CreateAdjacencies();
         return map;
     }
 
