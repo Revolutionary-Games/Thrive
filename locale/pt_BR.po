@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-23 23:41+0300\n"
+"POT-Creation-Date: 2022-06-26 23:31+0300\n"
 "PO-Revision-Date: 2022-05-08 18:10+0000\n"
 "Last-Translator: Igor Silva <igorkcs@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -3489,7 +3489,51 @@ msgstr "Abre o editor e modifica a sua espécie"
 msgid "PAUSED"
 msgstr "PAUSADO"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:210
+#: ../src/microbe_stage/PatchMapGenerator.cs:192
+msgid "PATCH_PANGONIAN_VENTS"
+msgstr "Respiradouros Pangonianos"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:193
+msgid "PATCH_PANGONIAN_MESOPELAGIC"
+msgstr "Mesopelágico Pangoniano"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
+msgid "PATCH_PANGONIAN_EPIPELAGIC"
+msgstr "Epipelágico Pangoniano"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
+msgid "PATCH_PANGONIAN_TIDEPOOL"
+msgstr "Poça de Maré Pangoniana"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
+msgid "PATCH_PANGONIAN_BATHYPELAGIC"
+msgstr "Batipelágico Pangoniano"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:197
+msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
+msgstr "Abissopelágico Pangoniano"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:198
+msgid "PATCH_PANGONIAN_COAST"
+msgstr "Costa Pangoniana"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:199
+msgid "PATCH_PANGONIAN_ESTUARY"
+msgstr "Estuário Pangoniano"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:200
+msgid "PATCH_CAVE"
+msgstr "Caverna"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:201
+msgid "PATCH_ICE_SHELF"
+msgstr "Plataforma de Gelo"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:202
+msgid "PATCH_PANGONIAN_SEAFLOOR"
+msgstr "Relevo Oceânico Pangoniano"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:508
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -4958,36 +5002,6 @@ msgstr "Ver Agora"
 #~ msgid "MOBILITY"
 #~ msgstr "Mobilidade"
 
-#~ msgid "PATCH_PANGONIAN_VENTS"
-#~ msgstr "Respiradouros Pangonianos"
-
-#~ msgid "PATCH_PANGONIAN_MESOPELAGIC"
-#~ msgstr "Mesopelágico Pangoniano"
-
-#~ msgid "PATCH_PANGONIAN_EPIPELAGIC"
-#~ msgstr "Epipelágico Pangoniano"
-
-#~ msgid "PATCH_PANGONIAN_TIDEPOOL"
-#~ msgstr "Poça de Maré Pangoniana"
-
-#~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-#~ msgstr "Abissopelágico Pangoniano"
-
-#~ msgid "PATCH_PANGONIAN_COAST"
-#~ msgstr "Costa Pangoniana"
-
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Estuário Pangoniano"
-
-#~ msgid "PATCH_CAVE"
-#~ msgstr "Caverna"
-
-#~ msgid "PATCH_ICE_SHELF"
-#~ msgstr "Plataforma de Gelo"
-
-#~ msgid "PATCH_PANGONIAN_SEAFLOOR"
-#~ msgstr "Relevo Oceânico Pangoniano"
-
 #~ msgid "FRAME_DELTA"
 #~ msgstr "Delta: {0}"
 
@@ -5274,6 +5288,3 @@ msgstr "Ver Agora"
 
 #~ msgid "PLASTID"
 #~ msgstr "Plastídeo"
-
-#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-#~ msgstr "Batipelágico Pangoniano"

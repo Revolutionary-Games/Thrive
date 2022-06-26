@@ -7,20 +7,24 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A region is a somehting like a continent/ocean that contains multiple biomes(patches).
 /// </summary>
-[JsonObject(IsReference = true)]
 [UseThriveSerializer]
 public class PatchRegion
 {
     [JsonProperty]
     public readonly int ID;
+
     [JsonIgnore]
     public readonly ISet<PatchRegion> Adjacent = new HashSet<PatchRegion>();
+
     [JsonIgnore]
     public float PatchNodeWidth = 64.0f;
+
     [JsonIgnore]
     public float PatchNodeHeight = 64.0f;
+
     [JsonIgnore]
     public float RegionLineWidth = 4f;
+
     [JsonIgnore]
     public float PatchMargin = 4f;
 
@@ -36,21 +40,20 @@ public class PatchRegion
     [JsonProperty]
     public List<Patch> Patches;
 
-    public PatchRegion(int id, LocalizedString name, string regionType, Vector2 coordinates, float height, float width, List<Patch> patches)
+    [JsonConstructor]
+    public PatchRegion(int id, LocalizedString name, string regionType, Vector2 screencoordinates,
+        float height, float width, List<Patch> patches)
     {
-
         ID = id;
         Name = name;
         RegionType = regionType;
         Patches = patches;
-
-    }
-    public PatchRegion()
-    {
-
+        ScreenCoordinates = screencoordinates;
+        Height = height;
+        Width = width;
     }
 
-    public PatchRegion(int id, LocalizedString name, string regionType, Vector2 coordinates)
+    public PatchRegion(int id, LocalizedString name, string regionType, Vector2 screenCoordinates)
     {
         ID = id;
         Patches = new List<Patch>();
@@ -58,7 +61,7 @@ public class PatchRegion
         Height = 0;
         Width = 0;
         RegionType = regionType;
-        ScreenCoordinates = coordinates;
+        ScreenCoordinates = screenCoordinates;
     }
 
     [JsonProperty]

@@ -10,6 +10,9 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class PatchMap : ISaveLoadable
 {
+    [JsonProperty]
+    public Random Seed = null!;
+
     private Patch? currentPatch;
 
     /// <summary>
@@ -23,15 +26,6 @@ public class PatchMap : ISaveLoadable
 
     [JsonProperty]
     public Dictionary<int, PatchRegion> SpecialRegions { get; private set; } = new();
-
-    [JsonProperty]
-    public Random seed = null;
-
-    [JsonProperty]
-    private List<(int, int)> PatchesAdjacencies { get; set; } = new();
-
-    [JsonProperty]
-    private List<(int, int)> RegionAdjacencies { get; set; } = new();
 
     /// <summary>
     ///   Currently active patch (the one player is in)
@@ -56,6 +50,11 @@ public class PatchMap : ISaveLoadable
         }
     }
 
+    [JsonProperty]
+    private List<(int Id1, int Id2)> PatchesAdjacencies { get; set; } = new();
+
+    [JsonProperty]
+    private List<(int Id1, int Id2)> RegionAdjacencies { get; set; } = new();
 
     /// <summary>
     ///   Adds a new patch to the map. Throws if can't add
@@ -368,10 +367,10 @@ public class PatchMap : ISaveLoadable
 
     public void SetSeed(Random random)
     {
-        if (seed == null)
-            seed = random;
-        else
+        if (Seed != null)
             throw new ArgumentException("cant set seed, seed has already been set");
+        
+        Seed = random;
     }
 
     public void BuildSpecialRegions()
@@ -386,7 +385,7 @@ public class PatchMap : ISaveLoadable
     {
         foreach (var region in Regions)
         {
-            region.Value.BuildPatches(seed);
+            region.Value.BuildPatches(Seed);
             foreach (var patch in region.Value.Patches)
             {
                 AddPatch(patch);
@@ -398,7 +397,7 @@ public class PatchMap : ISaveLoadable
     {
         foreach (var region in SpecialRegions)
         {
-            region.Value.BuildPatches(seed);
+            region.Value.BuildPatches(Seed);
             foreach (var patch in region.Value.Patches)
             {
                 AddPatch(patch);
@@ -410,21 +409,27 @@ public class PatchMap : ISaveLoadable
     {
         foreach (var region in Regions)
         {
-            region.Value.ConnectPatchesBetweenRegions(seed);
+            region.Value.ConnectPatchesBetweenRegions(Seed);
         }
     }
 
     public bool ContainsPatchAdjency(int id1, int id2)
     {
         if (PatchesAdjacencies.Contains((id1, id2)) || PatchesAdjacencies.Contains((id2, id1)))
+        {
             return true;
+        }
+
         return false;
     }
 
     public bool ContainsRegionAdjency(int id1, int id2)
     {
         if (RegionAdjacencies.Contains((id1, id2)) || RegionAdjacencies.Contains((id2, id1)))
+        {
             return true;
+        }
+
         return false;
     }
 
@@ -466,7 +471,7 @@ public class PatchMap : ISaveLoadable
                 region1 = Regions[id1];
             else
                 region1 = SpecialRegions[id1];
-            
+
             PatchRegion region2;
             if (id2 > -1)
                 region2 = Regions[id2];

@@ -150,8 +150,6 @@ public class PatchMapDrawer : Control
         {
             foreach (var adjacent in entry.Value.Adjacent)
             {
-                GD.Print(entry.Value.Region);
-                GD.Print(adjacent.Region.Name);
                 // Only draw connections if patches belong to the same region
                 if (entry.Value.Region.Name.Equals(adjacent.Region.Name))
                 {
