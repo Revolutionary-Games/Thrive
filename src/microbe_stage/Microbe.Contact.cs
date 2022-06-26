@@ -1487,7 +1487,6 @@ public partial class Microbe
 
         // Form phagosome
         var phagosome = endosomeScene.Instance<Endosome>();
-        phagosome.Scale = Vector3.Zero;
         phagosome.Transform = target.EntityGraphics.Transform.Scaled(Vector3.Zero);
         phagosome.Tint = CellTypeProperties.Colour;
         phagosome.RenderPriority = target.RenderPriority + engulfedObjects.Count + 1;
@@ -1520,7 +1519,7 @@ public partial class Microbe
     private void EjectEngulfable(IEngulfable target, float animationSpeed = 2.0f)
     {
         if (target.PhagocytizedStep is PhagocytosisProcess.Exocytosis or PhagocytosisProcess.None ||
-            target.EntityNode.GetParent() != this || Membrane == null)
+            PhagocytizedStep != PhagocytosisProcess.None || target.EntityNode.GetParent() != this || Membrane == null)
         {
             return;
         }
@@ -1872,7 +1871,7 @@ public partial class Microbe
         public EntityReference<IEngulfable> Object { get; private set; }
 
         /// <summary>
-        ///   A vesicle surrounding the engulfed object.
+        ///   A food vacuole containing the engulfed object.
         /// </summary>
         public EntityReference<Endosome> Phagosome { get; private set; }
 

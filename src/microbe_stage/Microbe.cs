@@ -873,17 +873,18 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         Vector3? nearestPoint = null;
         float nearestDistanceSquared = float.MaxValue;
+        var searchRadiusSquared = searchRadius * searchRadius;
 
         // Retrieve nearest potential entities
         foreach (var entity in engulfables)
         {
-            if (entity.Compounds == null)
+            if (entity.Compounds == null || entity.PhagocytizedStep != PhagocytosisProcess.None)
                 continue;
 
             var spatial = entity.EntityNode;
 
             // Skip entities that are out of range
-            if ((spatial.Translation - Translation).LengthSquared() > searchRadius * searchRadius)
+            if ((spatial.Translation - Translation).LengthSquared() > searchRadiusSquared)
                 continue;
 
             if (entity is Microbe microbe && microbe.Species.PlayerSpecies)

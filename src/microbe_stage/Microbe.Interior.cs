@@ -240,7 +240,7 @@ public partial class Microbe
         var props = new AgentProperties(Species, agentType);
 
         // Find the direction the microbe is facing (actual rotation, not LookAtPoint)
-        var direction = GlobalTransform.basis.Quat().Xform(Vector3.Forward);
+        var direction = GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Forward);
 
         var position = Translation + (direction * ejectionDistance);
 
