@@ -10,6 +10,7 @@ using Godot;
 public class ProcessSystem
 {
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
+    private static readonly Compound temperature = SimulationParameters.Instance.GetCompound("temperature");
     private readonly List<Task> tasks = new();
 
     private readonly Node worldRoot;
@@ -224,7 +225,15 @@ public class ProcessSystem
 
             var availableInEnvironment = GetDissolvedInBiome(input.Key, biome);
 
-            var availableRate = availableInEnvironment / input.Value;
+            float availableRate;
+            if (input.Key == temperature)
+            {
+                availableRate = CalculateTemperatureEffect(availableInEnvironment);
+            }
+            else
+            {
+                availableRate = availableInEnvironment / input.Value;
+            }
 
             result.AvailableAmounts[input.Key] = availableInEnvironment;
 
@@ -410,7 +419,14 @@ public class ProcessSystem
             currentProcessStatistics?.AddInputAmount(entry.Key, dissolved);
 
             // do environmental modifier here, and save it for later
-            environmentModifier *= dissolved / entry.Value;
+            if (entry.Key == temperature)
+            {
+                environmentModifier *= CalculateTemperatureEffect(dissolved);
+            }
+            else
+            {
+                environmentModifier *= dissolved / entry.Value;
+            }
 
             if (environmentModifier <= MathUtils.EPSILON)
                 currentProcessStatistics?.AddLimitingFactor(entry.Key);
@@ -545,5 +561,12 @@ public class ProcessSystem
 
             bag.AddCompound(entry.Key, outputGenerated);
         }
+    }
+
+    private static float CalculateTemperatureEffect(float temperature)
+    {
+        // Assume thermosynthetic processes are most efficient at 100°C and drop off linearly to zero
+        var optimal = 100;
+        return Mathf.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
     }
 }

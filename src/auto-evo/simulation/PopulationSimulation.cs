@@ -15,6 +15,7 @@
         private static readonly Compound HydrogenSulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
         private static readonly Compound Iron = SimulationParameters.Instance.GetCompound("iron");
         private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+        private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
 
         public static void Simulate(SimulationConfiguration parameters)
         {
@@ -171,6 +172,7 @@
             var niches = new List<FoodSource>
             {
                 new EnvironmentalFoodSource(patch, Sunlight, Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT),
+                new EnvironmentalFoodSource(patch, Temperature, Constants.AUTO_EVO_THERMOSYNTHESIS_ENERGY_AMOUNT),
                 new CompoundFoodSource(patch, Glucose),
                 new CompoundFoodSource(patch, HydrogenSulfide),
                 new CompoundFoodSource(patch, Iron),
