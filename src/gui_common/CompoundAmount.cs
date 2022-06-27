@@ -166,7 +166,7 @@ public class CompoundAmount : HBoxContainer
         }
 
         string numberPart;
-        if (!String.IsNullOrEmpty(compound!.Suffix))
+        if (!string.IsNullOrEmpty(compound!.Suffix))
         {
             numberPart = Math.Round(amount) + compound.Suffix;
         }

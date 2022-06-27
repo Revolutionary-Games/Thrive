@@ -10,7 +10,7 @@ using Godot;
 public class ProcessSystem
 {
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
-    private static readonly Compound temperature = SimulationParameters.Instance.GetCompound("temperature");
+    private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
     private readonly List<Task> tasks = new();
 
     private readonly Node worldRoot;
@@ -226,7 +226,7 @@ public class ProcessSystem
             var availableInEnvironment = GetDissolvedInBiome(input.Key, biome);
 
             float availableRate;
-            if (input.Key == temperature)
+            if (input.Key == Temperature)
             {
                 availableRate = CalculateTemperatureEffect(availableInEnvironment);
             }
@@ -348,6 +348,13 @@ public class ProcessSystem
         return environmentalCompoundProperties.Dissolved;
     }
 
+    private static float CalculateTemperatureEffect(float temperature)
+    {
+        // Assume thermosynthetic processes are most efficient at 100°C and drop off linearly to zero
+        var optimal = 100;
+        return Mathf.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
+    }
+
     private void ProcessNode(IProcessable? processor, float delta, float inverseDelta)
     {
         if (processor == null)
@@ -419,7 +426,7 @@ public class ProcessSystem
             currentProcessStatistics?.AddInputAmount(entry.Key, dissolved);
 
             // do environmental modifier here, and save it for later
-            if (entry.Key == temperature)
+            if (entry.Key == Temperature)
             {
                 environmentModifier *= CalculateTemperatureEffect(dissolved);
             }
@@ -561,12 +568,5 @@ public class ProcessSystem
 
             bag.AddCompound(entry.Key, outputGenerated);
         }
-    }
-
-    private static float CalculateTemperatureEffect(float temperature)
-    {
-        // Assume thermosynthetic processes are most efficient at 100°C and drop off linearly to zero
-        var optimal = 100;
-        return Mathf.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
     }
 }
