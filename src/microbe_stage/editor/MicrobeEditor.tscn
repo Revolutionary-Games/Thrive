@@ -45,6 +45,12 @@ CameraPath = NodePath("../../EditorWorld/PrimaryCamera")
 EditorArrowPath = NodePath("../../EditorWorld/EditorArrow")
 EditorGridPath = NodePath("../../EditorWorld/Grid")
 CameraFollowPath = NodePath("../../EditorWorld/CameraLookAt")
+SpeedIndicatorPath = null
+RotationSpeedIndicatorPath = null
+HpIndicatorPath = null
+StorageIndicatorPath = null
+SizeIndicatorPath = null
+TotalPopulationIndicatorPath = null
 
 [node name="Report" parent="MicrobeEditorGUI" instance=ExtResource( 6 )]
 
@@ -71,6 +77,7 @@ CellEditorRedoPath = NodePath("../TutorialGUI/RedoTutorial")
 CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
 
 [node name="PauseMenu" parent="." instance=ExtResource( 52 )]
+visible = true
 theme = ExtResource( 53 )
 HelpCategory = "MicrobeEditor"
 

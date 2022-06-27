@@ -27,6 +27,9 @@ public class MainMenu : NodeWithInput
     public NodePath FreebuildButtonPath = null!;
 
     [Export]
+    public NodePath AutoEvoExploringButtonPath = null!;
+
+    [Export]
     public NodePath CreditsContainerPath = null!;
 
     [Export]
@@ -58,6 +61,7 @@ public class MainMenu : NodeWithInput
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
     private NewGameSettings newGameSettings = null!;
+    private AutoEvoExploringTool autoEvoExploringTool = null!;
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
     private ModManager modManager = null!;
@@ -67,6 +71,7 @@ public class MainMenu : NodeWithInput
     private CreditsScroll credits = null!;
     private LicensesDisplay licensesDisplay = null!;
     private Button freebuildButton = null!;
+    private Button autoEvoExploringButton = null!;
 
     private Label storeLoggedInDisplay = null!;
 
@@ -173,6 +178,7 @@ public class MainMenu : NodeWithInput
         guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
+        autoEvoExploringButton = GetNode<Button>(AutoEvoExploringButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
@@ -195,6 +201,7 @@ public class MainMenu : NodeWithInput
 
         options = GetNode<OptionsMenu>("OptionsMenu");
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
+        autoEvoExploringTool = GetNode<AutoEvoExploringTool>("AutoEvoExploringTool");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
@@ -341,6 +348,16 @@ public class MainMenu : NodeWithInput
         }, false);
     }
 
+    private void OnAutoEvoExploringPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        autoEvoExploringTool.OpenFromMainMenu();
+    }
+
     // TODO: this is now used by another sub menu as well so renaming this to be more generic would be good
     private void BackFromToolsPressed()
     {
@@ -383,6 +400,12 @@ public class MainMenu : NodeWithInput
         SetCurrentMenu(0, false);
 
         thriveLogo.Show();
+    }
+
+    private void OnReturnFromAutoEvoExploringTool()
+    {
+        autoEvoExploringTool.Visible = false;
+        SetCurrentMenu(0, false);
     }
 
     private void LoadGamePressed()
