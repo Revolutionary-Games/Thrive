@@ -509,10 +509,19 @@ public partial class Microbe
 
         var chunkScene = SpawnHelpers.LoadChunkScene();
 
+        // Local list for limiting number of organelles to spawn
+        var organellesAvailable = new List<PlacedOrganelle>(organelles);
+
         for (int i = 0; i < chunksToSpawn; ++i)
         {
             // Amount of compound in one chunk
             float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
+
+            // If all possible organelles have been spawned or none available, end loop
+            if (organellesAvailable.Count <= 0)
+            {
+                break;
+            }
 
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
@@ -548,11 +557,12 @@ public partial class Microbe
             var sceneToUse = new ChunkConfiguration.ChunkScene();
 
             // Try all organelles in random order and use the first one with a scene for model
-            foreach (var organelle in organelles.OrderBy(_ => random.Next()))
+            foreach (var organelle in organellesAvailable.OrderBy(_ => random.Next()))
             {
                 if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
                 {
                     sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
+                    organellesAvailable.Remove(organelle);
                     break;
                 }
 
@@ -560,6 +570,7 @@ public partial class Microbe
                 {
                     sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
                     sceneToUse.SceneModelPath = organelle.Definition.DisplaySceneModelPath;
+                    organellesAvailable.Remove(organelle);
                     break;
                 }
             }
