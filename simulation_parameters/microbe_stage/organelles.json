@@ -329,15 +329,15 @@
                 "colourChangeFactor": 1
             }
         },
-        "prokaryoteChance": 0,
-        "chanceToCreate": 0,
+        "prokaryoteChance": 2,
+        "chanceToCreate": 0.5,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Thermosynthase.tscn",
         "name": "THERMOSYNTHASE",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ChromatophoreIcon.png",
+        "iconPath": "res://assets/textures/gui/bevel/parts/ThermosynthaseIcon.png",
         "editorButtonGroup": "Protein",
-        "lawk": false,
-        "editorButtonOrder": 8
+        "editorButtonOrder": 8,
+        "lawk": false
     },
     "chemoplast": {
         "mpCost": 45,
@@ -788,7 +788,7 @@
             }
         },
         "prokaryoteChance": 0,
-        "chanceToCreate": 0,
+        "chanceToCreate": 1,
         "mass": 0.3,
         "displayScene": "res://assets/models/organelles/Thermoplast.tscn",
         "name": "THERMOPLAST",
