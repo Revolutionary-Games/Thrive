@@ -9,6 +9,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
+AllowNoMutationPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowNoMutation")
+AllowNoMigrationPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowNoMigration")
+BiodiversityAttemptFillChancePath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance")
+BiodiversitySplitIsMutatedPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversitySplitIsMutated")
+BiodiversityFromNeighbourPatchChancePath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance/BiodiversityFromNeighbourPatchChance")
+BiodiversityNearbyPatchIsFreePopulationPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityNearbyPatchIsFreePopulation")
+InternalNamePath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch/MaximumSpeciesInPatch")
+LowBiodiversityLimitPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit/LowBiodiversityLimit")
+MaximumSpeciesInPatchPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch/MaximumSpeciesInPatch")
+MoveAttemptsPerSpeciesPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies/MoveAttemptsPerSpecies")
+MutationsPerSpeciesPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies/MutationsPerSpecies")
+NewBiodiversityIncreasingSpeciesPopulationPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation/NewBiodiversityIncreasingSpeciesPopulation")
+ProtectMigrationsFromSpeciesCapPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/ProtectMigrationsFromSpeciesCap")
+ProtectNewCellsFromSpeciesCapPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/ProtectNewCellsFromSpeciesCap")
+RefundMigrationsInExtinctionsPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/RefundMigrationsInExtinctions")
+StrictNicheCompetitionPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/StrictNicheCompetition")
+SpeciesSplitByMutationThresholdPopulationAmountPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount/SpeciesSplitByMutationThresholdPopulationAmount")
+SpeciesSplitByMutationThresholdPopulationFractionPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction/SpeciesSplitByMutationThresholdPopulationFraction")
+UseBiodiversityForceSplitPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/UseBiodiversityForceSplit")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -80,124 +99,313 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 
-[node name="BoolConfigEditorContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer"]
-margin_right = 436.0
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer"]
+margin_right = 738.0
 margin_bottom = 548.0
+scroll_horizontal_enabled = false
+
+[node name="ConfigEditorContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer"]
+margin_right = 732.0
+margin_bottom = 572.0
 size_flags_vertical = 3
-custom_constants/separation = 12
 
-[node name="AllowNoMutation" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/BoolConfigEditorContainer" instance=ExtResource( 3 )]
-margin_right = 436.0
+[node name="AllowNoMutation" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_right = 732.0
 margin_bottom = 25.0
-text = "AllowNoMutation"
+text = "ALLOW_NO_MUTATION"
 
-[node name="AllowNoMigration" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/BoolConfigEditorContainer" instance=ExtResource( 3 )]
-margin_top = 37.0
-margin_right = 436.0
-margin_bottom = 62.0
-text = "AllowNoMigration"
+[node name="AllowNoMigration" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 29.0
+margin_right = 732.0
+margin_bottom = 54.0
+text = "ALLOW_NO_MIGRATION"
 
-[node name="BiodiversitySplitIsMutated" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/BoolConfigEditorContainer" instance=ExtResource( 3 )]
-margin_top = 74.0
-margin_right = 436.0
-margin_bottom = 99.0
-text = "BiodiversitySplitIsMutated"
+[node name="BiodiversityAttemptFillChance" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 58.0
+margin_right = 732.0
+margin_bottom = 89.0
 
-[node name="BiodiversityNearbyPatchIsFreePopulation" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/BoolConfigEditorContainer" instance=ExtResource( 3 )]
-margin_top = 111.0
-margin_right = 436.0
-margin_bottom = 136.0
-text = "BiodiversityNearbyPatchIsFreePopulation"
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance"]
+margin_top = 3.0
+margin_right = 656.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 
-[node name="NumericConfigEditorContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer"]
-margin_left = 456.0
+[node name="BiodiversityAttemptFillChance" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance"]
+margin_left = 660.0
+margin_right = 732.0
+margin_bottom = 31.0
+
+[node name="BiodiversityFromNeighbourPatchChance" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 93.0
+margin_right = 732.0
+margin_bottom = 124.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
+margin_top = 3.0
+margin_right = 656.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+
+[node name="BiodiversityFromNeighbourPatchChance" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
+margin_left = 660.0
+margin_right = 732.0
+margin_bottom = 31.0
+
+[node name="BiodiversitySplitIsMutated" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 128.0
+margin_right = 732.0
+margin_bottom = 153.0
+text = "BIODIVERSITY_SPLIT_IS_MUTATED"
+
+[node name="BiodiversityNearbyPatchIsFreePopulation" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 157.0
+margin_right = 732.0
+margin_bottom = 182.0
+text = "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+
+[node name="LowBiodiversityLimit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 186.0
+margin_right = 732.0
+margin_bottom = 217.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit"]
+margin_top = 3.0
+margin_right = 656.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "LOW_BIODIVERSITY_LIMIT"
+
+[node name="LowBiodiversityLimit" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit"]
+margin_left = 660.0
+margin_right = 732.0
+margin_bottom = 31.0
+
+[node name="MaximumSpeciesInPatch" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 221.0
+margin_right = 732.0
+margin_bottom = 252.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch"]
+margin_top = 3.0
+margin_right = 656.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "MAXIMUM_SPECIES_IN_PATCH"
+
+[node name="MaximumSpeciesInPatch" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch"]
+margin_left = 660.0
+margin_right = 732.0
+margin_bottom = 31.0
+
+[node name="MoveAttemptsPerSpecies" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 256.0
+margin_right = 732.0
+margin_bottom = 287.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies"]
+margin_top = 3.0
+margin_right = 656.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "MOVE_ATTEMPTS_PER_SPECIES"
+
+[node name="MoveAttemptsPerSpecies" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies"]
+margin_left = 660.0
+margin_right = 732.0
+margin_bottom = 31.0
+
+[node name="MutationsPerSpecies" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 291.0
+margin_right = 732.0
+margin_bottom = 322.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies"]
+margin_top = 3.0
+margin_right = 656.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "MUTATIONS_PER_SPECIES"
+
+[node name="MutationsPerSpecies" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies"]
+margin_left = 660.0
+margin_right = 732.0
+margin_bottom = 31.0
+
+[node name="NewBiodiversityIncreasingSpeciesPopulation" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 326.0
+margin_right = 732.0
+margin_bottom = 357.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation"]
+margin_top = 3.0
+margin_right = 656.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+
+[node name="NewBiodiversityIncreasingSpeciesPopulation" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation"]
+margin_left = 660.0
+margin_right = 732.0
+margin_bottom = 31.0
+
+[node name="ProtectMigrationsFromSpeciesCap" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 361.0
+margin_right = 732.0
+margin_bottom = 386.0
+text = "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+
+[node name="ProtectNewCellsFromSpeciesCap" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 390.0
+margin_right = 732.0
+margin_bottom = 415.0
+text = "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+
+[node name="RefundMigrationsInExtinctions" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 419.0
+margin_right = 732.0
+margin_bottom = 444.0
+text = "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+
+[node name="StrictNicheCompetition" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 448.0
+margin_right = 732.0
+margin_bottom = 473.0
+text = "STRICT_NICHE_COMPETITION"
+
+[node name="SpeciesSplitByMutationThresholdPopulationAmount" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 477.0
+margin_right = 732.0
+margin_bottom = 508.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount"]
+margin_top = 3.0
+margin_right = 656.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+
+[node name="SpeciesSplitByMutationThresholdPopulationAmount" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount"]
+margin_left = 660.0
+margin_right = 732.0
+margin_bottom = 31.0
+
+[node name="SpeciesSplitByMutationThresholdPopulationFraction" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
+margin_top = 512.0
+margin_right = 732.0
+margin_bottom = 543.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction"]
+margin_top = 3.0
+margin_right = 656.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+text = "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+
+[node name="SpeciesSplitByMutationThresholdPopulationFraction" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction"]
+margin_left = 660.0
+margin_right = 732.0
+margin_bottom = 31.0
+
+[node name="UseBiodiversityForceSplit" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+margin_top = 547.0
+margin_right = 732.0
+margin_bottom = 572.0
+text = "USE_BIODIVERSITY_FORCE_SPLIT"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 758.0
 margin_right = 1158.0
 margin_bottom = 548.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BiodiversityAttemptFillChance" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer"]
-margin_right = 702.0
-margin_bottom = 31.0
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer/BiodiversityAttemptFillChance"]
-margin_top = 3.0
-margin_right = 626.0
-margin_bottom = 28.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer"]
+margin_left = 81.0
+margin_top = 190.0
+margin_right = 318.0
+margin_bottom = 357.0
 size_flags_horizontal = 3
-text = "BiodiversityAttemptFillChance"
+size_flags_vertical = 3
+custom_constants/separation = 10
 
-[node name="BiodiversityAttemptFillChance" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer/BiodiversityAttemptFillChance"]
-margin_left = 630.0
-margin_right = 702.0
-margin_bottom = 31.0
+[node name="Statistics" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_right = 237.0
+margin_bottom = 83.0
 
-[node name="BiodiversityFromNeighbourPatchChance" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer"]
-margin_top = 35.0
-margin_right = 702.0
-margin_bottom = 66.0
+[node name="CurrentGeneration" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
+margin_right = 237.0
+margin_bottom = 25.0
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
-margin_top = 3.0
-margin_right = 626.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-text = "BiodiversityFromNeighbourPatchChance"
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/CurrentGeneration"]
+margin_right = 225.0
+margin_bottom = 25.0
+text = "CURRENT_GENERATION"
 
-[node name="BiodiversityFromNeighbourPatchChance" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
-margin_left = 630.0
-margin_right = 702.0
-margin_bottom = 31.0
+[node name="CurrentGenerationLabel" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/CurrentGeneration"]
+margin_left = 229.0
+margin_right = 237.0
+margin_bottom = 25.0
+text = "1"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
-[node name="LowBiodiversityLimit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer"]
-margin_top = 70.0
-margin_right = 702.0
-margin_bottom = 101.0
+[node name="CurrentStep" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
+margin_top = 29.0
+margin_right = 237.0
+margin_bottom = 54.0
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer/LowBiodiversityLimit"]
-margin_top = 3.0
-margin_right = 626.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-text = "LowBiodiversityLimit"
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/CurrentStep"]
+margin_right = 151.0
+margin_bottom = 25.0
+text = "CURRENT_STEP"
 
-[node name="LowBiodiversityLimit" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer/LowBiodiversityLimit"]
-margin_left = 630.0
-margin_right = 702.0
-margin_bottom = 31.0
+[node name="CurrentStepLabel" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/CurrentStep"]
+margin_left = 155.0
+margin_right = 168.0
+margin_bottom = 25.0
+text = "0"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
-[node name="MaximumSpeciesInPatch" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer"]
-margin_top = 105.0
-margin_right = 702.0
-margin_bottom = 136.0
+[node name="TotalSteps" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
+margin_top = 58.0
+margin_right = 237.0
+margin_bottom = 83.0
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer/MaximumSpeciesInPatch"]
-margin_top = 3.0
-margin_right = 626.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
-text = "MaximumSpeciesInPatch"
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/TotalSteps"]
+margin_right = 135.0
+margin_bottom = 25.0
+text = "TOTAL_STEPS"
 
-[node name="MaximumSpeciesInPatch" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer/MaximumSpeciesInPatch"]
-margin_left = 630.0
-margin_right = 702.0
-margin_bottom = 31.0
+[node name="TotalStepsLabel" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/TotalSteps"]
+margin_left = 139.0
+margin_right = 152.0
+margin_bottom = 25.0
+text = "0"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer"]
-margin_top = 140.0
-margin_right = 702.0
-margin_bottom = 171.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 93.0
+margin_right = 237.0
+margin_bottom = 167.0
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer/HBoxContainer3"]
-margin_top = 3.0
-margin_right = 626.0
-margin_bottom = 28.0
-size_flags_horizontal = 3
+[node name="RunGeneration" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer"]
+margin_right = 237.0
+margin_bottom = 35.0
+text = "RUN_ONE_GENERATION"
 
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/NumericConfigEditorContainer/HBoxContainer3"]
-margin_left = 630.0
-margin_right = 702.0
-margin_bottom = 31.0
+[node name="RunStep" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer"]
+margin_top = 39.0
+margin_right = 237.0
+margin_bottom = 74.0
+text = "RUN_ONE_STEP"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 625.0
