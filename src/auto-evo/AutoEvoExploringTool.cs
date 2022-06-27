@@ -1,23 +1,29 @@
 using System;
 using Godot;
+using HarmonyLib;
 
 public class AutoEvoExploringTool : ControlWithInput
 {
+    private GameProperties? gameProperties;
+    private AutoEvoConfiguration autoEvoConfiguration;
+
     [Signal]
     public delegate void OnAutoEvoExploringToolClosed();
-
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        
-    }
 
     public void OpenFromMainMenu()
     {
         if (Visible)
             return;
 
+        Init();
+
         Show();
+    }
+
+    private void Init()
+    {
+        gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
+        autoEvoConfiguration = (AutoEvoConfiguration)SimulationParameters.Instance.AutoEvoConfiguration.Clone();
     }
 
     [RunOnKeyDown("ui_cancel")]

@@ -1,48 +1,49 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
-public class AutoEvoConfiguration : IRegistryType
+public class AutoEvoConfiguration : IRegistryType, ICloneable
 {
     [JsonProperty]
-    public int MutationsPerSpecies { get; private set; }
+    public int MutationsPerSpecies { get; set; }
 
     [JsonProperty]
-    public bool AllowNoMutation { get; private set; }
+    public bool AllowNoMutation { get; set; }
 
     [JsonProperty]
-    public int MoveAttemptsPerSpecies { get; private set; }
+    public int MoveAttemptsPerSpecies { get; set; }
 
     [JsonProperty]
-    public bool AllowNoMigration { get; private set; }
+    public bool AllowNoMigration { get; set; }
 
     [JsonProperty]
-    public int LowBiodiversityLimit { get; private set; }
+    public int LowBiodiversityLimit { get; set; }
 
     [JsonProperty]
-    public float SpeciesSplitByMutationThresholdPopulationFraction { get; private set; }
+    public float SpeciesSplitByMutationThresholdPopulationFraction { get; set; }
 
     [JsonProperty]
-    public int SpeciesSplitByMutationThresholdPopulationAmount { get; private set; }
+    public int SpeciesSplitByMutationThresholdPopulationAmount { get; set; }
 
     [JsonProperty]
-    public float BiodiversityAttemptFillChance { get; private set; }
+    public float BiodiversityAttemptFillChance { get; set; }
 
     [JsonProperty]
-    public bool UseBiodiversityForceSplit { get; private set; }
+    public bool UseBiodiversityForceSplit { get; set; }
 
     [JsonProperty]
-    public float BiodiversityFromNeighbourPatchChance { get; private set; }
+    public float BiodiversityFromNeighbourPatchChance { get; set; }
 
     [JsonProperty]
-    public bool BiodiversityNearbyPatchIsFreePopulation { get; private set; }
+    public bool BiodiversityNearbyPatchIsFreePopulation { get; set; }
 
     [JsonProperty]
-    public int NewBiodiversityIncreasingSpeciesPopulation { get; private set; }
+    public int NewBiodiversityIncreasingSpeciesPopulation { get; set; }
 
     [JsonProperty]
-    public bool BiodiversitySplitIsMutated { get; private set; }
+    public bool BiodiversitySplitIsMutated { get; set; }
 
     [JsonProperty]
-    public bool StrictNicheCompetition { get; private set; }
+    public bool StrictNicheCompetition { get; set; }
 
     /// <summary>
     ///   Maximum number of species kept in a patch at the end of auto-evo.
@@ -53,13 +54,13 @@ public class AutoEvoConfiguration : IRegistryType
     ///   </para>
     /// </remarks>
     [JsonProperty]
-    public int MaximumSpeciesInPatch { get; private set; }
+    public int MaximumSpeciesInPatch { get; set; }
 
     /// <summary>
     ///   If true newly created species can't be forced to go extinct in the same auto-evo cycle
     /// </summary>
     [JsonProperty]
-    public bool ProtectNewCellsFromSpeciesCap { get; private set; }
+    public bool ProtectNewCellsFromSpeciesCap { get; set; }
 
     /// <summary>
     ///   TODO: this is meant to protect migrating species from forced extinction, however this is currently only
@@ -67,13 +68,13 @@ public class AutoEvoConfiguration : IRegistryType
     ///   doesn't really guarantee that this does anything useful
     /// </summary>
     [JsonProperty]
-    public bool ProtectMigrationsFromSpeciesCap { get; private set; }
+    public bool ProtectMigrationsFromSpeciesCap { get; set; }
 
     /// <summary>
     ///   Whether or not a migration wiped by a force extinction should be refunded in the original patch.
     /// </summary>
     [JsonProperty]
-    public bool RefundMigrationsInExtinctions { get; private set; }
+    public bool RefundMigrationsInExtinctions { get; set; }
 
     /// <summary>
     ///   Unused
@@ -110,5 +111,31 @@ public class AutoEvoConfiguration : IRegistryType
 
     public void ApplyTranslations()
     {
+    }
+
+    public object Clone()
+    {
+        return new AutoEvoConfiguration
+        {
+            AllowNoMutation = AllowNoMutation,
+            AllowNoMigration = AllowNoMigration,
+            BiodiversityAttemptFillChance = BiodiversityAttemptFillChance,
+            BiodiversitySplitIsMutated = BiodiversitySplitIsMutated,
+            BiodiversityFromNeighbourPatchChance = BiodiversityFromNeighbourPatchChance,
+            BiodiversityNearbyPatchIsFreePopulation = BiodiversityNearbyPatchIsFreePopulation,
+            InternalName = InternalName,
+            LowBiodiversityLimit = LowBiodiversityLimit,
+            MaximumSpeciesInPatch = MaximumSpeciesInPatch,
+            MoveAttemptsPerSpecies = MoveAttemptsPerSpecies,
+            MutationsPerSpecies = MutationsPerSpecies,
+            NewBiodiversityIncreasingSpeciesPopulation = NewBiodiversityIncreasingSpeciesPopulation,
+            ProtectMigrationsFromSpeciesCap = ProtectMigrationsFromSpeciesCap,
+            ProtectNewCellsFromSpeciesCap = ProtectNewCellsFromSpeciesCap,
+            RefundMigrationsInExtinctions = RefundMigrationsInExtinctions,
+            StrictNicheCompetition = StrictNicheCompetition,
+            SpeciesSplitByMutationThresholdPopulationAmount = SpeciesSplitByMutationThresholdPopulationAmount,
+            SpeciesSplitByMutationThresholdPopulationFraction = SpeciesSplitByMutationThresholdPopulationFraction,
+            UseBiodiversityForceSplit = UseBiodiversityForceSplit,
+        };
     }
 }
