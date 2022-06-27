@@ -183,7 +183,7 @@ public partial class Microbe
                 if (cell == this)
                     continue;
 
-                cell.EmitToxin();
+                cell.EmitToxin(agentType);
             }
         }
 
@@ -217,7 +217,7 @@ public partial class Microbe
         var props = new AgentProperties(Species, agentType);
 
         // Find the direction the Species is facing (actual rotation, not LookAtPoint)
-        Vector3 direction = new Vector3( 0, 0, 0);
+        Vector3 direction;
         if (Colony?.Master == this)
         {
             direction = GlobalTransform.basis.Quat().Xform(Vector3.Forward);

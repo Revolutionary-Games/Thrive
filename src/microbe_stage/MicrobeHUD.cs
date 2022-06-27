@@ -763,7 +763,7 @@ public class MicrobeHUD : Control
             var compounds = stage!.Player?.Compounds;
 
             if (compounds?.HasAnyBeenSetUseful() != true)
-               return;
+                return;
 
             if (compounds.IsSpecificallySetUseful(oxytoxy))
             {
@@ -801,7 +801,6 @@ public class MicrobeHUD : Control
             bool isOxytoxySetUseful = false;
             foreach (var microbe in stage!.Player!.Colony!.ColonyMembers)
             {
-
                 var compounds = microbe.Compounds;
 
                 if (compounds.IsSpecificallySetUseful(oxytoxy))
@@ -826,9 +825,9 @@ public class MicrobeHUD : Control
                 agentsPanel.Hide();
             }
 
+            // if any of the compounds were useful display them to the screen.
             foreach (ProgressBar bar in compoundBars)
             {
-
                 if (barsOn[bar.Name])
                 {
                     bar.Show();
