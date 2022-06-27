@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/models/organelles/Thermosynthase.mesh" type="ArrayMesh" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/fresnelValue = 1.0
 shader_param/fresnelActive = false

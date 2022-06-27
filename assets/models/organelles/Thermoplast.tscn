@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=8]
 
 [sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/dissolveValue = null
 shader_param/fresnelValue = 1.0
