@@ -12,10 +12,9 @@ script = ExtResource( 1 )
 AllowNoMutationPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowNoMutation")
 AllowNoMigrationPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowNoMigration")
 BiodiversityAttemptFillChancePath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance")
-BiodiversitySplitIsMutatedPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversitySplitIsMutated")
 BiodiversityFromNeighbourPatchChancePath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance/BiodiversityFromNeighbourPatchChance")
 BiodiversityNearbyPatchIsFreePopulationPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityNearbyPatchIsFreePopulation")
-InternalNamePath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch/MaximumSpeciesInPatch")
+BiodiversitySplitIsMutatedPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversitySplitIsMutated")
 LowBiodiversityLimitPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit/LowBiodiversityLimit")
 MaximumSpeciesInPatchPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch/MaximumSpeciesInPatch")
 MoveAttemptsPerSpeciesPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies/MoveAttemptsPerSpecies")
@@ -136,6 +135,8 @@ text = "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 margin_left = 660.0
 margin_right = 732.0
 margin_bottom = 31.0
+max_value = 1.0
+step = 0.01
 
 [node name="BiodiversityFromNeighbourPatchChance" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
 margin_top = 93.0
@@ -153,18 +154,20 @@ text = "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 margin_left = 660.0
 margin_right = 732.0
 margin_bottom = 31.0
+max_value = 1.0
+step = 0.01
 
-[node name="BiodiversitySplitIsMutated" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+[node name="BiodiversityNearbyPatchIsFreePopulation" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
 margin_top = 128.0
 margin_right = 732.0
 margin_bottom = 153.0
-text = "BIODIVERSITY_SPLIT_IS_MUTATED"
+text = "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 
-[node name="BiodiversityNearbyPatchIsFreePopulation" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
+[node name="BiodiversitySplitIsMutated" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
 margin_top = 157.0
 margin_right = 732.0
 margin_bottom = 182.0
-text = "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+text = "BIODIVERSITY_SPLIT_IS_MUTATED"
 
 [node name="LowBiodiversityLimit" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
 margin_top = 186.0
@@ -250,6 +253,8 @@ text = "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 margin_left = 660.0
 margin_right = 732.0
 margin_bottom = 31.0
+max_value = 1000.0
+step = 10.0
 
 [node name="ProtectMigrationsFromSpeciesCap" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer" instance=ExtResource( 3 )]
 margin_top = 361.0
@@ -291,6 +296,8 @@ text = "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 margin_left = 660.0
 margin_right = 732.0
 margin_bottom = 31.0
+max_value = 1000.0
+step = 10.0
 
 [node name="SpeciesSplitByMutationThresholdPopulationFraction" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer"]
 margin_top = 512.0
