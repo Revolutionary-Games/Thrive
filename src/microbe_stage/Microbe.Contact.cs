@@ -496,7 +496,7 @@ public partial class Microbe
         }
 
         // Our engulfer also has its own engulfer and it wants to claim us
-        if (hostile != null && hostile.HostileEngulfer.Value != null)
+        if (hostile?.HostileEngulfer.Value != null)
         {
             hostile.HostileEngulfer.Value.IngestEngulfable(this);
             return;

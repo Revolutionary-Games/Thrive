@@ -1029,15 +1029,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private void ApplyRenderPriority()
     {
-        if (Membrane == null)
-            return;
-
-        var material = Membrane.MaterialToEdit;
+        var material = Membrane?.MaterialToEdit;
 
         if (material != null)
         {
             material.RenderPriority = RenderPriority;
-            Membrane.Dirty = true;
+            Membrane!.Dirty = true;
         }
     }
 
