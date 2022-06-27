@@ -30,6 +30,12 @@ public class MovementComponent : ExternallyPositionedComponent
         // Movement force
         var microbe = organelle!.ParentMicrobe!;
 
+        if (microbe.PhagocytizedStep != PhagocytosisProcess.None)
+        {
+            SetSpeedFactor(0);
+            return;
+        }
+
         var movement = CalculateMovementForce(microbe, delta);
 
         if (movement != new Vector3(0, 0, 0))

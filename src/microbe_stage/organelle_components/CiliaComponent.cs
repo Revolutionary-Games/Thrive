@@ -18,7 +18,15 @@ public class CiliaComponent : ExternallyPositionedComponent
         // Visual positioning code
         base.UpdateAsync(delta);
 
-        var currentCellRotation = organelle!.ParentMicrobe!.GlobalTransform.basis.Quat();
+        var microbe = organelle!.ParentMicrobe!;
+
+        if (microbe.PhagocytizedStep != PhagocytosisProcess.None)
+        {
+            targetSpeed = 0;
+            return;
+        }
+
+        var currentCellRotation = microbe.GlobalTransform.basis.Quat();
 
         if (previousCellRotation == null)
         {
@@ -51,7 +59,7 @@ public class CiliaComponent : ExternallyPositionedComponent
 
             var requiredEnergy = cost * timeSinceRotationSample;
 
-            var availableEnergy = organelle.ParentMicrobe!.Compounds.TakeCompound(atp, requiredEnergy);
+            var availableEnergy = microbe.Compounds.TakeCompound(atp, requiredEnergy);
 
             if (availableEnergy < requiredEnergy)
             {

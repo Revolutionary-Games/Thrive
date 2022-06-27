@@ -430,6 +430,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             }
         }
 
+        ApplyRenderPriority();
+
         onReadyCalled = true;
     }
 
@@ -1028,14 +1030,22 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private void ApplyRenderPriority()
     {
         if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
+            return;
 
-        var material = Membrane.GetSurfaceMaterial(0);
-        material.RenderPriority = RenderPriority;
+        var material = Membrane.MaterialToEdit;
+
+        if (material != null)
+        {
+            material.RenderPriority = RenderPriority;
+            Membrane.Dirty = true;
+        }
     }
 
     private Node GetStageAsParent()
     {
+        if (HostileEngulfer.Value != null)
+            return HostileEngulfer.Value.GetStageAsParent();
+
         if (Colony == null)
             return GetParent();
 

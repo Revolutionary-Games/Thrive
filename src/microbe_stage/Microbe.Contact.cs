@@ -455,20 +455,20 @@ public partial class Microbe
 
     public void OnEngulfed()
     {
-        if (Membrane != null)
-        {
-            AbortFlash();
-            Membrane.WigglyNess = 0;
-        }
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
+        Membrane.WigglyNess = 0;
 
         // Make the render priority of our organelles be on top of the highest possible render priority
         // of the hostile engulfer's organelles
-        if (HostileEngulfer.Value != null)
+        var hostile = HostileEngulfer.Value;
+        if (hostile != null)
         {
             foreach (var organelle in organelles!)
             {
                 var newPriority = Mathf.Clamp(Hex.GetRenderPriority(organelle.Position) +
-                    HostileEngulfer.Value.organelles!.PeakRenderPriority, 0, Material.RenderPriorityMax);
+                    hostile.organelles!.PeakRenderPriority, 0, Material.RenderPriorityMax);
                 organelle.UpdateRenderPriority(newPriority);
             }
         }
@@ -493,6 +493,13 @@ public partial class Microbe
         foreach (var organelle in organelles!)
         {
             organelle.UpdateRenderPriority(Hex.GetRenderPriority(organelle.Position));
+        }
+
+        // Our engulfer also has its own engulfer and it wants to claim us
+        if (hostile != null && hostile.HostileEngulfer.Value != null)
+        {
+            hostile.HostileEngulfer.Value.IngestEngulfable(this);
+            return;
         }
 
         if (DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD)
@@ -1082,7 +1089,7 @@ public partial class Microbe
             // Drain atp
             var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
 
-            if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
+            if (Compounds.TakeCompound(atp, cost) < cost - 0.001f || PhagocytizedStep != PhagocytosisProcess.None)
             {
                 State = MicrobeState.Normal;
             }
@@ -1418,16 +1425,16 @@ public partial class Microbe
     */
 
     /// <summary>
-    ///   Attemps to engulf the given target into the cytoplasm. Does not check whether the target
+    ///   Attempts to engulf the given target into the cytoplasm. Does not check whether the target
     ///   can be engulfed or not.
     /// </summary>
     private void IngestEngulfable(IEngulfable target, float animationSpeed = 2.0f)
     {
-        if (target.PhagocytizedStep is PhagocytosisProcess.Ingestion or PhagocytosisProcess.Ingested ||
-            target.EntityNode.GetParent() == this || Membrane == null)
-        {
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
+        if (target.EntityNode.GetParent() == this || target.PhagocytizedStep != PhagocytosisProcess.None)
             return;
-        }
 
         var body = target as RigidBody;
         if (body == null)
@@ -1436,6 +1443,7 @@ public partial class Microbe
             return;
         }
 
+        attemptingToEngulf.Add(target);
         touchedEntities.Remove(target);
 
         target.HostileEngulfer.Value = this;
@@ -1447,8 +1455,13 @@ public partial class Microbe
 
         body.ReParentWithTransform(this);
 
-        // Below is for figuring out where to place the ingested object inside the membrane and calculated
-        // accordingly to hopefully minimize any part of the object sticking out the membrane.
+        var originalRenderPriority = target.RenderPriority;
+
+        // We want the ingested material to be always visible over the organelles
+        target.RenderPriority += organelles!.PeakRenderPriority + 1;
+
+        // Below is for figuring out where to place the object attempted to be engulfed inside the cytoplasm,
+        // calculated accordingly to hopefully minimize any part of the object sticking out the membrane.
         // Note: extremely long and thin objects might still stick out
 
         var targetRadiusNormalized = Mathf.Clamp(target.Radius / Radius, 0.0f, 1.0f);
@@ -1468,7 +1481,7 @@ public partial class Microbe
 
         // Get the final storing position by taking a value between this cell's center and the storing area edge.
         // This would lessen the possibility of engulfed things getting bunched up in the same position.
-        var finalPosition = new Vector3(
+        var ingestionPoint = new Vector3(
             random.Next(0.0f, viableStoringAreaEdge.x),
             body.Translation.y,
             random.Next(0.0f, viableStoringAreaEdge.z));
@@ -1480,11 +1493,6 @@ public partial class Microbe
         if (boundingBoxSize.y < Mathf.Epsilon)
             boundingBoxSize = new Vector3(boundingBoxSize.x, 0.1f, boundingBoxSize.z);
 
-        var originalRenderPriority = target.RenderPriority;
-
-        // We want the ingested material to be always visible over the organelles
-        target.RenderPriority += organelles!.PeakRenderPriority + 1;
-
         // Form phagosome
         var phagosome = endosomeScene.Instance<Endosome>();
         phagosome.Transform = target.EntityGraphics.Transform.Scaled(Vector3.Zero);
@@ -1494,19 +1502,18 @@ public partial class Microbe
 
         var engulfedObject = new EngulfedObject(target, phagosome)
         {
-            TargetValuesToLerp = (finalPosition, body.Scale / 2, boundingBoxSize),
+            TargetValuesToLerp = (ingestionPoint, body.Scale / 2, boundingBoxSize),
             OriginalScale = body.Scale,
             OriginalRenderPriority = originalRenderPriority,
         };
+
+        engulfedObjects.Add(engulfedObject);
 
         foreach (string group in engulfedObject.OriginalGroups)
         {
             if (group != Constants.PROCESSABLE_MICROBE_GROUP)
                 target.EntityNode.RemoveFromGroup(group);
         }
-
-        attemptingToEngulf.Add(target);
-        engulfedObjects.Add(engulfedObject);
 
         StartBulkTransport(engulfedObject, animationSpeed);
 
@@ -1518,8 +1525,11 @@ public partial class Microbe
     /// </summary>
     private void EjectEngulfable(IEngulfable target, float animationSpeed = 2.0f)
     {
-        if (target.PhagocytizedStep is PhagocytosisProcess.Exocytosis or PhagocytosisProcess.None ||
-            PhagocytizedStep != PhagocytosisProcess.None || target.EntityNode.GetParent() != this || Membrane == null)
+        if (Membrane == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
+        if (target.EntityNode.GetParent() != this || PhagocytizedStep != PhagocytosisProcess.None ||
+            target.PhagocytizedStep is PhagocytosisProcess.Exocytosis or PhagocytosisProcess.None)
         {
             return;
         }
@@ -1804,7 +1814,7 @@ public partial class Microbe
         engulfedObjects.Remove(engulfed);
         expelledObjects.Add(engulfed);
 
-        engulfed.TransferredHost = false;
+        engulfed.ReclaimedByAnotherHost = false;
         engulfable.PhagocytizedStep = PhagocytosisProcess.None;
 
         foreach (string group in engulfed.OriginalGroups)
@@ -1876,7 +1886,7 @@ public partial class Microbe
         public EntityReference<Endosome> Phagosome { get; private set; }
 
         public bool HasBeenIngested { get; set; }
-        public bool TransferredHost { get; set; }
+        public bool ReclaimedByAnotherHost { get; set; }
         public Dictionary<Compound, float>? AdditionalEngulfableCompounds { get; private set; }
         public float? InitialTotalEngulfableCompounds { get; private set; }
         public bool Interpolate { get; set; }

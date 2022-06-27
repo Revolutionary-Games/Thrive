@@ -1206,7 +1206,7 @@ public partial class Microbe
             if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
             {
                 // Ignore size from foreign-ingested objects for now
-                if (!engulfedObject.TransferredHost)
+                if (!engulfedObject.ReclaimedByAnotherHost)
                     IngestedSizeCount -= engulfable.Size;
 
                 engulfable.PhagocytizedStep = PhagocytosisProcess.Digested;
@@ -1262,7 +1262,7 @@ public partial class Microbe
                         engulfed.HostileEngulfer.Value = hostile;
                         hostile.engulfedObjects.Add(other);
                         engulfed.EntityNode.ReParentWithTransform(hostile);
-                        other.TransferredHost = true;
+                        other.ReclaimedByAnotherHost = true;
                     }
                 }
             }
