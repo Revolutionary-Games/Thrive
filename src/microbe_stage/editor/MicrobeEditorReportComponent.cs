@@ -217,7 +217,9 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         {
             var snapshot = patch.History.ElementAt(i);
 
-            temperatureData.AddPoint(new DataPoint(snapshot.TimePeriod, snapshot.Biome.AverageTemperature)
+            var temperature = SimulationParameters.Instance.GetCompound("temperature");
+            temperatureData.AddPoint(new DataPoint(snapshot.TimePeriod,
+                snapshot.Biome.Compounds[temperature].Dissolved)
             {
                 MarkerColour = temperatureData.Colour,
             });

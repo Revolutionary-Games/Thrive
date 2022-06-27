@@ -7,7 +7,6 @@ using System.Collections.Generic;
 [UseThriveSerializer]
 public class BiomeConditions : ICloneable, ISaveLoadable
 {
-    public float AverageTemperature;
     public Dictionary<Compound, EnvironmentalCompoundProperties> Compounds = null!;
     public Dictionary<string, ChunkConfiguration> Chunks = null!;
 
@@ -57,7 +56,6 @@ public class BiomeConditions : ICloneable, ISaveLoadable
     {
         var result = new BiomeConditions
         {
-            AverageTemperature = AverageTemperature,
             Compounds = new Dictionary<Compound, EnvironmentalCompoundProperties>(Compounds.Count),
             Chunks = new Dictionary<string, ChunkConfiguration>(Chunks.Count),
         };

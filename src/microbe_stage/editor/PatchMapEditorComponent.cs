@@ -395,7 +395,8 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
 
         // Atmospheric gasses
-        patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
+        var temperature = SimulationParameters.Instance.GetCompound("temperature");
+        patchTemperature.Text = patch.Biome.Compounds[temperature].Dissolved + temperature.Suffix;
         patchPressure.Text = "20 bar";
         patchLight.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
             GetCompoundAmount(patch, sunlight.InternalName)) + " lx";
@@ -438,13 +439,14 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     /// </remarks>
     private void UpdateConditionDifferencesBetweenPatches(Patch selectedPatch, Patch currentPatch)
     {
-        var nextCompound = selectedPatch.Biome.AverageTemperature;
+        var temperature = SimulationParameters.Instance.GetCompound("temperature");
+        var nextCompound = selectedPatch.Biome.Compounds[temperature].Dissolved;
 
-        if (nextCompound > currentPatch.Biome.AverageTemperature)
+        if (nextCompound > currentPatch.Biome.Compounds[temperature].Dissolved)
         {
             patchTemperatureSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Biome.AverageTemperature)
+        else if (nextCompound < currentPatch.Biome.Compounds[temperature].Dissolved)
         {
             patchTemperatureSituation.Texture = decreaseIcon;
         }

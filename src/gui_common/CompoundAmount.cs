@@ -166,7 +166,11 @@ public class CompoundAmount : HBoxContainer
         }
 
         string numberPart;
-        if (UsePercentageDisplay)
+        if (!String.IsNullOrEmpty(compound!.Suffix))
+        {
+            numberPart = Math.Round(amount) + compound.Suffix;
+        }
+        else if (UsePercentageDisplay)
         {
             numberPart = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
                 Math.Round(amount * 100, 1));

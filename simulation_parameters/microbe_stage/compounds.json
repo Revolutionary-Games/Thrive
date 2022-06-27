@@ -152,5 +152,20 @@
             "b": 0.58
         },
         "iconPath": "res://assets/textures/gui/bevel/sunlight.png"
+    },
+    "temperature": {
+        "name": "TEMPERATURE",
+        "volume": 1,
+        "isCloud": false,
+        "isAlwaysUseful": false,
+        "isEnvironmental": true,
+        "canBeDistributed": false,
+        "colour": {
+            "r": 1,
+            "g": 0,
+            "b": 0
+        },
+        "iconPath": "res://assets/textures/gui/bevel/Temperature.png",
+        "suffix": " °C"
     }
 }

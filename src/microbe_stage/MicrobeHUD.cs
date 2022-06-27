@@ -223,6 +223,7 @@ public class MicrobeHUD : Control
     private Compound oxytoxy = null!;
     private Compound phosphates = null!;
     private Compound sunlight = null!;
+    private Compound temperature = null!;
 
     private AnimationPlayer animationPlayer = null!;
     private MarginContainer mouseHoverPanel = null!;
@@ -246,7 +247,7 @@ public class MicrobeHUD : Control
     private ProgressBar oxygenBar = null!;
     private ProgressBar co2Bar = null!;
     private ProgressBar nitrogenBar = null!;
-    private ProgressBar temperature = null!;
+    private ProgressBar temperatureLabel = null!;
     private ProgressBar sunlightLabel = null!;
 
     // TODO: implement changing pressure conditions
@@ -386,7 +387,7 @@ public class MicrobeHUD : Control
         oxygenBar = GetNode<ProgressBar>(OxygenBarPath);
         co2Bar = GetNode<ProgressBar>(Co2BarPath);
         nitrogenBar = GetNode<ProgressBar>(NitrogenBarPath);
-        temperature = GetNode<ProgressBar>(TemperaturePath);
+        temperatureLabel = GetNode<ProgressBar>(TemperaturePath);
         sunlightLabel = GetNode<ProgressBar>(SunlightPath);
         pressure = GetNode<ProgressBar>(PressurePath);
 
@@ -465,6 +466,7 @@ public class MicrobeHUD : Control
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+        temperature = SimulationParameters.Instance.GetCompound("temperature");
 
         multicellularButton.Visible = false;
         macroscopicButton.Visible = false;
@@ -712,7 +714,7 @@ public class MicrobeHUD : Control
         var co2Percentage = biome.Compounds[carbondioxide].Dissolved * 100;
         var nitrogenPercentage = biome.Compounds[nitrogen].Dissolved * 100;
         var sunlightPercentage = biome.Compounds[sunlight].Dissolved * 100;
-        var averageTemperature = biome.AverageTemperature;
+        var averageTemperature = biome.Compounds[temperature].Dissolved;
 
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
 
@@ -733,7 +735,7 @@ public class MicrobeHUD : Control
 
         sunlightLabel.GetNode<Label>("Value").Text =
             string.Format(CultureInfo.CurrentCulture, percentageFormat, sunlightPercentage);
-        temperature.GetNode<Label>("Value").Text = averageTemperature + " °C";
+        temperatureLabel.GetNode<Label>("Value").Text = averageTemperature + " °C";
 
         // TODO: pressure?
     }

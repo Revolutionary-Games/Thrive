@@ -394,7 +394,10 @@ public partial class CellEditorComponent
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesProduction");
 
             if (tooltip == null)
-                throw new InvalidOperationException("Could not find process production tooltip");
+            {
+                // TODO fix the thermosynthesis tooltips
+                return;
+            }
 
             subBar.RegisterToolTipForControl(tooltip);
 

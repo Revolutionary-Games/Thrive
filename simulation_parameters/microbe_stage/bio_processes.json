@@ -128,5 +128,25 @@
         "outputs": {
             "atp": 2.5
         }
+    },
+    "thermosynthesis": {
+        "name": "THERMOSYNTHESIS",
+        "inputs": {
+            "carbondioxide": 0.09,
+            "temperature": 100
+        },
+        "outputs": {
+            "atp": 10
+        }
+    },
+    "bacterial_thermosynthesis": {
+        "name": "THERMOSYNTHESIS",
+        "inputs": {
+            "carbondioxide": 0.09,
+            "temperature": 100
+        },
+        "outputs": {
+            "atp": 5
+        }
     }
 }
