@@ -790,7 +790,8 @@ public class MicrobeHUD : Control
         }
         else
         {
-            // Stores the names of the Progressbars, then during the code if they are true they git to avoid flashing bars.
+            // Stores the names of the Progressbars,
+            // then during the code if they are true they git to avoid flashing bars.
             Dictionary<string, bool> barsOn = new Dictionary<string, bool>();
             foreach (ProgressBar bar in compoundBars)
             {
