@@ -308,6 +308,37 @@
         "editorButtonGroup": "Organelle",
         "editorButtonOrder": 7
     },
+    "thermosynthase": {
+        "mpCost": 50,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {},
+        "components": {
+            "storage": {
+                "capacity": 0.5
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 0,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Thermosynthase.tscn",
+        "name": "THERMOSYNTHASE",
+        "iconPath": "res://assets/textures/gui/bevel/parts/ChromatophoreIcon.png",
+        "editorButtonGroup": "Protein",
+        "lawk": false,
+        "editorButtonOrder": 8
+    },
     "chemoplast": {
         "mpCost": 45,
         "initialComposition": {
@@ -734,25 +765,37 @@
     "thermoplast": {
         "mpCost": 40,
         "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
+            "ammonia": 2,
+            "phosphates": 2
         },
         "hexes": [
             {
                 "r": 0,
                 "q": 0
+            },
+            {
+                "r": -1,
+                "q": 0
             }
         ],
         "processes": {},
-        "components": {},
+        "components": {
+            "storage": {
+                "capacity": 1
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
         "prokaryoteChance": 0,
         "chanceToCreate": 0,
+        "mass": 0.3,
+        "displayScene": "res://assets/models/organelles/Thermoplast.tscn",
         "name": "THERMOPLAST",
         "iconPath": "res://assets/textures/gui/bevel/parts/ThermoplastIcon.png",
         "requiresNucleus": true,
         "editorButtonGroup": "Organelle",
         "editorButtonOrder": 5,
-        "unimplemented": true,
         "lawk": false
     },
     "cilia": {

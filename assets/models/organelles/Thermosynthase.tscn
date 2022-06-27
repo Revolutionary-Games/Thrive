@@ -17,5 +17,6 @@ shader_param/texture = ExtResource( 2 )
 shader_param/dissolveTexture = ExtResource( 3 )
 
 [node name="Thermosynthase" type="MeshInstance"]
+material_override = SubResource( 1 )
 mesh = ExtResource( 4 )
 material/0 = SubResource( 1 )
