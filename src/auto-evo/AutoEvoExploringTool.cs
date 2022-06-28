@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoEvo;
 using Godot;
 
@@ -210,7 +211,7 @@ public class AutoEvoExploringTool : ControlWithInput
                 RunResults results = autoEvoRun.Results!;
                 runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
 
-                // Add button to history container
+                // Add check box to history container
                 var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
                 checkBox.Text = (currentGeneration + 1).ToString();
                 checkBox.Connect("toggled", this, nameof(HistoryCheckBoxToggled),
@@ -245,7 +246,6 @@ public class AutoEvoExploringTool : ControlWithInput
             return;
 
         Init();
-
         Show();
     }
 
@@ -255,9 +255,7 @@ public class AutoEvoExploringTool : ControlWithInput
         if (!Visible)
             return false;
 
-        initialized = false;
-        autoEvoConfiguration = null!;
-        gameProperties = null!;
+        Clean();
         EmitSignal(nameof(OnAutoEvoExploringToolClosed));
         return true;
     }
@@ -294,6 +292,21 @@ public class AutoEvoExploringTool : ControlWithInput
         useBiodiversityForceSplitCheckBox.Pressed = autoEvoConfiguration.UseBiodiversityForceSplit;
 
         initialized = true;
+    }
+
+    private void Clean()
+    {
+        initialized = false;
+
+        autoEvoConfiguration = null!;
+        gameProperties = null!;
+        resultsLabel.ExtendedBbcode = string.Empty;
+        runResultsList.Clear();
+
+        foreach (var checkBox in historyCheckBoxes)
+            checkBox.DetachAndQueueFree();
+
+        historyCheckBoxes.Clear();
     }
 
     /// <summary>
