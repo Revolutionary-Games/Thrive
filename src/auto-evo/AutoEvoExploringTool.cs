@@ -59,6 +59,14 @@ public class AutoEvoExploringTool : ControlWithInput
     [Export]
     public NodePath UseBiodiversityForceSplitPath = null!;
 
+    // Status paths
+
+    [Export]
+    public NodePath CurrentGenerationLabelPath = null!;
+
+    [Export]
+    public NodePath RunStatusLabelPath = null!;
+
     // All auto-evo config related controls.
     private CustomCheckBox allowNoMutationCheckBox = null!;
     private CustomCheckBox allowNoMigrationCheckBox = null!;
@@ -79,9 +87,15 @@ public class AutoEvoExploringTool : ControlWithInput
     private SpinBox speciesSplitByMutationThresholdPopulationFractionSpinBox = null!;
     private CustomCheckBox useBiodiversityForceSplitCheckBox = null!;
 
+    // Auto-evo status related controls
+    private Label currentGenerationLabel = null!;
+    private Label runStatusLabel = null!;
+
     private GameProperties gameProperties = null!;
     private AutoEvoConfiguration autoEvoConfiguration = null!;
+    private AutoEvoRun? autoEvoRun;
     private bool initialized;
+    private int currentGeneration = 0;
 
     [Signal]
     public delegate void OnAutoEvoExploringToolClosed();
@@ -112,6 +126,30 @@ public class AutoEvoExploringTool : ControlWithInput
         speciesSplitByMutationThresholdPopulationFractionSpinBox =
             GetNode<SpinBox>(SpeciesSplitByMutationThresholdPopulationFractionPath);
         useBiodiversityForceSplitCheckBox = GetNode<CustomCheckBox>(UseBiodiversityForceSplitPath);
+
+        currentGenerationLabel = GetNode<Label>(CurrentGenerationLabelPath);
+        runStatusLabel = GetNode<Label>(RunStatusLabelPath);
+
+        Init();
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (!initialized)
+            return;
+
+        if (autoEvoRun != null)
+        {
+            runStatusLabel.Text = autoEvoRun.Status;
+
+            if (autoEvoRun.WasSuccessful)
+            {
+                currentGenerationLabel.Text = (++currentGeneration).ToString();
+                autoEvoRun = null;
+            }
+        }
     }
 
     public void OpenFromMainMenu()
@@ -170,7 +208,10 @@ public class AutoEvoExploringTool : ControlWithInput
     /// <summary>
     ///   This function updates all configurations in a row to avoid adding numerous separate callback functions.
     /// </summary>
-    /// <param name="value">Godot Signal parameter</param>
+    /// <param name="value">
+    ///   Godot Signal parameter,
+    ///   'state' from Button::toggled or 'value' from SpinBox::value_changed
+    /// </param>
     private void UpdateAutoEvoConfiguration(object? value = null)
     {
         _ = value;
@@ -200,5 +241,40 @@ public class AutoEvoExploringTool : ControlWithInput
         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction =
             (float)speciesSplitByMutationThresholdPopulationFractionSpinBox.Value;
         autoEvoConfiguration.UseBiodiversityForceSplit = useBiodiversityForceSplitCheckBox.Pressed;
+    }
+
+    /// <summary>
+    ///   Run a new generation or finish the current generation
+    /// </summary>
+    private void OnRunGenerationButtonPressed()
+    {
+        // If the previous one has finished / failed
+        if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
+        {
+            autoEvoRun = new AutoEvoRun(gameProperties.GameWorld, autoEvoConfiguration) { FullSpeed = true };
+            autoEvoRun.Start();
+        }
+        else
+        {
+            autoEvoRun.FullSpeed = true;
+            autoEvoRun.Continue();
+        }
+    }
+
+    private void OnRunStepButtonPressed()
+    {
+        if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
+        {
+            autoEvoRun = new AutoEvoRun(gameProperties.GameWorld, autoEvoConfiguration);
+        }
+
+        autoEvoRun.FullSpeed = false;
+        autoEvoRun.OneStep();
+    }
+
+    private void OnAbortButtonPressed()
+    {
+        if (autoEvoRun?.Running == true)
+            autoEvoRun.Abort();
     }
 }

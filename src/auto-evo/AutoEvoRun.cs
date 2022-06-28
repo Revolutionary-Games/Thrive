@@ -14,6 +14,8 @@ using Thread = System.Threading.Thread;
 /// </summary>
 public class AutoEvoRun
 {
+    private readonly AutoEvoConfiguration configuration;
+
     /// <summary>
     ///   Results are stored here until the simulation is complete and then applied
     /// </summary>
@@ -40,9 +42,10 @@ public class AutoEvoRun
 
     private int completeSteps;
 
-    public AutoEvoRun(GameWorld world)
+    public AutoEvoRun(GameWorld world, AutoEvoConfiguration? configuration = null)
     {
         Parameters = new RunParameters(world);
+        this.configuration = configuration ?? SimulationParameters.Instance.AutoEvoConfiguration;
     }
 
     private enum RunStage
@@ -87,7 +90,7 @@ public class AutoEvoRun
     /// <summary>
     ///   The total duration auto-evo processing took
     /// </summary>
-    public TimeSpan? RunDuration { get; private set; }
+    public TimeSpan RunDuration { get; private set; } = TimeSpan.Zero;
 
     public float CompletionFraction
     {
@@ -124,8 +127,8 @@ public class AutoEvoRun
             if (Finished)
                 return TranslationServer.Translate("FINISHED_DOT");
 
-            if (!Running)
-                return TranslationServer.Translate("NOT_RUNNING_DOT");
+            if (!started)
+                return TranslationServer.Translate("NOT_STARTED_DOT");
 
             int total = totalSteps;
 
@@ -136,7 +139,8 @@ public class AutoEvoRun
                 // {0:F1}% done. {1:n0}/{2:n0} steps.
                 return string.Format(CultureInfo.CurrentCulture,
                     TranslationServer.Translate("AUTO-EVO_STEPS_DONE"),
-                    percentage, CompleteSteps, total);
+                    percentage, CompleteSteps, total) + (Running ? string.Empty : " " +
+                    TranslationServer.Translate("PAUSED_DOT"));
             }
 
             return TranslationServer.Translate("STARTING");
@@ -175,6 +179,44 @@ public class AutoEvoRun
 
         TaskExecutor.Instance.AddTask(task);
         started = true;
+    }
+
+    public void OneStep()
+    {
+        if (Running)
+            return;
+
+        started = true;
+
+        var timer = new Stopwatch();
+        timer.Start();
+
+        Running = true;
+
+        try
+        {
+            if (Step())
+                Finished = true;
+        }
+        catch (Exception e)
+        {
+            Aborted = true;
+            GD.PrintErr("Auto-evo failed with an exception: ", e);
+        }
+
+        Running = false;
+
+        RunDuration += timer.Elapsed;
+    }
+
+    public void Continue()
+    {
+        if (Running)
+            return;
+
+        var task = new Task(Run);
+
+        TaskExecutor.Instance.AddTask(task);
     }
 
     public void Abort()
@@ -305,7 +347,7 @@ public class AutoEvoRun
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
 
-        var autoEvoConfiguration = SimulationParameters.Instance.AutoEvoConfiguration;
+        var autoEvoConfiguration = configuration;
 
         foreach (var entry in map.Patches)
         {
@@ -458,7 +500,7 @@ public class AutoEvoRun
         Running = false;
         Finished = true;
 
-        RunDuration = timer.Elapsed;
+        RunDuration += timer.Elapsed;
     }
 
     /// <summary>

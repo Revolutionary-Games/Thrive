@@ -27,6 +27,8 @@ StrictNicheCompetitionPath = NodePath("MarginContainer/VBoxContainer/ConfigEdito
 SpeciesSplitByMutationThresholdPopulationAmountPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount/SpeciesSplitByMutationThresholdPopulationAmount")
 SpeciesSplitByMutationThresholdPopulationFractionPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction/SpeciesSplitByMutationThresholdPopulationFraction")
 UseBiodiversityForceSplitPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/UseBiodiversityForceSplit")
+CurrentGenerationLabelPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/CurrentGenerationLabel")
+RunStatusLabelPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/RunStatusLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -330,89 +332,74 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer"]
-margin_left = 81.0
-margin_top = 190.0
-margin_right = 318.0
-margin_bottom = 357.0
+margin_left = 44.0
+margin_top = 137.0
+margin_right = 355.0
+margin_bottom = 411.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
 [node name="Statistics" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_right = 237.0
-margin_bottom = 83.0
+margin_right = 311.0
+margin_bottom = 112.0
 
-[node name="CurrentGeneration" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
-margin_right = 237.0
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
+margin_right = 311.0
 margin_bottom = 25.0
+text = "CURRENT_GENERATION_COLON"
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/CurrentGeneration"]
-margin_right = 225.0
-margin_bottom = 25.0
-text = "CURRENT_GENERATION"
-
-[node name="CurrentGenerationLabel" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/CurrentGeneration"]
-margin_left = 229.0
-margin_right = 237.0
-margin_bottom = 25.0
-text = "1"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="CurrentStep" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
+[node name="CurrentGenerationLabel" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
 margin_top = 29.0
-margin_right = 237.0
+margin_right = 311.0
 margin_bottom = 54.0
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/CurrentStep"]
-margin_right = 151.0
-margin_bottom = 25.0
-text = "CURRENT_STEP"
-
-[node name="CurrentStepLabel" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/CurrentStep"]
-margin_left = 155.0
-margin_right = 168.0
-margin_bottom = 25.0
 text = "0"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="TotalSteps" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
 margin_top = 58.0
-margin_right = 237.0
+margin_right = 311.0
 margin_bottom = 83.0
+text = "STATUS_COLON"
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/TotalSteps"]
-margin_right = 135.0
-margin_bottom = 25.0
-text = "TOTAL_STEPS"
-
-[node name="TotalStepsLabel" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/TotalSteps"]
-margin_left = 139.0
-margin_right = 152.0
-margin_bottom = 25.0
-text = "0"
+[node name="RunStatusLabel" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
+margin_top = 87.0
+margin_right = 311.0
+margin_bottom = 112.0
+text = "READY"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 93.0
-margin_right = 237.0
-margin_bottom = 167.0
+margin_top = 122.0
+margin_right = 311.0
+margin_bottom = 274.0
 
 [node name="RunGeneration" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer"]
-margin_right = 237.0
+margin_right = 311.0
 margin_bottom = 35.0
 text = "RUN_ONE_GENERATION"
 
 [node name="RunStep" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer"]
 margin_top = 39.0
-margin_right = 237.0
+margin_right = 311.0
 margin_bottom = 74.0
 text = "RUN_ONE_STEP"
+
+[node name="Abort" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer"]
+margin_top = 78.0
+margin_right = 311.0
+margin_bottom = 113.0
+text = "ABORT"
+
+[node name="PlayWithThis" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer"]
+margin_top = 117.0
+margin_right = 311.0
+margin_bottom = 152.0
+text = "PLAY_WITH_CURRENT_SETTING"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 625.0
@@ -427,4 +414,7 @@ text = "BACK"
 [connection signal="toggled" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowNoMutation" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowNoMigration" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance" to="." method="UpdateAutoEvoConfiguration"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/RunGeneration" to="." method="OnRunGenerationButtonPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/RunStep" to="." method="OnRunStepButtonPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
