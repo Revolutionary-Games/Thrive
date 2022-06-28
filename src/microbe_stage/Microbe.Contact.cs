@@ -505,7 +505,7 @@ public partial class Microbe
             }
         }
 
-        // queues either 1 corpse chunk or a factor of the organelles
+        // Queues either 1 corpse chunk or a factor of the organelles
         int chunksToSpawn = Math.Max(1, organelles.Count / Constants.CORPSE_CHUNK_DIVISOR);
 
         var chunkScene = SpawnHelpers.LoadChunkScene();
@@ -552,7 +552,7 @@ public partial class Microbe
 
             var sceneToUse = new ChunkConfiguration.ChunkScene();
 
-            // Moves through the organelle list every time a new chunk is needed
+            // Searches through the organellesAvailable list for a valid chunk to spawn
             do
             {
                 organellesAvailableEnumerator?.MoveNext();
