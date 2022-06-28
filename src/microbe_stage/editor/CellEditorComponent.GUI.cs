@@ -202,7 +202,7 @@ public partial class CellEditorComponent
 
     private void UpdateRigiditySliderState(int mutationPoints)
     {
-        Godot.Texture grabberDisableIcon = rigiditySlider.GetIcon("grabber_disabled");
+        Texture grabberDisableIcon = rigiditySlider.GetIcon("grabber_disabled");
 
         int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
         if (mutationPoints >= costPerStep && MovingPlacedHex == null)
