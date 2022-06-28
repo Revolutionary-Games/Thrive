@@ -506,18 +506,18 @@ public partial class Microbe
         }
 
         // queues either 1 corpse chunk or a factor of the organelles
-        int chunksToSpawn = Math.Max(1, (organelles.Count + 1) / Constants.CORPSE_CHUNK_DIVISOR -
-            (1 / Constants.CORPSE_CHUNK_DIVISOR));
+        int chunksToSpawn = Math.Max(1, organelles.Count / Constants.CORPSE_CHUNK_DIVISOR);
 
         var chunkScene = SpawnHelpers.LoadChunkScene();
 
-        // Local list for limiting number of organelles to spawn
-        var organellesAvailable = organelles.ToList();
+        // Duplicates the organelle list in a random order and creates an enumerator from it
+        var organellesAvailable = organelles.ToList().OrderBy(_ => random.Next());
+        IEnumerator<PlacedOrganelle> organellesAvailableEnumerator = organellesAvailable.GetEnumerator();
 
         for (int i = 0; i < chunksToSpawn; ++i)
         {
             // Amount of compound in one chunk
-            float amount = organelles.Count / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR - 1.0f / 3.0f;
+            float amount = organelles.Count / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
 
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
@@ -552,26 +552,24 @@ public partial class Microbe
 
             var sceneToUse = new ChunkConfiguration.ChunkScene();
 
-            // Try all organelles in random order and use the first one with a scene for model
-            foreach (var organelle in organellesAvailable.OrderBy(_ => random.Next()))
+            // Moves through the organelle list every time a new chunk is needed
+            do
             {
-                if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
+                organellesAvailableEnumerator?.MoveNext();
+
+                if (!string.IsNullOrEmpty(organellesAvailableEnumerator?.Current?.Definition.CorpseChunkScene))
                 {
-                    sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
-                    organellesAvailable.Remove(organelle);
-                    break;
+                    sceneToUse.LoadedScene = organellesAvailableEnumerator?.Current?.Definition.LoadedCorpseChunkScene;
                 }
 
-                if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
+                if (!string.IsNullOrEmpty(organellesAvailableEnumerator?.Current?.Definition.DisplayScene))
                 {
-                    sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
-                    sceneToUse.SceneModelPath = organelle.Definition.DisplaySceneModelPath;
-                    organellesAvailable.Remove(organelle);
-                    break;
+                    sceneToUse.LoadedScene = organellesAvailableEnumerator?.Current?.Definition.LoadedScene;
+                    sceneToUse.SceneModelPath =
+                        organellesAvailableEnumerator?.Current?.Definition.DisplaySceneModelPath;
                 }
-
-                organellesAvailable.RemoveAll(item => item == organelle);
             }
+            while (sceneToUse.LoadedScene == null);
 
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             // ReSharper disable once HeuristicUnreachableCode
@@ -589,6 +587,8 @@ public partial class Microbe
 
             ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
+
+        organellesAvailableEnumerator?.Dispose();
 
         // Subtract population
         if (!IsPlayerMicrobe && !Species.PlayerSpecies)
