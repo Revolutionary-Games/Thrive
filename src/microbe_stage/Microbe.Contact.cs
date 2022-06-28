@@ -560,6 +560,7 @@ public partial class Microbe
                 if (!string.IsNullOrEmpty(organellesAvailableEnumerator?.Current?.Definition.CorpseChunkScene))
                 {
                     sceneToUse.LoadedScene = organellesAvailableEnumerator?.Current?.Definition.LoadedCorpseChunkScene;
+                    break;
                 }
 
                 if (!string.IsNullOrEmpty(organellesAvailableEnumerator?.Current?.Definition.DisplayScene))
@@ -567,6 +568,7 @@ public partial class Microbe
                     sceneToUse.LoadedScene = organellesAvailableEnumerator?.Current?.Definition.LoadedScene;
                     sceneToUse.SceneModelPath =
                         organellesAvailableEnumerator?.Current?.Definition.DisplaySceneModelPath;
+                    break;
                 }
             }
             while (sceneToUse.LoadedScene == null);
