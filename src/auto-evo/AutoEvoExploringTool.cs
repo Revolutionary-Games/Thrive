@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using AutoEvo;
 using Godot;
-using Godot.Collections;
 
 public class AutoEvoExploringTool : ControlWithInput
 {
@@ -142,8 +139,10 @@ public class AutoEvoExploringTool : ControlWithInput
     private bool initialized;
     private int currentGeneration = 0;
     private List<LocalizedStringBuilder> runResultsList = new List<LocalizedStringBuilder>();
-    private List<Button> historyButtons = new List<Button>();
+    private List<CustomCheckBox> historyCheckBoxes = new List<CustomCheckBox>();
     private int currentDisplayed;
+    private PackedScene customCheckBoxScene = null!;
+    private ButtonGroup historyCheckBoxGroup = new ButtonGroup();
 
     [Signal]
     public delegate void OnAutoEvoExploringToolClosed();
@@ -189,6 +188,8 @@ public class AutoEvoExploringTool : ControlWithInput
         viewerTab = GetNode<Control>(ViewerPath);
         tabsList = new List<Control> { configEditorTab, reportTab, viewerTab };
 
+        customCheckBoxScene = GD.Load<PackedScene>("res://src/gui_common/CustomCheckBox.tscn");
+
         Init();
     }
 
@@ -210,15 +211,14 @@ public class AutoEvoExploringTool : ControlWithInput
                 runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
 
                 // Add button to history container
-                var button = new Button { Text = currentGeneration.ToString(), ToggleMode = true };
-                button.Connect("toggled", this, nameof(HistoryButtonToggled),
+                var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
+                checkBox.Text = (currentGeneration + 1).ToString();
+                checkBox.Connect("toggled", this, nameof(HistoryCheckBoxToggled),
                     new Godot.Collections.Array { currentGeneration });
-
-                historyButtons.Add(button);
-                historyContainer.AddChild(button);
-
-                // Display the most recent result
-                ChangeReportDisplayed(currentGeneration);
+                checkBox.Group = historyCheckBoxGroup;
+                historyCheckBoxes.Add(checkBox);
+                historyContainer.AddChild(checkBox);
+                checkBox.Pressed = true;
 
                 // Apply the results
                 autoEvoRun.ApplyAllEffects(true);
@@ -390,32 +390,12 @@ public class AutoEvoExploringTool : ControlWithInput
         tabsList[index].Visible = true;
     }
 
-    private void HistoryButtonToggled(bool state, int index)
+    private void HistoryCheckBoxToggled(bool state, int index)
     {
-        if (state == false)
+        if (state)
         {
-            // If only one button is checked
-            if (currentDisplayed == index)
-                historyButtons[index].Pressed = true;
-
-            return;
+            currentDisplayed = index;
+            UpdateResults();
         }
-
-        ChangeReportDisplayed(index);
-    }
-
-    private void ChangeReportDisplayed(int index)
-    {
-        if (currentDisplayed == index)
-            return;
-
-        currentDisplayed = index;
-
-        foreach (var button in historyButtons)
-            button.Pressed = false;
-
-        historyButtons[index].Pressed = true;
-
-        UpdateResults();
     }
 }

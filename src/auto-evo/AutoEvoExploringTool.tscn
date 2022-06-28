@@ -411,6 +411,7 @@ margin_bottom = 300.0
 text = "PLAY_WITH_CURRENT_SETTING"
 
 [node name="Report" type="Control" parent="MarginContainer/VBoxContainer"]
+visible = false
 margin_top = 45.0
 margin_right = 1180.0
 margin_bottom = 615.0
@@ -424,7 +425,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HistoryPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/Report/HSplitContainer"]
-margin_right = 182.0
+margin_right = 2.0
 margin_bottom = 570.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Report/HSplitContainer/HistoryPanel"]
@@ -464,7 +465,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ResultsPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/Report/HSplitContainer"]
-margin_left = 194.0
+margin_left = 14.0
 margin_right = 1180.0
 margin_bottom = 570.0
 size_flags_horizontal = 3
@@ -506,8 +507,7 @@ margin_right = 964.0
 margin_bottom = 46.0
 
 [node name="Viewer" type="Control" parent="MarginContainer/VBoxContainer"]
-visible = false
-margin_top = 335.0
+margin_top = 45.0
 margin_right = 1180.0
 margin_bottom = 615.0
 size_flags_horizontal = 3
