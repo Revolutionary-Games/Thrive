@@ -10,10 +10,10 @@ public class AutoEvoExploringTool : ControlWithInput
     // All auto-evo config paths
 
     [Export]
-    public NodePath AllowNotMutatePath = null!;
+    public NodePath AllowSpeciesToNotMutatePath = null!;
 
     [Export]
-    public NodePath AllowNotMigratePath = null!;
+    public NodePath AllowSpeciesToNotMigratePath = null!;
 
     [Export]
     public NodePath BiodiversityAttemptFillChancePath = null!;
@@ -100,8 +100,8 @@ public class AutoEvoExploringTool : ControlWithInput
     public NodePath ViewerPath = null!;
 
     // All auto-evo config related controls.
-    private CustomCheckBox allowNotMutateCheckBox = null!;
-    private CustomCheckBox allowNotMigrateCheckBox = null!;
+    private CustomCheckBox allowSpeciesToNotMutateCheckBox = null!;
+    private CustomCheckBox allowSpeciesToNotMigrateCheckBox = null!;
     private SpinBox biodiversityAttemptFillChanceSpinBox = null!;
     private SpinBox biodiversityFromNeighbourPatchChanceSpinBox = null!;
     private CustomCheckBox biodiversityNearbyPatchIsFreePopulationCheckBox = null!;
@@ -152,8 +152,8 @@ public class AutoEvoExploringTool : ControlWithInput
     {
         base._Ready();
 
-        allowNotMutateCheckBox = GetNode<CustomCheckBox>(AllowNotMutatePath);
-        allowNotMigrateCheckBox = GetNode<CustomCheckBox>(AllowNotMigratePath);
+        allowSpeciesToNotMutateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMutatePath);
+        allowSpeciesToNotMigrateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMigratePath);
         biodiversityAttemptFillChanceSpinBox = GetNode<SpinBox>(BiodiversityAttemptFillChancePath);
         biodiversityFromNeighbourPatchChanceSpinBox = GetNode<SpinBox>(BiodiversityFromNeighbourPatchChancePath);
         biodiversitySplitIsMutatedCheckBox = GetNode<CustomCheckBox>(BiodiversitySplitIsMutatedPath);
@@ -271,8 +271,8 @@ public class AutoEvoExploringTool : ControlWithInput
         autoEvoConfiguration = (AutoEvoConfiguration)SimulationParameters.Instance.AutoEvoConfiguration.Clone();
 
         // Init all config controls
-        allowNotMutateCheckBox.Pressed = autoEvoConfiguration.AllowNotMutate;
-        allowNotMigrateCheckBox.Pressed = autoEvoConfiguration.AllowNotMigrate;
+        allowSpeciesToNotMutateCheckBox.Pressed = autoEvoConfiguration.AllowSpeciesToNotMutate;
+        allowSpeciesToNotMigrateCheckBox.Pressed = autoEvoConfiguration.AllowSpeciesToNotMigrate;
         biodiversityAttemptFillChanceSpinBox.Value = autoEvoConfiguration.BiodiversityAttemptFillChance;
         biodiversityFromNeighbourPatchChanceSpinBox.Value = autoEvoConfiguration.BiodiversityFromNeighbourPatchChance;
         biodiversitySplitIsMutatedCheckBox.Pressed = autoEvoConfiguration.BiodiversityNearbyPatchIsFreePopulation;
@@ -310,8 +310,8 @@ public class AutoEvoExploringTool : ControlWithInput
         if (!initialized)
             return;
 
-        autoEvoConfiguration.AllowNotMutate = allowNotMutateCheckBox.Pressed;
-        autoEvoConfiguration.AllowNotMigrate = allowNotMigrateCheckBox.Pressed;
+        autoEvoConfiguration.AllowSpeciesToNotMutate = allowSpeciesToNotMutateCheckBox.Pressed;
+        autoEvoConfiguration.AllowSpeciesToNotMigrate = allowSpeciesToNotMigrateCheckBox.Pressed;
         autoEvoConfiguration.BiodiversityAttemptFillChance = (int)biodiversityAttemptFillChanceSpinBox.Value;
         autoEvoConfiguration.BiodiversityFromNeighbourPatchChance =
             (float)biodiversityFromNeighbourPatchChanceSpinBox.Value;

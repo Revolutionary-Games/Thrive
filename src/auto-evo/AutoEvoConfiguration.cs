@@ -7,13 +7,13 @@ public class AutoEvoConfiguration : IRegistryType, ICloneable
     public int MutationsPerSpecies { get; set; }
 
     [JsonProperty]
-    public bool AllowNotMutate { get; set; }
+    public bool AllowSpeciesToNotMutate { get; set; }
 
     [JsonProperty]
     public int MoveAttemptsPerSpecies { get; set; }
 
     [JsonProperty]
-    public bool AllowNotMigrate { get; set; }
+    public bool AllowSpeciesToNotMigrate { get; set; }
 
     [JsonProperty]
     public int LowBiodiversityLimit { get; set; }
@@ -117,8 +117,8 @@ public class AutoEvoConfiguration : IRegistryType, ICloneable
     {
         return new AutoEvoConfiguration
         {
-            AllowNotMutate = AllowNotMutate,
-            AllowNotMigrate = AllowNotMigrate,
+            AllowSpeciesToNotMutate = AllowSpeciesToNotMutate,
+            AllowSpeciesToNotMigrate = AllowSpeciesToNotMigrate,
             BiodiversityAttemptFillChance = BiodiversityAttemptFillChance,
             BiodiversityFromNeighbourPatchChance = BiodiversityFromNeighbourPatchChance,
             BiodiversityNearbyPatchIsFreePopulation = BiodiversityNearbyPatchIsFreePopulation,

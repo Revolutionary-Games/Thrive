@@ -372,14 +372,14 @@ public class AutoEvoRun
                     steps.Enqueue(new FindBestMutation(autoEvoConfiguration,
                         worldSettings, map, speciesEntry.Key,
                         autoEvoConfiguration.MutationsPerSpecies,
-                        autoEvoConfiguration.AllowNotMutate,
+                        autoEvoConfiguration.AllowSpeciesToNotMutate,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
 
                     steps.Enqueue(new FindBestMigration(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
                         random,
                         autoEvoConfiguration.MoveAttemptsPerSpecies,
-                        autoEvoConfiguration.AllowNotMigrate));
+                        autoEvoConfiguration.AllowSpeciesToNotMigrate));
                 }
             }
 
