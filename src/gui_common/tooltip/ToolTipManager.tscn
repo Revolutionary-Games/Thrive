@@ -3766,7 +3766,7 @@ DescriptionLabelPath = NodePath("../../processesProduction/oxytoxyProteins/Margi
 visible = false
 DisplayDelay = 0.0
 Positioning = 1
-DescriptionLabelPath = NodePath("../oxytoxyProteins/MarginContainer/VBoxContainer/Description")
+DescriptionLabelPath = NodePath("../thermosynthase/MarginContainer/VBoxContainer/Description")
 
 [node name="mitochondrion" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
@@ -3778,7 +3778,7 @@ DescriptionLabelPath = NodePath("../../processesProduction/mitochondrion/MarginC
 visible = false
 DisplayDelay = 0.0
 Positioning = 1
-DescriptionLabelPath = NodePath("../mitochondrion/MarginContainer/VBoxContainer/Description")
+DescriptionLabelPath = NodePath("../thermoplast/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenfixingplastid" parent="GroupHolder/processesProduction" instance=ExtResource( 1 )]
 visible = false
