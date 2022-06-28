@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=7]
 
 [node name="AutoEvoExploringTool" type="Control"]
 anchor_right = 1.0
@@ -29,11 +31,11 @@ StrictNicheCompetitionPath = NodePath("MarginContainer/VBoxContainer/ConfigEdito
 SpeciesSplitByMutationThresholdPopulationAmountPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount/SpeciesSplitByMutationThresholdPopulationAmount")
 SpeciesSplitByMutationThresholdPopulationFractionPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction/SpeciesSplitByMutationThresholdPopulationFraction")
 UseBiodiversityForceSplitPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/UseBiodiversityForceSplit")
-CurrentGenerationLabelPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/CurrentGenerationLabel")
-RunStatusLabelPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/RunStatusLabel")
-RunGenerationButtonPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/RunGeneration")
-RunStepButtonPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/RunStep")
-AbortButtonPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/Abort")
+CurrentGenerationLabelPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/CurrentGenerationLabel")
+RunStatusLabelPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStatusLabel")
+RunGenerationButtonPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunGeneration")
+RunStepButtonPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep")
+AbortButtonPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort")
 ResultsLabelPath = NodePath("MarginContainer/VBoxContainer/Report/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
 ConfigEditorPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor")
 ReportPath = NodePath("MarginContainer/VBoxContainer/Report")
@@ -342,77 +344,73 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer"]
 margin_left = 44.0
-margin_top = 137.0
+margin_top = 124.0
 margin_right = 355.0
-margin_bottom = 411.0
+margin_bottom = 424.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
 
-[node name="Statistics" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_right = 311.0
-margin_bottom = 112.0
-
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_right = 311.0
 margin_bottom = 25.0
+custom_fonts/font = ExtResource( 6 )
 text = "CURRENT_GENERATION_COLON"
 
-[node name="CurrentGenerationLabel" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
-margin_top = 29.0
+[node name="CurrentGenerationLabel" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 35.0
 margin_right = 311.0
-margin_bottom = 54.0
+margin_bottom = 55.0
+custom_fonts/font = ExtResource( 7 )
 text = "0"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
-margin_top = 58.0
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 65.0
 margin_right = 311.0
-margin_bottom = 83.0
+margin_bottom = 90.0
+custom_fonts/font = ExtResource( 6 )
 text = "STATUS_COLON"
 
-[node name="RunStatusLabel" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics"]
-margin_top = 87.0
+[node name="RunStatusLabel" type="Label" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 100.0
 margin_right = 311.0
-margin_bottom = 112.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 7 )
 text = "READY"
 __meta__ = {
-"_editor_description_": ""
+"_editor_description_": "PLACEHOLDER"
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 122.0
+[node name="RunGeneration" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 130.0
 margin_right = 311.0
-margin_bottom = 274.0
-
-[node name="RunGeneration" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer"]
-margin_right = 311.0
-margin_bottom = 35.0
+margin_bottom = 165.0
 text = "RUN_ONE_GENERATION"
 
-[node name="RunStep" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer"]
-margin_top = 39.0
+[node name="RunStep" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 175.0
 margin_right = 311.0
-margin_bottom = 74.0
+margin_bottom = 210.0
 text = "RUN_ONE_STEP"
 
-[node name="Abort" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer"]
-margin_top = 78.0
+[node name="Abort" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 220.0
 margin_right = 311.0
-margin_bottom = 113.0
+margin_bottom = 255.0
 text = "ABORT"
 
-[node name="PlayWithThis" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer"]
-margin_top = 117.0
+[node name="PlayWithThis" type="Button" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 265.0
 margin_right = 311.0
-margin_bottom = 152.0
+margin_bottom = 300.0
 text = "PLAY_WITH_CURRENT_SETTING"
 
 [node name="Report" type="Control" parent="MarginContainer/VBoxContainer"]
 visible = false
-margin_top = 45.0
+margin_top = 335.0
 margin_right = 1180.0
 margin_bottom = 615.0
 size_flags_horizontal = 3
@@ -428,7 +426,7 @@ size_flags_vertical = 3
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 1179.0
-margin_bottom = 569.0
+margin_bottom = 279.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -440,11 +438,11 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1168.0
-margin_bottom = 558.0
+margin_bottom = 268.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Report/PanelContainer/MarginContainer/ScrollContainer"]
 margin_right = 1158.0
-margin_bottom = 548.0
+margin_bottom = 258.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -461,7 +459,7 @@ margin_bottom = 46.0
 
 [node name="Viewer" type="Control" parent="MarginContainer/VBoxContainer"]
 visible = false
-margin_top = 335.0
+margin_top = 45.0
 margin_right = 1180.0
 margin_bottom = 615.0
 size_flags_horizontal = 3
@@ -483,7 +481,7 @@ text = "BACK"
 [connection signal="toggled" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowNoMutation" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowNoMigration" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance" to="." method="UpdateAutoEvoConfiguration"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/RunGeneration" to="." method="OnRunGenerationButtonPressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/RunStep" to="." method="OnRunStepButtonPressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunGeneration" to="." method="OnRunGenerationButtonPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep" to="." method="OnRunStepButtonPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]

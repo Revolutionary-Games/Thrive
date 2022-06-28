@@ -215,6 +215,13 @@ public class AutoEvoExploringTool : ControlWithInput
                 runGenerationButton.Disabled = false;
                 runStepButton.Disabled = false;
             }
+            else if (autoEvoRun.Aborted)
+            {
+                // Clear autoEvoRun and enable buttons to allow the next run to start.
+                autoEvoRun = null;
+                runGenerationButton.Disabled = false;
+                runStepButton.Disabled = false;
+            }
         }
     }
 
@@ -242,6 +249,9 @@ public class AutoEvoExploringTool : ControlWithInput
 
     private void Init()
     {
+        currentGeneration = 0;
+        currentGenerationLabel.Text = currentGeneration.ToString();
+        runStatusLabel.Text = TranslationServer.Translate("READY");
         gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
         autoEvoConfiguration = (AutoEvoConfiguration)SimulationParameters.Instance.AutoEvoConfiguration.Clone();
 
