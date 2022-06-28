@@ -145,9 +145,9 @@ public class PatchMapDrawer : Control
             var end = Center(adjacent.ScreenCoordinates);
 
             var regionRect = new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height));
-            var adjacentRect = new Rect2(adjacentRegion.ScreenCoordinates, 
+            var adjacentRect = new Rect2(adjacentRegion.ScreenCoordinates,
                 new Vector2(adjacentRegion.Width, adjacentRegion.Height));
-            
+
             // We get the intersection of the connections with the 2 adjacent regions (special and normal)
             start = LineRectangleIntersection(start, end, regionRect);
             end = LineRectangleIntersection(start, end, adjacentRect);
@@ -402,7 +402,6 @@ public class PatchMapDrawer : Control
         foreach (var entry in Map!.Regions)
         {
             var region = entry.Value;
-           
 
             foreach (var adjacent in region.Adjacent)
             {
@@ -413,7 +412,6 @@ public class PatchMapDrawer : Control
 
                     if (!connections.ContainsKey(tuple) && !connections.ContainsKey(complementTuple))
                     {
-                        
                         var start = RegionCenter(region);
                         var end = RegionCenter(adjacent);
 
@@ -431,7 +429,7 @@ public class PatchMapDrawer : Control
 
                                 (newStart, intermediate, end) =
                                     ConnectionIntersectionWithRegions(start, end, intermediate, special, adjacent);
-                                
+
                                 if (newStart != start)
                                 {
                                     start = newStart;
@@ -449,7 +447,6 @@ public class PatchMapDrawer : Control
                                         startRegion, specialAdjacent);
                             }
                         }
-
 
                         connections.Add(tuple, new Tuple<Vector2, Vector2, Vector2>(start, intermediate, end));
                     }
@@ -477,7 +474,6 @@ public class PatchMapDrawer : Control
 
             if (CheckHighlightedAdjency(region1, region2))
                 highlightedConnections.Add(entry.Value);
-
         }
 
         // Then we draw the the adjacent connections to the patch we selected
@@ -503,8 +499,8 @@ public class PatchMapDrawer : Control
             DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)),
                 new Color(0f, 0.7f, 0.5f, 0.7f), false, RegionLineWidth);
         }
-
     }
+
     private void RebuildMapNodes()
     {
         foreach (var node in nodes)

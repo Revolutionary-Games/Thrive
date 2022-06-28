@@ -369,7 +369,7 @@ public class PatchMap : ISaveLoadable
     {
         if (Seed != null)
             throw new ArgumentException("cant set seed, seed has already been set");
-        
+
         Seed = random;
     }
 
