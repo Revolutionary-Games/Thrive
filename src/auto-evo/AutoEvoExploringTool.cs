@@ -5,7 +5,7 @@ using Godot;
 
 public class AutoEvoExploringTool : ControlWithInput
 {
-    // All auto-evo config paths
+    // Auto-evo config paths
 
     [Export]
     public NodePath AllowSpeciesToNotMutatePath = null!;
@@ -97,7 +97,7 @@ public class AutoEvoExploringTool : ControlWithInput
     [Export]
     public NodePath ViewerPath = null!;
 
-    // All auto-evo config related controls.
+    // Auto-evo config related controls.
     private CustomCheckBox allowSpeciesToNotMutateCheckBox = null!;
     private CustomCheckBox allowSpeciesToNotMigrateCheckBox = null!;
     private SpinBox biodiversityAttemptFillChanceSpinBox = null!;
@@ -260,6 +260,9 @@ public class AutoEvoExploringTool : ControlWithInput
         return true;
     }
 
+    /// <summary>
+    ///   Initialize the exploring tool
+    /// </summary>
     private void Init()
     {
         currentGeneration = 0;
@@ -294,6 +297,9 @@ public class AutoEvoExploringTool : ControlWithInput
         initialized = true;
     }
 
+    /// <summary>
+    ///   Clean the exploring tool for next entrance
+    /// </summary>
     private void Clean()
     {
         initialized = false;
@@ -313,8 +319,7 @@ public class AutoEvoExploringTool : ControlWithInput
     ///   This function updates all configurations in a row to avoid adding numerous separate callback functions.
     /// </summary>
     /// <param name="value">
-    ///   Godot Signal parameter,
-    ///   'state' from Button::toggled or 'value' from SpinBox::value_changed
+    ///   Godot Signal parameter, 'state' from Button::toggled or 'value' from SpinBox::value_changed.
     /// </param>
     private void UpdateAutoEvoConfiguration(object? value = null)
     {
