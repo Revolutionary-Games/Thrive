@@ -510,9 +510,8 @@ public partial class Microbe
 
         var chunkScene = SpawnHelpers.LoadChunkScene();
 
-        // Duplicates the organelle list in a random order and creates an enumerator from it
-        var organellesAvailable = organelles.ToList().OrderBy(_ => random.Next());
-        IEnumerator<PlacedOrganelle> organellesAvailableEnumerator = organellesAvailable.GetEnumerator();
+        // Creates an enumerator from the original list to step through all available organelles when making chunks
+        var organellesAvailableEnumerator = organelles.OrderBy(_ => random.Next()).GetEnumerator();
 
         for (int i = 0; i < chunksToSpawn; ++i)
         {
@@ -552,26 +551,23 @@ public partial class Microbe
 
             var sceneToUse = new ChunkConfiguration.ChunkScene();
 
-            // Searches through the organellesAvailable list for a valid chunk to spawn
-            do
+            organellesAvailableEnumerator?.MoveNext();
+
+            if (!string.IsNullOrEmpty(organellesAvailableEnumerator?.Current?.Definition.CorpseChunkScene))
             {
-                organellesAvailableEnumerator?.MoveNext();
-
-                if (!string.IsNullOrEmpty(organellesAvailableEnumerator?.Current?.Definition.CorpseChunkScene))
-                {
-                    sceneToUse.LoadedScene = organellesAvailableEnumerator?.Current?.Definition.LoadedCorpseChunkScene;
-                    break;
-                }
-
-                if (!string.IsNullOrEmpty(organellesAvailableEnumerator?.Current?.Definition.DisplayScene))
-                {
-                    sceneToUse.LoadedScene = organellesAvailableEnumerator?.Current?.Definition.LoadedScene;
-                    sceneToUse.SceneModelPath =
-                        organellesAvailableEnumerator?.Current?.Definition.DisplaySceneModelPath;
-                    break;
-                }
+                sceneToUse.LoadedScene = organellesAvailableEnumerator?.Current?.Definition.LoadedCorpseChunkScene;
             }
-            while (sceneToUse.LoadedScene == null);
+            else if (!string.IsNullOrEmpty(organellesAvailableEnumerator?.Current?.Definition.DisplayScene))
+            {
+                sceneToUse.LoadedScene = organellesAvailableEnumerator?.Current?.Definition.LoadedScene;
+                sceneToUse.SceneModelPath =
+                    organellesAvailableEnumerator?.Current?.Definition.DisplaySceneModelPath;
+            }
+            else
+            {
+                sceneToUse.LoadedScene = SimulationParameters.Instance
+                    .GetOrganelleType("cytoplasm").LoadedCorpseChunkScene;
+            }
 
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             // ReSharper disable once HeuristicUnreachableCode
