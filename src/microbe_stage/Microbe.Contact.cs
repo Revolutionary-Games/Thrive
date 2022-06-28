@@ -505,23 +505,19 @@ public partial class Microbe
             }
         }
 
-        int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISOR);
+        // queues either 1 corpse chunk or a factor of the organelles
+        int chunksToSpawn = Math.Max(1, (organelles.Count + 1) / Constants.CORPSE_CHUNK_DIVISOR -
+            (1 / Constants.CORPSE_CHUNK_DIVISOR));
 
         var chunkScene = SpawnHelpers.LoadChunkScene();
 
         // Local list for limiting number of organelles to spawn
-        var organellesAvailable = new List<PlacedOrganelle>(organelles);
+        var organellesAvailable = organelles.ToList();
 
         for (int i = 0; i < chunksToSpawn; ++i)
         {
             // Amount of compound in one chunk
             float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
-
-            // If all possible organelles have been spawned or none available, end loop
-            if (organellesAvailable.Count <= 0)
-            {
-                break;
-            }
 
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
@@ -573,6 +569,8 @@ public partial class Microbe
                     organellesAvailable.Remove(organelle);
                     break;
                 }
+
+                organellesAvailable.RemoveAll(item => item == organelle);
             }
 
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
