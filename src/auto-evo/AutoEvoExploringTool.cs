@@ -218,6 +218,9 @@ public class AutoEvoExploringTool : ControlWithInput
                 checkBox.Group = historyCheckBoxGroup;
                 historyCheckBoxes.Add(checkBox);
                 historyContainer.AddChild(checkBox);
+
+                // History checkboxes are in one button group, so this automatically releases other buttons
+                // History label is updated in button toggled signal callback
                 checkBox.Pressed = true;
 
                 // Apply the results
