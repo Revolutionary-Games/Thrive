@@ -252,36 +252,7 @@ public class AutoEvoRun
             throw new InvalidOperationException("Can't apply run results before it is done");
         }
 
-        if (ExternalEffects.Count > 0)
-        {
-            // Effects are applied in the current patch
-            var currentPatch = Parameters.World.Map.CurrentPatch ??
-                throw new InvalidOperationException("Cannot apply external effects without current map patch");
-
-            foreach (var entry in ExternalEffects)
-            {
-                try
-                {
-                    // It's possible for external effects to be added for extinct species (either completely extinct
-                    // or extinct in the current patch)
-                    if (!results.SpeciesHasResults(entry.Species))
-                    {
-                        GD.Print("Extinct species ", entry.Species.FormattedIdentifier,
-                            " had an external effect, ignoring the effect");
-                        continue;
-                    }
-
-                    long currentPop = results.GetPopulationInPatchIfExists(entry.Species, currentPatch) ?? 0;
-
-                    results.AddPopulationResultForSpecies(
-                        entry.Species, currentPatch, (int)(currentPop * entry.Coefficient) + entry.Constant);
-                }
-                catch (Exception e)
-                {
-                    GD.PrintErr("External effect can't be applied: ", e);
-                }
-            }
-        }
+        ApplyExternalEffects();
 
         results.ApplyResults(Parameters.World, false);
 
@@ -614,6 +585,40 @@ public class AutoEvoRun
             Parameters.World.RemoveSpecies(species);
 
             GD.Print("Species ", species.FormattedName, " has gone extinct from the world.");
+        }
+    }
+
+    private void ApplyExternalEffects()
+    {
+        if (ExternalEffects.Count > 0)
+        {
+            // Effects are applied in the current patch
+            var currentPatch = Parameters.World.Map.CurrentPatch ??
+                throw new InvalidOperationException("Cannot apply external effects without current map patch");
+
+            foreach (var entry in ExternalEffects)
+            {
+                try
+                {
+                    // It's possible for external effects to be added for extinct species (either completely extinct
+                    // or extinct in the current patch)
+                    if (!results.SpeciesHasResults(entry.Species))
+                    {
+                        GD.Print("Extinct species ", entry.Species.FormattedIdentifier,
+                            " had an external effect, ignoring the effect");
+                        continue;
+                    }
+
+                    long currentPop = results.GetPopulationInPatchIfExists(entry.Species, currentPatch) ?? 0;
+
+                    results.AddPopulationResultForSpecies(
+                        entry.Species, currentPatch, (int)(currentPop * entry.Coefficient) + entry.Constant);
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr("External effect can't be applied: ", e);
+                }
+            }
         }
     }
 }
