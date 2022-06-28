@@ -136,7 +136,7 @@ public class AutoEvoExploringTool : ControlWithInput
     private AutoEvoRun? autoEvoRun;
     private bool initialized;
     private int currentGeneration = 0;
-    private List<RunResults> runResultsList = new List<RunResults>();
+    private List<LocalizedStringBuilder> runResultsList = new List<LocalizedStringBuilder>();
 
     [Signal]
     public delegate void OnAutoEvoExploringToolClosed();
@@ -197,9 +197,6 @@ public class AutoEvoExploringTool : ControlWithInput
 
             if (autoEvoRun.WasSuccessful)
             {
-                // Apply the results
-                autoEvoRun.ApplyExternalEffects();
-
                 currentGenerationLabel.Text = (++currentGeneration).ToString();
 
                 // Update run results
@@ -207,8 +204,30 @@ public class AutoEvoExploringTool : ControlWithInput
                 if (results == null)
                     throw new ArgumentNullException($"{nameof(autoEvoRun)} is successful but with null {results}");
 
-                runResultsList.Add(results);
+                runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
                 UpdateResults();
+
+                // Apply the results
+                autoEvoRun.ApplyExternalEffects();
+
+                gameProperties.GameWorld.Map.UpdateGlobalTimePeriod(gameProperties.GameWorld.TotalPassedTime);
+
+                // Update populations before recording conditions - should not affect per-patch population
+                gameProperties.GameWorld.Map.UpdateGlobalPopulations();
+
+                // Needs to be before the remove extinct species call, so that extinct species could still be stored
+                // for reference in patch history (e.g. displaying it as zero on the species population chart)
+                foreach (var entry in gameProperties.GameWorld.Map.Patches)
+                    entry.Value.RecordSnapshot(true);
+
+                var extinct = gameProperties.GameWorld.Map.RemoveExtinctSpecies(false);
+
+                foreach (var species in extinct)
+                {
+                    gameProperties.GameWorld.RemoveSpecies(species);
+
+                    GD.Print("Species ", species.FormattedName, " has gone extinct from the world.");
+                }
 
                 // Clear autoEvoRun and enable buttons to allow the next run to start.
                 autoEvoRun = null;
@@ -363,7 +382,7 @@ public class AutoEvoExploringTool : ControlWithInput
 
     private void UpdateResults()
     {
-        resultsLabel.ExtendedBbcode = runResultsList.Last().MakeSummary(gameProperties.GameWorld.Map, true).ToString();
+        resultsLabel.ExtendedBbcode = runResultsList.Last().ToString();
     }
 
     private void ChangeTab(int index)
