@@ -1229,7 +1229,6 @@ public partial class Microbe
             if (!hasAnyUsefulCompounds && engulfable.PhagocytizedStep != PhagocytosisProcess.Digested)
             {
                 EjectEngulfable(engulfable);
-                continue;
             }
         }
 
