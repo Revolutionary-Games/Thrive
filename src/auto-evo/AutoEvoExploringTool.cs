@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
 using Godot;
+using Godot.Collections;
 
 public class AutoEvoExploringTool : ControlWithInput
 {
@@ -82,6 +83,9 @@ public class AutoEvoExploringTool : ControlWithInput
     // Report paths
 
     [Export]
+    public NodePath HistoryContainerPath = null!;
+
+    [Export]
     public NodePath ResultsLabelPath = null!;
 
     // Tab paths
@@ -123,6 +127,7 @@ public class AutoEvoExploringTool : ControlWithInput
     private Button abortButton = null!;
 
     // Auto-evo report related controls
+    private VBoxContainer historyContainer = null!;
     private CustomRichTextLabel resultsLabel = null!;
 
     // Tabs
@@ -137,6 +142,8 @@ public class AutoEvoExploringTool : ControlWithInput
     private bool initialized;
     private int currentGeneration = 0;
     private List<LocalizedStringBuilder> runResultsList = new List<LocalizedStringBuilder>();
+    private List<Button> historyButtons = new List<Button>();
+    private int currentDisplayed;
 
     [Signal]
     public delegate void OnAutoEvoExploringToolClosed();
@@ -175,6 +182,7 @@ public class AutoEvoExploringTool : ControlWithInput
         abortButton = GetNode<Button>(AbortButtonPath);
 
         resultsLabel = GetNode<CustomRichTextLabel>(ResultsLabelPath);
+        historyContainer = GetNode<VBoxContainer>(HistoryContainerPath);
 
         configEditorTab = GetNode<Control>(ConfigEditorPath);
         reportTab = GetNode<Control>(ReportPath);
@@ -197,18 +205,24 @@ public class AutoEvoExploringTool : ControlWithInput
 
             if (autoEvoRun.WasSuccessful)
             {
-                currentGenerationLabel.Text = (++currentGeneration).ToString();
-
-                // Update run results
-                var results = autoEvoRun.Results;
-                if (results == null)
-                    throw new ArgumentNullException($"{nameof(autoEvoRun)} is successful but with null {results}");
-
+                // Add run results
+                RunResults results = autoEvoRun.Results!;
                 runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
-                UpdateResults();
+
+                // Add button to history container
+                var button = new Button { Text = currentGeneration.ToString(), ToggleMode = true };
+                button.Connect("toggled", this, nameof(HistoryButtonToggled),
+                    new Godot.Collections.Array { currentGeneration });
+
+                historyButtons.Add(button);
+                historyContainer.AddChild(button);
+
+                // Display the most recent result
+                ChangeReportDisplayed(currentGeneration);
 
                 // Apply the results
                 autoEvoRun.ApplyAllEffects(true);
+                currentGenerationLabel.Text = (++currentGeneration).ToString();
 
                 // Clear autoEvoRun and enable buttons to allow the next run to start.
                 autoEvoRun = null;
@@ -236,15 +250,16 @@ public class AutoEvoExploringTool : ControlWithInput
     }
 
     [RunOnKeyDown("ui_cancel")]
-    public void OnBackButtonPressed()
+    public bool OnBackButtonPressed()
     {
         if (!Visible)
-            return;
+            return false;
 
         initialized = false;
         autoEvoConfiguration = null!;
         gameProperties = null!;
         EmitSignal(nameof(OnAutoEvoExploringToolClosed));
+        return true;
     }
 
     private void Init()
@@ -363,7 +378,8 @@ public class AutoEvoExploringTool : ControlWithInput
 
     private void UpdateResults()
     {
-        resultsLabel.ExtendedBbcode = runResultsList.Last().ToString();
+        if (currentDisplayed < runResultsList.Count)
+            resultsLabel.ExtendedBbcode = runResultsList[currentDisplayed].ToString();
     }
 
     private void ChangeTab(int index)
@@ -372,5 +388,34 @@ public class AutoEvoExploringTool : ControlWithInput
             tab.Visible = false;
 
         tabsList[index].Visible = true;
+    }
+
+    private void HistoryButtonToggled(bool state, int index)
+    {
+        if (state == false)
+        {
+            // If only one button is checked
+            if (currentDisplayed == index)
+                historyButtons[index].Pressed = true;
+
+            return;
+        }
+
+        ChangeReportDisplayed(index);
+    }
+
+    private void ChangeReportDisplayed(int index)
+    {
+        if (currentDisplayed == index)
+            return;
+
+        currentDisplayed = index;
+
+        foreach (var button in historyButtons)
+            button.Pressed = false;
+
+        historyButtons[index].Pressed = true;
+
+        UpdateResults();
     }
 }
