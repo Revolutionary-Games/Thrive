@@ -345,16 +345,6 @@ public static class Constants
     public const float ENGULFING_MOVEMENT_DIVISION = 1.7f;
 
     /// <summary>
-    ///   The speed reduction when a cell is being engulfed.
-    /// </summary>
-    public const float ENGULFED_MOVEMENT_DIVISION = 2.0f;
-
-    /// <summary>
-    ///   The force multiplier when a cell is getting pulled inside an engulfing cell.
-    /// </summary>
-    public const float ENGULFING_PULL_SPEED = 19.5f;
-
-    /// <summary>
     ///   The minimum size ratio between a cell and a possible engulfing victim.
     /// </summary>
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
@@ -366,6 +356,10 @@ public static class Constants
 
     public const float ENGULF_EJECTION_FORCE = 20f;
 
+    /// <summary>
+    ///   Offsets how far should the chunks for expelled partially digested objects be spawned from the membrane.
+    ///   0 means no offset and chunks are spawned directly on the membrane point.
+    /// </summary>
     public const float EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET = 1.8f;
 
     /// <summary>

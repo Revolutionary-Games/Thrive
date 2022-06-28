@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Main script on each cell in the game.
 ///   Partial class: Compounds, ATP, Reproduction
-///   Divide, Organelles, Toxin, Digestion, Decay
+///   Divide, Organelles, Toxin, Digestion
 /// </summary>
 public partial class Microbe
 {
@@ -1106,6 +1106,9 @@ public partial class Microbe
         activeCompoundDetections.Clear();
     }
 
+    /// <summary>
+    ///   Absorbs compounds/nutrients from ingested objects.
+    /// </summary>
     private void HandleDigestion(float delta)
     {
         if (Dead)
@@ -1120,8 +1123,18 @@ public partial class Microbe
             var engulfedObject = engulfedObjects[i];
 
             var engulfable = engulfedObject.Object.Value;
+            if (engulfable == null)
+                continue;
 
-            if (engulfable?.PhagocytizedStep != PhagocytosisProcess.Ingested)
+            // Expel this engulfed object if the cell loses some of its size and its ingestion capacity
+            // is overloaded
+            if (IngestedSizeCount > Size)
+            {
+                EjectEngulfable(engulfable);
+                continue;
+            }
+
+            if (engulfable.PhagocytizedStep != PhagocytosisProcess.Ingested)
                 continue;
 
             var usedEnzyme = lipase;
@@ -1218,11 +1231,6 @@ public partial class Microbe
                 EjectEngulfable(engulfable);
                 continue;
             }
-
-            // Expel the current engulfed object if this cell loses some of its size and its ingestion capacity
-            // is overloaded
-            if (IngestedSizeCount > Size)
-                EjectEngulfable(engulfable);
         }
 
         // Else handle logic if the cell that's being/has been digested is us

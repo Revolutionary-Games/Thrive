@@ -604,8 +604,8 @@ public partial class Microbe
         OnDeath?.Invoke(this);
         ModLoader.ModInterface.TriggerOnMicrobeDied(this, IsPlayerMicrobe);
 
-        // If being phagocytized don't continue further operation because the entity reference is still needed to
-        // maintain related functions and dropping corpse chunks won't make sense while inside a cell
+        // If being phagocytized don't continue further because the entity reference is still needed to
+        // maintain related functions, also dropping corpse chunks won't make sense while inside a cell
         if (PhagocytizedStep != PhagocytosisProcess.None)
             return null;
 
@@ -1548,7 +1548,9 @@ public partial class Microbe
         if (engulfedObject.HasBeenIngested)
         {
             IngestedSizeCount -= target.Size;
-            IngestedSizeCount = Mathf.Clamp(IngestedSizeCount, 0, Size);
+
+            if (IngestedSizeCount < 0)
+                IngestedSizeCount = 0;
         }
 
         target.PhagocytizedStep = PhagocytosisProcess.Exocytosis;
@@ -1797,7 +1799,6 @@ public partial class Microbe
         touchedEntities.Remove(engulfable);
 
         IngestedSizeCount += engulfable.Size;
-        IngestedSizeCount = Mathf.Clamp(IngestedSizeCount, 0, Size);
         engulfed.HasBeenIngested = true;
 
         OnSuccessfulEngulfment?.Invoke(this, engulfable);
@@ -1881,7 +1882,7 @@ public partial class Microbe
         public EntityReference<IEngulfable> Object { get; private set; }
 
         /// <summary>
-        ///   A food vacuole containing the engulfed object.
+        ///   A food vacuole containing the engulfed object. Only decorative.
         /// </summary>
         public EntityReference<Endosome> Phagosome { get; private set; }
 

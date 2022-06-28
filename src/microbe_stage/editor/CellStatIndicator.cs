@@ -2,6 +2,10 @@
 using Godot;
 using Newtonsoft.Json;
 
+/// <summary>
+///   Shows cell stats (e.g. Storage: 2.1, Hp: 50, etc) for the organism statistics display.
+///   Also functions as a comparison for old value with a new one, indicated with an up/down icon.
+/// </summary>
 public class CellStatIndicator : HBoxContainer
 {
     private Label? descriptionLabel;
@@ -30,6 +34,9 @@ public class CellStatIndicator : HBoxContainer
         }
     }
 
+    /// <summary>
+    ///   Displays the value in a formatted string, use this to show units (e.g. {0} m/s).
+    /// </summary>
     [Export]
     public string Format
     {

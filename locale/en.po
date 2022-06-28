@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-25 17:37+0700\n"
-"PO-Revision-Date: 2022-06-25 18:02+0700\n"
+"PO-Revision-Date: 2022-06-28 13:45+0700\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -104,15 +104,15 @@ msgstr "You can also engulf cells, bacteria, iron chunks and cell chunks that ar
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Once engulfment is finished, any objects caught in engulfment will then be kept inside the membrane to be digested. Non-digestible objects will always be expelled so make sure you have the necessary mutations that enable processing them first. Enzymes will help with digestion and is provided by the Lysosome, it's recommended to evolve this organelle to make digestion much more efficient."
+msgstr "Once engulfment is finished, any objects caught in the engulfment will then be kept inside the membrane to be digested. Non-digestible objects will always be expelled so make sure you have the necessary mutations that enable processing them first. Enzymes will help with digestion and is provided by the Lysosome, it's recommended to evolve this organelle to make digestion much more efficient."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "However, Lysosome is exclusive to eukaryotes, prokaryotes on the other hand don't have such organelle and so it digest its food rather inefficiently. Nonetheless, it can still be a really useful way to gain nutrients in certain situation but for most other times it's usually preferable to absorb nutrients from the free floating compound clouds instead if you're either a prokaryote or lysosome-less eukaryote."
+msgstr "However, Lysosome is exclusive only to eukaryotes, prokaryotes on the other hand don't have such organelle and so it digests its food rather inefficiently. For small cells this is fine but for larger cells, having no lysosomes is very disadvantageous."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Cellulose and Chitin cell walls in particular can't be digested without having the requisite enzyme to break them down first."
+msgstr "Cellulose and Chitin cell walls in particular can't be digested without having the requisite enzyme than can break them down first."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -3590,7 +3590,9 @@ msgstr "Cell Type Name"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1162
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr "Can't delete the nucleus as this is an irreversible evolution.\nHowever if placed in the current session, undo or redo is still permitted"
+msgstr ""
+"Can't delete the nucleus as this is an irreversible evolution.\n"
+"However if placed in the current session, undo or redo is still permitted"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1164
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -5005,7 +5007,7 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Engulf materials by moving over them and then toggle engulfment mode by pressing [thrive:input]g_toggle_engulf[/thrive:input] to draw them in.\n"
+"Engulf materials by moving over them and then toggle engulfing mode by pressing [thrive:input]g_toggle_engulf[/thrive:input] to draw them in.\n"
 "\n"
 "Keep engulfing until the material is completely internalized.\n"
 "\n"
@@ -5014,11 +5016,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
 msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
 msgstr ""
-"Your cell have been engulfed by another microbe where it will begin digesting.\n"
+"Your cell have been engulfed, this means the engulfer cell will start digesting.\n"
 "\n"
 "The digestion progress is shown on your health bar (bottom right) as a percentage. Your cell will be considered dead once it reaches 100% or a maximum time limit is reached.\n"
 "\n"
-"Press the suicide button to skip this process and respawn, but remember there's always a chance that you can escape!"
+"Press the suicide button to skip this process and respawn, but remember there's always a chance that you'll escape!"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Pangonian Vents"
