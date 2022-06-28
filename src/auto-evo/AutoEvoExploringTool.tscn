@@ -424,4 +424,7 @@ margin_right = 62.0
 margin_bottom = 35.0
 text = "BACK"
 
+[connection signal="toggled" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowNoMutation" to="." method="UpdateAutoEvoConfiguration"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowNoMigration" to="." method="UpdateAutoEvoConfiguration"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
