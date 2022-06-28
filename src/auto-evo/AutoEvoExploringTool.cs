@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using AutoEvo;
 using Godot;
 
@@ -139,11 +138,11 @@ public class AutoEvoExploringTool : ControlWithInput
     private AutoEvoRun? autoEvoRun;
     private bool initialized;
     private int currentGeneration = 0;
-    private List<LocalizedStringBuilder> runResultsList = new List<LocalizedStringBuilder>();
-    private List<CustomCheckBox> historyCheckBoxes = new List<CustomCheckBox>();
+    private List<LocalizedStringBuilder> runResultsList = new();
+    private List<CustomCheckBox> historyCheckBoxes = new();
     private int currentDisplayed;
     private PackedScene customCheckBoxScene = null!;
-    private ButtonGroup historyCheckBoxGroup = new ButtonGroup();
+    private ButtonGroup historyCheckBoxGroup = new();
 
     [Signal]
     public delegate void OnAutoEvoExploringToolClosed();
@@ -229,6 +228,7 @@ public class AutoEvoExploringTool : ControlWithInput
                 autoEvoRun = null;
                 runGenerationButton.Disabled = false;
                 runStepButton.Disabled = false;
+                abortButton.Disabled = true;
             }
             else if (autoEvoRun.Aborted)
             {
@@ -236,6 +236,7 @@ public class AutoEvoExploringTool : ControlWithInput
                 autoEvoRun = null;
                 runGenerationButton.Disabled = false;
                 runStepButton.Disabled = false;
+                abortButton.Disabled = true;
             }
         }
     }
@@ -372,6 +373,7 @@ public class AutoEvoExploringTool : ControlWithInput
         // Disable these buttons
         runGenerationButton.Disabled = true;
         runStepButton.Disabled = true;
+        abortButton.Disabled = false;
     }
 
     private void OnRunStepButtonPressed()
@@ -381,8 +383,10 @@ public class AutoEvoExploringTool : ControlWithInput
             autoEvoRun = new AutoEvoRun(gameProperties.GameWorld, autoEvoConfiguration);
         }
 
+        // To avoid concurrent steps
         autoEvoRun.FullSpeed = false;
         autoEvoRun.OneStep();
+        abortButton.Disabled = false;
     }
 
     private void OnAbortButtonPressed()
