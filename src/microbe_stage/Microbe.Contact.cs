@@ -505,88 +505,89 @@ public partial class Microbe
             }
         }
 
-        // Queues either 1 corpse chunk or a factor of the organelles
-        int chunksToSpawn = Math.Max(1, organelles.Count / Constants.CORPSE_CHUNK_DIVISOR);
+        // Queues either 1 corpse chunk or a factor of the hexes
+        int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISOR);
 
         var chunkScene = SpawnHelpers.LoadChunkScene();
 
-        // Creates an enumerator from the original list to step through all available organelles when making chunks
-        var organellesAvailableEnumerator = organelles.OrderBy(_ => random.Next()).GetEnumerator();
-
-        for (int i = 0; i < chunksToSpawn; ++i)
+        // An enumerator to step through all available organelles in a random order when making chunks
+        using (var organellesAvailableEnumerator = organelles.OrderBy(_ => random.Next()).GetEnumerator())
         {
-            // Amount of compound in one chunk
-            float amount = organelles.Count / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
-
-            var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
-                random.Next(-2.0f, 2.0f));
-
-            var chunkType = new ChunkConfiguration
+            for (int i = 0; i < chunksToSpawn; ++i)
             {
-                ChunkScale = 1.0f,
-                Dissolves = true,
-                Mass = 1.0f,
-                Radius = 1.0f,
-                Size = 3.0f,
-                VentAmount = 0.1f,
+                // Amount of compound in one chunk
+                float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
 
-                // Add compounds
-                Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>(),
-            };
+                var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
+                    random.Next(-2.0f, 2.0f));
 
-            // They were added in order already so looping through this other thing is fine
-            foreach (var entry in compoundsToRelease)
-            {
-                var compoundValue = new ChunkConfiguration.ChunkCompound
+                var chunkType = new ChunkConfiguration
                 {
-                    // Randomize compound amount a bit so things "rot away"
-                    Amount = (entry.Value / random.Next(amount / 3.0f, amount)) *
-                        Constants.CORPSE_COMPOUND_COMPENSATION,
+                    ChunkScale = 1.0f,
+                    Dissolves = true,
+                    Mass = 1.0f,
+                    Radius = 1.0f,
+                    Size = 3.0f,
+                    VentAmount = 0.1f,
+
+                    // Add compounds
+                    Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>(),
                 };
 
-                chunkType.Compounds[entry.Key] = compoundValue;
-            }
+                // They were added in order already so looping through this other thing is fine
+                foreach (var entry in compoundsToRelease)
+                {
+                    var compoundValue = new ChunkConfiguration.ChunkCompound
+                    {
+                        // Randomize compound amount a bit so things "rot away"
+                        Amount = (entry.Value / random.Next(amount / 3.0f, amount)) *
+                            Constants.CORPSE_COMPOUND_COMPENSATION,
+                    };
 
-            chunkType.Meshes = new List<ChunkConfiguration.ChunkScene>();
+                    chunkType.Compounds[entry.Key] = compoundValue;
+                }
 
-            var sceneToUse = new ChunkConfiguration.ChunkScene();
+                chunkType.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
-            organellesAvailableEnumerator?.MoveNext();
-
-            if (!string.IsNullOrEmpty(organellesAvailableEnumerator?.Current?.Definition.CorpseChunkScene))
-            {
-                sceneToUse.LoadedScene = organellesAvailableEnumerator?.Current?.Definition.LoadedCorpseChunkScene;
-            }
-            else if (!string.IsNullOrEmpty(organellesAvailableEnumerator?.Current?.Definition.DisplayScene))
-            {
-                sceneToUse.LoadedScene = organellesAvailableEnumerator?.Current?.Definition.LoadedScene;
-                sceneToUse.SceneModelPath =
-                    organellesAvailableEnumerator?.Current?.Definition.DisplaySceneModelPath;
-            }
-            else
-            {
+                // Sets the default chunk to be the cytoplasm model incase an organelle can't be spawned
+                var sceneToUse = new ChunkConfiguration.ChunkScene();
                 sceneToUse.LoadedScene = SimulationParameters.Instance
-                    .GetOrganelleType("cytoplasm").LoadedCorpseChunkScene;
+                    .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME).LoadedCorpseChunkScene;
+
+                // Will only loop if there are still organelles available
+                organellesAvailableEnumerator?.MoveNext();
+                if (i < organelles.Count && organellesAvailableEnumerator?.Current != null)
+                {
+                    if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.CorpseChunkScene))
+                    {
+                        sceneToUse.LoadedScene =
+                            organellesAvailableEnumerator.Current.Definition.LoadedCorpseChunkScene;
+                    }
+                    else if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.DisplayScene))
+                    {
+                        sceneToUse.LoadedScene = organellesAvailableEnumerator.Current.Definition.LoadedScene;
+                        sceneToUse.SceneModelPath =
+                            organellesAvailableEnumerator.Current.Definition.DisplaySceneModelPath;
+                    }
+                }
+
+                // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+                // ReSharper disable once HeuristicUnreachableCode
+                if (sceneToUse == null)
+                    throw new Exception("sceneToUse is null");
+
+                chunkType.Meshes.Add(sceneToUse);
+
+                // Finally spawn a chunk with the settings
+                var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
+                    chunkScene, random);
+
+                // Add to the spawn system to make these chunks limit possible number of entities
+                SpawnSystem.AddEntityToTrack(chunk);
+
+                ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
             }
-
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            // ReSharper disable once HeuristicUnreachableCode
-            if (sceneToUse == null)
-                throw new Exception("sceneToUse is null");
-
-            chunkType.Meshes.Add(sceneToUse);
-
-            // Finally spawn a chunk with the settings
-            var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
-                chunkScene, random);
-
-            // Add to the spawn system to make these chunks limit possible number of entities
-            SpawnSystem.AddEntityToTrack(chunk);
-
-            ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
-
-        organellesAvailableEnumerator?.Dispose();
 
         // Subtract population
         if (!IsPlayerMicrobe && !Species.PlayerSpecies)
