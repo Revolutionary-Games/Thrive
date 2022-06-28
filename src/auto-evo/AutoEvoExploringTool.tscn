@@ -31,6 +31,9 @@ SpeciesSplitByMutationThresholdPopulationFractionPath = NodePath("MarginContaine
 UseBiodiversityForceSplitPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/UseBiodiversityForceSplit")
 CurrentGenerationLabelPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/CurrentGenerationLabel")
 RunStatusLabelPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/RunStatusLabel")
+RunGenerationButtonPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/RunGeneration")
+RunStepButtonPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/RunStep")
+AbortButtonPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/Abort")
 ResultsLabelPath = NodePath("MarginContainer/VBoxContainer/Report/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
 ConfigEditorPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor")
 ReportPath = NodePath("MarginContainer/VBoxContainer/Report")
@@ -75,10 +78,9 @@ margin_bottom = 35.0
 text = "VIEWER"
 
 [node name="ConfigEditor" type="Control" parent="MarginContainer/VBoxContainer"]
-visible = false
 margin_top = 45.0
 margin_right = 1180.0
-margin_bottom = 325.0
+margin_bottom = 615.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -92,7 +94,7 @@ size_flags_vertical = 3
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 1179.0
-margin_bottom = 295.0
+margin_bottom = 569.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -102,14 +104,14 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1168.0
-margin_bottom = 284.0
+margin_bottom = 558.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer"]
 margin_right = 738.0
-margin_bottom = 274.0
+margin_bottom = 548.0
 scroll_horizontal_enabled = false
 
 [node name="ConfigEditorContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer"]
@@ -334,14 +336,15 @@ text = "USE_BIODIVERSITY_FORCE_SPLIT"
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer"]
 margin_left = 758.0
 margin_right = 1158.0
-margin_bottom = 274.0
+margin_bottom = 548.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer"]
 margin_left = 44.0
+margin_top = 137.0
 margin_right = 355.0
-margin_bottom = 274.0
+margin_bottom = 411.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
@@ -408,6 +411,7 @@ margin_bottom = 152.0
 text = "PLAY_WITH_CURRENT_SETTING"
 
 [node name="Report" type="Control" parent="MarginContainer/VBoxContainer"]
+visible = false
 margin_top = 45.0
 margin_right = 1180.0
 margin_bottom = 615.0

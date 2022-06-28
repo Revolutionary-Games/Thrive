@@ -70,6 +70,15 @@ public class AutoEvoExploringTool : ControlWithInput
     [Export]
     public NodePath RunStatusLabelPath = null!;
 
+    [Export]
+    public NodePath RunGenerationButtonPath = null!;
+
+    [Export]
+    public NodePath RunStepButtonPath = null!;
+
+    [Export]
+    public NodePath AbortButtonPath = null!;
+
     // Report paths
 
     [Export]
@@ -109,6 +118,9 @@ public class AutoEvoExploringTool : ControlWithInput
     // Auto-evo status related controls
     private Label currentGenerationLabel = null!;
     private Label runStatusLabel = null!;
+    private Button runGenerationButton = null!;
+    private Button runStepButton = null!;
+    private Button abortButton = null!;
 
     // Auto-evo report related controls
     private CustomRichTextLabel resultsLabel = null!;
@@ -116,7 +128,7 @@ public class AutoEvoExploringTool : ControlWithInput
     // Tabs
     private Control configEditorTab = null!;
     private Control reportTab = null!;
-    private Control ViewerTab = null!;
+    private Control viewerTab = null!;
     private List<Control> tabsList = null!;
 
     private GameProperties gameProperties = null!;
@@ -158,13 +170,16 @@ public class AutoEvoExploringTool : ControlWithInput
 
         currentGenerationLabel = GetNode<Label>(CurrentGenerationLabelPath);
         runStatusLabel = GetNode<Label>(RunStatusLabelPath);
+        runGenerationButton = GetNode<Button>(RunGenerationButtonPath);
+        runStepButton = GetNode<Button>(RunStepButtonPath);
+        abortButton = GetNode<Button>(AbortButtonPath);
 
         resultsLabel = GetNode<CustomRichTextLabel>(ResultsLabelPath);
 
         configEditorTab = GetNode<Control>(ConfigEditorPath);
         reportTab = GetNode<Control>(ReportPath);
-        ViewerTab = GetNode<Control>(ViewerPath);
-        tabsList = new List<Control> { configEditorTab, reportTab, ViewerTab };
+        viewerTab = GetNode<Control>(ViewerPath);
+        tabsList = new List<Control> { configEditorTab, reportTab, viewerTab };
 
         Init();
     }
@@ -182,14 +197,23 @@ public class AutoEvoExploringTool : ControlWithInput
 
             if (autoEvoRun.WasSuccessful)
             {
+                // Apply the results
+                autoEvoRun.ApplyExternalEffects();
+
                 currentGenerationLabel.Text = (++currentGeneration).ToString();
+
+                // Update run results
                 var results = autoEvoRun.Results;
                 if (results == null)
                     throw new ArgumentNullException($"{nameof(autoEvoRun)} is successful but with null {results}");
 
                 runResultsList.Add(results);
                 UpdateResults();
+
+                // Clear autoEvoRun and enable buttons to allow the next run to start.
                 autoEvoRun = null;
+                runGenerationButton.Disabled = false;
+                runStepButton.Disabled = false;
             }
         }
     }
@@ -301,6 +325,10 @@ public class AutoEvoExploringTool : ControlWithInput
             autoEvoRun.FullSpeed = true;
             autoEvoRun.Continue();
         }
+
+        // Disable these buttons
+        runGenerationButton.Disabled = true;
+        runStepButton.Disabled = true;
     }
 
     private void OnRunStepButtonPressed()
@@ -318,6 +346,9 @@ public class AutoEvoExploringTool : ControlWithInput
     {
         if (autoEvoRun?.WasSuccessful == false)
             autoEvoRun.Abort();
+
+        runGenerationButton.Disabled = false;
+        runStepButton.Disabled = false;
     }
 
     private void UpdateResults()
