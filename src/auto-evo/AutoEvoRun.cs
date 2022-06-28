@@ -237,27 +237,21 @@ public class AutoEvoRun
         return Finished;
     }
 
-    public void ApplyResults()
+    /// <summary>
+    ///   Applies things added by addExternalPopulationEffect and auto-evo results
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This has to be called after this run is finished.
+    ///   </para>
+    /// </remarks>
+    public void ApplyAllEffects(bool playerCantGoExtinct)
     {
         if (!Finished || Running)
         {
             throw new InvalidOperationException("Can't apply run results before it is done");
         }
 
-        results.ApplyResults(Parameters.World, false);
-    }
-
-    /// <summary>
-    ///   Applies things added by addExternalPopulationEffect
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This has to be called after this run is finished. This also applies the results so ApplyResults shouldn't be
-    ///     called when using external effects.
-    ///   </para>
-    /// </remarks>
-    public void ApplyExternalEffects()
-    {
         if (ExternalEffects.Count > 0)
         {
             // Effects are applied in the current patch
@@ -290,6 +284,8 @@ public class AutoEvoRun
         }
 
         results.ApplyResults(Parameters.World, false);
+
+        UpdateMap(playerCantGoExtinct);
     }
 
     /// <summary>
@@ -595,5 +591,29 @@ public class AutoEvoRun
 
         // Doing the steps counting this way is slightly faster than an increment after each step
         Interlocked.Add(ref completeSteps, steps);
+    }
+
+    private void UpdateMap(bool playerCantGoExtinct)
+    {
+        Parameters.World.Map.UpdateGlobalTimePeriod(Parameters.World.TotalPassedTime);
+
+        // Update populations before recording conditions - should not affect per-patch population
+        Parameters.World.Map.UpdateGlobalPopulations();
+
+        // Needs to be before the remove extinct species call, so that extinct species could still be stored
+        // for reference in patch history (e.g. displaying it as zero on the species population chart)
+        foreach (var entry in Parameters.World.Map.Patches)
+        {
+            entry.Value.RecordSnapshot(true);
+        }
+
+        var extinct = Parameters.World.Map.RemoveExtinctSpecies(playerCantGoExtinct);
+
+        foreach (var species in extinct)
+        {
+            Parameters.World.RemoveSpecies(species);
+
+            GD.Print("Species ", species.FormattedName, " has gone extinct from the world.");
+        }
     }
 }

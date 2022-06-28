@@ -208,26 +208,7 @@ public class AutoEvoExploringTool : ControlWithInput
                 UpdateResults();
 
                 // Apply the results
-                autoEvoRun.ApplyExternalEffects();
-
-                gameProperties.GameWorld.Map.UpdateGlobalTimePeriod(gameProperties.GameWorld.TotalPassedTime);
-
-                // Update populations before recording conditions - should not affect per-patch population
-                gameProperties.GameWorld.Map.UpdateGlobalPopulations();
-
-                // Needs to be before the remove extinct species call, so that extinct species could still be stored
-                // for reference in patch history (e.g. displaying it as zero on the species population chart)
-                foreach (var entry in gameProperties.GameWorld.Map.Patches)
-                    entry.Value.RecordSnapshot(true);
-
-                var extinct = gameProperties.GameWorld.Map.RemoveExtinctSpecies(false);
-
-                foreach (var species in extinct)
-                {
-                    gameProperties.GameWorld.RemoveSpecies(species);
-
-                    GD.Print("Species ", species.FormattedName, " has gone extinct from the world.");
-                }
+                autoEvoRun.ApplyAllEffects(true);
 
                 // Clear autoEvoRun and enable buttons to allow the next run to start.
                 autoEvoRun = null;
