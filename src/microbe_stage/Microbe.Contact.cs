@@ -517,7 +517,7 @@ public partial class Microbe
         for (int i = 0; i < chunksToSpawn; ++i)
         {
             // Amount of compound in one chunk
-            float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
+            float amount = organelles.Count / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR - 1.0f / 3.0f;
 
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
