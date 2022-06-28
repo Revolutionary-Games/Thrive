@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
 
 [node name="AutoEvoExploringTool" type="Control"]
 anchor_right = 1.0
@@ -29,6 +31,10 @@ SpeciesSplitByMutationThresholdPopulationFractionPath = NodePath("MarginContaine
 UseBiodiversityForceSplitPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/UseBiodiversityForceSplit")
 CurrentGenerationLabelPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/CurrentGenerationLabel")
 RunStatusLabelPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Statistics/RunStatusLabel")
+ResultsLabelPath = NodePath("MarginContainer/VBoxContainer/Report/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
+ConfigEditorPath = NodePath("MarginContainer/VBoxContainer/ConfigEditor")
+ReportPath = NodePath("MarginContainer/VBoxContainer/Report")
+ViewerPath = NodePath("MarginContainer/VBoxContainer/Viewer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -69,9 +75,10 @@ margin_bottom = 35.0
 text = "VIEWER"
 
 [node name="ConfigEditor" type="Control" parent="MarginContainer/VBoxContainer"]
+visible = false
 margin_top = 45.0
 margin_right = 1180.0
-margin_bottom = 615.0
+margin_bottom = 325.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -85,7 +92,7 @@ size_flags_vertical = 3
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 1179.0
-margin_bottom = 569.0
+margin_bottom = 295.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -95,14 +102,14 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1168.0
-margin_bottom = 558.0
+margin_bottom = 284.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer"]
 margin_right = 738.0
-margin_bottom = 548.0
+margin_bottom = 274.0
 scroll_horizontal_enabled = false
 
 [node name="ConfigEditorContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer"]
@@ -327,15 +334,14 @@ text = "USE_BIODIVERSITY_FORCE_SPLIT"
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer"]
 margin_left = 758.0
 margin_right = 1158.0
-margin_bottom = 548.0
+margin_bottom = 274.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer"]
 margin_left = 44.0
-margin_top = 137.0
 margin_right = 355.0
-margin_bottom = 411.0
+margin_bottom = 274.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
@@ -401,6 +407,62 @@ margin_right = 311.0
 margin_bottom = 152.0
 text = "PLAY_WITH_CURRENT_SETTING"
 
+[node name="Report" type="Control" parent="MarginContainer/VBoxContainer"]
+margin_top = 45.0
+margin_right = 1180.0
+margin_bottom = 615.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/Report"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Report/PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 1179.0
+margin_bottom = 569.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Report/PanelContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1168.0
+margin_bottom = 558.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Report/PanelContainer/MarginContainer/ScrollContainer"]
+margin_right = 1158.0
+margin_bottom = 548.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Report/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 1158.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+text = "AUTO_EVO_RESULTS"
+
+[node name="ResultsLabel" parent="MarginContainer/VBoxContainer/Report/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 24.0
+margin_right = 1158.0
+margin_bottom = 46.0
+
+[node name="Viewer" type="Control" parent="MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 335.0
+margin_right = 1180.0
+margin_bottom = 615.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 625.0
 margin_right = 1180.0
@@ -411,6 +473,9 @@ margin_right = 62.0
 margin_bottom = 35.0
 text = "BACK"
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabButtons/ConfigButton" to="." method="ChangeTab" binds= [ 0 ]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= [ 1 ]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= [ 2 ]]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowNoMutation" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowNoMigration" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance" to="." method="UpdateAutoEvoConfiguration"]

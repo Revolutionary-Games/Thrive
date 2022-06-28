@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using AutoEvo;
 using Godot;
 
 public class AutoEvoExploringTool : ControlWithInput
@@ -67,6 +70,22 @@ public class AutoEvoExploringTool : ControlWithInput
     [Export]
     public NodePath RunStatusLabelPath = null!;
 
+    // Report paths
+
+    [Export]
+    public NodePath ResultsLabelPath = null!;
+
+    // Tab paths
+
+    [Export]
+    public NodePath ConfigEditorPath = null!;
+
+    [Export]
+    public NodePath ReportPath = null!;
+
+    [Export]
+    public NodePath ViewerPath = null!;
+
     // All auto-evo config related controls.
     private CustomCheckBox allowNoMutationCheckBox = null!;
     private CustomCheckBox allowNoMigrationCheckBox = null!;
@@ -91,11 +110,21 @@ public class AutoEvoExploringTool : ControlWithInput
     private Label currentGenerationLabel = null!;
     private Label runStatusLabel = null!;
 
+    // Auto-evo report related controls
+    private CustomRichTextLabel resultsLabel = null!;
+
+    // Tabs
+    private Control configEditorTab = null!;
+    private Control reportTab = null!;
+    private Control ViewerTab = null!;
+    private List<Control> tabsList = null!;
+
     private GameProperties gameProperties = null!;
     private AutoEvoConfiguration autoEvoConfiguration = null!;
     private AutoEvoRun? autoEvoRun;
     private bool initialized;
     private int currentGeneration = 0;
+    private List<RunResults> runResultsList = new List<RunResults>();
 
     [Signal]
     public delegate void OnAutoEvoExploringToolClosed();
@@ -130,6 +159,13 @@ public class AutoEvoExploringTool : ControlWithInput
         currentGenerationLabel = GetNode<Label>(CurrentGenerationLabelPath);
         runStatusLabel = GetNode<Label>(RunStatusLabelPath);
 
+        resultsLabel = GetNode<CustomRichTextLabel>(ResultsLabelPath);
+
+        configEditorTab = GetNode<Control>(ConfigEditorPath);
+        reportTab = GetNode<Control>(ReportPath);
+        ViewerTab = GetNode<Control>(ViewerPath);
+        tabsList = new List<Control> { configEditorTab, reportTab, ViewerTab };
+
         Init();
     }
 
@@ -147,6 +183,12 @@ public class AutoEvoExploringTool : ControlWithInput
             if (autoEvoRun.WasSuccessful)
             {
                 currentGenerationLabel.Text = (++currentGeneration).ToString();
+                var results = autoEvoRun.Results;
+                if (results == null)
+                    throw new ArgumentNullException($"{nameof(autoEvoRun)} is successful but with null {results}");
+
+                runResultsList.Add(results);
+                UpdateResults();
                 autoEvoRun = null;
             }
         }
@@ -160,6 +202,18 @@ public class AutoEvoExploringTool : ControlWithInput
         Init();
 
         Show();
+    }
+
+    [RunOnKeyDown("ui_cancel")]
+    public void OnBackButtonPressed()
+    {
+        if (!Visible)
+            return;
+
+        initialized = false;
+        autoEvoConfiguration = null!;
+        gameProperties = null!;
+        EmitSignal(nameof(OnAutoEvoExploringToolClosed));
     }
 
     private void Init()
@@ -191,18 +245,6 @@ public class AutoEvoExploringTool : ControlWithInput
         useBiodiversityForceSplitCheckBox.Pressed = autoEvoConfiguration.UseBiodiversityForceSplit;
 
         initialized = true;
-    }
-
-    [RunOnKeyDown("ui_cancel")]
-    private void OnBackButtonPressed()
-    {
-        if (!Visible)
-            return;
-
-        initialized = false;
-        autoEvoConfiguration = null!;
-        gameProperties = null!;
-        EmitSignal(nameof(OnAutoEvoExploringToolClosed));
     }
 
     /// <summary>
@@ -274,7 +316,20 @@ public class AutoEvoExploringTool : ControlWithInput
 
     private void OnAbortButtonPressed()
     {
-        if (autoEvoRun?.Running == true)
+        if (autoEvoRun?.WasSuccessful == false)
             autoEvoRun.Abort();
+    }
+
+    private void UpdateResults()
+    {
+        resultsLabel.ExtendedBbcode = runResultsList.Last().MakeSummary(gameProperties.GameWorld.Map, true).ToString();
+    }
+
+    private void ChangeTab(int index)
+    {
+        foreach (Control tab in tabsList)
+            tab.Visible = false;
+
+        tabsList[index].Visible = true;
     }
 }
