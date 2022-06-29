@@ -1,11 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoEvo;
 using Godot;
+using Godot.Collections;
 
 public class AutoEvoExploringTool : NodeWithInput
 {
+    // World paths
+
     [Export]
-    public NodePath GuiPath = null!;
+    public NodePath MicrobeCameraPath = null!;
+
+    [Export]
+    public NodePath GridPath = null!;
+
+    [Export]
+    public NodePath DynamicallySpawnedPath = null!;
 
     // Auto-evo config paths
 
@@ -88,6 +98,14 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath ResultsLabelPath = null!;
 
+    // Viewer paths
+
+    [Export]
+    public NodePath SpeciesListPath = null!;
+
+    [Export]
+    public NodePath SpeciesHistoryPath = null!;
+
     // Tab paths
 
     [Export]
@@ -99,7 +117,9 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath ViewerPath = null!;
 
-    private Control gui = null!;
+    private MicrobeCamera microbeCamera = null!;
+    private Spatial dynamicallySpawned = null!;
+    private Spatial grid = null!;
 
     // Auto-evo config related controls.
     private CustomCheckBox allowSpeciesToNotMutateCheckBox = null!;
@@ -132,29 +152,51 @@ public class AutoEvoExploringTool : NodeWithInput
     private VBoxContainer historyContainer = null!;
     private CustomRichTextLabel resultsLabel = null!;
 
+    // Viewer related
+    private VBoxContainer speciesListContainer = null!;
+    private VBoxContainer speciesHistoryContainer = null!;
+
     // Tabs
     private Control configEditorTab = null!;
     private Control reportTab = null!;
     private Control viewerTab = null!;
-    private List<Control> tabsList = null!;
 
     private GameProperties gameProperties = null!;
     private AutoEvoConfiguration autoEvoConfiguration = null!;
     private AutoEvoRun? autoEvoRun;
     private int currentGeneration = 0;
-    private List<LocalizedStringBuilder> runResultsList = new();
+    private readonly List<LocalizedStringBuilder> runResultsList = new();
     private int currentDisplayed;
     private PackedScene customCheckBoxScene = null!;
-    private ButtonGroup historyCheckBoxGroup = new();
+    private PackedScene microbeScene = null!;
+    private readonly ButtonGroup historyCheckBoxGroup = new();
+    private readonly ButtonGroup speciesListCheckBoxGroup = new();
+    private readonly ButtonGroup speciesHistoryCheckBoxGroup = new();
+    private Microbe? displayedMicrobe;
+    private bool ready;
+    private readonly List<Species> speciesAlive = new();
+    private readonly List<System.Collections.Generic.Dictionary<uint, Species>> speciesHistory = new();
+    private uint currentDisplayedSpecies;
 
     [Signal]
     public delegate void OnAutoEvoExploringToolClosed();
+
+    private enum TabIndex
+    {
+        Config,
+        Report,
+        Viewer,
+    }
 
     public override void _Ready()
     {
         base._Ready();
 
-        gui = GetNode<Control>(GuiPath);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.1f, null, false);
+
+        microbeCamera = GetNode<MicrobeCamera>(MicrobeCameraPath);
+        grid = GetNode<Spatial>(GridPath);
+        dynamicallySpawned = GetNode<Spatial>(DynamicallySpawnedPath);
 
         allowSpeciesToNotMutateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMutatePath);
         allowSpeciesToNotMigrateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMigratePath);
@@ -188,14 +230,19 @@ public class AutoEvoExploringTool : NodeWithInput
         resultsLabel = GetNode<CustomRichTextLabel>(ResultsLabelPath);
         historyContainer = GetNode<VBoxContainer>(HistoryContainerPath);
 
+        speciesListContainer = GetNode<VBoxContainer>(SpeciesListPath);
+        speciesHistoryContainer = GetNode<VBoxContainer>(SpeciesHistoryPath);
+
         configEditorTab = GetNode<Control>(ConfigEditorPath);
         reportTab = GetNode<Control>(ReportPath);
         viewerTab = GetNode<Control>(ViewerPath);
-        tabsList = new List<Control> { configEditorTab, reportTab, viewerTab };
 
         customCheckBoxScene = GD.Load<PackedScene>("res://src/gui_common/CustomCheckBox.tscn");
+        microbeScene = GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
 
         Init();
+
+        ready = true;
     }
 
     public override void _Process(float delta)
@@ -208,25 +255,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
             if (autoEvoRun.WasSuccessful)
             {
-                // Add run results
-                RunResults results = autoEvoRun.Results!;
-                runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
-
-                // Add check box to history container
-                var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
-                checkBox.Text = (currentGeneration + 1).ToString();
-                checkBox.Connect("toggled", this, nameof(HistoryCheckBoxToggled),
-                    new Godot.Collections.Array { currentGeneration });
-                checkBox.Group = historyCheckBoxGroup;
-                historyContainer.AddChild(checkBox);
-
-                // History checkboxes are in one button group, so this automatically releases other buttons
-                // History label is updated in button toggled signal callback
-                checkBox.Pressed = true;
-
-                // Apply the results
-                autoEvoRun.ApplyAllEffects(true);
-                currentGenerationLabel.Text = (++currentGeneration).ToString();
+                ApplyAutoEvoRun();
 
                 // Clear autoEvoRun and enable buttons to allow the next run to start.
                 autoEvoRun = null;
@@ -243,6 +272,8 @@ public class AutoEvoExploringTool : NodeWithInput
                 abortButton.Disabled = true;
             }
         }
+
+        grid.Translation = microbeCamera.CursorWorldPos;
     }
 
     [RunOnKeyDown("ui_cancel")]
@@ -318,6 +349,9 @@ public class AutoEvoExploringTool : NodeWithInput
     private void UpdateAutoEvoConfiguration(object? value = null)
     {
         _ = value;
+
+        if (!ready)
+            return;
 
         autoEvoConfiguration.AllowSpeciesToNotMutate = allowSpeciesToNotMutateCheckBox.Pressed;
         autoEvoConfiguration.AllowSpeciesToNotMigrate = allowSpeciesToNotMigrateCheckBox.Pressed;
@@ -396,10 +430,32 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void ChangeTab(int index)
     {
-        foreach (Control tab in tabsList)
-            tab.Visible = false;
+        switch ((TabIndex)index)
+        {
+            case TabIndex.Config:
+            {
+                reportTab.Visible = false;
+                viewerTab.Visible = false;
+                configEditorTab.Visible = true;
+                break;
+            }
 
-        tabsList[index].Visible = true;
+            case TabIndex.Report:
+            {
+                configEditorTab.Visible = false;
+                viewerTab.Visible = false;
+                reportTab.Visible = true;
+                break;
+            }
+
+            case TabIndex.Viewer:
+            {
+                reportTab.Visible = false;
+                configEditorTab.Visible = false;
+                viewerTab.Visible = true;
+                break;
+            }
+        }
     }
 
     private void HistoryCheckBoxToggled(bool state, int index)
@@ -408,6 +464,93 @@ public class AutoEvoExploringTool : NodeWithInput
         {
             currentDisplayed = index;
             UpdateResults();
+        }
+    }
+
+    private void ApplyAutoEvoRun()
+    {
+        // Add run results
+        RunResults results = autoEvoRun!.Results!;
+        runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
+
+        // Add check box to history container
+        using (var checkBox = customCheckBoxScene.Instance<CustomCheckBox>())
+        {
+            checkBox.Text = (currentGeneration + 1).ToString();
+            checkBox.Connect("toggled", this, nameof(HistoryCheckBoxToggled),
+                new Godot.Collections.Array { currentGeneration });
+            checkBox.Group = historyCheckBoxGroup;
+            historyContainer.AddChild(checkBox);
+
+            // History checkboxes are in one button group, so this automatically releases other buttons
+            // History label is updated in button toggled signal callback
+            checkBox.Pressed = true;
+        }
+
+        // Update local Species list
+        var newSpecies = results.GetNewSpecies();
+        speciesAlive.AddRange(newSpecies);
+
+        foreach (Species species in results.GetExtinctSpecies())
+            speciesAlive.Remove(species);
+
+        var newSpeciesHistory = speciesAlive.ToDictionary(species => species.ID, species => (Species)species.Clone());
+
+        speciesHistory.Add(newSpeciesHistory);
+
+        // Add species checkbox
+        foreach (Species species in newSpecies)
+        {
+            var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
+            checkBox.Text = species.FormattedName;
+            checkBox.Connect("toggled", this, nameof(HistoryCheckBoxToggled),
+                new Array { species.ID });
+            checkBox.Group = speciesListCheckBoxGroup;
+            speciesListContainer.AddChild(checkBox);
+
+            // History checkboxes are in one button group, so this automatically releases other buttons
+            // History label is updated in button toggled signal callback
+            checkBox.Pressed = true;
+        }
+
+        // Apply the results
+        autoEvoRun.ApplyAllEffects(true);
+        currentGenerationLabel.Text = (++currentGeneration).ToString();
+    }
+
+    private void SpeciesCheckBoxToggled(bool state, uint index)
+    {
+        if (state && index != currentDisplayedSpecies)
+        {
+            foreach (Node node in speciesHistoryContainer.GetChildren())
+            {
+                node.DetachAndQueueFree();
+            }
+
+            currentDisplayedSpecies = index;
+
+            for (var i = 0; i < currentGeneration; i++)
+            {
+                if (speciesHistory[i].ContainsKey(currentDisplayedSpecies))
+                {
+                    var checkBox = (CustomCheckBox)customCheckBoxScene.Instance();
+                    checkBox.Text = (i + 1).ToString();
+                    checkBox.Group = speciesHistoryCheckBoxGroup;
+                    checkBox.Connect("toggled", this, nameof(SpeciesHistoryCheckBoxToggled), new Array { i });
+                    speciesHistoryContainer.AddChild(checkBox);
+                }
+            }
+        }
+    }
+
+    private void SpeciesHistoryCheckBoxToggled(bool state, int generation)
+    {
+        if (state)
+        {
+            displayedMicrobe?.DetachAndQueueFree();
+            displayedMicrobe = microbeScene.Instance<Microbe>();
+            displayedMicrobe.ApplySpecies(speciesHistory[generation][currentDisplayedSpecies]);
+            dynamicallySpawned.AddChild(displayedMicrobe);
         }
     }
 }
