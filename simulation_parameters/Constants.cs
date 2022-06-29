@@ -751,6 +751,8 @@ public static class Constants
     /// </summary>
     public const string DEFAULT_AUDIO_OUTPUT_DEVICE_NAME = "Default";
 
+    public const string OS_WINDOWS_NAME = "Windows";
+
     /// <summary>
     ///   This is just here to make it easier to debug saves
     /// </summary>
