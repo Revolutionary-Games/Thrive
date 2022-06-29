@@ -73,7 +73,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:184
 msgid "MUSIC"
-msgstr ""
+msgstr "Muzyka"
 
 #: ../simulation_parameters/common/gallery.json:187
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
@@ -1343,9 +1343,9 @@ msgid "FRAME_DURATION"
 msgstr "Delta: {0}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
-#: ../src/saving/SaveManagerGUI.cs:131 ../src/saving/SaveManagerGUI.cs:126
+#: ../src/saving/SaveManagerGUI.cs:126
 msgid "MIB_VALUE"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
 #, fuzzy
@@ -1381,7 +1381,7 @@ msgstr "Wskaźniki Wydajności"
 
 #: ../src/engine/DebugOverlays.tscn:86
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "Panel Debugowania"
 
 #: ../src/engine/DebugOverlays.tscn:96
 #, fuzzy
@@ -1458,7 +1458,7 @@ msgstr "Strzałka w lewo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "KEY_UP"
-msgstr "Strzałka w górę"
+msgstr "W górę"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 msgid "KEY_RIGHT"
@@ -1466,7 +1466,7 @@ msgstr "Strzałka w prawo"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "KEY_DOWN"
-msgstr "Strzałka w dół"
+msgstr "W dół"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
@@ -2019,7 +2019,7 @@ msgstr ""
 #: ../src/general/NewGameSettings.tscn:861
 #: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
+msgstr "Kominy hydrotermalne"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:862
@@ -2029,12 +2029,12 @@ msgstr ""
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "Panspermia (losowa)"
 
 #: ../src/general/NewGameSettings.tscn:204
 #: ../src/general/NewGameSettings.tscn:877
 msgid "PLANET_RANDOM_SEED"
-msgstr ""
+msgstr "Losowe ziarno planety"
 
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:896
@@ -2048,7 +2048,7 @@ msgstr "Trudność"
 
 #: ../src/general/NewGameSettings.tscn:278
 msgid "PLANET"
-msgstr ""
+msgstr "Planeta"
 
 #: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:181
 msgid "MISC"
@@ -2180,6 +2180,7 @@ msgstr ""
 #: ../src/general/NewGameSettings.tscn:983
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
+"(niektóre funkcje mogą być niedostępne gdy dotrzesz to następnych etapów)"
 
 #: ../src/general/NewGameSettings.tscn:996
 #, fuzzy
@@ -2205,7 +2206,7 @@ msgstr "Menu pauzy"
 
 #: ../src/general/NewGameSettings.tscn:1033
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Zaawansowany"
 
 #: ../src/general/NewGameSettings.tscn:1044
 #, fuzzy
@@ -2214,7 +2215,7 @@ msgstr "Samobójstwo"
 
 #: ../src/general/NewGameSettings.tscn:1045
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Podstawowy"
 
 #: ../src/general/NewGameSettings.tscn:1055
 #, fuzzy
@@ -2238,11 +2239,11 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.cs:1018
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr "Tłumaczenie na ten język jest nadal nieukończone ({0}%)"
+msgstr "Ten język jest nadal w trakcie tłumaczenia ({0}% ukończenia)"
 
 #: ../src/general/OptionsMenu.cs:1022
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr "Gra jest przetłumaczona na ten język w {0}%"
+msgstr "Ten język jest gotów w {0}%"
 
 #: ../src/general/OptionsMenu.tscn:137
 msgid "GRAPHICS"
@@ -2403,9 +2404,8 @@ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
 
 #: ../src/general/OptionsMenu.tscn:821
-#, fuzzy
 msgid "DETECTED_CPU_COUNT"
-msgstr "Wybrane:"
+msgstr "Ilość wykrytych CPU:"
 
 #: ../src/general/OptionsMenu.tscn:838
 msgid "ACTIVE_THREAD_COUNT"
@@ -2429,27 +2429,27 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
 msgid "TINY"
-msgstr ""
+msgstr "Malutki"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "VERY_SMALL"
-msgstr ""
+msgstr "Bardzo mały"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "SMALL"
-msgstr ""
+msgstr "Mały"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "LARGE"
-msgstr ""
+msgstr "Duży"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "VERY_LARGE"
-msgstr ""
+msgstr "Bardzo Duży"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "HUGE"
-msgstr ""
+msgstr "Ogromny"
 
 #: ../src/general/OptionsMenu.tscn:931
 #, fuzzy
@@ -4103,10 +4103,13 @@ msgstr "Nazwa Rodzaju Komórki"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1175
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
+"Nie można usunąć jądra komórkowego jako iż jest to nieodwracalna cecha. "
+"Jeśli jednak zostało ono umieszczone w obecnej sesji, cofnięcie lub "
+"ponowienie wciąż jest możliwe"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1177
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr ""
+msgstr "Nie można usunąć ostatniej organelli"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
 #, fuzzy
