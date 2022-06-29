@@ -123,8 +123,8 @@ public class SaveManagerGUI : Control
         getQuickSaveCountTask = null;
 
         totalSaveCount.Text = info.Count.ToString(CultureInfo.CurrentCulture);
-        totalSaveSize.Text =
-            Math.Round((float)info.DiskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
+        totalSaveSize.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("MIB_VALUE"),
+            Math.Round((float)info.DiskSpace / Constants.MEBIBYTE, 2));
 
         UpdateSelectedCount();
         UpdateButtonsStatus();
