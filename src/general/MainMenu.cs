@@ -61,7 +61,6 @@ public class MainMenu : NodeWithInput
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
     private NewGameSettings newGameSettings = null!;
-    private AutoEvoExploringTool autoEvoExploringTool = null!;
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
     private ModManager modManager = null!;
@@ -201,7 +200,6 @@ public class MainMenu : NodeWithInput
 
         options = GetNode<OptionsMenu>("OptionsMenu");
         newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
-        autoEvoExploringTool = GetNode<AutoEvoExploringTool>("AutoEvoExploringTool");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
@@ -352,10 +350,12 @@ public class MainMenu : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Hide all the other menus
-        SetCurrentMenu(uint.MaxValue, false);
+        autoEvoExploringButton.Disabled = true;
 
-        autoEvoExploringTool.OpenFromMainMenu();
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
+        {
+            SceneManager.Instance.SwitchToScene("res://src/auto-evo/AutoEvoExploringTool.tscn");
+        }, false);
     }
 
     // TODO: this is now used by another sub menu as well so renaming this to be more generic would be good
@@ -400,12 +400,6 @@ public class MainMenu : NodeWithInput
         SetCurrentMenu(0, false);
 
         thriveLogo.Show();
-    }
-
-    private void OnReturnFromAutoEvoExploringTool()
-    {
-        autoEvoExploringTool.Visible = false;
-        SetCurrentMenu(0, false);
     }
 
     private void LoadGamePressed()

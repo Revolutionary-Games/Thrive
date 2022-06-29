@@ -2,8 +2,11 @@
 using AutoEvo;
 using Godot;
 
-public class AutoEvoExploringTool : ControlWithInput
+public class AutoEvoExploringTool : NodeWithInput
 {
+    [Export]
+    public NodePath GuiPath = null!;
+
     // Auto-evo config paths
 
     [Export]
@@ -96,6 +99,8 @@ public class AutoEvoExploringTool : ControlWithInput
     [Export]
     public NodePath ViewerPath = null!;
 
+    private Control gui = null!;
+
     // Auto-evo config related controls.
     private CustomCheckBox allowSpeciesToNotMutateCheckBox = null!;
     private CustomCheckBox allowSpeciesToNotMigrateCheckBox = null!;
@@ -136,10 +141,8 @@ public class AutoEvoExploringTool : ControlWithInput
     private GameProperties gameProperties = null!;
     private AutoEvoConfiguration autoEvoConfiguration = null!;
     private AutoEvoRun? autoEvoRun;
-    private bool initialized;
     private int currentGeneration = 0;
     private List<LocalizedStringBuilder> runResultsList = new();
-    private List<CustomCheckBox> historyCheckBoxes = new();
     private int currentDisplayed;
     private PackedScene customCheckBoxScene = null!;
     private ButtonGroup historyCheckBoxGroup = new();
@@ -150,6 +153,8 @@ public class AutoEvoExploringTool : ControlWithInput
     public override void _Ready()
     {
         base._Ready();
+
+        gui = GetNode<Control>(GuiPath);
 
         allowSpeciesToNotMutateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMutatePath);
         allowSpeciesToNotMigrateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMigratePath);
@@ -197,9 +202,6 @@ public class AutoEvoExploringTool : ControlWithInput
     {
         base._Process(delta);
 
-        if (!initialized)
-            return;
-
         if (autoEvoRun != null)
         {
             runStatusLabel.Text = autoEvoRun.Status;
@@ -216,7 +218,6 @@ public class AutoEvoExploringTool : ControlWithInput
                 checkBox.Connect("toggled", this, nameof(HistoryCheckBoxToggled),
                     new Godot.Collections.Array { currentGeneration });
                 checkBox.Group = historyCheckBoxGroup;
-                historyCheckBoxes.Add(checkBox);
                 historyContainer.AddChild(checkBox);
 
                 // History checkboxes are in one button group, so this automatically releases other buttons
@@ -244,23 +245,14 @@ public class AutoEvoExploringTool : ControlWithInput
         }
     }
 
-    public void OpenFromMainMenu()
-    {
-        if (Visible)
-            return;
-
-        Init();
-        Show();
-    }
-
     [RunOnKeyDown("ui_cancel")]
     public bool OnBackButtonPressed()
     {
-        if (!Visible)
-            return false;
+        // TODO: Ask to return
 
-        Clean();
-        EmitSignal(nameof(OnAutoEvoExploringToolClosed));
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
+            SceneManager.Instance.ReturnToMenu, false);
+
         return true;
     }
 
@@ -297,17 +289,14 @@ public class AutoEvoExploringTool : ControlWithInput
         speciesSplitByMutationThresholdPopulationFractionSpinBox.Value =
             autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction;
         useBiodiversityForceSplitCheckBox.Pressed = autoEvoConfiguration.UseBiodiversityForceSplit;
-
-        initialized = true;
     }
 
+    /*
     /// <summary>
     ///   Clean the exploring tool for next entrance
     /// </summary>
     private void Clean()
     {
-        initialized = false;
-
         autoEvoConfiguration = null!;
         gameProperties = null!;
         resultsLabel.ExtendedBbcode = string.Empty;
@@ -318,6 +307,7 @@ public class AutoEvoExploringTool : ControlWithInput
 
         historyCheckBoxes.Clear();
     }
+    */
 
     /// <summary>
     ///   This function updates all configurations in a row to avoid adding numerous separate callback functions.
@@ -328,9 +318,6 @@ public class AutoEvoExploringTool : ControlWithInput
     private void UpdateAutoEvoConfiguration(object? value = null)
     {
         _ = value;
-
-        if (!initialized)
-            return;
 
         autoEvoConfiguration.AllowSpeciesToNotMutate = allowSpeciesToNotMutateCheckBox.Pressed;
         autoEvoConfiguration.AllowSpeciesToNotMigrate = allowSpeciesToNotMigrateCheckBox.Pressed;
