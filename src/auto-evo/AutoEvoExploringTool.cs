@@ -166,7 +166,7 @@ public class AutoEvoExploringTool : NodeWithInput
     private AutoEvoRun? autoEvoRun;
     private int currentGeneration = 0;
     private readonly List<LocalizedStringBuilder> runResultsList = new();
-    private int currentDisplayed;
+    private int currentDisplayed = -1;
     private PackedScene customCheckBoxScene = null!;
     private PackedScene microbeScene = null!;
     private readonly ButtonGroup historyCheckBoxGroup = new();
@@ -176,7 +176,7 @@ public class AutoEvoExploringTool : NodeWithInput
     private bool ready;
     private readonly List<Species> speciesAlive = new();
     private readonly List<System.Collections.Generic.Dictionary<uint, Species>> speciesHistory = new();
-    private uint currentDisplayedSpecies;
+    private int currentDisplayedGeneration = -1;
 
     [Signal]
     public delegate void OnAutoEvoExploringToolClosed();
@@ -487,29 +487,17 @@ public class AutoEvoExploringTool : NodeWithInput
             checkBox.Pressed = true;
         }
 
-        // Update local Species list
-        var newSpecies = results.GetNewSpecies();
-        speciesAlive.AddRange(newSpecies);
-
-        foreach (Species species in results.GetExtinctSpecies())
-            speciesAlive.Remove(species);
-
-        var newSpeciesHistory = speciesAlive.ToDictionary(species => species.ID, species => (Species)species.Clone());
-
-        speciesHistory.Add(newSpeciesHistory);
+        speciesHistory.Add(gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
 
         // Add species checkbox
-        foreach (Species species in newSpecies)
+        using (var checkBox = customCheckBoxScene.Instance<CustomCheckBox>())
         {
-            var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
-            checkBox.Text = species.FormattedName;
-            checkBox.Connect("toggled", this, nameof(HistoryCheckBoxToggled),
-                new Array { species.ID });
-            checkBox.Group = speciesListCheckBoxGroup;
-            speciesListContainer.AddChild(checkBox);
+            checkBox.Text = (currentGeneration + 1).ToString();
+            checkBox.Connect("toggled", this, nameof(SpeciesHistoryCheckBoxToggled),
+                new Array { currentGeneration });
+            checkBox.Group = speciesHistoryCheckBoxGroup;
+            speciesHistoryContainer.AddChild(checkBox);
 
-            // History checkboxes are in one button group, so this automatically releases other buttons
-            // History label is updated in button toggled signal callback
             checkBox.Pressed = true;
         }
 
@@ -518,39 +506,37 @@ public class AutoEvoExploringTool : NodeWithInput
         currentGenerationLabel.Text = (++currentGeneration).ToString();
     }
 
-    private void SpeciesCheckBoxToggled(bool state, uint index)
+    private void SpeciesHistoryCheckBoxToggled(bool state, int index)
     {
-        if (state && index != currentDisplayedSpecies)
+        if (state && index != currentDisplayedGeneration)
         {
-            foreach (Node node in speciesHistoryContainer.GetChildren())
+            foreach (Node node in speciesListContainer.GetChildren())
             {
                 node.DetachAndQueueFree();
             }
 
-            currentDisplayedSpecies = index;
+            currentDisplayedGeneration = index;
 
-            for (var i = 0; i < currentGeneration; i++)
+            foreach (var pair in speciesHistory[currentDisplayedGeneration])
             {
-                if (speciesHistory[i].ContainsKey(currentDisplayedSpecies))
-                {
-                    var checkBox = (CustomCheckBox)customCheckBoxScene.Instance();
-                    checkBox.Text = (i + 1).ToString();
-                    checkBox.Group = speciesHistoryCheckBoxGroup;
-                    checkBox.Connect("toggled", this, nameof(SpeciesHistoryCheckBoxToggled), new Array { i });
-                    speciesHistoryContainer.AddChild(checkBox);
-                }
+                var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
+                checkBox.Text = $"{pair.Key.ToString()}: {pair.Value.FormattedName}";
+                checkBox.Group = speciesListCheckBoxGroup;
+                checkBox.Connect("toggled", this, nameof(SpeciesListCheckBoxToggled), new Array { pair.Key });
+                speciesListContainer.AddChild(checkBox);
             }
         }
     }
 
-    private void SpeciesHistoryCheckBoxToggled(bool state, int generation)
+    private void SpeciesListCheckBoxToggled(bool state, uint species)
     {
         if (state)
         {
             displayedMicrobe?.DetachAndQueueFree();
             displayedMicrobe = microbeScene.Instance<Microbe>();
-            displayedMicrobe.ApplySpecies(speciesHistory[generation][currentDisplayedSpecies]);
+            displayedMicrobe.IsForPreviewOnly = true;
             dynamicallySpawned.AddChild(displayedMicrobe);
+            displayedMicrobe.ApplySpecies(speciesHistory[currentDisplayedGeneration][species]);
         }
     }
 }

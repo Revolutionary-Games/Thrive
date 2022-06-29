@@ -39,13 +39,16 @@ RunStepButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/Marg
 AbortButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort")
 HistoryContainerPath = NodePath("GUI/VBoxContainer/Report/HSplitContainer/HistoryPanel/MarginContainer/VBoxContainer/ScrollContainer/HistoryContainer")
 ResultsLabelPath = NodePath("GUI/VBoxContainer/Report/HSplitContainer/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
-SpeciesListPath = NodePath("GUI/VBoxContainer/Viewer/PanelContainer/MarginContainer/VBoxContainer/SpeciesList")
-SpeciesHistoryPath = NodePath("GUI/VBoxContainer/Viewer/PanelContainer2/MarginContainer/VBoxContainer/SpeciesHistory")
+SpeciesListPath = NodePath("GUI/VBoxContainer/Viewer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/SpeciesList")
+SpeciesHistoryPath = NodePath("GUI/VBoxContainer/Viewer/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/SpeciesHistory")
 ConfigEditorPath = NodePath("GUI/VBoxContainer/ConfigEditor")
 ReportPath = NodePath("GUI/VBoxContainer/Report")
 ViewerPath = NodePath("GUI/VBoxContainer/Viewer")
 
 [node name="MicrobePreviewWorld" parent="." instance=ExtResource( 8 )]
+
+[node name="EditorArrow" parent="MicrobePreviewWorld" index="2"]
+visible = false
 
 [node name="GUI" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -520,7 +523,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/Viewer"]
-anchor_right = 0.2
+anchor_left = 0.8
+anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer"]
@@ -544,22 +548,27 @@ margin_right = 214.0
 margin_bottom = 25.0
 text = "SPECIES"
 
-[node name="SpeciesList" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 29.0
 margin_right = 214.0
 margin_bottom = 548.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="SpeciesList" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+margin_right = 214.0
+margin_bottom = 519.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/Viewer"]
-anchor_left = 0.85
-anchor_right = 1.0
+anchor_right = 0.1
 anchor_bottom = 1.0
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer2"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 176.0
+margin_right = 117.0
 margin_bottom = 569.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -569,18 +578,24 @@ custom_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer2/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 165.0
+margin_right = 106.0
 margin_bottom = 558.0
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/Viewer/PanelContainer2/MarginContainer/VBoxContainer"]
-margin_right = 155.0
+margin_right = 96.0
 margin_bottom = 25.0
 text = "HISTORY"
 
-[node name="SpeciesHistory" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer2/MarginContainer/VBoxContainer"]
 margin_top = 29.0
-margin_right = 155.0
+margin_right = 96.0
 margin_bottom = 548.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SpeciesHistory" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer"]
+margin_right = 96.0
+margin_bottom = 519.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
