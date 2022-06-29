@@ -17,8 +17,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.0196078, 0.905882, 0.996078, 1 )
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.0117647, 1, 0.164706, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -34,7 +34,7 @@ __meta__ = {
 }
 IconPath = NodePath("MarginContainer/MarginContainer/TextureRect")
 HighlightPanelPath = NodePath("HoveredHighlight")
-MarkPanelPath = NodePath("MarginContainer/PlayerHereHighlight")
+MarkPanelPath = NodePath("PlayerHereHighlight")
 AdjacentPanelPath = NodePath("AdjacentToHighlight")
 
 [node name="AdjacentToHighlight" type="Panel" parent="."]
@@ -45,31 +45,26 @@ mouse_filter = 1
 custom_styles/panel = SubResource( 3 )
 
 [node name="HoveredHighlight" type="Panel" parent="."]
-visible = false
 margin_right = 64.0
 margin_bottom = 64.0
 mouse_filter = 1
 custom_styles/panel = SubResource( 1 )
 
+[node name="PlayerHereHighlight" type="Panel" parent="."]
+visible = false
+margin_right = 64.0
+margin_bottom = 64.0
+mouse_filter = 1
+custom_styles/panel = SubResource( 4 )
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 64.0
 margin_bottom = 64.0
 mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 3
 custom_constants/margin_right = 4
 custom_constants/margin_top = 4
 custom_constants/margin_left = 4
 custom_constants/margin_bottom = 4
-
-[node name="PlayerHereHighlight" type="Panel" parent="MarginContainer"]
-visible = false
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 60.0
-margin_bottom = 60.0
-mouse_filter = 1
-custom_styles/panel = SubResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 margin_left = 4.0

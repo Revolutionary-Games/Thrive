@@ -38,6 +38,8 @@ public class PatchMapNode : MarginContainer
     // node adjacent to the selected node
     private bool selectionAdjacent;
     private Texture? patchIcon;
+    private float fadeTime = 0.33f;
+    private float currentFadeTime = 0;
 
     /// <summary>
     ///   This object does nothing with this, this is stored here to make other code simpler
@@ -124,6 +126,17 @@ public class PatchMapNode : MarginContainer
             ((PatchMapDrawer)GetParent()).MarkDirty();
             OnSelect();
             GetTree().SetInputAsHandled();
+        }
+    }
+
+    public override void _Process(float delta)
+    {
+        currentFadeTime += delta;
+        if (currentFadeTime > fadeTime)
+        {
+            currentFadeTime = 0;
+            if (Marked)
+                markPanel!.Visible = !markPanel!.Visible;
         }
     }
 

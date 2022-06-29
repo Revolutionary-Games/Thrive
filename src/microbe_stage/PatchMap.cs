@@ -13,6 +13,9 @@ public class PatchMap : ISaveLoadable
     [JsonProperty]
     public Random Seed = null!;
 
+    [JsonProperty]
+    public bool NeedsVent;
+
     private Patch? currentPatch;
 
     /// <summary>

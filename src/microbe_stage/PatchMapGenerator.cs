@@ -103,7 +103,7 @@ public static class PatchMapGenerator
                 region.AddPatch(patch);
 
                 // Chance to add a vent region if this region were adding to is an ocean/sea one
-                if (random.Next(0, 2) == 1)
+                if (random.Next(0, 2) == 1 || !map.NeedsVent)
                 {
                     var ventRegion =
                         new PatchRegion(specialRegionsId--, GetPatchLocalizedName(continentName, "vents"), "vents",
@@ -316,8 +316,8 @@ public static class PatchMapGenerator
 
     private static Vector2 GenerateCoordinates(PatchRegion region, PatchMap map, Random random, int minDistance)
     {
-        int x = random.Next(80, 1300);
-        int y = random.Next(80, 1300);
+        int x = random.Next(280, 1600);
+        int y = random.Next(280, 1600);
         var coord = new Vector2(x, y);
         region.ScreenCoordinates = coord;
 
@@ -325,8 +325,8 @@ public static class PatchMapGenerator
         bool check = CheckRegionDistance(region, map, minDistance);
         while (!check)
         {
-            x = random.Next(80, 1300);
-            y = random.Next(80, 1300);
+            x = random.Next(280, 1600);
+            y = random.Next(280, 1600);
             coord = new Vector2(x, y);
             region.ScreenCoordinates = coord;
             check = CheckRegionDistance(region, map, minDistance);

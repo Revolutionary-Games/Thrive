@@ -113,7 +113,7 @@ public class PatchMapDrawer : Control
             RebuildMapNodes();
             Update();
             dirty = false;
-            RectMinSize = GetRightCornerPointOnMap() + new Vector2(100, 100);
+            RectMinSize = GetRightCornerPointOnMap() + new Vector2(450, 450);
         }
     }
 
@@ -126,8 +126,10 @@ public class PatchMapDrawer : Control
             return;
 
         // Create connections between regions if they dont exist.
+        // Also center the scroll to the player patch
         if (connections.Count == 0)
         {
+            CenterScroll();
             CreateRegionLinks();
         }
 
@@ -177,6 +179,14 @@ public class PatchMapDrawer : Control
     public void MarkDirty()
     {
         dirty = true;
+    }
+
+    private void CenterScroll()
+    {
+        var parent = (ScrollContainer)GetParent();
+        var coords = PlayerPatch!.ScreenCoordinates - parent.GetRect().End / 2f;
+        parent.ScrollHorizontal = (int)coords.x;
+        parent.ScrollVertical = (int)coords.y;
     }
 
     private Vector2 RegionCenter(PatchRegion region)

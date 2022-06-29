@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-29 11:15+0700\n"
+"POT-Creation-Date: 2022-06-29 23:24+0300\n"
 "PO-Revision-Date: 2022-06-29 15:12+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -674,25 +674,25 @@ msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:748
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:752
 msgid "AMMONIA"
 msgstr "Амоняк"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:819
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:823
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:713
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:717
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:783
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:787
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
@@ -703,28 +703,28 @@ msgstr "Окситоксин"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:854
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:858
 msgid "IRON"
 msgstr "Желязо"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:550
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:554
 msgid "OXYGEN"
 msgstr "Кислород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:604
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:608
 msgid "CARBON_DIOXIDE"
 msgstr "Въглероден диоксид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:577
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:581
 msgid "NITROGEN"
 msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:431
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:435
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "Слънчева светлина"
@@ -1054,7 +1054,7 @@ msgstr "ОТКАЗ"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1024
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1028
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "НАПРЕД"
@@ -1131,7 +1131,8 @@ msgstr "Изберете клетка от редактора за да пром
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
-#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
+#: ../src/engine/DebugOverlays.tscn:64
+#: ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "ЧКС: {0}"
 
@@ -1150,7 +1151,8 @@ msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Неизвестен идентификационен № за работилницата"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
-#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlays.tscn:81
+#: ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 "Процесорно време: {0} с\n"
@@ -3248,7 +3250,7 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Превключване на предупреждението при излизане от играта."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:368
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:372
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
@@ -3419,7 +3421,7 @@ msgid "PRESSURE_SHORT"
 msgstr "Наляг."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:673
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:677
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
@@ -3470,7 +3472,51 @@ msgstr "Отваряне на редактора"
 msgid "PAUSED"
 msgstr "НА ПАУЗА"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:210
+#: ../src/microbe_stage/PatchMapGenerator.cs:192
+msgid "PATCH_PANGONIAN_VENTS"
+msgstr "Пангонски вулканични отвори"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:193
+msgid "PATCH_PANGONIAN_MESOPELAGIC"
+msgstr "Пангонски мезопелагиал"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:194
+msgid "PATCH_PANGONIAN_EPIPELAGIC"
+msgstr "Пангонски епипелагиал"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:195
+msgid "PATCH_PANGONIAN_TIDEPOOL"
+msgstr "Пангонски приливен басейн"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:196
+msgid "PATCH_PANGONIAN_BATHYPELAGIC"
+msgstr "Пангонски батиал"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:197
+msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
+msgstr "Пангонски абисал"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:198
+msgid "PATCH_PANGONIAN_COAST"
+msgstr "Пангонско крайбрежие"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:199
+msgid "PATCH_PANGONIAN_ESTUARY"
+msgstr "Пангонски естуар"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:200
+msgid "PATCH_CAVE"
+msgstr "Пещера"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:201
+msgid "PATCH_ICE_SHELF"
+msgstr "Шелфов ледник"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:202
+msgid "PATCH_PANGONIAN_SEAFLOOR"
+msgstr "Пангонско морско дъно"
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:508
 msgid "PATCH_NAME"
 msgstr "{0} — {1}"
 
@@ -3731,35 +3777,35 @@ msgstr "Зареждане на микробния редактор"
 msgid "INFINITE_MP"
 msgstr "Неограничени МТ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:210
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:214
 msgid "SELECT_A_PATCH"
 msgstr "Изберете зона"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:245
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:249
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТЕКУЩО МЕСТООБИТАНИЕ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:327
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:331
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Физически условия"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:404
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:408
 msgid "PRESSURE"
 msgstr "Налягане"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:509
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:513
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферни газове"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:933
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:937
 msgid "SPECIES_PRESENT"
 msgstr "Настоящи създания"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:997
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1001
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Преселване"
 
@@ -4937,36 +4983,6 @@ msgstr "Преглед"
 #~ msgid "MOBILITY"
 #~ msgstr "Подвижност"
 
-#~ msgid "PATCH_PANGONIAN_VENTS"
-#~ msgstr "Пангонски вулканични отвори"
-
-#~ msgid "PATCH_PANGONIAN_MESOPELAGIC"
-#~ msgstr "Пангонски мезопелагиал"
-
-#~ msgid "PATCH_PANGONIAN_EPIPELAGIC"
-#~ msgstr "Пангонски епипелагиал"
-
-#~ msgid "PATCH_PANGONIAN_TIDEPOOL"
-#~ msgstr "Пангонски приливен басейн"
-
-#~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-#~ msgstr "Пангонски абисал"
-
-#~ msgid "PATCH_PANGONIAN_COAST"
-#~ msgstr "Пангонско крайбрежие"
-
-#~ msgid "PATCH_PANGONIAN_ESTUARY"
-#~ msgstr "Пангонски естуар"
-
-#~ msgid "PATCH_CAVE"
-#~ msgstr "Пещера"
-
-#~ msgid "PATCH_ICE_SHELF"
-#~ msgstr "Шелфов ледник"
-
-#~ msgid "PATCH_PANGONIAN_SEAFLOOR"
-#~ msgstr "Пангонско морско дъно"
-
 #~ msgid "FRAME_DELTA"
 #~ msgstr "Δ: {0}"
 
@@ -5311,6 +5327,3 @@ msgstr "Преглед"
 
 #~ msgid "PLASTID"
 #~ msgstr "Пластид"
-
-#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-#~ msgstr "Пангонски батиал"
