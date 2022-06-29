@@ -549,15 +549,15 @@ public partial class Microbe
 
                 chunkType.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
-                // Sets the default chunk to be the cytoplasm model incase an organelle can't be spawned
+                // Sets the default chunk to be the cytoplasm model incase a chunk can't be spawned
                 var sceneToUse = new ChunkConfiguration.ChunkScene();
                 sceneToUse.LoadedScene = SimulationParameters.Instance
                     .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME).LoadedCorpseChunkScene;
 
                 // Will only loop if there are still organelles available
+                organellesAvailableEnumerator?.MoveNext();
                 if (i < organelles.Count && organellesAvailableEnumerator?.Current != null)
                 {
-                    organellesAvailableEnumerator.MoveNext();
                     if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.CorpseChunkScene))
                     {
                         sceneToUse.LoadedScene =
