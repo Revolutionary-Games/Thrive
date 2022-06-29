@@ -39,7 +39,7 @@ public class PatchMapNode : MarginContainer
     private bool selectionAdjacent;
     private Texture? patchIcon;
     private float fadeTime = 0.33f;
-    private float currentFadeTime = 0;
+    private float currentFadeTime;
 
     /// <summary>
     ///   This object does nothing with this, this is stored here to make other code simpler
