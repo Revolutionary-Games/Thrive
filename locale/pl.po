@@ -57,19 +57,8 @@ msgstr "Modele"
 
 #: ../simulation_parameters/common/gallery.json:71
 #: ../simulation_parameters/common/gallery.json:209
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr ""
-"Na odległej obcej planecie, eony aktywności wulkanicznej i upadków "
-"meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
-"\n"
-"Życia.\n"
-"\n"
-"Proste mikroby powstały w głębinach oceanu. Jesteś przodkiem wszelkiego "
-"życia na tej planecie.\n"
-"\n"
-"Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki "
-"chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
+msgstr "Stadium Mikroba"
 
 #: ../simulation_parameters/common/gallery.json:184
 msgid "MUSIC"
@@ -85,21 +74,16 @@ msgid "MENU"
 msgstr "Menu"
 
 #: ../simulation_parameters/common/gallery.json:238
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "Wczytywanie edytora mikrobów"
+msgstr "Edytor Mikroba"
 
 #: ../simulation_parameters/common/gallery.json:263
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr ""
-"Przejdź do następnej fazy rozwoju (fazy wielokomórkowej). Możliwe tylko, "
-"przy posiadaniu odpowiednio dużej kolonii."
+msgstr "Stadium Wielokomórkowca"
 
 #: ../simulation_parameters/common/gallery.json:280
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Wczytywanie edytora mikrobów"
+msgstr "Edytor Wielokomórkowca"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
@@ -644,9 +628,8 @@ msgid "TOGGLE_PAUSE"
 msgstr "Pauza"
 
 #: ../simulation_parameters/common/input_options.json:188
-#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr "Pauza"
+msgstr "Włącz panel debugowania"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "TOGGLE_FPS"
@@ -1308,9 +1291,8 @@ msgid "MP_COST"
 msgstr "{0} MP"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
-#, fuzzy
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Wczytywanie edytora mikrobów"
+msgstr "Wczytywanie Wczesnego Edytora Wielokomórkowca"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:196
@@ -1348,9 +1330,8 @@ msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
-#, fuzzy
 msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Nieznany myszy"
+msgstr "Nieznany na Windowsie"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
@@ -1384,9 +1365,8 @@ msgid "DEBUG_PANEL"
 msgstr "Panel Debugowania"
 
 #: ../src/engine/DebugOverlays.tscn:96
-#, fuzzy
 msgid "FPS_DISPLAY"
-msgstr "Odtwarzaniee mediów"
+msgstr "Wyświetlacz FPS"
 
 #: ../src/engine/DebugOverlays.tscn:110
 msgid "COLLISION_SHAPE"
@@ -4805,7 +4785,7 @@ msgstr "Najnowsza wspierana wersja \"Thrive\":"
 
 #: ../src/modding/ModManager.tscn:906 ../src/modding/NewModGUI.tscn:371
 msgid "MOD_PCK_NAME"
-msgstr "Plik .pck Moda"
+msgstr "Plik .pck Moda:"
 
 #: ../src/modding/ModManager.tscn:928 ../src/modding/NewModGUI.tscn:394
 msgid "MOD_ASSEMBLY"
