@@ -194,7 +194,6 @@ public class TweakedColourPicker : ColorPicker
                 return;
 
             base.Color = value;
-            EmitSignal("color_changed", value);
         }
     }
 
