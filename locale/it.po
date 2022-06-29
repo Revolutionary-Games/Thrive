@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-26 23:31+0300\n"
-"PO-Revision-Date: 2022-06-23 13:31+0000\n"
+"POT-Creation-Date: 2022-06-29 11:15+0700\n"
+"PO-Revision-Date: 2022-06-27 19:21+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
@@ -674,25 +674,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:752
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:748
 msgid "AMMONIA"
 msgstr "Ammoniaca"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:823
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:819
 msgid "PHOSPHATE"
 msgstr "Fosfato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:717
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:713
 msgid "HYDROGEN_SULFIDE"
 msgstr "Idrogeno solforato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:787
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:783
 msgid "GLUCOSE"
 msgstr "Glucosio"
 
@@ -703,28 +703,28 @@ msgstr "OssiTossi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:858
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:854
 msgid "IRON"
 msgstr "Ferro"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:554
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:550
 msgid "OXYGEN"
 msgstr "Ossigeno"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:608
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:604
 msgid "CARBON_DIOXIDE"
 msgstr "Diossido di Carbonio"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:581
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:577
 msgid "NITROGEN"
 msgstr "Azoto"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:435
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:431
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "Luce Solare"
@@ -1054,7 +1054,7 @@ msgstr "ANNULLA AZIONE"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1028
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1024
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "AVANTI"
@@ -1130,19 +1130,27 @@ msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Seleziona un tipo di cellula dal pannello Editor per modificarla qui"
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
-#: ../src/engine/DebugOverlays.tscn:64
-#: ../src/engine/PerformanceMetrics.tscn:59
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
+#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 msgid "FRAME_DURATION"
 msgstr "Delta: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
-#: ../src/engine/DebugOverlays.tscn:81
-#: ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
+#: ../src/saving/SaveManagerGUI.cs:126
+msgid "MIB_VALUE"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
+#, fuzzy
+msgid "UNKNOWN_ON_WINDOWS"
+msgstr "Workshop ID sconosciuto per questa mod"
+
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
+#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 "Tempo processi [process time]: {0} s\n"
@@ -1856,7 +1864,7 @@ msgstr "Penalizzazione demografica alla morte del giocatore"
 
 #: ../src/general/NewGameSettings.tscn:598
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
-msgstr "(coefficiente di riduzione della popolazione del giocatore per ogni sua morte)"
+msgstr "(coefficiente di riduzione della popolazione del giocatore a ogni sua morte)"
 
 #: ../src/general/NewGameSettings.tscn:615
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2150,36 +2158,35 @@ msgstr "Thread:"
 
 #: ../src/general/OptionsMenu.tscn:915
 msgid "MAX_SPAWNED_ENTITIES"
-msgstr "Numero massimo di entità"
+msgstr "Numero massimo di entità:"
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
 msgid "TINY"
-msgstr ""
+msgstr "Minuscolo"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "VERY_SMALL"
-msgstr ""
+msgstr "Esiguo"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "SMALL"
-msgstr ""
+msgstr "Basso"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "LARGE"
-msgstr ""
+msgstr "Alto"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "VERY_LARGE"
-msgstr ""
+msgstr "Ingente"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "HUGE"
-msgstr ""
+msgstr "Enorme"
 
 #: ../src/general/OptionsMenu.tscn:931
-#, fuzzy
 msgid "EXTREME"
-msgstr "Extra"
+msgstr "Estremo"
 
 #: ../src/general/OptionsMenu.tscn:1005
 msgid "RESET_INPUTS"
@@ -3234,7 +3241,7 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Abilita/disabilita la finestra di avvertimento sui progressi non salvati quando il giocatore tenta di chiudere il gioco."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:372
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:368
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
@@ -3405,7 +3412,7 @@ msgid "PRESSURE_SHORT"
 msgstr "Press."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:677
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:673
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
@@ -3456,52 +3463,7 @@ msgstr "Apri l'editor e modifica la tua specie"
 msgid "PAUSED"
 msgstr "IN PAUSA"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:192
-msgid "PATCH_PANGONIAN_VENTS"
-msgstr "Camini Pangoniani"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:193
-msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr "Mesopelagico Pangoniano"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:194
-msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr "Epipelagico Pangoniano"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:195
-msgid "PATCH_PANGONIAN_TIDEPOOL"
-msgstr "Pozza di Marea Pangoniana"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:196
-#, fuzzy
-msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-msgstr "Abissopelagico Pangoniano"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:197
-msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr "Abissopelagico Pangoniano"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:198
-msgid "PATCH_PANGONIAN_COAST"
-msgstr "Costa Pangoniana"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:199
-msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr "Estuario Pangoniano"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:200
-msgid "PATCH_CAVE"
-msgstr "Grotta"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:201
-msgid "PATCH_ICE_SHELF"
-msgstr "Banchina Glaciale"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:202
-msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr "Fondale Marino Pangoniano"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:508
+#: ../src/microbe_stage/PatchMapGenerator.cs:210
 msgid "PATCH_NAME"
 msgstr "{1} {0}o/a"
 
@@ -3762,35 +3724,35 @@ msgstr "Caricamento dell'Editor Microbico"
 msgid "INFINITE_MP"
 msgstr "PM infiniti"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:214
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:210
 msgid "SELECT_A_PATCH"
 msgstr "Seleziona una zona per visualizzarne i dettagli qui"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:249
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:245
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ZONA ATTUALE"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:331
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Condizioni fisiche"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:408
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:404
 msgid "PRESSURE"
 msgstr "Pressione"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:513
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:509
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gas atmosferici"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:937
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:933
 msgid "SPECIES_PRESENT"
 msgstr "Specie Presenti"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1001
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:997
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Trasferisciti in questa zona"
 
@@ -4967,6 +4929,36 @@ msgstr "Vedi ora"
 
 #~ msgid "MOBILITY"
 #~ msgstr "Mobilità"
+
+#~ msgid "PATCH_PANGONIAN_VENTS"
+#~ msgstr "Camini Pangoniani"
+
+#~ msgid "PATCH_PANGONIAN_MESOPELAGIC"
+#~ msgstr "Mesopelagico Pangoniano"
+
+#~ msgid "PATCH_PANGONIAN_EPIPELAGIC"
+#~ msgstr "Epipelagico Pangoniano"
+
+#~ msgid "PATCH_PANGONIAN_TIDEPOOL"
+#~ msgstr "Pozza di Marea Pangoniana"
+
+#~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
+#~ msgstr "Abissopelagico Pangoniano"
+
+#~ msgid "PATCH_PANGONIAN_COAST"
+#~ msgstr "Costa Pangoniana"
+
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "Estuario Pangoniano"
+
+#~ msgid "PATCH_CAVE"
+#~ msgstr "Grotta"
+
+#~ msgid "PATCH_ICE_SHELF"
+#~ msgstr "Banchina Glaciale"
+
+#~ msgid "PATCH_PANGONIAN_SEAFLOOR"
+#~ msgstr "Fondale Marino Pangoniano"
 
 #~ msgid "FRAME_DELTA"
 #~ msgstr "Delta: {0}"
