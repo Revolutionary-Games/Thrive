@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-29 11:15+0700\n"
-"PO-Revision-Date: 2022-06-16 15:47+0000\n"
+"PO-Revision-Date: 2022-06-29 15:12+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -21,19 +21,19 @@ msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Kolay"
 
 #: ../simulation_parameters/common/difficulty_presets.json:14
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Normal"
 
 #: ../simulation_parameters/common/difficulty_presets.json:25
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Zor"
 
 #: ../simulation_parameters/common/difficulty_presets.json:36
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Özel"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
@@ -280,7 +280,7 @@ msgstr "İşte sana ipucu. Demir veya başka parçalar yutabilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "İşte sana ipucu. Çekirdeği eklemeden önce bir hazırlık yap. Bu tür şeyler pahalı! Bakım ve önden ödeme ücretiyle."
+msgstr "İşte sana ipucu. Çekirdeği eklemeden önce bir hazırlık yap. Bu tür şeyler pahalı! Bakım ve ön ödeme ücretiyle."
 
 #: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_17"
@@ -1756,91 +1756,77 @@ msgstr "Bir ya da daha fazla modu yüklerken sorun oluştu. Loglar, ek bilgi iç
 
 #: ../src/general/NewGameSettings.cs:284
 #: ../src/general/NewGameSettings.tscn:1054
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Yeni bir oyun başlat"
+msgstr "Oyuna bu ayarlarla gir"
 
 #: ../src/general/NewGameSettings.cs:291
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr "Yeni bir oyun başlat"
+msgstr "Bazı ayarlar geçersiz"
 
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Zorluk ön ayarı"
 
 #: ../src/general/NewGameSettings.tscn:142
 #: ../src/general/NewGameSettings.tscn:815
 msgid "LAWK_ONLY"
-msgstr ""
+msgstr "Sadece LAWK"
 
 #: ../src/general/NewGameSettings.tscn:149
 #: ../src/general/NewGameSettings.tscn:822
-#, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
-"Kaygılı mikroplar, çok uzun mesafelerde akıp giderler\n"
-"ve genelde, yırtıcılardan kaçmaları muhtemeldir.\n"
-"Cesur mikroplar, yakında bulunan yırtıcılardan korkmaz\n"
-"ve onların saldırılarına karşılık verir."
+msgstr "(parçaları ve yetenekleri sadece Hayatta Bildiğimiz [LAWK] ile kısıtlar)"
 
 #: ../src/general/NewGameSettings.tscn:165
 #: ../src/general/NewGameSettings.tscn:838
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "Hayat kökeni"
 
 #: ../src/general/NewGameSettings.tscn:172
 #: ../src/general/NewGameSettings.tscn:845
-#, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
-"Kaygılı mikroplar, çok uzun mesafelerde akıp giderler\n"
-"ve genelde, yırtıcılardan kaçmaları muhtemeldir.\n"
-"Cesur mikroplar, yakında bulunan yırtıcılardan korkmaz\n"
-"ve onların saldırılarına karşılık verir."
+msgstr "(başlama yeri)"
 
 #: ../src/general/NewGameSettings.tscn:186
 #: ../src/general/NewGameSettings.tscn:859
-#, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "İntihar Et"
+msgstr "Sadece LAWK etkinleştirildiğinde bazı ayarlar devre dışı kalabilir"
 
 #: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:861
 #: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
+msgstr "Hidrotermal bacalar"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "Ilık küçük gölet"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "Panspermi (rastgele)"
 
 #: ../src/general/NewGameSettings.tscn:204
 #: ../src/general/NewGameSettings.tscn:877
 msgid "PLANET_RANDOM_SEED"
-msgstr ""
+msgstr "Rastgele gezegen tohumu"
 
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:896
-#, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Oyunu duraklat"
+msgstr "Dünya oluşturmak için kullanılan değer pozitif bir tam sayı olmalıdır"
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "Zorluk"
 
 #: ../src/general/NewGameSettings.tscn:278
 msgid "PLANET"
-msgstr ""
+msgstr "Gezegen"
 
 #: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:181
 msgid "MISC"
@@ -1848,148 +1834,116 @@ msgstr "Diğer"
 
 #: ../src/general/NewGameSettings.tscn:367
 msgid "MUTATION_COST_MULTIPLIER"
-msgstr ""
+msgstr "Mutasyon maliyet çarpanı"
 
 #: ../src/general/NewGameSettings.tscn:412
-#, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-"Hareketli mikroplar, ilginç bir şey olmadığında ilerler ve yuvarlanır.\n"
-"Durağan mikroplar, hareketsizdir ve hareket etmeden önce ortamın değişmesini bekler."
+msgstr "(organellerin, hücre zarlarının ve diğer öğelerin editördeki maliyeti)"
 
 #: ../src/general/NewGameSettings.tscn:429
-#, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr "Mutasyon Puanı"
+msgstr "AI mutasyon hızı"
 
 #: ../src/general/NewGameSettings.tscn:474
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "Bu panel, oto-evrim tahmininin son aşamada kullandığı sayıları gösterir. Bir türün yakalayabileceği toplam enerji ve bunun tür başına maliyeti son popülasyonu belirler. Oto-evrim, türlerin toplayabildiği enerjiye bağlı olarak, onların ne kadar iyi performans sergilediğini hesaplamak için gerçekliğin basitleştirilmiş bir modelini kullanır. Her besin kaynağı için, türün ondan ne kadar enerji kazandığı gösterilir. Ayrıca her kaynakta mevcut olan toplam enerji miktarı da gösterilir. Türün toplam enerjiden aldığı bölüm, uyum başarısının toplam uyum başarısından ne kadar büyük olduğuna bağlıdır. Uyum başarısı, türün bir besin kaynağından ne kadar iyi yararlanabileceğini gösteren bir ölçüdür."
+msgstr "(AI türlerinin mutasyona uğrama hızı)"
 
 #: ../src/general/NewGameSettings.tscn:491
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "Bileşik bulutları"
+msgstr "Bileşik bulutu sıklığı"
 
 #: ../src/general/NewGameSettings.tscn:536
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
-msgstr ""
-"Fırsatçı mikroplar, büyük parçalar için rakipleri ile rekabet eder,\n"
-"avlarını yutamadıklarında ise onları toksinler ile öldürür.\n"
-"Temkinli mikroplar, büyük parçalar için hayatlarını tehlikeye atmayabilir."
+msgstr "(ortamdaki bileşik bulutlarının sıklığı)"
 
 #: ../src/general/NewGameSettings.tscn:553
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr ""
+msgstr "Oyuncu ölümü popülasyon cezası"
 
 #: ../src/general/NewGameSettings.tscn:598
-#, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
-msgstr "Bu panel, oto-evrim tahmininin son aşamada kullandığı sayıları gösterir. Bir türün yakalayabileceği toplam enerji ve bunun tür başına maliyeti son popülasyonu belirler. Oto-evrim, türlerin toplayabildiği enerjiye bağlı olarak, onların ne kadar iyi performans sergilediğini hesaplamak için gerçekliğin basitleştirilmiş bir modelini kullanır. Her besin kaynağı için, türün ondan ne kadar enerji kazandığı gösterilir. Ayrıca her kaynakta mevcut olan toplam enerji miktarı da gösterilir. Türün toplam enerjiden aldığı bölüm, uyum başarısının toplam uyum başarısından ne kadar büyük olduğuna bağlıdır. Uyum başarısı, türün bir besin kaynağından ne kadar iyi yararlanabileceğini gösteren bir ölçüdür."
+msgstr "(her oyuncu ölümü için oyuncu türünün popülasyonunda azalma katsayısı)"
 
 #: ../src/general/NewGameSettings.tscn:615
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
-msgstr ""
+msgstr "Çevresel glukoz tutulma payı"
 
 #: ../src/general/NewGameSettings.tscn:659
-#, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
-msgstr "Bu panel, oto-evrim tahmininin son aşamada kullandığı sayıları gösterir. Bir türün yakalayabileceği toplam enerji ve bunun tür başına maliyeti son popülasyonu belirler. Oto-evrim, türlerin toplayabildiği enerjiye bağlı olarak, onların ne kadar iyi performans sergilediğini hesaplamak için gerçekliğin basitleştirilmiş bir modelini kullanır. Her besin kaynağı için, türün ondan ne kadar enerji kazandığı gösterilir. Ayrıca her kaynakta mevcut olan toplam enerji miktarı da gösterilir. Türün toplam enerjiden aldığı bölüm, uyum başarısının toplam uyum başarısından ne kadar büyük olduğuna bağlıdır. Uyum başarısı, türün bir besin kaynağından ne kadar iyi yararlanabileceğini gösteren bir ölçüdür."
+msgstr "(her kuşakta, ortamda tutulan glukoz oranı)"
 
 #: ../src/general/NewGameSettings.tscn:676
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Ozmoregülasyon Maliyeti"
+msgstr "Ozmoregülasyon maliyet çarpanı"
 
 #: ../src/general/NewGameSettings.tscn:721
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "Ozmoregülasyon Maliyeti"
+msgstr "(oyuncu türünün ozmoregülasyon maliyeti)"
 
 #: ../src/general/NewGameSettings.tscn:733
 msgid "FREE_GLUCOSE_CLOUD"
-msgstr ""
+msgstr "Editörden ayrıldığında bedava glukoz bulutu"
 
 #: ../src/general/NewGameSettings.tscn:740
-#, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
-msgstr ""
-"Odaklanmış mikroplar, büyük parçaları veya avları çok uzun mesafelerde arar\n"
-"ve büyük parçalara daha heveslidir.\n"
-"Duyarlı mikroplar, yeni hedeflere daha çabuk geçiş yapar."
+msgstr "(her kuşağa, yakınlardaki serbest bir glukoz bulutuyla başla)"
 
 #: ../src/general/NewGameSettings.tscn:777
-#, fuzzy
 msgid "PATCH_MAP_TYPE"
-msgstr "Arazi Haritası"
+msgstr "Arazi haritası türü"
 
 #: ../src/general/NewGameSettings.tscn:784
-#, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
-msgstr ""
-"Hareketli mikroplar, ilginç bir şey olmadığında ilerler ve yuvarlanır.\n"
-"Durağan mikroplar, hareketsizdir ve hareket etmeden önce ortamın değişmesini bekler."
+msgstr "(yöntemsel olarak bir arazi haritası oluştur veya klasik düzeni kullan)"
 
 #: ../src/general/NewGameSettings.tscn:799
 #: ../src/general/NewGameSettings.tscn:800
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr ""
+msgstr "Yöntemsel"
 
 #: ../src/general/NewGameSettings.tscn:800
 msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr ""
+msgstr "Klasik"
 
 #: ../src/general/NewGameSettings.tscn:944
 msgid "PLANET_GENERATION_TEASER"
-msgstr ""
+msgstr "Gezegen oluşturma çok yakında!"
 
 #: ../src/general/NewGameSettings.tscn:976
-#, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Çok Hücreli Evresi"
+msgstr "Sonraki evre prototiplerini dahil et"
 
 #: ../src/general/NewGameSettings.tscn:983
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
+msgstr "(sonraki evrelere ulaştığında, bazı özellikler mevcut olmayabilir)"
 
 #: ../src/general/NewGameSettings.tscn:996
-#, fuzzy
 msgid "EASTER_EGGS"
-msgstr "İlginç Gerçek: Didinyum ve Paramesyum on yıllardır çalışılan av-avcı ilişkisinin bir ders kitabı örneği. Şimdi, sen Paramesyum musun yoksa Didinyum mu? Av mı, avcı mı?"
+msgstr "Sürpriz yumurtaları dahil et"
 
 #: ../src/general/NewGameSettings.tscn:1003
-#, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
-msgstr ""
-"Kaygılı mikroplar, çok uzun mesafelerde akıp giderler\n"
-"ve genelde, yırtıcılardan kaçmaları muhtemeldir.\n"
-"Cesur mikroplar, yakında bulunan yırtıcılardan korkmaz\n"
-"ve onların saldırılarına karşılık verir."
+msgstr "(oyunda rastgele oluşan gizemler)"
 
 #: ../src/general/NewGameSettings.tscn:1031
-#, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr "Oyunu kaydetmek için kaydetme menüsünü aç"
+msgstr "Gelişmiş kurulum görünümünü aç"
 
 #: ../src/general/NewGameSettings.tscn:1033
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Gelişmiş"
 
 #: ../src/general/NewGameSettings.tscn:1044
-#, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr "İntihar Et"
+msgstr "Temel kurulum görünümüne dön"
 
 #: ../src/general/NewGameSettings.tscn:1045
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Temel"
 
 #: ../src/general/NewGameSettings.tscn:1055
-#, fuzzy
 msgid "CONFIRM_NORMAL"
-msgstr "ONAYLA"
+msgstr "Onayla"
 
 #: ../src/general/OptionsMenu.cs:629 ../src/general/OptionsMenu.tscn:292
 msgid "AUTO_RESOLUTION"
@@ -2101,7 +2055,7 @@ msgstr "Yetenekler çubuğunu göster"
 
 #: ../src/general/OptionsMenu.tscn:399
 msgid "DISPLAY_BACKGROUND_PARTICLES"
-msgstr ""
+msgstr "Arkaplan parçacıklarını göster"
 
 #: ../src/general/OptionsMenu.tscn:407
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
@@ -2191,7 +2145,7 @@ msgstr "İş Parçacıkları:"
 
 #: ../src/general/OptionsMenu.tscn:915
 msgid "MAX_SPAWNED_ENTITIES"
-msgstr "Maksimum varlık sayısı"
+msgstr "Maksimum varlık sayısı:"
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
 msgid "TINY"
@@ -4472,7 +4426,7 @@ msgstr "Yükleme Hatası"
 
 #: ../src/saving/InProgressLoad.cs:236
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
-msgstr "Zaten yüklü olan kaynakları salma işlemi başarısız oldu: {0}"
+msgstr ". Zaten yüklü olan kaynakları salma işlemi başarısız oldu: {0}"
 
 #: ../src/saving/InProgressSave.cs:203
 msgid "SAVING_DOT_DOT_DOT"
