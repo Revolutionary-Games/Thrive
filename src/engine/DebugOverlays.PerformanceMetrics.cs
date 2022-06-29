@@ -87,8 +87,8 @@ public partial class DebugOverlays
                     entities, children, spawnHistory.Sum(), despawnHistory.Sum(),
                     Performance.GetMonitor(Performance.Monitor.ObjectNodeCount),
                     OS.GetName() == Constants.OS_WINDOWS_NAME ?
-                    TranslationServer.Translate("UNKNOWN_ON_WINDOWS") :
-                    string.Format(CultureInfo.CurrentCulture, mibFormat, usedMemory),
+                        TranslationServer.Translate("UNKNOWN_ON_WINDOWS") :
+                        string.Format(CultureInfo.CurrentCulture, mibFormat, usedMemory),
                     string.Format(CultureInfo.CurrentCulture, mibFormat, usedVideoMemory),
                     Performance.GetMonitor(Performance.Monitor.RenderObjectsInFrame),
                     Performance.GetMonitor(Performance.Monitor.RenderDrawCallsInFrame),
