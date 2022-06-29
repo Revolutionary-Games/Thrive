@@ -50,6 +50,9 @@ ViewerPath = NodePath("GUI/VBoxContainer/Viewer")
 [node name="EditorArrow" parent="MicrobePreviewWorld" index="2"]
 visible = false
 
+[node name="Grid" parent="MicrobePreviewWorld" index="3"]
+visible = false
+
 [node name="GUI" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
