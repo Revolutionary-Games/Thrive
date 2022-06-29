@@ -12,10 +12,10 @@ public class AutoEvoExploringTool : NodeWithInput
     public NodePath MicrobeCameraPath = null!;
 
     [Export]
-    public NodePath GridPath = null!;
+    public NodePath DynamicallySpawnedPath = null!;
 
     [Export]
-    public NodePath DynamicallySpawnedPath = null!;
+    public NodePath HexesPath = null!;
 
     // Auto-evo config paths
 
@@ -117,9 +117,9 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath ViewerPath = null!;
 
-    private MicrobeCamera microbeCamera = null!;
+    private Camera microbeCamera = null!;
     private Spatial dynamicallySpawned = null!;
-    private Spatial grid = null!;
+    private Spatial hexesSpatial = null!;
 
     // Auto-evo config related controls.
     private CustomCheckBox allowSpeciesToNotMutateCheckBox = null!;
@@ -177,6 +177,9 @@ public class AutoEvoExploringTool : NodeWithInput
     private readonly List<Species> speciesAlive = new();
     private readonly List<System.Collections.Generic.Dictionary<uint, Species>> speciesHistory = new();
     private int currentDisplayedGeneration = -1;
+    protected PackedScene hexScene = null!;
+    protected Material validMaterial = null!;
+    protected PackedScene modelScene = null!;
 
     [Signal]
     public delegate void OnAutoEvoExploringToolClosed();
@@ -194,9 +197,9 @@ public class AutoEvoExploringTool : NodeWithInput
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.1f, null, false);
 
-        microbeCamera = GetNode<MicrobeCamera>(MicrobeCameraPath);
-        grid = GetNode<Spatial>(GridPath);
+        microbeCamera = GetNode<Camera>(MicrobeCameraPath);
         dynamicallySpawned = GetNode<Spatial>(DynamicallySpawnedPath);
+        hexesSpatial = GetNode<Spatial>(HexesPath);
 
         allowSpeciesToNotMutateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMutatePath);
         allowSpeciesToNotMigrateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMigratePath);
@@ -239,6 +242,9 @@ public class AutoEvoExploringTool : NodeWithInput
 
         customCheckBoxScene = GD.Load<PackedScene>("res://src/gui_common/CustomCheckBox.tscn");
         microbeScene = GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
+        hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
+        validMaterial = GD.Load<Material>("res://src/microbe_stage/editor/ValidHex.material");
+        modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
 
         Init();
 
@@ -272,8 +278,6 @@ public class AutoEvoExploringTool : NodeWithInput
                 abortButton.Disabled = true;
             }
         }
-
-        grid.Translation = microbeCamera.CursorWorldPos;
     }
 
     [RunOnKeyDown("ui_cancel")]
@@ -528,15 +532,71 @@ public class AutoEvoExploringTool : NodeWithInput
         }
     }
 
-    private void SpeciesListCheckBoxToggled(bool state, uint species)
+    private void SpeciesListCheckBoxToggled(bool state, uint speciesIndex)
     {
+        var species = speciesHistory[currentDisplayedGeneration][speciesIndex];
+
         if (state)
         {
             displayedMicrobe?.DetachAndQueueFree();
             displayedMicrobe = microbeScene.Instance<Microbe>();
             displayedMicrobe.IsForPreviewOnly = true;
             dynamicallySpawned.AddChild(displayedMicrobe);
-            displayedMicrobe.ApplySpecies(speciesHistory[currentDisplayedGeneration][species]);
+            displayedMicrobe.ApplySpecies(species);
+        
+        foreach (Node node in hexesSpatial.GetChildren())
+            node.DetachAndQueueFree();
+
+        var organelleLayout = ((MicrobeSpecies)species).Organelles;
+        foreach (var organelle in organelleLayout.Organelles)
+        {
+            var position = organelle.Position;
+            var itemHexes = organelle.RotatedHexes;
+            foreach (var hex in itemHexes)
+            {
+                var pos = Hex.AxialToCartesian(hex + position);
+
+                var hexNode = (MeshInstance)hexScene.Instance();
+                hexesSpatial.AddChild(hexNode);
+                hexNode.MaterialOverride = validMaterial;
+                hexNode.Translation = pos;
+            }
+        }
+
+        foreach (var organelle in organelleLayout)
+        {
+            // Hexes are handled by UpdateAlreadyPlacedHexes
+
+            // Model of the organelle
+            if (organelle.Definition.DisplayScene != null)
+            {
+                var pos = Hex.AxialToCartesian(organelle.Position) +
+                    organelle.Definition.CalculateModelOffset();
+
+                var organelleModel = (SceneDisplayer)modelScene.Instance();
+                hexesSpatial.AddChild(organelleModel);
+
+                organelleModel.Transform = new Transform(
+                    MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), pos);
+
+                organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
+                    Constants.DEFAULT_HEX_SIZE);
+
+                UpdateOrganellePlaceHolderScene(organelleModel,
+                    organelle.Definition.DisplayScene, organelle.Definition, Hex.GetRenderPriority(organelle.Position));
+            }
+        }
+        }
+
+    }
+    private void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
+        string displayScene, OrganelleDefinition definition, int renderPriority)
+    {
+        organelleModel.Scene = displayScene;
+        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
+        if (material != null)
+        {
+            material.RenderPriority = renderPriority;
         }
     }
 }

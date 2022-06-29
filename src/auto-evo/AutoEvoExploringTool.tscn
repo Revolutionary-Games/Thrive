@@ -7,13 +7,13 @@
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=7]
-[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/concept_art/even-more-cells.jpg" type="Texture" id=8]
 
 [node name="AutoEvoExploringTool" type="Node"]
 script = ExtResource( 1 )
-MicrobeCameraPath = NodePath("MicrobePreviewWorld/PrimaryCamera")
-GridPath = NodePath("MicrobePreviewWorld/Grid")
-DynamicallySpawnedPath = NodePath("MicrobePreviewWorld/DynamicallySpawned")
+MicrobeCameraPath = NodePath("GUI/VBoxContainer/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer/ViewportContainer/Viewport/PreviewCamera")
+DynamicallySpawnedPath = NodePath("GUI/VBoxContainer/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer/ViewportContainer/Viewport/PreviewCameraLookAt")
+HexesPath = NodePath("GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/ViewportContainer/Viewport/Hexes")
 AllowSpeciesToNotMutatePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate")
 AllowSpeciesToNotMigratePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate")
 BiodiversityAttemptFillChancePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance")
@@ -39,19 +39,17 @@ RunStepButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/Marg
 AbortButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort")
 HistoryContainerPath = NodePath("GUI/VBoxContainer/Report/HSplitContainer/HistoryPanel/MarginContainer/VBoxContainer/ScrollContainer/HistoryContainer")
 ResultsLabelPath = NodePath("GUI/VBoxContainer/Report/HSplitContainer/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
-SpeciesListPath = NodePath("GUI/VBoxContainer/Viewer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/SpeciesList")
-SpeciesHistoryPath = NodePath("GUI/VBoxContainer/Viewer/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer/SpeciesHistory")
+SpeciesListPath = NodePath("GUI/VBoxContainer/Viewer/HBoxContainer/SpeciesPanel/MarginContainer/VBoxContainer/ScrollContainer/SpeciesList")
+SpeciesHistoryPath = NodePath("GUI/VBoxContainer/Viewer/HBoxContainer/HistoryPanel/MarginContainer/VBoxContainer/ScrollContainer/SpeciesHistory")
 ConfigEditorPath = NodePath("GUI/VBoxContainer/ConfigEditor")
 ReportPath = NodePath("GUI/VBoxContainer/Report")
 ViewerPath = NodePath("GUI/VBoxContainer/Viewer")
 
-[node name="MicrobePreviewWorld" parent="." instance=ExtResource( 8 )]
-
-[node name="EditorArrow" parent="MicrobePreviewWorld" index="2"]
-visible = false
-
-[node name="Grid" parent="MicrobePreviewWorld" index="3"]
-visible = false
+[node name="BackGround" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
 
 [node name="GUI" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -525,82 +523,199 @@ margin_bottom = 615.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/Viewer"]
-anchor_left = 0.8
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/Viewer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 235.0
-margin_bottom = 569.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer/MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 224.0
-margin_bottom = 558.0
-
-[node name="Label" type="Label" parent="GUI/VBoxContainer/Viewer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 214.0
-margin_bottom = 25.0
-text = "SPECIES"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 29.0
-margin_right = 214.0
-margin_bottom = 548.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 20
 
-[node name="SpeciesList" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
-margin_right = 214.0
-margin_bottom = 519.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/Viewer"]
-anchor_right = 0.1
-anchor_bottom = 1.0
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer2"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 117.0
-margin_bottom = 569.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer2/MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
+[node name="HistoryPanel" type="PanelContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer"]
 margin_right = 106.0
+margin_bottom = 570.0
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HistoryPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 105.0
+margin_bottom = 569.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HistoryPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 94.0
 margin_bottom = 558.0
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/Viewer/PanelContainer2/MarginContainer/VBoxContainer"]
-margin_right = 96.0
+[node name="Label" type="Label" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HistoryPanel/MarginContainer/VBoxContainer"]
+margin_right = 84.0
 margin_bottom = 25.0
 text = "HISTORY"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HistoryPanel/MarginContainer/VBoxContainer"]
 margin_top = 29.0
-margin_right = 96.0
+margin_right = 84.0
 margin_bottom = 548.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SpeciesHistory" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/PanelContainer2/MarginContainer/VBoxContainer/ScrollContainer"]
-margin_right = 96.0
+[node name="SpeciesHistory" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HistoryPanel/MarginContainer/VBoxContainer/ScrollContainer"]
+margin_right = 84.0
 margin_bottom = 519.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="SpeciesPanel" type="PanelContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer"]
+margin_left = 126.0
+margin_right = 426.0
+margin_bottom = 570.0
+rect_min_size = Vector2( 300, 0 )
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/SpeciesPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 299.0
+margin_bottom = 569.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/SpeciesPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 288.0
+margin_bottom = 558.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/Viewer/HBoxContainer/SpeciesPanel/MarginContainer/VBoxContainer"]
+margin_right = 278.0
+margin_bottom = 25.0
+text = "SPECIES"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/SpeciesPanel/MarginContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 278.0
+margin_bottom = 548.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="SpeciesList" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/SpeciesPanel/MarginContainer/VBoxContainer/ScrollContainer"]
+margin_right = 278.0
+margin_bottom = 519.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HexViewPanel" type="PanelContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer"]
+margin_left = 446.0
+margin_right = 803.0
+margin_bottom = 570.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 356.0
+margin_bottom = 569.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 345.0
+margin_bottom = 558.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer"]
+margin_right = 335.0
+margin_bottom = 25.0
+text = "HEX_VIEW"
+
+[node name="ViewportContainer" type="ViewportContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 335.0
+margin_bottom = 548.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/ViewportContainer"]
+size = Vector2( 335, 519 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="HexViewCamera" type="Camera" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0 )
+projection = 1
+current = true
+size = 10.0
+
+[node name="Hexes" type="Spatial" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/ViewportContainer/Viewport"]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+light_energy = 2.0
+
+[node name="PreviewPanel" type="PanelContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer"]
+margin_left = 823.0
+margin_right = 1180.0
+margin_bottom = 570.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/PreviewPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 356.0
+margin_bottom = 569.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/PreviewPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 345.0
+margin_bottom = 558.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer"]
+margin_right = 335.0
+margin_bottom = 25.0
+text = "PREVIEW"
+
+[node name="ViewportContainer" type="ViewportContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 335.0
+margin_bottom = 548.0
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="GUI/VBoxContainer/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer/ViewportContainer"]
+size = Vector2( 335, 519 )
+own_world = true
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="PreviewCamera" type="Camera" parent="GUI/VBoxContainer/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer/ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0 )
+projection = 1
+current = true
+size = 15.0
+
+[node name="PreviewCameraLookAt" type="Spatial" parent="GUI/VBoxContainer/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer/ViewportContainer/Viewport"]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="GUI/VBoxContainer/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer/ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 50, 0 )
+light_energy = 10.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
 margin_top = 625.0
@@ -622,5 +737,3 @@ text = "BACK"
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep" to="." method="OnRunStepButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
-
-[editable path="MicrobePreviewWorld"]
