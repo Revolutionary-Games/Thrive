@@ -555,9 +555,9 @@ public partial class Microbe
                     .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME).LoadedCorpseChunkScene;
 
                 // Will only loop if there are still organelles available
-                organellesAvailableEnumerator?.MoveNext();
                 if (i < organelles.Count && organellesAvailableEnumerator?.Current != null)
                 {
+                    organellesAvailableEnumerator.MoveNext();
                     if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.CorpseChunkScene))
                     {
                         sceneToUse.LoadedScene =
