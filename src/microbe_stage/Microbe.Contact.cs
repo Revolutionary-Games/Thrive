@@ -573,6 +573,10 @@ public partial class Microbe
                     sceneToUse.SceneModelPath =
                         organellesAvailableEnumerator.Current.Definition.DisplaySceneModelPath;
                 }
+                else
+                {
+                    continue;
+                }
 
                 if (sceneToUse.LoadedScene != null)
                     break;
