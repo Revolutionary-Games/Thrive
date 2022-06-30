@@ -495,10 +495,7 @@ public class AutoEvoExploringTool : NodeWithInput
     private void UpdateSpeciesList()
     {
         // Clear the current ones
-        foreach (Node node in speciesList.GetChildren())
-        {
-            node.DetachAndQueueFree();
-        }
+        speciesList.FreeChildren();
 
         foreach (var pair in speciesHistoryList[generationDisplayed])
         {
