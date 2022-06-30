@@ -98,21 +98,19 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath SpeciesListPath = null!;
 
-    [Export]
-    public NodePath SpeciesHistoryPath = null!;
-
     // Tab paths
 
     [Export]
     public NodePath ConfigEditorPath = null!;
 
     [Export]
+    public NodePath HistoryReportSplitPath = null!;
+
+    [Export]
     public NodePath ReportPath = null!;
 
     [Export]
     public NodePath ViewerPath = null!;
-
-    private Spatial hexesSpatial = null!;
 
     // Auto-evo config related controls.
     private CustomCheckBox allowSpeciesToNotMutateCheckBox = null!;
@@ -149,10 +147,10 @@ public class AutoEvoExploringTool : NodeWithInput
     private SpeciesPreview speciesPreview = null!;
     private CellHexPreview hexPreview = null!;
     private VBoxContainer speciesListContainer = null!;
-    private VBoxContainer speciesHistoryContainer = null!;
 
     // Tabs
     private Control configEditorTab = null!;
+    private Control historyReportSplit = null!;
     private Control reportTab = null!;
     private Control viewerTab = null!;
 
@@ -165,11 +163,8 @@ public class AutoEvoExploringTool : NodeWithInput
     private PackedScene customCheckBoxScene = null!;
     private readonly ButtonGroup historyCheckBoxGroup = new();
     private readonly ButtonGroup speciesListCheckBoxGroup = new();
-    private readonly ButtonGroup speciesHistoryCheckBoxGroup = new();
     private bool ready;
-    private readonly List<Species> speciesAlive = new();
     private readonly List<System.Collections.Generic.Dictionary<uint, Species>> speciesHistory = new();
-    private int currentDisplayedGeneration = -1;
 
     [Signal]
     public delegate void OnAutoEvoExploringToolClosed();
@@ -222,9 +217,9 @@ public class AutoEvoExploringTool : NodeWithInput
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         hexPreview = GetNode<CellHexPreview>(HexPreviewPath);
         speciesListContainer = GetNode<VBoxContainer>(SpeciesListPath);
-        speciesHistoryContainer = GetNode<VBoxContainer>(SpeciesHistoryPath);
 
         configEditorTab = GetNode<Control>(ConfigEditorPath);
+        historyReportSplit = GetNode<Control>(HistoryReportSplitPath);
         reportTab = GetNode<Control>(ReportPath);
         viewerTab = GetNode<Control>(ViewerPath);
 
@@ -416,14 +411,30 @@ public class AutoEvoExploringTool : NodeWithInput
             resultsLabel.ExtendedBbcode = runResultsList[currentDisplayed].ToString();
     }
 
+    private void UpdateSpeciesList()
+    {
+        foreach (Node node in speciesListContainer.GetChildren())
+        {
+            node.DetachAndQueueFree();
+        }
+
+        foreach (var pair in speciesHistory[currentDisplayed])
+        {
+            var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
+            checkBox.Text = $"{pair.Key.ToString()}: {pair.Value.FormattedName}";
+            checkBox.Group = speciesListCheckBoxGroup;
+            checkBox.Connect("toggled", this, nameof(SpeciesListCheckBoxToggled), new Array { pair.Key });
+            speciesListContainer.AddChild(checkBox);
+        }
+    }
+
     private void ChangeTab(int index)
     {
         switch ((TabIndex)index)
         {
             case TabIndex.Config:
             {
-                reportTab.Visible = false;
-                viewerTab.Visible = false;
+                historyReportSplit.Visible = false;
                 configEditorTab.Visible = true;
                 break;
             }
@@ -432,6 +443,7 @@ public class AutoEvoExploringTool : NodeWithInput
             {
                 configEditorTab.Visible = false;
                 viewerTab.Visible = false;
+                historyReportSplit.Visible = true;
                 reportTab.Visible = true;
                 break;
             }
@@ -440,6 +452,7 @@ public class AutoEvoExploringTool : NodeWithInput
             {
                 reportTab.Visible = false;
                 configEditorTab.Visible = false;
+                historyReportSplit.Visible = true;
                 viewerTab.Visible = true;
                 break;
             }
@@ -448,10 +461,11 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void HistoryCheckBoxToggled(bool state, int index)
     {
-        if (state)
+        if (state && currentDisplayed != index)
         {
             currentDisplayed = index;
             UpdateResults();
+            UpdateSpeciesList();
         }
     }
 
@@ -460,6 +474,7 @@ public class AutoEvoExploringTool : NodeWithInput
         // Add run results
         RunResults results = autoEvoRun!.Results!;
         runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
+        speciesHistory.Add(gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
 
         // Add check box to history container
         using (var checkBox = customCheckBoxScene.Instance<CustomCheckBox>())
@@ -475,50 +490,14 @@ public class AutoEvoExploringTool : NodeWithInput
             checkBox.Pressed = true;
         }
 
-        speciesHistory.Add(gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
-
-        // Add species checkbox
-        using (var checkBox = customCheckBoxScene.Instance<CustomCheckBox>())
-        {
-            checkBox.Text = (currentGeneration + 1).ToString();
-            checkBox.Connect("toggled", this, nameof(SpeciesHistoryCheckBoxToggled),
-                new Array { currentGeneration });
-            checkBox.Group = speciesHistoryCheckBoxGroup;
-            speciesHistoryContainer.AddChild(checkBox);
-
-            checkBox.Pressed = true;
-        }
-
         // Apply the results
         autoEvoRun.ApplyAllEffects(true);
         currentGenerationLabel.Text = (++currentGeneration).ToString();
     }
 
-    private void SpeciesHistoryCheckBoxToggled(bool state, int index)
-    {
-        if (state && index != currentDisplayedGeneration)
-        {
-            foreach (Node node in speciesListContainer.GetChildren())
-            {
-                node.DetachAndQueueFree();
-            }
-
-            currentDisplayedGeneration = index;
-
-            foreach (var pair in speciesHistory[currentDisplayedGeneration])
-            {
-                var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
-                checkBox.Text = $"{pair.Key.ToString()}: {pair.Value.FormattedName}";
-                checkBox.Group = speciesListCheckBoxGroup;
-                checkBox.Connect("toggled", this, nameof(SpeciesListCheckBoxToggled), new Array { pair.Key });
-                speciesListContainer.AddChild(checkBox);
-            }
-        }
-    }
-
     private void SpeciesListCheckBoxToggled(bool state, uint speciesIndex)
     {
-        var species = speciesHistory[currentDisplayedGeneration][speciesIndex];
+        var species = speciesHistory[currentDisplayed][speciesIndex];
 
         if (state)
         {
