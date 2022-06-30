@@ -19,8 +19,30 @@ public class ColourActionData : EditorCombinableActionData
 
     protected override int CalculateCostInternal()
     {
-        // Changing membrane color has no cost
+        // Changing membrane colour has no cost
         return 0;
+    }
+
+    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
+    {
+        if (other is ColourActionData colourChangeActionData)
+        {
+            // If the value has been changed back to a previous value
+            if (NewColour.IsEqualApprox(colourChangeActionData.PreviousColour) &&
+                colourChangeActionData.NewColour.IsEqualApprox(PreviousColour))
+            {
+                return ActionInterferenceMode.CancelsOut;
+            }
+
+            // If the value has been changed twice
+            if (NewColour.IsEqualApprox(colourChangeActionData.PreviousColour) ||
+                colourChangeActionData.NewColour.IsEqualApprox(PreviousColour))
+            {
+                return ActionInterferenceMode.Combinable;
+            }
+        }
+
+        return ActionInterferenceMode.NoInterference;
     }
 
     protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
@@ -51,27 +73,5 @@ public class ColourActionData : EditorCombinableActionData
         }
 
         NewColour = colourChangeActionData.NewColour;
-    }
-
-    protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
-    {
-        if (other is ColourActionData colourChangeActionData)
-        {
-            // If the value has been changed back to a previous value
-            if (NewColour.IsEqualApprox(colourChangeActionData.PreviousColour) &&
-                colourChangeActionData.NewColour.IsEqualApprox(PreviousColour))
-            {
-                return ActionInterferenceMode.CancelsOut;
-            }
-
-            // If the value has been changed twice
-            if (NewColour.IsEqualApprox(colourChangeActionData.PreviousColour) ||
-                colourChangeActionData.NewColour.IsEqualApprox(PreviousColour))
-            {
-                return ActionInterferenceMode.Combinable;
-            }
-        }
-
-        return ActionInterferenceMode.NoInterference;
     }
 }
