@@ -403,6 +403,7 @@ public static class Constants
     public const int CORPSE_CHUNK_DIVISOR = 3;
     public const float CORPSE_CHUNK_AMOUNT_DIVISOR = 3.0f;
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
+    public const string DEFAULT_CHUNK_MODEL_NAME = "cytoplasm";
 
     /// <summary>
     ///   The drag force is calculated by taking the current velocity
