@@ -99,6 +99,9 @@ public class PatchMapDrawer : Control
         nodeScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapNode.tscn");
         connections = new Dictionary<Tuple<int, int>, Tuple<Vector2, Vector2, Vector2>>();
 
+        if (PlayerPatch != null)
+            CenterScroll();
+
         if (DrawDefaultMapIfEmpty && Map == null)
         {
             GD.Print("Generating and showing a new patch map for testing in PatchMapDrawer");
@@ -181,7 +184,7 @@ public class PatchMapDrawer : Control
         dirty = true;
     }
 
-    private void CenterScroll()
+    public void CenterScroll()
     {
         var parent = (ScrollContainer)GetParent();
         var coords = PlayerPatch!.ScreenCoordinates - parent.GetRect().End / 2f;

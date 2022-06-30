@@ -113,6 +113,17 @@ public class PatchRegion
             {
                 Patches[i].ScreenCoordinates = new Vector2(ScreenCoordinates.x + regionMargin,
                     ScreenCoordinates.y + i * (64f + PatchMargin) + PatchMargin + RegionLineWidth);
+
+                // Random depth for water regions
+                if (i == Patches.Count - 2)
+                {
+                    var depth = Patches[i].Depth;
+                    var seafloor = Patches[i + 1];
+                    Patches[i].Depth[1] = random.Next(depth[0] + 1, depth[1] - 10);
+
+                    seafloor.Depth[0] = Patches[i].Depth[1];
+                    seafloor.Depth[1] = Patches[i].Depth[1] + 10;
+                }
             }
 
             if (RegionType == "continent")
@@ -151,6 +162,10 @@ public class PatchRegion
             {
                 Patches[0].ScreenCoordinates = new Vector2(ScreenCoordinates.x + regionMargin,
                     ScreenCoordinates.y + regionMargin);
+
+                // Caves or vents are the same depth as the adjacent patch
+                Patches[0].Depth[0] = Patches[0].Adjacent.First().Depth[0];
+                Patches[0].Depth[1] = Patches[0].Adjacent.First().Depth[1];
             }
         }
     }
