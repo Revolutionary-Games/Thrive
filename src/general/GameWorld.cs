@@ -316,6 +316,16 @@ public class GameWorld : ISaveLoadable
         autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description, patch);
     }
 
+    /// <summary>
+    ///   Adds an external population effect to a species in the current patch
+    /// </summary>
+    /// <param name="species">Target species</param>
+    /// <param name="constant">Change amount (constant part)</param>
+    /// <param name="description">What caused the change</param>
+    /// <param name="immediate">
+    ///   If true applied immediately. Should only be used for the player dying
+    /// </param>
+    /// <param name="coefficient">Change amount (coefficient part)</param>
     public void AlterSpeciesPopulationInCurrentPatch(Species species, int constant, string description,
         bool immediate = false, float coefficient = 1)
     {
