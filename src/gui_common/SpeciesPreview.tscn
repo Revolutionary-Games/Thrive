@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=1]
+
+[node name="SpeciesPreview" type="Control"]
+rect_min_size = Vector2( 50, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+CameraPath = NodePath("ViewportContainer/Viewport/PreviewCamera")
+EntityParentPath = NodePath("ViewportContainer/Viewport/EntityParent")
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 50, 50 )
+own_world = true
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="PreviewCamera" type="Camera" parent="ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0 )
+projection = 1
+current = true
+size = 15.0
+
+[node name="EntityParent" type="Node" parent="ViewportContainer/Viewport"]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 50, 0 )
+light_energy = 10.0

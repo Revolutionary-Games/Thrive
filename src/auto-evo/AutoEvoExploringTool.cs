@@ -7,13 +7,6 @@ using Godot.Collections;
 public class AutoEvoExploringTool : NodeWithInput
 {
     // World paths
-
-    [Export]
-    public NodePath MicrobeCameraPath = null!;
-
-    [Export]
-    public NodePath DynamicallySpawnedPath = null!;
-
     [Export]
     public NodePath HexesPath = null!;
 
@@ -101,6 +94,9 @@ public class AutoEvoExploringTool : NodeWithInput
     // Viewer paths
 
     [Export]
+    public NodePath SpeciesPreviewPath = null!;
+
+    [Export]
     public NodePath SpeciesListPath = null!;
 
     [Export]
@@ -117,8 +113,6 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath ViewerPath = null!;
 
-    private Camera microbeCamera = null!;
-    private Spatial dynamicallySpawned = null!;
     private Spatial hexesSpatial = null!;
 
     // Auto-evo config related controls.
@@ -153,6 +147,7 @@ public class AutoEvoExploringTool : NodeWithInput
     private CustomRichTextLabel resultsLabel = null!;
 
     // Viewer related
+    private SpeciesPreview speciesPreview = null!;
     private VBoxContainer speciesListContainer = null!;
     private VBoxContainer speciesHistoryContainer = null!;
 
@@ -168,11 +163,9 @@ public class AutoEvoExploringTool : NodeWithInput
     private readonly List<LocalizedStringBuilder> runResultsList = new();
     private int currentDisplayed = -1;
     private PackedScene customCheckBoxScene = null!;
-    private PackedScene microbeScene = null!;
     private readonly ButtonGroup historyCheckBoxGroup = new();
     private readonly ButtonGroup speciesListCheckBoxGroup = new();
     private readonly ButtonGroup speciesHistoryCheckBoxGroup = new();
-    private Microbe? displayedMicrobe;
     private bool ready;
     private readonly List<Species> speciesAlive = new();
     private readonly List<System.Collections.Generic.Dictionary<uint, Species>> speciesHistory = new();
@@ -197,8 +190,6 @@ public class AutoEvoExploringTool : NodeWithInput
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.1f, null, false);
 
-        microbeCamera = GetNode<Camera>(MicrobeCameraPath);
-        dynamicallySpawned = GetNode<Spatial>(DynamicallySpawnedPath);
         hexesSpatial = GetNode<Spatial>(HexesPath);
 
         allowSpeciesToNotMutateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMutatePath);
@@ -233,6 +224,7 @@ public class AutoEvoExploringTool : NodeWithInput
         resultsLabel = GetNode<CustomRichTextLabel>(ResultsLabelPath);
         historyContainer = GetNode<VBoxContainer>(HistoryContainerPath);
 
+        speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         speciesListContainer = GetNode<VBoxContainer>(SpeciesListPath);
         speciesHistoryContainer = GetNode<VBoxContainer>(SpeciesHistoryPath);
 
@@ -241,7 +233,6 @@ public class AutoEvoExploringTool : NodeWithInput
         viewerTab = GetNode<Control>(ViewerPath);
 
         customCheckBoxScene = GD.Load<PackedScene>("res://src/gui_common/CustomCheckBox.tscn");
-        microbeScene = GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
         hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
         validMaterial = GD.Load<Material>("res://src/microbe_stage/editor/ValidHex.material");
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
@@ -538,12 +529,8 @@ public class AutoEvoExploringTool : NodeWithInput
 
         if (state)
         {
-            displayedMicrobe?.DetachAndQueueFree();
-            displayedMicrobe = microbeScene.Instance<Microbe>();
-            displayedMicrobe.IsForPreviewOnly = true;
-            dynamicallySpawned.AddChild(displayedMicrobe);
-            displayedMicrobe.ApplySpecies(species);
-        
+
+            speciesPreview.PreviewSpecies = species;
         foreach (Node node in hexesSpatial.GetChildren())
             node.DetachAndQueueFree();
 
