@@ -112,6 +112,19 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath ViewerPath = null!;
 
+    /// <summary>
+    ///   This list stores copy of species in every generation.
+    /// </summary>
+    private readonly List<System.Collections.Generic.Dictionary<uint, Species>> speciesHistory = new();
+
+    /// <summary>
+    ///   This list stores all auto-evo results.
+    /// </summary>
+    private readonly List<LocalizedStringBuilder> runResultsList = new();
+
+    private readonly ButtonGroup historyCheckBoxGroup = new();
+    private readonly ButtonGroup speciesListCheckBoxGroup = new();
+
     // Auto-evo config related controls.
     private CustomCheckBox allowSpeciesToNotMutateCheckBox = null!;
     private CustomCheckBox allowSpeciesToNotMigrateCheckBox = null!;
@@ -158,13 +171,9 @@ public class AutoEvoExploringTool : NodeWithInput
     private AutoEvoConfiguration autoEvoConfiguration = null!;
     private AutoEvoRun? autoEvoRun;
     private int currentGeneration = 0;
-    private readonly List<LocalizedStringBuilder> runResultsList = new();
     private int currentDisplayed = -1;
     private PackedScene customCheckBoxScene = null!;
-    private readonly ButtonGroup historyCheckBoxGroup = new();
-    private readonly ButtonGroup speciesListCheckBoxGroup = new();
     private bool ready;
-    private readonly List<System.Collections.Generic.Dictionary<uint, Species>> speciesHistory = new();
 
     [Signal]
     public delegate void OnAutoEvoExploringToolClosed();
@@ -474,21 +483,20 @@ public class AutoEvoExploringTool : NodeWithInput
         // Add run results
         RunResults results = autoEvoRun!.Results!;
         runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
-        speciesHistory.Add(gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
+        speciesHistory.Add(
+            gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
 
         // Add check box to history container
-        using (var checkBox = customCheckBoxScene.Instance<CustomCheckBox>())
-        {
-            checkBox.Text = (currentGeneration + 1).ToString();
-            checkBox.Connect("toggled", this, nameof(HistoryCheckBoxToggled),
-                new Godot.Collections.Array { currentGeneration });
-            checkBox.Group = historyCheckBoxGroup;
-            historyContainer.AddChild(checkBox);
+        var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
+        checkBox.Text = (currentGeneration + 1).ToString();
+        checkBox.Group = historyCheckBoxGroup;
+        checkBox.Connect("toggled", this, nameof(HistoryCheckBoxToggled),
+            new Array { currentGeneration });
+        historyContainer.AddChild(checkBox);
 
-            // History checkboxes are in one button group, so this automatically releases other buttons
-            // History label is updated in button toggled signal callback
-            checkBox.Pressed = true;
-        }
+        // History checkboxes are in one button group, so this automatically releases other buttons
+        // History label is updated in button toggled signal callback
+        checkBox.Pressed = true;
 
         // Apply the results
         autoEvoRun.ApplyAllEffects(true);
