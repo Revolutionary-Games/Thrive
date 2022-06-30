@@ -319,6 +319,8 @@ public class AutoEvoExploringTool : NodeWithInput
     [RunOnKeyDown("ui_cancel")]
     public bool OnBackButtonPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         // TODO: Ask to return
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
@@ -329,6 +331,8 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void ChangeTab(int index)
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         switch ((TabIndex)index)
         {
             case TabIndex.Config:
@@ -400,6 +404,8 @@ public class AutoEvoExploringTool : NodeWithInput
     /// </summary>
     private void OnFinishOneGenerationButtonPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
         {
             // If the previous one has finished / failed
@@ -452,6 +458,8 @@ public class AutoEvoExploringTool : NodeWithInput
     /// </summary>
     private void OnRunOneStepButtonPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
         {
             autoEvoRun = new AutoEvoRun(gameProperties.GameWorld, autoEvoConfiguration);
@@ -468,6 +476,8 @@ public class AutoEvoExploringTool : NodeWithInput
     /// </summary>
     private void OnAbortButtonPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         if (autoEvoRun?.WasSuccessful == false)
             autoEvoRun.Abort();
 
