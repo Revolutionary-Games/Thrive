@@ -115,7 +115,7 @@ public class AutoEvoExploringTool : NodeWithInput
     /// <summary>
     ///   This list stores copy of species in every generation.
     /// </summary>
-    private readonly List<System.Collections.Generic.Dictionary<uint, Species>> speciesHistory = new();
+    private readonly List<System.Collections.Generic.Dictionary<uint, Species>> speciesHistoryList = new();
 
     /// <summary>
     ///   This list stores all auto-evo results.
@@ -123,11 +123,11 @@ public class AutoEvoExploringTool : NodeWithInput
     private readonly List<LocalizedStringBuilder> runResultsList = new();
 
     // ButtonGroups to allow checkboxes automatically uncheck
-    private readonly ButtonGroup historyCheckBoxGroup = new();
-    private readonly ButtonGroup speciesListCheckBoxGroup = new();
+    private readonly ButtonGroup historyCheckBoxesGroup = new();
+    private readonly ButtonGroup speciesListCheckBoxesGroup = new();
 
     // Tabs
-    private Control configEditorTab = null!;
+    private Control configTab = null!;
     private Control historyReportSplit = null!;
     private Control reportTab = null!;
     private Control viewerTab = null!;
@@ -155,18 +155,18 @@ public class AutoEvoExploringTool : NodeWithInput
     // Status controls
     private Label currentGenerationLabel = null!;
     private Label runStatusLabel = null!;
-    private Button runGenerationButton = null!;
-    private Button runStepButton = null!;
+    private Button finishOneGenerationButton = null!;
+    private Button runOneStepButton = null!;
     private Button abortButton = null!;
 
     // Report controls
-    private VBoxContainer historyContainer = null!;
-    private CustomRichTextLabel resultsLabel = null!;
+    private VBoxContainer generationHistoryList = null!;
+    private CustomRichTextLabel autoEvoResultsLabel = null!;
 
     // Viewer controls
     private SpeciesPreview speciesPreview = null!;
     private CellHexPreview hexPreview = null!;
-    private VBoxContainer speciesListContainer = null!;
+    private VBoxContainer speciesList = null!;
 
     private PackedScene customCheckBoxScene = null!;
 
@@ -185,17 +185,14 @@ public class AutoEvoExploringTool : NodeWithInput
     /// <summary>
     ///   The current generation auto-evo has evolved
     /// </summary>
-    private int currentGeneration = 0;
+    private int currentGeneration;
 
     /// <summary>
     ///   The generation report & viewer tab is displaying
     /// </summary>
-    private int currentDisplayed = -1;
+    private int generationDisplayed = -1;
 
     private bool ready;
-
-    [Signal]
-    public delegate void OnAutoEvoExploringToolClosed();
 
     private enum TabIndex
     {
@@ -209,6 +206,13 @@ public class AutoEvoExploringTool : NodeWithInput
         base._Ready();
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.1f, null, false);
+
+        // Retrieve all node paths
+
+        configTab = GetNode<Control>(ConfigEditorPath);
+        historyReportSplit = GetNode<Control>(HistoryReportSplitPath);
+        reportTab = GetNode<Control>(ReportPath);
+        viewerTab = GetNode<Control>(ViewerPath);
 
         allowSpeciesToNotMutateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMutatePath);
         allowSpeciesToNotMigrateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMigratePath);
@@ -233,82 +237,26 @@ public class AutoEvoExploringTool : NodeWithInput
             GetNode<SpinBox>(SpeciesSplitByMutationThresholdPopulationFractionPath);
         useBiodiversityForceSplitCheckBox = GetNode<CustomCheckBox>(UseBiodiversityForceSplitPath);
 
-        configEditorTab = GetNode<Control>(ConfigEditorPath);
-        historyReportSplit = GetNode<Control>(HistoryReportSplitPath);
-        reportTab = GetNode<Control>(ReportPath);
-        viewerTab = GetNode<Control>(ViewerPath);
-
         currentGenerationLabel = GetNode<Label>(CurrentGenerationLabelPath);
         runStatusLabel = GetNode<Label>(RunStatusLabelPath);
-        runGenerationButton = GetNode<Button>(RunGenerationButtonPath);
-        runStepButton = GetNode<Button>(RunStepButtonPath);
+        finishOneGenerationButton = GetNode<Button>(RunGenerationButtonPath);
+        runOneStepButton = GetNode<Button>(RunStepButtonPath);
         abortButton = GetNode<Button>(AbortButtonPath);
 
-        resultsLabel = GetNode<CustomRichTextLabel>(ResultsLabelPath);
-        historyContainer = GetNode<VBoxContainer>(HistoryContainerPath);
+        autoEvoResultsLabel = GetNode<CustomRichTextLabel>(ResultsLabelPath);
+        generationHistoryList = GetNode<VBoxContainer>(HistoryContainerPath);
 
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         hexPreview = GetNode<CellHexPreview>(HexPreviewPath);
-        speciesListContainer = GetNode<VBoxContainer>(SpeciesListPath);
+        speciesList = GetNode<VBoxContainer>(SpeciesListPath);
 
         customCheckBoxScene = GD.Load<PackedScene>("res://src/gui_common/CustomCheckBox.tscn");
 
-        Init();
-
-        ready = true;
-    }
-
-    public override void _Process(float delta)
-    {
-        base._Process(delta);
-
-        if (autoEvoRun != null)
-        {
-            runStatusLabel.Text = autoEvoRun.Status;
-
-            if (autoEvoRun.WasSuccessful)
-            {
-                ApplyAutoEvoRun();
-
-                // Clear autoEvoRun and enable buttons to allow the next run to start.
-                autoEvoRun = null;
-                runGenerationButton.Disabled = false;
-                runStepButton.Disabled = false;
-                abortButton.Disabled = true;
-            }
-            else if (autoEvoRun.Aborted)
-            {
-                autoEvoRun = null;
-                runGenerationButton.Disabled = false;
-                runStepButton.Disabled = false;
-                abortButton.Disabled = true;
-            }
-        }
-    }
-
-    [RunOnKeyDown("ui_cancel")]
-    public bool OnBackButtonPressed()
-    {
-        // TODO: Ask to return
-
-        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
-            SceneManager.Instance.ReturnToMenu, false);
-
-        return true;
-    }
-
-    /// <summary>
-    ///   Initialize the exploring tool
-    /// </summary>
-    private void Init()
-    {
-        currentGeneration = 0;
-        currentGenerationLabel.Text = currentGeneration.ToString();
-        runStatusLabel.Text = TranslationServer.Translate("READY");
+        // Init game
         gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
         autoEvoConfiguration = (AutoEvoConfiguration)SimulationParameters.Instance.AutoEvoConfiguration.Clone();
 
-        // Init all config controls
+        // Init config control values
         allowSpeciesToNotMutateCheckBox.Pressed = autoEvoConfiguration.AllowSpeciesToNotMutate;
         allowSpeciesToNotMigrateCheckBox.Pressed = autoEvoConfiguration.AllowSpeciesToNotMigrate;
         biodiversityAttemptFillChanceSpinBox.Value = autoEvoConfiguration.BiodiversityAttemptFillChance;
@@ -330,25 +278,80 @@ public class AutoEvoExploringTool : NodeWithInput
         speciesSplitByMutationThresholdPopulationFractionSpinBox.Value =
             autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction;
         useBiodiversityForceSplitCheckBox.Pressed = autoEvoConfiguration.UseBiodiversityForceSplit;
+
+        // Mark ready, later on autoEvoConfiguration values should only be changed from the GUI
+        ready = true;
     }
 
-    /*
-    /// <summary>
-    ///   Clean the exploring tool for next entrance
-    /// </summary>
-    private void Clean()
+    public override void _Process(float delta)
     {
-        autoEvoConfiguration = null!;
-        gameProperties = null!;
-        resultsLabel.ExtendedBbcode = string.Empty;
-        runResultsList.Clear();
+        base._Process(delta);
 
-        foreach (var checkBox in historyCheckBoxes)
-            checkBox.DetachAndQueueFree();
+        if (autoEvoRun != null)
+        {
+            runStatusLabel.Text = autoEvoRun.Status;
 
-        historyCheckBoxes.Clear();
+            if (autoEvoRun.WasSuccessful)
+            {
+                ApplyAutoEvoRun();
+
+                // Clear autoEvoRun and enable buttons to allow the next run to start.
+                autoEvoRun = null;
+                finishOneGenerationButton.Disabled = false;
+                runOneStepButton.Disabled = false;
+                abortButton.Disabled = true;
+            }
+            else if (autoEvoRun.Aborted)
+            {
+                autoEvoRun = null;
+                finishOneGenerationButton.Disabled = false;
+                runOneStepButton.Disabled = false;
+                abortButton.Disabled = true;
+            }
+        }
     }
-    */
+
+    [RunOnKeyDown("ui_cancel")]
+    public bool OnBackButtonPressed()
+    {
+        // TODO: Ask to return
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
+            SceneManager.Instance.ReturnToMenu, false);
+
+        return true;
+    }
+
+    private void ChangeTab(int index)
+    {
+        switch ((TabIndex)index)
+        {
+            case TabIndex.Config:
+            {
+                historyReportSplit.Visible = false;
+                configTab.Visible = true;
+                break;
+            }
+
+            case TabIndex.Report:
+            {
+                configTab.Visible = false;
+                viewerTab.Visible = false;
+                historyReportSplit.Visible = true;
+                reportTab.Visible = true;
+                break;
+            }
+
+            case TabIndex.Viewer:
+            {
+                reportTab.Visible = false;
+                configTab.Visible = false;
+                historyReportSplit.Visible = true;
+                viewerTab.Visible = true;
+                break;
+            }
+        }
+    }
 
     /// <summary>
     ///   This function updates all configurations in a row to avoid adding numerous separate callback functions.
@@ -388,9 +391,9 @@ public class AutoEvoExploringTool : NodeWithInput
     }
 
     /// <summary>
-    ///   Run a new generation or finish the current generation
+    ///   Run a new generation or finish the current generation async
     /// </summary>
-    private void OnRunGenerationButtonPressed()
+    private void OnFinishOneGenerationButtonPressed()
     {
         // If the previous one has finished / failed
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
@@ -405,12 +408,43 @@ public class AutoEvoExploringTool : NodeWithInput
         }
 
         // Disable these buttons
-        runGenerationButton.Disabled = true;
-        runStepButton.Disabled = true;
+        finishOneGenerationButton.Disabled = true;
+        runOneStepButton.Disabled = true;
         abortButton.Disabled = false;
     }
 
-    private void OnRunStepButtonPressed()
+    /// <summary>
+    ///   Apply auto-evo effects and set up related controls
+    /// </summary>
+    private void ApplyAutoEvoRun()
+    {
+        // Add run results
+        RunResults results = autoEvoRun!.Results!;
+        runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
+        speciesHistoryList.Add(
+            gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
+
+        // Add check box to history container
+        var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
+        checkBox.Text = (currentGeneration + 1).ToString();
+        checkBox.Group = historyCheckBoxesGroup;
+        checkBox.Connect("toggled", this, nameof(GenerationCheckBoxToggled),
+            new Array { currentGeneration });
+        generationHistoryList.AddChild(checkBox);
+
+        // History checkboxes are in one button group, so this automatically releases other buttons
+        // History label is updated in button toggled signal callback
+        checkBox.Pressed = true;
+
+        // Apply the results
+        autoEvoRun.ApplyAllEffects(true);
+        currentGenerationLabel.Text = (++currentGeneration).ToString();
+    }
+
+    /// <summary>
+    ///   Run one step sync
+    /// </summary>
+    private void OnRunOneStepButtonPressed()
     {
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
         {
@@ -423,107 +457,57 @@ public class AutoEvoExploringTool : NodeWithInput
         abortButton.Disabled = false;
     }
 
+    /// <summary>
+    ///   Abort the current run
+    /// </summary>
     private void OnAbortButtonPressed()
     {
         if (autoEvoRun?.WasSuccessful == false)
             autoEvoRun.Abort();
 
-        runGenerationButton.Disabled = false;
-        runStepButton.Disabled = false;
+        finishOneGenerationButton.Disabled = false;
+        runOneStepButton.Disabled = false;
     }
 
-    private void UpdateResults()
+    private void GenerationCheckBoxToggled(bool state, int index)
     {
-        if (currentDisplayed < runResultsList.Count)
-            resultsLabel.ExtendedBbcode = runResultsList[currentDisplayed].ToString();
-    }
-
-    private void UpdateSpeciesList()
-    {
-        foreach (Node node in speciesListContainer.GetChildren())
+        if (state && generationDisplayed != index)
         {
-            node.DetachAndQueueFree();
-        }
-
-        foreach (var pair in speciesHistory[currentDisplayed])
-        {
-            var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
-            checkBox.Text = $"{pair.Key.ToString()}: {pair.Value.FormattedName}";
-            checkBox.Group = speciesListCheckBoxGroup;
-            checkBox.Connect("toggled", this, nameof(SpeciesListCheckBoxToggled), new Array { pair.Key });
-            speciesListContainer.AddChild(checkBox);
-        }
-    }
-
-    private void ChangeTab(int index)
-    {
-        switch ((TabIndex)index)
-        {
-            case TabIndex.Config:
-            {
-                historyReportSplit.Visible = false;
-                configEditorTab.Visible = true;
-                break;
-            }
-
-            case TabIndex.Report:
-            {
-                configEditorTab.Visible = false;
-                viewerTab.Visible = false;
-                historyReportSplit.Visible = true;
-                reportTab.Visible = true;
-                break;
-            }
-
-            case TabIndex.Viewer:
-            {
-                reportTab.Visible = false;
-                configEditorTab.Visible = false;
-                historyReportSplit.Visible = true;
-                viewerTab.Visible = true;
-                break;
-            }
-        }
-    }
-
-    private void HistoryCheckBoxToggled(bool state, int index)
-    {
-        if (state && currentDisplayed != index)
-        {
-            currentDisplayed = index;
-            UpdateResults();
+            generationDisplayed = index;
+            UpdateAutoEvoReport();
             UpdateSpeciesList();
         }
     }
 
-    private void ApplyAutoEvoRun()
+    private void UpdateAutoEvoReport()
     {
-        // Add run results
-        RunResults results = autoEvoRun!.Results!;
-        runResultsList.Add(results.MakeSummary(gameProperties.GameWorld.Map, true));
-        speciesHistory.Add(
-            gameProperties.GameWorld.Species.ToDictionary(pair => pair.Key, pair => (Species)pair.Value.Clone()));
+        if (generationDisplayed < runResultsList.Count && generationDisplayed > -1)
+        {
+            autoEvoResultsLabel.ExtendedBbcode = runResultsList[generationDisplayed].ToString();
+        }
+    }
 
-        // Add check box to history container
-        var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
-        checkBox.Text = (currentGeneration + 1).ToString();
-        checkBox.Group = historyCheckBoxGroup;
-        checkBox.Connect("toggled", this, nameof(HistoryCheckBoxToggled),
-            new Array { currentGeneration });
-        historyContainer.AddChild(checkBox);
+    private void UpdateSpeciesList()
+    {
+        // Clear the current ones
+        foreach (Node node in speciesList.GetChildren())
+        {
+            node.DetachAndQueueFree();
+        }
 
-        // History checkboxes are in one button group, so this automatically releases other buttons
-        // History label is updated in button toggled signal callback
-        checkBox.Pressed = true;
-
-        // Apply the results
-        autoEvoRun.ApplyAllEffects(true);
-        currentGenerationLabel.Text = (++currentGeneration).ToString();
+        foreach (var pair in speciesHistoryList[generationDisplayed])
+        {
+            var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
+            checkBox.Text = $"{pair.Key.ToString()}: {pair.Value.FormattedName}";
+            checkBox.Group = speciesListCheckBoxesGroup;
+            checkBox.Connect("toggled", this, nameof(SpeciesListCheckBoxToggled), new Array { pair.Key });
+            speciesList.AddChild(checkBox);
+        }
     }
 
     private void SpeciesListCheckBoxToggled(bool state, uint speciesIndex)
     {
-        var species = speciesHistory[currentDisplayed][speciesIndex];
+        var species = speciesHistoryList[generationDisplayed][speciesIndex];
 
         if (state)
         {

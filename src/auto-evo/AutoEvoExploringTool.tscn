@@ -13,6 +13,10 @@
 
 [node name="AutoEvoExploringTool" type="Node"]
 script = ExtResource( 1 )
+ConfigEditorPath = NodePath("GUI/VBoxContainer/ConfigEditor")
+HistoryReportSplitPath = NodePath("GUI/VBoxContainer/HistoryReportSplit")
+ReportPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report")
+ViewerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer")
 AllowSpeciesToNotMutatePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate")
 AllowSpeciesToNotMigratePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate")
 BiodiversityAttemptFillChancePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance")
@@ -41,10 +45,6 @@ ResultsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report/Results
 SpeciesPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer/SpeciesPreview")
 HexPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/CellHexPreview")
 SpeciesListPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesPanel/MarginContainer/VBoxContainer/ScrollContainer/SpeciesList")
-ConfigEditorPath = NodePath("GUI/VBoxContainer/ConfigEditor")
-HistoryReportSplitPath = NodePath("GUI/VBoxContainer/HistoryReportSplit")
-ReportPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report")
-ViewerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer")
 
 [node name="BackGround" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -400,7 +400,7 @@ __meta__ = {
 margin_top = 130.0
 margin_right = 311.0
 margin_bottom = 165.0
-text = "RUN_ONE_GENERATION"
+text = "FINISH_ONE_GENERATION"
 
 [node name="RunStep" type="Button" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 margin_top = 175.0
@@ -656,7 +656,7 @@ text = "BACK"
 [connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance" to="." method="UpdateAutoEvoConfiguration"]
-[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunGeneration" to="." method="OnRunGenerationButtonPressed"]
-[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep" to="." method="OnRunStepButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunGeneration" to="." method="OnFinishOneGenerationButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep" to="." method="OnRunOneStepButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
