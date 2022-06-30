@@ -227,7 +227,8 @@ public class ProcessSystem
 
             float availableRate;
             availableRate = input.Key == Temperature ?
-                CalculateTemperatureEffect(availableInEnvironment) : availableInEnvironment / input.Value;
+                CalculateTemperatureEffect(availableInEnvironment) :
+                availableInEnvironment / input.Value;
 
             result.AvailableAmounts[input.Key] = availableInEnvironment;
 
@@ -425,7 +426,8 @@ public class ProcessSystem
 
             // do environmental modifier here, and save it for later
             environmentModifier *= entry.Key == Temperature ?
-                CalculateTemperatureEffect(ambient) : ambient / entry.Value;
+                CalculateTemperatureEffect(ambient) :
+                ambient / entry.Value;
 
             if (environmentModifier <= MathUtils.EPSILON)
                 currentProcessStatistics?.AddLimitingFactor(entry.Key);
