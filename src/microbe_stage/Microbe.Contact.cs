@@ -512,6 +512,12 @@ public partial class Microbe
 
         // An enumerator to step through all available organelles in a random order when making chunks
         using var organellesAvailableEnumerator = organelles.OrderBy(_ => random.Next()).GetEnumerator();
+
+        // The default model for chunks is the cytoplasm model in case there isn't a model left in the species
+        var defaultChunkScene = SimulationParameters.Instance
+                .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME).LoadedCorpseChunkScene ??
+            throw new Exception("No default chunk scene");
+
         for (int i = 0; i < chunksToSpawn; ++i)
         {
             // Amount of compound in one chunk
@@ -548,16 +554,13 @@ public partial class Microbe
 
             chunkType.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
-            // Sets the default chunk to be the cytoplasm model in case a chunk can't be spawned
             var sceneToUse = new ChunkConfiguration.ChunkScene
             {
-                LoadedScene = SimulationParameters.Instance
-                    .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME).LoadedCorpseChunkScene,
+                LoadedScene = defaultChunkScene,
             };
 
             // Will only loop if there are still organelles available
-            organellesAvailableEnumerator?.MoveNext();
-            if (i < organelles.Count && organellesAvailableEnumerator?.Current != null)
+            while (organellesAvailableEnumerator.MoveNext() && organellesAvailableEnumerator.Current != null)
             {
                 if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.CorpseChunkScene))
                 {
@@ -570,10 +573,13 @@ public partial class Microbe
                     sceneToUse.SceneModelPath =
                         organellesAvailableEnumerator.Current.Definition.DisplaySceneModelPath;
                 }
+
+                if (sceneToUse.LoadedScene != null)
+                    break;
             }
 
-            if (sceneToUse == null)
-                throw new Exception("sceneToUse is null");
+            if (sceneToUse.LoadedScene == null)
+                throw new Exception("loaded scene is null");
 
             chunkType.Meshes.Add(sceneToUse);
 
