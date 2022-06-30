@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/gui_common/SpeciesPreview.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/CellHexPreview.cs" type="Script" id=1]
 
-[node name="SpeciesPreview" type="Control"]
+[node name="CellHexPreview" type="Control"]
 rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -12,7 +12,5 @@ TextureRectPath = NodePath("TextureRect")
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 expand = true
 stretch_mode = 7

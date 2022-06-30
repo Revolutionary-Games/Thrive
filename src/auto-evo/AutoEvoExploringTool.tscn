@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -9,10 +9,10 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=7]
 [ext_resource path="res://assets/concept_art/even-more-cells.jpg" type="Texture" id=8]
 [ext_resource path="res://src/gui_common/SpeciesPreview.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/gui_common/CellHexPreview.tscn" type="PackedScene" id=10]
 
 [node name="AutoEvoExploringTool" type="Node"]
 script = ExtResource( 1 )
-HexesPath = NodePath("GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/ViewportContainer/Viewport/Hexes")
 AllowSpeciesToNotMutatePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate")
 AllowSpeciesToNotMigratePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate")
 BiodiversityAttemptFillChancePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance")
@@ -39,6 +39,7 @@ AbortButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/Margin
 HistoryContainerPath = NodePath("GUI/VBoxContainer/Report/HSplitContainer/HistoryPanel/MarginContainer/VBoxContainer/ScrollContainer/HistoryContainer")
 ResultsLabelPath = NodePath("GUI/VBoxContainer/Report/HSplitContainer/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
 SpeciesPreviewPath = NodePath("GUI/VBoxContainer/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer/SpeciesPreview")
+HexPreviewPath = NodePath("GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/CellHexPreview")
 SpeciesListPath = NodePath("GUI/VBoxContainer/Viewer/HBoxContainer/SpeciesPanel/MarginContainer/VBoxContainer/ScrollContainer/SpeciesList")
 SpeciesHistoryPath = NodePath("GUI/VBoxContainer/Viewer/HBoxContainer/HistoryPanel/MarginContainer/VBoxContainer/ScrollContainer/SpeciesHistory")
 ConfigEditorPath = NodePath("GUI/VBoxContainer/ConfigEditor")
@@ -637,31 +638,10 @@ margin_right = 335.0
 margin_bottom = 25.0
 text = "HEX_VIEW"
 
-[node name="ViewportContainer" type="ViewportContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer"]
+[node name="CellHexPreview" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 29.0
 margin_right = 335.0
 margin_bottom = 548.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch = true
-
-[node name="Viewport" type="Viewport" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/ViewportContainer"]
-size = Vector2( 335, 519 )
-transparent_bg = true
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="HexViewCamera" type="Camera" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0 )
-projection = 1
-current = true
-size = 10.0
-
-[node name="Hexes" type="Spatial" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/ViewportContainer/Viewport"]
-
-[node name="DirectionalLight" type="DirectionalLight" parent="GUI/VBoxContainer/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-light_energy = 2.0
 
 [node name="PreviewPanel" type="PanelContainer" parent="GUI/VBoxContainer/Viewer/HBoxContainer"]
 margin_left = 823.0

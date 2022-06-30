@@ -6,10 +6,6 @@ using Godot.Collections;
 
 public class AutoEvoExploringTool : NodeWithInput
 {
-    // World paths
-    [Export]
-    public NodePath HexesPath = null!;
-
     // Auto-evo config paths
 
     [Export]
@@ -97,6 +93,9 @@ public class AutoEvoExploringTool : NodeWithInput
     public NodePath SpeciesPreviewPath = null!;
 
     [Export]
+    public NodePath HexPreviewPath = null!;
+
+    [Export]
     public NodePath SpeciesListPath = null!;
 
     [Export]
@@ -148,6 +147,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     // Viewer related
     private SpeciesPreview speciesPreview = null!;
+    private CellHexPreview hexPreview = null!;
     private VBoxContainer speciesListContainer = null!;
     private VBoxContainer speciesHistoryContainer = null!;
 
@@ -170,9 +170,6 @@ public class AutoEvoExploringTool : NodeWithInput
     private readonly List<Species> speciesAlive = new();
     private readonly List<System.Collections.Generic.Dictionary<uint, Species>> speciesHistory = new();
     private int currentDisplayedGeneration = -1;
-    protected PackedScene hexScene = null!;
-    protected Material validMaterial = null!;
-    protected PackedScene modelScene = null!;
 
     [Signal]
     public delegate void OnAutoEvoExploringToolClosed();
@@ -189,8 +186,6 @@ public class AutoEvoExploringTool : NodeWithInput
         base._Ready();
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.1f, null, false);
-
-        hexesSpatial = GetNode<Spatial>(HexesPath);
 
         allowSpeciesToNotMutateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMutatePath);
         allowSpeciesToNotMigrateCheckBox = GetNode<CustomCheckBox>(AllowSpeciesToNotMigratePath);
@@ -225,6 +220,7 @@ public class AutoEvoExploringTool : NodeWithInput
         historyContainer = GetNode<VBoxContainer>(HistoryContainerPath);
 
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
+        hexPreview = GetNode<CellHexPreview>(HexPreviewPath);
         speciesListContainer = GetNode<VBoxContainer>(SpeciesListPath);
         speciesHistoryContainer = GetNode<VBoxContainer>(SpeciesHistoryPath);
 
@@ -233,9 +229,6 @@ public class AutoEvoExploringTool : NodeWithInput
         viewerTab = GetNode<Control>(ViewerPath);
 
         customCheckBoxScene = GD.Load<PackedScene>("res://src/gui_common/CustomCheckBox.tscn");
-        hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
-        validMaterial = GD.Load<Material>("res://src/microbe_stage/editor/ValidHex.material");
-        modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
 
         Init();
 
@@ -529,61 +522,8 @@ public class AutoEvoExploringTool : NodeWithInput
 
         if (state)
         {
-
             speciesPreview.PreviewSpecies = species;
-        foreach (Node node in hexesSpatial.GetChildren())
-            node.DetachAndQueueFree();
-
-        var organelleLayout = ((MicrobeSpecies)species).Organelles;
-        foreach (var organelle in organelleLayout.Organelles)
-        {
-            var position = organelle.Position;
-            var itemHexes = organelle.RotatedHexes;
-            foreach (var hex in itemHexes)
-            {
-                var pos = Hex.AxialToCartesian(hex + position);
-
-                var hexNode = (MeshInstance)hexScene.Instance();
-                hexesSpatial.AddChild(hexNode);
-                hexNode.MaterialOverride = validMaterial;
-                hexNode.Translation = pos;
-            }
-        }
-
-        foreach (var organelle in organelleLayout)
-        {
-            // Hexes are handled by UpdateAlreadyPlacedHexes
-
-            // Model of the organelle
-            if (organelle.Definition.DisplayScene != null)
-            {
-                var pos = Hex.AxialToCartesian(organelle.Position) +
-                    organelle.Definition.CalculateModelOffset();
-
-                var organelleModel = (SceneDisplayer)modelScene.Instance();
-                hexesSpatial.AddChild(organelleModel);
-
-                organelleModel.Transform = new Transform(
-                    MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), pos);
-
-                organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                    Constants.DEFAULT_HEX_SIZE);
-
-                UpdateOrganellePlaceHolderScene(organelleModel,
-                    organelle.Definition.DisplayScene, organelle.Definition, Hex.GetRenderPriority(organelle.Position));
-            }
-        }
-        }
-
-    }
-    private void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
-        string displayScene, OrganelleDefinition definition, int renderPriority)
-    {
-        organelleModel.Scene = displayScene;
-        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
-        if (material != null)
-        {
-            material.RenderPriority = renderPriority;
+            hexPreview.PreviewSpecies = species as MicrobeSpecies;
         }
     }
 }

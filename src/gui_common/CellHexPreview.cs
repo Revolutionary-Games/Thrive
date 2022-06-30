@@ -1,23 +1,21 @@
 using Godot;
 
-public class SpeciesPreview : Control
+public class CellHexPreview : Control
 {
     [Export]
     public NodePath TextureRectPath = null!;
 
     private TextureRect textureRect = null!;
-    private Species? previewSpecies;
+    private MicrobeSpecies? microbeSpecies;
     private ImageTask? task;
 
-    public Species? PreviewSpecies
+    public MicrobeSpecies? PreviewSpecies
     {
-        get => previewSpecies;
+        get => microbeSpecies;
         set
         {
-            previewSpecies = value;
-
-            if (previewSpecies != null)
-                UpdatePreviewSpecies();
+            microbeSpecies = value;
+            UpdateHexPreview();
         }
     }
 
@@ -39,12 +37,9 @@ public class SpeciesPreview : Control
         }
     }
 
-    private void UpdatePreviewSpecies()
+    private void UpdateHexPreview()
     {
-        if (previewSpecies is MicrobeSpecies microbeSpecies)
-        {
-            task = new ImageTask(new CellType(microbeSpecies));
-            PhotoStudio.Instance.SubmitTask(task);
-        }
+        task = new ImageTask(new CellHexPhotoBuilder { Species = microbeSpecies });
+        PhotoStudio.Instance.SubmitTask(task);
     }
 }
