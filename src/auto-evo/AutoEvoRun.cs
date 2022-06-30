@@ -136,11 +136,10 @@ public class AutoEvoRun
             {
                 var percentage = CompletionFraction * 100;
 
-                // {0:F1}% done. {1:n0}/{2:n0} steps.
+                // {0:F1}% done. {1:n0}/{2:n0} steps. [Paused.]
                 return string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("AUTO-EVO_STEPS_DONE"),
-                    percentage, CompleteSteps, total) + (Running ? string.Empty : " " +
-                    TranslationServer.Translate("PAUSED_DOT"));
+                        TranslationServer.Translate("AUTO-EVO_STEPS_DONE"), percentage, CompleteSteps, total)
+                    + (Running ? string.Empty : " " + TranslationServer.Translate("PAUSED_DOT"));
             }
 
             return TranslationServer.Translate("STARTING");

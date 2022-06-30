@@ -352,10 +352,8 @@ public class MainMenu : NodeWithInput
 
         autoEvoExploringButton.Disabled = true;
 
-        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
-        {
-            SceneManager.Instance.SwitchToScene("res://src/auto-evo/AutoEvoExploringTool.tscn");
-        }, false);
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
+            () => { SceneManager.Instance.SwitchToScene("res://src/auto-evo/AutoEvoExploringTool.tscn"); }, false);
     }
 
     // TODO: this is now used by another sub menu as well so renaming this to be more generic would be good
