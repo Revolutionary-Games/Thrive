@@ -308,6 +308,9 @@ public class TweakedColourPicker : ColorPicker
     /// </summary>
     public void SetColour(Color colour)
     {
+        if (Color == colour)
+            return;
+
         Color = colour;
         EmitSignal("color_changed", colour);
     }
