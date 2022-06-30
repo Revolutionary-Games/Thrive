@@ -31,7 +31,8 @@ public class Compound : IRegistryType
     public bool IsEnvironmental;
 
     /// <summary>
-    ///   Unit for this compound, if applicable (e.g. °C)
+    ///   Unit for this compound, if applicable (e.g. °C for temperature)
+    /// </summary>
     public string Unit = null!;
 
     /// <summary>
