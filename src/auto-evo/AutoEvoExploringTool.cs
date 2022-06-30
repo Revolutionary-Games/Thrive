@@ -93,6 +93,9 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath AbortButtonPath = null!;
 
+    [Export]
+    public NodePath PlayWithCurrentSettingPath = null!;
+
     // Report paths
 
     [Export]
@@ -158,6 +161,7 @@ public class AutoEvoExploringTool : NodeWithInput
     private Button finishOneGenerationButton = null!;
     private Button runOneStepButton = null!;
     private Button abortButton = null!;
+    private Button playWithCurrentSettingButton = null!;
 
     // Report controls
     private VBoxContainer generationHistoryList = null!;
@@ -242,6 +246,7 @@ public class AutoEvoExploringTool : NodeWithInput
         finishOneGenerationButton = GetNode<Button>(RunGenerationButtonPath);
         runOneStepButton = GetNode<Button>(RunStepButtonPath);
         abortButton = GetNode<Button>(AbortButtonPath);
+        playWithCurrentSettingButton = GetNode<Button>(PlayWithCurrentSettingPath);
 
         autoEvoResultsLabel = GetNode<CustomRichTextLabel>(ResultsLabelPath);
         generationHistoryList = GetNode<VBoxContainer>(HistoryContainerPath);
@@ -514,5 +519,25 @@ public class AutoEvoExploringTool : NodeWithInput
             speciesPreview.PreviewSpecies = species;
             hexPreview.PreviewSpecies = species as MicrobeSpecies;
         }
+    }
+
+    private void PlayWithCurrentSettingPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Disable the button to prevent it being executed again.
+        playWithCurrentSettingButton.Disabled = true;
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
+        {
+            // Instantiate a new editor scene
+            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
+
+            // Start freebuild game
+            editor.CurrentGame = gameProperties;
+
+            // Switch to the editor scene
+            SceneManager.Instance.SwitchToScene(editor);
+        }, false);
     }
 }

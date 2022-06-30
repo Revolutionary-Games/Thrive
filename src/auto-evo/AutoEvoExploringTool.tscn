@@ -40,6 +40,7 @@ RunStatusLabelPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/Mar
 RunGenerationButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunGeneration")
 RunStepButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep")
 AbortButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort")
+PlayWithCurrentSettingPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayWithThis")
 HistoryContainerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/HistoryPanel/MarginContainer/VBoxContainer/ScrollContainer/HistoryContainer")
 ResultsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
 SpeciesPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer/SpeciesPreview")
@@ -418,7 +419,6 @@ text = "ABORT"
 margin_top = 265.0
 margin_right = 311.0
 margin_bottom = 300.0
-disabled = true
 text = "PLAY_WITH_CURRENT_SETTING"
 
 [node name="HistoryReportSplit" type="HSplitContainer" parent="GUI/VBoxContainer"]
@@ -660,4 +660,5 @@ text = "BACK"
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunGeneration" to="." method="OnFinishOneGenerationButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/RunStep" to="." method="OnRunOneStepButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayWithThis" to="." method="PlayWithCurrentSettingPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
