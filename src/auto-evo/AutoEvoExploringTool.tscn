@@ -43,9 +43,10 @@ AbortButtonPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/Margin
 PlayWithCurrentSettingPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayWithThis")
 HistoryContainerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/HistoryPanel/MarginContainer/VBoxContainer/ScrollContainer/HistoryContainer")
 ResultsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report/ResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ResultsLabel")
-SpeciesPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer/SpeciesPreview")
-HexPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/CellHexPreview")
+SpeciesPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/VBoxContainer/PreviewPanel/MarginContainer/VBoxContainer/SpeciesPreview")
+HexPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/VBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/CellHexPreview")
 SpeciesListPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesPanel/MarginContainer/VBoxContainer/ScrollContainer/SpeciesList")
+SpeciesDetailsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/SpeciesInfoLabel")
 
 [node name="BackGround" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -93,6 +94,7 @@ margin_bottom = 35.0
 text = "VIEWER"
 
 [node name="ConfigEditor" type="Control" parent="GUI/VBoxContainer"]
+visible = false
 margin_top = 45.0
 margin_right = 1180.0
 margin_bottom = 615.0
@@ -422,7 +424,6 @@ margin_bottom = 300.0
 text = "PLAY_WITH_CURRENT_SETTING"
 
 [node name="HistoryReportSplit" type="HSplitContainer" parent="GUI/VBoxContainer"]
-visible = false
 margin_top = 45.0
 margin_right = 1180.0
 margin_bottom = 615.0
@@ -430,7 +431,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HistoryPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit"]
-margin_right = 2.0
+margin_right = 133.0
 margin_bottom = 570.0
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/HistoryPanel"]
@@ -519,7 +520,7 @@ margin_right = 1013.0
 margin_bottom = 46.0
 
 [node name="Viewer" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
-margin_left = 14.0
+margin_left = 145.0
 margin_right = 1180.0
 margin_bottom = 570.0
 size_flags_horizontal = 3
@@ -530,17 +531,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 20
+custom_constants/separation = 10
 
 [node name="SpeciesPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
-margin_right = 300.0
+margin_right = 330.0
 margin_bottom = 570.0
-rect_min_size = Vector2( 300, 0 )
+rect_min_size = Vector2( 330, 0 )
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesPanel"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 299.0
+margin_right = 329.0
 margin_bottom = 569.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -550,96 +551,151 @@ custom_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesPanel/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 288.0
+margin_right = 318.0
 margin_bottom = 558.0
 
 [node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesPanel/MarginContainer/VBoxContainer"]
-margin_right = 278.0
+margin_right = 308.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 4 )
 text = "SPECIES_IN_GENERATION"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesPanel/MarginContainer/VBoxContainer"]
 margin_top = 24.0
-margin_right = 278.0
+margin_right = 308.0
 margin_bottom = 548.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="SpeciesList" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesPanel/MarginContainer/VBoxContainer/ScrollContainer"]
-margin_right = 278.0
+margin_right = 308.0
 margin_bottom = 524.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HexViewPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
-margin_left = 320.0
-margin_right = 667.0
+[node name="SpeciesDetailPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
+margin_left = 340.0
+margin_right = 692.0
 margin_bottom = 570.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/HexViewPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 346.0
+margin_right = 351.0
 margin_bottom = 569.0
+rect_min_size = Vector2( 350, 0 )
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/HexViewPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 335.0
+margin_right = 340.0
 margin_bottom = 558.0
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer"]
-margin_right = 325.0
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer"]
+margin_right = 330.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 4 )
-text = "HEX_VIEW"
+text = "SPECIES_DETAILS"
 
-[node name="CellHexPreview" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/HexViewPanel/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer"]
 margin_top = 24.0
-margin_right = 325.0
+margin_right = 330.0
 margin_bottom = 548.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
 
-[node name="PreviewPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
-margin_left = 687.0
+[node name="SpeciesInfoLabel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource( 5 )]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 320.0
+margin_bottom = 514.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+fit_content_height = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer"]
+margin_left = 702.0
 margin_right = 1035.0
 margin_bottom = 570.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PreviewPanel"]
+[node name="HexViewPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/VBoxContainer"]
+margin_right = 333.0
+margin_bottom = 280.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/VBoxContainer/HexViewPanel"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 347.0
-margin_bottom = 569.0
+margin_right = 332.0
+margin_bottom = 279.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PreviewPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/VBoxContainer/HexViewPanel/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 336.0
-margin_bottom = 558.0
+margin_right = 321.0
+margin_bottom = 268.0
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer"]
-margin_right = 326.0
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/VBoxContainer/HexViewPanel/MarginContainer/VBoxContainer"]
+margin_right = 311.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+text = "HEX_VIEW"
+
+[node name="CellHexPreview" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/VBoxContainer/HexViewPanel/MarginContainer/VBoxContainer" instance=ExtResource( 10 )]
+margin_top = 24.0
+margin_right = 311.0
+margin_bottom = 258.0
+
+[node name="PreviewPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/VBoxContainer"]
+margin_top = 290.0
+margin_right = 333.0
+margin_bottom = 570.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/VBoxContainer/PreviewPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 332.0
+margin_bottom = 279.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/VBoxContainer/PreviewPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 321.0
+margin_bottom = 268.0
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/VBoxContainer/PreviewPanel/MarginContainer/VBoxContainer"]
+margin_right = 311.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 4 )
 text = "PREVIEW"
 
-[node name="SpeciesPreview" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PreviewPanel/MarginContainer/VBoxContainer" instance=ExtResource( 9 )]
+[node name="SpeciesPreview" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/VBoxContainer/PreviewPanel/MarginContainer/VBoxContainer" instance=ExtResource( 9 )]
 margin_top = 24.0
-margin_right = 326.0
-margin_bottom = 548.0
+margin_right = 311.0
+margin_bottom = 258.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
 margin_top = 625.0

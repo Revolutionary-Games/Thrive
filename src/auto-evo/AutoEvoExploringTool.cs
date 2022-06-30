@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using AutoEvo;
 using Godot;
 using Godot.Collections;
+using HarmonyLib;
 
 public class AutoEvoExploringTool : NodeWithInput
 {
@@ -115,6 +117,9 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath SpeciesListPath = null!;
 
+    [Export]
+    public NodePath SpeciesDetailsLabelPath = null!;
+
     /// <summary>
     ///   This list stores copy of species in every generation.
     /// </summary>
@@ -171,6 +176,7 @@ public class AutoEvoExploringTool : NodeWithInput
     private SpeciesPreview speciesPreview = null!;
     private CellHexPreview hexPreview = null!;
     private VBoxContainer speciesList = null!;
+    private CustomRichTextLabel speciesDetailsLabel = null!;
 
     private PackedScene customCheckBoxScene = null!;
 
@@ -254,6 +260,7 @@ public class AutoEvoExploringTool : NodeWithInput
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         hexPreview = GetNode<CellHexPreview>(HexPreviewPath);
         speciesList = GetNode<VBoxContainer>(SpeciesListPath);
+        speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
 
         customCheckBoxScene = GD.Load<PackedScene>("res://src/gui_common/CustomCheckBox.tscn");
 
@@ -526,7 +533,35 @@ public class AutoEvoExploringTool : NodeWithInput
         {
             speciesPreview.PreviewSpecies = species;
             hexPreview.PreviewSpecies = species as MicrobeSpecies;
+            UpdateSpeciesDetail(species);
         }
+    }
+
+    private void UpdateSpeciesDetail(Species species)
+    {
+        speciesDetailsLabel.ExtendedBbcode = $"[b]Species:[/b]\n  {species.FormattedNameBbCode}\n" +
+            $"[b]Generation:[/b]\n  {species.Generation}\n" +
+            $"[b]Population:[/b]\n  {species.Population}\n" +
+            $"[b]Colour:[/b]\n  #{species.Colour.ToHtml()}\n" +
+            $"[b]Behaviour[/b]\n  {species.Behaviour.Join(b => b.Key + ": " + b.Value, "\n  ")}\n";
+
+        switch (species)
+        {
+            case MicrobeSpecies microbeSpecies:
+            {
+                speciesDetailsLabel.ExtendedBbcode += $"[b]Stage:[/b]\n  Microbe\n" +
+                    $"[b]Membrane Type:[/b]\n  {microbeSpecies.MembraneType.Name}\n" +
+                    $"[b]Membrane Rigidity:[/b]\n  {microbeSpecies.MembraneRigidity}\n" +
+                    $"[b]Base Speed:[/b]\n  {microbeSpecies.BaseSpeed}\n" +
+                    $"[b]Base Rotation Speed[/b]\n  {microbeSpecies.BaseRotationSpeed}\n";
+                break;
+            }
+        }
+
+        /*
+        speciesDetailsLabel.ExtendedBbcode = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("SPECIES_DETAIL_TEXT"), );
+        */
     }
 
     private void PlayWithCurrentSettingPressed()
