@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-23 16:32+0300\n"
+"POT-Creation-Date: 2022-06-29 11:15+0700\n"
 "PO-Revision-Date: 2022-06-17 13:53+0000\n"
 "Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1126,16 +1126,26 @@ msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Выберите тип клетки в лаборатории редактора для изменения"
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 #: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 msgid "FRAME_DURATION"
 msgstr "FPS: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
+#: ../src/saving/SaveManagerGUI.cs:126
+msgid "MIB_VALUE"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
+#, fuzzy
+msgid "UNKNOWN_ON_WINDOWS"
+msgstr "Неизвестный Workshop ID для этого мода"
+
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
