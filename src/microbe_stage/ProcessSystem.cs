@@ -223,17 +223,11 @@ public class ProcessSystem
 
             // Environmental compound that can limit the rate
 
-            var availableInEnvironment = GetDissolvedInBiome(input.Key, biome);
+            var availableInEnvironment = GetAmbientInBiome(input.Key, biome);
 
             float availableRate;
-            if (input.Key == Temperature)
-            {
-                availableRate = CalculateTemperatureEffect(availableInEnvironment);
-            }
-            else
-            {
-                availableRate = availableInEnvironment / input.Value;
-            }
+            availableRate = input.Key == Temperature ?
+                CalculateTemperatureEffect(availableInEnvironment) : availableInEnvironment / input.Value;
 
             result.AvailableAmounts[input.Key] = availableInEnvironment;
 
@@ -332,22 +326,26 @@ public class ProcessSystem
     /// <summary>
     ///   Get the amount of environmental compound
     /// </summary>
-    public float GetDissolved(Compound compound)
+    public float GetAmbient(Compound compound)
     {
         if (biome == null)
-            throw new InvalidOperationException("Biome needs to be set before getting dissolved compounds");
+            throw new InvalidOperationException("Biome needs to be set before getting ambient compounds");
 
-        return GetDissolvedInBiome(compound, biome);
+        return GetAmbientInBiome(compound, biome);
     }
 
-    private static float GetDissolvedInBiome(Compound compound, BiomeConditions biome)
+    private static float GetAmbientInBiome(Compound compound, BiomeConditions biome)
     {
         if (!biome.Compounds.TryGetValue(compound, out var environmentalCompoundProperties))
             return 0;
 
-        return environmentalCompoundProperties.Dissolved;
+        return environmentalCompoundProperties.Ambient;
     }
 
+    /// <summary>
+    ///   Since temperature works differently to other compounds, we use this method to deal with it. Logic here
+    ///   is liable to be updated in the future to use alternative effect models.
+    /// </summary>
     private static float CalculateTemperatureEffect(float temperature)
     {
         // Assume thermosynthetic processes are most efficient at 100°C and drop off linearly to zero
@@ -420,20 +418,14 @@ public class ProcessSystem
             if (!entry.Key.IsEnvironmental)
                 continue;
 
-            var dissolved = GetDissolved(entry.Key);
+            var ambient = GetAmbient(entry.Key);
 
             // currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);
-            currentProcessStatistics?.AddInputAmount(entry.Key, dissolved);
+            currentProcessStatistics?.AddInputAmount(entry.Key, ambient);
 
             // do environmental modifier here, and save it for later
-            if (entry.Key == Temperature)
-            {
-                environmentModifier *= CalculateTemperatureEffect(dissolved);
-            }
-            else
-            {
-                environmentModifier *= dissolved / entry.Value;
-            }
+            environmentModifier *= entry.Key == Temperature ?
+                CalculateTemperatureEffect(ambient) : ambient / entry.Value;
 
             if (environmentModifier <= MathUtils.EPSILON)
                 currentProcessStatistics?.AddLimitingFactor(entry.Key);

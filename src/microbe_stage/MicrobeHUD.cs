@@ -710,11 +710,11 @@ public class MicrobeHUD : Control
 
     public void UpdateEnvironmentalBars(BiomeConditions biome)
     {
-        var oxygenPercentage = biome.Compounds[oxygen].Dissolved * 100;
-        var co2Percentage = biome.Compounds[carbondioxide].Dissolved * 100;
-        var nitrogenPercentage = biome.Compounds[nitrogen].Dissolved * 100;
-        var sunlightPercentage = biome.Compounds[sunlight].Dissolved * 100;
-        var averageTemperature = biome.Compounds[temperature].Dissolved;
+        var oxygenPercentage = biome.Compounds[oxygen].Ambient * 100;
+        var co2Percentage = biome.Compounds[carbondioxide].Ambient * 100;
+        var nitrogenPercentage = biome.Compounds[nitrogen].Ambient * 100;
+        var sunlightPercentage = biome.Compounds[sunlight].Ambient * 100;
+        var averageTemperature = biome.Compounds[temperature].Ambient;
 
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
 
@@ -735,7 +735,8 @@ public class MicrobeHUD : Control
 
         sunlightLabel.GetNode<Label>("Value").Text =
             string.Format(CultureInfo.CurrentCulture, percentageFormat, sunlightPercentage);
-        temperatureLabel.GetNode<Label>("Value").Text = averageTemperature + " °C";
+        temperatureLabel.GetNode<Label>("Value").Text =
+            averageTemperature + " " + temperature.Unit;
 
         // TODO: pressure?
     }

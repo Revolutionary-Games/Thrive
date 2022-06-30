@@ -30,7 +30,9 @@ public class Compound : IRegistryType
 
     public bool IsEnvironmental;
 
-    public string Suffix = null!;
+    /// <summary>
+    ///   Unit for this compound, if applicable (e.g. °C)
+    public string Unit = null!;
 
     /// <summary>
     ///   Whether this compound can be distributed in a colony

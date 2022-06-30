@@ -396,7 +396,7 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
 
         // Atmospheric gasses
         var temperature = SimulationParameters.Instance.GetCompound("temperature");
-        patchTemperature.Text = patch.Biome.Compounds[temperature].Dissolved + temperature.Suffix;
+        patchTemperature.Text = patch.Biome.Compounds[temperature].Ambient + temperature.Unit;
         patchPressure.Text = "20 bar";
         patchLight.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
             GetCompoundAmount(patch, sunlight.InternalName)) + " lx";
@@ -440,13 +440,13 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
     private void UpdateConditionDifferencesBetweenPatches(Patch selectedPatch, Patch currentPatch)
     {
         var temperature = SimulationParameters.Instance.GetCompound("temperature");
-        var nextCompound = selectedPatch.Biome.Compounds[temperature].Dissolved;
+        var nextCompound = selectedPatch.Biome.Compounds[temperature].Ambient;
 
-        if (nextCompound > currentPatch.Biome.Compounds[temperature].Dissolved)
+        if (nextCompound > currentPatch.Biome.Compounds[temperature].Ambient)
         {
             patchTemperatureSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Biome.Compounds[temperature].Dissolved)
+        else if (nextCompound < currentPatch.Biome.Compounds[temperature].Ambient)
         {
             patchTemperatureSituation.Texture = decreaseIcon;
         }
@@ -455,13 +455,13 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
             patchTemperatureSituation.Texture = null;
         }
 
-        nextCompound = selectedPatch.Biome.Compounds[sunlight].Dissolved;
+        nextCompound = selectedPatch.Biome.Compounds[sunlight].Ambient;
 
-        if (nextCompound > currentPatch.Biome.Compounds[sunlight].Dissolved)
+        if (nextCompound > currentPatch.Biome.Compounds[sunlight].Ambient)
         {
             patchLightSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < currentPatch.Biome.Compounds[sunlight].Dissolved)
+        else if (nextCompound < currentPatch.Biome.Compounds[sunlight].Ambient)
         {
             patchLightSituation.Texture = decreaseIcon;
         }
