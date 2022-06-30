@@ -31,7 +31,7 @@ using Newtonsoft.Json;
 /// </remarks>
 public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState,
     IGodotEarlyNodeResolve
-    where TAction : CellEditorAction
+    where TAction : EditorAction
     where TStage : Node, IReturnableGameState
 {
     [Export]
@@ -75,10 +75,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     [JsonProperty]
     protected GameProperties? currentGame;
 
-    [JsonProperty]
-    private int mutationPoints;
-
     private Control editorGUIBaseNode = null!;
+
+    private int? mutationPointsCache;
 
     /// <summary>
     ///   Base Node where all dynamically created world Nodes in the editor should go. Optionally grouped under
@@ -91,13 +90,13 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     public bool TransitionFinished { get; protected set; }
 
     [JsonIgnore]
-    public virtual int MutationPoints
+    public int MutationPoints
     {
-        get => mutationPoints;
+        get => mutationPointsCache ?? CalculateMutationPointsLeft();
         set
         {
-            mutationPoints = Mathf.Clamp(value, 0, Constants.BASE_MUTATION_POINTS);
-            OnMutationPointsChanged();
+            _ = value;
+            DirtyMutationPointsCache();
         }
     }
 
@@ -239,7 +238,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
                 return;
             }
 
-            OnEditorReady();
+            Ready = true;
+            TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.5f, OnEditorReady, false, false);
         }
 
         // Auto save after editor entry is complete
@@ -285,8 +285,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         if (EditedBaseSpecies == null)
             throw new InvalidOperationException("Editor not initialized, missing edited species");
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(this, nameof(MicrobeEditor.OnEditorExitTransitionFinished));
+        TransitionManager.Instance.AddSequence(
+            ScreenFade.FadeType.FadeOut, 0.3f, OnEditorExitTransitionFinished, false);
+
         return true;
     }
 
@@ -310,6 +311,17 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     public virtual void SetEditorObjectVisibility(bool shown)
     {
         RootOfDynamicallySpawned.Visible = shown;
+    }
+
+    public void DirtyMutationPointsCache()
+    {
+        mutationPointsCache = null;
+    }
+
+    public bool HexPlacedThisSession<THex>(THex hex)
+        where THex : class, IActionHex
+    {
+        return history.HexPlacedThisSession(hex);
     }
 
     [RunOnKeyDown("e_redo")]
@@ -359,7 +371,7 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     public abstract bool CancelCurrentAction();
 
-    public abstract int WhatWouldActionsCost(IEnumerable<CombinableActionData> actions);
+    public abstract int WhatWouldActionsCost(IEnumerable<EditorCombinableActionData> actions);
 
     public virtual bool EnqueueAction(TAction action)
     {
@@ -377,6 +389,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         history.AddAction(action);
 
         NotifyUndoRedoStateChanged();
+
+        DirtyMutationPointsCache();
+
         return true;
     }
 
@@ -387,7 +402,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     public bool CheckEnoughMPForAction(int cost)
     {
-        if (MutationPoints < cost)
+        // Freebuilding check is here because in freebuild we are allowed to make edits that consume more than the max
+        // MP in a single go, and those wouldn't work without this freebuilding check here
+        if (MutationPoints < cost && !FreeBuilding)
         {
             // Flash the MP bar and play sound
             OnInsufficientMP();
@@ -520,10 +537,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         {
             // Auto save is wanted once possible
             wantsToSave = true;
-
-            // This needs to be setup before the GUI in case there is an element there whose initial state depends on
-            // how much MP is remaining
-            mutationPoints = Constants.BASE_MUTATION_POINTS;
         }
 
         InitEditorGUI(fresh);
@@ -547,6 +560,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
 
                 CurrentGame.GameWorld.FinishAutoEvoRunAtFullSpeed();
+
+                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.5f, null, false, false);
             }
             else
             {
@@ -575,7 +590,10 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
             // Make sure non-default tab button is highlighted right if we loaded a save where the tab was changed
             editorTabSelector?.SetCurrentTab(selectedEditorTab);
 
-            FadeIn();
+            // Just assume that a transition is finished (even though one may still be running after save load is
+            // complete). This should be fine as it will just be skipped if the player immediately exits the editor
+            // to the stage
+            TransitionFinished = true;
         }
 
         if (CurrentGame == null)
@@ -625,6 +643,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         {
             // Make sure button status is reset so that it doesn't look like the wrong tab button is now active
             editorTabSelector?.SetCurrentTab(selectedEditorTab);
+
+            ToolTipManager.Instance.ShowPopup(
+                TranslationServer.Translate("ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"), 1.5f);
             return;
         }
 
@@ -656,14 +677,22 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
 
     protected virtual void OnUndoPerformed()
     {
+        DirtyMutationPointsCache();
     }
 
     protected virtual void OnRedoPerformed()
     {
+        DirtyMutationPointsCache();
     }
 
     protected virtual void UpdateEditor(float delta)
     {
+        if (mutationPointsCache == null)
+        {
+            // This calls OnMutationPointsChanged anyway so we call this directly here to save a duplicate callback
+            // dispatch to editor components
+            CalculateMutationPointsLeft();
+        }
     }
 
     protected abstract void ElapseEditorEntryTime();
@@ -736,11 +765,6 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
         stage.OnReturnFromEditor();
     }
 
-    private void OnFinishTransitioning()
-    {
-        TransitionFinished = true;
-    }
-
     private void MakeSureEditorReturnIsGood()
     {
         if (currentGame == null)
@@ -789,12 +813,34 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoa
     }
 
     /// <summary>
+    ///   Calculates the remaining MP from the action history
+    /// </summary>
+    /// <returns>The remaining MP</returns>
+    private int CalculateMutationPointsLeft()
+    {
+        if (FreeBuilding || CheatManager.InfiniteMP)
+            return Constants.BASE_MUTATION_POINTS;
+
+        mutationPointsCache = history.CalculateMutationPointsLeft();
+
+        if (mutationPointsCache.Value < 0 || mutationPointsCache > Constants.BASE_MUTATION_POINTS)
+        {
+            GD.PrintErr("Invalid MP amount: ", mutationPointsCache,
+                " This should only happen if the user disabled the Infinite MP cheat while having mutated too much.");
+        }
+
+        OnMutationPointsChanged();
+
+        return mutationPointsCache.Value;
+    }
+
+    /// <summary>
     ///   Starts a fade in transition
     /// </summary>
     private void FadeIn()
     {
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 0.5f);
-        TransitionManager.Instance.StartTransitions(this, nameof(OnFinishTransitioning));
+        TransitionManager.Instance.AddSequence(
+            ScreenFade.FadeType.FadeIn, 0.5f, () => TransitionFinished = true, false);
     }
 
     private void StartMusic()

@@ -281,7 +281,8 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         if (HandleRandomSpeciesName)
         {
             var nameGenerator = SimulationParameters.Instance.NameGenerator;
-            var randomizedName = nameGenerator.GenerateNameSection() + " " + nameGenerator.GenerateNameSection();
+            var randomizedName = nameGenerator.GenerateNameSection() + " " +
+                nameGenerator.GenerateNameSection(null, true);
 
             speciesNameEdit.Text = randomizedName;
             OnNameTextChanged(randomizedName);

@@ -1,5 +1,5 @@
 ﻿[JSONAlwaysDynamicType]
-public class MembraneActionData : MicrobeEditorCombinableActionData
+public class MembraneActionData : EditorCombinableActionData
 {
     public MembraneType OldMembrane;
     public MembraneType NewMembrane;
@@ -10,7 +10,7 @@ public class MembraneActionData : MicrobeEditorCombinableActionData
         NewMembrane = newMembrane;
     }
 
-    public override int CalculateCost()
+    protected override int CalculateCostInternal()
     {
         return NewMembrane.EditorCost;
     }

@@ -41,6 +41,8 @@ public class PauseMenu : CustomDialog
     private CustomConfirmationDialog unsavedProgressWarning = null!;
     private AnimationPlayer animationPlayer = null!;
 
+    private bool paused;
+
     /// <summary>
     ///   The assigned pending exit type, will be used to specify what kind of
     ///   game exit will be performed on exit confirmation.
@@ -48,7 +50,7 @@ public class PauseMenu : CustomDialog
     private ExitType exitType;
 
     [Signal]
-    public delegate void OnClosed();
+    public delegate void OnResumed();
 
     /// <summary>
     ///   Triggered when the user hits ESC to open the pause menu
@@ -159,6 +161,26 @@ public class PauseMenu : CustomDialog
         }
     }
 
+    private bool Paused
+    {
+        set
+        {
+            if (paused == value)
+                return;
+
+            if (paused)
+            {
+                PauseManager.Instance.Resume(nameof(PauseMenu));
+            }
+            else
+            {
+                PauseManager.Instance.AddPause(nameof(PauseMenu));
+            }
+
+            paused = value;
+        }
+    }
+
     public override void _EnterTree()
     {
         // This needs to be done early here to make sure the help screen loads the right text
@@ -174,6 +196,7 @@ public class PauseMenu : CustomDialog
         base._ExitTree();
 
         InputManager.UnregisterReceiver(this);
+        Paused = false;
     }
 
     public override void _Ready()
@@ -193,8 +216,8 @@ public class PauseMenu : CustomDialog
         {
             ActiveMenu = ActiveMenuType.Primary;
 
-            EmitSignal(nameof(OnClosed));
             Close();
+            EmitSignal(nameof(OnResumed));
 
             return true;
         }
@@ -202,8 +225,8 @@ public class PauseMenu : CustomDialog
         if (IsPausingBlocked)
             return false;
 
-        EmitSignal(nameof(OnOpenWithKeyPress));
         Open();
+        EmitSignal(nameof(OnOpenWithKeyPress));
 
         return true;
     }
@@ -214,8 +237,8 @@ public class PauseMenu : CustomDialog
         if (IsPausingBlocked)
             return false;
 
-        EmitSignal(nameof(OnOpenWithKeyPress));
         Open();
+        EmitSignal(nameof(OnOpenWithKeyPress));
 
         ShowHelpScreen();
         return true;
@@ -236,7 +259,7 @@ public class PauseMenu : CustomDialog
             return;
 
         animationPlayer.Play("Open");
-        GetTree().Paused = true;
+        Paused = true;
     }
 
     public void Close()
@@ -245,7 +268,7 @@ public class PauseMenu : CustomDialog
             return;
 
         animationPlayer.Play("Close");
-        GetTree().Paused = false;
+        Paused = false;
     }
 
     public void OpenToHelp()
@@ -287,8 +310,8 @@ public class PauseMenu : CustomDialog
     private void ClosePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnClosed));
         Close();
+        EmitSignal(nameof(OnResumed));
     }
 
     private void ReturnToMenuPressed()
@@ -347,11 +370,9 @@ public class PauseMenu : CustomDialog
 
     private void ReturnToMenu()
     {
-        // Unpause the game
-        GetTree().Paused = false;
+        Paused = false;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
-        TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, OnSwitchToMenu, false);
     }
 
     private void Quit()
@@ -411,8 +432,10 @@ public class PauseMenu : CustomDialog
         ActiveMenu = ActiveMenuType.Primary;
 
         // Close this first to get the menus out of the way to capture the save screenshot
-        EmitSignal(nameof(OnClosed));
+        Hide();
+        EmitSignal(nameof(OnResumed));
         EmitSignal(nameof(MakeSave), name);
+        Paused = false;
     }
 
     /// <summary>
@@ -426,5 +449,11 @@ public class PauseMenu : CustomDialog
     private void OnLoadSaveConfirmed(SaveListItem item)
     {
         item.LoadThisSave();
+    }
+
+    private void OnSaveLoaded(string saveName)
+    {
+        _ = saveName;
+        Paused = false;
     }
 }

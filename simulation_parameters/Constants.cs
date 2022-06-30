@@ -20,6 +20,21 @@ public static class Constants
     public const float MAX_SPAWN_DISTANCE = 5000.0f;
 
     /// <summary>
+    ///   Size of "chunks" used for spawning entities
+    /// </summary>
+    public const float SPAWN_SECTOR_SIZE = 120.0f;
+
+    /// <summary>
+    ///   Scale factor for density of compound cloud spawns
+    /// </summary>
+    public const int CLOUD_SPAWN_DENSITY_SCALE_FACTOR = 10000;
+
+    /// <summary>
+    ///   Scale factor for amount of compound in each spawned cloud
+    /// </summary>
+    public const float CLOUD_SPAWN_AMOUNT_SCALE_FACTOR = 0.75f;
+
+    /// <summary>
     ///   The (default) size of the hexagons, used in calculations. Don't change this.
     /// </summary>
     public const float DEFAULT_HEX_SIZE = 0.75f;
@@ -70,10 +85,32 @@ public static class Constants
 
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
+    public const float CELL_BASE_ROTATION = 0.2f;
+    public const float CELL_MAX_ROTATION = 0.40f;
+    public const float CELL_MIN_ROTATION = 0.005f;
+    public const float CELL_MOMENT_OF_INERTIA_DISTANCE_MULTIPLIER = 0.5f;
+    public const float CILIA_ROTATION_FACTOR = 0.008f;
+    public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 0.7f;
+
+    public const float CELL_COLONY_MAX_ROTATION_MULTIPLIER = 2.5f;
+    public const float CELL_COLONY_MIN_ROTATION_MULTIPLIER = 0.05f;
+    public const float CELL_COLONY_MAX_ROTATION_HELP = 2.5f;
+    public const float CELL_COLONY_MEMBER_ROTATION_FACTOR_MULTIPLIER = 45.0f;
+
+    public const float CILIA_ENERGY_COST = 2.0f;
+    public const float CILIA_ROTATION_NEEDED_FOR_ATP_COST = 0.03f;
+    public const float CILIA_ROTATION_ENERGY_BASE_MULTIPLIER = 4.0f;
+
+    public const float CILIA_DEFAULT_ANIMATION_SPEED = 0.3f;
+    public const float CILIA_MIN_ANIMATION_SPEED = 0.15f;
+    public const float CILIA_MAX_ANIMATION_SPEED = 1.2f;
+    public const float CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER = 7.0f;
+    public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
+
     public const int PROCESS_OBJECTS_PER_TASK = 15;
 
-    public const int MICROBE_SPAWN_RADIUS = 170;
-    public const int CLOUD_SPAWN_RADIUS = 170;
+    public const int MICROBE_SPAWN_RADIUS = 350;
+    public const int CLOUD_SPAWN_RADIUS = 350;
 
     /// <summary>
     ///   Extra radius added to the spawn radius of things to allow them to move in the "wrong" direction a bit
@@ -290,7 +327,7 @@ public static class Constants
     /// <summary>
     ///   How much fully rigid membrane reduces movement factor of a cell
     /// </summary>
-    public const float MEMBRANE_RIGIDITY_MOBILITY_MODIFIER = 0.1f;
+    public const float MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER = 0.1f;
 
     /// <summary>
     ///   How much ATP does engulf mode cost per second
@@ -436,11 +473,15 @@ public static class Constants
 
     public const float DEFAULT_BEHAVIOUR_VALUE = 100.0f;
 
-    // Bacterial Colony configuration
-    public const int MIN_BACTERIAL_COLONY_SIZE = 2;
-    public const int MAX_BACTERIAL_COLONY_SIZE = 6;
-    public const int MIN_BACTERIAL_LINE_SIZE = 3;
-    public const int MAX_BACTERIAL_LINE_SIZE = 7;
+    /// <summary>
+    ///   Minimum extra microbes to spawn
+    /// </summary>
+    public const int MIN_BACTERIAL_COLONY_SIZE = 0;
+
+    /// <summary>
+    ///   Maximum extra microbes to spawn
+    /// </summary>
+    public const int MAX_BACTERIAL_COLONY_SIZE = 1;
 
     // What is divided during fear and aggression calculations in the AI
     public const float AGGRESSION_DIVISOR = 25.0f;
@@ -495,7 +536,7 @@ public static class Constants
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
     public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
-    public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 1.0f;
+    public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 20;
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
@@ -509,19 +550,31 @@ public static class Constants
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
 
+    public const double AUTO_EVO_COMPOUND_RATIO_POWER_BIAS = 1;
+    public const double AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS = 0.5;
+
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
     /// </summary>
     public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
 
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
-
-    public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
-    // These control how many game entities can exist at once and how fast they are allowed to spawn / despawn
-    // TODO: bump this back up once we resolve the performance bottleneck
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 140;
+    // These control how many game entities can exist at once
+    // TODO: bump these back up once we resolve the performance bottleneck
+    public const int TINY_MAX_SPAWNED_ENTITIES = 25;
+    public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 40;
+    public const int SMALL_MAX_SPAWNED_ENTITIES = 55;
+    public const int NORMAL_MAX_SPAWNED_ENTITIES = 70;
+    public const int LARGE_MAX_SPAWNED_ENTITIES = 85;
+    public const int VERY_LARGE_MAX_SPAWNED_ENTITIES = 100;
+    public const int HUGE_MAX_SPAWNED_ENTITIES = 115;
+    public const int EXTREME_MAX_SPAWNED_ENTITIES = 130;
+
+    /// <summary>
+    ///   Controls how fast entities are allowed to spawn
+    /// </summary>
     public const int MAX_SPAWNS_PER_FRAME = 1;
 
     /// <summary>
@@ -699,6 +752,8 @@ public static class Constants
     /// </summary>
     public const string DEFAULT_AUDIO_OUTPUT_DEVICE_NAME = "Default";
 
+    public const string OS_WINDOWS_NAME = "Windows";
+
     /// <summary>
     ///   This is just here to make it easier to debug saves
     /// </summary>
@@ -757,12 +812,12 @@ public static class Constants
     /// <summary>
     ///   Minimum amount for the quite a bit category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 400f;
+    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 800f;
 
     /// <summary>
     ///   Minimum amount for the an abundance category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 600f;
+    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000f;
 
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
@@ -783,6 +838,20 @@ public static class Constants
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
     public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
+
+    // Min/max values for each customisable difficulty option
+    public const float MIN_MP_MULTIPLIER = 0.2f;
+    public const float MAX_MP_MULTIPLIER = 2;
+    public const float MIN_AI_MUTATION_RATE = 0.5f;
+    public const float MAX_AI_MUTATION_RATE = 5;
+    public const float MIN_COMPOUND_DENSITY = 0.2f;
+    public const float MAX_COMPOUND_DENSITY = 2;
+    public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
+    public const float MAX_PLAYER_DEATH_POPULATION_PENALTY = 5;
+    public const float MIN_GLUCOSE_DECAY = 0.3f;
+    public const float MAX_GLUCOSE_DECAY = 0.95f;
+    public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
+    public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

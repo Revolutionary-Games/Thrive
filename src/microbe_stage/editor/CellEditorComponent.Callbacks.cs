@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -23,10 +24,10 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganellePlaceAction(PlacementActionData data)
+    private void DoOrganellePlaceAction(OrganellePlacementActionData data)
     {
         data.ReplacedCytoplasm = new List<OrganelleTemplate>();
-        var organelle = data.Organelle;
+        var organelle = data.PlacedHex;
 
         // Check if there is cytoplasm under this organelle.
         foreach (var hex in organelle.RotatedHexes)
@@ -55,9 +56,17 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganellePlaceAction(PlacementActionData data)
+    private void UndoOrganellePlaceAction(OrganellePlacementActionData data)
     {
-        editedMicrobeOrganelles.Remove(data.Organelle);
+        if (!editedMicrobeOrganelles.Remove(data.PlacedHex))
+        {
+            ThrowIfNotMulticellular();
+
+            var newlyInitializedOrganelle = editedMicrobeOrganelles.First(o => o.Position == data.PlacedHex.Position);
+            data.PlacedHex = newlyInitializedOrganelle;
+
+            editedMicrobeOrganelles.Remove(newlyInitializedOrganelle);
+        }
 
         if (data.ReplacedCytoplasm != null)
         {
@@ -72,24 +81,42 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganelleRemoveAction(RemoveActionData data)
+    private void DoOrganelleRemoveAction(OrganelleRemoveActionData data)
     {
-        editedMicrobeOrganelles.Remove(data.Organelle);
+        if (!editedMicrobeOrganelles.Remove(data.RemovedHex))
+        {
+            ThrowIfNotMulticellular();
+
+            var newlyInitializedOrganelle = editedMicrobeOrganelles.First(o => o.Position == data.RemovedHex.Position);
+            data.RemovedHex = newlyInitializedOrganelle;
+
+            editedMicrobeOrganelles.Remove(newlyInitializedOrganelle);
+        }
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganelleRemoveAction(RemoveActionData data)
+    private void UndoOrganelleRemoveAction(OrganelleRemoveActionData data)
     {
-        editedMicrobeOrganelles.Add(data.Organelle);
+        editedMicrobeOrganelles.Add(data.RemovedHex);
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganelleMoveAction(MoveActionData data)
+    private void DoOrganelleMoveAction(OrganelleMoveActionData data)
     {
-        data.Organelle.Position = data.NewLocation;
-        data.Organelle.Orientation = data.NewRotation;
+        if (IsMulticellularEditor)
+        {
+            // Try to recover if there is a new organelle instance we should act on instead
+            var newlyInitializedOrganelle = editedMicrobeOrganelles.FirstOrDefault(o =>
+                o.Position == data.OldLocation && o.Orientation == data.OldRotation);
 
-        if (editedMicrobeOrganelles.Contains(data.Organelle))
+            if (newlyInitializedOrganelle != null)
+                data.MovedHex = newlyInitializedOrganelle;
+        }
+
+        data.MovedHex.Position = data.NewLocation;
+        data.MovedHex.Orientation = data.NewRotation;
+
+        if (editedMicrobeOrganelles.Contains(data.MovedHex))
         {
             UpdateAlreadyPlacedVisuals();
 
@@ -98,7 +125,7 @@ public partial class CellEditorComponent
         }
         else
         {
-            editedMicrobeOrganelles.Add(data.Organelle);
+            editedMicrobeOrganelles.Add(data.MovedHex);
         }
 
         // TODO: dynamic MP PR had this line:
@@ -106,10 +133,10 @@ public partial class CellEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganelleMoveAction(MoveActionData data)
+    private void UndoOrganelleMoveAction(OrganelleMoveActionData data)
     {
-        data.Organelle.Position = data.OldLocation;
-        data.Organelle.Orientation = data.OldRotation;
+        data.MovedHex.Position = data.OldLocation;
+        data.MovedHex.Orientation = data.OldRotation;
 
         UpdateAlreadyPlacedVisuals();
         StartAutoEvoPrediction();
@@ -130,6 +157,10 @@ public partial class CellEditorComponent
         editedMicrobeOrganelles.Clear();
         editedMicrobeOrganelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
             new Hex(0, 0), 0));
+        Rigidity = 0;
+
+        if (!IsMulticellularEditor)
+            behaviourEditor.ResetBehaviour();
 
         OnPostNewMicrobeChange();
     }
@@ -139,10 +170,19 @@ public partial class CellEditorComponent
     {
         editedMicrobeOrganelles.Clear();
         Membrane = data.OldMembrane;
+        Rigidity = data.OldMembraneRigidity;
 
         foreach (var organelle in data.OldEditedMicrobeOrganelles)
         {
             editedMicrobeOrganelles.Add(organelle);
+        }
+
+        if (!IsMulticellularEditor)
+        {
+            foreach (var oldBehaviour in data.OldBehaviourValues)
+            {
+                behaviourEditor.SetBehaviouralValue(oldBehaviour.Key, oldBehaviour.Value);
+            }
         }
 
         OnPostNewMicrobeChange();
@@ -213,5 +253,17 @@ public partial class CellEditorComponent
     {
         Rigidity = data.PreviousRigidity;
         OnRigidityChanged();
+    }
+
+    /// <summary>
+    ///   In the case of the multicellular editor some actions need to work even if the editor has been reinitialized
+    ///   in the meantime since they were performed. For sanity checking sake we throw an exception in those cases
+    ///   if they are reached in non-multicellular editor mode.
+    /// </summary>
+    /// <exception cref="InvalidOperationException">The exception thrown if we aren't in multicellular</exception>
+    private void ThrowIfNotMulticellular()
+    {
+        if (!IsMulticellularEditor)
+            throw new InvalidOperationException("This operation should only happen in multicellular");
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=2]
+[gd_scene load_steps=128 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -22,7 +22,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/statisticsButton.png" type="Texture" id=20]
 [ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture" id=21]
 [ext_resource path="res://assets/textures/gui/bevel/compoundsButton.png" type="Texture" id=22]
-[ext_resource path="res://assets/textures/gui/bevel/pauseButton.png" type="Texture" id=23]
+[ext_resource path="res://src/gui_common/PlayButton.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenuActive.png" type="Texture" id=24]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenuHover.png" type="Texture" id=25]
 [ext_resource path="res://assets/textures/gui/bevel/compoundsButtonHover.png" type="Texture" id=26]
@@ -32,10 +32,8 @@
 [ext_resource path="res://assets/textures/gui/bevel/chemicalButtonActive.png" type="Texture" id=30]
 [ext_resource path="res://assets/textures/gui/bevel/chemicalButtonHover.png" type="Texture" id=31]
 [ext_resource path="res://assets/textures/gui/bevel/searchButtonActive.png" type="Texture" id=32]
-[ext_resource path="res://assets/textures/gui/bevel/pauseButtonHover.png" type="Texture" id=33]
 [ext_resource path="res://assets/textures/gui/bevel/statisticsButtonHover.png" type="Texture" id=34]
 [ext_resource path="res://assets/textures/gui/bevel/compoundsButtonActive.png" type="Texture" id=35]
-[ext_resource path="res://assets/textures/gui/bevel/pauseButtonActive.png" type="Texture" id=36]
 [ext_resource path="res://assets/textures/gui/bevel/helpButtonActive.png" type="Texture" id=37]
 [ext_resource path="res://assets/textures/gui/bevel/helpButtonHover.png" type="Texture" id=38]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=39]
@@ -77,8 +75,6 @@
 [ext_resource path="res://src/engine/GuidanceLine.tscn" type="PackedScene" id=75]
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=76]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=77]
-[ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
-[ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=80]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=81]
 [ext_resource path="res://assets/textures/gui/bevel/parts/BindingAgentIcon.png" type="Texture" id=82]
@@ -91,7 +87,9 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=89]
 [ext_resource path="res://assets/textures/gui/bevel/unbind.png" type="Texture" id=90]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=91]
-[ext_resource path="res://src/microbe_stage/gui/PatchExtinctionBox.tscn" type="PackedScene" id=92]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=92]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=93]
+[ext_resource path="res://src/microbe_stage/gui/PatchExtinctionBox.tscn" type="PackedScene" id=94]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -414,8 +412,7 @@ HoveredCompoundsContainerPath = NodePath("MouseHoverPanel/PanelContainer/MarginC
 HoverPanelSeparatorPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/SpeciesSeparator")
 HoveredCellsContainerPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells/List")
 MenuPath = NodePath("../PauseMenu")
-PauseButtonPath = NodePath("BottomLeft/BottomBar/PauseButtonMargin/Pause")
-ResumeButtonPath = NodePath("BottomLeft/BottomBar/PauseButtonMargin/Resume")
+PauseButtonPath = NodePath("BottomLeft/BottomBar/PlayButton")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/VBoxContainer/PopulationData/Value")
@@ -439,6 +436,10 @@ AmmoniaBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Bo
 PhosphateBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates")
 HydrogenSulfideBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide")
 IronBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron")
+EnvironmentPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton")
+EnvironmentPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton")
+CompoundsPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton")
+CompoundsPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton")
 CompoundsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer")
 AgentsPanelPath = NodePath("BottomLeft/LeftPanels/AgentsPanel")
 OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
@@ -452,7 +453,7 @@ ProcessPanelPath = NodePath("ProcessPanel")
 ProcessPanelButtonPath = NodePath("BottomLeft/BottomBar/ChemicalButton")
 HintTextPath = NodePath("HintText")
 ExtinctionBoxScene = ExtResource( 70 )
-PatchExtinctionBoxScene = ExtResource( 92 )
+PatchExtinctionBoxScene = ExtResource( 94 )
 WinBoxScene = ExtResource( 69 )
 MicrobePickupOrganelleSound = ExtResource( 8 )
 AmmoniaBW = ExtResource( 6 )
@@ -466,6 +467,8 @@ BindingModeHotkeyPath = NodePath("ScrollContainer/HotBar/BindingMode")
 UnbindAllHotkeyPath = NodePath("ScrollContainer/HotBar/UnbindAll")
 SignallingAgentsHotkeyPath = NodePath("ScrollContainer/HotBar/SignalingAgents")
 MicrobeControlRadialPath = NodePath("../RadialPopup")
+PausePromptPath = NodePath("PausePrompt")
+PauseInfoPath = NodePath("PausePrompt/PauseInfo")
 
 [node name="MouseHoverPanel" type="MarginContainer" parent="MicrobeHUD"]
 anchor_left = 1.0
@@ -1626,37 +1629,15 @@ texture_pressed = ExtResource( 24 )
 texture_hover = ExtResource( 25 )
 expand = true
 
-[node name="PauseButtonMargin" type="MarginContainer" parent="MicrobeHUD/BottomLeft/BottomBar"]
+[node name="PlayButton" parent="MicrobeHUD/BottomLeft/BottomBar" instance=ExtResource( 23 )]
 margin_left = 54.0
 margin_top = 10.0
 margin_right = 79.0
 margin_bottom = 35.0
-rect_min_size = Vector2( 25, 25 )
 size_flags_vertical = 8
-
-[node name="Pause" type="TextureButton" parent="MicrobeHUD/BottomLeft/BottomBar/PauseButtonMargin"]
-margin_right = 25.0
-margin_bottom = 25.0
-hint_tooltip = "PAUSE_TOOLTIP"
-focus_mode = 0
-toggle_mode = true
-action_mode = 0
-texture_normal = ExtResource( 23 )
-texture_pressed = ExtResource( 36 )
-texture_hover = ExtResource( 33 )
-expand = true
-
-[node name="Resume" type="TextureButton" parent="MicrobeHUD/BottomLeft/BottomBar/PauseButtonMargin"]
-visible = false
-margin_right = 25.0
-margin_bottom = 25.0
-hint_tooltip = "RESUME_TOOLTIP"
-toggle_mode = true
-action_mode = 0
-texture_normal = ExtResource( 79 )
-texture_pressed = ExtResource( 79 )
-texture_hover = ExtResource( 78 )
-expand = true
+PauseButtonTooltip = "PAUSE_TOOLTIP"
+PlayButtonTooltip = "RESUME_TOOLTIP"
+PauseButtonMode = true
 
 [node name="CompoundsButton" type="TextureButton" parent="MicrobeHUD/BottomLeft/BottomBar"]
 margin_left = 83.0
@@ -1844,6 +1825,7 @@ margin_left = -90.0
 margin_top = -235.0
 margin_right = -10.0
 margin_bottom = -183.0
+mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 29 )
@@ -1851,6 +1833,7 @@ custom_styles/panel = SubResource( 29 )
 [node name="Margin" type="MarginContainer" parent="MicrobeHUD/BottomRight/DataValue"]
 margin_right = 80.0
 margin_bottom = 52.0
+mouse_filter = 2
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -1867,8 +1850,10 @@ alignment = 1
 [node name="HPValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
 margin_right = 70.0
 margin_bottom = 17.0
+mouse_filter = 0
 custom_fonts/font = ExtResource( 80 )
 text = "Hitpoints"
+clip_text = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
@@ -1877,8 +1862,10 @@ __meta__ = {
 margin_top = 25.0
 margin_right = 70.0
 margin_bottom = 42.0
+mouse_filter = 0
 custom_fonts/font = ExtResource( 80 )
 text = "ATP"
+clip_text = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
@@ -1902,9 +1889,6 @@ tint_under = Color( 0, 0, 0, 0.752941 )
 tint_progress = Color( 0.960784, 0.270588, 0.478431, 1 )
 radial_initial_angle = 237.0
 radial_fill_degrees = 126.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HitpointIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/HealthBar"]
 margin_left = 21.46
@@ -1926,6 +1910,7 @@ margin_left = -202.756
 margin_top = -201.525
 margin_right = 6.24402
 margin_bottom = 7.47501
+mouse_filter = 2
 step = 0.1
 value = 100.0
 texture_under = ExtResource( 63 )
@@ -1960,6 +1945,7 @@ margin_top = -178.0
 margin_right = -18.0
 margin_bottom = -18.0
 rect_min_size = Vector2( 160, 160 )
+hint_tooltip = "EDITOR_BUTTON_TOOLTIP"
 focus_mode = 0
 disabled = true
 texture_normal = ExtResource( 39 )
@@ -1967,9 +1953,6 @@ texture_pressed = ExtResource( 59 )
 texture_hover = ExtResource( 40 )
 texture_disabled = ExtResource( 41 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Highlight" type="TextureRect" parent="MicrobeHUD/BottomRight/EditorButton"]
 visible = false
@@ -2049,9 +2032,6 @@ tint_progress = Color( 0.690196, 0.423529, 1, 1 )
 radial_initial_angle = 180.0
 radial_fill_degrees = 180.0
 nine_patch_stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AmmoniaIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar"]
 margin_left = 70.0
@@ -2093,6 +2073,38 @@ margin_left = 10.0
 margin_top = 30.0
 margin_right = 207.0
 
+[node name="PausePrompt" type="Control" parent="MicrobeHUD"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -200.0
+margin_top = -170.0
+margin_right = 200.0
+margin_bottom = -91.12
+mouse_filter = 2
+
+[node name="PausePromptLabel" type="Label" parent="MicrobeHUD/PausePrompt"]
+margin_top = 18.0
+margin_right = 400.0
+margin_bottom = 59.0
+rect_min_size = Vector2( 0, 20 )
+custom_fonts/font = ExtResource( 92 )
+text = "PAUSED"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseInfo" parent="MicrobeHUD/PausePrompt" instance=ExtResource( 93 )]
+margin_top = 58.0
+margin_right = 400.0
+margin_bottom = 100.0
+rect_clip_content = false
+mouse_filter = 2
+
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeHUD"]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -2104,9 +2116,6 @@ margin_right = 300.0
 rect_min_size = Vector2( 600, 69 )
 theme = ExtResource( 72 )
 scroll_vertical_enabled = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HotBar" type="HBoxContainer" parent="MicrobeHUD/ScrollContainer"]
 margin_right = 600.0
@@ -2251,13 +2260,12 @@ anims/FadeInOut = SubResource( 37 )
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
 visible = true
 
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "expand" ]]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "compress" ]]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="MicrobeHUD" method="ResizeCompoundPanel" binds= [ "expand" ]]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="MicrobeHUD" method="ResizeCompoundPanel" binds= [ "compress" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "expand" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="OnEnvironmentPanelSizeButtonPressed" binds= [ "compress" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "expand" ]]
+[connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundCompressButton" to="MicrobeHUD" method="OnCompoundsPanelSizeButtonPressed" binds= [ "compress" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/OpenMicrobeMenu" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/PauseButtonMargin/Pause" to="MicrobeHUD" method="PauseButtonPressed"]
-[connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/PauseButtonMargin/Resume" to="MicrobeHUD" method="PauseButtonPressed"]
+[connection signal="OnPressed" from="MicrobeHUD/BottomLeft/BottomBar/PlayButton" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/CompoundsButton" to="MicrobeHUD" method="CompoundButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/ChemicalButton" to="MicrobeHUD" method="ProcessPanelButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/QuestionMarkButton" to="MicrobeHUD" method="HelpButtonPressed"]

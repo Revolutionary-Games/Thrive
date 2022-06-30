@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -12,9 +12,11 @@
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=13]
 [ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Small.tres" type="DynamicFont" id=16]
+[ext_resource path="res://src/gui_common/art_gallery/GalleryViewer.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/general/NewGameSettings.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -65,7 +67,6 @@ __meta__ = {
 }
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
-NewGameButtonPath = NodePath("MenuContainers/Menus/MarginContainer/MainMenu/NewGame")
 FreebuildButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tools/FreebuildEditor")
 CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
@@ -74,6 +75,7 @@ GLES2PopupPath = NodePath("GLES2Popup")
 ModLoadFailuresPath = NodePath("ModFailureDialog")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
+GalleryViewerPath = NodePath("GalleryViewer")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -88,23 +90,21 @@ __meta__ = {
 [node name="StoreUser" type="Label" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -892.0
-margin_right = -5.0
-margin_bottom = 26.0
+margin_left = -165.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 6
-theme = ExtResource( 1 )
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 16 )
 text = "Logged in as: name"
 align = 2
-clip_text = true
 max_lines_visible = 1
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
 }
 
@@ -123,7 +123,6 @@ margin_top = -360.0
 margin_right = 640.0
 margin_bottom = -60.0
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": "Centering fo the Thrive logo"
 }
 
@@ -173,6 +172,7 @@ margin_left = 515.0
 margin_right = 765.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
+hint_tooltip = "NEW_GAME_BUTTON_TOOLTIP"
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "NEW_GAME"
@@ -186,6 +186,7 @@ margin_top = 50.0
 margin_right = 765.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
+hint_tooltip = "LOAD_GAME_BUTTON_TOOLTIP"
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "LOAD_GAME"
@@ -196,6 +197,7 @@ margin_top = 100.0
 margin_right = 765.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
+hint_tooltip = "OPTIONS_BUTTON_TOOLTIP"
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -251,6 +253,7 @@ margin_top = 350.0
 margin_right = 765.0
 margin_bottom = 390.0
 rect_min_size = Vector2( 250, 40 )
+hint_tooltip = "QUIT_BUTTON_TOOLTIP"
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -368,7 +371,6 @@ rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
-disabled = true
 text = "ART_GALLERY"
 
 [node name="Licenses" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
@@ -419,9 +421,14 @@ visible = false
 [node name="SaveManagerGUI" parent="." instance=ExtResource( 2 )]
 visible = false
 
+[node name="NewGameSettings" parent="." instance=ExtResource( 18 )]
+visible = false
+
 [node name="LicensesDisplay" parent="." instance=ExtResource( 12 )]
 margin_top = 28.0
 margin_bottom = 628.0
+
+[node name="GalleryViewer" parent="." instance=ExtResource( 17 )]
 
 [node name="CreditsView" type="Control" parent="."]
 visible = false
@@ -462,14 +469,16 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -298.0
-margin_top = -25.0
+margin_left = -165.0
+margin_top = -19.0
+margin_right = -4.0
+margin_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 6
-theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 16 )
 text = "x.y.z"
 align = 2
 valign = 2
@@ -477,7 +486,6 @@ clip_text = true
 max_lines_visible = 1
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
 }
 
@@ -510,11 +518,14 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/FreebuildEditor" to="." method="FreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Mods" to="." method="ModsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/ArtGallery" to="." method="ArtGalleryPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Licenses" to="." method="LicensesPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
+[connection signal="OnNewGameSettingsClosed" from="NewGameSettings" to="." method="OnReturnFromNewGameSettings"]
 [connection signal="popup_hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
+[connection signal="popup_hide" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]

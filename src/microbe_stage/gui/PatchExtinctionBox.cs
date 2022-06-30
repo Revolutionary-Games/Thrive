@@ -51,24 +51,22 @@ public class PatchExtinctionBox : Control
 
     private void NewPatchSelected(Patch patch)
     {
+        var animLength = animationPlayer.CurrentAnimationLength;
+
         animationPlayer.PlayBackwards();
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, animationPlayer.CurrentAnimationLength,
-            false);
-        TransitionManager.Instance.StartTransitions(this, nameof(OnFadedToBlack));
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, animLength, () =>
+            {
+                if (patchDetailsPanel.Patch == null)
+                    throw new InvalidOperationException("The patch must not be null at this point");
+
+                GoToNewPatch.Invoke(patchDetailsPanel.Patch);
+
+                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, animLength);
+                patchDetailsPanel.MouseFilter = MouseFilterEnum.Stop;
+            });
+
         patchDetailsPanel.MouseFilter = MouseFilterEnum.Ignore;
-    }
-
-    private void OnFadedToBlack()
-    {
-        if (patchDetailsPanel.Patch == null)
-            throw new InvalidOperationException("The patch must not be null at this point");
-
-        GoToNewPatch.Invoke(patchDetailsPanel.Patch);
-
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, animationPlayer.CurrentAnimationLength,
-            false);
-        TransitionManager.Instance.StartTransitions();
-        patchDetailsPanel.MouseFilter = MouseFilterEnum.Stop;
     }
 
     private void SelectedPatchChanged(PatchMapDrawer drawer)

@@ -48,12 +48,14 @@ public class ProcessSystem
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
-        BiomeConditions biome, MembraneType membrane)
+        BiomeConditions biome, MembraneType membrane, bool isPlayerSpecies,
+        WorldGenerationSettings worldSettings)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
-        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection);
+        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, isPlayerSpecies,
+            worldSettings);
     }
 
     /// <summary>
@@ -66,8 +68,11 @@ public class ProcessSystem
     ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
     ///   movement organelles are assumed to be inactive in the balance calculation.
     /// </param>
+    /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
+    /// <param name="worldSettings">The world generation settings for this game</param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
-        BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection)
+        BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
+        bool isPlayerSpecies, WorldGenerationSettings worldSettings)
     {
         var result = new EnergyBalanceInfo();
 
@@ -112,6 +117,15 @@ public class ProcessSystem
                 }
             }
 
+            if (organelle.Definition.HasComponentFactory<CiliaComponentFactory>())
+            {
+                var amount = Constants.CILIA_ENERGY_COST;
+
+                movementATPConsumption += amount;
+                result.Cilia += amount;
+                result.AddConsumption(organelle.Definition.InternalName, amount);
+            }
+
             // Store hex count
             hexCount += organelle.Definition.HexCount;
         }
@@ -124,6 +138,11 @@ public class ProcessSystem
         // Add osmoregulation
         result.Osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
             membrane.OsmoregulationFactor;
+
+        if (isPlayerSpecies)
+        {
+            result.Osmoregulation *= worldSettings.OsmoregulationMultiplier;
+        }
 
         result.AddConsumption("osmoregulation", result.Osmoregulation);
 

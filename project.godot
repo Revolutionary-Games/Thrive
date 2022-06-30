@@ -39,7 +39,6 @@ GUICommon="*res://src/gui_common/GUICommon.cs"
 SceneManager="*res://src/engine/SceneManager.cs"
 ScreenOverlays="*res://src/engine/ScreenOverlays.tscn"
 ToolTipManager="*res://src/gui_common/tooltip/ToolTipManager.tscn"
-TransitionManager="*res://src/gui_common/TransitionManager.cs"
 CursorLoader="*res://src/engine/CursorLoader.cs"
 ScreenShotTaker="*res://src/engine/ScreenShotTaker.cs"
 FullScreenToggle="*res://src/engine/FullScreenToggle.cs"
@@ -48,6 +47,7 @@ TemporaryLoadedNodeDeleter="*res://src/saving/TemporaryLoadedNodeDeleter.cs"
 FileDropHandler="*res://src/engine/FileDropHandler.cs"
 ProceduralDataCache="*res://src/engine/ProceduralDataCache.cs"
 PhotoStudio="*res://src/engine/PhotoStudio.tscn"
+PauseManager="*res://src/engine/PauseManager.cs"
 PostStartupActions="*res://src/engine/PostStartupActions.cs"
 
 [debug]
@@ -68,6 +68,10 @@ window/stretch/aspect="expand"
 [editor]
 
 search_in_file_extensions=PoolStringArray( "gd", "shader", "cs" )
+
+[global]
+
+hardened=false
 
 [input]
 
@@ -301,6 +305,16 @@ g_pack_commands={
 toggle_metrics={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777246,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+g_pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+toggle_debug_panel={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":16777246,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 
