@@ -476,19 +476,6 @@
             return newSpecies;
         }
 
-        public List<Species> GetExtinctSpecies()
-        {
-            var extinctSpecies = new List<Species>();
-
-            foreach (var resultEntry in results)
-            {
-                if (resultEntry.Value.NewPopulationInPatches.Sum(p => p.Value) == 0)
-                    extinctSpecies.Add(resultEntry.Key);
-            }
-
-            return extinctSpecies;
-        }
-
         public Dictionary<Species, SpeciesMigration> GetMigrationsTo(Patch patch)
         {
             var migrationsToPatch = new Dictionary<Species, SpeciesMigration>();
