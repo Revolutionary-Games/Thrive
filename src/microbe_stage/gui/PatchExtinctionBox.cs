@@ -58,15 +58,15 @@ public class PatchExtinctionBox : Control
         animationPlayer.PlayBackwards();
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, animLength, () =>
-            {
-                if (detailsPanel.SelectedPatch == null)
-                    throw new InvalidOperationException("The patch must not be null at this point");
+        {
+            if (detailsPanel.SelectedPatch == null)
+                throw new InvalidOperationException("The patch must not be null at this point");
 
-                OnMovedToNewPatch.Invoke(detailsPanel.SelectedPatch);
+            OnMovedToNewPatch.Invoke(detailsPanel.SelectedPatch);
 
-                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, animLength);
-                detailsPanel.MouseFilter = MouseFilterEnum.Stop;
-            });
+            TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, animLength);
+            detailsPanel.MouseFilter = MouseFilterEnum.Stop;
+        });
 
         detailsPanel.MouseFilter = MouseFilterEnum.Ignore;
     }
