@@ -336,6 +336,13 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
             case EditorTab.CellEditor:
             {
+                // If we have an edited cell type, then we can apply those changes when we go back to the main editor
+                // tab as that's the only exit point and the point where we actually need to use the edited cell
+                // type information
+                // TODO: write an explanation here why this needs to be before the visibility adjustment
+                // See: https://github.com/Revolutionary-Games/Thrive/pull/3457
+                CheckAndApplyCellTypeEdit();
+
                 bodyPlanEditorTab.Show();
                 SetEditorObjectVisibility(true);
 
@@ -343,11 +350,6 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
                 // TODO: camera position saving
                 // bodyPlanEditorTab.UpdateCamera();
-
-                // If we have an edited cell type, then we can apply those changes when we go back to the main editor
-                // tab as that's the only exit point and the point where we actually need to use the edited cell
-                // type information
-                CheckAndApplyCellTypeEdit();
 
                 SetWorldSceneObjectVisibilityWeControl();
 
