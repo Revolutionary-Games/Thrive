@@ -6,7 +6,21 @@ using Godot.Collections;
 
 public class AutoEvoExploringTool : NodeWithInput
 {
-    // Auto-evo config paths
+    // Tab paths
+
+    [Export]
+    public NodePath ConfigEditorPath = null!;
+
+    [Export]
+    public NodePath HistoryReportSplitPath = null!;
+
+    [Export]
+    public NodePath ReportPath = null!;
+
+    [Export]
+    public NodePath ViewerPath = null!;
+
+    // Auto-evo parameters paths
 
     [Export]
     public NodePath AllowSpeciesToNotMutatePath = null!;
@@ -62,7 +76,7 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath UseBiodiversityForceSplitPath = null!;
 
-    // Status paths
+    // Status & control paths
 
     [Export]
     public NodePath CurrentGenerationLabelPath = null!;
@@ -98,20 +112,6 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath SpeciesListPath = null!;
 
-    // Tab paths
-
-    [Export]
-    public NodePath ConfigEditorPath = null!;
-
-    [Export]
-    public NodePath HistoryReportSplitPath = null!;
-
-    [Export]
-    public NodePath ReportPath = null!;
-
-    [Export]
-    public NodePath ViewerPath = null!;
-
     /// <summary>
     ///   This list stores copy of species in every generation.
     /// </summary>
@@ -122,10 +122,17 @@ public class AutoEvoExploringTool : NodeWithInput
     /// </summary>
     private readonly List<LocalizedStringBuilder> runResultsList = new();
 
+    // ButtonGroups to allow checkboxes automatically uncheck
     private readonly ButtonGroup historyCheckBoxGroup = new();
     private readonly ButtonGroup speciesListCheckBoxGroup = new();
 
-    // Auto-evo config related controls.
+    // Tabs
+    private Control configEditorTab = null!;
+    private Control historyReportSplit = null!;
+    private Control reportTab = null!;
+    private Control viewerTab = null!;
+
+    // Auto-evo parameters controls.
     private CustomCheckBox allowSpeciesToNotMutateCheckBox = null!;
     private CustomCheckBox allowSpeciesToNotMigrateCheckBox = null!;
     private SpinBox biodiversityAttemptFillChanceSpinBox = null!;
@@ -145,34 +152,46 @@ public class AutoEvoExploringTool : NodeWithInput
     private SpinBox speciesSplitByMutationThresholdPopulationFractionSpinBox = null!;
     private CustomCheckBox useBiodiversityForceSplitCheckBox = null!;
 
-    // Auto-evo status related controls
+    // Status controls
     private Label currentGenerationLabel = null!;
     private Label runStatusLabel = null!;
     private Button runGenerationButton = null!;
     private Button runStepButton = null!;
     private Button abortButton = null!;
 
-    // Auto-evo report related controls
+    // Report controls
     private VBoxContainer historyContainer = null!;
     private CustomRichTextLabel resultsLabel = null!;
 
-    // Viewer related
+    // Viewer controls
     private SpeciesPreview speciesPreview = null!;
     private CellHexPreview hexPreview = null!;
     private VBoxContainer speciesListContainer = null!;
 
-    // Tabs
-    private Control configEditorTab = null!;
-    private Control historyReportSplit = null!;
-    private Control reportTab = null!;
-    private Control viewerTab = null!;
-
-    private GameProperties gameProperties = null!;
-    private AutoEvoConfiguration autoEvoConfiguration = null!;
-    private AutoEvoRun? autoEvoRun;
-    private int currentGeneration = 0;
-    private int currentDisplayed = -1;
     private PackedScene customCheckBoxScene = null!;
+
+    /// <summary>
+    ///   The game itself
+    /// </summary>
+    private GameProperties gameProperties = null!;
+
+    /// <summary>
+    ///   Local copy of auto-evo configuration. Used to avoid modifying the global one
+    /// </summary>
+    private AutoEvoConfiguration autoEvoConfiguration = null!;
+
+    private AutoEvoRun? autoEvoRun;
+
+    /// <summary>
+    ///   The current generation auto-evo has evolved
+    /// </summary>
+    private int currentGeneration = 0;
+
+    /// <summary>
+    ///   The generation report & viewer tab is displaying
+    /// </summary>
+    private int currentDisplayed = -1;
+
     private bool ready;
 
     [Signal]
@@ -214,6 +233,11 @@ public class AutoEvoExploringTool : NodeWithInput
             GetNode<SpinBox>(SpeciesSplitByMutationThresholdPopulationFractionPath);
         useBiodiversityForceSplitCheckBox = GetNode<CustomCheckBox>(UseBiodiversityForceSplitPath);
 
+        configEditorTab = GetNode<Control>(ConfigEditorPath);
+        historyReportSplit = GetNode<Control>(HistoryReportSplitPath);
+        reportTab = GetNode<Control>(ReportPath);
+        viewerTab = GetNode<Control>(ViewerPath);
+
         currentGenerationLabel = GetNode<Label>(CurrentGenerationLabelPath);
         runStatusLabel = GetNode<Label>(RunStatusLabelPath);
         runGenerationButton = GetNode<Button>(RunGenerationButtonPath);
@@ -226,11 +250,6 @@ public class AutoEvoExploringTool : NodeWithInput
         speciesPreview = GetNode<SpeciesPreview>(SpeciesPreviewPath);
         hexPreview = GetNode<CellHexPreview>(HexPreviewPath);
         speciesListContainer = GetNode<VBoxContainer>(SpeciesListPath);
-
-        configEditorTab = GetNode<Control>(ConfigEditorPath);
-        historyReportSplit = GetNode<Control>(HistoryReportSplitPath);
-        reportTab = GetNode<Control>(ReportPath);
-        viewerTab = GetNode<Control>(ViewerPath);
 
         customCheckBoxScene = GD.Load<PackedScene>("res://src/gui_common/CustomCheckBox.tscn");
 
@@ -259,7 +278,6 @@ public class AutoEvoExploringTool : NodeWithInput
             }
             else if (autoEvoRun.Aborted)
             {
-                // Clear autoEvoRun and enable buttons to allow the next run to start.
                 autoEvoRun = null;
                 runGenerationButton.Disabled = false;
                 runStepButton.Disabled = false;
