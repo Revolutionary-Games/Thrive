@@ -43,7 +43,7 @@ public class SpeciesPreview : Control
     {
         if (previewSpecies is MicrobeSpecies microbeSpecies)
         {
-            task = new ImageTask(new CellType(microbeSpecies));
+            task = new ImageTask(microbeSpecies);
             PhotoStudio.Instance.SubmitTask(task);
         }
     }
