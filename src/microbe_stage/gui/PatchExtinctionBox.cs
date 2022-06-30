@@ -12,41 +12,43 @@ public class PatchExtinctionBox : Control
     [Export]
     public NodePath AnimationPlayer = null!;
 
-    private PatchMapDrawer patchMapDrawer = null!;
-    private PatchDetailsPanel patchDetailsPanel = null!;
+    private PatchMapDrawer mapDrawer = null!;
+    private PatchDetailsPanel detailsPanel = null!;
     private AnimationPlayer animationPlayer = null!;
 
     public PatchMap? Map
     {
-        get => patchMapDrawer.Map;
+        get => mapDrawer.Map;
         set
         {
-            patchMapDrawer.Map = value;
-            patchMapDrawer.SetPatchEnabledStatuses(value!.Patches.Values,
-                p => p.GetSpeciesPopulation(PlayerSpecies) > 0);
+            mapDrawer.Map = value;
+            mapDrawer.SetPatchEnabledStatuses(value!.Patches.Values, p => p.GetSpeciesPopulation(PlayerSpecies) > 0);
         }
     }
 
     public Species PlayerSpecies { get; set; } = null!;
-    public Action<Patch> GoToNewPatch { get; set; } = null!;
+
+    public Action<Patch> OnMovedToNewPatch { get; set; } = null!;
 
     public override void _Ready()
     {
-        patchMapDrawer = GetNode<PatchMapDrawer>(PatchMapDrawerPath);
-        patchDetailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
+        mapDrawer = GetNode<PatchMapDrawer>(PatchMapDrawerPath);
+        detailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
         animationPlayer = GetNode<AnimationPlayer>(AnimationPlayer);
 
-        patchDetailsPanel.CurrentPatch = Map?.CurrentPatch;
-        patchDetailsPanel.Patch = null;
-        patchDetailsPanel.OnMoveToPatchClicked = NewPatchSelected;
+        detailsPanel.CurrentPatch = Map?.CurrentPatch;
+        detailsPanel.SelectedPatch = null;
 
-        patchMapDrawer.OnSelectedPatchChanged = SelectedPatchChanged;
+        detailsPanel.OnMoveToPatchClicked = NewPatchSelected;
+        mapDrawer.OnSelectedPatchChanged = SelectedPatchChanged;
     }
 
-    public new void Show()
+    public override void _Notification(int what)
     {
-        animationPlayer.Play();
-        base.Show();
+        base._Notification(what);
+
+        if (what == NotificationVisibilityChanged && Visible)
+            animationPlayer.Play();
     }
 
     private void NewPatchSelected(Patch patch)
@@ -57,21 +59,21 @@ public class PatchExtinctionBox : Control
 
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, animLength, () =>
             {
-                if (patchDetailsPanel.Patch == null)
+                if (detailsPanel.SelectedPatch == null)
                     throw new InvalidOperationException("The patch must not be null at this point");
 
-                GoToNewPatch.Invoke(patchDetailsPanel.Patch);
+                OnMovedToNewPatch.Invoke(detailsPanel.SelectedPatch);
 
                 TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, animLength);
-                patchDetailsPanel.MouseFilter = MouseFilterEnum.Stop;
+                detailsPanel.MouseFilter = MouseFilterEnum.Stop;
             });
 
-        patchDetailsPanel.MouseFilter = MouseFilterEnum.Ignore;
+        detailsPanel.MouseFilter = MouseFilterEnum.Ignore;
     }
 
     private void SelectedPatchChanged(PatchMapDrawer drawer)
     {
-        patchDetailsPanel.IsPatchMoveValid = drawer.SelectedPatch != null;
-        patchDetailsPanel.Patch = drawer.SelectedPatch;
+        detailsPanel.IsPatchMoveValid = drawer.SelectedPatch != null;
+        detailsPanel.SelectedPatch = drawer.SelectedPatch;
     }
 }

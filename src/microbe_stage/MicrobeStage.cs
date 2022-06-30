@@ -397,8 +397,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // they have to select a new patch if they die again.
         GameWorld.AlterSpeciesPopulationInCurrentPatch(
             GameWorld.PlayerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
-            TranslationServer.Translate("PATCH_EXTINCTION"),
-            true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT);
+            TranslationServer.Translate("EXTINCT_IN_PATCH"),
+            true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT
+            / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
 
         // Grant the player the initial species population if they have 0 total population as this is an invalid state.
         if (GameWorld.PlayerSpecies.Population == 0)
@@ -605,10 +606,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     /// <summary>
     ///   Called when the player died out in a patch and selected a new one
     /// </summary>
-    public void GoToNewPatch(Patch patch)
+    public void MoveToPatch(Patch patch)
     {
         if (CurrentGame == null)
-            throw new InvalidOperationException("Going to a new patch without a game setup");
+            throw new InvalidOperationException("Moving to a new patch but stage doesn't have a game state");
 
         CurrentGame.GameWorld.Map.CurrentPatch = patch;
         UpdatePatchSettings();

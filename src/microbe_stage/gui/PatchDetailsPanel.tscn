@@ -1,6 +1,6 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.cs" type="Script" id=4]
@@ -27,29 +27,25 @@
 [ext_resource path="res://assets/textures/gui/bevel/Temperature.png" type="Texture" id=25]
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=26]
 [ext_resource path="res://src/gui_common/CollapsibleList.cs" type="Script" id=27]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=28]
 
-[sub_resource type="StyleBoxTexture" id=1]
+[sub_resource type="StyleBoxTexture" id=32]
 texture = ExtResource( 24 )
 region_rect = Rect2( 0, 0, 258, 1 )
 
-[sub_resource type="Theme" id=2]
+[sub_resource type="Theme" id=33]
 default_font = ExtResource( 18 )
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=34]
 texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
 [node name="PatchDetailsPanel" type="PanelContainer"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 347.0
-margin_bottom = 486.0
+margin_right = 352.0
+margin_bottom = 620.0
 rect_min_size = Vector2( 340, 0 )
-theme = ExtResource( 1 )
+theme = ExtResource( 28 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 NothingSelectedPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected")
 DetailsPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer")
 NamePath = NodePath("VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PatchName")
@@ -80,12 +76,12 @@ PhosphateSituationPath = NodePath("VBoxContainer/MarginContainer/ScrollContainer
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 345.0
-margin_bottom = 484.0
+margin_right = 351.0
+margin_bottom = 619.0
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_right = 344.0
-margin_bottom = 421.0
+margin_right = 350.0
+margin_bottom = 556.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -96,28 +92,28 @@ custom_constants/margin_bottom = 10
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 334.0
-margin_bottom = 411.0
+margin_right = 340.0
+margin_bottom = 546.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
-margin_right = 318.0
-margin_bottom = 490.0
+margin_right = 330.0
+margin_bottom = 536.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="NothingSelected" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 visible = false
-margin_right = 324.0
-margin_bottom = 30.0
+margin_right = 382.0
+margin_bottom = 55.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected"]
-margin_right = 324.0
-margin_bottom = 30.0
+margin_right = 382.0
+margin_bottom = 55.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
 text = "SELECT_A_PATCH"
@@ -125,8 +121,8 @@ align = 1
 autowrap = true
 
 [node name="PatchDetailsContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_right = 318.0
-margin_bottom = 490.0
+margin_right = 330.0
+margin_bottom = 536.0
 size_flags_vertical = 3
 custom_constants/separation = 10
 __meta__ = {
@@ -134,11 +130,11 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 53.0
 
 [node name="PatchName" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 17 )
@@ -151,10 +147,10 @@ __meta__ = {
 
 [node name="PlayerHereLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
 margin_top = 33.0
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 53.0
-custom_fonts/font = ExtResource( 15 )
 custom_colors/font_color = Color( 0, 1, 0.117647, 1 )
+custom_fonts/font = ExtResource( 15 )
 text = "CURRENT_LOCATION_CAPITAL"
 align = 1
 autowrap = true
@@ -164,7 +160,7 @@ __meta__ = {
 
 [node name="Biome" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 margin_top = 63.0
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 88.0
 custom_fonts/font = ExtResource( 3 )
 text = "Biome: BIOME HERE"
@@ -176,7 +172,7 @@ __meta__ = {
 
 [node name="Depth" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 margin_top = 98.0
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 123.0
 custom_fonts/font = ExtResource( 3 )
 text = "200-340m below sea level"
@@ -188,7 +184,7 @@ __meta__ = {
 
 [node name="PhysicalConditions" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 margin_top = 133.0
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 221.0
 script = ExtResource( 27 )
 __meta__ = {
@@ -202,7 +198,7 @@ ItemContainerPath = NodePath("Clip/GridContainer")
 TweenPath = NodePath("Tween")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 20.0
 
 [node name="Buttons" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
@@ -242,15 +238,15 @@ valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
 margin_left = 202.0
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 1 )
+custom_styles/separator = SubResource( 32 )
 
 [node name="Clip" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 88.0
 rect_clip_content = true
 mouse_filter = 2
@@ -263,13 +259,13 @@ custom_constants/margin_bottom = 5
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip"]
 margin_left = 15.0
 margin_top = 5.0
-margin_right = 303.0
+margin_right = 315.0
 margin_bottom = 59.0
 mouse_filter = 2
 columns = 2
 
 [node name="Temperature" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
-margin_right = 142.0
+margin_right = 148.0
 margin_bottom = 25.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -286,7 +282,7 @@ expand = true
 [node name="TemperatureLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
 margin_left = 34.0
 margin_top = 2.0
-margin_right = 124.0
+margin_right = 123.0
 margin_bottom = 22.0
 custom_fonts/font = ExtResource( 16 )
 text = "Temperature"
@@ -295,8 +291,8 @@ __meta__ = {
 }
 
 [node name="Situation" type="TextureRect" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
-margin_left = 128.0
-margin_right = 140.0
+margin_left = 127.0
+margin_right = 139.0
 margin_bottom = 12.0
 rect_min_size = Vector2( 12, 12 )
 mouse_filter = 2
@@ -304,8 +300,8 @@ size_flags_vertical = 0
 expand = true
 
 [node name="Pressure" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
-margin_left = 146.0
-margin_right = 288.0
+margin_left = 152.0
+margin_right = 300.0
 margin_bottom = 25.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -332,7 +328,7 @@ __meta__ = {
 
 [node name="Light" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
 margin_top = 29.0
-margin_right = 142.0
+margin_right = 148.0
 margin_bottom = 54.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -370,7 +366,7 @@ expand = true
 
 [node name="AtmosphericGasses" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 margin_top = 231.0
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 319.0
 script = ExtResource( 27 )
 __meta__ = {
@@ -384,7 +380,7 @@ ItemContainerPath = NodePath("Clip/GridContainer")
 TweenPath = NodePath("Tween")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 20.0
 
 [node name="Buttons" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
@@ -424,15 +420,15 @@ valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
 margin_left = 205.0
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 1 )
+custom_styles/separator = SubResource( 32 )
 
 [node name="Clip" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 88.0
 rect_clip_content = true
 mouse_filter = 2
@@ -445,13 +441,13 @@ custom_constants/margin_bottom = 5
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip"]
 margin_left = 15.0
 margin_top = 5.0
-margin_right = 303.0
+margin_right = 315.0
 margin_bottom = 59.0
 mouse_filter = 2
 columns = 2
 
 [node name="Oxygen" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer"]
-margin_right = 142.0
+margin_right = 148.0
 margin_bottom = 25.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -477,8 +473,8 @@ __meta__ = {
 }
 
 [node name="Nitrogen" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer"]
-margin_left = 146.0
-margin_right = 288.0
+margin_left = 152.0
+margin_right = 300.0
 margin_bottom = 25.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -505,7 +501,7 @@ __meta__ = {
 
 [node name="CO2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Clip/GridContainer"]
 margin_top = 29.0
-margin_right = 142.0
+margin_right = 148.0
 margin_bottom = 54.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -534,7 +530,7 @@ __meta__ = {
 
 [node name="Compounds" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 margin_top = 329.0
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 446.0
 script = ExtResource( 27 )
 __meta__ = {
@@ -548,7 +544,7 @@ ItemContainerPath = NodePath("Clip/GridContainer")
 TweenPath = NodePath("Tween")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 20.0
 
 [node name="Buttons" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
@@ -588,15 +584,15 @@ valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
 margin_left = 127.0
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 1 )
+custom_styles/separator = SubResource( 32 )
 
 [node name="Clip" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
 margin_top = 24.0
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 117.0
 rect_clip_content = true
 mouse_filter = 2
@@ -609,7 +605,7 @@ custom_constants/margin_bottom = 5
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip"]
 margin_left = 15.0
 margin_top = 5.0
-margin_right = 303.0
+margin_right = 315.0
 margin_bottom = 88.0
 mouse_filter = 2
 columns = 2
@@ -650,7 +646,7 @@ expand = true
 
 [node name="Ammonia" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer"]
 margin_left = 168.0
-margin_right = 288.0
+margin_right = 300.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 
@@ -721,7 +717,7 @@ expand = true
 [node name="Phosphate" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer"]
 margin_left = 168.0
 margin_top = 29.0
-margin_right = 288.0
+margin_right = 300.0
 margin_bottom = 54.0
 size_flags_horizontal = 3
 
@@ -793,8 +789,9 @@ expand = true
 
 [node name="SpeciesBox" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 margin_top = 456.0
-margin_right = 318.0
-margin_bottom = 490.0
+margin_right = 330.0
+margin_bottom = 536.0
+size_flags_vertical = 3
 script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -807,7 +804,7 @@ ItemContainerPath = NodePath("Clip/GridContainer")
 TweenPath = NodePath("Tween")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 20.0
 
 [node name="Buttons" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
@@ -847,19 +844,20 @@ valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
 margin_left = 166.0
-margin_right = 318.0
+margin_right = 330.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 1 )
+custom_styles/separator = SubResource( 32 )
 
 [node name="Clip" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
 margin_top = 24.0
-margin_right = 318.0
-margin_bottom = 34.0
+margin_right = 330.0
+margin_bottom = 80.0
 rect_clip_content = true
 mouse_filter = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/margin_right = 15
 custom_constants/margin_top = 5
 custom_constants/margin_left = 15
@@ -868,23 +866,29 @@ custom_constants/margin_bottom = 5
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/Clip"]
 margin_left = 15.0
 margin_top = 5.0
-margin_right = 303.0
-margin_bottom = 5.0
+margin_right = 315.0
+margin_bottom = 51.0
 mouse_filter = 2
-theme = SubResource( 2 )
+theme = SubResource( 33 )
+
+[node name="SpeciesList" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/Clip/GridContainer" instance=ExtResource( 1 )]
+margin_right = 300.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Tween" type="Tween" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-margin_top = 425.0
-margin_right = 344.0
-margin_bottom = 429.0
-custom_styles/separator = SubResource( 3 )
+margin_top = 560.0
+margin_right = 350.0
+margin_bottom = 564.0
+custom_styles/separator = SubResource( 34 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 433.0
-margin_right = 344.0
-margin_bottom = 483.0
+margin_top = 568.0
+margin_right = 350.0
+margin_bottom = 618.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
@@ -894,7 +898,7 @@ custom_constants/margin_bottom = 10
 [node name="MoveToPatchButton" type="Button" parent="VBoxContainer/MarginContainer2"]
 margin_left = 10.0
 margin_top = 5.0
-margin_right = 334.0
+margin_right = 340.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 35 )
 focus_mode = 0

@@ -30,9 +30,6 @@ anchor_top = 0.05
 anchor_right = 1.0
 anchor_bottom = 0.95
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 PatchMapDrawerPath = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer2/PatchMapDrawer")
 PatchDetailsPanelPath = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/PatchDetailsPanel")
 AnimationPlayer = NodePath("AnimationPlayer")
@@ -66,9 +63,9 @@ __meta__ = {
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
 margin_right = 1240.0
 margin_bottom = 66.0
-custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0.2, 0.2, 1 )
-text = "PATCH_EXTINCTION"
+custom_fonts/font = ExtResource( 2 )
+text = "PATCH_EXTINCTION_CAPITAL"
 align = 1
 valign = 1
 
@@ -114,7 +111,6 @@ custom_constants/margin_top = 15
 custom_constants/margin_bottom = 45
 
 [node name="PatchDetailsPanel" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer" instance=ExtResource( 5 )]
-margin_left = 0.0
 margin_top = 15.0
 margin_right = 346.0
 margin_bottom = 460.0

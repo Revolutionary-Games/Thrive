@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Text;
 using Godot;
 
 public class PatchDetailsPanel : PanelContainer
@@ -82,16 +83,6 @@ public class PatchDetailsPanel : PanelContainer
     [Export]
     public NodePath PhosphateSituationPath = null!;
 
-    private readonly Compound ammoniaCompound = SimulationParameters.Instance.GetCompound("ammonia");
-    private readonly Compound carbondioxideCompound = SimulationParameters.Instance.GetCompound("carbondioxide");
-    private readonly Compound glucoseCompound = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound hydrogensulfideCompound = SimulationParameters.Instance.GetCompound("hydrogensulfide");
-    private readonly Compound ironCompound = SimulationParameters.Instance.GetCompound("iron");
-    private readonly Compound nitrogenCompound = SimulationParameters.Instance.GetCompound("nitrogen");
-    private readonly Compound oxygenCompound = SimulationParameters.Instance.GetCompound("oxygen");
-    private readonly Compound phosphatesCompound = SimulationParameters.Instance.GetCompound("phosphates");
-    private readonly Compound sunlightCompound = SimulationParameters.Instance.GetCompound("sunlight");
-
     private Control nothingSelected = null!;
     private Control details = null!;
     private Control playerHere = null!;
@@ -111,6 +102,7 @@ public class PatchDetailsPanel : PanelContainer
     private Label iron = null!;
     private CollapsibleList speciesListBox = null!;
     private Button moveToPatchButton = null!;
+
     private TextureRect temperatureSituation = null!;
     private TextureRect lightSituation = null!;
     private TextureRect hydrogenSulfideSituation = null!;
@@ -118,22 +110,32 @@ public class PatchDetailsPanel : PanelContainer
     private TextureRect ironSituation = null!;
     private TextureRect ammoniaSituation = null!;
     private TextureRect phosphateSituation = null!;
+
+    private Compound ammoniaCompound = null!;
+    private Compound carbondioxideCompound = null!;
+    private Compound glucoseCompound = null!;
+    private Compound hydrogensulfideCompound = null!;
+    private Compound ironCompound = null!;
+    private Compound nitrogenCompound = null!;
+    private Compound oxygenCompound = null!;
+    private Compound phosphatesCompound = null!;
+    private Compound sunlightCompound = null!;
+
     private Texture increaseIcon = null!;
     private Texture decreaseIcon = null!;
 
-    private Patch? patch;
+    private Patch? targetPatch;
     private Patch? currentPatch;
 
     public Action<Patch> OnMoveToPatchClicked { get; set; } = null!;
 
-    public Patch? Patch
+    public Patch? SelectedPatch
     {
-        get => patch;
+        get => targetPatch;
         set
         {
-            patch = value;
-
-            UpdateStatisticsPanel();
+            targetPatch = value;
+            UpdateShownPatchDetails();
         }
     }
 
@@ -143,9 +145,9 @@ public class PatchDetailsPanel : PanelContainer
         set
         {
             currentPatch = value;
-            playerHere.Visible = CurrentPatch == Patch;
+            playerHere.Visible = CurrentPatch == SelectedPatch;
 
-            if (Patch != null)
+            if (SelectedPatch != null)
                 UpdateConditionDifferencesBetweenPatches();
         }
     }
@@ -154,9 +156,6 @@ public class PatchDetailsPanel : PanelContainer
 
     public override void _Ready()
     {
-        increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
-        decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
-
         nothingSelected = GetNode<Control>(NothingSelectedPath);
         details = GetNode<Control>(DetailsPath);
         playerHere = GetNode<Control>(PlayerHerePath);
@@ -176,6 +175,7 @@ public class PatchDetailsPanel : PanelContainer
         iron = GetNode<Label>(IronPath);
         speciesListBox = GetNode<CollapsibleList>(SpeciesListBoxPath);
         moveToPatchButton = GetNode<Button>(MoveToPatchButtonPath);
+
         temperatureSituation = GetNode<TextureRect>(TemperatureSituationPath);
         lightSituation = GetNode<TextureRect>(LightSituationPath);
         hydrogenSulfideSituation = GetNode<TextureRect>(HydrogenSulfideSituationPath);
@@ -183,11 +183,24 @@ public class PatchDetailsPanel : PanelContainer
         ironSituation = GetNode<TextureRect>(IronSituationPath);
         ammoniaSituation = GetNode<TextureRect>(AmmoniaSituationPath);
         phosphateSituation = GetNode<TextureRect>(PhosphateSituationPath);
+
+        ammoniaCompound = SimulationParameters.Instance.GetCompound("ammonia");
+        carbondioxideCompound = SimulationParameters.Instance.GetCompound("carbondioxide");
+        glucoseCompound = SimulationParameters.Instance.GetCompound("glucose");
+        hydrogensulfideCompound = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+        ironCompound = SimulationParameters.Instance.GetCompound("iron");
+        nitrogenCompound = SimulationParameters.Instance.GetCompound("nitrogen");
+        oxygenCompound = SimulationParameters.Instance.GetCompound("oxygen");
+        phosphatesCompound = SimulationParameters.Instance.GetCompound("phosphates");
+        sunlightCompound = SimulationParameters.Instance.GetCompound("sunlight");
+
+        increaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/increase.png");
+        decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
     }
 
-    public void UpdateStatisticsPanel()
+    public void UpdateShownPatchDetails()
     {
-        if (Patch == null)
+        if (SelectedPatch == null)
         {
             details.Visible = false;
             nothingSelected.Visible = true;
@@ -195,74 +208,74 @@ public class PatchDetailsPanel : PanelContainer
             return;
         }
 
-        // Enable move to patch button if this is a valid move
-        moveToPatchButton.Disabled = !IsPatchMoveValid;
-
         details.Visible = true;
         nothingSelected.Visible = false;
 
-        name.Text = Patch.Name.ToString();
+        UpdatePatchDetails();
+
+        // Enable move to patch button if this is a valid move
+        moveToPatchButton.Disabled = !IsPatchMoveValid;
+    }
+
+    /// <summary>
+    ///   Updates patch-specific GUI elements with data from a patch
+    /// </summary>
+    private void UpdatePatchDetails()
+    {
+        name.Text = SelectedPatch!.Name.ToString();
 
         // Biome: {0}
         biome.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("BIOME_LABEL"),
-            Patch.BiomeTemplate.Name);
+            SelectedPatch.BiomeTemplate.Name);
 
         // {0}-{1}m below sea level
-        depth.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("BELOW_SEA_LEVEL"),
-            Patch.Depth[0], Patch.Depth[1]);
-        playerHere.Visible = CurrentPatch == Patch;
+        depth.Text = new LocalizedString("BELOW_SEA_LEVEL", SelectedPatch.Depth[0], SelectedPatch.Depth[1]).ToString();
+        playerHere.Visible = CurrentPatch == SelectedPatch;
 
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
 
         // Atmospheric gasses
-        temperature.Text = Patch.Biome.AverageTemperature + " °C";
+        temperature.Text = SelectedPatch.Biome.AverageTemperature + " °C";
         pressure.Text = "20 bar";
         light.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(Patch, sunlightCompound.InternalName)) + " lx";
+            GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName)) + " lx";
         oxygen.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(Patch, oxygenCompound.InternalName));
+            GetCompoundAmount(SelectedPatch, oxygenCompound.InternalName));
         nitrogen.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(Patch, nitrogenCompound.InternalName));
+            GetCompoundAmount(SelectedPatch, nitrogenCompound.InternalName));
         co2.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(Patch, carbondioxideCompound.InternalName));
+            GetCompoundAmount(SelectedPatch, carbondioxideCompound.InternalName));
 
         // Compounds
         hydrogenSulfide.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            Math.Round(GetCompoundAmount(Patch, hydrogensulfideCompound.InternalName), 3));
+            Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName), 3));
         ammonia.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            Math.Round(GetCompoundAmount(Patch, ammoniaCompound.InternalName), 3));
+            Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName), 3));
         glucose.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            Math.Round(GetCompoundAmount(Patch, glucoseCompound.InternalName), 3));
+            Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName), 3));
         phosphate.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            Math.Round(GetCompoundAmount(Patch, phosphatesCompound.InternalName), 3));
+            Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName), 3));
         iron.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(Patch, ironCompound.InternalName));
+            GetCompoundAmount(SelectedPatch, ironCompound.InternalName));
 
-        // Refresh species list
-        speciesListBox.ClearItems();
+        var label = speciesListBox.GetItem<CustomRichTextLabel>("SpeciesList");
+        var speciesList = new StringBuilder(100);
 
-        foreach (var species in Patch.SpeciesInPatch.Keys)
+        foreach (var species in SelectedPatch.SpeciesInPatch.Keys)
         {
-            var speciesLabel = new Label();
-            speciesLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
-            speciesLabel.Autowrap = true;
-            speciesLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("WITH_POPULATION"), species.FormattedName,
-                Patch.GetSpeciesPopulation(species));
-            speciesListBox.AddItem(speciesLabel);
+            speciesList.AppendLine(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate(
+                "SPECIES_WITH_POPULATION"), species.FormattedNameBbCode, SelectedPatch.GetSpeciesPopulation(species)));
         }
+
+        label.ExtendedBbcode = speciesList.ToString();
 
         UpdateConditionDifferencesBetweenPatches();
     }
 
-    private void MoveToPatchClicked()
+    private float GetCompoundAmount(Patch patch, string compoundName)
     {
-        if (Patch == null)
-            return;
-
-        OnMoveToPatchClicked.Invoke(Patch);
+        return patch.GetCompoundAmount(compoundName);
     }
 
     /// <remarks>
@@ -272,10 +285,10 @@ public class PatchDetailsPanel : PanelContainer
     /// </remarks>
     private void UpdateConditionDifferencesBetweenPatches()
     {
-        if (Patch == null || CurrentPatch == null)
+        if (SelectedPatch == null || CurrentPatch == null)
             return;
 
-        var nextCompound = Patch.Biome.AverageTemperature;
+        var nextCompound = SelectedPatch.Biome.AverageTemperature;
 
         if (nextCompound > CurrentPatch.Biome.AverageTemperature)
         {
@@ -290,7 +303,7 @@ public class PatchDetailsPanel : PanelContainer
             temperatureSituation.Texture = null;
         }
 
-        nextCompound = Patch.Biome.Compounds[sunlightCompound].Dissolved;
+        nextCompound = SelectedPatch.Biome.Compounds[sunlightCompound].Dissolved;
 
         if (nextCompound > CurrentPatch.Biome.Compounds[sunlightCompound].Dissolved)
         {
@@ -305,7 +318,7 @@ public class PatchDetailsPanel : PanelContainer
             lightSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(Patch, hydrogensulfideCompound.InternalName);
+        nextCompound = GetCompoundAmount(SelectedPatch, hydrogensulfideCompound.InternalName);
 
         if (nextCompound > GetCompoundAmount(CurrentPatch, hydrogensulfideCompound.InternalName))
         {
@@ -320,7 +333,7 @@ public class PatchDetailsPanel : PanelContainer
             hydrogenSulfideSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(Patch, glucoseCompound.InternalName);
+        nextCompound = GetCompoundAmount(SelectedPatch, glucoseCompound.InternalName);
 
         if (nextCompound > GetCompoundAmount(CurrentPatch, glucoseCompound.InternalName))
         {
@@ -335,7 +348,7 @@ public class PatchDetailsPanel : PanelContainer
             glucoseSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(Patch, ironCompound.InternalName);
+        nextCompound = GetCompoundAmount(SelectedPatch, ironCompound.InternalName);
 
         if (nextCompound > GetCompoundAmount(CurrentPatch, ironCompound.InternalName))
         {
@@ -350,7 +363,7 @@ public class PatchDetailsPanel : PanelContainer
             ironSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(Patch, ammoniaCompound.InternalName);
+        nextCompound = GetCompoundAmount(SelectedPatch, ammoniaCompound.InternalName);
 
         if (nextCompound > GetCompoundAmount(CurrentPatch, ammoniaCompound.InternalName))
         {
@@ -365,7 +378,7 @@ public class PatchDetailsPanel : PanelContainer
             ammoniaSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(Patch, phosphatesCompound.InternalName);
+        nextCompound = GetCompoundAmount(SelectedPatch, phosphatesCompound.InternalName);
 
         if (nextCompound > GetCompoundAmount(CurrentPatch, phosphatesCompound.InternalName))
         {
@@ -381,20 +394,11 @@ public class PatchDetailsPanel : PanelContainer
         }
     }
 
-    private float GetCompoundAmount(Patch patch, string compoundName)
+    private void MoveToPatchClicked()
     {
-        var compound = SimulationParameters.Instance.GetCompound(compoundName);
-        var patchBiome = patch.Biome;
+        if (SelectedPatch == null)
+            return;
 
-        return compoundName switch
-        {
-            "sunlight" => patchBiome.Compounds[compound].Dissolved * 100,
-            "oxygen" => patchBiome.Compounds[compound].Dissolved * 100,
-            "carbondioxide" => patchBiome.Compounds[compound].Dissolved * 100,
-            "nitrogen" => patchBiome.Compounds[compound].Dissolved * 100,
-            "iron" => patch.GetTotalChunkCompoundAmount(compound),
-            _ => patchBiome.Compounds[compound].Density * patchBiome.Compounds[compound].Amount +
-                patch.GetTotalChunkCompoundAmount(compound),
-        };
+        OnMoveToPatchClicked.Invoke(SelectedPatch);
     }
 }
