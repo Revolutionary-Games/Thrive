@@ -400,14 +400,15 @@ public class AutoEvoExploringTool : NodeWithInput
     /// </summary>
     private void OnFinishOneGenerationButtonPressed()
     {
-        // If the previous one has finished / failed
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
         {
+            // If the previous one has finished / failed
             autoEvoRun = new AutoEvoRun(gameProperties.GameWorld, autoEvoConfiguration) { FullSpeed = true };
             autoEvoRun.Start();
         }
         else
         {
+            // If the previous one is paused
             autoEvoRun.FullSpeed = true;
             autoEvoRun.Continue();
         }
