@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-23 09:45+0300\n"
+"POT-Creation-Date: 2022-06-29 11:15+0700\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -37,7 +37,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Концепт-арт"
 
 #: ../simulation_parameters/common/gallery.json:6
 #, fuzzy
@@ -69,7 +69,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:184
 msgid "MUSIC"
-msgstr ""
+msgstr "Музика"
 
 #: ../simulation_parameters/common/gallery.json:187
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
@@ -1144,16 +1144,26 @@ msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Оберіть тип клітин для редагування у вкладці редактору"
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 #: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 msgid "FRAME_DURATION"
 msgstr "Дельта: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
+#: ../src/saving/SaveManagerGUI.cs:126
+msgid "MIB_VALUE"
+msgstr ""
+
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
+#, fuzzy
+msgid "UNKNOWN_ON_WINDOWS"
+msgstr "Невідомий ID магазину для цього моду"
+
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
@@ -1190,7 +1200,7 @@ msgstr "FPS диспей"
 
 #: ../src/engine/DebugOverlays.tscn:110
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "Cпавнити сутності з формами зіткнення"
 
 #: ../src/engine/DebugOverlays.tscn:117
 msgid "ENTITY_LABEL"
@@ -2761,7 +2771,7 @@ msgstr "Н/Є"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
-msgstr ""
+msgstr "Двічі клікніть, щоб переглянути в повноекранні"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 #, fuzzy
@@ -2785,16 +2795,16 @@ msgstr "Біом: {0}"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
-msgstr ""
+msgstr "Переглянути галерею"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
-msgstr ""
+msgstr "ФІльтр предметів категорії:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:185
 msgid "SLIDESHOW"
-msgstr ""
+msgstr "Слайдшов"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2192
@@ -3362,7 +3372,7 @@ msgstr "Сигнал для виведення"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:790
 msgid "PAUSE_PROMPT"
-msgstr ""
+msgstr "[center]Натисніть [thrive:input]g_pause[/thrive:input], аби продовжити гру[/center]"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:904
 msgid "STUFF_AT"
@@ -3589,11 +3599,11 @@ msgstr "Назва типу клітини"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1175
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr ""
+msgstr "Ядро не підлягає видаленю, бо це необоротна еволюція. Проте, якщо ви його розмістили в цьому відвідуванні редактору, то скасування та повторення дозволенні"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1177
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr ""
+msgstr "Неможна видалити останню органелу"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
 msgid "FAILED"
@@ -4654,7 +4664,8 @@ msgstr "Вибране збереження є несумісним протот
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "Вибране збереження для завантаження зроблене в прототипі з різними версіями Thrive.\n"
-"Тому данне збереження неможна завантажити, бо воно не придатне до оновлення. Підтримка сумісності збережень для прототипів буде великим тягарем, адже речі частенько переробляються, а написати оновлення збереженням сильно сповільнить розробку."
+"Тому данне збереження неможна завантажити, бо воно не придатне до оновлення.\n"
+"Підтримка сумісності збережень для прототипів буде великим тягарем, адже речі частенько переробляються, а написати оновлення збереженням сильно сповільнить розробку."
 
 #: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
@@ -5061,3 +5072,6 @@ msgstr "Переглянути зараз"
 #, fuzzy
 #~ msgid "LOCAL_EXTINCTION"
 #~ msgstr "Гравець вимер"
+
+#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
+#~ msgstr "Пангонійське придоння"

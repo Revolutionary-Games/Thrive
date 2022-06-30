@@ -310,6 +310,11 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
             case EditorTab.CellEditor:
             {
+                // If we have an edited cell type, then we can apply those changes when we go back to the main editor
+                // tab as that's the only exit point and the point where we actually need to use the edited cell
+                // type information
+                CheckAndApplyCellTypeEdit();
+
                 bodyPlanEditorTab.Show();
                 SetEditorObjectVisibility(true);
                 cellEditorTab.SetEditorWorldTabSpecificObjectVisibility(false);
@@ -319,11 +324,6 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
                 // This line (and also in CellTypeEditor) doesn't help:
                 bodyPlanEditorTab.UpdateArrow();
                 bodyPlanEditorTab.UpdateCamera();
-
-                // If we have an edited cell type, then we can apply those changes when we go back to the main editor
-                // tab as that's the only exit point and the point where we actually need to use the edited cell
-                // type information
-                CheckAndApplyCellTypeEdit();
 
                 break;
             }

@@ -408,6 +408,7 @@ public static class Constants
     public const int CORPSE_CHUNK_DIVISOR = 3;
     public const float CORPSE_CHUNK_AMOUNT_DIVISOR = 3.0f;
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
+    public const string DEFAULT_CHUNK_MODEL_NAME = "cytoplasm";
 
     /// <summary>
     ///   The drag force is calculated by taking the current velocity
@@ -756,6 +757,8 @@ public static class Constants
     ///   Internal Godot name for the default audio output device
     /// </summary>
     public const string DEFAULT_AUDIO_OUTPUT_DEVICE_NAME = "Default";
+
+    public const string OS_WINDOWS_NAME = "Windows";
 
     /// <summary>
     ///   This is just here to make it easier to debug saves

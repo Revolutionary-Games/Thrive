@@ -7,7 +7,7 @@
 
 [node name="GalleryCardAudio" instance=ExtResource( 4 )]
 script = ExtResource( 3 )
-CanBeSlideshown = false
+CanBeShownInASlideshow = false
 MissingTexture = ExtResource( 2 )
 PlaybackControlsPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PlaybackControls")
 
