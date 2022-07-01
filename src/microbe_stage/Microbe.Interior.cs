@@ -776,7 +776,7 @@ public partial class Microbe
         {
             if (!Species.PlayerSpecies)
             {
-                GameWorld.AlterSpeciesPopulation(Species,
+                GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
                     Constants.CREATURE_REPRODUCE_POPULATION_GAIN, TranslationServer.Translate("REPRODUCED"));
             }
 
