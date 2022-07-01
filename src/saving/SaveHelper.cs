@@ -240,7 +240,7 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Counts the total number of saves with the given regular expression and how many bytes they take up
+    ///   Counts the total number of saves matching the given regular expression and how many bytes they take up
     /// </summary>
     public static (int Count, ulong DiskSpace) CountSaves(Regex? nameMatches = null)
     {
@@ -296,7 +296,7 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Deletes all saves with the given regex expression except the latest one if deleteLatest is false
+    ///   Deletes all saves matching the given regex expression except the latest one if deleteLatest is false
     /// </summary>
     /// <returns>the list of saves deleted</returns>
     public static List<string> CleanUpOldSavesOfType(Regex nameMatches, bool deleteLatest = false)
