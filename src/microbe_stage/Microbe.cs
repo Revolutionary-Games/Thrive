@@ -882,7 +882,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             if ((spatial.Translation - Translation).LengthSquared() > searchRadiusSquared)
                 continue;
 
-            if (entity is Microbe microbe && microbe.Species.PlayerSpecies)
+            // Ship can't be engulfed entities
+            if (!CanEngulf(entity))
                 continue;
 
             if (Size > entity.Size * Constants.ENGULF_SIZE_RATIO_REQ &&
