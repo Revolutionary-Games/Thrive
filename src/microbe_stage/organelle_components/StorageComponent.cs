@@ -1,9 +1,7 @@
-﻿using Godot;
-
-/// <summary>
+﻿/// <summary>
 ///   Allows cell to store more stuff
 /// </summary>
-public class StorageComponent : IOrganelleComponent
+public class StorageComponent : EmptyOrganelleComponent
 {
     public StorageComponent(float capacity)
     {
@@ -11,22 +9,6 @@ public class StorageComponent : IOrganelleComponent
     }
 
     public float Capacity { get; }
-
-    public void OnAttachToCell(PlacedOrganelle organelle)
-    {
-    }
-
-    public void OnDetachFromCell(PlacedOrganelle organelle)
-    {
-    }
-
-    public void Update(float elapsed)
-    {
-    }
-
-    public void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
-    {
-    }
 }
 
 public class StorageComponentFactory : IOrganelleComponentFactory

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -52,10 +53,10 @@ public class PatchManager : IChildPropertiesLoadCallback
     }
 
     /// <summary>
-    ///   Applies all patch related settings that are needed to be
-    ///   set. Like different spawners, despawning old entities if the
-    ///   patch changed etc.
+    ///   Applies all patch related settings that are needed to be set. Like different spawners, despawning old
+    ///   entities if the patch changed etc.
     /// </summary>
+    /// <param name="currentPatch">The patch to apply settings from</param>
     /// <returns>
     ///   True if the patch is changed from the previous one. False if the patch is not changed.
     /// </returns>
@@ -68,8 +69,7 @@ public class PatchManager : IChildPropertiesLoadCallback
             if (previousPatch != null)
             {
                 GD.Print("Previous patch (", previousPatch.Name.ToString(),
-                    ") different to " + "current patch (",
-                    currentPatch.Name.ToString(), ") despawning all entities.");
+                    ") different to " + "current patch (", currentPatch.Name.ToString(), ") despawning all entities.");
             }
             else
             {
@@ -117,18 +117,22 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private void HandleChunkSpawns(BiomeConditions biome)
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
+
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
         foreach (var entry in biome.Chunks)
         {
-            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
+            var density = entry.Value.Density * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
+                Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR;
+
+            HandleSpawnHelper(chunkSpawners, entry.Value.Name, density,
                 () =>
                 {
-                    var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value,
-                        compoundCloudSystem));
+                    var spawner = new CreatedSpawner(entry.Value.Name, Spawners.MakeChunkSpawner(entry.Value));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
-                        Constants.MICROBE_SPAWN_RADIUS);
+                    spawnSystem.AddSpawnType(spawner.Spawner, density, Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
                 });
         }
@@ -136,18 +140,26 @@ public class PatchManager : IChildPropertiesLoadCallback
 
     private void HandleCloudSpawns(BiomeConditions biome)
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
+
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
         foreach (var entry in biome.Compounds)
         {
-            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, entry.Value.Density,
+            // Density value in difficulty settings scales overall compound amount quadratically
+            var density = entry.Value.Density * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
+                Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR;
+            var amount = entry.Value.Amount * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
+                Constants.CLOUD_SPAWN_AMOUNT_SCALE_FACTOR;
+
+            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, density,
                 () =>
                 {
                     var spawner = new CreatedSpawner(entry.Key.InternalName,
-                        Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount));
+                        Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, amount));
 
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
-                        Constants.CLOUD_SPAWN_RADIUS);
+                    spawnSystem.AddSpawnType(spawner.Spawner, density, Constants.CLOUD_SPAWN_RADIUS);
                     return spawner;
                 });
         }
@@ -160,7 +172,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         GD.Print("Number of species in this patch = ", patch.SpeciesInPatch.Count);
 
-        foreach (var entry in patch.SpeciesInPatch)
+        foreach (var entry in patch.SpeciesInPatch.OrderByDescending(entry => entry.Value))
         {
             var species = entry.Key;
 
@@ -170,9 +182,13 @@ public class PatchManager : IChildPropertiesLoadCallback
                 continue;
             }
 
-            var density = 1.0f / (Constants.STARTING_SPAWN_DENSITY -
-                Math.Min(Constants.MAX_SPAWN_DENSITY,
-                    species.Population * 5));
+            if (species.Obsolete)
+            {
+                GD.PrintErr("Obsolete species is in a patch");
+                continue;
+            }
+
+            var density = Mathf.Max(Mathf.Log(species.Population / 50.0f) * 0.01f, 0.0f);
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
@@ -185,12 +201,12 @@ public class PatchManager : IChildPropertiesLoadCallback
                     spawnSystem.AddSpawnType(spawner.Spawner, density,
                         Constants.MICROBE_SPAWN_RADIUS);
                     return spawner;
-                });
+                }, new MicrobeSpawnerComparer());
         }
     }
 
     private void HandleSpawnHelper(List<CreatedSpawner> existingSpawners, string itemName,
-        float density, Func<CreatedSpawner> createNew)
+        float density, Func<CreatedSpawner> createNew, IEqualityComparer<CreatedSpawner>? customEqualityComparer = null)
     {
         if (density <= 0)
         {
@@ -200,17 +216,29 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         var existing = existingSpawners.Find(s => s.Name == itemName);
 
+        CreatedSpawner? newSpawner = null;
+
+        if (existing != null && customEqualityComparer != null)
+        {
+            // Need additional checking to make sure the existing is good
+            newSpawner = createNew();
+
+            if (!customEqualityComparer.Equals(existing, newSpawner))
+            {
+                GD.Print("Existing spawner of ", existing.Name, " didn't match equality check, creating new instead");
+                existing = null;
+            }
+        }
+
         if (existing != null)
         {
             existing.Marked = true;
 
-            float oldFrequency = existing.Spawner.SpawnFrequency;
-            existing.Spawner.SetFrequencyFromDensity(density);
-
-            if (oldFrequency != existing.Spawner.SpawnFrequency)
+            if (existing.Spawner.Density != density)
             {
-                GD.Print("Spawn frequency of ", existing.Name, " changed from ",
-                    oldFrequency, " to ", existing.Spawner.SpawnFrequency);
+                GD.Print("Changing spawn density of ", existing.Name, " from ",
+                    existing.Spawner.Density, " to ", density);
+                existing.Spawner.Density = density;
             }
         }
         else
@@ -218,7 +246,8 @@ public class PatchManager : IChildPropertiesLoadCallback
             // New spawner needed
             GD.Print("Registering new spawner: Name: ", itemName, " density: ", density);
 
-            existingSpawners.Add(createNew());
+            newSpawner ??= createNew();
+            existingSpawners.Add(newSpawner);
         }
     }
 
@@ -283,6 +312,27 @@ public class PatchManager : IChildPropertiesLoadCallback
         {
             Name = name;
             Spawner = spawner;
+        }
+    }
+
+    private class MicrobeSpawnerComparer : EqualityComparer<CreatedSpawner>
+    {
+        public override bool Equals(CreatedSpawner x, CreatedSpawner y)
+        {
+            if (ReferenceEquals(x, y) || ReferenceEquals(x.Spawner, y.Spawner))
+                return true;
+
+            if (x.Spawner is MicrobeSpawner microbeSpawner1 && y.Spawner is MicrobeSpawner microbeSpawner2)
+            {
+                return Equals(microbeSpawner1.Species, microbeSpawner2.Species);
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode(CreatedSpawner obj)
+        {
+            return (obj.Name.GetHashCode() * 439) ^ (obj.Spawner.GetHashCode() * 443);
         }
     }
 }

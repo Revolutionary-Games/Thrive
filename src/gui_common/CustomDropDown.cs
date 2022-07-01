@@ -94,13 +94,13 @@ public class CustomDropDown : MenuButton
     /// <returns>Item's index. -1 if not found</returns>
     public int GetItemIndex(string name, string section)
     {
-        if (!items.ContainsKey(section))
+        if (!items.TryGetValue(section, out var sectionItems))
         {
             GD.PrintErr("No section found with name ", section);
             return -1;
         }
 
-        foreach (var item in items[section])
+        foreach (var item in sectionItems)
         {
             if (item.Text == name)
                 return Popup.GetItemIndex(item.Id) + 1;

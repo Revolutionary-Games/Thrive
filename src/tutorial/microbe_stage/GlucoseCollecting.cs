@@ -72,8 +72,8 @@
 
                     var compounds = ((CompoundEventArgs)args).Compounds;
 
-                    if (compounds.ContainsKey(glucose) &&
-                        compounds[glucose] >= Constants.GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE)
+                    if (compounds.TryGetValue(glucose, out var amount) &&
+                        amount >= Constants.GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE)
                     {
                         // Tutorial is now complete
                         Hide();

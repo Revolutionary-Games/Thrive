@@ -91,6 +91,9 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             clouds.Remove(cloud);
         }
 
+        // CompoundCloudPlanes have a negative render priority, so they are drawn beneath organelles
+        int renderPriority = -1;
+
         // TODO: if the compound types have changed since we saved, that needs to be handled
         if (IsLoadedFromSave)
         {
@@ -98,8 +101,10 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             {
                 // Re-init with potentially changed compounds
                 // TODO: special handling is needed if the compounds actually changed
-                cloud.Init(fluidSystem, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
+                cloud.Init(fluidSystem, renderPriority, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
                     cloud.Compounds[3]);
+
+                --renderPriority;
 
                 // Re-add the clouds as our children
                 AddChild(cloud);
@@ -128,7 +133,8 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             if (startOffset + 3 < allCloudCompounds.Count)
                 cloud4 = allCloudCompounds[startOffset + 3];
 
-            clouds[i].Init(fluidSystem, cloud1, cloud2, cloud3, cloud4);
+            clouds[i].Init(fluidSystem, renderPriority, cloud1, cloud2, cloud3, cloud4);
+            --renderPriority;
             clouds[i].Translation = new Vector3(0, 0, 0);
         }
     }
@@ -219,11 +225,6 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <summary>
     ///   Absorbs compounds from clouds into a bag
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: finding a way to add threading here probably helps quite a bit
-    ///   </para>
-    /// </remarks>
     public void AbsorbCompounds(Vector3 position, float radius, CompoundBag storage,
         Dictionary<Compound, float> totals, float delta, float rate)
     {
@@ -259,32 +260,32 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             int xEnd = (int)Mathf.Round(cloudRelativeX + localGrabRadius);
             int yEnd = (int)Mathf.Round(cloudRelativeY + localGrabRadius);
 
-            for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius);
-                 x <= xEnd;
-                 x += 1)
+            // TODO: try to improve performance here regarding this lock, as we have just 2 clouds so only 2 threads
+            // can even in theory run absorption code at once
+            lock (cloud.MultithreadedLock)
             {
-                for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius);
-                     y <= yEnd;
-                     y += 1)
+                for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius); x <= xEnd; x += 1)
                 {
-                    // Negative coordinates are always outside the cloud area
-                    if (x < 0 || y < 0)
-                        continue;
-
-                    // Circle check
-                    if (Mathf.Pow(x - cloudRelativeX, 2) +
-                        Mathf.Pow(y - cloudRelativeY, 2) >
-                        localGrabRadiusSquared)
+                    for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius); y <= yEnd; y += 1)
                     {
-                        // Not in it
-                        continue;
-                    }
+                        // Negative coordinates are always outside the cloud area
+                        if (x < 0 || y < 0)
+                            continue;
 
-                    // Then just need to check that it is within the cloud simulation array
-                    if (x < cloud.Size && y < cloud.Size)
-                    {
-                        // Absorb all compounds in the cloud
-                        cloud.AbsorbCompounds(x, y, storage, totals, delta, rate);
+                        // Circle check
+                        if (Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2) >
+                            localGrabRadiusSquared)
+                        {
+                            // Not in it
+                            continue;
+                        }
+
+                        // Then just need to check that it is within the cloud simulation array
+                        if (x < cloud.Size && y < cloud.Size)
+                        {
+                            // Absorb all compounds in the cloud
+                            cloud.AbsorbCompounds(x, y, storage, totals, delta, rate);
+                        }
                     }
                 }
             }
@@ -327,13 +328,9 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             cloud.ConvertToCloudLocal(position, out var cloudRelativeX, out var cloudRelativeY);
 
             // Search each angle for nearby compounds
-            for (int radius = 1;
-                 radius < localRadius;
-                 radius += 1)
+            for (int radius = 1; radius < localRadius; radius += 1)
             {
-                for (double theta = 0;
-                     theta <= MathUtils.FULL_CIRCLE;
-                     theta += Constants.CHEMORECEPTOR_ARC_SIZE)
+                for (double theta = 0; theta <= MathUtils.FULL_CIRCLE; theta += Constants.CHEMORECEPTOR_ARC_SIZE)
                 {
                     int x = cloudRelativeX + (int)Math.Round(Math.Cos(theta) * radius);
                     int y = cloudRelativeY + (int)Math.Round(Math.Sin(theta) * radius);

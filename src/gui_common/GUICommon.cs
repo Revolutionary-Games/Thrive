@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Array = Godot.Collections.Array;
 using Object = Godot.Object;
@@ -17,13 +18,7 @@ public class GUICommon : NodeWithInput
     {
         instance = this;
 
-        AudioSource = new AudioStreamPlayer();
-        AudioSource.Bus = "GUI";
-        AddChild(AudioSource);
-
-        AudioSource2 = new AudioStreamPlayer();
-        AudioSource2.Bus = "GUI";
-        AddChild(AudioSource2);
+        AudioSources = new List<AudioStreamPlayer>();
 
         Tween = new Tween();
         AddChild(Tween);
@@ -48,20 +43,9 @@ public class GUICommon : NodeWithInput
     public bool IsAnyExclusivePopupActive => GetCurrentlyActiveExclusivePopup() != null;
 
     /// <summary>
-    ///   The audio player for UI sound effects.
+    ///   The audio players for UI sound effects.
     /// </summary>
-    private AudioStreamPlayer AudioSource { get; }
-
-    /// <summary>
-    ///   Second audio player for GUI effects. This is used if the primary one is still playing the previous effect.
-    /// </summary>
-    /// <remarks>
-    ///    <para>
-    ///      If the user is really fast with the mouse they can click buttons so fast that two sounds need to play at
-    ///      once.
-    ///    </para>
-    /// </remarks>
-    private AudioStreamPlayer AudioSource2 { get; }
+    private List<AudioStreamPlayer> AudioSources { get; }
 
     public static Vector2 GetFirstChildMinSize(Control control)
     {
@@ -131,7 +115,14 @@ public class GUICommon : NodeWithInput
             return false;
         }
 
-        popup!.Hide();
+        if (customPopup != null)
+        {
+            customPopup.CustomHide();
+        }
+        else
+        {
+            popup!.Hide();
+        }
 
         return true;
     }
@@ -162,22 +153,25 @@ public class GUICommon : NodeWithInput
     {
         volume = Mathf.Clamp(volume, 0.0f, 1.0f);
 
-        if (AudioSource.Playing)
-        {
-            // Use backup player if it is available
-            if (!AudioSource2.Playing)
-            {
-                AudioSource2.Stream = sound;
-                AudioSource2.VolumeDb = GD.Linear2Db(volume);
-                AudioSource2.Play();
-            }
+        // Find a player not in use or create a new one if none are available.
+        var player = AudioSources.Find(nextPlayer => !nextPlayer.Playing);
 
-            return;
+        if (player == null)
+        {
+            // If we hit the player limit just return and ignore the sound.
+            if (AudioSources.Count >= Constants.MAX_CONCURRENT_UI_AUDIO_PLAYERS)
+                return;
+
+            player = new AudioStreamPlayer();
+            player.Bus = "GUI";
+
+            AddChild(player);
+            AudioSources.Add(player);
         }
 
-        AudioSource.Stream = sound;
-        AudioSource.VolumeDb = GD.Linear2Db(volume);
-        AudioSource.Play();
+        player.VolumeDb = GD.Linear2Db(volume);
+        player.Stream = sound;
+        player.Play();
     }
 
     /// <summary>
@@ -202,23 +196,23 @@ public class GUICommon : NodeWithInput
         Tween.Start();
     }
 
-    public void ModulateFadeIn(Control control, float duration,
+    public void ModulateFadeIn(Control control, float duration, float delay = 0,
         Tween.TransitionType transitionType = Tween.TransitionType.Sine, Tween.EaseType easeType = Tween.EaseType.In)
     {
         // Make sure the control is visible
         control.Show();
-        control.Modulate = new Color(1, 1, 1, 0);
 
-        Tween.InterpolateProperty(control, "modulate:a", 0, 1, duration, transitionType, easeType);
+        Tween.InterpolateProperty(control, "modulate:a", null, 1, duration, transitionType, easeType, delay);
         Tween.Start();
     }
 
-    public void ModulateFadeOut(Control control, float duration, Tween.TransitionType transitionType =
+    public void ModulateFadeOut(Control control, float duration, float delay = 0, Tween.TransitionType transitionType =
         Tween.TransitionType.Sine, Tween.EaseType easeType = Tween.EaseType.In, bool hideOnFinished = true)
     {
-        control.Modulate = new Color(1, 1, 1, 1);
+        if (!control.Visible)
+            return;
 
-        Tween.InterpolateProperty(control, "modulate:a", 1, 0, duration, transitionType, easeType);
+        Tween.InterpolateProperty(control, "modulate:a", null, 0, duration, transitionType, easeType, delay);
         Tween.Start();
 
         if (!Tween.IsConnected("tween_completed", this, nameof(HideControlOnFadeOutComplete)) && hideOnFinished)

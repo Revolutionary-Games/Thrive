@@ -32,7 +32,12 @@ public class EnergyBalanceInfo
     public float Flagella { get; set; }
 
     /// <summary>
-    ///   Sum of <see cref="BaseMovement"/> and <see cref="Flagella"/>
+    ///   The cost of having all cilia working at the same time at max rotation (only when rotating)
+    /// </summary>
+    public float Cilia { get; set; }
+
+    /// <summary>
+    ///   Sum of <see cref="BaseMovement"/>, <see cref="Flagella"/>, and <see cref="Cilia"/>
     /// </summary>
     public float TotalMovement { get; set; }
 
@@ -69,25 +74,15 @@ public class EnergyBalanceInfo
 
     public void AddConsumption(string groupName, float amount)
     {
-        if (!Consumption.ContainsKey(groupName))
-        {
-            Consumption[groupName] = amount;
-        }
-        else
-        {
-            Consumption[groupName] += amount;
-        }
+        Consumption.TryGetValue(groupName, out var existing);
+
+        Consumption[groupName] = existing + amount;
     }
 
     public void AddProduction(string groupName, float amount)
     {
-        if (!Production.ContainsKey(groupName))
-        {
-            Production[groupName] = amount;
-        }
-        else
-        {
-            Production[groupName] += amount;
-        }
+        Production.TryGetValue(groupName, out var existing);
+
+        Production[groupName] = existing + amount;
     }
 }

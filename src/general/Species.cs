@@ -34,6 +34,13 @@ public abstract class Species : ICloneable
     public Color Colour { get; set; } = new(1, 1, 1);
 
     /// <summary>
+    ///   Set to true when this species has evolved to a different species class type. This is mostly used to detect
+    ///   that old species that should no longer be in use, are not used. Once this has been set to true, don't set
+    ///   this back to false.
+    /// </summary>
+    public bool Obsolete { get; set; }
+
+    /// <summary>
     ///   This holds all behavioural values and defines how this species will behave in the environment.
     /// </summary>
     [JsonProperty]
@@ -79,11 +86,24 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;
 
+    /// <summary>
+    ///   Returns <see cref="FormattedName"/> but includes bbcode tags for styling. Player's species will be emphasized
+    ///   with bolding.
+    /// </summary>
+    [JsonIgnore]
+    public string FormattedNameBbCode => PlayerSpecies ? $"[b][i]{FormattedName}[/i][/b]" : $"[i]{FormattedName}[/i]";
+
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
     [JsonIgnore]
     public bool IsExtinct => Population <= 0;
+
+    /// <summary>
+    ///   Triggered when this species is changed somehow. Should update any data that is cached in the species
+    ///   regarding its properties, including <see cref="RepositionToOrigin"/>
+    /// </summary>
+    public abstract void OnEdited();
 
     /// <summary>
     ///   Repositions the structure of the species according to stage specific rules

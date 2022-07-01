@@ -56,6 +56,9 @@ public class NewModGUI : Control
     public NodePath AssemblyModClassPath = null!;
 
     [Export]
+    public NodePath AssemblyModAutoHarmonyPath = null!;
+
+    [Export]
     public NodePath ErrorDisplayPath = null!;
 
     private CustomDialog dialog = null!;
@@ -75,6 +78,7 @@ public class NewModGUI : Control
     private LineEdit pckName = null!;
     private LineEdit modAssembly = null!;
     private LineEdit assemblyModClass = null!;
+    private CheckBox assemblyModAutoHarmony = null!;
 
     private Label errorDisplay = null!;
 
@@ -108,6 +112,7 @@ public class NewModGUI : Control
         pckName = GetNode<LineEdit>(PckNamePath);
         modAssembly = GetNode<LineEdit>(ModAssemblyPath);
         assemblyModClass = GetNode<LineEdit>(AssemblyModClassPath);
+        assemblyModAutoHarmony = GetNode<CheckBox>(AssemblyModAutoHarmonyPath);
 
         errorDisplay = GetNode<Label>(ErrorDisplayPath);
     }
@@ -198,6 +203,7 @@ public class NewModGUI : Control
         pckName.Text = editedInfo.PckToLoad;
         modAssembly.Text = editedInfo.ModAssembly;
         assemblyModClass.Text = editedInfo.AssemblyModClass;
+        assemblyModAutoHarmony.Pressed = editedInfo.UseAutoHarmony ?? false;
     }
 
     private bool ReadControlsToEditedInfo()
@@ -216,6 +222,7 @@ public class NewModGUI : Control
         editedInfo.PckToLoad = pckName.Text;
         editedInfo.ModAssembly = modAssembly.Text;
         editedInfo.AssemblyModClass = assemblyModClass.Text;
+        editedInfo.UseAutoHarmony = assemblyModAutoHarmony.Pressed;
 
         if (string.IsNullOrWhiteSpace(infoUrl.Text))
         {

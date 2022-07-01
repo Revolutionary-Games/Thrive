@@ -17,6 +17,9 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     public NodePath MpLabelPath = null!;
 
     [Export]
+    public NodePath RequiresNucleusPath = null!;
+
+    [Export]
     public NodePath DescriptionLabelPath = null!;
 
     [Export]
@@ -38,8 +41,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
     private Label? nameLabel;
     private Label? mpLabel;
-
-    private Label? descriptionLabel;
+    private Label? requiresNucleusLabel;
+    private CustomRichTextLabel? descriptionLabel;
     private CustomRichTextLabel? processesDescriptionLabel;
     private VBoxContainer modifierInfoList = null!;
     private ProcessList processList = null!;
@@ -48,6 +51,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private string? description;
     private string processesDescription = string.Empty;
     private int mpCost;
+    private bool requiresNucleus;
+    private float editorCostFactor = 1.0f;
 
     [Export]
     public string DisplayName
@@ -80,6 +85,15 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         }
     }
 
+    /// <summary>
+    ///   General description of the selectable.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: description string should only be set here and not directly on the rich text label node
+    ///     as it will be overridden otherwise.
+    ///   </para>
+    /// </remarks>
     [Export]
     public string? Description
     {
@@ -103,6 +117,28 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
+    public bool RequiresNucleus
+    {
+        get => requiresNucleus;
+        set
+        {
+            requiresNucleus = value;
+            UpdateRequiresNucleus();
+        }
+    }
+
+    [Export]
+    public float EditorCostFactor
+    {
+        get => editorCostFactor;
+        set
+        {
+            editorCostFactor = value;
+            UpdateMpCost();
+        }
+    }
+
+    [Export]
     public float DisplayDelay { get; set; } = 0.0f;
 
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.ControlBottomRightCorner;
@@ -117,18 +153,20 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     {
         nameLabel = GetNode<Label>(NameLabelPath);
         mpLabel = GetNode<Label>(MpLabelPath);
-        descriptionLabel = GetNode<Label>(DescriptionLabelPath);
+        requiresNucleusLabel = GetNode<Label>(RequiresNucleusPath);
+        descriptionLabel = GetNode<CustomRichTextLabel>(DescriptionLabelPath);
         processesDescriptionLabel = GetNode<CustomRichTextLabel>(ProcessesDescriptionLabelPath);
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
         processList = GetNode<ProcessList>(ProcessListPath);
 
-        modifierInfoScene = GD.Load<PackedScene>("res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.tscn");
+        modifierInfoScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn");
         latoBoldFont = GD.Load<Font>("res://src/gui_common/fonts/Lato-Bold-Smaller.tres");
 
         UpdateName();
         UpdateDescription();
         UpdateProcessesDescription();
         UpdateMpCost();
+        UpdateRequiresNucleus();
         UpdateLists();
     }
 
@@ -136,6 +174,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     {
         if (what == NotificationTranslationChanged)
         {
+            UpdateDescription();
             UpdateProcessesDescription();
         }
     }
@@ -194,7 +233,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
             switch (modifier.Name)
             {
-                case "mobility":
+                case "baseMobility":
                     deltaValue = membraneType.MovementFactor - referenceMembrane.MovementFactor;
                     break;
                 case "osmoregulationCost":
@@ -268,14 +307,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (descriptionLabel == null)
             return;
 
-        if (string.IsNullOrEmpty(Description))
-        {
-            description = descriptionLabel.Text;
-        }
-        else
-        {
-            descriptionLabel.Text = description;
-        }
+        descriptionLabel.ExtendedBbcode = TranslationServer.Translate(Description);
     }
 
     private void UpdateProcessesDescription()
@@ -284,6 +316,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
             return;
 
         processesDescriptionLabel.ExtendedBbcode = TranslationServer.Translate(ProcessesDescription);
+        processesDescriptionLabel.Visible = !string.IsNullOrEmpty(ProcessesDescription);
     }
 
     private void UpdateMpCost()
@@ -291,7 +324,15 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         if (mpLabel == null)
             return;
 
-        mpLabel.Text = MutationPointCost.ToString(CultureInfo.CurrentCulture);
+        mpLabel.Text = ((int)(mpCost * editorCostFactor)).ToString(CultureInfo.CurrentCulture);
+    }
+
+    private void UpdateRequiresNucleus()
+    {
+        if (requiresNucleusLabel == null)
+            return;
+
+        requiresNucleusLabel.Visible = requiresNucleus;
     }
 
     private void UpdateLists()

@@ -8,30 +8,17 @@ using Newtonsoft.Json;
 ///   is instantiated in a cell, PlacedOrganelle class is used.
 /// </summary>
 [JsonObject(IsReference = true)]
-public class OrganelleTemplate : IPositionedOrganelle, ICloneable
+public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex
 {
     [JsonProperty]
     public readonly OrganelleDefinition Definition;
 
-    public OrganelleTemplate(OrganelleDefinition definition, Hex location, int rotation, int numberOfTimesMoved = 0)
+    public OrganelleTemplate(OrganelleDefinition definition, Hex location, int rotation)
     {
         Definition = definition;
         Position = location;
         Orientation = rotation;
-        NumberOfTimesMoved = numberOfTimesMoved;
     }
-
-    /// <summary>
-    /// Used to flag whether this Organelle was placed during the current editor session.
-    /// </summary>
-    public bool PlacedThisSession { get; set; }
-
-    public int NumberOfTimesMoved { get; set; }
-
-    /// <summary>
-    ///   Used to flag whether this Organelle was moved during the current editor session.
-    /// </summary>
-    public bool MovedThisSession => NumberOfTimesMoved > 0;
 
     public Hex Position { get; set; }
 
@@ -58,9 +45,14 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
         Upgrades.CustomUpgradeData = upgrades;
     }
 
+    public bool MatchesDefinition(IActionHex other)
+    {
+        return Definition == ((OrganelleTemplate)other).Definition;
+    }
+
     public object Clone()
     {
-        return new OrganelleTemplate(Definition, Position, Orientation, NumberOfTimesMoved)
+        return new OrganelleTemplate(Definition, Position, Orientation)
         {
             Upgrades = (OrganelleUpgrades?)Upgrades?.Clone(),
         };

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using File = Godot.File;
@@ -25,12 +26,15 @@ public class SimulationParameters : Node
     private Dictionary<string, Gallery> gallery = null!;
     private TranslationsInfo translationsInfo = null!;
     private GameCredits gameCredits = null!;
+    private Dictionary<string, DifficultyPreset> difficultyPresets = null!;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles = null!;
     private float prokaryoticOrganellesTotalChance;
     private List<OrganelleDefinition> eukaryoticOrganelles = null!;
     private float eukaryoticOrganellesChance;
+
+    private List<Compound>? cachedCloudCompounds;
 
     public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
 
@@ -94,6 +98,9 @@ public class SimulationParameters : Node
 
         gameCredits =
             LoadDirectObject<GameCredits>("res://simulation_parameters/common/credits.json");
+
+        difficultyPresets =
+            LoadRegistry<DifficultyPreset>("res://simulation_parameters/common/difficulty_presets.json");
 
         PatchMapNameGenerator = LoadDirectObject<PatchMapNameGenerator>(
             "res://simulation_parameters/microbe_stage/patch_syllables.json");
@@ -181,17 +188,7 @@ public class SimulationParameters : Node
     /// </summary>
     public List<Compound> GetCloudCompounds()
     {
-        var result = new List<Compound>();
-
-        foreach (var entry in compounds)
-        {
-            if (entry.Value.IsCloud)
-            {
-                result.Add(entry.Value);
-            }
-        }
-
-        return result;
+        return cachedCloudCompounds ??= ComputeCloudCompounds();
     }
 
     public Dictionary<string, MusicCategory> GetMusicCategories()
@@ -204,9 +201,19 @@ public class SimulationParameters : Node
         return helpTexts[name];
     }
 
+    public Dictionary<string, Gallery> GetGalleries()
+    {
+        return gallery;
+    }
+
     public Gallery GetGallery(string name)
     {
         return gallery[name];
+    }
+
+    public bool DoesGalleryExist(string name)
+    {
+        return gallery.ContainsKey(name);
     }
 
     public TranslationsInfo GetTranslationsInfo()
@@ -219,34 +226,69 @@ public class SimulationParameters : Node
         return gameCredits;
     }
 
-    public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
+    public DifficultyPreset GetDifficultyPreset(string name)
+    {
+        return difficultyPresets[name];
+    }
+
+    public DifficultyPreset GetDifficultyPresetByIndex(int index)
+    {
+        return difficultyPresets.Values.First(p => p.Index == index);
+    }
+
+    public IEnumerable<DifficultyPreset> GetAllDifficultyPresets()
+    {
+        return difficultyPresets.Values;
+    }
+
+    public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random, bool lawkOnly)
     {
         float valueLeft = random.Next(0.0f, prokaryoticOrganellesTotalChance);
 
-        foreach (var organelle in prokaryoticOrganelles)
+        // Filter to only LAWK organelles if necessary
+        IEnumerable<OrganelleDefinition> usedOrganelles = prokaryoticOrganelles;
+        if (lawkOnly)
+            usedOrganelles = usedOrganelles.Where(o => o.LAWK);
+
+        OrganelleDefinition? chosenOrganelle = null;
+        foreach (var organelle in usedOrganelles)
         {
+            chosenOrganelle = organelle;
             valueLeft -= organelle.ProkaryoteChance;
 
             if (valueLeft <= 0.00001f)
-                return organelle;
+                return chosenOrganelle;
         }
 
-        return prokaryoticOrganelles[prokaryoticOrganelles.Count - 1];
+        if (chosenOrganelle == null)
+            throw new InvalidOperationException("No organelle chosen to add");
+
+        return chosenOrganelle;
     }
 
-    public OrganelleDefinition GetRandomEukaryoticOrganelle(Random random)
+    public OrganelleDefinition GetRandomEukaryoticOrganelle(Random random, bool lawkOnly)
     {
         float valueLeft = random.Next(0.0f, eukaryoticOrganellesChance);
 
-        foreach (var organelle in eukaryoticOrganelles)
+        // Filter to only LAWK organelles if necessary
+        IEnumerable<OrganelleDefinition> usedOrganelles = eukaryoticOrganelles;
+        if (lawkOnly)
+            usedOrganelles = usedOrganelles.Where(o => o.LAWK);
+
+        OrganelleDefinition? chosenOrganelle = null;
+        foreach (var organelle in usedOrganelles)
         {
+            chosenOrganelle = organelle;
             valueLeft -= organelle.ChanceToCreate;
 
             if (valueLeft <= 0.00001f)
-                return organelle;
+                return chosenOrganelle;
         }
 
-        return eukaryoticOrganelles[eukaryoticOrganelles.Count - 1];
+        if (chosenOrganelle == null)
+            throw new InvalidOperationException("No organelle chosen to add");
+
+        return chosenOrganelle;
     }
 
     public PatchMapNameGenerator GetPatchMapNameGenerator()
@@ -269,6 +311,7 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(helpTexts);
         ApplyRegistryObjectTranslations(inputGroups);
         ApplyRegistryObjectTranslations(gallery);
+        ApplyRegistryObjectTranslations(difficultyPresets);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -374,6 +417,7 @@ public class SimulationParameters : Node
         CheckRegistryType(helpTexts);
         CheckRegistryType(inputGroups);
         CheckRegistryType(gallery);
+        CheckRegistryType(difficultyPresets);
 
         NameGenerator.Check(string.Empty);
         PatchMapNameGenerator.Check(string.Empty);
@@ -445,5 +489,10 @@ public class SimulationParameters : Node
                 prokaryoticOrganellesTotalChance += organelle.ChanceToCreate;
             }
         }
+    }
+
+    private List<Compound> ComputeCloudCompounds()
+    {
+        return compounds.Where(p => p.Value.IsCloud).Select(p => p.Value).ToList();
     }
 }

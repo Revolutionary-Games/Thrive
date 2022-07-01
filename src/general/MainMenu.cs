@@ -24,9 +24,6 @@ public class MainMenu : NodeWithInput
     public List<Texture> MenuBackgrounds = null!;
 
     [Export]
-    public NodePath NewGameButtonPath = null!;
-
-    [Export]
     public NodePath FreebuildButtonPath = null!;
 
     [Export]
@@ -50,6 +47,9 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath ModManagerPath = null!;
 
+    [Export]
+    public NodePath GalleryViewerPath = null!;
+
     public Array? MenuArray;
     public TextureRect Background = null!;
 
@@ -57,15 +57,15 @@ public class MainMenu : NodeWithInput
 
     private TextureRect thriveLogo = null!;
     private OptionsMenu options = null!;
+    private NewGameSettings newGameSettings = null!;
     private AnimationPlayer guiAnimations = null!;
     private SaveManagerGUI saves = null!;
     private ModManager modManager = null!;
+    private GalleryViewer galleryViewer = null!;
 
     private Control creditsContainer = null!;
     private CreditsScroll credits = null!;
     private LicensesDisplay licensesDisplay = null!;
-
-    private Button newGameButton = null!;
     private Button freebuildButton = null!;
 
     private Label storeLoggedInDisplay = null!;
@@ -73,18 +73,24 @@ public class MainMenu : NodeWithInput
     private CustomConfirmationDialog gles2Popup = null!;
     private ErrorDialog modLoadFailures = null!;
 
+    public static void OnEnteringGame()
+    {
+        CheatManager.OnCheatsDisabled();
+        SaveHelper.ClearLastSaveTime();
+    }
+
     public override void _Ready()
     {
         // Unpause the game as the MainMenu should never be paused.
-        GetTree().Paused = false;
+        PauseManager.Instance.ForceClear();
 
         RunMenuSetup();
 
         // Start intro video
         if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu)
         {
-            TransitionManager.Instance.AddCutscene("res://assets/videos/intro.ogv", 0.65f);
-            TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));
+            TransitionManager.Instance.AddSequence(
+                TransitionManager.Instance.CreateCutscene("res://assets/videos/intro.ogv", 0.65f), OnIntroEnded);
         }
         else
         {
@@ -105,7 +111,7 @@ public class MainMenu : NodeWithInput
     /// <summary>
     ///   Sets the current menu index and then switches the menu
     /// </summary>
-    /// <param name="index">Index of the menu</param>
+    /// <param name="index">Index of the menu. Set to <see cref="uint.MaxValue"/> to hide all menus</param>
     /// <param name="slide">If false then the menu slide animation will not be played</param>
     public void SetCurrentMenu(uint index, bool slide = true)
     {
@@ -166,13 +172,13 @@ public class MainMenu : NodeWithInput
         Background = GetNode<TextureRect>("Background");
         guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
-        newGameButton = GetNode<Button>(NewGameButtonPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
         modManager = GetNode<ModManager>(ModManagerPath);
+        galleryViewer = GetNode<GalleryViewer>(GalleryViewerPath);
 
         MenuArray?.Clear();
 
@@ -188,6 +194,7 @@ public class MainMenu : NodeWithInput
         RandomizeBackground();
 
         options = GetNode<OptionsMenu>("OptionsMenu");
+        newGameSettings = GetNode<NewGameSettings>("NewGameSettings");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
         modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
@@ -252,6 +259,8 @@ public class MainMenu : NodeWithInput
     /// </summary>
     private void SwitchMenu()
     {
+        thriveLogo.Hide();
+
         // Hide other menus and only show the one of the current index
         foreach (Control menu in MenuArray!)
         {
@@ -260,6 +269,7 @@ public class MainMenu : NodeWithInput
             if (menu.GetIndex() == CurrentMenuIndex)
             {
                 menu.Show();
+                thriveLogo.Show();
             }
         }
     }
@@ -277,60 +287,24 @@ public class MainMenu : NodeWithInput
 
     private void OnIntroEnded()
     {
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ?
-            0.3f :
-            0.5f, false);
-        TransitionManager.Instance.StartTransitions(null);
+        TransitionManager.Instance.AddSequence(
+            ScreenFade.FadeType.FadeIn, IsReturningToMenu ? 0.5f : 1.0f, null, false);
 
         // Start music after the video
         StartMusic();
-    }
-
-    private void OnMicrobeIntroEnded()
-    {
-        OnEnteringGame();
-
-        // TODO: Add loading screen while changing between scenes
-        SceneManager.Instance.SwitchToScene(MainGameState.MicrobeStage);
-    }
-
-    private void OnFreebuildFadeInEnded()
-    {
-        OnEnteringGame();
-
-        // Instantiate a new editor scene
-        var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
-
-        // Start freebuild game
-        editor.CurrentGame = GameProperties.StartNewMicrobeGame(true);
-
-        // Switch to the editor scene
-        SceneManager.Instance.SwitchToScene(editor);
     }
 
     private void NewGamePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Disable the button to prevent it being executed again.
-        newGameButton.Disabled = true;
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
 
-        // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
-        // before the stage music starts)
-        Jukebox.Instance.Stop();
+        // Show the options
+        newGameSettings.OpenFromMainMenu();
 
-        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
-        {
-            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
-            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f);
-        }
-        else
-        {
-            // People who disable the cutscene are impatient anyway so use a reduced fade time
-            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.2f);
-        }
-
-        TransitionManager.Instance.StartTransitions(this, nameof(OnMicrobeIntroEnded));
+        thriveLogo.Hide();
     }
 
     private void ToolsPressed()
@@ -352,8 +326,19 @@ public class MainMenu : NodeWithInput
         // Disable the button to prevent it being executed again.
         freebuildButton.Disabled = true;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
-        TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, () =>
+        {
+            OnEnteringGame();
+
+            // Instantiate a new editor scene
+            var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
+
+            // Start freebuild game
+            editor.CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings(), true);
+
+            // Switch to the editor scene
+            SceneManager.Instance.SwitchToScene(editor);
+        }, false);
     }
 
     // TODO: this is now used by another sub menu as well so renaming this to be more generic would be good
@@ -383,13 +368,17 @@ public class MainMenu : NodeWithInput
 
         // Show the options
         options.OpenFromMainMenu();
-
-        thriveLogo.Hide();
     }
 
     private void OnReturnFromOptions()
     {
         options.Visible = false;
+        SetCurrentMenu(0, false);
+    }
+
+    private void OnReturnFromNewGameSettings()
+    {
+        newGameSettings.Visible = false;
 
         SetCurrentMenu(0, false);
 
@@ -405,17 +394,12 @@ public class MainMenu : NodeWithInput
 
         // Show the options
         saves.Visible = true;
-
-        thriveLogo.Hide();
     }
 
     private void OnReturnFromLoadGame()
     {
         saves.Visible = false;
-
         SetCurrentMenu(0, false);
-
-        thriveLogo.Show();
     }
 
     private void CreditsPressed()
@@ -428,8 +412,6 @@ public class MainMenu : NodeWithInput
         // Show the credits view
         credits.Restart();
         creditsContainer.Visible = true;
-
-        thriveLogo.Hide();
     }
 
     private void OnReturnFromCredits()
@@ -438,8 +420,6 @@ public class MainMenu : NodeWithInput
         credits.Pause();
 
         SetCurrentMenu(0, false);
-
-        thriveLogo.Show();
     }
 
     private void LicensesPressed()
@@ -451,15 +431,11 @@ public class MainMenu : NodeWithInput
 
         // Show the licenses view
         licensesDisplay.PopupCenteredShrink();
-
-        thriveLogo.Hide();
     }
 
     private void OnReturnFromLicenses()
     {
         SetCurrentMenu(2, false);
-
-        thriveLogo.Show();
     }
 
     private void ModsPressed()
@@ -471,22 +447,25 @@ public class MainMenu : NodeWithInput
 
         // Show the mods view
         modManager.Visible = true;
-
-        thriveLogo.Hide();
     }
 
     private void OnReturnFromMods()
     {
         modManager.Visible = false;
-
         SetCurrentMenu(0, false);
-
-        thriveLogo.Show();
     }
 
-    private void OnEnteringGame()
+    private void ArtGalleryPressed()
     {
-        CheatManager.OnCheatsDisabled();
-        SaveHelper.ClearLastSaveTime();
+        GUICommon.Instance.PlayButtonPressSound();
+        SetCurrentMenu(uint.MaxValue, false);
+        galleryViewer.PopupFullRect();
+        Jukebox.Instance.PlayCategory("ArtGallery");
+    }
+
+    private void OnReturnFromArtGallery()
+    {
+        SetCurrentMenu(2, false);
+        Jukebox.Instance.PlayCategory("Menu");
     }
 }

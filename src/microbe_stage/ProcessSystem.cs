@@ -48,12 +48,14 @@ public class ProcessSystem
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
-        BiomeConditions biome, MembraneType membrane)
+        BiomeConditions biome, MembraneType membrane, bool isPlayerSpecies,
+        WorldGenerationSettings worldSettings)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
-        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection);
+        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, isPlayerSpecies,
+            worldSettings);
     }
 
     /// <summary>
@@ -66,8 +68,11 @@ public class ProcessSystem
     ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
     ///   movement organelles are assumed to be inactive in the balance calculation.
     /// </param>
+    /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
+    /// <param name="worldSettings">The world generation settings for this game</param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
-        BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection)
+        BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
+        bool isPlayerSpecies, WorldGenerationSettings worldSettings)
     {
         var result = new EnergyBalanceInfo();
 
@@ -83,19 +88,15 @@ public class ProcessSystem
             {
                 var processData = CalculateProcessMaximumSpeed(process, biome);
 
-                if (processData.WritableInputs.ContainsKey(ATP))
+                if (processData.WritableInputs.TryGetValue(ATP, out var amount))
                 {
-                    var amount = processData.WritableInputs[ATP];
-
                     processATPConsumption += amount;
 
                     result.AddConsumption(organelle.Definition.InternalName, amount);
                 }
 
-                if (processData.WritableOutputs.ContainsKey(ATP))
+                if (processData.WritableOutputs.TryGetValue(ATP, out amount))
                 {
-                    var amount = processData.WritableOutputs[ATP];
-
                     processATPProduction += amount;
 
                     result.AddProduction(organelle.Definition.InternalName, amount);
@@ -116,6 +117,15 @@ public class ProcessSystem
                 }
             }
 
+            if (organelle.Definition.HasComponentFactory<CiliaComponentFactory>())
+            {
+                var amount = Constants.CILIA_ENERGY_COST;
+
+                movementATPConsumption += amount;
+                result.Cilia += amount;
+                result.AddConsumption(organelle.Definition.InternalName, amount);
+            }
+
             // Store hex count
             hexCount += organelle.Definition.HexCount;
         }
@@ -128,6 +138,11 @@ public class ProcessSystem
         // Add osmoregulation
         result.Osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
             membrane.OsmoregulationFactor;
+
+        if (isPlayerSpecies)
+        {
+            result.Osmoregulation *= worldSettings.OsmoregulationMultiplier;
+        }
 
         result.AddConsumption("osmoregulation", result.Osmoregulation);
 
@@ -268,6 +283,7 @@ public class ProcessSystem
         }
 
         var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.PROCESS_GROUP);
+        var nodeCount = nodes.Count;
 
         // Used to go from the calculated compound values to per second values for reporting statistics
         float inverseDelta = 1.0f / delta;
@@ -275,14 +291,14 @@ public class ProcessSystem
         // The objects are processed here in order to take advantage of threading
         var executor = TaskExecutor.Instance;
 
-        for (int i = 0; i < nodes.Count; i += Constants.PROCESS_OBJECTS_PER_TASK)
+        for (int i = 0; i < nodeCount; i += Constants.PROCESS_OBJECTS_PER_TASK)
         {
             int start = i;
 
             var task = new Task(() =>
             {
                 for (int a = start;
-                     a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodes.Count; ++a)
+                     a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodeCount; ++a)
                 {
                     ProcessNode(nodes[a] as IProcessable, delta, inverseDelta);
                 }
@@ -317,10 +333,10 @@ public class ProcessSystem
 
     private static float GetDissolvedInBiome(Compound compound, BiomeConditions biome)
     {
-        if (!biome.Compounds.ContainsKey(compound))
+        if (!biome.Compounds.TryGetValue(compound, out var environmentalCompoundProperties))
             return 0;
 
-        return biome.Compounds[compound].Dissolved;
+        return environmentalCompoundProperties.Dissolved;
     }
 
     private void ProcessNode(IProcessable? processor, float delta, float inverseDelta)
@@ -359,6 +375,7 @@ public class ProcessSystem
         }
 
         bag.ClampNegativeCompoundAmounts();
+        bag.FixNaNCompounds();
 
         processStatistics?.RemoveUnused();
     }

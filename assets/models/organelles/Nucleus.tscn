@@ -24,6 +24,7 @@ shader_param/dissolveTexture = ExtResource( 9 )
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
+render_priority = -1
 shader = ExtResource( 2 )
 shader_param/dissolveValue = 0.0
 shader_param/fresnelValue = 1.0
@@ -36,6 +37,7 @@ shader_param/dissolveTexture = ExtResource( 9 )
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
+render_priority = -1
 shader = ExtResource( 2 )
 shader_param/dissolveValue = 0.0
 shader_param/fresnelValue = 1.0

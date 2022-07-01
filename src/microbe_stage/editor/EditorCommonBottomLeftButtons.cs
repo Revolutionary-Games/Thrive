@@ -30,11 +30,13 @@ public class EditorCommonBottomLeftButtons : MarginContainer
 
     private void OnMenuButtonPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnOpenMenu));
     }
 
     private void OnHelpButtonPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnOpenHelp));
     }
 }

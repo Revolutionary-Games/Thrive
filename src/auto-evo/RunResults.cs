@@ -578,14 +578,14 @@
                      results.Values.OrderByDescending(s => s.Species.PlayerSpecies)
                          .ThenBy(s => s.Species.FormattedName))
             {
-                builder.Append(playerReadable ? entry.Species.FormattedName : entry.Species.FormattedIdentifier);
+                builder.Append(playerReadable ? entry.Species.FormattedNameBbCode : entry.Species.FormattedIdentifier);
                 builder.Append(":\n");
 
                 if (entry.SplitFrom != null)
                 {
                     builder.Append(' ');
                     builder.Append(new LocalizedString("RUN_RESULT_SPLIT_FROM",
-                        playerReadable ? entry.SplitFrom.FormattedName : entry.SplitFrom.FormattedIdentifier));
+                        playerReadable ? entry.SplitFrom.FormattedNameBbCode : entry.SplitFrom.FormattedIdentifier));
 
                     builder.Append('\n');
                 }
@@ -618,7 +618,7 @@
 
                     builder.Append(' ');
                     builder.Append(new LocalizedString("RUN_RESULT_SPLIT_OFF_TO",
-                        playerReadable ? entry.SplitOff.FormattedName : entry.SplitOff.FormattedIdentifier));
+                        playerReadable ? entry.SplitOff.FormattedNameBbCode : entry.SplitOff.FormattedIdentifier));
                     builder.Append('\n');
 
                     foreach (var patch in entry.SplitOffPatches)
@@ -968,13 +968,13 @@
         {
             long totalPopulation = 0;
 
-            if (!results.ContainsKey(species))
+            if (!results.TryGetValue(species, out var speciesResult))
             {
                 GD.PrintErr("RunResults: no species entry found for counting spread population");
                 return -1;
             }
 
-            foreach (var entry in results[species].SpreadToPatches)
+            foreach (var entry in speciesResult.SpreadToPatches)
             {
                 if (entry.From == targetPatch)
                 {

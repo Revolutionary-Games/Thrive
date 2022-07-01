@@ -10,15 +10,22 @@ public static class PatchMapGenerator
 {
     public static PatchMap Generate(WorldGenerationSettings settings, Species defaultSpecies, Random? random = null)
     {
-        // TODO: implement actual generation based on settings
-        _ = settings;
-
         var map = new PatchMap();
 
-        random ??= new Random();
+        random ??= new Random(settings.Seed);
 
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
-        var areaName = nameGenerator.Next(random);
+
+        string areaName = string.Empty;
+        switch (settings.MapType)
+        {
+            case WorldGenerationSettings.PatchMapType.Classic:
+                areaName = "Pangonian";
+                break;
+            case WorldGenerationSettings.PatchMapType.Procedural:
+                areaName = nameGenerator.Next(random);
+                break;
+        }
 
         // Predefined patches
         var vents = new Patch(GetPatchLocalizedName(areaName, "VOLCANIC_VENT"), 0,
@@ -31,7 +38,6 @@ public static class PatchMapGenerator
             },
             ScreenCoordinates = new Vector2(100, 400),
         };
-        vents.AddSpecies(defaultSpecies);
         map.AddPatch(vents);
 
         var mesopelagic = new Patch(GetPatchLocalizedName(areaName, "MESOPELAGIC"), 1,
@@ -154,6 +160,24 @@ public static class PatchMapGenerator
         };
         map.AddPatch(seafloor);
 
+        // Starting patch based on new game settings
+        switch (settings.Origin)
+        {
+            case WorldGenerationSettings.LifeOrigin.Vent:
+                vents.AddSpecies(defaultSpecies);
+                map.CurrentPatch = vents;
+                break;
+            case WorldGenerationSettings.LifeOrigin.Pond:
+                tidepool.AddSpecies(defaultSpecies);
+                map.CurrentPatch = tidepool;
+                break;
+            case WorldGenerationSettings.LifeOrigin.Panspermia:
+                var startingPatch = map.Patches.Random(random);
+                startingPatch!.AddSpecies(defaultSpecies);
+                map.CurrentPatch = startingPatch;
+                break;
+        }
+
         // Connections
         LinkPatches(vents, seafloor);
         LinkPatches(seafloor, bathypelagic);
@@ -167,7 +191,6 @@ public static class PatchMapGenerator
         LinkPatches(epipelagic, coast);
         LinkPatches(coast, estuary);
 
-        map.CurrentPatch = vents;
         return map;
     }
 
@@ -180,22 +203,6 @@ public static class PatchMapGenerator
     {
         patch1.AddNeighbour(patch2);
         patch2.AddNeighbour(patch1);
-    }
-
-    private static void TranslatePatchNames()
-    {
-        // TODO: remove this entire method, see: https://github.com/Revolutionary-Games/Thrive/issues/3146
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_VENTS");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_MESOPELAGIC");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_EPIPELAGIC");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_TIDEPOOL");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_BATHYPELAGIC");
-        _ = TranslationServer.Translate("PATHCH_PANGONIAN_ABYSSOPELAGIC");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_COAST");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_ESTUARY");
-        _ = TranslationServer.Translate("PATCH_CAVE");
-        _ = TranslationServer.Translate("PATCH_ICE_SHELF");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
     }
 
     private static LocalizedString GetPatchLocalizedName(string name, string biomeKey)

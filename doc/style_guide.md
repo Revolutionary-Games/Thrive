@@ -66,6 +66,14 @@ Code style rules
 
 - C# file lines should have a maximum width of 120 columns.
 
+- Comments should use the C++ style `//` or XML doc (when documenting
+  language constructs like classes and properties) `///`. C-style
+  comments `/*` should only be used when commenting out multiple lines
+  of code that is important to keep for future reference or similar
+  code that is only a part of a line. This comment style can also be
+  kept in copyright notice sections. Elsewhere C-style comments should
+  not be used.
+
 - C# code should by default not be in a namespace. When code is in a
   namespace all using statements should be within the namespace.
 
@@ -119,7 +127,10 @@ Code style rules
 
 - Don't place inline comments at the end of lines, place them on their
   own lines. Don't use comments after a piece of code on a single
-  line.
+  line. The exception to this rule is when using pragma warning suppressions
+  then add the reason for the suppression at the end of the line. For
+  JetBrains checks, place a separate comment before the suppression
+  explaining the reason for the suppression.
 
 - Start comments with a capital letter, unless it is a commented out
   code block or a keyword.
@@ -280,6 +291,9 @@ Code style rules
   "cells" etc.
 
 - Don't add a `Dispose` method to classes that don't need it.
+
+- Use `TryGetValue` instead of first calling `Dictionary.ContainsKey`
+  and then reading the value separate because `TryGetValue` is faster.
 
 - Base method calls should be at the start of the method, unless
   something really has to happen before them. This is to make it

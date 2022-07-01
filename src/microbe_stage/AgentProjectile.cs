@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/AgentProjectile.tscn", UsesEarlyResolve = false)]
-public class AgentProjectile : RigidBody, ITimedLife
+public class AgentProjectile : RigidBody, ITimedLife, IEntity
 {
     private Particles particles = null!;
 
@@ -15,6 +15,10 @@ public class AgentProjectile : RigidBody, ITimedLife
     public float Amount { get; set; }
     public AgentProperties? Properties { get; set; }
     public EntityReference<IEntity> Emitter { get; set; } = new();
+
+    public Spatial EntityNode => this;
+
+    public AliveMarker AliveMarker { get; } = new();
 
     [JsonProperty]
     private float? FadeTimeRemaining { get; set; }
@@ -47,7 +51,12 @@ public class AgentProjectile : RigidBody, ITimedLife
 
         FadeTimeRemaining -= delta;
         if (FadeTimeRemaining <= 0)
-            Destroy();
+            this.DestroyDetachAndQueueFree();
+    }
+
+    public void OnDestroyed()
+    {
+        AliveMarker.Alive = false;
     }
 
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
@@ -59,9 +68,14 @@ public class AgentProjectile : RigidBody, ITimedLife
         {
             if (microbe.Species != Properties!.Species)
             {
-                // If more stuff needs to be damaged we
-                // could make an IAgentDamageable interface.
-                microbe.GetMicrobeFromShape(bodyShape)?.Damage(Constants.OXYTOXY_DAMAGE * Amount, Properties.AgentType);
+                // If more stuff needs to be damaged we could make an IAgentDamageable interface.
+                var target = microbe.GetMicrobeFromShape(bodyShape);
+
+                if (target != null)
+                {
+                    Invoke.Instance.Perform(
+                        () => target.Damage(Constants.OXYTOXY_DAMAGE * Amount, Properties.AgentType));
+                }
             }
         }
 
@@ -88,10 +102,7 @@ public class AgentProjectile : RigidBody, ITimedLife
 
         // Timer that delays despawn of projectiles
         FadeTimeRemaining = Constants.PROJECTILE_DESPAWN_DELAY;
-    }
 
-    private void Destroy()
-    {
-        this.DetachAndQueueFree();
+        AliveMarker.Alive = false;
     }
 }

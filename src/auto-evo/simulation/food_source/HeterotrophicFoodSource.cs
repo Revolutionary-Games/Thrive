@@ -60,9 +60,9 @@
 
                 foreach (var process in organelle.Definition.RunnableProcesses)
                 {
-                    if (process.Process.Outputs.ContainsKey(oxytoxy))
+                    if (process.Process.Outputs.TryGetValue(oxytoxy, out var oxytoxyAmount))
                     {
-                        oxytoxyScore += process.Process.Outputs[oxytoxy] * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
+                        oxytoxyScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                     }
                 }
             }
@@ -82,7 +82,7 @@
 
         public override IFormattable GetDescription()
         {
-            return new LocalizedString("PREDATION_FOOD_SOURCE", prey.FormattedName);
+            return new LocalizedString("PREDATION_FOOD_SOURCE", prey.FormattedNameBbCode);
         }
 
         public override float TotalEnergyAvailable()

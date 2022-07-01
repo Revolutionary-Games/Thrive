@@ -10,9 +10,7 @@ using Saving;
 /// </summary>
 public class OptionsMenu : ControlWithInput
 {
-    /*
-      GUI Control Paths
-    */
+    // GUI Control Paths
 
     // Options control buttons.
 
@@ -52,6 +50,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath MSAAResolutionPath = null!;
 
     [Export]
+    public NodePath ResolutionPath = null!;
+
+    [Export]
     public NodePath MaxFramesPerSecondPath = null!;
 
     [Export]
@@ -65,6 +66,9 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath DisplayAbilitiesBarTogglePath = null!;
+
+    [Export]
+    public NodePath DisplayBackgroundParticlesTogglePath = null!;
 
     [Export]
     public NodePath GUILightEffectsTogglePath = null!;
@@ -145,6 +149,9 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath ThreadCountSliderPath = null!;
+
+    [Export]
+    public NodePath MaxSpawnedEntitiesPath = null!;
 
     // Inputs tab.
     [Export]
@@ -227,12 +234,14 @@ public class OptionsMenu : ControlWithInput
     private Control graphicsTab = null!;
     private CustomCheckBox vsync = null!;
     private CustomCheckBox fullScreen = null!;
+    private Label? resolution;
     private OptionButton msaaResolution = null!;
     private OptionButton maxFramesPerSecond = null!;
     private OptionButton colourblindSetting = null!;
     private CustomCheckBox chromaticAberrationToggle = null!;
     private Slider chromaticAberrationSlider = null!;
     private CustomCheckBox displayAbilitiesHotBarToggle = null!;
+    private CustomCheckBox displayBackgroundParticlesToggle = null!;
     private CustomCheckBox guiLightEffectsToggle = null!;
 
     // Sound tab
@@ -263,6 +272,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox assumeHyperthreading = null!;
     private CustomCheckBox useManualThreadCount = null!;
     private Slider threadCountSlider = null!;
+    private OptionButton maxSpawnedEntities = null!;
 
     // Inputs tab
     private Control inputsTab = null!;
@@ -290,9 +300,7 @@ public class OptionsMenu : ControlWithInput
     private CustomConfirmationDialog defaultsConfirmationBox = null!;
     private ErrorDialog errorAcceptBox = null!;
 
-    /*
-      Misc
-    */
+    // Misc
 
     private OptionsMode optionsMode;
     private SelectedOptionsTab selectedOptionsTab;
@@ -307,9 +315,7 @@ public class OptionsMenu : ControlWithInput
 
     private GameProperties? gameProperties;
 
-    /*
-      Signals
-    */
+    // Signals
 
     [Signal]
     public delegate void OnOptionsClosed();
@@ -350,11 +356,13 @@ public class OptionsMenu : ControlWithInput
         vsync = GetNode<CustomCheckBox>(VSyncPath);
         fullScreen = GetNode<CustomCheckBox>(FullScreenPath);
         msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
+        resolution = GetNode<Label>(ResolutionPath);
         maxFramesPerSecond = GetNode<OptionButton>(MaxFramesPerSecondPath);
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
         displayAbilitiesHotBarToggle = GetNode<CustomCheckBox>(DisplayAbilitiesBarTogglePath);
+        displayBackgroundParticlesToggle = GetNode<CustomCheckBox>(DisplayBackgroundParticlesTogglePath);
         guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
 
         // Sound
@@ -388,6 +396,7 @@ public class OptionsMenu : ControlWithInput
         assumeHyperthreading = GetNode<CustomCheckBox>(AssumeHyperthreadingPath);
         useManualThreadCount = GetNode<CustomCheckBox>(UseManualThreadCountPath);
         threadCountSlider = GetNode<Slider>(ThreadCountSliderPath);
+        maxSpawnedEntities = GetNode<OptionButton>(MaxSpawnedEntitiesPath);
 
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
@@ -428,6 +437,11 @@ public class OptionsMenu : ControlWithInput
         {
             BuildInputRebindControls();
             UpdateDefaultAudioOutputDeviceText();
+            DisplayResolution();
+        }
+        else if (what == NotificationResized)
+        {
+            DisplayResolution();
         }
     }
 
@@ -497,7 +511,9 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
         displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
+        displayBackgroundParticlesToggle.Pressed = settings.DisplayBackgroundParticles;
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
+        DisplayResolution();
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -526,6 +542,7 @@ public class OptionsMenu : ControlWithInput
         useManualThreadCount.Pressed = settings.UseManualThreadCount;
         threadCountSlider.Value = settings.ThreadCount;
         threadCountSlider.Editable = settings.UseManualThreadCount;
+        maxSpawnedEntities.Selected = MaxEntitiesValueToIndex(settings.MaxSpawnedEntities);
 
         UpdateDetectedCPUCount();
 
@@ -598,6 +615,19 @@ public class OptionsMenu : ControlWithInput
             default:
                 throw new ArgumentException("Options menu SwitchMode called with an invalid mode argument");
         }
+    }
+
+    /// <summary>
+    /// Displays the current viewport resolution
+    /// </summary>
+    private void DisplayResolution()
+    {
+        if (resolution == null)
+            return;
+
+        var screenResolution = OS.WindowSize * OS.GetScreenScale();
+        resolution.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("AUTO_RESOLUTION"),
+            screenResolution.x, screenResolution.y);
     }
 
     /// <summary>
@@ -731,6 +761,58 @@ public class OptionsMenu : ControlWithInput
             default:
                 GD.PrintErr("invalid cloud resolution index");
                 return 2;
+        }
+    }
+
+    private int MaxEntitiesIndexToValue(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Constants.TINY_MAX_SPAWNED_ENTITIES;
+            case 1:
+                return Constants.VERY_SMALL_MAX_SPAWNED_ENTITIES;
+            case 2:
+                return Constants.SMALL_MAX_SPAWNED_ENTITIES;
+            case 3:
+                return Constants.NORMAL_MAX_SPAWNED_ENTITIES;
+            case 4:
+                return Constants.LARGE_MAX_SPAWNED_ENTITIES;
+            case 5:
+                return Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES;
+            case 6:
+                return Constants.HUGE_MAX_SPAWNED_ENTITIES;
+            case 7:
+                return Constants.EXTREME_MAX_SPAWNED_ENTITIES;
+            default:
+                GD.PrintErr("invalid max entities count index");
+                return Constants.NORMAL_MAX_SPAWNED_ENTITIES;
+        }
+    }
+
+    private int MaxEntitiesValueToIndex(int value)
+    {
+        switch (value)
+        {
+            case Constants.TINY_MAX_SPAWNED_ENTITIES:
+                return 0;
+            case Constants.VERY_SMALL_MAX_SPAWNED_ENTITIES:
+                return 1;
+            case Constants.SMALL_MAX_SPAWNED_ENTITIES:
+                return 2;
+            case Constants.NORMAL_MAX_SPAWNED_ENTITIES:
+                return 3;
+            case Constants.LARGE_MAX_SPAWNED_ENTITIES:
+                return 4;
+            case Constants.VERY_LARGE_MAX_SPAWNED_ENTITIES:
+                return 5;
+            case Constants.HUGE_MAX_SPAWNED_ENTITIES:
+                return 6;
+            case Constants.EXTREME_MAX_SPAWNED_ENTITIES:
+                return 7;
+            default:
+                GD.PrintErr("invalid max entities count value");
+                return 3;
         }
     }
 
@@ -943,9 +1025,7 @@ public class OptionsMenu : ControlWithInput
         languageProgressLabel.Text = string.Format(CultureInfo.CurrentCulture, textFormat, Mathf.Floor(progress));
     }
 
-    /*
-      GUI Control Callbacks
-    */
+    // GUI Control Callbacks
 
     private void OnBackPressed()
     {
@@ -1159,6 +1239,13 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void OnDisplayBackgroundParticlesToggled(bool toggle)
+    {
+        Settings.Instance.DisplayBackgroundParticles.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
     private void OnGUILightEffectsToggled(bool toggle)
     {
         Settings.Instance.GUILightEffectsEnabled.Value = toggle;
@@ -1298,6 +1385,13 @@ public class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDetectedCPUCount();
+    }
+
+    private void OnMaxSpawnedEntitiesSelected(int index)
+    {
+        Settings.Instance.MaxSpawnedEntities.Value = MaxEntitiesIndexToValue(index);
+
+        UpdateResetSaveButtonState();
     }
 
     // Input Callbacks

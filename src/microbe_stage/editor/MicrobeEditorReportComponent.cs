@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   The report tab of the microbe editor
 /// </summary>
-[IgnoreNoMethodsTakingInputAttribute]
+[IgnoreNoMethodsTakingInput]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn", UsesEarlyResolve = false)]
 public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportData>
 {
@@ -71,8 +71,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
     private Label timeIndicator = null!;
     private Label glucoseReductionLabel = null!;
-    private Label autoEvoLabel = null!;
-    private Label externalEffectsLabel = null!;
+    private CustomRichTextLabel autoEvoLabel = null!;
+    private CustomRichTextLabel externalEffectsLabel = null!;
     private Label reportTabPatchName = null!;
     private OptionButton reportTabPatchSelector = null!;
 
@@ -108,8 +108,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
         reportTabPatchSelector = GetNode<OptionButton>(ReportTabPatchSelectorPath);
         timeIndicator = GetNode<Label>(TimeIndicatorPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
-        autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
-        externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
+        autoEvoLabel = GetNode<CustomRichTextLabel>(AutoEvoLabelPath);
+        externalEffectsLabel = GetNode<CustomRichTextLabel>(ExternalEffectsLabelPath);
 
         physicalConditionsIconLegends = GetNode<HBoxContainer>(PhysicalConditionsIconLegendPath);
         temperatureChart = GetNode<LineChart>(TemperatureChartPath);
@@ -161,8 +161,8 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
 
     public void UpdateAutoEvoResults(string results, string external)
     {
-        autoEvoLabel.Text = results;
-        externalEffectsLabel.Text = external;
+        autoEvoLabel.ExtendedBbcode = results;
+        externalEffectsLabel.ExtendedBbcode = external;
     }
 
     public void UpdateReportTabPatchName(Patch patch)
@@ -362,7 +362,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     public void UpdateGlucoseReduction(float value)
     {
         var percentage = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PERCENTAGE_VALUE"),
-            value * 100);
+            Math.Round(value * 100));
 
         // The amount of glucose has been reduced to {0} of the previous amount.
         glucoseReductionLabel.Text =
@@ -403,11 +403,15 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
     {
     }
 
+    public override void OnValidAction()
+    {
+    }
+
     protected override void OnTranslationsChanged()
     {
         Editor.SendAutoEvoResultsToReportComponent();
         UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
-        UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
+        UpdateGlucoseReduction(Editor.CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
         UpdateTimeline(Editor.SelectedPatch);
         UpdateReportTabPatchSelector();
     }

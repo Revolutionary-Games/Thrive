@@ -9,27 +9,34 @@ using Newtonsoft.Json.Serialization;
 /// </summary>
 public class SerializationBinder : DefaultSerializationBinder
 {
+    private static readonly Type DynamicTypeAllowedAttribute = typeof(JSONDynamicTypeAllowedAttribute);
+    private static readonly Type AlwaysDynamicTypeAttribute = typeof(JSONAlwaysDynamicTypeAttribute);
+    private static readonly Type SceneLoadedClassAttribute1 = typeof(SceneLoadedClassAttribute);
+
     public override Type BindToType(string? assemblyName, string typeName)
     {
         var type = base.BindToType(assemblyName, typeName);
+        var originalType = type;
 
-        if (type.CustomAttributes.Any(attr =>
-                attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute) ||
-                attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute) ||
-                attr.AttributeType == typeof(SceneLoadedClassAttribute)))
+        if (type.IsArray)
+            type = type.GetElementType() ?? throw new Exception("Array type doesn't have element type");
+
+        if (type.CustomAttributes.Any(attr => attr.AttributeType == DynamicTypeAllowedAttribute ||
+                attr.AttributeType == AlwaysDynamicTypeAttribute ||
+                attr.AttributeType == SceneLoadedClassAttribute1))
         {
             // Allowed type
-            return type;
+            return originalType;
         }
 
         if (typeof(int) == type)
-            return type;
+            return originalType;
 
         if (typeof(Vector4) == type)
-            return type;
+            return originalType;
 
         if (typeof(Vector4[,]) == type)
-            return type;
+            return originalType;
 
         throw new JsonException($"Dynamically typed JSON object is not allowed to be {typeName}");
     }

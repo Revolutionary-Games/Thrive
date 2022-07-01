@@ -18,9 +18,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 LeftArrowPath = NodePath("CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Left")
 RightArrowPath = NodePath("CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Right")
 AvailableModsContainerPath = NodePath("CenterContainer/VBoxContainer/UpperPart/Left/AvailableMods")
@@ -54,6 +51,7 @@ FullInfoMaximumThrivePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/
 FullInfoPckNamePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12/PckName")
 FullInfoModAssemblyPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/ModAssembly")
 FullInfoAssemblyModClassPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/AssemblyModClass")
+FullInfoAutoHarmonyPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17/UseHarmony")
 OpenWorkshopButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer2/Workshop")
 ModUploaderButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer2/Upload")
 NewModGUIPath = NodePath("NewModGUI")
@@ -962,6 +960,28 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
+[node name="VBoxContainer17" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 882.0
+margin_right = 534.0
+margin_bottom = 930.0
+
+[node name="Label15" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17"]
+margin_right = 534.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 9 )
+text = "MOD_AUTO_HARMONY"
+
+[node name="UseHarmony" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer17"]
+margin_top = 26.0
+margin_right = 534.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 10 )
+text = "Harmony"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
 [node name="Button" type="Button" parent="ModFullInfo/VBoxContainer"]
 margin_left = 242.0
 margin_top = 354.0
@@ -978,7 +998,6 @@ margin_right = 0.0
 margin_bottom = 0.0
 WindowTitle = "MOD_CREATION_FAILED"
 Resizable = false
-ErrorMessage = ""
 ExceptionInfo = ""
 
 [node name="ModUploader" parent="." instance=ExtResource( 12 )]

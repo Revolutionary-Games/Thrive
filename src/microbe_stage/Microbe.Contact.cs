@@ -19,6 +19,7 @@ public partial class Microbe
     private HashSet<uint> pilusPhysicsShapes = new();
 
     private bool membraneOrganellePositionsAreDirty = true;
+    private bool membraneOrganellesWereUpdatedThisFrame;
 
     private bool destroyed;
 
@@ -74,6 +75,11 @@ public partial class Microbe
 
     [JsonProperty]
     private bool deathParticlesSpawned;
+
+    /// <summary>
+    ///   Used to log just once when the touched microbe disposed issue happens to reduce log spam
+    /// </summary>
+    private bool loggedTouchedDisposeIssue;
 
     [JsonProperty]
     private MicrobeState state;
@@ -284,6 +290,9 @@ public partial class Microbe
             return;
         }
 
+        // Damage reduction is only wanted for non-starving damage
+        bool canApplyDamageReduction = true;
+
         if (source is "toxin" or "oxytoxy")
         {
             // TODO: Replace this take damage sound with a more appropriate one.
@@ -316,6 +325,7 @@ public partial class Microbe
         else if (source == "atpDamage")
         {
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-atp-damage.ogg");
+            canApplyDamageReduction = false;
         }
         else if (source == "ice")
         {
@@ -323,6 +333,11 @@ public partial class Microbe
 
             // Divide damage by physical resistance
             amount /= CellTypeProperties.MembraneType.PhysicalResistance;
+        }
+
+        if (!CellTypeProperties.IsBacteria && canApplyDamageReduction)
+        {
+            amount /= 2;
         }
 
         Hitpoints -= amount;
@@ -345,6 +360,11 @@ public partial class Microbe
     /// </summary>
     public bool CanEngulf(Microbe target)
     {
+        // Can't engulf already destroyed microbes. We don't use entity references so we need to manually check if
+        // something is destroyed or not here (especially now that the Invoke the engulf start callback)
+        if (target.destroyed)
+            return false;
+
         // Log error if trying to engulf something that is disposed, we got a crash log trace with an error with that
         // TODO: find out why disposed microbes can be attempted to be engulfed
         try
@@ -354,7 +374,12 @@ public partial class Microbe
         }
         catch (ObjectDisposedException)
         {
-            GD.PrintErr("Touched microbe has been disposed before engulfing could start");
+            if (!loggedTouchedDisposeIssue)
+            {
+                GD.PrintErr("Touched microbe has been disposed before engulfing could start");
+                loggedTouchedDisposeIssue = true;
+            }
+
             return false;
         }
 
@@ -473,19 +498,25 @@ public partial class Microbe
         {
             foreach (var entry in organelle.Definition.InitialComposition)
             {
-                float existing = 0;
-
-                if (compoundsToRelease.ContainsKey(entry.Key))
-                    existing = compoundsToRelease[entry.Key];
+                compoundsToRelease.TryGetValue(entry.Key, out var existing);
 
                 compoundsToRelease[entry.Key] = existing + (entry.Value *
                     Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
             }
         }
 
+        // Queues either 1 corpse chunk or a factor of the hexes
         int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISOR);
 
         var chunkScene = SpawnHelpers.LoadChunkScene();
+
+        // An enumerator to step through all available organelles in a random order when making chunks
+        using var organellesAvailableEnumerator = organelles.OrderBy(_ => random.Next()).GetEnumerator();
+
+        // The default model for chunks is the cytoplasm model in case there isn't a model left in the species
+        var defaultChunkScene = SimulationParameters.Instance
+                .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME).LoadedCorpseChunkScene ??
+            throw new Exception("No default chunk scene");
 
         for (int i = 0; i < chunksToSpawn; ++i)
         {
@@ -523,35 +554,42 @@ public partial class Microbe
 
             chunkType.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
-            var sceneToUse = new ChunkConfiguration.ChunkScene();
-
-            // Try all organelles in random order and use the first one with a scene for model
-            foreach (var organelle in organelles.OrderBy(_ => random.Next()))
+            var sceneToUse = new ChunkConfiguration.ChunkScene
             {
-                if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
+                LoadedScene = defaultChunkScene,
+            };
+
+            // Will only loop if there are still organelles available
+            while (organellesAvailableEnumerator.MoveNext() && organellesAvailableEnumerator.Current != null)
+            {
+                if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.CorpseChunkScene))
                 {
-                    sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
-                    break;
+                    sceneToUse.LoadedScene =
+                        organellesAvailableEnumerator.Current.Definition.LoadedCorpseChunkScene;
+                }
+                else if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.DisplayScene))
+                {
+                    sceneToUse.LoadedScene = organellesAvailableEnumerator.Current.Definition.LoadedScene;
+                    sceneToUse.SceneModelPath =
+                        organellesAvailableEnumerator.Current.Definition.DisplaySceneModelPath;
+                }
+                else
+                {
+                    continue;
                 }
 
-                if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
-                {
-                    sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
-                    sceneToUse.SceneModelPath = organelle.Definition.DisplaySceneModelPath;
+                if (sceneToUse.LoadedScene != null)
                     break;
-                }
             }
 
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            // ReSharper disable once HeuristicUnreachableCode
-            if (sceneToUse == null)
-                throw new Exception("sceneToUse is null");
+            if (sceneToUse.LoadedScene == null)
+                throw new Exception("loaded scene is null");
 
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
             var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
-                chunkScene, cloudSystem!, random);
+                chunkScene, random);
 
             // Add to the spawn system to make these chunks limit possible number of entities
             SpawnSystem.AddEntityToTrack(chunk);
@@ -626,6 +664,8 @@ public partial class Microbe
 
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
+        cachedColonyRotationMultiplier = null;
+
         if (microbe == this)
         {
             OnUnbound?.Invoke(this);
@@ -661,6 +701,8 @@ public partial class Microbe
 
     internal void OnColonyMemberAdded(Microbe microbe)
     {
+        cachedColonyRotationMultiplier = null;
+
         if (microbe == this)
         {
             if (Colony == null)
@@ -1120,21 +1162,25 @@ public partial class Microbe
 
                 var target = otherIsPilus ? thisMicrobe : touchedMicrobe;
 
-                target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus");
+                Invoke.Instance.Perform(() => target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus"));
                 return;
             }
 
             // Pili don't stop engulfing
             if (thisMicrobe.touchedMicrobes.Add(touchedMicrobe))
             {
-                thisMicrobe.CheckStartEngulfingOnCandidates();
-                thisMicrobe.CheckBinding();
+                Invoke.Instance.Perform(() =>
+                {
+                    thisMicrobe.CheckStartEngulfingOnCandidates();
+                    thisMicrobe.CheckBinding();
+                });
             }
 
             // Play bump sound if certain total collision impulse is reached (adjusted by mass)
             if (thisMicrobe.collisionForce / Mass > Constants.CONTACT_IMPULSE_TO_BUMP_SOUND)
             {
-                thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg");
+                Invoke.Instance.Perform(() =>
+                    thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg"));
             }
         }
     }
@@ -1169,7 +1215,7 @@ public partial class Microbe
 
             if (otherMicrobesInEngulfRange.Add(microbe))
             {
-                CheckStartEngulfingOnCandidates();
+                Invoke.Instance.Perform(CheckStartEngulfingOnCandidates);
             }
         }
     }
@@ -1188,7 +1234,7 @@ public partial class Microbe
     private bool CanBindToMicrobe(Microbe other)
     {
         // Cannot hijack the player, other species or other colonies (TODO: yet)
-        return !other.IsPlayerMicrobe && other.Colony == null && other.Species == Species;
+        return !other.Dead && !other.IsPlayerMicrobe && other.Colony == null && other.Species == Species;
     }
 
     private void CheckBinding()
@@ -1287,6 +1333,13 @@ public partial class Microbe
         // foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
         foreach (var microbe in touchedMicrobes)
         {
+            if (microbe.destroyed)
+            {
+                GD.Print($"Removed destroyed microbe from {nameof(touchedMicrobes)}");
+                touchedMicrobes.Remove(microbe);
+                break;
+            }
+
             if (!attemptingToEngulf.Contains(microbe) && CanEngulf(microbe))
             {
                 StartEngulfingTarget(microbe);

@@ -233,7 +233,7 @@ public class TweakedColourPicker : ColorPicker
         // TODO: Revert this PR once https://github.com/godotengine/godot/issues/57343 is solved.
         baseControl = GetChild(1);
         var customPickerButton = new ToolButton { Icon = pickerButton.Icon };
-        baseControl.RemoveChild(pickerButton);
+        pickerButton.Hide();
         baseControl.AddChild(customPickerButton);
         pickerButton = customPickerButton;
         pickerButton.Connect("pressed", this, nameof(OnPickerClicked));

@@ -22,7 +22,7 @@ public interface IEntity
     ///   The Node that this entity is in the game world as
     /// </summary>
     [JsonIgnore]
-    Node EntityNode { get; }
+    Spatial EntityNode { get; }
 
     void OnDestroyed();
 

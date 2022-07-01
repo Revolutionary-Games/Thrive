@@ -126,6 +126,8 @@ public abstract class EditorComponentBase<TEditor> : ControlWithInput, IEditorCo
         PlayInvalidActionSound();
     }
 
+    public abstract void OnValidAction();
+
     /// <summary>
     ///   Notify this component about the freebuild status. Many components don't need to react to this, they can
     ///   instead just check <see cref="IEditor.FreeBuilding"/>
