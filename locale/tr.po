@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-29 23:24+0300\n"
+"POT-Creation-Date: 2022-07-01 00:41+0100\n"
 "PO-Revision-Date: 2022-06-29 15:12+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -44,7 +44,7 @@ msgid "GENERAL"
 msgstr "Genel"
 
 #: ../simulation_parameters/common/gallery.json:28
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:387
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
 msgid "CELLS"
 msgstr "Hücreler"
 
@@ -674,25 +674,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:752
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "AMMONIA"
 msgstr "Amonyak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:823
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:717
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrojen Sülfür"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:787
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:817
 msgid "GLUCOSE"
 msgstr "Glukoz"
 
@@ -703,28 +703,28 @@ msgstr "OksiToksi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:858
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:888
 msgid "IRON"
 msgstr "Demir"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:554
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:584
 msgid "OXYGEN"
 msgstr "Oksijen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:608
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:638
 msgid "CARBON_DIOXIDE"
 msgstr "Karbondioksit"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:581
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:611
 msgid "NITROGEN"
 msgstr "Azot"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:435
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:465
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "Güneş ışığı"
@@ -1011,85 +1011,85 @@ msgstr "{0} türünün yenmesi"
 msgid "STEM_CELL_NAME"
 msgstr "Kök"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:299
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:296
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:361
 msgid "STRUCTURE"
 msgstr "Yapı"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:320
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:317
 msgid "REPRODUCTION"
 msgstr "Üreme"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:341
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:338
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:403
 msgid "BEHAVIOUR"
 msgstr "Davranış"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 msgid "MODIFY_TYPE"
 msgstr "Türde Değişiklik Yap"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:415
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Sil"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
 msgid "DUPLICATE_TYPE"
 msgstr "Türü Kopyala"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
 msgid "REPRODUCTION_METHOD"
 msgstr "Üreme:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 msgid "REPRODUCTION_BUDDING"
 msgstr "Tomurcuklanma"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1233
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1234
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "EYLEMİ İPTAL ET"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1028
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1247
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1055
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "SONRAKİ"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
 msgid "DISCONNECTED_CELLS"
 msgstr "Bağlı Olmayan Hücreler"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Diğerlerine bağlı olmayan, yerleştirilmiş hücreler var.\n"
 "Devam etmek için lütfen yerleştirdiğin bütün hücreleri birbiriyle bağla."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:548
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Kullanılan Hücre Türü Silinemez"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:555
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:550
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Beden planında mevcut olarak kullanılan bir hücre türü silinemez"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:559
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Yeni Hücre Türü Oluştur"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Mevcut hücreleri kopyalayarak ve onlara yeni bir isim vererek yeni hücre türleri oluşturabilirsin. Hücre türlerinde, farklı görevlerde özelleştirmek amacıyla değişiklik yapılabilir. Bir hücre türü değiştirildiğinde, bu türe ait yerleştirilmiş bütün hücreler güncellenir."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
 msgid "NEW_NAME_COLON"
 msgstr "Yeni İsim:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:595
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
 msgid "NEW_NAME"
 msgstr "Yeni İsim"
 
@@ -1131,8 +1131,7 @@ msgstr "Burayı düzenlemek için editör sekmesinden bir hücre türü seç"
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
-#: ../src/engine/DebugOverlays.tscn:64
-#: ../src/engine/PerformanceMetrics.tscn:59
+#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
@@ -1151,8 +1150,7 @@ msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Bu Mod İçin Bilinmeyen Atölye ID'si"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
-#: ../src/engine/DebugOverlays.tscn:81
-#: ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 "İşlem Süresi: {0} s\n"
@@ -1637,7 +1635,7 @@ msgstr "ONAYLA"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1333
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1334
 #: ../src/modding/ModManager.tscn:992
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "CLOSE"
@@ -1649,7 +1647,7 @@ msgstr "Kapat"
 #: ../src/microbe_stage/MicrobeHUD.cs:717
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:395
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:401
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:275
 msgid "PERCENTAGE_VALUE"
 msgstr "%{0}"
@@ -3230,25 +3228,25 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Oyuncu oyundan çıkmayı denediğinde, kaydedilmemiş ilerlemeler uyarısı açılır penceresini etkinleştirir / devre dışı bırakır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:372
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:402
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
 msgstr "Sıcaklık"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:588
+#: ../src/microbe_stage/Microbe.Contact.cs:604
 msgid "DEATH"
 msgstr "ölüm"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:718
+#: ../src/microbe_stage/Microbe.Contact.cs:734
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "başarılı yiyecek avı"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:725
+#: ../src/microbe_stage/Microbe.Contact.cs:741
 msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:963
+#: ../src/microbe_stage/Microbe.Contact.cs:979
 msgid "ESCAPE_ENGULFING"
 msgstr "yutulmaktan kurtulma"
 
@@ -3401,7 +3399,7 @@ msgid "PRESSURE_SHORT"
 msgstr "Bsnç."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:677
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:707
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
@@ -3693,7 +3691,7 @@ msgstr ""
 "Oto-evrim, senin popülasyonunu etkileyen diğer kısımların (senin kendi performansının yanı sıra) olduğu popülasyon simülasyonunu çalıştırır."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1045
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1280
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1281
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Oto-Evrim Tahmini"
 
@@ -3713,27 +3711,27 @@ msgstr "En İyi Arazi:"
 msgid "WORST_PATCH_COLON"
 msgstr "En Kötü Arazi:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatif ATP Dengesi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1257
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Mikrobun, hayatta kalmak için yeterli ATP üretmiyor!\n"
 "Devam etmek istiyor musun?"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1262
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1263
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Bağlı Olmayan Organeller"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1264
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1265
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Diğerlerine bağlı olmayan, yerleştirilmiş organeller var.\n"
 "Lütfen yerleştirdiğin bütün organelleri birbiriyle bağla veya değişikliklerini geri al."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1324
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Bu panel, oto-evrim tahmininin son aşamada kullandığı sayıları gösterir. Bir türün yakalayabileceği toplam enerji ve bunun tür başına maliyeti son popülasyonu belirler. Oto-evrim, türlerin toplayabildiği enerjiye bağlı olarak, onların ne kadar iyi performans sergilediğini hesaplamak için gerçekliğin basitleştirilmiş bir modelini kullanır. Her besin kaynağı için, türün ondan ne kadar enerji kazandığı gösterilir. Ayrıca her kaynakta mevcut olan toplam enerji miktarı da gösterilir. Türün toplam enerjiden aldığı bölüm, uyum başarısının toplam uyum başarısından ne kadar büyük olduğuna bağlıdır. Uyum başarısı, türün bir besin kaynağından ne kadar iyi yararlanabileceğini gösteren bir ölçüdür."
 
@@ -3757,35 +3755,40 @@ msgstr "Mikrop Editörü Yükleniyor"
 msgid "INFINITE_MP"
 msgstr "Sonsuz MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:214
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:177
+#, fuzzy
+msgid "FIND_CURRENT_PATCH"
+msgstr "Geçersiz mod simgesi yolu"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
 msgid "SELECT_A_PATCH"
 msgstr "Detayları görmek için bir arazi seçin"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:249
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:279
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "MEVCUT KONUM"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:331
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:361
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fiziksel Koşullar"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:408
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:438
 msgid "PRESSURE"
 msgstr "Basınç"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:513
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:543
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferik Gazlar"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:937
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:967
 msgid "SPECIES_PRESENT"
 msgstr "Mevcut Türler"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1001
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1031
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Bu Araziye Git"
 
@@ -3902,15 +3905,15 @@ msgstr "Taşı"
 msgid "MODIFY"
 msgstr "Değişiklik Yap"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
 msgid "BIOME_LABEL"
 msgstr "Biyom: {0}"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:398
 msgid "BELOW_SEA_LEVEL"
 msgstr "Deniz seviyesinin {0}-{1}m altı"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:433
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} türü {1} popülasyonla"
 

@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-29 23:24+0300\n"
+"POT-Creation-Date: 2022-07-01 00:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.10.1\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
@@ -42,7 +42,7 @@ msgid "GENERAL"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:28
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:387
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
 msgid "CELLS"
 msgstr ""
 
@@ -622,25 +622,25 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:752
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "AMMONIA"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:823
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "PHOSPHATE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:717
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:787
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:817
 msgid "GLUCOSE"
 msgstr ""
 
@@ -651,28 +651,28 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:858
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:888
 msgid "IRON"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:554
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:584
 msgid "OXYGEN"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:608
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:638
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:581
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:611
 msgid "NITROGEN"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:435
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:465
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr ""
@@ -957,83 +957,83 @@ msgstr ""
 msgid "STEM_CELL_NAME"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:299
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:296
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:361
 msgid "STRUCTURE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:320
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:317
 msgid "REPRODUCTION"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:341
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:338
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:403
 msgid "BEHAVIOUR"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:415
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
 msgid "DUPLICATE_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
 msgid "REPRODUCTION_METHOD"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1233
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1234
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1028
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1247
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1055
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
 msgid "DISCONNECTED_CELLS"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:548
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:555
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:550
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:559
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
 msgid "NEW_NAME_COLON"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:595
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
 msgid "NEW_NAME"
 msgstr ""
 
@@ -1559,7 +1559,7 @@ msgstr ""
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1333
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1334
 #: ../src/modding/ModManager.tscn:992
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "CLOSE"
@@ -1571,7 +1571,7 @@ msgstr ""
 #: ../src/microbe_stage/MicrobeHUD.cs:717
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:395
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:401
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:275
 msgid "PERCENTAGE_VALUE"
 msgstr ""
@@ -3102,25 +3102,25 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:372
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:402
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:588
+#: ../src/microbe_stage/Microbe.Contact.cs:604
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:718
+#: ../src/microbe_stage/Microbe.Contact.cs:734
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:725
+#: ../src/microbe_stage/Microbe.Contact.cs:741
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:963
+#: ../src/microbe_stage/Microbe.Contact.cs:979
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -3271,7 +3271,7 @@ msgid "PRESSURE_SHORT"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:677
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:707
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
@@ -3561,7 +3561,7 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1045
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1280
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1281
 msgid "AUTO-EVO_PREDICTION"
 msgstr ""
 
@@ -3581,23 +3581,23 @@ msgstr ""
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1257
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1262
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1263
 msgid "DISCONNECTED_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1264
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1265
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1324
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
@@ -3621,35 +3621,39 @@ msgstr ""
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:214
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:177
+msgid "FIND_CURRENT_PATCH"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
 msgid "SELECT_A_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:249
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:279
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:331
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:361
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:408
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:438
 msgid "PRESSURE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:513
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:543
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:937
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:967
 msgid "SPECIES_PRESENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1001
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1031
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
@@ -3766,15 +3770,15 @@ msgstr ""
 msgid "MODIFY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:398
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:433
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 

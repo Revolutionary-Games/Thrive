@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-29 23:24+0300\n"
+"POT-Creation-Date: 2022-07-01 00:41+0100\n"
 "PO-Revision-Date: 2022-06-17 13:53+0000\n"
 "Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -44,7 +44,7 @@ msgid "GENERAL"
 msgstr "Основное"
 
 #: ../simulation_parameters/common/gallery.json:28
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:387
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
 msgid "CELLS"
 msgstr "Клетки"
 
@@ -670,25 +670,25 @@ msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:752
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "AMMONIA"
 msgstr "Аммиак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:823
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:717
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:787
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:817
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
@@ -699,28 +699,28 @@ msgstr "ОксиТоксин НТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:858
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:888
 msgid "IRON"
 msgstr "Железо"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:554
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:584
 msgid "OXYGEN"
 msgstr "Кислород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:608
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:638
 msgid "CARBON_DIOXIDE"
 msgstr "Углекислый Газ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:581
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:611
 msgid "NITROGEN"
 msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:435
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:465
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "Солнечный Свет"
@@ -1007,85 +1007,85 @@ msgstr "Истребление {0}"
 msgid "STEM_CELL_NAME"
 msgstr "Название вида клетки"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:299
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:296
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:361
 msgid "STRUCTURE"
 msgstr "Структура"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:320
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:317
 msgid "REPRODUCTION"
 msgstr "Воспроизведение"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:341
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:338
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:403
 msgid "BEHAVIOUR"
 msgstr "Поведение"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 msgid "MODIFY_TYPE"
 msgstr "Изменить Вид"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:415
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Удалить"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
 msgid "DUPLICATE_TYPE"
 msgstr "Дублировать Тип"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
 msgid "REPRODUCTION_METHOD"
 msgstr "Воспроизведение:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 msgid "REPRODUCTION_BUDDING"
 msgstr "Размножение"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1233
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1234
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ОТМЕНИТЬ ДЕЙСТВИЕ"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1028
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1247
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1055
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "ДАЛЕЕ"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
 msgid "DISCONNECTED_CELLS"
 msgstr "Отсоединенные Клетки"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Среди размещённых клеток имеются несоединённые с остальными.\n"
 "Пожалуйста, соедините все размещённые клетки с другими для продолжения."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:548
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Нельзя удалить выбранный тип клеток"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:555
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:550
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Выбранный тип клеток в организме не может быть удалён"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:559
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Создать Новый Тип Клетки"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Вы можете создать новый вид клеток благодаря размножению существующих и дачу им нового имени. Виды клеток могут быть модифицированы для приспособления к определённой роли. При редактировании вида все представители будут модифицированы так же, как и ваш тип клеток."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
 msgid "NEW_NAME_COLON"
 msgstr "Новое Название Колонии:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:595
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
 msgid "NEW_NAME"
 msgstr "Новое имя"
 
@@ -1127,8 +1127,7 @@ msgstr "Выберите тип клетки в лаборатории реда�
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
-#: ../src/engine/DebugOverlays.tscn:64
-#: ../src/engine/PerformanceMetrics.tscn:59
+#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "FPS: {0}"
 
@@ -1147,8 +1146,7 @@ msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Неизвестный Workshop ID для этого мода"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
-#: ../src/engine/DebugOverlays.tscn:81
-#: ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
@@ -1616,7 +1614,7 @@ msgstr "ПОДТВЕРДИТЬ"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1333
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1334
 #: ../src/modding/ModManager.tscn:992
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "CLOSE"
@@ -1628,7 +1626,7 @@ msgstr "Закрыть"
 #: ../src/microbe_stage/MicrobeHUD.cs:717
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:395
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:401
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:275
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -3257,25 +3255,25 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Включает / отключает предупреждение о несохраненном прогрессе, когда игрок пытается выйти из игры."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:372
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:402
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
 msgstr "Температура"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:588
+#: ../src/microbe_stage/Microbe.Contact.cs:604
 msgid "DEATH"
 msgstr "смерть"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:718
+#: ../src/microbe_stage/Microbe.Contact.cs:734
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "успешное ограбление"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:725
+#: ../src/microbe_stage/Microbe.Contact.cs:741
 msgid "SUCCESSFUL_KILL"
 msgstr "успешное убийство"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:963
+#: ../src/microbe_stage/Microbe.Contact.cs:979
 msgid "ESCAPE_ENGULFING"
 msgstr "избежали поглощение"
 
@@ -3428,7 +3426,7 @@ msgid "PRESSURE_SHORT"
 msgstr "Давл."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:677
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:707
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
@@ -3720,7 +3718,7 @@ msgstr ""
 "Авто-эво запускает моделирование популяции, что является частью (помимо вашей собственной эффективности), влияющей на вашу популяцию."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1045
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1280
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1281
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Предсказание Авто-Эволюции"
 
@@ -3740,27 +3738,27 @@ msgstr "Лучший Путь:"
 msgid "WORST_PATCH_COLON"
 msgstr "Худший Путь:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Отрицательный АТФ Баланс"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1257
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Ваш микроб не производит нужное количество АТФ для выживания!\n"
 "Желаете продолжить?"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1262
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1263
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Отсоединённые Органеллы"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1264
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1265
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Среди размещённых органелл, имеются несоединённые с остальными.\n"
 "Пожалуйста соедините все размещённые органеллы с другими или отмените свои действия."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1324
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "На этой панели показаны числа, на основе которых работает предсказание авто-эво. Общая энергия, которую способен улавливать вид, и стоимость на особь вида определяют конечную популяцию. Авто-эво использует упрощенную модель реальности, чтобы рассчитать, насколько эффективны виды, основываясь на энергии, которую они способны собирать. Для каждого источника пищи показано, сколько энергии получает от него вид. Дополнительно отображается общая энергия, доступная из этого источника. Доля, которую вид получает от общей энергии, зависит от того, насколько велика его физическая форма по сравнению с общей пригодностью. Пригодность - это показатель того, насколько хорошо вид может использовать этот источник пищи."
 
@@ -3784,35 +3782,40 @@ msgstr "Загрузка Микробного Редактора"
 msgid "INFINITE_MP"
 msgstr "Бесконечные MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:214
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:177
+#, fuzzy
+msgid "FIND_CURRENT_PATCH"
+msgstr "Неверный путь к значку мода"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
 msgid "SELECT_A_PATCH"
 msgstr "Выберите биом для просмотра деталей"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:249
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:279
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТЕКУЩАЯ ЛОКАЦИЯ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:331
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:361
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Физические Условия"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:408
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:438
 msgid "PRESSURE"
 msgstr "Давление"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:513
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:543
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферные Газы"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:937
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:967
 msgid "SPECIES_PRESENT"
 msgstr "Присутствующие Виды"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1001
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1031
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Двигаться к Этому Биому"
 
@@ -3929,15 +3932,15 @@ msgstr "Передвижение"
 msgid "MODIFY"
 msgstr "Модифицировать"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:398
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м ниже уровня моря"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:433
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} с численностью: {1}"
 

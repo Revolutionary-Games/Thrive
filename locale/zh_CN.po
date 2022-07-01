@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-29 23:24+0300\n"
+"POT-Creation-Date: 2022-07-01 00:41+0100\n"
 "PO-Revision-Date: 2022-06-17 13:53+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -44,7 +44,7 @@ msgid "GENERAL"
 msgstr "常规"
 
 #: ../simulation_parameters/common/gallery.json:28
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:387
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
 msgid "CELLS"
 msgstr "细胞"
 
@@ -673,25 +673,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:752
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
 msgid "AMMONIA"
 msgstr "氨"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:823
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
 msgid "PHOSPHATE"
 msgstr "磷酸盐"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:717
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氢"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:787
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:817
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
@@ -702,28 +702,28 @@ msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:858
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:888
 msgid "IRON"
 msgstr "铁"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:554
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:584
 msgid "OXYGEN"
 msgstr "氧"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:608
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:638
 msgid "CARBON_DIOXIDE"
 msgstr "二氧化碳"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:581
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:611
 msgid "NITROGEN"
 msgstr "氮"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:435
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:465
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "阳光"
@@ -1008,85 +1008,85 @@ msgstr "捕食{0}"
 msgid "STEM_CELL_NAME"
 msgstr "干"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:299
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:296
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:361
 msgid "STRUCTURE"
 msgstr "结构"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:320
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:317
 msgid "REPRODUCTION"
 msgstr "繁殖"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:341
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:338
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:403
 msgid "BEHAVIOUR"
 msgstr "行为"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 msgid "MODIFY_TYPE"
 msgstr "修改类型"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:415
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "删除"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
 msgid "DUPLICATE_TYPE"
 msgstr "复制类型"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 msgid "REPRODUCTION_BUDDING"
 msgstr "出芽"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1233
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1234
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "取消"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1028
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1247
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1055
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "下一个"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
 msgid "DISCONNECTED_CELLS"
 msgstr "未连接的细胞"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "有一些细胞没有连接到其它细胞上。\n"
 "请把所有细胞连接起来以继续。"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:548
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "无法删除已使用的细胞类型"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:555
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:550
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "在你的躯体设计中正被使用的细胞类型无法被删除"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:559
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "创建新细胞类型"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "你可以通过复制现有的细胞类型并给它们一个新的名字来创建新的细胞类型。细胞类型可以被修改以使其专门用于不同的目的。当修改一个细胞类型时，所有该类型的已放置的细胞都会被更新。"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
 msgid "NEW_NAME_COLON"
 msgstr "新名称："
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:595
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
 msgid "NEW_NAME"
 msgstr "新名称"
 
@@ -1128,8 +1128,7 @@ msgstr "从编辑器选项卡中选择要在此处编辑的细胞类型"
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
-#: ../src/engine/DebugOverlays.tscn:64
-#: ../src/engine/PerformanceMetrics.tscn:59
+#: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "帧率：{0}"
 
@@ -1148,8 +1147,7 @@ msgid "UNKNOWN_ON_WINDOWS"
 msgstr "此Mod的创意工坊编号未知"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
-#: ../src/engine/DebugOverlays.tscn:81
-#: ../src/engine/PerformanceMetrics.tscn:76
+#: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
 
@@ -1617,7 +1615,7 @@ msgstr "确认"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1333
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1334
 #: ../src/modding/ModManager.tscn:992
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "CLOSE"
@@ -1629,7 +1627,7 @@ msgstr "关闭"
 #: ../src/microbe_stage/MicrobeHUD.cs:717
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:395
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:401
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:275
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -3258,25 +3256,25 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "当玩家试图退出游戏时，启用/禁用未保存的进度警告弹出框。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:372
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:402
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
 msgstr "温度"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:588
+#: ../src/microbe_stage/Microbe.Contact.cs:604
 msgid "DEATH"
 msgstr "死亡数"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:718
+#: ../src/microbe_stage/Microbe.Contact.cs:734
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "成功扫荡的细胞器"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:725
+#: ../src/microbe_stage/Microbe.Contact.cs:741
 msgid "SUCCESSFUL_KILL"
 msgstr "成功杀死"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:963
+#: ../src/microbe_stage/Microbe.Contact.cs:979
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
@@ -3429,7 +3427,7 @@ msgid "PRESSURE_SHORT"
 msgstr "压力"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:677
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:707
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
@@ -3722,7 +3720,7 @@ msgstr ""
 "Auto-evo运行的种群模拟是影响种群数量的另一部分要素（还有玩家自己的表现）。"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1045
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1280
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1281
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo的预测"
 
@@ -3742,27 +3740,27 @@ msgstr "最繁荣的地区："
 msgid "WORST_PATCH_COLON"
 msgstr "表现最糟的地区："
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "ATP开支为负"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1257
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "你的微生物没办法产出足以维持生存的量的ATP！\n"
 "你确定要继续吗？"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1262
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1263
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "未连接的细胞器"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1264
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1265
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "有一些细胞器没有连接到其它细胞器上。\n"
 "请把所有细胞器连接起来，或者删掉未连接的细胞器。"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1324
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "这个板块显示了auto-evo预测工作所依据的数字。一个物种能够捕获的总能量以及该物种个体的成本决定最终的人口。Auto-evo使用一个简化的现实模型，根据物种能够采集的能量来计算其表现如何。对于每个食物来源，它显示了该物种从其获得的能量以及该食物来源能提供的总能量。物种从总能量中获得的量基于与总适应性相比的适应性的大小。适应性是衡量该物种对该食物来源的利用程度的指标。"
 
@@ -3786,35 +3784,40 @@ msgstr "载入微生物编辑器中"
 msgid "INFINITE_MP"
 msgstr "无限变异点"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:214
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:177
+#, fuzzy
+msgid "FIND_CURRENT_PATCH"
+msgstr "无效的mod图标路径"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
 msgid "SELECT_A_PATCH"
 msgstr "选择一个地区以显示详细"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:249
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:279
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "目前位置"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:331
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:361
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "物理条件"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:408
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:438
 msgid "PRESSURE"
 msgstr "压力"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:513
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:543
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "大气气体"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:937
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:967
 msgid "SPECIES_PRESENT"
 msgstr "存在的物种"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1001
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1031
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移动到这个地区"
 
@@ -3931,15 +3934,15 @@ msgstr "移动"
 msgid "MODIFY"
 msgstr "修改"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:398
 msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米处"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:433
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0}的种群数量：{1}"
 

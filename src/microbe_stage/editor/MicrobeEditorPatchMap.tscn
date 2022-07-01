@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -29,6 +29,9 @@
 [ext_resource path="res://assets/textures/gui/bevel/phosphates.png" type="Texture" id=27]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.cs" type="Script" id=28]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=29]
+[ext_resource path="res://src/gui_common/DraggableScrollContainer.tscn" type="PackedScene" id=30]
+
+[sub_resource type="StyleBoxEmpty" id=35]
 
 [sub_resource type="StyleBoxTexture" id=32]
 texture = ExtResource( 9 )
@@ -78,11 +81,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 14 )
 script = ExtResource( 28 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 FinishOrNextButtonPath = NodePath("MarginContainer2/NextTabButton")
-MapDrawerPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/ScrollContainer/PatchMapDrawer")
+MapDrawerPath = NodePath("MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer")
 PatchNothingSelectedPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected")
 PatchDetailsPath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer")
 PatchNamePath = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PatchName")
@@ -147,20 +147,50 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer"]
+[node name="DraggableScrollContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer" instance=ExtResource( 30 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 896.0
 margin_bottom = 608.0
-follow_focus = true
 
-[node name="PatchMapDrawer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/ScrollContainer" instance=ExtResource( 18 )]
+[node name="PatchMapDrawer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" instance=ExtResource( 18 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1500.0
 margin_bottom = 1500.0
 rect_min_size = Vector2( 1500, 1500 )
 DrawDefaultMapIfEmpty = false
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer"]
+margin_left = 649.0
+margin_top = 10.0
+margin_right = 896.0
+margin_bottom = 45.0
+size_flags_horizontal = 10
+size_flags_vertical = 2
+
+[node name="FindCurrentPatchButton" type="Button" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer"]
+margin_right = 231.0
+margin_bottom = 35.0
+text = "FIND_CURRENT_PATCH"
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer"]
+margin_left = 235.0
+margin_right = 239.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/separator = SubResource( 35 )
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer"]
+margin_left = 243.0
+margin_right = 247.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/separator = SubResource( 35 )
 
 [node name="StatisticsPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer"]
 margin_left = 920.0
@@ -1014,9 +1044,6 @@ grow_horizontal = 0
 rect_min_size = Vector2( 150, 0 )
 custom_constants/margin_right = 10
 custom_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="NextTabButton" type="Button" parent="MarginContainer2"]
 margin_right = 150.0
@@ -1030,6 +1057,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton" to="." method="OnFindCurrentPatchPressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons/minusButton" to="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions" method="CollapseButtonPressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons/plusButton" to="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions" method="ExpandButtonPressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer/Buttons/minusButton" to="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses" method="CollapseButtonPressed"]

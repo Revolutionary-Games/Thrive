@@ -544,6 +544,12 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         }
     }
 
+    private void OnFindCurrentPatchPressed()
+    {
+        mapDrawer.CenterScroll();
+        mapDrawer.SelectedPatch = mapDrawer.PlayerPatch;
+    }
+
     private void MoveToPatchClicked()
     {
         SetPlayerPatch(mapDrawer.SelectedPatch);
