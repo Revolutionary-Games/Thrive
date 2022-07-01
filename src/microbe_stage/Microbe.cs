@@ -146,9 +146,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     {
         get
         {
-            if (Membrane == null)
-                return 0;
-
             var radius = Membrane.EncompassingCircleRadius;
 
             if (CellTypeProperties.IsBacteria)
@@ -226,7 +223,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         set
         {
             renderPriority = value;
-            ApplyRenderPriority();
+
+            if (Membrane != null)
+                ApplyRenderPriority();
         }
     }
 
@@ -575,9 +574,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </remarks>
     public void ProcessEarlyAsync(float delta)
     {
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         if (membraneOrganellePositionsAreDirty)
         {
             // Redo the cell membrane.
@@ -637,9 +633,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     public void ProcessSync(float delta)
     {
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         // Updates the listener if this is the player owned microbe.
         if (listener != null && IsInsideTree())
         {
@@ -870,7 +863,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             throw new ArgumentException("searchRadius must be >= 1");
 
         // If the microbe cannot absorb, no need for this
-        if (Membrane?.Type.CellWall == true)
+        if (Membrane.Type.CellWall)
             return null;
 
         Vector3? nearestPoint = null;
@@ -939,12 +932,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (ColonyParent == null)
             throw new InvalidOperationException("This microbe doesn't have colony parent set");
 
-        if (ColonyParent.Membrane == null)
-            throw new InvalidOperationException("Colony parent is not initialized");
-
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         // Gets the global rotation of the parent
         var globalParentRotation = ColonyParent.GlobalTransform.basis.GetEuler();
 
@@ -987,9 +974,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (CellTypeProperties.Organelles.Count < 1)
             throw new ArgumentException("Species with no organelles is not valid");
 
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         SetScaleFromSpecies();
 
         ResetOrganelleLayout();
@@ -1019,9 +1003,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private void ApplyScale(Vector3 scale)
     {
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         // Scale only the graphics parts to not have physics affected
         Membrane.Scale = scale;
         OrganelleParent.Scale = scale;
@@ -1029,12 +1010,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private void ApplyRenderPriority()
     {
-        var material = Membrane?.MaterialToEdit;
+        var material = Membrane.MaterialToEdit;
 
         if (material != null)
         {
             material.RenderPriority = RenderPriority;
-            Membrane!.Dirty = true;
+            Membrane.Dirty = true;
         }
     }
 

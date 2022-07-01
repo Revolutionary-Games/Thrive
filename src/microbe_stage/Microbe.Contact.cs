@@ -133,7 +133,7 @@ public partial class Microbe
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
     /// </summary>
     [JsonIgnore]
-    public Membrane? Membrane { get; private set; }
+    public Membrane Membrane { get; private set; } = null!;
 
     [JsonProperty]
     public float Hitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
@@ -165,7 +165,7 @@ public partial class Microbe
     {
         get
         {
-            if (Colony == null || Membrane == null)
+            if (Colony == null)
                 return state;
 
             var colonyState = Colony.State;
@@ -178,7 +178,7 @@ public partial class Microbe
         }
         set
         {
-            if (state == value || Membrane == null)
+            if (state == value)
                 return;
 
             // Engulfing is not legal for microbes will cell walls
@@ -255,9 +255,6 @@ public partial class Microbe
     /// </summary>
     public void ApplyMembraneWigglyness()
     {
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         Membrane.WigglyNess = Membrane.Type.BaseWigglyness - (CellTypeProperties.MembraneRigidity /
             Membrane.Type.BaseWigglyness) * 0.2f;
         Membrane.MovementWigglyNess = Membrane.Type.MovementWigglyness - (CellTypeProperties.MembraneRigidity /
@@ -288,9 +285,6 @@ public partial class Microbe
 
     public void AbortFlash()
     {
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         flashDuration = 0;
         flashColour = new Color(0, 0, 0, 0);
         flashPriority = 0;
@@ -390,9 +384,6 @@ public partial class Microbe
     /// </summary>
     public bool CanEngulf(IEngulfable target)
     {
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         if (target.PhagocytizedStep != PhagocytosisProcess.None)
             return false;
 
@@ -455,9 +446,6 @@ public partial class Microbe
 
     public void OnEngulfed()
     {
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         Membrane.WigglyNess = 0;
 
         // Make the render priority of our organelles be on top of the highest possible render priority
@@ -572,7 +560,7 @@ public partial class Microbe
     /// </summary>
     public void SendOrganellePositionsToMembrane()
     {
-        if (organelles == null || Membrane == null)
+        if (organelles == null)
             throw new InvalidOperationException("Microbe must be initialized first");
 
         var organellePositions = new List<Vector2>();
@@ -957,9 +945,6 @@ public partial class Microbe
 
     private void SetMembraneFromSpecies()
     {
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         Membrane.Type = CellTypeProperties.MembraneType;
         Membrane.Tint = CellTypeProperties.Colour;
         Membrane.Dirty = true;
@@ -988,9 +973,6 @@ public partial class Microbe
     /// </summary>
     private void HandleFlashing(float delta)
     {
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         // Flash membrane if something happens.
         if (flashDuration > 0 && flashColour != new Color(0, 0, 0, 0))
         {
@@ -1229,9 +1211,6 @@ public partial class Microbe
     /// </summary>
     private void HandleDeath(float delta)
     {
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         if (PhagocytizedStep != PhagocytosisProcess.None)
             return;
 
@@ -1430,9 +1409,6 @@ public partial class Microbe
     /// </summary>
     private void IngestEngulfable(IEngulfable target, float animationSpeed = 2.0f)
     {
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         if (target.EntityNode.GetParent() == this || target.PhagocytizedStep != PhagocytosisProcess.None)
             return;
 
@@ -1511,7 +1487,7 @@ public partial class Microbe
 
         foreach (string group in engulfedObject.OriginalGroups)
         {
-            if (group != Constants.PROCESSABLE_MICROBE_GROUP)
+            if (group != Constants.RUNNABLE_MICROBE_GROUP)
                 target.EntityNode.RemoveFromGroup(group);
         }
 
@@ -1525,9 +1501,6 @@ public partial class Microbe
     /// </summary>
     private void EjectEngulfable(IEngulfable target, float animationSpeed = 2.0f)
     {
-        if (Membrane == null)
-            throw new InvalidOperationException("Microbe must be initialized first");
-
         if (target.EntityNode.GetParent() != this || PhagocytizedStep != PhagocytosisProcess.None ||
             target.PhagocytizedStep is PhagocytosisProcess.Exocytosis or PhagocytosisProcess.None)
         {
@@ -1820,7 +1793,7 @@ public partial class Microbe
 
         foreach (string group in engulfed.OriginalGroups)
         {
-            if (group != Constants.PROCESSABLE_MICROBE_GROUP)
+            if (group != Constants.RUNNABLE_MICROBE_GROUP)
                 engulfable.EntityNode.AddToGroup(group);
         }
 

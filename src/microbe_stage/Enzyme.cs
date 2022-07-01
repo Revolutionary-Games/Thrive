@@ -10,21 +10,24 @@ public class Enzyme : IRegistryType
     public string Name = null!;
 
     /// <summary>
-    ///   The effect of this enzyme.
+    ///   What this enzyme does.
     /// </summary>
-    public string Property = null!;
+    public EnzymeProperty Property = EnzymeProperty.Hydrolytic;
 
 #pragma warning disable 169 // Used through reflection
     private string? untranslatedName;
 #pragma warning restore 169
 
+    public enum EnzymeProperty
+    {
+        Hydrolytic,
+        Oxidizer,
+    }
+
     public string InternalName { get; set; } = null!;
 
     public void Check(string name)
     {
-        if (string.IsNullOrEmpty(Property))
-            throw new InvalidRegistryDataException(name, GetType().Name, "Enzyme property is not specified");
-
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 

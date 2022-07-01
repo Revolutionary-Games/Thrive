@@ -54,7 +54,7 @@ public static class SpawnHelpers
 
         microbe.AddToGroup(Constants.AI_TAG_MICROBE);
         microbe.AddToGroup(Constants.PROCESS_GROUP);
-        microbe.AddToGroup(Constants.PROCESSABLE_MICROBE_GROUP);
+        microbe.AddToGroup(Constants.RUNNABLE_MICROBE_GROUP);
 
         if (aiControlled)
             microbe.AddToGroup(Constants.AI_GROUP);

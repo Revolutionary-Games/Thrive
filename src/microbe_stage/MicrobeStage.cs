@@ -447,9 +447,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         if (Player != null)
         {
-            var globalTransform = Player.GlobalTransform;
-            spawner.Process(delta, globalTransform.origin, globalTransform.basis.GetEuler());
-            Clouds.ReportPlayerPosition(globalTransform.origin);
+            var playerTransform = Player.GlobalTransform;
+            spawner.Process(delta, playerTransform.origin, playerTransform.basis.GetEuler());
+            Clouds.ReportPlayerPosition(playerTransform.origin);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
                 new RotationEventArgs(Player.Transform.basis, Player.RotationDegrees), this);

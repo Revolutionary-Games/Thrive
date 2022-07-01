@@ -523,6 +523,6 @@ public class SimulationParameters : Node
 
     private List<Enzyme> ComputeHydrolyticEnzymes()
     {
-        return enzymes.Where(e => e.Value.Property == "hydrolytic").Select(e => e.Value).ToList();
+        return enzymes.Where(e => e.Value.Property == Enzyme.EnzymeProperty.Hydrolytic).Select(e => e.Value).ToList();
     }
 }

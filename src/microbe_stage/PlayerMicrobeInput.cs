@@ -78,7 +78,7 @@ public class PlayerMicrobeInput : NodeWithInput
         {
             stage.Player.State = Microbe.MicrobeState.Normal;
         }
-        else if (!stage.Player.Membrane?.Type.CellWall == true)
+        else if (!stage.Player.Membrane.Type.CellWall)
         {
             stage.Player.State = Microbe.MicrobeState.Engulf;
         }

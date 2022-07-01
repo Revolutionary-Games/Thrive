@@ -286,7 +286,7 @@ public class MicrobeAI
         FloatingChunk? chosenChunk = null;
 
         // If the microbe cannot absorb, no need for this
-        if (microbe.Membrane?.Type.CellWall == true)
+        if (microbe.Membrane.Type.CellWall)
         {
             return null;
         }

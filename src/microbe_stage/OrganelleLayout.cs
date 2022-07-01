@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -46,19 +47,7 @@ public class OrganelleLayout<T> : HexLayout<T>
     ///   The highest assigned render priority from all of the organelles.
     /// </summary>
     [JsonIgnore]
-    public int PeakRenderPriority
-    {
-        get
-        {
-            int result = 0;
-            foreach (var organelle in Organelles)
-            {
-                result = Mathf.Max(result, Hex.GetRenderPriority(organelle.Position));
-            }
-
-            return result;
-        }
-    }
+    public int PeakRenderPriority => Organelles.Max(o => Hex.GetRenderPriority(o.Position));
 
     public override bool CanPlace(T hex)
     {

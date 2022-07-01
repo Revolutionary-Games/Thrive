@@ -167,7 +167,7 @@ public class TutorialState : ITutorialInput
     /// <returns>True when the tutorial system wants engulfable entity information</returns>
     public bool WantsNearbyEngulfableInfo()
     {
-        return GlucoseCollecting.Complete;
+        return GlucoseCollecting.Complete && !MicrobeEngulfmentExplanation.Complete;
     }
 
     /// <summary>

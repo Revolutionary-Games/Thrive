@@ -1001,9 +1001,6 @@ public partial class CellBodyPlanEditorComponent :
         // performance. This probably causes the bit of weird turning / flicker with placing more cells
         microbe.ApplySpecies(newSpecies);
 
-        if (microbe.Membrane == null)
-            throw new InvalidOperationException("Preview microbe has failed to initialize");
-
         // Apply placeholder scale if doesn't have a scale
         if (microbe.Membrane.Scale == Vector3.One)
         {

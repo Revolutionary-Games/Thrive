@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 ///   Shows cell stats (e.g. Storage: 2.1, Hp: 50, etc) for the organism statistics display.
 ///   Also functions as a comparison for old value with a new one, indicated with an up/down icon.
 /// </summary>
-public class CellStatIndicator : HBoxContainer
+public class CellStatsIndicator : HBoxContainer
 {
     private Label? descriptionLabel;
     private Label? valueLabel;

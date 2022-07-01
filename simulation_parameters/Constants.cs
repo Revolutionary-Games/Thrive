@@ -16,9 +16,9 @@ public static class Constants
     public const float PLAYER_RESPAWN_TIME = 5.0f;
 
     /// <summary>
-    ///   The maximum of how long the player should wait until respawn after being ingested.
+    ///   The maximum duration of which the player should wait until they can respawn after being ingested.
     /// </summary>
-    public const float PLAYER_ENGULFED_DEATH_DELAY_MAX = 10f;
+    public const float PLAYER_ENGULFED_DEATH_DELAY_MAX = 10.0f;
 
     // Variance in the player position when respawning
     public const float MIN_SPAWN_DISTANCE = -5000.0f;
@@ -744,6 +744,17 @@ public static class Constants
     public const string AI_GROUP = "ai";
 
     /// <summary>
+    ///   Microbes tagged with this are handled by the <see cref="MicrobeSystem"/> to be processed.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: This is not related to <see cref="PROCESS_GROUP"/> which is in the context of in-game compounds
+    ///     processes, this is related to the engine's <see cref="Node._Process(float)"/> on the nodes.
+    ///   </para>
+    /// </remarks>
+    public const string RUNNABLE_MICROBE_GROUP = "microbe_runnable";
+
+    /// <summary>
     ///   All Nodes tagged with this are considered Microbes that the AI can react to
     /// </summary>
     /// <remarks>
@@ -753,8 +764,6 @@ public static class Constants
     ///   </para>
     /// </remarks>
     public const string AI_TAG_MICROBE = "microbe";
-
-    public const string PROCESSABLE_MICROBE_GROUP = "microbe_process";
 
     /// <summary>
     ///   All Nodes tagged with this are considered FloatingChunks that the AI can react to

@@ -139,37 +139,37 @@ public partial class CellEditorComponent :
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    private CellStatIndicator sizeLabel = null!;
+    private CellStatsIndicator sizeLabel = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    private CellStatIndicator speedLabel = null!;
+    private CellStatsIndicator speedLabel = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    private CellStatIndicator rotationSpeedLabel = null!;
+    private CellStatsIndicator rotationSpeedLabel = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    private CellStatIndicator hpLabel = null!;
+    private CellStatsIndicator hpLabel = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    private CellStatIndicator storageLabel = null!;
+    private CellStatsIndicator storageLabel = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    private CellStatIndicator digestionSpeedLabel = null!;
+    private CellStatsIndicator digestionSpeedLabel = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    private CellStatIndicator digestionEfficiencyLabel = null!;
+    private CellStatsIndicator digestionEfficiencyLabel = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    private CellStatIndicator generationLabel = null!;
+    private CellStatsIndicator generationLabel = null!;
 
-    private CellStatIndicator totalPopulationLabel = null!;
+    private CellStatsIndicator totalPopulationLabel = null!;
     private Label autoEvoPredictionFailedLabel = null!;
     private Label bestPatchLabel = null!;
     private Label worstPatchLabel = null!;
@@ -328,7 +328,7 @@ public partial class CellEditorComponent :
         {
             colour = value;
 
-            if (previewMicrobe?.Species != null && previewMicrobe.Membrane != null)
+            if (previewMicrobe?.Species != null)
             {
                 previewMicrobe.Species.Colour = value;
                 previewMicrobe.Membrane.Tint = value;
@@ -551,15 +551,15 @@ public partial class CellEditorComponent :
         partsSelectionContainer = GetNode<VBoxContainer>(PartsSelectionContainerPath);
         membraneTypeSelection = GetNode<CollapsibleList>(MembraneTypeSelectionPath);
 
-        sizeLabel = GetNode<CellStatIndicator>(SizeLabelPath);
-        speedLabel = GetNode<CellStatIndicator>(SpeedLabelPath);
-        rotationSpeedLabel = GetNode<CellStatIndicator>(RotationSpeedLabelPath);
-        hpLabel = GetNode<CellStatIndicator>(HpLabelPath);
-        storageLabel = GetNode<CellStatIndicator>(StorageLabelPath);
-        digestionSpeedLabel = GetNode<CellStatIndicator>(DigestionSpeedLabelPath);
-        digestionEfficiencyLabel = GetNode<CellStatIndicator>(DigestionEfficiencyLabelPath);
-        generationLabel = GetNode<CellStatIndicator>(GenerationLabelPath);
-        totalPopulationLabel = GetNode<CellStatIndicator>(TotalPopulationLabelPath);
+        sizeLabel = GetNode<CellStatsIndicator>(SizeLabelPath);
+        speedLabel = GetNode<CellStatsIndicator>(SpeedLabelPath);
+        rotationSpeedLabel = GetNode<CellStatsIndicator>(RotationSpeedLabelPath);
+        hpLabel = GetNode<CellStatsIndicator>(HpLabelPath);
+        storageLabel = GetNode<CellStatsIndicator>(StorageLabelPath);
+        digestionSpeedLabel = GetNode<CellStatsIndicator>(DigestionSpeedLabelPath);
+        digestionEfficiencyLabel = GetNode<CellStatsIndicator>(DigestionEfficiencyLabelPath);
+        generationLabel = GetNode<CellStatsIndicator>(GenerationLabelPath);
+        totalPopulationLabel = GetNode<CellStatsIndicator>(TotalPopulationLabelPath);
         autoEvoPredictionFailedLabel = GetNode<Label>(AutoEvoPredictionFailedLabelPath);
         worstPatchLabel = GetNode<Label>(WorstPatchLabelPath);
         bestPatchLabel = GetNode<Label>(BestPatchLabelPath);

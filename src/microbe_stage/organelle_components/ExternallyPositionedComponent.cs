@@ -65,7 +65,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         var membrane = organelle!.ParentMicrobe!.Membrane;
 
         // Skip updating if membrane is not ready yet for us to read it and do it in the sync update instead
-        if (membrane?.Dirty == true)
+        if (membrane.Dirty)
         {
             skippedAsyncProcess = true;
             return;
@@ -131,8 +131,6 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     private void CheckPositioningWithMembrane()
     {
         var membrane = organelle!.ParentMicrobe!.Membrane;
-        if (membrane == null)
-            return;
 
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var relativeOrganellePosition = middle - organellePos;
