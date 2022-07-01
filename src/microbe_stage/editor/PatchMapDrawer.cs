@@ -186,10 +186,11 @@ public class PatchMapDrawer : Control
 
     public void CenterScroll()
     {
-        var parent = (ScrollContainer)GetParent();
+        var parent = (DraggableScrollContainer)GetParent();
         var coords = PlayerPatch!.ScreenCoordinates - parent.GetRect().End / 2f;
         parent.ScrollHorizontal = (int)coords.x;
         parent.ScrollVertical = (int)coords.y;
+        parent.ResetZoom();
     }
 
     private Vector2 RegionCenter(PatchRegion region)
