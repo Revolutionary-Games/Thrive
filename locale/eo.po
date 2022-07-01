@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-30 14:27+0800\n"
+"POT-Creation-Date: 2022-07-01 10:55+0800\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -899,146 +899,169 @@ msgstr "Termika plasto"
 msgid "CILIA"
 msgstr "Cilio"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:80
+#: ../src/auto-evo/AutoEvoExploringTool.cs:578
+#, fuzzy
+msgid "SPECIES_DETAIL_TEXT"
+msgstr "Listo de Specioj"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:586
+#, fuzzy
+msgid "MICROBE_SPECIES_DETAIL_TEXT"
+msgstr ""
+"Rigardu vian sanstaton apud la ATP-breto (malsupre dekstre).\n"
+"Via ĉelo mortas, se ĝi elĉerpiĝas.\n"
+"Vi regeneras sanon dum vi havas ATP-ojn.\n"
+"Certigu kolekti sufiĉe da glukozo por produkti ATP-ojn."
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:84
 msgid "CONFIG"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:86
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:90
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Ra"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:92
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:96
 msgid "VIEWER"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:139
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:143
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "havas mutacion"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:145
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:149
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:157
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:161
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:176
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:180
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:189
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:193
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:195
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:199
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:207
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:211
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:224
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:228
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:241
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:245
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:258
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:262
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutaciaj Poentoj"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:275
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:279
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:288
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:292
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:294
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:298
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:300
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:304
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:306
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:310
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:318
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:337
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:341
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:348
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:352
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:370
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:374
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Generacio:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:387
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:391
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "Specioj:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:403
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:398
+msgid "READY"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:407
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "kun koncentriĝo de"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:413
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:415
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:419
 #, fuzzy
 msgid "ABORT"
 msgstr "Nuligita."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:422
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:456
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:460
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Generacio:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:514
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:518
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultoj de aŭtomata evoluo:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:560
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:564
 #, fuzzy
 msgid "SPECIES_IN_GENERATION"
 msgstr "Specio loĝantaro"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:603
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:606
+#, fuzzy
+msgid "SPECIES_DETAILS"
+msgstr "Listo de Specioj"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:662
 msgid "HEX_VIEW"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:637
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:696
 #, fuzzy
 msgid "PREVIEW"
 msgstr "antaŭa:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:652
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:711
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1014
 #: ../src/general/OptionsMenu.tscn:1228 ../src/general/PauseMenu.tscn:263
@@ -1047,6 +1070,18 @@ msgstr "antaŭa:"
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Reen"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
+#: ../src/general/PauseMenu.tscn:288
+#, fuzzy
+msgid "CONFIRM_EXIT"
+msgstr "KONFIRMU"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:716
+#: ../src/general/PauseMenu.cs:329
+#, fuzzy
+msgid "RETURN_TO_MENU_WARNING"
+msgstr "Revenu al Menuo"
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
 #, fuzzy
@@ -1067,16 +1102,16 @@ msgstr "Nuligita."
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% finita. {1:n0}/{2:n0} paŝoj."
 
-#: ../src/auto-evo/AutoEvoRun.cs:143
+#: ../src/auto-evo/AutoEvoRun.cs:142
 #, fuzzy
 msgid "PAUSED_DOT"
 msgstr "Nuligita."
 
-#: ../src/auto-evo/AutoEvoRun.cs:146
+#: ../src/auto-evo/AutoEvoRun.cs:145
 msgid "STARTING"
 msgstr "Komenco"
 
-#: ../src/auto-evo/AutoEvoRun.cs:297
+#: ../src/auto-evo/AutoEvoRun.cs:296
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
@@ -2570,11 +2605,6 @@ msgstr "Malfermu Ekrankopian Dosierujon"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Prenu ekrankopion"
 
-#: ../src/general/PauseMenu.cs:329
-#, fuzzy
-msgid "RETURN_TO_MENU_WARNING"
-msgstr "Revenu al Menuo"
-
 #: ../src/general/PauseMenu.cs:345
 #, fuzzy
 msgid "QUIT_GAME_WARNING"
@@ -2631,11 +2661,6 @@ msgstr "Revenu al Menuo"
 #: ../src/general/PauseMenu.tscn:237
 msgid "EXIT"
 msgstr "Eliri"
-
-#: ../src/general/PauseMenu.tscn:288
-#, fuzzy
-msgid "CONFIRM_EXIT"
-msgstr "KONFIRMU"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -3516,19 +3541,19 @@ msgstr ""
 msgid "TEMPERATURE"
 msgstr "Temperaturo"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:588
+#: ../src/microbe_stage/Microbe.Contact.cs:604
 msgid "DEATH"
 msgstr "morto"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:718
+#: ../src/microbe_stage/Microbe.Contact.cs:734
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "sukcesa ordaranĝado"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:725
+#: ../src/microbe_stage/Microbe.Contact.cs:741
 msgid "SUCCESSFUL_KILL"
 msgstr "sukcesa"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:963
+#: ../src/microbe_stage/Microbe.Contact.cs:979
 msgid "ESCAPE_ENGULFING"
 msgstr "eskapu englutadon"
 

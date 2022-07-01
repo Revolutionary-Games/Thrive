@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-30 14:27+0800\n"
+"POT-Creation-Date: 2022-07-01 10:55+0800\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -887,147 +887,171 @@ msgstr "Termoplasztisz"
 msgid "CILIA"
 msgstr "Csilló"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:80
+#: ../src/auto-evo/AutoEvoExploringTool.cs:578
+#, fuzzy
+msgid "SPECIES_DETAIL_TEXT"
+msgstr "{0} (x{1})"
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:586
+#, fuzzy
+msgid "MICROBE_SPECIES_DETAIL_TEXT"
+msgstr ""
+"Tartsd szemmel az életerő csíkot az ATP mérő mellett (jobb alsó sarok).\n"
+"A sejted meghal, ha elfogy az életereje.\n"
+"Addig regenerálódik a sejted, amíg rendelkezik ATP-vel.\n"
+"Figyelj arra, hogy elegendő glükózt gyűjts az ATP előállításához."
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:84
 msgid "CONFIG"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:86
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:90
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Jelentés"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:92
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:96
 msgid "VIEWER"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:139
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:143
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "faj mutálódott"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:145
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:149
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "[u]{0}[/u] populációjának egy része ide vándorolt: {1}"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:157
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:161
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:176
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:180
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:189
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:193
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:195
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:199
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:207
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:211
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:224
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:228
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:241
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:245
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:258
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:262
 #, fuzzy
 msgid "MUTATIONS_PER_SPECIES"
 msgstr "Mutáció pont"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:275
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:279
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:288
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:292
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:294
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:298
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:300
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:304
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:306
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:310
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:318
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:322
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:337
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:341
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:348
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:352
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:370
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:374
 #, fuzzy
 msgid "CURRENT_GENERATION_COLON"
 msgstr "Generáció:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:387
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:391
 #, fuzzy
 msgid "STATUS_COLON"
 msgstr "Előző:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:403
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:398
+#, fuzzy
+msgid "READY"
+msgstr "Szálak:"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:407
 #, fuzzy
 msgid "FINISH_ONE_GENERATION"
 msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:409
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:413
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:415
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:419
 #, fuzzy
 msgid "ABORT"
 msgstr "Megszakítva."
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:422
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:425
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:456
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:460
 #, fuzzy
 msgid "GENERATIONS"
 msgstr "Generáció:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:514
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:518
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:282
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-Evo eredmények:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:560
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:564
 #, fuzzy
 msgid "SPECIES_IN_GENERATION"
 msgstr "A fajok populációi"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:603
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:606
+#, fuzzy
+msgid "SPECIES_DETAILS"
+msgstr "Fajlista"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:662
 msgid "HEX_VIEW"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:637
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:696
 #, fuzzy
 msgid "PREVIEW"
 msgstr "előző:"
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:652
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:711
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
 #: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1014
 #: ../src/general/OptionsMenu.tscn:1228 ../src/general/PauseMenu.tscn:263
@@ -1036,6 +1060,18 @@ msgstr "előző:"
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Vissza"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:715
+#: ../src/general/PauseMenu.tscn:288
+msgid "CONFIRM_EXIT"
+msgstr "Kilépés elfogadása"
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:716
+#: ../src/general/PauseMenu.cs:329
+msgid "RETURN_TO_MENU_WARNING"
+msgstr ""
+"Biztos vissza akarsz lépni a főmenübe?\n"
+"Az eddigi teljesítményeid el fognak veszni (hacsak nem mentettél)."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
 msgid "ABORTED_DOT"
@@ -1054,16 +1090,16 @@ msgstr "Megszakítva."
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% kész. {1:n0}/{2:n0} lépés."
 
-#: ../src/auto-evo/AutoEvoRun.cs:143
+#: ../src/auto-evo/AutoEvoRun.cs:142
 #, fuzzy
 msgid "PAUSED_DOT"
 msgstr "Játék szüneteltetése"
 
-#: ../src/auto-evo/AutoEvoRun.cs:146
+#: ../src/auto-evo/AutoEvoRun.cs:145
 msgid "STARTING"
 msgstr "Indítás"
 
-#: ../src/auto-evo/AutoEvoRun.cs:297
+#: ../src/auto-evo/AutoEvoRun.cs:296
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
 
@@ -2522,12 +2558,6 @@ msgstr "A képernyőképmappa nem található"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Próbálj pár képernyőképet készíteni!"
 
-#: ../src/general/PauseMenu.cs:329
-msgid "RETURN_TO_MENU_WARNING"
-msgstr ""
-"Biztos vissza akarsz lépni a főmenübe?\n"
-"Az eddigi teljesítményeid el fognak veszni (hacsak nem mentettél)."
-
 #: ../src/general/PauseMenu.cs:345
 msgid "QUIT_GAME_WARNING"
 msgstr ""
@@ -2581,10 +2611,6 @@ msgstr "Vissza a menübe"
 #: ../src/general/PauseMenu.tscn:237
 msgid "EXIT"
 msgstr "Kilépés"
-
-#: ../src/general/PauseMenu.tscn:288
-msgid "CONFIRM_EXIT"
-msgstr "Kilépés elfogadása"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -3454,19 +3480,19 @@ msgstr ""
 msgid "TEMPERATURE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:588
+#: ../src/microbe_stage/Microbe.Contact.cs:604
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:718
+#: ../src/microbe_stage/Microbe.Contact.cs:734
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:725
+#: ../src/microbe_stage/Microbe.Contact.cs:741
 msgid "SUCCESSFUL_KILL"
 msgstr "sikeres ölés"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:963
+#: ../src/microbe_stage/Microbe.Contact.cs:979
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
