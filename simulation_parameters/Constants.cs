@@ -376,24 +376,24 @@ public static class Constants
     /// <summary>
     ///   The speed of which a cell can absorb compounds from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.3f;
+    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.5f;
 
     /// <summary>
     ///   How much compounds a cell can absorb per second from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_BASE_COMPOUND_ABSORBTION_YIELD = 0.4f;
+    public const float ENGULF_BASE_COMPOUND_ABSORBTION_YIELD = 0.3f;
 
     public const float ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION = 0.9f;
 
     /// <summary>
     ///   Each enzyme addition grants 20% increase in digestion speed.
     /// </summary>
-    public const float ENZYME_DIGESTION_SPEED_UP_FRACTION = 0.2f;
+    public const float ENZYME_DIGESTION_SPEED_UP_FRACTION = 0.1f;
 
     /// <summary>
     ///   Each enzyme addition grants 20% increase in compounds yield.
     /// </summary>
-    public const float ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION = 0.2f;
+    public const float ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION = 0.15f;
 
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
 

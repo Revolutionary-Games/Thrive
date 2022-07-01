@@ -195,7 +195,7 @@ public static class MicrobeInternalCalculations
         var absorption = Constants.ENGULF_BASE_COMPOUND_ABSORBTION_YIELD;
         var buff = absorption * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount;
 
-        return Mathf.Clamp(absorption + buff, 0.0f, 1.0f);
+        return Mathf.Clamp(absorption + buff, 0.0f, 0.6f);
     }
 
     public static float CalculateTotalDigestionEfficiency(ICollection<OrganelleTemplate> organelles)
