@@ -552,6 +552,7 @@ public class AutoEvoExploringTool : NodeWithInput
 
     private void UpdateSpeciesDetail(Species species)
     {
+        /*
         speciesDetailsLabel.ExtendedBbcode = $"[b]Species:[/b]\n  {species.FormattedNameBbCode}\n" +
             $"[b]Generation:[/b]\n  {species.Generation}\n" +
             $"[b]Population:[/b]\n  {species.Population}\n" +
@@ -566,15 +567,28 @@ public class AutoEvoExploringTool : NodeWithInput
                     $"[b]Membrane Type:[/b]\n  {microbeSpecies.MembraneType.Name}\n" +
                     $"[b]Membrane Rigidity:[/b]\n  {microbeSpecies.MembraneRigidity}\n" +
                     $"[b]Base Speed:[/b]\n  {microbeSpecies.BaseSpeed}\n" +
-                    $"[b]Base Rotation Speed[/b]\n  {microbeSpecies.BaseRotationSpeed}\n";
+                    $"[b]Base Rotation Speed[/b]\n  {microbeSpecies.BaseRotationSpeed}\n" +
+                    $"[b]Base Hex Size[/b]\n  {microbeSpecies.BaseHexSize}";
                 break;
             }
         }
-
-        /*
-        speciesDetailsLabel.ExtendedBbcode = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("SPECIES_DETAIL_TEXT"), );
         */
+
+        speciesDetailsLabel.ExtendedBbcode = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("SPECIES_DETAIL_TEXT"), species.FormattedNameBbCode, species.Generation,
+            species.Population, species.Colour.ToHtml(), species.Behaviour.Join(b => b.Key + ": " + b.Value, "\n  "));
+
+        switch (species)
+        {
+            case MicrobeSpecies microbeSpecies:
+            {
+                speciesDetailsLabel.ExtendedBbcode += string.Format(CultureInfo.CurrentCulture,
+                    TranslationServer.Translate("MICROBE_SPECIES_DETAIL_TEXT"), microbeSpecies.MembraneType.Name,
+                    microbeSpecies.MembraneRigidity, microbeSpecies.BaseSpeed, microbeSpecies.BaseRotationSpeed,
+                    microbeSpecies.BaseHexSize);
+                break;
+            }
+        }
     }
 
     private void PlayWithCurrentSettingPressed()
