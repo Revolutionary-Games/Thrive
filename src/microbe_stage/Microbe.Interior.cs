@@ -216,7 +216,7 @@ public partial class Microbe
 
         var props = new AgentProperties(Species, agentType);
 
-        // Find the direction the Species is facing (actual rotation, not LookAtPoint)
+        // Find the direction the microbe is facing (actual rotation, not LookAtPoint, also takes colony membership into account)
         Vector3 direction;
         if (Colony?.Master == this)
         {
