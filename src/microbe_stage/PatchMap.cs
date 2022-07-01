@@ -416,7 +416,7 @@ public class PatchMap : ISaveLoadable
         }
     }
 
-    public bool ContainsPatchAdjency(int id1, int id2)
+    public bool ContainsPatchAdjacency(int id1, int id2)
     {
         if (PatchesAdjacencies.Contains((id1, id2)) || PatchesAdjacencies.Contains((id2, id1)))
         {
@@ -426,7 +426,7 @@ public class PatchMap : ISaveLoadable
         return false;
     }
 
-    public bool ContainsRegionAdjency(int id1, int id2)
+    public bool ContainsRegionAdjacency(int id1, int id2)
     {
         if (RegionAdjacencies.Contains((id1, id2)) || RegionAdjacencies.Contains((id2, id1)))
         {
@@ -442,7 +442,7 @@ public class PatchMap : ISaveLoadable
         {
             foreach (var adjacent in entry.Value.Adjacent)
             {
-                if (!ContainsPatchAdjency(entry.Value.ID, adjacent.ID))
+                if (!ContainsPatchAdjacency(entry.Value.ID, adjacent.ID))
                     PatchesAdjacencies.Add((entry.Value.ID, adjacent.ID));
             }
         }
@@ -451,13 +451,13 @@ public class PatchMap : ISaveLoadable
         {
             foreach (var adjacent in entry.Value.Adjacent)
             {
-                if (!ContainsRegionAdjency(entry.Value.ID, adjacent.ID))
+                if (!ContainsRegionAdjacency(entry.Value.ID, adjacent.ID))
                     RegionAdjacencies.Add((entry.Value.ID, adjacent.ID));
             }
         }
     }
 
-    public void RecreateAdjencies()
+    public void RecreateAdjacencies()
     {
         foreach (var (id1, id2) in PatchesAdjacencies)
         {
@@ -488,6 +488,6 @@ public class PatchMap : ISaveLoadable
 
     public void FinishLoading(ISaveContext? context)
     {
-        RecreateAdjencies();
+        RecreateAdjacencies();
     }
 }

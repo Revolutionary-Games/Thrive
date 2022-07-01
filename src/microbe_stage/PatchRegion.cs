@@ -5,7 +5,7 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   A region is a somehting like a continent/ocean that contains multiple biomes(patches).
+///   A region is a something like a continent/ocean that contains multiple biomes(patches).
 /// </summary>
 [UseThriveSerializer]
 public class PatchRegion
@@ -41,14 +41,14 @@ public class PatchRegion
     public List<Patch> Patches;
 
     [JsonConstructor]
-    public PatchRegion(int id, LocalizedString name, string regionType, Vector2 screencoordinates,
+    public PatchRegion(int id, LocalizedString name, string regionType, Vector2 screenCoordinates,
         float height, float width, List<Patch> patches)
     {
         ID = id;
         Name = name;
         RegionType = regionType;
         Patches = patches;
-        ScreenCoordinates = screencoordinates;
+        ScreenCoordinates = screenCoordinates;
         Height = height;
         Width = width;
     }
@@ -158,7 +158,7 @@ public class PatchRegion
                 }
             }
 
-            if (RegionType is "vents" or "underwatercave")
+            if (RegionType is "vents" or "underwater_cave")
             {
                 Patches[0].ScreenCoordinates = new Vector2(ScreenCoordinates.x + regionMargin,
                     ScreenCoordinates.y + regionMargin);
@@ -198,7 +198,7 @@ public class PatchRegion
             ScreenCoordinates = adjacent.ScreenCoordinates + new Vector2(0, adjacent.Height) + new Vector2(0, 20);
         }
 
-        if (RegionType == "underwatercave")
+        if (RegionType == "underwater_cave")
         {
             Height = Width = 64 + 2 * PatchMargin + RegionLineWidth;
 

@@ -243,7 +243,7 @@ public class PatchMapDrawer : Control
         return false;
     }
 
-    private bool CheckHighlightedAdjency(PatchRegion region1, PatchRegion region2)
+    private bool CheckHighlightedAdjacency(PatchRegion region1, PatchRegion region2)
     {
         if ((ContainsSelected(region1) && ContainsAdjacentToSelected(region2)) ||
             (ContainsSelected(region2) && ContainsAdjacentToSelected(region1)))
@@ -485,7 +485,7 @@ public class PatchMapDrawer : Control
             DrawNodeLink(linkStart, linkMiddle);
             DrawNodeLink(linkMiddle, linkEnd);
 
-            if (CheckHighlightedAdjency(region1, region2))
+            if (CheckHighlightedAdjacency(region1, region2))
                 highlightedConnections.Add(entry.Value);
         }
 

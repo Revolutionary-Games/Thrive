@@ -120,7 +120,7 @@ public static class PatchMapGenerator
             if (random.Next(0, 2) == 1)
             {
                 var caveRegion = new PatchRegion(specialRegionsId--,
-                    GetPatchLocalizedName(continentName, "underwatercave"), "underwatercave", coord);
+                    GetPatchLocalizedName(continentName, "UNDERWATERCAVE"), "underwater_cave", coord);
                 var cavePatch = GetPatchFromPredefinedMap(8, currentPatchId++, predefinedMap, areaName);
                 caveRegion.AddPatch(cavePatch);
                 map.AddSpecialRegion(caveRegion);
@@ -135,7 +135,7 @@ public static class PatchMapGenerator
             coord = GenerateCoordinates(region, map, random, minDistance);
 
             // We add the coordinates for the center of the region
-            // since thats the point that will be connected
+            // since that's the point that will be connected
             regionCoords.Add(coord + region.GetSize() / 2f);
             map.AddRegion(region);
         }
@@ -149,10 +149,10 @@ public static class PatchMapGenerator
         map.CurrentPatch = map.Patches[random.Next(0, currentPatchId)];
         map.CurrentPatch.AddSpecies(defaultSpecies);
 
-        // We make the graph by substracting edges from its Delaunay Triangulation
+        // We make the graph by subtracting edges from its Delaunay Triangulation
         // as long as the graph stays connected.
         graph = DelaunayTriangulation(graph, regionCoords);
-        graph = SubstractEdges(graph, vertexNr, edgeNr, random);
+        graph = SubtractEdges(graph, vertexNr, edgeNr, random);
 
         // Link regions according to the graph matrix
         for (int k = 0; k < vertexNr; k++)
@@ -202,12 +202,12 @@ public static class PatchMapGenerator
         _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
     }
 
-    private static int[,] SubstractEdges(int[,] graph, int vertexNr, int edgeNr,
+    private static int[,] SubtractEdges(int[,] graph, int vertexNr, int edgeNr,
         Random random)
     {
         var currentEdgeNr = CurrentEdgeNumber(graph, vertexNr);
 
-        // Substract edges until we reach the desired edge count.
+        // Subtract edges until we reach the desired edge count.
         while (currentEdgeNr > edgeNr)
         {
             int edgeToDelete = random.Next(1, currentEdgeNr);
@@ -225,7 +225,7 @@ public static class PatchMapGenerator
             i--;
             j--;
 
-            // Check if the graph stays connected after substracting the edge
+            // Check if the graph stays connected after subtracting the edge
             // otherwise, leave the edge as is.
             graph[i, j] = graph[j, i] = 0;
             if (!CheckConnectivity(graph, vertexNr))
