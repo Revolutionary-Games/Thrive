@@ -369,7 +369,7 @@ public static class Constants
     public const float PARTIALLY_DIGESTED_THRESHOLD = 0.5f;
 
     /// <summary>
-    ///   The maximum of which an engulfable is considered fully digested.
+    ///   The maximum digestion progress in which an engulfable is considered fully digested.
     /// </summary>
     public const float FULLY_DIGESTED_LIMIT = 1.0f;
 
