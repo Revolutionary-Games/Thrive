@@ -600,7 +600,7 @@ public partial class Microbe
         // Subtract population
         if (!IsPlayerMicrobe && !Species.PlayerSpecies)
         {
-            GameWorld.AlterSpeciesPopulation(Species,
+            GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
                 Constants.CREATURE_DEATH_POPULATION_LOSS, TranslationServer.Translate("DEATH"));
         }
 
@@ -729,14 +729,14 @@ public partial class Microbe
 
     internal void SuccessfulScavenge()
     {
-        GameWorld.AlterSpeciesPopulation(Species,
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
             Constants.CREATURE_SCAVENGE_POPULATION_GAIN,
             TranslationServer.Translate("SUCCESSFUL_SCAVENGE"));
     }
 
     internal void SuccessfulKill()
     {
-        GameWorld.AlterSpeciesPopulation(Species,
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
             Constants.CREATURE_KILL_POPULATION_GAIN,
             TranslationServer.Translate("SUCCESSFUL_KILL"));
     }
@@ -974,7 +974,7 @@ public partial class Microbe
                 hasEscaped = false;
                 escapeInterval = 0;
 
-                GameWorld.AlterSpeciesPopulation(Species,
+                GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
                     Constants.CREATURE_ESCAPE_POPULATION_GAIN,
                     TranslationServer.Translate("ESCAPE_ENGULFING"));
             }

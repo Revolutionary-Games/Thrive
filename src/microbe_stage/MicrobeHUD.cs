@@ -159,6 +159,9 @@ public class MicrobeHUD : Control
     public PackedScene ExtinctionBoxScene = null!;
 
     [Export]
+    public PackedScene PatchExtinctionBoxScene = null!;
+
+    [Export]
     public PackedScene WinBoxScene = null!;
 
     [Export]
@@ -286,8 +289,9 @@ public class MicrobeHUD : Control
     private CustomDialog multicellularConfirmPopup = null!;
     private Button macroscopicButton = null!;
 
-    private CustomDialog? extinctionBox;
     private CustomDialog? winBox;
+    private CustomDialog? extinctionBox;
+    private PatchExtinctionBox? patchExtinctionBox;
     private Tween panelsTween = null!;
     private Control winExtinctBoxHolder = null!;
     private Label hintText = null!;
@@ -688,6 +692,30 @@ public class MicrobeHUD : Control
         extinctionBox.Show();
     }
 
+    public void ShowPatchExtinctionBox()
+    {
+        winExtinctBoxHolder.Show();
+
+        if (patchExtinctionBox == null)
+        {
+            patchExtinctionBox = PatchExtinctionBoxScene.Instance<PatchExtinctionBox>();
+            winExtinctBoxHolder.AddChild(patchExtinctionBox);
+
+            patchExtinctionBox.OnMovedToNewPatch = MoveToNewPatchAfterExtinctInCurrent;
+        }
+
+        patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
+        patchExtinctionBox.Map = stage.GameWorld.Map;
+
+        patchExtinctionBox.Show();
+    }
+
+    public void HidePatchExtinctionBox()
+    {
+        winExtinctBoxHolder.Hide();
+        patchExtinctionBox?.Hide();
+    }
+
     public void ToggleWinBox()
     {
         if (winBox != null)
@@ -749,6 +777,15 @@ public class MicrobeHUD : Control
     public void SendEditorButtonToTutorial(TutorialState tutorialState)
     {
         tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
+    }
+
+    /// <summary>
+    ///   Called when the player died out in a patch and selected a new one
+    /// </summary>
+    private void MoveToNewPatchAfterExtinctInCurrent(Patch patch)
+    {
+        winExtinctBoxHolder.Hide();
+        stage!.MoveToPatch(patch);
     }
 
     /// <summary>
