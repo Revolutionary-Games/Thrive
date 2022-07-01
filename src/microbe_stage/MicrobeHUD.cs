@@ -1186,7 +1186,7 @@ public class MicrobeHUD : Control
             {
                 // Show the digestion progress to the player
                 hp = 1 - (stage.Player.DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD);
-                maxHP = 1.0f;
+                maxHP = Constants.FULLY_DIGESTED_LIMIT;
                 hpText = string.Format(CultureInfo.CurrentCulture, percentageValue, Mathf.Round((1 - hp) * 100));
                 playerWasDigested = true;
                 FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
