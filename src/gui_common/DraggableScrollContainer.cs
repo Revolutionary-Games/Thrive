@@ -18,17 +18,30 @@ public class DraggableScrollContainer : ScrollContainer
     /// <summary>
     ///   Timer used for scroll bug workaround in Godot (https://github.com/godotengine/godot/issues/22936).
     /// </summary>
-    private SceneTreeTimer? timer;
+    private float scrollingTimer;
 
     public override void _Ready()
     {
-        GetVScrollbar().Connect("scrolling", this, "OnScrollStarted");
-        GetHScrollbar().Connect("scrolling", this, "OnScrollStarted");
+        GetVScrollbar().Connect("scrolling", this, nameof(OnScrollStarted));
+        GetHScrollbar().Connect("scrolling", this, nameof(OnScrollStarted));
 
         base._Ready();
     }
 
-    public override void _Input(InputEvent @event)
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (scrollingTimer > 0)
+        {
+            scrollingTimer -= delta;
+
+            if (scrollingTimer <= 0)
+                OnScrollEnded();
+        }
+    }
+
+    public override void _GuiInput(InputEvent @event)
     {
         if (!Visible || scrolling)
         {
@@ -40,7 +53,7 @@ public class DraggableScrollContainer : ScrollContainer
         var min = RectGlobalPosition;
         var max = min + RectSize;
 
-        // Don't allow click and drag outside this container
+        // Don't allow drag motion to continue outside this control
         if (mouse.x < min.x || mouse.y < min.y || mouse.x > max.x || mouse.y > max.y)
         {
             dragging = false;
@@ -59,10 +72,20 @@ public class DraggableScrollContainer : ScrollContainer
             ScrollHorizontal -= (int)input.Relative.x;
             ScrollVertical -= (int)input.Relative.y;
         }
-        else if (@event is InputEventMouseButton
-                 {
-                     Pressed: false, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
-                 })
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (!Visible || scrolling)
+        {
+            dragging = false;
+            return;
+        }
+
+        if (@event is InputEventMouseButton
+            {
+                Pressed: false, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
+            })
         {
             dragging = false;
         }
@@ -70,17 +93,16 @@ public class DraggableScrollContainer : ScrollContainer
 
     private void OnScrollStarted()
     {
-        if (timer == null)
+        if (scrollingTimer <= 0)
         {
             scrolling = true;
-            timer = GetTree().CreateTimer(0.1f);
-            timer.Connect("timeout", this, "OnScrollEnded");
+            scrollingTimer = 0.1f;
         }
     }
 
     private void OnScrollEnded()
     {
         scrolling = false;
-        timer = null;
+        scrollingTimer = 0;
     }
 }
