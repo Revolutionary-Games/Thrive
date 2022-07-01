@@ -13,12 +13,6 @@ public class PatchMap : ISaveLoadable
     [JsonProperty]
     public Random Seed = null!;
 
-    [JsonProperty]
-    public bool NeedsVent = true;
-
-    [JsonProperty]
-    public bool NeedsTidepool = true;
-
     private Patch? currentPatch;
 
     /// <summary>

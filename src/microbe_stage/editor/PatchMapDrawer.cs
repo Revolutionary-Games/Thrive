@@ -167,8 +167,8 @@ public class PatchMapDrawer : Control
         {
             foreach (var adjacent in entry.Value.Adjacent)
             {
-                // Only draw connections if we haven't set regions (classic map) or patches belong to the same region
-                if (entry.Value.Region?.Name.Equals(adjacent.Region.Name) != false)
+                // Only draw connections if patches belong to the same region
+                if (entry.Value.Region.Name.Equals(adjacent.Region.Name))
                 {
                     var start = Center(entry.Value.ScreenCoordinates);
                     var end = Center(adjacent.ScreenCoordinates);
