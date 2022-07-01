@@ -107,7 +107,7 @@ public partial class Microbe
     public float AgentEmissionCooldown { get; private set; }
 
     [JsonIgnore]
-    public Enzyme RequisiteEnzymeToDigest => SimulationParameters.Instance.GetEnzyme(Membrane!.Type.DissolverEnzyme);
+    public Enzyme RequisiteEnzymeToDigest => SimulationParameters.Instance.GetEnzyme(Membrane.Type.DissolverEnzyme);
 
     [JsonIgnore]
     public float DigestedAmount

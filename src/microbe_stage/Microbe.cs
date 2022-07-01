@@ -214,7 +214,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public Spatial EntityNode => this;
 
     [JsonIgnore]
-    public GeometryInstance EntityGraphics => Membrane!;
+    public GeometryInstance EntityGraphics => Membrane;
 
     [JsonIgnore]
     public int RenderPriority
@@ -224,7 +224,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         {
             renderPriority = value;
 
-            if (Membrane != null)
+            if (onReadyCalled)
                 ApplyRenderPriority();
         }
     }
