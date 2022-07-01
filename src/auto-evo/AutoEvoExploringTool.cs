@@ -120,6 +120,10 @@ public class AutoEvoExploringTool : NodeWithInput
     [Export]
     public NodePath SpeciesDetailsLabelPath = null!;
 
+    // Exit confirm path
+    [Export]
+    public NodePath ExitConfirmationDialogPath = null!;
+
     /// <summary>
     ///   This list stores copy of species in every generation.
     /// </summary>
@@ -177,6 +181,8 @@ public class AutoEvoExploringTool : NodeWithInput
     private CellHexPreview hexPreview = null!;
     private VBoxContainer speciesList = null!;
     private CustomRichTextLabel speciesDetailsLabel = null!;
+
+    private CustomConfirmationDialog exitConfirmationDialog = null!;
 
     private PackedScene customCheckBoxScene = null!;
 
@@ -262,6 +268,8 @@ public class AutoEvoExploringTool : NodeWithInput
         speciesList = GetNode<VBoxContainer>(SpeciesListPath);
         speciesDetailsLabel = GetNode<CustomRichTextLabel>(SpeciesDetailsLabelPath);
 
+        exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
+
         customCheckBoxScene = GD.Load<PackedScene>("res://src/gui_common/CustomCheckBox.tscn");
 
         // Init game
@@ -324,16 +332,21 @@ public class AutoEvoExploringTool : NodeWithInput
     }
 
     [RunOnKeyDown("ui_cancel")]
-    public bool OnBackButtonPressed()
+    public void AskExit()
+    {
+        exitConfirmationDialog.PopupCentered();
+    }
+
+    private void OnBackButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
+        AskExit();
+    }
 
-        // TODO: Ask to return
-
+    private void ConfirmExit()
+    {
         TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
             SceneManager.Instance.ReturnToMenu, false);
-
-        return true;
     }
 
     private void ChangeTab(int index)
@@ -515,10 +528,10 @@ public class AutoEvoExploringTool : NodeWithInput
         // Clear the current ones
         speciesList.FreeChildren();
 
-        foreach (var pair in speciesHistoryList[generationDisplayed])
+        foreach (var pair in speciesHistoryList[generationDisplayed].OrderBy(p => p.Value.FormattedName))
         {
             var checkBox = customCheckBoxScene.Instance<CustomCheckBox>();
-            checkBox.Text = $"{pair.Key.ToString()}: {pair.Value.FormattedName}";
+            checkBox.Text = pair.Value.FormattedIdentifier;
             checkBox.Group = speciesListCheckBoxesGroup;
             checkBox.Connect("toggled", this, nameof(SpeciesListCheckBoxToggled), new Array { pair.Key });
             speciesList.AddChild(checkBox);

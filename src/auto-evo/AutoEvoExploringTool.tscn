@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/auto-evo/AutoEvoExploringTool.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/concept_art/even-more-cells.jpg" type="Texture" id=8]
 [ext_resource path="res://src/gui_common/SpeciesPreview.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/gui_common/CellHexPreview.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=11]
 
 [node name="AutoEvoExploringTool" type="Node"]
 script = ExtResource( 1 )
@@ -47,6 +48,7 @@ SpeciesPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxC
 HexPreviewPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/VBoxContainer/HexViewPanel/MarginContainer/VBoxContainer/CellHexPreview")
 SpeciesListPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesPanel/MarginContainer/VBoxContainer/ScrollContainer/SpeciesList")
 SpeciesDetailsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/SpeciesDetailPanel/MarginContainer/VBoxContainer/MarginContainer/SpeciesInfoLabel")
+ExitConfirmationDialogPath = NodePath("ExitConfirmationDialog")
 
 [node name="BackGround" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -708,6 +710,11 @@ margin_right = 62.0
 margin_bottom = 35.0
 text = "BACK"
 
+[node name="ExitConfirmationDialog" parent="." instance=ExtResource( 11 )]
+rect_min_size = Vector2( 400, 0 )
+WindowTitle = "CONFIRM_EXIT"
+DialogText = "RETURN_TO_MENU_WARNING"
+
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ConfigButton" to="." method="ChangeTab" binds= [ 0 ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= [ 1 ]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= [ 2 ]]
@@ -719,3 +726,4 @@ text = "BACK"
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/PlayWithThis" to="." method="PlayWithCurrentSettingPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
+[connection signal="Confirmed" from="ExitConfirmationDialog" to="." method="ConfirmExit"]
