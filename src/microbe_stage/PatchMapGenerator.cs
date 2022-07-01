@@ -10,15 +10,33 @@ using Godot;
 [SuppressMessage("ReSharper", "StringLiteralTypo", Justification = "Patch names aren't proper words")]
 public static class PatchMapGenerator
 {
+    // IDs for the patches in the predefined map (not the IDs of patches in the procedural map!)
+    private static readonly int CoastalId = 0;
+    private static readonly int EstuaryId = 1;
+    private static readonly int TidepoolId = 2;
+    private static readonly int EpipelagicId = 3;
+    private static readonly int MesopelagicId = 4;
+    private static readonly int BathypelagicId = 5;
+    private static readonly int AbyssopelagicId = 6;
+    private static readonly int SeafloorId = 7;
+    private static readonly int CaveId = 8;
+    private static readonly int IceShelfId = 9;
+    private static readonly int VentsId = 10;
+
     public static PatchMap Generate(WorldGenerationSettings settings, Species defaultSpecies, Random? random = null)
     {
-        // TODO: implement actual generation based on settings
-        _ = settings;
-
         var map = new PatchMap();
         var predefinedMap = new PatchMap();
-        predefinedMap = PredefinedMap(predefinedMap, "Pangonia", defaultSpecies);
-        random ??= new Random();
+        random ??= new Random(settings.Seed);
+
+        // Return the classic map if settings require it, otherwise use it to draw the procedural map
+        predefinedMap = PredefinedMap(predefinedMap, TranslationServer.Translate("PANGONIAN"));
+        if (settings.MapType == WorldGenerationSettings.PatchMapType.Classic)
+        {
+            ConfigureStartingPatch(predefinedMap, settings, defaultSpecies,
+                predefinedMap.GetPatch(VentsId), predefinedMap.GetPatch(TidepoolId), random);
+            return predefinedMap;
+        }
 
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
 
@@ -32,6 +50,10 @@ public static class PatchMapGenerator
         var currentPatchId = 0;
         var specialRegionsId = -1;
 
+        // Potential starting patches, which must be set by the end of the generating process
+        Patch vents = null!;
+        Patch tidepool = null!;
+
         // Create the graphs random regions
         for (int i = 0; i < vertexNr; i++)
         {
@@ -39,22 +61,21 @@ public static class PatchMapGenerator
             var continentName = nameGenerator.ContinentName;
             var coord = new Vector2(0, 0);
 
-            var regionType = random.Next(0, 3);
+            // We must create regions containing potential starting locations, so do those first
+            var regionType = map.NeedsVent ? 0 : map.NeedsTidepool ? 2 : random.Next(0, 3);
+
             string regionTypeName;
-            if (regionType == 0)
+            switch (regionType)
             {
-                regionTypeName = "sea";
-            }
-            else
-            {
-                if (regionType == 1)
-                {
+                case 0:
+                    regionTypeName = "sea";
+                    break;
+                case 1:
                     regionTypeName = "ocean";
-                }
-                else
-                {
+                    break;
+                default:
                     regionTypeName = "continent";
-                }
+                    break;
             }
 
             var region = new PatchRegion(i, GetPatchLocalizedName(continentName, regionTypeName),
@@ -63,32 +84,39 @@ public static class PatchMapGenerator
 
             if (regionType == 2)
             {
-                numberOfPatches = random.Next(0, 4);
+                // Ensure the region is non-empty if we need a tidepool
+                numberOfPatches = random.Next(map.NeedsTidepool ? 1 : 0, 4);
 
-                // All continents must have at least 1 coastal patch.
-                Patch patch = GetPatchFromPredefinedMap(0, currentPatchId++, predefinedMap, areaName);
+                // All continents must have at least one coastal patch.
+                Patch patch = GetPatchFromPredefinedMap(CoastalId, currentPatchId++, predefinedMap, areaName);
 
                 region.AddPatch(patch);
 
                 while (numberOfPatches > 0)
                 {
-                    var patchIndex = random.Next(0, 3);
+                    // Add at least one tidepool to the map, otherwise choose randomly
+                    var patchIndex = map.NeedsTidepool ? TidepoolId : random.Next(0, 3);
                     patch = GetPatchFromPredefinedMap(patchIndex, currentPatchId++, predefinedMap, areaName);
-
                     region.AddPatch(patch);
                     numberOfPatches--;
+
+                    if (patchIndex == TidepoolId)
+                    {
+                        tidepool = patch;
+                        map.NeedsTidepool = false;
+                    }
                 }
             }
             else
             {
                 numberOfPatches = random.Next(0, 4);
 
-                // All oceans/seas must have at least 1 epipelagic/ice patch and a seafloor
+                // All oceans/seas must have at least one epipelagic/ice patch and a seafloor
                 Patch patch;
                 if (random.Next(0, 2) == 1)
-                    patch = GetPatchFromPredefinedMap(3, currentPatchId++, predefinedMap, areaName);
+                    patch = GetPatchFromPredefinedMap(EpipelagicId, currentPatchId++, predefinedMap, areaName);
                 else
-                    patch = GetPatchFromPredefinedMap(9, currentPatchId++, predefinedMap, areaName);
+                    patch = GetPatchFromPredefinedMap(IceShelfId, currentPatchId++, predefinedMap, areaName);
                 region.AddPatch(patch);
 
                 // Add the patches between surface and sea floor
@@ -99,18 +127,19 @@ public static class PatchMapGenerator
                 }
 
                 // Add the seafloor last
-                patch = GetPatchFromPredefinedMap(7, currentPatchId++, predefinedMap, areaName);
+                patch = GetPatchFromPredefinedMap(SeafloorId, currentPatchId++, predefinedMap, areaName);
                 region.AddPatch(patch);
 
-                // Chance to add a vent region if this region were adding to is an ocean/sea one
-                if (random.Next(0, 2) == 1 || !map.NeedsVent)
+                // Add at least one vent to the map, otherwise chance to add a vent if this is a sea/ocean region
+                if (random.Next(0, 2) == 1 || map.NeedsVent)
                 {
                     var ventRegion =
                         new PatchRegion(specialRegionsId--, GetPatchLocalizedName(continentName, "vents"), "vents",
                             coord);
 
-                    var ventPatch = GetPatchFromPredefinedMap(10, currentPatchId++, predefinedMap, areaName);
-                    ventRegion.AddPatch(ventPatch);
+                    vents = GetPatchFromPredefinedMap(VentsId, currentPatchId++, predefinedMap, areaName);
+                    map.NeedsVent = false;
+                    ventRegion.AddPatch(vents);
                     map.AddSpecialRegion(ventRegion);
                     LinkRegions(ventRegion, region);
                 }
@@ -121,7 +150,7 @@ public static class PatchMapGenerator
             {
                 var caveRegion = new PatchRegion(specialRegionsId--,
                     GetPatchLocalizedName(continentName, "UNDERWATERCAVE"), "underwater_cave", coord);
-                var cavePatch = GetPatchFromPredefinedMap(8, currentPatchId++, predefinedMap, areaName);
+                var cavePatch = GetPatchFromPredefinedMap(CaveId, currentPatchId++, predefinedMap, areaName);
                 caveRegion.AddPatch(cavePatch);
                 map.AddSpecialRegion(caveRegion);
                 LinkRegions(caveRegion, region);
@@ -146,8 +175,7 @@ public static class PatchMapGenerator
         map.BuildSpecialRegions();
         map.BuildPatchesInSpecialRegions();
 
-        map.CurrentPatch = map.Patches[random.Next(0, currentPatchId)];
-        map.CurrentPatch.AddSpecies(defaultSpecies);
+        ConfigureStartingPatch(map, settings, defaultSpecies, vents, tidepool, random);
 
         // We make the graph by subtracting edges from its Delaunay Triangulation
         // as long as the graph stays connected.
@@ -184,22 +212,6 @@ public static class PatchMapGenerator
     {
         region1.AddNeighbour(region2);
         region2.AddNeighbour(region1);
-    }
-
-    private static void TranslatePatchNames()
-    {
-        // TODO: remove this entire method, see: https://github.com/Revolutionary-Games/Thrive/issues/3146
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_VENTS");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_MESOPELAGIC");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_EPIPELAGIC");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_TIDEPOOL");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_BATHYPELAGIC");
-        _ = TranslationServer.Translate("PATHCH_PANGONIAN_ABYSSOPELAGIC");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_COAST");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_ESTUARY");
-        _ = TranslationServer.Translate("PATCH_CAVE");
-        _ = TranslationServer.Translate("PATCH_ICE_SHELF");
-        _ = TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR");
     }
 
     private static int[,] SubtractEdges(int[,] graph, int vertexNr, int edgeNr,
@@ -350,10 +362,10 @@ public static class PatchMapGenerator
         return patch;
     }
 
-    private static PatchMap PredefinedMap(PatchMap map, string areaName, Species defaultSpecies)
+    private static PatchMap PredefinedMap(PatchMap map, string areaName)
     {
         // Predefined patches
-        var coast = new Patch(GetPatchLocalizedName(areaName, "COASTAL"), 0,
+        var coast = new Patch(GetPatchLocalizedName(areaName, "COASTAL"), CoastalId,
             GetBiomeTemplate("coastal"))
         {
             Depth =
@@ -365,7 +377,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(coast);
 
-        var estuary = new Patch(GetPatchLocalizedName(areaName, "ESTUARY"), 1,
+        var estuary = new Patch(GetPatchLocalizedName(areaName, "ESTUARY"), EstuaryId,
             GetBiomeTemplate("estuary"))
         {
             Depth =
@@ -377,7 +389,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(estuary);
 
-        var tidepool = new Patch(GetPatchLocalizedName(areaName, "TIDEPOOL"), 2,
+        var tidepool = new Patch(GetPatchLocalizedName(areaName, "TIDEPOOL"), TidepoolId,
             GetBiomeTemplate("tidepool"))
         {
             Depth =
@@ -388,8 +400,9 @@ public static class PatchMapGenerator
             ScreenCoordinates = new Vector2(300, 100),
         };
         map.AddPatch(tidepool);
+        map.NeedsTidepool = false;
 
-        var epipelagic = new Patch(GetPatchLocalizedName(areaName, "EPIPELAGIC"), 3,
+        var epipelagic = new Patch(GetPatchLocalizedName(areaName, "EPIPELAGIC"), EpipelagicId,
             GetBiomeTemplate("default"))
         {
             Depth =
@@ -401,7 +414,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(epipelagic);
 
-        var mesopelagic = new Patch(GetPatchLocalizedName(areaName, "MESOPELAGIC"), 4,
+        var mesopelagic = new Patch(GetPatchLocalizedName(areaName, "MESOPELAGIC"), MesopelagicId,
             GetBiomeTemplate("mesopelagic"))
         {
             Depth =
@@ -413,7 +426,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(mesopelagic);
 
-        var bathypelagic = new Patch(GetPatchLocalizedName(areaName, "BATHYPELAGIC"), 5,
+        var bathypelagic = new Patch(GetPatchLocalizedName(areaName, "BATHYPELAGIC"), BathypelagicId,
             GetBiomeTemplate("bathypelagic"))
         {
             Depth =
@@ -425,7 +438,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(bathypelagic);
 
-        var abyssopelagic = new Patch(GetPatchLocalizedName(areaName, "ABYSSOPELAGIC"), 6,
+        var abyssopelagic = new Patch(GetPatchLocalizedName(areaName, "ABYSSOPELAGIC"), AbyssopelagicId,
             GetBiomeTemplate("abyssopelagic"))
         {
             Depth =
@@ -437,7 +450,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(abyssopelagic);
 
-        var seafloor = new Patch(GetPatchLocalizedName(areaName, "SEA_FLOOR"), 7,
+        var seafloor = new Patch(GetPatchLocalizedName(areaName, "SEA_FLOOR"), SeafloorId,
             GetBiomeTemplate("seafloor"))
         {
             Depth =
@@ -449,7 +462,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(seafloor);
 
-        var cave = new Patch(GetPatchLocalizedName(areaName, "UNDERWATERCAVE"), 8,
+        var cave = new Patch(GetPatchLocalizedName(areaName, "UNDERWATERCAVE"), CaveId,
             GetBiomeTemplate("underwater_cave"))
         {
             Depth =
@@ -461,7 +474,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(cave);
 
-        var iceShelf = new Patch(GetPatchLocalizedName(areaName, "ICESHELF"), 9,
+        var iceShelf = new Patch(GetPatchLocalizedName(areaName, "ICESHELF"), IceShelfId,
             GetBiomeTemplate("ice_shelf"))
         {
             Depth =
@@ -473,7 +486,7 @@ public static class PatchMapGenerator
         };
         map.AddPatch(iceShelf);
 
-        var vents = new Patch(GetPatchLocalizedName(areaName, "VOLCANIC_VENT"), 10,
+        var vents = new Patch(GetPatchLocalizedName(areaName, "VOLCANIC_VENT"), VentsId,
             GetBiomeTemplate("aavolcanic_vent"))
         {
             Depth =
@@ -483,8 +496,8 @@ public static class PatchMapGenerator
             },
             ScreenCoordinates = new Vector2(100, 400),
         };
-        vents.AddSpecies(defaultSpecies);
         map.AddPatch(vents);
+        map.NeedsVent = false;
 
         // Connections
         LinkPatches(vents, seafloor);
@@ -499,8 +512,39 @@ public static class PatchMapGenerator
         LinkPatches(epipelagic, coast);
         LinkPatches(coast, estuary);
 
-        map.CurrentPatch = vents;
         return map;
+    }
+
+    private static void ConfigureStartingPatch(PatchMap map, WorldGenerationSettings settings, Species defaultSpecies,
+        Patch vents, Patch tidepool, Random random)
+    {
+        if (vents == null)
+            throw new InvalidOperationException("No vent patch created");
+
+        if (tidepool == null)
+            throw new InvalidOperationException("No tidepool patch created");
+
+        // Choose this here to ensure the same seed creates the same world regardless of starting location
+        var randomPatch = map.Patches[random.Next(0, map.Patches.Count)];
+
+        switch (settings.Origin)
+        {
+            case WorldGenerationSettings.LifeOrigin.Vent:
+                map.CurrentPatch = vents;
+                break;
+            case WorldGenerationSettings.LifeOrigin.Pond:
+                map.CurrentPatch = tidepool;
+                break;
+            case WorldGenerationSettings.LifeOrigin.Panspermia:
+                map.CurrentPatch = randomPatch;
+                break;
+            default:
+                GD.PrintErr($"Selected origin {settings.Origin} doesn't match a known origin type");
+                map.CurrentPatch = randomPatch;
+                break;
+        }
+
+        map.CurrentPatch.AddSpecies(defaultSpecies);
     }
 
     private static LocalizedString GetPatchLocalizedName(string name, string biomeKey)

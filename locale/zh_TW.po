@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-01 00:41+0100\n"
+"POT-Creation-Date: 2022-07-01 16:31+0100\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -687,25 +687,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:769
 msgid "AMMONIA"
 msgstr "氨"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:840
 msgid "PHOSPHATE"
 msgstr "磷酸鹽"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:734
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氫"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:817
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:804
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
@@ -716,28 +716,28 @@ msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:888
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:875
 msgid "IRON"
 msgstr "鐵"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:584
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:571
 msgid "OXYGEN"
 msgstr "氧"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:638
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:625
 msgid "CARBON_DIOXIDE"
 msgstr "二氧化碳"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:611
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:598
 msgid "NITROGEN"
 msgstr "氮"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:465
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:452
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "陽光"
@@ -1083,7 +1083,7 @@ msgstr "取消"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1055
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1042
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "下一頁"
@@ -1673,7 +1673,7 @@ msgstr "關閉"
 #: ../src/microbe_stage/MicrobeHUD.cs:717
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:401
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:395
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:275
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -1748,7 +1748,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物階段自由編輯器"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1014
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1013
 #: ../src/general/OptionsMenu.tscn:1228 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1785,7 +1785,7 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加載一個或多個mods時發生錯誤。日誌可能包含其他信息。"
 
 #: ../src/general/NewGameSettings.cs:284
-#: ../src/general/NewGameSettings.tscn:1054
+#: ../src/general/NewGameSettings.tscn:1053
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "暫停菜單"
@@ -1801,12 +1801,12 @@ msgid "DIFFICULTY_PRESET"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:142
-#: ../src/general/NewGameSettings.tscn:815
+#: ../src/general/NewGameSettings.tscn:814
 msgid "LAWK_ONLY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:149
-#: ../src/general/NewGameSettings.tscn:822
+#: ../src/general/NewGameSettings.tscn:821
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -1816,12 +1816,12 @@ msgstr ""
 "而且更有可能反擊。"
 
 #: ../src/general/NewGameSettings.tscn:165
-#: ../src/general/NewGameSettings.tscn:838
+#: ../src/general/NewGameSettings.tscn:837
 msgid "LIFE_ORIGIN"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:845
+#: ../src/general/NewGameSettings.tscn:844
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -1831,35 +1831,35 @@ msgstr ""
 "而且更有可能反擊。"
 
 #: ../src/general/NewGameSettings.tscn:186
-#: ../src/general/NewGameSettings.tscn:859
+#: ../src/general/NewGameSettings.tscn:858
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "自殺"
 
 #: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:860
 #: ../src/general/NewGameSettings.tscn:861
-#: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:877
+#: ../src/general/NewGameSettings.tscn:876
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:223
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:895
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "暫停遊戲"
@@ -1950,46 +1950,46 @@ msgstr ""
 "並且對物質塊更有渴求。\n"
 "應變型微生物將更快的轉向新的目標。"
 
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:776
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "區域地圖"
 
-#: ../src/general/NewGameSettings.tscn:784
+#: ../src/general/NewGameSettings.tscn:783
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "活潑型細胞在周圍沒啥事的時候會四處亂跑。\n"
 "沉著型微生物將靜止不動，等待環境變化後才行動。"
 
+#: ../src/general/NewGameSettings.tscn:798
 #: ../src/general/NewGameSettings.tscn:799
-#: ../src/general/NewGameSettings.tscn:800
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:800
+#: ../src/general/NewGameSettings.tscn:799
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/NewGameSettings.tscn:943
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:976
+#: ../src/general/NewGameSettings.tscn:975
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "放置細胞器"
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:982
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:996
+#: ../src/general/NewGameSettings.tscn:995
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "豆知識：櫛毛蟲和草履蟲被當做教科書級的捕食者與獵物關係研究了幾十年。現在你是櫛毛蟲還是草履蟲呢？捕食者還是獵物？"
 
-#: ../src/general/NewGameSettings.tscn:1003
+#: ../src/general/NewGameSettings.tscn:1002
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -1998,25 +1998,25 @@ msgstr ""
 "勇敢型微生物則不會被靠近的掠食者嚇到\n"
 "而且更有可能反擊。"
 
-#: ../src/general/NewGameSettings.tscn:1031
+#: ../src/general/NewGameSettings.tscn:1030
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "暫停菜單"
 
-#: ../src/general/NewGameSettings.tscn:1033
+#: ../src/general/NewGameSettings.tscn:1032
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1044
+#: ../src/general/NewGameSettings.tscn:1043
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "自殺"
 
-#: ../src/general/NewGameSettings.tscn:1045
+#: ../src/general/NewGameSettings.tscn:1044
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1055
+#: ../src/general/NewGameSettings.tscn:1054
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "確認"
@@ -3320,7 +3320,7 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "當玩家試圖退出遊戲時，啟用/禁用未保存的進度警告彈出框。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:402
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:389
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
@@ -3493,7 +3493,7 @@ msgid "PRESSURE_SHORT"
 msgstr "壓強"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:707
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:694
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
@@ -3545,52 +3545,12 @@ msgstr "添加新的綁定鍵位"
 msgid "PAUSED"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:192
-msgid "PATCH_PANGONIAN_VENTS"
-msgstr "遠古熱泉"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:193
-msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr "遠古中層帶"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:194
-msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr "遠古上遠洋帶"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:195
-msgid "PATCH_PANGONIAN_TIDEPOOL"
-msgstr "遠古潮池"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:196
+#: ../src/microbe_stage/PatchMapGenerator.cs:33
 #, fuzzy
-msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-msgstr "遠古深海帶"
+msgid "PANGONIAN"
+msgstr "生成氨"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:197
-msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr "遠古深海帶"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:198
-msgid "PATCH_PANGONIAN_COAST"
-msgstr "遠古海岸"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:199
-msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr "遠古河口"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:200
-msgid "PATCH_CAVE"
-msgstr "洞穴"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:201
-msgid "PATCH_ICE_SHELF"
-msgstr "冰架"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:202
-msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr "遠古海床"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:508
+#: ../src/microbe_stage/PatchMapGenerator.cs:552
 #, fuzzy
 msgid "PATCH_NAME"
 msgstr "洞穴"
@@ -3854,40 +3814,40 @@ msgstr "在加載微生物編輯器"
 msgid "INFINITE_MP"
 msgstr "無限變異點"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:177
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:180
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
 msgstr "無效的MOD圖標路徑"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:231
 msgid "SELECT_A_PATCH"
 msgstr "選擇一個區域以在此處顯示詳細信息"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:279
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:266
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "當前位置"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:361
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:348
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "物理條件"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:438
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:425
 msgid "PRESSURE"
 msgstr "壓強"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:543
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:530
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "大氣氣體"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:967
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:954
 msgid "SPECIES_PRESENT"
 msgstr "存在的物種"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1031
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1018
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移動到這個區域"
 
@@ -4006,15 +3966,15 @@ msgstr "移動"
 msgid "MODIFY"
 msgstr "修改"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:398
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
 msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米處"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:433
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "物種人口"
@@ -5103,6 +5063,40 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "教學"
+
+#~ msgid "PATCH_PANGONIAN_VENTS"
+#~ msgstr "遠古熱泉"
+
+#~ msgid "PATCH_PANGONIAN_MESOPELAGIC"
+#~ msgstr "遠古中層帶"
+
+#~ msgid "PATCH_PANGONIAN_EPIPELAGIC"
+#~ msgstr "遠古上遠洋帶"
+
+#~ msgid "PATCH_PANGONIAN_TIDEPOOL"
+#~ msgstr "遠古潮池"
+
+#, fuzzy
+#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
+#~ msgstr "遠古深海帶"
+
+#~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
+#~ msgstr "遠古深海帶"
+
+#~ msgid "PATCH_PANGONIAN_COAST"
+#~ msgstr "遠古海岸"
+
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "遠古河口"
+
+#~ msgid "PATCH_CAVE"
+#~ msgstr "洞穴"
+
+#~ msgid "PATCH_ICE_SHELF"
+#~ msgstr "冰架"
+
+#~ msgid "PATCH_PANGONIAN_SEAFLOOR"
+#~ msgstr "遠古海床"
 
 #~ msgid "AUTO"
 #~ msgstr "自動"

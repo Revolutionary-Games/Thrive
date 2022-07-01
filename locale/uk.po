@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-01 00:41+0100\n"
+"POT-Creation-Date: 2022-07-01 16:31+0100\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -688,25 +688,25 @@ msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:782
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:769
 msgid "AMMONIA"
 msgstr "Аміак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:853
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:840
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:747
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:734
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сірководень"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:817
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:804
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
@@ -717,28 +717,28 @@ msgstr "Окситоциновий нуклеотид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:888
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:875
 msgid "IRON"
 msgstr "Залізо"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:584
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:571
 msgid "OXYGEN"
 msgstr "Кисень"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:638
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:625
 msgid "CARBON_DIOXIDE"
 msgstr "Вуглекислий газ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:611
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:598
 msgid "NITROGEN"
 msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:465
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:452
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "Сонячне світло"
@@ -1068,7 +1068,7 @@ msgstr "Скасувати дію"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1055
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1042
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "ДАЛІ"
@@ -1661,7 +1661,7 @@ msgstr "Закрити"
 #: ../src/microbe_stage/MicrobeHUD.cs:717
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:401
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:395
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:275
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -1732,7 +1732,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Режим творчого мікробного редактор"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1014
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1013
 #: ../src/general/OptionsMenu.tscn:1228 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1769,7 +1769,7 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Виникла помилка коли завантажувалися кілька модифікацій. Додаткова інформація міститься у журналах."
 
 #: ../src/general/NewGameSettings.cs:284
-#: ../src/general/NewGameSettings.tscn:1054
+#: ../src/general/NewGameSettings.tscn:1053
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "почати нову гру"
@@ -1785,12 +1785,12 @@ msgid "DIFFICULTY_PRESET"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:142
-#: ../src/general/NewGameSettings.tscn:815
+#: ../src/general/NewGameSettings.tscn:814
 msgid "LAWK_ONLY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:149
-#: ../src/general/NewGameSettings.tscn:822
+#: ../src/general/NewGameSettings.tscn:821
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -1800,12 +1800,12 @@ msgstr ""
 "та ймовірно атакуватимуть у відповідь."
 
 #: ../src/general/NewGameSettings.tscn:165
-#: ../src/general/NewGameSettings.tscn:838
+#: ../src/general/NewGameSettings.tscn:837
 msgid "LIFE_ORIGIN"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:845
+#: ../src/general/NewGameSettings.tscn:844
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -1815,35 +1815,35 @@ msgstr ""
 "та ймовірно атакуватимуть у відповідь."
 
 #: ../src/general/NewGameSettings.tscn:186
-#: ../src/general/NewGameSettings.tscn:859
+#: ../src/general/NewGameSettings.tscn:858
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Суїцид"
 
 #: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:860
 #: ../src/general/NewGameSettings.tscn:861
-#: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:877
+#: ../src/general/NewGameSettings.tscn:876
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:223
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:895
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Пауза"
@@ -1934,46 +1934,46 @@ msgstr ""
 "та можуть бути вимогливішими щодо брил.\n"
 "Розсіяні мікроби швидче відволікатимуться на нові цілі."
 
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:776
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Мапа Ділянок"
 
-#: ../src/general/NewGameSettings.tscn:784
+#: ../src/general/NewGameSettings.tscn:783
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "Рухливі мікроби будуть більше плавати та безлаодно тинятися.\n"
 "Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
 
+#: ../src/general/NewGameSettings.tscn:798
 #: ../src/general/NewGameSettings.tscn:799
-#: ../src/general/NewGameSettings.tscn:800
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:800
+#: ../src/general/NewGameSettings.tscn:799
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/NewGameSettings.tscn:943
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:976
+#: ../src/general/NewGameSettings.tscn:975
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Перейдіть до наступного сходинки гри (багатоклітиності). Доступний при достатньому розмірі колонії."
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:982
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:996
+#: ../src/general/NewGameSettings.tscn:995
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "Цікавий факт: Інфузорії Дідініум та Туфельки книжковий приклад відносин хижака-жертви, який вичався протягом десятиліть. А ви зараз Дідініум чи Туфелька? Хижак чи Жертва?"
 
-#: ../src/general/NewGameSettings.tscn:1003
+#: ../src/general/NewGameSettings.tscn:1002
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -1982,25 +1982,25 @@ msgstr ""
 "Хоробрі мікроби не бояться близьких хижаків,\n"
 "та ймовірно атакуватимуть у відповідь."
 
-#: ../src/general/NewGameSettings.tscn:1031
+#: ../src/general/NewGameSettings.tscn:1030
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Відкрити меню збереження, щоб зберегти гру"
 
-#: ../src/general/NewGameSettings.tscn:1033
+#: ../src/general/NewGameSettings.tscn:1032
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1044
+#: ../src/general/NewGameSettings.tscn:1043
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Суїцид"
 
-#: ../src/general/NewGameSettings.tscn:1045
+#: ../src/general/NewGameSettings.tscn:1044
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1055
+#: ../src/general/NewGameSettings.tscn:1054
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "Підтвердити"
@@ -3294,7 +3294,7 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Вмикає / вимикає спливаюче вікно з попередженням про незбережений прогрес, як гравець намагається покинути гру."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:402
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:389
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
@@ -3465,7 +3465,7 @@ msgid "PRESSURE_SHORT"
 msgstr "Тиск."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:707
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:694
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
@@ -3516,51 +3516,12 @@ msgstr "Увійдіть до редактору та модифікуйте с�
 msgid "PAUSED"
 msgstr "ПАУЗА"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:192
-msgid "PATCH_PANGONIAN_VENTS"
-msgstr "Пангонійські жерла"
+#: ../src/microbe_stage/PatchMapGenerator.cs:33
+#, fuzzy
+msgid "PANGONIAN"
+msgstr "Спавн амоніаку"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:193
-msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr "Пангонійська серединомор'я"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:194
-msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr "Пангонійська поверхня моря"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:195
-msgid "PATCH_PANGONIAN_TIDEPOOL"
-msgstr "Пангонійський припливний басейн"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:196
-msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-msgstr "Пангонійське придоння"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:197
-msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
-msgstr "Пангонійське глибокомор'я"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:198
-msgid "PATCH_PANGONIAN_COAST"
-msgstr "пангонійське узбережжя"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:199
-msgid "PATCH_PANGONIAN_ESTUARY"
-msgstr "Пангонійський лиман"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:200
-msgid "PATCH_CAVE"
-msgstr "Печера"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:201
-msgid "PATCH_ICE_SHELF"
-msgstr "Льодовиковий шельф"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:202
-msgid "PATCH_PANGONIAN_SEAFLOOR"
-msgstr "Пангонійське морське дно"
-
-#: ../src/microbe_stage/PatchMapGenerator.cs:508
+#: ../src/microbe_stage/PatchMapGenerator.cs:552
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -3821,40 +3782,40 @@ msgstr "Завантаження мікробного редактору"
 msgid "INFINITE_MP"
 msgstr "Нескінчені МО"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:177
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:180
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
 msgstr "Недійсна доріжка іконки мода"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:244
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:231
 msgid "SELECT_A_PATCH"
 msgstr "Виберіть ділянку для перегляду деталей"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:279
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:266
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "Поточна локація"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:361
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:348
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Фізичні умови"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:438
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:425
 msgid "PRESSURE"
 msgstr "Тиск"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:543
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:530
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферні гази"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:967
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:954
 msgid "SPECIES_PRESENT"
 msgstr "Сучасні види"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1031
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1018
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Переміститися на цю ділянку"
 
@@ -3971,15 +3932,15 @@ msgstr "Рух"
 msgid "MODIFY"
 msgstr "Змінити"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:394
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
 msgid "BIOME_LABEL"
 msgstr "Біом: {0}"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:398
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м. нижче рівня моря"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:433
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} з популяції: {1}"
 
@@ -5028,6 +4989,39 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Переглянути зараз"
+
+#~ msgid "PATCH_PANGONIAN_VENTS"
+#~ msgstr "Пангонійські жерла"
+
+#~ msgid "PATCH_PANGONIAN_MESOPELAGIC"
+#~ msgstr "Пангонійська серединомор'я"
+
+#~ msgid "PATCH_PANGONIAN_EPIPELAGIC"
+#~ msgstr "Пангонійська поверхня моря"
+
+#~ msgid "PATCH_PANGONIAN_TIDEPOOL"
+#~ msgstr "Пангонійський припливний басейн"
+
+#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
+#~ msgstr "Пангонійське придоння"
+
+#~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
+#~ msgstr "Пангонійське глибокомор'я"
+
+#~ msgid "PATCH_PANGONIAN_COAST"
+#~ msgstr "пангонійське узбережжя"
+
+#~ msgid "PATCH_PANGONIAN_ESTUARY"
+#~ msgstr "Пангонійський лиман"
+
+#~ msgid "PATCH_CAVE"
+#~ msgstr "Печера"
+
+#~ msgid "PATCH_ICE_SHELF"
+#~ msgstr "Льодовиковий шельф"
+
+#~ msgid "PATCH_PANGONIAN_SEAFLOOR"
+#~ msgstr "Пангонійське морське дно"
 
 #~ msgid "AUTO"
 #~ msgstr "Авто"
