@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-30 14:12+0700\n"
+"POT-Creation-Date: 2022-07-01 13:39+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -910,7 +910,8 @@ msgid "STARTING"
 msgstr "A iniciar"
 
 #: ../src/auto-evo/AutoEvoRun.cs:293
-msgid "AUTO-EVO_POPULATION_CHANGED"
+#, fuzzy
+msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "A população de {0} alterou-se por {1} devido a: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
@@ -3437,23 +3438,23 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:400
-#, fuzzy
-msgid "EXTINCT_IN_PATCH"
-msgstr "Extinguiram-se na região"
-
-#: ../src/microbe_stage/MicrobeStage.cs:853
+#: ../src/microbe_stage/MicrobeStage.cs:814
 msgid "PLAYER_REPRODUCED"
 msgstr "jogador reproduzido"
 
-#: ../src/microbe_stage/MicrobeStage.cs:867
+#: ../src/microbe_stage/MicrobeStage.cs:828
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Impossível de usar o cheat de spawn inimigo porque esta região não contém nenhuma espécie inimiga"
 
-#: ../src/microbe_stage/MicrobeStage.cs:890
+#: ../src/microbe_stage/MicrobeStage.cs:851
 msgid "PLAYER_DIED"
 msgstr "jogador morreu"
+
+#: ../src/microbe_stage/MicrobeStage.cs:967
+#, fuzzy
+msgid "EXTINCT_IN_PATCH"
+msgstr "Extinguiram-se na região"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:518
 msgid "AT_CURSOR"

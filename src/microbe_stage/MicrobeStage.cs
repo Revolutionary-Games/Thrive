@@ -372,45 +372,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         }
     }
 
-    public void GameOver()
-    {
-        gameOver = true;
-        guidanceLine.Visible = false;
-
-        HUD.ShowExtinctionBox();
-    }
-
-    public void PlayerExtinctInPatch()
-    {
-        playerExtinctInCurrentPatch = true;
-        guidanceLine.Visible = false;
-
-        HUD.ShowPatchExtinctionBox();
-    }
-
-    public void PatchExtinctionResolved()
-    {
-        playerExtinctInCurrentPatch = false;
-
-        // Decrease the population by the constant for the player dying out in a patch
-        // If the player does not have sufficient population in the new patch then the population drops to 0 and
-        // they have to select a new patch if they die again.
-        GameWorld.AlterSpeciesPopulationInCurrentPatch(
-            GameWorld.PlayerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
-            TranslationServer.Translate("EXTINCT_IN_PATCH"),
-            true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT
-            / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
-
-        // Grant the player the initial species population if they have 0 total population as this is an invalid state.
-        if (GameWorld.PlayerSpecies.Population == 0)
-        {
-            GameWorld.AlterSpeciesPopulationInCurrentPatch(GameWorld.PlayerSpecies,
-                Constants.INITIAL_SPECIES_POPULATION, string.Empty, true);
-        }
-
-        HUD.HidePatchExtinctionBox();
-    }
-
     /// <summary>
     ///   Spawns the player if there isn't currently a player node existing
     /// </summary>
@@ -941,18 +902,27 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     /// </summary>
     private void HandlePlayerRespawn()
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game is not set");
+
+        if (GameWorld.Map.CurrentPatch == null)
+            throw new InvalidOperationException("Current patch is not set");
+
         var playerSpecies = GameWorld.PlayerSpecies;
 
         HUD.HintText = string.Empty;
 
-        if (CurrentGame?.FreeBuild == false)
+        if (!CurrentGame.FreeBuild)
         {
-            var playerExtinctInPatch = GameWorld.Map.CurrentPatch?.GetSpeciesPopulation(playerSpecies) <= 0;
-
             if (playerSpecies.Population <= 0)
+            {
                 GameOver();
-            else if (playerExtinctInPatch)
+            }
+            else if (GameWorld.Map.CurrentPatch.GetSpeciesPopulation(playerSpecies) <= 0)
+            {
+                // Has run out of population in current patch but not globally
                 PlayerExtinctInPatch();
+            }
 
             if (gameOver || playerExtinctInCurrentPatch)
                 return;
@@ -961,6 +931,47 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // Player is not extinct, so can respawn
         spawner.ClearSpawnCoordinates();
         SpawnPlayer();
+    }
+
+    private void GameOver()
+    {
+        // Player is extinct and has lost the game
+
+        gameOver = true;
+        guidanceLine.Visible = false;
+
+        // Just to make sure _Process doesn't run
+        playerExtinctInCurrentPatch = true;
+
+        // Show the game lost popup if not already visible
+        HUD.ShowExtinctionBox();
+    }
+
+    private void PlayerExtinctInPatch()
+    {
+        playerExtinctInCurrentPatch = true;
+        guidanceLine.Visible = false;
+
+        HUD.ShowPatchExtinctionBox();
+    }
+
+    private void PatchExtinctionResolved()
+    {
+        playerExtinctInCurrentPatch = false;
+
+        // Decrease the population by the constant for the player dying out in a patch
+        // If the player does not have sufficient population in the new patch then the population drops to 0 and
+        // they have to select a new patch if they die again.
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
+            GameWorld.PlayerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
+            TranslationServer.Translate("EXTINCT_IN_PATCH"),
+            true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT
+            / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
+
+        // Do not grant the player population even if the global population is 0,
+        // they will go extinct the next time they die
+
+        HUD.HidePatchExtinctionBox();
     }
 
     private void UpdatePatchSettings(bool promptPatchNameChange = true)

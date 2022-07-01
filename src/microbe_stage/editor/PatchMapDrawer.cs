@@ -32,7 +32,7 @@ public class PatchMapDrawer : Control
 
     private bool dirty = true;
 
-    private Dictionary<Patch, bool>? statusesToBeApplied;
+    private Dictionary<Patch, bool>? patchEnableStatusesToBeApplied;
 
     private PackedScene nodeScene = null!;
 
@@ -46,8 +46,7 @@ public class PatchMapDrawer : Control
         set
         {
             map = value ?? throw new ArgumentNullException(nameof(value), "setting to null not allowed");
-
-            RebuildNextFrame();
+            dirty = true;
 
             playerPatch ??= map.CurrentPatch;
         }
@@ -128,14 +127,23 @@ public class PatchMapDrawer : Control
         }
     }
 
+    /// <summary>
+    ///   Stores patch node status values that will be applied when creating the patch nodes
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that this only works *before* the patch nodes are created, this doesn't apply retroactively
+    ///   </para>
+    /// </remarks>
+    /// <param name="statuses">The enabled status values to store</param>
     public void SetPatchEnabledStatuses(Dictionary<Patch, bool> statuses)
     {
-        statusesToBeApplied = statuses;
+        patchEnableStatusesToBeApplied = statuses;
     }
 
-    public void SetPatchEnabledStatuses(IEnumerable<Patch> patches, Func<Patch, bool> func)
+    public void SetPatchEnabledStatuses(IEnumerable<Patch> patches, Func<Patch, bool> predicate)
     {
-        SetPatchEnabledStatuses(patches.ToDictionary(x => x, func));
+        SetPatchEnabledStatuses(patches.ToDictionary(x => x, predicate));
     }
 
     private Vector2 Center(Vector2 pos)
@@ -170,11 +178,11 @@ public class PatchMapDrawer : Control
             node.Patch = entry.Value;
             node.PatchIcon = entry.Value.BiomeTemplate.LoadedIcon;
 
-            node.MonochromeShader = MonochromeMaterial;
+            node.MonochromeMaterial = MonochromeMaterial;
 
             node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
 
-            node.Enabled = statusesToBeApplied?[entry.Value] ?? true;
+            node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? true;
 
             AddChild(node);
             nodes.Add(node);
@@ -196,10 +204,5 @@ public class PatchMapDrawer : Control
     private void NotifySelectionChanged()
     {
         OnSelectedPatchChanged?.Invoke(this);
-    }
-
-    private void RebuildNextFrame()
-    {
-        dirty = true;
     }
 }

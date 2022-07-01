@@ -261,6 +261,9 @@ public class AutoEvoRun
     public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType,
         Patch patch)
     {
+        if (string.IsNullOrEmpty(eventType))
+            throw new ArgumentException("external effect type is required", nameof(eventType));
+
         ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType, patch));
     }
 
@@ -287,10 +290,7 @@ public class AutoEvoRun
 
         foreach (var entry in combinedExternalEffects)
         {
-            if (string.IsNullOrEmpty(entry.Key.Event))
-                continue;
-
-            builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED",
+            builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED_2",
                 entry.Key.Species.FormattedName, entry.Value, entry.Key.Patch.Name, entry.Key.Event));
 
             builder.Append('\n');

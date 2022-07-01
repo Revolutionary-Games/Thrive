@@ -21,14 +21,17 @@ public class PatchExtinctionBox : Control
         get => mapDrawer.Map;
         set
         {
-            mapDrawer.Map = value;
-            mapDrawer.SetPatchEnabledStatuses(value!.Patches.Values, p => p.GetSpeciesPopulation(PlayerSpecies) > 0);
+            if (PlayerSpecies == null)
+                throw new InvalidOperationException($"{nameof(PlayerSpecies)} must be set first");
+
+            mapDrawer.Map = value ?? throw new ArgumentException("New map can't be null");
+            mapDrawer.SetPatchEnabledStatuses(value.Patches.Values, p => p.GetSpeciesPopulation(PlayerSpecies) > 0);
         }
     }
 
-    public Species PlayerSpecies { get; set; } = null!;
+    public Species? PlayerSpecies { get; set; }
 
-    public Action<Patch> OnMovedToNewPatch { get; set; } = null!;
+    public Action<Patch>? OnMovedToNewPatch { get; set; }
 
     public override void _Ready()
     {
@@ -53,6 +56,12 @@ public class PatchExtinctionBox : Control
 
     private void NewPatchSelected(Patch patch)
     {
+        if (OnMovedToNewPatch == null)
+        {
+            GD.PrintErr("Can't select new patch without moved to patch callback set");
+            return;
+        }
+
         var animLength = animationPlayer.CurrentAnimationLength;
 
         animationPlayer.PlayBackwards();

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-30 14:12+0700\n"
+"POT-Creation-Date: 2022-07-01 13:39+0300\n"
 "PO-Revision-Date: 2022-06-29 15:12+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -896,7 +896,8 @@ msgid "STARTING"
 msgstr "מתחיל"
 
 #: ../src/auto-evo/AutoEvoRun.cs:293
-msgid "AUTO-EVO_POPULATION_CHANGED"
+#, fuzzy
+msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "אוכלוסיית {0} השתנתה ב {1} בגלל: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
@@ -3354,22 +3355,22 @@ msgstr "להפוך לרב-תאיים ({0}/{1})"
 msgid "BECOME_MACROSCOPIC"
 msgstr "להפוך למקרוסקופי ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:400
-#, fuzzy
-msgid "EXTINCT_IN_PATCH"
-msgstr "נכחד מהאזור"
-
-#: ../src/microbe_stage/MicrobeStage.cs:853
+#: ../src/microbe_stage/MicrobeStage.cs:814
 msgid "PLAYER_REPRODUCED"
 msgstr "השחקן התרבה"
 
-#: ../src/microbe_stage/MicrobeStage.cs:867
+#: ../src/microbe_stage/MicrobeStage.cs:828
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "אינך יכול לזמן אוייבים צ'יטים בגלל שאזור זה אינו מכיל שום מינים אויבים"
 
-#: ../src/microbe_stage/MicrobeStage.cs:890
+#: ../src/microbe_stage/MicrobeStage.cs:851
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
+
+#: ../src/microbe_stage/MicrobeStage.cs:967
+#, fuzzy
+msgid "EXTINCT_IN_PATCH"
+msgstr "נכחד מהאזור"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:518
 msgid "AT_CURSOR"

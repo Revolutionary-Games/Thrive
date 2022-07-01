@@ -299,14 +299,16 @@ public class GameWorld : ISaveLoadable
         if (species == null)
             throw new ArgumentException("species is null");
 
+        if (string.IsNullOrEmpty(description))
+            throw new ArgumentException("May not be empty or null", nameof(description));
+
         // Immediate is only allowed to use for the player dying
         if (immediate)
         {
             if (!species.PlayerSpecies)
                 throw new ArgumentException("immediate effect is only for player dying");
 
-            GD.Print("Applying immediate population effect " +
-                "(should only be used for the player dying)");
+            GD.Print("Applying immediate population effect (should only be used for the player dying)");
 
             species.ApplyImmediatePopulationChange(constant, coefficient, patch);
         }
@@ -330,7 +332,7 @@ public class GameWorld : ISaveLoadable
         bool immediate = false, float coefficient = 1)
     {
         if (Map.CurrentPatch == null)
-            throw new InvalidOperationException("The player is not in a chunk");
+            throw new InvalidOperationException("No current patch set in map");
 
         AlterSpeciesPopulation(species, constant, description, Map.CurrentPatch, immediate, coefficient);
     }

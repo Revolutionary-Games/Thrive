@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-30 14:12+0700\n"
+"POT-Creation-Date: 2022-07-01 13:39+0300\n"
 "PO-Revision-Date: 2022-04-07 14:12+0000\n"
 "Last-Translator: DannyNohuman <damianbouras@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -895,7 +895,8 @@ msgid "STARTING"
 msgstr "Starten"
 
 #: ../src/auto-evo/AutoEvoRun.cs:293
-msgid "AUTO-EVO_POPULATION_CHANGED"
+#, fuzzy
+msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} populatie veranderd met {1} vanwege: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
@@ -3394,22 +3395,22 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:400
-#, fuzzy
-msgid "EXTINCT_IN_PATCH"
-msgstr "stierf uit op de planeet"
-
-#: ../src/microbe_stage/MicrobeStage.cs:853
+#: ../src/microbe_stage/MicrobeStage.cs:814
 msgid "PLAYER_REPRODUCED"
 msgstr "speler reproduceerde"
 
-#: ../src/microbe_stage/MicrobeStage.cs:867
+#: ../src/microbe_stage/MicrobeStage.cs:828
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:890
+#: ../src/microbe_stage/MicrobeStage.cs:851
 msgid "PLAYER_DIED"
 msgstr "speler stierf"
+
+#: ../src/microbe_stage/MicrobeStage.cs:967
+#, fuzzy
+msgid "EXTINCT_IN_PATCH"
+msgstr "stierf uit op de planeet"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:518
 msgid "AT_CURSOR"

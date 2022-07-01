@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-30 14:12+0700\n"
+"POT-Creation-Date: 2022-07-01 13:39+0300\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -911,7 +911,8 @@ msgid "STARTING"
 msgstr "alustamine"
 
 #: ../src/auto-evo/AutoEvoRun.cs:293
-msgid "AUTO-EVO_POPULATION_CHANGED"
+#, fuzzy
+msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{1} muutis elanikkonda {0} põhjustel: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
@@ -3424,22 +3425,22 @@ msgstr "Hakka mitmerakuliseks ({0}/{1})"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Muuta makroskoopiliseks ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:400
-#, fuzzy
-msgid "EXTINCT_IN_PATCH"
-msgstr "Lapist välja surnud"
-
-#: ../src/microbe_stage/MicrobeStage.cs:853
+#: ../src/microbe_stage/MicrobeStage.cs:814
 msgid "PLAYER_REPRODUCED"
 msgstr "mängija reprodutseeritud"
 
-#: ../src/microbe_stage/MicrobeStage.cs:867
+#: ../src/microbe_stage/MicrobeStage.cs:828
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Ei saa kasutada vaenlase pettust, kuna see plaaster ei sisalda ühtegi vaenlase liiki"
 
-#: ../src/microbe_stage/MicrobeStage.cs:890
+#: ../src/microbe_stage/MicrobeStage.cs:851
 msgid "PLAYER_DIED"
 msgstr "mängija suri"
+
+#: ../src/microbe_stage/MicrobeStage.cs:967
+#, fuzzy
+msgid "EXTINCT_IN_PATCH"
+msgstr "Lapist välja surnud"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:518
 msgid "AT_CURSOR"

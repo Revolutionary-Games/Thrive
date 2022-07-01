@@ -127,7 +127,7 @@ public class PatchDetailsPanel : PanelContainer
     private Patch? targetPatch;
     private Patch? currentPatch;
 
-    public Action<Patch> OnMoveToPatchClicked { get; set; } = null!;
+    public Action<Patch>? OnMoveToPatchClicked { get; set; }
 
     public Patch? SelectedPatch
     {
@@ -398,6 +398,12 @@ public class PatchDetailsPanel : PanelContainer
     {
         if (SelectedPatch == null)
             return;
+
+        if (OnMoveToPatchClicked == null)
+        {
+            GD.PrintErr("No move to patch callback set, probably nothing is going to happen");
+            return;
+        }
 
         OnMoveToPatchClicked.Invoke(SelectedPatch);
     }

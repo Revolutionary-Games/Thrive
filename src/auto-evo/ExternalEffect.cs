@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Population effect external to the auto-evo simulation
@@ -7,6 +8,9 @@ public class ExternalEffect
 {
     public ExternalEffect(Species species, int constant, float coefficient, string eventType, Patch patch)
     {
+        if (string.IsNullOrEmpty(eventType))
+            throw new ArgumentException("May not be empty or null", nameof(eventType));
+
         Species = species;
         Constant = constant;
         Coefficient = coefficient;

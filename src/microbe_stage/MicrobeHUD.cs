@@ -701,11 +701,11 @@ public class MicrobeHUD : Control
             patchExtinctionBox = PatchExtinctionBoxScene.Instance<PatchExtinctionBox>();
             winExtinctBoxHolder.AddChild(patchExtinctionBox);
 
-            patchExtinctionBox.OnMovedToNewPatch = MoveToPatch;
-            patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
+            patchExtinctionBox.OnMovedToNewPatch = MoveToNewPatchAfterExtinctInCurrent;
         }
 
-        patchExtinctionBox.Map = stage!.GameWorld.Map;
+        patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
+        patchExtinctionBox.Map = stage.GameWorld.Map;
 
         patchExtinctionBox.Show();
     }
@@ -782,7 +782,7 @@ public class MicrobeHUD : Control
     /// <summary>
     ///   Called when the player died out in a patch and selected a new one
     /// </summary>
-    private void MoveToPatch(Patch patch)
+    private void MoveToNewPatchAfterExtinctInCurrent(Patch patch)
     {
         winExtinctBoxHolder.Hide();
         stage!.MoveToPatch(patch);

@@ -828,7 +828,7 @@
                     {
                         foreach (var effect in effects)
                         {
-                            if (effect.Species == species)
+                            if (effect.Species == species && effect.Patch.ID == patch.ID)
                             {
                                 finalPatchPopulation +=
                                     effect.Constant + (long)(effect.Species.Population * effect.Coefficient)

@@ -127,14 +127,15 @@ public abstract class Species : ICloneable
     /// </summary>
     /// <remarks>
     ///   <para>
+    ///     TODO: THIS ASSUMPTION IS NOW INVALID. WE MAY HAVE A BUG. AUTO-EVO SPECIES NUMBERS NOW NEED EXTRA CACHING
+    ///     especially probably affects things if auto-evo is not set to run while playing.
     ///     This should be made sure to not affect auto-evo. As long
     ///     as auto-evo uses the per patch population numbers this
     ///     doesn't affect that.
     ///   </para>
     ///   <para>
-    ///     In addition to this an external population effect needs to
-    ///     be sent to auto-evo, otherwise this effect disappears when
-    ///     auto-evo finishes.
+    ///     In addition to this an external population effect needs to be sent to auto-evo,
+    ///     otherwise this effect disappears when auto-evo finishes.
     ///   </para>
     /// </remarks>
     public void ApplyImmediatePopulationChange(long constant, float coefficient, Patch patch)

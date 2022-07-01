@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-30 14:12+0700\n"
+"POT-Creation-Date: 2022-07-01 13:39+0300\n"
 "PO-Revision-Date: 2022-06-27 19:21+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -896,7 +896,8 @@ msgid "STARTING"
 msgstr "Avvio"
 
 #: ../src/auto-evo/AutoEvoRun.cs:293
-msgid "AUTO-EVO_POPULATION_CHANGED"
+#, fuzzy
+msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "La popolazione di {0} è cambiata di {1} per il seguente motivo: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
@@ -3367,22 +3368,22 @@ msgstr "Diventa multicellulare ({0}/{1})"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Diventa macroscopico ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:400
-#, fuzzy
-msgid "EXTINCT_IN_PATCH"
-msgstr "Estinto nella zona"
-
-#: ../src/microbe_stage/MicrobeStage.cs:853
+#: ../src/microbe_stage/MicrobeStage.cs:814
 msgid "PLAYER_REPRODUCED"
 msgstr "il giocatore si è riprodotto"
 
-#: ../src/microbe_stage/MicrobeStage.cs:867
+#: ../src/microbe_stage/MicrobeStage.cs:828
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Non puoi usare il trucco genera-nemici, perché questa zona non contiene alcuna specie nemica"
 
-#: ../src/microbe_stage/MicrobeStage.cs:890
+#: ../src/microbe_stage/MicrobeStage.cs:851
 msgid "PLAYER_DIED"
 msgstr "il giocatore è morto"
+
+#: ../src/microbe_stage/MicrobeStage.cs:967
+#, fuzzy
+msgid "EXTINCT_IN_PATCH"
+msgstr "Estinto nella zona"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:518
 msgid "AT_CURSOR"

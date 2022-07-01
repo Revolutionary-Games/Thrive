@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-30 14:12+0700\n"
-"PO-Revision-Date: 2022-06-30 14:15+0700\n"
+"POT-Creation-Date: 2022-07-01 13:39+0300\n"
+"PO-Revision-Date: 2022-07-01 13:40+0300\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -896,7 +896,7 @@ msgid "STARTING"
 msgstr "Starting"
 
 #: ../src/auto-evo/AutoEvoRun.cs:293
-msgid "AUTO-EVO_POPULATION_CHANGED"
+msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} population changed by {1} in {2} because of: {3}"
 
 #: ../src/auto-evo/RunResults.cs:554
@@ -3353,21 +3353,21 @@ msgstr "Become Multicellular ({0}/{1})"
 msgid "BECOME_MACROSCOPIC"
 msgstr "Become Macroscopic ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:400
-msgid "EXTINCT_IN_PATCH"
-msgstr "extinct in patch"
-
-#: ../src/microbe_stage/MicrobeStage.cs:853
+#: ../src/microbe_stage/MicrobeStage.cs:814
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
-#: ../src/microbe_stage/MicrobeStage.cs:867
+#: ../src/microbe_stage/MicrobeStage.cs:828
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Can't use spawn enemy cheat because this patch does not contain any enemy species"
 
-#: ../src/microbe_stage/MicrobeStage.cs:890
+#: ../src/microbe_stage/MicrobeStage.cs:851
 msgid "PLAYER_DIED"
 msgstr "player died"
+
+#: ../src/microbe_stage/MicrobeStage.cs:967
+msgid "EXTINCT_IN_PATCH"
+msgstr "extinct in patch"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:518
 msgid "AT_CURSOR"
