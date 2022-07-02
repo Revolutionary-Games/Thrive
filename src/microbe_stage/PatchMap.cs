@@ -56,7 +56,7 @@ public class PatchMap : ISaveLoadable
     }
 
     [JsonProperty]
-    private List<(int Id1, int Id2)> PatchesAdjacencies { get; set; } = new();
+    private List<(int Id1, int Id2)> PatchAdjacencies { get; set; } = new();
 
     [JsonProperty]
     private List<(int Id1, int Id2)> RegionAdjacencies { get; set; } = new();
@@ -83,7 +83,7 @@ public class PatchMap : ISaveLoadable
         if (Regions.ContainsKey(region.ID))
         {
             throw new ArgumentException(
-                "region cannot be added to this map, the ID is already in use: " + region.ID);
+                $"Region {region.Name} cannot be added to this map, the ID is already in use: {region.ID}");
         }
 
         Regions[region.ID] = region;
@@ -97,7 +97,7 @@ public class PatchMap : ISaveLoadable
         if (SpecialRegions.ContainsKey(specialRegion.ID))
         {
             throw new ArgumentException(
-                "region cannot be added to this map, the ID is already in use: " + specialRegion.ID);
+                $"Region {specialRegion.Name} cannot be added to this map, the ID is already in use: {specialRegion.ID}");
         }
 
         SpecialRegions[specialRegion.ID] = specialRegion;
@@ -410,34 +410,32 @@ public class PatchMap : ISaveLoadable
         }
     }
 
+    /// <summary>
+    ///   Check if patch link `id1->id2` or `id2->id1` exists
+    /// </summary>
+    /// <returns>True if at least an one-direction link exists</returns>
     public bool ContainsPatchAdjacency(int id1, int id2)
     {
-        if (PatchesAdjacencies.Contains((id1, id2)) || PatchesAdjacencies.Contains((id2, id1)))
-        {
-            return true;
-        }
-
-        return false;
+        return PatchAdjacencies.Contains((id1, id2)) || PatchAdjacencies.Contains((id2, id1));
     }
 
+    /// <summary>
+    ///   Check if region link `id1->id2` or `id2->id1` exists
+    /// </summary>
+    /// <returns>True if at least an one-direction link exists</returns>
     public bool ContainsRegionAdjacency(int id1, int id2)
     {
-        if (RegionAdjacencies.Contains((id1, id2)) || RegionAdjacencies.Contains((id2, id1)))
-        {
-            return true;
-        }
-
-        return false;
+        return RegionAdjacencies.Contains((id1, id2)) || RegionAdjacencies.Contains((id2, id1));
     }
 
-    public void CreateAdjacencies()
+    public void CreateAdjacenciesFromPatchData()
     {
         foreach (var entry in Patches)
         {
             foreach (var adjacent in entry.Value.Adjacent)
             {
                 if (!ContainsPatchAdjacency(entry.Value.ID, adjacent.ID))
-                    PatchesAdjacencies.Add((entry.Value.ID, adjacent.ID));
+                    PatchAdjacencies.Add((entry.Value.ID, adjacent.ID));
             }
         }
 
@@ -453,7 +451,7 @@ public class PatchMap : ISaveLoadable
 
     public void RecreateAdjacencies()
     {
-        foreach (var (id1, id2) in PatchesAdjacencies)
+        foreach (var (id1, id2) in PatchAdjacencies)
         {
             var patch1 = Patches[id1];
             var patch2 = Patches[id2];
@@ -463,17 +461,9 @@ public class PatchMap : ISaveLoadable
 
         foreach (var (id1, id2) in RegionAdjacencies)
         {
-            PatchRegion region1;
-            if (id1 > -1)
-                region1 = Regions[id1];
-            else
-                region1 = SpecialRegions[id1];
+            PatchRegion region1 = id1 > -1 ? Regions[id1] : SpecialRegions[id1];
 
-            PatchRegion region2;
-            if (id2 > -1)
-                region2 = Regions[id2];
-            else
-                region2 = SpecialRegions[id2];
+            PatchRegion region2 = id2 > -1 ? Regions[id2] : SpecialRegions[id2];
 
             region1.AddNeighbour(region2);
             region2.AddNeighbour(region1);

@@ -194,7 +194,7 @@ public static class PatchMapGenerator
         }
 
         map.ConnectPatchesBetweenRegions();
-        map.CreateAdjacencies();
+        map.CreateAdjacenciesFromPatchData();
         return map;
     }
 
