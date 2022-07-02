@@ -5,16 +5,12 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   A region is a something like a continent/ocean that contains multiple biomes(patches).
+///   A region is a something like a continent/ocean that contains multiple patches.
 /// </summary>
 [UseThriveSerializer]
 public class PatchRegion
 {
-    [JsonProperty]
-    public readonly int ID;
-
-    [JsonIgnore]
-    public readonly ISet<PatchRegion> Adjacent = new HashSet<PatchRegion>();
+    // TODO: Move these to Constants.cs
 
     [JsonIgnore]
     public float PatchNodeWidth = 64.0f;
@@ -27,18 +23,6 @@ public class PatchRegion
 
     [JsonIgnore]
     public float PatchMargin = 4f;
-
-    [JsonProperty]
-    public string RegionType;
-
-    [JsonProperty]
-    public float Height;
-
-    [JsonProperty]
-    public float Width;
-
-    [JsonProperty]
-    public List<Patch> Patches;
 
     [JsonConstructor]
     public PatchRegion(int id, LocalizedString name, string regionType, Vector2 screenCoordinates,
@@ -63,6 +47,35 @@ public class PatchRegion
         RegionType = regionType;
         ScreenCoordinates = screenCoordinates;
     }
+
+    [JsonProperty]
+    public int ID { get; }
+
+    [JsonIgnore]
+    public ISet<PatchRegion> Adjacent { get; } = new HashSet<PatchRegion>();
+
+    [JsonProperty]
+    public string RegionType { get; set; }
+
+    [JsonProperty]
+    public float Height { get; set; }
+
+    [JsonProperty]
+    public float Width { get; set; }
+
+    [JsonIgnore]
+    public Vector2 Size
+    {
+        get => new(Width, Height);
+        set
+        {
+            Width = value.x;
+            Height = value.y;
+        }
+    }
+
+    [JsonProperty]
+    public List<Patch> Patches { get; set; }
 
     [JsonProperty]
     public LocalizedString Name { get; private set; }
@@ -286,14 +299,6 @@ public class PatchRegion
     public bool AddNeighbour(PatchRegion region)
     {
         return Adjacent.Add(region);
-    }
-
-    /// <summary>
-    ///   Returns the regions size
-    /// </summary>
-    public Vector2 GetSize()
-    {
-        return new Vector2(Width, Height);
     }
 
     private void LinkPatches(Patch patch1, Patch patch2)

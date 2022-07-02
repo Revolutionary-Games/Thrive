@@ -43,8 +43,8 @@ public static class PatchMapGenerator
         // Initialize the graphs random parameters
         var regionCoords = new List<Vector2>();
         int[,] graph = new int[100, 100];
-        int vertexNr = random.Next(6, 10);
-        int edgeNr = random.Next(vertexNr, 2 * vertexNr - 4);
+        int vertexNumber = random.Next(6, 10);
+        int edgeNumber = random.Next(vertexNumber, 2 * vertexNumber - 4);
         int minDistance = 180;
 
         var currentPatchId = 0;
@@ -55,7 +55,7 @@ public static class PatchMapGenerator
         Patch? tidepool = null;
 
         // Create the graphs random regions
-        for (int i = 0; i < vertexNr; i++)
+        for (int i = 0; i < vertexNumber; i++)
         {
             var areaName = nameGenerator.Next(random);
             var continentName = nameGenerator.ContinentName;
@@ -161,7 +161,7 @@ public static class PatchMapGenerator
 
             // We add the coordinates for the center of the region
             // since that's the point that will be connected
-            regionCoords.Add(coord + region.GetSize() / 2f);
+            regionCoords.Add(coord + region.Size / 2f);
             map.AddRegion(region);
         }
 
@@ -181,12 +181,12 @@ public static class PatchMapGenerator
         // We make the graph by subtracting edges from its Delaunay Triangulation
         // as long as the graph stays connected.
         graph = DelaunayTriangulation(graph, regionCoords);
-        graph = SubtractEdges(graph, vertexNr, edgeNr, random);
+        graph = SubtractEdges(graph, vertexNumber, edgeNumber, random);
 
         // Link regions according to the graph matrix
-        for (int k = 0; k < vertexNr; k++)
+        for (int k = 0; k < vertexNumber; k++)
         {
-            for (int l = 0; l < vertexNr; l++)
+            for (int l = 0; l < vertexNumber; l++)
             {
                 if (graph[l, k] == 1)
                     LinkRegions(map.Regions[k], map.Regions[l]);
@@ -215,42 +215,49 @@ public static class PatchMapGenerator
         region2.AddNeighbour(region1);
     }
 
-    private static int[,] SubtractEdges(int[,] graph, int vertexNr, int edgeNr,
+    private static int[,] SubtractEdges(int[,] graph, int vertexNumber, int edgeNumber,
         Random random)
     {
-        var currentEdgeNr = CurrentEdgeNumber(graph, vertexNr);
+        var currentEdgeNumber = CurrentEdgeNumber(graph, vertexNumber);
 
         // Subtract edges until we reach the desired edge count.
-        while (currentEdgeNr > edgeNr)
+        while (currentEdgeNumber > edgeNumber)
         {
-            int edgeToDelete = random.Next(1, currentEdgeNr);
+            int edgeToDelete = random.Next(1, currentEdgeNumber);
             int i;
             int j;
-            for (i = 0, j = 0; i < vertexNr && edgeToDelete != 0; i++)
+            for (i = 0, j = 0; i < vertexNumber && edgeToDelete != 0; i++)
             {
-                for (j = 0; j < vertexNr && edgeToDelete != 0 && j <= i; j++)
+                for (j = 0; j < vertexNumber && edgeToDelete != 0 && j <= i; j++)
                 {
                     if (graph[i, j] == 1)
                         edgeToDelete--;
                 }
             }
 
-            i--;
-            j--;
+            --i;
+            --j;
 
             // Check if the graph stays connected after subtracting the edge
             // otherwise, leave the edge as is.
             graph[i, j] = graph[j, i] = 0;
-            if (!CheckConnectivity(graph, vertexNr))
+
+            if (!CheckConnectivity(graph, vertexNumber))
+            {
                 graph[i, j] = graph[j, i] = 1;
+            }
             else
-                currentEdgeNr -= 1;
+            {
+                currentEdgeNumber -= 1;
+            }
         }
 
         return graph;
     }
 
-    // Create a triangulation for a certain graph given some vertex coordinates
+    /// <summary>
+    ///   Create a triangulation for a certain graph given some vertex coordinates
+    /// </summary>
     private static int[,] DelaunayTriangulation(int[,] graph, List<Vector2> vertexCoords)
     {
         var indices = Geometry.TriangulateDelaunay2d(vertexCoords.ToArray());
@@ -265,43 +272,45 @@ public static class PatchMapGenerator
         return graph;
     }
 
-    // DFS graph search
-    private static int[] Dfs(int[,] graph, int vertexNr, int point, int[] visited)
+    /// <summary>
+    ///   DFS graph traversal to get all connected nodes
+    /// </summary>
+    /// <param name="graph">The graph to test</param>
+    /// <param name="vertexNumber">Count of vertexes</param>
+    /// <param name="point">Current point</param>
+    /// <param name="visited">Array of already visited vertexes</param>
+    private static void DeepFirstGraphTraversal(int[,] graph, int vertexNumber, int point, ref int[] visited)
     {
         visited[point] = 1;
-        for (int i = 0; i < vertexNr; i++)
+
+        for (var i = 0; i < vertexNumber; i++)
         {
             if (graph[point, i] == 1 && visited[i] == 0)
-                visited = Dfs(graph, vertexNr, i, visited);
+                DeepFirstGraphTraversal(graph, vertexNumber, i, ref visited);
         }
-
-        return visited;
     }
 
     // Checks the graphs connectivity
-    private static bool CheckConnectivity(int[,] graph, int vertexNr)
+    private static bool CheckConnectivity(int[,] graph, int vertexNumber)
     {
-        int[] visited = new int[vertexNr];
-        visited = Dfs(graph, vertexNr, 0, visited);
-        if (visited.Sum() != vertexNr)
-            return false;
-
-        return true;
+        int[] visited = new int[vertexNumber];
+        DeepFirstGraphTraversal(graph, vertexNumber, 0, ref visited);
+        return visited.Sum() == vertexNumber;
     }
 
     // Current number of edges in a given graph
-    private static int CurrentEdgeNumber(int[,] graph, int vertexNr)
+    private static int CurrentEdgeNumber(int[,] graph, int vertexNumber)
     {
-        int edgeNr = 0;
-        for (int i = 0; i < vertexNr; i++)
+        int edgeNumber = 0;
+        for (int i = 0; i < vertexNumber; i++)
         {
-            for (int j = 0; j < vertexNr; j++)
+            for (int j = 0; j < vertexNumber; j++)
             {
-                edgeNr += graph[i, j];
+                edgeNumber += graph[i, j];
             }
         }
 
-        return edgeNr / 2;
+        return edgeNumber / 2;
     }
 
     // Checks distance between patches
@@ -322,8 +331,8 @@ public static class PatchMapGenerator
     private static bool CheckIfRegionsIntersect(PatchRegion region1, PatchRegion region2, int minDistance)
     {
         var minDist = new Vector2(minDistance, minDistance);
-        var region1Rect = new Rect2(region1.ScreenCoordinates, region1.GetSize() + minDist);
-        var region2Rect = new Rect2(region2.ScreenCoordinates, region2.GetSize() + minDist);
+        var region1Rect = new Rect2(region1.ScreenCoordinates, region1.Size + minDist);
+        var region2Rect = new Rect2(region2.ScreenCoordinates, region2.Size + minDist);
         return region1Rect.Intersects(region2Rect, true);
     }
 
