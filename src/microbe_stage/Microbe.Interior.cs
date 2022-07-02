@@ -815,7 +815,7 @@ public partial class Microbe
         // 5% osmoregulation bonus per colony member
         if (Colony != null)
         {
-            osmoregulationCost *= 20f / (20f + Colony.ColonyMembers.Count);
+            osmoregulationCost *= 20.0f / (20.0f + Colony.ColonyMembers.Count);
         }
 
         if (Species.PlayerSpecies)
