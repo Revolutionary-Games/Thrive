@@ -10,10 +10,15 @@ using Newtonsoft.Json;
 [UseThriveSerializer]
 public class PatchMap : ISaveLoadable
 {
-    [JsonProperty]
-    public Random Seed = null!;
-
     private Patch? currentPatch;
+
+    public PatchMap(Random seed)
+    {
+        Seed = seed;
+    }
+
+    [JsonProperty]
+    public Random Seed { get; set; }
 
     /// <summary>
     ///   The  list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
@@ -363,14 +368,6 @@ public class PatchMap : ISaveLoadable
         {
             patch.ReplaceSpecies(old, newSpecies);
         }
-    }
-
-    public void SetSeed(Random random)
-    {
-        if (Seed != null)
-            throw new ArgumentException("cant set seed, seed has already been set");
-
-        Seed = random;
     }
 
     public void BuildSpecialRegions()

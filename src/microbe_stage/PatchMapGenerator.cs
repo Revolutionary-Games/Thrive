@@ -25,9 +25,9 @@ public static class PatchMapGenerator
 
     public static PatchMap Generate(WorldGenerationSettings settings, Species defaultSpecies, Random? random = null)
     {
-        var map = new PatchMap();
-        var predefinedMap = new PatchMap();
         random ??= new Random(settings.Seed);
+        var map = new PatchMap(random);
+        var predefinedMap = new PatchMap(random);
 
         // Return the classic map if settings require it, otherwise use it to draw the procedural map
         predefinedMap = PredefinedMap(predefinedMap, TranslationServer.Translate("PANGONIAN_REGION_NAME"));
@@ -166,7 +166,6 @@ public static class PatchMapGenerator
         }
 
         // After building the normal regions we build the special ones and the patches
-        map.SetSeed(random);
         map.BuildPatchesInRegions();
         map.BuildSpecialRegions();
         map.BuildPatchesInSpecialRegions();
@@ -352,7 +351,8 @@ public static class PatchMapGenerator
     private static Patch GetPatchFromPredefinedMap(int patchId, int newId, PatchMap predefinedMap, string areaName)
     {
         var patch = predefinedMap.Patches[patchId];
-        patch = new Patch(GetPatchLocalizedName(areaName, patch.BiomeTemplate.Name), newId, patch.BiomeTemplate)
+        patch = new Patch(GetPatchLocalizedName(areaName, patch.BiomeTemplate.Name), newId, patch.BiomeTemplate,
+            patch.Region)
         {
             Depth =
             {
@@ -370,7 +370,7 @@ public static class PatchMapGenerator
 
         // Predefined patches
         var coast = new Patch(GetPatchLocalizedName(areaName, "COASTAL"), CoastalId,
-            GetBiomeTemplate("coastal"))
+            GetBiomeTemplate("coastal"), region)
         {
             Depth =
             {
@@ -382,7 +382,7 @@ public static class PatchMapGenerator
         region.AddPatch(coast);
 
         var estuary = new Patch(GetPatchLocalizedName(areaName, "ESTUARY"), EstuaryId,
-            GetBiomeTemplate("estuary"))
+            GetBiomeTemplate("estuary"), region)
         {
             Depth =
             {
@@ -394,7 +394,7 @@ public static class PatchMapGenerator
         region.AddPatch(estuary);
 
         var tidepool = new Patch(GetPatchLocalizedName(areaName, "TIDEPOOL"), TidepoolId,
-            GetBiomeTemplate("tidepool"))
+            GetBiomeTemplate("tidepool"), region)
         {
             Depth =
             {
@@ -406,7 +406,7 @@ public static class PatchMapGenerator
         region.AddPatch(tidepool);
 
         var epipelagic = new Patch(GetPatchLocalizedName(areaName, "EPIPELAGIC"), EpipelagicId,
-            GetBiomeTemplate("default"))
+            GetBiomeTemplate("default"), region)
         {
             Depth =
             {
@@ -418,7 +418,7 @@ public static class PatchMapGenerator
         region.AddPatch(epipelagic);
 
         var mesopelagic = new Patch(GetPatchLocalizedName(areaName, "MESOPELAGIC"), MesopelagicId,
-            GetBiomeTemplate("mesopelagic"))
+            GetBiomeTemplate("mesopelagic"), region)
         {
             Depth =
             {
@@ -430,7 +430,7 @@ public static class PatchMapGenerator
         region.AddPatch(mesopelagic);
 
         var bathypelagic = new Patch(GetPatchLocalizedName(areaName, "BATHYPELAGIC"), BathypelagicId,
-            GetBiomeTemplate("bathypelagic"))
+            GetBiomeTemplate("bathypelagic"), region)
         {
             Depth =
             {
@@ -442,7 +442,7 @@ public static class PatchMapGenerator
         region.AddPatch(bathypelagic);
 
         var abyssopelagic = new Patch(GetPatchLocalizedName(areaName, "ABYSSOPELAGIC"), AbyssopelagicId,
-            GetBiomeTemplate("abyssopelagic"))
+            GetBiomeTemplate("abyssopelagic"), region)
         {
             Depth =
             {
@@ -454,7 +454,7 @@ public static class PatchMapGenerator
         region.AddPatch(abyssopelagic);
 
         var seafloor = new Patch(GetPatchLocalizedName(areaName, "SEA_FLOOR"), SeafloorId,
-            GetBiomeTemplate("seafloor"))
+            GetBiomeTemplate("seafloor"), region)
         {
             Depth =
             {
@@ -466,7 +466,7 @@ public static class PatchMapGenerator
         region.AddPatch(seafloor);
 
         var cave = new Patch(GetPatchLocalizedName(areaName, "UNDERWATERCAVE"), CaveId,
-            GetBiomeTemplate("underwater_cave"))
+            GetBiomeTemplate("underwater_cave"), region)
         {
             Depth =
             {
@@ -478,7 +478,7 @@ public static class PatchMapGenerator
         region.AddPatch(cave);
 
         var iceShelf = new Patch(GetPatchLocalizedName(areaName, "ICESHELF"), IceShelfId,
-            GetBiomeTemplate("ice_shelf"))
+            GetBiomeTemplate("ice_shelf"), region)
         {
             Depth =
             {
@@ -490,7 +490,7 @@ public static class PatchMapGenerator
         region.AddPatch(iceShelf);
 
         var vents = new Patch(GetPatchLocalizedName(areaName, "VOLCANIC_VENT"), VentsId,
-            GetBiomeTemplate("aavolcanic_vent"))
+            GetBiomeTemplate("aavolcanic_vent"), region)
         {
             Depth =
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -21,9 +22,10 @@ public class Patch
     public readonly Biome BiomeTemplate;
 
     [JsonProperty]
-    public readonly int[] Depth = new int[2] { -1, -1 };
+    public readonly int[] Depth = { -1, -1 };
 
-    public PatchRegion Region = null!;
+    [JsonProperty]
+    public PatchRegion Region;
 
     /// <summary>
     ///   The current snapshot of this patch.
@@ -34,12 +36,13 @@ public class Patch
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
-    public Patch(LocalizedString name, int id, Biome biomeTemplate)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, PatchRegion region)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
+        Region = region;
     }
 
     [JsonProperty]
