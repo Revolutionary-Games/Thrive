@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-01 16:31+0100\n"
+"POT-Creation-Date: 2022-07-02 10:20+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -684,25 +684,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:769
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:770
 msgid "AMMONIA"
 msgstr "Ammoniak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:840
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:841
 msgid "PHOSPHATE"
 msgstr "Fosfaat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:734
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:735
 msgid "HYDROGEN_SULFIDE"
 msgstr "Waterstofsulfide"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:804
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:805
 msgid "GLUCOSE"
 msgstr "Glucose"
 
@@ -713,28 +713,28 @@ msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:875
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:876
 msgid "IRON"
 msgstr "Ijzer"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:571
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:572
 msgid "OXYGEN"
 msgstr "Zuurstof"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:625
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:626
 msgid "CARBON_DIOXIDE"
 msgstr "Koolstofdioxide"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:598
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:599
 msgid "NITROGEN"
 msgstr "Stikstof"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:452
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:453
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "Zonlicht"
@@ -1087,7 +1087,7 @@ msgstr "ANNULEER ACTIE"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1042
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1043
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "VOLGENDE"
@@ -3329,7 +3329,7 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Zet aan / uit de waarschuwing voor niet opgeslagen voortgang wanner de speler het spel probeert te verlaten."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:389
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:390
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
@@ -3502,7 +3502,7 @@ msgid "PRESSURE_SHORT"
 msgstr "Druk."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:694
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:695
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
@@ -3559,7 +3559,7 @@ msgstr ""
 msgid "PANGONIAN_REGION_NAME"
 msgstr "Ammoniak spawnen"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:552
+#: ../src/microbe_stage/PatchMapGenerator.cs:559
 #, fuzzy
 msgid "PATCH_NAME"
 msgstr "Grot"
@@ -3825,40 +3825,45 @@ msgstr "Microbe editor laden"
 msgid "INFINITE_MP"
 msgstr "Oneindige MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:180
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:155
+#, fuzzy
+msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
+msgstr "Pangonische getijdepoel"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:181
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
 msgstr "Ongeldige mod icoon map"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:231
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:232
 msgid "SELECT_A_PATCH"
 msgstr "Kies een plek om de details hier te zien"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:266
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:267
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "HUIDIGE LOCATIE"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:348
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:349
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fysieke Omstandigheden"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:425
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:426
 msgid "PRESSURE"
 msgstr "Druk"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:530
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:531
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferische Gassen"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:954
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:955
 msgid "SPECIES_PRESENT"
 msgstr "Soorten aanwezig"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1018
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1019
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Ga naar deze plek"
 
@@ -5087,9 +5092,6 @@ msgstr "Tutorial"
 
 #~ msgid "PATCH_PANGONIAN_EPIPELAGIC"
 #~ msgstr "Pangonische epipelagische zone"
-
-#~ msgid "PATCH_PANGONIAN_TIDEPOOL"
-#~ msgstr "Pangonische getijdepoel"
 
 #, fuzzy
 #~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"

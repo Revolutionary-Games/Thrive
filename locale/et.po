@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-01 16:31+0100\n"
+"POT-Creation-Date: 2022-07-02 10:20+0100\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -689,25 +689,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:769
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:770
 msgid "AMMONIA"
 msgstr "Ammoniaak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:840
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:841
 msgid "PHOSPHATE"
 msgstr "fosfaat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:734
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:735
 msgid "HYDROGEN_SULFIDE"
 msgstr "Vesiniksulfiid"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:804
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:805
 msgid "GLUCOSE"
 msgstr "Glükoos"
 
@@ -718,28 +718,28 @@ msgstr "oksütotsiini nt"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:875
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:876
 msgid "IRON"
 msgstr "Raud"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:571
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:572
 msgid "OXYGEN"
 msgstr "Hapnik"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:625
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:626
 msgid "CARBON_DIOXIDE"
 msgstr "Süsinikdioksiid"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:598
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:599
 msgid "NITROGEN"
 msgstr "Lämmastik"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:452
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:453
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 msgid "SUNLIGHT"
 msgstr "Päikesevalgus"
@@ -1069,7 +1069,7 @@ msgstr "TÜHISTAGE TEGEVUS"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1042
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1043
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "JÄRGMINE"
@@ -3298,7 +3298,7 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Lubab/keelab salvestamata edenemise hoiatuse hüpikakna, kui mängija proovib mängust väljuda."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:389
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:390
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 msgid "TEMPERATURE"
@@ -3469,7 +3469,7 @@ msgid "PRESSURE_SHORT"
 msgstr "Surve."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:694
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:695
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
@@ -3526,7 +3526,7 @@ msgstr ""
 msgid "PANGONIAN_REGION_NAME"
 msgstr "Kudema ammoniaaki"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:552
+#: ../src/microbe_stage/PatchMapGenerator.cs:559
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -3789,40 +3789,45 @@ msgstr "Mikroobide redaktori laadimine"
 msgid "INFINITE_MP"
 msgstr "Lõpmatu MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:180
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:155
+#, fuzzy
+msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
+msgstr "Möödunud aeg: {0:#,#} aastat"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:181
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
 msgstr "Kehtetu modiikooni tee"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:231
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:232
 msgid "SELECT_A_PATCH"
 msgstr "Siin üksikasjade kuvamiseks valige plaaster"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:266
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:267
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "PRAEGUNE ASUKOHT"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:348
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:349
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Füüsilised tingimused"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:425
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:426
 msgid "PRESSURE"
 msgstr "Surve"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:530
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:531
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosfääri gaasid"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:954
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:955
 msgid "SPECIES_PRESENT"
 msgstr "Olemasolevad liigid"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1018
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1019
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Liikuge sellele paigale"
 
