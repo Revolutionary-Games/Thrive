@@ -21,25 +21,39 @@ public class PatchMapNode : MarginContainer
     [Export]
     public NodePath AdjacentPanelPath = null!;
 
-    private TextureRect? iconRect;
-    private Panel? highlightPanel;
-    private Panel? markPanel;
-    private Panel? adjacentHighlightPanel;
+    // TODO: Move this to Constants.cs
+    private const float HalfBlinkInterval = 0.5f;
 
-    // mouse hover
+    private TextureRect iconRect = null!;
+    private Panel highlightPanel = null!;
+    private Panel markPanel = null!;
+    private Panel adjacentHighlightPanel = null!;
+
+    /// <summary>
+    ///   True if _Ready() has been called
+    /// </summary>
+    private bool ready;
+
+    /// <summary>
+    ///   True if mouse is hovering on this node
+    /// </summary>
     private bool highlighted;
 
-    // currently selected node
+    /// <summary>
+    ///   True if the current node is selected
+    /// </summary>
     private bool selected;
 
-    // current player node
+    /// <summary>
+    ///   True if player is in the current node
+    /// </summary>
     private bool marked;
 
-    // node adjacent to the selected node
-    private bool selectionAdjacent;
+    private bool adjacentToSelectedPatch;
+
     private Texture? patchIcon;
-    private float fadeTime = 0.33f;
-    private float currentFadeTime;
+
+    private float currentBlinkTime;
 
     /// <summary>
     ///   This object does nothing with this, this is stored here to make other code simpler
@@ -57,7 +71,9 @@ public class PatchMapNode : MarginContainer
                 return;
 
             patchIcon = value;
-            UpdateIcon();
+
+            if (ready)
+                UpdateIcon();
         }
     }
 
@@ -67,7 +83,9 @@ public class PatchMapNode : MarginContainer
         set
         {
             highlighted = value;
-            UpdateSelectHighlightRing();
+
+            if (ready)
+                UpdateSelectHighlightRing();
         }
     }
 
@@ -77,7 +95,9 @@ public class PatchMapNode : MarginContainer
         set
         {
             selected = value;
-            UpdateSelectHighlightRing();
+
+            if (ready)
+                UpdateSelectHighlightRing();
         }
     }
 
@@ -87,16 +107,18 @@ public class PatchMapNode : MarginContainer
         set
         {
             marked = value;
-            UpdateMarkRing();
+
+            if (ready)
+                UpdateMarkRing();
         }
     }
 
-    public bool SelectionAdjacent
+    public bool AdjacentToSelectedPatch
     {
-        get => selectionAdjacent;
+        get => adjacentToSelectedPatch;
         set
         {
-            selectionAdjacent = value;
+            adjacentToSelectedPatch = value;
             UpdateSelectHighlightRing();
         }
     }
@@ -111,9 +133,22 @@ public class PatchMapNode : MarginContainer
         markPanel = GetNode<Panel>(MarkPanelPath);
         adjacentHighlightPanel = GetNode<Panel>(AdjacentPanelPath);
 
+        ready = true;
+
         UpdateSelectHighlightRing();
         UpdateMarkRing();
         UpdateIcon();
+    }
+
+    public override void _Process(float delta)
+    {
+        currentBlinkTime += delta;
+        if (currentBlinkTime > HalfBlinkInterval)
+        {
+            currentBlinkTime = 0;
+            if (Marked)
+                markPanel.Visible = !markPanel.Visible;
+        }
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -126,17 +161,6 @@ public class PatchMapNode : MarginContainer
             ((PatchMapDrawer)GetParent()).MarkDirty();
             OnSelect();
             GetTree().SetInputAsHandled();
-        }
-    }
-
-    public override void _Process(float delta)
-    {
-        currentFadeTime += delta;
-        if (currentFadeTime > fadeTime)
-        {
-            currentFadeTime = 0;
-            if (Marked)
-                markPanel!.Visible = !markPanel!.Visible;
         }
     }
 
@@ -159,24 +183,18 @@ public class PatchMapNode : MarginContainer
 
     private void UpdateSelectHighlightRing()
     {
-        if (highlightPanel == null || adjacentHighlightPanel == null)
-            return;
-
         highlightPanel.Visible = Highlighted || Selected;
-        adjacentHighlightPanel.Visible = SelectionAdjacent;
+        adjacentHighlightPanel.Visible = AdjacentToSelectedPatch;
     }
 
     private void UpdateMarkRing()
     {
-        if (markPanel == null)
-            return;
-
         markPanel.Visible = Marked;
     }
 
     private void UpdateIcon()
     {
-        if (PatchIcon == null || iconRect == null)
+        if (PatchIcon == null)
             return;
 
         iconRect.Texture = PatchIcon;

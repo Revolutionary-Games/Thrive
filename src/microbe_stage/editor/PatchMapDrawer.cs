@@ -220,7 +220,7 @@ public class PatchMapDrawer : Control
 
     private bool ContainsAdjacentToSelected(PatchRegion region)
     {
-        return region.Patches.Any(p => GetPatchNode(p)?.SelectionAdjacent == true);
+        return region.Patches.Any(p => GetPatchNode(p)?.AdjacentToSelectedPatch == true);
     }
 
     private bool CheckHighlightedAdjacency(PatchRegion region1, PatchRegion region2)
@@ -519,7 +519,7 @@ public class PatchMapDrawer : Control
             node.Marked = node.Patch == playerPatch;
 
             if (selectedPatch != null)
-                node.SelectionAdjacent = selectedPatch.Adjacent.Contains(node.Patch);
+                node.AdjacentToSelectedPatch = selectedPatch.Adjacent.Contains(node.Patch);
         }
     }
 
