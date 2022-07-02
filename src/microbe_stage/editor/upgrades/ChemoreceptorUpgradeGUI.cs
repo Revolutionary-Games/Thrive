@@ -40,9 +40,8 @@ public class ChemoreceptorUpgradeGUI : ScrollContainer, IOrganelleUpgrader
         minimumAmount.MaxValue = Constants.CHEMORECEPTOR_AMOUNT_MAX;
     }
 
-    public void OnStartFor(OrganelleTemplate organelle, IOrganelleUpgradeDialog dialog)
+    public void OnStartFor(OrganelleTemplate organelle)
     {
-        _ = dialog;
         storedOrganelle = organelle;
         shownChoices = SimulationParameters.Instance.GetCloudCompounds();
 
@@ -90,6 +89,11 @@ public class ChemoreceptorUpgradeGUI : ScrollContainer, IOrganelleUpgrader
         // TODO: make an undoable action
         storedOrganelle.SetCustomUpgradeObject(new ChemoreceptorUpgrades(shownChoices[compounds.Selected],
             (float)maximumDistance.Value, (float)minimumAmount.Value, colour.Color));
+    }
+
+    public Vector2 GetMinDialogSize()
+    {
+        return new Vector2(400, 320);
     }
 
     public void CompoundChanged(int index)

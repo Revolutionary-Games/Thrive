@@ -1,42 +1,6 @@
 ﻿using System.Collections.Generic;
 
 /// <summary>
-///   The ordered process of phagocytosis.
-/// </summary>
-public enum PhagocytosisProcess
-{
-    /// <summary>
-    ///   Not being phagocytized in any way.
-    /// </summary>
-    None,
-
-    /// <summary>
-    ///   Engulfable is in the process of being moved into the cytoplasm to be stored.
-    /// </summary>
-    Ingestion,
-
-    /// <summary>
-    ///   Engulfable has been moved into the cytoplasm and is completely internalized. Digestion may begin.
-    /// </summary>
-    Ingested,
-
-    /// <summary>
-    ///   Engulfable is completely broken down.
-    /// </summary>
-    Digested,
-
-    /// <summary>
-    ///   Engulfable is in the process of being moved into the membrane layer for ejection.
-    /// </summary>
-    Exocytosis,
-
-    /// <summary>
-    ///   The expulsion of the engulfable into extracellular environment.
-    /// </summary>
-    Ejection,
-}
-
-/// <summary>
 ///   Objects that can be engulfed by a microbe.
 /// </summary>
 [UseThriveSerializer]
@@ -54,7 +18,7 @@ public interface IEngulfable : IGraphicalEntity
     /// <summary>
     ///   The current step of phagocytosis process this engulfable is currently in.
     /// </summary>
-    public PhagocytosisProcess PhagocytizedStep { get; set; }
+    public PhagocytosisPhase PhagocytizedStep { get; set; }
 
     /// <summary>
     ///   What specific enzyme needed to digest (break down) this engulfable. If null default is used (lipase).

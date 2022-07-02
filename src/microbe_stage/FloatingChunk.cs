@@ -129,7 +129,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonProperty]
-    public PhagocytosisProcess PhagocytizedStep { get; set; }
+    public PhagocytosisPhase PhagocytizedStep { get; set; }
 
     [JsonProperty]
     public EntityReference<Microbe> HostileEngulfer { get; private set; } = new();
@@ -254,7 +254,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 
     public void ProcessChunk(float delta, CompoundCloudSystem compoundClouds)
     {
-        if (PhagocytizedStep != PhagocytosisProcess.None)
+        if (PhagocytizedStep != PhagocytosisPhase.None)
             return;
 
         if (isDissolving)
@@ -425,7 +425,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         if (chunkMesh == null)
             throw new InvalidOperationException("Chunk without a mesh can't dissolve");
 
-        if (PhagocytizedStep != PhagocytosisProcess.None)
+        if (PhagocytizedStep != PhagocytosisPhase.None)
             return;
 
         // Disable collisions

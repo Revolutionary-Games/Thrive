@@ -204,7 +204,7 @@ public partial class Microbe
     /// </summary>
     public void EmitToxin(Compound? agentType = null)
     {
-        if (PhagocytizedStep != PhagocytosisProcess.None)
+        if (PhagocytizedStep != PhagocytosisPhase.None)
             return;
 
         if (AgentEmissionCooldown > 0)
@@ -542,7 +542,7 @@ public partial class Microbe
 
     private void HandleCompoundAbsorbing(float delta)
     {
-        if (PhagocytizedStep != PhagocytosisProcess.None)
+        if (PhagocytizedStep != PhagocytosisPhase.None)
             return;
 
         // max here buffs compound absorbing for the smallest cells
@@ -568,7 +568,7 @@ public partial class Microbe
         if (!Compounds.HasAnyBeenSetUseful())
             return;
 
-        if (PhagocytizedStep != PhagocytosisProcess.None)
+        if (PhagocytizedStep != PhagocytosisPhase.None)
             return;
 
         float amountToVent = Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta;
@@ -642,7 +642,7 @@ public partial class Microbe
     private void HandleReproduction(float delta)
     {
         // Dead or engulfed cells can't reproduce
-        if (Dead || PhagocytizedStep != PhagocytosisProcess.None)
+        if (Dead || PhagocytizedStep != PhagocytosisPhase.None)
             return;
 
         if (allOrganellesDivided)
@@ -867,7 +867,7 @@ public partial class Microbe
 
     private void HandleOsmoregulation(float delta)
     {
-        if (PhagocytizedStep != PhagocytosisProcess.None)
+        if (PhagocytizedStep != PhagocytosisPhase.None)
             return;
 
         var osmoregulationCost = (HexCount * CellTypeProperties.MembraneType.OsmoregulationFactor *
@@ -887,7 +887,7 @@ public partial class Microbe
 
     private void HandleMovement(float delta)
     {
-        if (PhagocytizedStep != PhagocytosisProcess.None)
+        if (PhagocytizedStep != PhagocytosisPhase.None)
         {
             // Reset movement
             MovementDirection = Vector3.Zero;
@@ -1125,7 +1125,7 @@ public partial class Microbe
                 continue;
             }
 
-            if (engulfable.PhagocytizedStep != PhagocytosisProcess.Ingested)
+            if (engulfable.PhagocytizedStep != PhagocytosisPhase.Ingested)
                 continue;
 
             var usedEnzyme = lipase;
@@ -1213,18 +1213,18 @@ public partial class Microbe
                 if (!engulfedObject.ReclaimedByAnotherHost)
                     IngestedSizeCount -= engulfable.Size;
 
-                engulfable.PhagocytizedStep = PhagocytosisProcess.Digested;
+                engulfable.PhagocytizedStep = PhagocytosisPhase.Digested;
             }
 
             // Expel this object as it has no use
-            if (!hasAnyUsefulCompounds && engulfable.PhagocytizedStep != PhagocytosisProcess.Digested)
+            if (!hasAnyUsefulCompounds && engulfable.PhagocytizedStep != PhagocytosisPhase.Digested)
             {
                 EjectEngulfable(engulfable);
             }
         }
 
         // Else handle logic if the cell that's being/has been digested is us
-        if (PhagocytizedStep == PhagocytosisProcess.None)
+        if (PhagocytizedStep == PhagocytosisPhase.None)
         {
             if (DigestedAmount > 0 && DigestedAmount < Constants.PARTIALLY_DIGESTED_THRESHOLD)
             {
@@ -1236,7 +1236,7 @@ public partial class Microbe
         {
             // Species handling for the player microbe in case the process into partial digestion took too long
             // so here we want to limit how long the player should wait until they respawn
-            if (IsPlayerMicrobe && PhagocytizedStep == PhagocytosisProcess.Ingested)
+            if (IsPlayerMicrobe && PhagocytizedStep == PhagocytosisPhase.Ingested)
                 playerEngulfedDeathTimer += delta;
 
             if (DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD || playerEngulfedDeathTimer >=
@@ -1275,7 +1275,7 @@ public partial class Microbe
         {
             organelle.DissolveEffectValue = dissolveEffectValue;
 
-            if (IsForPreviewOnly || PhagocytizedStep == PhagocytosisProcess.Ingested)
+            if (IsForPreviewOnly || PhagocytizedStep == PhagocytosisPhase.Ingested)
             {
                 organelle.UpdateAsync(0);
                 organelle.UpdateSync();

@@ -17,7 +17,7 @@ public class CellStatsIndicator : HBoxContainer
     private Texture questionIcon = null!;
 
     private string description = "unset";
-    private string format = string.Empty;
+    private string? format;
     private float value;
 
     [JsonProperty]
@@ -38,7 +38,7 @@ public class CellStatsIndicator : HBoxContainer
     ///   Displays the value in a formatted string, use this to show units (e.g. {0} m/s).
     /// </summary>
     [Export]
-    public string Format
+    public string? Format
     {
         get => format;
         set
@@ -75,7 +75,7 @@ public class CellStatsIndicator : HBoxContainer
         UpdateValue();
     }
 
-    public void ResetInitialValue(float value)
+    public void ResetInitialValue()
     {
         initialValue = null;
         UpdateValue();

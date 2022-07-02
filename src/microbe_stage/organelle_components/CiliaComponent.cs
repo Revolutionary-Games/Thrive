@@ -20,7 +20,7 @@ public class CiliaComponent : ExternallyPositionedComponent
 
         var microbe = organelle!.ParentMicrobe!;
 
-        if (microbe.PhagocytizedStep != PhagocytosisProcess.None)
+        if (microbe.PhagocytizedStep != PhagocytosisPhase.None)
         {
             targetSpeed = 0;
             return;

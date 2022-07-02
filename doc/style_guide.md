@@ -295,11 +295,9 @@ Code style rules
 - Use `TryGetValue` instead of first calling `Dictionary.ContainsKey`
   and then reading the value separate because `TryGetValue` is faster.
 
-- When trying to save Thrive-related objects as a member variable of a
-  class/interface (especially scene-based nodes) such as Microbe,
-  FloatingChunks, etc. you should put `[UseThriveSerializer]` attribute on
-  top of the class/interface so that they can be recognized by the Thrive
-  serializer and thus be deserialized accordingly.
+- When trying to save dynamic type objects, the base type that is used in
+  the containing object (even if it is an interface) needs to specify the
+  thrive serializer using `[UseThriveSerializer]` attribute.
 
 - Base method calls should be at the start of the method, unless
   something really has to happen before them. This is to make it

@@ -47,7 +47,7 @@ public class OrganelleLayout<T> : HexLayout<T>
     ///   The highest assigned render priority from all of the organelles.
     /// </summary>
     [JsonIgnore]
-    public int PeakRenderPriority => Organelles.Max(o => Hex.GetRenderPriority(o.Position));
+    public int MaxRenderPriority => Organelles.Max(o => Hex.GetRenderPriority(o.Position));
 
     public override bool CanPlace(T hex)
     {

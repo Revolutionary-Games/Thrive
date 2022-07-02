@@ -861,7 +861,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         HUD.HideReproductionDialog();
 
-        if (player.PhagocytizedStep == PhagocytosisProcess.None)
+        if (player.PhagocytizedStep == PhagocytosisPhase.None)
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
 
         Player = null;
