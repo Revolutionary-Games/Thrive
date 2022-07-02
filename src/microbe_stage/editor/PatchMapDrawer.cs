@@ -49,6 +49,9 @@ public class PatchMapDrawer : Control
 
     private Patch? playerPatch;
 
+    [Signal]
+    public delegate void OnCurrentPatchCentered(Vector2 coordinates);
+
     public PatchMap? Map
     {
         get => map;
@@ -186,11 +189,7 @@ public class PatchMapDrawer : Control
 
     public void CenterScroll()
     {
-        var parent = (DraggableScrollContainer)GetParent();
-        var coords = PlayerPatch!.ScreenCoordinates - parent.GetRect().End / 2f;
-        parent.ScrollHorizontal = (int)coords.x;
-        parent.ScrollVertical = (int)coords.y;
-        parent.ResetZoom();
+        EmitSignal(nameof(OnCurrentPatchCentered), PlayerPatch!.ScreenCoordinates);
     }
 
     private Vector2 RegionCenter(PatchRegion region)

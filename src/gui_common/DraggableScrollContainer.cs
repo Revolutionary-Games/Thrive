@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using Object = Godot.Object;
 
 /// <summary>
 ///   A scroll container which can be also moved by clicking and dragging.
@@ -19,15 +20,27 @@ public class DraggableScrollContainer : ScrollContainer
     /// </summary>
     private bool zooming;
 
+    /// <summary>
+    ///  Whether we're currently centering to a specific coordinate, to prevent dragging while it's still happening.
+    /// </summary>
+    private bool centering;
+
     private Control content = null!;
+    private Tween tween = null!;
+
     private bool showScrollbars = true;
     private float contentScale = 1;
 
+    private Action? onPanned;
+
     /// <summary>
-    ///   Unwanted scrolling happen when zooming with mouse wheel, this is to reset the scroll values back to its
-    ///   last state before zooming started.
+    ///   Unwanted scrolling happens while zooming with mouse wheel, this is used to reset the scroll values back to
+    ///   its last state before zooming started.
     /// </summary>
     private Int2 lastScrollValues;
+
+    [Export]
+    public float DragSensitivity { get; set; } = 3.5f;
 
     [Export]
     public float MaxZoom { get; set; } = 2.5f;
@@ -39,7 +52,7 @@ public class DraggableScrollContainer : ScrollContainer
     public float ZoomFactor { get; set; } = 1.0f;
 
     [Export]
-    public float ZoomStep { get; set; } = 0.05f;
+    public float ZoomStep { get; set; } = 0.1f;
 
     /// <summary>
     ///   Controls whether the horizontal and vertical scrollbars should be shown or not. This doesn't enable nor
@@ -70,6 +83,8 @@ public class DraggableScrollContainer : ScrollContainer
             throw new InvalidOperationException("Path to child control is expected");
 
         content = GetNode<Control>(ContentPath);
+        tween = new Tween();
+        AddChild(tween);
 
         // Workaround a bug in Godot (https://github.com/godotengine/godot/issues/22936).
         GetVScrollbar().Connect("value_changed", this, nameof(OnScrollStarted));
@@ -80,7 +95,7 @@ public class DraggableScrollContainer : ScrollContainer
 
     public override void _GuiInput(InputEvent @event)
     {
-        if (!Visible)
+        if (!Visible || centering)
         {
             dragging = false;
             return;
@@ -108,28 +123,28 @@ public class DraggableScrollContainer : ScrollContainer
         {
             if (buttonDown.ButtonIndex == (int)ButtonList.WheelUp)
             {
-                contentScale += ZoomFactor * ZoomStep;
-                zooming = true;
-                Update();
+                Zoom(contentScale + ZoomFactor * ZoomStep);
             }
             else if (buttonDown.ButtonIndex == (int)ButtonList.WheelDown)
             {
-                contentScale -= ZoomFactor * ZoomStep;
-                zooming = true;
-                Update();
+                Zoom(contentScale - ZoomFactor * ZoomStep);
             }
         }
         else if (@event is InputEventMouseMotion motion && dragging)
         {
-            // Multiplied by an inverse of the content's scale to make panning faster when zoomed out and vice versa.
-            ScrollHorizontal -= (int)(motion.Relative.x * (1 / contentScale));
-            ScrollVertical -= (int)(motion.Relative.y * (1 / contentScale));
+            // Inverse of the content's scale as a speed multiplier to make panning faster when zoomed out and
+            // vice versa.
+            var scaleInverse = 1 / contentScale;
+
+            Pan(new Vector2(
+                ScrollHorizontal - (int)(motion.Relative.x * scaleInverse) * DragSensitivity,
+                ScrollVertical - (int)(motion.Relative.y * scaleInverse) * DragSensitivity));
         }
     }
 
     public override void _Input(InputEvent @event)
     {
-        if (!Visible)
+        if (!Visible || centering)
         {
             dragging = false;
             return;
@@ -156,10 +171,49 @@ public class DraggableScrollContainer : ScrollContainer
             content.RectScale = pairValue;
     }
 
+    public void Zoom(float value, float lerpDuration = 0.1f)
+    {
+        zooming = true;
+        tween.InterpolateMethod(
+            this, nameof(ImmediateZoom), contentScale, value, lerpDuration,
+            Tween.TransitionType.Sine, Tween.EaseType.Out);
+        tween.Start();
+    }
+
+    public void Pan(Vector2 coordinates, Action? onPanned = null, float lerpDuration = 0.1f)
+    {
+        var initial = new Vector2(ScrollHorizontal, ScrollVertical);
+        tween.InterpolateMethod(
+            this, nameof(ImmediatePan), initial, coordinates, lerpDuration,
+            Tween.TransitionType.Sine, Tween.EaseType.Out);
+        tween.Start();
+
+        this.onPanned = onPanned;
+        tween.CheckAndConnect("tween_completed", this, nameof(OnPanningStopped), null, (uint)ConnectFlags.Oneshot);
+    }
+
     public void ResetZoom()
     {
-        contentScale = 1;
+        Zoom(1, 1.0f);
+    }
+
+    public void CenterTo(Vector2 coordinates)
+    {
+        centering = true;
+        ResetZoom();
+        Pan(coordinates - GetRect().End / 2.0f, () => centering = false, 1.0f);
+    }
+
+    private void ImmediateZoom(float value)
+    {
+        contentScale = value;
         Update();
+    }
+
+    private void ImmediatePan(Vector2 coordinates)
+    {
+        ScrollHorizontal = (int)coordinates.x;
+        ScrollVertical = (int)coordinates.y;
     }
 
     private void UpdateScrollbars()
@@ -182,5 +236,13 @@ public class DraggableScrollContainer : ScrollContainer
         {
             lastScrollValues = new Int2(ScrollHorizontal, ScrollVertical);
         }
+    }
+
+    private void OnPanningStopped(Object @object, NodePath key)
+    {
+        _ = @object;
+        _ = key;
+
+        onPanned?.Invoke();
     }
 }

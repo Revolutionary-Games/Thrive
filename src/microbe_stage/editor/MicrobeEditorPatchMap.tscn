@@ -1044,6 +1044,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="OnCurrentPatchCentered" from="MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer/PatchMapDrawer" to="MarginContainer/HSplitContainer/MapPanel/MarginContainer/DraggableScrollContainer" method="CenterTo"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/MapPanel/MarginContainer/VBoxContainer/FindCurrentPatchButton" to="." method="OnFindCurrentPatchPressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons/minusButton" to="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions" method="CollapseButtonPressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons/plusButton" to="MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions" method="ExpandButtonPressed"]
