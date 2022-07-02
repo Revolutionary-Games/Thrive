@@ -255,13 +255,13 @@ public class PatchMapDrawer : Control
 
     private Vector2 RegionCenter(PatchRegion region)
     {
-        return new(region.ScreenCoordinates.x + region.Width / 2,
+        return new Vector2(region.ScreenCoordinates.x + region.Width / 2,
             region.ScreenCoordinates.y + region.Height / 2);
     }
 
     private Vector2 Center(Vector2 pos)
     {
-        return new(pos.x + PatchNodeWidth / 2, pos.y + PatchNodeHeight / 2);
+        return new Vector2(pos.x + PatchNodeWidth / 2, pos.y + PatchNodeHeight / 2);
     }
 
     private void DrawNodeLink(Vector2 center1, Vector2 center2)

@@ -96,8 +96,8 @@ public class PatchMap : ISaveLoadable
     {
         if (SpecialRegions.ContainsKey(specialRegion.ID))
         {
-            throw new ArgumentException(
-                $"Region {specialRegion.Name} cannot be added to this map, the ID is already in use: {specialRegion.ID}");
+            throw new ArgumentException($"Region {specialRegion.Name} cannot be added to this map, " +
+                $"the ID is already in use: {specialRegion.ID}");
         }
 
         SpecialRegions[specialRegion.ID] = specialRegion;

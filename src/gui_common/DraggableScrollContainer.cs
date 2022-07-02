@@ -230,7 +230,6 @@ public class DraggableScrollContainer : ScrollContainer
             ScrollHorizontal = lastScrollValues.x;
             ScrollVertical = lastScrollValues.y;
             zooming = false;
-            return;
         }
         else
         {
