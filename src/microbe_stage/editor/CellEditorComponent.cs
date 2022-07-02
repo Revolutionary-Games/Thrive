@@ -1608,7 +1608,7 @@ public partial class CellEditorComponent :
 
     private void OnColourChanged()
     {
-        membraneColorPicker.Color = Colour;
+        membraneColorPicker.SetColour(Colour);
     }
 
     /// <summary>
@@ -1907,6 +1907,16 @@ public partial class CellEditorComponent :
 
     private void OnColorChanged(Color color)
     {
+        if (MovingPlacedHex != null)
+        {
+            Editor.OnActionBlockedWhileMoving();
+            membraneColorPicker.SetColour(Colour);
+            return;
+        }
+
+        if (Colour == color)
+            return;
+
         var action = new SingleEditorAction<ColourActionData>(DoColourChangeAction, UndoColourChangeAction,
             new ColourActionData(color, Colour)
             {
