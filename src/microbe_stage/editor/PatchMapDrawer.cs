@@ -21,26 +21,27 @@ public class PatchMapDrawer : Control
     public float PatchNodeHeight = 64.0f;
 
     [Export]
-    public float PatchMargin = 6f;
+    public float PatchMargin = 6.0f;
+
+    [Export(PropertyHint.ColorNoAlpha)]
+    public Color DefaultConnectionColor = Colors.ForestGreen;
+
+    [Export(PropertyHint.ColorNoAlpha)]
+    public Color HighlightedConnectionColor = Colors.Cyan;
 
     [Export]
-    public Color ConnectionColor = new(0f, 0.6f, 0.2f, 1f);
-
-    [Export]
-    public Color DefaultConnectionColor = new(0f, 0.6f, 0.2f, 1f);
-
-    [Export]
-    public Color HighlightedConnectionColor = new(0f, 1f, 1f, 1f);
-
-    [Export]
-    public float RegionLineWidth = 4f;
+    public float RegionLineWidth = 4.0f;
 
     private readonly List<PatchMapNode> nodes = new();
 
-    // The representation of connections between regions
-    // Made so we wont draw the same connection multiple times
+    private Color connectionColor;
+
+    /// <summary>
+    ///   The representation of connections between regions, so we won't draw the same connection multiple times
+    /// </summary>
     private Dictionary<Tuple<int, int>, Tuple<Vector2, Vector2, Vector2>> connections = new();
-    private PatchMap? map;
+
+    private PatchMap map = null!;
     private bool dirty = true;
 
     private PackedScene nodeScene = null!;
@@ -54,7 +55,7 @@ public class PatchMapDrawer : Control
         get => map;
         set
         {
-            map = value ?? throw new ArgumentNullException();
+            map = value ?? throw new ArgumentNullException(nameof(Map));
             dirty = true;
 
             playerPatch ??= map.CurrentPatch;
@@ -97,7 +98,6 @@ public class PatchMapDrawer : Control
     public override void _Ready()
     {
         nodeScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapNode.tscn");
-        connections = new Dictionary<Tuple<int, int>, Tuple<Vector2, Vector2, Vector2>>();
 
         if (PlayerPatch != null)
             CenterScroll();
@@ -154,8 +154,8 @@ public class PatchMapDrawer : Control
                 new Vector2(adjacentRegion.Width, adjacentRegion.Height));
 
             // We get the intersection of the connections with the 2 adjacent regions (special and normal)
-            start = LineRectangleIntersection(start, end, regionRect);
-            end = LineRectangleIntersection(start, end, adjacentRect);
+            start = ClosestSegmentRectangleIntersection(start, end, regionRect);
+            end = ClosestSegmentRectangleIntersection(start, end, adjacentRect);
 
             DrawNodeLink(start, end);
             DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)),
@@ -195,70 +195,46 @@ public class PatchMapDrawer : Control
 
     private Vector2 RegionCenter(PatchRegion region)
     {
-        return new Vector2(region.ScreenCoordinates.x + region.Width / 2,
+        return new(region.ScreenCoordinates.x + region.Width / 2,
             region.ScreenCoordinates.y + region.Height / 2);
     }
 
     private Vector2 Center(Vector2 pos)
     {
-        return new Vector2(pos.x + PatchNodeWidth / 2, pos.y + PatchNodeHeight / 2);
+        return new(pos.x + PatchNodeWidth / 2, pos.y + PatchNodeHeight / 2);
     }
 
     private void DrawNodeLink(Vector2 center1, Vector2 center2)
     {
-        DrawLine(center1, center2, ConnectionColor, ConnectionLineWidth, true);
+        DrawLine(center1, center2, connectionColor, ConnectionLineWidth, true);
     }
 
-    private PatchMapNode GetNode(Patch patch)
+    private PatchMapNode? GetPatchNode(Patch patch)
     {
-        foreach (var node in nodes)
-        {
-            if (node.Patch == patch)
-                return node;
-        }
-
-        return new PatchMapNode();
+        return nodes.FirstOrDefault(n => n.Patch == patch);
     }
 
     private bool ContainsSelected(PatchRegion region)
     {
-        foreach (var patch in region.Patches)
-        {
-            var node = GetNode(patch);
-            if (node.Selected)
-                return true;
-        }
-
-        return false;
+        return region.Patches.Any(p => GetPatchNode(p)?.Selected == true);
     }
 
     private bool ContainsAdjacentToSelected(PatchRegion region)
     {
-        foreach (var patch in region.Patches)
-        {
-            var node = GetNode(patch);
-            if (node.SelectionAdjacent)
-                return true;
-        }
-
-        return false;
+        return region.Patches.Any(p => GetPatchNode(p)?.SelectionAdjacent == true);
     }
 
     private bool CheckHighlightedAdjacency(PatchRegion region1, PatchRegion region2)
     {
-        if ((ContainsSelected(region1) && ContainsAdjacentToSelected(region2)) ||
-            (ContainsSelected(region2) && ContainsAdjacentToSelected(region1)))
-        {
-            return true;
-        }
-
-        return false;
+        return (ContainsSelected(region1) && ContainsAdjacentToSelected(region2)) ||
+            (ContainsSelected(region2) && ContainsAdjacentToSelected(region1));
     }
 
     private Vector2 GetRightCornerPointOnMap()
     {
         var point = Vector2.Zero;
-        foreach (var region in Map!.Regions)
+
+        foreach (var region in map.Regions)
         {
             var regionEnd = region.Value.ScreenCoordinates + region.Value.GetSize();
 
@@ -266,7 +242,7 @@ public class PatchMapDrawer : Control
             point.y = Math.Max(point.y, regionEnd.y);
         }
 
-        foreach (var region in Map!.SpecialRegions)
+        foreach (var region in map.SpecialRegions)
         {
             var regionEnd = region.Value.ScreenCoordinates + region.Value.GetSize();
 
@@ -277,27 +253,17 @@ public class PatchMapDrawer : Control
         return point;
     }
 
-    private Vector2 ClosestPoint(Vector2 p, Vector2 q1, Vector2 q2)
+    private static Vector2 ClosestPoint(Vector2 p, Vector2 q1, Vector2 q2)
     {
-        if (q2 == Vector2.Inf)
-            return q1;
-        if (q1.DistanceTo(p) > q2.DistanceTo(p))
-            return q2;
-
-        return q1;
+        return q1.DistanceTo(p) > q2.DistanceTo(p) ? q2 : q1;
     }
 
-    private Vector2 LineLineIntersection(Vector2 p1, Vector2 p2, Vector2 q1, Vector2 q2)
+    private static Vector2 SegmentSegmentIntersection(Vector2 p1, Vector2 p2, Vector2 q1, Vector2 q2)
     {
-        var intersection = Geometry.SegmentIntersectsSegment2d(p1, p2, q1, q2);
-
-        if (intersection is Vector2 intersectionVector)
-            return intersectionVector;
-
-        return Vector2.Inf;
+        return Geometry.SegmentIntersectsSegment2d(p1, p2, q1, q2) as Vector2? ?? Vector2.Inf;
     }
 
-    private Vector2 LineRectangleIntersection(Vector2 start, Vector2 end, Rect2 rect)
+    private static Vector2 ClosestSegmentRectangleIntersection(Vector2 start, Vector2 end, Rect2 rect)
     {
         var intersection = -Vector2.Inf;
         var p0 = rect.Position;
@@ -305,10 +271,10 @@ public class PatchMapDrawer : Control
         var p2 = rect.Position + new Vector2(rect.Size.x, 0);
         var p3 = rect.End;
 
-        var int1 = LineLineIntersection(p0, p1, start, end);
-        var int2 = LineLineIntersection(p0, p2, start, end);
-        var int3 = LineLineIntersection(p1, p3, start, end);
-        var int4 = LineLineIntersection(p2, p3, start, end);
+        var int1 = SegmentSegmentIntersection(p0, p1, start, end);
+        var int2 = SegmentSegmentIntersection(p0, p2, start, end);
+        var int3 = SegmentSegmentIntersection(p1, p3, start, end);
+        var int4 = SegmentSegmentIntersection(p2, p3, start, end);
 
         intersection = ClosestPoint(end, intersection, int1);
         intersection = ClosestPoint(end, intersection, int2);
@@ -318,7 +284,7 @@ public class PatchMapDrawer : Control
         return intersection;
     }
 
-    private (Vector2 V1, Vector2 V2, Vector2 V3) ConnectionIntersectionWithRegions(Vector2 start, Vector2 end,
+    private static (Vector2 V1, Vector2 V2, Vector2 V3) ConnectionIntersectionWithRegions(Vector2 start, Vector2 end,
         Vector2 intermediate, PatchRegion region1, PatchRegion region2)
     {
         var regionRect = new Rect2(region1.ScreenCoordinates, region1.GetSize());
@@ -327,17 +293,17 @@ public class PatchMapDrawer : Control
         if (regionRect.HasPoint(intermediate))
         {
             start = intermediate;
-            intermediate = start / 2f + end / 2f;
+            intermediate = start / 2.0f + end / 2.0f;
         }
 
         if (adjacentRect.HasPoint(intermediate))
         {
             end = intermediate;
-            intermediate = start / 2f + end / 2f;
+            intermediate = start / 2.0f + end / 2.0f;
         }
 
-        var newStart = LineRectangleIntersection(start, intermediate, regionRect);
-        var newEnd = LineRectangleIntersection(end, intermediate, adjacentRect);
+        var newStart = ClosestSegmentRectangleIntersection(start, intermediate, regionRect);
+        var newEnd = ClosestSegmentRectangleIntersection(end, intermediate, adjacentRect);
 
         if (newStart != -Vector2.Inf)
             start = newStart;
@@ -358,42 +324,42 @@ public class PatchMapDrawer : Control
         var secondIntermediateIntersections = 0;
 
         // Calculate the number of intersecting regions for each possible line path
-        foreach (var reg in Map!.Regions)
+        foreach (var reg in map.Regions)
         {
             var value = reg.Value;
 
             if (value != region1 && value != region2)
             {
                 var regionRect = new Rect2(value.ScreenCoordinates, value.GetSize());
-                if (LineRectangleIntersection(start, intermediate1, regionRect) != -Vector2.Inf ||
-                    LineRectangleIntersection(intermediate1, end, regionRect) != -Vector2.Inf)
+                if (ClosestSegmentRectangleIntersection(start, intermediate1, regionRect) != -Vector2.Inf ||
+                    ClosestSegmentRectangleIntersection(intermediate1, end, regionRect) != -Vector2.Inf)
                 {
                     firstIntermediateIntersections++;
                 }
 
-                if (LineRectangleIntersection(start, intermediate2, regionRect) != -Vector2.Inf ||
-                    LineRectangleIntersection(intermediate2, end, regionRect) != -Vector2.Inf)
+                if (ClosestSegmentRectangleIntersection(start, intermediate2, regionRect) != -Vector2.Inf ||
+                    ClosestSegmentRectangleIntersection(intermediate2, end, regionRect) != -Vector2.Inf)
                 {
                     secondIntermediateIntersections++;
                 }
             }
         }
 
-        foreach (var reg in Map.SpecialRegions)
+        foreach (var reg in map.SpecialRegions)
         {
             var value = reg.Value;
 
             if (!region2.Adjacent.Contains(value) && !region1.Adjacent.Contains(value))
             {
                 var regionRect = new Rect2(value.ScreenCoordinates, value.GetSize());
-                if (LineRectangleIntersection(start, intermediate1, regionRect) != -Vector2.Inf ||
-                    LineRectangleIntersection(intermediate1, end, regionRect) != -Vector2.Inf)
+                if (ClosestSegmentRectangleIntersection(start, intermediate1, regionRect) != -Vector2.Inf ||
+                    ClosestSegmentRectangleIntersection(intermediate1, end, regionRect) != -Vector2.Inf)
                 {
                     firstIntermediateIntersections++;
                 }
 
-                if (LineRectangleIntersection(start, intermediate2, regionRect) != -Vector2.Inf ||
-                    LineRectangleIntersection(intermediate2, end, regionRect) != -Vector2.Inf)
+                if (ClosestSegmentRectangleIntersection(start, intermediate2, regionRect) != -Vector2.Inf ||
+                    ClosestSegmentRectangleIntersection(intermediate2, end, regionRect) != -Vector2.Inf)
                 {
                     secondIntermediateIntersections++;
                 }
@@ -410,61 +376,63 @@ public class PatchMapDrawer : Control
         return intermediate;
     }
 
-    // This function associates a connection the points the connection line has to go through
+    /// <summary>
+    ///   This function associates a connection the points the connection line has to go through
+    /// </summary>
     private void CreateRegionLinks()
     {
-        foreach (var entry in Map!.Regions)
+        foreach (var entry in map.Regions)
         {
             var region = entry.Value;
 
             foreach (var adjacent in region.Adjacent)
             {
-                if (adjacent.ID >= 0)
+                if (adjacent.ID < 0)
+                    continue;
+
+                var tuple = Tuple.Create(region.ID, adjacent.ID);
+                var complementTuple = Tuple.Create(adjacent.ID, region.ID);
+
+                if (connections.ContainsKey(tuple) || connections.ContainsKey(complementTuple))
+                    continue;
+
+                var start = RegionCenter(region);
+                var end = RegionCenter(adjacent);
+
+                var intermediate = GetLeastIntersectionIntermediate(region, adjacent);
+
+                (start, intermediate, end) =
+                    ConnectionIntersectionWithRegions(start, end, intermediate, region, adjacent);
+
+                var startRegion = region;
+                foreach (var special in region.Adjacent)
                 {
-                    var tuple = Tuple.Create(region.ID, adjacent.ID);
-                    var complementTuple = Tuple.Create(adjacent.ID, region.ID);
-
-                    if (!connections.ContainsKey(tuple) && !connections.ContainsKey(complementTuple))
+                    if (map.SpecialRegions.ContainsKey(special.ID))
                     {
-                        var start = RegionCenter(region);
-                        var end = RegionCenter(adjacent);
+                        Vector2 newStart;
 
-                        var intermediate = GetLeastIntersectionIntermediate(region, adjacent);
+                        (newStart, intermediate, end) =
+                            ConnectionIntersectionWithRegions(start, end, intermediate, special, adjacent);
 
-                        (start, intermediate, end) =
-                            ConnectionIntersectionWithRegions(start, end, intermediate, region, adjacent);
-
-                        var startRegion = region;
-                        foreach (var special in region.Adjacent)
+                        if (newStart != start)
                         {
-                            if (Map.SpecialRegions.ContainsKey(special.ID))
-                            {
-                                Vector2 newStart;
-
-                                (newStart, intermediate, end) =
-                                    ConnectionIntersectionWithRegions(start, end, intermediate, special, adjacent);
-
-                                if (newStart != start)
-                                {
-                                    start = newStart;
-                                    startRegion = special;
-                                }
-                            }
+                            start = newStart;
+                            startRegion = special;
                         }
-
-                        foreach (var specialAdjacent in adjacent.Adjacent)
-                        {
-                            if (Map.SpecialRegions.ContainsKey(specialAdjacent.ID))
-                            {
-                                (start, intermediate, end) =
-                                    ConnectionIntersectionWithRegions(start, end, intermediate,
-                                        startRegion, specialAdjacent);
-                            }
-                        }
-
-                        connections.Add(tuple, new Tuple<Vector2, Vector2, Vector2>(start, intermediate, end));
                     }
                 }
+
+                foreach (var specialAdjacent in adjacent.Adjacent)
+                {
+                    if (map.SpecialRegions.ContainsKey(specialAdjacent.ID))
+                    {
+                        (start, intermediate, end) =
+                            ConnectionIntersectionWithRegions(start, end, intermediate,
+                                startRegion, specialAdjacent);
+                    }
+                }
+
+                connections.Add(tuple, new Tuple<Vector2, Vector2, Vector2>(start, intermediate, end));
             }
         }
     }
@@ -474,11 +442,11 @@ public class PatchMapDrawer : Control
         var highlightedConnections = new List<Tuple<Vector2, Vector2, Vector2>>();
 
         // We first draw the normal connections between regions
-        ConnectionColor = DefaultConnectionColor;
+        connectionColor = DefaultConnectionColor;
         foreach (var entry in connections)
         {
-            var region1 = Map!.Regions[entry.Key.Item1];
-            var region2 = Map!.Regions[entry.Key.Item2];
+            var region1 = map.Regions[entry.Key.Item1];
+            var region2 = map.Regions[entry.Key.Item2];
 
             var linkStart = entry.Value.Item1;
             var linkMiddle = entry.Value.Item2;
@@ -492,22 +460,19 @@ public class PatchMapDrawer : Control
 
         // Then we draw the the adjacent connections to the patch we selected
         // Those connections have to be drawn over the normal connections so they're second
-        ConnectionColor = HighlightedConnectionColor;
-        foreach (var connection in highlightedConnections)
+        connectionColor = HighlightedConnectionColor;
+        foreach (var (linkStart, linkMiddle, linkEnd) in highlightedConnections)
         {
-            var linkStart = connection.Item1;
-            var linkMiddle = connection.Item2;
-            var linkEnd = connection.Item3;
             DrawNodeLink(linkStart, linkMiddle);
             DrawNodeLink(linkMiddle, linkEnd);
         }
 
-        ConnectionColor = DefaultConnectionColor;
+        connectionColor = DefaultConnectionColor;
     }
 
     private void DrawRegions()
     {
-        foreach (var entry in Map!.Regions)
+        foreach (var entry in map.Regions)
         {
             var region = entry.Value;
             DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)),
@@ -555,7 +520,7 @@ public class PatchMapDrawer : Control
             node.Marked = node.Patch == playerPatch;
 
             if (selectedPatch != null)
-                node.SelectionAdjacent = selectedPatch.Adjacent.Contains(node.Patch!);
+                node.SelectionAdjacent = selectedPatch.Adjacent.Contains(node.Patch);
         }
     }
 

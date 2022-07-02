@@ -44,7 +44,7 @@ public class PatchMapNode : MarginContainer
     /// <summary>
     ///   This object does nothing with this, this is stored here to make other code simpler
     /// </summary>
-    public Patch? Patch { get; set; }
+    public Patch Patch { get; set; } = null!;
 
     public Action<PatchMapNode>? SelectCallback { get; set; }
 
@@ -103,7 +103,7 @@ public class PatchMapNode : MarginContainer
 
     public override void _Ready()
     {
-        if (Patch == null)
+        if (Patch == null!)
             GD.PrintErr($"{nameof(PatchMapNode)} should have {nameof(Patch)} set");
 
         iconRect = GetNode<TextureRect>(IconPath);
