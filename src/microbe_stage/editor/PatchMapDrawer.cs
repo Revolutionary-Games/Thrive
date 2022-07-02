@@ -37,7 +37,7 @@ public class PatchMapDrawer : Control
     /// <summary>
     ///   The representation of connections between regions, so we won't draw the same connection multiple times
     /// </summary>
-    private readonly Dictionary<Int2, Tuple<Vector2, Vector2, Vector2>> connections = new();
+    private readonly Dictionary<Int2, Vector2[]> connections = new();
 
     private Color connectionColor;
 
@@ -366,14 +366,7 @@ public class PatchMapDrawer : Control
             }
         }
 
-        Vector2 intermediate;
-
-        if (firstIntermediateIntersections > secondIntermediateIntersections)
-            intermediate = intermediate2;
-        else
-            intermediate = intermediate1;
-
-        return intermediate;
+        return firstIntermediateIntersections > secondIntermediateIntersections ? intermediate2 : intermediate1;
     }
 
     /// <summary>
@@ -432,14 +425,14 @@ public class PatchMapDrawer : Control
                     }
                 }
 
-                connections.Add(int2, new Tuple<Vector2, Vector2, Vector2>(start, intermediate, end));
+                connections.Add(int2, new[] { start, intermediate, end });
             }
         }
     }
 
     private void DrawRegionLinks()
     {
-        var highlightedConnections = new List<Tuple<Vector2, Vector2, Vector2>>();
+        var highlightedConnections = new List<Vector2[]>();
 
         // We first draw the normal connections between regions
         connectionColor = DefaultConnectionColor;
@@ -448,11 +441,11 @@ public class PatchMapDrawer : Control
             var region1 = map.Regions[entry.Key.x];
             var region2 = map.Regions[entry.Key.y];
 
-            var linkStart = entry.Value.Item1;
-            var linkMiddle = entry.Value.Item2;
-            var linkEnd = entry.Value.Item3;
-            DrawNodeLink(linkStart, linkMiddle);
-            DrawNodeLink(linkMiddle, linkEnd);
+            var points = entry.Value;
+            for (var i = 1; i < points.Length; i++)
+            {
+                DrawNodeLink(points[i - 1], points[i]);
+            }
 
             if (CheckHighlightedAdjacency(region1, region2))
                 highlightedConnections.Add(entry.Value);
@@ -461,10 +454,12 @@ public class PatchMapDrawer : Control
         // Then we draw the the adjacent connections to the patch we selected
         // Those connections have to be drawn over the normal connections so they're second
         connectionColor = HighlightedConnectionColor;
-        foreach (var (linkStart, linkMiddle, linkEnd) in highlightedConnections)
+        foreach (var points in highlightedConnections)
         {
-            DrawNodeLink(linkStart, linkMiddle);
-            DrawNodeLink(linkMiddle, linkEnd);
+            for (var i = 1; i < points.Length; i++)
+            {
+                DrawNodeLink(points[i - 1], points[i]);
+            }
         }
 
         connectionColor = DefaultConnectionColor;
