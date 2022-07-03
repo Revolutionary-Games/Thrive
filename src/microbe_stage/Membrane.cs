@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
 
 /// <summary>
@@ -92,6 +93,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
     ///     NOTE: This is not the same as the 3D vertices used for the visuals.
     ///   </para>
     /// </remarks>
+    [JsonIgnore]
     public Vector3[] ConvexShape
     {
         get

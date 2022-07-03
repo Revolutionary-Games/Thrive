@@ -789,7 +789,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (IsPlayerMicrobe)
             throw new InvalidOperationException("AI can't run on the player microbe");
 
-        if (Dead || IsForPreviewOnly || PhagocytizedStep != PhagocytosisPhase.None)
+        if (Dead || IsForPreviewOnly || PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
         try
@@ -873,7 +873,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // Retrieve nearest potential entities
         foreach (var entity in engulfables)
         {
-            if (entity.Compounds == null || entity.PhagocytizedStep != PhagocytosisPhase.None)
+            if (entity.Compounds == null || entity.PhagocytosisStep != PhagocytosisPhase.None)
                 continue;
 
             var spatial = entity.EntityNode;
@@ -886,8 +886,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             if (!CanEngulf(entity))
                 continue;
 
-            if (Size > entity.Size * Constants.ENGULF_SIZE_RATIO_REQ &&
-                entity.PhagocytizedStep == PhagocytosisPhase.None)
+            if (EngulfSize > entity.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ &&
+                entity.PhagocytosisStep == PhagocytosisPhase.None)
             {
                 // Skip entities that have no useful compounds
                 if (!entity.Compounds.Compounds.Any(x => Compounds.IsUseful(x.Key)))

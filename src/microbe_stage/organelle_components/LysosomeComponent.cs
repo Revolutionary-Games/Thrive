@@ -8,7 +8,7 @@ public class LysosomeComponent : IOrganelleComponent
 
         var upgrades = configuration as LysosomeUpgrades;
 
-        var enzyme = configuration == null ? SimulationParameters.Instance.GetEnzyme("lipase") : upgrades!.Enzyme;
+        var enzyme = upgrades == null ? SimulationParameters.Instance.GetEnzyme("lipase") : upgrades.Enzyme;
 
         organelle.StoredEnzymes!.Clear();
         organelle.StoredEnzymes![enzyme] = 1;

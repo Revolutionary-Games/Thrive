@@ -1182,7 +1182,7 @@ public class MicrobeHUD : Control
         if (stage!.Player != null)
         {
             // Change mode depending on whether the player is ingested or not
-            if (stage.Player.PhagocytizedStep == PhagocytosisPhase.Ingested)
+            if (stage.Player.PhagocytosisStep == PhagocytosisPhase.Ingested)
             {
                 // Show the digestion progress to the player
                 hp = 1 - (stage.Player.DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD);

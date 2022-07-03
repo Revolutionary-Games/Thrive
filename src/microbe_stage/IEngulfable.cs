@@ -7,9 +7,9 @@
 public interface IEngulfable : IGraphicalEntity
 {
     /// <summary>
-    ///   The size of this engulfable object based on microbe hex count.
+    ///   The engulf size of this engulfable object.
     /// </summary>
-    public float Size { get; }
+    public float EngulfSize { get; }
 
     public float Radius { get; }
 
@@ -17,8 +17,9 @@ public interface IEngulfable : IGraphicalEntity
 
     /// <summary>
     ///   The current step of phagocytosis process this engulfable is currently in.
+    ///   If not phagocytized, state is <see cref="PhagocytosisPhase.None"/>.
     /// </summary>
-    public PhagocytosisPhase PhagocytizedStep { get; set; }
+    public PhagocytosisPhase PhagocytosisStep { get; set; }
 
     /// <summary>
     ///   What specific enzyme needed to digest (break down) this engulfable. If null default is used (lipase).
@@ -33,20 +34,20 @@ public interface IEngulfable : IGraphicalEntity
     /// </summary>
     public float DigestedAmount { get; set; }
 
-    Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds();
+    public Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds();
 
     /// <summary>
-    ///   Called once when this engulfable is being engulfed by a microbe.
+    ///   Called once when this engulfable is currently being attempted to be engulfed by a microbe.
     /// </summary>
-    void OnEngulfed();
+    public void OnAttemptedToBeEngulfed();
 
     /// <summary>
     ///   Called once when this engulfable has been completely internalized by a microbe.
     /// </summary>
-    void OnIngestedFromEngulfment();
+    public void OnIngestedFromEngulfment();
 
     /// <summary>
     ///   Called once when this engulfable has been expelled by a microbe.
     /// </summary>
-    void OnExpelledFromEngulfment();
+    public void OnExpelledFromEngulfment();
 }

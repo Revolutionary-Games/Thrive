@@ -16,7 +16,7 @@ public static class Constants
     public const float PLAYER_RESPAWN_TIME = 5.0f;
 
     /// <summary>
-    ///   The maximum duration of which the player should wait until they can respawn after being ingested.
+    ///   The maximum duration the player is shown being ingested before they are auto respawned.
     /// </summary>
     public const float PLAYER_ENGULFED_DEATH_DELAY_MAX = 10.0f;
 
@@ -350,7 +350,7 @@ public static class Constants
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
     /// <summary>
-    ///   The duration for which an engulfable object can be engulfed again after being expelled.
+    ///   The duration for which an engulfable object can't be engulfed after being expelled.
     /// </summary>
     public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
 
@@ -386,12 +386,12 @@ public static class Constants
     public const float ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION = 0.9f;
 
     /// <summary>
-    ///   Each enzyme addition grants 20% increase in digestion speed.
+    ///   Each enzyme addition grants 10% increase in digestion speed.
     /// </summary>
     public const float ENZYME_DIGESTION_SPEED_UP_FRACTION = 0.1f;
 
     /// <summary>
-    ///   Each enzyme addition grants 20% increase in compounds yield.
+    ///   Each enzyme addition grants 15% increase in compounds yield.
     /// </summary>
     public const float ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION = 0.15f;
 

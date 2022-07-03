@@ -143,10 +143,10 @@ public partial class Microbe
 
     // Properties for engulfing
     [JsonProperty]
-    public PhagocytosisPhase PhagocytizedStep { get; set; }
+    public PhagocytosisPhase PhagocytosisStep { get; set; }
 
     /// <summary>
-    ///   The amount of space any engulfed objects occupy in the cytoplasm. Maximum is <see cref="Size"/>.
+    ///   The amount of space any engulfed objects occupy in the cytoplasm. Maximum is <see cref="EngulfSize"/>.
     /// </summary>
     [JsonProperty]
     public float IngestedSizeCount { get; private set; }
@@ -205,7 +205,7 @@ public partial class Microbe
     ///   The size this microbe is for engulfing calculations
     /// </summary>
     [JsonIgnore]
-    public float Size
+    public float EngulfSize
     {
         get
         {
@@ -384,7 +384,7 @@ public partial class Microbe
     /// </summary>
     public bool CanEngulf(IEngulfable target)
     {
-        if (target.PhagocytizedStep != PhagocytosisPhase.None)
+        if (target.PhagocytosisStep != PhagocytosisPhase.None)
             return false;
 
         // Can't engulf recently ejected objects, this act as a cooldown
@@ -425,11 +425,11 @@ public partial class Microbe
         }
 
         // Limit amount of things that can be engulfed at once
-        if (IngestedSizeCount > Size || IngestedSizeCount + target.Size > Size)
+        if (IngestedSizeCount > EngulfSize || IngestedSizeCount + target.EngulfSize > EngulfSize)
             return false;
 
         // Too many things attempted to be engulfed at once
-        if (attemptingToEngulf.Sum(e => e.Size) + target.Size > Size)
+        if (attemptingToEngulf.Sum(e => e.EngulfSize) + target.EngulfSize > EngulfSize)
             return false;
 
         // Disallow cannibalism
@@ -441,10 +441,10 @@ public partial class Microbe
             return false;
 
         // Needs to be big enough to engulf
-        return Size > target.Size * Constants.ENGULF_SIZE_RATIO_REQ;
+        return EngulfSize > target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
     }
 
-    public void OnEngulfed()
+    public void OnAttemptedToBeEngulfed()
     {
         Membrane.WigglyNess = 0;
 
@@ -594,7 +594,7 @@ public partial class Microbe
 
         // If being phagocytized don't continue further because the entity reference is still needed to
         // maintain related functions, also dropping corpse chunks won't make sense while inside a cell
-        if (PhagocytizedStep != PhagocytosisPhase.None)
+        if (PhagocytosisStep != PhagocytosisPhase.None)
             return null;
 
         OnDestroyed();
@@ -1071,7 +1071,7 @@ public partial class Microbe
             // Drain atp
             var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
 
-            if (Compounds.TakeCompound(atp, cost) < cost - 0.001f || PhagocytizedStep != PhagocytosisPhase.None)
+            if (Compounds.TakeCompound(atp, cost) < cost - 0.001f || PhagocytosisStep != PhagocytosisPhase.None)
             {
                 State = MicrobeState.Normal;
             }
@@ -1141,7 +1141,7 @@ public partial class Microbe
 
             body.Mode = ModeEnum.Static;
 
-            if (engulfable?.PhagocytizedStep == PhagocytosisPhase.Digested)
+            if (engulfable?.PhagocytosisStep == PhagocytosisPhase.Digested)
             {
                 engulfedObject.TargetValuesToLerp = (null, null, Vector3.One * Mathf.Epsilon);
                 StartBulkTransport(engulfedObject, 1.5f, false);
@@ -1152,12 +1152,12 @@ public partial class Microbe
 
             // Ingestion hasn't completed yet but player is no longer in engulfment mode, cancel ingestion.
             // Engulfment mode must be kept until internalization is complete
-            if (State != MicrobeState.Engulf && engulfable?.PhagocytizedStep == PhagocytosisPhase.Ingestion)
+            if (State != MicrobeState.Engulf && engulfable?.PhagocytosisStep == PhagocytosisPhase.Ingestion)
                 EjectEngulfable(engulfable, 1.0f);
 
             if (AnimateBulkTransport(delta, engulfedObject))
             {
-                switch (engulfable?.PhagocytizedStep)
+                switch (engulfable?.PhagocytosisStep)
                 {
                     case PhagocytosisPhase.Ingestion:
                         CompleteIngestion(engulfedObject);
@@ -1170,7 +1170,7 @@ public partial class Microbe
                         engulfedObject.Phagosome.Value?.Hide();
                         engulfedObject.TargetValuesToLerp = (null, engulfedObject.OriginalScale, null);
                         StartBulkTransport(engulfedObject, 1.0f);
-                        engulfable.PhagocytizedStep = PhagocytosisPhase.Ejection;
+                        engulfable.PhagocytosisStep = PhagocytosisPhase.Ejection;
                         continue;
                     case PhagocytosisPhase.Ejection:
                         CompleteEjection(engulfedObject);
@@ -1211,7 +1211,7 @@ public partial class Microbe
     /// </summary>
     private void HandleDeath(float delta)
     {
-        if (PhagocytizedStep != PhagocytosisPhase.None)
+        if (PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
         // Spawn cell death particles.
@@ -1409,7 +1409,7 @@ public partial class Microbe
     /// </summary>
     private void IngestEngulfable(IEngulfable target, float animationSpeed = 2.0f)
     {
-        if (target.EntityNode.GetParent() == this || target.PhagocytizedStep != PhagocytosisPhase.None)
+        if (target.EntityNode.GetParent() == this || target.PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
         var body = target as RigidBody;
@@ -1423,7 +1423,7 @@ public partial class Microbe
         touchedEntities.Remove(target);
 
         target.HostileEngulfer.Value = this;
-        target.PhagocytizedStep = PhagocytosisPhase.Ingestion;
+        target.PhagocytosisStep = PhagocytosisPhase.Ingestion;
 
         // Disable collisions
         body.CollisionLayer = 0;
@@ -1493,7 +1493,7 @@ public partial class Microbe
 
         StartBulkTransport(engulfedObject, animationSpeed);
 
-        target.OnEngulfed();
+        target.OnAttemptedToBeEngulfed();
     }
 
     /// <summary>
@@ -1501,8 +1501,8 @@ public partial class Microbe
     /// </summary>
     private void EjectEngulfable(IEngulfable target, float animationSpeed = 2.0f)
     {
-        if (target.EntityNode.GetParent() != this || PhagocytizedStep != PhagocytosisPhase.None ||
-            target.PhagocytizedStep is PhagocytosisPhase.Exocytosis or PhagocytosisPhase.None)
+        if (target.EntityNode.GetParent() != this || PhagocytosisStep != PhagocytosisPhase.None ||
+            target.PhagocytosisStep is PhagocytosisPhase.Exocytosis or PhagocytosisPhase.None)
         {
             return;
         }
@@ -1520,13 +1520,13 @@ public partial class Microbe
 
         if (engulfedObject.HasBeenIngested)
         {
-            IngestedSizeCount -= target.Size;
+            IngestedSizeCount -= target.EngulfSize;
 
             if (IngestedSizeCount < 0)
                 IngestedSizeCount = 0;
         }
 
-        target.PhagocytizedStep = PhagocytosisPhase.Exocytosis;
+        target.PhagocytosisStep = PhagocytosisPhase.Exocytosis;
 
         var nearestPointOfMembraneToTarget = Membrane.GetVectorTowardsNearestPointOfMembrane(
             body.Translation.x, body.Translation.z);
@@ -1666,13 +1666,13 @@ public partial class Microbe
             }
         }
 
-        var full = IngestedSizeCount >= Size || IngestedSizeCount + engulfable.Size >= Size;
+        var full = IngestedSizeCount >= EngulfSize || IngestedSizeCount + engulfable.EngulfSize >= EngulfSize;
 
         if (CanEngulf(engulfable))
         {
             IngestEngulfable(engulfable);
         }
-        else if (Size > engulfable.Size * Constants.ENGULF_SIZE_RATIO_REQ && full)
+        else if (EngulfSize > engulfable.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ && full)
         {
             OnEngulfmentStorageFull?.Invoke(this);
         }
@@ -1766,12 +1766,12 @@ public partial class Microbe
         if (engulfable == null)
             return;
 
-        engulfable.PhagocytizedStep = PhagocytosisPhase.Ingested;
+        engulfable.PhagocytosisStep = PhagocytosisPhase.Ingested;
 
         attemptingToEngulf.Remove(engulfable);
         touchedEntities.Remove(engulfable);
 
-        IngestedSizeCount += engulfable.Size;
+        IngestedSizeCount += engulfable.EngulfSize;
         engulfed.HasBeenIngested = true;
 
         OnSuccessfulEngulfment?.Invoke(this, engulfable);
@@ -1789,7 +1789,7 @@ public partial class Microbe
         expelledObjects.Add(engulfed);
 
         engulfed.ReclaimedByAnotherHost = false;
-        engulfable.PhagocytizedStep = PhagocytosisPhase.None;
+        engulfable.PhagocytosisStep = PhagocytosisPhase.None;
 
         foreach (string group in engulfed.OriginalGroups)
         {

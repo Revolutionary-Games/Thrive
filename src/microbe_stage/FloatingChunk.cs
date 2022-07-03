@@ -76,7 +76,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
     /// </summary>
-    public float Size { get; set; } = -1.0f;
+    public float EngulfSize { get; set; } = -1.0f;
 
     /// <summary>
     ///   Compounds this chunk contains, and vents
@@ -129,7 +129,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     public AliveMarker AliveMarker { get; } = new();
 
     [JsonProperty]
-    public PhagocytosisPhase PhagocytizedStep { get; set; }
+    public PhagocytosisPhase PhagocytosisStep { get; set; }
 
     [JsonProperty]
     public EntityReference<Microbe> HostileEngulfer { get; private set; } = new();
@@ -165,7 +165,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         ChunkName = chunkType.Name;
         VentPerSecond = chunkType.VentAmount;
         Dissolves = chunkType.Dissolves;
-        Size = chunkType.Size;
+        EngulfSize = chunkType.Size;
         Damages = chunkType.Damages;
         DeleteOnTouch = chunkType.DeleteOnTouch;
         DamageType = string.IsNullOrEmpty(chunkType.DamageType) ? "chunk" : chunkType.DamageType;
@@ -206,7 +206,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         config.Name = ChunkName;
         config.VentAmount = VentPerSecond;
         config.Dissolves = Dissolves;
-        config.Size = Size;
+        config.Size = EngulfSize;
         config.Damages = Damages;
         config.DeleteOnTouch = DeleteOnTouch;
         config.Mass = Mass;
@@ -254,7 +254,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 
     public void ProcessChunk(float delta, CompoundCloudSystem compoundClouds)
     {
-        if (PhagocytizedStep != PhagocytosisPhase.None)
+        if (PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
         if (isDissolving)
@@ -357,7 +357,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         return null;
     }
 
-    public void OnEngulfed()
+    public void OnAttemptedToBeEngulfed()
     {
     }
 
@@ -425,7 +425,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         if (chunkMesh == null)
             throw new InvalidOperationException("Chunk without a mesh can't dissolve");
 
-        if (PhagocytizedStep != PhagocytosisPhase.None)
+        if (PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
         // Disable collisions
@@ -502,7 +502,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         }
 
         // Needs physics callback when this is engulfable or damaging
-        if (Damages > 0 || DeleteOnTouch || Size > 0)
+        if (Damages > 0 || DeleteOnTouch || EngulfSize > 0)
         {
             ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
             Connect("body_shape_entered", this, nameof(OnContactBegin));

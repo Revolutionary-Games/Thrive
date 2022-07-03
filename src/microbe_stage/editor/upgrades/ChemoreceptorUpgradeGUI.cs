@@ -2,7 +2,7 @@
 using System.Linq;
 using Godot;
 
-public class ChemoreceptorUpgradeGUI : ScrollContainer, IOrganelleUpgrader
+public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]
     public NodePath CompoundsPath = null!;
@@ -89,11 +89,6 @@ public class ChemoreceptorUpgradeGUI : ScrollContainer, IOrganelleUpgrader
         // TODO: make an undoable action
         storedOrganelle.SetCustomUpgradeObject(new ChemoreceptorUpgrades(shownChoices[compounds.Selected],
             (float)maximumDistance.Value, (float)minimumAmount.Value, colour.Color));
-    }
-
-    public Vector2 GetMinDialogSize()
-    {
-        return new Vector2(400, 320);
     }
 
     public void CompoundChanged(int index)

@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -47,11 +48,15 @@ public class Endosome : Spatial, IEntity
 
     public override void _Ready()
     {
-        Mesh = GetNode<MeshInstance>("Vacuole");
+        Mesh = GetNode<MeshInstance>("Vacuole") ?? throw new Exception("mesh node not found");
 
         // This has to be done here because setting this in Godot editor truncates
         // the number to only 3 decimal places.
-        var material = Mesh?.MaterialOverride as ShaderMaterial;
+        var material = Mesh!.MaterialOverride as ShaderMaterial;
+
+        if (material == null)
+            GD.PrintErr("Material is not found from the Vacuole mesh for Endosome");
+
         material?.SetShaderParam("jiggleAmount", 0.0001f);
 
         ApplyTint();

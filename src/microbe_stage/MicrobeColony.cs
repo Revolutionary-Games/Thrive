@@ -154,12 +154,12 @@ public class MicrobeColony
 
     private void UpdateHexCount()
     {
-        hexCount = Master.Size;
+        hexCount = Master.EngulfSize;
         ingestedSizeCount = Master.IngestedSizeCount;
 
         foreach (var member in ColonyMembers)
         {
-            hexCount += member.Size;
+            hexCount += member.EngulfSize;
             ingestedSizeCount += member.IngestedSizeCount;
         }
     }
