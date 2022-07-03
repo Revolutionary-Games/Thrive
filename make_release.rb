@@ -44,7 +44,7 @@ LICENSE_FILES = [
   ['LICENSE.txt', 'LICENSE.txt'],
   ['gpl.txt', 'gpl.txt'],
   ['assets/LICENSE.txt', 'ThriveAssetsLICENSE.txt'],
-  ['assets/README.txt', 'ThriveAssetsREADME.txt'],
+  ['assets/README.md', 'ThriveAssetsREADME.txt'],
   ['doc/GodotLicense.txt', 'GodotLicense.txt']
 ].freeze
 
