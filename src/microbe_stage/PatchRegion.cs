@@ -286,12 +286,6 @@ public class PatchRegion
         }
     }
 
-    public void AddPatch(Patch patch)
-    {
-        Patches.Add(patch);
-        patch.Region = this;
-    }
-
     /// <summary>
     ///   Adds a connection to region
     /// </summary>
