@@ -1024,7 +1024,7 @@ public class MicrobeHUD : Control
             >= Constants.COMPOUND_DENSITY_CATEGORY_SOME => new Color(0.011f, 0.705f, 0.768f),
             >= Constants.COMPOUND_DENSITY_CATEGORY_LITTLE => new Color(0.011f, 0.552f, 0.768f),
             >= Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE => new Color(0.011f, 0.290f, 0.768f),
-            _ => new Color(1f, 1f, 1f),
+            _ => new Color(1.0f, 1.0f, 1.0f),
         };
     }
 

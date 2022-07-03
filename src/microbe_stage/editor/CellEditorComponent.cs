@@ -196,7 +196,7 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Controls MP discounts (for multicellular)
     /// </summary>
-    private float editorCostFactor = 1f;
+    private float editorCostFactor = 1.0f;
 
     private EnergyBalanceInfo? energyBalanceInfo;
 
@@ -970,7 +970,7 @@ public partial class CellEditorComponent :
 
     public float CalculateStorage()
     {
-        var totalStorage = 0f;
+        var totalStorage = 0.0f;
         foreach (var organelle in editedMicrobeOrganelles)
         {
             if (organelle.Definition.Components.Storage != null)
