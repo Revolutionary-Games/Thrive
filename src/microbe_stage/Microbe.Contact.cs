@@ -1839,7 +1839,7 @@ public partial class Microbe
                 .Where(c => c.Key.Digestible)
                 .ToDictionary(c => c.Key, c => c.Value);
 
-            InitialTotalEngulfableCompounds = @object.Compounds?.Compounds
+            InitialTotalEngulfableCompounds = @object.Compounds.Compounds
                 .Where(c => c.Key.Digestible)
                 .Sum(c => c.Value);
 

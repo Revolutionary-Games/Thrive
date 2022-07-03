@@ -1197,7 +1197,7 @@ public partial class Microbe
                 if (additionalCompounds?.ContainsKey(compound) == true)
                     additionalCompounds[compound] -= taken;
 
-                engulfable.Compounds?.TakeCompound(compound, taken);
+                engulfable.Compounds.TakeCompound(compound, taken);
                 Compounds.AddCompound(compound, taken * efficiency);
             }
 

@@ -26,7 +26,7 @@ public interface IEngulfable : IGraphicalEntity
     /// </summary>
     public Enzyme? RequisiteEnzymeToDigest { get; }
 
-    public CompoundBag? Compounds { get; }
+    public CompoundBag Compounds { get; }
 
     /// <summary>
     ///   The value for how much this engulfable has been digested in the range of 0 to 1,

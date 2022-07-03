@@ -294,7 +294,7 @@ public class MicrobeAI
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
-            if (chunk.Compounds == null)
+            if (chunk.Compounds.Compounds.Count <= 0)
                 continue;
 
             if (microbe.EngulfSize > chunk.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ

@@ -873,7 +873,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // Retrieve nearest potential entities
         foreach (var entity in engulfables)
         {
-            if (entity.Compounds == null || entity.PhagocytosisStep != PhagocytosisPhase.None)
+            if (entity.Compounds.Compounds.Count <= 0 || entity.PhagocytosisStep != PhagocytosisPhase.None)
                 continue;
 
             var spatial = entity.EntityNode;

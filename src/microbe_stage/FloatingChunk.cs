@@ -81,7 +81,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     /// <summary>
     ///   Compounds this chunk contains, and vents
     /// </summary>
-    public CompoundBag? Compounds { get; private set; }
+    public CompoundBag Compounds { get; private set; } = new(0.0f);
 
     /// <summary>
     ///   How much of each compound is vented per second
@@ -226,7 +226,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 
         config.Meshes.Add(item);
 
-        if (Compounds?.Compounds.Count > 0)
+        if (Compounds.Compounds.Count > 0)
         {
             config.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>();
 
@@ -328,7 +328,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     public void VentAllCompounds(CompoundCloudSystem compoundClouds)
     {
         // Vent all remaining compounds immediately
-        if (Compounds != null)
+        if (Compounds.Compounds.Count > 0)
         {
             var pos = Translation;
 
@@ -379,7 +379,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     /// </summary>
     private void VentCompounds(float delta, CompoundCloudSystem compoundClouds)
     {
-        if (Compounds == null)
+        if (Compounds.Compounds.Count <= 0)
             return;
 
         var pos = Translation;
