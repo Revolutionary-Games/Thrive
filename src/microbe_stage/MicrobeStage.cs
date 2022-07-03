@@ -296,6 +296,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     // Also begins a new game if one hasn't been started yet for easier debugging
     public void SetupStage()
     {
+        // Initialise the cloud system first so we can apply patch-specific brightness in OnGameStarted
+        Clouds.Init(FluidSystem);
+
         if (!IsLoadedFromSave)
         {
             spawner.Init();
@@ -317,8 +320,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         tutorialGUI.EventReceiver = TutorialState;
 
         HUD.SendEditorButtonToTutorial(TutorialState);
-
-        Clouds.Init(FluidSystem);
 
         // If this is a new game, place some phosphates as a learning tool
         if (!IsLoadedFromSave)
