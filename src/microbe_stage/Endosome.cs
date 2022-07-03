@@ -48,7 +48,7 @@ public class Endosome : Spatial, IEntity
 
     public override void _Ready()
     {
-        Mesh = GetNode<MeshInstance>("Vacuole") ?? throw new Exception("mesh node not found");
+        Mesh = GetNode<MeshInstance>("EngulfedObjectHolder") ?? throw new Exception("mesh node not found");
 
         // This has to be done here because setting this in Godot editor truncates
         // the number to only 3 decimal places.
