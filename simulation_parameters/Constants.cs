@@ -799,27 +799,27 @@ public static class Constants
     /// <summary>
     ///   Minimum amount for the little category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 10f;
+    public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 10.0f;
 
     /// <summary>
     ///   Minimum amount for the some category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_SOME = 50f;
+    public const float COMPOUND_DENSITY_CATEGORY_SOME = 50.0f;
 
     /// <summary>
     ///   Minimum amount for the fair amount category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT = 200f;
+    public const float COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT = 200.0f;
 
     /// <summary>
     ///   Minimum amount for the quite a bit category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 800f;
+    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 800.0f;
 
     /// <summary>
     ///   Minimum amount for the an abundance category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000f;
+    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000.0f;
 
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
