@@ -416,7 +416,7 @@ public partial class Microbe
             if (targetAsMicrobe != null)
             {
                 // Access a Godot property to throw disposed exception
-                _ = targetAsMicrobe!.GlobalTransform;
+                _ = targetAsMicrobe.GlobalTransform;
             }
         }
         catch (ObjectDisposedException)
@@ -1133,6 +1133,8 @@ public partial class Microbe
             var engulfedObject = engulfedObjects[i];
 
             var engulfable = engulfedObject.Object.Value;
+
+            // ReSharper disable once UseNullPropagation
             if (engulfable == null)
                 continue;
 
@@ -1822,8 +1824,7 @@ public partial class Microbe
         body.ApplyCentralImpulse(impulse + LinearVelocity);
 
         // We have our own engulfer and it wants to claim this object we've just expelled
-        if (HostileEngulfer.Value != null)
-            HostileEngulfer.Value.IngestEngulfable(engulfable);
+        HostileEngulfer.Value?.IngestEngulfable(engulfable);
 
         engulfable.OnExpelledFromEngulfment();
         engulfable.HostileEngulfer.Value = null;

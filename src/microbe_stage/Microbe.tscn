@@ -30,7 +30,6 @@ flags_transparent = true
 albedo_color = Color( 0, 1, 0, 0.470588 )
 
 [sub_resource type="SphereMesh" id=3]
-resource_local_to_scene = true
 
 [node name="Microbe" type="RigidBody"]
 process_priority = 1

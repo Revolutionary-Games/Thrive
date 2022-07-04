@@ -71,6 +71,8 @@ public partial class Microbe
 
     private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
 
+    private bool maxOrganellesRenderPriorityDirty = true;
+
     /// <summary>
     ///   The stored compounds in this microbe
     /// </summary>
@@ -102,7 +104,7 @@ public partial class Microbe
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     A cheaper version of <see cref="OrganelleLayout{T}.MaxRenderPriority"/>.
+    ///     A possibly cheaper version of <see cref="OrganelleLayout{T}.MaxRenderPriority"/>.
     ///   </para>
     /// </remarks>
     [JsonProperty]
@@ -542,7 +544,7 @@ public partial class Microbe
         {
             foreach (var entry in organelle.Definition.InitialComposition)
             {
-                var existing = result[entry.Key];
+                result.TryGetValue(entry.Key, out float existing);
                 result[entry.Key] = existing + entry.Value;
             }
         }
@@ -981,6 +983,7 @@ public partial class Microbe
         membraneOrganellePositionsAreDirty = true;
         hasSignalingAgent = null;
         cachedRotationSpeed = null;
+        maxOrganellesRenderPriorityDirty = true;
 
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount += 1;
@@ -989,9 +992,6 @@ public partial class Microbe
         // hook up computing this when the StorageBag needs this info.
         organellesCapacity += organelle.StorageCapacity;
         Compounds.Capacity = organellesCapacity;
-
-        OrganelleMaxRenderPriority = Mathf.Max(
-            OrganelleMaxRenderPriority, Hex.GetRenderPriority(organelle.Position));
     }
 
     [DeserializedCallbackAllowed]
@@ -1013,6 +1013,7 @@ public partial class Microbe
         membraneOrganellePositionsAreDirty = true;
         hasSignalingAgent = null;
         cachedRotationSpeed = null;
+        maxOrganellesRenderPriorityDirty = true;
 
         Compounds.Capacity = organellesCapacity;
 
@@ -1121,7 +1122,7 @@ public partial class Microbe
         if (Dead)
             return;
 
-        var compounds = SimulationParameters.Instance.GetAllCompounds();
+        var compoundTypes = SimulationParameters.Instance.GetAllCompounds();
         var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
         // Handle logic if the objects that are being digested are the ones we have engulfed
@@ -1165,7 +1166,7 @@ public partial class Microbe
             var totalAmountLeft = 0.0f;
 
             var hasAnyUsefulCompounds = false;
-            foreach (var compound in compounds.Values)
+            foreach (var compound in compoundTypes.Values)
             {
                 if (!compound.Digestible)
                     continue;

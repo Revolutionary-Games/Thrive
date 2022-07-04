@@ -586,6 +586,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             membraneOrganellesWereUpdatedThisFrame = false;
         }
 
+        if (maxOrganellesRenderPriorityDirty)
+        {
+            OrganelleMaxRenderPriority = organelles!.MaxRenderPriority;
+            maxOrganellesRenderPriorityDirty = false;
+        }
+
         // The code below starting from here is not needed for a display-only cell
         if (IsForPreviewOnly)
             return;
@@ -1186,8 +1192,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 if (enzyme.Value <= 0)
                     continue;
 
-                var existingValue = enzymes[enzyme.Key];
-                enzymes[enzyme.Key] = existingValue + enzyme.Value;
+                enzymes.TryGetValue(enzyme.Key, out int existing);
+                enzymes[enzyme.Key] = existing + enzyme.Value;
             }
         }
 

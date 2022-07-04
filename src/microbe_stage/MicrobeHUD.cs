@@ -1212,7 +1212,6 @@ public class MicrobeHUD : Control
     {
         healthBarFlashDuration -= delta;
 
-        // How frequently it flashes
         if (healthBarFlashDuration % 0.6f < 0.3f)
         {
             healthBar.TintProgress = colour;
