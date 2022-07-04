@@ -60,7 +60,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     public Spatial EntityNode => this;
 
     [JsonIgnore]
-    public GeometryInstance EntityGraphics => chunkMesh!;
+    public GeometryInstance EntityGraphics => chunkMesh ?? throw new InstanceNotLoadedYetException();
 
     [JsonIgnore]
     public int RenderPriority
@@ -81,6 +81,11 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     /// <summary>
     ///   Compounds this chunk contains, and vents
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Capacity is set to 0 so that no compounds can be added the normal way to the chunk.
+    ///   </para>
+    /// </remarks>
     public CompoundBag Compounds { get; private set; } = new(0.0f);
 
     /// <summary>
@@ -181,10 +186,6 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         // Copy compounds to vent
         if (chunkType.Compounds?.Count > 0)
         {
-            // Capacity is set to 0 so that no compounds can be added
-            // the normal way to the chunk
-            Compounds = new CompoundBag(0);
-
             foreach (var entry in chunkType.Compounds)
             {
                 Compounds.Compounds.Add(entry.Key, entry.Value.Amount);

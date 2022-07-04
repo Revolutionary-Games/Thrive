@@ -11,6 +11,9 @@ using Newtonsoft.Json;
 /// </summary>
 public partial class Microbe
 {
+    [JsonProperty]
+    private readonly CompoundBag compounds = new(0.0f);
+
     private Compound atp = null!;
 
     private Enzyme lipase = null!;
@@ -28,7 +31,7 @@ public partial class Microbe
     private OrganelleLayout<PlacedOrganelle>? organelles;
 
     private bool enzymesDirty = true;
-    private Dictionary<Enzyme, int>? enzymes;
+    private Dictionary<Enzyme, int> enzymes = new();
 
     [JsonProperty]
     private float lastCheckedATPDamage;
@@ -71,8 +74,8 @@ public partial class Microbe
     /// <summary>
     ///   The stored compounds in this microbe
     /// </summary>
-    [JsonProperty]
-    public CompoundBag Compounds { get; private set; } = new(0.0f);
+    [JsonIgnore]
+    public CompoundBag Compounds => compounds;
 
     /// <summary>
     ///   True only when this cell has been killed to let know things
@@ -528,11 +531,7 @@ public partial class Microbe
         {
             foreach (var entry in organelle.Definition.InitialComposition)
             {
-                var existing = 0.0f;
-
-                if (result.ContainsKey(entry.Key))
-                    existing = result[entry.Key];
-
+                var existing = result[entry.Key];
                 result[entry.Key] = existing + entry.Value;
             }
         }
@@ -1119,12 +1118,14 @@ public partial class Microbe
 
             // Expel this engulfed object if the cell loses some of its size and its ingestion capacity
             // is overloaded
-            if (IngestedSizeCount > EngulfSize)
+            if (UsedIngestionCapacity > EngulfSize)
             {
                 EjectEngulfable(engulfable);
                 continue;
             }
 
+            // Doesn't make sense to digest non ingested objects, i.e. objects that are being engulfed,
+            // being ejected, etc. So skip them.
             if (engulfable.PhagocytosisStep != PhagocytosisPhase.Ingested)
                 continue;
 
@@ -1152,12 +1153,12 @@ public partial class Microbe
                 if (!compound.Digestible)
                     continue;
 
-                var originalAmount = containedCompounds?.GetCompoundAmount(compound);
+                var originalAmount = containedCompounds.GetCompoundAmount(compound);
 
                 var additionalAmount = 0.0f;
                 additionalCompounds?.TryGetValue(compound, out additionalAmount);
 
-                var totalAvailable = originalAmount.GetValueOrDefault() + additionalAmount;
+                var totalAvailable = originalAmount + additionalAmount;
                 totalAmountLeft += totalAvailable;
 
                 if ((compound != oxytoxy && !Compounds.IsUseful(compound)) || totalAvailable <= 0)
@@ -1211,7 +1212,7 @@ public partial class Microbe
             {
                 // Ignore size from foreign-ingested objects for now
                 if (!engulfedObject.ReclaimedByAnotherHost)
-                    IngestedSizeCount -= engulfable.EngulfSize;
+                    UsedIngestionCapacity -= engulfable.EngulfSize;
 
                 engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
             }

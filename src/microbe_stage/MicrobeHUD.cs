@@ -1162,7 +1162,7 @@ public class MicrobeHUD : Control
 
     private float GetPlayerIngestedSizeCount()
     {
-        return stage!.Player!.Colony?.IngestedSizeCount ?? stage.Player.IngestedSizeCount;
+        return stage!.Player!.Colony?.UsedIngestionCapacity ?? stage.Player.UsedIngestionCapacity;
     }
 
     private void UpdateHealth(float delta)
@@ -1212,7 +1212,7 @@ public class MicrobeHUD : Control
     {
         healthBarFlashDuration -= delta;
 
-        // How frequent it flashes
+        // How frequently it flashes
         if (healthBarFlashDuration % 0.6f < 0.3f)
         {
             healthBar.TintProgress = colour;

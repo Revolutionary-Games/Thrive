@@ -170,7 +170,7 @@ public static class MicrobeInternalCalculations
         return rawSpeed * 500;
     }
 
-    public static float CalculateDigestionSpeed(float enzymeCount)
+    public static float CalculateDigestionSpeed(int enzymeCount)
     {
         var amount = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
         var buff = amount * Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * enzymeCount;
@@ -178,7 +178,7 @@ public static class MicrobeInternalCalculations
         return amount + buff;
     }
 
-    public static float CalculateTotalDigestionSpeed(ICollection<OrganelleTemplate> organelles)
+    public static float CalculateTotalDigestionSpeed(IEnumerable<OrganelleTemplate> organelles)
     {
         var multiplier = 0;
         foreach (var organelle in organelles)
@@ -198,7 +198,7 @@ public static class MicrobeInternalCalculations
         return Mathf.Clamp(absorption + buff, 0.0f, 0.6f);
     }
 
-    public static float CalculateTotalDigestionEfficiency(ICollection<OrganelleTemplate> organelles)
+    public static float CalculateTotalDigestionEfficiency(IEnumerable<OrganelleTemplate> organelles)
     {
         var multiplier = 0;
         foreach (var organelle in organelles)

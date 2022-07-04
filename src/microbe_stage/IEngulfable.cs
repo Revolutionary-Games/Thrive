@@ -34,6 +34,20 @@ public interface IEngulfable : IGraphicalEntity
     /// </summary>
     public float DigestedAmount { get; set; }
 
+    /// <summary>
+    ///   Additional means bonus compounds that can be acquired from this engulfable for predating microbes
+    ///   on top of <see cref="Compounds"/>
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Use case: Say you want to engulf and digest an object, but it only has little resources stored in it, you
+    ///     want to boost (or even add compounds to) this by specifying additional digestible compounds.
+    ///     For example on how this is already used: In microbes every organelle has a build cost, which is ammonia and
+    ///     phosphates. Most of the times, AI microbes have none of these so we want to reward players fairly by giving
+    ///     them enough of these two.
+    ///   </para>
+    /// </remarks>
+    /// <returns>The additional compounds, null if there's none.</returns>
     public Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds();
 
     /// <summary>

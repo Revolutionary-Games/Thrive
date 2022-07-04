@@ -11,7 +11,7 @@ public class MicrobeColony
 
     private bool hexCountDirty = true;
     private float hexCount;
-    private float ingestedSizeCount;
+    private float usedIngestionCapacity;
 
     [JsonConstructor]
     private MicrobeColony(Microbe master)
@@ -25,6 +25,9 @@ public class MicrobeColony
         state = master.State;
     }
 
+    /// <summary>
+    ///   Returns all members of this colony including the colony leader.
+    /// </summary>
     [JsonProperty]
     public List<Microbe> ColonyMembers { get; private set; }
 
@@ -63,14 +66,17 @@ public class MicrobeColony
         }
     }
 
+    /// <summary>
+    ///   The accumulation of all the colony member's <see cref="Microbe.EngulfSize"/>.
+    /// </summary>
     [JsonIgnore]
-    public float IngestedSizeCount
+    public float UsedIngestionCapacity
     {
         get
         {
             if (hexCountDirty)
                 UpdateHexCount();
-            return ingestedSizeCount;
+            return usedIngestionCapacity;
         }
     }
 
@@ -155,12 +161,12 @@ public class MicrobeColony
     private void UpdateHexCount()
     {
         hexCount = 0;
-        ingestedSizeCount = Master.IngestedSizeCount;
+        usedIngestionCapacity = Master.UsedIngestionCapacity;
 
         foreach (var member in ColonyMembers)
         {
             hexCount += member.EngulfSize;
-            ingestedSizeCount += member.IngestedSizeCount;
+            usedIngestionCapacity += member.UsedIngestionCapacity;
         }
     }
 }

@@ -45,7 +45,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private bool absorptionSkippedEarly;
 
     private bool processesDirty = true;
-    private List<TweakedProcess>? processes;
+    private List<TweakedProcess> processes = new();
 
     private bool cachedHexCountDirty = true;
     private int cachedHexCount;
@@ -236,7 +236,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         {
             if (processesDirty)
                 RefreshProcesses();
-            return processes!;
+            return processes;
         }
     }
 
@@ -247,7 +247,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         {
             if (enzymesDirty)
                 RefreshEnzymes();
-            return enzymes!;
+            return enzymes;
         }
     }
 
@@ -882,7 +882,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             if ((spatial.Translation - Translation).LengthSquared() > searchRadiusSquared)
                 continue;
 
-            // Ship can't be engulfed entities
+            // Skip non-engulfable entities
             if (!CanEngulf(entity))
                 continue;
 
@@ -1014,10 +1014,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         var material = Membrane.MaterialToEdit;
 
         if (material != null)
-        {
             material.RenderPriority = RenderPriority;
-            Membrane.Dirty = true;
-        }
     }
 
     private Node GetStageAsParent()
@@ -1138,14 +1135,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     private void RefreshProcesses()
     {
-        if (processes == null)
-        {
-            processes = new List<TweakedProcess>();
-        }
-        else
-        {
-            processes.Clear();
-        }
+        processes.Clear();
 
         if (organelles == null)
             return;
@@ -1180,14 +1170,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private void RefreshEnzymes()
     {
-        if (enzymes == null)
-        {
-            enzymes = new Dictionary<Enzyme, int>();
-        }
-        else
-        {
-            enzymes.Clear();
-        }
+        enzymes.Clear();
 
         if (organelles == null)
             return;
@@ -1199,14 +1182,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         {
             foreach (var enzyme in organelle.StoredEnzymes)
             {
-                // Should have a minimum of unit of enzyme
+                // Filter out invalid enzyme values
                 if (enzyme.Value <= 0)
                     continue;
 
-                if (!enzymes.TryGetValue(enzyme.Key, out int count))
-                    count = 0;
-
-                enzymes[enzyme.Key] = count + enzyme.Value;
+                var existingValue = enzymes[enzyme.Key];
+                enzymes[enzyme.Key] = existingValue + enzyme.Value;
             }
         }
 

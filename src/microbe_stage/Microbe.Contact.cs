@@ -146,10 +146,17 @@ public partial class Microbe
     public PhagocytosisPhase PhagocytosisStep { get; set; }
 
     /// <summary>
-    ///   The amount of space any engulfed objects occupy in the cytoplasm. Maximum is <see cref="EngulfSize"/>.
+    ///   The amount of space all of the currently engulfed objects occupy in the cytoplasm. This is used to determine
+    ///   whether a cell can ingest any more objects or not due to being full.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     In a more technical sense, this is the accumulated <see cref="IEngulfable.EngulfSize"/> from all
+    ///     the ingested objects. Maximum is this cell's own <see cref="EngulfSize"/>.
+    ///   </para>
+    /// </remarks>
     [JsonProperty]
-    public float IngestedSizeCount { get; private set; }
+    public float UsedIngestionCapacity { get; private set; }
 
     [JsonProperty]
     public EntityReference<Microbe> HostileEngulfer { get; private set; } = new();
@@ -391,26 +398,25 @@ public partial class Microbe
         if (expelledObjects.Any(m => m.Object == target))
             return false;
 
-        var microbe = target as Microbe;
-        var isMicrobe = microbe != null;
+        var targetAsMicrobe = target as Microbe;
 
         // Can't engulf already destroyed microbes. We don't use entity references so we need to manually check if
         // something is destroyed or not here (especially now that the Invoke the engulf start callback)
-        if (isMicrobe && microbe!.destroyed)
+        if (targetAsMicrobe != null && targetAsMicrobe.destroyed)
             return false;
 
         // Can't engulf dead microbes (unlikely to happen but this is fail-safe)
-        if (isMicrobe && microbe!.Dead)
+        if (targetAsMicrobe != null && targetAsMicrobe.Dead)
             return false;
 
         // Log error if trying to engulf something that is disposed, we got a crash log trace with an error with that
         // TODO: find out why disposed microbes can be attempted to be engulfed
         try
         {
-            if (isMicrobe)
+            if (targetAsMicrobe != null)
             {
                 // Access a Godot property to throw disposed exception
-                _ = microbe!.GlobalTransform;
+                _ = targetAsMicrobe!.GlobalTransform;
             }
         }
         catch (ObjectDisposedException)
@@ -425,15 +431,15 @@ public partial class Microbe
         }
 
         // Limit amount of things that can be engulfed at once
-        if (IngestedSizeCount > EngulfSize || IngestedSizeCount + target.EngulfSize > EngulfSize)
+        if (UsedIngestionCapacity > EngulfSize || UsedIngestionCapacity + target.EngulfSize > EngulfSize)
             return false;
 
-        // Too many things attempted to be engulfed at once
+        // Too many things attempted to be pulled in at once
         if (attemptingToEngulf.Sum(e => e.EngulfSize) + target.EngulfSize > EngulfSize)
             return false;
 
         // Disallow cannibalism
-        if (isMicrobe && microbe!.Species == Species)
+        if (targetAsMicrobe != null && targetAsMicrobe.Species == Species)
             return false;
 
         // Membranes with Cell Wall cannot engulf
@@ -461,7 +467,7 @@ public partial class Microbe
             }
         }
 
-        // Just in case
+        // Just in case player is engulfed again after escaping
         playerEngulfedDeathTimer = 0;
     }
 
@@ -483,19 +489,12 @@ public partial class Microbe
             organelle.UpdateRenderPriority(Hex.GetRenderPriority(organelle.Position));
         }
 
-        // Our engulfer also has its own engulfer and it wants to claim us
-        if (hostile?.HostileEngulfer.Value != null)
-        {
-            hostile.HostileEngulfer.Value.IngestEngulfable(this);
-            return;
-        }
-
         if (DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD)
         {
             // Cell is too damaged from digestion, can't live in open environment and is considered dead
             // Kill() is not called here because it's already called during partial digestion
             OnDestroyed();
-            var droppedChunks = OnKilled();
+            var droppedChunks = OnKilled().ToList();
 
             if (hostile == null)
                 return;
@@ -582,7 +581,7 @@ public partial class Microbe
     /// <returns>
     ///   The dropped corpse chunks. Null if this cell is already dead or is engulfed.
     /// </returns>
-    public HashSet<FloatingChunk>? Kill()
+    public IEnumerable<FloatingChunk>? Kill()
     {
         if (Dead)
             return null;
@@ -724,7 +723,7 @@ public partial class Microbe
     /// <returns>
     ///   The dropped corpse chunks.
     /// </returns>
-    private HashSet<FloatingChunk> OnKilled()
+    private IEnumerable<FloatingChunk> OnKilled()
     {
         // Reset some stuff
         State = MicrobeState.Normal;
@@ -1134,6 +1133,8 @@ public partial class Microbe
             var engulfedObject = engulfedObjects[i];
 
             var engulfable = engulfedObject.Object.Value;
+            if (engulfable == null)
+                continue;
 
             var body = engulfable as RigidBody;
             if (body == null)
@@ -1141,7 +1142,7 @@ public partial class Microbe
 
             body.Mode = ModeEnum.Static;
 
-            if (engulfable?.PhagocytosisStep == PhagocytosisPhase.Digested)
+            if (engulfable.PhagocytosisStep == PhagocytosisPhase.Digested)
             {
                 engulfedObject.TargetValuesToLerp = (null, null, Vector3.One * Mathf.Epsilon);
                 StartBulkTransport(engulfedObject, 1.5f, false);
@@ -1150,14 +1151,14 @@ public partial class Microbe
             if (!engulfedObject.Interpolate)
                 continue;
 
-            // Ingestion hasn't completed yet but player is no longer in engulfment mode, cancel ingestion.
+            // Ingestion hasn't completed yet but the cell is no longer in engulfment mode, cancel ingestion.
             // Engulfment mode must be kept until internalization is complete
-            if (State != MicrobeState.Engulf && engulfable?.PhagocytosisStep == PhagocytosisPhase.Ingestion)
+            if (State != MicrobeState.Engulf && engulfable.PhagocytosisStep == PhagocytosisPhase.Ingestion)
                 EjectEngulfable(engulfable, 1.0f);
 
             if (AnimateBulkTransport(delta, engulfedObject))
             {
-                switch (engulfable?.PhagocytosisStep)
+                switch (engulfable.PhagocytosisStep)
                 {
                     case PhagocytosisPhase.Ingestion:
                         CompleteIngestion(engulfedObject);
@@ -1520,10 +1521,10 @@ public partial class Microbe
 
         if (engulfedObject.HasBeenIngested)
         {
-            IngestedSizeCount -= target.EngulfSize;
+            UsedIngestionCapacity -= target.EngulfSize;
 
-            if (IngestedSizeCount < 0)
-                IngestedSizeCount = 0;
+            if (UsedIngestionCapacity < 0)
+                UsedIngestionCapacity = 0;
         }
 
         target.PhagocytosisStep = PhagocytosisPhase.Exocytosis;
@@ -1666,7 +1667,7 @@ public partial class Microbe
             }
         }
 
-        var full = IngestedSizeCount >= EngulfSize || IngestedSizeCount + engulfable.EngulfSize >= EngulfSize;
+        var full = UsedIngestionCapacity >= EngulfSize || UsedIngestionCapacity + engulfable.EngulfSize >= EngulfSize;
 
         if (CanEngulf(engulfable))
         {
@@ -1771,7 +1772,7 @@ public partial class Microbe
         attemptingToEngulf.Remove(engulfable);
         touchedEntities.Remove(engulfable);
 
-        IngestedSizeCount += engulfable.EngulfSize;
+        UsedIngestionCapacity += engulfable.EngulfSize;
         engulfed.HasBeenIngested = true;
 
         OnSuccessfulEngulfment?.Invoke(this, engulfable);
@@ -1819,6 +1820,10 @@ public partial class Microbe
 
         // Apply outwards ejection force
         body.ApplyCentralImpulse(impulse + LinearVelocity);
+
+        // We have our own engulfer and it wants to claim this object we've just expelled
+        if (HostileEngulfer.Value != null)
+            HostileEngulfer.Value.IngestEngulfable(engulfable);
 
         engulfable.OnExpelledFromEngulfment();
         engulfable.HostileEngulfer.Value = null;
