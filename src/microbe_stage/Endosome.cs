@@ -53,7 +53,7 @@ public class Endosome : Spatial, IEntity
         var material = Mesh!.MaterialOverride as ShaderMaterial;
 
         if (material == null)
-            GD.PrintErr("Material is not found from the Vacuole mesh for Endosome");
+            GD.PrintErr("Material is not found from the EngulfedObjectHolder mesh for Endosome");
 
         // This has to be done here because setting this in Godot editor truncates
         // the number to only 3 decimal places.
