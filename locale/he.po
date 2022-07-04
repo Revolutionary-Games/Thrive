@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-02 10:20+0100\n"
+"POT-Creation-Date: 2022-07-04 13:19+0100\n"
 "PO-Revision-Date: 2022-06-29 15:12+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -40,45 +40,45 @@ msgid "CONCEPT_ART"
 msgstr "איור קונספט"
 
 #: ../simulation_parameters/common/gallery.json:6
-msgid "GENERAL"
-msgstr "כללי"
-
-#: ../simulation_parameters/common/gallery.json:28
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
 msgid "CELLS"
 msgstr "תאים"
 
-#: ../simulation_parameters/common/gallery.json:68
+#: ../simulation_parameters/common/gallery.json:61
+msgid "GENERAL"
+msgstr "כללי"
+
+#: ../simulation_parameters/common/gallery.json:123
 msgid "MODELS"
 msgstr "מודלים"
 
-#: ../simulation_parameters/common/gallery.json:71
-#: ../simulation_parameters/common/gallery.json:209
+#: ../simulation_parameters/common/gallery.json:126
+#: ../simulation_parameters/common/gallery.json:276
 msgid "MICROBE_STAGE"
 msgstr "שלב המיקרובי"
 
-#: ../simulation_parameters/common/gallery.json:184
+#: ../simulation_parameters/common/gallery.json:239
 msgid "MUSIC"
 msgstr "מוזיקה"
 
-#: ../simulation_parameters/common/gallery.json:187
+#: ../simulation_parameters/common/gallery.json:242
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 msgid "ALL"
 msgstr "הכל"
 
-#: ../simulation_parameters/common/gallery.json:196
+#: ../simulation_parameters/common/gallery.json:253
 msgid "MENU"
 msgstr "תפריט"
 
-#: ../simulation_parameters/common/gallery.json:238
+#: ../simulation_parameters/common/gallery.json:317
 msgid "MICROBE_EDITOR"
 msgstr "עורך המיקרובי"
 
-#: ../simulation_parameters/common/gallery.json:263
+#: ../simulation_parameters/common/gallery.json:352
 msgid "MULTICELLULAR_STAGE"
 msgstr "שלב הרב-תאי"
 
-#: ../simulation_parameters/common/gallery.json:280
+#: ../simulation_parameters/common/gallery.json:375
 msgid "MULTICELLULAR_EDITOR"
 msgstr "עורך הרב-תאי"
 
@@ -355,12 +355,12 @@ msgid "ABILITIES"
 msgstr "יכולות"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2149
+#: ../src/microbe_stage/MicrobeStage.tscn:2145
 msgid "FIRE_TOXIN"
 msgstr "שחרר רעלנים"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2137
+#: ../src/microbe_stage/MicrobeStage.tscn:2133
 msgid "TOGGLE_ENGULF"
 msgstr "החלף מצב בליעה"
 
@@ -369,7 +369,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "החזק כדי להציג את תפריט פקודות"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2160
+#: ../src/microbe_stage/MicrobeStage.tscn:2156
 msgid "TOGGLE_BINDING"
 msgstr "החלף מצב קישור"
 
@@ -378,7 +378,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "בטל מצב קישור"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2172
+#: ../src/microbe_stage/MicrobeStage.tscn:2168
 msgid "UNBIND_ALL"
 msgstr "שחרר הכל"
 
@@ -673,59 +673,59 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:770
+#: ../src/microbe_stage/MicrobeStage.tscn:1298
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "אמוניה"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:841
+#: ../src/microbe_stage/MicrobeStage.tscn:1350
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "פוספט"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:735
+#: ../src/microbe_stage/MicrobeStage.tscn:1402
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "מימן גופרתי"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:805
+#: ../src/microbe_stage/MicrobeStage.tscn:1246
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "גלוקוז"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1585
+#: ../src/microbe_stage/MicrobeStage.tscn:1584
 msgid "OXYTOXY_NT"
 msgstr "אוקסיטוקסי נ\"ט"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:876
+#: ../src/microbe_stage/MicrobeStage.tscn:1454
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "ברזל"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:572
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:459
 msgid "OXYGEN"
 msgstr "חמצן"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:626
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:513
 msgid "CARBON_DIOXIDE"
 msgstr "פחמן דו חמצני"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:599
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:486
 msgid "NITROGEN"
 msgstr "חנקן"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:453
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:340
 msgid "SUNLIGHT"
 msgstr "אור שמש"
 
@@ -895,8 +895,9 @@ msgstr "{0:F1}% הסתיים. {1:n0}/{2:n0} שלבים."
 msgid "STARTING"
 msgstr "מתחיל"
 
-#: ../src/auto-evo/AutoEvoRun.cs:288
-msgid "AUTO-EVO_POPULATION_CHANGED"
+#: ../src/auto-evo/AutoEvoRun.cs:293
+#, fuzzy
+msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "אוכלוסיית {0} השתנתה ב {1} בגלל: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
@@ -1054,7 +1055,7 @@ msgstr "בטל פעולה"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1043
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:154
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "הבא"
@@ -1140,14 +1141,13 @@ msgid "FRAME_DURATION"
 msgstr "דלתא: {0}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
-#: ../src/saving/SaveManagerGUI.cs:126
+#: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
-#, fuzzy
 msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Workshop ID לא יודע בשביל מוד זה"
+msgstr "לא מוכר לWindows"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
@@ -1158,8 +1158,8 @@ msgstr ""
 "ישויות: {2} אחר: {3}\n"
 "נוצרו: {4} נמחקו: {5}\n"
 "צמתים בשימוש: {6}\n"
-"זיכרון בשימוש: {7} MiB\n"
-"זכרון מעבד גרפי: {8} MiB\n"
+"זיכרון בשימוש: {7}\n"
+"זכרון מעבד גרפי: {8}\n"
 "אובייקטים עובדו: {9}\n"
 "תאים צוירו: {10} 2D: {11}\n"
 "פסגות שעובדו: {12}\n"
@@ -1644,11 +1644,11 @@ msgstr "סגור"
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:567
 #: ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/MicrobeHUD.cs:717
+#: ../src/microbe_stage/MicrobeHUD.cs:745
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:395
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:275
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:236
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2349,7 +2349,7 @@ msgid "STATISTICS"
 msgstr "סטטיסטיקה"
 
 #: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/MicrobeStage.tscn:1697
+#: ../src/microbe_stage/MicrobeStage.tscn:1696
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "עזרה"
 
@@ -3105,7 +3105,7 @@ msgstr "אין תהליכים"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1726
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
-#: ../src/microbe_stage/MicrobeHUD.cs:1502
+#: ../src/microbe_stage/MicrobeHUD.cs:1539
 msgid "TO_BE_IMPLEMENTED"
 msgstr "יושם בקרוב."
 
@@ -3228,9 +3228,9 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "הפעל / השבת את חלון אזהרת התקדמות הלא שמורה בזמן שהשחק מנסה לצאת מהמשחק."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:390
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
 msgid "TEMPERATURE"
 msgstr "טמפרטורה"
 
@@ -3280,180 +3280,184 @@ msgstr "שכפל שחקן"
 msgid "SPAWN_ENEMY"
 msgstr "זמן אויב"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:553
+#: ../src/microbe_stage/MicrobeHUD.cs:557
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "ללא פקודה"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:554
+#: ../src/microbe_stage/MicrobeHUD.cs:558
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "עקוב אחרי"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:555
+#: ../src/microbe_stage/MicrobeHUD.cs:559
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "זוזו אליי"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:556
+#: ../src/microbe_stage/MicrobeHUD.cs:560
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "ברחו"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:557
+#: ../src/microbe_stage/MicrobeHUD.cs:561
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "להפוך לתוקפני"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:560
+#: ../src/microbe_stage/MicrobeHUD.cs:564
 msgid "SIGNAL_TO_EMIT"
 msgstr "איתות לפליטה"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:790
+#: ../src/microbe_stage/MicrobeHUD.cs:827
 msgid "PAUSE_PROMPT"
 msgstr "[center]לחץ [thrive:input]g_pause[/thrive:input] בשביל להמשיך[/center]"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:904
+#: ../src/microbe_stage/MicrobeHUD.cs:941
 msgid "STUFF_AT"
 msgstr "דברים ב {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:937
+#: ../src/microbe_stage/MicrobeHUD.cs:974
 msgid "PLAYER_CELL"
 msgstr "תא השחקן"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:954
+#: ../src/microbe_stage/MicrobeHUD.cs:991
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:999
+#: ../src/microbe_stage/MicrobeHUD.cs:1036
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "שפע"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1001
+#: ../src/microbe_stage/MicrobeHUD.cs:1038
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "לא מעט"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1003
+#: ../src/microbe_stage/MicrobeHUD.cs:1040
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "כמות נכבדת"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1005
+#: ../src/microbe_stage/MicrobeHUD.cs:1042
 msgid "CATEGORY_SOME"
 msgstr "כמה"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1007
+#: ../src/microbe_stage/MicrobeHUD.cs:1044
 msgid "CATEGORY_LITTLE"
 msgstr "קטן"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1009
+#: ../src/microbe_stage/MicrobeHUD.cs:1046
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "קטן מאוד"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1267
-#: ../src/microbe_stage/MicrobeStage.tscn:1764
+#: ../src/microbe_stage/MicrobeHUD.cs:1304
+#: ../src/microbe_stage/MicrobeStage.tscn:1763
 msgid "BECOME_MULTICELLULAR"
 msgstr "להפוך לרב-תאיים ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1303
-#: ../src/microbe_stage/MicrobeStage.tscn:1775
+#: ../src/microbe_stage/MicrobeHUD.cs:1340
+#: ../src/microbe_stage/MicrobeStage.tscn:1774
 msgid "BECOME_MACROSCOPIC"
 msgstr "להפוך למקרוסקופי ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:799
+#: ../src/microbe_stage/MicrobeStage.cs:815
 msgid "PLAYER_REPRODUCED"
 msgstr "השחקן התרבה"
 
-#: ../src/microbe_stage/MicrobeStage.cs:813
+#: ../src/microbe_stage/MicrobeStage.cs:829
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "אינך יכול לזמן אוייבים צ'יטים בגלל שאזור זה אינו מכיל שום מינים אויבים"
 
-#: ../src/microbe_stage/MicrobeStage.cs:837
+#: ../src/microbe_stage/MicrobeStage.cs:852
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:516
+#: ../src/microbe_stage/MicrobeStage.cs:968
+#, fuzzy
+msgid "EXTINCT_IN_PATCH"
+msgstr "נכחד מהאזור"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:518
 msgid "AT_CURSOR"
 msgstr "בסמן העכבר:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:542
+#: ../src/microbe_stage/MicrobeStage.tscn:544
 msgid "NOTHING_HERE"
 msgstr "אין פה שום דבר"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:567
+#: ../src/microbe_stage/MicrobeStage.tscn:569
 msgid "COMPOUNDS_COLON"
 msgstr "תרכובות:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:607
+#: ../src/microbe_stage/MicrobeStage.tscn:609
 msgid "SPECIES_COLON"
 msgstr "מינים:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:687
+#: ../src/microbe_stage/MicrobeStage.tscn:686
 msgid "ENVIRONMENT"
 msgstr "סביבה"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:955
+#: ../src/microbe_stage/MicrobeStage.tscn:954
 msgid "TEMPERATURE_SHORT"
 msgstr "טמפ'."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1011
+#: ../src/microbe_stage/MicrobeStage.tscn:1010
 msgid "LIGHT"
 msgstr "אור"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1066
+#: ../src/microbe_stage/MicrobeStage.tscn:1065
 msgid "PRESSURE_SHORT"
 msgstr "לחץ."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:695
+#: ../src/microbe_stage/MicrobeStage.tscn:1148
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
 msgid "COMPOUNDS"
 msgstr "תרכובות"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1525
+#: ../src/microbe_stage/MicrobeStage.tscn:1524
 msgid "AGENTS"
 msgstr "חומרים"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1623
+#: ../src/microbe_stage/MicrobeStage.tscn:1622
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "תפריט השהה"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1636
+#: ../src/microbe_stage/MicrobeStage.tscn:1635
 msgid "PAUSE_TOOLTIP"
 msgstr "השהה את המשחק"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1637
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
 msgid "RESUME_TOOLTIP"
 msgstr "המשך את המשחק"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1645
+#: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא סביבה ותרכובות"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1660
+#: ../src/microbe_stage/MicrobeStage.tscn:1659
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא תהליכי תא"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1709
+#: ../src/microbe_stage/MicrobeStage.tscn:1708
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "התאבדות"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1760
+#: ../src/microbe_stage/MicrobeStage.tscn:1759
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "עבור לשלב הבא של המשחק (רב תא). זמין ברגע שיש לך מושבת תאים גדולה מספיק."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1795
+#: ../src/microbe_stage/MicrobeStage.tscn:1794
 msgid "POPULATION_CAPITAL"
 msgstr "אוכלוסיה:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1946
+#: ../src/microbe_stage/MicrobeStage.tscn:1945
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "כנס לעורך ושנה את המין שלך"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2092
+#: ../src/microbe_stage/MicrobeStage.tscn:2091
 msgid "PAUSED"
 msgstr "מושהה"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:33
-#, fuzzy
+#: ../src/microbe_stage/PatchMapGenerator.cs:38
 msgid "PANGONIAN_REGION_NAME"
-msgstr "זמן אמוניה"
+msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:559
 msgid "PATCH_NAME"
@@ -3716,47 +3720,17 @@ msgstr "טוען עורך המיקרובי"
 msgid "INFINITE_MP"
 msgstr "אינסוף נקמ\"ו"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:155
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:99
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:121
 #, fuzzy
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "זמן שחלף: {0:#,#} שנים"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:181
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:126
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:148
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
 msgstr "נתיב סמליל מוד לא חוקית"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:232
-msgid "SELECT_A_PATCH"
-msgstr "בחר אזור להצגת פרטים כאן"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:267
-msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "מיקום נוכחי"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:349
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
-msgid "PHYSICAL_CONDITIONS"
-msgstr "מצב פיזי"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:426
-msgid "PRESSURE"
-msgstr "לחץ"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:531
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
-msgid "ATMOSPHERIC_GASSES"
-msgstr "גזים אטמוספריים"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:955
-msgid "SPECIES_PRESENT"
-msgstr "מינים נוכחים"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1019
-msgid "MOVE_TO_THIS_PATCH"
-msgstr "תעבור לאזור זה"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:324
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:325
@@ -3765,6 +3739,13 @@ msgstr "תעבור לאזור זה"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 msgid "YEARS"
 msgstr "שנים"
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:418
+msgid "ATMOSPHERIC_GASSES"
+msgstr "גזים אטמוספריים"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:330
 msgid "SPECIES_LIST"
@@ -3834,6 +3815,11 @@ msgstr "מ"
 msgid "SPECIES_POPULATION"
 msgstr "אוכלוסיית מינים"
 
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:236
+msgid "PHYSICAL_CONDITIONS"
+msgstr "מצב פיזי"
+
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "תסקיר"
@@ -3870,18 +3856,6 @@ msgstr "להזיז"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:362
 msgid "MODIFY"
 msgstr "לשנות"
-
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
-msgid "BIOME_LABEL"
-msgstr "ביומה: {0}"
-
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
-msgid "BELOW_SEA_LEVEL"
-msgstr "{0}-{1}מ' מתחת פני הים"
-
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
-msgid "SPECIES_WITH_POPULATION"
-msgstr "{0} עם אכלוסיה: {1}"
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
 msgid "EXTINCT_SPECIES"
@@ -3921,6 +3895,48 @@ msgstr "נכחד"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
+msgstr "כמו 99% מכל המינים שחיו אי פעם, אתה נכחדת. אחרים יחליפו וישגשגו במקומך. אבל אתה תישכח, ניסוי כושל של האבולוציה."
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:229
+msgid "BIOME_LABEL"
+msgstr "ביומה: {0}"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
+msgid "BELOW_SEA_LEVEL"
+msgstr "{0}-{1}מ' מתחת פני הים"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:268
+msgid "SPECIES_WITH_POPULATION"
+msgstr "{0} עם אכלוסיה: {1}"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:119
+msgid "SELECT_A_PATCH"
+msgstr "בחר אזור להצגת פרטים כאן"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:154
+msgid "CURRENT_LOCATION_CAPITAL"
+msgstr "מיקום נוכחי"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:313
+msgid "PRESSURE"
+msgstr "לחץ"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:842
+msgid "SPECIES_PRESENT"
+msgstr "מינים נוכחים"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:906
+msgid "MOVE_TO_THIS_PATCH"
+msgstr "תעבור לאזור זה"
+
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:75
+#, fuzzy
+msgid "PATCH_EXTINCTION_CAPITAL"
+msgstr "נכחד"
+
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:84
+#, fuzzy
+msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr "כמו 99% מכל המינים שחיו אי פעם, אתה נכחדת. אחרים יחליפו וישגשגו במקומך. אבל אתה תישכח, ניסוי כושל של האבולוציה."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
@@ -4491,19 +4507,19 @@ msgstr "לא יכול לשכתב מחדש שמירה"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "הניסיון לשכתב מחדש קובץ שמירה נכשלה. שם השמירה ארוך מידי או שאין לך אישור לשכתב מחדש בתיקיית השמירה."
 
-#: ../src/saving/SaveHelper.cs:485 ../src/saving/SaveHelper.cs:536
+#: ../src/saving/SaveHelper.cs:486 ../src/saving/SaveHelper.cs:537
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "שמירה נכשלה! משהו חריג קרה"
 
-#: ../src/saving/SaveHelper.cs:494 ../src/saving/SaveHelper.cs:513
+#: ../src/saving/SaveHelper.cs:495 ../src/saving/SaveHelper.cs:514
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "שמירה אינה אפשרית כרגע בשל:"
 
-#: ../src/saving/SaveHelper.cs:495
+#: ../src/saving/SaveHelper.cs:496
 msgid "PLAYER_EXTINCT"
 msgstr "השחקן נכחד"
 
-#: ../src/saving/SaveHelper.cs:514
+#: ../src/saving/SaveHelper.cs:515
 msgid "IN_PROTOTYPE"
 msgstr ""
 "אתה משחק באבטיפוס של השלב המאוחר יותר הכלול במשחק.\n"
@@ -4511,7 +4527,7 @@ msgstr ""
 "ולא תמיד ניתן לשחק בו בצורה חלקה. כך ששמירה אינו אפשרי כרגע.\n"
 "חלקים מהאבטיפוס ניתן לשמור באופן חלקי."
 
-#: ../src/saving/SaveHelper.cs:526
+#: ../src/saving/SaveHelper.cs:527
 msgid "SAVING_SUCCEEDED"
 msgstr "נשמר בהצלחה"
 
@@ -4656,16 +4672,17 @@ msgstr "טען"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "מחיקת שמירה זו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק אתה לצמיתות?"
 
-#: ../src/saving/SaveManagerGUI.cs:212
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "מחיקת שמירות שנבחרו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק את {0} לצמיתות ?"
 
-#: ../src/saving/SaveManagerGUI.cs:224
-msgid "DELETE_ALL_OLD_SAVE_WARNING"
+#: ../src/saving/SaveManagerGUI.cs:237
+msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "מחיקת כל השמירות האוטומטיות והמהירות הישנות היינו בלתי הפיך, האם אתה בטוח שאתה רוצה למחוק את?:\n"
 " - {0} שמירות אוטומטיות\n"
-" - {1} שמירות מהירות"
+" - {1} שמירות מהירות\n"
+" -{2} שמירות מגובות"
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
@@ -4929,6 +4946,15 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "הראה עכשיו"
 
+#~ msgid "AUTO-EVO_POPULATION_CHANGED"
+#~ msgstr "אוכלוסיית {0} השתנתה ב {1} בגלל: {2}"
+
+#~ msgid "DELETE_ALL_OLD_SAVE_WARNING"
+#~ msgstr ""
+#~ "מחיקת כל השמירות האוטומטיות והמהירות הישנות היינו בלתי הפיך, האם אתה בטוח שאתה רוצה למחוק את?:\n"
+#~ " - {0} שמירות אוטומטיות\n"
+#~ " - {1} שמירות מהירות"
+
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "אזור הנביעות"
 
@@ -4940,10 +4966,6 @@ msgstr "הראה עכשיו"
 
 #~ msgid "PATCH_PANGONIAN_TIDEPOOL"
 #~ msgstr "אזור בריכות גאות"
-
-#, fuzzy
-#~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
-#~ msgstr "אזור התהומות"
 
 #~ msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 #~ msgstr "אזור התהומות"

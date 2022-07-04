@@ -19,10 +19,10 @@ public class PatchRegion
     public float PatchNodeHeight = 64.0f;
 
     [JsonIgnore]
-    public float RegionLineWidth = 4f;
+    public float RegionLineWidth = 4.0f;
 
     [JsonIgnore]
-    public float PatchMargin = 4f;
+    public float PatchMargin = 4.0f;
 
     [JsonConstructor]
     public PatchRegion(int id, LocalizedString name, string regionType, Vector2 screenCoordinates,
@@ -125,7 +125,7 @@ public class PatchRegion
             if (RegionType is "sea" or "ocean")
             {
                 Patches[i].ScreenCoordinates = new Vector2(ScreenCoordinates.x + regionMargin,
-                    ScreenCoordinates.y + i * (64f + PatchMargin) + PatchMargin + RegionLineWidth);
+                    ScreenCoordinates.y + i * (64.0f + PatchMargin) + PatchMargin + RegionLineWidth);
 
                 // Random depth for water regions
                 if (i == Patches.Count - 2)
@@ -151,7 +151,7 @@ public class PatchRegion
                     else
                     {
                         Patches[i].ScreenCoordinates = new Vector2(ScreenCoordinates.x + regionMargin,
-                            ScreenCoordinates.y + 64f + 2 * PatchMargin);
+                            ScreenCoordinates.y + 64.0f + 2 * PatchMargin);
                     }
                 }
                 else
@@ -159,14 +159,14 @@ public class PatchRegion
                     if (i == 1)
                     {
                         Patches[i].ScreenCoordinates =
-                            new Vector2(ScreenCoordinates.x + 2 * PatchMargin + 64f + RegionLineWidth,
+                            new Vector2(ScreenCoordinates.x + 2 * PatchMargin + 64.0f + RegionLineWidth,
                                 ScreenCoordinates.y + regionMargin);
                     }
                     else
                     {
                         Patches[i].ScreenCoordinates =
-                            new Vector2(ScreenCoordinates.x + 2 * PatchMargin + 64f + RegionLineWidth,
-                                ScreenCoordinates.y + 2 * PatchMargin + 64f + RegionLineWidth);
+                            new Vector2(ScreenCoordinates.x + 2 * PatchMargin + 64.0f + RegionLineWidth,
+                                ScreenCoordinates.y + 2 * PatchMargin + 64.0f + RegionLineWidth);
                     }
                 }
             }
@@ -186,21 +186,21 @@ public class PatchRegion
     public void BuildRegion()
     {
         // Region size configuration
-        Width += 64f + 2 * PatchMargin + RegionLineWidth;
+        Width += 64.0f + 2 * PatchMargin + RegionLineWidth;
 
         if (RegionType == "continent")
         {
-            Height = 64f + 2 * PatchMargin + RegionLineWidth;
+            Height = 64.0f + 2 * PatchMargin + RegionLineWidth;
             if (Patches.Count > 1)
-                Width += 64f + PatchMargin;
+                Width += 64.0f + PatchMargin;
 
             if (Patches.Count > 2)
-                Height = 3 * PatchMargin + 2 * 64f + RegionLineWidth;
+                Height = 3 * PatchMargin + 2 * 64.0f + RegionLineWidth;
         }
 
         if (RegionType is "ocean" or "sea")
         {
-            Height += 64f * Patches.Count + (Patches.Count + 1) * PatchMargin + RegionLineWidth;
+            Height += 64.0f * Patches.Count + (Patches.Count + 1) * PatchMargin + RegionLineWidth;
         }
 
         if (RegionType == "vents")
@@ -221,7 +221,7 @@ public class PatchRegion
             {
                 ScreenCoordinates = adjacent.ScreenCoordinates +
                     new Vector2(adjacent.Width, adjacent.Patches.IndexOf(adjacentPatch) *
-                        (64f + PatchMargin)) + new Vector2(20, 0);
+                        (64.0f + PatchMargin)) + new Vector2(20, 0);
             }
 
             if (adjacent.RegionType == "continent")

@@ -49,6 +49,11 @@ public class PatchMapNode : MarginContainer
     /// </summary>
     private bool marked;
 
+    /// <summary>
+    ///   True if player can move to this patch
+    /// </summary>
+    private bool enabled = true;
+
     private bool adjacentToSelectedPatch;
 
     private Texture? patchIcon;
@@ -60,7 +65,30 @@ public class PatchMapNode : MarginContainer
     /// </summary>
     public Patch Patch { get; set; } = null!;
 
+    public ShaderMaterial? MonochromeMaterial { get; set; }
+
     public Action<PatchMapNode>? SelectCallback { get; set; }
+
+    /// <summary>
+    ///   Display the icon in color and make it highlightable/selectable.
+    ///   Setting this to false removes current selection.
+    /// </summary>
+    public bool Enabled
+    {
+        get => enabled;
+        set
+        {
+            Selected = Selected && value;
+
+            enabled = value;
+
+            if (ready)
+            {
+                UpdateSelectHighlightRing();
+                UpdateGreyscale();
+            }
+        }
+    }
 
     public Texture? PatchIcon
     {
@@ -138,6 +166,7 @@ public class PatchMapNode : MarginContainer
         UpdateSelectHighlightRing();
         UpdateMarkRing();
         UpdateIcon();
+        UpdateGreyscale();
     }
 
     public override void _Process(float delta)
@@ -153,6 +182,9 @@ public class PatchMapNode : MarginContainer
 
     public override void _GuiInput(InputEvent @event)
     {
+        if (!Enabled)
+            return;
+
         if (@event is InputEventMouseButton
             {
                 Pressed: true, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
@@ -183,8 +215,16 @@ public class PatchMapNode : MarginContainer
 
     private void UpdateSelectHighlightRing()
     {
-        highlightPanel.Visible = Highlighted || Selected;
-        adjacentHighlightPanel.Visible = AdjacentToSelectedPatch;
+        if (Enabled)
+        {
+            highlightPanel.Visible = Highlighted || Selected;
+            adjacentHighlightPanel.Visible = AdjacentToSelectedPatch;
+        }
+        else
+        {
+            highlightPanel.Visible = false;
+            adjacentHighlightPanel.Visible = false;
+        }
     }
 
     private void UpdateMarkRing()
@@ -198,5 +238,10 @@ public class PatchMapNode : MarginContainer
             return;
 
         iconRect.Texture = PatchIcon;
+    }
+
+    private void UpdateGreyscale()
+    {
+        iconRect.Material = Enabled ? null : MonochromeMaterial;
     }
 }

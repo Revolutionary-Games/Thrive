@@ -1113,13 +1113,13 @@ public class LineChart : VBoxContainer
                     icon.Pressed = false;
                     ToolTipManager.Instance.ShowPopup(string.Format(
                         CultureInfo.CurrentCulture, TranslationServer.Translate(
-                            "MAX_VISIBLE_DATASET_WARNING"), chart.MaxDisplayedDataSet), 1f);
+                            "MAX_VISIBLE_DATASET_WARNING"), chart.MaxDisplayedDataSet), 1.0f);
                     break;
                 case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
                     icon.Pressed = true;
                     ToolTipManager.Instance.ShowPopup(string.Format(
                         CultureInfo.CurrentCulture, TranslationServer.Translate(
-                            "MIN_VISIBLE_DATASET_WARNING"), chart.MinDisplayedDataSet), 1f);
+                            "MIN_VISIBLE_DATASET_WARNING"), chart.MinDisplayedDataSet), 1.0f);
                     break;
             }
         }
@@ -1205,12 +1205,12 @@ public class LineChart : VBoxContainer
                 case DataSetVisibilityUpdateResult.MaxVisibleLimitReached:
                     ToolTipManager.Instance.ShowPopup(string.Format(
                         CultureInfo.CurrentCulture, TranslationServer.Translate(
-                            "MAX_VISIBLE_DATASET_WARNING"), chart.MaxDisplayedDataSet), 1f);
+                            "MAX_VISIBLE_DATASET_WARNING"), chart.MaxDisplayedDataSet), 1.0f);
                     break;
                 case DataSetVisibilityUpdateResult.MinVisibleLimitReached:
                     ToolTipManager.Instance.ShowPopup(string.Format(
                         CultureInfo.CurrentCulture, TranslationServer.Translate(
-                            "MIN_VISIBLE_DATASET_WARNING"), chart.MinDisplayedDataSet), 1f);
+                            "MIN_VISIBLE_DATASET_WARNING"), chart.MinDisplayedDataSet), 1.0f);
                     break;
             }
         }

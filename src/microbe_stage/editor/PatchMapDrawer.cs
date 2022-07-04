@@ -32,6 +32,9 @@ public class PatchMapDrawer : Control
     [Export]
     public float RegionLineWidth = 4.0f;
 
+    [Export]
+    public ShaderMaterial MonochromeMaterial = null!;
+
     private readonly Dictionary<Patch, PatchMapNode> nodes = new();
 
     /// <summary>
@@ -42,7 +45,10 @@ public class PatchMapDrawer : Control
     private Color connectionColor;
 
     private PatchMap map = null!;
+
     private bool dirty = true;
+
+    private Dictionary<Patch, bool>? patchEnableStatusesToBeApplied;
 
     private PackedScene nodeScene = null!;
 
@@ -58,7 +64,7 @@ public class PatchMapDrawer : Control
         get => map;
         set
         {
-            map = value ?? throw new ArgumentNullException(nameof(Map));
+            map = value ?? throw new ArgumentNullException(nameof(value), "setting to null not allowed");
             dirty = true;
 
             playerPatch ??= map.CurrentPatch;
@@ -162,7 +168,7 @@ public class PatchMapDrawer : Control
 
             DrawNodeLink(start, end);
             DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)),
-                new Color(0f, 0.7f, 0.5f, 0.7f), false, RegionLineWidth);
+                new Color(0.0f, 0.7f, 0.5f, 0.7f), false, RegionLineWidth);
         }
 
         // This ends up drawing duplicates but that doesn't seem problematic ATM
@@ -190,6 +196,25 @@ public class PatchMapDrawer : Control
     public void CenterScroll()
     {
         EmitSignal(nameof(OnCurrentPatchCentered), PlayerPatch!.ScreenCoordinates);
+    }
+
+    /// <summary>
+    ///   Stores patch node status values that will be applied when creating the patch nodes
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that this only works *before* the patch nodes are created, this doesn't apply retroactively
+    ///   </para>
+    /// </remarks>
+    /// <param name="statuses">The enabled status values to store</param>
+    public void SetPatchEnabledStatuses(Dictionary<Patch, bool> statuses)
+    {
+        patchEnableStatusesToBeApplied = statuses;
+    }
+
+    public void SetPatchEnabledStatuses(IEnumerable<Patch> patches, Func<Patch, bool> predicate)
+    {
+        SetPatchEnabledStatuses(patches.ToDictionary(x => x, predicate));
     }
 
     private static Vector2 ClosestPoint(Vector2 p, Vector2 q1, Vector2 q2)
@@ -471,7 +496,7 @@ public class PatchMapDrawer : Control
         {
             var region = entry.Value;
             DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)),
-                new Color(0f, 0.7f, 0.5f, 0.7f), false, RegionLineWidth);
+                new Color(0.0f, 0.7f, 0.5f, 0.7f), false, RegionLineWidth);
         }
     }
 
@@ -497,7 +522,11 @@ public class PatchMapDrawer : Control
             node.Patch = entry.Value;
             node.PatchIcon = entry.Value.BiomeTemplate.LoadedIcon;
 
+            node.MonochromeMaterial = MonochromeMaterial;
+
             node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
+
+            node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? true;
 
             AddChild(node);
             nodes.Add(node.Patch, node);

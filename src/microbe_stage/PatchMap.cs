@@ -21,7 +21,7 @@ public class PatchMap : ISaveLoadable
     public Random Seed { get; set; }
 
     /// <summary>
-    ///   The  list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
+    ///   The list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
     /// </summary>
     [JsonProperty]
     public Dictionary<int, Patch> Patches { get; private set; } = new();

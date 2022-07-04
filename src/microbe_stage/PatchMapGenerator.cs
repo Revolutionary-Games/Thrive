@@ -156,7 +156,7 @@ public static class PatchMapGenerator
 
             // We add the coordinates for the center of the region
             // since that's the point that will be connected
-            regionCoords.Add(coord + region.Size / 2f);
+            regionCoords.Add(coord + region.Size / 2.0f);
             map.AddRegion(region);
         }
 
