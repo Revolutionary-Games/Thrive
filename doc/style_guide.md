@@ -466,7 +466,7 @@ Godot usage
   that are meant for whatever kind of interaction you are designing.
 
 - We have rewritten several controls to workaround Godot bugs or limitations, and
-  add custom features. All these rewritten controls are placed in
+  add custom features. All these rewritten/customized controls are placed in
   "res://src/gui_common/". Currently there are `CustomCheckBox`,
   `CustomDialog`,  `CustomConfirmationDialog`, `ErrorDialog`,
   `TutorialDialog`, `CustomDropDown`, `CustomRichTextLabel`, and
