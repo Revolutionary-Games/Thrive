@@ -190,7 +190,7 @@ public class FloatingChunk : RigidBody, ISpawned
         {
             LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath, SceneModelPath = ModelNodePath,
             LoadedConvexShape = ConvexPhysicsMesh, ConvexShapePath = ConvexPhysicsMesh?.ResourcePath,
-            SceneAnimationPath = AnimationPath
+            SceneAnimationPath = AnimationPath,
         };
 
         config.Meshes.Add(item);
