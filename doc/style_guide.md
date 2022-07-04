@@ -470,10 +470,8 @@ Godot usage
   "res://src/gui_common/". Currently there are `CustomCheckBox`,
   `CustomDialog`,  `CustomConfirmationDialog`, `ErrorDialog`,
   `TutorialDialog`, `CustomDropDown`, `CustomRichTextLabel`, and
-  `TweakedColourPicker`. When adding control types listed above, consider using
-  the custom types rather than the built-in types to ensure consistency
-  across the GUI. This is because the custom implementation offer a much more
-  customized styling and additional functionality.
+  `TweakedColourPicker`. Consider using these custom types rather than the
+  built-in types to ensure consistency across the GUI.
 
 - When you are instantiating a custom Control in code, use
   `(T)GD.load<PackedScene>("res://src/gui_common/T.tscn").Instance()` if the
