@@ -386,7 +386,7 @@ public static class Constants
     public const float ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION = 0.9f;
 
     /// <summary>
-    ///   Each enzyme addition grants 10% increase in digestion speed.
+    ///   Each enzyme addition grants a fraction, set by this variable, increase in digestion speed.
     /// </summary>
     public const float ENZYME_DIGESTION_SPEED_UP_FRACTION = 0.1f;
 
