@@ -151,10 +151,10 @@ Code style rules
   `if` but a comment like "Player is alive" should be inside the
   braces of the `if` statement.
 
-- Prefer to not specifying value for variables or constants explicitly in the
+- Prefer to not specify the value for variables or constants explicitly in the
   comments as they can easily get outdated when somebody changes the actual
   values. If it has to be specified, care **must** be taken to always update
-  this comment whenever the value is changed.
+  that comment whenever the value is changed.
 
 - The `returns` section of an XML can be omitted if it adds nothing
   valuable. For example a method like `public List<Organelle>
