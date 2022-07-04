@@ -2,33 +2,23 @@
     "ConceptArt": {
         "Name": "CONCEPT_ART",
         "AssetCategories": {
-            "General": {
-                "Name": "GENERAL",
-                "Assets": [
-                    {
-                        "ResourcePath": "res://assets/textures/gui/planet.png"
-                    },
-                    {
-                        "Title": "Tribe Gang",
-                        "Artist": "Uniow",
-                        "ResourcePath": "res://assets/concept_art/tribe-gang.jpg"
-                    },
-                    {
-                        "ResourcePath": "res://assets/textures/gui/BG_Menu01.png"
-                    },
-                    {
-                        "ResourcePath": "res://assets/textures/gui/BG_Menu02.png"
-                    },
-                    {
-                        "ResourcePath": "res://assets/textures/gui/BG_Menu03.png"
-                    }
-                ]
-            },
             "MicrobeStage": {
                 "Name": "CELLS",
                 "Assets": [
                     {
+                        "Title": "Abyss",
+                        "Artist": "Zorkman",
+                        "ResourcePath": "res://assets/concept_art/abyss.jpg"
+                    },
+                    {
+                        "Title": "Cell",
+                        "Artist": "MirrorMonkey2",
                         "ResourcePath": "res://assets/concept_art/cell.jpeg"
+                    },
+                    {
+                        "Title": "Cell Gang",
+                        "Artist": "Uniow",
+                        "ResourcePath": "res://assets/concept_art/cell-gang-clean.jpg"
                     },
                     {
                         "Title": "Cells",
@@ -41,6 +31,21 @@
                         "ResourcePath": "res://assets/concept_art/even-more-cells.jpg"
                     },
                     {
+                        "Title": "Floor Dance Party",
+                        "Artist": "Uniow",
+                        "ResourcePath": "res://assets/concept_art/floordanceparty.jpg"
+                    },
+                    {
+                        "Title": "Flagellum Concepts",
+                        "Artist": "KloudCreator",
+                        "ResourcePath": "res://assets/concept_art/flagellum-concepts.jpg"
+                    },
+                    {
+                        "Title": "Membrane",
+                        "Artist": "Narotiza",
+                        "ResourcePath": "res://assets/concept_art/membrane.jpg"
+                    },
+                    {
                         "Title": "Micro Nuggets",
                         "Artist": "Uniow",
                         "ResourcePath": "res://assets/concept_art/gameplay2.jpg"
@@ -49,16 +54,66 @@
                         "Title": "Sea Floor",
                         "Artist": "Uniow",
                         "ResourcePath": "res://assets/concept_art/floor.jpg"
+                    }
+                ]
+            },
+            "General": {
+                "Name": "GENERAL",
+                "Assets": [
+                    {
+                        "Title": "Been Grinding for Da View",
+                        "Artist": "Uniow",
+                        "ResourcePath": "res://assets/concept_art/been-grinding-for-da-view.jpg"
                     },
                     {
-                        "Title": "Floor Dance Party",
-                        "Artist": "Uniow",
-                        "ResourcePath": "res://assets/concept_art/floordanceparty.jpg"
+                        "Title": "Disturbance",
+                        "Artist": "~sciocont",
+                        "ResourcePath": "res://assets/concept_art/disturbance.jpg"
                     },
                     {
-                        "Title": "Cell Gang",
+                        "Title": "Lizard",
+                        "Artist": "~sciocont",
+                        "ResourcePath": "res://assets/concept_art/lizard.jpg"
+                    },
+                    {
+                        "Title": "Menu Background 1",
+                        "Artist": "kertit",
+                        "ResourcePath": "res://assets/textures/gui/BG_Menu01.png"
+                    },
+                    {
+                        "Title": "Menu Background 2",
+                        "Artist": "kertit",
+                        "ResourcePath": "res://assets/textures/gui/BG_Menu02.png"
+                    },
+                    {
+                        "Title": "Menu Background 3",
+                        "Artist": "Zorkman",
+                        "ResourcePath": "res://assets/textures/gui/BG_Menu03.png"
+                    },
+                    {
+                        "Title": "Ocean",
+                        "Artist": "~sciocont",
+                        "ResourcePath": "res://assets/concept_art/ocean.jpg"
+                    },
+                    {
+                        "Title": "Romp",
+                        "Artist": "~sciocont",
+                        "ResourcePath": "res://assets/concept_art/romp.jpg"
+                    },
+                    {
+                        "Title": "Shining Planet",
+                        "Artist": "~sciocont",
+                        "ResourcePath": "res://assets/concept_art/shining-planet.jpg"
+                    },
+                    {
+                        "Title": "Tree Creature",
+                        "Artist": "MirrorMonkey2",
+                        "ResourcePath": "res://assets/concept_art/tree-creature.jpg"
+                    },
+                    {
+                        "Title": "Tribe Gang",
                         "Artist": "Uniow",
-                        "ResourcePath": "res://assets/concept_art/cell-gang-clean.jpg"
+                        "ResourcePath": "res://assets/concept_art/tribe-gang.jpg"
                     }
                 ]
             }
@@ -188,7 +243,9 @@
                 "Assets": [
                     {
                         "ResourcePath": "res://assets/sounds/extinct2.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Narotiza",
+                        "Title": "Extinction Theme"
                     }
                 ]
             },
@@ -197,11 +254,21 @@
                 "Assets": [
                     {
                         "ResourcePath": "res://assets/sounds/main-menu-theme-1.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Oliveriver",
+                        "Title": "Main Theme"
                     },
                     {
                         "ResourcePath": "res://assets/sounds/main-menu-theme-2.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "hongchong7",
+                        "Title": "Main Theme (Original)"
+                    },
+                    {
+                        "ResourcePath": "res://assets/sounds/main-menu-theme-jazz.ogg",
+                        "Type": "AudioPlayback",
+                        "Artist": "Oliveriver",
+                        "Title": "Main Theme (Jazz Remix)"
                     }
                 ]
             },
@@ -210,27 +277,39 @@
                 "Assets": [
                     {
                         "ResourcePath": "res://assets/sounds/microbe-theme-1.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Oliveriver",
+                        "Title": "Microbe Theme 1"
                     },
                     {
                         "ResourcePath": "res://assets/sounds/microbe-theme-3.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "LegoHoss and Oliveriver",
+                        "Title": "Microbe Theme 2"
                     },
                     {
                         "ResourcePath": "res://assets/sounds/microbe-theme-4.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Oliveriver",
+                        "Title": "Microbe Theme 3"
                     },
                     {
                         "ResourcePath": "res://assets/sounds/microbe-theme-5.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Doggit",
+                        "Title": "Microbe Theme 4"
                     },
                     {
                         "ResourcePath": "res://assets/sounds/microbe-theme-6.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Oliveriver",
+                        "Title": "Microbe Theme 5"
                     },
                     {
                         "ResourcePath": "res://assets/sounds/microbe-theme-7.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Oliveriver",
+                        "Title": "Microbe Theme 6"
                     }
                 ]
             },
@@ -239,23 +318,33 @@
                 "Assets": [
                     {
                         "ResourcePath": "res://assets/sounds/microbe-editor-theme-1.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Totemaster and Doggit",
+                        "Title": "Microbe Editor Theme 1"
                     },
                     {
                         "ResourcePath": "res://assets/sounds/microbe-editor-theme-2.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Oliveriver",
+                        "Title": "Microbe Editor Theme 2"
                     },
                     {
                         "ResourcePath": "res://assets/sounds/microbe-editor-theme-3.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Oliveriver",
+                        "Title": "Microbe Editor Theme 3"
                     },
                     {
                         "ResourcePath": "res://assets/sounds/microbe-editor-theme-4.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Oliveriver",
+                        "Title": "Microbe Editor Theme 4"
                     },
                     {
                         "ResourcePath": "res://assets/sounds/microbe-editor-theme-5.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Oliveriver",
+                        "Title": "Microbe Editor Theme 5"
                     }
                 ]
             },
@@ -264,15 +353,21 @@
                 "Assets": [
                     {
                         "ResourcePath": "res://assets/sounds/multicellular-theme-1.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Oliveriver",
+                        "Title": "Multicellular Theme"
                     },
                     {
                         "ResourcePath": "res://assets/sounds/multicellular-theme-2.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Oliveriver",
+                        "Title": "Ocean Theme"
                     },
                     {
                         "ResourcePath": "res://assets/sounds/multicellular-theme-3.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Oliveriver",
+                        "Title": "Ice Ocean Theme"
                     }
                 ]
             },
@@ -281,7 +376,9 @@
                 "Assets": [
                     {
                         "ResourcePath": "res://assets/sounds/multicellular-editor-theme-1.ogg",
-                        "Type": "AudioPlayback"
+                        "Type": "AudioPlayback",
+                        "Artist": "Narotiza",
+                        "Title": "Multicellular Editor Theme"
                     }
                 ]
             }

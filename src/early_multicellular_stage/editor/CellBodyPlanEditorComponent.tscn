@@ -195,18 +195,15 @@ CellPopupMenuPath = NodePath("CellPopupMenu")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 anchor_bottom = 1.0
-margin_top = 41.0
+margin_top = 40.0
 margin_right = 350.0
-margin_bottom = -49.0
+margin_bottom = -50.0
 rect_min_size = Vector2( 350, 0 )
 size_flags_horizontal = 4
 size_flags_vertical = 0
 custom_constants/margin_top = 5
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MainPanel" type="PanelContainer" parent="LeftPanel"]
 margin_left = 10.0
@@ -488,6 +485,7 @@ margin_top = 40.0
 FinishOrNextButtonPath = NodePath("")
 
 [node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource( 13 )]
+margin_right = 641.0
 ShowNewButton = false
 
 [node name="BottomRight" type="MarginContainer" parent="."]
@@ -499,9 +497,6 @@ margin_right = -10.0
 margin_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomRight"]
 margin_right = 150.0

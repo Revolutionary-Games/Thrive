@@ -73,6 +73,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     [JsonProperty]
     private bool gameOver;
 
+    /// <summary>
+    ///   True when the player is extinct in the current patch. The player can still move to another patch.
+    /// </summary>
+    [JsonProperty]
+    private bool playerExtinctInCurrentPatch;
+
     [JsonProperty]
     private bool wonOnce;
 
@@ -290,6 +296,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     // Also begins a new game if one hasn't been started yet for easier debugging
     public void SetupStage()
     {
+        // Initialise the cloud system first so we can apply patch-specific brightness in OnGameStarted
+        Clouds.Init(FluidSystem);
+
         if (!IsLoadedFromSave)
         {
             spawner.Init();
@@ -298,15 +307,19 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             {
                 StartNewGame();
             }
+            else
+            {
+                OnGameStarted();
+            }
         }
+
+        GD.Print(CurrentGame!.GameWorld.WorldSettings);
 
         pauseMenu.GameProperties = CurrentGame ?? throw new InvalidOperationException("current game is not set");
 
         tutorialGUI.EventReceiver = TutorialState;
 
         HUD.SendEditorButtonToTutorial(TutorialState);
-
-        Clouds.Init(FluidSystem);
 
         // If this is a new game, place some phosphates as a learning tool
         if (!IsLoadedFromSave)
@@ -343,13 +356,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
     public void StartNewGame()
     {
-        CurrentGame = GameProperties.StartNewMicrobeGame();
+        CurrentGame = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
 
-        patchManager.CurrentGame = CurrentGame;
-
-        UpdatePatchSettings(!TutorialState.Enabled);
-
-        SpawnPlayer();
+        OnGameStarted();
     }
 
     public void StartMusic()
@@ -425,15 +434,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         microbeSystem.Process(delta);
 
         if (gameOver)
-        {
-            guidanceLine.Visible = false;
-
-            // Player is extinct and has lost the game
-            // Show the game lost popup if not already visible
-            HUD.ShowExtinctionBox();
-
             return;
-        }
+
+        if (playerExtinctInCurrentPatch)
+            return;
 
         if (Player != null)
         {
@@ -562,6 +566,20 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     }
 
     /// <summary>
+    ///   Called when the player died out in a patch and selected a new one
+    /// </summary>
+    public void MoveToPatch(Patch patch)
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Moving to a new patch but stage doesn't have a game state");
+
+        CurrentGame.GameWorld.Map.CurrentPatch = patch;
+        UpdatePatchSettings();
+        PatchExtinctionResolved();
+        SpawnPlayer();
+    }
+
+    /// <summary>
     ///   Switches to the editor
     /// </summary>
     public void MoveToEditor()
@@ -649,7 +667,10 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         // This prevents previous members of the player's colony from immediately being hostile
         bool playerHandled = false;
 
-        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(Player.Species);
+        var previousSpecies = Player.Species;
+        previousSpecies.Obsolete = true;
+
+        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(previousSpecies);
         foreach (var microbe in playerSpeciesMicrobes)
         {
             microbe.ApplySpecies(multicellularSpecies);
@@ -695,6 +716,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         // Make sure player is spawned
         SpawnPlayer();
+
+        // Add a cloud of glucose if difficulty settings call for it
+        if (GameWorld.WorldSettings.FreeGlucoseCloud)
+        {
+            Clouds.AddCloud(glucose, 200000.0f, Player!.Translation + new Vector3(0.0f, 0.0f, -25.0f));
+        }
 
         // Check win conditions
         if (!CurrentGame.FreeBuild && Player!.Species.Generation >= 20 &&
@@ -752,6 +779,18 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     }
 
     /// <summary>
+    ///   Common logic for the case where we directly open this scene or start a new game normally from the menu
+    /// </summary>
+    private void OnGameStarted()
+    {
+        patchManager.CurrentGame = CurrentGame;
+
+        UpdatePatchSettings(!TutorialState.Enabled);
+
+        SpawnPlayer();
+    }
+
+    /// <summary>
     ///   Helper function for transition to multicellular
     /// </summary>
     /// <returns>Array of all microbes of Player's species</returns>
@@ -771,7 +810,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     private void GiveReproductionPopulationBonus()
     {
         var playerSpecies = GameWorld.PlayerSpecies;
-        GameWorld.AlterSpeciesPopulation(
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
             playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
             TranslationServer.Translate("PLAYER_REPRODUCED"),
             false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
@@ -808,10 +847,11 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         GD.Print("The player has died");
 
         // Decrease the population by the constant for the player dying
-        GameWorld.AlterSpeciesPopulation(
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
             GameWorld.PlayerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
-            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
+            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
+            / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
 
         if (IsGameOver())
         {
@@ -863,19 +903,76 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     /// </summary>
     private void HandlePlayerRespawn()
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game is not set");
+
+        if (GameWorld.Map.CurrentPatch == null)
+            throw new InvalidOperationException("Current patch is not set");
+
+        var playerSpecies = GameWorld.PlayerSpecies;
+
         HUD.HintText = string.Empty;
 
-        // Respawn if not extinct (or freebuild)
-        if (IsGameOver())
+        if (!CurrentGame.FreeBuild)
         {
-            gameOver = true;
+            if (playerSpecies.Population <= 0)
+            {
+                GameOver();
+            }
+            else if (GameWorld.Map.CurrentPatch.GetSpeciesPopulation(playerSpecies) <= 0)
+            {
+                // Has run out of population in current patch but not globally
+                PlayerExtinctInPatch();
+            }
+
+            if (gameOver || playerExtinctInCurrentPatch)
+                return;
         }
-        else
-        {
-            // Player is not extinct, so can respawn
-            spawner.ClearSpawnCoordinates();
-            SpawnPlayer();
-        }
+
+        // Player is not extinct, so can respawn
+        spawner.ClearSpawnCoordinates();
+        SpawnPlayer();
+    }
+
+    private void GameOver()
+    {
+        // Player is extinct and has lost the game
+
+        gameOver = true;
+        guidanceLine.Visible = false;
+
+        // Just to make sure _Process doesn't run
+        playerExtinctInCurrentPatch = true;
+
+        // Show the game lost popup if not already visible
+        HUD.ShowExtinctionBox();
+    }
+
+    private void PlayerExtinctInPatch()
+    {
+        playerExtinctInCurrentPatch = true;
+        guidanceLine.Visible = false;
+
+        HUD.ShowPatchExtinctionBox();
+    }
+
+    private void PatchExtinctionResolved()
+    {
+        playerExtinctInCurrentPatch = false;
+
+        // Decrease the population by the constant for the player dying out in a patch
+        // If the player does not have sufficient population in the new patch then the population drops to 0 and
+        // they have to select a new patch if they die again.
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
+            GameWorld.PlayerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
+            TranslationServer.Translate("EXTINCT_IN_PATCH"),
+            true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT
+            / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
+
+        // Do not grant the player population even if the global population is 0,
+        // they will go extinct the next time they die
+
+        HUD.HidePatchExtinctionBox();
     }
 
     private void UpdatePatchSettings(bool promptPatchNameChange = true)

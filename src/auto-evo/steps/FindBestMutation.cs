@@ -10,6 +10,7 @@
     public class FindBestMutation : VariantTryingStep
     {
         private readonly AutoEvoConfiguration configuration;
+        private readonly WorldGenerationSettings worldSettings;
         private readonly PatchMap map;
         private readonly Species species;
         private readonly float splitThresholdFraction;
@@ -17,12 +18,14 @@
 
         private readonly Mutations mutations = new();
 
-        public FindBestMutation(AutoEvoConfiguration configuration, PatchMap map, Species species,
+        public FindBestMutation(AutoEvoConfiguration configuration,
+            WorldGenerationSettings worldSettings, PatchMap map, Species species,
             int mutationsToTry, bool allowNoMutation,
             float splitThresholdFraction, int splitThresholdAmount)
             : base(mutationsToTry, allowNoMutation, splitThresholdAmount > 0)
         {
             this.configuration = configuration;
+            this.worldSettings = worldSettings;
             this.map = map;
             this.species = species;
             this.splitThresholdFraction = splitThresholdFraction;
@@ -44,7 +47,8 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, worldSettings,
+                Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);
 
@@ -56,9 +60,11 @@
         protected override IAttemptResult TryVariant()
         {
             var mutated = (MicrobeSpecies)species.Clone();
-            mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated);
+            mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated,
+                worldSettings.AIMutationMultiplier, worldSettings.LAWK);
 
-            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, worldSettings,
+                Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.SetPatchesToRunBySpeciesPresence(species);
             config.ExcludedSpecies.Add(species);

@@ -19,7 +19,7 @@
         public static void Simulate(SimulationConfiguration parameters)
         {
             var random = new Random();
-            var cache = new SimulationCache();
+            var cache = new SimulationCache(parameters.WorldSettings);
 
             var speciesToSimulate = CopyInitialPopulationsToResults(parameters);
 

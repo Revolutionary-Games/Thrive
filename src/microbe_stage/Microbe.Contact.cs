@@ -505,9 +505,18 @@ public partial class Microbe
             }
         }
 
+        // Queues either 1 corpse chunk or a factor of the hexes
         int chunksToSpawn = Math.Max(1, HexCount / Constants.CORPSE_CHUNK_DIVISOR);
 
         var chunkScene = SpawnHelpers.LoadChunkScene();
+
+        // An enumerator to step through all available organelles in a random order when making chunks
+        using var organellesAvailableEnumerator = organelles.OrderBy(_ => random.Next()).GetEnumerator();
+
+        // The default model for chunks is the cytoplasm model in case there isn't a model left in the species
+        var defaultChunkScene = SimulationParameters.Instance
+                .GetOrganelleType(Constants.DEFAULT_CHUNK_MODEL_NAME).LoadedCorpseChunkScene ??
+            throw new Exception("No default chunk scene");
 
         for (int i = 0; i < chunksToSpawn; ++i)
         {
@@ -545,29 +554,36 @@ public partial class Microbe
 
             chunkType.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
-            var sceneToUse = new ChunkConfiguration.ChunkScene();
-
-            // Try all organelles in random order and use the first one with a scene for model
-            foreach (var organelle in organelles.OrderBy(_ => random.Next()))
+            var sceneToUse = new ChunkConfiguration.ChunkScene
             {
-                if (!string.IsNullOrEmpty(organelle.Definition.CorpseChunkScene))
+                LoadedScene = defaultChunkScene,
+            };
+
+            // Will only loop if there are still organelles available
+            while (organellesAvailableEnumerator.MoveNext() && organellesAvailableEnumerator.Current != null)
+            {
+                if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.CorpseChunkScene))
                 {
-                    sceneToUse.LoadedScene = organelle.Definition.LoadedCorpseChunkScene;
-                    break;
+                    sceneToUse.LoadedScene =
+                        organellesAvailableEnumerator.Current.Definition.LoadedCorpseChunkScene;
+                }
+                else if (!string.IsNullOrEmpty(organellesAvailableEnumerator.Current.Definition.DisplayScene))
+                {
+                    sceneToUse.LoadedScene = organellesAvailableEnumerator.Current.Definition.LoadedScene;
+                    sceneToUse.SceneModelPath =
+                        organellesAvailableEnumerator.Current.Definition.DisplaySceneModelPath;
+                }
+                else
+                {
+                    continue;
                 }
 
-                if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
-                {
-                    sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
-                    sceneToUse.SceneModelPath = organelle.Definition.DisplaySceneModelPath;
+                if (sceneToUse.LoadedScene != null)
                     break;
-                }
             }
 
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            // ReSharper disable once HeuristicUnreachableCode
-            if (sceneToUse == null)
-                throw new Exception("sceneToUse is null");
+            if (sceneToUse.LoadedScene == null)
+                throw new Exception("loaded scene is null");
 
             chunkType.Meshes.Add(sceneToUse);
 
@@ -584,7 +600,7 @@ public partial class Microbe
         // Subtract population
         if (!IsPlayerMicrobe && !Species.PlayerSpecies)
         {
-            GameWorld.AlterSpeciesPopulation(Species,
+            GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
                 Constants.CREATURE_DEATH_POPULATION_LOSS, TranslationServer.Translate("DEATH"));
         }
 
@@ -713,14 +729,14 @@ public partial class Microbe
 
     internal void SuccessfulScavenge()
     {
-        GameWorld.AlterSpeciesPopulation(Species,
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
             Constants.CREATURE_SCAVENGE_POPULATION_GAIN,
             TranslationServer.Translate("SUCCESSFUL_SCAVENGE"));
     }
 
     internal void SuccessfulKill()
     {
-        GameWorld.AlterSpeciesPopulation(Species,
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
             Constants.CREATURE_KILL_POPULATION_GAIN,
             TranslationServer.Translate("SUCCESSFUL_KILL"));
     }
@@ -958,7 +974,7 @@ public partial class Microbe
                 hasEscaped = false;
                 escapeInterval = 0;
 
-                GameWorld.AlterSpeciesPopulation(Species,
+                GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
                     Constants.CREATURE_ESCAPE_POPULATION_GAIN,
                     TranslationServer.Translate("ESCAPE_ENGULFING"));
             }

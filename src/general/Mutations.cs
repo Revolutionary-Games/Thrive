@@ -33,7 +33,8 @@ public class Mutations
     /// <summary>
     ///   Creates a mutated version of a species
     /// </summary>
-    public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated)
+    public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated, float creationRate,
+        bool lawkOnly)
     {
         if (parent.Organelles.Count < 1)
         {
@@ -66,7 +67,7 @@ public class Mutations
 
         MutateBehaviour(parent, mutated);
 
-        MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria);
+        MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria, creationRate, lawkOnly);
 
         // Update the genus if the new species is different enough
         if (NewGenus(mutated, parent))
@@ -121,7 +122,7 @@ public class Mutations
     /// <summary>
     ///   Creates a fully random species starting with one cytoplasm
     /// </summary>
-    public MicrobeSpecies CreateRandomSpecies(MicrobeSpecies mutated, int steps = 5)
+    public MicrobeSpecies CreateRandomSpecies(MicrobeSpecies mutated, float creationRate, bool lawkOnly, int steps = 5)
     {
         // Temporarily create species with just cytoplasm to start mutating from
         var temp = new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty);
@@ -135,7 +136,7 @@ public class Mutations
 
         for (int step = 0; step < steps; ++step)
         {
-            CreateMutatedSpecies(temp, mutated);
+            CreateMutatedSpecies(temp, mutated, creationRate, lawkOnly);
 
             temp = (MicrobeSpecies)mutated.Clone();
         }
@@ -164,7 +165,7 @@ public class Mutations
     ///   Creates a mutated version of parentOrganelles in organelles
     /// </summary>
     private void MutateMicrobeOrganelles(OrganelleLayout<OrganelleTemplate> parentOrganelles,
-        OrganelleLayout<OrganelleTemplate> mutatedOrganelles, bool isBacteria)
+        OrganelleLayout<OrganelleTemplate> mutatedOrganelles, bool isBacteria, float creationRate, bool lawkOnly)
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
@@ -186,7 +187,7 @@ public class Mutations
 
                 if (random.Next(0.0f, 1.0f) < Constants.MUTATION_REPLACEMENT_RATE)
                 {
-                    organelle = new OrganelleTemplate(GetRandomOrganelle(isBacteria),
+                    organelle = new OrganelleTemplate(GetRandomOrganelle(isBacteria, lawkOnly),
                         organelle.Position, organelle.Orientation);
                 }
             }
@@ -205,13 +206,13 @@ public class Mutations
         }
 
         // We can insert new organelles at the end of the list
-        for (int i = 0; i < 6; ++i)
+        for (int i = 0; i < Math.Ceiling(6 * creationRate); ++i)
         {
             if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
             {
                 if (random.Next(0.0f, 1.0f) < Constants.MUTATION_NEW_ORGANELLE_CHANCE)
                 {
-                    AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
+                    AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria, lawkOnly));
                 }
                 else
                 {
@@ -225,7 +226,7 @@ public class Mutations
                     }
                     else
                     {
-                        AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
+                        AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria, lawkOnly));
                     }
                 }
             }
@@ -317,14 +318,14 @@ public class Mutations
         }
     }
 
-    private OrganelleDefinition GetRandomOrganelle(bool isBacteria)
+    private OrganelleDefinition GetRandomOrganelle(bool isBacteria, bool lawkOnly)
     {
         if (isBacteria)
         {
-            return SimulationParameters.Instance.GetRandomProkaryoticOrganelle(random);
+            return SimulationParameters.Instance.GetRandomProkaryoticOrganelle(random, lawkOnly);
         }
 
-        return SimulationParameters.Instance.GetRandomEukaryoticOrganelle(random);
+        return SimulationParameters.Instance.GetRandomEukaryoticOrganelle(random, lawkOnly);
     }
 
     private OrganelleTemplate GetRealisticPosition(OrganelleDefinition organelle,
