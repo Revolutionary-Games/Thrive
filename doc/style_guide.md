@@ -477,7 +477,8 @@ Godot usage
 
 - When you are instantiating a custom Control in code, use
   `(T)GD.load<PackedScene>("res://src/gui_common/T.tscn").Instance()` if the
-  custom control has a .tscn scene; use `new T` if it doesn't.
+  custom control has a corresponding scene (.tscn) file; use `new T` if it
+  doesn't.
 
 - Question popups should have a short title ending in a question mark
   (`?`). The content of the popup should give more details and also
