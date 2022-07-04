@@ -465,10 +465,19 @@ Godot usage
 - You should follow general GUI standards in designing UI. Use widgets
   that are meant for whatever kind of interaction you are designing.
 
-- When adding window dialogs to the game, consider using the
-  `CustomDialog` type rather than the built-in `WindowDialog` to ensure
-  consistency across the GUI. This is because the custom implementation
-  offer a much more customized styling and additional functionality.
+- We have rewritten several controls to workaround Godot bugs or limits, and
+  add custom features. All these rewritten controls are placed in
+  "res://src/gui_common/". Currently there are `CustomCheckBox`,
+  `CustomDialog`,  `CustomConfirmationDialog`, `ErrorDialog`,
+  `TutorialDialog`, `CustomDropDown`, `CustomRichTextLabel`, and
+  `TweakedColourPicker`. When adding control types listed above, consider using
+  the custom types rather than the built-in types to ensure consistency
+  across the GUI. This is because the custom implementation offer a much more
+  customized styling and additional functionality.
+
+- When you are instancing a custom Control in code, use
+  `(T)GD.load<PackedScene>("res://src/gui_common/T.tscn").Instance()` if the
+  custom control has a .tscn scene; use `new T` if it doesn't.
 
 - Question popups should have a short title ending in a question mark
   (`?`). The content of the popup should give more details and also
