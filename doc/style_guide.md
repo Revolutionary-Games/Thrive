@@ -474,16 +474,17 @@ Godot usage
   built-in types to ensure consistency across the GUI.
 
 - When you are instantiating a custom Control in Godot, use
-  `Instance Child Scene` if it has a corresponding scene
-  (.tscn) file; use `Attach Script` if it doesn't.
+  `Instance Child Scene` if it has a corresponding scene (.tscn) file; use
+  `Attach Script` if it doesn't. An alternative is to locate the scene
+  or script file in `FileSystem` panel (by default on the bottom-left corner)
+  and drag it to the proper position.
 
-- When you are instantiating a custom Control in code, use
+- When you are instantiating a custom Control in code, use the following if it
+  has a corresponding scene (.tscn) file; use `new T` if it doesn't.
   ```C#
   var scene = GD.Load<PackedScene>("res://src/gui_common/T.tscn");
   var instance = scene.Instance<T>();
   ```
-  if the custom control has a corresponding scene (.tscn) file;
-  use `new T` if it doesn't.
 
 - Question popups should have a short title ending in a question mark
   (`?`). The content of the popup should give more details and also
