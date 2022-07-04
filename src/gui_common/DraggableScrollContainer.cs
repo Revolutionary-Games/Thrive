@@ -90,6 +90,8 @@ public class DraggableScrollContainer : ScrollContainer
         GetVScrollbar().Connect("value_changed", this, nameof(OnScrollStarted));
         GetHScrollbar().Connect("value_changed", this, nameof(OnScrollStarted));
 
+        this.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip("navigationHint", "patchMap"));
+
         UpdateScrollbars();
     }
 

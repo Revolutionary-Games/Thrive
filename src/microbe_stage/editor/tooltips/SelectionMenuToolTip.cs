@@ -145,7 +145,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
     public ToolTipTransitioning TransitionType { get; set; } = ToolTipTransitioning.Immediate;
 
-    public bool HideOnMousePress { get; set; }
+    public bool HideOnMouseAction { get; set; }
 
     public Control ToolTipNode => this;
 

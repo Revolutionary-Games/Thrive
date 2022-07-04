@@ -55,7 +55,7 @@ public class GalleryDetailsTooltip : PanelContainer, ICustomToolTip
 
     public ToolTipTransitioning TransitionType { get; set; } = ToolTipTransitioning.Fade;
 
-    public bool HideOnMousePress { get; set; } = true;
+    public bool HideOnMouseAction { get; set; } = true;
 
     public Control ToolTipNode => this;
 

@@ -3064,7 +3064,7 @@ MutationPointCost = 50
 margin_bottom = 288.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer" index="0"]
-margin_bottom = 352.0
+margin_bottom = 281.0
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -3335,7 +3335,7 @@ MutationPointCost = 50
 margin_bottom = 288.0
 
 [node name="VBoxContainer" parent="GroupHolder/membraneSelection/silica/MarginContainer" index="0"]
-margin_bottom = 352.0
+margin_bottom = 281.0
 
 [node name="RequiresNucleus" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -3777,6 +3777,15 @@ DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 [node name="sunlight" parent="GroupHolder/chartLegendPhysicalConditions" instance=ExtResource( 1 )]
 visible = false
 Description = "SUNLIGHT"
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
+[node name="patchMap" type="Control" parent="GroupHolder"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="navigationHint" parent="GroupHolder/patchMap" instance=ExtResource( 1 )]
+Description = "PATCH_MAP_NAVIGATION_TOOLTIP"
+DisplayDelay = 0.5
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [editable path="GroupHolder/editor/rigiditySlider"]
