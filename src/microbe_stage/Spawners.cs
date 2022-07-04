@@ -147,7 +147,8 @@ public static class SpawnHelpers
 
         // Chunk is spawned with random rotation (in the 2D plane if it's an Easter egg)
         var rotationAxis = chunk.EasterEgg ? new Vector3(0, 1, 0) : new Vector3(0, 1, 1);
-        chunk.Transform = new Transform(new Quat(rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble()), location);
+        chunk.Transform = new Transform(new Quat(
+            rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble()), location);
 
         chunk.GetNode<Spatial>("NodeToScale").Scale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale,
             chunkType.ChunkScale);
