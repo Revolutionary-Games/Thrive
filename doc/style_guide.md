@@ -474,7 +474,7 @@ Godot usage
   built-in types to ensure consistency across the GUI.
 
 - When you are instantiating a custom Control in Godot, use
-  `Instance Child Scene` if the custom control has a corresponding scene
+  `Instance Child Scene` if it has a corresponding scene
   (.tscn) file; use `Attach Script` if it doesn't.
 
 - When you are instantiating a custom Control in code, use
