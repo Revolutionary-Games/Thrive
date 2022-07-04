@@ -51,7 +51,7 @@ public partial class Microbe
     ///   Tracks entities this has previously engulfed.
     /// </summary>
     [JsonProperty]
-    private HashSet<EngulfedObject> expelledObjects = new();
+    private List<EngulfedObject> expelledObjects = new();
 
     // private HashSet<IEngulfable> engulfablesInPseudopodRange = new();
 
@@ -462,7 +462,7 @@ public partial class Microbe
             foreach (var organelle in organelles!)
             {
                 var newPriority = Mathf.Clamp(Hex.GetRenderPriority(organelle.Position) +
-                    hostile.organelles!.MaxRenderPriority, 0, Material.RenderPriorityMax);
+                    hostile.OrganelleMaxRenderPriority, 0, Material.RenderPriorityMax);
                 organelle.UpdateRenderPriority(newPriority);
             }
         }
@@ -1183,7 +1183,7 @@ public partial class Microbe
         foreach (var expelled in expelledObjects)
             expelled.TimeElapsedSinceEjection += delta;
 
-        expelledObjects.RemoveWhere(e => e.TimeElapsedSinceEjection >= Constants.ENGULF_EJECTED_COOLDOWN);
+        expelledObjects.RemoveAll(e => e.TimeElapsedSinceEjection >= Constants.ENGULF_EJECTED_COOLDOWN);
 
         /* Membrane engulf stretch debug code
         if (state == MicrobeState.Engulf)
@@ -1435,7 +1435,7 @@ public partial class Microbe
         var originalRenderPriority = target.RenderPriority;
 
         // We want the ingested material to be always visible over the organelles
-        target.RenderPriority += organelles!.MaxRenderPriority + 1;
+        target.RenderPriority += OrganelleMaxRenderPriority + 1;
 
         // Below is for figuring out where to place the object attempted to be engulfed inside the cytoplasm,
         // calculated accordingly to hopefully minimize any part of the object sticking out the membrane.

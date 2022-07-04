@@ -97,6 +97,17 @@ public partial class Microbe
     [JsonIgnore]
     public Spatial OrganelleParent { get; private set; } = null!;
 
+    /// <summary>
+    ///   The cached highest assigned render priority from all of the organelles.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     A cheaper version of <see cref="OrganelleLayout{T}.MaxRenderPriority"/>.
+    ///   </para>
+    /// </remarks>
+    [JsonProperty]
+    public int OrganelleMaxRenderPriority { get; private set; }
+
     [JsonIgnore]
     public CompoundBag ProcessCompoundStorage => Compounds;
 
@@ -978,6 +989,9 @@ public partial class Microbe
         // hook up computing this when the StorageBag needs this info.
         organellesCapacity += organelle.StorageCapacity;
         Compounds.Capacity = organellesCapacity;
+
+        OrganelleMaxRenderPriority = Mathf.Max(
+            OrganelleMaxRenderPriority, Hex.GetRenderPriority(organelle.Position));
     }
 
     [DeserializedCallbackAllowed]
@@ -1001,6 +1015,9 @@ public partial class Microbe
         cachedRotationSpeed = null;
 
         Compounds.Capacity = organellesCapacity;
+
+        OrganelleMaxRenderPriority = Mathf.Max(
+            OrganelleMaxRenderPriority, Hex.GetRenderPriority(organelle.Position));
     }
 
     /// <summary>

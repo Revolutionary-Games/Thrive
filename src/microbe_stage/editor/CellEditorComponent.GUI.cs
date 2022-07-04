@@ -136,7 +136,7 @@ public partial class CellEditorComponent
 
     private void UpdateGeneration(int generation)
     {
-        generationLabel.Value = generation;
+        generationLabel.Text = generation.ToString(CultureInfo.CurrentCulture);
     }
 
     private void UpdateSpeed(float speed)

@@ -24,11 +24,13 @@ shader_param/damagedTexture = ExtResource( 3 )
 [sub_resource type="SphereShape" id=7]
 
 [sub_resource type="SpatialMaterial" id=5]
+resource_local_to_scene = true
 render_priority = 2
 flags_transparent = true
 albedo_color = Color( 0, 1, 0, 0.470588 )
 
 [sub_resource type="SphereMesh" id=3]
+resource_local_to_scene = true
 
 [node name="Microbe" type="RigidBody"]
 process_priority = 1

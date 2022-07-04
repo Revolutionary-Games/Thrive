@@ -29,7 +29,6 @@
 [ext_resource path="res://src/gui_common/CollapsibleList.tscn" type="PackedScene" id=45]
 [ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" type="PackedScene" id=47]
 
-
 [sub_resource type="StyleBoxTexture" id=8]
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 429, 1 )
@@ -234,7 +233,7 @@ HpLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/S
 StorageLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage")
 DigestionSpeedLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionSpeed")
 DigestionEfficiencyLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionEfficiency")
-GenerationLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation")
+GenerationLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
 AutoEvoPredictionPanelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel")
 TotalPopulationLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total")
 AutoEvoPredictionFailedLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Failed")
@@ -762,11 +761,30 @@ margin_right = 246.0
 margin_bottom = 157.0
 Description = "DIGESTION_EFFICIENCY_COLON"
 
-[node name="Generation" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
+[node name="Generation" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 161.0
 margin_right = 246.0
 margin_bottom = 180.0
-Description = "GENERATION_COLON"
+
+[node name="Description" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
+margin_top = 1.0
+margin_right = 144.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 23 )
+text = "GENERATION_COLON"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Value" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
+margin_left = 148.0
+margin_right = 169.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 10 )
+text = "n/a"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="VSeparator" type="VSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 184.0

@@ -165,9 +165,7 @@ public partial class CellEditorComponent :
     [AssignOnlyChildItemsOnDeserialize]
     private CellStatsIndicator digestionEfficiencyLabel = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    private CellStatsIndicator generationLabel = null!;
+    private Label generationLabel = null!;
 
     private CellStatsIndicator totalPopulationLabel = null!;
     private Label autoEvoPredictionFailedLabel = null!;
@@ -558,7 +556,7 @@ public partial class CellEditorComponent :
         storageLabel = GetNode<CellStatsIndicator>(StorageLabelPath);
         digestionSpeedLabel = GetNode<CellStatsIndicator>(DigestionSpeedLabelPath);
         digestionEfficiencyLabel = GetNode<CellStatsIndicator>(DigestionEfficiencyLabelPath);
-        generationLabel = GetNode<CellStatsIndicator>(GenerationLabelPath);
+        generationLabel = GetNode<Label>(GenerationLabelPath);
         totalPopulationLabel = GetNode<CellStatsIndicator>(TotalPopulationLabelPath);
         autoEvoPredictionFailedLabel = GetNode<Label>(AutoEvoPredictionFailedLabelPath);
         worstPatchLabel = GetNode<Label>(WorstPatchLabelPath);
