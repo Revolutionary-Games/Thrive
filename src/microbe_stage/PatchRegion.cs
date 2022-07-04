@@ -24,27 +24,37 @@ public class PatchRegion
     [JsonIgnore]
     public float PatchMargin = 4.0f;
 
+    public enum RegionType
+    {
+        Predefined,
+        Sea,
+        Ocean,
+        Continent,
+        Vent,
+        Cave,
+    }
+
     [JsonConstructor]
-    public PatchRegion(int id, LocalizedString name, string regionType, Vector2 screenCoordinates,
+    public PatchRegion(int id, LocalizedString name, RegionType regionType, Vector2 screenCoordinates,
         float height, float width, List<Patch> patches)
     {
         ID = id;
         Name = name;
-        RegionType = regionType;
+        Type = regionType;
         Patches = patches;
         ScreenCoordinates = screenCoordinates;
         Height = height;
         Width = width;
     }
 
-    public PatchRegion(int id, LocalizedString name, string regionType, Vector2 screenCoordinates)
+    public PatchRegion(int id, LocalizedString name, RegionType regionType, Vector2 screenCoordinates)
     {
         ID = id;
         Patches = new List<Patch>();
         Name = name;
         Height = 0;
         Width = 0;
-        RegionType = regionType;
+        Type = regionType;
         ScreenCoordinates = screenCoordinates;
     }
 
@@ -55,7 +65,7 @@ public class PatchRegion
     public ISet<PatchRegion> Adjacent { get; } = new HashSet<PatchRegion>();
 
     [JsonProperty]
-    public string RegionType { get; set; }
+    public RegionType Type { get; set; }
 
     [JsonProperty]
     public float Height { get; set; }
@@ -91,16 +101,16 @@ public class PatchRegion
         var regionMargin = PatchMargin + RegionLineWidth;
 
         // Patch linking first
-        if (RegionType is "sea" or "ocean" or "continent")
+        if (Type is RegionType.Sea or RegionType.Ocean or RegionType.Continent)
         {
             for (int i = 0; i < Patches.Count - 1; i++)
             {
-                if (RegionType is "sea" or "ocean")
+                if (Type is RegionType.Sea or RegionType.Ocean)
                 {
                     LinkPatches(Patches[i], Patches[i + 1]);
                 }
 
-                if (RegionType == "continent")
+                if (Type == RegionType.Continent)
                 {
                     for (int j = 0; j < Patches.Count; j++)
                     {
@@ -113,7 +123,7 @@ public class PatchRegion
             }
         }
 
-        if (RegionType == "vents")
+        if (Type == RegionType.Vent)
         {
             var adjacent = Adjacent.First();
             LinkPatches(Patches[0], adjacent.Patches[adjacent.Patches.Count - 1]);
@@ -122,7 +132,7 @@ public class PatchRegion
         // Patches position configuration
         for (int i = 0; i < Patches.Count; i++)
         {
-            if (RegionType is "sea" or "ocean")
+            if (Type is RegionType.Sea or RegionType.Ocean)
             {
                 Patches[i].ScreenCoordinates = new Vector2(ScreenCoordinates.x + regionMargin,
                     ScreenCoordinates.y + i * (64.0f + PatchMargin) + PatchMargin + RegionLineWidth);
@@ -139,7 +149,7 @@ public class PatchRegion
                 }
             }
 
-            if (RegionType == "continent")
+            if (Type == RegionType.Continent)
             {
                 if (i % 2 == 0)
                 {
@@ -171,7 +181,7 @@ public class PatchRegion
                 }
             }
 
-            if (RegionType is "vents" or "underwater_cave")
+            if (Type is RegionType.Vent or RegionType.Cave)
             {
                 Patches[0].ScreenCoordinates = new Vector2(ScreenCoordinates.x + regionMargin,
                     ScreenCoordinates.y + regionMargin);
@@ -188,7 +198,7 @@ public class PatchRegion
         // Region size configuration
         Width += 64.0f + 2 * PatchMargin + RegionLineWidth;
 
-        if (RegionType == "continent")
+        if (Type == RegionType.Continent)
         {
             Height = 64.0f + 2 * PatchMargin + RegionLineWidth;
             if (Patches.Count > 1)
@@ -198,12 +208,12 @@ public class PatchRegion
                 Height = 3 * PatchMargin + 2 * 64.0f + RegionLineWidth;
         }
 
-        if (RegionType is "ocean" or "sea")
+        if (Type is RegionType.Ocean or RegionType.Sea)
         {
             Height += 64.0f * Patches.Count + (Patches.Count + 1) * PatchMargin + RegionLineWidth;
         }
 
-        if (RegionType == "vents")
+        if (Type == RegionType.Vent)
         {
             Height = Width = 64 + 2 * PatchMargin + RegionLineWidth;
 
@@ -211,20 +221,20 @@ public class PatchRegion
             ScreenCoordinates = adjacent.ScreenCoordinates + new Vector2(0, adjacent.Height) + new Vector2(0, 20);
         }
 
-        if (RegionType == "underwater_cave")
+        if (Type == RegionType.Cave)
         {
             Height = Width = 64 + 2 * PatchMargin + RegionLineWidth;
 
             var adjacent = Adjacent.First();
             var adjacentPatch = Patches[0].Adjacent.First();
-            if (adjacent.RegionType is "sea" or "ocean")
+            if (adjacent.Type is RegionType.Sea or RegionType.Ocean)
             {
                 ScreenCoordinates = adjacent.ScreenCoordinates +
                     new Vector2(adjacent.Width, adjacent.Patches.IndexOf(adjacentPatch) *
                         (64.0f + PatchMargin)) + new Vector2(20, 0);
             }
 
-            if (adjacent.RegionType == "continent")
+            if (adjacent.Type == RegionType.Continent)
             {
                 var leftSide = adjacent.ScreenCoordinates - new Vector2(Width, 0) - new Vector2(20, 0);
                 var rightSide = adjacent.ScreenCoordinates + new Vector2(adjacent.Width, 0) + new Vector2(20, 0);
@@ -248,17 +258,17 @@ public class PatchRegion
 
     public void ConnectPatchesBetweenRegions(Random random)
     {
-        if (RegionType is "ocean" or "sea")
+        if (Type is RegionType.Ocean or RegionType.Sea)
         {
             foreach (var adjacent in Adjacent)
             {
-                if (adjacent.RegionType == "continent")
+                if (adjacent.Type == RegionType.Continent)
                 {
                     var patchIndex = random.Next(0, adjacent.Patches.Count - 1);
                     LinkPatches(Patches[0], adjacent.Patches[patchIndex]);
                 }
 
-                if (adjacent.RegionType is "sea" or "ocean")
+                if (adjacent.Type is RegionType.Sea or RegionType.Ocean)
                 {
                     int lowestConnectedLevel;
                     lowestConnectedLevel = Math.Min(Patches.Count, adjacent.Patches.Count);
@@ -272,11 +282,11 @@ public class PatchRegion
             }
         }
 
-        if (RegionType == "continent")
+        if (Type == RegionType.Continent)
         {
             foreach (var adjacent in Adjacent)
             {
-                if (adjacent.RegionType == "continent")
+                if (adjacent.Type == RegionType.Continent)
                 {
                     var maxIndex = Math.Min(Patches.Count, adjacent.Patches.Count);
                     var patchIndex = random.Next(0, maxIndex);

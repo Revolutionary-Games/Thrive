@@ -449,7 +449,12 @@ public class PatchMap : ISaveLoadable
         }
     }
 
-    public void RecreateAdjacencies()
+    public void FinishLoading(ISaveContext? context)
+    {
+        RecreateAdjacencies();
+    }
+
+    private void RecreateAdjacencies()
     {
         foreach (var (id1, id2) in PatchAdjacencies)
         {
@@ -470,8 +475,4 @@ public class PatchMap : ISaveLoadable
         }
     }
 
-    public void FinishLoading(ISaveContext? context)
-    {
-        RecreateAdjacencies();
-    }
 }

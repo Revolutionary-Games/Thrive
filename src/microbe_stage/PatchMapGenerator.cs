@@ -68,21 +68,21 @@ public static class PatchMapGenerator
             // We must create regions containing potential starting locations, so do those first
             var regionType = vents == null ? 0 : tidepool == null ? 2 : random.Next(0, 3);
 
-            string regionTypeName;
+            PatchRegion.RegionType regionTypeName;
             switch (regionType)
             {
                 case 0:
-                    regionTypeName = "sea";
+                    regionTypeName = PatchRegion.RegionType.Sea;
                     break;
                 case 1:
-                    regionTypeName = "ocean";
+                    regionTypeName = PatchRegion.RegionType.Ocean;
                     break;
                 default:
-                    regionTypeName = "continent";
+                    regionTypeName = PatchRegion.RegionType.Continent;
                     break;
             }
 
-            var region = new PatchRegion(i, GetPatchLocalizedName(continentName, regionTypeName),
+            var region = new PatchRegion(i, GetPatchLocalizedName(continentName, regionTypeName.ToString()),
                 regionTypeName, coord);
             int numberOfPatches;
 
@@ -126,7 +126,7 @@ public static class PatchMapGenerator
                 if (vents == null || random.Next(0, 2) == 1)
                 {
                     var ventRegion = new PatchRegion(specialRegionsId--,
-                        GetPatchLocalizedName(continentName, "vents"), "vents", coord);
+                        GetPatchLocalizedName(continentName, "vents"), PatchRegion.RegionType.Vent, coord);
 
                     vents = NewPredefinedPatch(PredefinedBiome.Vents, currentPatchId++, ventRegion, areaName);
 
@@ -139,7 +139,7 @@ public static class PatchMapGenerator
             if (random.Next(0, 2) == 1)
             {
                 var caveRegion = new PatchRegion(specialRegionsId--,
-                    GetPatchLocalizedName(continentName, "UNDERWATERCAVE"), "underwater_cave", coord);
+                    GetPatchLocalizedName(continentName, "UNDERWATERCAVE"), PatchRegion.RegionType.Cave, coord);
 
                 var cavePatch = NewPredefinedPatch(PredefinedBiome.Cave, currentPatchId++, caveRegion, areaName);
 
@@ -495,7 +495,7 @@ public static class PatchMapGenerator
 
     private static PatchMap PredefinedMap(PatchMap map, string areaName)
     {
-        var region = new PatchRegion(0, GetPatchLocalizedName(areaName, string.Empty), string.Empty, new Vector2(0, 0));
+        var region = new PatchRegion(0, GetPatchLocalizedName(areaName, string.Empty), PatchRegion.RegionType.Predefined, new Vector2(0, 0));
 
         // Predefined patches
         var coast = NewPredefinedPatch(PredefinedBiome.Coastal, 0, region, areaName);

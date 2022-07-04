@@ -120,6 +120,7 @@ public class PatchMapDrawer : Control
 
     public override void _Process(float delta)
     {
+        CheckForDirtyNodes();
         if (dirty)
         {
             RebuildMapNodes();
@@ -551,5 +552,17 @@ public class PatchMapDrawer : Control
     private void NotifySelectionChanged()
     {
         OnSelectedPatchChanged?.Invoke(this);
+    }
+
+    private void CheckForDirtyNodes()
+    {
+        foreach (var node in nodes.Values)
+        {   
+            if (node.IsDirty)
+            {
+                dirty = true;
+                break;
+            }
+        }
     }
 }

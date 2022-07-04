@@ -9,17 +9,25 @@ public class PatchMapNode : MarginContainer
     [Export]
     public NodePath IconPath = null!;
 
-    // Selected patch node
+    /// <summary>
+    ///   Selected patch
+    /// </summary>
     [Export]
     public NodePath HighlightPanelPath = null!;
 
-    // Player patch node
+    /// <summary>
+    ///   Player patch
+    /// </summary>
     [Export]
     public NodePath MarkPanelPath = null!;
 
-    // for patches adjacent to the selected one
+    /// <summary>
+    ///   For pathes adajcent to the selected one
+    /// </summary>
     [Export]
     public NodePath AdjacentPanelPath = null!;
+
+    public bool IsDirty = false;
 
     // TODO: Move this to Constants.cs
     private const float HalfBlinkInterval = 0.5f;
@@ -54,6 +62,9 @@ public class PatchMapNode : MarginContainer
     /// </summary>
     private bool enabled = true;
 
+    /// <summary>
+    ///   True if the patch is adjacent to the selected patch
+    /// </summary>
     private bool adjacentToSelectedPatch;
 
     private Texture? patchIcon;
@@ -190,7 +201,7 @@ public class PatchMapNode : MarginContainer
                 Pressed: true, ButtonIndex: (int)ButtonList.Left or (int)ButtonList.Right,
             })
         {
-            ((PatchMapDrawer)GetParent()).MarkDirty();
+            IsDirty = true;
             OnSelect();
             GetTree().SetInputAsHandled();
         }
