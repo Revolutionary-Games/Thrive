@@ -475,7 +475,7 @@ Godot usage
   across the GUI. This is because the custom implementation offer a much more
   customized styling and additional functionality.
 
-- When you are instancing a custom Control in code, use
+- When you are instantiating a custom Control in code, use
   `(T)GD.load<PackedScene>("res://src/gui_common/T.tscn").Instance()` if the
   custom control has a .tscn scene; use `new T` if it doesn't.
 
