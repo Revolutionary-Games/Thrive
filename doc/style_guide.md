@@ -474,10 +474,10 @@ Godot usage
   built-in types to ensure consistency across the GUI.
 
 - When you are instantiating a custom Control in Godot, use
-  `Instance Child Scene` if it has a corresponding scene (.tscn) file; use
-  `Attach Script` if it doesn't. An alternative is to locate the scene
-  or script file in `FileSystem` panel (by default on the bottom-left corner)
-  and drag it to the proper position.
+  `Instance Child Scene` if it has a corresponding scene (.tscn) file; If it
+  doesn't, add a corresponding built-in Control and use `Attach Script`.
+  An alternative is to locate the scene or script file in `FileSystem` panel
+  (by default on the bottom-left corner) and drag it to the proper position.
 
 - When you are instantiating a custom Control in code, use the following if it
   has a corresponding scene (.tscn) file; use `new T` if it doesn't.
