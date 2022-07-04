@@ -391,7 +391,7 @@ public static class Constants
     public const float ENZYME_DIGESTION_SPEED_UP_FRACTION = 0.1f;
 
     /// <summary>
-    ///   Each enzyme addition grants 15% increase in compounds yield.
+    ///   Each enzyme addition grants this fraction increase in compounds yield.
     /// </summary>
     public const float ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION = 0.15f;
 
