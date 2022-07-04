@@ -465,18 +465,25 @@ Godot usage
 - You should follow general GUI standards in designing UI. Use widgets
   that are meant for whatever kind of interaction you are designing.
 
-- We have rewritten several controls to workaround Godot bugs or limitations, and
-  add custom features. All these rewritten/customized controls are placed in
-  "res://src/gui_common/". Currently there are `CustomCheckBox`,
+- We have rewritten several controls to workaround Godot bugs or limitations,
+  and add custom features. All these rewritten/customized controls are placed
+  in "res://src/gui_common/". Currently there are `CustomCheckBox`,
   `CustomDialog`,  `CustomConfirmationDialog`, `ErrorDialog`,
   `TutorialDialog`, `CustomDropDown`, `CustomRichTextLabel`, and
   `TweakedColourPicker`. Consider using these custom types rather than the
   built-in types to ensure consistency across the GUI.
 
+- When you are instantiating a custom Control in Godot, use
+  `Instance Child Scene` if the custom control has a corresponding scene
+  (.tscn) file; use `Attach Script` if it doesn't.
+
 - When you are instantiating a custom Control in code, use
-  `(T)GD.load<PackedScene>("res://src/gui_common/T.tscn").Instance()` if the
-  custom control has a corresponding scene (.tscn) file; use `new T` if it
-  doesn't.
+  ```C#
+  var scene = GD.Load<PackedScene>("res://src/gui_common/T.tscn");
+  var instance = scene.Instance<T>();
+  ```
+  if the custom control has a corresponding scene (.tscn) file;
+  use `new T` if it doesn't.
 
 - Question popups should have a short title ending in a question mark
   (`?`). The content of the popup should give more details and also
