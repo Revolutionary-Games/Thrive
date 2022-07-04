@@ -123,7 +123,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
         foreach (var entry in biome.Chunks)
-        {  
+        {
             // Don't spawn Easter eggs if the player has chosen not to
             if (entry.Value.EasterEgg && !CurrentGame.GameWorld.WorldSettings.EasterEggs)
                 continue;
