@@ -154,7 +154,7 @@ public class MicrobeColony
 
     private void UpdateHexCount()
     {
-        hexCount = Master.EngulfSize;
+        hexCount = 0;
         ingestedSizeCount = Master.IngestedSizeCount;
 
         foreach (var member in ColonyMembers)

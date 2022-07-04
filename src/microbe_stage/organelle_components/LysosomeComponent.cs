@@ -10,8 +10,8 @@ public class LysosomeComponent : IOrganelleComponent
 
         var enzyme = upgrades == null ? SimulationParameters.Instance.GetEnzyme("lipase") : upgrades.Enzyme;
 
-        organelle.StoredEnzymes!.Clear();
-        organelle.StoredEnzymes![enzyme] = 1;
+        organelle.StoredEnzymes.Clear();
+        organelle.StoredEnzymes[enzyme] = 1;
     }
 
     public void OnDetachFromCell(PlacedOrganelle organelle)

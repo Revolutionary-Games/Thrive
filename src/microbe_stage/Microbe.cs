@@ -1197,9 +1197,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         foreach (var organelle in organelles.Organelles)
         {
-            if (organelle.StoredEnzymes == null)
-                continue;
-
             foreach (var enzyme in organelle.StoredEnzymes)
             {
                 // Should have a minimum of unit of enzyme

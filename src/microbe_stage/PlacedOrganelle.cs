@@ -163,7 +163,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     [JsonIgnore]
-    public Dictionary<Enzyme, int>? StoredEnzymes { get; private set; }
+    public Dictionary<Enzyme, int> StoredEnzymes { get; private set; } = new();
 
     /// <summary>
     ///   True if this is an agent vacuole. Number of agent vacuoles
@@ -546,8 +546,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         //     ParentMicrobe.Colony.Master.Mass += Definition.Mass;
 
         MakeCollisionShapes(ParentMicrobe!.Colony?.Master ?? ParentMicrobe);
-
-        StoredEnzymes = new Dictionary<Enzyme, int>();
 
         if (Definition.Enzymes != null)
         {
