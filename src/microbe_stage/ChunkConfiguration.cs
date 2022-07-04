@@ -41,6 +41,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
 
     public Dictionary<Compound, ChunkCompound>? Compounds;
 
+    /// <summary>
+    ///   Whether this chunk type is an Easter egg.
+    /// </summary>
+    public bool EasterEgg;
+
     public static bool operator ==(ChunkConfiguration left, ChunkConfiguration right)
     {
         return left.Equals(right);

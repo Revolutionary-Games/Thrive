@@ -108,6 +108,8 @@ public class FloatingChunk : RigidBody, ISpawned
 
     public string ChunkName { get; set; } = string.Empty;
 
+    public bool EasterEgg { get; set; }
+
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();
 
@@ -129,6 +131,7 @@ public class FloatingChunk : RigidBody, ISpawned
         Damages = chunkType.Damages;
         DeleteOnTouch = chunkType.DeleteOnTouch;
         DamageType = string.IsNullOrEmpty(chunkType.DamageType) ? "chunk" : chunkType.DamageType;
+        EasterEgg = chunkType.EasterEgg;
 
         Mass = chunkType.Mass;
 
