@@ -27,11 +27,18 @@ public class FloatingChunk : RigidBody, ISpawned
     public string? ModelNodePath;
 
     /// <summary>
+    ///   The node path to the animation of this chunk
+    /// </summary>
+    public string? AnimationPath;
+
+    /// <summary>
     ///   Used to check if a microbe wants to engulf this
     /// </summary>
     private HashSet<Microbe> touchingMicrobes = new();
 
     private MeshInstance? chunkMesh;
+
+    private AnimationPlayer? animation;
 
     [JsonProperty]
     private bool isDissolving;
@@ -121,7 +128,7 @@ public class FloatingChunk : RigidBody, ISpawned
     ///     Doesn't initialize the graphics scene which needs to be set separately
     ///   </para>
     /// </remarks>
-    public void Init(ChunkConfiguration chunkType, string? modelPath)
+    public void Init(ChunkConfiguration chunkType, string? modelPath, string? animationPath)
     {
         // Grab data
         ChunkName = chunkType.Name;
@@ -140,6 +147,7 @@ public class FloatingChunk : RigidBody, ISpawned
         ChunkScale = chunkType.ChunkScale;
 
         ModelNodePath = modelPath;
+        AnimationPath = animationPath;
 
         // Copy compounds to vent
         if (chunkType.Compounds?.Count > 0)
@@ -182,6 +190,7 @@ public class FloatingChunk : RigidBody, ISpawned
         {
             LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath, SceneModelPath = ModelNodePath,
             LoadedConvexShape = ConvexPhysicsMesh, ConvexShapePath = ConvexPhysicsMesh?.ResourcePath,
+            SceneAnimationPath = AnimationPath
         };
 
         config.Meshes.Add(item);
@@ -222,6 +231,12 @@ public class FloatingChunk : RigidBody, ISpawned
         else
         {
             chunkMesh = graphicsNode.GetNode<MeshInstance>(ModelNodePath);
+        }
+
+        if (!string.IsNullOrEmpty(AnimationPath))
+        {
+            animation = graphicsNode.GetNode<AnimationPlayer>(AnimationPath);
+            animation.GetAnimation(animation.CurrentAnimation).Loop = true;
         }
 
         if (chunkMesh == null && !isParticles)

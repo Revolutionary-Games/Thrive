@@ -84,7 +84,8 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
             Damages == other.Damages &&
             DeleteOnTouch == other.DeleteOnTouch &&
             Meshes.Equals(other.Meshes) &&
-            Equals(Compounds, other.Compounds);
+            Equals(Compounds, other.Compounds) &&
+            EasterEgg == other.EasterEgg;
     }
 
     public struct ChunkCompound : IEquatable<ChunkCompound>
@@ -138,6 +139,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         ///   Path to the MeshInstance inside the ScenePath scene, null if it is the root
         /// </summary>
         public string? SceneModelPath;
+
+        /// <summary>
+        ///   Path to the AnimationPlayer inside the ScenePath scene, null if no animation
+        /// </summary>
+        public string? SceneAnimationPath;
 
         [JsonIgnore]
         public PackedScene? LoadedScene;

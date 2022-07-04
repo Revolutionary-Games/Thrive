@@ -140,7 +140,7 @@ public static class SpawnHelpers
             throw new ArgumentException("couldn't find a graphics scene for a chunk");
 
         // Pass on the chunk data
-        chunk.Init(chunkType, selectedMesh.SceneModelPath);
+        chunk.Init(chunkType, selectedMesh.SceneModelPath, selectedMesh.SceneAnimationPath);
         chunk.UsesDespawnTimer = !chunkType.Dissolves;
 
         worldNode.AddChild(chunk);
