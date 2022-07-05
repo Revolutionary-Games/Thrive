@@ -425,7 +425,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                     continue;
 
                 AddChild(engulfable.EntityNode);
-                engulfable.EntityGraphics.AddChild(engulfed.Phagosome.Value);
+
+                if (engulfed.Phagosome.Value != null)
+                    engulfable.EntityGraphics.AddChild(engulfed.Phagosome.Value);
             }
         }
 
@@ -586,12 +588,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             membraneOrganellesWereUpdatedThisFrame = false;
         }
 
-        if (maxOrganellesRenderPriorityDirty)
-        {
-            OrganelleMaxRenderPriority = organelles!.MaxRenderPriority;
-            maxOrganellesRenderPriorityDirty = false;
-        }
-
         // The code below starting from here is not needed for a display-only cell
         if (IsForPreviewOnly)
             return;
@@ -640,7 +636,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     public void ProcessSync(float delta)
     {
         // Updates the listener if this is the player owned microbe.
-        if (listener != null && IsInsideTree())
+        if (listener != null)
         {
             // Listener is directional and since it is a child of the microbe it will have the same forward
             // vector as the parent. Since we want sound to come from the side of the screen relative to the
@@ -892,20 +888,16 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             if (!CanEngulf(entity))
                 continue;
 
-            if (EngulfSize > entity.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ &&
-                entity.PhagocytosisStep == PhagocytosisPhase.None)
+            // Skip entities that have no useful compounds
+            if (!entity.Compounds.Compounds.Any(x => Compounds.IsUseful(x.Key)))
+                continue;
+
+            var distance = (spatial.Translation - Translation).LengthSquared();
+
+            if (nearestPoint == null || distance < nearestDistanceSquared)
             {
-                // Skip entities that have no useful compounds
-                if (!entity.Compounds.Compounds.Any(x => Compounds.IsUseful(x.Key)))
-                    continue;
-
-                var distance = (spatial.Translation - Translation).LengthSquared();
-
-                if (nearestPoint == null || distance < nearestDistanceSquared)
-                {
-                    nearestPoint = spatial.Translation;
-                    nearestDistanceSquared = distance;
-                }
+                nearestPoint = spatial.Translation;
+                nearestDistanceSquared = distance;
             }
         }
 

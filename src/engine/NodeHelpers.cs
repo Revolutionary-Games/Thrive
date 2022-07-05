@@ -16,6 +16,17 @@ public static class NodeHelpers
     }
 
     /// <summary>
+    ///   Properly destroys a game entity. In addition to the normal Godot Free, Destroy must be called.
+    ///   This doesn't detach the entity from the scene tree so it'll be considered valid until the end of
+    ///   the current frame.
+    /// </summary>
+    public static void DestroyAndQueueFree(this IEntity entity)
+    {
+        entity.OnDestroyed();
+        entity.EntityNode.QueueFree();
+    }
+
+    /// <summary>
     ///   Safely queues a Node free. Detaches from parent if attached to not leave disposed objects in scene tree.
     ///   This should always be preferred over QueueFree, except when multiple children should be deleted.
     ///   For that see <see cref="NodeHelpers.QueueFreeChildren"/>

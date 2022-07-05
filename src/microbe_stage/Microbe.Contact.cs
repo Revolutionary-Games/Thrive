@@ -152,7 +152,7 @@ public partial class Microbe
     /// <remarks>
     ///   <para>
     ///     In a more technical sense, this is the accumulated <see cref="IEngulfable.EngulfSize"/> from all
-    ///     the ingested objects. Maximum is this cell's own <see cref="EngulfSize"/>.
+    ///     the ingested objects. Maximum should be this cell's own <see cref="EngulfSize"/>.
     ///   </para>
     /// </remarks>
     [JsonProperty]
@@ -431,11 +431,11 @@ public partial class Microbe
         }
 
         // Limit amount of things that can be engulfed at once
-        if (UsedIngestionCapacity > EngulfSize || UsedIngestionCapacity + target.EngulfSize > EngulfSize)
+        if (UsedIngestionCapacity >= EngulfSize || UsedIngestionCapacity + target.EngulfSize >= EngulfSize)
             return false;
 
         // Too many things attempted to be pulled in at once
-        if (attemptingToEngulf.Sum(e => e.EngulfSize) + target.EngulfSize > EngulfSize)
+        if (attemptingToEngulf.Sum(e => e.EngulfSize) + target.EngulfSize >= EngulfSize)
             return false;
 
         // Disallow cannibalism
@@ -1166,7 +1166,7 @@ public partial class Microbe
                         CompleteIngestion(engulfedObject);
                         break;
                     case PhagocytosisPhase.Digested:
-                        engulfable.DestroyDetachAndQueueFree();
+                        engulfable.DestroyAndQueueFree();
                         engulfedObjects.Remove(engulfedObject);
                         break;
                     case PhagocytosisPhase.Exocytosis:
@@ -1412,7 +1412,7 @@ public partial class Microbe
     /// </summary>
     private void IngestEngulfable(IEngulfable target, float animationSpeed = 2.0f)
     {
-        if (target.EntityNode.GetParent() == this || target.PhagocytosisStep != PhagocytosisPhase.None)
+        if (target.PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
         var body = target as RigidBody;
@@ -1504,8 +1504,8 @@ public partial class Microbe
     /// </summary>
     private void EjectEngulfable(IEngulfable target, float animationSpeed = 2.0f)
     {
-        if (target.EntityNode.GetParent() != this || PhagocytosisStep != PhagocytosisPhase.None ||
-            target.PhagocytosisStep is PhagocytosisPhase.Exocytosis or PhagocytosisPhase.None)
+        if (PhagocytosisStep != PhagocytosisPhase.None || target.PhagocytosisStep is PhagocytosisPhase.Exocytosis or
+            PhagocytosisPhase.None)
         {
             return;
         }

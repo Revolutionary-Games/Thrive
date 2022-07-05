@@ -71,7 +71,8 @@ public partial class Microbe
 
     private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
 
-    private bool maxOrganellesRenderPriorityDirty = true;
+    private bool organelleMaxRenderPriorityDirty = true;
+    private int cachedOrganelleMaxRenderPriority;
 
     /// <summary>
     ///   The stored compounds in this microbe
@@ -108,7 +109,16 @@ public partial class Microbe
     ///   </para>
     /// </remarks>
     [JsonProperty]
-    public int OrganelleMaxRenderPriority { get; private set; }
+    public int OrganelleMaxRenderPriority
+    {
+        get
+        {
+            if (organelleMaxRenderPriorityDirty)
+                CountOrganelleMaxRenderPriority();
+
+            return cachedOrganelleMaxRenderPriority;
+        }
+    }
 
     [JsonIgnore]
     public CompoundBag ProcessCompoundStorage => Compounds;
@@ -983,7 +993,7 @@ public partial class Microbe
         membraneOrganellePositionsAreDirty = true;
         hasSignalingAgent = null;
         cachedRotationSpeed = null;
-        maxOrganellesRenderPriorityDirty = true;
+        organelleMaxRenderPriorityDirty = true;
 
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount += 1;
@@ -1013,12 +1023,9 @@ public partial class Microbe
         membraneOrganellePositionsAreDirty = true;
         hasSignalingAgent = null;
         cachedRotationSpeed = null;
-        maxOrganellesRenderPriorityDirty = true;
+        organelleMaxRenderPriorityDirty = true;
 
         Compounds.Capacity = organellesCapacity;
-
-        OrganelleMaxRenderPriority = Mathf.Max(
-            OrganelleMaxRenderPriority, Hex.GetRenderPriority(organelle.Position));
     }
 
     /// <summary>
@@ -1300,5 +1307,16 @@ public partial class Microbe
                 organelle.UpdateSync();
             }
         }
+    }
+
+    private void CountOrganelleMaxRenderPriority()
+    {
+        cachedOrganelleMaxRenderPriority = 0;
+
+        if (organelles == null)
+            return;
+
+        cachedOrganelleMaxRenderPriority = organelles.MaxRenderPriority;
+        organelleMaxRenderPriorityDirty = false;
     }
 }
