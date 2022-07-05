@@ -1505,7 +1505,7 @@ public partial class Microbe
     private void EjectEngulfable(IEngulfable target, float animationSpeed = 2.0f)
     {
         if (PhagocytosisStep != PhagocytosisPhase.None || target.PhagocytosisStep is PhagocytosisPhase.Exocytosis or
-            PhagocytosisPhase.None)
+                PhagocytosisPhase.None)
         {
             return;
         }
