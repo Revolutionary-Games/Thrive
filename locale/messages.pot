@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-30 15:59+0100\n"
+"POT-Creation-Date: 2022-07-05 19:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -519,7 +519,7 @@ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:133
-#: ../simulation_parameters/microbe_stage/bio_processes.json:143
+#: ../simulation_parameters/microbe_stage/bio_processes.json:142
 msgid "THERMOSYNTHESIS"
 msgstr ""
 
@@ -1585,7 +1585,7 @@ msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:567
-#: ../src/gui_common/CompoundAmount.cs:175
+#: ../src/gui_common/CompoundAmount.cs:176
 #: ../src/microbe_stage/MicrobeHUD.cs:719
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
@@ -2331,6 +2331,12 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
+#: ../src/gui_common/CompoundAmount.cs:171
+#: ../src/microbe_stage/MicrobeHUD.cs:720
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:396
+msgid "VALUE_WITH_UNIT"
+msgstr ""
+
 #: ../src/gui_common/CreditsScroll.cs:223
 msgid "LEAD_DEVELOPERS"
 msgstr ""
@@ -3052,7 +3058,7 @@ msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2337
-#: ../src/microbe_stage/MicrobeHUD.cs:1504
+#: ../src/microbe_stage/MicrobeHUD.cs:1506
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
@@ -3196,52 +3202,52 @@ msgstr ""
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:792
+#: ../src/microbe_stage/MicrobeHUD.cs:794
 msgid "PAUSE_PROMPT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:906
+#: ../src/microbe_stage/MicrobeHUD.cs:908
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:939
+#: ../src/microbe_stage/MicrobeHUD.cs:941
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:956
+#: ../src/microbe_stage/MicrobeHUD.cs:958
 msgid "SPECIES_N_TIMES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1001
+#: ../src/microbe_stage/MicrobeHUD.cs:1003
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1003
+#: ../src/microbe_stage/MicrobeHUD.cs:1005
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1005
+#: ../src/microbe_stage/MicrobeHUD.cs:1007
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1007
+#: ../src/microbe_stage/MicrobeHUD.cs:1009
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1009
+#: ../src/microbe_stage/MicrobeHUD.cs:1011
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1011
+#: ../src/microbe_stage/MicrobeHUD.cs:1013
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1269
+#: ../src/microbe_stage/MicrobeHUD.cs:1271
 #: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1305
+#: ../src/microbe_stage/MicrobeHUD.cs:1307
 #: ../src/microbe_stage/MicrobeStage.tscn:1775
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
@@ -3750,7 +3756,7 @@ msgstr ""
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:428
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:430
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 

@@ -225,8 +225,7 @@ public class ProcessSystem
 
             var availableInEnvironment = GetAmbientInBiome(input.Key, biome);
 
-            float availableRate;
-            availableRate = input.Key == Temperature ?
+            var availableRate = input.Key == Temperature ?
                 CalculateTemperatureEffect(availableInEnvironment) :
                 availableInEnvironment / input.Value;
 

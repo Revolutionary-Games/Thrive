@@ -247,7 +247,7 @@ public class MicrobeHUD : Control
     private ProgressBar oxygenBar = null!;
     private ProgressBar co2Bar = null!;
     private ProgressBar nitrogenBar = null!;
-    private ProgressBar temperatureLabel = null!;
+    private ProgressBar temperatureBar = null!;
     private ProgressBar sunlightLabel = null!;
 
     // TODO: implement changing pressure conditions
@@ -387,7 +387,7 @@ public class MicrobeHUD : Control
         oxygenBar = GetNode<ProgressBar>(OxygenBarPath);
         co2Bar = GetNode<ProgressBar>(Co2BarPath);
         nitrogenBar = GetNode<ProgressBar>(NitrogenBarPath);
-        temperatureLabel = GetNode<ProgressBar>(TemperaturePath);
+        temperatureBar = GetNode<ProgressBar>(TemperaturePath);
         sunlightLabel = GetNode<ProgressBar>(SunlightPath);
         pressure = GetNode<ProgressBar>(PressurePath);
 
@@ -717,6 +717,7 @@ public class MicrobeHUD : Control
         var averageTemperature = biome.Compounds[temperature].Ambient;
 
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+        var unitFormat = TranslationServer.Translate("VALUE_WITH_UNIT");
 
         oxygenBar.MaxValue = 100;
         oxygenBar.Value = oxygenPercentage;
@@ -735,8 +736,8 @@ public class MicrobeHUD : Control
 
         sunlightLabel.GetNode<Label>("Value").Text =
             string.Format(CultureInfo.CurrentCulture, percentageFormat, sunlightPercentage);
-        temperatureLabel.GetNode<Label>("Value").Text =
-            averageTemperature + " " + temperature.Unit;
+        temperatureBar.GetNode<Label>("Value").Text =
+            string.Format(CultureInfo.CurrentCulture, unitFormat, averageTemperature, temperature.Unit);
 
         // TODO: pressure?
     }

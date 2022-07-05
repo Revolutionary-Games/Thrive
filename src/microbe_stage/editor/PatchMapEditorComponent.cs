@@ -393,10 +393,12 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         patchPlayerHere.Visible = Editor.CurrentPatch == patch;
 
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+        var unitFormat = TranslationServer.Translate("VALUE_WITH_UNIT");
 
         // Atmospheric gasses
         var temperature = SimulationParameters.Instance.GetCompound("temperature");
-        patchTemperature.Text = patch.Biome.Compounds[temperature].Ambient + temperature.Unit;
+        patchTemperature.Text = string.Format(CultureInfo.CurrentCulture, unitFormat,
+            patch.Biome.Compounds[temperature].Ambient, temperature.Unit);
         patchPressure.Text = "20 bar";
         patchLight.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
             GetCompoundAmount(patch, sunlight.InternalName)) + " lx";

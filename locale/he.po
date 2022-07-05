@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-30 15:59+0100\n"
+"POT-Creation-Date: 2022-07-05 19:09+0100\n"
 "PO-Revision-Date: 2022-06-29 15:12+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -571,7 +571,7 @@ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "כימוליתו-אוטוטרופי מברזל"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:133
-#: ../simulation_parameters/microbe_stage/bio_processes.json:143
+#: ../simulation_parameters/microbe_stage/bio_processes.json:142
 #, fuzzy
 msgid "THERMOSYNTHESIS"
 msgstr "כימוסינתזה"
@@ -1663,7 +1663,7 @@ msgstr "סגור"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:567
-#: ../src/gui_common/CompoundAmount.cs:175
+#: ../src/gui_common/CompoundAmount.cs:176
 #: ../src/microbe_stage/MicrobeHUD.cs:719
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
@@ -2414,6 +2414,12 @@ msgstr "\\לשנייה"
 #: ../src/gui_common/ChemicalEquation.cs:308
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
+
+#: ../src/gui_common/CompoundAmount.cs:171
+#: ../src/microbe_stage/MicrobeHUD.cs:720
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:396
+msgid "VALUE_WITH_UNIT"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:223
 msgid "LEAD_DEVELOPERS"
@@ -3176,7 +3182,7 @@ msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "חומרי איתות מאפשרים לתא ליצור כימיקלים שתאים אחרים מגיבים לו. חומרי איתות אלו משומשים בשביל למשוך תאים אחרים או להזהיר אותם מסכנה ולגרום להם לברוח."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2337
-#: ../src/microbe_stage/MicrobeHUD.cs:1504
+#: ../src/microbe_stage/MicrobeHUD.cs:1506
 msgid "TO_BE_IMPLEMENTED"
 msgstr "יושם בקרוב."
 
@@ -3328,52 +3334,52 @@ msgstr "להפוך לתוקפני"
 msgid "SIGNAL_TO_EMIT"
 msgstr "איתות לפליטה"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:792
+#: ../src/microbe_stage/MicrobeHUD.cs:794
 msgid "PAUSE_PROMPT"
 msgstr "[center]לחץ [thrive:input]g_pause[/thrive:input] בשביל להמשיך[/center]"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:906
+#: ../src/microbe_stage/MicrobeHUD.cs:908
 msgid "STUFF_AT"
 msgstr "דברים ב {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:939
+#: ../src/microbe_stage/MicrobeHUD.cs:941
 msgid "PLAYER_CELL"
 msgstr "תא השחקן"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:956
+#: ../src/microbe_stage/MicrobeHUD.cs:958
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1001
+#: ../src/microbe_stage/MicrobeHUD.cs:1003
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "שפע"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1003
+#: ../src/microbe_stage/MicrobeHUD.cs:1005
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "לא מעט"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1005
+#: ../src/microbe_stage/MicrobeHUD.cs:1007
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "כמות נכבדת"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1007
+#: ../src/microbe_stage/MicrobeHUD.cs:1009
 msgid "CATEGORY_SOME"
 msgstr "כמה"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1009
+#: ../src/microbe_stage/MicrobeHUD.cs:1011
 msgid "CATEGORY_LITTLE"
 msgstr "קטן"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1011
+#: ../src/microbe_stage/MicrobeHUD.cs:1013
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "קטן מאוד"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1269
+#: ../src/microbe_stage/MicrobeHUD.cs:1271
 #: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "BECOME_MULTICELLULAR"
 msgstr "להפוך לרב-תאיים ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1305
+#: ../src/microbe_stage/MicrobeHUD.cs:1307
 #: ../src/microbe_stage/MicrobeStage.tscn:1775
 msgid "BECOME_MACROSCOPIC"
 msgstr "להפוך למקרוסקופי ({0}/{1})"
@@ -3888,7 +3894,7 @@ msgstr "ביומה: {0}"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}מ' מתחת פני הים"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:428
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:430
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} עם אכלוסיה: {1}"
 

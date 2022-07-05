@@ -33,7 +33,7 @@ public class Compound : IRegistryType
     /// <summary>
     ///   Unit for this compound, if applicable (e.g. °C for temperature)
     /// </summary>
-    public string Unit = null!;
+    public string? Unit;
 
     /// <summary>
     ///   Whether this compound can be distributed in a colony
