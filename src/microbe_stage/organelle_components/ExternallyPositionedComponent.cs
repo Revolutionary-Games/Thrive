@@ -130,6 +130,8 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
 
     private void CheckPositioningWithMembrane()
     {
+        var membrane = organelle!.ParentMicrobe!.Membrane;
+
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var relativeOrganellePosition = middle - organellePos;
 
@@ -137,7 +139,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
             relativeOrganellePosition = DefaultVisualPos;
 
         Vector3 exit = middle - relativeOrganellePosition;
-        var membraneCoords = organelle!.ParentMicrobe!.Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x,
+        var membraneCoords = membrane.GetVectorTowardsNearestPointOfMembrane(exit.x,
             exit.z);
 
         if (!membraneCoords.Equals(lastCalculatedPosition) || NeedsUpdateAnyway())

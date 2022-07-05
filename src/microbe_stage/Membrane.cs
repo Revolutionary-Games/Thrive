@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
 
 /// <summary>
@@ -32,7 +33,7 @@ public class Membrane : MeshInstance, IComputedMembraneData
     private float wigglyNess = 1.0f;
     private float sizeWigglyNessDampeningFactor = 0.22f;
     private float movementWigglyNess = 1.0f;
-    private float sizeMovementWigglyNessDampeningFactor = 0.22f;
+    private float sizeMovementWigglyNessDampeningFactor = 0.32f;
     private Color tint = Colors.White;
     private float dissolveEffectValue;
 
@@ -45,7 +46,9 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
     private bool dirty = true;
     private bool radiusIsDirty = true;
+    private bool convexShapeIsDirty = true;
     private float cachedRadius;
+    private Vector3[] cachedConvexShape = null!;
 
     /// <summary>
     ///   Amount of segments on one side of the above described
@@ -62,7 +65,11 @@ public class Membrane : MeshInstance, IComputedMembraneData
         set
         {
             if (value)
+            {
                 radiusIsDirty = true;
+                convexShapeIsDirty = true;
+            }
+
             dirty = value;
         }
     }
@@ -77,6 +84,42 @@ public class Membrane : MeshInstance, IComputedMembraneData
     ///   </para>
     /// </remarks>
     public List<Vector2> OrganellePositions { get; set; } = PreviewMembraneOrganellePositions;
+
+    /// <summary>
+    ///   Returns a convex shaped 3-Dimensional array of vertices from the generated <see cref="vertices2D"/>.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: This is not the same as the 3D vertices used for the visuals.
+    ///   </para>
+    /// </remarks>
+    [JsonIgnore]
+    public Vector3[] ConvexShape
+    {
+        get
+        {
+            if (convexShapeIsDirty)
+            {
+                if (Dirty)
+                    Update();
+
+                float height = 0.1f;
+
+                if (Type.CellWall)
+                    height = 0.05f;
+
+                cachedConvexShape = new Vector3[vertices2D.Count];
+                for (var i = 0; i < vertices2D.Count; ++i)
+                {
+                    cachedConvexShape[i] = new Vector3(vertices2D[i].x, height / 2, vertices2D[i].y);
+                }
+
+                convexShapeIsDirty = false;
+            }
+
+            return cachedConvexShape;
+        }
+    }
 
     /// <summary>
     ///   The type of the membrane.

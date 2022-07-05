@@ -91,6 +91,11 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             (float)maximumDistance.Value, (float)minimumAmount.Value, colour.Color));
     }
 
+    public Vector2 GetMinDialogSize()
+    {
+        return new Vector2(400, 320);
+    }
+
     public void CompoundChanged(int index)
     {
         // If the currently selected colour is in the shownChoices list change the colour to the colour of the newly
