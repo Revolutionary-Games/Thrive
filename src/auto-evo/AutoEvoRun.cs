@@ -257,9 +257,14 @@ public class AutoEvoRun
     /// <param name="constant">The population change amount (constant part).</param>
     /// <param name="coefficient">The population change amount (coefficient part).</param>
     /// <param name="eventType">The external event type.</param>
-    public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType)
+    /// <param name="patch">The patch this effect affects.</param>
+    public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType,
+        Patch patch)
     {
-        ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType));
+        if (string.IsNullOrEmpty(eventType))
+            throw new ArgumentException("external effect type is required", nameof(eventType));
+
+        ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType, patch));
     }
 
     /// <summary>
@@ -268,25 +273,26 @@ public class AutoEvoRun
     /// <returns>The summary of external effects.</returns>
     public LocalizedStringBuilder MakeSummaryOfExternalEffects()
     {
-        var combinedExternalEffects = new Dictionary<Tuple<Species, string>, long>();
+        var combinedExternalEffects = new Dictionary<(Species Species, string Event, Patch Patch), long>();
 
         foreach (var entry in ExternalEffects)
         {
-            var key = new Tuple<Species, string>(entry.Species, entry.EventType);
+            var key = (entry.Species, entry.EventType, entry.Patch);
+            var speciesPopulation = entry.Species.Population;
 
             combinedExternalEffects.TryGetValue(key, out var existingEffectAmount);
 
             combinedExternalEffects[key] = existingEffectAmount +
-                entry.Constant + (long)(entry.Species.Population * entry.Coefficient) - entry.Species.Population;
+                entry.Constant + (long)(speciesPopulation * entry.Coefficient) - speciesPopulation;
         }
 
         var builder = new LocalizedStringBuilder(300);
 
         foreach (var entry in combinedExternalEffects)
         {
-            // entry.Value is the amount, Item2 is the reason string
-            builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED",
-                entry.Key.Item1.FormattedName, entry.Value, entry.Key.Item2));
+            builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED_2",
+                entry.Key.Species.FormattedName, entry.Value, entry.Key.Patch.Name, entry.Key.Event));
+
             builder.Append('\n');
         }
 

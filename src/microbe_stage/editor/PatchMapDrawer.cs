@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -22,10 +23,16 @@ public class PatchMapDrawer : Control
     [Export]
     public Color ConnectionColour = new(1.0f, 1.0f, 1.0f, 1.0f);
 
+    [Export]
+    public ShaderMaterial MonochromeMaterial = null!;
+
     private readonly List<PatchMapNode> nodes = new();
 
     private PatchMap? map;
+
     private bool dirty = true;
+
+    private Dictionary<Patch, bool>? patchEnableStatusesToBeApplied;
 
     private PackedScene nodeScene = null!;
 
@@ -38,7 +45,7 @@ public class PatchMapDrawer : Control
         get => map;
         set
         {
-            map = value ?? throw new ArgumentNullException();
+            map = value ?? throw new ArgumentNullException(nameof(value), "setting to null not allowed");
             dirty = true;
 
             playerPatch ??= map.CurrentPatch;
@@ -91,12 +98,12 @@ public class PatchMapDrawer : Control
 
     public override void _Process(float delta)
     {
-        if (dirty)
-        {
-            RebuildMapNodes();
-            Update();
-            dirty = false;
-        }
+        if (!dirty)
+            return;
+
+        RebuildMapNodes();
+        Update();
+        dirty = false;
     }
 
     /// <summary>
@@ -118,6 +125,25 @@ public class PatchMapDrawer : Control
                 DrawNodeLink(start, end);
             }
         }
+    }
+
+    /// <summary>
+    ///   Stores patch node status values that will be applied when creating the patch nodes
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that this only works *before* the patch nodes are created, this doesn't apply retroactively
+    ///   </para>
+    /// </remarks>
+    /// <param name="statuses">The enabled status values to store</param>
+    public void SetPatchEnabledStatuses(Dictionary<Patch, bool> statuses)
+    {
+        patchEnableStatusesToBeApplied = statuses;
+    }
+
+    public void SetPatchEnabledStatuses(IEnumerable<Patch> patches, Func<Patch, bool> predicate)
+    {
+        SetPatchEnabledStatuses(patches.ToDictionary(x => x, predicate));
     }
 
     private Vector2 Center(Vector2 pos)
@@ -152,7 +178,11 @@ public class PatchMapDrawer : Control
             node.Patch = entry.Value;
             node.PatchIcon = entry.Value.BiomeTemplate.LoadedIcon;
 
+            node.MonochromeMaterial = MonochromeMaterial;
+
             node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
+
+            node.Enabled = patchEnableStatusesToBeApplied?[entry.Value] ?? true;
 
             AddChild(node);
             nodes.Add(node);

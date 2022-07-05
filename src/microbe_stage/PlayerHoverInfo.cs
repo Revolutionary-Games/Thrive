@@ -73,14 +73,14 @@ public class PlayerHoverInfo : Node
             currentHoveredCompounds.TryGetValue(compound, out float newAmount);
 
             // Delay removing of label to reduce flickering.
-            if (newAmount == 0f && oldAmount > 0f)
+            if (newAmount == 0.0f && oldAmount > 0.0f)
             {
                 compoundDelayTimer.TryGetValue(compound, out float delayDelta);
                 delayDelta += delta;
                 if (delayDelta > Constants.COMPOUND_HOVER_INFO_REMOVE_DELAY)
                 {
                     compoundDelayTimer.Remove(compound);
-                    HoveredCompounds[compound] = 0f;
+                    HoveredCompounds[compound] = 0.0f;
                     continue;
                 }
 
