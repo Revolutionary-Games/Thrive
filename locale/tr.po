@@ -945,9 +945,8 @@ msgid "STARTING"
 msgstr "Başlıyor"
 
 #: ../src/auto-evo/AutoEvoRun.cs:293
-#, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "{0} popülasyonu {1} defa değişti çünkü: {2}"
+msgstr "{0} popülasyonu {2} arazisinde {1} defa değişti çünkü: {3}"
 
 #: ../src/auto-evo/RunResults.cs:554
 msgid "POPULATION_COLON"
@@ -1192,12 +1191,11 @@ msgstr "Delta: {0}"
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
 #: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
-#, fuzzy
 msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Bu Mod İçin Bilinmeyen Atölye ID'si"
+msgstr "Windows'ta bilinmiyor"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
@@ -3449,9 +3447,8 @@ msgid "PLAYER_DIED"
 msgstr "oyuncu öldü"
 
 #: ../src/microbe_stage/MicrobeStage.cs:1003
-#, fuzzy
 msgid "EXTINCT_IN_PATCH"
-msgstr "Arazide nesli tükendi"
+msgstr "arazide nesli tükendi"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:523
 msgid "AT_CURSOR"
@@ -4034,14 +4031,14 @@ msgid "MOVE_TO_THIS_PATCH"
 msgstr "Bu Araziye Git"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:68
-#, fuzzy
 msgid "PATCH_EXTINCTION_CAPITAL"
-msgstr "SOYUN TÜKENDİ"
+msgstr "ARAZİDE YOK OLDUN"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
-#, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr "Varolmuş bütün türlerin %99'u gibi senin türünün de nesli tükendi. Diğerleri senin alanını doldurmaya ve gelişmeye devam edecek ama bu sen olmayacaksın. Evrimde başarısız bir deney olarak kalacaksın."
+msgstr ""
+"Türün bu arazide yok oldu.\n"
+"Ama henüz hiçbir şey bitmiş değil, oynamak için başka bir arazi halen seçebilirsin!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
@@ -4781,12 +4778,12 @@ msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Seçili kayıtları silme işlemi geri alınamaz, {0} kaydı kalıcı olarak silmek istediğinden emin misin?"
 
 #: ../src/saving/SaveManagerGUI.cs:237
-#, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Otomatik ve Çabuk kayıtların tamamını silme işlemi geri alınamaz, aşağıdaki kayıtları kalıcı olarak silmek istediğinden emin misin?\n"
 "- {0} Otomatik kayıt\n"
-"- {1} Çabuk kayıt"
+"- {1} Çabuk kayıt\n"
+"- {2} Yedek kayıt"
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
