@@ -1835,11 +1835,10 @@ public partial class Microbe
     /// </summary>
     private class EngulfedObject
     {
-        [JsonConstructor]
-        public EngulfedObject(IEngulfable @object, Endosome endosome)
+        public EngulfedObject(IEngulfable @object, Endosome phagosome)
         {
             Object = new EntityReference<IEngulfable>(@object);
-            Phagosome = new EntityReference<Endosome>(endosome);
+            Phagosome = new EntityReference<Endosome>(phagosome);
 
             AdditionalEngulfableCompounds = @object.CalculateAdditionalDigestibleCompounds()?
                 .Where(c => c.Key.Digestible)
@@ -1855,6 +1854,16 @@ public partial class Microbe
             OriginalGroups = @object.EntityNode.GetGroups();
         }
 
+        [JsonConstructor]
+        public EngulfedObject(IEngulfable @object, Endosome phagosome,
+            Dictionary<Compound, float> additionalEngulfableCompounds, float initialTotalEngulfableCompounds)
+        {
+            Object = new EntityReference<IEngulfable>(@object);
+            Phagosome = new EntityReference<Endosome>(phagosome);
+            AdditionalEngulfableCompounds = additionalEngulfableCompounds;
+            InitialTotalEngulfableCompounds = initialTotalEngulfableCompounds;
+        }
+
         /// <summary>
         ///   The solid matter that has been engulfed.
         /// </summary>
@@ -1865,10 +1874,17 @@ public partial class Microbe
         /// </summary>
         public EntityReference<Endosome> Phagosome { get; private set; }
 
+        [JsonProperty]
+        public Dictionary<Compound, float>? AdditionalEngulfableCompounds { get; private set; }
+
+        [JsonProperty]
+        public float? InitialTotalEngulfableCompounds { get; private set; }
+
+        [JsonProperty]
+        public Array OriginalGroups { get; private set; } = new();
+
         public bool HasBeenIngested { get; set; }
         public bool ReclaimedByAnotherHost { get; set; }
-        public Dictionary<Compound, float>? AdditionalEngulfableCompounds { get; private set; }
-        public float? InitialTotalEngulfableCompounds { get; private set; }
         public bool Interpolate { get; set; }
         public float LerpDuration { get; set; }
         public float AnimationTimeElapsed { get; set; }
@@ -1877,6 +1893,5 @@ public partial class Microbe
         public (Vector3 Translation, Vector3 Scale, Vector3 EndosomeScale) InitialValuesToLerp { get; set; }
         public Vector3 OriginalScale { get; set; }
         public int OriginalRenderPriority { get; set; }
-        public Array OriginalGroups { get; private set; }
     }
 }
