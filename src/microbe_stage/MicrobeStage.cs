@@ -544,9 +544,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         if (debugOverlay.PerformanceMetricsVisible)
         {
-            var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP);
+            var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP).Count();
             var childCount = rootOfDynamicallySpawned.GetChildCount();
-            debugOverlay.ReportEntities(entities.Count(), childCount - entities.Count());
+            debugOverlay.ReportEntities(entities, childCount - entities);
         }
     }
 
