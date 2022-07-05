@@ -768,21 +768,21 @@ public class MicrobeHUD : Control
                 return;
 
             UpdateBarVisibility(compounds.IsSpecificallySetUseful(oxytoxy),
-              (compound) => compounds.IsUseful(compound));
+                compound => compounds.IsUseful(compound));
         }
         else
         {
             UpdateBarVisibility(stage!.Player!.Colony!.ColonyMembers.Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy)),
-                (compound) => stage.Player.Colony.ColonyMembers.Any(c => c.Compounds.IsUseful(compound)));
+                compound => stage.Player.Colony.ColonyMembers.Any(c => c.Compounds.IsUseful(compound)));
         }
     }
+
     /// <summary>
     ///  Updated the different bars and panels that should be
     ///  displayed to the screen
     /// </summary>
     private void UpdateBarVisibility(bool showAgents, Func<Compound, bool> isUseful)
     {
-
         if (showAgents)
         {
             agentsPanel.Show();
@@ -803,7 +803,6 @@ public class MicrobeHUD : Control
                 bar.Hide();
             }
         }
-
     }
 
     private void UpdatePausePrompt()
