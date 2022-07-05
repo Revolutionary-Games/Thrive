@@ -177,10 +177,7 @@ public class ToolTipManager : CanvasLayer
 
     public override void _Input(InputEvent @event)
     {
-        if (MainToolTip == null)
-            return;
-
-        if (MainToolTip.HideOnMouseAction)
+        if (MainToolTip?.HideOnMouseAction == true)
         {
             // For mouse press, only trigger when it's button down, we don't want the tooltip to be hidden
             // the second the mouse is released
