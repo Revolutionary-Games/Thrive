@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=13]
 [ext_resource path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" type="Texture" id=14]
 [ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/gui/bevel/Protein.png" type="Texture" id=33]
 [ext_resource path="res://src/microbe_stage/HUDBottomBar.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=39]
 [ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=40]
@@ -67,7 +68,10 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png" type="Texture" id=89]
 [ext_resource path="res://assets/textures/gui/bevel/unbind.png" type="Texture" id=90]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=91]
-[ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=92]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Huge.tres" type="DynamicFont" id=92]
+[ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=93]
+[ext_resource path="res://src/microbe_stage/gui/PatchExtinctionBox.tscn" type="PackedScene" id=94]
+[ext_resource path="res://src/microbe_stage/PausePrompt.tscn" type="PackedScene" id=95]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -164,6 +168,9 @@ bg_color = Color( 0.462745, 0.470588, 0.184314, 1 )
 
 [sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 0.541176, 0.141176, 0.0745098, 1 )
+
+[sub_resource type="StyleBoxFlat" id=38]
+bg_color = Color( 0.882353, 0.498039, 0.498039, 1 )
 
 [sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
@@ -362,6 +369,7 @@ AmmoniaBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Bo
 PhosphateBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates")
 HydrogenSulfideBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide")
 IronBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron")
+IngestedMatterBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested")
 EnvironmentPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton")
 EnvironmentPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton")
 CompoundsPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton")
@@ -374,6 +382,9 @@ PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBa
 EditorButtonFlashPath = NodePath("BottomRight/EditorButton/Highlight/Light2D")
 ProcessPanelPath = NodePath("ProcessPanel")
 HintTextPath = NodePath("HintText")
+ExtinctionBoxScene = ExtResource( 70 )
+PatchExtinctionBoxScene = ExtResource( 94 )
+WinBoxScene = ExtResource( 69 )
 MicrobePickupOrganelleSound = ExtResource( 8 )
 AmmoniaBW = ExtResource( 6 )
 PhosphatesBW = ExtResource( 5 )
@@ -1124,7 +1135,7 @@ custom_styles/separator = SubResource( 10 )
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer"]
 margin_top = 52.0
 margin_right = 254.0
-margin_bottom = 217.0
+margin_bottom = 247.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
 custom_constants/margin_left = 22
@@ -1137,7 +1148,7 @@ __meta__ = {
 margin_left = 22.0
 margin_top = 5.0
 margin_right = 242.0
-margin_bottom = 150.0
+margin_bottom = 180.0
 size_flags_horizontal = 0
 custom_constants/vseparation = 5
 __meta__ = {
@@ -1175,9 +1186,6 @@ rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = ExtResource( 80 )
 text = "GLUCOSE"
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
 anchor_left = 1.0
@@ -1267,9 +1275,6 @@ rect_min_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
 texture = ExtResource( 50 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
 margin_left = 20.0
@@ -1371,9 +1376,6 @@ rect_min_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
 texture = ExtResource( 49 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
 margin_left = 20.0
@@ -1402,6 +1404,50 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ingested" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
+show_behind_parent = true
+margin_top = 150.0
+margin_right = 220.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 220, 25 )
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 38 )
+custom_styles/bg = SubResource( 20 )
+step = 0.1
+percent_visible = false
+
+[node name="IngestedMatterIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
+modulate = Color( 0.882353, 0.882353, 0.882353, 1 )
+margin_left = -12.0
+margin_right = 13.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 25, 25 )
+size_flags_horizontal = 0
+texture = ExtResource( 33 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
+margin_left = 20.0
+margin_right = 47.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = ExtResource( 80 )
+text = "INGESTED_MATTER"
+valign = 1
+
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -44.0
+margin_right = -3.99998
+margin_bottom = 25.0
+grow_horizontal = 0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = ExtResource( 80 )
+text = "0.0 / 4"
+align = 2
+valign = 1
 
 [node name="AgentsPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels"]
 margin_top = 473.0
@@ -1737,9 +1783,6 @@ tint_under = Color( 0, 0, 0, 0.752941 )
 tint_progress = Color( 0.439216, 0.956863, 0.137255, 1 )
 radial_initial_angle = 237.0
 radial_fill_degrees = 129.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ATPIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/ATPBar"]
 margin_left = 18.5
@@ -1890,7 +1933,7 @@ margin_left = 10.0
 margin_top = 30.0
 margin_right = 207.0
 
-[node name="PausePrompt" parent="MicrobeHUD" instance=ExtResource( 92 )]
+[node name="PausePrompt" parent="MicrobeHUD" instance=ExtResource( 95 )]
 visible = false
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeHUD"]
@@ -1904,9 +1947,6 @@ margin_right = 300.0
 rect_min_size = Vector2( 600, 69 )
 theme = ExtResource( 72 )
 scroll_vertical_enabled = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HotBar" type="HBoxContainer" parent="MicrobeHUD/ScrollContainer"]
 margin_right = 600.0

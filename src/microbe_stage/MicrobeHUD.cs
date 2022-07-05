@@ -21,6 +21,9 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     public NodePath MacroscopicButtonPath = null!;
 
     [Export]
+    public NodePath IngestedMatterBarPath = null!;
+
+    [Export]
     public PackedScene WinBoxScene = null!;
 
     [Export]
@@ -36,14 +39,27 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     private CustomDialog multicellularConfirmPopup = null!;
     private Button macroscopicButton = null!;
 
-    private CustomDialog? winBox;
+    private ProgressBar ingestedMatterBar = null!;
 
-    private int? playerColonySize;
+    private CustomDialog? winBox;
 
     /// <summary>
     ///   If not null the signaling agent radial menu is open for the given microbe, which should be the player
     /// </summary>
     private Microbe? signalingAgentMenuOpenForMicrobe;
+
+    private int? playerColonySize;
+
+    private bool playerWasDigested;
+
+    /// <summary>
+    ///   Gets and sets the text that appears at the upper HUD.
+    /// </summary>
+    public string HintText
+    {
+        get => hintText.Text;
+        set => hintText.Text = value;
+    }
 
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
@@ -57,6 +73,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     public override void _Ready()
     {
         base._Ready();
+        ingestedMatterBar = GetNode<ProgressBar>(IngestedMatterBarPath);
 
         multicellularButton = GetNode<Button>(MulticellularButtonPath);
         multicellularConfirmPopup = GetNode<CustomDialog>(MulticellularConfirmPopupPath);
@@ -173,14 +190,71 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         maxHP = stage.Player.MaxHitpoints;
     }
 
+    protected override void UpdateHealth(float delta)
+    {
+        if (stage?.Player != null && stage.Player.PhagocytosisStep != PhagocytosisPhase.Ingested)
+        {
+            base.UpdateHealth(delta);
+            return;
+        }
+
+        float hp = 0;
+
+        if (stage!.Player != null)
+            hp = stage.Player.Hitpoints;
+
+        string hpText = playerWasDigested ?
+            TranslationServer.Translate("DEVOURED") :
+            hp.ToString(CultureInfo.CurrentCulture);
+
+        // Update to the player's current HP, unless the player does not exist
+        if (stage.Player != null)
+        {
+            // Change mode depending on whether the player is ingested or not
+            if (stage.Player.PhagocytosisStep == PhagocytosisPhase.Ingested)
+            {
+                var percentageValue = TranslationServer.Translate("PERCENTAGE_VALUE");
+
+                // Show the digestion progress to the player
+                hp = 1 - (stage.Player.DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD);
+                maxHP = Constants.FULLY_DIGESTED_LIMIT;
+                hpText = string.Format(CultureInfo.CurrentCulture, percentageValue, Mathf.Round((1 - hp) * 100));
+                playerWasDigested = true;
+                FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
+            }
+            else
+            {
+                hp = stage.Player.Hitpoints;
+                maxHP = stage.Player.MaxHitpoints;
+                hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+                playerWasDigested = false;
+                healthBar.TintProgress = defaultHealthBarColour;
+            }
+        }
+
+        healthBar.MaxValue = maxHP;
+        GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
+        hpLabel.Text = hpText;
+        hpLabel.HintTooltip = hpText;
+    }
+
     protected override CompoundBag? GetPlayerUsefulCompounds()
     {
         return stage!.Player?.Compounds;
     }
 
-    protected override ICompoundStorage GetPlayerColonyOrPlayerStorage()
+    protected override ICompoundStorage GetPlayerStorage()
     {
         return stage!.Player!.Colony?.ColonyCompounds ?? (ICompoundStorage)stage.Player.Compounds;
+    }
+
+    protected override void UpdateCompoundBars()
+    {
+        base.UpdateCompoundBars();
+
+        ingestedMatterBar.MaxValue = stage!.Player!.Colony?.HexCount ?? stage.Player.HexCount;
+        ingestedMatterBar.Value = GetPlayerUsedIngestionCapacity();
+        ingestedMatterBar.GetNode<Label>("Value").Text = ingestedMatterBar.Value + " / " + ingestedMatterBar.MaxValue;
     }
 
     protected override ProcessStatistics? GetPlayerProcessStatistics()
@@ -232,6 +306,11 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         }
 
         GD.PrintErr("Unexpected radial menu item selection signal");
+    }
+
+    private float GetPlayerUsedIngestionCapacity()
+    {
+        return stage!.Player!.Colony?.UsedIngestionCapacity ?? stage.Player.UsedIngestionCapacity;
     }
 
     private void UpdateMulticellularButton(Microbe player)

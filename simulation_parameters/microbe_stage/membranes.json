@@ -38,6 +38,7 @@
     "cellulose": {
         "name": "CELLULOSE",
         "cellWall": true,
+        "dissolverEnzyme": "cellulase",
         "albedoTexture": "res://assets/textures/CellWallGradient.png",
         "normalTexture": "res://assets/textures/MembraneNormals.png",
         "damagedTexture": "res://assets/textures/CellWallGradientDamaged.png",
@@ -56,6 +57,7 @@
     "chitin": {
         "name": "CHITIN",
         "cellWall": true,
+        "dissolverEnzyme": "chitinase",
         "albedoTexture": "res://assets/textures/ChitinCellWallGradient.png",
         "normalTexture": "res://assets/textures/MembraneNormals.png",
         "damagedTexture": "res://assets/textures/ChitinCellWallGradientDamaged.png",

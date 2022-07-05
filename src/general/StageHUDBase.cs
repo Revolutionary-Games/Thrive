@@ -176,6 +176,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     public PackedScene ExtinctionBoxScene = null!;
 
     [Export]
+    public PackedScene PatchExtinctionBoxScene = null!;
+
+    [Export]
     public NodePath FireToxinHotkeyPath = null!;
 
     [Export]
@@ -184,6 +187,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected readonly Dictionary<Species, int> hoveredSpeciesCounts = new();
 
     protected readonly Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls = new();
+
+    protected readonly Color defaultHealthBarColour = new(0.96f, 0.27f, 0.48f);
 
     protected Compound ammonia = null!;
     protected Compound atp = null!;
@@ -204,7 +209,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected ActionButton signallingAgentsHotkey = null!;
 
     // Store these statefully for after player death
-    private float maxHP = 1.0f;
+    protected float maxHP = 1.0f;
     protected float maxATP = 1.0f;
 
     protected ProgressBar oxygenBar = null!;
@@ -284,6 +289,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected Control agentsPanel = null!;
     protected ProgressBar oxytoxyBar = null!;
     private CustomDialog? extinctionBox;
+    private PatchExtinctionBox? patchExtinctionBox;
+
     protected Array compoundBars = null!;
     protected ProcessPanel processPanel = null!;
 
@@ -291,6 +298,12 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
     /// </summary>
     protected float hoverInfoTimeElapsed;
+
+    [JsonProperty]
+    private float healthBarFlashDuration;
+
+    [JsonProperty]
+    private Color healthBarFlashColour = new(0, 0, 0, 0);
 
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
@@ -667,7 +680,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         }
     }
 
-    protected void UpdateHealth(float delta)
+    protected virtual void UpdateHealth(float delta)
     {
         // https://github.com/Revolutionary-Games/Thrive/issues/1976
         if (delta <= 0)
@@ -846,6 +859,30 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         extinctionBox.Show();
     }
 
+    public void ShowPatchExtinctionBox()
+    {
+        winExtinctBoxHolder.Show();
+
+        if (patchExtinctionBox == null)
+        {
+            patchExtinctionBox = PatchExtinctionBoxScene.Instance<PatchExtinctionBox>();
+            winExtinctBoxHolder.AddChild(patchExtinctionBox);
+
+            patchExtinctionBox.OnMovedToNewPatch = MoveToNewPatchAfterExtinctInCurrent;
+        }
+
+        patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
+        patchExtinctionBox.Map = stage.GameWorld.Map;
+
+        patchExtinctionBox.Show();
+    }
+
+    public void HidePatchExtinctionBox()
+    {
+        winExtinctBoxHolder.Hide();
+        patchExtinctionBox?.Hide();
+    }
+
     public void UpdateEnvironmentalBars(BiomeConditions biome)
     {
         var oxygenPercentage = biome.Compounds[oxygen].Dissolved * 100;
@@ -900,6 +937,10 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         foreach (ProgressBar bar in compoundBars)
         {
+            // TODO: find a cleaner way to do this
+            if (bar.Name == "ingested")
+                continue;
+
             var compound = SimulationParameters.Instance.GetCompound(bar.Name);
 
             if (compounds.IsUseful(compound))
@@ -925,7 +966,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
             >= Constants.COMPOUND_DENSITY_CATEGORY_SOME => new Color(0.011f, 0.705f, 0.768f),
             >= Constants.COMPOUND_DENSITY_CATEGORY_LITTLE => new Color(0.011f, 0.552f, 0.768f),
             >= Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE => new Color(0.011f, 0.290f, 0.768f),
-            _ => new Color(1f, 1f, 1f),
+            _ => new Color(1.0f, 1.0f, 1.0f),
         };
     }
 
@@ -952,9 +993,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     /// <summary>
     ///   Updates the compound bars with the correct values.
     /// </summary>
-    protected void UpdateCompoundBars()
+    protected virtual void UpdateCompoundBars()
     {
-        var compounds = GetPlayerColonyOrPlayerStorage();
+        var compounds = GetPlayerStorage();
 
         glucoseBar.MaxValue = compounds.GetCapacityForCompound(glucose);
         glucoseBar.Value = compounds.GetCompoundAmount(glucose);
@@ -1048,7 +1089,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         // Update to the player's current ATP, unless the player does not exist
         if (stage!.HasPlayer)
         {
-            var compounds = GetPlayerColonyOrPlayerStorage();
+            var compounds = GetPlayerStorage();
 
             atpAmount = compounds.GetCompoundAmount(atp);
             maxATP = compounds.GetCapacityForCompound(atp);
@@ -1069,7 +1110,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         atpLabel.HintTooltip = atpText;
     }
 
-    protected abstract ICompoundStorage GetPlayerColonyOrPlayerStorage();
+    protected abstract ICompoundStorage GetPlayerStorage();
 
     protected void UpdateProcessPanel()
     {
@@ -1224,6 +1265,34 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected void OpenHelp()
     {
         EmitSignal(nameof(OnOpenMenuToHelp));
+    }
+
+    /// <summary>
+    ///   Called when the player died out in a patch and selected a new one
+    /// </summary>
+    private void MoveToNewPatchAfterExtinctInCurrent(Patch patch)
+    {
+        winExtinctBoxHolder.Hide();
+        stage!.MoveToPatch(patch);
+    }
+
+    protected void FlashHealthBar(Color colour, float delta)
+    {
+        healthBarFlashDuration -= delta;
+
+        if (healthBarFlashDuration % 0.6f < 0.3f)
+        {
+            healthBar.TintProgress = colour;
+        }
+        else
+        {
+            // Restore colour
+            healthBar.TintProgress = defaultHealthBarColour;
+        }
+
+        // Loop flash
+        if (healthBarFlashDuration <= 0)
+            healthBarFlashDuration = 2.5f;
     }
 
     private void UpdatePausePrompt()

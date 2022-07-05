@@ -24,4 +24,6 @@ public interface IStage : IReturnableGameState
     public void OnFinishTransitioning();
 
     public void MoveToEditor();
+
+    public void MoveToPatch(Patch patch);
 }

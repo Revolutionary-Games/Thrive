@@ -33,7 +33,7 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         throw new System.NotImplementedException();
     }
 
-    protected override ICompoundStorage GetPlayerColonyOrPlayerStorage()
+    protected override ICompoundStorage GetPlayerStorage()
     {
         throw new System.NotImplementedException();
     }

@@ -36,6 +36,11 @@ public class MulticellularStage : StageBase<Microbe>
         throw new System.NotImplementedException();
     }
 
+    protected override void UpdatePatchSettings(bool promptPatchNameChange = true)
+    {
+        throw new System.NotImplementedException();
+    }
+
     protected override void SpawnPlayer()
     {
         throw new System.NotImplementedException();

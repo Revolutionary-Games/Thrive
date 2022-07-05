@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-29 11:15+0700\n"
+"POT-Creation-Date: 2022-07-05 15:24+0300\n"
 "PO-Revision-Date: 2022-04-15 14:50+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -40,22 +40,22 @@ msgid "CONCEPT_ART"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:6
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
+msgid "CELLS"
+msgstr "Cèl·lules"
+
+#: ../simulation_parameters/common/gallery.json:61
 #, fuzzy
 msgid "GENERAL"
 msgstr "Generació:"
 
-#: ../simulation_parameters/common/gallery.json:28
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:387
-msgid "CELLS"
-msgstr "Cèl·lules"
-
-#: ../simulation_parameters/common/gallery.json:68
+#: ../simulation_parameters/common/gallery.json:123
 #, fuzzy
 msgid "MODELS"
 msgstr "Mode Déu"
 
-#: ../simulation_parameters/common/gallery.json:71
-#: ../simulation_parameters/common/gallery.json:209
+#: ../simulation_parameters/common/gallery.json:126
+#: ../simulation_parameters/common/gallery.json:276
 #, fuzzy
 msgid "MICROBE_STAGE"
 msgstr ""
@@ -69,67 +69,95 @@ msgstr ""
 "\n"
 "Per tal de sobreviure en aquest planeta hostil, hauràs d'arreplegar tots els compostos amb contingut nutritiu que puguis trobar. Al llarg de les diverses generacions del procés evolutiu, hauràs d'evolucionar per competir contra altres espècies pels nínxols de la cadena tròfica. Totes aquestes espècies hauran evolucionat a partir del darrer avantpassat universal comú."
 
-#: ../simulation_parameters/common/gallery.json:184
+#: ../simulation_parameters/common/gallery.json:239
 msgid "MUSIC"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:187
+#: ../simulation_parameters/common/gallery.json:242
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
 
-#: ../simulation_parameters/common/gallery.json:196
+#: ../simulation_parameters/common/gallery.json:253
 #, fuzzy
 msgid "MENU"
 msgstr "Menú"
 
-#: ../simulation_parameters/common/gallery.json:238
+#: ../simulation_parameters/common/gallery.json:317
 #, fuzzy
 msgid "MICROBE_EDITOR"
 msgstr "S'està carregant l'Editor de Microbi"
 
-#: ../simulation_parameters/common/gallery.json:263
+#: ../simulation_parameters/common/gallery.json:352
 #, fuzzy
 msgid "MULTICELLULAR_STAGE"
 msgstr "Accedeix al següent estadi del joc (Multicel·lular). Disponible un cop comptes amb una colònia cel·lular prou gran."
 
-#: ../simulation_parameters/common/gallery.json:280
+#: ../simulation_parameters/common/gallery.json:375
 #, fuzzy
 msgid "MULTICELLULAR_EDITOR"
 msgstr "S'està carregant l'Editor de Microbi"
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
+#: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] i fer servir el ratolí per canviar la orientació. [thrive:input]g_fire_toxin[/thrive:input] per disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tens un Vacúol de Toxines. [thrive:input]g_toggle_engulf[/thrive:input] per activar el mode Engolir. Pots ampliar o reduïr el camp de visió amb la rodeta del ratolí."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
+#: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr "La teva cèl·lula fa servir [thrive:compound type=\"atp\"][/thrive:compound] com a font d'energia, si se li acaba es morirà."
 
 #: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
+#: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr "Per desbloquejar l'editor i reproduïr-vos heu de recol·lectar [thrive:compound type=\"ammonia\"][/thrive:compound] (Núvol Taronja) i [thrive:compound type=\"phosphates\"][/thrive:compound] (Núvol Violeta)."
 
 #: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
+#: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "També pots engolir cèl·lules, bacteris, fragments de Ferro i fragments de cèl·lules mortes prement [thrive:input]g_toggle_engulf[/thrive:input]. Això comporta un cost afegit [thrive:compound type=\"atp\"][/thrive:compound] i et farà més lent. No t'oblidis de prèmer [thrive:input]g_toggle_engulf[/thrive:input] una segona vegada per deixar d'engolir."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+msgstr ""
+"Estructures procariòtiques\n"
+"\n"
+"Metabolosomes: Produeixen ATP a partir de Glucosa\n"
+"\n"
+"Proteïnes Quimiosintetitzadores: Produeixen una petita quantitat de Glucosa, la meitat respecte a un Quimioplast, a partir d'Àcid Sulfhídric. També duu a terme el procés de Glicòlisi. A l'editor ocupa 1 Hexàgon\n"
+"\n"
+"Tilacoide: Produeixen una petita quantitat de Glucosa, una tercera part respecte a un Cloroplast. També duu a terme el procés de Glicòlisi. A l'editor ocupa 1 Hexàgon\n"
+"\n"
+"Rusticianina: Produeix ATP a partir de Ferro\n"
+"\n"
+"Nitrogenasa: Produeix Amoníac, mitjançant un procés anaeròbic, a partir de l'ATP i del Nitrogen ambiental\n"
+"\n"
+"Citoplasma: Permet, fins a un cert límit, emmagatzemar recursos a l'interior de la cèl·lula. També duu a terme el procés de Glicòlisi"
+
+#: ../simulation_parameters/common/help_texts.json:26
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] i fer servir el ratolí per canviar la orientació. [thrive:input]g_fire_toxin[/thrive:input] per disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tens un Vacúol de Toxines. [thrive:input]g_toggle_engulf[/thrive:input] per activar el mode Engolir. Pots ampliar o reduïr el camp de visió amb la rodeta del ratolí."
+
+#: ../simulation_parameters/common/help_texts.json:30
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] i fer servir el ratolí per canviar la orientació. [thrive:input]g_fire_toxin[/thrive:input] per disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tens un Vacúol de Toxines. [thrive:input]g_toggle_engulf[/thrive:input] per activar el mode Engolir. Pots ampliar o reduïr el camp de visió amb la rodeta del ratolí."
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr "L'Osmoregulació comporta un cost en [thrive:compound type=\"atp\"][/thrive:compound], de manera que, com més gran és la teva cèl·lula, més Mitocondris, Metabolosomes o Rusticianina (o Citoplasma, que duu a terme la Glicòlisi) necessites per evitar morir [thrive:compound type=\"atp\"][/thrive:compound] quan estàs quiet."
 
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr "A l'editor hi ha un munt d'Orgànuls que pots fer servir per evolucionar; un munt de possibilitats jugables."
 
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "Els diferents núvols de compostos són:\n"
@@ -142,35 +170,35 @@ msgstr ""
 "\n"
 "[thrive:compound type=\"glucose\"][/thrive:compound] fa [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
+#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pot ser transformat en [thrive:compound type=\"glucose\"][/thrive:compound] per mitjà de Quimioplasts i Proteïnes Quimiosintetitzadores. [thrive:compound type=\"iron\"][/thrive:compound] pot ser transformat per mitjà de la proteïna Rusticianina en [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr "Per tal de reproduït-te, has de dividir cadascun dels teus orgànuls en 2. Els orgànuls necessiten Amoníac i Fosfat per tal d'autoreplicar-se."
 
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
+#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:115
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "Per a la versió actual del joc, si la teva població baixa fins a 0 t'hauràs extingit."
 
-#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr "Però si sobrevius durant 20 generacions i la teva població té més de 300 individus, hauràs guanyat el joc actual. Després de guanyar, apareixerà una finestreta d'enhorabona i, després, podràs seguir jugant."
 
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
+#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr "Estigues alerta, ja que els teus competidors no cessaran d'evolucionar en cap moment. Cada vegada que entris a l'editor, ells també faran un salt evolutiu."
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr "Si t'uneixes a altres cèl·lules, podràs construïr una colònia cel·lular on les cèl·lules comparteixen els compostos que absorbeixen i produeixen amb les altres. Per poder unir-te a una altra cèl·lula, has d'aconseguir l'orgànul \"agents d'unió\", entrar en contacte amb l'altra cèl·lula i, tot seguit, entrar en el \"mode d'unió\". Només et pots unir a cèl·lules de la teva espècie. Mentre formis part d'una colònia, no et pots reproduïr i entrar a l'editor (de moment). Per entrar a l'editor, un cop hagis recollit prou compostos hauràs d'abandonar la teva colònia. Les grans colònies de cèl·lules són la via per a esdevenir un organisme multicel·lular (però encara no ha estat implementat al joc)."
 
-#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Estructures procariòtiques\n"
@@ -187,7 +215,7 @@ msgstr ""
 "\n"
 "Citoplasma: Permet, fins a un cert límit, emmagatzemar recursos a l'interior de la cèl·lula. També duu a terme el procés de Glicòlisi"
 
-#: ../simulation_parameters/common/help_texts.json:66
+#: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Orgànuls externs\n"
@@ -198,7 +226,7 @@ msgstr ""
 "\n"
 "Quimioreceptor: Permet detectar compostos a distància."
 
-#: ../simulation_parameters/common/help_texts.json:70
+#: ../simulation_parameters/common/help_texts.json:82
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Orgànuls adherits a la membrana\n"
@@ -221,123 +249,123 @@ msgstr ""
 "\n"
 "Agent de Senyalització: Permet crear productes químics als quals altres espècies hi poden reaccionar."
 
-#: ../simulation_parameters/common/help_texts.json:74
+#: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr "Cada generació, pots gastar fins a 100 punts de mutació (PM), i cada canvi (o mutació) costarà una certa quantitat d'aquest PM. Afegir i eliminar orgànuls costa PM. No obstant, eliminar orgànuls que han estat afegits en la sessió de mutació actuals, et torna el cost en PM d'aquest orgànul. Pots moure o eliminar un orgànul tot fent clic dret a sobre d'aquest, i seleccionant l'acció adequada del menú que apareixirà. Pots rotar els teus orgànuls mentre els col·loques amb [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
 
-#: ../simulation_parameters/common/help_texts.json:78
+#: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Cada vegada que et reprodueixis entraràs a l'editor de microbi, on podràs fer canvis a la teva espècie (afegir, moure o treure orgànuls) per tal de millorar-la. Cada sessió de l'editor de microbi representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milions d'anys d'evolució."
 
-#: ../simulation_parameters/common/help_texts.json:119
+#: ../simulation_parameters/common/help_texts.json:131
 msgid "LOADING_TIP"
 msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
 
-#: ../simulation_parameters/common/help_texts.json:126
+#: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "A mode de curiositat, la relació entre les cèl·lules de l'espècie Didinium i les cèl·lules Paramecium és un exemple típic i clar, que ha estat estudiat durant dècades, d'una relació entre depredador i presa. Ara bé, la teva espècie, és l'equivalent de Didinium o de Paramecium? Ets un depredador, o bé la presa?"
 
-#: ../simulation_parameters/common/help_texts.json:129
+#: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Un petit consell, si ets prou ràpid, pots fer servir les teves pròpies toxines per a bloquejar-ne d'altres."
 
-#: ../simulation_parameters/common/help_texts.json:132
+#: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Un petit consell, la Osmoregulació consumeix, cada segon, 1 unitat d'ATP per nombre d'hexàgons de la teva cèl·lula. Alhora, cada hexàgon de citoplasma produeix 5 unitats d'ATP cada segon. Per tant, si estas perdent ATP degut a la Osmoregulació, afegeix un parell d'hexàgons de citoplasma o bé elimina alguns orgànuls."
 
-#: ../simulation_parameters/common/help_texts.json:135
+#: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "A mode de curiositat, al planeta Terra, els organismes procariotes tenen unes estructures anomenades Biocompartiments que actuen com orgànuls. En realitat, s'anomenen Orgànuls Polihèdrics."
 
-#: ../simulation_parameters/common/help_texts.json:138
+#: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_5"
 msgstr "A mode de curiositat, els Metabolosomes són el que s'anomena Orgànuls Polihèdrics."
 
-#: ../simulation_parameters/common/help_texts.json:141
+#: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Un petit consell, de vegades és millor fugir ràpidament de les altres cèl·lules."
 
-#: ../simulation_parameters/common/help_texts.json:144
+#: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_7"
 msgstr "Recorda que, si et creues amb una cèl·lula almenys dues vegades més petita que tu, la pots engolir per alimentar-te'n."
 
-#: ../simulation_parameters/common/help_texts.json:147
+#: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_8"
 msgstr "Vés amb compte. Els bacteris, malgrat ser molt petits, poden resultar perillosos. Alguns t'atacaran agressivament per devorar-te sense pensar-s'ho dues vegades!"
 
-#: ../simulation_parameters/common/help_texts.json:150
+#: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Un petit consell, si caçes altres espècies i no vas amb compte, es poden extingir. També es poden extingir si són caçades per altres espècies depredadores."
 
-#: ../simulation_parameters/common/help_texts.json:153
+#: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "ÉSSERS LLEFISCOSOS!!"
 
-#: ../simulation_parameters/common/help_texts.json:156
+#: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_11"
 msgstr "Smeltal the meltal: frase satírica en anglès, amb un lèxic deformat a propòsit, que vol dir \"Fondre els metalls\"."
 
-#: ../simulation_parameters/common/help_texts.json:159
+#: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "No obstant, aquestes cèl·lules de color blau."
 
-#: ../simulation_parameters/common/help_texts.json:162
+#: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_13"
 msgstr "Un petit consell: els diferents Biomes no són tan sols diferents fons, sinó que en cadascun hi ha diferents proporcions de compostos."
 
-#: ../simulation_parameters/common/help_texts.json:165
+#: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_14"
 msgstr "Un petit consell: com més Flagels tinguis, més ràpid et podràs moure, però també més ATP consumiràs"
 
-#: ../simulation_parameters/common/help_texts.json:168
+#: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Un petit consell: no només et pots empassar cèl·lules, sinó també trossos de Ferro."
 
-#: ../simulation_parameters/common/help_texts.json:171
+#: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_16"
 msgstr "Un petit consell: prepara bé la teva cèl·lula abans d'afegir-li un Nucli. Els Nuclis són cars i consumeixen una gran quantitat d'ATP."
 
-#: ../simulation_parameters/common/help_texts.json:174
+#: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_17"
 msgstr "A mode de curiositat, sabies que hi ha més de 8000 espècies d'organismes ciliats al planeta Terra?"
 
-#: ../simulation_parameters/common/help_texts.json:177
+#: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "A mode de curiositat, l'Stentor és un ciliat que es pot estendre per tal d'atrapar preses amb una boca amb forma de trompeta. Mitjançant Cilis, genera corrents d'aigua que atrapen a les preses."
 
-#: ../simulation_parameters/common/help_texts.json:180
+#: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "A mode de curiositat, el Didinum és un ciliat que caça Paramecis."
 
-#: ../simulation_parameters/common/help_texts.json:183
+#: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_20"
 msgstr "A mode de curiositat, les Amebes caçen i atrapen preses amb unes 'potes' fetes de Citoplasma que s'anomenen pseudòpodes. Eventualment, seran implementades al joc."
 
-#: ../simulation_parameters/common/help_texts.json:186
+#: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_21"
 msgstr "Un petit consell: vés amb compte amb les cèl·lules més grans que la teva, no és gens divertit ser engolit per una d'aquestes bestioles."
 
-#: ../simulation_parameters/common/help_texts.json:189
+#: ../simulation_parameters/common/help_texts.json:201
 msgid "EASTEREGG_MESSAGE_22"
 msgstr "L'equip de so de Thrive ha composat moltes cançons, algunes de les quals encara no s'han afegit al joc. No obstant, les pots escoltar, i fins i tot veure emissions en directe al canal de YouTube 'Oliver Lugg'."
 
-#: ../simulation_parameters/common/help_texts.json:192
+#: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_23"
 msgstr "Un petit consell, si la teva cèl·lula ocupa més de 150 hexàgons, et podràs empassar fins i tot el trossos de ferro més grans del joc."
 
-#: ../simulation_parameters/common/help_texts.json:195
+#: ../simulation_parameters/common/help_texts.json:207
 msgid "EASTEREGG_MESSAGE_24"
 msgstr "Thrive representa una simulació d'un planeta alienígena. Per tant, la majoria de criatures que vagis trobant, estaran emparentades i mostraran similituds amb d'altres espècies degut al procés d'evolució. Intenta identificar-les!"
 
-#: ../simulation_parameters/common/help_texts.json:198
+#: ../simulation_parameters/common/help_texts.json:210
 msgid "EASTEREGG_MESSAGE_25"
 msgstr "A mode de curiositat, l'equip de Thrive fa podcasts en directe cada cert temps. Estigues amatent i no te'n perdis ni un!"
 
-#: ../simulation_parameters/common/help_texts.json:201
+#: ../simulation_parameters/common/help_texts.json:213
 msgid "EASTEREGG_MESSAGE_26"
 msgstr "A mode de curiositat, Thrive està essent desenvolupat amb el motor de videojoc de codi obert anomenat Godot!"
 
-#: ../simulation_parameters/common/help_texts.json:204
+#: ../simulation_parameters/common/help_texts.json:216
 msgid "EASTEREGG_MESSAGE_27"
 msgstr "A mode de curiositat, un dels primers prototips jugables d'aquest joc va ser desenvolupat pel nostre gran programador untrustedlife!"
 
@@ -370,12 +398,12 @@ msgid "ABILITIES"
 msgstr "Habilitats"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2149
+#: ../src/microbe_stage/MicrobeStage.tscn:2182
 msgid "FIRE_TOXIN"
 msgstr "Llançar les toxines"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2137
+#: ../src/microbe_stage/MicrobeStage.tscn:2170
 msgid "TOGGLE_ENGULF"
 msgstr "Activar el mode d'engolir"
 
@@ -384,7 +412,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Mantenir clicat per mostrar el menú d'ordres de la bandada"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2160
+#: ../src/microbe_stage/MicrobeStage.tscn:2193
 msgid "TOGGLE_BINDING"
 msgstr "Activar el mode d'unió"
 
@@ -393,7 +421,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Desactivar el mode d'unió"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2172
+#: ../src/microbe_stage/MicrobeStage.tscn:2205
 msgid "UNBIND_ALL"
 msgstr "Desunir totes les cèl·lules"
 
@@ -463,7 +491,7 @@ msgid "PAN_CAMERA_RESET"
 msgstr "Reinicialitzar càmera"
 
 #: ../simulation_parameters/common/input_options.json:135
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:79
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:80
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Cancel·la l'acció actual"
 
@@ -591,96 +619,96 @@ msgid "EPIPELAGIC"
 msgstr "Zona epipelàgica"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:170
-#: ../simulation_parameters/microbe_stage/biomes.json:395
-#: ../simulation_parameters/microbe_stage/biomes.json:539
-#: ../simulation_parameters/microbe_stage/biomes.json:763
-#: ../simulation_parameters/microbe_stage/biomes.json:987
-#: ../simulation_parameters/microbe_stage/biomes.json:1212
-#: ../simulation_parameters/microbe_stage/biomes.json:1356
-#: ../simulation_parameters/microbe_stage/biomes.json:1501
-#: ../simulation_parameters/microbe_stage/biomes.json:1665
-#: ../simulation_parameters/microbe_stage/biomes.json:1809
+#: ../simulation_parameters/microbe_stage/biomes.json:172
+#: ../simulation_parameters/microbe_stage/biomes.json:399
+#: ../simulation_parameters/microbe_stage/biomes.json:545
+#: ../simulation_parameters/microbe_stage/biomes.json:771
+#: ../simulation_parameters/microbe_stage/biomes.json:997
+#: ../simulation_parameters/microbe_stage/biomes.json:1224
+#: ../simulation_parameters/microbe_stage/biomes.json:1370
+#: ../simulation_parameters/microbe_stage/biomes.json:1517
+#: ../simulation_parameters/microbe_stage/biomes.json:1683
+#: ../simulation_parameters/microbe_stage/biomes.json:1829
 msgid "FLOATING_HAZARD"
 msgstr "Perill flotant"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
-#: ../simulation_parameters/microbe_stage/biomes.json:188
-#: ../simulation_parameters/microbe_stage/biomes.json:413
-#: ../simulation_parameters/microbe_stage/biomes.json:557
-#: ../simulation_parameters/microbe_stage/biomes.json:781
-#: ../simulation_parameters/microbe_stage/biomes.json:1005
-#: ../simulation_parameters/microbe_stage/biomes.json:1230
-#: ../simulation_parameters/microbe_stage/biomes.json:1374
-#: ../simulation_parameters/microbe_stage/biomes.json:1519
-#: ../simulation_parameters/microbe_stage/biomes.json:1683
-#: ../simulation_parameters/microbe_stage/biomes.json:1827
+#: ../simulation_parameters/microbe_stage/biomes.json:190
+#: ../simulation_parameters/microbe_stage/biomes.json:417
+#: ../simulation_parameters/microbe_stage/biomes.json:563
+#: ../simulation_parameters/microbe_stage/biomes.json:789
+#: ../simulation_parameters/microbe_stage/biomes.json:1015
+#: ../simulation_parameters/microbe_stage/biomes.json:1242
+#: ../simulation_parameters/microbe_stage/biomes.json:1388
+#: ../simulation_parameters/microbe_stage/biomes.json:1535
+#: ../simulation_parameters/microbe_stage/biomes.json:1701
+#: ../simulation_parameters/microbe_stage/biomes.json:1847
 msgid "SMALL_IRON_CHUNK"
 msgstr "Petit tros de Ferro"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:79
-#: ../simulation_parameters/microbe_stage/biomes.json:303
-#: ../simulation_parameters/microbe_stage/biomes.json:448
-#: ../simulation_parameters/microbe_stage/biomes.json:592
-#: ../simulation_parameters/microbe_stage/biomes.json:816
-#: ../simulation_parameters/microbe_stage/biomes.json:1040
-#: ../simulation_parameters/microbe_stage/biomes.json:1265
-#: ../simulation_parameters/microbe_stage/biomes.json:1409
-#: ../simulation_parameters/microbe_stage/biomes.json:1573
-#: ../simulation_parameters/microbe_stage/biomes.json:1718
-#: ../simulation_parameters/microbe_stage/biomes.json:1862
+#: ../simulation_parameters/microbe_stage/biomes.json:80
+#: ../simulation_parameters/microbe_stage/biomes.json:306
+#: ../simulation_parameters/microbe_stage/biomes.json:453
+#: ../simulation_parameters/microbe_stage/biomes.json:599
+#: ../simulation_parameters/microbe_stage/biomes.json:825
+#: ../simulation_parameters/microbe_stage/biomes.json:1051
+#: ../simulation_parameters/microbe_stage/biomes.json:1278
+#: ../simulation_parameters/microbe_stage/biomes.json:1424
+#: ../simulation_parameters/microbe_stage/biomes.json:1590
+#: ../simulation_parameters/microbe_stage/biomes.json:1737
+#: ../simulation_parameters/microbe_stage/biomes.json:1883
 msgid "BIG_IRON_CHUNK"
 msgstr "Gran tros de Ferro"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:148
+#: ../simulation_parameters/microbe_stage/biomes.json:150
 msgid "VOLCANIC_VENT"
 msgstr "Fissura volcànica"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:223
-#: ../simulation_parameters/microbe_stage/biomes.json:615
-#: ../simulation_parameters/microbe_stage/biomes.json:839
-#: ../simulation_parameters/microbe_stage/biomes.json:1063
-#: ../simulation_parameters/microbe_stage/biomes.json:1885
+#: ../simulation_parameters/microbe_stage/biomes.json:226
+#: ../simulation_parameters/microbe_stage/biomes.json:623
+#: ../simulation_parameters/microbe_stage/biomes.json:849
+#: ../simulation_parameters/microbe_stage/biomes.json:1075
+#: ../simulation_parameters/microbe_stage/biomes.json:1907
 msgid "MARINE_SNOW"
 msgstr "Neu marina"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:372
+#: ../simulation_parameters/microbe_stage/biomes.json:376
 msgid "TIDEPOOL"
 msgstr "Toll o bassa de marea"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:517
+#: ../simulation_parameters/microbe_stage/biomes.json:523
 msgid "BATHYPELAGIC"
 msgstr "Zona batipelàgica"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:741
+#: ../simulation_parameters/microbe_stage/biomes.json:749
 msgid "ABYSSOPELAGIC"
 msgstr "Zona abissal"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:965
+#: ../simulation_parameters/microbe_stage/biomes.json:975
 msgid "MESOPELAGIC"
 msgstr "Zona mesopelàgica"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1189
+#: ../simulation_parameters/microbe_stage/biomes.json:1201
 msgid "COASTAL"
 msgstr "Zona costanera"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1334
+#: ../simulation_parameters/microbe_stage/biomes.json:1348
 msgid "UNDERWATERCAVE"
 msgstr "Cova submarina"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1478
+#: ../simulation_parameters/microbe_stage/biomes.json:1494
 msgid "ICESHELF"
 msgstr "Plataforma de gel"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1554
+#: ../simulation_parameters/microbe_stage/biomes.json:1571
 msgid "ICESHARD"
 msgstr "Fragment de gel"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1642
+#: ../simulation_parameters/microbe_stage/biomes.json:1660
 msgid "ESTUARY"
 msgstr "Estuari"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1787
+#: ../simulation_parameters/microbe_stage/biomes.json:1807
 msgid "SEA_FLOOR"
 msgstr "Llit marí"
 
@@ -689,207 +717,228 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:748
+#: ../src/microbe_stage/MicrobeStage.tscn:1300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Amoníac"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:819
+#: ../simulation_parameters/microbe_stage/compounds.json:32
+#: ../src/microbe_stage/MicrobeStage.tscn:1349
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:713
+#: ../simulation_parameters/microbe_stage/compounds.json:47
+#: ../src/microbe_stage/MicrobeStage.tscn:1401
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Àcid Sulfhídric"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:783
+#: ../simulation_parameters/microbe_stage/compounds.json:62
+#: ../src/microbe_stage/MicrobeStage.tscn:1251
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Glucosa"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1585
+#: ../simulation_parameters/microbe_stage/compounds.json:77
+#: ../src/microbe_stage/MicrobeStage.tscn:1624
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:854
+#: ../simulation_parameters/microbe_stage/compounds.json:92
+#: ../src/microbe_stage/MicrobeStage.tscn:1450
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "Ferro"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:550
+#: ../simulation_parameters/microbe_stage/compounds.json:107
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:459
 msgid "OXYGEN"
 msgstr "Oxigen"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:604
+#: ../simulation_parameters/microbe_stage/compounds.json:121
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:513
 msgid "CARBON_DIOXIDE"
 msgstr "Diòxid de Carboni"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:577
+#: ../simulation_parameters/microbe_stage/compounds.json:135
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:486
 msgid "NITROGEN"
 msgstr "Nitrogen"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:431
+#: ../simulation_parameters/microbe_stage/compounds.json:149
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3855
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:340
 msgid "SUNLIGHT"
 msgstr "Llum solar"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:3
+msgid "LIPASE"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#, fuzzy
+msgid "CELLULASE"
+msgstr "Cel·lulosa"
+
+#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#, fuzzy
+msgid "CHITINASE"
+msgstr "Quitina"
+
+#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/organelles.json:58
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:679
+msgid "RUSTICYANIN"
+msgstr "Rusticianina"
+
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/general/OptionsMenu.tscn:931
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2301
 msgid "NORMAL"
 msgstr "Normal"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2416
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2472
 msgid "DOUBLE"
 msgstr "Doble"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2583
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2639
 msgid "CELLULOSE"
 msgstr "Cel·lulosa"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:57
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2821
+#: ../simulation_parameters/microbe_stage/membranes.json:58
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2886
 msgid "CHITIN"
 msgstr "Quitina"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
+#: ../simulation_parameters/microbe_stage/membranes.json:77
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3133
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonat de Calci"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:93
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3330
+#: ../simulation_parameters/microbe_stage/membranes.json:95
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3405
 msgid "SILICA"
 msgstr "Silici"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1105
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
 msgid "PREDATORY_PILUS"
 msgstr "Fibló"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:55
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:678
-msgid "RUSTICYANIN"
-msgstr "Rusticianina"
-
-#: ../simulation_parameters/microbe_stage/organelles.json:90
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:775
+#: ../simulation_parameters/microbe_stage/organelles.json:93
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:776
 msgid "NITROGENASE"
 msgstr "Nitrogenasa"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:125
+#: ../simulation_parameters/microbe_stage/organelles.json:128
 msgid "PROTOPLASM"
 msgstr "protoplasma"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:157
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:576
+#: ../simulation_parameters/microbe_stage/organelles.json:160
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Proteïnes Quimiosintetitzadores"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:873
+#: ../simulation_parameters/microbe_stage/organelles.json:199
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:874
 msgid "OXYTOXISOME"
 msgstr "Oxytoxysoma"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:231
+#: ../simulation_parameters/microbe_stage/organelles.json:234
 msgid "THYLAKOIDS"
 msgstr "Tilacoide"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:265
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:378
+#: ../simulation_parameters/microbe_stage/organelles.json:268
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:379
 msgid "METABOLOSOMES"
 msgstr "Metabolosomes"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:303
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1824
+#: ../simulation_parameters/microbe_stage/organelles.json:306
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1825
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Plastidi Fixador de Nitrogen"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:342
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1739
+#: ../simulation_parameters/microbe_stage/organelles.json:345
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1740
 msgid "CHEMOPLAST"
 msgstr "Quimioplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:376
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:970
+#: ../simulation_parameters/microbe_stage/organelles.json:379
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:971
 msgid "FLAGELLUM"
 msgstr "Flagel"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:405
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1923
+#: ../simulation_parameters/microbe_stage/organelles.json:408
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1924
 msgid "VACUOLE"
 msgstr "Vacúol"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:442
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1453
+#: ../simulation_parameters/microbe_stage/organelles.json:445
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
 msgid "MITOCHONDRION"
 msgstr "Mitocondri"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:478
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2021
+#: ../simulation_parameters/microbe_stage/organelles.json:481
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxina\n"
 "Vacúol"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:509
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1272
+#: ../simulation_parameters/microbe_stage/organelles.json:512
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
 msgid "BINDING_AGENT"
 msgstr "Agent d'Unió"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:551
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1538
+#: ../simulation_parameters/microbe_stage/organelles.json:554
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1539
 msgid "CHLOROPLAST"
 msgstr "Cloroplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:585
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
+#: ../simulation_parameters/microbe_stage/organelles.json:588
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:280
 msgid "CYTOPLASM"
 msgstr "Citoplasma"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:652
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1356
+#: ../simulation_parameters/microbe_stage/organelles.json:655
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
 msgid "NUCLEUS"
 msgstr "Nucli"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:678
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
+#: ../simulation_parameters/microbe_stage/organelles.json:681
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
 msgid "CHEMORECEPTOR"
 msgstr "Quimioreceptor"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2119
+#: ../simulation_parameters/microbe_stage/organelles.json:707
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2120
 msgid "SIGNALING_AGENT"
 msgstr "Agent de Senyalització"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:727
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
+#: ../simulation_parameters/microbe_stage/organelles.json:730
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacúol Bioluminescent"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:750
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
+#: ../simulation_parameters/microbe_stage/organelles.json:753
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:780
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
+#: ../simulation_parameters/microbe_stage/organelles.json:783
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
 msgid "CILIA"
 msgstr "Cilis"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:819
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2241
+#, fuzzy
+msgid "LYSOSOME"
+msgstr "Oxytoxysoma"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
@@ -911,8 +960,9 @@ msgstr "{0:F1}% fet. {1:n0}/{2:n0} passos."
 msgid "STARTING"
 msgstr "Començant"
 
-#: ../src/auto-evo/AutoEvoRun.cs:288
-msgid "AUTO-EVO_POPULATION_CHANGED"
+#: ../src/auto-evo/AutoEvoRun.cs:293
+#, fuzzy
+msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Població de l'espècie {0} canviada per una quantitat {1} degut a aquest efecte: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
@@ -1027,85 +1077,85 @@ msgstr "Predació de {0}"
 msgid "STEM_CELL_NAME"
 msgstr "Arrel"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:299
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:361
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:296
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
 msgid "STRUCTURE"
 msgstr "Estructura"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:320
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:317
 msgid "REPRODUCTION"
 msgstr "Reproducció"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:341
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:403
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:338
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
 msgstr "Comportament"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 msgid "MODIFY_TYPE"
 msgstr "Modificar Tipus"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:415
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Eliminar"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicar Tipus"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproducció:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 msgid "REPRODUCTION_BUDDING"
 msgstr "Gemmació"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1233
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1105
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "CANCEL·LAR ACCIÓ"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1024
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:126
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "SEGÜENT"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
 msgid "DISCONNECTED_CELLS"
 msgstr "Cèl·lules Desconnectades"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Hi ha cèl·lules col·locades que no han estat físicament connectats a la resta.\n"
 "Siusplau, connecta totes les cèl·lules per continuar."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:548
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "No es pot eliminar el Tipus de Cèl·lula"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:555
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:550
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Un Tipus de Cèl·lula que s'utilitza actualment en el teu Pla Corporal no es pot eliminar"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:559
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Crear un nou Tipus de Cèl·lula"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Pots crear nous tipus de cèl·lules duplicant-ne de ja existents, i donant-les-hi un nou nou. Els tipus de cèl·lula es poden modificar per a especialitzar-se en diferents rols. Quan es modifica un tipus de cèl·lula, totes les cèl·lules del mateix tipus col·locades s'actualitzaran."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
 msgid "NEW_NAME_COLON"
 msgstr "Nou nom:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:595
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
 msgid "NEW_NAME"
 msgstr "Nou Nom"
 
@@ -1138,7 +1188,7 @@ msgstr "estat d'execució:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:379
 #: ../src/general/EditorBase.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Acció bloquejada mentre una altra s'està duent a terme"
 
@@ -1157,7 +1207,7 @@ msgid "FRAME_DURATION"
 msgstr "Delta: {0}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
-#: ../src/saving/SaveManagerGUI.cs:126
+#: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
 msgstr ""
 
@@ -1639,7 +1689,7 @@ msgstr "CONFIRMAR"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1333
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "CLOSE"
@@ -1648,11 +1698,13 @@ msgstr "Tancar"
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:567
 #: ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/MicrobeHUD.cs:717
+#: ../src/microbe_stage/MicrobeHUD.cs:760
+#: ../src/microbe_stage/MicrobeHUD.cs:1216
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:395
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:275
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:276
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:236
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2408,7 +2460,7 @@ msgid "STATISTICS"
 msgstr "Estadístiques"
 
 #: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/MicrobeStage.tscn:1697
+#: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ajuda"
 
@@ -2695,21 +2747,21 @@ msgstr "Aquest arxiu de guardat pertany a una versió diferent del joc"
 msgid "SELECT_OPTION"
 msgstr "Seleccionar Una Opció"
 
-#: ../src/gui_common/TweakedColourPicker.cs:394
+#: ../src/gui_common/TweakedColourPicker.cs:388
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "Tria un color a partir de la finestra del joc"
 
-#: ../src/gui_common/TweakedColourPicker.cs:395
+#: ../src/gui_common/TweakedColourPicker.cs:389
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr "Afegir color actual com a plantilla"
 
-#: ../src/gui_common/TweakedColourPicker.cs:396
+#: ../src/gui_common/TweakedColourPicker.cs:390
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 "Activar o desactivar el mode HSV (Hue, Saturació, Valor).\n"
 "No es pot activar quan està en mode \"raw\"."
 
-#: ../src/gui_common/TweakedColourPicker.cs:397
+#: ../src/gui_common/TweakedColourPicker.cs:391
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 "Activar o desactivar el mode \"raw\".\n"
@@ -2717,35 +2769,35 @@ msgstr ""
 "de color vagin més enllà de 1.0.\n"
 "No es pot activar si el mode HSV està activat."
 
-#: ../src/gui_common/TweakedColourPicker.cs:401
+#: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Hue valor, porció de color"
 
-#: ../src/gui_common/TweakedColourPicker.cs:402
+#: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Valor de saturació, la quantitat de gris en un color particular"
 
-#: ../src/gui_common/TweakedColourPicker.cs:403
+#: ../src/gui_common/TweakedColourPicker.cs:397
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Valor (brillantor) valor, brillantor o intensitat del color"
 
-#: ../src/gui_common/TweakedColourPicker.cs:407
+#: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Canal vermell valor del color"
 
-#: ../src/gui_common/TweakedColourPicker.cs:408
+#: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Canal verd valor del color"
 
-#: ../src/gui_common/TweakedColourPicker.cs:409
+#: ../src/gui_common/TweakedColourPicker.cs:403
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Canal blau valor del color"
 
-#: ../src/gui_common/TweakedColourPicker.cs:412
+#: ../src/gui_common/TweakedColourPicker.cs:406
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Canal alpha valor del color"
 
-#: ../src/gui_common/TweakedColourPicker.cs:587
+#: ../src/gui_common/TweakedColourPicker.cs:581
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 "Color: {0}\n"
@@ -2763,8 +2815,8 @@ msgstr "\"Raw\""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2054
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2066
 msgid "N_A"
 msgstr "N/A"
 
@@ -2806,7 +2858,7 @@ msgid "SLIDESHOW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2192
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
 msgid "NO_DATA_TO_SHOW"
 msgstr "No hi ha dades a mostrar"
 
@@ -2867,81 +2919,81 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:16
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:52
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:252
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:55
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:255
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:47
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:48
 msgid "OPEN_THE_MENU"
 msgstr "Obrir el menú"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:53
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
 msgstr "Obrir pantalla d'ajuda"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:67
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:68
 msgid "WILL_YOU_THRIVE"
 msgstr "Podràs prosperar?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:84
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:85
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Acabar la sessió d'evolució i tornar al món"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:90
 msgid "NEXT_EDITOR_TAB"
 msgstr "Anar a la següent pestanya de l'editor"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:95
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:96
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Canviar la simetria"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:101
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Desfer la darrera acció"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:107
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Refer la darrera acció"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:113
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:114
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Crear un nou microbi"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:119
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Nom de l'espècie aleatori"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Rigidesa de la membrana"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:130
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana més rígida protegeix millor, però fa que la cèl·lula sigui més lenta i menys àgil."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:158
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2275
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2613
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2851
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3087
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3360
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:159
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2331
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2669
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2916
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3161
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3435
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Mobilitat"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:193
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2378
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2546
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2716
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2954
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3190
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3463
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:194
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2434
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2602
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2772
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3019
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3264
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3538
 msgid "HEALTH"
 msgstr "Salut"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:232
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:233
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 "Els microbis agressius perseguiran les preses a més distància\n"
@@ -2949,14 +3001,14 @@ msgstr ""
 "Els microbis pacífics desistiran de perseguir les seves preses abans\n"
 "i és menys probable que facin servir toxines contra depredadors."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:240
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:241
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 "Els microbis oportunístics competiran amb els rivals pels uns mateixos recursos\n"
 "e intentaran caçar preses amb toxines si no les poden engolir.\n"
 "Els microbis prudents normalment no es posaran a si mateixos en perill per uns mateixos recursos."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:248
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:249
 msgid "FEAR_EXPLANATION"
 msgstr ""
 "Els microbis temorosos fugiran a més distància\n"
@@ -2964,320 +3016,346 @@ msgstr ""
 "Els microbis valents no se senten intimidats per depredadors propers\n"
 "i és més probable que contraataquin si són agredits."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:256
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:257
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Els microbis actius es mouran continuament per trobar recursos.\n"
 "Els microbis sèssils es mantindran relativament quiets, esperant a que l'entorn canviï abans d'actuar."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:264
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:265
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 "Els microbis centrats buscaran recursos o preses més llunyans\n"
 "i és possible que siguin molt més ambiciosos respecte a uns mateixos recursos.\n"
 "Els microbis sensibles canviaran d'objectius més aviat."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:280
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:281
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:281
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:282
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:298
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:401
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:498
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:600
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:697
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:794
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:892
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1027
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1286
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1375
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1468
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1553
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1653
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1754
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1844
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2041
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2139
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:299
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:402
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:499
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:601
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:698
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1028
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1287
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1376
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1469
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1554
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1654
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2042
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2140
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2272
 msgid "STORAGE"
 msgstr "Emmagatzematge"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:336
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:439
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:638
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:832
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:930
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1065
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1125
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1240
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1413
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1506
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1591
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1792
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1981
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2079
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2177
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2310
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2480
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2648
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2886
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3122
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3395
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:337
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:440
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:537
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:639
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:736
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:833
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:931
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1066
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1126
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1186
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1241
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1414
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1592
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1692
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1793
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1883
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1982
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2178
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2282
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2366
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2536
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2704
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2951
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3196
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3470
 msgid "OSMOREGULATION_COST"
 msgstr "Cost d'Osmoregulació"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:379
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:381
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:479
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:480
 msgid "THYLAKOID"
 msgstr "Tilacoide"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:480
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produeix [thrive:compound type=\"glucose\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"carbondioxide\"][/thrive:compound] i a la intensitat de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:482
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests pigments són capaços de fer servir l'energia provinent d'una font de Llum (com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. Aquests pigments també donen un color característic als Tilacoides. La velocitat de producció de Glucosa és proporcional a la concentració de Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:578
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"carbondioxide\"][/thrive:compound]. També transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:578
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:579
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Les Proteïnes Quimiosintetitzadores són cúmuls de proteïnes suspeses en el Citoplasma, capaçes de transformar l'Àcid Sulfhídric, l'Aigua i el Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de la producció de Glucosa és proporcional a la concentració de Diòxid de Carboni. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida que el Citoplasma. Com que les Proteïnes Quimiosintetitzadores estan suspeses en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:679
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:680
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:680
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:681
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "La Rusticianina és una proteïna capaç d'oxidar blocs de Ferro i, per tant, canviar-ne l'estat químic, mitjançant Diòxid de Carboni i Oxigen. Aquest procés s'anomena Respiració de Ferro, i allibera una certa quantitat d'energia que la cèl·lula pot fer servir."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:776
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:777
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:777
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:778
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:874
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:875
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pot alliberar toxines prement la tecla [thrive:input]g_fire_toxin[/thrive:input]. Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:compound] és baixo, encara és possible disparar, però el dany causat serà menor."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:875
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:876
 msgid "OXYTOXISOME_DESC"
 msgstr "Un Metabolosoma modificat que és responsable de la producció d'una forma primitiva de l'agent tòxic OxyToxy NT."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:971
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Fa servir [thrive:compound type=\"atp\"][/thrive:compound] per augmentar la velocitat del microbi."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:973
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "El flagel (plural: flagels) és uns farcell de proteïnes i fibres, com un petit tentacle que sobresurt de la membrana cel·lular. Mitjançant un moviment ondulatori, permet propulsar la cèl·lula cap endavant a gran velocitat, mentre consumeix ATP. La posició dels flagels determina la direcció en la qual produeix l'impuls per moure la cèl·lula. La direcció de l'impuls és oposada a la direcció cap a la qual el flagel està apuntant. Per exemple, un flagel col·locat a l'esquerra del centre de la cèl·lula produïra impuls quan aquesta es mogui cap a la dreta."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:989
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:990
 msgid "SPEED"
 msgstr "Velocitat"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Apunyala altres cèl·lules amb aquesta part."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1108
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Els Pili (singular: pilus) es troben a la superfície de molts micro-organismes i tenen forma de pèls. Hi poden haver desenes o centenars de pili a la superfície d'un micro-organisme, i es poden fer servir amb diferents finalitats, incloents la depredació. Els micro-organismes patogènics fan servir els pili per virulència, ja sigui per unir-se a teixits hoste, o per penetrar la membrana exterior i accedir al citoplasma. Molts Pili similars existeixen, però no estan evolutivament relacionats i són resultat d'evolució convergent. Un sol organisme ha de tenir l'habilitat de tenir diferents tipus de Pili, i aquells que són a la superfície són canviats i substituïts constantment."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "El Quimioreceptor permet detectar compostos a gran distància. Modifica'l un cop l'hagis col·locat per seleccionar el compost concret que vols detectar i el color de la línia que n'indicarà la direcció."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1168
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Les cèl·lules només poden \"veure\" el món exterior a través de la Quimiorecepció, que els permet obtenir informació del seu entorn. Afegir aquest orgànul representa evolucionar una quimiorecepció més afinada. Com que al jugador se li ofereix visió fins i tot a l'estadi de Microbi, això es representa amb una línia que apunta fora de l'àrea visible, mostrant la posició de compostos que el jugador encara no podia veure."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1228
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
 msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Pressiona la tecla [thrive:input]g_toggle_binding[/thrive:input] per entrar al mode d'unió. Quan siguis en aquest mode, et pots unir a altres cèl·lules de la teva espècie entrant-hi en contacte. Per abandonar una colònia, pressiona la tecla [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1275
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1358
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Permet evolucionar orgànuls més complexes, adherits a la membrana. Mantenir-lo costa una gran quantitat d'ATP. Aquesta evolució és irreversible."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1358
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1359
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "És la característica que defineix les cèl·lules eucariotes. El nucli inclou el Reticle Endoplasmàtic i l'Aparell de Golgi. Representa un pas evolutiu important respecte a les cèl·lules procariotes, que permet desenvolupar orgànuls més complexes, rodejats per una membrana, tot engolint i assimilant petites cèl·lules procariotes. Això permet dividir clarament l'interior de la cèl·lula en diversos compartiments separats, cadascun duent a terme un procés de síntesi de recursos diferents. Així, amb aquests nous orgànuls, la cèl·lula pot esdevenir molt més complexa, eficient i especialitzada. No obstant, això també implica que la cèl·lula ha d'esdevenir més gran i necessita més quantitat de recursos per a viure."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1456
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "És el pal de paller de la generació d'energia per la cèl·lula. Els Mitocondris són una estructura de membrana doble curulla de proteïnes i enzims. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1539
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1540
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produeix [thrive:compound type=\"glucose\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"carbondioxide\"][/thrive:compound] i a la intensitat de [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1540
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1541
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "El cloroplast és una estructura de doble membrana que conté pigments sensibles a la Llum, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Els seus pigments, són capaços de fer servir la Llum per produïr Glucosa, mitjançant Aigua i Diòxid de Carboni, en un procés anomenat Fotosíntesi. Aquests pigments també li donen un color distintiu. La velocitat de producció de Glucosa augmenta proporcionalment amb la concentració de Diòxid de Carboni i la intensitat de la Llum."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produeix [thrive:compound]glucose[/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound]carbondioxide[/thrive:compound] i temperatura."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1626
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1642
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1643
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:212
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Cap procés"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1726
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
-#: ../src/microbe_stage/MicrobeHUD.cs:1502
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1727
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2220
+#: ../src/microbe_stage/MicrobeHUD.cs:1608
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Encara no s'ha implementat."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1740
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1741
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1741
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1742
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "El Quimioplast és una estructura de doble membrana que conté proteïnes que transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de producció de Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1825
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1827
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un component important en el creixement i reproducció de les cèl·lules, mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Aeròbica."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1924
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1925
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Augmenta l'espai d'emmagatzematge de la cèl·lula."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1925
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1926
 msgid "VACUOLE_DESCRIPTION"
 msgstr "El Vacúol és un orgànul intern que consisteix en una membrana capaç d'emmagatzemar una certa quantitat de nutrients. Està format per un cert nombre de vesícules, que són unes petites estructures membranoses que han estat fusionades. El Vacúol està farcit d'Aigua, on hi ha, suspeses, tota mena de mol·lècules, enzimes, partícules sòlides i altres substàncies. No són estructures rígides, sinò que la seva forma pot canviar amb el temps."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2023
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. Allibera toxines quan es prem la tecla [thrive:input]g_fire_toxin[/thrive:input]. Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:compound] és baixa, encara és possible disparar, però el dany causat serà menor."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2023
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2024
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2120
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2121
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Mantingues [thrive:input]g_pack_commands[/thrive:input] premut per obrir un menú que et permet donar ordres a altres membres de la teva espècie."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2121
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2122
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Els agents de senyalització permeten crear productes químics amb els quals altres cèl·lules hi poden reaccionar. Els productes de senyalització es poden utilitzar per atraure altres cèl·lules o avisar-les sobre el perill per a fer-les fugir."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2246
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2242
+#, fuzzy
+msgid "LYSOSOME_PROCESSES_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pot alliberar toxines prement la tecla [thrive:input]g_fire_toxin[/thrive:input]. Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:compound] és baixo, encara és possible disparar, però el dany causat serà menor."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2243
+#, fuzzy
+msgid "LYSOSOME_DESCRIPTION"
+msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2257
+#, fuzzy
+msgid "DIGESTION_SPEED"
+msgstr "Velocitat d'Absorció de Recursos"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2263
+msgid "DIGESTION_EFFICIENCY"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2302
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta és la forma més bàsica de la Membrana cel·lular, que ofereix poca protecció contra Agents externs i altres cèl·lules. També consumeix una quantitat important d'energia. Com a avantatge, permet a la cèl·lula moure's i absorbir nutrients ràpidament."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2344
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2513
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2682
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2920
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3156
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3429
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2400
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2569
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2738
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2985
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3230
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3504
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Velocitat d'Absorció de Recursos"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2417
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2473
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana cel·lular formada per dues capes, que ofereix millor protecció i consumeix menys energia. No obstant, fa que la cèl·lula esdevingui més lenta. També redueix la velocitat a la qual s'absorbeixen els nutrients en entrar-hi en contacte."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2640
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una paret, que ofereix una bona protecció, especialment contra agressions físiques, com ara fiblades. Consumeix poca energia, però absorbeix els nutrients lentament."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2750
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3224
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3497
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2806
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3298
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3572
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Resistència física"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2784
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3022
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3292
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3565
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2840
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3087
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3366
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3640
 msgid "CANNOT_ENGULF"
 msgstr "No pot engolir"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2872
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3119
+msgid "INVULNERABLE_TO_ENGULFMENT"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2887
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una paret, de manera que està més ben protegida, especialment contra agents externs, com ara Toxines. A més a més, consumeix poca energia. No obstant, la cèl·lula esdevé més lenta i absorbeix els nutrients més a poc a poc."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2988
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3531
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3053
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3332
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3606
 msgid "TOXIN_RESISTANCE"
 msgstr "Resistència a les Toxines"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3060
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3134
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una capa dura de Carbonat de Calci. Té una gran resistència a qualsevol agressió externa, ja sigui de naturalesa física o química. No consumeix gaire energia. Malgrat tot, la cèl·lula esdevé lenta i absorbeix els nutrients a poc a poc."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3331
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3406
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una forta paret de silici. Pot resistir les agressions externes, sobretot les de naturalesa física. També consumeix poca energia. No obstant, fa que la cèl·lula esdevingui lenta, i que absorbeixi els nutrients a poc a poc."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3818
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Afegir una nova vinculació de tecla"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3748
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3824
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Aquest valor només s'aplicarà a les partides iniciades després de canviar la opció"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3754
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3830
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Permet els efectes de llum intermitent als GUIs (e.g llum intermitent del botó d'editor).\n"
@@ -3285,40 +3363,40 @@ msgstr ""
 "Si experimentes un bug on parts del botó de l'editor desapareixen,\n"
 "pots intentar desactivant això per veure si el problema s'arregla."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3760
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3836
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "No pot ser automàticament detectat si el \"hyperthreading\" està activat o no.\n"
 "Això afecta el nombre de \"threads\" per defecte ja que el \"hyperthreading threads\" no són tan ràpids com els núclis CPU reals."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3765
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3841
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Habilitar / deshabilitar la finestreta d'avís de progrés no guardat quan el jugador intenta sortir del joc."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:368
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3850
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
 msgid "TEMPERATURE"
 msgstr "Temperatura"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:588
-msgid "DEATH"
-msgstr "mort"
-
-#: ../src/microbe_stage/Microbe.Contact.cs:718
+#: ../src/microbe_stage/Microbe.Contact.cs:709
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "acció carronyaire exitosa"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:725
+#: ../src/microbe_stage/Microbe.Contact.cs:716
 msgid "SUCCESSFUL_KILL"
 msgstr "acció de caça exitosa"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:963
+#: ../src/microbe_stage/Microbe.Contact.cs:895
+msgid "DEATH"
+msgstr "mort"
+
+#: ../src/microbe_stage/Microbe.Contact.cs:1144
 msgid "ESCAPE_ENGULFING"
 msgstr "evasió d'un intent d'engolició"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:780
+#: ../src/microbe_stage/Microbe.Interior.cs:860
 msgid "REPRODUCED"
 msgstr "reproducció"
 
@@ -3348,174 +3426,187 @@ msgstr "Jugador Duplicat"
 msgid "SPAWN_ENEMY"
 msgstr "Generar Enemic"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:553
+#: ../src/microbe_stage/MicrobeHUD.cs:572
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Cap Comanda"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:554
+#: ../src/microbe_stage/MicrobeHUD.cs:573
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Segueix-me"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:555
+#: ../src/microbe_stage/MicrobeHUD.cs:574
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Mou-te cap a mi"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:556
+#: ../src/microbe_stage/MicrobeHUD.cs:575
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Fuig"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:557
+#: ../src/microbe_stage/MicrobeHUD.cs:576
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Torna't agressiu"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:560
+#: ../src/microbe_stage/MicrobeHUD.cs:579
 msgid "SIGNAL_TO_EMIT"
 msgstr "Senyal a emetre"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:790
+#: ../src/microbe_stage/MicrobeHUD.cs:848
 msgid "PAUSE_PROMPT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:904
+#: ../src/microbe_stage/MicrobeHUD.cs:962
 msgid "STUFF_AT"
 msgstr "Matèria a les coordenades {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:937
+#: ../src/microbe_stage/MicrobeHUD.cs:995
 msgid "PLAYER_CELL"
 msgstr "Cèl·lula del jugador"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:954
+#: ../src/microbe_stage/MicrobeHUD.cs:1012
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:999
+#: ../src/microbe_stage/MicrobeHUD.cs:1057
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "en abundància"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1001
+#: ../src/microbe_stage/MicrobeHUD.cs:1059
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "una mica"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1003
+#: ../src/microbe_stage/MicrobeHUD.cs:1061
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "una quantitat justa"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1005
+#: ../src/microbe_stage/MicrobeHUD.cs:1063
 msgid "CATEGORY_SOME"
 msgstr "un xic"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1007
+#: ../src/microbe_stage/MicrobeHUD.cs:1065
 msgid "CATEGORY_LITTLE"
 msgstr "poc"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1009
+#: ../src/microbe_stage/MicrobeHUD.cs:1067
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "molt poc"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1267
-#: ../src/microbe_stage/MicrobeStage.tscn:1764
+#: ../src/microbe_stage/MicrobeHUD.cs:1213
+msgid "DEVOURED"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:1373
+#: ../src/microbe_stage/MicrobeStage.tscn:1803
 msgid "BECOME_MULTICELLULAR"
 msgstr "Esdevenir un Organisme Multicel·lular ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1303
-#: ../src/microbe_stage/MicrobeStage.tscn:1775
+#: ../src/microbe_stage/MicrobeHUD.cs:1409
+#: ../src/microbe_stage/MicrobeStage.tscn:1814
 msgid "BECOME_MACROSCOPIC"
 msgstr "Esdevenir un Organisme Macroscòpic ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:799
+#: ../src/microbe_stage/MicrobeStage.cs:831
 msgid "PLAYER_REPRODUCED"
 msgstr "el jugador ha aconseguit reproduïr-se"
 
-#: ../src/microbe_stage/MicrobeStage.cs:813
+#: ../src/microbe_stage/MicrobeStage.cs:845
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "No es pot fer servir el truc de generar un enemic ja que aquest medi no conté cap espècie enemiga"
 
-#: ../src/microbe_stage/MicrobeStage.cs:837
+#: ../src/microbe_stage/MicrobeStage.cs:868
 msgid "PLAYER_DIED"
 msgstr "el jugador ha mort"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:516
+#: ../src/microbe_stage/MicrobeStage.cs:1003
+#, fuzzy
+msgid "EXTINCT_IN_PATCH"
+msgstr "s'ha extingit del planeta"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:523
 msgid "AT_CURSOR"
 msgstr "A sota del Cursor:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:542
+#: ../src/microbe_stage/MicrobeStage.tscn:549
 msgid "NOTHING_HERE"
 msgstr "No hi ha res a sota del Cursor"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:567
+#: ../src/microbe_stage/MicrobeStage.tscn:574
 msgid "COMPOUNDS_COLON"
 msgstr "Compostos:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:607
+#: ../src/microbe_stage/MicrobeStage.tscn:614
 msgid "SPECIES_COLON"
 msgstr "Espècies:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:687
+#: ../src/microbe_stage/MicrobeStage.tscn:691
 msgid "ENVIRONMENT"
 msgstr "Entorn"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:955
+#: ../src/microbe_stage/MicrobeStage.tscn:959
 msgid "TEMPERATURE_SHORT"
 msgstr "Temperatura"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1011
+#: ../src/microbe_stage/MicrobeStage.tscn:1015
 msgid "LIGHT"
 msgstr "Llum"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1066
+#: ../src/microbe_stage/MicrobeStage.tscn:1070
 msgid "PRESSURE_SHORT"
 msgstr "Pressió"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:673
+#: ../src/microbe_stage/MicrobeStage.tscn:1153
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
 msgid "COMPOUNDS"
 msgstr "Compostos"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1525
+#: ../src/microbe_stage/MicrobeStage.tscn:1500
+msgid "INGESTED_MATTER"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1564
 msgid "AGENTS"
 msgstr "Agents"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1623
+#: ../src/microbe_stage/MicrobeStage.tscn:1662
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menú de pausa"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1636
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "PAUSE_TOOLTIP"
 msgstr "Pausar el joc"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1637
+#: ../src/microbe_stage/MicrobeStage.tscn:1676
 msgid "RESUME_TOOLTIP"
 msgstr "Reprendre el joc"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1645
+#: ../src/microbe_stage/MicrobeStage.tscn:1684
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / amagar l'entorn i els compostos"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1660
+#: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / amagar els procesos del microbi"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1709
+#: ../src/microbe_stage/MicrobeStage.tscn:1748
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Suicidi"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1760
+#: ../src/microbe_stage/MicrobeStage.tscn:1799
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Accedeix al següent estadi del joc (Multicel·lular). Disponible un cop comptes amb una colònia cel·lular prou gran."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1795
+#: ../src/microbe_stage/MicrobeStage.tscn:1834
 msgid "POPULATION_CAPITAL"
 msgstr "POBLACIÓ:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1946
+#: ../src/microbe_stage/MicrobeStage.tscn:1982
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Afegir una nova vinculació de tecla"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2092
+#: ../src/microbe_stage/MicrobeStage.tscn:2128
 msgid "PAUSED"
 msgstr ""
 
@@ -3571,194 +3662,208 @@ msgstr "Reactiu"
 msgid "FOCUSED"
 msgstr "Centrat"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:372
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:165
+msgid "DIGESTION_SPEED_VALUE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:285
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
 msgid "ATP_PRODUCTION"
 msgstr "Producció d'ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:291
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "LA PRODUCCIÓ D'ATP ÉS MASSA BAIXA!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:402
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:320
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:422
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:340
 msgid "OSMOREGULATION"
 msgstr "Osmoregulació"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:428
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:346
 msgid "BASE_MOVEMENT"
 msgstr "Capacitat de moviment"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:440
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:358
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:524
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:512
 msgid "CELL_TYPE_NAME"
 msgstr "Nom del Tipus de Cèl·lula"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1175
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1160
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1177
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1162
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
-msgid "FAILED"
-msgstr "Error"
-
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2046
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2048
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2060
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2160
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia a {0} per {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "L'energia total recol·lectada és {0} amb un cost individual de {1} resultant en una població no ajustada de {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2171
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "ENERGY_SOURCES"
 msgstr "Fonts d'energia:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2177
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energia: {1} (rendiment: {2}) energia total disponible: {3} (rendiment total: {4})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:382
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:380
 msgid "MEMBRANE"
 msgstr "Membrana"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:453
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Cerca..."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:462
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:460
 msgid "STRUCTURAL"
 msgstr "Estructural"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:471
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
 msgid "PROTEINS"
 msgstr "Proteïnes"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:480
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:478
 msgid "EXTERNAL"
 msgstr "Extern"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:489
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:487
 msgid "ORGANELLES"
 msgstr "Orgànuls"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:530
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:528
 msgid "MEMBRANE_TYPES"
 msgstr "Tipus de Membrana"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:548
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:546
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidesa / Rigidesa"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:568
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:566
 msgid "FLUID"
 msgstr "Fluidesa"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:581
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:579
 msgid "RIGID"
 msgstr "Rigidesa"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:614
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:612
 msgid "COLOUR"
 msgstr "Color"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:682
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:680
 msgid "ORGANISM_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:726
 msgid "SPEED_COLON"
 msgstr "Velocitat:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:732
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "població:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:805
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:738
 msgid "HP_COLON"
 msgstr "Punts de salut:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:835
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "SIZE_COLON"
 msgstr "Mida:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:865
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:750
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "Emmagatzematge"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:886
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
+#, fuzzy
+msgid "DIGESTION_SPEED_COLON"
+msgstr "Velocitat:"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
+#, fuzzy
+msgid "DIGESTION_EFFICIENCY_COLON"
+msgstr "La descripció és massa llarga"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 msgid "GENERATION_COLON"
 msgstr "Generació:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:928
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:819
 msgid "ATP_BALANCE"
 msgstr "Equilibri d'ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1041
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:932
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Aquest tauler mostra els nombres de població esperats pel sistema auto-evo per l'espècie editada.\n"
 "El sistema auto-evo fa una simulació de població que representa l'altra part (més enllà del teu propi rendiment) que afecta la teva població."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1045
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1280
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:936
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1152
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Predicció d'Auto-Evo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1053
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:944
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Veure informació detallada de la predicció"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1123
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1000
+msgid "FAILED"
+msgstr "Error"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1006
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Població Total:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1147
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1018
 msgid "BEST_PATCH_COLON"
 msgstr "Millor Medi:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1172
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 msgid "WORST_PATCH_COLON"
 msgstr "Pitjor Medi:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1127
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Equilibri d'ATP Negatiu"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1128
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "El teu Microbi no consumeix més ATP que no pas pot arribar a produïr!\n"
 "Vols continuar?"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1262
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1134
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Orgànuls Desconnectats"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1264
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1136
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Hi ha orgànuls que no han estat físicament connectats a la resta.\n"
 "Siusplau, connecta tots els orgànuls o bé desfés els teus canvis."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1324
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1196
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Aquest tauler mostra els nombres que fa servir l'algorisme auto-evo per fer la seva predicció. L'energia total que una espècie pot recol·lectar i el cost energètic per individu d'aquesta espècie, en determinen la població final. L'algorisme auto-evo fa servir un model simplificat de la realitat per a calcular el rendiment de les espècies basat en l'energia que són capaces de recol·lectar. Per cada font d'alimentació, es mostra quanta energia en guanya l'espècie. A més a més, es mostra l'energia total disponible per aquesta font. La fracció de l'energia total que guanyen les espècies es basa en la magnitud del seu 'rendiment' respecte al 'rendiment total'. El 'rendiment' és una mètrica de com de bé les espècies poden utilitzar aquesta font d'alimentació."
 
@@ -3782,38 +3887,6 @@ msgstr "S'està carregant l'Editor de Microbi"
 msgid "INFINITE_MP"
 msgstr "MP Infinit"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:210
-msgid "SELECT_A_PATCH"
-msgstr "Selecciona un Indret per a veure'n els detalls"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:245
-msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "INDRET ACTUAL"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
-msgid "PHYSICAL_CONDITIONS"
-msgstr "Condicions Físiques"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:404
-msgid "PRESSURE"
-msgstr "Pressió"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:509
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
-msgid "ATMOSPHERIC_GASSES"
-msgstr "Gasos Atmosfèrics"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:933
-msgid "SPECIES_PRESENT"
-msgstr "Espècies presents"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:997
-msgid "MOVE_TO_THIS_PATCH"
-msgstr "Moure a aquest Indret"
-
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:324
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:325
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
@@ -3821,6 +3894,13 @@ msgstr "Moure a aquest Indret"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 msgid "YEARS"
 msgstr "anys"
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:418
+msgid "ATMOSPHERIC_GASSES"
+msgstr "Gasos Atmosfèrics"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:330
 msgid "SPECIES_LIST"
@@ -3890,6 +3970,11 @@ msgstr "L"
 msgid "SPECIES_POPULATION"
 msgstr "Població de les Espècies"
 
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:236
+msgid "PHYSICAL_CONDITIONS"
+msgstr "Condicions Físiques"
+
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Informe"
@@ -3928,18 +4013,6 @@ msgstr "Moure"
 msgid "MODIFY"
 msgstr "Modificar"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
-msgid "BIOME_LABEL"
-msgstr "Bioma: {0}"
-
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
-msgid "BELOW_SEA_LEVEL"
-msgstr "{0}-{1}m sota el nivell del mar"
-
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
-msgid "SPECIES_WITH_POPULATION"
-msgstr "{0} amb població: {1}"
-
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
 msgid "EXTINCT_SPECIES"
 msgstr "EXTINCIÓ"
@@ -3969,6 +4042,26 @@ msgstr "Quantitat mínima a detectar:"
 msgid "LINE_COLOUR"
 msgstr "Color de la línia:"
 
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
+#, fuzzy
+msgid "LIPASE_DESCRIPTION"
+msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
+
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
+#, fuzzy
+msgid "CELLULASE_DESCRIPTION"
+msgstr "El Vacúol és un orgànul intern que consisteix en una membrana capaç d'emmagatzemar una certa quantitat de nutrients. Està format per un cert nombre de vesícules, que són unes petites estructures membranoses que han estat fusionades. El Vacúol està farcit d'Aigua, on hi ha, suspeses, tota mena de mol·lècules, enzimes, partícules sòlides i altres substàncies. No són estructures rígides, sinò que la seva forma pot canviar amb el temps."
+
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
+#, fuzzy
+msgid "CHITINASE_DESCRIPTION"
+msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
+
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
+#, fuzzy
+msgid "SELECT_ENZYME"
+msgstr "Mod Seleccionat:"
+
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 msgid "MODIFY_ORGANELLE"
 msgstr "Modificar orgànul"
@@ -3979,6 +4072,48 @@ msgstr "EXTINCIÓ"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
+msgstr "Com tantes i tantes altres espècies al llarg dels eons i de les edats d'aquest planeta, els teus petits organismes s'han extingit. A partir d'ara, altres espècies ocuparan el seu nínxol en les cadenes tròfiques dels diferents biomes i, potser, evolucionaran fins a esdevenir éssers intel·ligents que navegaran conscientment cap a planetes i estrelles llunyanes. No obstant, la teva línia evolutiva s'ha tallat, ha esdevingut un experiment fallit en el llarg procés de l'evolució."
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:229
+msgid "BIOME_LABEL"
+msgstr "Bioma: {0}"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
+msgid "BELOW_SEA_LEVEL"
+msgstr "{0}-{1}m sota el nivell del mar"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:268
+msgid "SPECIES_WITH_POPULATION"
+msgstr "{0} amb població: {1}"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:119
+msgid "SELECT_A_PATCH"
+msgstr "Selecciona un Indret per a veure'n els detalls"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:154
+msgid "CURRENT_LOCATION_CAPITAL"
+msgstr "INDRET ACTUAL"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:313
+msgid "PRESSURE"
+msgstr "Pressió"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:842
+msgid "SPECIES_PRESENT"
+msgstr "Espècies presents"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:906
+msgid "MOVE_TO_THIS_PATCH"
+msgstr "Moure a aquest Indret"
+
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:68
+#, fuzzy
+msgid "PATCH_EXTINCTION_CAPITAL"
+msgstr "EXTINCIÓ"
+
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
+#, fuzzy
+msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr "Com tantes i tantes altres espècies al llarg dels eons i de les edats d'aquest planeta, els teus petits organismes s'han extingit. A partir d'ara, altres espècies ocuparan el seu nínxol en les cadenes tròfiques dels diferents biomes i, potser, evolucionaran fins a esdevenir éssers intel·ligents que navegaran conscientment cap a planetes i estrelles llunyanes. No obstant, la teva línia evolutiva s'ha tallat, ha esdevingut un experiment fallit en el llarg procés de l'evolució."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
@@ -4555,26 +4690,26 @@ msgstr "No pot Escriure Guardat"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "L'intent d'escriure aquest arxiu de guardat ha fallat. És possible que el nom de guardat sigui massa llarg, o pot ser que no tinguis accés a la carpeta de guardat."
 
-#: ../src/saving/SaveHelper.cs:485 ../src/saving/SaveHelper.cs:536
+#: ../src/saving/SaveHelper.cs:486 ../src/saving/SaveHelper.cs:537
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "No s'ha pogut guardar! S'ha produït una excepció"
 
-#: ../src/saving/SaveHelper.cs:494 ../src/saving/SaveHelper.cs:513
+#: ../src/saving/SaveHelper.cs:495 ../src/saving/SaveHelper.cs:514
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "No és possible guardar actualment degut a:"
 
-#: ../src/saving/SaveHelper.cs:495
+#: ../src/saving/SaveHelper.cs:496
 msgid "PLAYER_EXTINCT"
 msgstr "Jugador extingit"
 
-#: ../src/saving/SaveHelper.cs:514
+#: ../src/saving/SaveHelper.cs:515
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Estàs jugant els prototips d'estadis futurs, inclosos en el joc actual.\n"
 "Aquests poden ser molt incomplerts, fer servir gràfics temporals i ser molt \"matussers\" en general.\n"
 "Per tant, actualment no s'hi pot guardar la partida."
 
-#: ../src/saving/SaveHelper.cs:526
+#: ../src/saving/SaveHelper.cs:527
 msgid "SAVING_SUCCEEDED"
 msgstr "Acció de guardat exitosa"
 
@@ -4723,12 +4858,13 @@ msgstr "Carregar"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible. Esteu segur que el voleu eliminar permanentment?"
 
-#: ../src/saving/SaveManagerGUI.cs:212
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "L'acció d'eliminar els arxius de guardat seleccionats és irreversible. Esteu segur que voleu eliminar permanentment el següent nombre d'arxius: {0}?"
 
-#: ../src/saving/SaveManagerGUI.cs:224
-msgid "DELETE_ALL_OLD_SAVE_WARNING"
+#: ../src/saving/SaveManagerGUI.cs:237
+#, fuzzy
+msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "L'acció d'eliminar tots els arxius de guardat automàtic i ràpid és irreversible. Esteu segur que voleu eliminar permanentment els següents arxius?\n"
 " - {0} Guardat(s) automàtic(s)\n"
@@ -4920,7 +5056,7 @@ msgstr ""
 "\n"
 "Una possible estratègia consisteix en mantenir-se com un sol hexàgon de citoplasma i simplement dirigir-te als biomes de la superfície primer abans d'aconseguir orgànuls de fotosíntesi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:54
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:57
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Fa molt de temps, en un planeta molt i molt llunyà...\n"
@@ -4933,22 +5069,22 @@ msgstr ""
 "\n"
 "Per tal de sobreviure en aquest planeta hostil, hauràs d'arreplegar tots els compostos amb contingut nutritiu que puguis trobar. Al llarg de les diverses generacions del procés evolutiu, hauràs d'evolucionar per competir contra altres espècies pels nínxols de la cadena tròfica. Totes aquestes espècies hauran evolucionat a partir del darrer avantpassat universal comú."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:100
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:103
 msgid "SHOW_TUTORIALS"
 msgstr "Mostrar tutorials"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:112
 msgid "BEGIN_THRIVING"
 msgstr "Començar a prosperar"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:125
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "La teva cèl·lula, el darrer avantpassat universal comú, és al centre de la pantalla. Per tal de controlar-la, fes servir les tecles que es mostren al seu costat.\n"
 "\n"
 "Prova totes les tecles durant uns instants per tal de continuar."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:184
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:187
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Recol·lecta Glucosa (núvols blancs) desplaçant-t'hi per sobre.\n"
@@ -4957,7 +5093,7 @@ msgstr ""
 "\n"
 "Segueix la línia de la pantalla, des de la teva cèl·lula fins al núvol de Glucosa més proper."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:195
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:198
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Estigues atent a la barra de salut, que hi ha al costat de la barra d'ATP (a la part inferior dreta de la pantalla).\n"
@@ -4965,13 +5101,13 @@ msgstr ""
 "Pots recuperar la teva salut (autoregeneració) si tens prou quantitat d'ATP.\n"
 "Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:206
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Per reproduïr-te, has de duplicar tots els teus orgànuls recol·lectant prou Amoníac i Fosfat.\n"
 "Estigues atent a les barres que envolten els botó de sota a la dreta per veure quant et falta. Aquestes barres es tornaran de color blanc quan s'hagin omplert."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:224
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Has recol·lectat prou recursos per què la teva cèl·lula es reprodueixi.\n"
@@ -4980,23 +5116,47 @@ msgstr ""
 "\n"
 "Per entrar a l'editor, prem el botó que parpelleja a sota i a la dreta de la pantalla."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Has entrat en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre dels membres de la teva colònia per desunir-los.\n"
 "\n"
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:256
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Si encara no acabes d'entendre les mecàniques de joc, fes una ullada al menú d'ajuda. El pots obrir amb el signe d'interrogació a baix a la dreta.\n"
 "\n"
 "Un altre consell: pots ampliar el camp de visió amb la rodeta del ratolí."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Veure ara"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
+msgstr ""
+"Has entrat en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre dels membres de la teva colònia per desunir-los.\n"
+"\n"
+"Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
+msgstr ""
+"Has entrat en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre dels membres de la teva colònia per desunir-los.\n"
+"\n"
+"Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
+msgstr ""
+"Has entrat en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre dels membres de la teva colònia per desunir-los.\n"
+"\n"
+"Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Fumeroles volcàniques de Pangònia"

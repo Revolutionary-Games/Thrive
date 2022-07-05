@@ -128,23 +128,32 @@ public abstract class Species : ICloneable
     /// </summary>
     /// <remarks>
     ///   <para>
+    ///     TODO: THIS ASSUMPTION IS NOW INVALID. WE MAY HAVE A BUG. AUTO-EVO SPECIES NUMBERS NOW NEED EXTRA CACHING
+    ///     especially probably affects things if auto-evo is not set to run while playing.
     ///     This should be made sure to not affect auto-evo. As long
     ///     as auto-evo uses the per patch population numbers this
     ///     doesn't affect that.
     ///   </para>
     ///   <para>
-    ///     In addition to this an external population effect needs to
-    ///     be sent to auto-evo, otherwise this effect disappears when
-    ///     auto-evo finishes.
+    ///     In addition to this an external population effect needs to be sent to auto-evo,
+    ///     otherwise this effect disappears when auto-evo finishes.
     ///   </para>
     /// </remarks>
-    public void ApplyImmediatePopulationChange(long constant, float coefficient)
+    public void ApplyImmediatePopulationChange(long constant, float coefficient, Patch patch)
     {
-        Population = (long)(Population * coefficient);
-        Population += constant;
+        ThrowPopulationChangeErrorIfNotPlayer();
 
-        if (Population < 0)
-            Population = 0;
+        var oldPopulation = patch.GetSpeciesPopulation(this);
+        var population = (long)(oldPopulation * coefficient);
+        population += constant;
+
+        if (population < 0)
+            population = 0;
+
+        var populationChange = population - oldPopulation;
+
+        patch.UpdateSpeciesPopulation(this, population);
+        Population += populationChange;
     }
 
     /// <summary>
@@ -284,5 +293,11 @@ public abstract class Species : ICloneable
         // There can only be one player species at a time, so to avoid adding a method to reset this flag when
         // mutating, this property is just not copied
         // species.PlayerSpecies = PlayerSpecies;
+    }
+
+    private void ThrowPopulationChangeErrorIfNotPlayer()
+    {
+        if (!PlayerSpecies)
+            throw new InvalidOperationException("Cannot apply an immediate population change to an AI species");
     }
 }

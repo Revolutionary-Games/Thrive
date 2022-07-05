@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-29 11:15+0700\n"
+"POT-Creation-Date: 2022-07-05 15:24+0300\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -40,85 +40,113 @@ msgid "CONCEPT_ART"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:6
-msgid "GENERAL"
-msgstr ""
-
-#: ../simulation_parameters/common/gallery.json:28
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:387
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
 #, fuzzy
 msgid "CELLS"
 msgstr "เซลลูโลส"
 
-#: ../simulation_parameters/common/gallery.json:68
+#: ../simulation_parameters/common/gallery.json:61
+msgid "GENERAL"
+msgstr ""
+
+#: ../simulation_parameters/common/gallery.json:123
 msgid "MODELS"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:71
-#: ../simulation_parameters/common/gallery.json:209
+#: ../simulation_parameters/common/gallery.json:126
+#: ../simulation_parameters/common/gallery.json:276
 #, fuzzy
 msgid "MICROBE_STAGE"
 msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
 
-#: ../simulation_parameters/common/gallery.json:184
+#: ../simulation_parameters/common/gallery.json:239
 msgid "MUSIC"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:187
+#: ../simulation_parameters/common/gallery.json:242
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
 
-#: ../simulation_parameters/common/gallery.json:196
+#: ../simulation_parameters/common/gallery.json:253
 #, fuzzy
 msgid "MENU"
 msgstr "เมนู"
 
-#: ../simulation_parameters/common/gallery.json:238
+#: ../simulation_parameters/common/gallery.json:317
 #, fuzzy
 msgid "MICROBE_EDITOR"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
-#: ../simulation_parameters/common/gallery.json:263
+#: ../simulation_parameters/common/gallery.json:352
 #, fuzzy
 msgid "MULTICELLULAR_STAGE"
 msgstr "วางออร์แกเนลล์"
 
-#: ../simulation_parameters/common/gallery.json:280
+#: ../simulation_parameters/common/gallery.json:375
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
+#: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
+#: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr "เซลล์ของคุณใช้ ATP เป็นแหล่งพลังงานถ้ามันหมดคุณจะตาย"
 
 #: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
+#: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr "ในการปลดล็อกตัวแก้ไขและสร้างซ้ำคุณต้องรวบรวมแอมโมเนีย (เมฆสีส้ม) และฟอสเฟต (เมฆสีม่วง)"
 
 #: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
+#: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "นอกจากนี้คุณยังสามารถกินเซลล์,แบคทีเรีย,ชิ้นเหล็กและชิ้นส่วนเซลล์ที่มีขนาดเล็กกว่าคุณได้โดยการกด G ซึ่งจะทำให้เสียค่า ATP เพิ่มเติมและจะทำให้คุณทำงานช้าลง อย่าลืมกด G ครั้งที่สองเพื่อหยุดการกลืนกิน"
 
 #: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+msgstr ""
+"โครงสร้างโปรคาริโอต\n"
+"\n"
+"เมตาโบโลโซม: ผลิต ATP จากกลูโคส\n"
+"\n"
+"Chemosynthisizing Proteins: ผลิตกลูโคสครึ่งหนึ่งจากไฮโดรเจนซัลไฟด์เป็นเคมีโมพลาสต์ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้เวลาถึง 1 Hex\n"
+"\n"
+"Thylakoids: ผลิตกลูโคสในปริมาณ 1 ใน 3 เป็นคลอโรพลาสต์ปกติ แต่ยังทำหน้าที่เป็นไกลโคไลซิสและใช้ 1 Hex\n"
+"\n"
+"Rusticyanin: แปลงเหล็กเป็น ATP\n"
+"\n"
+"Nitrogenase: แปลงไนโตรเจนในบรรยากาศและ ATP เป็นแอมโมเนียแบบไม่ใช้ออกซิเจน\n"
+"\n"
+"ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
+
+#: ../simulation_parameters/common/help_texts.json:26
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
+
+#: ../simulation_parameters/common/help_texts.json:30
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr "การออสโมซิส มีค่าใช้จ่าย ATP ซึ่งหมายความว่ายิ่งเซลล์ของคุณมีขนาดใหญ่มากขึ้น ไมโตคอนเดรีย, เมตาโบโลมโซม หรือ รัสติไซยานิน (หรือไซโตพลาสซึมซึ่งทำ ไกลโคไลซิส) คุณต้องหลีกเลี่ยงการสูญเสีย ATP เมื่อคุณอยู่กับที่"
 
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr "มี ออร์แกเนลล์ มากมายในตัวแก้ไขเพื่อให้คุณพัฒนาทำให้สามารถเล่นสไตล์ต่างๆได้หลากหลาย"
 
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "เมฆประกอบต่างๆ ได้แก่ :\n"
@@ -131,36 +159,36 @@ msgstr ""
 "\n"
 "กลูโคสทำให้ ATP"
 
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
+#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "ไฮโดรเจนซัลไฟด์สามารถเปลี่ยนเป็นกลูโคสผ่านทางเคมีและโปรตีนสังเคราะห์ทางเคมี เหล็กสามารถเปลี่ยนผ่าน รัสติไซยานิน เป็น ATP"
 
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr "ในการสืบพันธุ์คุณต้องแบ่งออร์แกเนลล์ของคุณออกเป็นสองส่วน ออร์แกเนลล์ต้องการแอมโมเนียและฟอสเฟตเพื่อแบ่งครึ่ง"
 
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
+#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:115
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "ในตอนนี้หากจำนวนประชากรของคุณลดลงเหลือศูนย์คุณจะสูญพันธุ์"
 
-#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr "แต่ถ้าคุณอยู่รอดมาได้ถึง 20 ชั่วอายุคนโดยมีประชากร 300 คนถือว่าคุณชนะเกมปัจจุบัน หลังจากชนะคุณจะได้รับป๊อปอัปและสามารถเล่นต่อได้ตามที่คุณต้องการ"
 
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
+#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr "ระวังเพราะคู่แข่งของคุณกำลังพัฒนาควบคู่ไปกับคุณ ทุกครั้งที่คุณเข้าสู่โปรแกรมแก้ไขพวกเขาก็มีวิวัฒนาการเช่นกัน"
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:66
 #, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
 
-#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "โครงสร้างโปรคาริโอต\n"
@@ -177,7 +205,7 @@ msgstr ""
 "\n"
 "ไซโทพลาสซึม: มีพื้นที่จัดเก็บและทำปฏิกิริยาไกลโคไลซิส (ผลิต ATP จำนวนเล็กน้อย)"
 
-#: ../simulation_parameters/common/help_texts.json:66
+#: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "อวัยวะภายนอก\n"
@@ -186,7 +214,7 @@ msgstr ""
 "\n"
 "Pilus: สามารถใช้แทงเซลล์อื่นได้"
 
-#: ../simulation_parameters/common/help_texts.json:70
+#: ../simulation_parameters/common/help_texts.json:82
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "เมมเบรน Bound Organelles\n"
@@ -205,123 +233,123 @@ msgstr ""
 "\n"
 "สารพิษ แวคิวโอล: ผลิตสารพิษ (เรียกว่า OxyToxy NT)"
 
-#: ../simulation_parameters/common/help_texts.json:74
+#: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr "แต่ละรุ่นคุณจะมีแต้มการกลายพันธุ์ (MP) 100 แต้มเพื่อใช้จ่ายและการเปลี่ยนแปลง (หรือการกลายพันธุ์) แต่ละครั้งจะมีค่าใช้จ่ายจำนวนหนึ่งของ MP นั้น การเพิ่มและลบออร์แกเนลล์ทำให้เสียค่าใช้จ่าย MP อย่างไรก็ตามการลบออร์แกเนลล์ที่อยู่ในเซสชันการกลายพันธุ์ปัจจุบันจะคืนค่า MP สำหรับออร์แกเนลล์นั้น คุณสามารถย้ายหรือลบออร์แกเนลล์ทั้งหมดได้โดยคลิกขวาที่มันและเลือกการกระทำที่เหมาะสมจากเมนูป๊อปอัป คุณสามารถหมุนออร์แกเนลล์ของคุณในขณะที่วางด้วย A และ D"
 
-#: ../simulation_parameters/common/help_texts.json:78
+#: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "ทุกครั้งที่คุณสืบพันธุ์คุณจะเข้าสู่ การแก้ไขจุลชีพ ซึ่งคุณสามารถทำการเปลี่ยนแปลงสายพันธุ์ของคุณ (โดยการเพิ่มย้ายหรือเอาออร์แกเนลล์ออก) เพื่อเพิ่มความสำเร็จให้กับสายพันธุ์ของคุณ การเยี่ยมชมบรรณาธิการใน Microbe Stage แต่ละครั้งแสดงถึงวิวัฒนาการ 100 ล้านปี"
 
-#: ../simulation_parameters/common/help_texts.json:119
+#: ../simulation_parameters/common/help_texts.json:131
 msgid "LOADING_TIP"
 msgstr "กดปุ่มเลิกทำในตัวแก้ไขเพื่อแก้ไขข้อผิดพลาด"
 
-#: ../simulation_parameters/common/help_texts.json:126
+#: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "เรื่องน่ารู้: Didinium และ Paramecium เป็นตัวอย่างตำราของความสัมพันธ์ระหว่างนักล่ากับเหยื่อที่ได้รับการศึกษามานานหลายทศวรรษ ตอนนี้คุณเป็น Didinium หรือ Paramecium หรือไม่? นักล่าหรือเหยื่อ?"
 
-#: ../simulation_parameters/common/help_texts.json:129
+#: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "นี่คือเคล็ดลับสารพิษสามารถใช้เพื่อกำจัดสารพิษอื่น ๆ ออกไปจากคุณได้หากคุณเร็วพอ"
 
-#: ../simulation_parameters/common/help_texts.json:132
+#: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "นี่คือเคล็ดลับ Osmoregulation มีค่าใช้จ่าย 1 ATP ต่อวินาทีต่อฐานสิบหกที่เซลล์ของคุณมีอยู่แต่ละฐานสิบหกของไซโทพลาสซึมจะสร้าง 5 ATP ต่อวินาทีเช่นกันซึ่งหมายความว่าหากคุณสูญเสีย ATP เนื่องจากการดูดซึมเพียงแค่เพิ่มไซโทพลาสซึมที่ว่างเปล่าสองสามหรือลบออก ออร์แกเนลล์บางชนิด"
 
-#: ../simulation_parameters/common/help_texts.json:135
+#: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "สาระ: ในชีวิตจริงโปรคาริโอตมีสิ่งที่เรียกว่า Biocompartments ซึ่งทำหน้าที่เหมือนออร์แกเนลล์และในความเป็นจริงเรียกว่า Polyhedral organelles"
 
-#: ../simulation_parameters/common/help_texts.json:138
+#: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_5"
 msgstr "สาระ: เมแทบอลิซึมคือสิ่งที่เรียกว่า Polyhedral organelle"
 
-#: ../simulation_parameters/common/help_texts.json:141
+#: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "นี่คือเคล็ดลับบางครั้งก็เป็นการดีที่สุดที่จะหนีจากเซลล์อื่น ๆ"
 
-#: ../simulation_parameters/common/help_texts.json:144
+#: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_7"
 msgstr "นี่คือเคล็ดลับหากเซลล์มีขนาดประมาณครึ่งหนึ่งของคุณนั่นคือเวลาที่คุณสามารถกลืนเข้าไปได้"
 
-#: ../simulation_parameters/common/help_texts.json:147
+#: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_8"
 msgstr "นี่คือเคล็ดลับแบคทีเรียอาจแข็งแกร่งกว่าที่ปรากฏพวกมันอาจดูเล็ก แต่บางส่วนสามารถมุดเข้ามาหาคุณและฆ่าคุณด้วยวิธีนั้น!"
 
-#: ../simulation_parameters/common/help_texts.json:150
+#: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "นี่คือเคล็ดลับคุณสามารถล่าสัตว์ชนิดอื่นเพื่อสูญพันธุ์ได้หากคุณไม่ระมัดระวังเพียงพอ สายพันธุ์อื่นก็ทำได้เช่นกัน"
 
-#: ../simulation_parameters/common/help_texts.json:153
+#: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "สิ่งที่น่ากลัว !!"
 
-#: ../simulation_parameters/common/help_texts.json:156
+#: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_11"
 msgstr "หลอมโลหะ."
 
-#: ../simulation_parameters/common/help_texts.json:159
+#: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "เซลล์สีน้ำเงินเหล่านั้น"
 
-#: ../simulation_parameters/common/help_texts.json:162
+#: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_13"
 msgstr "นี่คือเคล็ดลับ Biomes เป็นมากกว่าภูมิหลังที่แตกต่างกันสารประกอบใน biomes ที่แตกต่างกันบางครั้งก็วางไข่ในอัตราที่แตกต่างกัน"
 
-#: ../simulation_parameters/common/help_texts.json:165
+#: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_14"
 msgstr "นี่คือเคล็ดลับยิ่งคุณมีแฟลกเจลลามากเท่าไหร่คุณก็ยิ่งไปได้เร็วขึ้นเท่านั้น vroom vroom แต่ก็มีค่าใช้จ่ายเพิ่มเติมเช่นกัน"
 
-#: ../simulation_parameters/common/help_texts.json:168
+#: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "นี่คือเคล็ดลับคุณสามารถกลืนชิ้นเหล็กหรืออื่น ๆ"
 
-#: ../simulation_parameters/common/help_texts.json:171
+#: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_16"
 msgstr "นี่คือเคล็ดลับเตรียมความพร้อมก่อนเพิ่มนิวเคลียส ของพวกนั้นแพง! ในการบำรุงรักษาและค่าใช้จ่ายล่วงหน้า"
 
-#: ../simulation_parameters/common/help_texts.json:174
+#: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_17"
 msgstr "สาระ: คุณรู้หรือไม่ว่ามี ciliate มากกว่า 8000 ชนิดบนโลกใบนี้?"
 
-#: ../simulation_parameters/common/help_texts.json:177
+#: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "สาระ: Stentor เป็น ciliate ที่สามารถยืดตัวและจับเหยื่อด้วยทรัมเป็ตเหมือนปากที่ดึงเหยื่อเข้ามาโดยสร้างกระแสน้ำด้วย cilia"
 
-#: ../simulation_parameters/common/help_texts.json:180
+#: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "สาระ: Didinum เป็น ciliate ที่ล่าพารามีเซีย"
 
-#: ../simulation_parameters/common/help_texts.json:183
+#: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_20"
 msgstr "สาระ:อะมีบาล่าและจับเหยื่อด้วย 'ขา' ที่ทำจากไซโตพลาสซึมที่เรียกว่า pseudopods ในที่สุดเราก็ต้องการมีสิ่งเหล่านี้ในการเจริญเติบโต"
 
-#: ../simulation_parameters/common/help_texts.json:186
+#: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_21"
 msgstr "นี่คือเคล็ดลับระวังเซลล์ที่มีขนาดใหญ่ขึ้นและแบคทีเรียขนาดใหญ่มันไม่ใช่เรื่องสนุกที่จะถูกย่อยและพวกมันจะกินคุณ"
 
-#: ../simulation_parameters/common/help_texts.json:189
+#: ../simulation_parameters/common/help_texts.json:201
 msgid "EASTEREGG_MESSAGE_22"
 msgstr "หัวหน้าทีมเสียงของ Thrive ทำเพลงหลายเพลงที่ยังไม่ได้ใส่ลงในเกม คุณสามารถฟังเพลงเหล่านี้หรือดูสตรีมที่เขาแต่งบนช่อง YouTube ของเขา Oliver Lugg"
 
-#: ../simulation_parameters/common/help_texts.json:192
+#: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_23"
 msgstr "นี่คือเคล็ดลับหากเซลล์ของคุณมีขนาด 150 เฮกซ์คุณสามารถกลืนเศษเหล็กขนาดใหญ่ได้"
 
-#: ../simulation_parameters/common/help_texts.json:195
+#: ../simulation_parameters/common/help_texts.json:207
 msgid "EASTEREGG_MESSAGE_24"
 msgstr "Thrive หมายถึงการจำลองดาวเคราะห์ต่างดาวดังนั้นจึงสมเหตุสมผลที่สิ่งมีชีวิตส่วนใหญ่ที่คุณพบจะเกี่ยวข้องกับสิ่งมีชีวิตอื่นหนึ่งหรือสองชนิดเนื่องจากวิวัฒนาการที่เกิดขึ้นรอบตัวคุณดูว่าคุณสามารถระบุได้หรือไม่!"
 
-#: ../simulation_parameters/common/help_texts.json:198
+#: ../simulation_parameters/common/help_texts.json:210
 msgid "EASTEREGG_MESSAGE_25"
 msgstr "สาระ: ทีม Thrive ทำพอดแคสต์ทุก ๆ ครั้งคุณควรตรวจสอบพวกเขา!"
 
-#: ../simulation_parameters/common/help_texts.json:201
+#: ../simulation_parameters/common/help_texts.json:213
 msgid "EASTEREGG_MESSAGE_26"
 msgstr "สาระ: Thrive สร้างขึ้นด้วยเอ็นจิ้น Godot โอเพ่นซอร์ส!"
 
-#: ../simulation_parameters/common/help_texts.json:204
+#: ../simulation_parameters/common/help_texts.json:216
 msgid "EASTEREGG_MESSAGE_27"
 msgstr "สาระ: หนึ่งในต้นแบบการเล่นเกมที่เล่นได้ตัวแรกถูกสร้างขึ้นโดยโปรแกรมเมอร์ที่น่ากลัวของเราชีวิตที่ไม่น่าไว้วางใจ!"
 
@@ -354,12 +382,12 @@ msgid "ABILITIES"
 msgstr "ความสามารถ"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2149
+#: ../src/microbe_stage/MicrobeStage.tscn:2182
 msgid "FIRE_TOXIN"
 msgstr "ยิงสารพิษ"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2137
+#: ../src/microbe_stage/MicrobeStage.tscn:2170
 msgid "TOGGLE_ENGULF"
 msgstr "สลับเขมือบ"
 
@@ -368,7 +396,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2160
+#: ../src/microbe_stage/MicrobeStage.tscn:2193
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "สลับเขมือบ"
@@ -379,7 +407,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "สลับเขมือบ"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2172
+#: ../src/microbe_stage/MicrobeStage.tscn:2205
 msgid "UNBIND_ALL"
 msgstr ""
 
@@ -450,7 +478,7 @@ msgid "PAN_CAMERA_RESET"
 msgstr "รีเซ็ตกล้อง"
 
 #: ../simulation_parameters/common/input_options.json:135
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:79
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:80
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "ยกเลิกการกระทำปัจจุบัน"
 
@@ -582,96 +610,96 @@ msgid "EPIPELAGIC"
 msgstr "พื้นผิวมหาสมุทรลึก"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:170
-#: ../simulation_parameters/microbe_stage/biomes.json:395
-#: ../simulation_parameters/microbe_stage/biomes.json:539
-#: ../simulation_parameters/microbe_stage/biomes.json:763
-#: ../simulation_parameters/microbe_stage/biomes.json:987
-#: ../simulation_parameters/microbe_stage/biomes.json:1212
-#: ../simulation_parameters/microbe_stage/biomes.json:1356
-#: ../simulation_parameters/microbe_stage/biomes.json:1501
-#: ../simulation_parameters/microbe_stage/biomes.json:1665
-#: ../simulation_parameters/microbe_stage/biomes.json:1809
+#: ../simulation_parameters/microbe_stage/biomes.json:172
+#: ../simulation_parameters/microbe_stage/biomes.json:399
+#: ../simulation_parameters/microbe_stage/biomes.json:545
+#: ../simulation_parameters/microbe_stage/biomes.json:771
+#: ../simulation_parameters/microbe_stage/biomes.json:997
+#: ../simulation_parameters/microbe_stage/biomes.json:1224
+#: ../simulation_parameters/microbe_stage/biomes.json:1370
+#: ../simulation_parameters/microbe_stage/biomes.json:1517
+#: ../simulation_parameters/microbe_stage/biomes.json:1683
+#: ../simulation_parameters/microbe_stage/biomes.json:1829
 msgid "FLOATING_HAZARD"
 msgstr "อันตรายจากการลอยตัว"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
-#: ../simulation_parameters/microbe_stage/biomes.json:188
-#: ../simulation_parameters/microbe_stage/biomes.json:413
-#: ../simulation_parameters/microbe_stage/biomes.json:557
-#: ../simulation_parameters/microbe_stage/biomes.json:781
-#: ../simulation_parameters/microbe_stage/biomes.json:1005
-#: ../simulation_parameters/microbe_stage/biomes.json:1230
-#: ../simulation_parameters/microbe_stage/biomes.json:1374
-#: ../simulation_parameters/microbe_stage/biomes.json:1519
-#: ../simulation_parameters/microbe_stage/biomes.json:1683
-#: ../simulation_parameters/microbe_stage/biomes.json:1827
+#: ../simulation_parameters/microbe_stage/biomes.json:190
+#: ../simulation_parameters/microbe_stage/biomes.json:417
+#: ../simulation_parameters/microbe_stage/biomes.json:563
+#: ../simulation_parameters/microbe_stage/biomes.json:789
+#: ../simulation_parameters/microbe_stage/biomes.json:1015
+#: ../simulation_parameters/microbe_stage/biomes.json:1242
+#: ../simulation_parameters/microbe_stage/biomes.json:1388
+#: ../simulation_parameters/microbe_stage/biomes.json:1535
+#: ../simulation_parameters/microbe_stage/biomes.json:1701
+#: ../simulation_parameters/microbe_stage/biomes.json:1847
 msgid "SMALL_IRON_CHUNK"
 msgstr "ก้อนเหล็กขนาดเล็ก"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:79
-#: ../simulation_parameters/microbe_stage/biomes.json:303
-#: ../simulation_parameters/microbe_stage/biomes.json:448
-#: ../simulation_parameters/microbe_stage/biomes.json:592
-#: ../simulation_parameters/microbe_stage/biomes.json:816
-#: ../simulation_parameters/microbe_stage/biomes.json:1040
-#: ../simulation_parameters/microbe_stage/biomes.json:1265
-#: ../simulation_parameters/microbe_stage/biomes.json:1409
-#: ../simulation_parameters/microbe_stage/biomes.json:1573
-#: ../simulation_parameters/microbe_stage/biomes.json:1718
-#: ../simulation_parameters/microbe_stage/biomes.json:1862
+#: ../simulation_parameters/microbe_stage/biomes.json:80
+#: ../simulation_parameters/microbe_stage/biomes.json:306
+#: ../simulation_parameters/microbe_stage/biomes.json:453
+#: ../simulation_parameters/microbe_stage/biomes.json:599
+#: ../simulation_parameters/microbe_stage/biomes.json:825
+#: ../simulation_parameters/microbe_stage/biomes.json:1051
+#: ../simulation_parameters/microbe_stage/biomes.json:1278
+#: ../simulation_parameters/microbe_stage/biomes.json:1424
+#: ../simulation_parameters/microbe_stage/biomes.json:1590
+#: ../simulation_parameters/microbe_stage/biomes.json:1737
+#: ../simulation_parameters/microbe_stage/biomes.json:1883
 msgid "BIG_IRON_CHUNK"
 msgstr "ก้อนเหล็กขนาดใหญ่"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:148
+#: ../simulation_parameters/microbe_stage/biomes.json:150
 msgid "VOLCANIC_VENT"
 msgstr "ปล่องภูเขาไฟ"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:223
-#: ../simulation_parameters/microbe_stage/biomes.json:615
-#: ../simulation_parameters/microbe_stage/biomes.json:839
-#: ../simulation_parameters/microbe_stage/biomes.json:1063
-#: ../simulation_parameters/microbe_stage/biomes.json:1885
+#: ../simulation_parameters/microbe_stage/biomes.json:226
+#: ../simulation_parameters/microbe_stage/biomes.json:623
+#: ../simulation_parameters/microbe_stage/biomes.json:849
+#: ../simulation_parameters/microbe_stage/biomes.json:1075
+#: ../simulation_parameters/microbe_stage/biomes.json:1907
 msgid "MARINE_SNOW"
 msgstr "หิมะในทะเล"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:372
+#: ../simulation_parameters/microbe_stage/biomes.json:376
 msgid "TIDEPOOL"
 msgstr "แอ่งน้ำที่ขังอยู่แนวโขดหินข้างทะเล"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:517
+#: ../simulation_parameters/microbe_stage/biomes.json:523
 msgid "BATHYPELAGIC"
 msgstr "โซนมืด"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:741
+#: ../simulation_parameters/microbe_stage/biomes.json:749
 msgid "ABYSSOPELAGIC"
 msgstr "เขตเหวนรก"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:965
+#: ../simulation_parameters/microbe_stage/biomes.json:975
 msgid "MESOPELAGIC"
 msgstr "แดนสนธยา"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1189
+#: ../simulation_parameters/microbe_stage/biomes.json:1201
 msgid "COASTAL"
 msgstr "ชายฝั่ง"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1334
+#: ../simulation_parameters/microbe_stage/biomes.json:1348
 msgid "UNDERWATERCAVE"
 msgstr "ถ้ำใต้น้ำ"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1478
+#: ../simulation_parameters/microbe_stage/biomes.json:1494
 msgid "ICESHELF"
 msgstr "ชั้นน้ำแข็ง"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1554
+#: ../simulation_parameters/microbe_stage/biomes.json:1571
 msgid "ICESHARD"
 msgstr "ชิ้นส่วนน้ำแข็ง"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1642
+#: ../simulation_parameters/microbe_stage/biomes.json:1660
 msgid "ESTUARY"
 msgstr "ปากน้ำ"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1787
+#: ../simulation_parameters/microbe_stage/biomes.json:1807
 msgid "SEA_FLOOR"
 msgstr "พื้นทะเล"
 
@@ -680,214 +708,235 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:748
+#: ../src/microbe_stage/MicrobeStage.tscn:1300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "แอมโมเนีย"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:819
+#: ../simulation_parameters/microbe_stage/compounds.json:32
+#: ../src/microbe_stage/MicrobeStage.tscn:1349
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "ฟอสเฟต"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:713
+#: ../simulation_parameters/microbe_stage/compounds.json:47
+#: ../src/microbe_stage/MicrobeStage.tscn:1401
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "ไฮโดรเจนซัลไฟด์"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:783
+#: ../simulation_parameters/microbe_stage/compounds.json:62
+#: ../src/microbe_stage/MicrobeStage.tscn:1251
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "กลูโคส"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1585
+#: ../simulation_parameters/microbe_stage/compounds.json:77
+#: ../src/microbe_stage/MicrobeStage.tscn:1624
 msgid "OXYTOXY_NT"
 msgstr "ออกซิโทซินเอ็นที"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:854
+#: ../simulation_parameters/microbe_stage/compounds.json:92
+#: ../src/microbe_stage/MicrobeStage.tscn:1450
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "เหล็ก"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:550
+#: ../simulation_parameters/microbe_stage/compounds.json:107
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:459
 msgid "OXYGEN"
 msgstr "ออกซิเจน"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:604
+#: ../simulation_parameters/microbe_stage/compounds.json:121
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:513
 msgid "CARBON_DIOXIDE"
 msgstr "คาร์บอนไดออกไซด์"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:577
+#: ../simulation_parameters/microbe_stage/compounds.json:135
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:486
 msgid "NITROGEN"
 msgstr "ไนโตรเจน"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:431
+#: ../simulation_parameters/microbe_stage/compounds.json:149
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3855
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:340
 msgid "SUNLIGHT"
 msgstr "แสงแดด"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:3
+msgid "LIPASE"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#, fuzzy
+msgid "CELLULASE"
+msgstr "เซลลูโลส"
+
+#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#, fuzzy
+msgid "CHITINASE"
+msgstr "ไคติน"
+
+#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/organelles.json:58
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:679
+msgid "RUSTICYANIN"
+msgstr "รัสติไซยานิน"
+
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/general/OptionsMenu.tscn:931
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2301
 msgid "NORMAL"
 msgstr "ปกติ"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2416
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2472
 msgid "DOUBLE"
 msgstr "ดับเบิ้ล"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2583
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2639
 msgid "CELLULOSE"
 msgstr "เซลลูโลส"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:57
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2821
+#: ../simulation_parameters/microbe_stage/membranes.json:58
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2886
 msgid "CHITIN"
 msgstr "ไคติน"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
+#: ../simulation_parameters/microbe_stage/membranes.json:77
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3133
 msgid "CALCIUM_CARBONATE"
 msgstr "แคลเซียมคาร์บอเนต"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:93
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3330
+#: ../simulation_parameters/microbe_stage/membranes.json:95
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3405
 msgid "SILICA"
 msgstr "ซิลิกา"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1105
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
 msgid "PREDATORY_PILUS"
 msgstr "สัตว์นักล่า"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:55
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:678
-msgid "RUSTICYANIN"
-msgstr "รัสติไซยานิน"
-
-#: ../simulation_parameters/microbe_stage/organelles.json:90
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:775
+#: ../simulation_parameters/microbe_stage/organelles.json:93
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:776
 msgid "NITROGENASE"
 msgstr "ไนโตรเจน"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:125
+#: ../simulation_parameters/microbe_stage/organelles.json:128
 msgid "PROTOPLASM"
 msgstr "โปรโตพลาสซึม"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:157
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:576
+#: ../simulation_parameters/microbe_stage/organelles.json:160
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "คีโมสังเคราะห์โปรตีน"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:873
+#: ../simulation_parameters/microbe_stage/organelles.json:199
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:874
 msgid "OXYTOXISOME"
 msgstr "ออกซิโทซิโซม"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:231
+#: ../simulation_parameters/microbe_stage/organelles.json:234
 msgid "THYLAKOIDS"
 msgstr "ไทลาคอยด์"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:265
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:378
+#: ../simulation_parameters/microbe_stage/organelles.json:268
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:379
 msgid "METABOLOSOMES"
 msgstr "เมตาโบโลโซม"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:303
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1824
+#: ../simulation_parameters/microbe_stage/organelles.json:306
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1825
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "พลาสติดตรึงไนโตรเจน"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:342
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1739
+#: ../simulation_parameters/microbe_stage/organelles.json:345
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1740
 msgid "CHEMOPLAST"
 msgstr "เคโมพลาสต์"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:376
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:970
+#: ../simulation_parameters/microbe_stage/organelles.json:379
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:971
 msgid "FLAGELLUM"
 msgstr "แฟลเจลลัม"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:405
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1923
+#: ../simulation_parameters/microbe_stage/organelles.json:408
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1924
 msgid "VACUOLE"
 msgstr "แวคิวโอล"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:442
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1453
+#: ../simulation_parameters/microbe_stage/organelles.json:445
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
 msgid "MITOCHONDRION"
 msgstr "ไมโตคอนดริออน"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:478
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2021
+#: ../simulation_parameters/microbe_stage/organelles.json:481
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "สารพิษ\n"
 "แวคิวโอล"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:509
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1272
+#: ../simulation_parameters/microbe_stage/organelles.json:512
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
 #, fuzzy
 msgid "BINDING_AGENT"
 msgstr ""
 "มีข้อขัดแย้งกับ {0}\n"
 "คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:551
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1538
+#: ../simulation_parameters/microbe_stage/organelles.json:554
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1539
 msgid "CHLOROPLAST"
 msgstr "คลอโรพลาสต์"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:585
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
+#: ../simulation_parameters/microbe_stage/organelles.json:588
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:280
 msgid "CYTOPLASM"
 msgstr "ไซโทพลาซึม"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:652
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1356
+#: ../simulation_parameters/microbe_stage/organelles.json:655
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
 msgid "NUCLEUS"
 msgstr "นิวเคลียส"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:678
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
+#: ../simulation_parameters/microbe_stage/organelles.json:681
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
 #, fuzzy
 msgid "CHEMORECEPTOR"
 msgstr "เคโมพลาสต์"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2119
+#: ../simulation_parameters/microbe_stage/organelles.json:707
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2120
 #, fuzzy
 msgid "SIGNALING_AGENT"
 msgstr ""
 "มีข้อขัดแย้งกับ {0}\n"
 "คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:727
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
+#: ../simulation_parameters/microbe_stage/organelles.json:730
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:750
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
+#: ../simulation_parameters/microbe_stage/organelles.json:753
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
 msgid "THERMOPLAST"
 msgstr "เทอร์โมพลาสต์"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:780
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
+#: ../simulation_parameters/microbe_stage/organelles.json:783
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
 msgid "CILIA"
 msgstr "ซิเลีย"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:819
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2241
+#, fuzzy
+msgid "LYSOSOME"
+msgstr "ออกซิโทซิโซม"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 #, fuzzy
@@ -912,8 +961,9 @@ msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นต�
 msgid "STARTING"
 msgstr "เริ่มต้น"
 
-#: ../src/auto-evo/AutoEvoRun.cs:288
-msgid "AUTO-EVO_POPULATION_CHANGED"
+#: ../src/auto-evo/AutoEvoRun.cs:293
+#, fuzzy
+msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
@@ -1043,87 +1093,87 @@ msgstr ""
 msgid "STEM_CELL_NAME"
 msgstr "ชื่อผู้ใช้ที่กำหนดเอง:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:299
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:361
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:296
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
 msgid "STRUCTURE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:320
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:317
 #, fuzzy
 msgid "REPRODUCTION"
 msgstr "ความละเอียด:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:341
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:403
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:338
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:415
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
 msgid "DUPLICATE_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
 msgid "REPRODUCTION_METHOD"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1233
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1105
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1024
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:126
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
 msgid "DISCONNECTED_CELLS"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:548
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:555
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:550
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:559
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "สร้างจุลินทรีย์ใหม่"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
 #, fuzzy
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "chemoplast เป็นโครงสร้างเมมเบรนสองชั้นที่มีโปรตีนที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
 #, fuzzy
 msgid "NEW_NAME_COLON"
 msgstr "เกมส์ใหม่"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:595
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
 #, fuzzy
 msgid "NEW_NAME"
 msgstr "เกมส์ใหม่"
@@ -1157,7 +1207,7 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:379
 #: ../src/general/EditorBase.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -1178,7 +1228,7 @@ msgid "FRAME_DURATION"
 msgstr "ระบบหายใจแบบแอโรบิค"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
-#: ../src/saving/SaveManagerGUI.cs:126
+#: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
 msgstr ""
 
@@ -1659,7 +1709,7 @@ msgstr ""
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1333
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "CLOSE"
@@ -1668,11 +1718,13 @@ msgstr "ปิด"
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:567
 #: ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/MicrobeHUD.cs:717
+#: ../src/microbe_stage/MicrobeHUD.cs:760
+#: ../src/microbe_stage/MicrobeHUD.cs:1216
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:395
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:275
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:276
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:236
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -2406,7 +2458,7 @@ msgid "STATISTICS"
 msgstr "สถิติ"
 
 #: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/MicrobeStage.tscn:1697
+#: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -2695,51 +2747,51 @@ msgstr "บันทึกมีเวอร์ชันที่แตกต่
 msgid "SELECT_OPTION"
 msgstr "ปิดตัวเลือกไหม"
 
-#: ../src/gui_common/TweakedColourPicker.cs:394
+#: ../src/gui_common/TweakedColourPicker.cs:388
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:395
+#: ../src/gui_common/TweakedColourPicker.cs:389
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:396
+#: ../src/gui_common/TweakedColourPicker.cs:390
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:397
+#: ../src/gui_common/TweakedColourPicker.cs:391
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:401
+#: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:402
+#: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:403
+#: ../src/gui_common/TweakedColourPicker.cs:397
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:407
+#: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:408
+#: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:409
+#: ../src/gui_common/TweakedColourPicker.cs:403
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:412
+#: ../src/gui_common/TweakedColourPicker.cs:406
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:587
+#: ../src/gui_common/TweakedColourPicker.cs:581
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 
@@ -2754,8 +2806,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2054
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2066
 msgid "N_A"
 msgstr ""
 
@@ -2796,7 +2848,7 @@ msgid "SLIDESHOW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2192
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -2851,270 +2903,272 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:16
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:52
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:252
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:55
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:255
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "บทช่วยสอน"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:47
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:48
 msgid "OPEN_THE_MENU"
 msgstr "เปิดเมนู"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:53
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
 msgstr "เปิดหน้าจอความช่วยเหลือ"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:67
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:68
 msgid "WILL_YOU_THRIVE"
 msgstr "คุณจะเจริญเติบโตหรือไม่?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:84
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:85
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "แก้ไขให้เสร็จและกลับสู่สภาพแวดล้อม"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:90
 #, fuzzy
 msgid "NEXT_EDITOR_TAB"
 msgstr "เปิดใช้งานตัวแก้ไข"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:95
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:96
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "เปลี่ยนสมมาตร"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:101
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "เลิกทำการกระทำล่าสุด"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:107
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "REDO_THE_LAST_ACTION"
 msgstr "ทำซ้ำการกระทำล่าสุด"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:113
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:114
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "สร้างจุลินทรีย์ใหม่"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:119
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
 msgid "MEMBRANE_RIGIDITY"
 msgstr "ความแข็งแกร่งของเมมเบรน"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:130
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "เมมเบรนที่แข็งกว่าจะทนต่อความเสียหายได้ดีกว่า แต่จะทำให้เซลล์เคลื่อนที่ไปมาได้ยากขึ้น"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:158
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2275
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2613
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2851
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3087
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3360
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:159
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2331
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2669
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2916
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3161
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3435
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "ความคล่องตัว"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:193
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2378
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2546
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2716
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2954
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3190
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3463
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:194
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2434
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2602
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2772
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3019
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3264
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3538
 msgid "HEALTH"
 msgstr "เลือด"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:232
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:233
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:240
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:241
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:248
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:249
 msgid "FEAR_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:256
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:257
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:264
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:265
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:280
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:281
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "เปลี่ยน [thrive:compound]glucose[/thrive:compound] เป็น [thrive:compound]atp[/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:281
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:282
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "ภายในที่เหนอะหนะของเซลล์ ไซโทพลาสซึมเป็นส่วนผสมพื้นฐานของไอออนโปรตีนและสารอื่น ๆ ที่ละลายในน้ำที่เติมภายในเซลล์ หนึ่งในฟังก์ชั่นที่ทำคือไกลโคไลซิสการเปลี่ยนกลูโคสเป็นพลังงาน ATP สำหรับเซลล์ที่ขาดออร์แกเนลล์เพื่อให้มีการเผาผลาญขั้นสูงมากขึ้นนี่คือสิ่งที่พวกเขาต้องพึ่งพาเพื่อเป็นพลังงาน นอกจากนี้ยังใช้เพื่อเก็บโมเลกุลในเซลล์และเพื่อขยายขนาดของเซลล์"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:298
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:401
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:498
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:600
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:697
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:794
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:892
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1027
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1286
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1375
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1468
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1553
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1653
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1754
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1844
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2041
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2139
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:299
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:402
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:499
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:601
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:698
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1028
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1287
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1376
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1469
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1554
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1654
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2042
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2140
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2272
 msgid "STORAGE"
 msgstr "การจัดเก็บ"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:336
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:439
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:638
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:832
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:930
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1065
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1125
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1240
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1413
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1506
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1591
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1792
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1981
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2079
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2177
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2310
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2480
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2648
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2886
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3122
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3395
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:337
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:440
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:537
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:639
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:736
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:833
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:931
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1066
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1126
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1186
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1241
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1414
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1592
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1692
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1793
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1883
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1982
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2178
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2282
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2366
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2536
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2704
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2951
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3196
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3470
 msgid "OSMOREGULATION_COST"
 msgstr "ต้นทุน ออสโมซิส"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:379
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "เปลี่ยน [thrive:compound]glucose[/thrive:compound] เป็น [thrive:compound]atp[/thrive:compound] อัตรามาตราส่วนด้วยความเข้มข้นของ [thrive:compound]oxygen[/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:381
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "เมตาโบโลโซมเป็นกลุ่มของโปรตีนที่ห่อหุ้มด้วยเปลือกโปรตีน พวกเขาสามารถเปลี่ยนกลูโคสเป็น ATP ในอัตราที่สูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง เนื่องจากเมตาโบโซมถูกแขวนไว้ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:479
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:480
 msgid "THYLAKOID"
 msgstr "ไธลาคอยด์"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:480
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "ผลิต [เจริญเติบโต:สารประกอบ]กลูโคส[/เจริญเติบโต:สารประกอบ] อัตรามาตราส่วนด้วยความเข้มข้นของ [การเจริญเติบโต:สารประกอบ]คาร์บอนไดออกไซด์[/การเจริญเติบโต:สารประกอบ] และความเข้มของ [การเจริญเติบโต:สารประกอบ]แสงแดด[/การเจริญเติบโต:สารประกอบ]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:482
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Thylakoids เป็นกลุ่มของโปรตีนและเก็บวัตถุที่ไวแสง เม็ดสีสามารถใช้พลังงานของแสงเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยแสง เม็ดสีเหล่านี้เป็นสิ่งที่ทำให้พวกเขามีสีที่โดดเด่น อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และความเข้มของแสง เนื่องจาก thylakoids ถูกแขวนอยู่ในไซโตพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:578
 #, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "โปรตีนสังเคราะห์ Chemosynthesizing เป็นกลุ่มโปรตีนขนาดเล็กในไซโทพลาซึมที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์ เนื่องจากโปรตีนสังเคราะห์ทางเคมีจะแขวนลอยอยู่ในไซโตพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:578
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:579
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "โปรตีนสังเคราะห์ Chemosynthesizing เป็นกลุ่มโปรตีนขนาดเล็กในไซโทพลาซึมที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์ เนื่องจากโปรตีนสังเคราะห์ทางเคมีจะแขวนลอยอยู่ในไซโตพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:679
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:680
 #, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Rusticyanin เป็นโปรตีนที่สามารถใช้ก๊าซคาร์บอนไดออกไซด์และออกซิเจนในการออกซิไดซ์เหล็กจากสถานะทางเคมีหนึ่งไปยังอีกสถานะหนึ่ง กระบวนการนี้เรียกว่า Iron Respiration ปล่อยพลังงานออกมาซึ่งเซลล์สามารถเก็บเกี่ยวได้"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:680
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:681
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyanin เป็นโปรตีนที่สามารถใช้ก๊าซคาร์บอนไดออกไซด์และออกซิเจนในการออกซิไดซ์เหล็กจากสถานะทางเคมีหนึ่งไปยังอีกสถานะหนึ่ง กระบวนการนี้เรียกว่า Iron Respiration ปล่อยพลังงานออกมาซึ่งเซลล์สามารถเก็บเกี่ยวได้"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:776
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:777
 #, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:777
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:778
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:874
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:875
 #, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "เมตาโบโลโซมเป็นกลุ่มของโปรตีนที่ห่อหุ้มด้วยเปลือกโปรตีน พวกเขาสามารถเปลี่ยนกลูโคสเป็น ATP ในอัตราที่สูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง เนื่องจากเมตาโบโซมถูกแขวนไว้ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:875
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:876
 msgid "OXYTOXISOME_DESC"
 msgstr "เมแทบอลิซึมที่ได้รับการแก้ไขซึ่งรับผิดชอบในการผลิตรูปแบบดั้งเดิมของสารพิษ OxyToxy NT"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:971
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
 #, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "แฟลกเจลลัม (พหูพจน์: แฟลกเจลลา) เป็นกลุ่มเส้นใยโปรตีนคล้ายแส้ที่ยื่นออกมาจากเยื่อหุ้มเซลล์ซึ่งสามารถใช้ ATP เพื่อทำให้เป็นคลื่นและขับเคลื่อนเซลล์ไปในทิศทาง"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:973
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "แฟลกเจลลัม (พหูพจน์: แฟลกเจลลา) เป็นกลุ่มเส้นใยโปรตีนคล้ายแส้ที่ยื่นออกมาจากเยื่อหุ้มเซลล์ซึ่งสามารถใช้ ATP เพื่อทำให้เป็นคลื่นและขับเคลื่อนเซลล์ไปในทิศทาง"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:989
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:990
 msgid "SPEED"
 msgstr "ความเร็ว"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
 #, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "แทงเซลล์อื่นด้วยสิ่งนี้"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1108
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "แทงเซลล์อื่นด้วยสิ่งนี้"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 #, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "chemoplast เป็นโครงสร้างเมมเบรนสองชั้นที่มีโปรตีนที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1168
 #, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "chemoplast เป็นโครงสร้างเมมเบรนสองชั้นที่มีโปรตีนที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "เปลี่ยน [thrive:compound]glucose[/thrive:compound] เป็น [thrive:compound]atp[/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1228
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
 msgstr "ภายในที่เหนอะหนะของเซลล์ ไซโทพลาสซึมเป็นส่วนผสมพื้นฐานของไอออนโปรตีนและสารอื่น ๆ ที่ละลายในน้ำที่เติมภายในเซลล์ หนึ่งในฟังก์ชั่นที่ทำคือไกลโคไลซิสการเปลี่ยนกลูโคสเป็นพลังงาน ATP สำหรับเซลล์ที่ขาดออร์แกเนลล์เพื่อให้มีการเผาผลาญขั้นสูงมากขึ้นนี่คือสิ่งที่พวกเขาต้องพึ่งพาเพื่อเป็นพลังงาน นอกจากนี้ยังใช้เพื่อเก็บโมเลกุลในเซลล์และเพื่อขยายขนาดของเซลล์"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1275
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1358
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 "ช่วยให้มีวิวัฒนาการที่ซับซ้อนมากขึ้น\n"
@@ -3122,194 +3176,218 @@ msgstr ""
 "ของ ATP เพื่อรักษา นี่คือสิ่งที่เปลี่ยนกลับไม่ได้\n"
 "วิวัฒนาการ."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1358
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1359
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "คุณสมบัติที่กำหนดของเซลล์ยูคาริโอต นิวเคลียสยังรวมถึงเรติคูลัมเอนโดพลาสมิกและกอลจิ มันเป็นวิวัฒนาการของเซลล์โปรคาริโอตในการพัฒนาระบบของเยื่อหุ้มภายในซึ่งทำได้โดยการดูดซึมโปรคาริโอตอื่นเข้าไปในตัวมันเอง สิ่งนี้ช่วยให้สามารถแบ่งส่วนหรือปัดป้องกระบวนการต่างๆที่เกิดขึ้นภายในเซลล์และป้องกันไม่ให้เกิดการทับซ้อนกัน สิ่งนี้ช่วยให้ออร์แกเนลล์ที่ถูกยึดเมมเบรนใหม่มีความซับซ้อนมีประสิทธิภาพและเชี่ยวชาญกว่าการลอยตัวในไซโทพลาสซึมอย่างอิสระ อย่างไรก็ตามสิ่งนี้มีค่าใช้จ่ายในการทำให้เซลล์มีขนาดใหญ่ขึ้นและต้องใช้พลังงานจำนวนมากในการรักษาเซลล์"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
 #, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "โรงไฟฟ้าของเซลล์ mitochondrion (พหูพจน์: mitochondria) เป็นโครงสร้างเมมเบรนสองชั้นที่เต็มไปด้วยโปรตีนและเอนไซม์ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต สามารถเปลี่ยนกลูโคสเป็น ATP ได้อย่างมีประสิทธิภาพสูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1456
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "โรงไฟฟ้าของเซลล์ mitochondrion (พหูพจน์: mitochondria) เป็นโครงสร้างเมมเบรนสองชั้นที่เต็มไปด้วยโปรตีนและเอนไซม์ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต สามารถเปลี่ยนกลูโคสเป็น ATP ได้อย่างมีประสิทธิภาพสูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1539
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1540
 #, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "คลอโรพลาสต์เป็นโครงสร้างเมมเบรนสองชั้นที่มีรงควัตถุไวแสงซ้อนกันในถุงเยื่อ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต เม็ดสีในคลอโรพลาสต์สามารถใช้พลังงานของแสงเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยแสง เม็ดสีเหล่านี้เป็นสิ่งที่ให้สีที่โดดเด่น อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และความเข้มของแสง"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1540
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1541
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "คลอโรพลาสต์เป็นโครงสร้างเมมเบรนสองชั้นที่มีรงควัตถุไวแสงซ้อนกันในถุงเยื่อ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต เม็ดสีในคลอโรพลาสต์สามารถใช้พลังงานของแสงเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยแสง เม็ดสีเหล่านี้เป็นสิ่งที่ให้สีที่โดดเด่น อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และความเข้มของแสง"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
 #, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "เทอร์โมพลาสต์เป็นโครงสร้างเมมเบรนสองชั้นที่มีเม็ดสีทนความร้อนซ้อนกันในถุงเยื่อ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต เม็ดสีในเทอร์โมพลาสต์สามารถใช้พลังงานของความแตกต่างของความร้อนในสภาพแวดล้อมเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยความร้อน อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และอุณหภูมิ"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1626
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "เทอร์โมพลาสต์เป็นโครงสร้างเมมเบรนสองชั้นที่มีเม็ดสีทนความร้อนซ้อนกันในถุงเยื่อ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต เม็ดสีในเทอร์โมพลาสต์สามารถใช้พลังงานของความแตกต่างของความร้อนในสภาพแวดล้อมเพื่อผลิตน้ำตาลกลูโคสจากน้ำและก๊าซคาร์บอนไดออกไซด์ในกระบวนการที่เรียกว่าการสังเคราะห์ด้วยความร้อน อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์และอุณหภูมิ"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1642
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1643
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:212
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1726
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
-#: ../src/microbe_stage/MicrobeHUD.cs:1502
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1727
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2220
+#: ../src/microbe_stage/MicrobeHUD.cs:1608
 msgid "TO_BE_IMPLEMENTED"
 msgstr "ที่จะดำเนินการ"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1740
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1741
 #, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "chemoplast เป็นโครงสร้างเมมเบรนสองชั้นที่มีโปรตีนที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1741
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1742
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "chemoplast เป็นโครงสร้างเมมเบรนสองชั้นที่มีโปรตีนที่สามารถเปลี่ยนไฮโดรเจนซัลไฟด์น้ำและก๊าซคาร์บอนไดออกไซด์เป็นน้ำตาลกลูโคสในกระบวนการที่เรียกว่า Hydrogen Sulfide Chemosynthesis อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1825
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
 #, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1827
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1924
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1925
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "แวคิวโอลเป็นออร์แกเนลล์เยื่อภายในที่ใช้สำหรับเก็บในเซลล์ ประกอบด้วยถุงหลายอันโครงสร้างของเยื่อขนาดเล็กที่ใช้กันอย่างแพร่หลายในเซลล์เพื่อการจัดเก็บที่หลอมรวมเข้าด้วยกัน เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1925
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1926
 msgid "VACUOLE_DESCRIPTION"
 msgstr "แวคิวโอลเป็นออร์แกเนลล์เยื่อภายในที่ใช้สำหรับเก็บในเซลล์ ประกอบด้วยถุงหลายอันโครงสร้างของเยื่อขนาดเล็กที่ใช้กันอย่างแพร่หลายในเซลล์เพื่อการจัดเก็บที่หลอมรวมเข้าด้วยกัน เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2023
 #, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "ท็อกซินแวคิวโอลเป็นแวคิวโอลที่ได้รับการดัดแปลงเพื่อการผลิตการจัดเก็บและการหลั่งสารพิษออกซีโทซีโดยเฉพาะ แวคิวโอลที่เป็นพิษมากขึ้นจะทำให้สารพิษถูกปล่อยออกมามากขึ้น"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2023
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2024
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "ท็อกซินแวคิวโอลเป็นแวคิวโอลที่ได้รับการดัดแปลงเพื่อการผลิตการจัดเก็บและการหลั่งสารพิษออกซีโทซีโดยเฉพาะ แวคิวโอลที่เป็นพิษมากขึ้นจะทำให้สารพิษถูกปล่อยออกมามากขึ้น"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2120
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2121
 #, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2121
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2122
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2246
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2242
+#, fuzzy
+msgid "LYSOSOME_PROCESSES_DESCRIPTION"
+msgstr "เมตาโบโลโซมเป็นกลุ่มของโปรตีนที่ห่อหุ้มด้วยเปลือกโปรตีน พวกเขาสามารถเปลี่ยนกลูโคสเป็น ATP ในอัตราที่สูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง เนื่องจากเมตาโบโซมถูกแขวนไว้ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2243
+#, fuzzy
+msgid "LYSOSOME_DESCRIPTION"
+msgstr "เมตาโบโลโซมเป็นกลุ่มของโปรตีนที่ห่อหุ้มด้วยเปลือกโปรตีน พวกเขาสามารถเปลี่ยนกลูโคสเป็น ATP ในอัตราที่สูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง เนื่องจากเมตาโบโซมถูกแขวนไว้ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2257
+#, fuzzy
+msgid "DIGESTION_SPEED"
+msgstr "สูญพันธุ์ไปแล้วใน {0}"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2263
+msgid "DIGESTION_EFFICIENCY"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2302
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2344
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2513
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2682
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2920
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3156
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3429
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2400
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2569
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2738
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2985
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3230
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3504
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2417
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2473
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2640
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2750
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3224
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3497
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2806
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3298
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3572
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2784
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3022
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3292
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3565
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2840
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3087
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3366
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3640
 msgid "CANNOT_ENGULF"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2872
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3119
+msgid "INVULNERABLE_TO_ENGULFMENT"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2887
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2988
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3531
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3053
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3332
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3606
 msgid "TOXIN_RESISTANCE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3060
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3134
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3331
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3406
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3818
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3748
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3824
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "ค่านี้ใช้กับเกมใหม่ที่เริ่มหลังจากเปลี่ยนตัวเลือกนี้เท่านั้น"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3754
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3830
 #, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr "โรงไฟฟ้าของเซลล์ mitochondrion (พหูพจน์: mitochondria) เป็นโครงสร้างเมมเบรนสองชั้นที่เต็มไปด้วยโปรตีนและเอนไซม์ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต สามารถเปลี่ยนกลูโคสเป็น ATP ได้อย่างมีประสิทธิภาพสูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3760
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3836
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3765
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3841
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 "คุณมีการเปลี่ยนแปลงที่ยังไม่ได้บันทึกซึ่งจะถูกยกเลิก\n"
 "คุณต้องการดำเนินการต่อหรือไม่"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:368
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3850
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
 msgid "TEMPERATURE"
 msgstr "อุณหภูมิ"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:588
-msgid "DEATH"
-msgstr ""
-
-#: ../src/microbe_stage/Microbe.Contact.cs:718
+#: ../src/microbe_stage/Microbe.Contact.cs:709
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:725
+#: ../src/microbe_stage/Microbe.Contact.cs:716
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:963
+#: ../src/microbe_stage/Microbe.Contact.cs:895
+msgid "DEATH"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.Contact.cs:1144
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:780
+#: ../src/microbe_stage/Microbe.Interior.cs:860
 msgid "REPRODUCED"
 msgstr ""
 
@@ -3337,182 +3415,195 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:553
+#: ../src/microbe_stage/MicrobeHUD.cs:572
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:554
+#: ../src/microbe_stage/MicrobeHUD.cs:573
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:555
+#: ../src/microbe_stage/MicrobeHUD.cs:574
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:556
+#: ../src/microbe_stage/MicrobeHUD.cs:575
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:557
+#: ../src/microbe_stage/MicrobeHUD.cs:576
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 "มีข้อขัดแย้งกับ {0}\n"
 "คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:560
+#: ../src/microbe_stage/MicrobeHUD.cs:579
 #, fuzzy
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 "มีข้อขัดแย้งกับ {0}\n"
 "คุณต้องการลบข้อมูลที่ป้อนออกจาก {1} หรือไม่?"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:790
+#: ../src/microbe_stage/MicrobeHUD.cs:848
 msgid "PAUSE_PROMPT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:904
+#: ../src/microbe_stage/MicrobeHUD.cs:962
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:937
+#: ../src/microbe_stage/MicrobeHUD.cs:995
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:954
+#: ../src/microbe_stage/MicrobeHUD.cs:1012
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "เมาส์ขวา"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:999
+#: ../src/microbe_stage/MicrobeHUD.cs:1057
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1001
+#: ../src/microbe_stage/MicrobeHUD.cs:1059
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1003
+#: ../src/microbe_stage/MicrobeHUD.cs:1061
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1005
+#: ../src/microbe_stage/MicrobeHUD.cs:1063
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1007
+#: ../src/microbe_stage/MicrobeHUD.cs:1065
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1009
+#: ../src/microbe_stage/MicrobeHUD.cs:1067
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1267
-#: ../src/microbe_stage/MicrobeStage.tscn:1764
+#: ../src/microbe_stage/MicrobeHUD.cs:1213
+msgid "DEVOURED"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:1373
+#: ../src/microbe_stage/MicrobeStage.tscn:1803
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1303
-#: ../src/microbe_stage/MicrobeStage.tscn:1775
+#: ../src/microbe_stage/MicrobeHUD.cs:1409
+#: ../src/microbe_stage/MicrobeStage.tscn:1814
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:799
+#: ../src/microbe_stage/MicrobeStage.cs:831
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:813
+#: ../src/microbe_stage/MicrobeStage.cs:845
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:837
+#: ../src/microbe_stage/MicrobeStage.cs:868
 msgid "PLAYER_DIED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:516
+#: ../src/microbe_stage/MicrobeStage.cs:1003
+#, fuzzy
+msgid "EXTINCT_IN_PATCH"
+msgstr "สูญพันธุ์ไปจากโลก"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:523
 msgid "AT_CURSOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:542
+#: ../src/microbe_stage/MicrobeStage.tscn:549
 msgid "NOTHING_HERE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:567
+#: ../src/microbe_stage/MicrobeStage.tscn:574
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:607
+#: ../src/microbe_stage/MicrobeStage.tscn:614
 msgid "SPECIES_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:687
+#: ../src/microbe_stage/MicrobeStage.tscn:691
 msgid "ENVIRONMENT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:955
+#: ../src/microbe_stage/MicrobeStage.tscn:959
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1011
+#: ../src/microbe_stage/MicrobeStage.tscn:1015
 msgid "LIGHT"
 msgstr "แสง"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1066
+#: ../src/microbe_stage/MicrobeStage.tscn:1070
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:673
+#: ../src/microbe_stage/MicrobeStage.tscn:1153
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
 msgid "COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1525
+#: ../src/microbe_stage/MicrobeStage.tscn:1500
+msgid "INGESTED_MATTER"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1564
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1623
+#: ../src/microbe_stage/MicrobeStage.tscn:1662
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1636
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1637
+#: ../src/microbe_stage/MicrobeStage.tscn:1676
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1645
+#: ../src/microbe_stage/MicrobeStage.tscn:1684
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1660
+#: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1709
+#: ../src/microbe_stage/MicrobeStage.tscn:1748
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1760
+#: ../src/microbe_stage/MicrobeStage.tscn:1799
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1795
+#: ../src/microbe_stage/MicrobeStage.tscn:1834
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1946
+#: ../src/microbe_stage/MicrobeStage.tscn:1982
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2092
+#: ../src/microbe_stage/MicrobeStage.tscn:2128
 msgid "PAUSED"
 msgstr ""
 
@@ -3568,192 +3659,206 @@ msgstr ""
 msgid "FOCUSED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:372
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:165
+msgid "DIGESTION_SPEED_VALUE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:285
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:291
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:402
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:320
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:422
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:340
 msgid "OSMOREGULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:428
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:346
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:440
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:358
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:524
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:512
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1175
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1160
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1177
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1162
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
-msgid "FAILED"
-msgstr ""
-
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2046
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2048
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2060
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2160
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2171
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2177
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:382
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:380
 msgid "MEMBRANE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:453
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:462
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:460
 msgid "STRUCTURAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:471
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
 msgid "PROTEINS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:480
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:478
 msgid "EXTERNAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:489
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:487
 msgid "ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:530
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:528
 msgid "MEMBRANE_TYPES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:548
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:546
 msgid "FLUIDITY_RIGIDITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:568
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:566
 msgid "FLUID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:581
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:579
 msgid "RIGID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:614
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:612
 msgid "COLOUR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:682
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:680
 msgid "ORGANISM_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:726
 msgid "SPEED_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:732
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:805
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:738
 msgid "HP_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:835
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "SIZE_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:865
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:750
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "การจัดเก็บ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:886
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
+#, fuzzy
+msgid "DIGESTION_SPEED_COLON"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
+#, fuzzy
+msgid "DIGESTION_EFFICIENCY_COLON"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 msgid "GENERATION_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:928
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:819
 msgid "ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1041
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:932
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "โรงไฟฟ้าของเซลล์ mitochondrion (พหูพจน์: mitochondria) เป็นโครงสร้างเมมเบรนสองชั้นที่เต็มไปด้วยโปรตีนและเอนไซม์ เป็นโปรคาริโอตที่ถูกดูดซึมเพื่อใช้โดยโฮสต์ยูคาริโอต สามารถเปลี่ยนกลูโคสเป็น ATP ได้อย่างมีประสิทธิภาพสูงกว่าที่ทำได้ในไซโตพลาสซึมในกระบวนการที่เรียกว่า Aerobic Respiration อย่างไรก็ตามมันต้องการออกซิเจนในการทำงานและระดับออกซิเจนในสิ่งแวดล้อมที่ต่ำลงจะทำให้อัตราการผลิต ATP ช้าลง"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1045
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1280
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:936
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1152
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION"
 msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นตอน"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1053
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:944
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "ดำเนินการต่อ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1123
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1000
+msgid "FAILED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1006
 #, fuzzy
 msgid "TOTAL_POPULATION_COLON"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1147
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1018
 msgid "BEST_PATCH_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1172
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1127
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1128
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1262
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1134
 msgid "DISCONNECTED_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1264
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1136
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1324
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1196
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
@@ -3778,44 +3883,19 @@ msgstr ""
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:210
-msgid "SELECT_A_PATCH"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:245
-msgid "CURRENT_LOCATION_CAPITAL"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
-msgid "PHYSICAL_CONDITIONS"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:404
-msgid "PRESSURE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:509
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
-msgid "ATMOSPHERIC_GASSES"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:933
-msgid "SPECIES_PRESENT"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:997
-msgid "MOVE_TO_THIS_PATCH"
-msgstr ""
-
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:324
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:325
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:330
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 msgid "YEARS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:418
+msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:330
@@ -3888,6 +3968,11 @@ msgstr ""
 msgid "SPECIES_POPULATION"
 msgstr ""
 
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:236
+msgid "PHYSICAL_CONDITIONS"
+msgstr ""
+
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr ""
@@ -3927,19 +4012,6 @@ msgstr ""
 msgid "MODIFY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
-msgid "BIOME_LABEL"
-msgstr ""
-
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
-msgid "BELOW_SEA_LEVEL"
-msgstr ""
-
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
-#, fuzzy
-msgid "SPECIES_WITH_POPULATION"
-msgstr "เครื่องชั่งที่มีความเข้มข้นของ"
-
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
 #, fuzzy
 msgid "EXTINCT_SPECIES"
@@ -3971,6 +4043,26 @@ msgstr ""
 msgid "LINE_COLOUR"
 msgstr ""
 
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
+#, fuzzy
+msgid "LIPASE_DESCRIPTION"
+msgstr "ภายในที่เหนอะหนะของเซลล์ ไซโทพลาสซึมเป็นส่วนผสมพื้นฐานของไอออนโปรตีนและสารอื่น ๆ ที่ละลายในน้ำที่เติมภายในเซลล์ หนึ่งในฟังก์ชั่นที่ทำคือไกลโคไลซิสการเปลี่ยนกลูโคสเป็นพลังงาน ATP สำหรับเซลล์ที่ขาดออร์แกเนลล์เพื่อให้มีการเผาผลาญขั้นสูงมากขึ้นนี่คือสิ่งที่พวกเขาต้องพึ่งพาเพื่อเป็นพลังงาน นอกจากนี้ยังใช้เพื่อเก็บโมเลกุลในเซลล์และเพื่อขยายขนาดของเซลล์"
+
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
+#, fuzzy
+msgid "CELLULASE_DESCRIPTION"
+msgstr "แวคิวโอลเป็นออร์แกเนลล์เยื่อภายในที่ใช้สำหรับเก็บในเซลล์ ประกอบด้วยถุงหลายอันโครงสร้างของเยื่อขนาดเล็กที่ใช้กันอย่างแพร่หลายในเซลล์เพื่อการจัดเก็บที่หลอมรวมเข้าด้วยกัน เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
+
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
+#, fuzzy
+msgid "CHITINASE_DESCRIPTION"
+msgstr "ภายในที่เหนอะหนะของเซลล์ ไซโทพลาสซึมเป็นส่วนผสมพื้นฐานของไอออนโปรตีนและสารอื่น ๆ ที่ละลายในน้ำที่เติมภายในเซลล์ หนึ่งในฟังก์ชั่นที่ทำคือไกลโคไลซิสการเปลี่ยนกลูโคสเป็นพลังงาน ATP สำหรับเซลล์ที่ขาดออร์แกเนลล์เพื่อให้มีการเผาผลาญขั้นสูงมากขึ้นนี่คือสิ่งที่พวกเขาต้องพึ่งพาเพื่อเป็นพลังงาน นอกจากนี้ยังใช้เพื่อเก็บโมเลกุลในเซลล์และเพื่อขยายขนาดของเซลล์"
+
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
+#, fuzzy
+msgid "SELECT_ENZYME"
+msgstr "ปิดตัวเลือกไหม"
+
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 #, fuzzy
 msgid "MODIFY_ORGANELLE"
@@ -3982,6 +4074,48 @@ msgstr ""
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
+msgstr ""
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:229
+msgid "BIOME_LABEL"
+msgstr ""
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
+msgid "BELOW_SEA_LEVEL"
+msgstr ""
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:268
+#, fuzzy
+msgid "SPECIES_WITH_POPULATION"
+msgstr "เครื่องชั่งที่มีความเข้มข้นของ"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:119
+msgid "SELECT_A_PATCH"
+msgstr ""
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:154
+msgid "CURRENT_LOCATION_CAPITAL"
+msgstr ""
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:313
+msgid "PRESSURE"
+msgstr ""
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:842
+msgid "SPECIES_PRESENT"
+msgstr ""
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:906
+msgid "MOVE_TO_THIS_PATCH"
+msgstr ""
+
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:68
+#, fuzzy
+msgid "PATCH_EXTINCTION_CAPITAL"
+msgstr "สูญพันธุ์ไปแล้วใน {0}"
+
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
+msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
@@ -4581,25 +4715,25 @@ msgstr ". อัตราเครื่องชั่ง"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:485 ../src/saving/SaveHelper.cs:536
+#: ../src/saving/SaveHelper.cs:486 ../src/saving/SaveHelper.cs:537
 #, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "แวคิวโอลเป็นออร์แกเนลล์เยื่อภายในที่ใช้สำหรับเก็บในเซลล์ ประกอบด้วยถุงหลายอันโครงสร้างของเยื่อขนาดเล็กที่ใช้กันอย่างแพร่หลายในเซลล์เพื่อการจัดเก็บที่หลอมรวมเข้าด้วยกัน เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
 
-#: ../src/saving/SaveHelper.cs:494 ../src/saving/SaveHelper.cs:513
+#: ../src/saving/SaveHelper.cs:495 ../src/saving/SaveHelper.cs:514
 msgid "SAVING_NOT_POSSIBLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:495
+#: ../src/saving/SaveHelper.cs:496
 #, fuzzy
 msgid "PLAYER_EXTINCT"
 msgstr "สูญพันธุ์ไปแล้วใน {0}"
 
-#: ../src/saving/SaveHelper.cs:514
+#: ../src/saving/SaveHelper.cs:515
 msgid "IN_PROTOTYPE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:526
+#: ../src/saving/SaveHelper.cs:527
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
@@ -4731,12 +4865,12 @@ msgstr "โหลด"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:212
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:224
-msgid "DELETE_ALL_OLD_SAVE_WARNING"
+#: ../src/saving/SaveManagerGUI.cs:237
+msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:78
@@ -4891,64 +5025,75 @@ msgstr "{0: F1}% เสร็จสิ้น {1: n0} / {2: n0} ขั้นต�
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:54
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:57
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:100
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:103
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:112
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:125
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:184
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:187
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:195
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:198
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:206
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:224
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:256
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W, A, S, D และเมาส์เพื่อย้าย กด E เพื่อยิง OxyToxy NT หากคุณมีสารพิษแวคิวโอล กด G เพื่อสลับโหมดเขมือบ"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "บทช่วยสอน"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
+msgstr "สร้างจุลินทรีย์ฟรี"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
+msgstr "สร้างจุลินทรีย์ฟรี"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
+msgstr "สร้างจุลินทรีย์ฟรี"
 
 #~ msgid "AUTO"
 #~ msgstr "อัตโนมัต"
 
 #~ msgid "POPULATION"
 #~ msgstr "ประชากร:"
-
-#, fuzzy
-#~ msgid "TOTAL_EXTINCTION"
-#~ msgstr "สูญพันธุ์ไปแล้วใน {0}"
 
 #, fuzzy
 #~ msgid "LOCAL_EXTINCTION"

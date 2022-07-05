@@ -45,6 +45,12 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     protected float playerRespawnTimer;
 
     /// <summary>
+    ///   True when the player is extinct in the current patch. The player can still move to another patch.
+    /// </summary>
+    [JsonProperty]
+    protected bool playerExtinctInCurrentPatch;
+
+    /// <summary>
     ///   True if auto save should trigger ASAP
     /// </summary>
     protected bool wantsToSave;
@@ -317,6 +323,20 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     public abstract void OnSuicide();
 
     /// <summary>
+    ///   Called when the player died out in a patch and selected a new one
+    /// </summary>
+    public void MoveToPatch(Patch patch)
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Moving to a new patch but stage doesn't have a game state");
+
+        CurrentGame.GameWorld.Map.CurrentPatch = patch;
+        UpdatePatchSettings();
+        PatchExtinctionResolved();
+        SpawnPlayer();
+    }
+
+    /// <summary>
     ///   Prepares the stage for playing. Also begins a new game if one hasn't been started yet for easier debugging.
     /// </summary>
     protected virtual void SetupStage()
@@ -349,13 +369,15 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     /// </summary>
     protected abstract void OnGameStarted();
 
+    protected abstract void UpdatePatchSettings(bool promptPatchNameChange = true);
+
     /// <summary>
     ///   Increases the population by the constant for the player reproducing
     /// </summary>
     protected void GiveReproductionPopulationBonus()
     {
         var playerSpecies = GameWorld.PlayerSpecies;
-        GameWorld.AlterSpeciesPopulation(
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
             playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
             TranslationServer.Translate("PLAYER_REPRODUCED"),
             false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
@@ -366,18 +388,31 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     /// </summary>
     protected void HandlePlayerRespawn()
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Can't respawn without current game");
+
         BaseHUD.HintText = string.Empty;
 
-        // Respawn if not extinct (or freebuild)
-        if (IsGameOver())
+        var playerSpecies = CurrentGame.GameWorld.PlayerSpecies;
+
+        if (!CurrentGame.FreeBuild)
         {
-            gameOver = true;
+            if (playerSpecies.Population <= 0)
+            {
+                GameOver();
+            }
+            else if (GameWorld.Map.CurrentPatch.GetSpeciesPopulation(playerSpecies) <= 0)
+            {
+                // Has run out of population in current patch but not globally
+                PlayerExtinctInPatch();
+            }
+
+            if (gameOver || playerExtinctInCurrentPatch)
+                return;
         }
-        else
-        {
-            // Player is not extinct, so can respawn
-            SpawnPlayer();
-        }
+
+        // Player is not extinct, so can respawn
+        SpawnPlayer();
     }
 
     protected bool IsGameOver()
@@ -393,7 +428,7 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
         GD.Print("The player has died");
 
         // Decrease the population by the constant for the player dying
-        GameWorld.AlterSpeciesPopulation(
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
             GameWorld.PlayerSpecies,
             Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
@@ -429,4 +464,43 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
 
     protected abstract void AutoSave();
     protected abstract void PerformQuickSave();
+
+    protected virtual void GameOver()
+    {
+        // Player is extinct and has lost the game
+
+        gameOver = true;
+
+        // Just to make sure _Process doesn't run
+        playerExtinctInCurrentPatch = true;
+
+        // Show the game lost popup if not already visible
+        BaseHUD.ShowExtinctionBox();
+    }
+
+    protected virtual void PlayerExtinctInPatch()
+    {
+        playerExtinctInCurrentPatch = true;
+
+        BaseHUD.ShowPatchExtinctionBox();
+    }
+
+    private void PatchExtinctionResolved()
+    {
+        playerExtinctInCurrentPatch = false;
+
+        // Decrease the population by the constant for the player dying out in a patch
+        // If the player does not have sufficient population in the new patch then the population drops to 0 and
+        // they have to select a new patch if they die again.
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
+            GameWorld.PlayerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
+            TranslationServer.Translate("EXTINCT_IN_PATCH"),
+            true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT
+            / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
+
+        // Do not grant the player population even if the global population is 0,
+        // they will go extinct the next time they die
+
+        BaseHUD.HidePatchExtinctionBox();
+    }
 }

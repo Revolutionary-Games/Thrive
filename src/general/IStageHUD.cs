@@ -11,6 +11,8 @@ public interface IStageHUD
 
     public void ShowPatchName(string localizedPatchName);
     public void ShowExtinctionBox();
+    public void ShowPatchExtinctionBox();
+    public void HidePatchExtinctionBox();
     public void OnEnterStageTransition(bool longerDuration, bool returningFromEditor);
     public void ShowReproductionDialog();
     public void HideReproductionDialog();

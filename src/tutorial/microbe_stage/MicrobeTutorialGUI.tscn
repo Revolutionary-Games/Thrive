@@ -31,6 +31,9 @@ ReproductionTutorialPath = NodePath("ReproductionTutorial")
 EditorButtonTutorialPath = NodePath("EditorButtonTutorial")
 UnbindTutorialPath = NodePath("UnbindTutorial")
 CheckTheHelpMenuPath = NodePath("CheckHelpMenu")
+EngulfmentExplanationPath = NodePath("EngulfmentTutorial")
+EngulfedExplanationPath = NodePath("EngulfedTutorial")
+EngulfmentFullCapacityPath = NodePath("EngulfmentFullCapacity")
 EditorButtonHighlightPath = NodePath("EditorButtonHighlight")
 
 [node name="MicrobeWelcome" type="Popup" parent="."]
@@ -284,6 +287,39 @@ size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 6 )
 text = "TUTORIAL_VIEW_NOW"
 
+[node name="EngulfmentFullCapacity" parent="." instance=ExtResource( 10 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -179.0
+margin_right = 0.0
+margin_bottom = 61.0
+Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
+
+[node name="EngulfmentTutorial" parent="." instance=ExtResource( 10 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -179.0
+margin_right = 0.0
+margin_bottom = 61.0
+Description = "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
+
+[node name="EngulfedTutorial" parent="." instance=ExtResource( 10 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -179.0
+margin_right = 0.0
+margin_bottom = 61.0
+Description = "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
+
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
 [connection signal="pressed" from="MicrobeWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
@@ -302,3 +338,9 @@ text = "TUTORIAL_VIEW_NOW"
 [connection signal="hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
 [connection signal="popup_hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
 [connection signal="pressed" from="CheckHelpMenu/ScrollContainer/VBoxContainer/Button" to="." method="CheckHelpMenuPressed"]
+[connection signal="hide" from="EngulfmentFullCapacity" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentStorageFull" ]]
+[connection signal="popup_hide" from="EngulfmentFullCapacity" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentStorageFull" ]]
+[connection signal="hide" from="EngulfmentTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentExplanation" ]]
+[connection signal="popup_hide" from="EngulfmentTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfmentExplanation" ]]
+[connection signal="hide" from="EngulfedTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfedExplanation" ]]
+[connection signal="popup_hide" from="EngulfedTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEngulfedExplanation" ]]

@@ -69,7 +69,7 @@ public static class CheatManager
         InfiniteCompounds = false;
         GodMode = false;
         NoAI = false;
-        Speed = 1f;
+        Speed = 1.0f;
 
         InfiniteMP = false;
     }
