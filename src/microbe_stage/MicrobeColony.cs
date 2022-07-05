@@ -67,7 +67,7 @@ public class MicrobeColony
     }
 
     /// <summary>
-    ///   The accumulation of all the colony member's <see cref="Microbe.EngulfSize"/>.
+    ///   The accumulation of all the colony member's <see cref="Microbe.UsedIngestionCapacity"/>.
     /// </summary>
     [JsonIgnore]
     public float UsedIngestionCapacity

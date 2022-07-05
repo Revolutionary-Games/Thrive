@@ -190,7 +190,7 @@ public static class MicrobeInternalCalculations
         return CalculateDigestionSpeed(multiplier);
     }
 
-    public static float CalculateDigestionEfficiency(float enzymeCount)
+    public static float CalculateDigestionEfficiency(int enzymeCount)
     {
         var absorption = Constants.ENGULF_BASE_COMPOUND_ABSORBTION_YIELD;
         var buff = absorption * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount;

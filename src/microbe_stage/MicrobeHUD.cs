@@ -789,7 +789,7 @@ public class MicrobeHUD : Control
         {
             if (bar == ingestedMatterBar)
             {
-                bar.Visible = GetPlayerIngestedSizeCount() > 0;
+                bar.Visible = GetPlayerUsedIngestionCapacity() > 0;
                 continue;
             }
 
@@ -1061,7 +1061,7 @@ public class MicrobeHUD : Control
         ironBar.GetNode<Label>("Value").Text = ironBar.Value + " / " + ironBar.MaxValue;
 
         ingestedMatterBar.MaxValue = stage!.Player!.Colony?.HexCount ?? stage.Player.HexCount;
-        ingestedMatterBar.Value = GetPlayerIngestedSizeCount();
+        ingestedMatterBar.Value = GetPlayerUsedIngestionCapacity();
         ingestedMatterBar.GetNode<Label>("Value").Text = ingestedMatterBar.Value + " / " + ingestedMatterBar.MaxValue;
 
         oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
@@ -1160,7 +1160,7 @@ public class MicrobeHUD : Control
         return stage!.Player!.Colony?.ColonyCompounds ?? (ICompoundStorage)stage.Player.Compounds;
     }
 
-    private float GetPlayerIngestedSizeCount()
+    private float GetPlayerUsedIngestionCapacity()
     {
         return stage!.Player!.Colony?.UsedIngestionCapacity ?? stage.Player.UsedIngestionCapacity;
     }

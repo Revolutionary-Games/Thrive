@@ -474,8 +474,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
                 if (TutorialState.WantsNearbyEngulfableInfo())
                 {
-                    var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP)
-                        .ToList();
+                    var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP);
                     var engulfables = entities.OfType<IEngulfable>().ToList();
 
                     TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
@@ -545,9 +544,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         if (debugOverlay.PerformanceMetricsVisible)
         {
-            var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP).ToList();
+            var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP);
             var childCount = rootOfDynamicallySpawned.GetChildCount();
-            debugOverlay.ReportEntities(entities.Count, childCount - entities.Count);
+            debugOverlay.ReportEntities(entities.Count(), childCount - entities.Count());
         }
     }
 

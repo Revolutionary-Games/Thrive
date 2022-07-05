@@ -162,7 +162,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
     }
 
-    [JsonIgnore]
+    [JsonProperty]
     public Dictionary<Enzyme, int> StoredEnzymes { get; private set; } = new();
 
     /// <summary>
