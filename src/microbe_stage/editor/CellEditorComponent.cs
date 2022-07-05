@@ -818,7 +818,7 @@ public partial class CellEditorComponent :
             oldEditedMicrobeOrganelles.Add(organelle);
         }
 
-        var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane, Rigidity,
+        var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane, Rigidity, Colour,
             behaviourEditor.Behaviour ?? throw new Exception("Behaviour not initialized"));
 
         var action =
@@ -1579,6 +1579,7 @@ public partial class CellEditorComponent :
         UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         UpdateTotalDigestionEfficiency(CalculateTotalDigestionEfficiency());
         OnRigidityChanged();
+        OnColourChanged();
 
         StartAutoEvoPrediction();
     }
@@ -1590,6 +1591,11 @@ public partial class CellEditorComponent :
         UpdateSpeed(CalculateSpeed());
         UpdateRotationSpeed(CalculateRotationSpeed());
         UpdateHitpoints(CalculateHitpoints());
+    }
+
+    private void OnColourChanged()
+    {
+        membraneColorPicker.SetColour(Colour);
     }
 
     /// <summary>
@@ -1888,7 +1894,23 @@ public partial class CellEditorComponent :
 
     private void OnColorChanged(Color color)
     {
-        Colour = color;
+        if (MovingPlacedHex != null)
+        {
+            Editor.OnActionBlockedWhileMoving();
+            membraneColorPicker.SetColour(Colour);
+            return;
+        }
+
+        if (Colour == color)
+            return;
+
+        var action = new SingleEditorAction<ColourActionData>(DoColourChangeAction, UndoColourChangeAction,
+            new ColourActionData(color, Colour)
+            {
+                CostMultiplier = CostMultiplier,
+            });
+
+        Editor.EnqueueAction(action);
     }
 
     /// <summary>
