@@ -12,7 +12,7 @@ public class OrbitCamera : Spatial
     public float MinCameraDistance = 3.0f;
 
     [Export]
-    public float MaxCameraDistance = 100f;
+    public float MaxCameraDistance = 100.0f;
 
     [Export]
     public float RotationSpeed = 0.6f;

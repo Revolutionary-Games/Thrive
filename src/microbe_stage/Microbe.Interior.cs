@@ -856,7 +856,7 @@ public partial class Microbe
         {
             if (!Species.PlayerSpecies)
             {
-                GameWorld.AlterSpeciesPopulation(Species,
+                GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
                     Constants.CREATURE_REPRODUCE_POPULATION_GAIN, TranslationServer.Translate("REPRODUCED"));
             }
 
@@ -898,7 +898,7 @@ public partial class Microbe
         // 5% osmoregulation bonus per colony member
         if (Colony != null)
         {
-            osmoregulationCost *= 20f / (20f + Colony.ColonyMembers.Count);
+            osmoregulationCost *= 20.0f / (20.0f + Colony.ColonyMembers.Count);
         }
 
         if (Species.PlayerSpecies)

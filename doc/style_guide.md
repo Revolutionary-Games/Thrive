@@ -151,6 +151,11 @@ Code style rules
   `if` but a comment like "Player is alive" should be inside the
   braces of the `if` statement.
 
+- Prefer to not specify the value for variables or constants explicitly in the
+  comments as they can easily get outdated when somebody changes the actual
+  values. If it has to be specified, care **must** be taken to always update
+  that comment whenever the value is changed.
+
 - The `returns` section of an XML can be omitted if it adds nothing
   valuable. For example a method like `public List<Organelle>
   GetOrganelles()` having documentation that it "returns a list of
@@ -469,10 +474,26 @@ Godot usage
 - You should follow general GUI standards in designing UI. Use widgets
   that are meant for whatever kind of interaction you are designing.
 
-- When adding window dialogs to the game, consider using the
-  `CustomDialog` type rather than the built-in `WindowDialog` to ensure
-  consistency across the GUI. This is because the custom implementation
-  offer a much more customized styling and additional functionality.
+- We have rewritten several controls to workaround Godot bugs or limitations,
+  and add custom features. All these rewritten/customized controls are placed
+  in "res://src/gui_common/". Currently there are `CustomCheckBox`,
+  `CustomDialog`, `CustomConfirmationDialog`, `ErrorDialog`,
+  `TutorialDialog`, `CustomDropDown`, `CustomRichTextLabel`, and
+  `TweakedColourPicker`. Consider using these custom types rather than the
+  built-in types to ensure consistency across the GUI.
+
+- When you are instantiating a custom Control in Godot, use
+  `Instance Child Scene` if it has a corresponding scene (.tscn) file; If it
+  doesn't, add a corresponding built-in Control and use `Attach Script`.
+  An alternative is to locate the scene or script file in `FileSystem` panel
+  (by default on the bottom-left corner) and drag it to the proper position.
+
+- When you are instantiating a custom Control in code, use the following if it
+  has a corresponding scene (.tscn) file; use `new T` if it doesn't.
+  ```C#
+  var scene = GD.Load<PackedScene>("res://src/gui_common/T.tscn");
+  var instance = scene.Instance<T>();
+  ```
 
 - Question popups should have a short title ending in a question mark
   (`?`). The content of the popup should give more details and also

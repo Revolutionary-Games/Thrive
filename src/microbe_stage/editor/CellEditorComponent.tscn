@@ -1070,19 +1070,20 @@ mouse_filter = 1
 custom_styles/separator = SubResource( 6 )
 
 [node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource( 3 )]
+margin_top = -53.0
+margin_right = 641.0
 
 [node name="BottomRight" type="MarginContainer" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -49.0
 margin_right = -10.0
-margin_bottom = -10.0
+margin_bottom = -9.0
 grow_horizontal = 0
 grow_vertical = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomRight"]
 margin_right = 150.0

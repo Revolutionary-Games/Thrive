@@ -162,6 +162,9 @@ public class MicrobeHUD : Control
     public PackedScene ExtinctionBoxScene = null!;
 
     [Export]
+    public PackedScene PatchExtinctionBoxScene = null!;
+
+    [Export]
     public PackedScene WinBoxScene = null!;
 
     [Export]
@@ -292,8 +295,9 @@ public class MicrobeHUD : Control
     private CustomDialog multicellularConfirmPopup = null!;
     private Button macroscopicButton = null!;
 
-    private CustomDialog? extinctionBox;
     private CustomDialog? winBox;
+    private CustomDialog? extinctionBox;
+    private PatchExtinctionBox? patchExtinctionBox;
     private Tween panelsTween = null!;
     private Control winExtinctBoxHolder = null!;
     private Label hintText = null!;
@@ -703,6 +707,30 @@ public class MicrobeHUD : Control
         extinctionBox.Show();
     }
 
+    public void ShowPatchExtinctionBox()
+    {
+        winExtinctBoxHolder.Show();
+
+        if (patchExtinctionBox == null)
+        {
+            patchExtinctionBox = PatchExtinctionBoxScene.Instance<PatchExtinctionBox>();
+            winExtinctBoxHolder.AddChild(patchExtinctionBox);
+
+            patchExtinctionBox.OnMovedToNewPatch = MoveToNewPatchAfterExtinctInCurrent;
+        }
+
+        patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
+        patchExtinctionBox.Map = stage.GameWorld.Map;
+
+        patchExtinctionBox.Show();
+    }
+
+    public void HidePatchExtinctionBox()
+    {
+        winExtinctBoxHolder.Hide();
+        patchExtinctionBox?.Hide();
+    }
+
     public void ToggleWinBox()
     {
         if (winBox != null)
@@ -764,6 +792,15 @@ public class MicrobeHUD : Control
     public void SendEditorButtonToTutorial(TutorialState tutorialState)
     {
         tutorialState.MicrobePressEditorButton.PressEditorButtonControl = editorButton;
+    }
+
+    /// <summary>
+    ///   Called when the player died out in a patch and selected a new one
+    /// </summary>
+    private void MoveToNewPatchAfterExtinctInCurrent(Patch patch)
+    {
+        winExtinctBoxHolder.Hide();
+        stage!.MoveToPatch(patch);
     }
 
     /// <summary>
@@ -1008,7 +1045,7 @@ public class MicrobeHUD : Control
             >= Constants.COMPOUND_DENSITY_CATEGORY_SOME => new Color(0.011f, 0.705f, 0.768f),
             >= Constants.COMPOUND_DENSITY_CATEGORY_LITTLE => new Color(0.011f, 0.552f, 0.768f),
             >= Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE => new Color(0.011f, 0.290f, 0.768f),
-            _ => new Color(1f, 1f, 1f),
+            _ => new Color(1.0f, 1.0f, 1.0f),
         };
     }
 

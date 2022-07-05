@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
 using Path = System.IO.Path;
@@ -428,6 +429,8 @@ public static class Constants
     public const float PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT = 1 / 1.5f;
     public const int PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT = 50;
     public const float PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT = 1.2f;
+    public const int PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT = -35;
+    public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 2.0f;
 
     /// <summary>
     ///   How often a microbe can get the engulf escape population bonus
@@ -446,6 +449,7 @@ public static class Constants
     public const int CORPSE_CHUNK_DIVISOR = 3;
     public const float CORPSE_CHUNK_AMOUNT_DIVISOR = 3.0f;
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
+    public const string DEFAULT_CHUNK_MODEL_NAME = "cytoplasm";
 
     /// <summary>
     ///   The drag force is calculated by taking the current velocity
@@ -804,6 +808,8 @@ public static class Constants
     /// </summary>
     public const string DEFAULT_AUDIO_OUTPUT_DEVICE_NAME = "Default";
 
+    public const string OS_WINDOWS_NAME = "Windows";
+
     /// <summary>
     ///   This is just here to make it easier to debug saves
     /// </summary>
@@ -847,27 +853,27 @@ public static class Constants
     /// <summary>
     ///   Minimum amount for the little category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 10f;
+    public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 10.0f;
 
     /// <summary>
     ///   Minimum amount for the some category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_SOME = 50f;
+    public const float COMPOUND_DENSITY_CATEGORY_SOME = 50.0f;
 
     /// <summary>
     ///   Minimum amount for the fair amount category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT = 200f;
+    public const float COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT = 200.0f;
 
     /// <summary>
     ///   Minimum amount for the quite a bit category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 800f;
+    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 800.0f;
 
     /// <summary>
     ///   Minimum amount for the an abundance category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000f;
+    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000.0f;
 
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
@@ -933,6 +939,11 @@ public static class Constants
             ProjectSettings.GlobalizePath("res://mods"),
         "user://mods",
     };
+
+    // Regex expressions to categorize different file types.
+    public static readonly Regex BackupRegex = new(@"^.*\.backup\." + SAVE_EXTENSION + "$");
+    public static readonly Regex AutoSaveRegex = new(@"^auto_save_\d+\." + SAVE_EXTENSION + "$");
+    public static readonly Regex QuickSaveRegex = new(@"^quick_save_\d+\." + SAVE_EXTENSION + "$");
 
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
