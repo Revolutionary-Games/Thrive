@@ -46,6 +46,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// </summary>
     public bool EasterEgg;
 
+    /// <summary>
     ///   The type of enzyme needed to break down this chunk.
     /// </summary>
     public string DissolverEnzyme;

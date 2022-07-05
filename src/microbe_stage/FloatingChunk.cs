@@ -456,9 +456,8 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         if (chunkMesh == null)
             throw new InvalidOperationException("Chunk without a mesh can't dissolve");
 
-        var material = chunkMesh.MaterialOverride;
-        if (material is ShaderMaterial)
-            ((ShaderMaterial)material).SetShaderParam("dissolveValue", dissolveEffectValue);
+        if (chunkMesh.MaterialOverride is ShaderMaterial material)
+            material.SetShaderParam("dissolveValue", dissolveEffectValue);
     }
 
     private void ApplyRenderPriority()
