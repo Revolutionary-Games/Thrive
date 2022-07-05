@@ -89,6 +89,8 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
         switch (enzyme.InternalName)
         {
+            // TODO: having these translation keys in the JSON would make this more extensible to people just making
+            // simple modifications
             case "lipase":
                 description.Text = TranslationServer.Translate("LIPASE_DESCRIPTION");
                 break;

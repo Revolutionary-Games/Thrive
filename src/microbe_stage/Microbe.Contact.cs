@@ -1810,7 +1810,7 @@ public partial class Microbe
 
         body.Mode = ModeEnum.Rigid;
 
-        // Reparent to world node
+        // Re-parent to world node
         body.ReParentWithTransform(GetStageAsParent());
 
         // Set to default microbe collision layer and mask values
