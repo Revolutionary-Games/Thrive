@@ -108,7 +108,7 @@ public partial class Microbe
     ///     A possibly cheaper version of <see cref="OrganelleLayout{T}.MaxRenderPriority"/>.
     ///   </para>
     /// </remarks>
-    [JsonProperty]
+    [JsonIgnore]
     public int OrganelleMaxRenderPriority
     {
         get

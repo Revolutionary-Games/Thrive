@@ -61,13 +61,14 @@ public class SimulationParameters : Node
         // Compounds are referenced by the other json files so it is loaded first and instance is assigned here
         instance = this;
 
-        // Loading the compounds needs a custom JSON deserializer that can load the Compound objects, but the loader
-        // can't always be active because that breaks saving
+        // Loading compounds and enzymes needs a custom JSON deserializer that can load their respective objects, but
+        // the loader can't always be active because that breaks saving
         {
-            var compoundDeserializer = new JsonConverter[] { new CompoundLoader(null) };
+            var deserializers = new JsonConverter[] { new CompoundLoader(null), new EnzymeLoader(null) };
 
             compounds = LoadRegistry<Compound>(
-                "res://simulation_parameters/microbe_stage/compounds.json", compoundDeserializer);
+                "res://simulation_parameters/microbe_stage/compounds.json", deserializers);
+            enzymes = LoadRegistry<Enzyme>("res://simulation_parameters/microbe_stage/enzymes.json", deserializers);
         }
 
         membranes = LoadRegistry<MembraneType>("res://simulation_parameters/microbe_stage/membranes.json");
@@ -75,7 +76,6 @@ public class SimulationParameters : Node
         biomes = LoadRegistry<Biome>("res://simulation_parameters/microbe_stage/biomes.json");
         bioProcesses = LoadRegistry<BioProcess>("res://simulation_parameters/microbe_stage/bio_processes.json");
         organelles = LoadRegistry<OrganelleDefinition>("res://simulation_parameters/microbe_stage/organelles.json");
-        enzymes = LoadRegistry<Enzyme>("res://simulation_parameters/microbe_stage/enzymes.json");
 
         NameGenerator = LoadDirectObject<NameGenerator>(
             "res://simulation_parameters/microbe_stage/species_names.json");

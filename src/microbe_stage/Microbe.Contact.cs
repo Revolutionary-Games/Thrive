@@ -435,7 +435,7 @@ public partial class Microbe
             return false;
 
         // Too many things attempted to be pulled in at once
-        if (attemptingToEngulf.Sum(e => e.EngulfSize) + target.EngulfSize >= EngulfSize)
+        if (UsedIngestionCapacity + attemptingToEngulf.Sum(e => e.EngulfSize) + target.EngulfSize >= EngulfSize)
             return false;
 
         // Disallow cannibalism

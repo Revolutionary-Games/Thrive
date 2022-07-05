@@ -71,7 +71,7 @@ public class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public Vector2 GetMinDialogSize()
     {
-        return new Vector2(420, 140);
+        return new Vector2(420, 135);
     }
 
     private void OnEnzymeSelected(int index)

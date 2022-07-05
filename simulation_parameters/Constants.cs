@@ -360,7 +360,7 @@ public static class Constants
     ///   Offsets how far should the chunks for expelled partially digested objects be spawned from the membrane.
     ///   0 means no offset and chunks are spawned directly on the membrane point.
     /// </summary>
-    public const float EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET = 1.8f;
+    public const float EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET = 2.0f;
 
     /// <summary>
     ///   The measure of which beyond this threshold an engulfable is considered partially digested.
