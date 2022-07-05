@@ -176,7 +176,7 @@ public partial class Microbe
     /// </summary>
     public void EmitToxin(Compound? agentType = null)
     {
-        if (Colony?.Master == this && Colony != null)
+        if (Colony?.Master == this)
         {
             foreach (var cell in Colony.ColonyMembers)
             {
@@ -218,11 +218,7 @@ public partial class Microbe
 
         // Find the direction the microbe is facing (actual rotation, not LookAtPoint, also takes colony membership into account)
         Vector3 direction;
-        if (Colony?.Master == this)
-        {
-            direction = GlobalTransform.basis.Quat().Xform(Vector3.Forward);
-        }
-        else if (Colony != null)
+        if (Colony != null)
         {
             direction = Colony.Master.GlobalTransform.basis.Quat().Xform(Vector3.Forward);
         }

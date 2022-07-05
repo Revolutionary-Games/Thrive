@@ -757,88 +757,53 @@ public class MicrobeHUD : Control
     /// </summary>
     private void UpdateNeededBars()
     {
-        // if the player isn't in a colony than do everything the way its used to be done.
-        if (stage!.Player!.Colony == null)
+        if (stage!.Player == null)
+            return;
+
+        if (stage!.Player.Colony == null)
         {
             var compounds = stage!.Player?.Compounds;
 
             if (compounds?.HasAnyBeenSetUseful() != true)
                 return;
 
-            if (compounds.IsSpecificallySetUseful(oxytoxy))
-            {
-                agentsPanel.Show();
-            }
-            else
-            {
-                agentsPanel.Hide();
-            }
-
-            foreach (ProgressBar bar in compoundBars)
-            {
-                var compound = SimulationParameters.Instance.GetCompound(bar.Name);
-
-                if (compounds.IsUseful(compound))
-                {
-                    bar.Show();
-                }
-                else
-                {
-                    bar.Hide();
-                }
-            }
+            UpdateBarVisibility(compounds.IsSpecificallySetUseful(oxytoxy),
+              (compound) => compounds.IsUseful(compound));
         }
         else
         {
-            // Stores the names of the Progressbars,
-            // then during the code if they are true they git to avoid flashing bars.
-            Dictionary<string, bool> barsOn = new Dictionary<string, bool>();
-            foreach (ProgressBar bar in compoundBars)
+            UpdateBarVisibility(stage!.Player!.Colony!.ColonyMembers.Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy)),
+                (compound) => stage.Player.Colony.ColonyMembers.Any(c => c.Compounds.IsUseful(compound)));
+        }
+    }
+    /// <summary>
+    ///  Updated the different bars and panels that should be
+    ///  displayed to the screen
+    /// </summary>
+    private void UpdateBarVisibility(bool showAgents, Func<Compound, bool> isUseful)
+    {
+
+        if (showAgents)
+        {
+            agentsPanel.Show();
+        }
+        else
+        {
+            agentsPanel.Hide();
+        }
+
+        foreach (ProgressBar bar in compoundBars)
+        {
+            if (isUseful.Invoke(SimulationParameters.Instance.GetCompound(bar.Name)))
             {
-                barsOn.Add(bar.Name, false);
+                bar.Show();
             }
-
-            // If Oxytoxy is set to useful show then if every sell is
-            bool isOxytoxySetUseful = false;
-            foreach (var microbe in stage!.Player!.Colony!.ColonyMembers)
+            else
             {
-                var compounds = microbe.Compounds;
-
-                if (compounds.IsSpecificallySetUseful(oxytoxy))
-                {
-                    agentsPanel.Show();
-                    isOxytoxySetUseful = true;
-                }
-
-                foreach (ProgressBar bar in compoundBars)
-                {
-                    var compound = SimulationParameters.Instance.GetCompound(bar.Name);
-
-                    if (compounds.IsUseful(compound))
-                    {
-                        barsOn[bar.Name] = true;
-                    }
-                }
-            }
-
-            if (isOxytoxySetUseful == false)
-            {
-                agentsPanel.Hide();
-            }
-
-            // if any of the compounds were useful display them to the screen.
-            foreach (ProgressBar bar in compoundBars)
-            {
-                if (barsOn[bar.Name])
-                {
-                    bar.Show();
-                }
-                else
-                {
-                    bar.Hide();
-                }
+                bar.Hide();
             }
         }
+
     }
 
     private void UpdatePausePrompt()
