@@ -48,6 +48,9 @@
                 "colourChangeFactor": 1
             }
         },
+        "enzymes": {
+            "rusticyanin": 1
+        },
         "prokaryoteChance": 2,
         "chanceToCreate": 0.5,
         "mass": 0.08,
@@ -835,5 +838,40 @@
         "requiresNucleus": true,
         "editorButtonGroup": "External",
         "editorButtonOrder": 4
+    },
+    "lysosome": {
+        "mpCost": 45,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {},
+        "components": {
+            "storage": {
+                "capacity": 0.5
+            },
+            "lysosome": {}
+        },
+        "enzymes": {
+            "lipase": 1,
+            "chitinase": 0,
+            "cellulase": 0
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 0.4,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Lysosome.tscn",
+        "name": "LYSOSOME",
+        "iconPath": "res://assets/textures/gui/bevel/parts/LysosomeIcon.png",
+        "upgradeGUI": "res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn",
+        "requiresNucleus": true,
+        "editorButtonGroup": "Organelle",
+        "editorButtonOrder": 5
     }
 }

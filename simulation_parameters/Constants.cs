@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
 using Path = System.IO.Path;
@@ -14,6 +15,11 @@ public static class Constants
     ///   How long the player stays dead before respawning
     /// </summary>
     public const float PLAYER_RESPAWN_TIME = 5.0f;
+
+    /// <summary>
+    ///   The maximum duration the player is shown being ingested before they are auto respawned.
+    /// </summary>
+    public const float PLAYER_ENGULFED_DEATH_DELAY_MAX = 10.0f;
 
     // Variance in the player position when respawning
     public const float MIN_SPAWN_DISTANCE = -5000.0f;
@@ -210,9 +216,9 @@ public static class Constants
     ///   Percentage of the compounds that compose the organelle
     ///   released upon death (between 0.0 and 1.0).
     /// </summary>
-    public const float COMPOUND_MAKEUP_RELEASE_PERCENTAGE = 0.9f;
+    public const float COMPOUND_MAKEUP_RELEASE_FRACTION = 0.9f;
 
-    public const float COMPOUND_RELEASE_PERCENTAGE = 0.9f;
+    public const float COMPOUND_RELEASE_FRACTION = 0.9f;
 
     /// <summary>
     ///   Base mass all microbes have on top of their organelle masses
@@ -340,19 +346,57 @@ public static class Constants
     public const float ENGULFING_MOVEMENT_DIVISION = 1.7f;
 
     /// <summary>
-    ///   The speed reduction when a cell is being engulfed.
-    /// </summary>
-    public const float ENGULFED_MOVEMENT_DIVISION = 10.0f;
-
-    /// <summary>
     ///   The minimum size ratio between a cell and a possible engulfing victim.
     /// </summary>
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
     /// <summary>
-    ///   The amount of hp per second of damage when being engulfed
+    ///   The duration for which an engulfable object can't be engulfed after being expelled.
     /// </summary>
-    public const float ENGULF_DAMAGE = 45.0f;
+    public const float ENGULF_EJECTED_COOLDOWN = 2.0f;
+
+    public const float ENGULF_EJECTION_FORCE = 20.0f;
+
+    /// <summary>
+    ///   Offsets how far should the chunks for expelled partially digested objects be spawned from the membrane.
+    ///   0 means no offset and chunks are spawned directly on the membrane point.
+    /// </summary>
+    public const float EJECTED_PARTIALLY_DIGESTED_CELL_CORPSE_CHUNKS_SPAWN_OFFSET = 2.0f;
+
+    /// <summary>
+    ///   The measure of which beyond this threshold an engulfable is considered partially digested.
+    ///   Used to determine whether a cell should be able to heal after being expelled from engulfment.
+    /// </summary>
+    public const float PARTIALLY_DIGESTED_THRESHOLD = 0.5f;
+
+    /// <summary>
+    ///   The maximum digestion progress in which an engulfable is considered fully digested.
+    /// </summary>
+    public const float FULLY_DIGESTED_LIMIT = 1.0f;
+
+    /// <summary>
+    ///   The speed of which a cell can absorb compounds from digestible engulfed objects.
+    /// </summary>
+    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.5f;
+
+    /// <summary>
+    ///   How much compounds a cell can absorb per second from digestible engulfed objects.
+    /// </summary>
+    public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.3f;
+
+    public const float ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION = 0.9f;
+
+    /// <summary>
+    ///   Each enzyme addition grants a fraction, set by this variable, increase in digestion speed.
+    /// </summary>
+    public const float ENZYME_DIGESTION_SPEED_UP_FRACTION = 0.1f;
+
+    /// <summary>
+    ///   Each enzyme addition grants this fraction increase in compounds yield.
+    /// </summary>
+    public const float ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION = 0.15f;
+
+    public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
 
     /// <summary>
     ///   How much ATP does binding mode cost per second
@@ -385,6 +429,8 @@ public static class Constants
     public const float PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT = 1 / 1.5f;
     public const int PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT = 50;
     public const float PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT = 1.2f;
+    public const int PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT = -35;
+    public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 2.0f;
 
     /// <summary>
     ///   How often a microbe can get the engulf escape population bonus
@@ -595,7 +641,7 @@ public static class Constants
 
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 17.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
-    public const float TUTORIAL_COMPOUND_POSITION_UPDATE_INTERVAL = 0.2f;
+    public const float TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL = 0.2f;
     public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.14f;
     public const float GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE = 0.21f;
     public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 180;
@@ -703,6 +749,17 @@ public static class Constants
     public const string AI_GROUP = "ai";
 
     /// <summary>
+    ///   Microbes tagged with this are handled by the <see cref="MicrobeSystem"/> to be processed.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: This is not related to <see cref="PROCESS_GROUP"/> which is in the context of in-game compounds
+    ///     processes, this is related to the engine's <see cref="Node._Process(float)"/> on the nodes.
+    ///   </para>
+    /// </remarks>
+    public const string RUNNABLE_MICROBE_GROUP = "microbe_runnable";
+
+    /// <summary>
     ///   All Nodes tagged with this are considered Microbes that the AI can react to
     /// </summary>
     /// <remarks>
@@ -797,27 +854,27 @@ public static class Constants
     /// <summary>
     ///   Minimum amount for the little category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 10f;
+    public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 10.0f;
 
     /// <summary>
     ///   Minimum amount for the some category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_SOME = 50f;
+    public const float COMPOUND_DENSITY_CATEGORY_SOME = 50.0f;
 
     /// <summary>
     ///   Minimum amount for the fair amount category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT = 200f;
+    public const float COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT = 200.0f;
 
     /// <summary>
     ///   Minimum amount for the quite a bit category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 800f;
+    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 800.0f;
 
     /// <summary>
     ///   Minimum amount for the an abundance category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000f;
+    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 3000.0f;
 
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
@@ -883,6 +940,11 @@ public static class Constants
             ProjectSettings.GlobalizePath("res://mods"),
         "user://mods",
     };
+
+    // Regex expressions to categorize different file types.
+    public static readonly Regex BackupRegex = new(@"^.*\.backup\." + SAVE_EXTENSION + "$");
+    public static readonly Regex AutoSaveRegex = new(@"^auto_save_\d+\." + SAVE_EXTENSION + "$");
+    public static readonly Regex QuickSaveRegex = new(@"^quick_save_\d+\." + SAVE_EXTENSION + "$");
 
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.

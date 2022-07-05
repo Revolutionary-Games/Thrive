@@ -108,6 +108,9 @@ public class MicrobeHUD : Control
     public NodePath IronBarPath = null!;
 
     [Export]
+    public NodePath IngestedMatterBarPath = null!;
+
+    [Export]
     public NodePath EnvironmentPanelExpandButtonPath = null!;
 
     [Export]
@@ -157,6 +160,9 @@ public class MicrobeHUD : Control
 
     [Export]
     public PackedScene ExtinctionBoxScene = null!;
+
+    [Export]
+    public PackedScene PatchExtinctionBoxScene = null!;
 
     [Export]
     public PackedScene WinBoxScene = null!;
@@ -210,6 +216,8 @@ public class MicrobeHUD : Control
     private readonly System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls =
         new();
 
+    private readonly Color defaultHealthBarColour = new(0.96f, 0.27f, 0.48f);
+
     // ReSharper restore RedundantNameQualifier
 
     private Compound ammonia = null!;
@@ -260,6 +268,7 @@ public class MicrobeHUD : Control
     private ProgressBar phosphateBar = null!;
     private ProgressBar hydrogenSulfideBar = null!;
     private ProgressBar ironBar = null!;
+    private ProgressBar ingestedMatterBar = null!;
 
     private Button environmentPanelExpandButton = null!;
     private Button environmentPanelCompressButton = null!;
@@ -287,8 +296,9 @@ public class MicrobeHUD : Control
     private CustomDialog multicellularConfirmPopup = null!;
     private Button macroscopicButton = null!;
 
-    private CustomDialog? extinctionBox;
     private CustomDialog? winBox;
+    private CustomDialog? extinctionBox;
+    private PatchExtinctionBox? patchExtinctionBox;
     private Tween panelsTween = null!;
     private Control winExtinctBoxHolder = null!;
     private Label hintText = null!;
@@ -333,6 +343,14 @@ public class MicrobeHUD : Control
     private Microbe? signalingAgentMenuOpenForMicrobe;
 
     private int? playerColonySize;
+
+    private bool playerWasDigested;
+
+    [JsonProperty]
+    private float healthBarFlashDuration;
+
+    [JsonProperty]
+    private Color healthBarFlashColour = new(0, 0, 0, 0);
 
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
@@ -398,6 +416,7 @@ public class MicrobeHUD : Control
         phosphateBar = GetNode<ProgressBar>(PhosphateBarPath);
         hydrogenSulfideBar = GetNode<ProgressBar>(HydrogenSulfideBarPath);
         ironBar = GetNode<ProgressBar>(IronBarPath);
+        ingestedMatterBar = GetNode<ProgressBar>(IngestedMatterBarPath);
 
         environmentPanelExpandButton = GetNode<Button>(EnvironmentPanelExpandButtonPath);
         environmentPanelCompressButton = GetNode<Button>(EnvironmentPanelCompressButtonPath);
@@ -690,6 +709,30 @@ public class MicrobeHUD : Control
         extinctionBox.Show();
     }
 
+    public void ShowPatchExtinctionBox()
+    {
+        winExtinctBoxHolder.Show();
+
+        if (patchExtinctionBox == null)
+        {
+            patchExtinctionBox = PatchExtinctionBoxScene.Instance<PatchExtinctionBox>();
+            winExtinctBoxHolder.AddChild(patchExtinctionBox);
+
+            patchExtinctionBox.OnMovedToNewPatch = MoveToNewPatchAfterExtinctInCurrent;
+        }
+
+        patchExtinctionBox.PlayerSpecies = stage!.GameWorld.PlayerSpecies;
+        patchExtinctionBox.Map = stage.GameWorld.Map;
+
+        patchExtinctionBox.Show();
+    }
+
+    public void HidePatchExtinctionBox()
+    {
+        winExtinctBoxHolder.Hide();
+        patchExtinctionBox?.Hide();
+    }
+
     public void ToggleWinBox()
     {
         if (winBox != null)
@@ -756,6 +799,15 @@ public class MicrobeHUD : Control
     }
 
     /// <summary>
+    ///   Called when the player died out in a patch and selected a new one
+    /// </summary>
+    private void MoveToNewPatchAfterExtinctInCurrent(Patch patch)
+    {
+        winExtinctBoxHolder.Hide();
+        stage!.MoveToPatch(patch);
+    }
+
+    /// <summary>
     ///   Updates the GUI bars to show only needed compounds
     /// </summary>
     private void UpdateNeededBars()
@@ -776,6 +828,12 @@ public class MicrobeHUD : Control
 
         foreach (ProgressBar bar in compoundBars)
         {
+            if (bar == ingestedMatterBar)
+            {
+                bar.Visible = GetPlayerUsedIngestionCapacity() > 0;
+                continue;
+            }
+
             var compound = SimulationParameters.Instance.GetCompound(bar.Name);
 
             if (compounds.IsUseful(compound))
@@ -991,7 +1049,7 @@ public class MicrobeHUD : Control
             >= Constants.COMPOUND_DENSITY_CATEGORY_SOME => new Color(0.011f, 0.705f, 0.768f),
             >= Constants.COMPOUND_DENSITY_CATEGORY_LITTLE => new Color(0.011f, 0.552f, 0.768f),
             >= Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE => new Color(0.011f, 0.290f, 0.768f),
-            _ => new Color(1f, 1f, 1f),
+            _ => new Color(1.0f, 1.0f, 1.0f),
         };
     }
 
@@ -1020,7 +1078,7 @@ public class MicrobeHUD : Control
     /// </summary>
     private void UpdateCompoundBars()
     {
-        var compounds = GetPlayerColonyOrPlayerStorage();
+        var compounds = GetPlayerStorage();
 
         glucoseBar.MaxValue = compounds.GetCapacityForCompound(glucose);
         glucoseBar.Value = compounds.GetCompoundAmount(glucose);
@@ -1042,6 +1100,10 @@ public class MicrobeHUD : Control
         ironBar.MaxValue = compounds.GetCapacityForCompound(iron);
         ironBar.Value = compounds.GetCompoundAmount(iron);
         ironBar.GetNode<Label>("Value").Text = ironBar.Value + " / " + ironBar.MaxValue;
+
+        ingestedMatterBar.MaxValue = stage!.Player!.Colony?.HexCount ?? stage.Player.HexCount;
+        ingestedMatterBar.Value = GetPlayerUsedIngestionCapacity();
+        ingestedMatterBar.GetNode<Label>("Value").Text = ingestedMatterBar.Value + " / " + ingestedMatterBar.MaxValue;
 
         oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
         oxytoxyBar.Value = compounds.GetCompoundAmount(oxytoxy);
@@ -1112,7 +1174,7 @@ public class MicrobeHUD : Control
         // Update to the player's current ATP, unless the player does not exist
         if (stage!.Player != null)
         {
-            var compounds = GetPlayerColonyOrPlayerStorage();
+            var compounds = GetPlayerStorage();
 
             atpAmount = compounds.GetCompoundAmount(atp);
             maxATP = compounds.GetCapacityForCompound(atp);
@@ -1134,9 +1196,14 @@ public class MicrobeHUD : Control
         atpLabel.HintTooltip = atpText;
     }
 
-    private ICompoundStorage GetPlayerColonyOrPlayerStorage()
+    private ICompoundStorage GetPlayerStorage()
     {
         return stage!.Player!.Colony?.ColonyCompounds ?? (ICompoundStorage)stage.Player.Compounds;
+    }
+
+    private float GetPlayerUsedIngestionCapacity()
+    {
+        return stage!.Player!.Colony?.UsedIngestionCapacity ?? stage.Player.UsedIngestionCapacity;
     }
 
     private void UpdateHealth(float delta)
@@ -1146,20 +1213,59 @@ public class MicrobeHUD : Control
             return;
 
         var hp = 0.0f;
+        string hpText = playerWasDigested ?
+            TranslationServer.Translate("DEVOURED") :
+            hp.ToString(CultureInfo.CurrentCulture);
+
+        var percentageValue = TranslationServer.Translate("PERCENTAGE_VALUE");
 
         // Update to the player's current HP, unless the player does not exist
         if (stage!.Player != null)
         {
-            hp = stage.Player.Hitpoints;
-            maxHP = stage.Player.MaxHitpoints;
+            // Change mode depending on whether the player is ingested or not
+            if (stage.Player.PhagocytosisStep == PhagocytosisPhase.Ingested)
+            {
+                // Show the digestion progress to the player
+                hp = 1 - (stage.Player.DigestedAmount / Constants.PARTIALLY_DIGESTED_THRESHOLD);
+                maxHP = Constants.FULLY_DIGESTED_LIMIT;
+                hpText = string.Format(CultureInfo.CurrentCulture, percentageValue, Mathf.Round((1 - hp) * 100));
+                playerWasDigested = true;
+                FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
+            }
+            else
+            {
+                hp = stage.Player.Hitpoints;
+                maxHP = stage.Player.MaxHitpoints;
+                hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+                playerWasDigested = false;
+                healthBar.TintProgress = defaultHealthBarColour;
+            }
         }
 
         healthBar.MaxValue = maxHP;
         GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
 
-        var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
         hpLabel.Text = hpText;
         hpLabel.HintTooltip = hpText;
+    }
+
+    private void FlashHealthBar(Color colour, float delta)
+    {
+        healthBarFlashDuration -= delta;
+
+        if (healthBarFlashDuration % 0.6f < 0.3f)
+        {
+            healthBar.TintProgress = colour;
+        }
+        else
+        {
+            // Restore colour
+            healthBar.TintProgress = defaultHealthBarColour;
+        }
+
+        // Loop flash
+        if (healthBarFlashDuration <= 0)
+            healthBarFlashDuration = 2.5f;
     }
 
     private void SetEditorButtonFlashEffect(bool enabled)
