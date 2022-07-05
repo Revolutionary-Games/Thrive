@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-02 16:20+0100\n"
-"PO-Revision-Date: 2022-06-29 15:12+0000\n"
-"Last-Translator: Adam Duży <scootaloo@onet.pl>\n"
+"PO-Revision-Date: 2022-07-05 12:02+0000\n"
+"Last-Translator: Amam Town <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.12\n"
+"X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -2711,29 +2711,24 @@ msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Wartość nasycenia, ilość szarości w konkretnym kolorze"
 
 #: ../src/gui_common/TweakedColourPicker.cs:403
-#, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr "Dodaj nowe powiązanie klawisza"
+msgstr "Wartość (jasność) wartość, jasność lub intensywność koloru"
 
 #: ../src/gui_common/TweakedColourPicker.cs:407
-#, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr "Dodaj nowe powiązanie klawisza"
+msgstr "Wartość koloru w kanale czerwonym"
 
 #: ../src/gui_common/TweakedColourPicker.cs:408
-#, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr "Dodaj nowe powiązanie klawisza"
+msgstr "Wartość koloru w kanale zielonym"
 
 #: ../src/gui_common/TweakedColourPicker.cs:409
-#, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr "Dodaj nowe powiązanie klawisza"
+msgstr "Wartość koloru w kanale niebieskim"
 
 #: ../src/gui_common/TweakedColourPicker.cs:412
-#, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr "Dodaj nowe powiązanie klawisza"
+msgstr "Wartość koloru w kanale alfa"
 
 #: ../src/gui_common/TweakedColourPicker.cs:587
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
@@ -2755,33 +2750,28 @@ msgstr "RAW"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
-#, fuzzy
 msgid "N_A"
-msgstr "N/A MP"
+msgstr "Nie Dotyczy"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
-#, fuzzy
 msgid "TITLE_COLON"
-msgstr "Wielkość:"
+msgstr "Tytuł:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:99
-#, fuzzy
 msgid "DESCRIPTION_COLON"
-msgstr "Opis jest za długi"
+msgstr "Opis:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
-#, fuzzy
 msgid "ARTIST_COLON"
-msgstr "poprzedni:"
+msgstr "Artysta:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:248
-#, fuzzy
 msgid "UNTITLED"
-msgstr "Biom: {0}"
+msgstr "Niezatytułowany"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
@@ -2802,9 +2792,8 @@ msgid "NO_DATA_TO_SHOW"
 msgstr "Brak danych do pokazania"
 
 #: ../src/gui_common/charts/line/LineChart.cs:652
-#, fuzzy
 msgid "INVALID_DATA_TO_PLOT"
-msgstr "Niewłaściwa ścieżka do ikony modu"
+msgstr "Nieprawidłowe Dane do Wykreślenia"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1116
 #: ../src/gui_common/charts/line/LineChart.cs:1208
@@ -2847,16 +2836,20 @@ msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Chcesz przejść do prototypów faz rozwoju?"
 
 #: ../src/gui_common/dialogs/StagePrototypeConfirm.tscn:7
-#, fuzzy
 msgid "CONTINUE_TO_PROTOTYPES"
-msgstr "Protanopia (Czerwony-Zielony)"
+msgstr ""
+"Dotarłeś do końca \"ukończonej\" części Thrive.\n"
+"Jeśli chcesz, możesz przejść dalej do prototypów następnych etapów które znajdują się w grze. Mogą one być ekstremalnie niedokończone, używać tymczasowych grafik oraz być ogólnie bardzo szorstkie. Są dołączone jako część gry żeby pokazać możliwy przyszły kierunek rozwoju i naszą wizję tego, jak etapy są ze sobą połączone.\n"
+"\n"
+"Nie będziesz mógł zapisywać, w większości prototypów, jeśli kontynuujesz lub powrócisz gdy kontynuujesz. Jeśli chcesz wrócić do tego etapu, proszę zapisać grę przed przejściem dalej.\n"
+"\n"
+"Jeśli decydujesz się kontynuować, proszę zrozumieć, że następne etapy to tylko prototypy i proszę nie narzekać na to, jak bardzo są niedokończone."
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:16
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:52
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:252
-#, fuzzy
 msgid "TUTORIAL"
 msgstr "Samouczek"
 
@@ -2877,9 +2870,8 @@ msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Zakończ edycję i wróć do środowiska"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:89
-#, fuzzy
 msgid "NEXT_EDITOR_TAB"
-msgstr "Włącz edytor"
+msgstr "Przejdź do następnej zakładki edytora"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:95
 msgid "CHANGE_THE_SYMMETRY"
@@ -2916,9 +2908,8 @@ msgstr "Sztywniejsza membrana jest odporniejsza na uszkodzenia, ale utrudnia por
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2851
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3087
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3360
-#, fuzzy
 msgid "BASE_MOBILITY"
-msgstr "Mobilność"
+msgstr "Podstawowa Mobilność"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:193
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2378
@@ -3090,32 +3081,28 @@ msgid "SPEED"
 msgstr "Szybkość"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
-#, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr "Dźgaj tym inne komórki."
+msgstr "Może zostać użyte do dźgania innych komórek lub obrony przed ich toksynami."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Dźgaj tym inne komórki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
-#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr "Przekształca [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] w [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+msgstr "Chemoreceptor umożliwia wykrywanie związków z oddali. Modyfikuj gdy umieścisz by wybrać typ związku oraz kolor prowadzącej do niego linii."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
-#, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "Redukuje beztlenowo [thrive:compound]glukoza[/thrive:compound] wytwarzając [thrive:compound]atp[/thrive:compound]."
+msgstr "Zwiększa prędkość obrotu większych komórek."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
-#, fuzzy
 msgid "CILIA_DESCRIPTION"
-msgstr "Zol wypełniający wnętrze komórki. Cytozol to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. Jedną z czynności, której dokonuje, jest glikoliza - beztlenowa redukcja glukozy w wyniku której wydziela się energia w formie ATP. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywana jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
+msgstr "Rzęski są podobne do wici lecz zamiast dostarczać kierunkową siłę ciągu dodają siłę obrotową by pomóc komórkom się obracać."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
@@ -3426,9 +3413,8 @@ msgid "PLAYER_DIED"
 msgstr "gracz zginął"
 
 #: ../src/microbe_stage/MicrobeStage.cs:967
-#, fuzzy
 msgid "EXTINCT_IN_PATCH"
-msgstr "wyginął z planety"
+msgstr "wyginął z biomu"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:518
 msgid "AT_CURSOR"
@@ -3492,9 +3478,8 @@ msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Pokaż / ukryj otoczenie i związki"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1659
-#, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr "Dodaj nowe powiązanie klawisza"
+msgstr "Pokaż / ukryj procesy komórkowe"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1708
 msgid "SUICIDE_BUTTON_TOOLTIP"
@@ -3509,18 +3494,16 @@ msgid "POPULATION_CAPITAL"
 msgstr "POPULACJA:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1945
-#, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr "Dodaj nowe powiązanie klawisza"
+msgstr "Wejdź do edytora i modyfikuj swój gatunek"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:2091
 msgid "PAUSED"
 msgstr "ZAPAUZOWANO"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:210
-#, fuzzy
 msgid "PATCH_NAME"
-msgstr "Jaskinia"
+msgstr "{0} {1}"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -3608,9 +3591,8 @@ msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Nie można usunąć ostatniej organelli"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
-#, fuzzy
 msgid "FAILED"
-msgstr "Zapisywanie się nie udało"
+msgstr "Błąd"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2046
@@ -3687,9 +3669,8 @@ msgid "SPEED_COLON"
 msgstr "Szybkość:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
-#, fuzzy
 msgid "ROTATION_COLON"
-msgstr "populacja:"
+msgstr "Populacja:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:805
 msgid "HP_COLON"
@@ -3700,9 +3681,8 @@ msgid "SIZE_COLON"
 msgstr "Wielkość:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:865
-#, fuzzy
 msgid "STORAGE_COLON"
-msgstr "Magazyn"
+msgstr "Magazyn:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:886
 msgid "GENERATION_COLON"
@@ -3724,23 +3704,20 @@ msgid "AUTO-EVO_PREDICTION"
 msgstr "Przewidywania Auto-Ewolucji"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1053
-#, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr "Wznów"
+msgstr "Zobacz informacje o prognozie w detalach"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1123
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Całkowita populacja:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1147
-#, fuzzy
 msgid "BEST_PATCH_COLON"
-msgstr "Gatunek:"
+msgstr "Najlepiej radzi sobie w:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1172
-#, fuzzy
 msgid "WORST_PATCH_COLON"
-msgstr "Gatunek:"
+msgstr "Najgorzej radzi sobie w:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
 msgid "NEGATIVE_ATP_BALANCE"
@@ -3807,15 +3784,13 @@ msgstr "Lista gatunków"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:341
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:354
-#, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
-msgstr "wyginął z planety"
+msgstr "Wyginął z planety"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:342
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:353
-#, fuzzy
 msgid "EXTINCT_FROM_PATCH"
-msgstr "wyginął z planety"
+msgstr "Wyginął z obszaru"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:370
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -3902,9 +3877,8 @@ msgid "MUTATION_POINTS"
 msgstr "Punkty Mutacji"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:62
-#, fuzzy
 msgid "MULTIPLE_ORGANELLES"
-msgstr "Dodaj organellę"
+msgstr "Wiele Organelli"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 msgid "MOVE"
@@ -3915,9 +3889,8 @@ msgid "MODIFY"
 msgstr "Modyfikuj"
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
-#, fuzzy
 msgid "EXTINCT_SPECIES"
-msgstr "WYMARŁEŚ"
+msgstr "Wymarły Gatunek"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
@@ -3928,9 +3901,8 @@ msgid "REQUIRES_NUCLEUS"
 msgstr "Wymaga Jądra"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:21
-#, fuzzy
 msgid "COMPOUND_TO_FIND"
-msgstr "Chmury związków"
+msgstr "Związek do Znalezienia:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:38
 msgid "SEARCH_RADIUS"
@@ -3945,7 +3917,6 @@ msgid "LINE_COLOUR"
 msgstr "Kolor Lini:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
-#, fuzzy
 msgid "MODIFY_ORGANELLE"
 msgstr "Modyfikuj Organellę"
 
@@ -3966,9 +3937,8 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m poniżej poziomu morza"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:268
-#, fuzzy
 msgid "SPECIES_WITH_POPULATION"
-msgstr "Populacja Gatunku"
+msgstr "{0} z populacją: {1}"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:119
 msgid "SELECT_A_PATCH"
@@ -3979,7 +3949,6 @@ msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "AKTUALNA LOKALIZACJA"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:313
-#, fuzzy
 msgid "PRESSURE"
 msgstr "Ciśnienie"
 
@@ -3992,14 +3961,14 @@ msgid "MOVE_TO_THIS_PATCH"
 msgstr "Przenieś się do tego obszaru"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:68
-#, fuzzy
 msgid "PATCH_EXTINCTION_CAPITAL"
-msgstr "WYMARŁEŚ"
+msgstr "WYMARŁEŚ Z OBSZARU"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
-#, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr "Tak jak 99% gatunków które kiedykolwiek istniały, twój wymarł. Inne zastąpią twoją niszę w ekosystemie i będą trwać, ale nie ty. Będziesz zapomniany, będziesz nieudanym eksperymentem ewolucji."
+msgstr ""
+"Twój gatunek wymarł na tym obszarze.\n"
+"Lecz to nie koniec, wciąż możesz wybrać nowy obszar do zabawy!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
@@ -4054,7 +4023,7 @@ msgstr "{0}: wczytywanie tworu zawiodło z powodu wyjątku: {1}"
 #: ../src/modding/ModLoader.cs:473
 #, fuzzy
 msgid "PCK_LOAD_FAILED"
-msgstr "Wczytywanie zakończone"
+msgstr "Wczytywanie pliku pck ({0}) się nie powiodło"
 
 #: ../src/modding/ModManager.cs:297
 msgid "INVALID_ICON_PATH"
@@ -4085,18 +4054,16 @@ msgid "THIS_IS_LOCAL_MOD"
 msgstr "To jest mod zainstalowany lokalnie"
 
 #: ../src/modding/ModManager.cs:913
-#, fuzzy
 msgid "USES_FEATURE"
-msgstr "Temperatura"
+msgstr "Tak"
 
 #: ../src/modding/ModManager.cs:914
 msgid "DOES_NOT_USE_FEATURE"
 msgstr "Nie"
 
 #: ../src/modding/ModManager.cs:959
-#, fuzzy
 msgid "ERROR_CREATING_FOLDER"
-msgstr "Błąd zapisu"
+msgstr "Błąd podczas tworzenia folderu dla modyfikacji"
 
 #: ../src/modding/ModManager.cs:968
 msgid "ERROR_CREATING_INFO_FILE"
@@ -4111,33 +4078,28 @@ msgid "REFRESH"
 msgstr "Odśwież"
 
 #: ../src/modding/ModManager.tscn:150
-#, fuzzy
 msgid "OPEN_FOLDER"
-msgstr "Otwórz Folder z Logami"
+msgstr "Otwórz Folder"
 
 #: ../src/modding/ModManager.tscn:168
-#, fuzzy
 msgid "RIGHT_ARROW"
-msgstr "Prawy myszy"
+msgstr "→"
 
 #: ../src/modding/ModManager.tscn:181
-#, fuzzy
 msgid "LEFT_ARROW"
-msgstr "Lewy myszy"
+msgstr "←"
 
 #: ../src/modding/ModManager.tscn:193
-#, fuzzy
 msgid "ENABLED_MODS"
-msgstr "Włącz edytor"
+msgstr "Włączone Mody"
 
 #: ../src/modding/ModManager.tscn:211
 msgid "DISABLE_ALL"
 msgstr "Wyłącz wszystko"
 
 #: ../src/modding/ModManager.tscn:248
-#, fuzzy
 msgid "SELECTED_MOD"
-msgstr "Wybrane:"
+msgstr "Wybrany Mod:"
 
 #: ../src/modding/ModManager.tscn:282 ../src/modding/ModManager.tscn:670
 #: ../src/modding/NewModGUI.tscn:140
@@ -4146,7 +4108,6 @@ msgstr "Autor Moda:"
 
 #: ../src/modding/ModManager.tscn:313 ../src/modding/ModManager.tscn:692
 #: ../src/modding/NewModGUI.tscn:163
-#, fuzzy
 msgid "MOD_VERSION"
 msgstr "Wersja:"
 
@@ -4155,13 +4116,11 @@ msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Zalecana Wersja Gry:"
 
 #: ../src/modding/ModManager.tscn:413
-#, fuzzy
 msgid "MINIMUM_VERSION"
-msgstr "Wersja:"
+msgstr "Minimum:"
 
 #: ../src/modding/ModManager.tscn:440 ../src/modding/ModManager.tscn:714
 #: ../src/modding/NewModGUI.tscn:186
-#, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Opis:"
 
@@ -4170,9 +4129,8 @@ msgid "MORE_INFO"
 msgstr "Pokaż Więcej Informacji"
 
 #: ../src/modding/ModManager.tscn:480
-#, fuzzy
 msgid "OPEN_MOD_URL"
-msgstr "Otwórz URL"
+msgstr "Otwórz URL Informacji"
 
 #: ../src/modding/ModManager.tscn:503
 msgid "BROWSE_WORKSHOP"
@@ -4188,14 +4146,12 @@ msgid "NEW"
 msgstr "Nowe"
 
 #: ../src/modding/ModManager.tscn:530
-#, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr "Wczytać nieważny zapis?"
+msgstr "Wiele modów wymaga ponownego uruchomienia gry, by się załadować i odładować poprawnie. Używaj tylko modów,którym ufasz, jako że mogą zawierać kod wykonywalny."
 
 #: ../src/modding/ModManager.tscn:557
-#, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "Wybrany zapis jest niekompatybilny"
+msgstr "Włącz Wszystkie Kompatybilne Mody"
 
 #: ../src/modding/ModManager.tscn:566
 msgid "APPLY_CHANGES"
@@ -4208,7 +4164,7 @@ msgstr "Istnieją niezastosowane zmiany"
 #: ../src/modding/ModManager.tscn:578
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "Najbardziej podstawowa forma membrany, słabo chroni przed uszkodzeniami. Potrzebuję też więcej energii żeby się nie zdeformować. Przewagą jest to że pozwala komórce na szybkie poruszanie się i absorbcję składników odżywczych."
+msgstr "Musisz zatwierdzić zmiany, by załadować lub odładować mody."
 
 #: ../src/modding/ModManager.tscn:579
 #, fuzzy
@@ -4220,7 +4176,6 @@ msgid "FULL_MOD_INFO"
 msgstr "Pełne Informacje o Modzie"
 
 #: ../src/modding/ModManager.tscn:627 ../src/modding/NewModGUI.tscn:117
-#, fuzzy
 msgid "MOD_NAME"
 msgstr "Nazwa:"
 
@@ -4269,14 +4224,12 @@ msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:972
-#, fuzzy
 msgid "MOD_AUTO_HARMONY"
-msgstr "Autor Moda:"
+msgstr "Używa Auto Harmonii:"
 
 #: ../src/modding/ModManager.tscn:999
-#, fuzzy
 msgid "MOD_CREATION_FAILED"
-msgstr "Auto-ewolucja nie może się uruchomić"
+msgstr "Tworzenie Moda Nie Powiodło Się"
 
 #: ../src/modding/ModManager.tscn:1008
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
@@ -4287,9 +4240,8 @@ msgid "RESTART_REQUIRED"
 msgstr "Wymagany Restart"
 
 #: ../src/modding/ModManager.tscn:1015
-#, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
-msgstr "Wczytać nieważny zapis?"
+msgstr "Jeden lub więcej modów wymaga ponownego uruchomienia gry by się załadować lub wyładować poprawnie."
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -4308,18 +4260,16 @@ msgid "DESCRIPTION_TOO_LONG"
 msgstr "Opis jest za długi"
 
 #: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:280
-#, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
-msgstr "Opis:"
+msgstr "Opis zmian jest zbyt długi"
 
 #: ../src/modding/ModUploader.cs:333
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:341
-#, fuzzy
 msgid "INVALID_TAG"
-msgstr "Wczytać nieważny zapis?"
+msgstr "Nieprawidłowy tag \"{0}\" określony"
 
 #: ../src/modding/ModUploader.cs:355
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
@@ -4334,18 +4284,16 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:460
-#, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
-msgstr "Wyszukiwanie..."
+msgstr "Tworzenie..."
 
 #: ../src/modding/ModUploader.cs:474
 msgid "SUCCESS_BUT_MISSING_ID"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:519
-#, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
-msgstr "Wczytywanie..."
+msgstr "Ładowanie..."
 
 #: ../src/modding/ModUploader.cs:556
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
@@ -4360,14 +4308,12 @@ msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:645
-#, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr "Zapis nie zadziałał! Pojawił się błąd"
+msgstr "Zapisywanie informacji nie powiodło się z powodu wyjątku: {0}"
 
 #: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:307
-#, fuzzy
 msgid "FORM_ERROR_MESSAGE"
-msgstr "Błąd zapisu"
+msgstr "Błąd: {0}"
 
 #: ../src/modding/ModUploader.tscn:44
 msgid "MOD_UPLOADER"
@@ -4378,19 +4324,16 @@ msgid "MOD_TO_UPLOAD"
 msgstr ""
 
 #: ../src/modding/ModUploader.tscn:109
-#, fuzzy
 msgid "UNKNOWN_WORKSHOP_ID"
-msgstr "Nieznany myszy"
+msgstr "Nieznane ID Sklepu Dla Tego Moda"
 
 #: ../src/modding/ModUploader.tscn:121
-#, fuzzy
 msgid "CREATE_NEW"
-msgstr "Stwórz Nowy Zapis"
+msgstr "Stwórz Nowy"
 
 #: ../src/modding/ModUploader.tscn:128
-#, fuzzy
 msgid "ENTER_EXISTING_ID"
-msgstr "Nadpisz istniejący zapis:"
+msgstr "Podaj Istniejące ID"
 
 #: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
@@ -4405,9 +4348,8 @@ msgid "APPLY"
 msgstr "Zaaplikuj"
 
 #: ../src/modding/ModUploader.tscn:168
-#, fuzzy
 msgid "WORKSHOP_ITEM_TITLE"
-msgstr "\"{0}\" - {1}"
+msgstr "Nazwa Przedmiotu:"
 
 #: ../src/modding/ModUploader.tscn:186
 msgid "WORKSHOP_ITEM_DESCRIPTION"
@@ -4434,9 +4376,8 @@ msgid "BROWSE"
 msgstr "Przeglądaj"
 
 #: ../src/modding/ModUploader.tscn:284
-#, fuzzy
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
-msgstr "Wznów"
+msgstr "Usuń dane lokalne odnośnie tego przedmiotu. Użyteczne jeśli podałeś błędne ID bądź chcesz załadować nową wersję do innego przedmiotu."
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
@@ -4457,9 +4398,8 @@ msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Wybierz zdjęcie podglądowe"
 
 #: ../src/modding/ModUploader.tscn:336
-#, fuzzy
 msgid "UPLOAD_SUCCEEDED"
-msgstr "Powodzenie zapisu"
+msgstr "Ładowanie Powiodło Się"
 
 #: ../src/modding/NewModGUI.cs:180
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
@@ -4486,14 +4426,12 @@ msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
 #: ../src/modding/NewModGUI.cs:293
-#, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "Auto-ewolucja nie może się uruchomić"
+msgstr "Dodatkowe walidacje wykryły błąd: {0}"
 
 #: ../src/modding/NewModGUI.tscn:33
-#, fuzzy
 msgid "CREATE_NEW_MOD"
-msgstr "Stwórz nowego mikroba"
+msgstr "Stwórz Nowego Moda"
 
 #: ../src/modding/NewModGUI.tscn:67
 msgid "MODDING_INSTRUCTIONS_ON"
