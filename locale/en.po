@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-04 13:19+0100\n"
+"POT-Creation-Date: 2022-07-05 19:58+0800\n"
 "PO-Revision-Date: 2022-07-01 13:40+0300\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -1054,7 +1054,7 @@ msgstr "CANCEL ACTION"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:154
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "NEXT"
@@ -3233,6 +3233,10 @@ msgstr "Enables / disables the unsaved progress warning popup for when the playe
 msgid "TEMPERATURE"
 msgstr "Temperature"
 
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3787
+msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
+msgstr "Click, drag and zoom to move around"
+
 #: ../src/microbe_stage/Microbe.Contact.cs:604
 msgid "DEATH"
 msgstr "death"
@@ -3718,13 +3722,8 @@ msgstr "Loading Microbe Editor"
 msgid "INFINITE_MP"
 msgstr "Infinite MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:99
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:121
-msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
-msgstr "Click, drag and zoom to move around"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:126
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:148
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:147
 msgid "FIND_CURRENT_PATCH"
 msgstr "Find Current Patch"
 

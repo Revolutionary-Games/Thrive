@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-04 13:19+0100\n"
+"POT-Creation-Date: 2022-07-05 19:58+0800\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -1069,7 +1069,7 @@ msgstr "Скасувати дію"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:154
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "ДАЛІ"
@@ -3301,6 +3301,11 @@ msgstr "Вмикає / вимикає спливаюче вікно з попе�
 msgid "TEMPERATURE"
 msgstr "Температура"
 
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3787
+#, fuzzy
+msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
+msgstr "Минуло часу: {0:#,#} років"
+
 #: ../src/microbe_stage/Microbe.Contact.cs:604
 msgid "DEATH"
 msgstr "Смерть"
@@ -3787,14 +3792,8 @@ msgstr "Завантаження мікробного редактору"
 msgid "INFINITE_MP"
 msgstr "Нескінчені МО"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:99
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:121
-#, fuzzy
-msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
-msgstr "Минуло часу: {0:#,#} років"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:126
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:148
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:147
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
 msgstr "Недійсна доріжка іконки мода"
