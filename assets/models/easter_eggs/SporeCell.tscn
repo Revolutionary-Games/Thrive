@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://assets/models/easter_eggs/SporeCell.glb" type="PackedScene" id=5]
-
-[node name="SporeCell" instance=ExtResource( 5 )]
-
-[node name="AnimationPlayer" parent="." index="1"]
-autoplay = "Idol"
