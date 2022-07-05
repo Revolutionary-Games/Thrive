@@ -1,7 +1,7 @@
 ﻿using System;
 
 /// <summary>
-///   Needed to make loading Compounds from json work
+///   Needed to make loading Enzymes from json work
 /// </summary>
 public class EnzymeLoader : BaseThriveConverter
 {
