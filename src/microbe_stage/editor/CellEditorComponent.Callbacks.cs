@@ -158,6 +158,7 @@ public partial class CellEditorComponent
         editedMicrobeOrganelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
             new Hex(0, 0), 0));
         Rigidity = 0;
+        Colour = Colors.White;
 
         if (!IsMulticellularEditor)
             behaviourEditor.ResetBehaviour();
@@ -171,6 +172,7 @@ public partial class CellEditorComponent
         editedMicrobeOrganelles.Clear();
         Membrane = data.OldMembrane;
         Rigidity = data.OldMembraneRigidity;
+        Colour = data.OldMembraneColour;
 
         foreach (var organelle in data.OldEditedMicrobeOrganelles)
         {
@@ -253,6 +255,20 @@ public partial class CellEditorComponent
     {
         Rigidity = data.PreviousRigidity;
         OnRigidityChanged();
+    }
+
+    [DeserializedCallbackAllowed]
+    private void DoColourChangeAction(ColourActionData data)
+    {
+        Colour = data.NewColour;
+        OnColourChanged();
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoColourChangeAction(ColourActionData data)
+    {
+        Colour = data.PreviousColour;
+        OnColourChanged();
     }
 
     /// <summary>

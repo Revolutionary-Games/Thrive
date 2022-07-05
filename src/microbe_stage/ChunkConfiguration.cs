@@ -46,6 +46,10 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// </summary>
     public bool EasterEgg;
 
+    ///   The type of enzyme needed to break down this chunk.
+    /// </summary>
+    public string DissolverEnzyme;
+
     public static bool operator ==(ChunkConfiguration left, ChunkConfiguration right)
     {
         return left.Equals(right);
@@ -84,8 +88,10 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
             Damages == other.Damages &&
             DeleteOnTouch == other.DeleteOnTouch &&
             Meshes.Equals(other.Meshes) &&
-            Equals(Compounds, other.Compounds) &&
-            EasterEgg == other.EasterEgg;
+            EasterEgg == other.EasterEgg &&
+            DamageType == other.DamageType &&
+            DissolverEnzyme == other.DissolverEnzyme &&
+            Equals(Compounds, other.Compounds);
     }
 
     public struct ChunkCompound : IEquatable<ChunkCompound>

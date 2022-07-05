@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
-public class FloatingChunk : RigidBody, ISpawned
+public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 {
     [Export]
     [JsonProperty]
@@ -38,8 +38,6 @@ public class FloatingChunk : RigidBody, ISpawned
 
     private MeshInstance? chunkMesh;
 
-    private AnimationPlayer? animation;
-
     [JsonProperty]
     private bool isDissolving;
 
@@ -58,20 +56,42 @@ public class FloatingChunk : RigidBody, ISpawned
     [JsonProperty]
     private float elapsedSinceProcess;
 
+    [JsonProperty]
+    private int renderPriority;
+
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
     public Spatial EntityNode => this;
 
+    [JsonIgnore]
+    public GeometryInstance EntityGraphics => chunkMesh ?? throw new InstanceNotLoadedYetException();
+
+    [JsonIgnore]
+    public int RenderPriority
+    {
+        get => renderPriority;
+        set
+        {
+            renderPriority = value;
+            ApplyRenderPriority();
+        }
+    }
+
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
     /// </summary>
-    public float Size { get; set; } = -1.0f;
+    public float EngulfSize { get; set; } = -1.0f;
 
     /// <summary>
     ///   Compounds this chunk contains, and vents
     /// </summary>
-    public CompoundBag? ContainedCompounds { get; set; }
+    /// <remarks>
+    ///   <para>
+    ///     Capacity is set to 0 so that no compounds can be added the normal way to the chunk.
+    ///   </para>
+    /// </remarks>
+    public CompoundBag Compounds { get; private set; } = new(0.0f);
 
     /// <summary>
     ///   How much of each compound is vented per second
@@ -120,6 +140,29 @@ public class FloatingChunk : RigidBody, ISpawned
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();
 
+    [JsonProperty]
+    public PhagocytosisPhase PhagocytosisStep { get; set; }
+
+    [JsonProperty]
+    public EntityReference<Microbe> HostileEngulfer { get; private set; } = new();
+
+    [JsonProperty]
+    public Enzyme? RequisiteEnzymeToDigest { get; private set; }
+
+    /// <summary>
+    ///   This is both the digestion and dissolve effect progress value for now.
+    /// </summary>
+    [JsonIgnore]
+    public float DigestedAmount
+    {
+        get => dissolveEffectValue;
+        set
+        {
+            dissolveEffectValue = Mathf.Clamp(value, 0.0f, 1.0f);
+            UpdateDissolveEffect();
+        }
+    }
+
     /// <summary>
     ///   Grabs data from the type to initialize this
     /// </summary>
@@ -134,7 +177,7 @@ public class FloatingChunk : RigidBody, ISpawned
         ChunkName = chunkType.Name;
         VentPerSecond = chunkType.VentAmount;
         Dissolves = chunkType.Dissolves;
-        Size = chunkType.Size;
+        EngulfSize = chunkType.Size;
         Damages = chunkType.Damages;
         DeleteOnTouch = chunkType.DeleteOnTouch;
         DamageType = string.IsNullOrEmpty(chunkType.DamageType) ? "chunk" : chunkType.DamageType;
@@ -152,15 +195,14 @@ public class FloatingChunk : RigidBody, ISpawned
         // Copy compounds to vent
         if (chunkType.Compounds?.Count > 0)
         {
-            // Capacity is set to 0 so that no compounds can be added
-            // the normal way to the chunk
-            ContainedCompounds = new CompoundBag(0);
-
             foreach (var entry in chunkType.Compounds)
             {
-                ContainedCompounds.Compounds.Add(entry.Key, entry.Value.Amount);
+                Compounds.Compounds.Add(entry.Key, entry.Value.Amount);
             }
         }
+
+        if (!string.IsNullOrEmpty(chunkType.DissolverEnzyme))
+            RequisiteEnzymeToDigest = SimulationParameters.Instance.GetEnzyme(chunkType.DissolverEnzyme);
     }
 
     /// <summary>
@@ -174,7 +216,7 @@ public class FloatingChunk : RigidBody, ISpawned
         config.Name = ChunkName;
         config.VentAmount = VentPerSecond;
         config.Dissolves = Dissolves;
-        config.Size = Size;
+        config.Size = EngulfSize;
         config.Damages = Damages;
         config.DeleteOnTouch = DeleteOnTouch;
         config.Mass = Mass;
@@ -195,49 +237,25 @@ public class FloatingChunk : RigidBody, ISpawned
 
         config.Meshes.Add(item);
 
-        if (ContainedCompounds?.Compounds.Count > 0)
+        if (Compounds.Compounds.Count > 0)
         {
             config.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>();
 
-            foreach (var entry in ContainedCompounds)
+            foreach (var entry in Compounds)
             {
                 config.Compounds.Add(entry.Key, new ChunkConfiguration.ChunkCompound { Amount = entry.Value });
             }
         }
+
+        if (RequisiteEnzymeToDigest != null)
+            config.DissolverEnzyme = RequisiteEnzymeToDigest.InternalName;
 
         return config;
     }
 
     public override void _Ready()
     {
-        var graphicsNode = GraphicsScene.Instance();
-        GetNode("NodeToScale").AddChild(graphicsNode);
-
-        if (string.IsNullOrEmpty(ModelNodePath))
-        {
-            if (graphicsNode.IsClass("MeshInstance"))
-            {
-                chunkMesh = (MeshInstance)graphicsNode;
-            }
-            else if (graphicsNode.IsClass("Particles"))
-            {
-                isParticles = true;
-            }
-            else
-            {
-                throw new Exception("Invalid class");
-            }
-        }
-        else
-        {
-            chunkMesh = graphicsNode.GetNode<MeshInstance>(ModelNodePath);
-        }
-
-        if (!string.IsNullOrEmpty(AnimationPath))
-        {
-            animation = graphicsNode.GetNode<AnimationPlayer>(AnimationPath);
-            animation.GetAnimation(animation.CurrentAnimation).Loop = true;
-        }
+        InitGraphics();
 
         if (chunkMesh == null && !isParticles)
             throw new InvalidOperationException("Can't make a chunk without graphics scene");
@@ -247,6 +265,9 @@ public class FloatingChunk : RigidBody, ISpawned
 
     public void ProcessChunk(float delta, CompoundCloudSystem compoundClouds)
     {
+        if (PhagocytosisStep != PhagocytosisPhase.None)
+            return;
+
         if (isDissolving)
             HandleDissolving(delta);
 
@@ -293,31 +314,7 @@ public class FloatingChunk : RigidBody, ISpawned
                 }
             }
 
-            bool disappear = false;
-
-            // Engulfing
-            if (Size > 0 && microbe.State == Microbe.MicrobeState.Engulf)
-            {
-                // Check can engulf based on the size of the chunk compared to the cell size
-                if (microbe.EngulfSize >= Size * Constants.ENGULF_SIZE_RATIO_REQ)
-                {
-                    // Can engulf
-                    if (ContainedCompounds != null)
-                    {
-                        foreach (var entry in ContainedCompounds)
-                        {
-                            var added = microbe.Compounds.AddCompound(entry.Key, entry.Value /
-                                Constants.CHUNK_ENGULF_COMPOUND_DIVISOR) * Constants.CHUNK_ENGULF_COMPOUND_DIVISOR;
-
-                            VentCompound(Translation, entry.Key, entry.Value - added, compoundClouds);
-                        }
-                    }
-
-                    disappear = true;
-                }
-            }
-
-            if (DeleteOnTouch || disappear)
+            if (DeleteOnTouch)
             {
                 DissolveOrRemove();
                 break;
@@ -325,23 +322,33 @@ public class FloatingChunk : RigidBody, ISpawned
         }
 
         if (DespawnTimer > Constants.DESPAWNING_CHUNK_LIFETIME)
+        {
+            VentAllCompounds(compoundClouds);
             DissolveOrRemove();
+        }
 
         elapsedSinceProcess = 0;
     }
 
     public void PopImmediately(CompoundCloudSystem compoundClouds)
     {
+        VentAllCompounds(compoundClouds);
+        this.DestroyDetachAndQueueFree();
+    }
+
+    public void VentAllCompounds(CompoundCloudSystem compoundClouds)
+    {
         // Vent all remaining compounds immediately
-        if (ContainedCompounds != null)
+        if (Compounds.Compounds.Count > 0)
         {
             var pos = Translation;
 
-            var keys = new List<Compound>(ContainedCompounds.Compounds.Keys);
+            var keys = new List<Compound>(Compounds.Compounds.Keys);
 
             foreach (var compound in keys)
             {
-                var amount = ContainedCompounds.GetCompoundAmount(compound);
+                var amount = Compounds.GetCompoundAmount(compound);
+                Compounds.TakeCompound(compound, amount);
 
                 if (amount < MathUtils.EPSILON)
                     continue;
@@ -349,8 +356,6 @@ public class FloatingChunk : RigidBody, ISpawned
                 VentCompound(pos, compound, amount, compoundClouds);
             }
         }
-
-        this.DestroyDetachAndQueueFree();
     }
 
     public void OnDestroyed()
@@ -358,28 +363,50 @@ public class FloatingChunk : RigidBody, ISpawned
         AliveMarker.Alive = false;
     }
 
+    public Dictionary<Compound, float>? CalculateAdditionalDigestibleCompounds()
+    {
+        return null;
+    }
+
+    public void OnAttemptedToBeEngulfed()
+    {
+    }
+
+    public void OnIngestedFromEngulfment()
+    {
+    }
+
+    public void OnExpelledFromEngulfment()
+    {
+        if (DigestedAmount > 0)
+        {
+            // Just dissolve this chunk entirely (assume that it has become unstable from digestion)
+            DespawnTimer = Constants.DESPAWNING_CHUNK_LIFETIME + 1;
+        }
+    }
+
     /// <summary>
     ///   Vents compounds if this is a chunk that contains compounds
     /// </summary>
     private void VentCompounds(float delta, CompoundCloudSystem compoundClouds)
     {
-        if (ContainedCompounds == null)
+        if (Compounds.Compounds.Count <= 0)
             return;
 
         var pos = Translation;
 
-        var keys = new List<Compound>(ContainedCompounds.Compounds.Keys);
+        var keys = new List<Compound>(Compounds.Compounds.Keys);
 
         // Loop through all the compounds in the storage bag and eject them
         bool vented = false;
         foreach (var compound in keys)
         {
-            var amount = ContainedCompounds.GetCompoundAmount(compound);
+            var amount = Compounds.GetCompoundAmount(compound);
 
             if (amount <= 0)
                 continue;
 
-            var got = ContainedCompounds.TakeCompound(compound, VentPerSecond * delta);
+            var got = Compounds.TakeCompound(compound, VentPerSecond * delta);
 
             if (got > MathUtils.EPSILON)
             {
@@ -409,19 +436,61 @@ public class FloatingChunk : RigidBody, ISpawned
         if (chunkMesh == null)
             throw new InvalidOperationException("Chunk without a mesh can't dissolve");
 
+        if (PhagocytosisStep != PhagocytosisPhase.None)
+            return;
+
         // Disable collisions
         CollisionLayer = 0;
         CollisionMask = 0;
 
-        var material = (ShaderMaterial)chunkMesh.MaterialOverride;
+        DigestedAmount += delta * Constants.FLOATING_CHUNKS_DISSOLVE_SPEED;
 
-        dissolveEffectValue += delta * Constants.FLOATING_CHUNKS_DISSOLVE_SPEED;
-
-        material.SetShaderParam("dissolveValue", dissolveEffectValue);
-
-        if (dissolveEffectValue >= 1)
+        if (DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
         {
             this.DestroyDetachAndQueueFree();
+        }
+    }
+
+    private void UpdateDissolveEffect()
+    {
+        if (chunkMesh == null)
+            throw new InvalidOperationException("Chunk without a mesh can't dissolve");
+
+        var material = chunkMesh.MaterialOverride;
+        if (material is ShaderMaterial)
+            ((ShaderMaterial)material).SetShaderParam("dissolveValue", dissolveEffectValue);
+    }
+
+    private void ApplyRenderPriority()
+    {
+        if (chunkMesh == null)
+            throw new InvalidOperationException("Chunk without a mesh can't be applied a render priority");
+
+        chunkMesh.MaterialOverride.RenderPriority = RenderPriority;
+    }
+
+    private void InitGraphics()
+    {
+        var graphicsNode = GraphicsScene.Instance();
+        GetNode("NodeToScale").AddChild(graphicsNode);
+
+        if (!string.IsNullOrEmpty(ModelNodePath))
+        {
+            chunkMesh = graphicsNode.GetNode<MeshInstance>(ModelNodePath);
+            return;
+        }
+
+        if (graphicsNode.IsClass("MeshInstance"))
+        {
+            chunkMesh = (MeshInstance)graphicsNode;
+        }
+        else if (graphicsNode.IsClass("Particles"))
+        {
+            isParticles = true;
+        }
+        else
+        {
+            throw new Exception("Invalid class");
         }
     }
 
@@ -432,7 +501,8 @@ public class FloatingChunk : RigidBody, ISpawned
 
         if (ConvexPhysicsMesh == null)
         {
-            shape.Shape = new SphereShape { Radius = Radius };
+            var sphereShape = new SphereShape { Radius = Radius };
+            shape.Shape = sphereShape;
         }
         else
         {
@@ -444,7 +514,7 @@ public class FloatingChunk : RigidBody, ISpawned
         }
 
         // Needs physics callback when this is engulfable or damaging
-        if (Damages > 0 || DeleteOnTouch || Size > 0)
+        if (Damages > 0 || DeleteOnTouch || EngulfSize > 0)
         {
             ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
             Connect("body_shape_entered", this, nameof(OnContactBegin));

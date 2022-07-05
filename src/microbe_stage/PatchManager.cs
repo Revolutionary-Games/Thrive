@@ -128,8 +128,10 @@ public class PatchManager : IChildPropertiesLoadCallback
             if (entry.Value.EasterEgg && !CurrentGame.GameWorld.WorldSettings.EasterEggs)
                 continue;
 
-            var density = entry.Value.Density * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
-                Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR;
+            // Difficulty only scales the spawn rate for chunks containing compounds
+            var density = entry.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR;
+            if (entry.Value.Compounds?.Count > 0 || entry.Value.VentAmount > 0)
+                density *= CurrentGame.GameWorld.WorldSettings.CompoundDensity;
 
             HandleSpawnHelper(chunkSpawners, entry.Value.Name, density,
                 () =>

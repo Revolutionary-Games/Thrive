@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-04 15:24+0100\n"
+"POT-Creation-Date: 2022-07-05 17:36+0100\n"
 "PO-Revision-Date: 2022-03-22 18:22+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -99,36 +99,64 @@ msgid "MULTICELLULAR_EDITOR"
 msgstr "Načítání editoru mikrobů"
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
+#: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr "Pro pohyb použij myš a klávesy [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input]. Klávesa [thrive:input]g_fire_toxin[/thrive:input] k vystřelení [thrive:compound type=\"oxytoxy\"]toxinu[/thrive:compound], pokud máš toxinovou vakuolu. Klávesa [thrive:input]g_toggle_engulf[/thrive:input] k zapnutí režimu pohlcení. Pomocí kolečka myši můžete přibližovat a oddalovat obraz."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
+#: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr "Tvá buňka používá [thrive:compound type=\"atp\"][/thrive:compound] jako zdroj energie, pokud ti dojde, zemřeš."
 
 #: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
+#: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr "K odemknutí editoru a rozmnožování musíš shromáždit [thrive:compound type=\"ammonia\"]amoniak[/thrive:compound](oranžový mrak) a [thrive:compound type=\"phosphates\"]fosfát[/thrive:compound] (fialový mrak)."
 
 #: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
+#: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Stisknutím [thrive:input]g_toggle_engulf[/thrive:input] můžeš pohltit buňky, bakterie, železné kousky a kusy buněk, které jsou menší než ty. Tento proces však stojí dodatečné [thrive:compound type=\"atp\"][/thrive:compound] a zpomaluje. Nezapomeň stisknout [thrive:input]g_toggle_engulf[/thrive:input] znovu k zastavení tohoto procesu."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+msgstr ""
+"Prokaryotické struktury\n"
+"\n"
+"Metabolosomy: Produkují [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Chemosyntetizující proteiny: Produkují polovinu [thrive:compound type=\"glucose\"][/thrive:compound] ze [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] co chemoplast, ale také provádí glykolýzu, zabírají 1 Hex\n"
+"\n"
+"Thylakoidy: Produkují 1/3 množství [thrive:compound type=\"glucose\"][/thrive:compound] jako normální chloroplast, ale také provádí glykolýzu, zabírají 1 Hex\n"
+"\n"
+"Rusticyanin: Převádí [thrive:compound type=\"iron\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Nitrogenáza: Anaerobně převádí atmosférický dusík a [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"\n"
+"Cytoplazma: Má úložný prostor a provádí glykolýzu (Produkuje malé množství [thrive:compound type=\"atp\"][/thrive:compound])"
+
+#: ../simulation_parameters/common/help_texts.json:26
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+msgstr "Pro pohyb použij myš a klávesy [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input]. Klávesa [thrive:input]g_fire_toxin[/thrive:input] k vystřelení [thrive:compound type=\"oxytoxy\"]toxinu[/thrive:compound], pokud máš toxinovou vakuolu. Klávesa [thrive:input]g_toggle_engulf[/thrive:input] k zapnutí režimu pohlcení. Pomocí kolečka myši můžete přibližovat a oddalovat obraz."
+
+#: ../simulation_parameters/common/help_texts.json:30
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+msgstr "Pro pohyb použij myš a klávesy [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input]. Klávesa [thrive:input]g_fire_toxin[/thrive:input] k vystřelení [thrive:compound type=\"oxytoxy\"]toxinu[/thrive:compound], pokud máš toxinovou vakuolu. Klávesa [thrive:input]g_toggle_engulf[/thrive:input] k zapnutí režimu pohlcení. Pomocí kolečka myši můžete přibližovat a oddalovat obraz."
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr "Osmoregulace stojí [thrive:compound type=\"atp\"][/thrive:compound], což znamená, že čím větší bude tvoje buňka, tím víc bude potřebovat Mitochondrií, Metabolomů nebo Rusticyaninu (nebo cytoplasmy, která provádí Glykolýzu), abys neztrácel(a) [thrive:compound type=\"atp\"][/thrive:compound] v době kdy stojíš."
 
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr "V editoru je spousta Organel, které můžete vyvíjet. Dík tomu máte k dispozici obrovský počet herních stylů."
 
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "Různé barvy mračen jsou:\n"
@@ -141,35 +169,35 @@ msgstr ""
 "\n"
 "[thrive:compound type=\"glucose\"]Glukóza[/thrive:compound] tvoří [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
 
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
+#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "[thrive:compound type=\"hydrogensulfide\"]Sirovodík[/thrive:compound] lze přeměnit na [thrive:compound type=\"glucose\"]glukózu[/thrive:compound]pomocí chemoplastů a chemicky syntetizujících proteinů. [thrive:compound type=\"iron\"]Železo[/thrive:compound]lze přeměnit pomocí rusticyaninu na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
 
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr "Chceš-li zahájit rozmnožení, musíš rozdělit každou ze svých organel na dvě. Organely k rozdělení potřebují Amoniak (oranžová) a Fosfát (fialová)."
 
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
+#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:115
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "Nyní, pokud tvoje populace klesne na nulu, vyhyneš."
 
-#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr "Pokud přežiješ dvacet generací s populací 300, vyhraješ hru. Po výhře ti vyskočí okénko, kde můžeš zvolit pokračování ve hře dle libosti."
 
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
+#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr "Buď opatrný(á), protože tví konkurenti se vyvíjejí společně s tebou. Pokaždé, když vstoupíš do editoru, tak se vyvinou taktéž."
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr "Spojením s ostatními buňkami můžeš vytvořit kolonii, ve které buňky sdílejí sloučeniny, které absorbují a vytvářejí. Pro spojení s jinou buňkou musí vaše buňka obsahovat pojící organelu, kterou se jí dotknete po zapnutí spojovacího módu. Spojit se můžete pouze s buňkami vašeho druhu. Když jste v kolonii, nemůžete svou buňku dělit ani s ní vstoupit do editoru (prozatím). Pro vstup do editoru po nasbírání dostatku sloučenin nejdřív opusťte kolonii. Velké kolonie buněk jsou cestou k mnohobuněčným organismům (zatím nejsou ve hře)."
 
-#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Prokaryotické struktury\n"
@@ -186,7 +214,7 @@ msgstr ""
 "\n"
 "Cytoplazma: Má úložný prostor a provádí glykolýzu (Produkuje malé množství [thrive:compound type=\"atp\"][/thrive:compound])"
 
-#: ../simulation_parameters/common/help_texts.json:66
+#: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Vnější organely\n"
@@ -197,7 +225,7 @@ msgstr ""
 "\n"
 "Chemoreceptor: Umožňuje detekci sloučenin z větší vzdálenosti"
 
-#: ../simulation_parameters/common/help_texts.json:70
+#: ../simulation_parameters/common/help_texts.json:82
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Membránově vázané organely\n"
@@ -218,123 +246,123 @@ msgstr ""
 "\n"
 "Vakuola s toxiny: Produkuje toxiny (nazývané [thrive:compound type=\"oxytoxy\"][/thrive:compound]) a umožňuje jejich uvolnění, které způsobuje poškození v závislosti na množství dostupných oxytoxinů"
 
-#: ../simulation_parameters/common/help_texts.json:74
+#: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr "Každou generaci máte k dispozici 100 bodů mutace (MP) a každá změna (nebo mutace) bude stát určitou částku MP. Přidání a odebrání organel stojí MP, avšak odebrání organel, které byly umístěny v aktuální relaci mutace, vrátí MP za tuto organelu. Organelu můžete přesunout nebo úplně odebrat tak, že na ni kliknete pravým tlačítkem a v rozbalovací nabídce vyberete příslušnou akci. Při umístění organel můžete k jejich natočení použít [thrive:input]e_rotate_left[/thrive:input] a [thrive:input]e_rotate_right[/thrive:input]."
 
-#: ../simulation_parameters/common/help_texts.json:78
+#: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Vždy, když zahájíš reprodukci, vstoupíš do editoru mikrobů, kde můžeš provádět změny tvého druhu (přidáním, přesunutím nebo odstraněním organel) ke zvýšení úspěšnosti. Každá návštěva editoru v mikrobiální fázi představuje [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milionů let evoluce."
 
-#: ../simulation_parameters/common/help_texts.json:119
+#: ../simulation_parameters/common/help_texts.json:131
 msgid "LOADING_TIP"
 msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
 
-#: ../simulation_parameters/common/help_texts.json:126
+#: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Vpíjenka (Didinium) a Trepka (Paramecium) jsou učebnicovým příkladem vztahu predátora a kořisti, který byl studován po celá desetiletí. A co ty, jsi Didinium nebo Paramecium? Predátor nebo kořist?"
 
-#: ../simulation_parameters/common/help_texts.json:129
+#: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Tip - Toxiny mohou být použity k odražení jiných toxinů letících na tebe, tedy pokud jsi dostatečně rychlý(á)."
 
-#: ../simulation_parameters/common/help_texts.json:132
+#: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Tip - Osmoregulace stojí 1 ATP/sek/Hex tvé buňky, každý prázdný Hex cytoplazmy generuje 5 ATP/sek, což znamená, že pokud ztrácíš ATP kvůli osmoregulaci, stačí přidat pár prázdných Hex cytoplazem nebo odstranit některé organely."
 
-#: ../simulation_parameters/common/help_texts.json:135
+#: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "Víte, že prokaryoty mají v reálném světě něco, co se nazývá biokomponenty? Ty fungují jako organely a ve skutečnosti se nazývají polyhedrální organely."
 
-#: ../simulation_parameters/common/help_texts.json:138
+#: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_5"
 msgstr "Víte, že metabolosom je to, co se nazývá Polyhedrální organela?"
 
-#: ../simulation_parameters/common/help_texts.json:141
+#: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Tip - Někdy je zkrátka lepší utéct od ostatních buněk."
 
-#: ../simulation_parameters/common/help_texts.json:144
+#: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_7"
 msgstr "Tip - Pokud je buňka zhruba poloviční velikosti, můžete ji pohltit."
 
-#: ../simulation_parameters/common/help_texts.json:147
+#: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_8"
 msgstr "Tip - Bakterie můžou být silnější než se zdá, velikostně sice nevynikají, ale některé se do tebe dovedou zabořit a zabít tě!"
 
-#: ../simulation_parameters/common/help_texts.json:150
+#: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Tip - Můžeš lovit ostatní druhy až do jejich vyhynutí, ale pokud nejsi dost opatrný(á), mohou zahubit oni tebe."
 
-#: ../simulation_parameters/common/help_texts.json:153
+#: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "VRTÍCÍ SE VĚCI!!"
 
-#: ../simulation_parameters/common/help_texts.json:156
+#: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_11"
 msgstr "Želízko k vypečení."
 
-#: ../simulation_parameters/common/help_texts.json:159
+#: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "Mrkejte na ty modrý buňky."
 
-#: ../simulation_parameters/common/help_texts.json:162
+#: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_13"
 msgstr "Tip - Biomy jsou více než různé barvy pozadí, sloučeniny se v různých biomech objevují s různou četností."
 
-#: ../simulation_parameters/common/help_texts.json:165
+#: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_14"
 msgstr "Tip - Čím více bičíků máš, tím rychleji jedeš, vroom vroom, ovšem stojí to taky víc ATP"
 
-#: ../simulation_parameters/common/help_texts.json:168
+#: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Tip - Můžeš spolknout kousky železa i jiné poživatiny."
 
-#: ../simulation_parameters/common/help_texts.json:171
+#: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_16"
 msgstr "Tip - Pořádně se před přidáním jádra připravte. Tyhle věci jsou hodně drahé! A to jak při nákupu, tak na údržbu."
 
-#: ../simulation_parameters/common/help_texts.json:174
+#: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_17"
 msgstr "Víte, že nálevníků (Ciliata) je na Zemi víc než 8000 druhů?"
 
-#: ../simulation_parameters/common/help_texts.json:177
+#: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Víte, že Mrskavka (Stentor) je nálevník, který se dokáže natáhnout a chytit kořist do úst podobné jakési trubce, která kořist přitahuje generováním vodních proudů pomocí řasinek?"
 
-#: ../simulation_parameters/common/help_texts.json:180
+#: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "Víte, že Vpíjenka (Didinum) je lovcem Trepek (Paramecia)?"
 
-#: ../simulation_parameters/common/help_texts.json:183
+#: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_20"
 msgstr "Víte, že Měnavka (Amoeba) loví a chytá kořist pomocí „nohou“, vytvořených z cytoplazmy, zvaných pseudopody? Eventuálně je chceme do Thrive přidat."
 
-#: ../simulation_parameters/common/help_texts.json:186
+#: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_21"
 msgstr "Tip: Dávej pozor na větší buňky a velké bakterie, není příliš zábavné být \"vdechnut\" a stráven."
 
-#: ../simulation_parameters/common/help_texts.json:189
+#: ../simulation_parameters/common/help_texts.json:201
 msgid "EASTEREGG_MESSAGE_22"
 msgstr "Vedoucí zvukového oddělení Thrive vytvořil spousty skladeb, které ještě nebyly přidány do hry. Můžete si je poslechnout, nebo se podívat na videa o jejich tvorbě na jeho Youtube kanálu Oliver Lugg."
 
-#: ../simulation_parameters/common/help_texts.json:192
+#: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_23"
 msgstr "Tip - Pokud je tvoje buňka velká 150 Hexů, můžeš pohltit velké železné kusy."
 
-#: ../simulation_parameters/common/help_texts.json:195
+#: ../simulation_parameters/common/help_texts.json:207
 msgid "EASTEREGG_MESSAGE_24"
 msgstr "Thrive je zamýšlen jako simulátor mimozemské planety, proto má smysl, že většina tvorů, které najdete, bude příbuzná jednomu nebo dvěma dalším druhům kvůli vývoji, který se děje kolem vás. Zkuste zjistit, jestli je můžete identifikovat!"
 
-#: ../simulation_parameters/common/help_texts.json:198
+#: ../simulation_parameters/common/help_texts.json:210
 msgid "EASTEREGG_MESSAGE_25"
 msgstr "Tým Thrive dělá občas podcasty, měl bys je tu a tam zkouknout!"
 
-#: ../simulation_parameters/common/help_texts.json:201
+#: ../simulation_parameters/common/help_texts.json:213
 msgid "EASTEREGG_MESSAGE_26"
 msgstr "Hra Thrive je zamýšlena jako simulátor mimozemské planety, proto většina organizmů, které najdeš, bude podobná jednomu nebo dvěma dalším druhům ve vývoji, který se děje kolem tebe. Zjisti, jestli je dovedeš identifikovat!"
 
-#: ../simulation_parameters/common/help_texts.json:204
+#: ../simulation_parameters/common/help_texts.json:216
 msgid "EASTEREGG_MESSAGE_27"
 msgstr "Jeden z prvních hratelných prototypů hry vytvořil náš úžasný programátor, samotný untrustedlife!"
 
@@ -367,12 +395,12 @@ msgid "ABILITIES"
 msgstr "Schopnosti"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2145
+#: ../src/microbe_stage/MicrobeStage.tscn:2182
 msgid "FIRE_TOXIN"
 msgstr "Ohnivé toxiny"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2133
+#: ../src/microbe_stage/MicrobeStage.tscn:2170
 msgid "TOGGLE_ENGULF"
 msgstr "Přepnout pohlcování"
 
@@ -381,7 +409,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2156
+#: ../src/microbe_stage/MicrobeStage.tscn:2193
 msgid "TOGGLE_BINDING"
 msgstr "Přepnout spojování"
 
@@ -390,7 +418,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Přepnout rozpojování"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2168
+#: ../src/microbe_stage/MicrobeStage.tscn:2205
 msgid "UNBIND_ALL"
 msgstr "Rozpojit všechny"
 
@@ -460,7 +488,7 @@ msgid "PAN_CAMERA_RESET"
 msgstr "Resetovat kameru"
 
 #: ../simulation_parameters/common/input_options.json:135
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:79
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:80
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Zrušit akci"
 
@@ -589,111 +617,111 @@ msgid "EPIPELAGIC"
 msgstr "Epipelagický"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:181
-#: ../simulation_parameters/microbe_stage/biomes.json:417
-#: ../simulation_parameters/microbe_stage/biomes.json:572
-#: ../simulation_parameters/microbe_stage/biomes.json:807
-#: ../simulation_parameters/microbe_stage/biomes.json:1042
-#: ../simulation_parameters/microbe_stage/biomes.json:1278
-#: ../simulation_parameters/microbe_stage/biomes.json:1433
-#: ../simulation_parameters/microbe_stage/biomes.json:1589
-#: ../simulation_parameters/microbe_stage/biomes.json:1764
-#: ../simulation_parameters/microbe_stage/biomes.json:1919
+#: ../simulation_parameters/microbe_stage/biomes.json:188
+#: ../simulation_parameters/microbe_stage/biomes.json:431
+#: ../simulation_parameters/microbe_stage/biomes.json:593
+#: ../simulation_parameters/microbe_stage/biomes.json:835
+#: ../simulation_parameters/microbe_stage/biomes.json:1077
+#: ../simulation_parameters/microbe_stage/biomes.json:1320
+#: ../simulation_parameters/microbe_stage/biomes.json:1482
+#: ../simulation_parameters/microbe_stage/biomes.json:1645
+#: ../simulation_parameters/microbe_stage/biomes.json:1827
+#: ../simulation_parameters/microbe_stage/biomes.json:1989
 msgid "FLOATING_HAZARD"
 msgstr "Plovoucí nebezpečí"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
-#: ../simulation_parameters/microbe_stage/biomes.json:199
-#: ../simulation_parameters/microbe_stage/biomes.json:435
-#: ../simulation_parameters/microbe_stage/biomes.json:590
-#: ../simulation_parameters/microbe_stage/biomes.json:825
-#: ../simulation_parameters/microbe_stage/biomes.json:1060
-#: ../simulation_parameters/microbe_stage/biomes.json:1296
-#: ../simulation_parameters/microbe_stage/biomes.json:1451
-#: ../simulation_parameters/microbe_stage/biomes.json:1607
-#: ../simulation_parameters/microbe_stage/biomes.json:1782
-#: ../simulation_parameters/microbe_stage/biomes.json:1937
+#: ../simulation_parameters/microbe_stage/biomes.json:206
+#: ../simulation_parameters/microbe_stage/biomes.json:449
+#: ../simulation_parameters/microbe_stage/biomes.json:611
+#: ../simulation_parameters/microbe_stage/biomes.json:853
+#: ../simulation_parameters/microbe_stage/biomes.json:1095
+#: ../simulation_parameters/microbe_stage/biomes.json:1338
+#: ../simulation_parameters/microbe_stage/biomes.json:1500
+#: ../simulation_parameters/microbe_stage/biomes.json:1663
+#: ../simulation_parameters/microbe_stage/biomes.json:1845
+#: ../simulation_parameters/microbe_stage/biomes.json:2007
 msgid "SMALL_IRON_CHUNK"
 msgstr "Malý kus železa"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:79
-#: ../simulation_parameters/microbe_stage/biomes.json:314
-#: ../simulation_parameters/microbe_stage/biomes.json:470
-#: ../simulation_parameters/microbe_stage/biomes.json:625
-#: ../simulation_parameters/microbe_stage/biomes.json:860
-#: ../simulation_parameters/microbe_stage/biomes.json:1095
-#: ../simulation_parameters/microbe_stage/biomes.json:1331
-#: ../simulation_parameters/microbe_stage/biomes.json:1486
-#: ../simulation_parameters/microbe_stage/biomes.json:1661
-#: ../simulation_parameters/microbe_stage/biomes.json:1817
-#: ../simulation_parameters/microbe_stage/biomes.json:1972
+#: ../simulation_parameters/microbe_stage/biomes.json:80
+#: ../simulation_parameters/microbe_stage/biomes.json:322
+#: ../simulation_parameters/microbe_stage/biomes.json:485
+#: ../simulation_parameters/microbe_stage/biomes.json:647
+#: ../simulation_parameters/microbe_stage/biomes.json:889
+#: ../simulation_parameters/microbe_stage/biomes.json:1131
+#: ../simulation_parameters/microbe_stage/biomes.json:1374
+#: ../simulation_parameters/microbe_stage/biomes.json:1536
+#: ../simulation_parameters/microbe_stage/biomes.json:1718
+#: ../simulation_parameters/microbe_stage/biomes.json:1881
+#: ../simulation_parameters/microbe_stage/biomes.json:2043
 msgid "BIG_IRON_CHUNK"
 msgstr "Velký kus železa"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:102
-#: ../simulation_parameters/microbe_stage/biomes.json:337
-#: ../simulation_parameters/microbe_stage/biomes.json:493
-#: ../simulation_parameters/microbe_stage/biomes.json:728
-#: ../simulation_parameters/microbe_stage/biomes.json:963
-#: ../simulation_parameters/microbe_stage/biomes.json:1198
-#: ../simulation_parameters/microbe_stage/biomes.json:1354
-#: ../simulation_parameters/microbe_stage/biomes.json:1509
-#: ../simulation_parameters/microbe_stage/biomes.json:1684
-#: ../simulation_parameters/microbe_stage/biomes.json:1840
-#: ../simulation_parameters/microbe_stage/biomes.json:2075
+#: ../simulation_parameters/microbe_stage/biomes.json:104
+#: ../simulation_parameters/microbe_stage/biomes.json:346
+#: ../simulation_parameters/microbe_stage/biomes.json:509
+#: ../simulation_parameters/microbe_stage/biomes.json:751
+#: ../simulation_parameters/microbe_stage/biomes.json:993
+#: ../simulation_parameters/microbe_stage/biomes.json:1235
+#: ../simulation_parameters/microbe_stage/biomes.json:1398
+#: ../simulation_parameters/microbe_stage/biomes.json:1560
+#: ../simulation_parameters/microbe_stage/biomes.json:1742
+#: ../simulation_parameters/microbe_stage/biomes.json:1905
+#: ../simulation_parameters/microbe_stage/biomes.json:2147
 #, fuzzy
 msgid "GOOGLY_EYE_CELL"
-msgstr "rychlost buňky."
+msgstr "Hráčská buňka"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:159
+#: ../simulation_parameters/microbe_stage/biomes.json:166
 msgid "VOLCANIC_VENT"
 msgstr "Vulkanický průduch"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:234
-#: ../simulation_parameters/microbe_stage/biomes.json:648
-#: ../simulation_parameters/microbe_stage/biomes.json:883
-#: ../simulation_parameters/microbe_stage/biomes.json:1118
-#: ../simulation_parameters/microbe_stage/biomes.json:1995
+#: ../simulation_parameters/microbe_stage/biomes.json:242
+#: ../simulation_parameters/microbe_stage/biomes.json:671
+#: ../simulation_parameters/microbe_stage/biomes.json:913
+#: ../simulation_parameters/microbe_stage/biomes.json:1155
+#: ../simulation_parameters/microbe_stage/biomes.json:2067
 msgid "MARINE_SNOW"
 msgstr "Mořský sníh"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:394
+#: ../simulation_parameters/microbe_stage/biomes.json:408
 msgid "TIDEPOOL"
 msgstr "Přílivové jezírko"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:550
+#: ../simulation_parameters/microbe_stage/biomes.json:571
 msgid "BATHYPELAGIC"
 msgstr "Batypelagiál (hloubka oceánu do 4000m)"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:785
+#: ../simulation_parameters/microbe_stage/biomes.json:813
 msgid "ABYSSOPELAGIC"
 msgstr "Abysopelagiál (hloubka oceánu do 6000m)"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1020
+#: ../simulation_parameters/microbe_stage/biomes.json:1055
 msgid "MESOPELAGIC"
 msgstr "Mezopelagiál (hloubka oceánu do 1000m)"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1255
+#: ../simulation_parameters/microbe_stage/biomes.json:1297
 msgid "COASTAL"
 msgstr "Pobřeží"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1411
+#: ../simulation_parameters/microbe_stage/biomes.json:1460
 msgid "UNDERWATERCAVE"
 msgstr "Podvodní jeskyně"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1566
+#: ../simulation_parameters/microbe_stage/biomes.json:1622
 msgid "ICESHELF"
 msgstr "Šelfový ledovec"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1642
+#: ../simulation_parameters/microbe_stage/biomes.json:1699
 msgid "ICESHARD"
 msgstr "Ledový střep"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1741
+#: ../simulation_parameters/microbe_stage/biomes.json:1804
 msgid "ESTUARY"
 msgstr "Ústí"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1897
+#: ../simulation_parameters/microbe_stage/biomes.json:1967
 msgid "SEA_FLOOR"
 msgstr "Mořské dno"
 
@@ -702,208 +730,229 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1298
+#: ../src/microbe_stage/MicrobeStage.tscn:1300
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Amoniak"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1350
+#: ../simulation_parameters/microbe_stage/compounds.json:32
+#: ../src/microbe_stage/MicrobeStage.tscn:1349
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Fosfát"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1402
+#: ../simulation_parameters/microbe_stage/compounds.json:47
+#: ../src/microbe_stage/MicrobeStage.tscn:1401
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sirovodík"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1246
+#: ../simulation_parameters/microbe_stage/compounds.json:62
+#: ../src/microbe_stage/MicrobeStage.tscn:1251
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Glukóza"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1584
+#: ../simulation_parameters/microbe_stage/compounds.json:77
+#: ../src/microbe_stage/MicrobeStage.tscn:1624
 msgid "OXYTOXY_NT"
 msgstr "OxyToxyn NT"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1454
+#: ../simulation_parameters/microbe_stage/compounds.json:92
+#: ../src/microbe_stage/MicrobeStage.tscn:1450
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "Železo"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:101
+#: ../simulation_parameters/microbe_stage/compounds.json:107
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:459
 msgid "OXYGEN"
 msgstr "Kyslík"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:115
+#: ../simulation_parameters/microbe_stage/compounds.json:121
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:513
 msgid "CARBON_DIOXIDE"
 msgstr "Oxid uhličitý"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:129
+#: ../simulation_parameters/microbe_stage/compounds.json:135
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:486
 msgid "NITROGEN"
 msgstr "Dusík"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
+#: ../simulation_parameters/microbe_stage/compounds.json:149
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3855
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:340
 msgid "SUNLIGHT"
 msgstr "Sluneční svit"
 
+#: ../simulation_parameters/microbe_stage/enzymes.json:3
+msgid "LIPASE"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#, fuzzy
+msgid "CELLULASE"
+msgstr "Celulóza"
+
+#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#, fuzzy
+msgid "CHITINASE"
+msgstr "Chitiny"
+
+#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/organelles.json:58
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:679
+msgid "RUSTICYANIN"
+msgstr "Rusticyanin (protein mědi)"
+
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/general/OptionsMenu.tscn:931
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2301
 msgid "NORMAL"
 msgstr "Normální"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2416
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2472
 msgid "DOUBLE"
 msgstr "Dvojitá"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2583
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2639
 msgid "CELLULOSE"
 msgstr "Celulóza"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:57
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2821
+#: ../simulation_parameters/microbe_stage/membranes.json:58
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2886
 msgid "CHITIN"
 msgstr "Chitiny"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
+#: ../simulation_parameters/microbe_stage/membranes.json:77
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3133
 msgid "CALCIUM_CARBONATE"
 msgstr "Uhličitan vápenatý"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:93
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3330
+#: ../simulation_parameters/microbe_stage/membranes.json:95
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3405
 msgid "SILICA"
 msgstr "Oxid křemičitý"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1105
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
 msgid "PREDATORY_PILUS"
 msgstr "Dravý/útočný Pilus"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:55
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:678
-msgid "RUSTICYANIN"
-msgstr "Rusticyanin (protein mědi)"
-
-#: ../simulation_parameters/microbe_stage/organelles.json:90
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:775
+#: ../simulation_parameters/microbe_stage/organelles.json:93
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:776
 msgid "NITROGENASE"
 msgstr "Nitrogenáza"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:125
+#: ../simulation_parameters/microbe_stage/organelles.json:128
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:157
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:576
+#: ../simulation_parameters/microbe_stage/organelles.json:160
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Chemosyntetizující proteiny"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:873
+#: ../simulation_parameters/microbe_stage/organelles.json:199
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:874
 msgid "OXYTOXISOME"
 msgstr "Oxytoxizom"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:231
+#: ../simulation_parameters/microbe_stage/organelles.json:234
 msgid "THYLAKOIDS"
 msgstr "Thylakoidy"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:265
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:378
+#: ../simulation_parameters/microbe_stage/organelles.json:268
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:379
 msgid "METABOLOSOMES"
 msgstr "Metabolozomy"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:303
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1824
+#: ../simulation_parameters/microbe_stage/organelles.json:306
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1825
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Plastid fixující dusík"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:342
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1739
+#: ../simulation_parameters/microbe_stage/organelles.json:345
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1740
 msgid "CHEMOPLAST"
 msgstr "Chemoplasty"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:376
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:970
+#: ../simulation_parameters/microbe_stage/organelles.json:379
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:971
 msgid "FLAGELLUM"
 msgstr "Bičík"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:405
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1923
+#: ../simulation_parameters/microbe_stage/organelles.json:408
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1924
 msgid "VACUOLE"
 msgstr "Vakuola"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:442
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1453
+#: ../simulation_parameters/microbe_stage/organelles.json:445
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
 msgid "MITOCHONDRION"
 msgstr "Mitochondrie"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:478
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2021
+#: ../simulation_parameters/microbe_stage/organelles.json:481
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxinová\n"
 "Vakuola"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:509
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1272
+#: ../simulation_parameters/microbe_stage/organelles.json:512
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
 msgid "BINDING_AGENT"
 msgstr "Pojící médium"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:551
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1538
+#: ../simulation_parameters/microbe_stage/organelles.json:554
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1539
 msgid "CHLOROPLAST"
 msgstr "Chloroplasty"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:585
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
+#: ../simulation_parameters/microbe_stage/organelles.json:588
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:280
 msgid "CYTOPLASM"
 msgstr "Cytoplazma"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:652
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1356
+#: ../simulation_parameters/microbe_stage/organelles.json:655
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
 msgid "NUCLEUS"
 msgstr "Jádro"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:678
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
+#: ../simulation_parameters/microbe_stage/organelles.json:681
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
 msgid "CHEMORECEPTOR"
 msgstr "Chemoreceptor"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2119
+#: ../simulation_parameters/microbe_stage/organelles.json:707
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2120
 #, fuzzy
 msgid "SIGNALING_AGENT"
 msgstr "Pojící médium"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:727
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
+#: ../simulation_parameters/microbe_stage/organelles.json:730
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminiscenční vakuola"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:750
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
+#: ../simulation_parameters/microbe_stage/organelles.json:753
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:780
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
+#: ../simulation_parameters/microbe_stage/organelles.json:783
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
 msgid "CILIA"
 msgstr "Řasinky"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:819
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2241
+#, fuzzy
+msgid "LYSOSOME"
+msgstr "Oxytoxizom"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 #, fuzzy
@@ -1053,7 +1102,7 @@ msgid "STEM_CELL_NAME"
 msgstr "Vlastní uživatelské jméno:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:296
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:361
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
 msgid "STRUCTURE"
 msgstr "Struktura"
 
@@ -1063,7 +1112,7 @@ msgid "REPRODUCTION"
 msgstr "Produkce ATP"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:338
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:403
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
 msgstr "Chování"
 
@@ -1094,12 +1143,12 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "reprodukováno"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1234
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1105
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ZRUŠIT AKCI"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1247
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:126
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
@@ -1175,7 +1224,7 @@ msgstr "stav:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:379
 #: ../src/general/EditorBase.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -1678,7 +1727,7 @@ msgstr "POTVRDIT"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1334
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "CLOSE"
@@ -1687,10 +1736,12 @@ msgstr "Zavřít"
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:567
 #: ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/MicrobeHUD.cs:745
+#: ../src/microbe_stage/MicrobeHUD.cs:760
+#: ../src/microbe_stage/MicrobeHUD.cs:1216
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:275
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:276
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:236
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -2449,7 +2500,7 @@ msgid "STATISTICS"
 msgstr "Statistiky"
 
 #: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/MicrobeStage.tscn:1696
+#: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Nápověda"
 
@@ -2737,21 +2788,21 @@ msgstr "Uložená hra má jinou verzi"
 msgid "SELECT_OPTION"
 msgstr "Vybráno:"
 
-#: ../src/gui_common/TweakedColourPicker.cs:394
+#: ../src/gui_common/TweakedColourPicker.cs:388
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "Zvolte barvu z herního okna"
 
-#: ../src/gui_common/TweakedColourPicker.cs:395
+#: ../src/gui_common/TweakedColourPicker.cs:389
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr "Přidat současnou barvu jako předvolbu"
 
-#: ../src/gui_common/TweakedColourPicker.cs:396
+#: ../src/gui_common/TweakedColourPicker.cs:390
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 "Přepnout režim HSV (Odstín, Saturace, Jas).\n"
 "Nemůže být zapnuto v režimu RAW."
 
-#: ../src/gui_common/TweakedColourPicker.cs:397
+#: ../src/gui_common/TweakedColourPicker.cs:391
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 "Přepnout režim RAW.\n"
@@ -2759,35 +2810,35 @@ msgstr ""
 "nastavit nad úroveň 1.0.\n"
 "Nelze spustit v režimu HSV."
 
-#: ../src/gui_common/TweakedColourPicker.cs:401
+#: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Odstín"
 
-#: ../src/gui_common/TweakedColourPicker.cs:402
+#: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Saturace (sytost)"
 
-#: ../src/gui_common/TweakedColourPicker.cs:403
+#: ../src/gui_common/TweakedColourPicker.cs:397
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Jas (intenzita barvy)"
 
-#: ../src/gui_common/TweakedColourPicker.cs:407
+#: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Hodnota červeného kanálu barvy"
 
-#: ../src/gui_common/TweakedColourPicker.cs:408
+#: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Hodnota zeleného kanálu barvy"
 
-#: ../src/gui_common/TweakedColourPicker.cs:409
+#: ../src/gui_common/TweakedColourPicker.cs:403
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Hodnota modrého kanálu barvy"
 
-#: ../src/gui_common/TweakedColourPicker.cs:412
+#: ../src/gui_common/TweakedColourPicker.cs:406
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Hodnota alfa kanálu barvy"
 
-#: ../src/gui_common/TweakedColourPicker.cs:587
+#: ../src/gui_common/TweakedColourPicker.cs:581
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 "Barva: {0}\n"
@@ -2805,8 +2856,8 @@ msgstr "RAW"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2054
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2066
 msgid "N_A"
 msgstr "N/A"
 
@@ -2848,7 +2899,7 @@ msgid "SLIDESHOW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2192
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
 msgid "NO_DATA_TO_SHOW"
 msgstr "Žádná data k zobrazení"
 
@@ -2905,83 +2956,83 @@ msgstr "Protanopie (Červená-Zelená)"
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:16
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:52
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:252
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:55
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:255
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutoriál"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:47
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:48
 msgid "OPEN_THE_MENU"
 msgstr "Otevřít menu"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:53
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
 msgstr "Otevřít nápovědu"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:67
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:68
 msgid "WILL_YOU_THRIVE"
 msgstr "Budete prosperovat?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:84
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:85
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Dokončit úpravy a vrátit se do prostředí"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:90
 #, fuzzy
 msgid "NEXT_EDITOR_TAB"
 msgstr "Zapnout editor"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:95
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:96
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Změnit symetrii"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:101
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Vrátit zpět poslední akci"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:107
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Zopakovat poslední akci zpět"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:113
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:114
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Vytvořit nového mikroba"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:119
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Náhodné jméno druhu"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Tuhost membrány"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:130
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Pevnější membrána je odolnější vůči poškození, ale ztěžuje pohyb buňky."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:158
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2275
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2613
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2851
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3087
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3360
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:159
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2331
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2669
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2916
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3161
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3435
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Pohyblivost"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:193
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2378
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2546
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2716
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2954
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3190
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3463
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:194
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2434
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2602
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2772
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3019
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3264
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3538
 msgid "HEALTH"
 msgstr "Zdraví"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:232
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:233
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 "Agresivní mikrobi budou pronásledovat kořist na větší vzdálenosti\n"
@@ -2989,14 +3040,14 @@ msgstr ""
 "Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
 "a je méně pravděpodobné, že budou používat toxiny proti predátorům."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:240
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:241
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 "Oportunističtí mikrobi budou soupeřit s konkurenty o kousky\n"
 "a pokud se jim nepodaří kořist pohltit, pokusí se ji ulovit pomocí toxinů.\n"
 "Opatrní mikrobi by se nemuseli vystavovat nebezpečí kvůli kouskům."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:248
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:249
 msgid "FEAR_EXPLANATION"
 msgstr ""
 "Bojácní mikrobi prchají na větší vzdálenosti\n"
@@ -3004,322 +3055,348 @@ msgstr ""
 "Odvážní mikrobi se nenechají zastrašit blízkými predátory \n"
 "a spíše zaútočí zpět."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:256
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:257
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Aktivní mikrobi se rozběhnou, když se nic zajímavého neděje.\n"
 "Přisedlé mikroby jsou nehybné a čekají na změnu prostředí, než začnou jednat."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:264
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:265
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 "Soustředění mikrobi budou hledat kousky nebo kořist na větší vzdálenosti \n"
 "a mohou být mnohem náročnější na kusy.\n"
 "Reagující mikroby se dříve přepnou na nové cíle."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:280
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:281
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:281
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:282
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "Lepkavé vnitřnosti buňky. Cytoplazma je základní směs iontů, bílkovin a dalších látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jednou z funkcí, kterou provádí, je glykolýza, přeměna glukózy na energii ATP. Aby buňky, které postrádají organely, měly pokročilejší metabolismus, spoléhají právě na tuto energii. Používá se také k ukládání molekul v buňce a ke zvětšení velikosti buňky."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:298
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:401
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:498
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:600
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:697
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:794
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:892
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1027
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1286
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1375
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1468
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1553
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1653
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1754
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1844
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2041
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2139
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:299
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:402
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:499
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:601
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:698
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1028
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1287
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1376
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1469
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1554
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1654
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1755
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2042
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2140
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2272
 msgid "STORAGE"
 msgstr "Úložný prostor"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:336
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:439
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:638
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:832
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:930
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1065
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1125
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1240
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1413
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1506
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1591
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1792
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1981
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2079
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2177
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2310
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2480
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2648
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2886
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3122
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3395
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:337
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:440
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:537
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:639
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:736
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:833
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:931
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1066
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1126
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1186
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1241
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1414
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1592
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1692
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1793
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1883
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1982
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2178
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2282
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2366
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2536
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2704
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2951
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3196
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3470
 msgid "OSMOREGULATION_COST"
 msgstr "Náklady na osmoregulaci"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:379
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"]kyslíku[/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:381
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Metabolozomy jsou shluky proteinů zabalené do proteinových obalů. Jsou schopni přeměnit glukózu na ATP mnohem vyšší rychlostí, než jakou lze provést v cytoplazmě v procesu zvaném Aerobní dýchání. Vyžaduje však kyslík, aby fungoval, a nižší hladiny kyslíku v prostředí zpomalí rychlost jeho produkce ATP. Jelikož jsou metabolozomy suspendovány přímo v cytoplazmě, okolní tekutina provádí určitou glykolýzu."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:479
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:480
 msgid "THYLAKOID"
 msgstr "Thylakoidy"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:480
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound] glukózu. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] oxidu uhličitého a intenzitě [thrive:compound type=\"sunlight\"][/thrive:compound] světla."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:482
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Thylakoidy jsou shluky proteinů a fotocitlivých pigmentů. Pigmenty jsou schopné využívat energii světla k výrobě glukózy z vody a plynného oxidu uhličitého v procesu zvaném fotosyntéza. Tyto pigmenty jim také dodávají výraznou barvu. Rychlost jejich produkce glukózy se mění s koncentrací oxidu uhličitého a intenzitou světla. Vzhledem k tomu, že thylakoidy jsou suspendovány přímo v cytoplazmě, okolní tekutina provádí určitou glykolýzu."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:578
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] na [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Také přeměňuje [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:578
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:579
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Chemosyntetizující proteiny jsou malé shluky proteinů v cytoplazmě, které jsou schopné přeměňovat sirovodík, vodu a plynný oxid uhličitý na glukózu v procesu zvaném Chemosyntéza sirovodíku. Rychlost jeho produkce glukózy se mění s koncentrací oxidu uhličitého. Protože chemosyntetizující proteiny jsou suspendovány přímo v cytoplazmě, okolní tekutina provádí určitou glykolýzu."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:679
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:680
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"iron\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:680
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:681
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyanin je protein schopný využívat plynný oxid uhličitý a kyslík k oxidaci železa z jednoho chemického stavu na jiný. Tento proces, nazývaný respirace železa, uvolňuje energii, kterou pak může buňka sklízet."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:776
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:777
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:777
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:778
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "Nitrogenáza je protein schopný využívat plynný dusík a buněčnou energii ve formě ATP k produkci amoniaku, klíčové růstové živiny pro buňky. Toto je proces označovaný jako anaerobní fixace dusíku. Jelikož je dusík suspendován přímo v cytoplazmě, okolní tekutina do určité míry provádí glykolýzu."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:874
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:875
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny mohou být uvolněny stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:875
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:876
 msgid "OXYTOXISOME_DESC"
 msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:971
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Využívá [thrive:compound type=\"atp\"][/thrive:compound] ke zvýšení rychlosti pohybu buňky."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:973
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "Bičík (množné číslo bičíky) je svazek proteinových vláken, který vychází z buněčné membrány a může se pomocí ATP vlnit a pohánět buňku v určitém směru. Pozice bičíku určuje směr, ve kterém je rychlost buňky ovlivněna. Například bičík umístěný na levé straně buňky zvýší její rychlost pohybu doprava."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:989
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:990
 msgid "SPEED"
 msgstr "Rychlost"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Tímto bodneš ostatní buňky."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1108
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Pily (v jednotném čísle: pilus) se nacházejí na povrchu mnoha mikroorganismů a připomínají jemné chloupky. Na povrchu mikroorganismu se mohou nacházet desítky až stovky pilusů, které slouží k několika účelům, včetně predátorské role. Patogenní mikroorganismy využívají pili k virulenci buď k přichycení a vazbě na tkáně hostitele, nebo k proniknutí přes vnější membránu a získání přístupu do cytoplazmy. Existuje mnoho podobných pili, které však nejsou evolučně příbuzné a vznikly konvergentní evolucí. Jeden organismus může mít schopnost exprimovat několik typů pili a ty, které jsou přítomny na povrchu, se neustále mění a nahrazují."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Chemoreceptor umožňuje detekovat sloučeniny z větší vzdálenosti. Po umístění upravte výběr typu sloučeniny a barvu naváděcí čáry."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1168
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Všechny buňky \"vidí\" pouze prostřednictvím chemorecepce. Tímto způsobem buňky získávají informace o svém okolí. Přidání této organely představuje vývoj jemnější chemorecepce. Protože hráč získá zrak i ve fázi buněk, je to znázorněno čárou směřující mimo viditelnou oblast obrazovky a ukazující blízké sloučeniny, které hráč ještě nemohl vidět."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1228
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
 msgstr "Lepkavé vnitřnosti buňky. Cytoplazma je základní směs iontů, bílkovin a dalších látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jednou z funkcí, kterou provádí, je glykolýza, přeměna glukózy na energii ATP. Aby buňky, které postrádají organely, měly pokročilejší metabolismus, spoléhají právě na tuto energii. Používá se také k ukládání molekul v buňce a ke zvětšení velikosti buňky."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Stiskněte [thrive:input]g_toggle_binding[/thrive:input] pro zapnutí spojovacího režimu. Ve spojovacím režimu můžete spojit svou buňku s jinými buňkami stejného druhu tím, že do nich narazíte. Pro opuštění kolonie stiskněte [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1275
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Umožňuje spojení s ostatními buňkami. Toto je první krůček k mnohobuněčnému organismu. Když je vaše buňka součástí kolonie, sloučeniny jsou sdíleny mezi členy. Když jste součástí kolonie, nemůžete vstoupit do editoru a musíte se po nasbírání dostatečného množství od kolonie oddělit."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1358
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Umožňuje vývoj složitějších, membránově vázaných organel. Stojí hodně ATP k údržbě. Tento proces je nevratný."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1358
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1359
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Definující rys eukaryotických buněk. Jádro také zahrnuje endoplazmatické retikulum a golgiho aparát. Jde o evoluci prokaryotických buněk, které vyvinuly systém vnitřních membrán, a to provedením asimilace dalšího prokaryota uvnitř sebe. To jim umožňuje rozdělit nebo odvrátit různé procesy probíhající uvnitř buňky a zabránit jim v překrývání. To umožňuje, aby jejich nové organely vázané na membránu byly mnohem složitější, účinnější a specializovanější, než kdyby volně plovaly v cytoplazmě. To však přichází za cenu toho, že se buňka zvětší a vyžaduje mnoho energie, aby se udržovala."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1456
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "Elektrárna buňky. Mitochondrie je dvojitá membránová struktura plná proteinů a enzymů. Jedná se o prokaryot, který byl asimilován pro použití svým eukaryotickým hostitelem. Je schopen přeměnit glukózu na ATP s mnohem vyšší účinností, než je možné v cytoplazmě v procesu zvaném Aerobní dýchání. Vyžaduje však kyslík, aby fungoval, a nižší hladiny kyslíku v prostředí zpomalí rychlost jeho produkce ATP."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1539
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1540
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzitě [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1540
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1541
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "Chloroplast je dvojitá membránová struktura obsahující fotocitlivé pigmenty složené dohromady v membránových vacích. Jedná se o prokaryot, který byl asimilován pro použití svým eukaryotickým hostitelem. Pigmenty v chloroplastech jsou schopné využívat energii světla k výrobě glukózy z vody a plynného oxidu uhličitého v procesu zvaném fotosyntéza. Tyto pigmenty mu také dodávají výraznou barvu. Rychlost jeho produkce glukózy se mění s koncentrací oxidu uhličitého a intenzitou světla."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a teplotě."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1626
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Termoplast dosud není implementován. Termoplast je dvojitá membránová struktura obsahující termosenzitivní pigmenty naskládané dohromady v membránových vacích. Jedná se o prokaryot, který byl asimilován pro použití svým eukaryotickým hostitelem. Pigmenty v termoplastu jsou schopné využívat energii tepelných rozdílů v okolí k výrobě glukózy z vody a plynného oxidu uhličitého v procesu zvaném termosyntéza. Rychlost jeho produkce glukózy se mění s koncentrací oxidu uhličitého a teplotou."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1642
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1643
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:212
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Neprobíhají žádné procesy"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1726
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
-#: ../src/microbe_stage/MicrobeHUD.cs:1539
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1727
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2220
+#: ../src/microbe_stage/MicrobeHUD.cs:1608
 msgid "TO_BE_IMPLEMENTED"
 msgstr "K implementaci."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1740
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1741
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] na [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1741
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1742
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "Chemoplast je dvojitá membránová struktura obsahující proteiny schopné přeměňovat sirovodík, vodu a plynný oxid uhličitý na glukózu v procesu zvaném chemosyntéza sirovodíku. Rychlost jeho produkce glukózy se mění s koncentrací oxidu uhličitého."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1825
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1827
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid (plastid fixující dusík) je protein schopný využívat plynný dusík a kyslík a buněčnou energii ve formě ATP k produkci amoniaku, klíčové růstové živiny pro buňky. Toto je proces označovaný jako aerobní fixace dusíku."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1924
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1925
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Zvyšuje úložný prostor buňky."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1925
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1926
 msgid "VACUOLE_DESCRIPTION"
 msgstr "Vakuola je vnitřní membránová organela používaná pro skladování v buňce. Skládají se z několika vezikul, menších membránových struktur široce používaných v buňkách pro skladování, které se spojily. Je naplněna vodou, která obsahuje molekuly, enzymy, pevné látky a další látky. Jejich tvar je tekutý a může se mezi buňkami lišit."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2023
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny můžete vypustit stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2023
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2024
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2120
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2121
 #, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Stiskněte [thrive:input]g_toggle_binding[/thrive:input] pro zapnutí spojovacího režimu. Ve spojovacím režimu můžete spojit svou buňku s jinými buňkami stejného druhu tím, že do nich narazíte. Pro opuštění kolonie stiskněte [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2121
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2122
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Umožňuje spojení s ostatními buňkami. Toto je první krůček k mnohobuněčnému organismu. Když je vaše buňka součástí kolonie, sloučeniny jsou sdíleny mezi členy. Když jste součástí kolonie, nemůžete vstoupit do editoru a musíte se po nasbírání dostatečného množství od kolonie oddělit."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2246
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2242
+#, fuzzy
+msgid "LYSOSOME_PROCESSES_DESCRIPTION"
+msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny mohou být uvolněny stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2243
+#, fuzzy
+msgid "LYSOSOME_DESCRIPTION"
+msgstr "Metabolozomy jsou shluky proteinů zabalené do proteinových obalů. Jsou schopni přeměnit glukózu na ATP mnohem vyšší rychlostí, než jakou lze provést v cytoplazmě v procesu zvaném Aerobní dýchání. Vyžaduje však kyslík, aby fungoval, a nižší hladiny kyslíku v prostředí zpomalí rychlost jeho produkce ATP. Jelikož jsou metabolozomy suspendovány přímo v cytoplazmě, okolní tekutina provádí určitou glykolýzu."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2257
+#, fuzzy
+msgid "DIGESTION_SPEED"
+msgstr "Rychlost absorpce zdrojů"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2263
+msgid "DIGESTION_EFFICIENCY"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2302
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "Nejzákladnější forma membrány, má malou ochranu proti poškození. Potřebuje také více energie, aby se nedeformovala. Výhodou je, že umožňuje buňce pohybovat se a rychle absorbovat živiny."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2344
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2513
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2682
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2920
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3156
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3429
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2400
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2569
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2738
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2985
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3230
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3504
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Rychlost absorpce zdrojů"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2417
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2473
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membrána se dvěma vrstvami má lepší ochranu proti poškození a potřebuje méně energie k zabránění deformace. Avšak zpomaluje buňku a snižuje rychlost, kterou může absorbovat zdroje."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2640
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má stěnu, což vede k lepší ochraně před celkovým poškozením a zejména před fyzickým poškozením. Rovněž stojí méně energie, aby si udrželo svoji formu, ale nedokáže rychle absorbovat zdroje a je pomalejší."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2750
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3224
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3497
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2806
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3298
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3572
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fyzická odolnost"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2784
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3022
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3292
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3565
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2840
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3087
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3366
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3640
 msgid "CANNOT_ENGULF"
 msgstr "Nedokáže pohlcovat"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2872
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3119
+msgid "INVULNERABLE_TO_ENGULFMENT"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2887
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má stěnu, což znamená, že má lepší ochranu před celkovým poškozením a zejména před poškozením toxiny. Udržení formy také stojí méně energie, ale je pomalejší a nedokáže rychle absorbovat zdroje."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2988
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3531
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3053
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3332
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3606
 msgid "TOXIN_RESISTANCE"
 msgstr "Rezistence vůči toxinům"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3060
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3134
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má silnou skořápku vyrobenou z uhličitanu vápenatého. Může snadno odolat poškození a vyžaduje méně energie, aby se nedeformovalo. Nevýhody takové těžké skořápky spočívají v tom, že buňka je mnohem pomalejší a chvíli trvá, než absorbuje zdroje."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3331
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3406
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má silnou křemičitou stěnu. Dokáže dobře odolat celkovému poškození a je velmi odolný proti fyzickému poškození. Pro udržení své formy vyžaduje také méně energie. Avšak velice zpomaluje buňku a buňka absorbuje zdroje sníženou rychlostí."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3818
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3748
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3824
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Tato hodnota se aplikuje pouze na nové hry započaté až po změně"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3754
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3830
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Povolí blikající efekty na uživatelském rozhraní (např. blikání tlačítka editoru)\n"
@@ -3327,40 +3404,40 @@ msgstr ""
 "Pokud se objeví problém, kdy část tlačítka editoru mizí,\n"
 "zkuste tuto možnost vypnout."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3760
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3836
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Není možné automaticky detekovat, jestli je hyperthreading povolen nebo ne.\n"
 "To ovlivňuje výchozí počet vláken, protože hyperthreading vlákna nejsou tak rychlá jako skutečná jádra CPU."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3765
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3841
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Povoluje / zakazuje vyskakovací okno s upozorněním na neuložený postup, když se hráč pokusí ukončit hru."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3850
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
 msgid "TEMPERATURE"
 msgstr "Teplota"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:604
-msgid "DEATH"
-msgstr "smrt"
-
-#: ../src/microbe_stage/Microbe.Contact.cs:734
+#: ../src/microbe_stage/Microbe.Contact.cs:709
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "úspěšné prohledání"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:741
+#: ../src/microbe_stage/Microbe.Contact.cs:716
 msgid "SUCCESSFUL_KILL"
 msgstr "úspěšné zabití"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:979
+#: ../src/microbe_stage/Microbe.Contact.cs:895
+msgid "DEATH"
+msgstr "smrt"
+
+#: ../src/microbe_stage/Microbe.Contact.cs:1144
 msgid "ESCAPE_ENGULFING"
 msgstr "uniknout pohlcení"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:780
+#: ../src/microbe_stage/Microbe.Interior.cs:860
 msgid "REPRODUCED"
 msgstr "reprodukováno"
 
@@ -3390,132 +3467,136 @@ msgstr "Duplicitní hráč"
 msgid "SPAWN_ENEMY"
 msgstr "Spawni nepřítele"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:557
+#: ../src/microbe_stage/MicrobeHUD.cs:572
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:558
+#: ../src/microbe_stage/MicrobeHUD.cs:573
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:559
+#: ../src/microbe_stage/MicrobeHUD.cs:574
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:560
+#: ../src/microbe_stage/MicrobeHUD.cs:575
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:561
+#: ../src/microbe_stage/MicrobeHUD.cs:576
 #, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Pojící médium"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:564
+#: ../src/microbe_stage/MicrobeHUD.cs:579
 #, fuzzy
 msgid "SIGNAL_TO_EMIT"
 msgstr "Pojící médium"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:827
+#: ../src/microbe_stage/MicrobeHUD.cs:848
 msgid "PAUSE_PROMPT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:941
+#: ../src/microbe_stage/MicrobeHUD.cs:962
 msgid "STUFF_AT"
 msgstr "Věc v {0: F1}, {1: F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:974
+#: ../src/microbe_stage/MicrobeHUD.cs:995
 msgid "PLAYER_CELL"
 msgstr "Hráčská buňka"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:991
+#: ../src/microbe_stage/MicrobeHUD.cs:1012
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1036
+#: ../src/microbe_stage/MicrobeHUD.cs:1057
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "hojnost"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1038
+#: ../src/microbe_stage/MicrobeHUD.cs:1059
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "docela dost"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1040
+#: ../src/microbe_stage/MicrobeHUD.cs:1061
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "dostatečné množství"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1042
+#: ../src/microbe_stage/MicrobeHUD.cs:1063
 msgid "CATEGORY_SOME"
 msgstr "něco"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1044
+#: ../src/microbe_stage/MicrobeHUD.cs:1065
 msgid "CATEGORY_LITTLE"
 msgstr "málo"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1046
+#: ../src/microbe_stage/MicrobeHUD.cs:1067
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "velmi málo"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1304
-#: ../src/microbe_stage/MicrobeStage.tscn:1763
+#: ../src/microbe_stage/MicrobeHUD.cs:1213
+msgid "DEVOURED"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:1373
+#: ../src/microbe_stage/MicrobeStage.tscn:1803
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1340
-#: ../src/microbe_stage/MicrobeStage.tscn:1774
+#: ../src/microbe_stage/MicrobeHUD.cs:1409
+#: ../src/microbe_stage/MicrobeStage.tscn:1814
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:815
+#: ../src/microbe_stage/MicrobeStage.cs:831
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč se rozmnožil"
 
-#: ../src/microbe_stage/MicrobeStage.cs:829
+#: ../src/microbe_stage/MicrobeStage.cs:845
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Nemůžete použít cheat spawnout nepřítele, protože se v této oblasti se nevyskytují nepřátelské druhy"
 
-#: ../src/microbe_stage/MicrobeStage.cs:852
+#: ../src/microbe_stage/MicrobeStage.cs:868
 msgid "PLAYER_DIED"
 msgstr "hráč zemřel"
 
-#: ../src/microbe_stage/MicrobeStage.cs:968
+#: ../src/microbe_stage/MicrobeStage.cs:1003
 #, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "Vyhynul v této oblasti"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:518
+#: ../src/microbe_stage/MicrobeStage.tscn:523
 msgid "AT_CURSOR"
 msgstr "Na kurzoru:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:544
+#: ../src/microbe_stage/MicrobeStage.tscn:549
 msgid "NOTHING_HERE"
 msgstr "Nic zde není"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:569
+#: ../src/microbe_stage/MicrobeStage.tscn:574
 msgid "COMPOUNDS_COLON"
 msgstr "Sloučeniny:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:609
+#: ../src/microbe_stage/MicrobeStage.tscn:614
 msgid "SPECIES_COLON"
 msgstr "Druh:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:686
+#: ../src/microbe_stage/MicrobeStage.tscn:691
 msgid "ENVIRONMENT"
 msgstr "Životní prostředí"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:954
+#: ../src/microbe_stage/MicrobeStage.tscn:959
 msgid "TEMPERATURE_SHORT"
 msgstr "Teplota."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1010
+#: ../src/microbe_stage/MicrobeStage.tscn:1015
 msgid "LIGHT"
 msgstr "Světlo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1065
+#: ../src/microbe_stage/MicrobeStage.tscn:1070
 msgid "PRESSURE_SHORT"
 msgstr "Tlak"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1148
+#: ../src/microbe_stage/MicrobeStage.tscn:1153
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
@@ -3523,48 +3604,52 @@ msgstr "Tlak"
 msgid "COMPOUNDS"
 msgstr "Sloučeniny"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1524
+#: ../src/microbe_stage/MicrobeStage.tscn:1500
+msgid "INGESTED_MATTER"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1564
 msgid "AGENTS"
 msgstr "Činidlo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1622
+#: ../src/microbe_stage/MicrobeStage.tscn:1662
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1635
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "PAUSE_TOOLTIP"
 msgstr "Pozastavit hru"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1636
+#: ../src/microbe_stage/MicrobeStage.tscn:1676
 msgid "RESUME_TOOLTIP"
 msgstr "Pokračovat"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1644
+#: ../src/microbe_stage/MicrobeStage.tscn:1684
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt prostředí a sloučeniny"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1659
+#: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt procesy buňky"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1708
+#: ../src/microbe_stage/MicrobeStage.tscn:1748
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Spáchat sebevraždu"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1759
+#: ../src/microbe_stage/MicrobeStage.tscn:1799
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1794
+#: ../src/microbe_stage/MicrobeStage.tscn:1834
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACE:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1945
+#: ../src/microbe_stage/MicrobeStage.tscn:1982
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2091
+#: ../src/microbe_stage/MicrobeStage.tscn:2128
 msgid "PAUSED"
 msgstr ""
 
@@ -3621,195 +3706,209 @@ msgstr "Reagující"
 msgid "FOCUSED"
 msgstr "Soustředěnost"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:372
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:165
+msgid "DIGESTION_SPEED_VALUE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:285
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
 msgid "ATP_PRODUCTION"
 msgstr "Produkce ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:291
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "VÝROBA ATP JE PŘÍLIŠ NÍZKÁ!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:402
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:320
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:422
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:340
 msgid "OSMOREGULATION"
 msgstr "Osmoregulace"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:428
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:346
 msgid "BASE_MOVEMENT"
 msgstr "Základní pohyb"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:440
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:358
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:524
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:512
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1175
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1160
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1177
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1162
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
-#, fuzzy
-msgid "FAILED"
-msgstr "Chyba ukládání"
-
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2046
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2048
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2060
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2160
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie v {0} pro {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Celková získaná energie je {0} s individuálními náklady {1}, což vede k nekorigované populaci {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2171
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "ENERGY_SOURCES"
 msgstr "Zdroje energie:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2177
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} energie: {1} (fitness: {2}) celková dostupná energie: {3} (celková zdatnost: {4})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:382
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:380
 msgid "MEMBRANE"
 msgstr "Membrána"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:453
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Vyhledat..."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:462
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:460
 msgid "STRUCTURAL"
 msgstr "Strukturální"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:471
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
 msgid "PROTEINS"
 msgstr "Bílkoviny"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:480
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:478
 msgid "EXTERNAL"
 msgstr "Povrchové"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:489
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:487
 msgid "ORGANELLES"
 msgstr "Organely"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:530
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:528
 msgid "MEMBRANE_TYPES"
 msgstr "Typy membrán"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:548
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:546
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Tekutost / Tuhost"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:568
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:566
 msgid "FLUID"
 msgstr "Tekutina"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:581
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:579
 msgid "RIGID"
 msgstr "Tuhé"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:614
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:612
 msgid "COLOUR"
 msgstr "Barva"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:682
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:680
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika organizmu"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:726
 msgid "SPEED_COLON"
 msgstr "Rychlost:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:732
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "Celková populace:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:805
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:738
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:835
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "SIZE_COLON"
 msgstr "Velikost:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:865
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:750
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "Úložný prostor"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:886
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
+#, fuzzy
+msgid "DIGESTION_SPEED_COLON"
+msgstr "Rychlost:"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
+#, fuzzy
+msgid "DIGESTION_EFFICIENCY_COLON"
+msgstr "Popis je příliš dlouhý"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 msgid "GENERATION_COLON"
 msgstr "Generace:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:928
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:819
 msgid "ATP_BALANCE"
 msgstr "ATP Balanc"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1041
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:932
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Tento panel ukazuje očekávané počty populací z auto-evo pro editované druhy.\n"
 "Auto-evo provádí simulaci populace, což je další část (kromě vašeho vlastního výkonu), která ovlivňuje vaši populaci."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1045
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1281
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:936
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1152
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo předpověď"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1053
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:944
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Zobrazit podrobné informace o předpovědi"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1123
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1000
+#, fuzzy
+msgid "FAILED"
+msgstr "Chyba ukládání"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1006
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Celková populace:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1147
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1018
 msgid "BEST_PATCH_COLON"
 msgstr "Nejlepší oblast:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1172
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 msgid "WORST_PATCH_COLON"
 msgstr "Nejhorší oblast:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1127
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Záporný balanc ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1257
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1128
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Tvůj mikrob NEPRODUKUJE dostatek ATP, aby přežil!\n"
 "Chceš pokračovat?"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1263
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1134
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Odpojené organely"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1265
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1136
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Jsou zde umístěny organely, které nejsou spojeny se zbytkem.\n"
 "Propoj všechny umístěné organely navzájem nebo zruš změny."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1196
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Na tomto panelu jsou zobrazena čísla, na jejichž základě funguje predikce auto-evo. Celková energie, kterou je druh schopen zachytit, a náklady na jednoho jedince druhu určují konečnou populaci. Auto-evo používá zjednodušený model reality k výpočtu toho, jak dobře si druhy vedou na základě energie, kterou jsou schopny nasbírat. U každého zdroje potravy je zobrazeno, kolik energie z něj druh získá. Kromě toho je zobrazena celková energie, která je z daného zdroje k dispozici. Podíl, který druh získá z celkové energie, je založen na tom, jak velké je jeho fitness v porovnání s celkovým fitness. Fitness je měřítkem toho, jak dobře dokáže druh daný zdroj potravy využít."
 
@@ -3988,6 +4087,26 @@ msgstr "Minimální množství k detekci:"
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:82
 msgid "LINE_COLOUR"
 msgstr "Barva čáry:"
+
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
+#, fuzzy
+msgid "LIPASE_DESCRIPTION"
+msgstr "Lepkavé vnitřnosti buňky. Cytoplazma je základní směs iontů, bílkovin a dalších látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jednou z funkcí, kterou provádí, je glykolýza, přeměna glukózy na energii ATP. Aby buňky, které postrádají organely, měly pokročilejší metabolismus, spoléhají právě na tuto energii. Používá se také k ukládání molekul v buňce a ke zvětšení velikosti buňky."
+
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
+#, fuzzy
+msgid "CELLULASE_DESCRIPTION"
+msgstr "Vakuola je vnitřní membránová organela používaná pro skladování v buňce. Skládají se z několika vezikul, menších membránových struktur široce používaných v buňkách pro skladování, které se spojily. Je naplněna vodou, která obsahuje molekuly, enzymy, pevné látky a další látky. Jejich tvar je tekutý a může se mezi buňkami lišit."
+
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
+#, fuzzy
+msgid "CHITINASE_DESCRIPTION"
+msgstr "Lepkavé vnitřnosti buňky. Cytoplazma je základní směs iontů, bílkovin a dalších látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jednou z funkcí, kterou provádí, je glykolýza, přeměna glukózy na energii ATP. Aby buňky, které postrádají organely, měly pokročilejší metabolismus, spoléhají právě na tuto energii. Používá se také k ukládání molekul v buňce a ke zvětšení velikosti buňky."
+
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
+#, fuzzy
+msgid "SELECT_ENZYME"
+msgstr "Vybraný mod:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 msgid "MODIFY_ORGANELLE"
@@ -5010,7 +5129,7 @@ msgstr ""
 "\n"
 "Jednou z možných strategií je zůstat jedním šestiúhelníkem cytoplazmy a před pořízením organel pro fotosyntézu zamířit jen k povrchovým oblastem."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:54
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:57
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, což vedlo k vývoji nového fenoménu ve vesmíru.\n"
@@ -5021,30 +5140,30 @@ msgstr ""
 "\n"
 "Abys v tomto nepřátelském světě přežil/a, budeš muset shromáždit všechny možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly ostatním druhům mikrobů."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:100
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:103
 #, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Zobrazit tutoriál"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:112
 msgid "BEGIN_THRIVING"
 msgstr "Začít prosperovat"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:125
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Chceš-li ovládat buňku, použij klávesy zobrazené v blízkosti buňky (střed obrazovky) a myš pro ovládání orientace buňky.\n"
 "\n"
 "Chceš-li pokračovat, vyzkoušejte na několik sekund všechny klávesy."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:184
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:187
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Sbírej glukózu (bílé mraky) pohybem na ní.\n"
 "Tvoje buňka potřebuje glukózu, aby mohla vyrábět energii a zůstala naživu.\n"
 "Následuj čáru vedoucí z tvé buňky do blízké glukózy."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:195
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:198
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Dávej pozor na svou zdravotní lištu vedle lišty ATP (vpravo dole).\n"
@@ -5052,14 +5171,14 @@ msgstr ""
 "Regenerace zdraví probíhá za předpokladu, že máš dostatek ATP.\n"
 "Nezapomeň shromáždit dostatek glukózy k produkci ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:206
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Aby ses mohl/a rozmnožovat, musíš duplikovat všechny své organely shromážděním dostatečného množství amoniaku a fosfátů.\n"
 "Podívej se na indikátor v pravém dolním rohu a uvidíš, kolik toho ještě potřebuješ."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:224
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -5069,7 +5188,7 @@ msgstr ""
 "\n"
 "Pro spuštění editoru stiskni blikající tlačítko editoru vpravo dole."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -5077,7 +5196,7 @@ msgstr ""
 "\n"
 "K rozpuštění kolonie klikni na svou buňku nebo stiskni klávesu pro odpojení všech."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:256
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
@@ -5085,10 +5204,34 @@ msgstr ""
 "\n"
 "Ještě jedna rada: pohled můžete zvětšit pomocí kolečka myši."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutoriál"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
+msgstr ""
+"Vstoupil(a) jsi do odpojovacího módu. V tomto módu můžeš kliknout na členy kolonie, čímž je odpojíš.\n"
+"\n"
+"K rozpuštění kolonie klikni na svou buňku nebo stiskni klávesu pro odpojení všech."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
+msgstr ""
+"Vstoupil(a) jsi do odpojovacího módu. V tomto módu můžeš kliknout na členy kolonie, čímž je odpojíš.\n"
+"\n"
+"K rozpuštění kolonie klikni na svou buňku nebo stiskni klávesu pro odpojení všech."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
+msgstr ""
+"Vstoupil(a) jsi do odpojovacího módu. V tomto módu můžeš kliknout na členy kolonie, čímž je odpojíš.\n"
+"\n"
+"K rozpuštění kolonie klikni na svou buňku nebo stiskni klávesu pro odpojení všech."
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Pangoniánské hydrotermální průduchy"

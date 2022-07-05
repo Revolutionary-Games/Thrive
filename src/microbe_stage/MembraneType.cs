@@ -30,6 +30,11 @@ public class MembraneType : IRegistryType
     public float BaseWigglyness = 1.0f;
     public float MovementWigglyness = 1.0f;
 
+    /// <summary>
+    ///   Type of enzyme capable of dissolving this membrane type. Default is lipase.
+    /// </summary>
+    public string DissolverEnzyme = "lipase";
+
     public int EditorButtonOrder;
 
     [JsonIgnore]

@@ -7,17 +7,16 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Main script on each cell in the game.
 ///   Partial class: Compounds, ATP, Reproduction
-///   Divide, Organelles, Toxin
+///   Divide, Organelles, Toxin, Digestion
 /// </summary>
 public partial class Microbe
 {
-    /// <summary>
-    ///   The stored compounds in this microbe
-    /// </summary>
     [JsonProperty]
-    public readonly CompoundBag Compounds = new(0.0f);
+    private readonly CompoundBag compounds = new(0.0f);
 
     private Compound atp = null!;
+
+    private Enzyme lipase = null!;
 
     [JsonProperty]
     private CompoundCloudSystem? cloudSystem;
@@ -31,8 +30,20 @@ public partial class Microbe
     [JsonProperty]
     private OrganelleLayout<PlacedOrganelle>? organelles;
 
+    private bool enzymesDirty = true;
+    private Dictionary<Enzyme, int> enzymes = new();
+
     [JsonProperty]
     private float lastCheckedATPDamage;
+
+    [JsonProperty]
+    private float lastCheckedOxytoxyDigestionDamage;
+
+    [JsonProperty]
+    private float dissolveEffectValue;
+
+    [JsonProperty]
+    private float playerEngulfedDeathTimer;
 
     private float lastCheckedReproduction;
 
@@ -60,6 +71,15 @@ public partial class Microbe
 
     private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
 
+    private bool organelleMaxRenderPriorityDirty = true;
+    private int cachedOrganelleMaxRenderPriority;
+
+    /// <summary>
+    ///   The stored compounds in this microbe
+    /// </summary>
+    [JsonIgnore]
+    public CompoundBag Compounds => compounds;
+
     /// <summary>
     ///   True only when this cell has been killed to let know things
     ///   being engulfed by us that we are dead.
@@ -80,6 +100,26 @@ public partial class Microbe
     [JsonIgnore]
     public Spatial OrganelleParent { get; private set; } = null!;
 
+    /// <summary>
+    ///   The cached highest assigned render priority from all of the organelles.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     A possibly cheaper version of <see cref="OrganelleLayout{T}.MaxRenderPriority"/>.
+    ///   </para>
+    /// </remarks>
+    [JsonIgnore]
+    public int OrganelleMaxRenderPriority
+    {
+        get
+        {
+            if (organelleMaxRenderPriorityDirty)
+                CountOrganelleMaxRenderPriority();
+
+            return cachedOrganelleMaxRenderPriority;
+        }
+    }
+
     [JsonIgnore]
     public CompoundBag ProcessCompoundStorage => Compounds;
 
@@ -91,6 +131,20 @@ public partial class Microbe
 
     [JsonProperty]
     public float AgentEmissionCooldown { get; private set; }
+
+    [JsonIgnore]
+    public Enzyme RequisiteEnzymeToDigest => SimulationParameters.Instance.GetEnzyme(Membrane.Type.DissolverEnzyme);
+
+    [JsonIgnore]
+    public float DigestedAmount
+    {
+        get => dissolveEffectValue;
+        set
+        {
+            dissolveEffectValue = Mathf.Clamp(value, 0.0f, 1.0f);
+            UpdateDissolveEffect();
+        }
+    }
 
     /// <summary>
     ///   Called when the reproduction status of this microbe changes
@@ -176,6 +230,9 @@ public partial class Microbe
     /// </summary>
     public void EmitToxin(Compound? agentType = null)
     {
+        if (PhagocytosisStep != PhagocytosisPhase.None)
+            return;
+
         if (AgentEmissionCooldown > 0)
             return;
 
@@ -206,7 +263,7 @@ public partial class Microbe
         var props = new AgentProperties(Species, agentType);
 
         // Find the direction the microbe is facing (actual rotation, not LookAtPoint)
-        var direction = GlobalTransform.basis.Quat().Xform(Vector3.Forward);
+        var direction = GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Forward);
 
         var position = Translation + (direction * ejectionDistance);
 
@@ -488,8 +545,28 @@ public partial class Microbe
         return result;
     }
 
+    public Dictionary<Compound, float> CalculateAdditionalDigestibleCompounds()
+    {
+        var result = new Dictionary<Compound, float>();
+
+        // Add some part of the build cost of all the organelles
+        foreach (var organelle in organelles!)
+        {
+            foreach (var entry in organelle.Definition.InitialComposition)
+            {
+                result.TryGetValue(entry.Key, out float existing);
+                result[entry.Key] = existing + entry.Value;
+            }
+        }
+
+        return result;
+    }
+
     private void HandleCompoundAbsorbing(float delta)
     {
+        if (PhagocytosisStep != PhagocytosisPhase.None)
+            return;
+
         // max here buffs compound absorbing for the smallest cells
         var grabRadius = Mathf.Max(Radius, 3.0f);
 
@@ -511,6 +588,9 @@ public partial class Microbe
     {
         // Skip if process system has not run yet
         if (!Compounds.HasAnyBeenSetUseful())
+            return;
+
+        if (PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
         float amountToVent = Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta;
@@ -583,8 +663,8 @@ public partial class Microbe
     /// </remarks>
     private void HandleReproduction(float delta)
     {
-        // Dead cells can't reproduce
-        if (Dead)
+        // Dead or engulfed cells can't reproduce
+        if (Dead || PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
         if (allOrganellesDivided)
@@ -809,6 +889,9 @@ public partial class Microbe
 
     private void HandleOsmoregulation(float delta)
     {
+        if (PhagocytosisStep != PhagocytosisPhase.None)
+            return;
+
         var osmoregulationCost = (HexCount * CellTypeProperties.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
 
@@ -826,6 +909,15 @@ public partial class Microbe
 
     private void HandleMovement(float delta)
     {
+        if (PhagocytosisStep != PhagocytosisPhase.None)
+        {
+            // Reset movement
+            MovementDirection = Vector3.Zero;
+            queuedMovementForce = Vector3.Zero;
+
+            return;
+        }
+
         if (MovementDirection != Vector3.Zero || queuedMovementForce != Vector3.Zero)
         {
             // Movement direction should not be normalized to allow different speeds
@@ -896,10 +988,12 @@ public partial class Microbe
     {
         organelle.OnAddedToMicrobe(this);
         processesDirty = true;
+        enzymesDirty = true;
         cachedHexCountDirty = true;
         membraneOrganellePositionsAreDirty = true;
         hasSignalingAgent = null;
         cachedRotationSpeed = null;
+        organelleMaxRenderPriorityDirty = true;
 
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount += 1;
@@ -914,18 +1008,22 @@ public partial class Microbe
     private void OnOrganelleRemoved(PlacedOrganelle organelle)
     {
         organellesCapacity -= organelle.StorageCapacity;
+
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount -= 1;
+
         organelle.OnRemovedFromMicrobe();
 
         // The organelle only detaches but doesn't delete itself, so we delete it here
         organelle.DetachAndQueueFree();
 
         processesDirty = true;
+        enzymesDirty = true;
         cachedHexCountDirty = true;
         membraneOrganellePositionsAreDirty = true;
         hasSignalingAgent = null;
         cachedRotationSpeed = null;
+        organelleMaxRenderPriorityDirty = true;
 
         Compounds.Capacity = organellesCapacity;
     }
@@ -1021,5 +1119,204 @@ public partial class Microbe
 
         // TODO: should this be cleared each time or only when the chemoreception update interval has elapsed?
         activeCompoundDetections.Clear();
+    }
+
+    /// <summary>
+    ///   Absorbs compounds/nutrients from ingested objects.
+    /// </summary>
+    private void HandleDigestion(float delta)
+    {
+        if (Dead)
+            return;
+
+        var compoundTypes = SimulationParameters.Instance.GetAllCompounds();
+        var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+
+        // Handle logic if the objects that are being digested are the ones we have engulfed
+        for (int i = engulfedObjects.Count - 1; i >= 0; --i)
+        {
+            var engulfedObject = engulfedObjects[i];
+
+            var engulfable = engulfedObject.Object.Value;
+            if (engulfable == null)
+                continue;
+
+            // Expel this engulfed object if the cell loses some of its size and its ingestion capacity
+            // is overloaded
+            if (UsedIngestionCapacity > EngulfSize)
+            {
+                EjectEngulfable(engulfable);
+                continue;
+            }
+
+            // Doesn't make sense to digest non ingested objects, i.e. objects that are being engulfed,
+            // being ejected, etc. So skip them.
+            if (engulfable.PhagocytosisStep != PhagocytosisPhase.Ingested)
+                continue;
+
+            var usedEnzyme = lipase;
+
+            if (engulfable.RequisiteEnzymeToDigest != null)
+            {
+                if (!Enzymes.ContainsKey(engulfable.RequisiteEnzymeToDigest))
+                {
+                    EjectEngulfable(engulfable);
+                    continue;
+                }
+
+                usedEnzyme = engulfable.RequisiteEnzymeToDigest;
+            }
+
+            var containedCompounds = engulfable.Compounds;
+            var additionalCompounds = engulfedObject.AdditionalEngulfableCompounds;
+
+            var totalAmountLeft = 0.0f;
+
+            var hasAnyUsefulCompounds = false;
+            foreach (var compound in compoundTypes.Values)
+            {
+                if (!compound.Digestible)
+                    continue;
+
+                var originalAmount = containedCompounds.GetCompoundAmount(compound);
+
+                var additionalAmount = 0.0f;
+                additionalCompounds?.TryGetValue(compound, out additionalAmount);
+
+                var totalAvailable = originalAmount + additionalAmount;
+                totalAmountLeft += totalAvailable;
+
+                if ((compound != oxytoxy && !Compounds.IsUseful(compound)) || totalAvailable <= 0)
+                    continue;
+
+                hasAnyUsefulCompounds = true;
+
+                var amount = MicrobeInternalCalculations.CalculateDigestionSpeed(Enzymes[usedEnzyme]);
+                amount *= delta;
+
+                // Efficiency starts from 40% up to 100%. This means at least 8 lysosomes are needed to achieve
+                // maximum efficiency
+                // TODO: Maybe set max efficiency lower to 80%?
+                var efficiency = MicrobeInternalCalculations.CalculateDigestionEfficiency(Enzymes[usedEnzyme]);
+
+                var taken = Mathf.Min(totalAvailable, amount);
+
+                if (compound == oxytoxy && taken > 0)
+                {
+                    lastCheckedOxytoxyDigestionDamage += delta;
+
+                    if (lastCheckedOxytoxyDigestionDamage >=
+                        Constants.ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION)
+                    {
+                        lastCheckedOxytoxyDigestionDamage -=
+                            Constants.ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION;
+                        Damage(MaxHitpoints * taken, "oxytoxy");
+                    }
+                }
+
+                // Don't absorb this specific compound if we have just reached max capacity. And if the compound bag is
+                // entirely full then this object won't be digested and would just be stored away until it's needed
+                // again
+                if (Compounds.GetCompoundAmount(compound) > Compounds.Capacity)
+                    continue;
+
+                if (additionalCompounds?.ContainsKey(compound) == true)
+                    additionalCompounds[compound] -= taken;
+
+                engulfable.Compounds.TakeCompound(compound, taken);
+                Compounds.AddCompound(compound, taken * efficiency);
+            }
+
+            if (engulfedObject.InitialTotalEngulfableCompounds.HasValue)
+            {
+                engulfable.DigestedAmount = 1 -
+                    (totalAmountLeft / engulfedObject.InitialTotalEngulfableCompounds.Value);
+            }
+
+            if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
+            {
+                // Ignore size from foreign-ingested objects for now
+                if (!engulfedObject.ReclaimedByAnotherHost)
+                    UsedIngestionCapacity -= engulfable.EngulfSize;
+
+                engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
+            }
+
+            // Expel this object as it has no use
+            if (!hasAnyUsefulCompounds && engulfable.PhagocytosisStep != PhagocytosisPhase.Digested)
+            {
+                EjectEngulfable(engulfable);
+            }
+        }
+
+        // Else handle logic if the cell that's being/has been digested is us
+        if (PhagocytosisStep == PhagocytosisPhase.None)
+        {
+            if (DigestedAmount > 0 && DigestedAmount < Constants.PARTIALLY_DIGESTED_THRESHOLD)
+            {
+                // Cell is not too damaged, can heal itself in open environment and continue living
+                DigestedAmount -= delta * Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND;
+            }
+        }
+        else
+        {
+            // Species handling for the player microbe in case the process into partial digestion took too long
+            // so here we want to limit how long the player should wait until they respawn
+            if (IsPlayerMicrobe && PhagocytosisStep == PhagocytosisPhase.Ingested)
+                playerEngulfedDeathTimer += delta;
+
+            if (DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD || playerEngulfedDeathTimer >=
+                Constants.PLAYER_ENGULFED_DEATH_DELAY_MAX)
+            {
+                playerEngulfedDeathTimer = 0;
+
+                // Microbe is beyond repair, might as well consider it as dead
+                Kill();
+
+                var hostile = HostileEngulfer.Value;
+                if (hostile == null)
+                    return;
+
+                // Transfer ownership of all the objects we engulfed to our engulfer
+                foreach (var other in engulfedObjects.ToList())
+                {
+                    var engulfed = other.Object.Value;
+                    if (engulfedObjects.Remove(other) && engulfed != null)
+                    {
+                        engulfed.HostileEngulfer.Value = hostile;
+                        hostile.engulfedObjects.Add(other);
+                        engulfed.EntityNode.ReParentWithTransform(hostile);
+                        other.ReclaimedByAnotherHost = true;
+                    }
+                }
+            }
+        }
+    }
+
+    private void UpdateDissolveEffect()
+    {
+        Membrane.DissolveEffectValue = dissolveEffectValue;
+
+        foreach (var organelle in organelles!)
+        {
+            organelle.DissolveEffectValue = dissolveEffectValue;
+
+            if (IsForPreviewOnly || PhagocytosisStep == PhagocytosisPhase.Ingested)
+            {
+                organelle.UpdateAsync(0);
+                organelle.UpdateSync();
+            }
+        }
+    }
+
+    private void CountOrganelleMaxRenderPriority()
+    {
+        cachedOrganelleMaxRenderPriority = 0;
+
+        if (organelles == null)
+            return;
+
+        cachedOrganelleMaxRenderPriority = organelles.MaxRenderPriority;
+        organelleMaxRenderPriorityDirty = false;
     }
 }

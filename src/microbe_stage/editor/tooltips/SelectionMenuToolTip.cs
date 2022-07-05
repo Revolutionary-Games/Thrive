@@ -252,10 +252,11 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                     deltaValue = membraneType.ToxinResistance - referenceMembrane.ToxinResistance;
                     break;
                 case "canEngulf":
+                case "engulfInvulnerable":
                     deltaValue = 0;
                     break;
                 default:
-                    throw new Exception("Invalid modifier name");
+                    throw new Exception("Unhandled modifier type: " + modifier.Name);
             }
 
             // All stats with +0 value that are not part of the selected membrane is made hidden
