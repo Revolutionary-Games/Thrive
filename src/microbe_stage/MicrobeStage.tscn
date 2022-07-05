@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=2]
+[gd_scene load_steps=129 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/chemicalButtonActive.png" type="Texture" id=30]
 [ext_resource path="res://assets/textures/gui/bevel/chemicalButtonHover.png" type="Texture" id=31]
 [ext_resource path="res://assets/textures/gui/bevel/searchButtonActive.png" type="Texture" id=32]
+[ext_resource path="res://assets/textures/gui/bevel/Protein.png" type="Texture" id=33]
 [ext_resource path="res://assets/textures/gui/bevel/statisticsButtonHover.png" type="Texture" id=34]
 [ext_resource path="res://assets/textures/gui/bevel/compoundsButtonActive.png" type="Texture" id=35]
 [ext_resource path="res://assets/textures/gui/bevel/helpButtonActive.png" type="Texture" id=37]
@@ -186,6 +187,9 @@ bg_color = Color( 0.462745, 0.470588, 0.184314, 1 )
 
 [sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 0.541176, 0.141176, 0.0745098, 1 )
+
+[sub_resource type="StyleBoxFlat" id=38]
+bg_color = Color( 0.882353, 0.498039, 0.498039, 1 )
 
 [sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
@@ -436,6 +440,7 @@ AmmoniaBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Bo
 PhosphateBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates")
 HydrogenSulfideBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide")
 IronBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron")
+IngestedMatterBarPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested")
 EnvironmentPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton")
 EnvironmentPanelCompressButtonPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton")
 CompoundsPanelExpandButtonPath = NodePath("BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/CompoundExpandButton")
@@ -1194,7 +1199,7 @@ custom_styles/separator = SubResource( 10 )
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer"]
 margin_top = 52.0
 margin_right = 254.0
-margin_bottom = 217.0
+margin_bottom = 247.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
 custom_constants/margin_left = 22
@@ -1207,7 +1212,7 @@ __meta__ = {
 margin_left = 22.0
 margin_top = 5.0
 margin_right = 242.0
-margin_bottom = 150.0
+margin_bottom = 180.0
 size_flags_horizontal = 0
 custom_constants/vseparation = 5
 __meta__ = {
@@ -1245,9 +1250,6 @@ rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = ExtResource( 80 )
 text = "GLUCOSE"
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
 anchor_left = 1.0
@@ -1337,9 +1339,6 @@ rect_min_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
 texture = ExtResource( 50 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
 margin_left = 20.0
@@ -1441,9 +1440,6 @@ rect_min_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
 texture = ExtResource( 49 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
 margin_left = 20.0
@@ -1472,6 +1468,50 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ingested" type="ProgressBar" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=["CompoundBar"]]
+show_behind_parent = true
+margin_top = 150.0
+margin_right = 220.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 220, 25 )
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 38 )
+custom_styles/bg = SubResource( 20 )
+step = 0.1
+percent_visible = false
+
+[node name="IngestedMatterIcon" type="TextureRect" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
+modulate = Color( 0.882353, 0.882353, 0.882353, 1 )
+margin_left = -12.0
+margin_right = 13.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 25, 25 )
+size_flags_horizontal = 0
+texture = ExtResource( 33 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
+margin_left = 20.0
+margin_right = 47.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = ExtResource( 80 )
+text = "INGESTED_MATTER"
+valign = 1
+
+[node name="Value" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ingested"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -44.0
+margin_right = -3.99998
+margin_bottom = 25.0
+grow_horizontal = 0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = ExtResource( 80 )
+text = "0.0 / 4"
+align = 2
+valign = 1
 
 [node name="AgentsPanel" type="Panel" parent="MicrobeHUD/BottomLeft/LeftPanels"]
 margin_top = 473.0
@@ -1917,9 +1957,6 @@ tint_under = Color( 0, 0, 0, 0.752941 )
 tint_progress = Color( 0.439216, 0.956863, 0.137255, 1 )
 radial_initial_angle = 237.0
 radial_fill_degrees = 129.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ATPIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/ATPBar"]
 margin_left = 18.5

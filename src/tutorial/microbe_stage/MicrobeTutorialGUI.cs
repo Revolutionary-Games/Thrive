@@ -49,6 +49,15 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath CheckTheHelpMenuPath = null!;
 
     [Export]
+    public NodePath EngulfmentExplanationPath = null!;
+
+    [Export]
+    public NodePath EngulfedExplanationPath = null!;
+
+    [Export]
+    public NodePath EngulfmentFullCapacityPath = null!;
+
+    [Export]
     public NodePath EditorButtonHighlightPath = null!;
 
     private CustomDialog microbeWelcomeMessage = null!;
@@ -64,6 +73,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomDialog editorButtonTutorial = null!;
     private CustomDialog unbindTutorial = null!;
     private CustomDialog checkTheHelpMenu = null!;
+    private CustomDialog engulfmentExplanation = null!;
+    private CustomDialog engulfedExplanation = null!;
+    private CustomDialog engulfmentFullCapacity = null!;
 
     [Signal]
     public delegate void OnHelpMenuOpenRequested();
@@ -274,6 +286,42 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool EngulfmentExplanationVisible
+    {
+        get => engulfmentExplanation.Visible;
+        set
+        {
+            if (value == engulfmentExplanation.Visible)
+                return;
+
+            engulfmentExplanation.Visible = value;
+        }
+    }
+
+    public bool EngulfedExplanationVisible
+    {
+        get => engulfedExplanation.Visible;
+        set
+        {
+            if (value == engulfedExplanation.Visible)
+                return;
+
+            engulfedExplanation.Visible = value;
+        }
+    }
+
+    public bool EngulfmentFullCapacityVisible
+    {
+        get => engulfmentFullCapacity.Visible;
+        set
+        {
+            if (value == engulfmentFullCapacity.Visible)
+                return;
+
+            engulfmentFullCapacity.Visible = value;
+        }
+    }
+
     public override void _Ready()
     {
         microbeWelcomeMessage = GetNode<CustomDialog>(MicrobeWelcomeMessagePath);
@@ -289,6 +337,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         editorButtonTutorial = GetNode<CustomDialog>(EditorButtonTutorialPath);
         unbindTutorial = GetNode<CustomDialog>(UnbindTutorialPath);
         checkTheHelpMenu = GetNode<CustomDialog>(CheckTheHelpMenuPath);
+        engulfmentExplanation = GetNode<CustomDialog>(EngulfmentExplanationPath);
+        engulfedExplanation = GetNode<CustomDialog>(EngulfedExplanationPath);
+        engulfmentFullCapacity = GetNode<CustomDialog>(EngulfmentFullCapacityPath);
 
         PressEditorButtonHighlight = GetNode<ControlHighlight>(EditorButtonHighlightPath);
 

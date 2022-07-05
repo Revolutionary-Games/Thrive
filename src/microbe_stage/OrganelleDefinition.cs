@@ -129,6 +129,8 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public List<Hex> Hexes = null!;
 
+    public Dictionary<string, int>? Enzymes;
+
     /// <summary>
     ///   The compounds this organelle consists of (how many resources are needed to duplicate this)
     /// </summary>
@@ -444,6 +446,7 @@ public class OrganelleDefinition : IRegistryType
         public ChemoreceptorComponentFactory? Chemoreceptor;
         public SignalingAgentComponentFactory? SignalingAgent;
         public CiliaComponentFactory? Cilia;
+        public LysosomeComponentFactory? Lysosome;
 
         private readonly List<IOrganelleComponentFactory> allFactories = new();
 
@@ -524,6 +527,13 @@ public class OrganelleDefinition : IRegistryType
             {
                 Cilia.Check(name);
                 allFactories.Add(Cilia);
+                ++count;
+            }
+
+            if (Lysosome != null)
+            {
+                Lysosome.Check(name);
+                allFactories.Add(Lysosome);
                 ++count;
             }
         }

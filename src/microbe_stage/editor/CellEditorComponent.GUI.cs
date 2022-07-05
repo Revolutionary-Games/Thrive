@@ -15,10 +15,6 @@ using Godot;
 /// </remarks>
 public partial class CellEditorComponent
 {
-    private bool cellStatsIndicatorsDirty = true;
-
-    private Texture questionIcon = null!;
-
     [Signal]
     public delegate void Clicked();
 
@@ -71,86 +67,6 @@ public partial class CellEditorComponent
 
         UpdateMicrobePartSelections();
         UpdateMutationPointsBar();
-    }
-
-    private void UpdateCellStatsIndicators()
-    {
-        sizeIndicator.Show();
-
-        if (MicrobeHexSize > initialCellSize)
-        {
-            sizeIndicator.Texture = increaseIcon;
-        }
-        else if (MicrobeHexSize < initialCellSize)
-        {
-            sizeIndicator.Texture = decreaseIcon;
-        }
-        else
-        {
-            sizeIndicator.Hide();
-        }
-
-        speedIndicator.Show();
-
-        var speed = CalculateSpeed();
-        if (speed > initialCellSpeed)
-        {
-            speedIndicator.Texture = increaseIcon;
-        }
-        else if (speed < initialCellSpeed)
-        {
-            speedIndicator.Texture = decreaseIcon;
-        }
-        else
-        {
-            speedIndicator.Hide();
-        }
-
-        rotationSpeedIndicator.Show();
-
-        var rotationSpeed = CalculateRotationSpeed();
-        if (rotationSpeed > initialRotationSpeed)
-        {
-            rotationSpeedIndicator.Texture = increaseIcon;
-        }
-        else if (rotationSpeed < initialRotationSpeed)
-        {
-            rotationSpeedIndicator.Texture = decreaseIcon;
-        }
-        else
-        {
-            rotationSpeedIndicator.Hide();
-        }
-
-        hpIndicator.Show();
-
-        if (CalculateHitpoints() > initialCellHp)
-        {
-            hpIndicator.Texture = increaseIcon;
-        }
-        else if (CalculateHitpoints() < initialCellHp)
-        {
-            hpIndicator.Texture = decreaseIcon;
-        }
-        else
-        {
-            hpIndicator.Hide();
-        }
-
-        storageIndicator.Show();
-
-        if (CalculateStorage() > initialCellStorage)
-        {
-            storageIndicator.Texture = increaseIcon;
-        }
-        else if (CalculateStorage() < initialCellStorage)
-        {
-            storageIndicator.Texture = decreaseIcon;
-        }
-        else
-        {
-            storageIndicator.Hide();
-        }
     }
 
     private void CheckRunningAutoEvoPrediction()
@@ -215,9 +131,7 @@ public partial class CellEditorComponent
 
     private void UpdateSize(int size)
     {
-        sizeLabel.Text = size.ToString(CultureInfo.CurrentCulture);
-
-        cellStatsIndicatorsDirty = true;
+        sizeLabel.Value = size;
     }
 
     private void UpdateGeneration(int generation)
@@ -227,31 +141,35 @@ public partial class CellEditorComponent
 
     private void UpdateSpeed(float speed)
     {
-        speedLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", speed);
-
-        cellStatsIndicatorsDirty = true;
+        speedLabel.Value = (float)Math.Round(speed, 1);
     }
 
     private void UpdateRotationSpeed(float speed)
     {
-        rotationSpeedLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}",
-            MicrobeInternalCalculations.RotationSpeedToUserReadableNumber(speed));
-
-        cellStatsIndicatorsDirty = true;
+        rotationSpeedLabel.Value = (float)Math.Round(
+            MicrobeInternalCalculations.RotationSpeedToUserReadableNumber(speed), 1);
     }
 
     private void UpdateHitpoints(float hp)
     {
-        hpLabel.Text = hp.ToString(CultureInfo.CurrentCulture);
-
-        cellStatsIndicatorsDirty = true;
+        hpLabel.Value = hp;
     }
 
     private void UpdateStorage(float storage)
     {
-        storageLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", storage);
+        storageLabel.Value = (float)Math.Round(storage, 1);
+    }
 
-        cellStatsIndicatorsDirty = true;
+    private void UpdateTotalDigestionSpeed(float speed)
+    {
+        digestionSpeedLabel.Format = TranslationServer.Translate("DIGESTION_SPEED_VALUE");
+        digestionSpeedLabel.Value = (float)Math.Round(speed, 2);
+    }
+
+    private void UpdateTotalDigestionEfficiency(float efficiency)
+    {
+        digestionEfficiencyLabel.Format = TranslationServer.Translate("PERCENTAGE_VALUE");
+        digestionEfficiencyLabel.Value = Mathf.RoundToInt(efficiency * 100);
     }
 
     /// <summary>
@@ -451,8 +369,7 @@ public partial class CellEditorComponent
                 $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
         }
 
-        totalPopulationIndicator.Show();
-        totalPopulationIndicator.Texture = questionIcon;
+        totalPopulationLabel.Value = float.NaN;
 
         var prediction = new PendingAutoEvoPrediction(startedRun, playerSpeciesOriginal, playerSpeciesNew);
 

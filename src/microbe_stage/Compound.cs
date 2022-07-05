@@ -35,6 +35,11 @@ public class Compound : IRegistryType
     /// </summary>
     public bool CanBeDistributed;
 
+    /// <summary>
+    ///   If true, this compound can be absorbed by microbes through intracellular digestion.
+    /// </summary>
+    public bool Digestible;
+
     public Color Colour;
 
     /// <summary>
