@@ -1221,7 +1221,7 @@ public partial class Microbe
 
         Membrane.EngulfPosition = pseudopodTarget.Translation;
         Membrane.EngulfRadius = ((SphereMesh)pseudopodTarget.Mesh).Radius;
-        Membrane.EngulfOffset = 1f;
+        Membrane.EngulfOffset = 1.0f;
         */
     }
 
