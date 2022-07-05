@@ -434,5 +434,4 @@ public class PatchMap : ISaveLoadable
             region2.AddNeighbour(region1);
         }
     }
-
 }

@@ -352,7 +352,7 @@ public static class PatchMapGenerator
         return coord;
     }
 
-    public static void ConnectPatchesBetweenRegions(PatchRegion region, Random random)
+    private static void ConnectPatchesBetweenRegions(PatchRegion region, Random random)
     {
         if (region.Type is PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Sea)
         {
@@ -392,12 +392,13 @@ public static class PatchMapGenerator
         }
     }
 
-    public static void BuildPatches(PatchRegion region, Random random)
+    private static void BuildPatches(PatchRegion region, Random random)
     {
         var regionMargin = region.PatchMargin + region.RegionLineWidth;
 
         // Patch linking first
-        if (region.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Continent)
+        if (region.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean or
+            PatchRegion.RegionType.Continent)
         {
             for (int i = 0; i < region.Patches.Count - 1; i++)
             {
@@ -431,7 +432,8 @@ public static class PatchMapGenerator
             if (region.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean)
             {
                 region.Patches[i].ScreenCoordinates = new Vector2(region.ScreenCoordinates.x + regionMargin,
-                    region.ScreenCoordinates.y + i * (64.0f + region.PatchMargin) + region.PatchMargin + region.RegionLineWidth);
+                    region.ScreenCoordinates.y + i * (64.0f + region.PatchMargin) +
+                    region.PatchMargin + region.RegionLineWidth);
 
                 // Random depth for water regions
                 if (i == region.Patches.Count - 2)
@@ -465,14 +467,15 @@ public static class PatchMapGenerator
                     if (i == 1)
                     {
                         region.Patches[i].ScreenCoordinates =
-                            new Vector2(region.ScreenCoordinates.x + 2 * region.PatchMargin + 64.0f + region.RegionLineWidth,
-                                region.ScreenCoordinates.y + regionMargin);
+                            new Vector2(region.ScreenCoordinates.x + 2 * region.PatchMargin + 64.0f +
+                                region.RegionLineWidth, region.ScreenCoordinates.y + regionMargin);
                     }
                     else
                     {
                         region.Patches[i].ScreenCoordinates =
-                            new Vector2(region.ScreenCoordinates.x + 2 * region.PatchMargin + 64.0f + region.RegionLineWidth,
-                                region.ScreenCoordinates.y + 2 * region.PatchMargin + 64.0f + region.RegionLineWidth);
+                            new Vector2(region.ScreenCoordinates.x + 2 * region.PatchMargin + 64.0f +
+                                region.RegionLineWidth, region.ScreenCoordinates.y + 2 *
+                                region.PatchMargin + 64.0f + region.RegionLineWidth);
                     }
                 }
             }
@@ -489,7 +492,7 @@ public static class PatchMapGenerator
         }
     }
 
-    public static void BuildRegion(PatchRegion region)
+    private static void BuildRegion(PatchRegion region)
     {
         // Region size configuration
         region.Width += 64.0f + 2 * region.PatchMargin + 2 * region.RegionLineWidth;
@@ -506,7 +509,8 @@ public static class PatchMapGenerator
 
         if (region.Type is PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Sea)
         {
-            region.Height += 64.0f * region.Patches.Count + (region.Patches.Count + 1) * region.PatchMargin + region.RegionLineWidth;
+            region.Height += 64.0f * region.Patches.Count + (region.Patches.Count + 1) * region.PatchMargin +
+                region.RegionLineWidth;
         }
 
         if (region.Type == PatchRegion.RegionType.Vent)
@@ -515,7 +519,8 @@ public static class PatchMapGenerator
             region.Width = 64.0f + 2 * region.PatchMargin + 2 * region.RegionLineWidth;
 
             var adjacent = region.Adjacent.First();
-            region.ScreenCoordinates = adjacent.ScreenCoordinates + new Vector2(0, adjacent.Height) + new Vector2(0, 20);
+            region.ScreenCoordinates = adjacent.ScreenCoordinates + new Vector2(0, adjacent.Height) +
+                new Vector2(0, 20);
         }
 
         if (region.Type == PatchRegion.RegionType.Cave)
@@ -556,7 +561,7 @@ public static class PatchMapGenerator
         region.Height += region.RegionLineWidth;
     }
 
-    public static void BuildSpecialRegions(PatchMap map)
+    private static void BuildSpecialRegions(PatchMap map)
     {
         foreach (var region in map.SpecialRegions)
         {
@@ -564,7 +569,7 @@ public static class PatchMapGenerator
         }
     }
 
-    public static void BuildPatchesInRegions(PatchMap map)
+    private static void BuildPatchesInRegions(PatchMap map)
     {
         foreach (var region in map.Regions)
         {
@@ -576,7 +581,7 @@ public static class PatchMapGenerator
         }
     }
 
-    public static void BuildPatchesInSpecialRegions(PatchMap map)
+    private static void BuildPatchesInSpecialRegions(PatchMap map)
     {
         foreach (var region in map.SpecialRegions)
         {
@@ -588,7 +593,7 @@ public static class PatchMapGenerator
         }
     }
 
-    public static void ConnectPatchesBetweenRegions(PatchMap map)
+    private static void ConnectPatchesBetweenRegions(PatchMap map)
     {
         foreach (var region in map.Regions)
         {
@@ -739,7 +744,8 @@ public static class PatchMapGenerator
 
     private static PatchMap PredefinedMap(PatchMap map, string areaName)
     {
-        var region = new PatchRegion(0, GetPatchLocalizedName(areaName, string.Empty), PatchRegion.RegionType.Predefined, new Vector2(0, 0));
+        var region = new PatchRegion(0, GetPatchLocalizedName(areaName, string.Empty),
+            PatchRegion.RegionType.Predefined, new Vector2(0, 0));
 
         // Predefined patches
         var coast = NewPredefinedPatch(PredefinedBiome.Coastal, 0, region, areaName);

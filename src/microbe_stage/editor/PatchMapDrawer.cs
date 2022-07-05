@@ -557,7 +557,7 @@ public class PatchMapDrawer : Control
     private void CheckForDirtyNodes()
     {
         foreach (var node in nodes.Values)
-        {   
+        {
             if (node.IsDirty)
             {
                 dirty = true;

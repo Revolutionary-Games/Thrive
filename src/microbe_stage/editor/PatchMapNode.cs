@@ -27,7 +27,7 @@ public class PatchMapNode : MarginContainer
     [Export]
     public NodePath AdjacentPanelPath = null!;
 
-    public bool IsDirty = false;
+    public bool IsDirty;
 
     // TODO: Move this to Constants.cs
     private const float HalfBlinkInterval = 0.5f;

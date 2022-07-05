@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -24,16 +22,6 @@ public class PatchRegion
     [JsonIgnore]
     public float PatchMargin = 4.0f;
 
-    public enum RegionType
-    {
-        Predefined,
-        Sea,
-        Ocean,
-        Continent,
-        Vent,
-        Cave,
-    }
-
     [JsonConstructor]
     public PatchRegion(int id, LocalizedString name, RegionType regionType, Vector2 screenCoordinates,
         float height, float width, List<Patch> patches)
@@ -56,6 +44,16 @@ public class PatchRegion
         Width = 0;
         Type = regionType;
         ScreenCoordinates = screenCoordinates;
+    }
+
+    public enum RegionType
+    {
+        Predefined,
+        Sea,
+        Ocean,
+        Continent,
+        Vent,
+        Cave,
     }
 
     [JsonProperty]
