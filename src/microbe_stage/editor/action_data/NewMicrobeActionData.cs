@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 
 [JSONAlwaysDynamicType]
 public class NewMicrobeActionData : EditorCombinableActionData
@@ -7,14 +8,16 @@ public class NewMicrobeActionData : EditorCombinableActionData
     public MembraneType OldMembrane;
     public float OldMembraneRigidity;
     public BehaviourDictionary OldBehaviourValues;
+    public Color OldMembraneColour;
 
     public NewMicrobeActionData(OrganelleLayout<OrganelleTemplate> oldEditedMicrobeOrganelles, MembraneType oldMembrane,
-        float oldRigidity, BehaviourDictionary oldBehaviourValues)
+        float oldRigidity, Color oldColour, BehaviourDictionary oldBehaviourValues)
     {
         OldEditedMicrobeOrganelles = oldEditedMicrobeOrganelles;
         OldMembrane = oldMembrane;
         OldMembraneRigidity = oldRigidity;
         OldBehaviourValues = new BehaviourDictionary(oldBehaviourValues);
+        OldMembraneColour = oldColour;
     }
 
     public override bool ResetsHistory => true;
