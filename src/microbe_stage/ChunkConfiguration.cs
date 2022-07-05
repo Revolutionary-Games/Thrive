@@ -42,6 +42,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     public Dictionary<Compound, ChunkCompound>? Compounds;
 
     /// <summary>
+    ///   Whether this chunk type is an Easter egg.
+    /// </summary>
+    public bool EasterEgg;
+
+    /// <summary>
     ///   The type of enzyme needed to break down this chunk.
     /// </summary>
     public string DissolverEnzyme;
@@ -84,6 +89,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
             Damages == other.Damages &&
             DeleteOnTouch == other.DeleteOnTouch &&
             Meshes.Equals(other.Meshes) &&
+            EasterEgg == other.EasterEgg &&
             DamageType == other.DamageType &&
             DissolverEnzyme == other.DissolverEnzyme &&
             Equals(Compounds, other.Compounds);
@@ -140,6 +146,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         ///   Path to the MeshInstance inside the ScenePath scene, null if it is the root
         /// </summary>
         public string? SceneModelPath;
+
+        /// <summary>
+        ///   Path to the AnimationPlayer inside the ScenePath scene, null if no animation
+        /// </summary>
+        public string? SceneAnimationPath;
 
         [JsonIgnore]
         public PackedScene? LoadedScene;
