@@ -124,8 +124,14 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         foreach (var entry in biome.Chunks)
         {
-            var density = entry.Value.Density * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
-                Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR;
+            // Don't spawn Easter eggs if the player has chosen not to
+            if (entry.Value.EasterEgg && !CurrentGame.GameWorld.WorldSettings.EasterEggs)
+                continue;
+
+            // Difficulty only scales the spawn rate for chunks containing compounds
+            var density = entry.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR;
+            if (entry.Value.Compounds?.Count > 0 || entry.Value.VentAmount > 0)
+                density *= CurrentGame.GameWorld.WorldSettings.CompoundDensity;
 
             HandleSpawnHelper(chunkSpawners, entry.Value.Name, density,
                 () =>
