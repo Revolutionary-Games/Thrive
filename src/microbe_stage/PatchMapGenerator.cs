@@ -151,7 +151,7 @@ public static class PatchMapGenerator
                 LinkPatches(cavePatch, region.Patches[patchIndex]);
             }
 
-            region.BuildRegion();
+            BuildRegion(region);
             coord = GenerateCoordinates(region, map, random, minDistance);
 
             // We add the coordinates for the center of the region
@@ -161,9 +161,9 @@ public static class PatchMapGenerator
         }
 
         // After building the normal regions we build the special ones and the patches
-        map.BuildPatchesInRegions();
-        map.BuildSpecialRegions();
-        map.BuildPatchesInSpecialRegions();
+        BuildPatchesInRegions(map);
+        BuildSpecialRegions(map);
+        BuildPatchesInSpecialRegions(map);
 
         if (vents == null)
             throw new InvalidOperationException("No vent patch created");
@@ -188,7 +188,7 @@ public static class PatchMapGenerator
             }
         }
 
-        map.ConnectPatchesBetweenRegions();
+        ConnectPatchesBetweenRegions(map);
         map.CreateAdjacenciesFromPatchData();
         return map;
     }
@@ -350,6 +350,250 @@ public static class PatchMapGenerator
         }
 
         return coord;
+    }
+
+    public static void ConnectPatchesBetweenRegions(PatchRegion region, Random random)
+    {
+        if (region.Type is PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Sea)
+        {
+            foreach (var adjacent in region.Adjacent)
+            {
+                if (adjacent.Type == PatchRegion.RegionType.Continent)
+                {
+                    var patchIndex = random.Next(0, adjacent.Patches.Count - 1);
+                    LinkPatches(region.Patches[0], adjacent.Patches[patchIndex]);
+                }
+
+                if (adjacent.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean)
+                {
+                    int lowestConnectedLevel;
+                    lowestConnectedLevel = Math.Min(region.Patches.Count, adjacent.Patches.Count);
+                    lowestConnectedLevel = random.Next(0, lowestConnectedLevel - 1);
+
+                    for (int i = 0; i <= lowestConnectedLevel; i++)
+                    {
+                        LinkPatches(region.Patches[i], adjacent.Patches[i]);
+                    }
+                }
+            }
+        }
+
+        if (region.Type == PatchRegion.RegionType.Continent)
+        {
+            foreach (var adjacent in region.Adjacent)
+            {
+                if (adjacent.Type == PatchRegion.RegionType.Continent)
+                {
+                    var maxIndex = Math.Min(region.Patches.Count, adjacent.Patches.Count);
+                    var patchIndex = random.Next(0, maxIndex);
+                    LinkPatches(region.Patches[patchIndex], adjacent.Patches[patchIndex]);
+                }
+            }
+        }
+    }
+
+    public static void BuildPatches(PatchRegion region, Random random)
+    {
+        var regionMargin = region.PatchMargin + region.RegionLineWidth;
+
+        // Patch linking first
+        if (region.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Continent)
+        {
+            for (int i = 0; i < region.Patches.Count - 1; i++)
+            {
+                if (region.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean)
+                {
+                    LinkPatches(region.Patches[i], region.Patches[i + 1]);
+                }
+
+                if (region.Type == PatchRegion.RegionType.Continent)
+                {
+                    for (int j = 0; j < region.Patches.Count; j++)
+                    {
+                        if (j != i)
+                        {
+                            LinkPatches(region.Patches[i], region.Patches[j]);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (region.Type == PatchRegion.RegionType.Vent)
+        {
+            var adjacent = region.Adjacent.First();
+            LinkPatches(region.Patches[0], adjacent.Patches[adjacent.Patches.Count - 1]);
+        }
+
+        // Patches position configuration
+        for (int i = 0; i < region.Patches.Count; i++)
+        {
+            if (region.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean)
+            {
+                region.Patches[i].ScreenCoordinates = new Vector2(region.ScreenCoordinates.x + regionMargin,
+                    region.ScreenCoordinates.y + i * (64.0f + region.PatchMargin) + region.PatchMargin + region.RegionLineWidth);
+
+                // Random depth for water regions
+                if (i == region.Patches.Count - 2)
+                {
+                    var depth = region.Patches[i].Depth;
+                    var seafloor = region.Patches[i + 1];
+                    region.Patches[i].Depth[1] = random.Next(depth[0] + 1, depth[1] - 10);
+
+                    seafloor.Depth[0] = region.Patches[i].Depth[1];
+                    seafloor.Depth[1] = region.Patches[i].Depth[1] + 10;
+                }
+            }
+
+            if (region.Type == PatchRegion.RegionType.Continent)
+            {
+                if (i % 2 == 0)
+                {
+                    if (i == 0)
+                    {
+                        region.Patches[i].ScreenCoordinates = new Vector2(region.ScreenCoordinates.x + regionMargin,
+                            region.ScreenCoordinates.y + regionMargin);
+                    }
+                    else
+                    {
+                        region.Patches[i].ScreenCoordinates = new Vector2(region.ScreenCoordinates.x + regionMargin,
+                            region.ScreenCoordinates.y + 64.0f + 2 * region.PatchMargin);
+                    }
+                }
+                else
+                {
+                    if (i == 1)
+                    {
+                        region.Patches[i].ScreenCoordinates =
+                            new Vector2(region.ScreenCoordinates.x + 2 * region.PatchMargin + 64.0f + region.RegionLineWidth,
+                                region.ScreenCoordinates.y + regionMargin);
+                    }
+                    else
+                    {
+                        region.Patches[i].ScreenCoordinates =
+                            new Vector2(region.ScreenCoordinates.x + 2 * region.PatchMargin + 64.0f + region.RegionLineWidth,
+                                region.ScreenCoordinates.y + 2 * region.PatchMargin + 64.0f + region.RegionLineWidth);
+                    }
+                }
+            }
+
+            if (region.Type is PatchRegion.RegionType.Vent or PatchRegion.RegionType.Cave)
+            {
+                region.Patches[0].ScreenCoordinates = new Vector2(region.ScreenCoordinates.x + regionMargin,
+                    region.ScreenCoordinates.y + regionMargin);
+
+                // Caves or vents are the same depth as the adjacent patch
+                region.Patches[0].Depth[0] = region.Patches[0].Adjacent.First().Depth[0];
+                region.Patches[0].Depth[1] = region.Patches[0].Adjacent.First().Depth[1];
+            }
+        }
+    }
+
+    public static void BuildRegion(PatchRegion region)
+    {
+        // Region size configuration
+        region.Width += 64.0f + 2 * region.PatchMargin + 2 * region.RegionLineWidth;
+
+        if (region.Type == PatchRegion.RegionType.Continent)
+        {
+            region.Height = 64.0f + 2 * region.PatchMargin + region.RegionLineWidth;
+            if (region.Patches.Count > 1)
+                region.Width += 64.0f + region.PatchMargin;
+
+            if (region.Patches.Count > 2)
+                region.Height = 3 * region.PatchMargin + 2 * 64.0f + region.RegionLineWidth;
+        }
+
+        if (region.Type is PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Sea)
+        {
+            region.Height += 64.0f * region.Patches.Count + (region.Patches.Count + 1) * region.PatchMargin + region.RegionLineWidth;
+        }
+
+        if (region.Type == PatchRegion.RegionType.Vent)
+        {
+            region.Height = 64.0f + 2 * region.PatchMargin + region.RegionLineWidth;
+            region.Width = 64.0f + 2 * region.PatchMargin + 2 * region.RegionLineWidth;
+
+            var adjacent = region.Adjacent.First();
+            region.ScreenCoordinates = adjacent.ScreenCoordinates + new Vector2(0, adjacent.Height) + new Vector2(0, 20);
+        }
+
+        if (region.Type == PatchRegion.RegionType.Cave)
+        {
+            region.Height = 64.0f + 2 * region.PatchMargin + region.RegionLineWidth;
+            region.Width = 64.0f + 2 * region.PatchMargin + 2 * region.RegionLineWidth;
+
+            var adjacent = region.Adjacent.First();
+            var adjacentPatch = region.Patches[0].Adjacent.First();
+            if (adjacent.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean)
+            {
+                region.ScreenCoordinates = adjacent.ScreenCoordinates +
+                    new Vector2(adjacent.Width, adjacent.Patches.IndexOf(adjacentPatch) *
+                        (64.0f + region.PatchMargin)) + new Vector2(20, 0);
+            }
+
+            if (adjacent.Type == PatchRegion.RegionType.Continent)
+            {
+                var leftSide = adjacent.ScreenCoordinates - new Vector2(region.Width, 0) - new Vector2(20, 0);
+                var rightSide = adjacent.ScreenCoordinates + new Vector2(adjacent.Width, 0) + new Vector2(20, 0);
+                var leftDist = (adjacentPatch.ScreenCoordinates - leftSide).Length();
+                var rightDist = (adjacentPatch.ScreenCoordinates - rightSide).Length();
+
+                if (leftDist < rightDist)
+                {
+                    region.ScreenCoordinates = leftSide;
+                }
+                else
+                {
+                    region.ScreenCoordinates = rightSide;
+                }
+
+                region.ScreenCoordinates = new Vector2(region.ScreenCoordinates.x,
+                    adjacentPatch.ScreenCoordinates.y - region.PatchMargin - region.RegionLineWidth);
+            }
+        }
+
+        region.Height += region.RegionLineWidth;
+    }
+
+    public static void BuildSpecialRegions(PatchMap map)
+    {
+        foreach (var region in map.SpecialRegions)
+        {
+            BuildRegion(region.Value);
+        }
+    }
+
+    public static void BuildPatchesInRegions(PatchMap map)
+    {
+        foreach (var region in map.Regions)
+        {
+            BuildPatches(region.Value, map.Seed);
+            foreach (var patch in region.Value.Patches)
+            {
+                map.AddPatch(patch);
+            }
+        }
+    }
+
+    public static void BuildPatchesInSpecialRegions(PatchMap map)
+    {
+        foreach (var region in map.SpecialRegions)
+        {
+            BuildPatches(region.Value, map.Seed);
+            foreach (var patch in region.Value.Patches)
+            {
+                map.AddPatch(patch);
+            }
+        }
+    }
+
+    public static void ConnectPatchesBetweenRegions(PatchMap map)
+    {
+        foreach (var region in map.Regions)
+        {
+            ConnectPatchesBetweenRegions(region.Value, map.Seed);
+        }
     }
 
     /// <summary>
@@ -524,7 +768,7 @@ public static class PatchMapGenerator
         LinkPatches(coast, estuary);
 
         map.AddRegion(region);
-        map.BuildPatchesInRegions();
+        BuildPatchesInRegions(map);
         return map;
     }
 

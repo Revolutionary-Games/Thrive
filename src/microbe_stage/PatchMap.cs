@@ -370,46 +370,6 @@ public class PatchMap : ISaveLoadable
         }
     }
 
-    public void BuildSpecialRegions()
-    {
-        foreach (var region in SpecialRegions)
-        {
-            region.Value.BuildRegion();
-        }
-    }
-
-    public void BuildPatchesInRegions()
-    {
-        foreach (var region in Regions)
-        {
-            region.Value.BuildPatches(Seed);
-            foreach (var patch in region.Value.Patches)
-            {
-                AddPatch(patch);
-            }
-        }
-    }
-
-    public void BuildPatchesInSpecialRegions()
-    {
-        foreach (var region in SpecialRegions)
-        {
-            region.Value.BuildPatches(Seed);
-            foreach (var patch in region.Value.Patches)
-            {
-                AddPatch(patch);
-            }
-        }
-    }
-
-    public void ConnectPatchesBetweenRegions()
-    {
-        foreach (var region in Regions)
-        {
-            region.Value.ConnectPatchesBetweenRegions(Seed);
-        }
-    }
-
     /// <summary>
     ///   Check if patch link `id1->id2` or `id2->id1` exists
     /// </summary>
