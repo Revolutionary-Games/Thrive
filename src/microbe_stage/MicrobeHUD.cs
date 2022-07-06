@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
@@ -812,12 +813,34 @@ public class MicrobeHUD : Control
     /// </summary>
     private void UpdateNeededBars()
     {
-        var compounds = stage!.Player?.Compounds;
-
-        if (compounds?.HasAnyBeenSetUseful() != true)
+        if (stage!.Player == null)
             return;
 
-        if (compounds.IsSpecificallySetUseful(oxytoxy))
+        var colony = stage.Player.Colony;
+        if (colony == null)
+        {
+            var compounds = stage.Player.Compounds;
+
+            if (compounds.HasAnyBeenSetUseful() != true)
+                return;
+
+            UpdateBarVisibility(compounds.IsSpecificallySetUseful(oxytoxy),
+                compound => compounds.IsUseful(compound));
+        }
+        else
+        {
+            UpdateBarVisibility(
+                colony.ColonyMembers.Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy)),
+                compound => colony.ColonyMembers.Any(c => c.Compounds.IsUseful(compound)));
+        }
+    }
+
+    /// <summary>
+    ///  Updates the different bars and panels that should be displayed to the screen
+    /// </summary>
+    private void UpdateBarVisibility(bool showAgents, Func<Compound, bool> isUseful)
+    {
+        if (showAgents)
         {
             agentsPanel.Show();
         }
@@ -836,7 +859,7 @@ public class MicrobeHUD : Control
 
             var compound = SimulationParameters.Instance.GetCompound(bar.Name);
 
-            if (compounds.IsUseful(compound))
+            if (isUseful.Invoke(compound))
             {
                 bar.Show();
             }
@@ -1320,7 +1343,17 @@ public class MicrobeHUD : Control
     {
         engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall;
         bindingModeHotkey.Visible = player.CanBind;
-        fireToxinHotkey.Visible = player.AgentVacuoleCount > 0;
+
+        // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
+        if (player.Colony != null)
+        {
+            fireToxinHotkey.Visible = player.Colony.ColonyMembers.Any(c => c.AgentVacuoleCount > 0);
+        }
+        else
+        {
+            fireToxinHotkey.Visible = player.AgentVacuoleCount > 0;
+        }
+
         unbindAllHotkey.Visible = player.CanUnbind;
         signallingAgentsHotkey.Visible = player.HasSignalingAgent;
 
