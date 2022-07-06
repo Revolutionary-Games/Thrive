@@ -150,7 +150,7 @@ public class PatchMapDrawer : Control
         DrawRegions();
 
         // For special regions draw the connection between them and the normal region.
-        foreach (var entry in Map.SpecialRegions)
+        foreach (var entry in Map.DrawingRegions)
         {
             var region = entry.Value;
             var patch = region.Patches.First();
@@ -329,7 +329,7 @@ public class PatchMapDrawer : Control
             point.y = Math.Max(point.y, regionEnd.y);
         }
 
-        foreach (var region in map.SpecialRegions)
+        foreach (var region in map.DrawingRegions)
         {
             var regionEnd = region.Value.ScreenCoordinates + region.Value.Size;
 
@@ -371,7 +371,7 @@ public class PatchMapDrawer : Control
             }
         }
 
-        foreach (var reg in map.SpecialRegions)
+        foreach (var reg in map.DrawingRegions)
         {
             var value = reg.Value;
 
@@ -406,7 +406,7 @@ public class PatchMapDrawer : Control
 
             foreach (var adjacent in region.Adjacent)
             {
-                if (adjacent.ID < 0)
+                if (adjacent.ID > map.Regions.Count - 1)
                     continue;
 
                 var int2 = new Int2(region.ID, adjacent.ID);
@@ -426,7 +426,7 @@ public class PatchMapDrawer : Control
                 var startRegion = region;
                 foreach (var special in region.Adjacent)
                 {
-                    if (map.SpecialRegions.ContainsKey(special.ID))
+                    if (map.DrawingRegions.ContainsKey(special.ID))
                     {
                         Vector2 newStart;
 
@@ -443,7 +443,7 @@ public class PatchMapDrawer : Control
 
                 foreach (var specialAdjacent in adjacent.Adjacent)
                 {
-                    if (map.SpecialRegions.ContainsKey(specialAdjacent.ID))
+                    if (map.DrawingRegions.ContainsKey(specialAdjacent.ID))
                     {
                         (start, intermediate, end) =
                             ConnectionIntersectionWithRegions(start, end, intermediate,

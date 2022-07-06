@@ -52,7 +52,7 @@ public static class PatchMapGenerator
         int minDistance = 180;
 
         var currentPatchId = 0;
-        var specialRegionsId = -1;
+        var specialRegionsId = vertexNumber;
 
         // Potential starting patches, which must be set by the end of the generating process
         Patch? vents = null;
@@ -125,7 +125,7 @@ public static class PatchMapGenerator
                 // Add at least one vent to the map, otherwise chance to add a vent if this is a sea/ocean region
                 if (vents == null || random.Next(0, 2) == 1)
                 {
-                    var ventRegion = new PatchRegion(specialRegionsId--,
+                    var ventRegion = new PatchRegion(specialRegionsId++,
                         GetPatchLocalizedName(continentName, "vents"), PatchRegion.RegionType.Vent, coord);
 
                     vents = NewPredefinedPatch(PredefinedBiome.Vents, currentPatchId++, ventRegion, areaName);
@@ -138,7 +138,7 @@ public static class PatchMapGenerator
             // Random chance to create a cave
             if (random.Next(0, 2) == 1)
             {
-                var caveRegion = new PatchRegion(specialRegionsId--,
+                var caveRegion = new PatchRegion(specialRegionsId++,
                     GetPatchLocalizedName(continentName, "UNDERWATERCAVE"), PatchRegion.RegionType.Cave, coord);
 
                 var cavePatch = NewPredefinedPatch(PredefinedBiome.Cave, currentPatchId++, caveRegion, areaName);
@@ -563,7 +563,7 @@ public static class PatchMapGenerator
 
     private static void BuildSpecialRegions(PatchMap map)
     {
-        foreach (var region in map.SpecialRegions)
+        foreach (var region in map.DrawingRegions)
         {
             BuildRegion(region.Value);
         }
@@ -583,7 +583,7 @@ public static class PatchMapGenerator
 
     private static void BuildPatchesInSpecialRegions(PatchMap map)
     {
-        foreach (var region in map.SpecialRegions)
+        foreach (var region in map.DrawingRegions)
         {
             BuildPatches(region.Value, map.Seed);
             foreach (var patch in region.Value.Patches)

@@ -26,11 +26,18 @@ public class PatchMap : ISaveLoadable
     [JsonProperty]
     public Dictionary<int, Patch> Patches { get; private set; } = new();
 
+    /// <summary>
+    ///   The list of regions.
+    /// </summary>
     [JsonProperty]
     public Dictionary<int, PatchRegion> Regions { get; private set; } = new();
 
+    /// <summary>
+    ///   The list of regions that are actually only used for drawing.
+    ///   They are actually regions in the drawing sense and the patches within belong to its adjacent region
+    /// </summary>
     [JsonProperty]
-    public Dictionary<int, PatchRegion> SpecialRegions { get; private set; } = new();
+    public Dictionary<int, PatchRegion> DrawingRegions { get; private set; } = new();
 
     /// <summary>
     ///   Currently active patch (the one player is in)
@@ -94,13 +101,15 @@ public class PatchMap : ISaveLoadable
     /// </summary>
     public void AddSpecialRegion(PatchRegion specialRegion)
     {
-        if (SpecialRegions.ContainsKey(specialRegion.ID))
+        if (DrawingRegions.ContainsKey(specialRegion.ID))
         {
             throw new ArgumentException($"Region {specialRegion.Name} cannot be added to this map, " +
                 $"the ID is already in use: {specialRegion.ID}");
         }
 
-        SpecialRegions[specialRegion.ID] = specialRegion;
+        specialRegion.IsForDrawingOnly = true;
+
+        DrawingRegions[specialRegion.ID] = specialRegion;
     }
 
     /// <summary>
@@ -426,9 +435,9 @@ public class PatchMap : ISaveLoadable
 
         foreach (var (id1, id2) in RegionAdjacencies)
         {
-            PatchRegion region1 = id1 > -1 ? Regions[id1] : SpecialRegions[id1];
+            PatchRegion region1 = id1 < Regions.Count - 1 ? Regions[id1] : DrawingRegions[id1];
 
-            PatchRegion region2 = id2 > -1 ? Regions[id2] : SpecialRegions[id2];
+            PatchRegion region2 = id2 < Regions.Count - 1 ? Regions[id2] : DrawingRegions[id2];
 
             region1.AddNeighbour(region2);
             region2.AddNeighbour(region1);

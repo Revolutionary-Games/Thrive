@@ -24,7 +24,7 @@ public class PatchRegion
 
     [JsonConstructor]
     public PatchRegion(int id, LocalizedString name, RegionType regionType, Vector2 screenCoordinates,
-        float height, float width, List<Patch> patches)
+        float height, float width, List<Patch> patches, bool isForDrawingOnly)
     {
         ID = id;
         Name = name;
@@ -33,6 +33,7 @@ public class PatchRegion
         ScreenCoordinates = screenCoordinates;
         Height = height;
         Width = width;
+        IsForDrawingOnly = isForDrawingOnly;
     }
 
     public PatchRegion(int id, LocalizedString name, RegionType regionType, Vector2 screenCoordinates)
@@ -93,6 +94,9 @@ public class PatchRegion
     /// </summary>
     [JsonProperty]
     public Vector2 ScreenCoordinates { get; set; }
+
+    [JsonProperty]
+    public bool IsForDrawingOnly { get; set; }
 
     /// <summary>
     ///   Adds a connection to region
