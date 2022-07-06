@@ -760,11 +760,12 @@ public class MicrobeHUD : Control
         if (stage!.Player == null)
             return;
 
-        if (stage!.Player.Colony == null)
+        var colony = stage.Player.Colony;
+        if (colony == null)
         {
-            var compounds = stage!.Player?.Compounds;
+            var compounds = stage.Player.Compounds;
 
-            if (compounds?.HasAnyBeenSetUseful() != true)
+            if (compounds.HasAnyBeenSetUseful() != true)
                 return;
 
             UpdateBarVisibility(compounds.IsSpecificallySetUseful(oxytoxy),
@@ -773,14 +774,13 @@ public class MicrobeHUD : Control
         else
         {
             UpdateBarVisibility(
-                stage!.Player!.Colony!.ColonyMembers.Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy)),
-                compound => stage.Player.Colony.ColonyMembers.Any(c => c.Compounds.IsUseful(compound)));
+                colony.ColonyMembers.Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy)),
+                compound => colony.ColonyMembers.Any(c => c.Compounds.IsUseful(compound)));
         }
     }
 
     /// <summary>
-    ///  Updates the different bars and panels that should be
-    ///  displayed to the screen
+    ///  Updates the different bars and panels that should be displayed to the screen
     /// </summary>
     private void UpdateBarVisibility(bool showAgents, Func<Compound, bool> isUseful)
     {
