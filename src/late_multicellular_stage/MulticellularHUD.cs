@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -25,6 +26,21 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     protected override CompoundBag? GetPlayerUsefulCompounds()
     {
         throw new System.NotImplementedException();
+    }
+
+    protected override Func<Compound, bool> GetIsUsefulCheck()
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override bool SpecialHandleBar(ProgressBar bar)
+    {
+        return false;
+    }
+
+    protected override bool ShouldShowAgentsPanel()
+    {
+        throw new NotImplementedException();
     }
 
     protected override void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,

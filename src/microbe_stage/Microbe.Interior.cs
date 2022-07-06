@@ -233,6 +233,17 @@ public partial class Microbe
         if (PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
+        if (Colony?.Master == this)
+        {
+            foreach (var cell in Colony.ColonyMembers)
+            {
+                if (cell == this)
+                    continue;
+
+                cell.EmitToxin(agentType);
+            }
+        }
+
         if (AgentEmissionCooldown > 0)
             return;
 
@@ -262,10 +273,20 @@ public partial class Microbe
 
         var props = new AgentProperties(Species, agentType);
 
-        // Find the direction the microbe is facing (actual rotation, not LookAtPoint)
-        var direction = GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Forward);
+        // Find the direction the microbe is facing
+        // (actual rotation, not LookAtPoint, also takes colony membership into account)
+        Vector3 direction;
+        if (Colony != null)
+        {
+            direction = Colony.Master.GlobalTransform
+                .basis.Quat().Normalized().Xform(Vector3.Forward);
+        }
+        else
+        {
+            direction = GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Forward);
+        }
 
-        var position = Translation + (direction * ejectionDistance);
+        var position = GlobalTransform.origin + (direction * ejectionDistance);
 
         var agent = SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetStageAsParent(),

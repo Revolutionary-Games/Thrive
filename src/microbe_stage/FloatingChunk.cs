@@ -27,6 +27,11 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     public string? ModelNodePath;
 
     /// <summary>
+    ///   The node path to the animation of this chunk
+    /// </summary>
+    public string? AnimationPath;
+
+    /// <summary>
     ///   Used to check if a microbe wants to engulf this
     /// </summary>
     private HashSet<Microbe> touchingMicrobes = new();
@@ -130,6 +135,8 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
 
     public string ChunkName { get; set; } = string.Empty;
 
+    public bool EasterEgg { get; set; }
+
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();
 
@@ -164,7 +171,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     ///     Doesn't initialize the graphics scene which needs to be set separately
     ///   </para>
     /// </remarks>
-    public void Init(ChunkConfiguration chunkType, string? modelPath)
+    public void Init(ChunkConfiguration chunkType, string? modelPath, string? animationPath)
     {
         // Grab data
         ChunkName = chunkType.Name;
@@ -174,6 +181,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         Damages = chunkType.Damages;
         DeleteOnTouch = chunkType.DeleteOnTouch;
         DamageType = string.IsNullOrEmpty(chunkType.DamageType) ? "chunk" : chunkType.DamageType;
+        EasterEgg = chunkType.EasterEgg;
 
         Mass = chunkType.Mass;
 
@@ -182,6 +190,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         ChunkScale = chunkType.ChunkScale;
 
         ModelNodePath = modelPath;
+        AnimationPath = animationPath;
 
         // Copy compounds to vent
         if (chunkType.Compounds?.Count > 0)
@@ -223,6 +232,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         {
             LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath, SceneModelPath = ModelNodePath,
             LoadedConvexShape = ConvexPhysicsMesh, ConvexShapePath = ConvexPhysicsMesh?.ResourcePath,
+            SceneAnimationPath = AnimationPath,
         };
 
         config.Meshes.Add(item);
@@ -446,8 +456,8 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
         if (chunkMesh == null)
             throw new InvalidOperationException("Chunk without a mesh can't dissolve");
 
-        var material = (ShaderMaterial)chunkMesh.MaterialOverride;
-        material.SetShaderParam("dissolveValue", dissolveEffectValue);
+        if (chunkMesh.MaterialOverride is ShaderMaterial material)
+            material.SetShaderParam("dissolveValue", dissolveEffectValue);
     }
 
     private void ApplyRenderPriority()

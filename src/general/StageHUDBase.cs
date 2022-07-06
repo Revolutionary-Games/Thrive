@@ -201,6 +201,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected Compound oxytoxy = null!;
     protected Compound phosphates = null!;
     protected Compound sunlight = null!;
+    protected Compound temperature = null!;
     protected AnimationPlayer animationPlayer = null!;
     protected MarginContainer mouseHoverPanel = null!;
     protected Panel environmentPanel = null!;
@@ -215,7 +216,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected ProgressBar oxygenBar = null!;
     protected ProgressBar co2Bar = null!;
     protected ProgressBar nitrogenBar = null!;
-    protected ProgressBar temperature = null!;
+    protected ProgressBar temperatureBar = null!;
     protected ProgressBar sunlightLabel = null!;
 
     // TODO: implement changing pressure conditions
@@ -371,7 +372,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         oxygenBar = GetNode<ProgressBar>(OxygenBarPath);
         co2Bar = GetNode<ProgressBar>(Co2BarPath);
         nitrogenBar = GetNode<ProgressBar>(NitrogenBarPath);
-        temperature = GetNode<ProgressBar>(TemperaturePath);
+        temperatureBar = GetNode<ProgressBar>(TemperaturePath);
         sunlightLabel = GetNode<ProgressBar>(SunlightPath);
         pressure = GetNode<ProgressBar>(PressurePath);
 
@@ -445,6 +446,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+        temperature = SimulationParameters.Instance.GetCompound("temperature");
 
         UpdateEnvironmentPanelState();
         UpdateCompoundsPanelState();
@@ -885,13 +887,14 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     public void UpdateEnvironmentalBars(BiomeConditions biome)
     {
-        var oxygenPercentage = biome.Compounds[oxygen].Dissolved * 100;
-        var co2Percentage = biome.Compounds[carbondioxide].Dissolved * 100;
-        var nitrogenPercentage = biome.Compounds[nitrogen].Dissolved * 100;
-        var sunlightPercentage = biome.Compounds[sunlight].Dissolved * 100;
-        var averageTemperature = biome.AverageTemperature;
+        var oxygenPercentage = biome.Compounds[oxygen].Ambient * 100;
+        var co2Percentage = biome.Compounds[carbondioxide].Ambient * 100;
+        var nitrogenPercentage = biome.Compounds[nitrogen].Ambient * 100;
+        var sunlightPercentage = biome.Compounds[sunlight].Ambient * 100;
+        var averageTemperature = biome.Compounds[temperature].Ambient;
 
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+        var unitFormat = TranslationServer.Translate("VALUE_WITH_UNIT");
 
         oxygenBar.MaxValue = 100;
         oxygenBar.Value = oxygenPercentage;
@@ -910,7 +913,8 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
         sunlightLabel.GetNode<Label>("Value").Text =
             string.Format(CultureInfo.CurrentCulture, percentageFormat, sunlightPercentage);
-        temperature.GetNode<Label>("Value").Text = averageTemperature + " °C";
+        temperatureBar.GetNode<Label>("Value").Text =
+            string.Format(CultureInfo.CurrentCulture, unitFormat, averageTemperature, temperature.Unit);
 
         // TODO: pressure?
     }
@@ -920,41 +924,27 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     /// </summary>
     protected void UpdateNeededBars()
     {
-        // TODO: compounds that are useful for a colony but no the player cell should be shown
-        var compounds = GetPlayerUsefulCompounds();
-
-        if (compounds?.HasAnyBeenSetUseful() != true)
+        if (!stage!.HasPlayer)
             return;
 
-        if (compounds.IsSpecificallySetUseful(oxytoxy))
-        {
-            agentsPanel.Show();
-        }
-        else
-        {
-            agentsPanel.Hide();
-        }
+        if (GetPlayerUsefulCompounds()?.HasAnyBeenSetUseful() != true)
+            return;
 
-        foreach (ProgressBar bar in compoundBars)
-        {
-            // TODO: find a cleaner way to do this
-            if (bar.Name == "ingested")
-                continue;
-
-            var compound = SimulationParameters.Instance.GetCompound(bar.Name);
-
-            if (compounds.IsUseful(compound))
-            {
-                bar.Show();
-            }
-            else
-            {
-                bar.Hide();
-            }
-        }
+        UpdateBarVisibility(GetIsUsefulCheck());
     }
 
     protected abstract CompoundBag? GetPlayerUsefulCompounds();
+
+    protected abstract Func<Compound, bool> GetIsUsefulCheck();
+
+    /// <summary>
+    ///   Potentially special handling for a compound bar
+    /// </summary>
+    /// <param name="bar">The bar to handle</param>
+    /// <returns>True if handled, in which case default handling is skipped</returns>
+    protected abstract bool SpecialHandleBar(ProgressBar bar);
+
+    protected abstract bool ShouldShowAgentsPanel();
 
     protected Color GetCompoundDensityCategoryColor(float amount)
     {
@@ -1059,6 +1049,38 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
 
     protected abstract void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
         out Dictionary<Compound, float> totalNeededCompounds);
+
+    /// <summary>
+    ///  Updates the different bars and panels that should be displayed to the screen
+    /// </summary>
+    private void UpdateBarVisibility(Func<Compound, bool> isUseful)
+    {
+        if (ShouldShowAgentsPanel())
+        {
+            agentsPanel.Show();
+        }
+        else
+        {
+            agentsPanel.Hide();
+        }
+
+        foreach (ProgressBar bar in compoundBars)
+        {
+            if (SpecialHandleBar(bar))
+                continue;
+
+            var compound = SimulationParameters.Instance.GetCompound(bar.Name);
+
+            if (isUseful.Invoke(compound))
+            {
+                bar.Show();
+            }
+            else
+            {
+                bar.Hide();
+            }
+        }
+    }
 
     private void CheckAmmoniaProgressHighlight(float fractionOfAmmonia)
     {

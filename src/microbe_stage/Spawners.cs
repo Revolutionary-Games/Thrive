@@ -141,15 +141,15 @@ public static class SpawnHelpers
             throw new ArgumentException("couldn't find a graphics scene for a chunk");
 
         // Pass on the chunk data
-        chunk.Init(chunkType, selectedMesh.SceneModelPath);
+        chunk.Init(chunkType, selectedMesh.SceneModelPath, selectedMesh.SceneAnimationPath);
         chunk.UsesDespawnTimer = !chunkType.Dissolves;
 
         worldNode.AddChild(chunk);
 
-        // Chunk is spawned with random rotation
+        // Chunk is spawned with random rotation (in the 2D plane if it's an Easter egg)
+        var rotationAxis = chunk.EasterEgg ? new Vector3(0, 1, 0) : new Vector3(0, 1, 1);
         chunk.Transform = new Transform(new Quat(
-                new Vector3(0, 1, 1).Normalized(), 2 * Mathf.Pi * (float)random.NextDouble()),
-            location);
+            rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble()), location);
 
         chunk.GetNode<Spatial>("NodeToScale").Scale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale,
             chunkType.ChunkScale);

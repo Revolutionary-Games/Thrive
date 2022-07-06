@@ -243,6 +243,42 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         return stage!.Player?.Compounds;
     }
 
+    protected override Func<Compound, bool> GetIsUsefulCheck()
+    {
+        var colony = stage!.Player!.Colony;
+        if (colony == null)
+        {
+            var compounds = stage.Player.Compounds;
+            return compound => compounds.IsUseful(compound);
+        }
+
+        return compound => colony.ColonyMembers.Any(c => c.Compounds.IsUseful(compound));
+    }
+
+    protected override bool SpecialHandleBar(ProgressBar bar)
+    {
+        if (bar == ingestedMatterBar)
+        {
+            bar.Visible = GetPlayerUsedIngestionCapacity() > 0;
+            return true;
+        }
+
+        return false;
+    }
+
+    protected override bool ShouldShowAgentsPanel()
+    {
+        var colony = stage!.Player!.Colony;
+        if (colony == null)
+        {
+            return GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(oxytoxy);
+        }
+        else
+        {
+            return colony.ColonyMembers.Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy));
+        }
+    }
+
     protected override ICompoundStorage GetPlayerStorage()
     {
         return stage!.Player!.Colony?.ColonyCompounds ?? (ICompoundStorage)stage.Player.Compounds;
@@ -287,7 +323,20 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     protected override void UpdateAbilitiesHotBar()
     {
         var player = stage!.Player!;
-        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, player.AgentVacuoleCount > 0,
+
+        bool showToxin;
+
+        // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
+        if (player.Colony != null)
+        {
+            showToxin = player.Colony.ColonyMembers.Any(c => c.AgentVacuoleCount > 0);
+        }
+        else
+        {
+            showToxin = player.AgentVacuoleCount > 0;
+        }
+
+        UpdateBaseAbilitiesBar(!player.CellTypeProperties.MembraneType.CellWall, showToxin,
             player.HasSignalingAgent, player.State == Microbe.MicrobeState.Engulf);
 
         bindingModeHotkey.Visible = player.CanBind;
