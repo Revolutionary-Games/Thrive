@@ -773,8 +773,9 @@ public class MicrobeHUD : Control
         else
         {
             UpdateBarVisibility(stage!.Player!.Colony!.ColonyMembers
-                .Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy)),
-                compound => stage.Player.Colony.ColonyMembers.Any(c => c.Compounds.IsUseful(compound)));
+                    .Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy)),
+                    compound => stage.Player.Colony.ColonyMembers
+                    .Any(c => c.Compounds.IsUseful(compound)));
         }
     }
 
