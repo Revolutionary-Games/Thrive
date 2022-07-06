@@ -138,57 +138,27 @@ msgstr ""
 "input] още веднъж, за да спрете режима на поглъщане."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
 msgstr ""
-"Прокариотни структури\n"
-"\n"
-"Метаболозоми: Произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:"
-"compound] от [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]\n"
-"\n"
-"Хемосинтезиращи протеини: Произвеждат 1/2 от [thrive:compound type=\"glucose"
-"\"]глюкозата[/thrive:compound], чрез хемопласт от [thrive:compound type="
-"\"hydrogensulfide\"]сероводород[/thrive:compound] и извършват процеса "
-"гликолиза, заемат 1 шестоъгълник\n"
-"\n"
-"Тилакоиди: Произвеждат 1/3 от [thrive:compound type=\"glucose\"]глюкозата[/"
-"thrive:compound] като обикновен хлоропласт и извършват процеса гликолиза, "
-"заемат 1 шестоъгълник\n"
-"\n"
-"Рустицианин: Превръща [thrive:compound type=\"iron\"]желязото[/thrive:"
-"compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]\n"
-"\n"
-"Нитрогеназа: Превръща атмософерния азот и [thrive:compound type=\"atp\"]АТФ[/"
-"thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:"
-"compound], чрез анаеробен процес\n"
-"\n"
-"Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза "
-"(произвежда малки количества [thrive:compound type=\"atp\"]АТФ[/thrive:"
-"compound])"
+"След като поглъщането приключи, всички обекти, попаднали в клетката, ще "
+"бъдат съхранени в нейната мембрана, за да бъдат усвоени. Неусвоимите обекти "
+"ще бъдат изхвърлeни, затова трябва да притежавате необходимите мутации, "
+"които позволяват тяхното разграждане. Еволюцията на лизозомата е "
+"препоръчителна, защото нейните ензими подобряват храносмилателната "
+"ефективност на клетката."
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
 msgstr ""
-"Използвайте [thrive:input]g_move_forward[/thrive:input],[thrive:"
-"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
-"input],[thrive:input]g_move_right[/thrive:input] и мишката за да се "
-"придвижвате. Окситоксинът се изстрелва с [thrive:input]g_fire_toxin[/thrive:"
-"input], ако имате токсична вакуола. Режимът на поглъщане се включва с "
-"[thrive:input]g_toggle_engulf[/thrive:input]. Използвайте колелцето на "
-"мишката за приближаване и отдалечаване на изгледа."
+"Лизозомата е еукариотна еволюция и не може да се използва от прокариотните "
+"клетки. Увеличаването на техния размер намалява храносмилателната "
+"ефективност на клетката."
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
 msgstr ""
-"Използвайте [thrive:input]g_move_forward[/thrive:input],[thrive:"
-"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
-"input],[thrive:input]g_move_right[/thrive:input] и мишката за да се "
-"придвижвате. Окситоксинът се изстрелва с [thrive:input]g_fire_toxin[/thrive:"
-"input], ако имате токсична вакуола. Режимът на поглъщане се включва с "
-"[thrive:input]g_toggle_engulf[/thrive:input]. Използвайте колелцето на "
-"мишката за приближаване и отдалечаване на изгледа."
+"Целулозната и хитиновата клетъчна стена не могат да бъдат разградени без "
+"съответните ензими на лизозомата."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -2997,11 +2967,11 @@ msgstr "измиране"
 msgid "EXTINCT_IN_PATCH"
 msgstr "изчезнаха от зоната"
 
-#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/gui_common/CompoundAmount.cs:171
+#: ../src/microbe_stage/MicrobeHUD.cs:763
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
-#: ../src/general/StageHUDBase.cs:676 ../src/microbe_stage/MicrobeHUD.cs:763
 msgid "VALUE_WITH_UNIT"
-msgstr ""
+msgstr "{0} {1}"
 
 #: ../src/general/StageHUDBase.cs:888 ../src/general/StageHUDBase.cs:882
 #: ../src/microbe_stage/MicrobeHUD.cs:1061
@@ -3823,25 +3793,19 @@ msgstr ""
 "форма на токсичния агент окситоксин."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:973
-#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Произвежда [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. "
-"Количеството зависи от концентрацията на [thrive:compound type="
-"\"carbondioxide\"]въглероден диоксид[/thrive:compound] и температурата в "
-"околната среда."
+"Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез "
+"температурните градиенти. Количеството зависи от [thrive:compound type="
+"\"temperature\"]температурата[/thrive:compound] в околната среда."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:974
-#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr ""
-"Термопластът е структура с двойна мембрана, съдържаща термочувствителни "
-"пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил "
-"асимилиран от еукариотния си приемник. Пигментите в него използват енергията "
-"от топлината за да произвеждат глюкоза от вода и газообразен въглероден "
-"диоксид в процес, който се нарича термосинтеза. Количеството на "
-"произведената глюкоза зависи от концентрацията на въглеродния диоксид и "
-"температурата."
+"Термосинтазата е протеин, който се сгъва и свързва с АДП при загряване или "
+"се разгъва и го превръща в АТФ при охлаждане, благодарение на топлинната "
+"конвекция в процес, който се нарича термосинтеза. Количеството на "
+"произведения АТФ зависи от температурата."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1098
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:972
@@ -3999,10 +3963,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Произвежда [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. "
-"Количеството зависи от концентрацията на [thrive:compound type="
-"\"carbondioxide\"]въглероден диоксид[/thrive:compound] и температурата в "
-"околната среда."
+"Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез "
+"температурните градиенти. Количеството зависи от [thrive:compound type="
+"\"temperature\"]температурата[/thrive:compound] в околната среда."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1626
@@ -4121,37 +4084,29 @@ msgstr "В процес на разработка."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2360
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2242
-#, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:"
-"compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи "
-"от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:"
-"compound] в околната среда. Освобождава токсини с натискане на [thrive:"
-"input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от "
-"количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:"
-"compound] в клетката."
+"Съдържа храносмилателни ензими. Нейните свойства определят вида на ензима, "
+"който се използва за храносмилането на клетката."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2361
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2243
-#, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
 msgstr ""
-"Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те "
-"превръщат глюкозата в АТФ, много по-бързо от цитоплазмата в процес, който се "
-"нарича дишане. За да функционират се нуждаят от кислород, когато той не е "
-"достатъчен произвеждането на АТФ се забавя. Понеже метаболозомите са скачени "
-"с цитоплазма, тя извършва известна гликолиза."
+"Лизозомата е мембранен органел, съдържащ хидролази, които разграждат "
+"различните биомолекули. Тя позволява усвояването на обектите, погълнати чрез "
+"ендоцитоза и изхвърлянето на отпадъчните продукти на клетката в процес, "
+"който се нарича автофагия."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2257
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
 msgid "DIGESTION_SPEED"
-msgstr "Скорост на усвояване"
+msgstr "Храносмилателна скорост"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2263
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 msgid "DIGESTION_EFFICIENCY"
-msgstr "Ефективност на усвояване"
+msgstr "Храносмилателна ефективност"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2420
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2302
@@ -4192,7 +4147,7 @@ msgstr ""
 "Това е мембрана със стена, която осигурява по-добра цялостна защита и се "
 "нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че "
 "клетката става още по-бавна, както и усвояването на хранителните вещества. "
-"[b]Целулазата[/b] може да унищожи стената на тази мембрана."
+"[b]Целулазата[/b] може да разгради стената на тази мембрана."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2924
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3416
@@ -4228,7 +4183,7 @@ msgstr ""
 "Това е мембрана със стена, която осигурява по-добра цялостна защита, особено "
 "срещу токсини и се нуждае от по-малко енергия за да не се деформира. "
 "Недостатъците ѝ са, че клетката става чувствително по-бавна, както и "
-"усвояването на хранителните вещества. [b]Хитиназата[/b] може да унищожи "
+"усвояването на хранителните вещества. [b]Хитиназата[/b] може да разгради "
 "стената на тази мембрана."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3171
@@ -4598,7 +4553,7 @@ msgstr "Под курсора:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1500
 msgid "INGESTED_MATTER"
-msgstr "Погълната материя"
+msgstr "Погълнати обекти"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1625
 #: ../src/microbe_stage/MicrobeStage.tscn:1799
@@ -4816,11 +4771,11 @@ msgstr "Съхранение:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
 msgid "DIGESTION_SPEED_COLON"
-msgstr "Скорост на усвояване:"
+msgstr "Храносмилателна скорост:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "Ефективност на усвояване:"
+msgstr "Храносмилателна ефективност:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 msgid "GENERATION_COLON"
@@ -5091,28 +5046,23 @@ msgid "LINE_COLOUR"
 msgstr "Цвят на линията:"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
-#, fuzzy
 msgid "LIPASE_DESCRIPTION"
 msgstr ""
-"Ресничките са подобни на камшичетата, но те увеличават само скоростта на "
-"завъртане на клетките."
+"Позволява разграждането на повечето видове мембрани. Произвеждането на този "
+"ензим е възможно и без помощта на лизозомата, но добавянето му подобрява "
+"храносмилателната ефективност на клетката."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
-#, fuzzy
 msgid "CELLULASE_DESCRIPTION"
 msgstr ""
-"Вакуолата е вътрешен мембранен органел, който се използва като място за "
-"съхранение на хранителните вещества в клетката. Състои се от няколко "
-"секреторни мехурчета — малки мембранни структури, които са слети заедно. "
-"Изпълнена е с вода, която съдържа молекули, ензими и други вещества. Формата "
-"на вакуолата е течна и може да варира между различните клетки."
+"Позволява разграждането на целулозната мембрана. Този ензим подобрява "
+"храносмилателната ефективност на клетката."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
-#, fuzzy
 msgid "CHITINASE_DESCRIPTION"
 msgstr ""
-"Ресничките са подобни на камшичетата, но те увеличават само скоростта на "
-"завъртане на клетките."
+"Позволява разграждането на хитиновата мембрана. Този ензим подобрява "
+"храносмилателната ефективност на клетката."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
 msgid "SELECT_ENZYME"
@@ -6272,34 +6222,38 @@ msgid "TUTORIAL_VIEW_NOW"
 msgstr "Преглед"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"Вие сте в режим на отделяне. В този режим, може да натиснете с мишката върху "
-"членовете на клетъчната колония за да ги отделите от нея.\n"
+"Вашата клетка може да погълне определено количество обекти наведнъж, което "
+"зависи от нейния размер.\n"
 "\n"
-"За разпадане на цялата клетъчна колония, може да натиснете с мишката върху "
-"Вашата клетка или да натиснете [thrive:input]g_unbind_all[/thrive:input]."
+"Поглъщането не е възможно, ако мястото за съхранение е пълно. За да "
+"продължите поглъщането, изчакайте, докато погълнатите обекти бъдат усвоени."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Вие сте в режим на отделяне. В този режим, може да натиснете с мишката върху "
-"членовете на клетъчната колония за да ги отделите от нея.\n"
+"Поглъщайте обектите, като се придвижвате към тях и след това включете режима "
+"на поглъщане, с натискане на [thrive:input]g_toggle_engulf[/thrive:input], "
+"за да ги погълнете.\n"
 "\n"
-"За разпадане на цялата клетъчна колония, може да натиснете с мишката върху "
-"Вашата клетка или да натиснете [thrive:input]g_unbind_all[/thrive:input]."
+"Продължвайте, докато те не бъдат напълно усвоени.\n"
+"\n"
+"Следвайте линията от Вашата клетка до най-близкия обект, който може да "
+"погълнете."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
 msgstr ""
-"Вие сте в режим на отделяне. В този режим, може да натиснете с мишката върху "
-"членовете на клетъчната колония за да ги отделите от нея.\n"
+"Вашата клетка е погълната, това означава, че поглъщащата клетка ще започне "
+"храносмилането си.\n"
 "\n"
-"За разпадане на цялата клетъчна колония, може да натиснете с мишката върху "
-"Вашата клетка или да натиснете [thrive:input]g_unbind_all[/thrive:input]."
+"Напредъкът на храносмилането се показва в лентата на здравето (долу вдясно) "
+"като процент. Вашата клетка ще умре, след като той достигне 100% или бъде "
+"достигнато максималното време на изчакване.\n"
+"\n"
+"Натиснете бутона за извършване на самоубийство, за да пропуснете този "
+"процес, но не забравяйте, че винаги има шанс да се спасите!"
 
 #~ msgid "AUTO-EVO_POPULATION_CHANGED"
 #~ msgstr ""
