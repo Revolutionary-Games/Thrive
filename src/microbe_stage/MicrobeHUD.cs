@@ -1343,9 +1343,11 @@ public class MicrobeHUD : Control
     {
         engulfHotkey.Visible = !player.CellTypeProperties.MembraneType.CellWall;
         bindingModeHotkey.Visible = player.CanBind;
-        if (player.IsMulticellular && player.Colony != null)
+
+        // Multicellularity is not checked here (only colony membership) as that is also not checked when firing toxins
+        if (player.Colony != null)
         {
-            fireToxinHotkey.Visible = player.Colony.ColonyMembers.Any(o => o.AgentVacuoleCount > 0);
+            fireToxinHotkey.Visible = player.Colony.ColonyMembers.Any(c => c.AgentVacuoleCount > 0);
         }
         else
         {
