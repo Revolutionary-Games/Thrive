@@ -22,6 +22,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulation_parameters\CompoundLoader.cs" />
+    <Compile Include="simulation_parameters\EnzymeLoader.cs" />
     <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
     <Compile Include="src\auto-evo\EditorAutoEvoRun.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="src\general\IEditorWithActions.cs" />
     <Compile Include="src\general\IEditorWithPatches.cs" />
     <Compile Include="src\general\IEntity.cs" />
+    <Compile Include="src\general\IGraphicalEntity.cs" />
     <Compile Include="src\general\IHexEditor.cs" />
     <Compile Include="src\general\IndividualHexLayout.cs" />
     <Compile Include="src\general\IPositionedHex.cs" />
@@ -183,6 +185,8 @@
     <Compile Include="src\gui_common\RadialPopup.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
+    <Compile Include="src\microbe_stage\editor\CellStatsIndicator.cs" />
+    <Compile Include="src\microbe_stage\editor\action_data\ColourActionData.cs" />
     <Compile Include="src\microbe_stage\editor\tooltips\ModifierInfoLabel.cs" />
     <Compile Include="src\microbe_stage\editor\tooltips\SelectionMenuToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ToolTipCallbackData.cs" />
@@ -239,6 +243,9 @@
     <Compile Include="src\microbe_stage\editor\MutationPointsBar.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapEditorComponent.cs" />
     <Compile Include="src\microbe_stage\editor\EditorActionHistory.cs" />
+    <Compile Include="src\microbe_stage\editor\upgrades\LysosomeUpgradeGUI.cs" />
+    <Compile Include="src\microbe_stage\Endosome.cs" />
+    <Compile Include="src\microbe_stage\Enzyme.cs" />
     <Compile Include="src\microbe_stage\FloatingChunkSystem.cs" />
     <Compile Include="src\microbe_stage\ICellProperties.cs" />
     <Compile Include="src\microbe_stage\IComputedMembraneData.cs" />
@@ -251,7 +258,10 @@
     <Compile Include="src\microbe_stage\editor\upgrades\OrganelleUpgradeGUI.cs" />
     <Compile Include="src\microbe_stage\editor\upgrades\SingleEditorAction.cs" />
     <Compile Include="src\microbe_stage\gui\ExtinctionBox.cs" />
+    <Compile Include="src\microbe_stage\gui\PatchDetailsPanel.cs" />
+    <Compile Include="src\microbe_stage\gui\PatchExtinctionBox.cs" />
     <Compile Include="src\microbe_stage\IComponentSpecificUpgrades.cs" />
+    <Compile Include="src\microbe_stage\IEngulfable.cs" />
     <Compile Include="src\microbe_stage\Microbe.Interior.cs" />
     <Compile Include="src\microbe_stage\Microbe.Contact.cs" />
     <Compile Include="src\microbe_stage\MicrobeCheatMenu.cs" />
@@ -289,7 +299,9 @@
     <Compile Include="src\microbe_stage\organelle_components\BindingAgentComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\ChemoreceptorComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\SignalingAgentComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\LysosomeComponent.cs" />
     <Compile Include="src\microbe_stage\particles\CellBurstEffect.cs" />
+    <Compile Include="src\microbe_stage\PhagocytosisPhase.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
     <Compile Include="src\microbe_stage\PlayerHoverInfo.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
@@ -462,7 +474,10 @@
     <Compile Include="src\tutorial\microbe_editor\PatchMap.cs" />
     <Compile Include="src\tutorial\microbe_editor\StaySmallTutorial.cs" />
     <Compile Include="src\tutorial\microbe_stage\CheckTheHelpMenu.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeEngulfedExplanation.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeEngulfmentExplanation.cs" />
     <Compile Include="src\tutorial\microbe_stage\GlucoseCollecting.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeEngulfmentStorageFull.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeMovement.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeMovementExplanation.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobePressEditorButton.cs" />

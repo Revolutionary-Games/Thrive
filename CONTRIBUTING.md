@@ -34,11 +34,19 @@ Please follow our [styleguide](doc/style_guide.md) when making your
 changes to Thrive. Note that our styleguide has a section on Git
 usage, which you should read!
 
-Once your changes are complete, then open a pull request (PR) to this repo
-and someone from the team will review your pull request. Note that
-currently it is not possible commit changes to Git LFS if you are not
-a team member, so you need to ask someone from the team for help if
-your PR includes changes to assets.
+Once your changes are complete, then open a pull request (PR) to this
+repo and someone from the team will review your pull request. When
+making changes in existing code you **must** read the comments on the
+methods you modify, paying special attention to any comments really
+close to your code change. This is because otherwise you will cause
+bugs by not taking edge cases that existing methods have been coded
+with in mind. Also you need to update any comments that are no longer
+accurate after your changes. Otherwise the code base will become a
+mess so we can't let this kind of sloppy code changes through reviews.
+
+Note that currently it is not possible commit changes to Git LFS if
+you are not a team member, so you need to ask someone from the team
+for help if your PR includes changes to assets.
 
 When opening a pull request, please use the closes or fixes keywords
 to mark the issues the PR closes. For example `closes #2000`. When the

@@ -41,6 +41,8 @@ public class OrganelleUpgradeGUI : Control
         organelleSpecificContent.FreeChildren();
         organelleSpecificContent.AddChild(instance);
 
+        scrollContainer.RectMinSize = upgrader.GetMinDialogSize();
+
         popup.PopupCenteredShrink();
 
         scrollContainer.ScrollVertical = 0;

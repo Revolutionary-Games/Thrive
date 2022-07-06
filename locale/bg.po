@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-23 16:32+0300\n"
-"PO-Revision-Date: 2022-06-23 13:31+0000\n"
+"POT-Creation-Date: 2022-07-05 19:39+0100\n"
+"PO-Revision-Date: 2022-07-05 12:02+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12\n"
+"X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -40,79 +40,107 @@ msgid "CONCEPT_ART"
 msgstr "Картини"
 
 #: ../simulation_parameters/common/gallery.json:6
-msgid "GENERAL"
-msgstr "Общи"
-
-#: ../simulation_parameters/common/gallery.json:28
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:387
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
 msgid "CELLS"
 msgstr "Клетки"
 
-#: ../simulation_parameters/common/gallery.json:68
+#: ../simulation_parameters/common/gallery.json:61
+msgid "GENERAL"
+msgstr "Общи"
+
+#: ../simulation_parameters/common/gallery.json:123
 msgid "MODELS"
 msgstr "Модели"
 
-#: ../simulation_parameters/common/gallery.json:71
-#: ../simulation_parameters/common/gallery.json:209
+#: ../simulation_parameters/common/gallery.json:126
+#: ../simulation_parameters/common/gallery.json:276
 msgid "MICROBE_STAGE"
 msgstr "Микробен етап"
 
-#: ../simulation_parameters/common/gallery.json:184
+#: ../simulation_parameters/common/gallery.json:239
 msgid "MUSIC"
 msgstr "Музика"
 
-#: ../simulation_parameters/common/gallery.json:187
+#: ../simulation_parameters/common/gallery.json:242
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 msgid "ALL"
 msgstr "Всички"
 
-#: ../simulation_parameters/common/gallery.json:196
+#: ../simulation_parameters/common/gallery.json:253
 msgid "MENU"
 msgstr "Меню"
 
-#: ../simulation_parameters/common/gallery.json:238
+#: ../simulation_parameters/common/gallery.json:317
 msgid "MICROBE_EDITOR"
 msgstr "Микробен редактор"
 
-#: ../simulation_parameters/common/gallery.json:263
+#: ../simulation_parameters/common/gallery.json:352
 msgid "MULTICELLULAR_STAGE"
 msgstr "Многоклетъчен етап"
 
-#: ../simulation_parameters/common/gallery.json:280
+#: ../simulation_parameters/common/gallery.json:375
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Многоклетъчен редактор"
 
 #: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
+#: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr "Използвайте [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] и мишката за да се придвижвате. Окситоксинът се изстрелва с [thrive:input]g_fire_toxin[/thrive:input], ако имате токсична вакуола. Режимът на поглъщане се включва с [thrive:input]g_toggle_engulf[/thrive:input]. Използвайте колелцето на мишката за приближаване и отдалечаване на изгледа."
 
 #: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
+#: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr "Вашата клетка използва [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да оцелее, ако той свърши, тя ще умре."
 
 #: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
+#: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr "За възпроизвеждане и влизане в редактора, трябва да съберете [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound] (оранжевите облаци) и [thrive:compound type=\"phosphates\"]фосфат[/thrive:compound] (лилавите облаци)."
 
 #: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
+#: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "С натискане на [thrive:input]g_toggle_engulf[/thrive:input] може да поглъщате другите клетки, клетъчните останки, бактериите и железните фрагменти, ако те са по-малки от Вас. Това ще отнеме допълнителен [thrive:compound type=\"atp\"]АТФ[/thrive:compound] и ще Ви забави. Когато приключите, не забравяйте да натиснете [thrive:input]g_toggle_engulf[/thrive:input] още веднъж, за да спрете режима на поглъщане."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+msgstr ""
+"Прокариотни структури\n"
+"\n"
+"Метаболозоми: Произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]\n"
+"\n"
+"Хемосинтезиращи протеини: Произвеждат 1/2 от [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound], чрез хемопласт от [thrive:compound type=\"hydrogensulfide\"]сероводород[/thrive:compound] и извършват процеса гликолиза, заемат 1 шестоъгълник\n"
+"\n"
+"Тилакоиди: Произвеждат 1/3 от [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] като обикновен хлоропласт и извършват процеса гликолиза, заемат 1 шестоъгълник\n"
+"\n"
+"Рустицианин: Превръща [thrive:compound type=\"iron\"]желязото[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]\n"
+"\n"
+"Нитрогеназа: Превръща атмософерния азот и [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], чрез анаеробен процес\n"
+"\n"
+"Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза (произвежда малки количества [thrive:compound type=\"atp\"]АТФ[/thrive:compound])"
+
+#: ../simulation_parameters/common/help_texts.json:26
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+msgstr "Използвайте [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] и мишката за да се придвижвате. Окситоксинът се изстрелва с [thrive:input]g_fire_toxin[/thrive:input], ако имате токсична вакуола. Режимът на поглъщане се включва с [thrive:input]g_toggle_engulf[/thrive:input]. Използвайте колелцето на мишката за приближаване и отдалечаване на изгледа."
+
+#: ../simulation_parameters/common/help_texts.json:30
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+msgstr "Използвайте [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] и мишката за да се придвижвате. Окситоксинът се изстрелва с [thrive:input]g_fire_toxin[/thrive:input], ако имате токсична вакуола. Режимът на поглъщане се включва с [thrive:input]g_toggle_engulf[/thrive:input]. Използвайте колелцето на мишката за приближаване и отдалечаване на изгледа."
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr "Осморегулацията отнема [thrive:compound type=\"atp\"]АТФ[/thrive:compound], това означава, че колкото е по-голяма Вашата клетка, толкова повече митохондрии, метаболозоми или рустицианин (или цитоплазма, която извършва процеса гликолиза) ще са Ви нужни за да не губите [thrive:compound type=\"atp\"]АТФ[/thrive:compound], докато не се движите."
 
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr "В редактора имате на разположение различни органели, които дават възможност за различни стилове на игра."
 
-#: ../simulation_parameters/common/help_texts.json:30
+#: ../simulation_parameters/common/help_texts.json:42
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "Видовете облаци са:\n"
@@ -125,35 +153,35 @@ msgstr ""
 "\n"
 "[thrive:compound type=\"glucose\"]Глюкозата[/thrive:compound] създава [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
 
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
+#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:118
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr "[thrive:compound type=\"hydrogensulfide\"]Сероводородът[/thrive:compound] може да се превърне в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] чрез хемопласти и хемосинтезиращи протеини. [thrive:compound type=\"iron\"]Желязото[/thrive:compound] може да се превърне в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] чрез рустицианин."
 
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr "За възпроизвеждане, органелите на клетката трябва да се разделят на две. За да го направят, те се нуждаят от амоняк и фосфат."
 
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
+#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:115
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "Ако популацията Ви спадне до нула, Вашите създания ще изчезнат."
 
-#: ../simulation_parameters/common/help_texts.json:46
+#: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr "Но ако оцелеете в продължение на 20 поколения с популация от 300 индивида, Вие ще победите. След това ще се появи изскачащ прозорец, който ще се затвори и играта ще продължи."
 
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
+#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr "Внимавайте, защото Вие не сте единствените, които еволюират. Всеки път, когато отворите редактора, Вашите съперници също еволюират."
 
-#: ../simulation_parameters/common/help_texts.json:54
+#: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr "Чрез свързването с други клетки може да създадете клетъчна колония, в която клетките споделят химичните съединения помежду си. За да се свържете с друга клетка, трябва да имате свързващ агент и да сте в режим на свързване, който се включва с натискане на [thrive:input]g_toggle_binding[/thrive:input]. Може да се свържете само с индивиди от Вашите създания. Засега, докато сте част от клетъчната колония, възпроизвеждането не е възможно. За да се възпроизведете, трябва да съберете нужните химични съединения и да напуснете клетъчната колония с натискане на [thrive:input]g_unbind_all[/thrive:input]. Големите клетъчни колонии са първата стъпка към многоклетъчните организми, но те са все още в процес на разработка."
 
-#: ../simulation_parameters/common/help_texts.json:62
+#: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Прокариотни структури\n"
@@ -170,7 +198,7 @@ msgstr ""
 "\n"
 "Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза (произвежда малки количества [thrive:compound type=\"atp\"]АТФ[/thrive:compound])"
 
-#: ../simulation_parameters/common/help_texts.json:66
+#: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Външни органели\n"
@@ -183,7 +211,7 @@ msgstr ""
 "\n"
 "Реснички: Увеличават скоростта на завъртане на клетките"
 
-#: ../simulation_parameters/common/help_texts.json:70
+#: ../simulation_parameters/common/help_texts.json:82
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Вътрешни органели\n"
@@ -206,123 +234,123 @@ msgstr ""
 "\n"
 "Сигнализиращ агент: Използва се от клетките за отделяне на вещества, благодарение на които те могат да излъчват различни видове сигнали помежду си"
 
-#: ../simulation_parameters/common/help_texts.json:74
+#: ../simulation_parameters/common/help_texts.json:86
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr "Всяко поколение разполага със 100 мутационни точки (МТ), всяка негова промяна (или мутация) струва определен брой МТ. Добавянето или премахването на органели струва МТ, но премахването на органели, които са добавени в текущата сесия на редактора, връща тяхната стойност. Може да преместите или премахнете органелите като натиснете с десния бутон на мишката върху тях и изберете съответното действие в контекстното меню. Може да ги завъртите, преди добавяне, чрез натискане на [thrive:input]e_rotate_left[/thrive:input] или [thrive:input]e_rotate_right[/thrive:input]."
 
-#: ../simulation_parameters/common/help_texts.json:78
+#: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "По време на възпроизвеждане, микробният редактор ще бъде отворен, в него може да променяте Вашето създание (като добавяте, премествате или премахвате органели) за да увеличите шанса му за оцеляване. Всяко отваряне на редактора е равно на [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] милиона години еволюция."
 
-#: ../simulation_parameters/common/help_texts.json:119
+#: ../simulation_parameters/common/help_texts.json:131
 msgid "LOADING_TIP"
 msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
 
-#: ../simulation_parameters/common/help_texts.json:126
+#: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Забавен факт е, че Дидиний и Парамеций са давани за пример като ловец и плячка. Вие от коя страна сте — ловецът или плячката?"
 
-#: ../simulation_parameters/common/help_texts.json:129
+#: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Ето един съвет — токсините може да се използват за да спрат токсините на противника, ако сте достатъчно бързи, разбира се."
 
-#: ../simulation_parameters/common/help_texts.json:132
+#: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Ето един съвет — осморегулацията струва 1 АТФ на секунда за всеки шестоъгълник на Вашата клетка, всеки празен шестоъгълник от цитоплазма създава 5 АТФ на секунда, с други думи, ако губите АТФ по време на осморегулация, просто добавете няколко празни шестоъгълника цитоплазма или премахнете някои органели."
 
-#: ../simulation_parameters/common/help_texts.json:135
+#: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "Забавен факт е, че истинските прокариоти имат биоотделения, които функционират като органели и всъщност се наричат многостенни органели."
 
-#: ../simulation_parameters/common/help_texts.json:138
+#: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_5"
 msgstr "Забавен факт е, че метаболозомата представлява многостенен органел."
 
-#: ../simulation_parameters/common/help_texts.json:141
+#: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Ето един съвет — понякога просто бягайте от другите клетки."
 
-#: ../simulation_parameters/common/help_texts.json:144
+#: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_7"
 msgstr "Ето един съвет — ако дадена клетка е 1/2 от Вашия размер, може да я погълнете."
 
-#: ../simulation_parameters/common/help_texts.json:147
+#: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_8"
 msgstr "Ето един съвет — бактериите може да са малки, но някои от тях са много опасни, могат да Ви убият!"
 
-#: ../simulation_parameters/common/help_texts.json:150
+#: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Ето един съвет — ако ловувате дадени създания, без да искате, може напълно да ги унищожите, но не само Вие сте способни на това."
 
-#: ../simulation_parameters/common/help_texts.json:153
+#: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "КАК САМО СЕ ИЗВИВАТ!!"
 
-#: ../simulation_parameters/common/help_texts.json:156
+#: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_11"
 msgstr "Претопете метала."
 
-#: ../simulation_parameters/common/help_texts.json:159
+#: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "Ех тези сини клетки."
 
-#: ../simulation_parameters/common/help_texts.json:162
+#: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_13"
 msgstr "Ето един съвет — биомите са нещо повече от фонове, количествата на химичните съединения в различните биоми не винаги са еднакви."
 
-#: ../simulation_parameters/common/help_texts.json:165
+#: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_14"
 msgstr "Ето един съвет — с повече камшичета ще се движите по-бързо, бръм, бръм, но това ще Ви струва повече АТФ"
 
-#: ../simulation_parameters/common/help_texts.json:168
+#: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Ето един съвет — може да поглъщате дори и железните фрагменти."
 
-#: ../simulation_parameters/common/help_texts.json:171
+#: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_16"
 msgstr "Ето един съвет — подгответе се преди да добавите ядрото. Това нещо е адски скъпо! И не е лесно да се поддържа."
 
-#: ../simulation_parameters/common/help_texts.json:174
+#: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_17"
 msgstr "Забавен факт е, че има над 8 000 ресничести създания на нашата планета, а Вие не го знаехте, нали?"
 
-#: ../simulation_parameters/common/help_texts.json:177
+#: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Забавен факт е, че Тромпетът е ресничест вид, който може да се разтяга и да улавя плячката в устата си, която е с формата на тромпет, създавайки водно течение чрез своите реснички."
 
-#: ../simulation_parameters/common/help_texts.json:180
+#: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "Забавен факт е, че Дидиний е ресничест вид, който ловува чехълчета."
 
-#: ../simulation_parameters/common/help_texts.json:183
+#: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_20"
 msgstr "Забавен факт е, че Амебата ловува и хваща плячката си със своите „крачета“ от цитоплазма, които се наричат псевдоподи, очаквайте ги скоро и в „Thrive“."
 
-#: ../simulation_parameters/common/help_texts.json:186
+#: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_21"
 msgstr "Ето един съвет — пазете се от големите клетки и големите бактерии, няма да е приятно, ако станете част от менюто им."
 
-#: ../simulation_parameters/common/help_texts.json:189
+#: ../simulation_parameters/common/help_texts.json:201
 msgid "EASTEREGG_MESSAGE_22"
 msgstr "„Thrive“ има много мелодии, които все още не са добавени в играта. Може да ги чуете или да гледате как се правят в „YouTube“ канала на Oliver Lugg."
 
-#: ../simulation_parameters/common/help_texts.json:192
+#: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_23"
 msgstr "Ето един съвет — може да поглъщате големите железни фрагменти, ако Вашата клетка е с размер от 150 шестоъгълника."
 
-#: ../simulation_parameters/common/help_texts.json:195
+#: ../simulation_parameters/common/help_texts.json:207
 msgid "EASTEREGG_MESSAGE_24"
 msgstr "„Thrive“ се развива на извънземна планета, следователно повечето създания, които ще видите имат общи черти с едно или две определени създания, благодарение на еволюционния процес, опитайте се да познаете кои са те!"
 
-#: ../simulation_parameters/common/help_texts.json:198
+#: ../simulation_parameters/common/help_texts.json:210
 msgid "EASTEREGG_MESSAGE_25"
 msgstr "Забавен факт е, че екипът на „Thrive“ излъчва конференции от време на време, може да им хвърлите едно око!"
 
-#: ../simulation_parameters/common/help_texts.json:201
+#: ../simulation_parameters/common/help_texts.json:213
 msgid "EASTEREGG_MESSAGE_26"
 msgstr "Забавен факт е, че „Thrive“ е създадена чрез платформата с отворен код „Godot“!"
 
-#: ../simulation_parameters/common/help_texts.json:204
+#: ../simulation_parameters/common/help_texts.json:216
 msgid "EASTEREGG_MESSAGE_27"
 msgstr "Забавен факт е, че един от първите работещи прототипи на играта е създаден от нашия страхотен програмист, untrustedlife!"
 
@@ -355,12 +383,12 @@ msgid "ABILITIES"
 msgstr "Способности"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2149
+#: ../src/microbe_stage/MicrobeStage.tscn:2182
 msgid "FIRE_TOXIN"
 msgstr "Изстрелване на токсин"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2137
+#: ../src/microbe_stage/MicrobeStage.tscn:2170
 msgid "TOGGLE_ENGULF"
 msgstr "Поглъщане"
 
@@ -369,7 +397,7 @@ msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Командно меню"
 
 #: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2160
+#: ../src/microbe_stage/MicrobeStage.tscn:2193
 msgid "TOGGLE_BINDING"
 msgstr "Свързване"
 
@@ -378,7 +406,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr "Отделяне"
 
 #: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2172
+#: ../src/microbe_stage/MicrobeStage.tscn:2205
 msgid "UNBIND_ALL"
 msgstr "Разпадане"
 
@@ -448,7 +476,7 @@ msgid "PAN_CAMERA_RESET"
 msgstr "Нулиране на камерата"
 
 #: ../simulation_parameters/common/input_options.json:135
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:79
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:80
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Анулиране на действието"
 
@@ -570,101 +598,122 @@ msgstr "Анаеробна азотна фиксация"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Желязна хемолитоавтотрофия"
 
+#: ../simulation_parameters/microbe_stage/bio_processes.json:133
+#: ../simulation_parameters/microbe_stage/bio_processes.json:142
+#, fuzzy
+msgid "THERMOSYNTHESIS"
+msgstr "Хемосинтеза"
+
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
 msgstr "Епипелагиал"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:170
-#: ../simulation_parameters/microbe_stage/biomes.json:395
-#: ../simulation_parameters/microbe_stage/biomes.json:539
-#: ../simulation_parameters/microbe_stage/biomes.json:763
-#: ../simulation_parameters/microbe_stage/biomes.json:987
-#: ../simulation_parameters/microbe_stage/biomes.json:1212
-#: ../simulation_parameters/microbe_stage/biomes.json:1356
-#: ../simulation_parameters/microbe_stage/biomes.json:1501
-#: ../simulation_parameters/microbe_stage/biomes.json:1665
-#: ../simulation_parameters/microbe_stage/biomes.json:1809
+#: ../simulation_parameters/microbe_stage/biomes.json:192
+#: ../simulation_parameters/microbe_stage/biomes.json:439
+#: ../simulation_parameters/microbe_stage/biomes.json:605
+#: ../simulation_parameters/microbe_stage/biomes.json:851
+#: ../simulation_parameters/microbe_stage/biomes.json:1097
+#: ../simulation_parameters/microbe_stage/biomes.json:1344
+#: ../simulation_parameters/microbe_stage/biomes.json:1510
+#: ../simulation_parameters/microbe_stage/biomes.json:1677
+#: ../simulation_parameters/microbe_stage/biomes.json:1863
+#: ../simulation_parameters/microbe_stage/biomes.json:2029
 msgid "FLOATING_HAZARD"
 msgstr "Опасен обект"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
-#: ../simulation_parameters/microbe_stage/biomes.json:188
-#: ../simulation_parameters/microbe_stage/biomes.json:413
-#: ../simulation_parameters/microbe_stage/biomes.json:557
-#: ../simulation_parameters/microbe_stage/biomes.json:781
-#: ../simulation_parameters/microbe_stage/biomes.json:1005
-#: ../simulation_parameters/microbe_stage/biomes.json:1230
-#: ../simulation_parameters/microbe_stage/biomes.json:1374
-#: ../simulation_parameters/microbe_stage/biomes.json:1519
-#: ../simulation_parameters/microbe_stage/biomes.json:1683
-#: ../simulation_parameters/microbe_stage/biomes.json:1827
+#: ../simulation_parameters/microbe_stage/biomes.json:210
+#: ../simulation_parameters/microbe_stage/biomes.json:457
+#: ../simulation_parameters/microbe_stage/biomes.json:623
+#: ../simulation_parameters/microbe_stage/biomes.json:869
+#: ../simulation_parameters/microbe_stage/biomes.json:1115
+#: ../simulation_parameters/microbe_stage/biomes.json:1362
+#: ../simulation_parameters/microbe_stage/biomes.json:1528
+#: ../simulation_parameters/microbe_stage/biomes.json:1695
+#: ../simulation_parameters/microbe_stage/biomes.json:1881
+#: ../simulation_parameters/microbe_stage/biomes.json:2047
 msgid "SMALL_IRON_CHUNK"
 msgstr "Малък железен фрагмент"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:79
-#: ../simulation_parameters/microbe_stage/biomes.json:303
-#: ../simulation_parameters/microbe_stage/biomes.json:448
-#: ../simulation_parameters/microbe_stage/biomes.json:592
-#: ../simulation_parameters/microbe_stage/biomes.json:816
-#: ../simulation_parameters/microbe_stage/biomes.json:1040
-#: ../simulation_parameters/microbe_stage/biomes.json:1265
-#: ../simulation_parameters/microbe_stage/biomes.json:1409
-#: ../simulation_parameters/microbe_stage/biomes.json:1573
-#: ../simulation_parameters/microbe_stage/biomes.json:1718
-#: ../simulation_parameters/microbe_stage/biomes.json:1862
+#: ../simulation_parameters/microbe_stage/biomes.json:80
+#: ../simulation_parameters/microbe_stage/biomes.json:326
+#: ../simulation_parameters/microbe_stage/biomes.json:493
+#: ../simulation_parameters/microbe_stage/biomes.json:659
+#: ../simulation_parameters/microbe_stage/biomes.json:905
+#: ../simulation_parameters/microbe_stage/biomes.json:1151
+#: ../simulation_parameters/microbe_stage/biomes.json:1398
+#: ../simulation_parameters/microbe_stage/biomes.json:1564
+#: ../simulation_parameters/microbe_stage/biomes.json:1750
+#: ../simulation_parameters/microbe_stage/biomes.json:1917
+#: ../simulation_parameters/microbe_stage/biomes.json:2083
 msgid "BIG_IRON_CHUNK"
 msgstr "Голям железен фрагмент"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:148
+#: ../simulation_parameters/microbe_stage/biomes.json:104
+#: ../simulation_parameters/microbe_stage/biomes.json:350
+#: ../simulation_parameters/microbe_stage/biomes.json:517
+#: ../simulation_parameters/microbe_stage/biomes.json:763
+#: ../simulation_parameters/microbe_stage/biomes.json:1009
+#: ../simulation_parameters/microbe_stage/biomes.json:1255
+#: ../simulation_parameters/microbe_stage/biomes.json:1422
+#: ../simulation_parameters/microbe_stage/biomes.json:1588
+#: ../simulation_parameters/microbe_stage/biomes.json:1774
+#: ../simulation_parameters/microbe_stage/biomes.json:1941
+#: ../simulation_parameters/microbe_stage/biomes.json:2187
+#, fuzzy
+msgid "GOOGLY_EYE_CELL"
+msgstr "Вашето създание"
+
+#: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
 msgstr "Вулканичен комин"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:223
-#: ../simulation_parameters/microbe_stage/biomes.json:615
-#: ../simulation_parameters/microbe_stage/biomes.json:839
-#: ../simulation_parameters/microbe_stage/biomes.json:1063
-#: ../simulation_parameters/microbe_stage/biomes.json:1885
+#: ../simulation_parameters/microbe_stage/biomes.json:246
+#: ../simulation_parameters/microbe_stage/biomes.json:683
+#: ../simulation_parameters/microbe_stage/biomes.json:929
+#: ../simulation_parameters/microbe_stage/biomes.json:1175
+#: ../simulation_parameters/microbe_stage/biomes.json:2107
 msgid "MARINE_SNOW"
 msgstr "Морски сняг"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:372
+#: ../simulation_parameters/microbe_stage/biomes.json:416
 msgid "TIDEPOOL"
 msgstr "Приливен басейн"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:517
+#: ../simulation_parameters/microbe_stage/biomes.json:583
 msgid "BATHYPELAGIC"
 msgstr "Батиал"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:741
+#: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
 msgstr "Абисал"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:965
+#: ../simulation_parameters/microbe_stage/biomes.json:1075
 msgid "MESOPELAGIC"
 msgstr "Мезопелагиал"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1189
+#: ../simulation_parameters/microbe_stage/biomes.json:1321
 msgid "COASTAL"
 msgstr "Крайбрежие"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1334
+#: ../simulation_parameters/microbe_stage/biomes.json:1488
 msgid "UNDERWATERCAVE"
 msgstr "Подводна пещера"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1478
+#: ../simulation_parameters/microbe_stage/biomes.json:1654
 msgid "ICESHELF"
 msgstr "Шелфов ледник"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1554
+#: ../simulation_parameters/microbe_stage/biomes.json:1731
 msgid "ICESHARD"
 msgstr "Леден къс"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1642
+#: ../simulation_parameters/microbe_stage/biomes.json:1840
 msgid "ESTUARY"
 msgstr "Естуар"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1787
+#: ../simulation_parameters/microbe_stage/biomes.json:2007
 msgid "SEA_FLOOR"
 msgstr "Морско дъно"
 
@@ -673,207 +722,242 @@ msgid "ATP"
 msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:748
+#: ../src/microbe_stage/MicrobeStage.tscn:1300
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Амоняк"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1351
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:819
+#: ../simulation_parameters/microbe_stage/compounds.json:32
+#: ../src/microbe_stage/MicrobeStage.tscn:1349
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1403
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:713
+#: ../simulation_parameters/microbe_stage/compounds.json:47
+#: ../src/microbe_stage/MicrobeStage.tscn:1401
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1247
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:783
+#: ../simulation_parameters/microbe_stage/compounds.json:62
+#: ../src/microbe_stage/MicrobeStage.tscn:1251
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1585
+#: ../simulation_parameters/microbe_stage/compounds.json:77
+#: ../src/microbe_stage/MicrobeStage.tscn:1624
 msgid "OXYTOXY_NT"
 msgstr "Окситоксин"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1455
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:854
+#: ../simulation_parameters/microbe_stage/compounds.json:92
+#: ../src/microbe_stage/MicrobeStage.tscn:1450
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "Желязо"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:550
+#: ../simulation_parameters/microbe_stage/compounds.json:107
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:459
 msgid "OXYGEN"
 msgstr "Кислород"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:604
+#: ../simulation_parameters/microbe_stage/compounds.json:121
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:513
 msgid "CARBON_DIOXIDE"
 msgstr "Въглероден диоксид"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:577
+#: ../simulation_parameters/microbe_stage/compounds.json:135
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:486
 msgid "NITROGEN"
 msgstr "Азот"
 
-#: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3779
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:431
+#: ../simulation_parameters/microbe_stage/compounds.json:149
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3985
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:340
 msgid "SUNLIGHT"
 msgstr "Слънчева светлина"
 
+#: ../simulation_parameters/microbe_stage/compounds.json:163
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3980
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
+msgid "TEMPERATURE"
+msgstr "Температура"
+
+#: ../simulation_parameters/microbe_stage/enzymes.json:3
+msgid "LIPASE"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/enzymes.json:7
+#, fuzzy
+msgid "CELLULASE"
+msgstr "Целулозна"
+
+#: ../simulation_parameters/microbe_stage/enzymes.json:11
+#, fuzzy
+msgid "CHITINASE"
+msgstr "Хитинова"
+
+#: ../simulation_parameters/microbe_stage/enzymes.json:15
+#: ../simulation_parameters/microbe_stage/organelles.json:58
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:679
+msgid "RUSTICYANIN"
+msgstr "Рустицианин"
+
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/general/OptionsMenu.tscn:931
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2245
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2419
 msgid "NORMAL"
 msgstr "Обикновена"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2416
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2590
 msgid "DOUBLE"
 msgstr "Двойна"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2583
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2757
 msgid "CELLULOSE"
 msgstr "Целулозна"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:57
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2821
+#: ../simulation_parameters/microbe_stage/membranes.json:58
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3004
 msgid "CHITIN"
 msgstr "Хитинова"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:75
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3059
+#: ../simulation_parameters/microbe_stage/membranes.json:77
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3251
 msgid "CALCIUM_CARBONATE"
 msgstr "Калциево-карбонатна"
 
-#: ../simulation_parameters/microbe_stage/membranes.json:93
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3330
+#: ../simulation_parameters/microbe_stage/membranes.json:95
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3523
 msgid "SILICA"
 msgstr "Силициева"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1105
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1232
 msgid "PREDATORY_PILUS"
 msgstr "Хищнически пили"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:55
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:678
-msgid "RUSTICYANIN"
-msgstr "Рустицианин"
-
-#: ../simulation_parameters/microbe_stage/organelles.json:90
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:775
+#: ../simulation_parameters/microbe_stage/organelles.json:93
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:776
 msgid "NITROGENASE"
 msgstr "Нитрогеназа"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:125
+#: ../simulation_parameters/microbe_stage/organelles.json:128
 msgid "PROTOPLASM"
 msgstr "Протоплазма"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:157
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:576
+#: ../simulation_parameters/microbe_stage/organelles.json:160
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Хемосинтезиращи протеини"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:873
+#: ../simulation_parameters/microbe_stage/organelles.json:199
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:874
 msgid "OXYTOXISOME"
 msgstr "Окситоксизома"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:231
+#: ../simulation_parameters/microbe_stage/organelles.json:234
 msgid "THYLAKOIDS"
 msgstr "Тилакоиди"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:265
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:378
+#: ../simulation_parameters/microbe_stage/organelles.json:268
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:379
 msgid "METABOLOSOMES"
 msgstr "Метаболозоми"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:303
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1824
+#: ../simulation_parameters/microbe_stage/organelles.json:306
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Пластид за азотна фиксация"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:342
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1739
+#: ../simulation_parameters/microbe_stage/organelles.json:341
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
+#, fuzzy
+msgid "THERMOSYNTHASE"
+msgstr "Хемосинтеза"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1858
 msgid "CHEMOPLAST"
 msgstr "Хемопласт"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:376
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:970
+#: ../simulation_parameters/microbe_stage/organelles.json:414
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1097
 msgid "FLAGELLUM"
 msgstr "Камшиче"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:405
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1923
+#: ../simulation_parameters/microbe_stage/organelles.json:443
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2042
 msgid "VACUOLE"
 msgstr "Вакуола"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:442
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1453
+#: ../simulation_parameters/microbe_stage/organelles.json:480
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1580
 msgid "MITOCHONDRION"
 msgstr "Митохондрия"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:478
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2021
+#: ../simulation_parameters/microbe_stage/organelles.json:516
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2140
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Токсична\n"
 "вакуола"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:509
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1272
+#: ../simulation_parameters/microbe_stage/organelles.json:547
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1399
 msgid "BINDING_AGENT"
 msgstr "Свързващ агент"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:551
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1538
+#: ../simulation_parameters/microbe_stage/organelles.json:589
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "CHLOROPLAST"
 msgstr "Хлоропласт"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:585
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
+#: ../simulation_parameters/microbe_stage/organelles.json:623
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:280
 msgid "CYTOPLASM"
 msgstr "Цитоплазма"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:652
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1356
+#: ../simulation_parameters/microbe_stage/organelles.json:690
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1483
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:678
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
+#: ../simulation_parameters/microbe_stage/organelles.json:716
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1292
 msgid "CHEMORECEPTOR"
 msgstr "Хеморецептор"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2119
+#: ../simulation_parameters/microbe_stage/organelles.json:742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2238
 msgid "SIGNALING_AGENT"
 msgstr "Сигнализиращ агент"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:727
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2218
+#: ../simulation_parameters/microbe_stage/organelles.json:765
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2337
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Биолуминесцентна вакуола"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:750
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1623
+#: ../simulation_parameters/microbe_stage/organelles.json:803
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "THERMOPLAST"
 msgstr "Термопласт"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:780
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
+#: ../simulation_parameters/microbe_stage/organelles.json:834
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1352
 msgid "CILIA"
 msgstr "Реснички"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
+#, fuzzy
+msgid "LYSOSOME"
+msgstr "Окситоксизома"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
@@ -895,9 +979,9 @@ msgstr "{0:F1} % на стъпка {1:n0} от {2:n0}."
 msgid "STARTING"
 msgstr "Започната"
 
-#: ../src/auto-evo/AutoEvoRun.cs:288
-msgid "AUTO-EVO_POPULATION_CHANGED"
-msgstr "популацията на „{0}“ се промени с {1} индивида поради {2} на създанията"
+#: ../src/auto-evo/AutoEvoRun.cs:293
+msgid "AUTO-EVO_POPULATION_CHANGED_2"
+msgstr "популацията на „{0}“ в {2} се промени с {1} индивида поради {3} на създанията"
 
 #: ../src/auto-evo/RunResults.cs:554
 msgid "POPULATION_COLON"
@@ -1011,85 +1095,85 @@ msgstr "„{0}“"
 msgid "STEM_CELL_NAME"
 msgstr "Стволова"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:299
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:361
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:296
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
 msgid "STRUCTURE"
 msgstr "Структура"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:320
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:317
 msgid "REPRODUCTION"
 msgstr "Възпроизвеждане"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:341
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:403
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:338
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
 msgstr "Поведение"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:404
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 msgid "MODIFY_TYPE"
 msgstr "Свойства"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:418
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:415
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Премахване"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:426
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
 msgid "DUPLICATE_TYPE"
 msgstr "Удвояване"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
 msgid "REPRODUCTION_METHOD"
 msgstr "Видове:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:481
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:482
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
 msgid "REPRODUCTION_BUDDING"
 msgstr "Пъпкуване"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:523
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1233
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1105
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ОТКАЗ"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:536
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1246
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:1024
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:126
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "НАПРЕД"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
 msgid "DISCONNECTED_CELLS"
 msgstr "Несвързани клетки"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:547
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Има клетки, които не са свързани с останалите.\n"
 "Моля, свържете ги или отменете Вашите промени."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:553
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:548
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Клетката не може да бъде премахната"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:555
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:550
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Тази клетка е част от Вашия многоклетъчен организъм и не може да бъде премахната"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:559
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr "Създаване на нова клетка"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:574
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Може да създадете нови клетки с различно наименование чрез удвояване на текущите клетки. Свойствата на клетките могат да бъдат променяни, за да изпълняват различни функции. Когато дадена клетка бъде променена, всички клетки от нейния вид ще бъдат обновени."
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:588
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
 msgid "NEW_NAME_COLON"
 msgstr "Наименование:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:595
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
 msgid "NEW_NAME"
 msgstr "Наименование"
 
@@ -1121,7 +1205,7 @@ msgstr "Състояние:"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:379
 #: ../src/general/EditorBase.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Последното действие не е завършено"
 
@@ -1130,16 +1214,25 @@ msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Изберете клетка от редактора за да промените нейните свойства"
 
 #: ../src/engine/DebugOverlays.FPSCounter.cs:16
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:66
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 #: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
 msgstr "ЧКС: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 msgid "FRAME_DURATION"
 msgstr "Δ: {0}"
 
-#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:81
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
+#: ../src/saving/SaveManagerGUI.cs:131
+msgid "MIB_VALUE"
+msgstr "{0} МиБ"
+
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
+msgid "UNKNOWN_ON_WINDOWS"
+msgstr "Неизвестни"
+
+#: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
@@ -1148,8 +1241,8 @@ msgstr ""
 "Обекти: {2} Други: {3}\n"
 "Създадени: {4} Премахнати: {5}\n"
 "Използвани възли: {6}\n"
-"Използвана памет: {7} МиБ\n"
-"Графична памет: {8} МиБ\n"
+"Използвана памет: {7}\n"
+"Графична памет: {8}\n"
 "Изобразени обекти: {9}\n"
 "Общо обекти: {10} Двуизмерни: {11}\n"
 "Изобразени върхове: {12}\n"
@@ -1625,7 +1718,7 @@ msgstr "ГОТОВО"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1333
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "CLOSE"
@@ -1633,12 +1726,14 @@ msgstr "Затваряне"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:567
-#: ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/MicrobeHUD.cs:717
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:395
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:275
+#: ../src/gui_common/CompoundAmount.cs:176
+#: ../src/microbe_stage/MicrobeHUD.cs:762
+#: ../src/microbe_stage/MicrobeHUD.cs:1220
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:276
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:236
 msgid "PERCENTAGE_VALUE"
 msgstr "{0} %"
 
@@ -1708,7 +1803,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробен редактор"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1014
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1013
 #: ../src/general/OptionsMenu.tscn:1228 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1745,7 +1840,7 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Възникна грешка по време на зареждането на една или повече модификации. За повече информация, вижте дневниците на играта."
 
 #: ../src/general/NewGameSettings.cs:284
-#: ../src/general/NewGameSettings.tscn:1054
+#: ../src/general/NewGameSettings.tscn:1053
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Завършване на промените и започване на играта"
 
@@ -1761,17 +1856,12 @@ msgstr "Ниво на трудност"
 #: ../src/general/NewGameSettings.tscn:142
 #: ../src/general/NewGameSettings.tscn:815
 msgid "LAWK_ONLY"
-msgstr ""
+msgstr "Земеподобен живот"
 
 #: ../src/general/NewGameSettings.tscn:149
 #: ../src/general/NewGameSettings.tscn:822
-#, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
-"Плашливите микроби отстъпват при опасност\n"
-"и са склонни да избягат, когато са нападнати.\n"
-"Безрасъдните микроби не отстъпват при опасност\n"
-"и са склонни да се защитят, когато са нападнати."
+msgstr "(еволюцията на някои органели и способности е ограничена)"
 
 #: ../src/general/NewGameSettings.tscn:165
 #: ../src/general/NewGameSettings.tscn:838
@@ -1785,9 +1875,8 @@ msgstr "(начално местообитание)"
 
 #: ../src/general/NewGameSettings.tscn:186
 #: ../src/general/NewGameSettings.tscn:859
-#, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "Извършване на самоубийство"
+msgstr "Зависи от включването на „Земеподобен живот“"
 
 #: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
@@ -1830,77 +1919,59 @@ msgstr "Разни"
 
 #: ../src/general/NewGameSettings.tscn:367
 msgid "MUTATION_COST_MULTIPLIER"
-msgstr ""
+msgstr "Мутационен разход"
 
 #: ../src/general/NewGameSettings.tscn:412
-#, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-"Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
-"Мудните микроби не са в движение, докато няма промени в околната среда."
+msgstr "(определя разхода на мутационни точки в редактора)"
 
 #: ../src/general/NewGameSettings.tscn:429
-#, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr "Мутационни точки"
+msgstr "Мутационна скорост"
 
 #: ../src/general/NewGameSettings.tscn:474
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "Това са стойностите, които използва прогнозата на автоматичната еволюция. Размерът на некоригираната популация се определя от общата усвоена енергийна стойност и индивидуалния разход на Вашите създания. Автоматичната еволюция използва опростен еволюционен модел, за да изчисли тяхното представяне на база общата усвоена енергийна стойност. Всеки източник на енергия има обща енергийна стойност, като част от нея се усвоява от Вашите създания. Усвоената енергийна стойност се определя от стойността на усвояване, сравнена с общата стойност на усвояване. Стойността на усвояване определя колко добре Вашите създания могат да използват този източник на енергия."
+msgstr "(определя скоростта на мутация на Вашите съперници)"
 
 #: ../src/general/NewGameSettings.tscn:491
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "Облаци"
+msgstr "Гъстота на облаците"
 
 #: ../src/general/NewGameSettings.tscn:536
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
-msgstr ""
-"Самонадеяните микроби се съревновават за своята плячка\n"
-"и са склонни да използват токсини срещу по-големите микроби.\n"
-"Предпазливите микроби не се излагат на опасност за своята плячка."
+msgstr "(определя гъстотата на облаците в околната среда)"
 
 #: ../src/general/NewGameSettings.tscn:553
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr ""
+msgstr "Коефициент на измиране"
 
 #: ../src/general/NewGameSettings.tscn:598
-#, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
-msgstr "Това са стойностите, които използва прогнозата на автоматичната еволюция. Размерът на некоригираната популация се определя от общата усвоена енергийна стойност и индивидуалния разход на Вашите създания. Автоматичната еволюция използва опростен еволюционен модел, за да изчисли тяхното представяне на база общата усвоена енергийна стойност. Всеки източник на енергия има обща енергийна стойност, като част от нея се усвоява от Вашите създания. Усвоената енергийна стойност се определя от стойността на усвояване, сравнена с общата стойност на усвояване. Стойността на усвояване определя колко добре Вашите създания могат да използват този източник на енергия."
+msgstr "(определя размера на измиране на индивидите от Вашите създания)"
 
 #: ../src/general/NewGameSettings.tscn:615
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
-msgstr ""
+msgstr "Задържане на глюкозата в околната среда"
 
 #: ../src/general/NewGameSettings.tscn:659
-#, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
-msgstr "Това са стойностите, които използва прогнозата на автоматичната еволюция. Размерът на некоригираната популация се определя от общата усвоена енергийна стойност и индивидуалния разход на Вашите създания. Автоматичната еволюция използва опростен еволюционен модел, за да изчисли тяхното представяне на база общата усвоена енергийна стойност. Всеки източник на енергия има обща енергийна стойност, като част от нея се усвоява от Вашите създания. Усвоената енергийна стойност се определя от стойността на усвояване, сравнена с общата стойност на усвояване. Стойността на усвояване определя колко добре Вашите създания могат да използват този източник на енергия."
+msgstr "(определя концентрацията на глюкоза в околната среда след всяко отваряне на редактора)"
 
 #: ../src/general/NewGameSettings.tscn:676
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr "Осморегулационен разход"
 
 #: ../src/general/NewGameSettings.tscn:721
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "Осморегулационен разход"
+msgstr "(определя разхода на осморегулацията на Вашите създания)"
 
 #: ../src/general/NewGameSettings.tscn:733
 msgid "FREE_GLUCOSE_CLOUD"
-msgstr ""
+msgstr "Създаване на облак от глюкоза при излизане от редактора"
 
 #: ../src/general/NewGameSettings.tscn:740
-#, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
-msgstr ""
-"Вглъбените микроби не променят намеренията си\n"
-"и са склонни да постигнат целта си.\n"
-"Бдителните микроби бързо променят намеренията си."
+msgstr "(създава облак от глюкоза близо до Вашето създание след всяко отваряне на редактора)"
 
 #: ../src/general/NewGameSettings.tscn:777
 msgid "PATCH_MAP_TYPE"
@@ -1931,31 +2002,31 @@ msgstr "Включване на следващите етапи на играт�
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(следващите етапи на играта не са завършени и може да не функционират правилно)"
 
-#: ../src/general/NewGameSettings.tscn:996
+#: ../src/general/NewGameSettings.tscn:995
 msgid "EASTER_EGGS"
 msgstr "Включване на тайните обекти на играта"
 
-#: ../src/general/NewGameSettings.tscn:1003
+#: ../src/general/NewGameSettings.tscn:1002
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(произволно създаване на тайните обекти на играта)"
 
-#: ../src/general/NewGameSettings.tscn:1031
+#: ../src/general/NewGameSettings.tscn:1030
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Отваряне на разширените настройки"
 
-#: ../src/general/NewGameSettings.tscn:1033
+#: ../src/general/NewGameSettings.tscn:1032
 msgid "ADVANCED_VIEW"
 msgstr "Разширени"
 
-#: ../src/general/NewGameSettings.tscn:1044
+#: ../src/general/NewGameSettings.tscn:1043
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Отваряне на основните настройки"
 
-#: ../src/general/NewGameSettings.tscn:1045
+#: ../src/general/NewGameSettings.tscn:1044
 msgid "BASIC_VIEW"
 msgstr "Основни"
 
-#: ../src/general/NewGameSettings.tscn:1055
+#: ../src/general/NewGameSettings.tscn:1054
 msgid "CONFIRM_NORMAL"
 msgstr "Готово"
 
@@ -2159,7 +2230,7 @@ msgstr "Нишки:"
 
 #: ../src/general/OptionsMenu.tscn:915
 msgid "MAX_SPAWNED_ENTITIES"
-msgstr "Максимален брой на обектите"
+msgstr "Максимален брой на обектите:"
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
 msgid "TINY"
@@ -2363,7 +2434,7 @@ msgid "STATISTICS"
 msgstr "Статистика"
 
 #: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/MicrobeStage.tscn:1697
+#: ../src/microbe_stage/MicrobeStage.tscn:1736
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Отваряне на ръководството"
 
@@ -2408,6 +2479,12 @@ msgstr "/в секунда"
 #: ../src/gui_common/ChemicalEquation.cs:308
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "при"
+
+#: ../src/gui_common/CompoundAmount.cs:171
+#: ../src/microbe_stage/MicrobeHUD.cs:763
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
+msgid "VALUE_WITH_UNIT"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:223
 msgid "LEAD_DEVELOPERS"
@@ -2648,21 +2725,21 @@ msgstr "Записът е с различна версия"
 msgid "SELECT_OPTION"
 msgstr "Изберете команда"
 
-#: ../src/gui_common/TweakedColourPicker.cs:394
+#: ../src/gui_common/TweakedColourPicker.cs:388
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "Избиране на цвят от прозореца на играта"
 
-#: ../src/gui_common/TweakedColourPicker.cs:395
+#: ../src/gui_common/TweakedColourPicker.cs:389
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr "Добавяне на текущия цвят като шаблон"
 
-#: ../src/gui_common/TweakedColourPicker.cs:396
+#: ../src/gui_common/TweakedColourPicker.cs:390
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 "Превключване на ОНС (oттенък, наситеност и стойност).\n"
 "Не може да се използва заедно с необработените цветове."
 
-#: ../src/gui_common/TweakedColourPicker.cs:397
+#: ../src/gui_common/TweakedColourPicker.cs:391
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 "Превключване на необработените цветове.\n"
@@ -2670,35 +2747,35 @@ msgstr ""
 "може да надвишат 1,0.\n"
 "Не може да се използва заедно с ОНС."
 
-#: ../src/gui_common/TweakedColourPicker.cs:401
+#: ../src/gui_common/TweakedColourPicker.cs:395
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Оттенък — част от цвета"
 
-#: ../src/gui_common/TweakedColourPicker.cs:402
+#: ../src/gui_common/TweakedColourPicker.cs:396
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Наситеност — количеството на сивото в цвета"
 
-#: ../src/gui_common/TweakedColourPicker.cs:403
+#: ../src/gui_common/TweakedColourPicker.cs:397
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Стойност (яркост) — интензивността на цвета"
 
-#: ../src/gui_common/TweakedColourPicker.cs:407
+#: ../src/gui_common/TweakedColourPicker.cs:401
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Стойност на червеното"
 
-#: ../src/gui_common/TweakedColourPicker.cs:408
+#: ../src/gui_common/TweakedColourPicker.cs:402
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Стойност на зеленото"
 
-#: ../src/gui_common/TweakedColourPicker.cs:409
+#: ../src/gui_common/TweakedColourPicker.cs:403
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Стойност на синьото"
 
-#: ../src/gui_common/TweakedColourPicker.cs:412
+#: ../src/gui_common/TweakedColourPicker.cs:406
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Стойност на прозрачността"
 
-#: ../src/gui_common/TweakedColourPicker.cs:587
+#: ../src/gui_common/TweakedColourPicker.cs:581
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 "Цвят: {0}\n"
@@ -2716,8 +2793,8 @@ msgstr "НЦ"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:24
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:34
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:44
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2040
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2052
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2054
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2066
 msgid "N_A"
 msgstr "Няма"
 
@@ -2755,7 +2832,7 @@ msgid "SLIDESHOW"
 msgstr "Слайдшоу"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2192
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
 msgid "NO_DATA_TO_SHOW"
 msgstr "Няма данни"
 
@@ -2816,80 +2893,80 @@ msgstr ""
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:16
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:52
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:252
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:55
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:255
 msgid "TUTORIAL"
 msgstr "Упътване"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:47
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:48
 msgid "OPEN_THE_MENU"
 msgstr "Отваряне на менюто"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:53
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:54
 msgid "OPEN_HELP_SCREEN"
 msgstr "Отваряне на ръководството"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:67
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:68
 msgid "WILL_YOU_THRIVE"
 msgstr "Ще процъфтите ли?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:84
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:85
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr "Завършване на промените и продължаване на играта"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:89
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:90
 msgid "NEXT_EDITOR_TAB"
 msgstr "Преминаване към следващия раздел"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:95
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:96
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Промяна на симетрията"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:101
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "UNDO_THE_LAST_ACTION"
 msgstr "Отмяна на последното действие"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:107
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "REDO_THE_LAST_ACTION"
 msgstr "Възстановяване на последното действие"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:113
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:114
 msgid "CREATE_A_NEW_MICROBE"
 msgstr "Създаване на нов микроб"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:119
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Произволно наименование"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Твърдост на мембраната"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:130
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "По-твърдата мембрана е по-устойчива, но същевременно тя забавя движението на клетката."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:158
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2275
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2446
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2613
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2851
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3087
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3360
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:159
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2620
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2787
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3034
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3279
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3553
 msgid "BASE_MOBILITY"
 msgstr "Базова подвижност"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:193
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2378
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2546
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2716
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2954
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3190
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3463
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:194
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2552
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2720
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2890
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3137
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3382
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3656
 msgid "HEALTH"
 msgstr "Здраве"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:232
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:233
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 "Агресивните микроби преследват плячката си на големи разстояния\n"
@@ -2897,14 +2974,14 @@ msgstr ""
 "Пасивните микроби не преследват пляката си на големи разстояния\n"
 "и са склонни да избягат, когато са нападнати."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:240
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:241
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 "Самонадеяните микроби се съревновават за своята плячка\n"
 "и са склонни да използват токсини срещу по-големите микроби.\n"
 "Предпазливите микроби не се излагат на опасност за своята плячка."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:248
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:249
 msgid "FEAR_EXPLANATION"
 msgstr ""
 "Плашливите микроби отстъпват при опасност\n"
@@ -2912,318 +2989,355 @@ msgstr ""
 "Безрасъдните микроби не отстъпват при опасност\n"
 "и са склонни да се защитят, когато са нападнати."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:256
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:257
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 "Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
 "Мудните микроби не са в движение, докато няма промени в околната среда."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:264
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:265
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 "Вглъбените микроби не променят намеренията си\n"
 "и са склонни да постигнат целта си.\n"
 "Бдителните микроби бързо променят намеренията си."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:280
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:281
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:281
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:282
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr "Това е вътрешността на клетката. Цитоплазмата е комбинация от разтворени във вода йони, протеини и други вещества. Една от функциите, които изпълнява е гликолизата — превръщането на глюкоза в АТФ. Клетките, които нямат органели, разчитат на цитоплазмата за да произвеждат енергия. Също така, цитоплазмата служи за съхранение на молекули в клетката за да може тя да увеличава размера си."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:298
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:401
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:498
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:600
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:697
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:794
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:892
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1027
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1286
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1375
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1468
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1553
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1653
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1754
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1844
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2041
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2139
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:299
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:402
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:499
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:601
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:698
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1005
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1413
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1502
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1595
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1680
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1780
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1873
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1963
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2062
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2160
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2258
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2390
 msgid "STORAGE"
 msgstr "Съхранение"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:336
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:439
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:638
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:735
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:832
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:930
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1065
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1125
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1240
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1324
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1413
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1506
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1591
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1691
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1792
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1981
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2079
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2177
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2310
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2480
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2648
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2886
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3122
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3395
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:337
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:440
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:537
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:639
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:736
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:833
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:931
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1192
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1252
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1312
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1367
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1451
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1540
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1633
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1718
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1818
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1911
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2001
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2100
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2198
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2296
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2400
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2654
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3069
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3314
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3588
 msgid "OSMOREGULATION_COST"
 msgstr "Осморегулационен разход"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:379
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr "Превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:381
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат глюкозата в АТФ, много по-бързо от цитоплазмата в процес, който се нарича дишане. За да функционират се нуждаят от кислород, когато той не е достатъчен произвеждането на АТФ се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна гликолиза."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:479
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:480
 msgid "THYLAKOID"
 msgstr "Тилакоид"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:480
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Произвежда [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"sunlight\"]слънчева светлина[/thrive:compound] в околната среда."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:481
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:482
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr "Тилакоидите са струпвания от протеини и фоточувствителни пигменти. Те използват енергията от светлината за да произвеждат глюкоза от вода и газообразен въглероден диоксид в процес, който се нарича фотосинтеза. Благодарение на пигментите, те получават отличителен цвят. Количеството на произведената глюкоза зависи от концентрацията на въглеродния диоксид и количеството светлина. Понеже тилакоидите са скачени с цитоплазма, тя извършва известна гликолиза."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:577
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:578
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr "Превръщат [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound] в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в околната среда. Също така, превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:578
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:579
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr "Хемосинтезиращите протеини са малки струпвания в цитоплазмата, които превръщат сероводорода, водата и газообразния въглероден диоксид в глюкоза в процес, който се нарича сероводородна хемосинтеза. Количеството на произведената глюкоза зависи от концентрацията на въглероден диоксид. Понеже хемосинтезиращите протеини са скачени с цитоплазма, тя извършва известна гликолиза."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:679
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:680
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"iron\"]желязото[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:680
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:681
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Рустицианинът е протеин, който използва газообразен въглероден диоксид и кислород за да окислява желязото в процес, който се нарича оксидиране. В резултат на този процес се освобождава енергия, която клетката може да използва."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:776
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:777
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"nitrogen\"]азот[/thrive:compound] в околната среда."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:777
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:778
 msgid "NITROGENASE_DESCRIPTION"
 msgstr "Нитрогеназата е протеин, който използва газообразен въглероден диоксид и клетъчна енергия под формата на АТФ за да произвежда амоняк, който е ключов за растежа на клетките. Този процес се нарича анаеробна азотна фиксация. Понеже нитрогеназата е скачена с цитоплазма, тя извършва известна гликолиза."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:874
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:875
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Освобождава токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:875
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:876
 msgid "OXYTOXISOME_DESC"
 msgstr "Окситоксизомата е видоизменена метаболозома, която произвежда примитивна форма на токсичния агент окситоксин."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:971
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:973
+#, fuzzy
+msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
+msgstr "Произвежда [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и температурата в околната среда."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:974
+#, fuzzy
+msgid "THERMOSYNTHASE_DESCRIPTION"
+msgstr "Термопластът е структура с двойна мембрана, съдържаща термочувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в него използват енергията от топлината за да произвеждат глюкоза от вода и газообразен въглероден диоксид в процес, който се нарича термосинтеза. Количеството на произведената глюкоза зависи от концентрацията на въглеродния диоксид и температурата."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1098
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Използва [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да увеличи скоростта на движение на клетката."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1099
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "Камшичето е протеин с формата на камшик, който се разпростира извън клетъчната мембрана и използва [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да придвижва клетката, чрез вълнообразни движения. Позицията на камшичето определя посоката, в която то осигурява тласък за движение на клетката. Той винаги е противоположен на позицията на камшичето (например, ако е поставено от лявата страна на клетката, камшичето ще осигурява тласък за движение надясно)."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:989
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1116
 msgid "SPEED"
 msgstr "Скорост"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1233
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Пробожда другите клетки и предпазва от техните токсини."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1234
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Това са фини косъмчета върху клетъчната мембрана. Една клетка може да притежава от десетки до стотици пили, които имат различно предназначение, включително роля в хищничеството. Патогенните микроорганизми използват своите пили за вирулентност или за прикрепване и свързване към тъканите на гостоприемника си, или за нахлуване през клетъчната мембрана, за да достигнат до цитоплазмата. Съществуват различни видове пили, които не са еволюционно свързани помежду си и са резултат от конвергентна еволюция. Един организъм може да притежава няколка вида пили и постоянно да ги променя или заменя."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1293
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Осигурява напътствия за откриването на химичните съединения. Неговите свойства определят вида на търсеното химично съединение и цвета на линията."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1294
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Това е „зрението“ на клетката. Хеморецепторът възприема информацията за околната среда на клетката. Добавянето на този органел представлява специализирана еволюция на хеморецепцията. Той осигурява напътствия за откриването на химичните съединения, които са извън текущото зрително поле на клетката."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1353
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "Увеличават скоростта на завъртане на големите клетки."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1354
 msgid "CILIA_DESCRIPTION"
 msgstr "Ресничките са подобни на камшичетата, но те увеличават само скоростта на завъртане на клетките."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1400
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Свързването е възможно само с индивиди от Вашите създания чрез доближаване до тях. Режимът на свързване се включва с натискане на [thrive:input]g_toggle_binding[/thrive:input]. Клетъчната колония може да се разпадне с натискане на [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1401
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Това е първата стъпка към многоклетъчните организми. Свързващият агент позволява свързването с други клетки. Клетките в клетъчните колонии споделят химичните съединения помежду си, но не могат да се възпроизвеждат."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Позволява еволюцията към по-сложните мембранни органели и увеличава издръжливостта на клетката с 50 %. То използва голямо количество АТФ. Тази еволюция е необратима."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1358
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1485
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Това е определящата структура на еукариотните клетки. Ядрото включва в себе си ендоплазмен ретикулум и апарата на Голджи. То е еволюция на прокариотните клетки, която им позволява да развият система от вътрешни мембрани, чрез асимилиране на друг прокариот в самите тях. Ядрото разделя различните клетъчни процеси и не им позволява да се припокриват. Освен това, позволява на мембранните органели да са много по-сложни, ефикасни и специализирани. За сметка на това, ядрото увеличава размера на клетката и изисква голямо количество енергия."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1581
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1582
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr "Това е основният източник на енергия на клетката. Митохондрията е структура с двойна мембрана, изпълнена с протеини и ензими. Тя е прокариот, който е бил асимилиран от еукариотния си приемник. Митохондрията превръща по много ефективен начин глюкозата в АТФ в процес, който се нарича аеробно дишане. За да функционира се нуждае от кислород, когато той не е достатъчен произвеждането на АТФ се забавя."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1539
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Произвежда [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"sunlight\"]слънчева светлина[/thrive:compound] в околната среда."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1540
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1667
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr "Хлоропластът е структура с двойна мембрана, съдържаща фоточувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в хлоропласта използват енергията от светлината за да произвеждат глюкоза от вода и газообразен въглероден диоксид в процес, който се нарича фотосинтеза. Благодарение на пигментите, той получава отличителен цвят. Количеството на произведената глюкоза зависи от концентрацията на въглеродния диоксид и количеството светлина."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Произвежда [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и температурата в околната среда."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Термопластът е структура с двойна мембрана, съдържаща термочувствителни пигменти, събрани заедно в мембранни торбички. Той е прокариот, който е бил асимилиран от еукариотния си приемник. Пигментите в него използват енергията от топлината за да произвеждат глюкоза от вода и газообразен въглероден диоксид в процес, който се нарича термосинтеза. Количеството на произведената глюкоза зависи от концентрацията на въглеродния диоксид и температурата."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1642
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1769
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:212
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Не се осъществяват клетъчни процеси"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1726
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
-#: ../src/microbe_stage/MicrobeHUD.cs:1502
-msgid "TO_BE_IMPLEMENTED"
-msgstr "В процес на разработка."
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1740
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1859
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound] в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в околната среда."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1741
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1860
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr "Хемопластът е структура с двойна мембрана, съдържаща протеини, които превръщат сероводорода, водата и газообразния въглероден диоксид в глюкоза, в процес, който се нарича сероводородна хемосинтеза. Количеството на произведената глюкоза зависи от концентрацията на въглероден диоксид."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1825
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"nitrogen\"]азот[/thrive:compound] и [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr "Пластидът за азотна фиксация е протеин, който използва газообразен азот и кислород, както и клетъчна енергия под формата на АТФ за да произвежда амоняк, който е ключов за растежа на клетките. Този процес се нарича аеробна азотна фиксация."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1924
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2043
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Увеличава мястото за съхранение на хранителните вещества в клетката."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1925
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2044
 msgid "VACUOLE_DESCRIPTION"
 msgstr "Вакуолата е вътрешен мембранен органел, който се използва като място за съхранение на хранителните вещества в клетката. Състои се от няколко секреторни мехурчета — малки мембранни структури, които са слети заедно. Изпълнена е с вода, която съдържа молекули, ензими и други вещества. Формата на вакуолата е течна и може да варира между различните клетки."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2141
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Освобождава токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2023
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2142
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и отделя окситоксини. Всяка токсична вакуола увеличава скоростта на отделяне на токсините."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2120
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2239
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Излъчва различни видове сигнали чрез командното меню, с задържане на [thrive:input]g_pack_commands[/thrive:input]."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2121
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2240
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Сигнализиращият агент се използва от клетките за отделяне на вещества, благодарение на които те могат да излъчват различни видове сигнали помежду си."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2246
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2338
+#: ../src/microbe_stage/MicrobeHUD.cs:1612
+msgid "TO_BE_IMPLEMENTED"
+msgstr "В процес на разработка."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2360
+#, fuzzy
+msgid "LYSOSOME_PROCESSES_DESCRIPTION"
+msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Освобождава токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2361
+#, fuzzy
+msgid "LYSOSOME_DESCRIPTION"
+msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат глюкозата в АТФ, много по-бързо от цитоплазмата в процес, който се нарича дишане. За да функционират се нуждаят от кислород, когато той не е достатъчен произвеждането на АТФ се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна гликолиза."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
+#, fuzzy
+msgid "DIGESTION_SPEED"
+msgstr "Скорост на усвояване на веществата"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
+msgid "DIGESTION_EFFICIENCY"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2420
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "Това е най-обикновена мембрана, която не осигурява добра защита на клетката. Освен това, тя се нуждае от повече енергия за да не се деформира. Предмиството ѝ е, че позволява на клетката да усвоява хранителните вещества по-бързо."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2344
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2513
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2682
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2920
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3156
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3429
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2518
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2687
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2856
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3103
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3348
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3622
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Скорост на усвояване на веществата"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2417
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2591
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана с два слоя, която осигурява по-добра защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става по-бавна, както и усвояването на хранителните вещества."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2584
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана със стена, която осигурява по-добра цялостна защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става още по-бавна, както и усвояването на хранителните вещества."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2750
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3224
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3497
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2924
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3416
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3690
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Физическа устойчивост"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2784
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3022
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3292
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3565
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2958
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3205
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3758
 msgid "CANNOT_ENGULF"
 msgstr "Не позволява поглъщане"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2990
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3237
+msgid "INVULNERABLE_TO_ENGULFMENT"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3005
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана със стена, която осигурява по-добра цялостна защита, особено срещу токсини и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става чувствително по-бавна, както и усвояването на хранителните вещества."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2988
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3258
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3531
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3171
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3450
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3724
 msgid "TOXIN_RESISTANCE"
 msgstr "Токсична устойчивост"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3060
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3252
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана с здрава обвивка от калциев карбонат, която осигурява отлична защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става много бавна, както и усвояването на хранителните вещества."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3331
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3524
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана с здрава стена от силициев диоксид, която осигурява най-добрата защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става прекалено бавна, както и усвояването на хранителните вещества."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3948
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Добавяне на нов клавиш"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3748
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3954
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Промяната на тази стойност се прилага при започване на нова игра"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3754
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3960
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Превключване на светлинните ефекти за бутона на редактора.\n"
@@ -3231,40 +3345,33 @@ msgstr ""
 "Ако имате графични проблеми с бутона на редактора,\n"
 "трябва да изключите светлинните ефекти."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3760
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3966
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "Проверката за хипернишковата технология е неуспешна.\n"
 "Броят на нишките по подразбиране зависи от това, понеже хипернишките са по-бавни от физическите ядра на процесора."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3765
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3971
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Превключване на предупреждението при излизане от играта."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3774
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:368
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
-msgid "TEMPERATURE"
-msgstr "Температура"
-
-#: ../src/microbe_stage/Microbe.Contact.cs:588
-msgid "DEATH"
-msgstr "измиране"
-
-#: ../src/microbe_stage/Microbe.Contact.cs:718
+#: ../src/microbe_stage/Microbe.Contact.cs:709
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "успешно плячкосване"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:725
+#: ../src/microbe_stage/Microbe.Contact.cs:716
 msgid "SUCCESSFUL_KILL"
 msgstr "успешно убийство"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:963
+#: ../src/microbe_stage/Microbe.Contact.cs:895
+msgid "DEATH"
+msgstr "измиране"
+
+#: ../src/microbe_stage/Microbe.Contact.cs:1144
 msgid "ESCAPE_ENGULFING"
 msgstr "бягство от поглъщане"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:780
+#: ../src/microbe_stage/Microbe.Interior.cs:860
 msgid "REPRODUCED"
 msgstr "възпроизвеждане"
 
@@ -3294,173 +3401,185 @@ msgstr "Удвояване"
 msgid "SPAWN_ENEMY"
 msgstr "Съперничество"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:553
+#: ../src/microbe_stage/MicrobeHUD.cs:574
 msgid "SIGNAL_COMMAND_NONE"
 msgstr "Продължавайте"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:554
+#: ../src/microbe_stage/MicrobeHUD.cs:575
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr "Следвайте ме"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:555
+#: ../src/microbe_stage/MicrobeHUD.cs:576
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr "Приближете се"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:556
+#: ../src/microbe_stage/MicrobeHUD.cs:577
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr "Разпръснете се"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:557
+#: ../src/microbe_stage/MicrobeHUD.cs:578
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr "Бъдете агресивни"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:560
+#: ../src/microbe_stage/MicrobeHUD.cs:581
 msgid "SIGNAL_TO_EMIT"
 msgstr "Сигнал за излъчване"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:790
+#: ../src/microbe_stage/MicrobeHUD.cs:852
 msgid "PAUSE_PROMPT"
 msgstr "[center]Натиснете [thrive:input]g_pause[/thrive:input] за да продължите играта[/center]"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:904
+#: ../src/microbe_stage/MicrobeHUD.cs:966
 msgid "STUFF_AT"
 msgstr "Неща при {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:937
+#: ../src/microbe_stage/MicrobeHUD.cs:999
 msgid "PLAYER_CELL"
 msgstr "Вашето създание"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:954
+#: ../src/microbe_stage/MicrobeHUD.cs:1016
 msgid "SPECIES_N_TIMES"
 msgstr "{0} ({1} индивида)"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:999
+#: ../src/microbe_stage/MicrobeHUD.cs:1061
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "в изобилно количество"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1001
+#: ../src/microbe_stage/MicrobeHUD.cs:1063
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "в обилно количество"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1003
+#: ../src/microbe_stage/MicrobeHUD.cs:1065
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "в задоволително количество"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1005
+#: ../src/microbe_stage/MicrobeHUD.cs:1067
 msgid "CATEGORY_SOME"
 msgstr "в умерено количество"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1007
+#: ../src/microbe_stage/MicrobeHUD.cs:1069
 msgid "CATEGORY_LITTLE"
 msgstr "в ограничено количество"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1009
+#: ../src/microbe_stage/MicrobeHUD.cs:1071
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "в оскъдно количество"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1267
-#: ../src/microbe_stage/MicrobeStage.tscn:1764
+#: ../src/microbe_stage/MicrobeHUD.cs:1217
+msgid "DEVOURED"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:1377
+#: ../src/microbe_stage/MicrobeStage.tscn:1803
 msgid "BECOME_MULTICELLULAR"
 msgstr "Превръщане в многоклетъчен организъм ({0} от {1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1303
-#: ../src/microbe_stage/MicrobeStage.tscn:1775
+#: ../src/microbe_stage/MicrobeHUD.cs:1413
+#: ../src/microbe_stage/MicrobeStage.tscn:1814
 msgid "BECOME_MACROSCOPIC"
 msgstr "Превръщане в макроскопичен организъм ({0} от {1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:799
+#: ../src/microbe_stage/MicrobeStage.cs:831
 msgid "PLAYER_REPRODUCED"
 msgstr "възпроизвеждане"
 
-#: ../src/microbe_stage/MicrobeStage.cs:813
+#: ../src/microbe_stage/MicrobeStage.cs:845
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Съперничеството в тази зона не е възможно, защото няма други създания"
 
-#: ../src/microbe_stage/MicrobeStage.cs:837
+#: ../src/microbe_stage/MicrobeStage.cs:868
 msgid "PLAYER_DIED"
 msgstr "измиране"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:516
+#: ../src/microbe_stage/MicrobeStage.cs:1003
+msgid "EXTINCT_IN_PATCH"
+msgstr "изчезнаха от зоната"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:523
 msgid "AT_CURSOR"
 msgstr "Под курсора:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:542
+#: ../src/microbe_stage/MicrobeStage.tscn:549
 msgid "NOTHING_HERE"
 msgstr "Няма нищо"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:567
+#: ../src/microbe_stage/MicrobeStage.tscn:574
 msgid "COMPOUNDS_COLON"
 msgstr "Има химични съединения:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:607
+#: ../src/microbe_stage/MicrobeStage.tscn:614
 msgid "SPECIES_COLON"
 msgstr "Има създания:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:687
+#: ../src/microbe_stage/MicrobeStage.tscn:691
 msgid "ENVIRONMENT"
 msgstr "Околна среда"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:955
+#: ../src/microbe_stage/MicrobeStage.tscn:959
 msgid "TEMPERATURE_SHORT"
 msgstr "Темп."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1011
+#: ../src/microbe_stage/MicrobeStage.tscn:1015
 msgid "LIGHT"
 msgstr "Светлина"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1066
+#: ../src/microbe_stage/MicrobeStage.tscn:1070
 msgid "PRESSURE_SHORT"
 msgstr "Наляг."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1149
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:673
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
+#: ../src/microbe_stage/MicrobeStage.tscn:1153
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
 msgid "COMPOUNDS"
 msgstr "Химични съединения"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1525
+#: ../src/microbe_stage/MicrobeStage.tscn:1500
+msgid "INGESTED_MATTER"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1564
 msgid "AGENTS"
 msgstr "Химични агенти"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1623
+#: ../src/microbe_stage/MicrobeStage.tscn:1662
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Отваряне на менюто"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1636
+#: ../src/microbe_stage/MicrobeStage.tscn:1675
 msgid "PAUSE_TOOLTIP"
 msgstr "Прекъсване на играта"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1637
+#: ../src/microbe_stage/MicrobeStage.tscn:1676
 msgid "RESUME_TOOLTIP"
 msgstr "Продължаване на играта"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1645
+#: ../src/microbe_stage/MicrobeStage.tscn:1684
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Превключване на околната среда и химичните съединения"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1660
+#: ../src/microbe_stage/MicrobeStage.tscn:1699
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Превключване на клетъчните процеси"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1709
+#: ../src/microbe_stage/MicrobeStage.tscn:1748
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Извършване на самоубийство"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1760
+#: ../src/microbe_stage/MicrobeStage.tscn:1799
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr "Трябва да създадете достатъчно голяма клетъчна колония за да превърнете Вашите създания в многоклетъчен организъм."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1795
+#: ../src/microbe_stage/MicrobeStage.tscn:1834
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛАЦИЯ:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1946
+#: ../src/microbe_stage/MicrobeStage.tscn:1982
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Отваряне на редактора"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:2092
+#: ../src/microbe_stage/MicrobeStage.tscn:2128
 msgid "PAUSED"
 msgstr "НА ПАУЗА"
 
@@ -3516,192 +3635,206 @@ msgstr "Бдително"
 msgid "FOCUSED"
 msgstr "Вглъбено"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:367
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:372
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:165
+msgid "DIGESTION_SPEED_VALUE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:285
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
 msgid "ATP_PRODUCTION"
 msgstr "Производство на АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:291
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ПРОИЗВОДСТВОТО НА АТФ Е НЕДОСТАТЪЧНО!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:402
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:320
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:422
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:340
 msgid "OSMOREGULATION"
 msgstr "Осморегулация"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:428
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:346
 msgid "BASE_MOVEMENT"
 msgstr "Базово движение"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:440
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:358
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:524
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:512
 msgid "CELL_TYPE_NAME"
 msgstr "Наименование на клетката"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1175
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1160
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Ядрото е необратима еволюция и не може да бъде премахнато, освен ако не е добавено по време на текущата сесия на редактора"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1177
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1162
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последният органел не може да бъде премахнат"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2028
-msgid "FAILED"
-msgstr "Неуспешна"
-
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2034
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2046
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2048
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2060
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2160
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергийни стойности в {0} на „{1}“"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2164
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Некоригираната популация на Вашите създания ({2}) се определя от общата усвоена енергийна стойност ({0}), разделена на индивидуалния разход ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2171
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
 msgid "ENERGY_SOURCES"
 msgstr "Източници на енергия:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2177
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}: усвоена енергийна стойност {1} със стойност на усвояване {2} и обща енергийна стойност {3} с обща стойност на усвояване {4}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:382
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:380
 msgid "MEMBRANE"
 msgstr "Мембрана"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:453
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Търсене..."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:462
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:460
 msgid "STRUCTURAL"
 msgstr "Строеж"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:471
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
 msgid "PROTEINS"
 msgstr "Протеини"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:480
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:478
 msgid "EXTERNAL"
 msgstr "Външна"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:489
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:487
 msgid "ORGANELLES"
 msgstr "Органели"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:530
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:528
 msgid "MEMBRANE_TYPES"
 msgstr "Видове"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:548
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:546
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Свойства"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:568
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:566
 msgid "FLUID"
 msgstr "Мека"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:581
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:579
 msgid "RIGID"
 msgstr "Твърда"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:614
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:612
 msgid "COLOUR"
 msgstr "Цвят"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:682
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:680
 msgid "ORGANISM_STATISTICS"
 msgstr "Характеристика"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:726
 msgid "SPEED_COLON"
 msgstr "Скорост:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:775
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:732
 msgid "ROTATION_COLON"
 msgstr "Завъртане:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:805
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:738
 msgid "HP_COLON"
 msgstr "ТЗ:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:835
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "SIZE_COLON"
 msgstr "Размер:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:865
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:750
 msgid "STORAGE_COLON"
 msgstr "Съхранение:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:886
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
+#, fuzzy
+msgid "DIGESTION_SPEED_COLON"
+msgstr "Скорост:"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
+#, fuzzy
+msgid "DIGESTION_EFFICIENCY_COLON"
+msgstr "Описание:"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:928
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:819
 msgid "ATP_BALANCE"
 msgstr "Баланс на АТФ"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1041
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:932
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Това е очакваната популация на Вашите създания според автоматичната еволюция.\n"
 "Тя симулира тяхната популация, но не включва резултатите от Вашето индивидуално представяне."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1045
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1280
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:936
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1152
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Прогноза"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1053
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:944
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Отваряне на подробна информация за прогнозата"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1123
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1000
+msgid "FAILED"
+msgstr "Неуспешна"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1006
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Обща популация:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1147
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1018
 msgid "BEST_PATCH_COLON"
 msgstr "Процъфтява:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1172
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 msgid "WORST_PATCH_COLON"
 msgstr "Изчезва:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1255
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1127
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Производството на АТФ е недостатъчно"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1256
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1128
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Вашият микроб не произвежда достатъчно АТФ за да оцелее!\n"
 "Искате ли да продължите?"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1262
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1134
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Несвързани органели"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1264
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1136
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Има органели, които не са свързани с останалите.\n"
 "Моля, свържете ги или отменете Вашите промени."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1324
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1196
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Това са стойностите, които използва прогнозата на автоматичната еволюция. Размерът на некоригираната популация се определя от общата усвоена енергийна стойност и индивидуалния разход на Вашите създания. Автоматичната еволюция използва опростен еволюционен модел, за да изчисли тяхното представяне на база общата усвоена енергийна стойност. Всеки източник на енергия има обща енергийна стойност, като част от нея се усвоява от Вашите създания. Усвоената енергийна стойност се определя от стойността на усвояване, сравнена с общата стойност на усвояване. Стойността на усвояване определя колко добре Вашите създания могат да използват този източник на енергия."
 
@@ -3725,70 +3858,45 @@ msgstr "Зареждане на микробния редактор"
 msgid "INFINITE_MP"
 msgstr "Неограничени МТ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:210
-msgid "SELECT_A_PATCH"
-msgstr "Изберете зона"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:245
-msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "ТЕКУЩО МЕСТООБИТАНИЕ"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
-msgid "PHYSICAL_CONDITIONS"
-msgstr "Физически условия"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:404
-msgid "PRESSURE"
-msgstr "Налягане"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:509
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
-msgid "ATMOSPHERIC_GASSES"
-msgstr "Атмосферни газове"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:933
-msgid "SPECIES_PRESENT"
-msgstr "Настоящи създания"
-
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:997
-msgid "MOVE_TO_THIS_PATCH"
-msgstr "Преселване"
-
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:324
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:325
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:330
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:329
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:332
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
 msgid "YEARS"
 msgstr "години"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:330
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:329
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:418
+msgid "ATMOSPHERIC_GASSES"
+msgstr "Атмосферни газове"
+
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:332
 msgid "SPECIES_LIST"
 msgstr "Списък на създанията"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:341
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:354
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:343
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:356
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Изчезнаха от планетата"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:342
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:353
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:344
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:355
 msgid "EXTINCT_FROM_PATCH"
 msgstr "Изчезнаха от зоната"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:370
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:372
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Глюкозата се понижи на {0} от предишното си състояние."
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:377
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
 msgstr "млн. г."
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:385
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:387
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Изминало време: {0:#,#} години"
 
@@ -3833,6 +3941,11 @@ msgstr "М"
 msgid "SPECIES_POPULATION"
 msgstr "Популация на създанията"
 
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:532
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:236
+msgid "PHYSICAL_CONDITIONS"
+msgstr "Физически условия"
+
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:113
 msgid "REPORT"
 msgstr "Отчет"
@@ -3870,18 +3983,6 @@ msgstr "Преместване"
 msgid "MODIFY"
 msgstr "Свойства"
 
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:388
-msgid "BIOME_LABEL"
-msgstr "Биом: {0}"
-
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:392
-msgid "BELOW_SEA_LEVEL"
-msgstr "{0}-{1} м. под морското равнище"
-
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:427
-msgid "SPECIES_WITH_POPULATION"
-msgstr "{0}: {1} индивида"
-
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
 msgid "EXTINCT_SPECIES"
 msgstr "Изчезнали създания"
@@ -3910,6 +4011,26 @@ msgstr "Минимално количество:"
 msgid "LINE_COLOUR"
 msgstr "Цвят на линията:"
 
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
+#, fuzzy
+msgid "LIPASE_DESCRIPTION"
+msgstr "Ресничките са подобни на камшичетата, но те увеличават само скоростта на завъртане на клетките."
+
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
+#, fuzzy
+msgid "CELLULASE_DESCRIPTION"
+msgstr "Вакуолата е вътрешен мембранен органел, който се използва като място за съхранение на хранителните вещества в клетката. Състои се от няколко секреторни мехурчета — малки мембранни структури, които са слети заедно. Изпълнена е с вода, която съдържа молекули, ензими и други вещества. Формата на вакуолата е течна и може да варира между различните клетки."
+
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
+#, fuzzy
+msgid "CHITINASE_DESCRIPTION"
+msgstr "Ресничките са подобни на камшичетата, но те увеличават само скоростта на завъртане на клетките."
+
+#: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
+#, fuzzy
+msgid "SELECT_ENZYME"
+msgstr "Избрана:"
+
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 msgid "MODIFY_ORGANELLE"
 msgstr "Свойства на органела"
@@ -3921,6 +4042,48 @@ msgstr "ИЗМИРАНЕ"
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:134
 msgid "EXTINCTION_BOX_TEXT"
 msgstr "Вашите създания изчезнаха, както 99 % от всички създания, които някога са съществували. Други ще продължат по Вашия път и ще процъфтят, но това няма да са Вашите създания. Те ще бъдат забравени като провален еволюционен експеримент."
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:229
+msgid "BIOME_LABEL"
+msgstr "Биом: {0}"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:233
+msgid "BELOW_SEA_LEVEL"
+msgstr "{0}-{1} м. под морското равнище"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:271
+msgid "SPECIES_WITH_POPULATION"
+msgstr "{0}: {1} индивида"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:119
+msgid "SELECT_A_PATCH"
+msgstr "Изберете зона"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:154
+msgid "CURRENT_LOCATION_CAPITAL"
+msgstr "ТЕКУЩО МЕСТООБИТАНИЕ"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:313
+msgid "PRESSURE"
+msgstr "Налягане"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:842
+msgid "SPECIES_PRESENT"
+msgstr "Настоящи създания"
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:906
+msgid "MOVE_TO_THIS_PATCH"
+msgstr "Преселване"
+
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:68
+msgid "PATCH_EXTINCTION_CAPITAL"
+msgstr "ИЗМИРАНЕ В ЗОНАТА"
+
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
+msgid "PATCH_EXTINCTION_BOX_TEXT"
+msgstr ""
+"Вашите създания изчезнаха от тази зона.\n"
+"Но това не е краят, може да изберете друга зона за да продължите!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
@@ -4490,19 +4653,19 @@ msgstr "Записът не може да бъде създаден"
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "Създаването е неуспешно. Наименованието на записа може да е твърде дълго или достъпът е отказан."
 
-#: ../src/saving/SaveHelper.cs:485 ../src/saving/SaveHelper.cs:536
+#: ../src/saving/SaveHelper.cs:486 ../src/saving/SaveHelper.cs:537
 msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Запазването е неуспешно! Възникна грешка"
 
-#: ../src/saving/SaveHelper.cs:494 ../src/saving/SaveHelper.cs:513
+#: ../src/saving/SaveHelper.cs:495 ../src/saving/SaveHelper.cs:514
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Запазването в момента не е възможно поради:"
 
-#: ../src/saving/SaveHelper.cs:495
+#: ../src/saving/SaveHelper.cs:496
 msgid "PLAYER_EXTINCT"
 msgstr "измиране на създанията"
 
-#: ../src/saving/SaveHelper.cs:514
+#: ../src/saving/SaveHelper.cs:515
 msgid "IN_PROTOTYPE"
 msgstr ""
 "Това са следващите етапи на играта.\n"
@@ -4510,7 +4673,7 @@ msgstr ""
 "и са включени само за демонстрационни цели.\n"
 "Запазването в момента не винаги е възможно."
 
-#: ../src/saving/SaveHelper.cs:526
+#: ../src/saving/SaveHelper.cs:527
 msgid "SAVING_SUCCEEDED"
 msgstr "Запазването е успешно"
 
@@ -4655,16 +4818,17 @@ msgstr "Зареждане"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете този запис?"
 
-#: ../src/saving/SaveManagerGUI.cs:212
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете {0} запис(а)?"
 
-#: ../src/saving/SaveManagerGUI.cs:224
-msgid "DELETE_ALL_OLD_SAVE_WARNING"
+#: ../src/saving/SaveManagerGUI.cs:237
+msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Изтриването на старите автоматични и бързи записи не може да бъде отменено, сигурни ли сте?\n"
 " - автоматични записи: {0}\n"
-" - бързи записи: {1}"
+" - бързи записи: {1}\n"
+" - резервни записи: {2}"
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
@@ -4852,7 +5016,7 @@ msgstr ""
 "\n"
 "Възможно е да не правите никакви промени и просто да се отправите към морската повърхност, преди да еволюирате фотосинтезиращите органели."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:54
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:57
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "На далечна извънземна планета, след дълъг период на вулканична активност и метеоритни удари, се заражда нов феномен.\n"
@@ -4863,22 +5027,22 @@ msgstr ""
 "\n"
 "За да оцелеете в този враждебен свят, трябва да се приспособите и да еволюирате Вашите създания."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:100
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:103
 msgid "SHOW_TUTORIALS"
 msgstr "Показване на упътването"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:109
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:112
 msgid "BEGIN_THRIVING"
 msgstr "Започнете да процъфтявате"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:125
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "За да управлявате Вашата клетка, използвайте клавишите, които са показани около нея (в центъра на екрана) и мишката за посоката на движение.\n"
 "\n"
 "Натиснете всеки един клавиш за няколко секунди за да продължите."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:184
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:187
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Събирайте глюкоза (белите облаци), като се движите през нея.\n"
@@ -4887,7 +5051,7 @@ msgstr ""
 "\n"
 "Следвайте напътствията за да намерите глюкозата."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:195
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:198
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Наблюдавайте здравето си (долу вдясно).\n"
@@ -4895,13 +5059,13 @@ msgstr ""
 "Ако имате АТФ, точките здраве се възстановяват.\n"
 "Събирайте глюкоза за да произвеждате АТФ."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:206
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "За възпроизвеждане, органелите на клетката трябва да се удвоят. За да го направят те се нуждаят от определено количество амоняк и фосфат.\n"
 "Наблюдавайте запълването на лентите около бутона на редактора долу вдясно."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:224
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Събрахте достатъчно хранителни вещества за възпроизвеждането на Вашата клетка.\n"
@@ -4910,23 +5074,56 @@ msgstr ""
 "\n"
 "Натиснете бутона на редактора, който се намира долу вдясно."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Вие сте в режим на отделяне. В този режим, може да натиснете с мишката върху членовете на клетъчната колония за да ги отделите от нея.\n"
 "\n"
 "За разпадане на цялата клетъчна колония, може да натиснете с мишката върху Вашата клетка или да натиснете [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:256
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Ако все още изпитвате затруднения, отворете ръководството (въпросителния знак) долу вляво.\n"
 "\n"
 "Още един съвет — може да промените размера на изгледа с колелцето на мишката."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Преглед"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
+msgstr ""
+"Вие сте в режим на отделяне. В този режим, може да натиснете с мишката върху членовете на клетъчната колония за да ги отделите от нея.\n"
+"\n"
+"За разпадане на цялата клетъчна колония, може да натиснете с мишката върху Вашата клетка или да натиснете [thrive:input]g_unbind_all[/thrive:input]."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
+msgstr ""
+"Вие сте в режим на отделяне. В този режим, може да натиснете с мишката върху членовете на клетъчната колония за да ги отделите от нея.\n"
+"\n"
+"За разпадане на цялата клетъчна колония, може да натиснете с мишката върху Вашата клетка или да натиснете [thrive:input]g_unbind_all[/thrive:input]."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
+msgstr ""
+"Вие сте в режим на отделяне. В този режим, може да натиснете с мишката върху членовете на клетъчната колония за да ги отделите от нея.\n"
+"\n"
+"За разпадане на цялата клетъчна колония, може да натиснете с мишката върху Вашата клетка или да натиснете [thrive:input]g_unbind_all[/thrive:input]."
+
+#~ msgid "AUTO-EVO_POPULATION_CHANGED"
+#~ msgstr "популацията на „{0}“ се промени с {1} индивида поради {2} на създанията"
+
+#~ msgid "DELETE_ALL_OLD_SAVE_WARNING"
+#~ msgstr ""
+#~ "Изтриването на старите автоматични и бързи записи не може да бъде отменено, сигурни ли сте?\n"
+#~ " - автоматични записи: {0}\n"
+#~ " - бързи записи: {1}"
 
 #~ msgid "MOBILITY"
 #~ msgstr "Подвижност"
@@ -5109,9 +5306,6 @@ msgstr "Преглед"
 
 #~ msgid "TO_INCREASE_THE_MOVEMENT"
 #~ msgstr "за да увеличи скоростта"
-
-#~ msgid "SPEED_OF_THE_CELL"
-#~ msgstr "на движение на клетката."
 
 #~ msgid "INREASE_STORAGE_SPACE"
 #~ msgstr "Увеличава мястото за съхранение на клетката."
