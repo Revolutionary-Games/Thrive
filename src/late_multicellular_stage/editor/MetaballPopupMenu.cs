@@ -67,7 +67,7 @@ public class MetaballPopupMenu : HexPopupMenu
         var mpCost = GetActionPrice?.Invoke(
                 SelectedMetaballs
                     .Select(o =>
-                        (EditorCombinableActionData)new MetaballRemoveActionData<MulticellularMetaball>(o))) ??
+                        (EditorCombinableActionData)new MetaballRemoveActionData<MulticellularMetaball>(o, null))) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
@@ -86,7 +86,7 @@ public class MetaballPopupMenu : HexPopupMenu
         var mpCost = GetActionPrice?.Invoke(SelectedMetaballs.Select(o =>
             (EditorCombinableActionData)new MetaballMoveActionData<MulticellularMetaball>(o, o.Position,
                 o.Position + Vector3.One, o.Parent,
-                o.Parent))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
+                o.Parent, null))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
         mpCost = (int)(mpCost * editorCostFactor);

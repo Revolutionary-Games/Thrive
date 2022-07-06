@@ -446,8 +446,11 @@ public partial class MetaballBodyEditorComponent :
             return null;
 
         ++alreadyDeleted;
-        return new SingleEditorAction<MetaballRemoveActionData<MulticellularMetaball>>(DoMetaballRemoveAction, UndoMetaballRemoveAction,
-            new MetaballRemoveActionData<MulticellularMetaball>(metaball));
+        return new SingleEditorAction<MetaballRemoveActionData<MulticellularMetaball>>(DoMetaballRemoveAction,
+            UndoMetaballRemoveAction,
+            new MetaballRemoveActionData<MulticellularMetaball>(metaball,
+                MetaballRemoveActionData<MulticellularMetaball>.CreateMovementActionForChildren(metaball,
+                    editedMetaballs)));
     }
 
     protected override float CalculateEditorArrowZPosition()
@@ -615,8 +618,8 @@ public partial class MetaballBodyEditorComponent :
 
     private EditorAction CreateAddCellAction(MulticellularMetaball metaball, MulticellularMetaball parent)
     {
-        return new SingleEditorAction<MetaballPlacementActionData<MulticellularMetaball>>(DoCellPlaceAction,
-            UndoCellPlaceAction,
+        return new SingleEditorAction<MetaballPlacementActionData<MulticellularMetaball>>(DoMetaballPlaceAction,
+            UndoMetaballPlaceAction,
             new MetaballPlacementActionData<MulticellularMetaball>(metaball));
     }
 
@@ -652,8 +655,8 @@ public partial class MetaballBodyEditorComponent :
             EditorAction action;
             if (occupied)
             {
-                action = new SingleEditorAction<CellRemoveActionData>(DoCellRemoveAction,
-                    UndoCellRemoveAction, new CellRemoveActionData(cell));
+                action = new SingleEditorAction<CellRemoveActionData>(DoMetaballRemoveAction,
+                    UndoMetaballRemoveAction, new CellRemoveActionData(cell));
             }
             else
             {
@@ -661,13 +664,13 @@ public partial class MetaballBodyEditorComponent :
                 {
                     var data = new CellMoveActionData(cell, cell.Position, hex, cell.Data!.Orientation,
                         orientation);
-                    action = new SingleEditorAction<CellMoveActionData>(DoCellMoveAction,
-                        UndoCellMoveAction, data);
+                    action = new SingleEditorAction<CellMoveActionData>(DoMetaballMoveAction,
+                        UndoMetaballMoveAction, data);
                 }
                 else
                 {
-                    action = new SingleEditorAction<CellPlacementActionData>(DoCellPlaceAction,
-                        UndoCellPlaceAction, new CellPlacementActionData(cell, hex, orientation));
+                    action = new SingleEditorAction<CellPlacementActionData>(DoMetaballPlaceAction,
+                        UndoMetaballPlaceAction, new CellPlacementActionData(cell, hex, orientation));
                 }
             }
 
@@ -726,13 +729,11 @@ public partial class MetaballBodyEditorComponent :
 
     private void OnDeletePressed()
     {
-        throw new NotImplementedException();
-
-        /*int alreadyDeleted = 0;
+        int alreadyDeleted = 0;
         var action =
             new CombinedEditorAction(metaballPopupMenu.SelectedMetaballs
-                .Select(o => TryCreateMetaballRemoveAction(o.Position, ref alreadyDeleted)).WhereNotNull());
-        EnqueueAction(action);*/
+                .Select(m => TryCreateMetaballRemoveAction(m, ref alreadyDeleted)).WhereNotNull());
+        EnqueueAction(action);
     }
 
     private void OnModifyPressed()

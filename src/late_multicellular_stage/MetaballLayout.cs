@@ -55,8 +55,8 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
 
     public bool CanAdd(T metaball)
     {
-        // First metaball can be placed anywhere
-        if (Count < 1 && metaball.Parent == null)
+        // First metaball (or adding the root back) can be placed anywhere
+        if (metaball.Parent == null && (Count < 1 || metaballs.All(m => m.Parent != null)))
             return true;
 
         if (metaball.Parent == null)
@@ -115,6 +115,28 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
 
             if (Mathf.Abs(distance - metaball.Radius - metaball.Parent.Radius) > MathUtils.EPSILON)
                 throw new Exception("Metaball is not touching its parent");
+        }
+    }
+
+    public IEnumerable<T> GetChildrenOf(T metaball)
+    {
+        foreach (var layoutMetaball in this)
+        {
+            if (layoutMetaball.Parent == metaball)
+                yield return layoutMetaball;
+        }
+    }
+
+    public void DescendantsOf(ICollection<T> list, T metaball)
+    {
+        if (list.Contains(metaball))
+            return;
+
+        list.Add(metaball);
+
+        foreach (var child in GetChildrenOf(metaball))
+        {
+            DescendantsOf(list, child);
         }
     }
 }

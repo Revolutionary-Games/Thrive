@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 [UseThriveConverter]
@@ -62,6 +63,35 @@ public abstract class Metaball
             return true;
 
         return Parent.HasAncestor(potentialAncestor);
+    }
+
+    public Vector3? DirectionToParent()
+    {
+        if (Parent == null)
+            return null;
+
+        var vectorToParent = Position - Parent.Position;
+        return vectorToParent.Normalized();
+    }
+
+    public void AdjustPositionToTouchParent(Vector3? precomputedDirection = null)
+    {
+        Position = CalculatePositionTouchingParent(precomputedDirection);
+    }
+
+    public Vector3 CalculatePositionTouchingParent(Vector3? precomputedDirection = null)
+    {
+        if (Parent == null)
+            throw new InvalidOperationException("Metaball must have a parent to position next to it");
+
+        precomputedDirection ??=
+            DirectionToParent() ?? throw new Exception("direction to parent should have returned a value");
+
+        float wantedDistance = Parent.Radius + Radius;
+
+        var offset = precomputedDirection.Value * wantedDistance;
+
+        return Parent.Position + offset;
     }
 
     public override string ToString()

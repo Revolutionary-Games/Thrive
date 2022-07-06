@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 
 public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
     where TMetaball : Metaball
@@ -10,14 +13,62 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
     public Metaball? OldParent;
     public Metaball? NewParent;
 
+    /// <summary>
+    ///   Moved metaballs that are children of <see cref="MovedMetaball"/> that also needed to move are stored here
+    /// </summary>
+    public List<MetaballMoveActionData<TMetaball>>? MovedChildMetaballs;
+
+    [JsonConstructor]
     public MetaballMoveActionData(TMetaball metaball, Vector3 oldPosition, Vector3 newPosition, Metaball? oldParent,
-        Metaball? newParent)
+        Metaball? newParent, List<MetaballMoveActionData<TMetaball>>? movedChildMetaballs)
     {
         MovedMetaball = metaball;
         OldPosition = oldPosition;
         NewPosition = newPosition;
         OldParent = oldParent;
         NewParent = newParent;
+        MovedChildMetaballs = movedChildMetaballs;
+    }
+
+    public static List<MetaballMoveActionData<TMetaball>>? CreateMovementActionForChildren(TMetaball movedMetaball,
+        Vector3 oldPosition, Vector3 newPosition, MetaballLayout<TMetaball> descendantData)
+    {
+        var descendantList = new List<TMetaball>();
+        descendantData.DescendantsOf(descendantList, movedMetaball);
+
+        var movementVector = newPosition - oldPosition;
+
+        if (descendantList.Count < 1 || movementVector.IsEqualApprox(Vector3.Zero))
+            return null;
+
+        var result = new List<MetaballMoveActionData<TMetaball>>();
+
+        foreach (var descendant in descendantData)
+        {
+            var descendantPosition = descendant.Position + movementVector;
+
+            if (descendantPosition.IsEqualApprox(descendant.Position))
+                continue;
+
+            result.Add(new MetaballMoveActionData<TMetaball>(descendant, descendant.Position,
+                descendantPosition, descendant.Parent, descendant.Parent, null));
+        }
+
+        return result;
+    }
+
+    public static List<MetaballMoveActionData<TMetaball>>? UpdateOldMovementPositions(
+        IEnumerable<MetaballMoveActionData<TMetaball>>? movements, Vector3 offset)
+    {
+        return movements?.Select(m => new MetaballMoveActionData<TMetaball>(m.MovedMetaball, m.OldPosition + offset,
+            m.NewPosition, m.OldParent, m.NewParent, null)).ToList();
+    }
+
+    public static List<MetaballMoveActionData<TMetaball>>? UpdateNewMovementPositions(
+        IEnumerable<MetaballMoveActionData<TMetaball>>? movements, Vector3 offset)
+    {
+        return movements?.Select(m => new MetaballMoveActionData<TMetaball>(m.MovedMetaball, m.OldPosition,
+            m.NewPosition + offset, m.OldParent, m.NewParent, null)).ToList();
     }
 
     protected override int CalculateCostInternal()
@@ -82,10 +133,12 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
             case MetaballMoveActionData<TMetaball> moveActionData
                 when moveActionData.NewPosition.DistanceSquaredTo(OldPosition) < MathUtils.EPSILON:
                 return new MetaballMoveActionData<TMetaball>(MovedMetaball, moveActionData.OldPosition, NewPosition,
-                    moveActionData.OldParent, NewParent);
+                    moveActionData.OldParent, NewParent,
+                    UpdateOldMovementPositions(MovedChildMetaballs, moveActionData.OldPosition - OldPosition));
             case MetaballMoveActionData<TMetaball> moveActionData:
                 return new MetaballMoveActionData<TMetaball>(moveActionData.MovedMetaball, OldPosition,
-                    moveActionData.NewPosition, OldParent, moveActionData.NewParent);
+                    moveActionData.NewPosition, OldParent, moveActionData.NewParent,
+                    UpdateNewMovementPositions(MovedChildMetaballs, moveActionData.NewPosition - NewPosition));
             default:
                 throw new NotSupportedException();
         }

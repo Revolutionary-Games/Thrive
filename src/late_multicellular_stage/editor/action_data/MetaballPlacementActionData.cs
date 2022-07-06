@@ -71,7 +71,9 @@ public class MetaballPlacementActionData<TMetaball> : EditorCombinableActionData
         if (other is MetaballRemoveActionData<TMetaball> removeActionData)
         {
             return new MetaballMoveActionData<TMetaball>(removeActionData.RemovedMetaball, removeActionData.Position,
-                Position, removeActionData.Parent, Parent);
+                Position, removeActionData.Parent, Parent,
+                MetaballMoveActionData<TMetaball>.UpdateNewMovementPositions(removeActionData.ReParentedMetaballs,
+                    Position - removeActionData.Position));
         }
 
         if (other is MetaballResizeActionData<TMetaball> resizeActionData)

@@ -468,14 +468,7 @@ public class GameWorld : ISaveLoadable
         foreach (var metaball in metaballsToPosition)
         {
             // Add dummy value for the root to not need to worry about that in the next loop
-            if (metaball.Parent == null)
-            {
-                metaballParentVectors.Add(Vector3.Zero);
-                continue;
-            }
-
-            var vectorToParent = metaball.Position - metaball.Parent.Position;
-            metaballParentVectors.Add(vectorToParent.Normalized());
+            metaballParentVectors.Add(metaball.DirectionToParent() ?? Vector3.Zero);
         }
 
         // And finally apply the positioning
@@ -487,11 +480,7 @@ public class GameWorld : ISaveLoadable
             if (metaball.Parent == null)
                 continue;
 
-            float wantedDistance = metaball.Parent.Radius + metaball.Radius;
-
-            var offset = metaballParentVectors[i] * wantedDistance;
-
-            metaball.Position = metaball.Parent.Position + offset;
+            metaball.AdjustPositionToTouchParent(metaballParentVectors[i]);
         }
 
         // Finish off by adding the metaballs to the layout in an order where all parents are added before the other

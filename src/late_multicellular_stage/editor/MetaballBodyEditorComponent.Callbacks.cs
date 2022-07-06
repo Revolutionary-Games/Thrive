@@ -20,35 +20,52 @@ public partial class MetaballBodyEditorComponent
     private void DoMetaballRemoveAction(MetaballRemoveActionData<MulticellularMetaball> data)
     {
         editedMetaballs.Remove(data.RemovedMetaball);
+
+        // If there are any metaballs that were the children of the removed metaball, we need to fix those
+        if (data.ReParentedMetaballs != null)
+        {
+            foreach (var movementAction in data.ReParentedMetaballs)
+            {
+                DoMetaballMoveAction(movementAction);
+            }
+        }
     }
 
     [DeserializedCallbackAllowed]
     private void UndoMetaballRemoveAction(MetaballRemoveActionData<MulticellularMetaball> data)
     {
+        if (data.ReParentedMetaballs != null)
+        {
+            foreach (var movementAction in data.ReParentedMetaballs)
+            {
+                UndoMetaballMoveAction(movementAction);
+            }
+        }
+
         editedMetaballs.Add(data.RemovedMetaball);
     }
 
     [DeserializedCallbackAllowed]
-    private void DoCellPlaceAction(MetaballPlacementActionData<MulticellularMetaball> data)
+    private void DoMetaballPlaceAction(MetaballPlacementActionData<MulticellularMetaball> data)
     {
         editedMetaballs.Add(data.PlacedMetaball);
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoCellPlaceAction(MetaballPlacementActionData<MulticellularMetaball> data)
+    private void UndoMetaballPlaceAction(MetaballPlacementActionData<MulticellularMetaball> data)
     {
         editedMetaballs.Remove(data.PlacedMetaball);
     }
 
     [DeserializedCallbackAllowed]
-    private void DoCellMoveAction(MetaballMoveActionData<MulticellularMetaball> data)
+    private void DoMetaballMoveAction(MetaballMoveActionData<MulticellularMetaball> data)
     {
         data.MovedMetaball.Position = data.NewPosition;
         data.MovedMetaball.Parent = data.NewParent;
 
         if (editedMetaballs.Contains(data.MovedMetaball))
         {
-            UpdateAlreadyPlacedVisuals();
+            metaballDisplayDataDirty = true;
 
             // TODO: notify auto-evo prediction once that is done
         }
@@ -59,11 +76,11 @@ public partial class MetaballBodyEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoCellMoveAction(MetaballMoveActionData<MulticellularMetaball> data)
+    private void UndoMetaballMoveAction(MetaballMoveActionData<MulticellularMetaball> data)
     {
         data.MovedMetaball.Position = data.OldPosition;
         data.MovedMetaball.Parent = data.OldParent;
 
-        UpdateAlreadyPlacedVisuals();
+        metaballDisplayDataDirty = true;
     }
 }
