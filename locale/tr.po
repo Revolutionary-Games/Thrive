@@ -984,6 +984,16 @@ msgstr "Büyük Demir Parçası"
 #: ../simulation_parameters/microbe_stage/biomes.json:1742
 #: ../simulation_parameters/microbe_stage/biomes.json:1905
 #: ../simulation_parameters/microbe_stage/biomes.json:2147
+#: ../simulation_parameters/microbe_stage/biomes.json:350
+#: ../simulation_parameters/microbe_stage/biomes.json:517
+#: ../simulation_parameters/microbe_stage/biomes.json:763
+#: ../simulation_parameters/microbe_stage/biomes.json:1009
+#: ../simulation_parameters/microbe_stage/biomes.json:1255
+#: ../simulation_parameters/microbe_stage/biomes.json:1422
+#: ../simulation_parameters/microbe_stage/biomes.json:1588
+#: ../simulation_parameters/microbe_stage/biomes.json:1774
+#: ../simulation_parameters/microbe_stage/biomes.json:1941
+#: ../simulation_parameters/microbe_stage/biomes.json:2187
 msgid "GOOGLY_EYE_CELL"
 msgstr "Pörtlek gözlü hücre"
 
@@ -1356,6 +1366,8 @@ msgstr "Sil"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:819
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2241
+#: ../simulation_parameters/microbe_stage/organelles.json:870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
 msgid "LYSOSOME"
 msgstr "Lizozom"
 
@@ -4091,12 +4103,14 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "Henüz Eklenmedi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2242
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2360
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr ""
 "Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye "
 "edilebilir. Aynı anda yalnızca bir enzim kullanılabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2243
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2361
 msgid "LYSOSOME_DESCRIPTION"
 msgstr ""
 "Lizozom, çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, "
@@ -4105,10 +4119,12 @@ msgstr ""
 "ürünleri temizler."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2257
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
 msgid "DIGESTION_SPEED"
 msgstr "Sindirim Hızı"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2263
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Sindirim Verimliliği"
 
@@ -4175,6 +4191,8 @@ msgstr "Yutamaz"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2872
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3119
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2990
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3237
 msgid "INVULNERABLE_TO_ENGULFMENT"
 msgstr "Yutulmaya Karşı Dayanıklı"
 
@@ -4520,6 +4538,7 @@ msgid "SIGNAL_TO_EMIT"
 msgstr "Yollanacak Sinyal"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1213
+#: ../src/microbe_stage/MicrobeHUD.cs:1217
 msgid "DEVOURED"
 msgstr "Yutuldun"
 
