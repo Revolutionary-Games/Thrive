@@ -779,7 +779,7 @@ public class MicrobeHUD : Control
     }
 
     /// <summary>
-    ///  Updated the different bars and panels that should be
+    ///  Updates the different bars and panels that should be
     ///  displayed to the screen
     /// </summary>
     private void UpdateBarVisibility(bool showAgents, Func<Compound, bool> isUseful)
