@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-05 17:36+0100\n"
+"POT-Creation-Date: 2022-07-05 19:39+0100\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -610,116 +610,122 @@ msgstr "Anaerob Nitrifikáció"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Vas oxidálása"
 
+#: ../simulation_parameters/microbe_stage/bio_processes.json:133
+#: ../simulation_parameters/microbe_stage/bio_processes.json:142
+#, fuzzy
+msgid "THERMOSYNTHESIS"
+msgstr "Kemoszintézis"
+
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
 msgstr "Epipelagikus"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:26
-#: ../simulation_parameters/microbe_stage/biomes.json:188
-#: ../simulation_parameters/microbe_stage/biomes.json:431
-#: ../simulation_parameters/microbe_stage/biomes.json:593
-#: ../simulation_parameters/microbe_stage/biomes.json:835
-#: ../simulation_parameters/microbe_stage/biomes.json:1077
-#: ../simulation_parameters/microbe_stage/biomes.json:1320
-#: ../simulation_parameters/microbe_stage/biomes.json:1482
-#: ../simulation_parameters/microbe_stage/biomes.json:1645
-#: ../simulation_parameters/microbe_stage/biomes.json:1827
-#: ../simulation_parameters/microbe_stage/biomes.json:1989
+#: ../simulation_parameters/microbe_stage/biomes.json:192
+#: ../simulation_parameters/microbe_stage/biomes.json:439
+#: ../simulation_parameters/microbe_stage/biomes.json:605
+#: ../simulation_parameters/microbe_stage/biomes.json:851
+#: ../simulation_parameters/microbe_stage/biomes.json:1097
+#: ../simulation_parameters/microbe_stage/biomes.json:1344
+#: ../simulation_parameters/microbe_stage/biomes.json:1510
+#: ../simulation_parameters/microbe_stage/biomes.json:1677
+#: ../simulation_parameters/microbe_stage/biomes.json:1863
+#: ../simulation_parameters/microbe_stage/biomes.json:2029
 msgid "FLOATING_HAZARD"
 msgstr "Lebegő akadály"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
-#: ../simulation_parameters/microbe_stage/biomes.json:206
-#: ../simulation_parameters/microbe_stage/biomes.json:449
-#: ../simulation_parameters/microbe_stage/biomes.json:611
-#: ../simulation_parameters/microbe_stage/biomes.json:853
-#: ../simulation_parameters/microbe_stage/biomes.json:1095
-#: ../simulation_parameters/microbe_stage/biomes.json:1338
-#: ../simulation_parameters/microbe_stage/biomes.json:1500
-#: ../simulation_parameters/microbe_stage/biomes.json:1663
-#: ../simulation_parameters/microbe_stage/biomes.json:1845
-#: ../simulation_parameters/microbe_stage/biomes.json:2007
+#: ../simulation_parameters/microbe_stage/biomes.json:210
+#: ../simulation_parameters/microbe_stage/biomes.json:457
+#: ../simulation_parameters/microbe_stage/biomes.json:623
+#: ../simulation_parameters/microbe_stage/biomes.json:869
+#: ../simulation_parameters/microbe_stage/biomes.json:1115
+#: ../simulation_parameters/microbe_stage/biomes.json:1362
+#: ../simulation_parameters/microbe_stage/biomes.json:1528
+#: ../simulation_parameters/microbe_stage/biomes.json:1695
+#: ../simulation_parameters/microbe_stage/biomes.json:1881
+#: ../simulation_parameters/microbe_stage/biomes.json:2047
 msgid "SMALL_IRON_CHUNK"
 msgstr "Kis vasdarab"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:80
-#: ../simulation_parameters/microbe_stage/biomes.json:322
-#: ../simulation_parameters/microbe_stage/biomes.json:485
-#: ../simulation_parameters/microbe_stage/biomes.json:647
-#: ../simulation_parameters/microbe_stage/biomes.json:889
-#: ../simulation_parameters/microbe_stage/biomes.json:1131
-#: ../simulation_parameters/microbe_stage/biomes.json:1374
-#: ../simulation_parameters/microbe_stage/biomes.json:1536
-#: ../simulation_parameters/microbe_stage/biomes.json:1718
-#: ../simulation_parameters/microbe_stage/biomes.json:1881
-#: ../simulation_parameters/microbe_stage/biomes.json:2043
+#: ../simulation_parameters/microbe_stage/biomes.json:326
+#: ../simulation_parameters/microbe_stage/biomes.json:493
+#: ../simulation_parameters/microbe_stage/biomes.json:659
+#: ../simulation_parameters/microbe_stage/biomes.json:905
+#: ../simulation_parameters/microbe_stage/biomes.json:1151
+#: ../simulation_parameters/microbe_stage/biomes.json:1398
+#: ../simulation_parameters/microbe_stage/biomes.json:1564
+#: ../simulation_parameters/microbe_stage/biomes.json:1750
+#: ../simulation_parameters/microbe_stage/biomes.json:1917
+#: ../simulation_parameters/microbe_stage/biomes.json:2083
 msgid "BIG_IRON_CHUNK"
 msgstr "Nagy vasdarab"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:104
-#: ../simulation_parameters/microbe_stage/biomes.json:346
-#: ../simulation_parameters/microbe_stage/biomes.json:509
-#: ../simulation_parameters/microbe_stage/biomes.json:751
-#: ../simulation_parameters/microbe_stage/biomes.json:993
-#: ../simulation_parameters/microbe_stage/biomes.json:1235
-#: ../simulation_parameters/microbe_stage/biomes.json:1398
-#: ../simulation_parameters/microbe_stage/biomes.json:1560
-#: ../simulation_parameters/microbe_stage/biomes.json:1742
-#: ../simulation_parameters/microbe_stage/biomes.json:1905
-#: ../simulation_parameters/microbe_stage/biomes.json:2147
+#: ../simulation_parameters/microbe_stage/biomes.json:350
+#: ../simulation_parameters/microbe_stage/biomes.json:517
+#: ../simulation_parameters/microbe_stage/biomes.json:763
+#: ../simulation_parameters/microbe_stage/biomes.json:1009
+#: ../simulation_parameters/microbe_stage/biomes.json:1255
+#: ../simulation_parameters/microbe_stage/biomes.json:1422
+#: ../simulation_parameters/microbe_stage/biomes.json:1588
+#: ../simulation_parameters/microbe_stage/biomes.json:1774
+#: ../simulation_parameters/microbe_stage/biomes.json:1941
+#: ../simulation_parameters/microbe_stage/biomes.json:2187
 #, fuzzy
 msgid "GOOGLY_EYE_CELL"
 msgstr "Játékos sejtje"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:166
+#: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
 msgstr "Vulkanikus szellőzők"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:242
-#: ../simulation_parameters/microbe_stage/biomes.json:671
-#: ../simulation_parameters/microbe_stage/biomes.json:913
-#: ../simulation_parameters/microbe_stage/biomes.json:1155
-#: ../simulation_parameters/microbe_stage/biomes.json:2067
+#: ../simulation_parameters/microbe_stage/biomes.json:246
+#: ../simulation_parameters/microbe_stage/biomes.json:683
+#: ../simulation_parameters/microbe_stage/biomes.json:929
+#: ../simulation_parameters/microbe_stage/biomes.json:1175
+#: ../simulation_parameters/microbe_stage/biomes.json:2107
 msgid "MARINE_SNOW"
 msgstr "Tengeri hó"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:408
+#: ../simulation_parameters/microbe_stage/biomes.json:416
 msgid "TIDEPOOL"
 msgstr "Árapály medence"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:571
+#: ../simulation_parameters/microbe_stage/biomes.json:583
 msgid "BATHYPELAGIC"
 msgstr "Batipelágikus"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:813
+#: ../simulation_parameters/microbe_stage/biomes.json:829
 msgid "ABYSSOPELAGIC"
 msgstr "Abisszopelágikus"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1055
+#: ../simulation_parameters/microbe_stage/biomes.json:1075
 msgid "MESOPELAGIC"
 msgstr "Mezopelágikus"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1297
+#: ../simulation_parameters/microbe_stage/biomes.json:1321
 msgid "COASTAL"
 msgstr "Partvidéki"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1460
+#: ../simulation_parameters/microbe_stage/biomes.json:1488
 msgid "UNDERWATERCAVE"
 msgstr "Víz alatti barlang"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1622
+#: ../simulation_parameters/microbe_stage/biomes.json:1654
 msgid "ICESHELF"
 msgstr "Selfjég"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1699
+#: ../simulation_parameters/microbe_stage/biomes.json:1731
 msgid "ICESHARD"
 msgstr "Jégdarab"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1804
+#: ../simulation_parameters/microbe_stage/biomes.json:1840
 msgid "ESTUARY"
 msgstr "Torkolat"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1967
+#: ../simulation_parameters/microbe_stage/biomes.json:2007
 msgid "SEA_FLOOR"
 msgstr "Tengerfenék"
 
@@ -778,11 +784,19 @@ msgid "NITROGEN"
 msgstr "Nitrogén"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:149
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3855
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3985
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:340
 msgid "SUNLIGHT"
 msgstr "Napfény"
+
+#: ../simulation_parameters/microbe_stage/compounds.json:163
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3980
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
+msgid "TEMPERATURE"
+msgstr ""
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
@@ -806,37 +820,37 @@ msgstr "Rusticyanin"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/general/OptionsMenu.tscn:931
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2301
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2419
 msgid "NORMAL"
 msgstr "Normál"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2472
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2590
 msgid "DOUBLE"
 msgstr "Dupla"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2639
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2757
 msgid "CELLULOSE"
 msgstr "Cellulóz"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2886
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3004
 msgid "CHITIN"
 msgstr "Kitin"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3133
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3251
 msgid "CALCIUM_CARBONATE"
 msgstr "Kálcium-karbonát"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3405
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3523
 msgid "SILICA"
 msgstr "Kovasav"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1232
 msgid "PREDATORY_PILUS"
 msgstr "Ragadozói pilus"
 
@@ -869,84 +883,90 @@ msgid "METABOLOSOMES"
 msgstr "Metaboloszómák"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:306
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1825
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Nitrifikáló színtest"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:345
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1740
+#: ../simulation_parameters/microbe_stage/organelles.json:341
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
+#, fuzzy
+msgid "THERMOSYNTHASE"
+msgstr "Kemoszintézis"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:380
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1858
 msgid "CHEMOPLAST"
 msgstr "Kemoplasztisz"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:379
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:971
+#: ../simulation_parameters/microbe_stage/organelles.json:414
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1097
 msgid "FLAGELLUM"
 msgstr "Ostor"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:408
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1924
+#: ../simulation_parameters/microbe_stage/organelles.json:443
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2042
 msgid "VACUOLE"
 msgstr "Vakuólum"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:445
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1454
+#: ../simulation_parameters/microbe_stage/organelles.json:480
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1580
 msgid "MITOCHONDRION"
 msgstr "Mitokondrium"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:481
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
+#: ../simulation_parameters/microbe_stage/organelles.json:516
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2140
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Méreganyag\n"
 "Vakuólum"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:512
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1273
+#: ../simulation_parameters/microbe_stage/organelles.json:547
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1399
 msgid "BINDING_AGENT"
 msgstr "Kötőszövet"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:554
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1539
+#: ../simulation_parameters/microbe_stage/organelles.json:589
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1665
 msgid "CHLOROPLAST"
 msgstr "Kloroplasztisz"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:588
+#: ../simulation_parameters/microbe_stage/organelles.json:623
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:280
 msgid "CYTOPLASM"
 msgstr "Citoplazma"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:655
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1357
+#: ../simulation_parameters/microbe_stage/organelles.json:690
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1483
 msgid "NUCLEUS"
 msgstr "Sejtmag"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:681
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
+#: ../simulation_parameters/microbe_stage/organelles.json:716
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1292
 msgid "CHEMORECEPTOR"
 msgstr "Kemoreceptor"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:707
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2120
+#: ../simulation_parameters/microbe_stage/organelles.json:742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2238
 msgid "SIGNALING_AGENT"
 msgstr "Jelző szövet"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:730
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2219
+#: ../simulation_parameters/microbe_stage/organelles.json:765
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2337
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Foszforeszkáló vakuólum"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:753
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
+#: ../simulation_parameters/microbe_stage/organelles.json:803
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
 msgid "THERMOPLAST"
 msgstr "Termoplasztisz"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:783
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
+#: ../simulation_parameters/microbe_stage/organelles.json:834
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1352
 msgid "CILIA"
 msgstr "Csilló"
 
-#: ../simulation_parameters/microbe_stage/organelles.json:819
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2241
+#: ../simulation_parameters/microbe_stage/organelles.json:870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
 #, fuzzy
 msgid "LYSOSOME"
 msgstr "Oxytoxyszóma"
@@ -1721,12 +1741,12 @@ msgstr "Bezár"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
 #: ../src/general/NewGameSettings.cs:567
-#: ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/MicrobeHUD.cs:760
-#: ../src/microbe_stage/MicrobeHUD.cs:1216
+#: ../src/gui_common/CompoundAmount.cs:176
+#: ../src/microbe_stage/MicrobeHUD.cs:762
+#: ../src/microbe_stage/MicrobeHUD.cs:1220
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:306
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:364
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:276
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:236
 msgid "PERCENTAGE_VALUE"
@@ -2522,6 +2542,12 @@ msgstr "/másodperc"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
+#: ../src/gui_common/CompoundAmount.cs:171
+#: ../src/microbe_stage/MicrobeHUD.cs:763
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
+msgid "VALUE_WITH_UNIT"
+msgstr ""
+
 #: ../src/gui_common/CreditsScroll.cs:223
 msgid "LEAD_DEVELOPERS"
 msgstr "Fő fejlesztők"
@@ -2991,23 +3017,23 @@ msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "Minél merevebb egy sejt membránja, annál ellenállóbb, de nehezebben fog tudni mozogni."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:159
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2331
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2502
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2669
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2916
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3161
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3435
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2620
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2787
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3034
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3279
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3553
 #, fuzzy
 msgid "BASE_MOBILITY"
 msgstr "Mozgékonyság"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:194
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2434
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2602
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2772
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3019
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3264
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3538
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2552
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2720
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2890
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3137
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3382
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3656
 msgid "HEALTH"
 msgstr "Életerő"
 
@@ -3061,18 +3087,19 @@ msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:698
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:795
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:893
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1028
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1287
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1376
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1469
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1554
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1654
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1755
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1845
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2042
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2140
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2272
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1005
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1413
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1502
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1595
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1680
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1780
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1873
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1963
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2062
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2160
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2258
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2390
 msgid "STORAGE"
 msgstr "Tárhely"
 
@@ -3083,27 +3110,28 @@ msgstr "Tárhely"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:736
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:833
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:931
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1066
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1126
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1186
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1241
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1325
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1414
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1507
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1592
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1692
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1793
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1883
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1982
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2080
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2178
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2282
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2366
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2536
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2704
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2951
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3196
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3470
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1192
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1252
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1312
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1367
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1451
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1540
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1633
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1718
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1818
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1911
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2001
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2100
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2198
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2296
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2400
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2654
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3069
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3314
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3588
 msgid "OSMOREGULATION_COST"
 msgstr "Ozmoreguláció ára"
 
@@ -3159,240 +3187,242 @@ msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:c
 msgid "OXYTOXISOME_DESC"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:972
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:973
+#, fuzzy
+msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
+msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a hőmérséklettől."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:974
+#, fuzzy
+msgid "THERMOSYNTHASE_DESCRIPTION"
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1098
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Növeli a sejt sebességét, viszont [thrive:compound type=\"atp\"][/thrive:compound]-t használ."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:973
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1099
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:990
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1116
 msgid "SPEED"
 msgstr "Sebesség"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1233
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Szúrd le a többi sejtet ezzel."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1108
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1234
 #, fuzzy
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "A pilusok sok mikroorganizmus felületén megtalálhatóak, amik finom szőrszálakhoz hasonlítanak. Több tíz, akár több száz pilus is található egy mikroorganizmuson, feladatuk pedig egy, vagy több is lehet a ragadozást beleértve."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1293
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "A kemoreceptor segítségével messzebbi vegyületeket detektálhatsz. Az elhelyezése után módosítsd a kemoreceptort a vegyület kiválasztásával, és a segédvonal színének beállításával."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1168
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1294
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1353
 #, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1228
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1354
 #, fuzzy
 msgid "CILIA_DESCRIPTION"
 msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1274
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1400
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1275
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1401
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1358
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1359
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1485
 #, fuzzy
 msgid "NUCLEUS_DESCRIPTION"
 msgstr "Az eukarióta sejtek legmeghatározóbb jellemzője. A sejtmaghoz még hozzá tartozik az endoplazmatikus membránrendszer és a golgi-készülék is."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1455
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1581
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1456
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1582
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1540
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1666
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a [thrive:compound type=\"sunlight\"][/thrive:compound] intenzitásától."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1541
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1667
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a hőmérséklettől."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1626
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1643
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1769
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:212
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1727
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2220
-#: ../src/microbe_stage/MicrobeHUD.cs:1608
-msgid "TO_BE_IMPLEMENTED"
-msgstr "Fejlesztés alatt."
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1741
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1859
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]-ot alakít át [thrive:compound type=\"glucose\"][/thrive:compound]-zá. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1742
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1860
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1826
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1944
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1827
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1945
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1925
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2043
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Növeli a sejt tárkapacitását."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1926
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2044
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2023
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2141
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2024
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2142
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2121
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2239
 #, fuzzy
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"iron\"][/thrive:compound]-at alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"carbondioxide\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2122
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2240
 #, fuzzy
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2242
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2338
+#: ../src/microbe_stage/MicrobeHUD.cs:1612
+msgid "TO_BE_IMPLEMENTED"
+msgstr "Fejlesztés alatt."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2360
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2243
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2361
 #, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
 msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2257
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
 #, fuzzy
 msgid "DIGESTION_SPEED"
 msgstr "Kihalt fajok"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2263
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2302
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2420
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr "A membrán legalapabb formája, ami kis védelmet nyújt sérülés ellen. Több energia is kell hozzá, hogy ne deformálódjon el. Előnye pedig a könnyű mozgás és a sima bekebelezés."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2400
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2569
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2738
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2985
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3230
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3504
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2518
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2687
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2856
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3103
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3348
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3622
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2473
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2591
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Egy membrán, ami két rétegből áll. Jobb védelmet nyújt sérülések ellen, és kevesebb energia szükséges ahhoz, hogy ne deformálódjon el. Hátránya viszont, hogy lassítja a sejt bekebelező képességét."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2640
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont lassú a bekebelezése és lassítja magát a sejtet is."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2806
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3298
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3572
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2924
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3416
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3690
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fizikai állóképesség"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2840
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3087
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3366
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3640
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2958
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3205
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3758
 msgid "CANNOT_ENGULF"
 msgstr "Nem képes bekebelezésre"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2872
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3119
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2990
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3237
 msgid "INVULNERABLE_TO_ENGULFMENT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2887
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3005
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a méreg általi sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont lassú a bekebelezése és lassítja magát a sejtet is."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3053
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3332
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3606
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3171
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3450
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3724
 msgid "TOXIN_RESISTANCE"
 msgstr "Méreg elleni állóképesség"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3134
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3252
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr "Ez a membrán egy erős kalcium-karbonát páncéllal rendelkezik. Képes ellenállni a sérüléseknek és kevés energia szükséges formája fenntartásához. A hátránya viszont az erős, de nehéz páncél miatti lassúság, és sok időbe telik, míg valamit bekebelez."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3406
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3524
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3818
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3948
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3824
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3954
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3830
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3960
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3836
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3966
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3841
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3971
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3850
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:188
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:611
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:277
-msgid "TEMPERATURE"
 msgstr ""
 
 #: ../src/microbe_stage/Microbe.Contact.cs:709
@@ -3441,81 +3471,81 @@ msgstr "A játékos megkettőzése"
 msgid "SPAWN_ENEMY"
 msgstr "Ellenség spawnolása"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:572
+#: ../src/microbe_stage/MicrobeHUD.cs:574
 msgid "SIGNAL_COMMAND_NONE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:573
+#: ../src/microbe_stage/MicrobeHUD.cs:575
 msgid "SIGNAL_COMMAND_FOLLOW"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:574
+#: ../src/microbe_stage/MicrobeHUD.cs:576
 msgid "SIGNAL_COMMAND_TO_ME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:575
+#: ../src/microbe_stage/MicrobeHUD.cs:577
 msgid "SIGNAL_COMMAND_FLEE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:576
+#: ../src/microbe_stage/MicrobeHUD.cs:578
 msgid "SIGNAL_COMMAND_AGGRESSION"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:579
+#: ../src/microbe_stage/MicrobeHUD.cs:581
 msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:848
+#: ../src/microbe_stage/MicrobeHUD.cs:852
 msgid "PAUSE_PROMPT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:962
+#: ../src/microbe_stage/MicrobeHUD.cs:966
 msgid "STUFF_AT"
 msgstr "Dolgok {0:F1}, {1:F1} környékén:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:995
+#: ../src/microbe_stage/MicrobeHUD.cs:999
 msgid "PLAYER_CELL"
 msgstr "Játékos sejtje"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1012
+#: ../src/microbe_stage/MicrobeHUD.cs:1016
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1057
+#: ../src/microbe_stage/MicrobeHUD.cs:1061
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "bőséges mennyiség"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1059
+#: ../src/microbe_stage/MicrobeHUD.cs:1063
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "kis mennyiség"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1061
+#: ../src/microbe_stage/MicrobeHUD.cs:1065
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "elég sok"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1063
+#: ../src/microbe_stage/MicrobeHUD.cs:1067
 msgid "CATEGORY_SOME"
 msgstr "közepes mennyiség"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1065
+#: ../src/microbe_stage/MicrobeHUD.cs:1069
 #, fuzzy
 msgid "CATEGORY_LITTLE"
 msgstr "Elméleti csapat"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1067
+#: ../src/microbe_stage/MicrobeHUD.cs:1071
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "nagyon kicsi mennyiség"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1213
+#: ../src/microbe_stage/MicrobeHUD.cs:1217
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1373
+#: ../src/microbe_stage/MicrobeHUD.cs:1377
 #: ../src/microbe_stage/MicrobeStage.tscn:1803
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1409
+#: ../src/microbe_stage/MicrobeHUD.cs:1413
 #: ../src/microbe_stage/MicrobeStage.tscn:1814
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
@@ -3571,7 +3601,7 @@ msgid "PRESSURE_SHORT"
 msgstr "Nyomás"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1153
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
@@ -3904,47 +3934,47 @@ msgstr "Sejtszerkesztő betöltése"
 msgid "INFINITE_MP"
 msgstr "Végtelen MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:324
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:325
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:330
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:334
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:329
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:332
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
 msgid "YEARS"
 msgstr "évek"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:329
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:632
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:666
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:418
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Légköri gázok"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:330
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:332
 msgid "SPECIES_LIST"
 msgstr "Fajlista"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:341
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:354
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:343
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:356
 #, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "kihalt a bolygón"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:342
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:353
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:344
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:355
 #, fuzzy
 msgid "EXTINCT_FROM_PATCH"
 msgstr "kihalt a bolygón"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:370
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:372
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "A glükóz mennyisége {0}-ra/-re redukálódott az előző mennyiséghez képest."
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:377
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:379
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
 msgstr "Myr"
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:385
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:387
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
@@ -4102,7 +4132,7 @@ msgstr "Biom: {0}"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m-el a tenger alatt"
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:268
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:271
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "A fajok populációi"
