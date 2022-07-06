@@ -863,9 +863,8 @@ msgstr "Demir Kemolitoototrofisi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:133
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
-#, fuzzy
 msgid "THERMOSYNTHESIS"
-msgstr "Kemosentez"
+msgstr "Termosentez"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -1261,9 +1260,8 @@ msgstr "Azot Fiksasyon Plastidi"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:341
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:972
-#, fuzzy
 msgid "THERMOSYNTHASE"
-msgstr "Kemosentez"
+msgstr "Termosentaz"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:380
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1858
@@ -2973,11 +2971,11 @@ msgstr "oyuncu öldü"
 msgid "EXTINCT_IN_PATCH"
 msgstr "arazide nesli tükendi"
 
-#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/gui_common/CompoundAmount.cs:171
+#: ../src/microbe_stage/MicrobeHUD.cs:763
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
-#: ../src/general/StageHUDBase.cs:676 ../src/microbe_stage/MicrobeHUD.cs:763
 msgid "VALUE_WITH_UNIT"
-msgstr ""
+msgstr "{0} {1}"
 
 #: ../src/general/StageHUDBase.cs:888 ../src/general/StageHUDBase.cs:882
 #: ../src/microbe_stage/MicrobeHUD.cs:1061
@@ -3805,23 +3803,20 @@ msgstr ""
 "değişime uğramış bir metabolozom."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:973
-#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretir. [thrive:"
-"compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] "
-"konsantrasyonu ve sıcaklık ile doğru orantılıdır."
+"Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:"
+"compound] üretir. Bu, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:"
+"compound] ile doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:974
-#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr ""
-"Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas "
-"pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı "
-"tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki "
-"pigmentler, Termosentez adı verilen bir işlemde, sudan glukoz ve "
-"karbondioksit gazı üretmek için çevredeki ısı farkını kullanırlar. Üretilen "
-"glukoz oranı, karbondioksit konsantrasyonu ve sıcaklıkla doğru orantılıdır."
+"Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu "
+"onun, termosentez adı verilen bir işlemde, ısıya maruz kalırken katlanmasını "
+"ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz kalırken de "
+"açılmasını ve ADP'nin ATP'ye dönüşmesini sağlar. ATP üretimi, sıcaklık ile "
+"doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1098
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:972
@@ -3984,9 +3979,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretir. [thrive:"
-"compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] "
-"konsantrasyonu ve sıcaklık ile doğru orantılıdır."
+"Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:"
+"compound] üretir. Bu, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:"
+"compound] ile doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1626
@@ -3995,9 +3990,8 @@ msgstr ""
 "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas "
 "pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı "
 "tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki "
-"pigmentler, Termosentez adı verilen bir işlemde, sudan glukoz ve "
-"karbondioksit gazı üretmek için çevredeki ısı farkını kullanırlar. Üretilen "
-"glukoz oranı, karbondioksit konsantrasyonu ve sıcaklıkla doğru orantılıdır."
+"pigmentler, termosentez adı verilen bir işlemde, sudan ATP üretmek için "
+"çevredeki ısı farkını kullanır. ATP üretimi, sıcaklıkla doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1769
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:212
