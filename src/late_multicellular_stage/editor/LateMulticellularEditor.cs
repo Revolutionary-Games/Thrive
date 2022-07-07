@@ -511,6 +511,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
                 case MembraneActionData:
                 case RigidityActionData:
                 case NewMicrobeActionData:
+                case ColourActionData:
                     affectedACell = true;
                     break;
             }
