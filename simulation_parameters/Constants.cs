@@ -442,6 +442,11 @@ public static class Constants
     public const int ORGANELLE_REMOVE_COST = 10;
     public const int ORGANELLE_MOVE_COST = 5;
 
+    public const int METABALL_ADD_COST = 7;
+    public const int METABALL_REMOVE_COST = 5;
+    public const int METABALL_MOVE_COST = 3;
+    public const int METABALL_RESIZE_COST = 3;
+
     public const float COLONY_DIVIDE_EXTRA_DAUGHTER_OFFSET = 1;
 
     // Corpse info
@@ -770,10 +775,14 @@ public static class Constants
     /// </remarks>
     public const string AI_TAG_MICROBE = "microbe";
 
+    public const string ENTITY_TAG_CREATURE = "creature";
+
     /// <summary>
     ///   All Nodes tagged with this are considered FloatingChunks that the AI can react to
     /// </summary>
     public const string AI_TAG_CHUNK = "chunk";
+
+    public const string PLAYER_GROUP = "player";
 
     public const string DELETION_HOLD_LOAD = "load";
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";

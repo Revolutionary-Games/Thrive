@@ -98,12 +98,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     public bool IsLoadedFromSave { get; set; }
 
-    public void ResetHeight()
-    {
-        CameraHeight = DefaultCameraHeight;
-        EmitSignal(nameof(OnZoomChanged), CameraHeight);
-    }
-
     public override void _Ready()
     {
         var material = GetNode<CSGMesh>("BackgroundPlane").Material;
@@ -119,6 +113,8 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
         if (!IsLoadedFromSave)
             ResetHeight();
+
+        UpdateBackgroundVisibility();
     }
 
     public override void _EnterTree()
@@ -148,9 +144,31 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
     }
 
-    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true)]
-    public void Zoom(float delta, float value)
+    public void ResetHeight()
     {
+        CameraHeight = DefaultCameraHeight;
+        EmitSignal(nameof(OnZoomChanged), CameraHeight);
+    }
+
+    /// <summary>
+    ///   As this camera has special display resources all <see cref="Camera.Current"/> changes need to go through
+    ///   this method
+    /// </summary>
+    /// <param name="current">True if this camera should be the current camera</param>
+    public void SetCustomCurrentStatus(bool current)
+    {
+        Current = current;
+        UpdateBackgroundVisibility();
+
+        // TODO: set listener node current status
+    }
+
+    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true)]
+    public bool Zoom(float delta, float value)
+    {
+        if (!Current)
+            return false;
+
         var old = CameraHeight;
 
         if (FramerateAdjustZoomSpeed)
@@ -169,6 +187,8 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         // ReSharper disable once CompareOfFloatsByEqualityOperator
         if (CameraHeight != old)
             EmitSignal(nameof(OnZoomChanged), CameraHeight);
+
+        return true;
     }
 
     /// <summary>
@@ -240,6 +260,10 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             return;
         }
 
+        // If we are not current camera, we don't want to display the background particles
+        if (!Current)
+            displayed = false;
+
         BackgroundParticles.Emitting = displayed;
 
         if (displayed)
@@ -275,5 +299,14 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         }
 
         cursorDirty = false;
+    }
+
+    private void UpdateBackgroundVisibility()
+    {
+        if (BackgroundPlane != null)
+            BackgroundPlane.Visible = Current;
+
+        if (BackgroundParticles != null)
+            OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
     }
 }

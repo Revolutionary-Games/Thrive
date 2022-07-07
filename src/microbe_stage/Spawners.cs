@@ -211,6 +211,35 @@ public static class SpawnHelpers
     {
         return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
     }
+
+    public static MulticellularCreature SpawnCreature(Species species, Vector3 location,
+        Node worldRoot, PackedScene multicellularScene, bool aiControlled, GameProperties currentGame)
+    {
+        var creature = (MulticellularCreature)multicellularScene.Instance();
+
+        // The second parameter is (isPlayer), and we assume that if the
+        // cell is not AI controlled it is the player's cell
+        creature.Init(currentGame, !aiControlled);
+
+        worldRoot.AddChild(creature);
+        creature.Translation = location;
+
+        creature.AddToGroup(Constants.ENTITY_TAG_CREATURE);
+        creature.AddToGroup(Constants.PROCESS_GROUP);
+
+        if (aiControlled)
+            creature.AddToGroup(Constants.AI_GROUP);
+
+        creature.ApplySpecies(species);
+
+        creature.SetInitialCompounds();
+        return creature;
+    }
+
+    public static PackedScene LoadMulticellularScene()
+    {
+        return GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularCreature.tscn");
+    }
 }
 
 /// <summary>

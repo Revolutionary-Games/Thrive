@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-05 19:39+0100\n"
+"POT-Creation-Date: 2022-07-07 16:47+0300\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -41,6 +41,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
 msgid "CELLS"
 msgstr "Sejtek"
 
@@ -49,13 +50,18 @@ msgstr "Sejtek"
 msgid "GENERAL"
 msgstr "Generáció:"
 
-#: ../simulation_parameters/common/gallery.json:123
+#: ../simulation_parameters/common/gallery.json:121
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Sejtszervecske elhelyezése"
+
+#: ../simulation_parameters/common/gallery.json:131
 #, fuzzy
 msgid "MODELS"
 msgstr "Isten mód"
 
-#: ../simulation_parameters/common/gallery.json:126
-#: ../simulation_parameters/common/gallery.json:276
+#: ../simulation_parameters/common/gallery.json:134
+#: ../simulation_parameters/common/gallery.json:284
 #, fuzzy
 msgid "MICROBE_STAGE"
 msgstr ""
@@ -67,32 +73,32 @@ msgstr ""
 "\n"
 "Ahhoz, hogy túléld ezt a kegyetlen világot, annyi vegyületet kell gyűjtened, amennyit csak találsz, és fejlesztened kell fajodat az evolúció során, hogy versenyképesek maradjanak a többi fajjal."
 
-#: ../simulation_parameters/common/gallery.json:239
+#: ../simulation_parameters/common/gallery.json:247
 msgid "MUSIC"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:242
+#: ../simulation_parameters/common/gallery.json:250
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
 
-#: ../simulation_parameters/common/gallery.json:253
+#: ../simulation_parameters/common/gallery.json:261
 #, fuzzy
 msgid "MENU"
 msgstr "Menu"
 
-#: ../simulation_parameters/common/gallery.json:317
+#: ../simulation_parameters/common/gallery.json:325
 #, fuzzy
 msgid "MICROBE_EDITOR"
 msgstr "Sejtszerkesztő betöltése"
 
-#: ../simulation_parameters/common/gallery.json:352
+#: ../simulation_parameters/common/gallery.json:360
 #, fuzzy
 msgid "MULTICELLULAR_STAGE"
 msgstr "Sejtszervecske elhelyezése"
 
-#: ../simulation_parameters/common/gallery.json:375
+#: ../simulation_parameters/common/gallery.json:383
 #, fuzzy
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Sejtszerkesztő betöltése"
@@ -254,319 +260,357 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Minden egyes alkalommal, amikor osztódsz, a sejtszerkesztőbe fogsz belépni, ahol változtatásokat végezhetsz a fajod setjein (úgy, hogy hozzáadsz, áthelyezel, vagy eltörölsz sejtszervecskéket), hogy növeld túlélési esélyüket. Minden egyes látogatás a szerkesztőben [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millió évnyi fejlődést jelent a fajod számára."
 
 #: ../simulation_parameters/common/help_texts.json:131
+#: ../simulation_parameters/common/help_texts.json:138
 msgid "LOADING_TIP"
 msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
 
-#: ../simulation_parameters/common/help_texts.json:138
+#: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Érdekesség: a Didinium és a Papucsállatka kapcsolata egy tankönyvi példa a ragadozó-zsákmányállat kapcsolatra, amit már évtizedek óta tanulmányoznak. És te hova tartozol? A Didiniumhoz, vagy a Papucsállatkához? A ragadozóhoz, vagy a zsákmányhoz?"
 
-#: ../simulation_parameters/common/help_texts.json:141
+#: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Itt egy kis tanács. A mérgek arra is használhatók, hogy más mérgeket üss el magad elől, ha elég gyors vagy."
 
-#: ../simulation_parameters/common/help_texts.json:144
+#: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Itt egy kis tanács. Az ozmoreguláció másodpercenként 1 ATP-be kerül hexagononként. Mindegyik citoplazma hexagon 5 ATP-t termel, ami azt jelenti, hogy ha az ozmoreguláció során ATP-t veszítesz, akkor csak adj a sejtedhez egy pár hexagonnyi citoplazmát, és távolíts el pár sejtszervecskét."
 
-#: ../simulation_parameters/common/help_texts.json:147
+#: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "Érdekesség: a valóságban a prokariótáknak vannak úgynevezett biokamráik, melyek sejtszervecskeként viselkednek, és poliéderes sejtszervecskének is hívják ezeket."
 
-#: ../simulation_parameters/common/help_texts.json:150
+#: ../simulation_parameters/common/help_texts.json:157
 msgid "EASTEREGG_MESSAGE_5"
 msgstr "Érdekesség: a metaboloszómát hívják poliéderes sejtszervecskének."
 
-#: ../simulation_parameters/common/help_texts.json:153
+#: ../simulation_parameters/common/help_texts.json:160
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Itt egy kis tanács. Néha jobb döntés elmenekülni más sejtek elől."
 
-#: ../simulation_parameters/common/help_texts.json:156
+#: ../simulation_parameters/common/help_texts.json:163
 msgid "EASTEREGG_MESSAGE_7"
 msgstr "Itt egy kis tanács. Ha egy sejt a tiédnek a fele, akkor tudod őt elnyelni."
 
-#: ../simulation_parameters/common/help_texts.json:159
+#: ../simulation_parameters/common/help_texts.json:166
 msgid "EASTEREGG_MESSAGE_8"
 msgstr "Itt egy kis tanács. A baktériumok erősebbek is lehetnek, mint ahogy kinéznek. Kicsinek nézhetnek ki, de némelyik beléd tud fúródni, és úgy tud megölni!"
 
-#: ../simulation_parameters/common/help_texts.json:162
+#: ../simulation_parameters/common/help_texts.json:169
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Itt egy kis tanács. Ha nem vigyázol, akkor akár fajokat is ki tudsz írtani, viszont ezt ők is megtehetik veled."
 
-#: ../simulation_parameters/common/help_texts.json:165
+#: ../simulation_parameters/common/help_texts.json:172
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "HULLÁMZÓ BIGYUSZOK!!"
 
-#: ../simulation_parameters/common/help_texts.json:168
+#: ../simulation_parameters/common/help_texts.json:175
 msgid "EASTEREGG_MESSAGE_11"
 msgstr "Égesd a vasat."
 
-#: ../simulation_parameters/common/help_texts.json:171
+#: ../simulation_parameters/common/help_texts.json:178
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "Na azok a kék sejtek."
 
-#: ../simulation_parameters/common/help_texts.json:174
+#: ../simulation_parameters/common/help_texts.json:181
 msgid "EASTEREGG_MESSAGE_13"
 msgstr "Itt egy kis tanács. A biomok kicsivel többek, mint egy csicsás háttér. Bizonyos vegyületek bizonyos biomokban különböző mértékekben találhatóak meg."
 
-#: ../simulation_parameters/common/help_texts.json:177
+#: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
 msgstr "Itt egy kis tanács. Minél több ostorod van, annál gyorsabban mész (VuTuTuTu), viszont ez több ATP-t is használ"
 
-#: ../simulation_parameters/common/help_texts.json:180
+#: ../simulation_parameters/common/help_texts.json:187
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Itt egy kis tanács. Darabkákat is el tudsz nyelni, akár vas, akár más."
 
-#: ../simulation_parameters/common/help_texts.json:183
+#: ../simulation_parameters/common/help_texts.json:190
 msgid "EASTEREGG_MESSAGE_16"
 msgstr "Itt egy kis tanács. Készülj fel, mielőtt egy sejtmaggal gazdagítod a sejtedet. Nagyon drágák azok az izék, és nem könnyű őket fenntartani."
 
-#: ../simulation_parameters/common/help_texts.json:186
+#: ../simulation_parameters/common/help_texts.json:193
 msgid "EASTEREGG_MESSAGE_17"
 msgstr "Érdekesség: Tudtad, hogy a Földön több, mint 8000 csillós faj él?"
 
-#: ../simulation_parameters/common/help_texts.json:189
+#: ../simulation_parameters/common/help_texts.json:196
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Érdekesség: A Stentor egy olyan csillós egysejtű, mely képes megnyúlni, és elkapni zsákmányát a trombitaszerű sejtszájával úgy, hogy a sejtszáj körüli csillókkal áramlatot generál."
 
-#: ../simulation_parameters/common/help_texts.json:192
+#: ../simulation_parameters/common/help_texts.json:199
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "Érdekesség: a Didinium egy olyan csillós, mely papucsállatkákra vadászik."
 
-#: ../simulation_parameters/common/help_texts.json:195
+#: ../simulation_parameters/common/help_texts.json:202
 msgid "EASTEREGG_MESSAGE_20"
 msgstr "Érdekesség: Az amőbák műlábakkal vadásznak prédáikra, amiket pseudopodia-nak neveznek. Ezt mindenképpen szeretnénk, hogy a Thrive-ban benne legyen."
 
-#: ../simulation_parameters/common/help_texts.json:198
+#: ../simulation_parameters/common/help_texts.json:205
 msgid "EASTEREGG_MESSAGE_21"
 msgstr "Itt egy kis tanács. Figyelj a nálad nagyobb egysejtűekre és baktériumokra. Nem olyan mókás megemésztődni."
 
-#: ../simulation_parameters/common/help_texts.json:201
+#: ../simulation_parameters/common/help_texts.json:208
 msgid "EASTEREGG_MESSAGE_22"
 msgstr "A Thrive zenei csapatának vezetője (Oliver Lugg) elég sok számot csinált, amik még nem kerültek be a játékba. Meghallgathatod őket, vagy nézhetsz tőle élő adásokat, ahogy ezeket a dalokat készíti."
 
-#: ../simulation_parameters/common/help_texts.json:204
+#: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
 msgstr "Itt egy kis tanács. Ha a sejted 150 hexagon nagyságú, akkor a nagy vasdarabokat is el tudod nyelni."
 
-#: ../simulation_parameters/common/help_texts.json:207
+#: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
 msgstr "A Thrive egy idegen bolygó szimulálását veszi célba, szóval elég sok értelme van annak, hogy a körülötted lévő fajok hasonlítani fognak kicsit más fajokra. Ez főleg az evolúció miatt történik. Lássuk csak, vajon be tudod-e őket azonosítani."
 
-#: ../simulation_parameters/common/help_texts.json:210
+#: ../simulation_parameters/common/help_texts.json:217
 msgid "EASTEREGG_MESSAGE_25"
 msgstr "Érdekesség: a Thrive fejlesztőinek van egy podcast sorozata. Néha ránézhetsz, ha kedved tartja."
 
-#: ../simulation_parameters/common/help_texts.json:213
+#: ../simulation_parameters/common/help_texts.json:220
 msgid "EASTEREGG_MESSAGE_26"
 msgstr "Érdekesség: a Thrive a nyílt forráskódú Godot motorral készült."
 
-#: ../simulation_parameters/common/help_texts.json:216
+#: ../simulation_parameters/common/help_texts.json:223
 msgid "EASTEREGG_MESSAGE_27"
 msgstr "Érdekesség: a játék egyik legelső játszható prototípusát egyik kedves programozónk, untrustedlife készítette!"
 
-#: ../simulation_parameters/common/input_options.json:6
+#: ../simulation_parameters/common/input_options.json:7
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:393
 msgid "MOVEMENT"
 msgstr "Mozgás"
 
-#: ../simulation_parameters/common/input_options.json:10
+#: ../simulation_parameters/common/input_options.json:11
 msgid "MOVE_LEFT"
 msgstr "Mozgás balra"
 
-#: ../simulation_parameters/common/input_options.json:14
+#: ../simulation_parameters/common/input_options.json:15
 msgid "MOVE_RIGHT"
 msgstr "Mozgás jobbra"
 
-#: ../simulation_parameters/common/input_options.json:18
+#: ../simulation_parameters/common/input_options.json:19
 msgid "MOVE_FORWARD"
 msgstr "Mozgás előre"
 
-#: ../simulation_parameters/common/input_options.json:22
+#: ../simulation_parameters/common/input_options.json:23
 msgid "MOVE_BACKWARDS"
 msgstr "Mozgás hátra"
 
-#: ../simulation_parameters/common/input_options.json:26
+#: ../simulation_parameters/common/input_options.json:27
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automata mozgás előre"
 
-#: ../simulation_parameters/common/input_options.json:34
+#: ../simulation_parameters/common/input_options.json:36
 msgid "ABILITIES"
 msgstr "Képességek"
 
-#: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2182
+#: ../simulation_parameters/common/input_options.json:40
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1901
+#: ../src/microbe_stage/MicrobeStage.tscn:1979
 msgid "FIRE_TOXIN"
 msgstr "Méreg lövése"
 
-#: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2170
+#: ../simulation_parameters/common/input_options.json:44
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1887
+#: ../src/microbe_stage/MicrobeStage.tscn:1967
 msgid "TOGGLE_ENGULF"
 msgstr "Elnyelés be/ki"
 
-#: ../simulation_parameters/common/input_options.json:46
+#: ../simulation_parameters/common/input_options.json:48
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Tartsd lenyomva a csoport parancsok menü megjelenítéséhez"
 
-#: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2193
+#: ../simulation_parameters/common/input_options.json:52
+#: ../src/microbe_stage/MicrobeStage.tscn:1990
 msgid "TOGGLE_BINDING"
 msgstr "Összekapcsolás be/ki"
 
-#: ../simulation_parameters/common/input_options.json:54
+#: ../simulation_parameters/common/input_options.json:56
 msgid "TOGGLE_UNBINDING"
 msgstr "Szétválás be/ki"
 
-#: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2205
+#: ../simulation_parameters/common/input_options.json:60
+#: ../src/microbe_stage/MicrobeStage.tscn:2002
 msgid "UNBIND_ALL"
 msgstr "Összes szétválasztása"
 
-#: ../simulation_parameters/common/input_options.json:62
+#: ../simulation_parameters/common/input_options.json:64
 msgid "PERFORM_UNBINDING"
 msgstr "Szétválasztás végrehajtása"
 
-#: ../simulation_parameters/common/input_options.json:71
+#: ../simulation_parameters/common/input_options.json:73
 msgid "CAMERA"
 msgstr "Kamera"
 
-#: ../simulation_parameters/common/input_options.json:75
+#: ../simulation_parameters/common/input_options.json:77
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
 
-#: ../simulation_parameters/common/input_options.json:79
+#: ../simulation_parameters/common/input_options.json:81
 msgid "ZOOM_IN"
 msgstr "Közelítés"
 
-#: ../simulation_parameters/common/input_options.json:87
+#: ../simulation_parameters/common/input_options.json:90
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:153
 msgid "EDITOR"
 msgstr "Szerkesztő"
 
-#: ../simulation_parameters/common/input_options.json:91
+#: ../simulation_parameters/common/input_options.json:94
 msgid "ROTATE_RIGHT"
 msgstr "Forgatás jobbra"
 
-#: ../simulation_parameters/common/input_options.json:95
+#: ../simulation_parameters/common/input_options.json:98
 msgid "ROTATE_LEFT"
 msgstr "Forgatás balra"
 
-#: ../simulation_parameters/common/input_options.json:99
+#: ../simulation_parameters/common/input_options.json:102
 msgid "UNDO"
 msgstr "Visszavonás"
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:106
 msgid "REDO"
 msgstr "Helyrehoz"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:110
 msgid "PLACE_ORGANELLE"
 msgstr "Sejtszervecske elhelyezése"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:114
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Sejtszervecske menü megnyitása"
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:118
 msgid "PAN_CAMERA_LEFT"
 msgstr "Pásztázás balra"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:122
 msgid "PAN_CAMERA_RIGHT"
 msgstr "Pásztázás jobbra"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:126
 msgid "PAN_CAMERA_UP"
 msgstr "Pásztázás felfelé"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:130
 msgid "PAN_CAMERA_DOWN"
 msgstr "Pásztázás lefelé"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:134
 msgid "PAN_CAMERA_RESET"
 msgstr "Kamera visszaállítása"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:138
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:80
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Jelenlegi akció visszavonása"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:142
 msgid "DELETE_ORGANELLE"
 msgstr "Sejtszervecske törlése"
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:146
 msgid "MOVE_ORGANELLE"
 msgstr "Sejtszervecske áthelyezése"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:155
+#, fuzzy
+msgid "3D_MOVEMENT"
+msgstr "Mozgás"
+
+#: ../simulation_parameters/common/input_options.json:159
+msgid "MOVE_UP_OR_JUMP"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:163
+msgid "MOVE_DOWN_OR_CROUCH"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:171
+#, fuzzy
+msgid "3D_EDITOR"
+msgstr "Szerkesztő"
+
+#: ../simulation_parameters/common/input_options.json:175
+msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:179
+msgid "SWITCH_TO_FRONT_CAMERA"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:183
+msgid "SWITCH_TO_RIGHT_CAMERA"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:187
+msgid "SWITCH_TO_TOP_CAMERA"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:16
 msgid "CHEATS"
 msgstr "Csalások"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:200
 msgid "ENABLE_EDITOR"
 msgstr "Szerkesztő engedélyezése"
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:204
 msgid "SPAWN_GLUCOSE"
 msgstr "Glükóz létrehozása"
 
-#: ../simulation_parameters/common/input_options.json:163
+#: ../simulation_parameters/common/input_options.json:208
 msgid "SPAWN_AMMONIA"
 msgstr "Ammónia létrehozása"
 
-#: ../simulation_parameters/common/input_options.json:167
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SPAWN_PHOSPHATES"
 msgstr "Foszfát létrehozása"
 
-#: ../simulation_parameters/common/input_options.json:171
+#: ../simulation_parameters/common/input_options.json:216
 msgid "CHEAT_MENU"
 msgstr "Csalások menü"
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:227
 msgid "MISCELLANEOUS"
 msgstr "Egyéb"
 
-#: ../simulation_parameters/common/input_options.json:184
+#: ../simulation_parameters/common/input_options.json:231
 msgid "TOGGLE_PAUSE"
 msgstr "Szünet"
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:235
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Debug panel be/ki"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:239
 msgid "TOGGLE_FPS"
 msgstr "FPS mutatása be/ki"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:243
 #, fuzzy
 msgid "TOGGLE_METRICS"
 msgstr "FPS mutatása be/ki"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:247
 msgid "QUICK_SAVE"
 msgstr "Gyorsmentés"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:251
 msgid "QUICK_LOAD"
 msgstr "Gyorstöltés"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:255
 msgid "TAKE_SCREENSHOT"
 msgstr "Képernyőkép készítése"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:259
 msgid "SHOW_HELP"
 msgstr "Segítség mutatása"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:263
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Teljes képernyő be/ki"
 
-#: ../simulation_parameters/common/input_options.json:220
+#: ../simulation_parameters/common/input_options.json:267
 msgid "TOGGLE_HUD_HIDE"
 msgstr "HUD be/ki"
 
@@ -734,36 +778,42 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1300
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1199
+#: ../src/microbe_stage/MicrobeStage.tscn:1236
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Ammónia"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/microbe_stage/MicrobeStage.tscn:1349
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1251
+#: ../src/microbe_stage/MicrobeStage.tscn:1285
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Foszfát"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/microbe_stage/MicrobeStage.tscn:1401
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1303
+#: ../src/microbe_stage/MicrobeStage.tscn:1337
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogén-szulfid"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/microbe_stage/MicrobeStage.tscn:1251
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1147
+#: ../src/microbe_stage/MicrobeStage.tscn:1187
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Glükóz"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/microbe_stage/MicrobeStage.tscn:1624
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1485
+#: ../src/microbe_stage/MicrobeStage.tscn:1560
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/microbe_stage/MicrobeStage.tscn:1450
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1355
+#: ../src/microbe_stage/MicrobeStage.tscn:1386
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "Vas"
@@ -1109,33 +1159,40 @@ msgid "STEM_CELL_NAME"
 msgstr "Tő"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:296
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:299
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
 msgid "STRUCTURE"
 msgstr "Struktúra"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:317
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:414
 msgid "REPRODUCTION"
 msgstr "Reprodukció"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:338
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
 msgstr "Viselkedés"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:476
 msgid "MODIFY_TYPE"
 msgstr "Típus módosítása"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:415
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:489
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Törlés"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:496
 msgid "DUPLICATE_TYPE"
 msgstr "Típus megkettőzése"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:538
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukció:"
 
@@ -1146,11 +1203,13 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "reprodukálva"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:641
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1105
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "AKCIÓ VISSZAVONÁSA"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:654
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:126
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
@@ -1168,10 +1227,12 @@ msgstr ""
 "Kérlek kapcsold össze a sejteket egymással a folytatáshoz."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:548
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "A használt sejttípust nem lehet törölni"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:550
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:670
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
@@ -1184,10 +1245,12 @@ msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Új sejttípusokat hozhatsz létre úgy, hogy az eddigieket duplikálod, és új nevet adsz nekik. A sejttípusokat külön szerkesztheted különböző feladatok ellátására. Ha egy sejttípust szerkesztesz, akkor az eddig lerakott ugyanazon sejttípusból származó sejtek frissülni fognak."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:701
 msgid "NEW_NAME_COLON"
 msgstr "Új név:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:708
 msgid "NEW_NAME"
 msgstr "Új név"
 
@@ -1197,6 +1260,8 @@ msgstr "Több sejt"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:76
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
+#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:76
+#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:94
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:82
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:103
@@ -1207,23 +1272,26 @@ msgstr "{0} MP"
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Többsejtes szerkesztő betöltése"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:196
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:228
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo futtatása sikertelen"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:197
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:196
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "futtatási státusz:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:379
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:383
 #: ../src/general/EditorBase.cs:648
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:436
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:73
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr "Válassz ki egy sejttípust, hogy szerkeszteni tudd"
 
@@ -1740,10 +1808,9 @@ msgid "CLOSE"
 msgstr "Bezár"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567
+#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:675
 #: ../src/gui_common/CompoundAmount.cs:176
-#: ../src/microbe_stage/MicrobeHUD.cs:762
-#: ../src/microbe_stage/MicrobeHUD.cs:1220
+#: ../src/microbe_stage/MicrobeHUD.cs:207
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
@@ -2495,8 +2562,7 @@ msgstr "Öngyilkosság"
 msgid "STATISTICS"
 msgstr "Statisztikák"
 
-#: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/MicrobeStage.tscn:1736
+#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:120
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Segítség"
 
@@ -2521,6 +2587,57 @@ msgstr "Kilépés"
 msgid "CONFIRM_EXIT"
 msgstr "Kilépés elfogadása"
 
+#: ../src/general/StageBase.cs:383
+msgid "PLAYER_REPRODUCED"
+msgstr "játékos szaporodott"
+
+#: ../src/general/StageBase.cs:438
+msgid "PLAYER_DIED"
+msgstr "A játékos meghalt"
+
+#: ../src/general/StageBase.cs:501
+#, fuzzy
+msgid "EXTINCT_IN_PATCH"
+msgstr "kihalt a bolygón"
+
+#: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
+msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+#: ../src/general/StageHUDBase.cs:882
+msgid "CATEGORY_AN_ABUNDANCE"
+msgstr "bőséges mennyiség"
+
+#: ../src/general/StageHUDBase.cs:884
+msgid "CATEGORY_QUITE_A_BIT"
+msgstr "kis mennyiség"
+
+#: ../src/general/StageHUDBase.cs:886
+msgid "CATEGORY_A_FAIR_AMOUNT"
+msgstr "elég sok"
+
+#: ../src/general/StageHUDBase.cs:888
+msgid "CATEGORY_SOME"
+msgstr "közepes mennyiség"
+
+#: ../src/general/StageHUDBase.cs:890
+#, fuzzy
+msgid "CATEGORY_LITTLE"
+msgstr "Elméleti csapat"
+
+#: ../src/general/StageHUDBase.cs:892
+msgid "CATEGORY_VERY_LITTLE"
+msgstr "nagyon kicsi mennyiség"
+
+#: ../src/general/StageHUDBase.cs:1092
+msgid "PLAYER_CELL"
+msgstr "Játékos sejtje"
+
+#: ../src/general/StageHUDBase.cs:1105
+msgid "SPECIES_N_TIMES"
+msgstr "{0} (x{1})"
+
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
@@ -2541,12 +2658,6 @@ msgstr "/másodperc"
 #: ../src/gui_common/ChemicalEquation.cs:308
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
-
-#: ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/MicrobeHUD.cs:763
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
-msgid "VALUE_WITH_UNIT"
-msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:223
 msgid "LEAD_DEVELOPERS"
@@ -3325,7 +3436,9 @@ msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2338
-#: ../src/microbe_stage/MicrobeHUD.cs:1612
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:145
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:153
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1550
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Fejlesztés alatt."
 
@@ -3425,6 +3538,155 @@ msgstr ""
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
+#, fuzzy
+msgid "LOOKING_AT"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:447
+#: ../src/microbe_stage/MicrobeStage.tscn:485
+msgid "NOTHING_HERE"
+msgstr "Semmi nincs itt"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:472
+#: ../src/microbe_stage/MicrobeStage.tscn:510
+msgid "COMPOUNDS_COLON"
+msgstr "Vegyületek:"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:512
+#: ../src/microbe_stage/MicrobeStage.tscn:550
+msgid "SPECIES_COLON"
+msgstr "Fajok:"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:591
+#: ../src/microbe_stage/MicrobeStage.tscn:627
+msgid "ENVIRONMENT"
+msgstr "Környezet"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:857
+#: ../src/microbe_stage/MicrobeStage.tscn:895
+msgid "TEMPERATURE_SHORT"
+msgstr "Hőm."
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:913
+#: ../src/microbe_stage/MicrobeStage.tscn:951
+msgid "LIGHT"
+msgstr "Fény"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:968
+#: ../src/microbe_stage/MicrobeStage.tscn:1006
+msgid "PRESSURE_SHORT"
+msgstr "Nyomás"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1051
+#: ../src/microbe_stage/MicrobeStage.tscn:1089
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
+msgid "COMPOUNDS"
+msgstr "Vegyületek"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1425
+#: ../src/microbe_stage/MicrobeStage.tscn:1500
+msgid "AGENTS"
+msgstr "Ágensek"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1555
+#, fuzzy
+msgid "BECOME_AWARE"
+msgstr "Biom: {0}"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1566
+msgid "AWAKEN"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
+#: ../src/microbe_stage/MicrobeStage.tscn:1660
+msgid "POPULATION_CAPITAL"
+msgstr "POPULÁCIÓ:"
+
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_EDITOR"
+msgstr "Többsejtes szerkesztő betöltése"
+
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
+#, fuzzy
+msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
+msgstr "Válassz ki egy sejttípust, hogy szerkeszteni tudd"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:720
+msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
+#, fuzzy
+msgid "INTERNALS"
+msgstr "Külső"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:371
+#, fuzzy
+msgid "APPEARANCE"
+msgstr "Teljesítmény"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
+#, fuzzy
+msgid "REPRODUCTION_ASEXUAL"
+msgstr "Reprodukció"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
+#, fuzzy
+msgid "DISCONNECTED_METABALLS"
+msgstr "Levált sejtek"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
+#, fuzzy
+msgid "DISCONNECTED_METABALLS_TEXT"
+msgstr ""
+"Vannak olyan sejtek, melyek nem kötődnek egymáshoz.\n"
+"Kérlek kapcsold össze a sejteket egymással a folytatáshoz."
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
+#, fuzzy
+msgid "CREATE_NEW_TISSUE_TYPE"
+msgstr "Új sejttípus létrehozása"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
+#, fuzzy
+msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
+msgstr "Új sejttípusokat hozhatsz létre úgy, hogy az eddigieket duplikálod, és új nevet adsz nekik. A sejttípusokat külön szerkesztheted különböző feladatok ellátására. Ha egy sejttípust szerkesztesz, akkor az eddig lerakott ugyanazon sejttípusból származó sejtek frissülni fognak."
+
+#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
+#, fuzzy
+msgid "MULTIPLE_METABALLS"
+msgstr "Több sejt"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:44
+msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr "Menü"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:59
+msgid "PAUSE_TOOLTIP"
+msgstr "Játék szüneteltetése"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:60
+msgid "RESUME_TOOLTIP"
+msgstr "Játék folytatása"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:68
+msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
+msgstr "A környezet és a vegyületek mutatása / elrejtése"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:82
+msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
+msgstr "A sejt folyamatainak mutatása/elrejtése"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:131
+msgid "SUICIDE_BUTTON_TOOLTIP"
+msgstr "Öngyilkosság"
+
 #: ../src/microbe_stage/Microbe.Contact.cs:709
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
@@ -3441,7 +3703,7 @@ msgstr ""
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:860
+#: ../src/microbe_stage/Microbe.Interior.cs:881
 msgid "REPRODUCED"
 msgstr "reprodukálva"
 
@@ -3471,196 +3733,82 @@ msgstr "A játékos megkettőzése"
 msgid "SPAWN_ENEMY"
 msgstr "Ellenség spawnolása"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:574
-msgid "SIGNAL_COMMAND_NONE"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeHUD.cs:575
-msgid "SIGNAL_COMMAND_FOLLOW"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeHUD.cs:576
-msgid "SIGNAL_COMMAND_TO_ME"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeHUD.cs:577
-msgid "SIGNAL_COMMAND_FLEE"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeHUD.cs:578
-msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeHUD.cs:581
-msgid "SIGNAL_TO_EMIT"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeHUD.cs:852
+#: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:966
-msgid "STUFF_AT"
-msgstr "Dolgok {0:F1}, {1:F1} környékén:"
+#: ../src/microbe_stage/MicrobeHUD.cs:109
+msgid "SIGNAL_COMMAND_NONE"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:999
-msgid "PLAYER_CELL"
-msgstr "Játékos sejtje"
+#: ../src/microbe_stage/MicrobeHUD.cs:110
+msgid "SIGNAL_COMMAND_FOLLOW"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1016
-msgid "SPECIES_N_TIMES"
-msgstr "{0} (x{1})"
+#: ../src/microbe_stage/MicrobeHUD.cs:111
+msgid "SIGNAL_COMMAND_TO_ME"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1061
-msgid "CATEGORY_AN_ABUNDANCE"
-msgstr "bőséges mennyiség"
+#: ../src/microbe_stage/MicrobeHUD.cs:112
+msgid "SIGNAL_COMMAND_FLEE"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1063
-msgid "CATEGORY_QUITE_A_BIT"
-msgstr "kis mennyiség"
+#: ../src/microbe_stage/MicrobeHUD.cs:113
+msgid "SIGNAL_COMMAND_AGGRESSION"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1065
-msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr "elég sok"
+#: ../src/microbe_stage/MicrobeHUD.cs:116
+msgid "SIGNAL_TO_EMIT"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1067
-msgid "CATEGORY_SOME"
-msgstr "közepes mennyiség"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1069
-#, fuzzy
-msgid "CATEGORY_LITTLE"
-msgstr "Elméleti csapat"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1071
-msgid "CATEGORY_VERY_LITTLE"
-msgstr "nagyon kicsi mennyiség"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1217
+#: ../src/microbe_stage/MicrobeHUD.cs:198
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1377
-#: ../src/microbe_stage/MicrobeStage.tscn:1803
+#: ../src/microbe_stage/MicrobeHUD.cs:310
+msgid "STUFF_AT"
+msgstr "Dolgok {0:F1}, {1:F1} környékén:"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:399
+#: ../src/microbe_stage/MicrobeStage.tscn:1629
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1413
-#: ../src/microbe_stage/MicrobeStage.tscn:1814
+#: ../src/microbe_stage/MicrobeHUD.cs:435
+#: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:831
-msgid "PLAYER_REPRODUCED"
-msgstr "játékos szaporodott"
-
-#: ../src/microbe_stage/MicrobeStage.cs:845
+#: ../src/microbe_stage/MicrobeStage.cs:661
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Ellenség spawnolása"
 
-#: ../src/microbe_stage/MicrobeStage.cs:868
-msgid "PLAYER_DIED"
-msgstr "A játékos meghalt"
-
-#: ../src/microbe_stage/MicrobeStage.cs:1003
-#, fuzzy
-msgid "EXTINCT_IN_PATCH"
-msgstr "kihalt a bolygón"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:523
+#: ../src/microbe_stage/MicrobeStage.tscn:459
 msgid "AT_CURSOR"
 msgstr "A kurzornál:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:549
-msgid "NOTHING_HERE"
-msgstr "Semmi nincs itt"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:574
-msgid "COMPOUNDS_COLON"
-msgstr "Vegyületek:"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:614
-msgid "SPECIES_COLON"
-msgstr "Fajok:"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:691
-msgid "ENVIRONMENT"
-msgstr "Környezet"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:959
-msgid "TEMPERATURE_SHORT"
-msgstr "Hőm."
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1015
-msgid "LIGHT"
-msgstr "Fény"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1070
-msgid "PRESSURE_SHORT"
-msgstr "Nyomás"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1153
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
-msgid "COMPOUNDS"
-msgstr "Vegyületek"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1500
+#: ../src/microbe_stage/MicrobeStage.tscn:1436
 msgid "INGESTED_MATTER"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1564
-msgid "AGENTS"
-msgstr "Ágensek"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1662
-msgid "STAGE_MENU_BUTTON_TOOLTIP"
-msgstr "Menü"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1675
-msgid "PAUSE_TOOLTIP"
-msgstr "Játék szüneteltetése"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1676
-msgid "RESUME_TOOLTIP"
-msgstr "Játék folytatása"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1684
-msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "A környezet és a vegyületek mutatása / elrejtése"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1699
-msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr "A sejt folyamatainak mutatása/elrejtése"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1748
-msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr "Öngyilkosság"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1799
+#: ../src/microbe_stage/MicrobeStage.tscn:1625
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1834
-msgid "POPULATION_CAPITAL"
-msgstr "POPULÁCIÓ:"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1982
+#: ../src/microbe_stage/MicrobeStage.tscn:1808
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Segítség"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:2128
-msgid "PAUSED"
-msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:210
 #, fuzzy
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
+
+#: ../src/microbe_stage/PausePrompt.tscn:23
+msgid "PAUSED"
+msgstr ""
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"

@@ -23,7 +23,7 @@ public abstract class HexLayout<T> : ICollection<T>
     [JsonProperty]
     protected Action<T>? onRemoved;
 
-    public HexLayout(Action<T> onAdded, Action<T>? onRemoved = null)
+    public HexLayout(Action<T>? onAdded, Action<T>? onRemoved = null)
     {
         this.onAdded = onAdded;
         this.onRemoved = onRemoved;
