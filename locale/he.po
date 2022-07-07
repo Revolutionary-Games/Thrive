@@ -52,9 +52,8 @@ msgid "GENERAL"
 msgstr "כללי"
 
 #: ../simulation_parameters/common/gallery.json:121
-#, fuzzy
 msgid "MULTICELLULAR"
-msgstr "שלב הרב-תאי"
+msgstr "רב תאים"
 
 #: ../simulation_parameters/common/gallery.json:131
 #: ../simulation_parameters/common/gallery.json:123
@@ -116,7 +115,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
 "התא שלך משתמש ב[thrive:compound type=\"atp\"][/thrive:compound] כמקור "
-"אנרגיה, כשזה אם אזל אתה תמות."
+"אנרגיה, כשזה אזל אתה תמות."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
@@ -182,7 +181,7 @@ msgstr ""
 "צהוב - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "כתום - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
 "סגול - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"חום חלוד - [thrive:compound type=\"iron\"][/thrive:compound]\n"
+"חום חלודה - [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
 "[thrive:compound type=\"glucose\"][/thrive:compound] מייצר [thrive:compound "
 "type=\"atp\"][/thrive:compound]."
@@ -211,14 +210,14 @@ msgstr "לעת עתה, אם כמות האוכלוסייה שלך יורדת לא
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"אבל אם שרדת 20 דורות עם 300 פריטים באוכלוסיה, אתה נחשב למנצח במשחק הנוכחי. "
-"לאחר שזכית, קופץ חלון משם תוכל להמשיך לשחק כרצונך."
+"אבל אם שרדת במשך 20 דורות עם 300 פריטים באוכלוסיה, אתה נחשב למנצח במשחק "
+"הנוכחי. לאחר שזכית, קופץ חלון משם תוכל להמשיך לשחק כרצונך."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"שים לב שגם המתחרים שלך מתפתחים לצדך. בכל פעם שאתה נכנס לעורך, הם מתפתחים גם "
+"שים לב שגם היריבים שלך מתפתחים לצדך. בכל פעם שאתה נכנס לעורך, הם מתפתחים גם "
 "כן."
 
 #: ../simulation_parameters/common/help_texts.json:66
@@ -665,38 +664,36 @@ msgid "MOVE_ORGANELLE"
 msgstr "הזז אברון"
 
 #: ../simulation_parameters/common/input_options.json:155
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "תנועה"
+msgstr "תנועה תלת-מימדית"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "נוע מעלה או קפוץ"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "נוע מטה או תתכופף"
 
 #: ../simulation_parameters/common/input_options.json:171
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "עורך"
+msgstr "עורך תלת-מימדי"
 
 #: ../simulation_parameters/common/input_options.json:175
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "החזק בשביל להחליף בין מצב גלילה לסיבוב"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "החלף לתצוגת מצלמה קדמית"
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "החלף לתצוגת מצלמה ימנית"
 
 #: ../simulation_parameters/common/input_options.json:187
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "החלף לתצוגת מצלמה עליונה"
 
 #: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -3875,9 +3872,8 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "זמן שחלף: {0:#,#} שנים"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
-#, fuzzy
 msgid "LOOKING_AT"
-msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+msgstr "מסתכל על:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:447
 #: ../src/microbe_stage/MicrobeStage.tscn:485
@@ -3938,13 +3934,12 @@ msgid "AGENTS"
 msgstr "חומרים"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1555
-#, fuzzy
 msgid "BECOME_AWARE"
-msgstr "ביומה: {0}"
+msgstr "הפוך למודע"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1566
 msgid "AWAKEN"
-msgstr ""
+msgstr "מודע"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 #: ../src/microbe_stage/MicrobeStage.tscn:1660
@@ -3953,24 +3948,20 @@ msgid "POPULATION_CAPITAL"
 msgstr "אוכלוסיה:"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
-#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr "טוען עורך הקדם רב-תאי"
+msgstr "טוען עורך הרב-תאי"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
-#, fuzzy
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr "בחר סוג תא בשביל לערוך אותו בתגית העורך"
+msgstr "בחר סוג רקמה בשביל לערוך אותו כאן מהתג"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:720
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "לא ניתן להזיז כדור-בשר לתוך עץ צאצאים"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
-#, fuzzy
 msgid "INTERNALS"
-msgstr "חיצוניים"
+msgstr "פנימיות"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:371
 msgid "APPEARANCE"
@@ -3978,39 +3969,32 @@ msgstr "הופעה"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
-#, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
-msgstr "הולדה"
+msgstr "א-מינית"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
-#, fuzzy
 msgid "DISCONNECTED_METABALLS"
-msgstr "תאים מנותקים"
+msgstr "כדורי-בשר מנותקים"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
-#, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"ישנם תאים שאינם מחוברים לשאר.\n"
-"בבקשה חבר את כל התאים אחד עם השני או בטל את הפעולה."
+"ישנם כדורי-בשר מונחים, שאינם מחוברים לשאר.\n"
+"בבקשה חבר את כל כדורי-בשר אחד עם השני על מנת להמשיך."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr "יצירת סוג תא חדש"
+msgstr "יצירת סוג רקמה חדשה"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr ""
-"אתה יכול ליצור סוגי תא על ידי שיכפול קיימים ולתת להם שם חדש. ניתן לשנות סוגי "
-"תא בשביל להתמחותם לתפקידי שונים. בעת שינוי סוג התא כל אלו שממוקמים מאותו סוג "
-"גם יעודכנו."
+"אתה יכול ליצור סוגי רקמות חדשות על ידי שיכפול קיימים ולתת להם שם חדש. ניתן "
+"לשנות סוגי רקמה עם העורך התאי בשביל להתאים אותם לתפקידים שונים."
 
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "שכפל תאים"
+msgstr "שכפל כדורי-בשר"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:44
 #: ../src/microbe_stage/MicrobeStage.tscn:1662
