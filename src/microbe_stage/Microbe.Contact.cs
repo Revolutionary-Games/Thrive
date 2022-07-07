@@ -1092,6 +1092,10 @@ public partial class Microbe
                 State = MicrobeState.Normal;
             }
         }
+        else
+        {
+            attemptingToEngulf.Clear();
+        }
 
         // Play sound
         if (State == MicrobeState.Engulf)
@@ -1157,7 +1161,11 @@ public partial class Microbe
 
             var body = engulfable as RigidBody;
             if (body == null)
+            {
+                attemptingToEngulf.Remove(engulfable);
+                engulfedObjects.Remove(engulfedObject);
                 continue;
+            }
 
             body.Mode = ModeEnum.Static;
 
@@ -1399,6 +1407,8 @@ public partial class Microbe
 
             // TODO: should this also check for pilus before removing the collision?
             hitMicrobe.touchedEntities.Remove(engulfable);
+
+            hitMicrobe.attemptingToEngulf.Remove(engulfable);
         }
     }
 
@@ -1526,6 +1536,8 @@ public partial class Microbe
         {
             return;
         }
+
+        attemptingToEngulf.Remove(target);
 
         var body = target as RigidBody;
         if (body == null)

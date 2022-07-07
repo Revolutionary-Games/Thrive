@@ -31,6 +31,11 @@ public class Compound : IRegistryType
     public bool IsEnvironmental;
 
     /// <summary>
+    ///   Unit for this compound, if applicable (e.g. °C for temperature)
+    /// </summary>
+    public string? Unit;
+
+    /// <summary>
     ///   Whether this compound can be distributed in a colony
     /// </summary>
     public bool CanBeDistributed;

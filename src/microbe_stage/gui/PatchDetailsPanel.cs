@@ -89,7 +89,7 @@ public class PatchDetailsPanel : PanelContainer
     private Label name = null!;
     private Label biome = null!;
     private Label depth = null!;
-    private Label temperature = null!;
+    private Label temperatureLabel = null!;
     private Label pressure = null!;
     private Label light = null!;
     private Label oxygen = null!;
@@ -162,7 +162,7 @@ public class PatchDetailsPanel : PanelContainer
         name = GetNode<Label>(NamePath);
         biome = GetNode<Label>(BiomePath);
         depth = GetNode<Label>(DepthPath);
-        temperature = GetNode<Label>(TemperaturePath);
+        temperatureLabel = GetNode<Label>(TemperaturePath);
         pressure = GetNode<Label>(PressurePath);
         light = GetNode<Label>(LightPath);
         oxygen = GetNode<Label>(OxygenPath);
@@ -234,9 +234,12 @@ public class PatchDetailsPanel : PanelContainer
         playerHere.Visible = CurrentPatch == SelectedPatch;
 
         var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+        var unitFormat = TranslationServer.Translate("VALUE_WITH_UNIT");
 
         // Atmospheric gasses
-        temperature.Text = SelectedPatch.Biome.AverageTemperature + " °C";
+        var temperature = SimulationParameters.Instance.GetCompound("temperature");
+        temperatureLabel.Text = string.Format(CultureInfo.CurrentCulture, unitFormat,
+            SelectedPatch.Biome.Compounds[temperature].Ambient, temperature.Unit);
         pressure.Text = "20 bar";
         light.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
             GetCompoundAmount(SelectedPatch, sunlightCompound.InternalName)) + " lx";
@@ -288,13 +291,14 @@ public class PatchDetailsPanel : PanelContainer
         if (SelectedPatch == null || CurrentPatch == null)
             return;
 
-        var nextCompound = SelectedPatch.Biome.AverageTemperature;
+        var temperature = SimulationParameters.Instance.GetCompound("temperature");
+        var nextCompound = SelectedPatch.Biome.Compounds[temperature].Ambient;
 
-        if (nextCompound > CurrentPatch.Biome.AverageTemperature)
+        if (nextCompound > CurrentPatch.Biome.Compounds[temperature].Ambient)
         {
             temperatureSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < CurrentPatch.Biome.AverageTemperature)
+        else if (nextCompound < CurrentPatch.Biome.Compounds[temperature].Ambient)
         {
             temperatureSituation.Texture = decreaseIcon;
         }
@@ -303,13 +307,13 @@ public class PatchDetailsPanel : PanelContainer
             temperatureSituation.Texture = null;
         }
 
-        nextCompound = SelectedPatch.Biome.Compounds[sunlightCompound].Dissolved;
+        nextCompound = SelectedPatch.Biome.Compounds[sunlightCompound].Ambient;
 
-        if (nextCompound > CurrentPatch.Biome.Compounds[sunlightCompound].Dissolved)
+        if (nextCompound > CurrentPatch.Biome.Compounds[sunlightCompound].Ambient)
         {
             lightSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < CurrentPatch.Biome.Compounds[sunlightCompound].Dissolved)
+        else if (nextCompound < CurrentPatch.Biome.Compounds[sunlightCompound].Ambient)
         {
             lightSituation.Texture = decreaseIcon;
         }
