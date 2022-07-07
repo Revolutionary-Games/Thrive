@@ -775,6 +775,8 @@ public static class Constants
     /// </remarks>
     public const string AI_TAG_MICROBE = "microbe";
 
+    public const string ENTITY_TAG_CREATURE = "creature";
+
     /// <summary>
     ///   All Nodes tagged with this are considered FloatingChunks that the AI can react to
     /// </summary>

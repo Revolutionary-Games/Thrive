@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
@@ -76,17 +75,25 @@ public class LateMulticellularSpecies : Species
     {
         base.ApplyMutation(mutation);
 
-        var casted = (EarlyMulticellularSpecies)mutation;
-
-        // TODO: layout
-        BodyLayout.Clear();
-        throw new NotImplementedException();
+        var casted = (LateMulticellularSpecies)mutation;
 
         CellTypes.Clear();
 
         foreach (var cellType in casted.CellTypes)
         {
             CellTypes.Add((CellType)cellType.Clone());
+        }
+
+        BodyLayout.Clear();
+
+        var metaballMapping = new Dictionary<Metaball, MulticellularMetaball>();
+
+        // Make sure we process things with parents first
+        // TODO: if the tree depth calculation is too expensive here, we'll need to cache the values in the metaball
+        // objects
+        foreach (var metaball in casted.BodyLayout.OrderBy(m => m.CalculateTreeDepth()))
+        {
+            BodyLayout.Add(metaball.Clone(metaballMapping));
         }
     }
 

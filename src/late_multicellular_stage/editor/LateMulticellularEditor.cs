@@ -290,7 +290,7 @@ public class LateMulticellularEditor : EditorBase<EditorAction, MulticellularSta
 
     protected override GameProperties StartNewGameForEditor()
     {
-        return GameProperties.StartNewLateMulticellularGame();
+        return GameProperties.StartNewLateMulticellularGame(new WorldGenerationSettings());
     }
 
     protected override void PerformAutoSave()

@@ -264,7 +264,7 @@ public class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, 
 
     protected override GameProperties StartNewGameForEditor()
     {
-        return GameProperties.StartNewEarlyMulticellularGame();
+        return GameProperties.StartNewEarlyMulticellularGame(new WorldGenerationSettings());
     }
 
     protected override void PerformAutoSave()

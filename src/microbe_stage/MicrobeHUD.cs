@@ -52,15 +52,6 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
 
     private bool playerWasDigested;
 
-    /// <summary>
-    ///   Gets and sets the text that appears at the upper HUD.
-    /// </summary>
-    public string HintText
-    {
-        get => hintText.Text;
-        set => hintText.Text = value;
-    }
-
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
     public new delegate void OnOpenMenu();

@@ -23,7 +23,6 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     protected Node rootOfDynamicallySpawned = null!;
     protected DirectionalLight worldLight = null!;
     protected PauseMenu pauseMenu = null!;
-    private bool transitionFinished;
     protected Control hudRoot = null!;
 
     [JsonProperty]
@@ -54,6 +53,8 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
     ///   True if auto save should trigger ASAP
     /// </summary>
     protected bool wantsToSave;
+
+    private bool transitionFinished;
 
     /// <summary>
     ///   The main current game object holding various details
@@ -397,6 +398,9 @@ public abstract class StageBase<TPlayer> : NodeWithInput, IStage, IGodotEarlyNod
 
         if (!CurrentGame.FreeBuild)
         {
+            if (GameWorld.Map.CurrentPatch == null)
+                throw new InvalidOperationException("No current patch set");
+
             if (playerSpecies.Population <= 0)
             {
                 GameOver();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://src/microbe_stage/ProcessPanel.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Tiny.tres" type="DynamicFont" id=14]
 [ext_resource path="res://assets/textures/gui/bevel/PhosphatesBW.png" type="Texture" id=15]
+[ext_resource path="res://src/microbe_stage/gui/PatchExtinctionBox.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" type="AudioStream" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png" type="Texture" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaInv.png" type="Texture" id=20]
@@ -366,8 +367,11 @@ AgentsPanelPath = NodePath("BottomLeft/LeftPanels/AgentsPanel")
 OxytoxyBarPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer/oxytoxy")
 AgentsPanelBarContainerPath = NodePath("BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Body/BarContainer")
 ExtinctionBoxScene = ExtResource( 70 )
+PatchExtinctionBoxScene = ExtResource( 16 )
 FireToxinHotkeyPath = NodePath("ScrollContainer/HotBar/FireToxin")
 BottomLeftBarPath = NodePath("BottomLeft/HUDBottomBar")
+AwareButtonPath = NodePath("BottomRight/VBoxContainer/Control/Aware")
+AwakenButtonPath = NodePath("BottomRight/VBoxContainer/Control/Awaken")
 
 [node name="MouseHoverPanel" type="MarginContainer" parent="."]
 anchor_left = 1.0
@@ -1543,10 +1547,11 @@ margin_right = 133.0
 margin_bottom = 30.0
 grow_horizontal = 0
 grow_vertical = 0
-hint_tooltip = "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
+hint_tooltip = "TO_BE_IMPLEMENTED"
 size_flags_horizontal = 8
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
+disabled = true
 text = "BECOME_AWARE"
 
 [node name="Awaken" type="Button" parent="BottomRight/VBoxContainer/Control"]

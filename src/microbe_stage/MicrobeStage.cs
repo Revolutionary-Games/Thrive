@@ -84,9 +84,8 @@ public class MicrobeStage : StageBase<Microbe>
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
 
     /// <summary>
-    ///   This should get called the first time the stage scene is put
-    ///   into an active scene tree. So returning from the editor
-    ///   might be safe without it unloading this.
+    ///   This gets called the first time the stage scene is put into an active scene tree.
+    ///   So returning from the editor doesn't cause this to re-run.
     /// </summary>
     public override void _Ready()
     {
@@ -268,8 +267,6 @@ public class MicrobeStage : StageBase<Microbe>
         }
     }
 
-
-
     /// <summary>
     ///   Switches to the editor
     /// </summary>
@@ -407,8 +404,8 @@ public class MicrobeStage : StageBase<Microbe>
         GD.Print("Becoming late multicellular (macroscopic)");
 
         // We don't really need to handle the player state or anything like that here as once we go to the late
-        // multicellular editor, we never return to the microbe stage
-        throw new NotImplementedException();
+        // multicellular editor, we never return to the microbe stage. So we don't need that much setup as becoming
+        // multicellular
 
         // Move to multicellular always happens when the player is in a colony, so we force disband that here before
         // proceeding
@@ -418,41 +415,21 @@ public class MicrobeStage : StageBase<Microbe>
 
         CurrentGame!.EnterPrototypes();
 
-        var playerSpeciesMicrobes = GetAllPlayerSpeciesMicrobes();
-
-        // Re-apply species here so that the player cell knows it is multicellular after this
-        // Also apply species here to other members of the player's previous species
-        // This prevents previous members of the player's colony from immediately being hostile
-        bool playerHandled = false;
-
-        var multicellularSpecies = GameWorld.ChangeSpeciesToMulticellular(Player.Species);
-        foreach (var microbe in playerSpeciesMicrobes)
-        {
-            microbe.ApplySpecies(multicellularSpecies);
-
-            if (microbe == Player)
-                playerHandled = true;
-        }
-
-        if (!playerHandled)
-            throw new Exception("Did not find player to apply multicellular species to");
-
+        GameWorld.ChangeSpeciesToLateMulticellular(Player.Species);
         GameWorld.NotifySpeciesChangedStages();
 
-        var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
+        var scene = SceneManager.Instance.LoadScene(MainGameState.LateMulticellularEditor);
 
-        var editor = (EarlyMulticellularEditor)scene.Instance();
+        var editor = (LateMulticellularEditor)scene.Instance();
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
-        editor.ReturnToStage = this;
 
-        GD.Print("Switching to multicellular editor");
+        // We'll start off in a brand new stage in the late multicellular part
+        editor.ReturnToStage = null;
 
-        // We don't free this here as the editor will return to this scene
-        if (SceneManager.Instance.SwitchToScene(editor, true) != this)
-        {
-            throw new Exception("failed to keep the current scene root");
-        }
+        GD.Print("Switching to late multicellular editor");
+
+        SceneManager.Instance.SwitchToScene(editor, false);
 
         MovingToEditor = false;
     }
@@ -510,6 +487,7 @@ public class MicrobeStage : StageBase<Microbe>
     {
         // Initialise the cloud system first so we can apply patch-specific brightness in OnGameStarted
         Clouds.Init(FluidSystem);
+
         base.SetupStage();
 
         if (!IsLoadedFromSave)
@@ -623,11 +601,6 @@ public class MicrobeStage : StageBase<Microbe>
         SaveHelper.QuickSave(this);
     }
 
-    private void OnFinishLoading()
-    {
-        Camera.ObjectToFollow = Player;
-    }
-
     protected override void UpdatePatchSettings(bool promptPatchNameChange = true)
     {
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
@@ -654,6 +627,11 @@ public class MicrobeStage : StageBase<Microbe>
     private void SaveGame(string name)
     {
         SaveHelper.Save(name, this);
+    }
+
+    private void OnFinishLoading()
+    {
+        Camera.ObjectToFollow = Player;
     }
 
     /// <summary>

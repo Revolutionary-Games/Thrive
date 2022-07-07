@@ -75,9 +75,9 @@ public class GameProperties
     ///     this way
     ///   </para>
     /// </remarks>
-    public static GameProperties StartNewEarlyMulticellularGame()
+    public static GameProperties StartNewEarlyMulticellularGame(WorldGenerationSettings settings)
     {
-        var game = new GameProperties();
+        var game = new GameProperties(settings);
 
         // Modify the player species to actually make sense to be in the multicellular stage
         var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
@@ -97,9 +97,9 @@ public class GameProperties
     ///     TODO: add some other species as well to the world to make it not as empty
     ///   </para>
     /// </remarks>
-    public static GameProperties StartNewLateMulticellularGame()
+    public static GameProperties StartNewLateMulticellularGame(WorldGenerationSettings settings)
     {
-        var game = new GameProperties();
+        var game = new GameProperties(settings);
 
         var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
 
@@ -183,7 +183,7 @@ public class GameProperties
         var startHex = new Hex(0, 0);
         var columnCellOffset = new Hex(0, -1);
 
-        foreach (var columnDirection in new int[] { 0, 1, -1 })
+        foreach (var columnDirection in new[] { 0, 1, -1 })
         {
             var columnStart = startHex + new Hex(columnDirection, 0);
 

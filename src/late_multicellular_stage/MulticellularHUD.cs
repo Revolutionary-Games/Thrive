@@ -9,6 +9,15 @@ using Newtonsoft.Json;
 [JsonObject(MemberSerialization.OptIn)]
 public class MulticellularHUD : StageHUDBase<MulticellularStage>
 {
+    [Export]
+    public NodePath AwareButtonPath = null!;
+
+    [Export]
+    public NodePath AwakenButtonPath = null!;
+
+    private Button awareButton = null!;
+    private Button awakenButton = null!;
+
     // These signals need to be copied to inheriting classes for Godot editor to pick them up
     [Signal]
     public new delegate void OnOpenMenu();
@@ -18,19 +27,49 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
     protected override string? UnPauseHelpText => null;
 
-    protected override void ReadPlayerHitpoints(out float hp, out float maxHP)
+    public override void _Ready()
     {
-        throw new System.NotImplementedException();
+        base._Ready();
+
+        awareButton = GetNode<Button>(AwareButtonPath);
+        awakenButton = GetNode<Button>(AwakenButtonPath);
     }
 
-    protected override CompoundBag? GetPlayerUsefulCompounds()
+    public override void _Process(float delta)
     {
-        throw new System.NotImplementedException();
+        base._Process(delta);
+
+        if (stage == null)
+            return;
+
+        if (stage.HasPlayer)
+        {
+            UpdateAwareButton(stage.Player!);
+            UpdateAwakenButton(stage.Player!);
+        }
+        else
+        {
+            awareButton.Visible = false;
+            awakenButton.Visible = false;
+        }
+    }
+
+    protected override void ReadPlayerHitpoints(out float hp, out float maxHP)
+    {
+        // TODO: player hitpoints
+        hp = 100;
+        maxHP = 100;
+    }
+
+    protected override CompoundBag GetPlayerUsefulCompounds()
+    {
+        return stage!.Player!.ProcessCompoundStorage;
     }
 
     protected override Func<Compound, bool> GetIsUsefulCheck()
     {
-        throw new NotImplementedException();
+        var bag = stage!.Player!.ProcessCompoundStorage;
+        return c => bag.IsUseful(c);
     }
 
     protected override bool SpecialHandleBar(ProgressBar bar)
@@ -46,12 +85,22 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
     protected override void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
         out Dictionary<Compound, float> totalNeededCompounds)
     {
-        throw new System.NotImplementedException();
+        // TODO: reproduction process for multicellular
+        gatheredCompounds = new Dictionary<Compound, float>()
+        {
+            { ammonia, 1 },
+            { phosphates, 1 },
+        };
+        totalNeededCompounds = new Dictionary<Compound, float>()
+        {
+            { ammonia, 1 },
+            { phosphates, 1 },
+        };
     }
 
     protected override ICompoundStorage GetPlayerStorage()
     {
-        throw new System.NotImplementedException();
+        return stage!.Player!.ProcessCompoundStorage;
     }
 
     protected override ProcessStatistics? GetPlayerProcessStatistics()
@@ -61,21 +110,31 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
     protected override IEnumerable<(bool Player, Species Species)> GetHoveredSpecies()
     {
-        throw new System.NotImplementedException();
+        // TODO: implement nearby species
+        return Array.Empty<(bool Player, Species Species)>();
     }
 
     protected override IReadOnlyDictionary<Compound, float> GetHoveredCompounds()
     {
-        throw new System.NotImplementedException();
+        // TODO: implement nearby compounds
+        return new Dictionary<Compound, float>();
     }
 
     protected override string GetMouseHoverCoordinateText()
     {
-        throw new System.NotImplementedException();
+        // TODO: get world point for cursor
+        throw new NotImplementedException();
     }
 
     protected override void UpdateAbilitiesHotBar()
     {
+    }
+
+    private void UpdateAwareButton(MulticellularCreature player)
+    {
+        // TODO: condition
+        awakenButton.Visible = true;
+        awakenButton.Disabled = true;
     }
 
     private void OnBecomeAwarePressed()
@@ -92,5 +151,11 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
 
         // TODO: awakening stage not done yet
         ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("TO_BE_IMPLEMENTED"), 2.5f);
+    }
+
+    private void UpdateAwakenButton(MulticellularCreature player)
+    {
+        // TODO: condition
+        awakenButton.Visible = false;
     }
 }

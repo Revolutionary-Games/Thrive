@@ -281,24 +281,24 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     /// </summary>
     private bool leftPanelsActive;
 
-    protected VBoxContainer hoveredCompoundsContainer = null!;
-    protected HSeparator hoveredCellsSeparator = null!;
-    protected VBoxContainer hoveredCellsContainer = null!;
-    protected Panel compoundsPanel = null!;
-    protected HBoxContainer hotBar = null!;
-    protected ActionButton fireToxinHotkey = null!;
-    protected Control agentsPanel = null!;
-    protected ProgressBar oxytoxyBar = null!;
+    private VBoxContainer hoveredCompoundsContainer = null!;
+    private HSeparator hoveredCellsSeparator = null!;
+    private VBoxContainer hoveredCellsContainer = null!;
+    private Panel compoundsPanel = null!;
+    private HBoxContainer hotBar = null!;
+    private ActionButton fireToxinHotkey = null!;
+    private Control agentsPanel = null!;
+    private ProgressBar oxytoxyBar = null!;
     private CustomDialog? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
 
-    protected Array compoundBars = null!;
-    protected ProcessPanel processPanel = null!;
+    private Array compoundBars = null!;
+    private ProcessPanel processPanel = null!;
 
     /// <summary>
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
     /// </summary>
-    protected float hoverInfoTimeElapsed;
+    private float hoverInfoTimeElapsed;
 
     [JsonProperty]
     private float healthBarFlashDuration;
@@ -313,6 +313,9 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     [Signal]
     public delegate void OnOpenMenuToHelp();
 
+    /// <summary>
+    ///   Gets and sets the text that appears at the upper HUD.
+    /// </summary>
     public string HintText
     {
         get => hintText.Text;
@@ -514,44 +517,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         }
     }
 
-    private void ProcessPanelButtonPressed()
-    {
-        if (processPanel.Visible)
-        {
-            processPanel.Visible = false;
-            bottomLeftBar.ProcessesPressed = false;
-        }
-        else
-        {
-            processPanel.Show();
-            bottomLeftBar.ProcessesPressed = true;
-        }
-    }
-
-    private void OnProcessPanelClosed()
-    {
-        bottomLeftBar.ProcessesPressed = false;
-    }
-
-    private void OnAbilitiesHotBarDisplayChanged(bool displayed)
-    {
-        hotBar.Visible = displayed;
-    }
-
-    /// <summary>
-    ///   Makes sure the game is unpaused (at least by us)
-    /// </summary>
-    protected void EnsureGameIsUnpausedForEditor()
-    {
-        if (Paused)
-        {
-            PauseButtonPressed(!Paused);
-
-            if (PauseManager.Instance.Paused)
-                GD.PrintErr("Unpausing the game after editor button press didn't work");
-        }
-    }
-
     /// <summary>
     ///   Enables the editor button.
     /// </summary>
@@ -590,192 +555,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesInv;
         editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaInv;
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
-    }
-
-    protected void UpdateEnvironmentPanelState()
-    {
-        if (environmentPanelBarContainer == null)
-            return;
-
-        var bars = environmentPanelBarContainer.GetChildren();
-
-        if (environmentCompressed)
-        {
-            environmentPanelCompressButton.Pressed = true;
-            environmentPanelBarContainer.Columns = 2;
-            environmentPanelBarContainer.AddConstantOverride("vseparation", 20);
-            environmentPanelBarContainer.AddConstantOverride("hseparation", 17);
-
-            foreach (ProgressBar bar in bars)
-            {
-                panelsTween?.InterpolateProperty(bar, "rect_min_size:x", 95, 73, 0.3f);
-                panelsTween?.Start();
-
-                bar.GetNode<Label>("Label").Hide();
-                bar.GetNode<Label>("Value").Align = Label.AlignEnum.Center;
-            }
-        }
-
-        if (!environmentCompressed)
-        {
-            environmentPanelExpandButton.Pressed = true;
-            environmentPanelBarContainer.Columns = 1;
-            environmentPanelBarContainer.AddConstantOverride("vseparation", 4);
-            environmentPanelBarContainer.AddConstantOverride("hseparation", 0);
-
-            foreach (ProgressBar bar in bars)
-            {
-                panelsTween?.InterpolateProperty(bar, "rect_min_size:x", bar.RectMinSize.x, 162, 0.3f);
-                panelsTween?.Start();
-
-                bar.GetNode<Label>("Label").Show();
-                bar.GetNode<Label>("Value").Align = Label.AlignEnum.Right;
-            }
-        }
-    }
-
-    protected void UpdateCompoundsPanelState()
-    {
-        if (compoundsPanelBarContainer == null)
-            return;
-
-        var bars = compoundsPanelBarContainer.GetChildren();
-
-        if (compoundCompressed)
-        {
-            compoundsPanelCompressButton.Pressed = true;
-            compoundsPanelBarContainer.AddConstantOverride("vseparation", 20);
-            compoundsPanelBarContainer.AddConstantOverride("hseparation", 14);
-
-            if (bars.Count < 4)
-            {
-                compoundsPanelBarContainer.Columns = 2;
-            }
-            else
-            {
-                compoundsPanelBarContainer.Columns = 3;
-            }
-
-            foreach (ProgressBar bar in bars)
-            {
-                panelsTween?.InterpolateProperty(bar, "rect_min_size:x", 90, 64, 0.3f);
-                panelsTween?.Start();
-
-                bar.GetNode<Label>("Label").Hide();
-            }
-        }
-
-        if (!compoundCompressed)
-        {
-            compoundsPanelExpandButton.Pressed = true;
-            compoundsPanelBarContainer.Columns = 1;
-            compoundsPanelBarContainer.AddConstantOverride("vseparation", 5);
-            compoundsPanelBarContainer.AddConstantOverride("hseparation", 0);
-
-            foreach (ProgressBar bar in bars)
-            {
-                panelsTween?.InterpolateProperty(bar, "rect_min_size:x", bar.RectMinSize.x, 220, 0.3f);
-                panelsTween?.Start();
-
-                bar.GetNode<Label>("Label").Show();
-            }
-        }
-    }
-
-    protected virtual void UpdateHealth(float delta)
-    {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        var hp = 0.0f;
-
-        // Update to the player's current HP, unless the player does not exist
-        if (stage!.HasPlayer)
-            ReadPlayerHitpoints(out hp, out maxHP);
-
-        healthBar.MaxValue = maxHP;
-        GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
-        var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
-        hpLabel.Text = hpText;
-        hpLabel.HintTooltip = hpText;
-    }
-
-    protected abstract void ReadPlayerHitpoints(out float hp, out float maxHP);
-
-    protected void SetEditorButtonFlashEffect(bool enabled)
-    {
-        editorButtonFlash.Visible = enabled;
-    }
-
-    protected void UpdatePopulation()
-    {
-        populationLabel.Text = stage!.GameWorld.PlayerSpecies.Population.FormatNumber();
-    }
-
-    private void CompoundButtonPressed(bool wantedState)
-    {
-        if (leftPanelsActive == !wantedState)
-            return;
-
-        if (!leftPanelsActive)
-        {
-            leftPanelsActive = true;
-            animationPlayer.Play("HideLeftPanels");
-        }
-        else
-        {
-            leftPanelsActive = false;
-            animationPlayer.Play("ShowLeftPanels");
-        }
-    }
-
-    private void OnEnvironmentPanelSizeButtonPressed(string mode)
-    {
-        if (mode == "compress")
-        {
-            EnvironmentPanelCompressed = true;
-        }
-        else if (mode == "expand")
-        {
-            EnvironmentPanelCompressed = false;
-        }
-    }
-
-    private void OnCompoundsPanelSizeButtonPressed(string mode)
-    {
-        if (mode == "compress")
-        {
-            CompoundsPanelCompressed = true;
-        }
-        else if (mode == "expand")
-        {
-            CompoundsPanelCompressed = false;
-        }
-    }
-
-    private void HelpButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        menu.OpenToHelp();
-    }
-
-    private void OnEditorButtonMouseEnter()
-    {
-        if (editorButton.Disabled)
-            return;
-
-        editorButton.GetNode<TextureRect>("Highlight").Hide();
-        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
-    }
-
-    private void OnEditorButtonMouseExit()
-    {
-        if (editorButton.Disabled)
-            return;
-
-        editorButton.GetNode<TextureRect>("Highlight").Show();
-        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play();
     }
 
     public void OnEnterStageTransition(bool longerDuration, bool returningFromEditor)
@@ -920,6 +699,141 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     }
 
     /// <summary>
+    ///   Makes sure the game is unpaused (at least by us)
+    /// </summary>
+    protected void EnsureGameIsUnpausedForEditor()
+    {
+        if (Paused)
+        {
+            PauseButtonPressed(!Paused);
+
+            if (PauseManager.Instance.Paused)
+                GD.PrintErr("Unpausing the game after editor button press didn't work");
+        }
+    }
+
+    protected void UpdateEnvironmentPanelState()
+    {
+        if (environmentPanelBarContainer == null)
+            return;
+
+        var bars = environmentPanelBarContainer.GetChildren();
+
+        if (environmentCompressed)
+        {
+            environmentPanelCompressButton.Pressed = true;
+            environmentPanelBarContainer.Columns = 2;
+            environmentPanelBarContainer.AddConstantOverride("vseparation", 20);
+            environmentPanelBarContainer.AddConstantOverride("hseparation", 17);
+
+            foreach (ProgressBar bar in bars)
+            {
+                panelsTween?.InterpolateProperty(bar, "rect_min_size:x", 95, 73, 0.3f);
+                panelsTween?.Start();
+
+                bar.GetNode<Label>("Label").Hide();
+                bar.GetNode<Label>("Value").Align = Label.AlignEnum.Center;
+            }
+        }
+
+        if (!environmentCompressed)
+        {
+            environmentPanelExpandButton.Pressed = true;
+            environmentPanelBarContainer.Columns = 1;
+            environmentPanelBarContainer.AddConstantOverride("vseparation", 4);
+            environmentPanelBarContainer.AddConstantOverride("hseparation", 0);
+
+            foreach (ProgressBar bar in bars)
+            {
+                panelsTween?.InterpolateProperty(bar, "rect_min_size:x", bar.RectMinSize.x, 162, 0.3f);
+                panelsTween?.Start();
+
+                bar.GetNode<Label>("Label").Show();
+                bar.GetNode<Label>("Value").Align = Label.AlignEnum.Right;
+            }
+        }
+    }
+
+    protected void UpdateCompoundsPanelState()
+    {
+        if (compoundsPanelBarContainer == null)
+            return;
+
+        var bars = compoundsPanelBarContainer.GetChildren();
+
+        if (compoundCompressed)
+        {
+            compoundsPanelCompressButton.Pressed = true;
+            compoundsPanelBarContainer.AddConstantOverride("vseparation", 20);
+            compoundsPanelBarContainer.AddConstantOverride("hseparation", 14);
+
+            if (bars.Count < 4)
+            {
+                compoundsPanelBarContainer.Columns = 2;
+            }
+            else
+            {
+                compoundsPanelBarContainer.Columns = 3;
+            }
+
+            foreach (ProgressBar bar in bars)
+            {
+                panelsTween?.InterpolateProperty(bar, "rect_min_size:x", 90, 64, 0.3f);
+                panelsTween?.Start();
+
+                bar.GetNode<Label>("Label").Hide();
+            }
+        }
+
+        if (!compoundCompressed)
+        {
+            compoundsPanelExpandButton.Pressed = true;
+            compoundsPanelBarContainer.Columns = 1;
+            compoundsPanelBarContainer.AddConstantOverride("vseparation", 5);
+            compoundsPanelBarContainer.AddConstantOverride("hseparation", 0);
+
+            foreach (ProgressBar bar in bars)
+            {
+                panelsTween?.InterpolateProperty(bar, "rect_min_size:x", bar.RectMinSize.x, 220, 0.3f);
+                panelsTween?.Start();
+
+                bar.GetNode<Label>("Label").Show();
+            }
+        }
+    }
+
+    protected virtual void UpdateHealth(float delta)
+    {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
+        var hp = 0.0f;
+
+        // Update to the player's current HP, unless the player does not exist
+        if (stage!.HasPlayer)
+            ReadPlayerHitpoints(out hp, out maxHP);
+
+        healthBar.MaxValue = maxHP;
+        GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
+        var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+        hpLabel.Text = hpText;
+        hpLabel.HintTooltip = hpText;
+    }
+
+    protected abstract void ReadPlayerHitpoints(out float hp, out float maxHP);
+
+    protected void SetEditorButtonFlashEffect(bool enabled)
+    {
+        editorButtonFlash.Visible = enabled;
+    }
+
+    protected void UpdatePopulation()
+    {
+        populationLabel.Text = stage!.GameWorld.PlayerSpecies.Population.FormatNumber();
+    }
+
+    /// <summary>
     ///   Updates the GUI bars to show only needed compounds
     /// </summary>
     protected void UpdateNeededBars()
@@ -1050,56 +964,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     protected abstract void CalculatePlayerReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
         out Dictionary<Compound, float> totalNeededCompounds);
 
-    /// <summary>
-    ///  Updates the different bars and panels that should be displayed to the screen
-    /// </summary>
-    private void UpdateBarVisibility(Func<Compound, bool> isUseful)
-    {
-        if (ShouldShowAgentsPanel())
-        {
-            agentsPanel.Show();
-        }
-        else
-        {
-            agentsPanel.Hide();
-        }
-
-        foreach (ProgressBar bar in compoundBars)
-        {
-            if (SpecialHandleBar(bar))
-                continue;
-
-            var compound = SimulationParameters.Instance.GetCompound(bar.Name);
-
-            if (isUseful.Invoke(compound))
-            {
-                bar.Show();
-            }
-            else
-            {
-                bar.Hide();
-            }
-        }
-    }
-
-    private void CheckAmmoniaProgressHighlight(float fractionOfAmmonia)
-    {
-        if (fractionOfAmmonia < 1.0f)
-            return;
-
-        ammoniaReproductionBar.TintProgress = new Color(1, 1, 1, 1);
-        editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
-    }
-
-    private void CheckPhosphateProgressHighlight(float fractionOfPhosphates)
-    {
-        if (fractionOfPhosphates < 1.0f)
-            return;
-
-        phosphateReproductionBar.TintProgress = new Color(1, 1, 1, 1);
-        editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
-    }
-
     protected void UpdateATP(float delta)
     {
         // https://github.com/Revolutionary-Games/Thrive/issues/1976
@@ -1183,12 +1047,15 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         hoveredCellsContainer.FreeChildren();
 
         var container = mouseHoverPanel.GetNode("PanelContainer/MarginContainer/VBoxContainer");
-        var mousePosLabel = container.GetNode<Label>("MousePos");
+
+        // var mousePosLabel = container.GetNode<Label>("MousePos");
         var nothingHere = container.GetNode<MarginContainer>("NothingHere");
 
         if (showMouseCoordinates)
         {
-            mousePosLabel.Text = GetMouseHoverCoordinateText() + "\n";
+            throw new NotImplementedException();
+
+            // mousePosLabel.Text = GetMouseHoverCoordinateText() + "\n";
         }
 
         var hoveredCompounds = GetHoveredCompounds();
@@ -1289,15 +1156,6 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         EmitSignal(nameof(OnOpenMenuToHelp));
     }
 
-    /// <summary>
-    ///   Called when the player died out in a patch and selected a new one
-    /// </summary>
-    private void MoveToNewPatchAfterExtinctInCurrent(Patch patch)
-    {
-        winExtinctBoxHolder.Hide();
-        stage!.MoveToPatch(patch);
-    }
-
     protected void FlashHealthBar(Color colour, float delta)
     {
         healthBarFlashDuration -= delta;
@@ -1315,6 +1173,154 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         // Loop flash
         if (healthBarFlashDuration <= 0)
             healthBarFlashDuration = 2.5f;
+    }
+
+    /// <summary>
+    ///   Called when the player died out in a patch and selected a new one
+    /// </summary>
+    private void MoveToNewPatchAfterExtinctInCurrent(Patch patch)
+    {
+        winExtinctBoxHolder.Hide();
+        stage!.MoveToPatch(patch);
+    }
+
+    /// <summary>
+    ///  Updates the different bars and panels that should be displayed to the screen
+    /// </summary>
+    private void UpdateBarVisibility(Func<Compound, bool> isUseful)
+    {
+        if (ShouldShowAgentsPanel())
+        {
+            agentsPanel.Show();
+        }
+        else
+        {
+            agentsPanel.Hide();
+        }
+
+        foreach (ProgressBar bar in compoundBars)
+        {
+            if (SpecialHandleBar(bar))
+                continue;
+
+            var compound = SimulationParameters.Instance.GetCompound(bar.Name);
+
+            if (isUseful.Invoke(compound))
+            {
+                bar.Show();
+            }
+            else
+            {
+                bar.Hide();
+            }
+        }
+    }
+
+    private void CheckAmmoniaProgressHighlight(float fractionOfAmmonia)
+    {
+        if (fractionOfAmmonia < 1.0f)
+            return;
+
+        ammoniaReproductionBar.TintProgress = new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
+    }
+
+    private void CheckPhosphateProgressHighlight(float fractionOfPhosphates)
+    {
+        if (fractionOfPhosphates < 1.0f)
+            return;
+
+        phosphateReproductionBar.TintProgress = new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
+    }
+
+    private void ProcessPanelButtonPressed()
+    {
+        if (processPanel.Visible)
+        {
+            processPanel.Visible = false;
+            bottomLeftBar.ProcessesPressed = false;
+        }
+        else
+        {
+            processPanel.Show();
+            bottomLeftBar.ProcessesPressed = true;
+        }
+    }
+
+    private void OnProcessPanelClosed()
+    {
+        bottomLeftBar.ProcessesPressed = false;
+    }
+
+    private void OnAbilitiesHotBarDisplayChanged(bool displayed)
+    {
+        hotBar.Visible = displayed;
+    }
+
+    private void CompoundButtonPressed(bool wantedState)
+    {
+        if (leftPanelsActive == !wantedState)
+            return;
+
+        if (!leftPanelsActive)
+        {
+            leftPanelsActive = true;
+            animationPlayer.Play("HideLeftPanels");
+        }
+        else
+        {
+            leftPanelsActive = false;
+            animationPlayer.Play("ShowLeftPanels");
+        }
+    }
+
+    private void OnEnvironmentPanelSizeButtonPressed(string mode)
+    {
+        if (mode == "compress")
+        {
+            EnvironmentPanelCompressed = true;
+        }
+        else if (mode == "expand")
+        {
+            EnvironmentPanelCompressed = false;
+        }
+    }
+
+    private void OnCompoundsPanelSizeButtonPressed(string mode)
+    {
+        if (mode == "compress")
+        {
+            CompoundsPanelCompressed = true;
+        }
+        else if (mode == "expand")
+        {
+            CompoundsPanelCompressed = false;
+        }
+    }
+
+    private void HelpButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        menu.OpenToHelp();
+    }
+
+    private void OnEditorButtonMouseEnter()
+    {
+        if (editorButton.Disabled)
+            return;
+
+        editorButton.GetNode<TextureRect>("Highlight").Hide();
+        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
+    }
+
+    private void OnEditorButtonMouseExit()
+    {
+        if (editorButton.Disabled)
+            return;
+
+        editorButton.GetNode<TextureRect>("Highlight").Show();
+        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play();
     }
 
     private void UpdatePausePrompt()

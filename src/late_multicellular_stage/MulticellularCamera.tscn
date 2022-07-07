@@ -1,7 +1,10 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/late_multicellular_stage/MulticellularCamera.cs" type="Script" id=1]
 
 [node name="MulticellularCamera" type="Spatial"]
 pause_mode = 2
+script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "Base rotation of the camera
 "

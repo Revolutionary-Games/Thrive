@@ -94,6 +94,11 @@ public abstract class Metaball
         return Parent.Position + offset;
     }
 
+    public override int GetHashCode()
+    {
+        return Position.GetHashCode() ^ (Size.GetHashCode() * 19) ^ ((Parent?.Position.GetHashCode() ?? 6469) * 23);
+    }
+
     public override string ToString()
     {
         if (Parent == null)
