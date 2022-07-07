@@ -33,7 +33,7 @@ public static class MicrobeInternalCalculations
 
     public static Vector3 GetOrganelleDirection(OrganelleTemplate organelle)
     {
-        return (Hex.AxialToCartesian(new Hex(0, 0)) - Hex.AxialToCartesian(organelle.Position)).Normalized();
+        return MathUtils.CreateRotationForOrganelle(organelle.Orientation).Xform(Vector3.Forward).Normalized();
     }
 
     public static float CalculateSpeed(IEnumerable<OrganelleTemplate> organelles, MembraneType membraneType,
