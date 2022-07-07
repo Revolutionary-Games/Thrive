@@ -12,6 +12,7 @@ public class ModifierInfoLabel : HBoxContainer
 
     private string displayName = string.Empty;
     private string modifierValue = string.Empty;
+    private Color modifierNameColor = Colors.White;
     private Color modifierValueColor = Colors.White;
     private Texture? iconTexture;
 
@@ -36,6 +37,17 @@ public class ModifierInfoLabel : HBoxContainer
         {
             modifierValue = value;
             UpdateValue();
+        }
+    }
+
+    [Export]
+    public Color ModifierNameColor
+    {
+        get => modifierNameColor;
+        set
+        {
+            modifierNameColor = value;
+            UpdateName();
         }
     }
 
@@ -120,6 +132,7 @@ public class ModifierInfoLabel : HBoxContainer
             return;
 
         nameLabel.Text = displayName;
+        nameLabel.AddColorOverride("font_color", modifierNameColor);
     }
 
     private void UpdateValue()

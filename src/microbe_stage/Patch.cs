@@ -221,7 +221,7 @@ public class Patch
             case "oxygen":
             case "carbondioxide":
             case "nitrogen":
-                return Biome.Compounds[compound].Dissolved * 100;
+                return Biome.Compounds[compound].Ambient * 100;
             case "iron":
                 return GetTotalChunkCompoundAmount(compound);
             default:
@@ -240,7 +240,7 @@ public class Patch
             case "oxygen":
             case "carbondioxide":
             case "nitrogen":
-                return snapshot.Biome.Compounds[compound].Dissolved * 100;
+                return snapshot.Biome.Compounds[compound].Ambient * 100;
             case "iron":
                 return GetTotalChunkCompoundAmount(compound);
             default:

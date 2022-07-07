@@ -9,6 +9,10 @@ public class MicrobeColony
 {
     private Microbe.MicrobeState state;
 
+    private bool hexCountDirty = true;
+    private float hexCount;
+    private float usedIngestionCapacity;
+
     [JsonConstructor]
     private MicrobeColony(Microbe master)
     {
@@ -21,6 +25,9 @@ public class MicrobeColony
         state = master.State;
     }
 
+    /// <summary>
+    ///   Returns all members of this colony including the colony leader.
+    /// </summary>
     [JsonProperty]
     public List<Microbe> ColonyMembers { get; private set; }
 
@@ -44,6 +51,34 @@ public class MicrobeColony
 
     [JsonProperty]
     public Microbe Master { get; private set; }
+
+    /// <summary>
+    ///   The total hex count from all members of this colony.
+    /// </summary>
+    [JsonIgnore]
+    public float HexCount
+    {
+        get
+        {
+            if (hexCountDirty)
+                UpdateHexCount();
+            return hexCount;
+        }
+    }
+
+    /// <summary>
+    ///   The accumulation of all the colony member's <see cref="Microbe.UsedIngestionCapacity"/>.
+    /// </summary>
+    [JsonIgnore]
+    public float UsedIngestionCapacity
+    {
+        get
+        {
+            if (hexCountDirty)
+                UpdateHexCount();
+            return usedIngestionCapacity;
+        }
+    }
 
     /// <summary>
     ///   Creates a colony for a microbe, with the given microbe as the master,
@@ -101,6 +136,8 @@ public class MicrobeColony
         microbe.ColonyChildren = null;
         if (microbe != Master)
             Master.Mass -= microbe.Mass;
+
+        hexCountDirty = true;
     }
 
     public void AddToColony(Microbe microbe, Microbe master)
@@ -117,5 +154,19 @@ public class MicrobeColony
         microbe.ColonyChildren = new List<Microbe>();
 
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
+
+        hexCountDirty = true;
+    }
+
+    private void UpdateHexCount()
+    {
+        hexCount = 0;
+        usedIngestionCapacity = 0;
+
+        foreach (var member in ColonyMembers)
+        {
+            hexCount += member.EngulfSize;
+            usedIngestionCapacity += member.UsedIngestionCapacity;
+        }
     }
 }

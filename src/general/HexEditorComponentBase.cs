@@ -57,7 +57,7 @@ public abstract class
     protected readonly List<SceneDisplayer> placedModels = new();
 
     /// <summary>
-    ///   Object camera is over. Used to mov ethe camera around
+    ///   Object camera is over. Used to move the camera around
     /// </summary>
     protected Spatial cameraFollow = null!;
 
@@ -362,6 +362,8 @@ public abstract class
     [RunOnKey("e_pan_mouse", CallbackRequiresElapsedTime = false)]
     public bool PanCameraWithMouse(float delta)
     {
+        // TODO: somehow this doesn't seem to experience the same bug as there is in EditorCamera3D where this needs a
+        // workaround
         if (!Visible)
             return false;
 
@@ -627,6 +629,9 @@ public abstract class
         usedHoverHex = 0;
         usedHoverModel = 0;
 
+        if (!Visible)
+            return;
+
         editorGrid.Translation = camera!.CursorWorldPos;
         editorGrid.Visible = Editor.ShowHover && !ForceHideHover;
     }
@@ -644,8 +649,7 @@ public abstract class
     }
 
     /// <summary>
-    ///   Updates the forward pointing arrow to not overlap the edited species
-    ///   Should be called on any layout change
+    ///   Updates the forward pointing arrow to not overlap the edited species. Should be called on any layout change.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -654,7 +658,7 @@ public abstract class
     /// </remarks>
     public void UpdateArrow(bool animateMovement = true)
     {
-        var arrowPosition = CalculateEditorArrowZPosition();
+        var arrowPosition = CalculateEditorArrowZPosition() - Constants.EDITOR_ARROW_OFFSET;
 
         if (animateMovement)
         {
@@ -665,7 +669,7 @@ public abstract class
         }
         else
         {
-            editorArrow.Translation = new Vector3(0, 0, arrowPosition - Constants.EDITOR_ARROW_OFFSET);
+            editorArrow.Translation = new Vector3(0, 0, arrowPosition);
         }
     }
 

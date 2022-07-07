@@ -13,7 +13,8 @@ uniform vec4 growColor : hint_color;
 
 uniform vec4 tint : hint_color = vec4(1, 1, 1, 1);
 
-const float jiggleAmount = 0.0005f;
+uniform float jiggleAmount = 0.0005f;
+
 const float jiggleMaxAngle = 15.f;
 const float jiggleTimeMultiplier = 0.5f;
 

@@ -48,6 +48,9 @@
                 "colourChangeFactor": 1
             }
         },
+        "enzymes": {
+            "rusticyanin": 1
+        },
         "prokaryoteChance": 2,
         "chanceToCreate": 0.5,
         "mass": 0.08,
@@ -307,6 +310,41 @@
         "requiresNucleus": true,
         "editorButtonGroup": "Organelle",
         "editorButtonOrder": 7
+    },
+    "thermosynthase": {
+        "mpCost": 50,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "bacterial_thermosynthesis": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 0.5
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 2,
+        "chanceToCreate": 0.5,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Thermosynthase.tscn",
+        "name": "THERMOSYNTHASE",
+        "productionColour": "#6a5cc6",
+        "consumptionColour": "#ad5161",
+        "iconPath": "res://assets/textures/gui/bevel/parts/ThermosynthaseIcon.png",
+        "editorButtonGroup": "Protein",
+        "editorButtonOrder": 8,
+        "lawk": false
     },
     "chemoplast": {
         "mpCost": 45,
@@ -732,27 +770,43 @@
         "unimplemented": true
     },
     "thermoplast": {
-        "mpCost": 40,
+        "mpCost": 55,
         "initialComposition": {
-            "ammonia": 1,
-            "phosphates": 1
+            "ammonia": 2,
+            "phosphates": 2
         },
         "hexes": [
             {
                 "r": 0,
                 "q": 0
+            },
+            {
+                "r": -1,
+                "q": 0
             }
         ],
-        "processes": {},
-        "components": {},
+        "processes": {
+            "thermosynthesis": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 1
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
         "prokaryoteChance": 0,
-        "chanceToCreate": 0,
+        "chanceToCreate": 1,
+        "mass": 0.2,
+        "displayScene": "res://assets/models/organelles/Thermoplast.tscn",
         "name": "THERMOPLAST",
+        "productionColour": "#9168b5",
+        "consumptionColour": "#d15378",
         "iconPath": "res://assets/textures/gui/bevel/parts/ThermoplastIcon.png",
         "requiresNucleus": true,
         "editorButtonGroup": "Organelle",
         "editorButtonOrder": 5,
-        "unimplemented": true,
         "lawk": false
     },
     "cilia": {
@@ -784,5 +838,40 @@
         "requiresNucleus": true,
         "editorButtonGroup": "External",
         "editorButtonOrder": 4
+    },
+    "lysosome": {
+        "mpCost": 45,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {},
+        "components": {
+            "storage": {
+                "capacity": 0.5
+            },
+            "lysosome": {}
+        },
+        "enzymes": {
+            "lipase": 1,
+            "chitinase": 0,
+            "cellulase": 0
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 0.4,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Lysosome.tscn",
+        "name": "LYSOSOME",
+        "iconPath": "res://assets/textures/gui/bevel/parts/LysosomeIcon.png",
+        "upgradeGUI": "res://src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn",
+        "requiresNucleus": true,
+        "editorButtonGroup": "Organelle",
+        "editorButtonOrder": 5
     }
 }

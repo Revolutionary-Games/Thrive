@@ -369,9 +369,24 @@ public class CustomRichTextLabel : RichTextLabel
                         break;
                     }
 
-                    case "ENGULF_DAMAGE":
+                    case "ENGULF_COMPOUND_ABSORBING_PER_SECOND":
                     {
-                        output = Constants.ENGULF_DAMAGE.ToString(format, CultureInfo.CurrentCulture);
+                        output = Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND.ToString(
+                            format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "ENZYME_DIGESTION_SPEED_UP_FRACTION":
+                    {
+                        output = (Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION * 100).ToString(
+                            format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION":
+                    {
+                        output = (Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * 100).ToString(
+                            format, CultureInfo.CurrentCulture);
                         break;
                     }
 

@@ -4,29 +4,49 @@
 public enum TutorialEventType
 {
     /// <summary>
-    ///   Player object was created, args is MicrobeEventArgs
+    ///   Player object was created, args is <see cref="MicrobeEventArgs"/>
     /// </summary>
     MicrobePlayerSpawned,
 
     /// <summary>
-    ///   Rotation of the player in the microbe stage, args is RotationEventArgs
+    ///   Rotation of the player in the microbe stage, args is <see cref="RotationEventArgs"/>
     /// </summary>
     MicrobePlayerOrientation,
 
     /// <summary>
-    ///   There are tutorial relevant compounds near the player, args is CompoundPositionEventArgs
+    ///   There are tutorial relevant compounds near the player, args is <see cref="EntityPositionEventArgs"/>
     /// </summary>
     MicrobeCompoundsNearPlayer,
 
     /// <summary>
-    ///   Reports the player compound amounts while they are alive, args is CompoundBagEventArgs
+    ///   There are tutorial relevant chunk near the player, args is <see cref="EntityPositionEventArgs"/>
+    /// </summary>
+    MicrobeChunksNearPlayer,
+
+    /// <summary>
+    ///   Reports the player compound amounts while they are alive, args is <see cref="CompoundBagEventArgs"/>
     /// </summary>
     MicrobePlayerCompounds,
 
     /// <summary>
-    ///   Reports total compounds the player has absorbed, args is CompoundEventArgs
+    ///   Reports total compounds the player has absorbed, args is <see cref="CompoundEventArgs"/>
     /// </summary>
     MicrobePlayerTotalCollected,
+
+    /// <summary>
+    ///   Player cell engulfment storage has reached full capacity
+    /// </summary>
+    MicrobePlayerEngulfmentFull,
+
+    /// <summary>
+    ///   The player has been engulfed by a hostile and larger microbe
+    /// </summary>
+    MicrobePlayerIsEngulfed,
+
+    /// <summary>
+    ///   The player has engulfed an engulfable object
+    /// </summary>
+    MicrobePlayerEngulfing,
 
     /// <summary>
     ///   Player has died
@@ -49,17 +69,17 @@ public enum TutorialEventType
     EnteredMicrobeEditor,
 
     /// <summary>
-    ///   Player changed the microbe editor tab, args is StringEventArgs
+    ///   Player changed the microbe editor tab, args is <see cref="StringEventArgs"/>
     /// </summary>
     MicrobeEditorTabChanged,
 
     /// <summary>
-    ///   Player selected a patch in the microbe editor, args is PatchEventArgs
+    ///   Player selected a patch in the microbe editor, args is <see cref="PatchEventArgs"/>
     /// </summary>
     MicrobeEditorPatchSelected,
 
     /// <summary>
-    ///   Player selected an organelle to place in the editor, args is StringEventArgs
+    ///   Player selected an organelle to place in the editor, args is <see cref="StringEventArgs"/>
     /// </summary>
     MicrobeEditorOrganelleToPlaceChanged,
 

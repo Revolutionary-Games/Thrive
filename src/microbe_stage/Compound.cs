@@ -31,9 +31,19 @@ public class Compound : IRegistryType
     public bool IsEnvironmental;
 
     /// <summary>
+    ///   Unit for this compound, if applicable (e.g. °C for temperature)
+    /// </summary>
+    public string? Unit;
+
+    /// <summary>
     ///   Whether this compound can be distributed in a colony
     /// </summary>
     public bool CanBeDistributed;
+
+    /// <summary>
+    ///   If true, this compound can be absorbed by microbes through intracellular digestion.
+    /// </summary>
+    public bool Digestible;
 
     public Color Colour;
 
