@@ -2820,13 +2820,14 @@ msgstr "il giocatore si è riprodotto"
 msgid "PLAYER_DIED"
 msgstr "il giocatore è morto"
 
-#: ../src/microbe_stage/MicrobeStage.cs:1003
+#: ../src/microbe_stage/MicrobeStage.cs:1003 ../src/general/StageBase.cs:501
 msgid "EXTINCT_IN_PATCH"
 msgstr "estinto nella zona"
 
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/MicrobeHUD.cs:763
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
+#: ../src/general/StageHUDBase.cs:676
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
@@ -4262,6 +4263,7 @@ msgid "SIGNAL_TO_EMIT"
 msgstr "Segnale da emettere"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:1217
+#: ../src/microbe_stage/MicrobeHUD.cs:198
 msgid "DEVOURED"
 msgstr "Divorato"
 
@@ -4300,6 +4302,7 @@ msgid "AT_CURSOR"
 msgstr "Sotto il cursore:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1500
+#: ../src/microbe_stage/MicrobeStage.tscn:1436
 msgid "INGESTED_MATTER"
 msgstr "Materia ingerita"
 
