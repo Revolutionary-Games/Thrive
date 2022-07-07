@@ -113,6 +113,11 @@ public static class Constants
     public const float CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER = 7.0f;
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
 
+    public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 8.5f;
+    public const float CILIA_PULLING_FORCE = 20.0f;
+    public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
+    public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
+
     public const int PROCESS_OBJECTS_PER_TASK = 15;
 
     public const int MICROBE_SPAWN_RADIUS = 350;

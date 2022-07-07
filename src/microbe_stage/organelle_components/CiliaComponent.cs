@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Godot;
 
+[SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable",
+    Justification = "We don't manually dispose Godot derived types")]
 public class CiliaComponent : ExternallyPositionedComponent
 {
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
@@ -12,6 +15,9 @@ public class CiliaComponent : ExternallyPositionedComponent
     private Quat? previousCellRotation;
 
     private AnimationPlayer? animation;
+
+    private Area? attractorArea;
+    private CollisionShape? attractorAreaShape;
 
     public override void UpdateAsync(float delta)
     {
@@ -46,8 +52,15 @@ public class CiliaComponent : ExternallyPositionedComponent
         var rawRotation = previousCellRotation.Value.AngleTo(currentCellRotation);
         var rotationSpeed = rawRotation * Constants.CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER;
 
-        targetSpeed = Mathf.Clamp(rotationSpeed, Constants.CILIA_MIN_ANIMATION_SPEED,
-            Constants.CILIA_MAX_ANIMATION_SPEED);
+        if (microbe.State == Microbe.MicrobeState.Engulf)
+        {
+            targetSpeed = Constants.CILIA_CURRENT_GENERATION_ANIMATION_SPEED;
+        }
+        else
+        {
+            targetSpeed = Mathf.Clamp(rotationSpeed, Constants.CILIA_MIN_ANIMATION_SPEED,
+                Constants.CILIA_MAX_ANIMATION_SPEED);
+        }
 
         previousCellRotation = currentCellRotation;
 
@@ -81,6 +94,11 @@ public class CiliaComponent : ExternallyPositionedComponent
             // better to do things correctly here as this is newer code...
             SetSpeedFactor(targetSpeed);
         }
+
+        if (attractorAreaShape != null)
+        {
+            attractorAreaShape.Disabled = organelle!.ParentMicrobe!.State != Microbe.MicrobeState.Engulf;
+        }
     }
 
     protected override void CustomAttach()
@@ -96,6 +114,30 @@ public class CiliaComponent : ExternallyPositionedComponent
         }
 
         SetSpeedFactor(Constants.CILIA_DEFAULT_ANIMATION_SPEED);
+
+        var microbe = organelle.ParentMicrobe!;
+
+        attractorArea = new Area
+        {
+            SpaceOverride = Area.SpaceOverrideEnum.Combine,
+            GravityPoint = true,
+            GravityDistanceScale = Constants.CILIA_PULLING_FORCE_FALLOFF_FACTOR,
+            Gravity = Constants.CILIA_PULLING_FORCE,
+            CollisionLayer = 0,
+            CollisionMask = microbe.CollisionMask,
+        };
+
+        var sphereShape = new SphereShape { Radius = Constants.CILIA_PULLING_FORCE_FIELD_RADIUS };
+        attractorAreaShape = new CollisionShape { Shape = sphereShape };
+        attractorArea.AddChild(attractorAreaShape);
+        organelle.OrganelleGraphics.AddChild(attractorArea);
+    }
+
+    protected override void CustomDetach()
+    {
+        attractorArea?.DetachAndQueueFree();
+        attractorArea = null;
+        attractorAreaShape = null;
     }
 
     protected override bool NeedsUpdateAnyway()

@@ -361,6 +361,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             // Setup tracking running processes
             ProcessStatistics = new ProcessStatistics();
 
+            // Collision Layer: Player
+            // Collision Mask: Common, Microbes
+            CollisionLayer = 4;
+            CollisionMask = 3;
+
             GD.Print("Player Microbe spawned");
         }
 
