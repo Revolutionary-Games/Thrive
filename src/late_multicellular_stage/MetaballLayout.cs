@@ -153,4 +153,21 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
 
         return IsDescendantsOf(descendant.Parent, parent);
     }
+
+    public IEnumerable<T> GetMetaballsNotTouchingParents(float contactThreshold = 0.1f, float toleranceMultiplier = 2)
+    {
+        foreach (var metaball in this)
+        {
+            if (metaball.Parent == null)
+                continue;
+
+            var maxDistance = toleranceMultiplier * (metaball.Radius + metaball.Parent.Radius);
+            var distance = metaball.Position.DistanceTo(metaball.Parent.Position);
+
+            if (distance > maxDistance + contactThreshold)
+            {
+                yield return metaball;
+            }
+        }
+    }
 }

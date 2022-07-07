@@ -405,7 +405,8 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
         if (!base.CanFinishEditing(userOverrides))
             return false;
 
-        // Can't exit the editor with disconnected organelles
+        // Can't exit the editor with metaballs too far away from their parents
+        // TODO: implement drawing the links between metaballs that are too far away in red
         if (HasIslands)
         {
             islandPopup.PopupCenteredShrink();

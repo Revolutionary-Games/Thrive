@@ -116,8 +116,7 @@ public partial class MetaballBodyEditorComponent :
     }
 
     [JsonIgnore]
-    public override bool HasIslands =>
-        throw new NotImplementedException() /*editedMetaballs.GetIslandHexes().Count > 0*/;
+    public override bool HasIslands => editedMetaballs.GetMetaballsNotTouchingParents().Any();
 
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
