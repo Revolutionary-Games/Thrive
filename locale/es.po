@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-05 19:39+0100\n"
+"POT-Creation-Date: 2022-07-07 16:47+0300\n"
 "PO-Revision-Date: 2022-03-29 16:22+0000\n"
 "Last-Translator: Jessy Amelie Nishimura Lara <jessy8nishimura@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -41,6 +41,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
 #, fuzzy
 msgid "CELLS"
 msgstr "Celulosa"
@@ -50,13 +51,18 @@ msgstr "Celulosa"
 msgid "GENERAL"
 msgstr "Generación:"
 
-#: ../simulation_parameters/common/gallery.json:123
+#: ../simulation_parameters/common/gallery.json:121
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Colocar orgánulos"
+
+#: ../simulation_parameters/common/gallery.json:131
 #, fuzzy
 msgid "MODELS"
 msgstr "Modo Dios"
 
-#: ../simulation_parameters/common/gallery.json:126
-#: ../simulation_parameters/common/gallery.json:276
+#: ../simulation_parameters/common/gallery.json:134
+#: ../simulation_parameters/common/gallery.json:284
 #, fuzzy
 msgid "MICROBE_STAGE"
 msgstr ""
@@ -68,32 +74,32 @@ msgstr ""
 "\n"
 "Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y evolucionar durante generaciones para competir contra los otros microbios."
 
-#: ../simulation_parameters/common/gallery.json:239
+#: ../simulation_parameters/common/gallery.json:247
 msgid "MUSIC"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:242
+#: ../simulation_parameters/common/gallery.json:250
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
 
-#: ../simulation_parameters/common/gallery.json:253
+#: ../simulation_parameters/common/gallery.json:261
 #, fuzzy
 msgid "MENU"
 msgstr "Menú"
 
-#: ../simulation_parameters/common/gallery.json:317
+#: ../simulation_parameters/common/gallery.json:325
 #, fuzzy
 msgid "MICROBE_EDITOR"
 msgstr "Cargando Editor de Microbio"
 
-#: ../simulation_parameters/common/gallery.json:352
+#: ../simulation_parameters/common/gallery.json:360
 #, fuzzy
 msgid "MULTICELLULAR_STAGE"
 msgstr "Colocar orgánulos"
 
-#: ../simulation_parameters/common/gallery.json:375
+#: ../simulation_parameters/common/gallery.json:383
 #, fuzzy
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Cargando Editor de Microbio"
@@ -255,320 +261,358 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Cada vez que tu célula se reproduce, entrarás al editor de microbio, donde puedes hacerle cambios a tu especie (añadiendo, moviendo y/o quitando orgánulos) para incrementar tus chances de éxito. Cada visita al editor en el estadio de microbio representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millones de años de evolución."
 
 #: ../simulation_parameters/common/help_texts.json:131
+#: ../simulation_parameters/common/help_texts.json:138
 msgid "LOADING_TIP"
 msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
-#: ../simulation_parameters/common/help_texts.json:138
+#: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Dato curioso: el didinium y el paramecio son un ejemplo de una relación depredador-presa que fue estudiado durante décadas. Ahora, ¿eres el didinium o el paramecio? ¿Depredador o presa?"
 
-#: ../simulation_parameters/common/help_texts.json:141
+#: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Un consejo: las toxinas pueden usarse para alejar otras toxinas si eres lo suficientemente rápido."
 
-#: ../simulation_parameters/common/help_texts.json:144
+#: ../simulation_parameters/common/help_texts.json:151
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Un consejo: la osmorregulación cuesta 1 ATP por segundo por cada hexágono que tenga tu célula, cada hexágono vacío de citoplasma genera 5 ATP por segundo también, lo que significa que si estás perdiendo ATP debido a la osmoregulación solo tienes que añadir un par de hexágonos vacíos de citoplasma o eliminar algunos orgánulos."
 
-#: ../simulation_parameters/common/help_texts.json:147
+#: ../simulation_parameters/common/help_texts.json:154
 msgid "EASTEREGG_MESSAGE_4"
 msgstr "Un dato curioso: En la vida real, los procariotas tienen algo llamado biocompartimentos que actúan como orgánulos, y que de hecho se llaman orgánulos poliédricos."
 
-#: ../simulation_parameters/common/help_texts.json:150
+#: ../simulation_parameters/common/help_texts.json:157
 msgid "EASTEREGG_MESSAGE_5"
 msgstr "Dato curioso: Los metabolosomas son lo que se llama un orgánulo poliédrico."
 
-#: ../simulation_parameters/common/help_texts.json:153
+#: ../simulation_parameters/common/help_texts.json:160
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "Un consejo: A veces es mejor huir de otras células."
 
-#: ../simulation_parameters/common/help_texts.json:156
+#: ../simulation_parameters/common/help_texts.json:163
 msgid "EASTEREGG_MESSAGE_7"
 msgstr "Un consejo: Si otra célula mide la mitad que tu célula, puedes engullirla."
 
-#: ../simulation_parameters/common/help_texts.json:159
+#: ../simulation_parameters/common/help_texts.json:166
 msgid "EASTEREGG_MESSAGE_8"
 msgstr "Un consejo: las bacterias pueden ser mas fuertes de lo que aparentan. Pueden ser pequeñas, pero algunas de ellas pueden enterrarse dentro de tu célula y matarla!"
 
-#: ../simulation_parameters/common/help_texts.json:162
+#: ../simulation_parameters/common/help_texts.json:169
 msgid "EASTEREGG_MESSAGE_9"
 msgstr "Un consejo: puedes cazar otras especies hasta la extinción si no eres cuidadoso. Otras especies pueden hacer lo mismo."
 
-#: ../simulation_parameters/common/help_texts.json:165
+#: ../simulation_parameters/common/help_texts.json:172
 msgid "EASTEREGG_MESSAGE_10"
 msgstr "TENTÁCULOS!!"
 
-#: ../simulation_parameters/common/help_texts.json:168
+#: ../simulation_parameters/common/help_texts.json:175
 msgid "EASTEREGG_MESSAGE_11"
 msgstr "¡Derrite el metal!"
 
-#: ../simulation_parameters/common/help_texts.json:171
+#: ../simulation_parameters/common/help_texts.json:178
 msgid "EASTEREGG_MESSAGE_12"
 msgstr "Fíjate en esas células azules."
 
-#: ../simulation_parameters/common/help_texts.json:174
+#: ../simulation_parameters/common/help_texts.json:181
 msgid "EASTEREGG_MESSAGE_13"
 msgstr "Un consejo: los biomas son más que solo fondos diferentes, los compuestos en éstos se generan a ratios diferentes."
 
-#: ../simulation_parameters/common/help_texts.json:177
+#: ../simulation_parameters/common/help_texts.json:184
 msgid "EASTEREGG_MESSAGE_14"
 msgstr "Un consejo: mientras más flagelos tengas, mas rápido te mueves (wooosh!). Aunque también consumes más ATP"
 
-#: ../simulation_parameters/common/help_texts.json:180
+#: ../simulation_parameters/common/help_texts.json:187
 msgid "EASTEREGG_MESSAGE_15"
 msgstr "Un consejo: puedes engullir fragmentos de hierro."
 
-#: ../simulation_parameters/common/help_texts.json:183
+#: ../simulation_parameters/common/help_texts.json:190
 msgid "EASTEREGG_MESSAGE_16"
 msgstr "Un consejo: prepárate antes de añadir un núcleo. ¡Esas cosas son caras!"
 
-#: ../simulation_parameters/common/help_texts.json:186
+#: ../simulation_parameters/common/help_texts.json:193
 msgid "EASTEREGG_MESSAGE_17"
 msgstr "Dato curioso: ¿sabías que hay mas de 8000 ciliados en el planeta Tierra?"
 
-#: ../simulation_parameters/common/help_texts.json:189
+#: ../simulation_parameters/common/help_texts.json:196
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Dato curioso: el Stentor es un ciliado que puede estirarse y atrapar presas. Lo hace con una especie de boca en forma de trompeta, misma que atrae a las presas generando corrientes en el agua con sus cilios."
 
-#: ../simulation_parameters/common/help_texts.json:192
+#: ../simulation_parameters/common/help_texts.json:199
 msgid "EASTEREGG_MESSAGE_19"
 msgstr "Dato curioso: el Didinium es un ciliado que caza paramecios."
 
-#: ../simulation_parameters/common/help_texts.json:195
+#: ../simulation_parameters/common/help_texts.json:202
 msgid "EASTEREGG_MESSAGE_20"
 msgstr "Dato curioso: la Ameba caza y atrapa presas con 'piernas' hechas de citoplasma llamadas pseudópodos. Eventualmente los agregaremos a Thrive."
 
-#: ../simulation_parameters/common/help_texts.json:198
+#: ../simulation_parameters/common/help_texts.json:205
 msgid "EASTEREGG_MESSAGE_21"
 msgstr "Un consejo: ten cuidado con células y bacterias grandes, no es divertido que te digieran, y ellas seguro te comerán."
 
-#: ../simulation_parameters/common/help_texts.json:201
+#: ../simulation_parameters/common/help_texts.json:208
 msgid "EASTEREGG_MESSAGE_22"
 msgstr "El líder del equipo de sonido ha compuesto varias canciones que aún no han sido añadidas al juego. Puedes escucharlas o verlo componiendo en vivo, en su canal de YouTube: Oliver Lugg."
 
-#: ../simulation_parameters/common/help_texts.json:204
+#: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
 msgstr "Un consejo: Si tu célula ocupa 150 espacios, puedes engullir pedazos grandes de hierro."
 
-#: ../simulation_parameters/common/help_texts.json:207
+#: ../simulation_parameters/common/help_texts.json:214
 msgid "EASTEREGG_MESSAGE_24"
 msgstr "Thrive está pensado como una simulación de un planeta extraterrestre. Por eso tiene sentido que la mayoría de las criaturas que encuentres estén relacionadas a una o dos especies, debido a la evolución ocurriendo a lo largo del juego. ¿Puedes identificarlas?"
 
-#: ../simulation_parameters/common/help_texts.json:210
+#: ../simulation_parameters/common/help_texts.json:217
 msgid "EASTEREGG_MESSAGE_25"
 msgstr "Dato curioso: El equipo de Thrive hace podcasts de vez en cuando. ¡Échale un vistazo!"
 
-#: ../simulation_parameters/common/help_texts.json:213
+#: ../simulation_parameters/common/help_texts.json:220
 msgid "EASTEREGG_MESSAGE_26"
 msgstr "Dato curioso: ¡Thrive está hecho con el motor de juegos de código abierto Godot!"
 
-#: ../simulation_parameters/common/help_texts.json:216
+#: ../simulation_parameters/common/help_texts.json:223
 msgid "EASTEREGG_MESSAGE_27"
 msgstr "Dato curioso: Uno de los primeros prototipos funcionales en el juego fue hecho por nuestro genial programador, ¡Untrustedlife!"
 
-#: ../simulation_parameters/common/input_options.json:6
+#: ../simulation_parameters/common/input_options.json:7
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:393
 msgid "MOVEMENT"
 msgstr "Movimiento"
 
-#: ../simulation_parameters/common/input_options.json:10
+#: ../simulation_parameters/common/input_options.json:11
 msgid "MOVE_LEFT"
 msgstr "Moverse a la izquierda"
 
-#: ../simulation_parameters/common/input_options.json:14
+#: ../simulation_parameters/common/input_options.json:15
 msgid "MOVE_RIGHT"
 msgstr "Moverse a la derecha"
 
-#: ../simulation_parameters/common/input_options.json:18
+#: ../simulation_parameters/common/input_options.json:19
 msgid "MOVE_FORWARD"
 msgstr "Moverse hacia adelante"
 
-#: ../simulation_parameters/common/input_options.json:22
+#: ../simulation_parameters/common/input_options.json:23
 msgid "MOVE_BACKWARDS"
 msgstr "Moverse hacia atrás"
 
-#: ../simulation_parameters/common/input_options.json:26
+#: ../simulation_parameters/common/input_options.json:27
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Moverse automáticamente hacia adelante"
 
-#: ../simulation_parameters/common/input_options.json:34
+#: ../simulation_parameters/common/input_options.json:36
 msgid "ABILITIES"
 msgstr "Habilidades"
 
-#: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2182
+#: ../simulation_parameters/common/input_options.json:40
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1901
+#: ../src/microbe_stage/MicrobeStage.tscn:1979
 msgid "FIRE_TOXIN"
 msgstr "Lanzar toxinas"
 
-#: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2170
+#: ../simulation_parameters/common/input_options.json:44
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1887
+#: ../src/microbe_stage/MicrobeStage.tscn:1967
 msgid "TOGGLE_ENGULF"
 msgstr "Alternar engullir"
 
-#: ../simulation_parameters/common/input_options.json:46
+#: ../simulation_parameters/common/input_options.json:48
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr "Mantener pulsado para abrir el menú de comandos"
 
-#: ../simulation_parameters/common/input_options.json:50
-#: ../src/microbe_stage/MicrobeStage.tscn:2193
+#: ../simulation_parameters/common/input_options.json:52
+#: ../src/microbe_stage/MicrobeStage.tscn:1990
 msgid "TOGGLE_BINDING"
 msgstr "Alternar unión"
 
-#: ../simulation_parameters/common/input_options.json:54
+#: ../simulation_parameters/common/input_options.json:56
 msgid "TOGGLE_UNBINDING"
 msgstr "Alternar separación"
 
-#: ../simulation_parameters/common/input_options.json:58
-#: ../src/microbe_stage/MicrobeStage.tscn:2205
+#: ../simulation_parameters/common/input_options.json:60
+#: ../src/microbe_stage/MicrobeStage.tscn:2002
 msgid "UNBIND_ALL"
 msgstr "Desunir todas"
 
-#: ../simulation_parameters/common/input_options.json:62
+#: ../simulation_parameters/common/input_options.json:64
 msgid "PERFORM_UNBINDING"
 msgstr "Realizar separación"
 
-#: ../simulation_parameters/common/input_options.json:71
+#: ../simulation_parameters/common/input_options.json:73
 msgid "CAMERA"
 msgstr "Cámara"
 
-#: ../simulation_parameters/common/input_options.json:75
+#: ../simulation_parameters/common/input_options.json:77
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
 
-#: ../simulation_parameters/common/input_options.json:79
+#: ../simulation_parameters/common/input_options.json:81
 msgid "ZOOM_IN"
 msgstr "Hacer zoom"
 
-#: ../simulation_parameters/common/input_options.json:87
+#: ../simulation_parameters/common/input_options.json:90
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:153
 msgid "EDITOR"
 msgstr "Editor"
 
-#: ../simulation_parameters/common/input_options.json:91
+#: ../simulation_parameters/common/input_options.json:94
 msgid "ROTATE_RIGHT"
 msgstr "Girar a la derecha"
 
-#: ../simulation_parameters/common/input_options.json:95
+#: ../simulation_parameters/common/input_options.json:98
 msgid "ROTATE_LEFT"
 msgstr "Girar a la izquierda"
 
-#: ../simulation_parameters/common/input_options.json:99
+#: ../simulation_parameters/common/input_options.json:102
 msgid "UNDO"
 msgstr "Deshacer"
 
-#: ../simulation_parameters/common/input_options.json:103
+#: ../simulation_parameters/common/input_options.json:106
 msgid "REDO"
 msgstr "Rehacer"
 
-#: ../simulation_parameters/common/input_options.json:107
+#: ../simulation_parameters/common/input_options.json:110
 msgid "PLACE_ORGANELLE"
 msgstr "Colocar orgánulos"
 
-#: ../simulation_parameters/common/input_options.json:111
+#: ../simulation_parameters/common/input_options.json:114
 msgid "OPEN_ORGANELLE_MENU"
 msgstr "Abrir menu de orgánulos"
 
-#: ../simulation_parameters/common/input_options.json:115
+#: ../simulation_parameters/common/input_options.json:118
 msgid "PAN_CAMERA_LEFT"
 msgstr "Mover cámara a la izquierda"
 
-#: ../simulation_parameters/common/input_options.json:119
+#: ../simulation_parameters/common/input_options.json:122
 msgid "PAN_CAMERA_RIGHT"
 msgstr "Mover cámara a la derecha"
 
-#: ../simulation_parameters/common/input_options.json:123
+#: ../simulation_parameters/common/input_options.json:126
 msgid "PAN_CAMERA_UP"
 msgstr "Mover cámara hacia arriba"
 
-#: ../simulation_parameters/common/input_options.json:127
+#: ../simulation_parameters/common/input_options.json:130
 msgid "PAN_CAMERA_DOWN"
 msgstr "Mover cámara abajo"
 
-#: ../simulation_parameters/common/input_options.json:131
+#: ../simulation_parameters/common/input_options.json:134
 msgid "PAN_CAMERA_RESET"
 msgstr "Restablecer cámara"
 
-#: ../simulation_parameters/common/input_options.json:135
+#: ../simulation_parameters/common/input_options.json:138
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:80
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Cancelar acción actual"
 
-#: ../simulation_parameters/common/input_options.json:139
+#: ../simulation_parameters/common/input_options.json:142
 msgid "DELETE_ORGANELLE"
 msgstr "Eliminar orgánulo"
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:146
 msgid "MOVE_ORGANELLE"
 msgstr "Mover orgánulo"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:155
+#, fuzzy
+msgid "3D_MOVEMENT"
+msgstr "Movimiento"
+
+#: ../simulation_parameters/common/input_options.json:159
+msgid "MOVE_UP_OR_JUMP"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:163
+msgid "MOVE_DOWN_OR_CROUCH"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:171
+#, fuzzy
+msgid "3D_EDITOR"
+msgstr "Editor"
+
+#: ../simulation_parameters/common/input_options.json:175
+msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:179
+msgid "SWITCH_TO_FRONT_CAMERA"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:183
+msgid "SWITCH_TO_RIGHT_CAMERA"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:187
+msgid "SWITCH_TO_TOP_CAMERA"
+msgstr ""
+
+#: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:16
 msgid "CHEATS"
 msgstr "Trucos"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:200
 msgid "ENABLE_EDITOR"
 msgstr "Activar editor"
 
-#: ../simulation_parameters/common/input_options.json:159
+#: ../simulation_parameters/common/input_options.json:204
 msgid "SPAWN_GLUCOSE"
 msgstr "Crear glucosa"
 
-#: ../simulation_parameters/common/input_options.json:163
+#: ../simulation_parameters/common/input_options.json:208
 msgid "SPAWN_AMMONIA"
 msgstr "Crear amoníaco"
 
-#: ../simulation_parameters/common/input_options.json:167
+#: ../simulation_parameters/common/input_options.json:212
 msgid "SPAWN_PHOSPHATES"
 msgstr "Crear fosfato"
 
-#: ../simulation_parameters/common/input_options.json:171
+#: ../simulation_parameters/common/input_options.json:216
 msgid "CHEAT_MENU"
 msgstr "Menu de trucos"
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:227
 msgid "MISCELLANEOUS"
 msgstr "Diverso"
 
-#: ../simulation_parameters/common/input_options.json:184
+#: ../simulation_parameters/common/input_options.json:231
 msgid "TOGGLE_PAUSE"
 msgstr ""
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:235
 #, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "Alternar engullir"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:239
 msgid "TOGGLE_FPS"
 msgstr "Activar monitor FPS"
 
-#: ../simulation_parameters/common/input_options.json:196
+#: ../simulation_parameters/common/input_options.json:243
 #, fuzzy
 msgid "TOGGLE_METRICS"
 msgstr "Activar monitor FPS"
 
-#: ../simulation_parameters/common/input_options.json:200
+#: ../simulation_parameters/common/input_options.json:247
 msgid "QUICK_SAVE"
 msgstr "Guardado rápido"
 
-#: ../simulation_parameters/common/input_options.json:204
+#: ../simulation_parameters/common/input_options.json:251
 msgid "QUICK_LOAD"
 msgstr "Carga rápida"
 
-#: ../simulation_parameters/common/input_options.json:208
+#: ../simulation_parameters/common/input_options.json:255
 msgid "TAKE_SCREENSHOT"
 msgstr "Tomar una captura de pantalla"
 
-#: ../simulation_parameters/common/input_options.json:212
+#: ../simulation_parameters/common/input_options.json:259
 msgid "SHOW_HELP"
 msgstr "Mostrar ayuda"
 
-#: ../simulation_parameters/common/input_options.json:216
+#: ../simulation_parameters/common/input_options.json:263
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Pantalla Completa"
 
-#: ../simulation_parameters/common/input_options.json:220
+#: ../simulation_parameters/common/input_options.json:267
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Activar HUD"
 
@@ -736,36 +780,42 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1300
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1199
+#: ../src/microbe_stage/MicrobeStage.tscn:1236
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:657
 msgid "AMMONIA"
 msgstr "Amoniaco"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:32
-#: ../src/microbe_stage/MicrobeStage.tscn:1349
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1251
+#: ../src/microbe_stage/MicrobeStage.tscn:1285
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:728
 msgid "PHOSPHATE"
 msgstr "Fosfato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/microbe_stage/MicrobeStage.tscn:1401
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1303
+#: ../src/microbe_stage/MicrobeStage.tscn:1337
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
 msgstr "Ácido Sulfhídrico"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
-#: ../src/microbe_stage/MicrobeStage.tscn:1251
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1147
+#: ../src/microbe_stage/MicrobeStage.tscn:1187
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:692
 msgid "GLUCOSE"
 msgstr "Glucosa"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/microbe_stage/MicrobeStage.tscn:1624
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1485
+#: ../src/microbe_stage/MicrobeStage.tscn:1560
 msgid "OXYTOXY_NT"
 msgstr "OxiToxi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
-#: ../src/microbe_stage/MicrobeStage.tscn:1450
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1355
+#: ../src/microbe_stage/MicrobeStage.tscn:1386
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:763
 msgid "IRON"
 msgstr "Hierro"
@@ -1113,36 +1163,43 @@ msgid "STEM_CELL_NAME"
 msgstr "Nombre personalizado:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:296
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:299
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
 msgid "STRUCTURE"
 msgstr "Estructura"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:317
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:414
 #, fuzzy
 msgid "REPRODUCTION"
 msgstr "Producción de ATP"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:338
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
 msgstr "Comportamiento"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:476
 #, fuzzy
 msgid "MODIFY_TYPE"
 msgstr "Modificar"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:415
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:489
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Eliminar"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:496
 #, fuzzy
 msgid "DUPLICATE_TYPE"
 msgstr "Jugador duplicado"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:538
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
 msgstr "reproducido"
@@ -1154,11 +1211,13 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "reproducido"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:641
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1105
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "CANCELAR ACCIÓN"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:654
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:126
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
@@ -1178,10 +1237,12 @@ msgstr ""
 "Por favor conecta todos los orgánulos o deshaz tus cambios."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:548
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:550
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:670
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
@@ -1196,11 +1257,13 @@ msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "¡Mi maravilloso!... Mod"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:701
 #, fuzzy
 msgid "NEW_NAME_COLON"
 msgstr "Velocidad:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:708
 #, fuzzy
 msgid "NEW_NAME"
 msgstr "Nueva Partida"
@@ -1212,6 +1275,8 @@ msgstr "Colocar orgánulos"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:76
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
+#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:76
+#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:94
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:82
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:103
@@ -1223,23 +1288,26 @@ msgstr "{0} PM"
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr "Cargando Editor de Microbio"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:196
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:228
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:195
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo falló"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:230
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:197
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:229
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:255
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:196
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Estado de auto-evo:"
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:379
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:383
 #: ../src/general/EditorBase.cs:648
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:436
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:75
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:73
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr ""
 
@@ -1745,10 +1813,9 @@ msgid "CLOSE"
 msgstr "Cerrar"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567
+#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:675
 #: ../src/gui_common/CompoundAmount.cs:176
-#: ../src/microbe_stage/MicrobeHUD.cs:762
-#: ../src/microbe_stage/MicrobeHUD.cs:1220
+#: ../src/microbe_stage/MicrobeHUD.cs:207
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:308
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:366
@@ -2508,8 +2575,7 @@ msgstr "Suicidarse"
 msgid "STATISTICS"
 msgstr "Estadísticas"
 
-#: ../src/general/PauseMenu.tscn:212
-#: ../src/microbe_stage/MicrobeStage.tscn:1736
+#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:120
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ayuda"
 
@@ -2535,6 +2601,56 @@ msgstr "Salir"
 msgid "CONFIRM_EXIT"
 msgstr "Confirmar salída"
 
+#: ../src/general/StageBase.cs:383
+msgid "PLAYER_REPRODUCED"
+msgstr "El jugador se reprodujo"
+
+#: ../src/general/StageBase.cs:438
+msgid "PLAYER_DIED"
+msgstr "El jugador murió"
+
+#: ../src/general/StageBase.cs:501
+#, fuzzy
+msgid "EXTINCT_IN_PATCH"
+msgstr "Se extinguió del bioma"
+
+#: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
+msgid "VALUE_WITH_UNIT"
+msgstr ""
+
+#: ../src/general/StageHUDBase.cs:882
+msgid "CATEGORY_AN_ABUNDANCE"
+msgstr "En abundancia"
+
+#: ../src/general/StageHUDBase.cs:884
+msgid "CATEGORY_QUITE_A_BIT"
+msgstr "Bastante"
+
+#: ../src/general/StageHUDBase.cs:886
+msgid "CATEGORY_A_FAIR_AMOUNT"
+msgstr "Suficiente"
+
+#: ../src/general/StageHUDBase.cs:888
+msgid "CATEGORY_SOME"
+msgstr "Algo"
+
+#: ../src/general/StageHUDBase.cs:890
+msgid "CATEGORY_LITTLE"
+msgstr "Poco"
+
+#: ../src/general/StageHUDBase.cs:892
+msgid "CATEGORY_VERY_LITTLE"
+msgstr "Muy poco"
+
+#: ../src/general/StageHUDBase.cs:1092
+msgid "PLAYER_CELL"
+msgstr "Célula del jugador"
+
+#: ../src/general/StageHUDBase.cs:1105
+msgid "SPECIES_N_TIMES"
+msgstr "{0} (x{1})"
+
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} mM"
@@ -2555,12 +2671,6 @@ msgstr "/segundo"
 #: ../src/gui_common/ChemicalEquation.cs:308
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
-
-#: ../src/gui_common/CompoundAmount.cs:171
-#: ../src/microbe_stage/MicrobeHUD.cs:763
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
-msgid "VALUE_WITH_UNIT"
-msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:223
 msgid "LEAD_DEVELOPERS"
@@ -3332,7 +3442,9 @@ msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr "Los agentes de señalización permiten a las células crear sustancias químicas a las que otras células pueden reaccionar.  Los productos químicos de señalización se pueden usar para atraer a otras células o advertirles sobre el peligro para que huyan."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2338
-#: ../src/microbe_stage/MicrobeHUD.cs:1612
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:145
+#: ../src/late_multicellular_stage/MulticellularHUD.cs:153
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1550
 msgid "TO_BE_IMPLEMENTED"
 msgstr "A implementar."
 
@@ -3438,6 +3550,153 @@ msgstr ""
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Activa / Desactiva la advertencia de que perderás los datos no guardados si intentas salir del juego."
 
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
+#, fuzzy
+msgid "LOOKING_AT"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:447
+#: ../src/microbe_stage/MicrobeStage.tscn:485
+msgid "NOTHING_HERE"
+msgstr "No hay nada aquí"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:472
+#: ../src/microbe_stage/MicrobeStage.tscn:510
+msgid "COMPOUNDS_COLON"
+msgstr "Compuestos:"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:512
+#: ../src/microbe_stage/MicrobeStage.tscn:550
+msgid "SPECIES_COLON"
+msgstr "Especies:"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:591
+#: ../src/microbe_stage/MicrobeStage.tscn:627
+msgid "ENVIRONMENT"
+msgstr "Ambiente"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:857
+#: ../src/microbe_stage/MicrobeStage.tscn:895
+msgid "TEMPERATURE_SHORT"
+msgstr "Temp."
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:913
+#: ../src/microbe_stage/MicrobeStage.tscn:951
+msgid "LIGHT"
+msgstr "Luz"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:968
+#: ../src/microbe_stage/MicrobeStage.tscn:1006
+msgid "PRESSURE_SHORT"
+msgstr "Pres."
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1051
+#: ../src/microbe_stage/MicrobeStage.tscn:1089
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
+msgid "COMPOUNDS"
+msgstr "Compuestos"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1425
+#: ../src/microbe_stage/MicrobeStage.tscn:1500
+msgid "AGENTS"
+msgstr "Agentes"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1555
+#, fuzzy
+msgid "BECOME_AWARE"
+msgstr "Bioma: {0}"
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1566
+msgid "AWAKEN"
+msgstr ""
+
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
+#: ../src/microbe_stage/MicrobeStage.tscn:1660
+msgid "POPULATION_CAPITAL"
+msgstr "POBLACIÓN:"
+
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
+#, fuzzy
+msgid "LOADING_MULTICELLULAR_EDITOR"
+msgstr "Cargando Editor de Microbio"
+
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
+msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:720
+msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
+msgstr ""
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
+#, fuzzy
+msgid "INTERNALS"
+msgstr "Externo"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:371
+msgid "APPEARANCE"
+msgstr "Apariencia"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
+#, fuzzy
+msgid "REPRODUCTION_ASEXUAL"
+msgstr "Producción de ATP"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
+#, fuzzy
+msgid "DISCONNECTED_METABALLS"
+msgstr "Orgánulos Desconectados"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
+#, fuzzy
+msgid "DISCONNECTED_METABALLS_TEXT"
+msgstr ""
+"Hay orgánulos desconectados del resto de la célula.\n"
+"Por favor conecta todos los orgánulos o deshaz tus cambios."
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
+#, fuzzy
+msgid "CREATE_NEW_TISSUE_TYPE"
+msgstr "Crear Nueva Partida"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
+#, fuzzy
+msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
+msgstr "¡Mi maravilloso!... Mod"
+
+#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
+#, fuzzy
+msgid "MULTIPLE_METABALLS"
+msgstr "Colocar orgánulos"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:44
+msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr "Menú de pausa"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:59
+msgid "PAUSE_TOOLTIP"
+msgstr "Pausar el juego"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:60
+msgid "RESUME_TOOLTIP"
+msgstr "Reanudar juego"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:68
+msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
+msgstr "Mostrar / Ocultar ambiente y compuestos"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:82
+msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
+msgstr "Mostrar / Ocultar procesos celulares"
+
+#: ../src/microbe_stage/HUDBottomBar.tscn:131
+msgid "SUICIDE_BUTTON_TOOLTIP"
+msgstr "Suicidarse"
+
 #: ../src/microbe_stage/Microbe.Contact.cs:709
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "Búsqueda de recursos exitosa"
@@ -3454,7 +3713,7 @@ msgstr "muerte"
 msgid "ESCAPE_ENGULFING"
 msgstr "Engullición evadida"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:860
+#: ../src/microbe_stage/Microbe.Interior.cs:881
 msgid "REPRODUCED"
 msgstr "reproducido"
 
@@ -3484,194 +3743,81 @@ msgstr "Jugador duplicado"
 msgid "SPAWN_ENEMY"
 msgstr "Enemigo aparecido"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:574
-msgid "SIGNAL_COMMAND_NONE"
-msgstr "Sin comando"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:575
-msgid "SIGNAL_COMMAND_FOLLOW"
-msgstr "Sígueme"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:576
-msgid "SIGNAL_COMMAND_TO_ME"
-msgstr "Muévete hacía mí"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:577
-msgid "SIGNAL_COMMAND_FLEE"
-msgstr "Huye"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:578
-msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr "Vuélvete agresivo"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:581
-msgid "SIGNAL_TO_EMIT"
-msgstr "Señal a emitir"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:852
+#: ../src/microbe_stage/MicrobeHUD.cs:62
 msgid "PAUSE_PROMPT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:966
-msgid "STUFF_AT"
-msgstr "Objetos en {0:F1}, {1:F1}:"
+#: ../src/microbe_stage/MicrobeHUD.cs:109
+msgid "SIGNAL_COMMAND_NONE"
+msgstr "Sin comando"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:999
-msgid "PLAYER_CELL"
-msgstr "Célula del jugador"
+#: ../src/microbe_stage/MicrobeHUD.cs:110
+msgid "SIGNAL_COMMAND_FOLLOW"
+msgstr "Sígueme"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1016
-msgid "SPECIES_N_TIMES"
-msgstr "{0} (x{1})"
+#: ../src/microbe_stage/MicrobeHUD.cs:111
+msgid "SIGNAL_COMMAND_TO_ME"
+msgstr "Muévete hacía mí"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1061
-msgid "CATEGORY_AN_ABUNDANCE"
-msgstr "En abundancia"
+#: ../src/microbe_stage/MicrobeHUD.cs:112
+msgid "SIGNAL_COMMAND_FLEE"
+msgstr "Huye"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1063
-msgid "CATEGORY_QUITE_A_BIT"
-msgstr "Bastante"
+#: ../src/microbe_stage/MicrobeHUD.cs:113
+msgid "SIGNAL_COMMAND_AGGRESSION"
+msgstr "Vuélvete agresivo"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1065
-msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr "Suficiente"
+#: ../src/microbe_stage/MicrobeHUD.cs:116
+msgid "SIGNAL_TO_EMIT"
+msgstr "Señal a emitir"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1067
-msgid "CATEGORY_SOME"
-msgstr "Algo"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1069
-msgid "CATEGORY_LITTLE"
-msgstr "Poco"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1071
-msgid "CATEGORY_VERY_LITTLE"
-msgstr "Muy poco"
-
-#: ../src/microbe_stage/MicrobeHUD.cs:1217
+#: ../src/microbe_stage/MicrobeHUD.cs:198
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1377
-#: ../src/microbe_stage/MicrobeStage.tscn:1803
+#: ../src/microbe_stage/MicrobeHUD.cs:310
+msgid "STUFF_AT"
+msgstr "Objetos en {0:F1}, {1:F1}:"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:399
+#: ../src/microbe_stage/MicrobeStage.tscn:1629
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1413
-#: ../src/microbe_stage/MicrobeStage.tscn:1814
+#: ../src/microbe_stage/MicrobeHUD.cs:435
+#: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:831
-msgid "PLAYER_REPRODUCED"
-msgstr "El jugador se reprodujo"
-
-#: ../src/microbe_stage/MicrobeStage.cs:845
+#: ../src/microbe_stage/MicrobeStage.cs:661
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "No puedes usar el comando ya que el medio actual no contiene especies enemigas"
 
-#: ../src/microbe_stage/MicrobeStage.cs:868
-msgid "PLAYER_DIED"
-msgstr "El jugador murió"
-
-#: ../src/microbe_stage/MicrobeStage.cs:1003
-#, fuzzy
-msgid "EXTINCT_IN_PATCH"
-msgstr "Se extinguió del bioma"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:523
+#: ../src/microbe_stage/MicrobeStage.tscn:459
 msgid "AT_CURSOR"
 msgstr "En el puntero:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:549
-msgid "NOTHING_HERE"
-msgstr "No hay nada aquí"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:574
-msgid "COMPOUNDS_COLON"
-msgstr "Compuestos:"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:614
-msgid "SPECIES_COLON"
-msgstr "Especies:"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:691
-msgid "ENVIRONMENT"
-msgstr "Ambiente"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:959
-msgid "TEMPERATURE_SHORT"
-msgstr "Temp."
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1015
-msgid "LIGHT"
-msgstr "Luz"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1070
-msgid "PRESSURE_SHORT"
-msgstr "Pres."
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1153
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:336
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
-msgid "COMPOUNDS"
-msgstr "Compuestos"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1500
+#: ../src/microbe_stage/MicrobeStage.tscn:1436
 msgid "INGESTED_MATTER"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1564
-msgid "AGENTS"
-msgstr "Agentes"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1662
-msgid "STAGE_MENU_BUTTON_TOOLTIP"
-msgstr "Menú de pausa"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1675
-msgid "PAUSE_TOOLTIP"
-msgstr "Pausar el juego"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1676
-msgid "RESUME_TOOLTIP"
-msgstr "Reanudar juego"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1684
-msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Mostrar / Ocultar ambiente y compuestos"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1699
-msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr "Mostrar / Ocultar procesos celulares"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1748
-msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr "Suicidarse"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1799
+#: ../src/microbe_stage/MicrobeStage.tscn:1625
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1834
-msgid "POPULATION_CAPITAL"
-msgstr "POBLACIÓN:"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1982
+#: ../src/microbe_stage/MicrobeStage.tscn:1808
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Agregar nueva tecla personalizada"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:2128
-msgid "PAUSED"
-msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:210
 #, fuzzy
 msgid "PATCH_NAME"
 msgstr "Cueva"
+
+#: ../src/microbe_stage/PausePrompt.tscn:23
+msgid "PAUSED"
+msgstr ""
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
@@ -5531,9 +5677,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "BACKTAB"
 #~ msgstr "Atrás"
-
-#~ msgid "APPEARANCE"
-#~ msgstr "Apariencia"
 
 #~ msgid "CARBON"
 #~ msgstr "Dióxido de"

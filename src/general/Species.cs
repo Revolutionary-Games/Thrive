@@ -75,6 +75,7 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   This is the genome of the species
     /// </summary>
+    [JsonIgnore]
     public abstract string StringCode { get; }
 
     /// <summary>

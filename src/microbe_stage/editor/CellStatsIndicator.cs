@@ -48,6 +48,9 @@ public class CellStatsIndicator : HBoxContainer
         }
     }
 
+    /// <summary>
+    ///   First assignment sets the initial value, subsequent assignment sets the other values to be compared with.
+    /// </summary>
     [Export]
     public float Value
     {

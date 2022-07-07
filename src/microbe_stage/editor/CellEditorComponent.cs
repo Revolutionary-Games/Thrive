@@ -1104,7 +1104,7 @@ public partial class CellEditorComponent :
             }
         }
 
-        return highestPointInMiddleRows - Constants.EDITOR_ARROW_OFFSET;
+        return highestPointInMiddleRows;
     }
 
     private void SetupPreviewMicrobe()
@@ -2101,6 +2101,11 @@ public partial class CellEditorComponent :
         var newPopulation = results.GetGlobalPopulation(run.PlayerSpeciesNew);
 
         autoEvoPredictionRunSuccessful = true;
+
+        // Set the initial value
+        totalPopulationLabel.ResetInitialValue();
+        totalPopulationLabel.Value = run.PlayerSpeciesOriginal.Population;
+
         totalPopulationLabel.Value = newPopulation;
 
         var sorted = results.GetPopulationInPatches(run.PlayerSpeciesNew).OrderByDescending(p => p.Value).ToList();
