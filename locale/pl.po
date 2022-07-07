@@ -231,14 +231,14 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Wiążąc się z innymi komórkami, możesz zbudować kolonię w której komórki "
-"dzielą się zasobami które wchłaniają i produkują między sobą. Żeby móc "
-"związać się z inną komórką, musisz mieć organellę z czynnikiem wiążącym i "
-"wejść w w nią po włączeniu trybu wiązania. Możesz wiązać się tylko z "
-"komórkami twojego gatunku. Będąc częścią kolonii, nie możesz podzielić "
-"swojej komórki i wejść do edytora(jak na razie). Żeby wejść do edytora, "
-"najpierw opuść kolonię kiedy zdobędziesz wystarczająco składników, i wtedy "
-"wejdź do edytora. Duże kolonie komórek są drogą do wielokomórkowości(jeszcze "
-"nie w grze)."
+"dzielą się zasobami które wchłaniają i produkują ze sobą. Żeby móc związać "
+"się z inną komórką, musisz mieć organellę z czynnikami wiążącymi i przenieść "
+"się do nich po wejściu w tryb wiązania po przez wciśnięcie [thrive:"
+"input]g_toggle_binding[/thrive:input]. Możesz wiązać się tylko z komórkami "
+"twojego gatunku. Będąc w kolonii, nie możesz podzielić swojej komórki i "
+"wejść do edytora (jak na razie). Żeby wejść do edytora, uzbieraj wymagane "
+"zasoby i opuść kolonię naciskając [thrive:input]g_unbind_all[/thrive:input]. "
+"Duże kolonie komórek są drogą do wielokomórkowości (jeszcze nie w grze)."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -277,7 +277,9 @@ msgstr ""
 "\n"
 "Pilus: Może być użyty do dźgania innych komórek\n"
 "\n"
-"Chemoreceptor: Umożliwia wykrywanie związków z większej odległości"
+"Chemoreceptor: Umożliwia wykrywanie związków z większej odległości\n"
+"\n"
+"Rzęski: Zwiększają prędkość obracania się komórek"
 
 #: ../simulation_parameters/common/help_texts.json:82
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -2269,7 +2271,7 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:615
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
-msgstr ""
+msgstr "Środowiskowa retencja glukozy"
 
 #: ../src/general/NewGameSettings.tscn:659
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
@@ -2554,7 +2556,7 @@ msgstr "Wątki:"
 
 #: ../src/general/OptionsMenu.tscn:915
 msgid "MAX_SPAWNED_ENTITIES"
-msgstr ""
+msgstr "Maksymalna ilość bytów:"
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
 msgid "TINY"
@@ -3103,7 +3105,7 @@ msgstr "Zapis ma inną wersję"
 
 #: ../src/gui_common/RadialMenu.cs:63
 msgid "SELECT_OPTION"
-msgstr "Wybierz Opcję:"
+msgstr "Wybierz Opcję"
 
 #: ../src/gui_common/TweakedColourPicker.cs:388
 msgid "COLOUR_PICKER_PICK_COLOUR"
@@ -3180,7 +3182,7 @@ msgstr "Nie Dotyczy"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
-msgstr ""
+msgstr "Należy kliknąć dwa razy żeby przejść w tryb pełnego ekranu"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
 msgid "TITLE_COLON"
@@ -3864,9 +3866,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Ta membrana posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a "
+"Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a "
 "zwłaszcza przed obrażeniami fizycznymi. Kosztuje też mniej energii, ale "
-"spowalnia absorpcje zasobów i spowalnia komórkę."
+"spowalnia absorpcje zasobów i spowalnia komórkę. [b]Celulaza może strawić tę "
+"ścianę[/b] sprawiając, że jest ona wrażliwa na wchłonięcie przez drapieżniki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2924
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3416
@@ -3889,9 +3892,10 @@ msgstr "Nie Możliwy Do Pochłonięcia"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3005
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Ta membrana posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a "
+"Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a "
 "zwłaszcza przed toksynami. Kosztuje też mniej energii, ale spowalnia "
-"absorpcje zasobów."
+"absorpcje zasobów. [b]Chitynaza może strawić tę ścianę[/b] sprawiając, że "
+"jest ona wrażliwa na wchłonięcie przez drapieżniki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3171
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3450
@@ -4353,7 +4357,7 @@ msgstr "Nazwa Rodzaju Komórki"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1160
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
-"Nie można usunąć jądra komórkowego jako iż jest to nieodwracalna cecha. "
+"Nie można usunąć jądra komórkowego jako iż jest to nieodwracalna cecha.\n"
 "Jeśli jednak zostało ono umieszczone w obecnej sesji, cofnięcie lub "
 "ponowienie wciąż jest możliwe"
 
@@ -4605,7 +4609,7 @@ msgstr "Milionów Lat"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:387
 msgid "TIME_INDICATOR_TOOLTIP"
-msgstr "Upłynęło {0:#,#} lat."
+msgstr "Upłynęło {0:#,#} lat"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:201
 msgid "AUTO_EVO"
@@ -5079,7 +5083,7 @@ msgstr "Wymagany Restart"
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""
 "Jeden lub więcej modów wymaga ponownego uruchomienia gry by się załadować "
-"lub wyładować poprawnie."
+"lub wyładować poprawnie"
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -5861,8 +5865,10 @@ msgstr ""
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Zbierz glukozę (białe chmury) przepływając przez nie.\n"
+"\n"
 "Twoja komórka potrzebuje glukozy aby wytwarzać energię niezbędną do "
 "przetrwania.\n"
+"\n"
 "Podążaj za linią wychodzącą z twojej komórki do pobliskiej glukozy."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:198
