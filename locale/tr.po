@@ -51,9 +51,8 @@ msgid "GENERAL"
 msgstr "Genel"
 
 #: ../simulation_parameters/common/gallery.json:121
-#, fuzzy
 msgid "MULTICELLULAR"
-msgstr "Çok Hücreli Evresi"
+msgstr "Çok Hücreli"
 
 #: ../simulation_parameters/common/gallery.json:131
 #: ../simulation_parameters/common/gallery.json:123
@@ -229,7 +228,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve birbiriyle "
+"Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve birbirine "
 "üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. Başka bir hücre "
 "ile bağ kurmak için, bağlayıcı ajan organeline sahip olman ve [thrive:"
 "input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna "
@@ -701,38 +700,36 @@ msgid "MOVE_ORGANELLE"
 msgstr "Organeli taşı"
 
 #: ../simulation_parameters/common/input_options.json:155
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Hareket"
+msgstr "3D Hareket"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "Yukarı doğru git ya da zıpla"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "Aşağı doğru git ya da çömel"
 
 #: ../simulation_parameters/common/input_options.json:171
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Editör"
+msgstr "3D Editör"
 
 #: ../simulation_parameters/common/input_options.json:175
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "Kaydırma ve döndürme modları arasında geçiş yapmak için basılı tut"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Ön kamera görünümüne geç"
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Sağ kamera görünümüne geç"
 
 #: ../simulation_parameters/common/input_options.json:187
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Üst kamera görünümüne geç"
 
 #: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -1580,7 +1577,7 @@ msgstr "Bağlı Olmayan Hücreler"
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Diğerlerine bağlı olmayan, yerleştirilmiş hücreler var.\n"
-"Devam etmek için lütfen yerleştirdiğin bütün hücreleri birbiriyle bağla."
+"Devam etmek için lütfen yerleştirdiğin bütün hücreleri birbirine bağla."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:548
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
@@ -1601,7 +1598,7 @@ msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr ""
 "Mevcut hücreleri kopyalayarak ve onlara yeni bir isim vererek yeni hücre "
 "türleri oluşturabilirsin. Hücre türlerinde, farklı görevlerde özelleştirmek "
-"amacıyla değişiklik yapılabilir. Bir hücre türü değiştirildiğinde, bu türe "
+"amacıyla, değişiklik yapılabilir. Bir hücre türü değiştirildiğinde, bu türe "
 "ait yerleştirilmiş bütün hücreler güncellenir."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
@@ -4272,9 +4269,8 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Geçen Zaman: {0:#,#} yıl"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
-#, fuzzy
 msgid "LOOKING_AT"
-msgstr "Editördeyken yanlışlıkları düzeltmek için geri al butonuna bas"
+msgstr "Bakılan:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:447
 #: ../src/microbe_stage/MicrobeStage.tscn:485
@@ -4336,13 +4332,12 @@ msgid "AGENTS"
 msgstr "Ajanlar"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1555
-#, fuzzy
 msgid "BECOME_AWARE"
-msgstr "Biyom: {0}"
+msgstr "Farkında Ol"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1566
 msgid "AWAKEN"
-msgstr ""
+msgstr "Uyandır"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 #: ../src/microbe_stage/MicrobeStage.tscn:1660
@@ -4351,24 +4346,20 @@ msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
-#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr "Çok Hücreli Editörünün İlk Kısmı Yükleniyor"
+msgstr "Çok Hücreli Editörü Yükleniyor"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
-#, fuzzy
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr "Burayı düzenlemek için editör sekmesinden bir hücre türü seç"
+msgstr "Burayı düzenlemek için editör sekmesinden bir doku türü seç"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:720
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "Bir damla formu, aynı soydan gelenlerin içine taşınamaz"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
-#, fuzzy
 msgid "INTERNALS"
-msgstr "Dış"
+msgstr "İç Organlar"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:371
 msgid "APPEARANCE"
@@ -4376,40 +4367,34 @@ msgstr "Görünüm"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
-#, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
-msgstr "Üreme"
+msgstr "Eşeysiz"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
-#, fuzzy
 msgid "DISCONNECTED_METABALLS"
-msgstr "Bağlı Olmayan Hücreler"
+msgstr "Bağlı Olmayan Damla Formları"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
-#, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"Diğerlerine bağlı olmayan, yerleştirilmiş hücreler var.\n"
-"Devam etmek için lütfen yerleştirdiğin bütün hücreleri birbiriyle bağla."
+"Diğerlerine bağlı olmayan, yerleştirilmiş damla formları var.\n"
+"Devam etmek için lütfen yerleştirdiğin bütün damla formlarını birbirine "
+"bağla."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr "Yeni Hücre Türü Oluştur"
+msgstr "Yeni Doku Türü Oluştur"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr ""
-"Mevcut hücreleri kopyalayarak ve onlara yeni bir isim vererek yeni hücre "
-"türleri oluşturabilirsin. Hücre türlerinde, farklı görevlerde özelleştirmek "
-"amacıyla değişiklik yapılabilir. Bir hücre türü değiştirildiğinde, bu türe "
-"ait yerleştirilmiş bütün hücreler güncellenir."
+"Mevcut dokuları kopyalayarak ve onlara yeni bir isim vererek yeni doku "
+"türleri oluşturabilirsin. Doku türlerinde, farklı görevlerde özelleştirmek "
+"amacıyla, hücre editörü aracılığıyla değişiklik yapılabilir."
 
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "Birden Fazla Hücre"
+msgstr "Birden Fazla Damla Formu"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:44
 #: ../src/microbe_stage/MicrobeStage.tscn:1662
@@ -4862,7 +4847,7 @@ msgstr "Bağlı Olmayan Organeller"
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Diğerlerine bağlı olmayan, yerleştirilmiş organeller var.\n"
-"Lütfen yerleştirdiğin bütün organelleri birbiriyle bağla veya "
+"Lütfen yerleştirdiğin bütün organelleri birbirine bağla veya "
 "değişikliklerini geri al."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1196
