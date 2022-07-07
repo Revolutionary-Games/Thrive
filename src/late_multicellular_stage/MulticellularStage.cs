@@ -7,8 +7,10 @@
 [SceneLoadedClass("res://src/late_multicellular_stage/MulticellularStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MulticellularStage : StageBase<Microbe>
+public class MulticellularStage : StageBase<MulticellularCreature>
 {
+    public MulticellularHUD HUD => throw new System.NotImplementedException();
+
     protected override IStageHUD BaseHUD => throw new System.NotImplementedException();
 
     public override void StartMusic()

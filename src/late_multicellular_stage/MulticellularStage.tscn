@@ -3,7 +3,7 @@
 [ext_resource path="res://src/late_multicellular_stage/MulticellularStage.cs" type="Script" id=1]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/late_multicellular_stage/MulticellularHUD.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
+[ext_resource path="res://src/late_multicellular_stage/PlayerMulticellularInput.cs" type="Script" id=4]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/microbe_stage/PlayerHoverInfo.cs" type="Script" id=84]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
@@ -29,7 +29,7 @@ pause_mode = 2
 script = ExtResource( 84 )
 
 [node name="PlayerMulticellularInput" type="Node" parent="."]
-script = ExtResource( 7 )
+script = ExtResource( 4 )
 
 [node name="MulticellularHUD" parent="." instance=ExtResource( 3 )]
 
@@ -47,6 +47,7 @@ __meta__ = {
 }
 
 [node name="PauseMenu" parent="." instance=ExtResource( 11 )]
+visible = true
 
 [connection signal="OnOpenMenu" from="MulticellularHUD" to="PauseMenu" method="Open"]
 [connection signal="OnOpenMenuToHelp" from="MulticellularHUD" to="PauseMenu" method="OpenToHelp"]
