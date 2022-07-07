@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -41,6 +42,12 @@ public class OrganelleLayout<T> : HexLayout<T>
             return Hex.CartesianToAxial(weightedSum / totalMass);
         }
     }
+
+    /// <summary>
+    ///   The highest assigned render priority from all of the organelles.
+    /// </summary>
+    [JsonIgnore]
+    public int MaxRenderPriority => Organelles.Max(o => Hex.GetRenderPriority(o.Position));
 
     public override bool CanPlace(T hex)
     {

@@ -283,16 +283,17 @@ public class GameWorld : ISaveLoadable
     }
 
     /// <summary>
-    ///   Adds an external population effect to a species
+    ///   Adds an external population effect to a species in a specific patch
     /// </summary>
     /// <param name="species">Target species</param>
     /// <param name="constant">Change amount (constant part)</param>
     /// <param name="description">What caused the change</param>
+    /// <param name="patch">The patch this effect affects.</param>
     /// <param name="immediate">
     ///   If true applied immediately. Should only be used for the player dying
     /// </param>
     /// <param name="coefficient">Change amount (coefficient part)</param>
-    public void AlterSpeciesPopulation(Species species, int constant, string description,
+    public void AlterSpeciesPopulation(Species species, int constant, string description, Patch patch,
         bool immediate = false, float coefficient = 1)
     {
         if (constant == 0 || coefficient == 0)
@@ -301,20 +302,42 @@ public class GameWorld : ISaveLoadable
         if (species == null)
             throw new ArgumentException("species is null");
 
+        if (string.IsNullOrEmpty(description))
+            throw new ArgumentException("May not be empty or null", nameof(description));
+
         // Immediate is only allowed to use for the player dying
         if (immediate)
         {
             if (!species.PlayerSpecies)
                 throw new ArgumentException("immediate effect is only for player dying");
 
-            GD.Print("Applying immediate population effect " +
-                "(should only be used for the player dying)");
-            species.ApplyImmediatePopulationChange(constant, coefficient);
+            GD.Print("Applying immediate population effect (should only be used for the player dying)");
+
+            species.ApplyImmediatePopulationChange(constant, coefficient, patch);
         }
 
         CreateRunIfMissing();
 
-        autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description);
+        autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description, patch);
+    }
+
+    /// <summary>
+    ///   Adds an external population effect to a species in the current patch
+    /// </summary>
+    /// <param name="species">Target species</param>
+    /// <param name="constant">Change amount (constant part)</param>
+    /// <param name="description">What caused the change</param>
+    /// <param name="immediate">
+    ///   If true applied immediately. Should only be used for the player dying
+    /// </param>
+    /// <param name="coefficient">Change amount (coefficient part)</param>
+    public void AlterSpeciesPopulationInCurrentPatch(Species species, int constant, string description,
+        bool immediate = false, float coefficient = 1)
+    {
+        if (Map.CurrentPatch == null)
+            throw new InvalidOperationException("No current patch set in map");
+
+        AlterSpeciesPopulation(species, constant, description, Map.CurrentPatch, immediate, coefficient);
     }
 
     public void RemoveSpecies(Species species)

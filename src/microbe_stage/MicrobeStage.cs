@@ -59,7 +59,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     ///   Used to control how often compound position info is sent to the tutorial
     /// </summary>
     [JsonProperty]
-    private float elapsedSinceCompoundPositionCheck;
+    private float elapsedSinceEntityPositionCheck;
 
     /// <summary>
     ///   Used to differentiate between spawning the player and respawning
@@ -72,6 +72,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     /// </summary>
     [JsonProperty]
     private bool gameOver;
+
+    /// <summary>
+    ///   True when the player is extinct in the current patch. The player can still move to another patch.
+    /// </summary>
+    [JsonProperty]
+    private bool playerExtinctInCurrentPatch;
 
     [JsonProperty]
     private bool wonOnce;
@@ -290,6 +296,9 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     // Also begins a new game if one hasn't been started yet for easier debugging
     public void SetupStage()
     {
+        // Initialise the cloud system first so we can apply patch-specific brightness in OnGameStarted
+        Clouds.Init(FluidSystem);
+
         if (!IsLoadedFromSave)
         {
             spawner.Init();
@@ -311,8 +320,6 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         tutorialGUI.EventReceiver = TutorialState;
 
         HUD.SendEditorButtonToTutorial(TutorialState);
-
-        Clouds.Init(FluidSystem);
 
         // If this is a new game, place some phosphates as a learning tool
         if (!IsLoadedFromSave)
@@ -388,6 +395,12 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         Player.OnCompoundChemoreceptionInfo = HandlePlayerChemoreceptionDetection;
 
+        Player.OnIngestedByHostile = OnPlayerEngulfedByHostile;
+
+        Player.OnSuccessfulEngulfment = OnPlayerIngesting;
+
+        Player.OnEngulfmentStorageFull = OnPlayerEngulfmentLimitReached;
+
         Camera.ObjectToFollow = Player;
 
         spawner.DespawnAll();
@@ -427,20 +440,16 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         microbeSystem.Process(delta);
 
         if (gameOver)
-        {
-            guidanceLine.Visible = false;
-
-            // Player is extinct and has lost the game
-            // Show the game lost popup if not already visible
-            HUD.ShowExtinctionBox();
-
             return;
-        }
+
+        if (playerExtinctInCurrentPatch)
+            return;
 
         if (Player != null)
         {
-            spawner.Process(delta, Player.Translation, Player.Rotation);
-            Clouds.ReportPlayerPosition(Player.Translation);
+            var playerTransform = Player.GlobalTransform;
+            spawner.Process(delta, playerTransform.origin, playerTransform.basis.GetEuler());
+            Clouds.ReportPlayerPosition(playerTransform.origin);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
                 new RotationEventArgs(Player.Transform.basis, Player.RotationDegrees), this);
@@ -451,18 +460,27 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerTotalCollected,
                 new CompoundEventArgs(Player.TotalAbsorbedCompounds), this);
 
-            elapsedSinceCompoundPositionCheck += delta;
+            elapsedSinceEntityPositionCheck += delta;
 
-            if (elapsedSinceCompoundPositionCheck > Constants.TUTORIAL_COMPOUND_POSITION_UPDATE_INTERVAL)
+            if (elapsedSinceEntityPositionCheck > Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL)
             {
-                elapsedSinceCompoundPositionCheck = 0;
+                elapsedSinceEntityPositionCheck = 0;
 
                 if (TutorialState.WantsNearbyCompoundInfo())
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new CompoundPositionEventArgs(Clouds.FindCompoundNearPoint(Player.GlobalTransform.origin,
+                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(Player.GlobalTransform.origin,
                             glucose)),
                         this);
+                }
+
+                if (TutorialState.WantsNearbyEngulfableInfo())
+                {
+                    var entities = rootOfDynamicallySpawned.GetChildrenToProcess<ISpawned>(Constants.SPAWNED_GROUP);
+                    var engulfables = entities.OfType<IEngulfable>().ToList();
+
+                    TutorialState.SendEvent(TutorialEventType.MicrobeChunksNearPlayer,
+                        new EntityPositionEventArgs(Player.FindNearestEngulfable(engulfables)), this);
                 }
 
                 guidancePosition = TutorialState.GetPlayerGuidancePosition();
@@ -561,6 +579,20 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         {
             HUD.TogglePause();
         }
+    }
+
+    /// <summary>
+    ///   Called when the player died out in a patch and selected a new one
+    /// </summary>
+    public void MoveToPatch(Patch patch)
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Moving to a new patch but stage doesn't have a game state");
+
+        CurrentGame.GameWorld.Map.CurrentPatch = patch;
+        UpdatePatchSettings();
+        PatchExtinctionResolved();
+        SpawnPlayer();
     }
 
     /// <summary>
@@ -794,7 +826,7 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     private void GiveReproductionPopulationBonus()
     {
         var playerSpecies = GameWorld.PlayerSpecies;
-        GameWorld.AlterSpeciesPopulation(
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
             playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
             TranslationServer.Translate("PLAYER_REPRODUCED"),
             false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
@@ -831,9 +863,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         GD.Print("The player has died");
 
         // Decrease the population by the constant for the player dying
-        GameWorld.AlterSpeciesPopulation(
-            GameWorld.PlayerSpecies,
-            Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
+            GameWorld.PlayerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT
             / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
@@ -845,7 +876,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
 
         HUD.HideReproductionDialog();
 
-        TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
+        if (player.PhagocytosisStep == PhagocytosisPhase.None)
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
 
         Player = null;
         Camera.ObjectToFollow = null;
@@ -883,33 +915,111 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this);
     }
 
+    [DeserializedCallbackAllowed]
+    private void OnPlayerIngesting(Microbe player, IEngulfable ingested)
+    {
+        TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfing, EventArgs.Empty, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerEngulfedByHostile(Microbe player, Microbe hostile)
+    {
+        TutorialState.SendEvent(TutorialEventType.MicrobePlayerIsEngulfed, EventArgs.Empty, this);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnPlayerEngulfmentLimitReached(Microbe player)
+    {
+        TutorialState.SendEvent(TutorialEventType.MicrobePlayerEngulfmentFull, EventArgs.Empty, this);
+    }
+
     /// <summary>
     ///   Handles respawning the player and checking for extinction
     /// </summary>
     private void HandlePlayerRespawn()
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Current game is not set");
+
+        if (GameWorld.Map.CurrentPatch == null)
+            throw new InvalidOperationException("Current patch is not set");
+
+        var playerSpecies = GameWorld.PlayerSpecies;
+
         HUD.HintText = string.Empty;
 
-        // Respawn if not extinct (or freebuild)
-        if (IsGameOver())
+        if (!CurrentGame.FreeBuild)
         {
-            gameOver = true;
+            if (playerSpecies.Population <= 0)
+            {
+                GameOver();
+            }
+            else if (GameWorld.Map.CurrentPatch.GetSpeciesPopulation(playerSpecies) <= 0)
+            {
+                // Has run out of population in current patch but not globally
+                PlayerExtinctInPatch();
+            }
+
+            if (gameOver || playerExtinctInCurrentPatch)
+                return;
         }
-        else
-        {
-            // Player is not extinct, so can respawn
-            spawner.ClearSpawnCoordinates();
-            SpawnPlayer();
-        }
+
+        // Player is not extinct, so can respawn
+        spawner.ClearSpawnCoordinates();
+        SpawnPlayer();
+    }
+
+    private void GameOver()
+    {
+        // Player is extinct and has lost the game
+
+        gameOver = true;
+        guidanceLine.Visible = false;
+
+        // Just to make sure _Process doesn't run
+        playerExtinctInCurrentPatch = true;
+
+        // Show the game lost popup if not already visible
+        HUD.ShowExtinctionBox();
+    }
+
+    private void PlayerExtinctInPatch()
+    {
+        playerExtinctInCurrentPatch = true;
+        guidanceLine.Visible = false;
+
+        HUD.ShowPatchExtinctionBox();
+    }
+
+    private void PatchExtinctionResolved()
+    {
+        playerExtinctInCurrentPatch = false;
+
+        // Decrease the population by the constant for the player dying out in a patch
+        // If the player does not have sufficient population in the new patch then the population drops to 0 and
+        // they have to select a new patch if they die again.
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
+            GameWorld.PlayerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
+            TranslationServer.Translate("EXTINCT_IN_PATCH"),
+            true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT
+            / GameWorld.WorldSettings.PlayerDeathPopulationPenalty);
+
+        // Do not grant the player population even if the global population is 0,
+        // they will go extinct the next time they die
+
+        HUD.HidePatchExtinctionBox();
     }
 
     private void UpdatePatchSettings(bool promptPatchNameChange = true)
     {
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
-        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!) && promptPatchNameChange)
+        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!))
         {
-            HUD.PopupPatchInfo();
+            if (promptPatchNameChange)
+                HUD.PopupPatchInfo();
+
+            Player?.ClearEngulfedObjects();
         }
 
         HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch!.Name.ToString());
