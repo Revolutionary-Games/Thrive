@@ -137,58 +137,29 @@ msgstr ""
 "[thrive:input]g_toggle_engulf[/thrive:input] quando hai finito."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
 msgstr ""
-"Strutture procariotiche:\n"
-"\n"
-"- metabolosoma: produce [thrive:compound type=\"atp\"][/thrive:compound] "
-"consumando [thrive:compound type=\"glucose\"][/thrive:compound];\n"
-"\n"
-"- proteine chemiosintetizzanti: producono, a partire dall'[thrive:compound "
-"type=\"hydrogensulfide\"][/thrive:compound], metà del [thrive:compound type="
-"\"glucose\"][/thrive:compound] normalmente prodotto da un chemioplasto; "
-"tuttavia, fanno anche la glicolisi; occupano un esagono;\n"
-"\n"
-"- tilacoide: produce 1/3 del [thrive:compound type=\"glucose\"][/thrive:"
-"compound] normalmente prodotto da un cloroplasto; tuttavia, svolge anche la "
-"glicolisi; occupa un esagono;\n"
-"\n"
-"- rusticianina: produce [thrive:compound type=\"atp\"][/thrive:compound] "
-"consumando [thrive:compound type=\"iron\"][/thrive:compound];\n"
-"\n"
-"- nitrogenasi: converte, anaerobicamente, l'azoto atmosferico e l'[thrive:"
-"compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia"
-"\"][/thrive:compound];\n"
-"\n"
-"- citoplasma: possiede spazio di stoccaggio; fa anche la glicolisi (produce "
-"quindi piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound])."
+"Terminata la fagocitazione, gli oggetti catturati vengono trattenuti "
+"all'interno della membrana, in attesa di essere digeriti. Ma se alcuni di "
+"questi dovessero rivelarsi non digeribili, essi saranno prontamente espulsi. "
+"Quindi, assicurati prima di avere le giuste mutazioni per poterli processare "
+"a dovere. Gli enzimi, contenuti nei lisosomi, aiutano la digestione e la "
+"rendono molto più efficiente."
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
 msgstr ""
-"Usa [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/"
-"thrive:input], [thrive:input]g_move_backwards[/thrive:input],[thrive:"
-"input]g_move_right[/thrive:input] e il mouse per muoverti. Se possiedi un "
-"vacuolo tossina, premi [thrive:input]g_fire_toxin[/thrive:input] per "
-"rilasciare [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Premi "
-"[thrive:input]g_toggle_engulf[/thrive:input] per attivare e disattivare la "
-"modalità di fagocitosi. Puoi aumentare e diminuire lo zoom con la rotellina "
-"del mouse."
+"Tuttavia, i lisosomi sono un'esclusiva degli organismi eucarioti: i "
+"procarioti non li hanno e ciò rende la loro digestione piuttosto "
+"inefficiente. Per cellule piccole, non si tratta di un grosso problema. Ma "
+"per cellule di dimensioni maggiori, essere prive di lisosomi si rivela molto "
+"svantaggioso."
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
 msgstr ""
-"Usa [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/"
-"thrive:input], [thrive:input]g_move_backwards[/thrive:input],[thrive:"
-"input]g_move_right[/thrive:input] e il mouse per muoverti. Se possiedi un "
-"vacuolo tossina, premi [thrive:input]g_fire_toxin[/thrive:input] per "
-"rilasciare [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Premi "
-"[thrive:input]g_toggle_engulf[/thrive:input] per attivare e disattivare la "
-"modalità di fagocitosi. Puoi aumentare e diminuire lo zoom con la rotellina "
-"del mouse."
+"In particolare, è del tutto impossibile digerire le cellule dotate di pareti "
+"in cellulosa o chitina senza fare uso dell'apposito enzima."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -260,12 +231,15 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Legandoti ad altre cellule puoi formare una colonia. All'interno di essa, le "
-"cellule si scambiano liberamente i composti prodotti e assorbiti, ma non "
-"possono dividersi (per ora); per poterti duplicare, devi prima slegarti. "
-"Puoi legarti solo a cellule della tua stessa specie; per farlo, devi entrare "
-"in modalità di legatura (assicurati di avere l'organulo apposito). Le "
-"colonie sono il primo passo verso la multicellularità (che però non è ancora "
-"nel gioco)."
+"cellule si scambiano liberamente i composti prodotti e assorbiti. Puoi "
+"legarti solo a cellule della tua stessa specie; per farlo, devi per prima "
+"cosa possedere l'organulo apposito (agenti leganti); poi, devi attivare la "
+"modalità di legatura premendo [thrive:input]g_toggle_binding[/thrive:input]; "
+"infine, devi nuotare verso di loro fino a entrare in contatto fisico. Per "
+"ora, quando sei all'interno di una colonia, non puoi dividere la tua cellula "
+"ed entrare nell'editor; per farlo, devi prima lasciarla premendo [thrive:"
+"input]g_unbind_all[/thrive:input]. Le colonie sono il primo passo verso la "
+"multicellularità (che però non è ancora nel gioco)."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -953,9 +927,8 @@ msgstr "Frammento di ferro grande"
 #: ../simulation_parameters/microbe_stage/biomes.json:1774
 #: ../simulation_parameters/microbe_stage/biomes.json:1941
 #: ../simulation_parameters/microbe_stage/biomes.json:2187
-#, fuzzy
 msgid "GOOGLY_EYE_CELL"
-msgstr "Cellula del Giocatore"
+msgstr "Cellula grandocchi"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -2106,11 +2079,11 @@ msgstr "Carica partita"
 
 #: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr "Modifica le opzioni di gioco"
+msgstr "Modifica le impostazioni di gioco"
 
 #: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
-msgstr "Impostazioni"
+msgstr "Opzioni"
 
 #: ../src/general/MainMenu.tscn:215
 msgid "TOOLS"
@@ -2184,21 +2157,18 @@ msgstr ""
 "potrebbero contenere informazioni ulteriori."
 
 #: ../src/general/NewGameSettings.cs:284
-#: ../src/general/NewGameSettings.tscn:1052
 #: ../src/general/NewGameSettings.tscn:1053
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Avvia una nuova partita"
+msgstr "Gioca con queste impostazioni"
 
 #: ../src/general/NewGameSettings.cs:291
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr "Avvia una nuova partita"
+msgstr "Alcune impostazioni non sono valide"
 
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Preimpostazione di difficoltà"
 
 #: ../src/general/NewGameSettings.tscn:142
 #: ../src/general/NewGameSettings.tscn:814
@@ -2210,7 +2180,7 @@ msgstr "Solo VCLC"
 #: ../src/general/NewGameSettings.tscn:821
 #: ../src/general/NewGameSettings.tscn:822
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr "(esclude parti e abilità al di fuori della Vita Come La Conosciamo)"
+msgstr "(esclude parti e abilità estranee alla Vita Come La Conosciamo)"
 
 #: ../src/general/NewGameSettings.tscn:165
 #: ../src/general/NewGameSettings.tscn:837
@@ -2256,7 +2226,7 @@ msgstr "Panspermia (casuale)"
 #: ../src/general/NewGameSettings.tscn:876
 #: ../src/general/NewGameSettings.tscn:877
 msgid "PLANET_RANDOM_SEED"
-msgstr "Seed casuale del pianeta"
+msgstr "Seme casuale del pianeta"
 
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:895
@@ -2335,12 +2305,8 @@ msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Nuvola bonus di glucosio all'uscita dall'editor"
 
 #: ../src/general/NewGameSettings.tscn:740
-#, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
-msgstr ""
-"I microbi focalizzati inseguono prede e frammenti per lunghe distanze\n"
-"e potrebbero desiderare questi ultimi con maggire ardimento.\n"
-"I microbi reattivi cambiano più facilmente bersaglio."
+msgstr "(comincia ogni generazione vicino a una nuvola di glucosio)"
 
 #: ../src/general/NewGameSettings.tscn:776
 #: ../src/general/NewGameSettings.tscn:777
@@ -2743,7 +2709,7 @@ msgstr "Sei sicuro di voler ripristinare i comandi ai valori iniziali?"
 
 #: ../src/general/OptionsMenu.tscn:1298
 msgid "CLOSE_OPTIONS"
-msgstr "Chiudere le impostazioni?"
+msgstr "Chiudere le opzioni?"
 
 #: ../src/general/OptionsMenu.tscn:1318
 msgid "UNSAVED_CHANGE_WARNING"
@@ -2836,7 +2802,7 @@ msgstr "Torna al menù principale"
 #: ../src/general/PauseMenu.tscn:229
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
-msgstr "Ritorna al menù"
+msgstr "Torna al menù"
 
 #: ../src/general/PauseMenu.tscn:237
 msgid "EXIT"
@@ -3638,25 +3604,19 @@ msgstr ""
 "OssiTossi NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:973
-#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso "
-"aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/"
-"thrive:compound] e con la temperatura."
+"Produce [thrive:compound type=\"atp\"][/thrive:compound]. Il tasso aumenta "
+"con la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:974
-#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr ""
-"Il termoplasto è una struttura a doppia membrana che contiene pigmenti "
-"termosensibili, impilati insieme in sacchetti membranosi. Si tratta di un "
-"procariota, assimilato per l'uso da parte di un eucariota. I pigmenti al suo "
-"interno sono in grado di sfruttare l'energia delle differenze di calore "
-"vicine per produrre glucosio a partire dall'acqua e dal diossido di carbonio "
-"gassoso. Tale processo è chiamato Termosintesi. Il tasso di produzione di "
-"glucosio aumenta all'aumentare della concentrazione di diossido di carbonio "
-"e della temperatura."
+"La termosintasi è una proteina in grado di cambiare forma in base alle "
+"convezioni termiche del liquido in cui è immersa. Esposta al calore, si "
+"piega, legandosi così all'ADP. Raffreddata, si apre, riciclandola in ATP. "
+"Tale processo è chiamato termosintesi. Il tasso di produzione di ATP aumenta "
+"con la temperatura circostante."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1098
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -3799,9 +3759,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso "
-"aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/"
-"thrive:compound] e con la temperatura."
+"Produce [thrive:compound type=\"atp\"][/thrive:compound]. Il tasso aumenta "
+"con la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
 msgid "THERMOPLAST_DESCRIPTION"
@@ -3953,9 +3912,11 @@ msgstr ""
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Questa membrana possiede una parete. Ciò le conferisce una migliore "
-"protezione ai danni, specialmente quelli fisici. Inoltre, consuma meno "
+"protezione ai danni, specialmente ai danni fisici. Inoltre, consuma meno "
 "energia per mantenere la propria forma, ma è più lenta nei movimenti e "
-"nell'assorbire le risorse."
+"nell'assorbire le risorse. [b]La cellulasi è in grado di digerire tale "
+"parete[/b], rendendo la membrana vulnerabile alla fagocitosi da parte dei "
+"predatori."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2924
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3416
@@ -3980,8 +3941,10 @@ msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Questa membrana possiede una parete. Ciò le conferisce una migliore "
 "protezione ai danni, specialmente ai danni da tossine. Inoltre, consuma meno "
-"energia per mantenere la propria forma, ma è più lenta nei movimenti e non "
-"può assorbire le risorse rapidamente."
+"energia per mantenere la propria forma, ma è più lenta nei movimenti e "
+"nell'assorbire le risorse. [b]La chitinasi è in grado di digerire tale "
+"parete[/b], rendendo la membrana vulnerabile alla fagocitosi da parte dei "
+"predatori."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3171
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3450
@@ -4212,7 +4175,7 @@ msgstr "Mostra/nascondi i processi cellulari"
 #: ../src/microbe_stage/HUDBottomBar.tscn:131
 #: ../src/microbe_stage/MicrobeStage.tscn:1748
 msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr "Suicidio"
+msgstr "Autodistruzione"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:709
 msgid "SUCCESSFUL_SCAVENGE"
@@ -4450,9 +4413,9 @@ msgstr "Nome del tipo di cellula"
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1160
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
-"Impossibile eliminare il nucleo: si tratta di un'evoluzione irreversibile. "
+"Impossibile eliminare il nucleo: si tratta di un'evoluzione irreversibile.\n"
 "Tuttavia, se posizionato nella sessione corrente, è possibile annullare o "
-"ripristinare l'azione"
+"ripristinare l'azione che ha portato alla sua aggiunta"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1162
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -4821,29 +4784,23 @@ msgid "LINE_COLOUR"
 msgstr "Colore linea:"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
-#, fuzzy
 msgid "LIPASE_DESCRIPTION"
 msgstr ""
-"Le cilia, come strutture, sono simili ai flagelli. Tuttavia, invece che "
-"fornire una spinta direzionale, aiutano le cellule a roteare meglio."
+"La lipasi permette alla cellula di rompere la maggior parte di tipi di "
+"membrana. La tua cellula produce un po' di lipasi anche senza bisogno di un "
+"lisosoma; ma selezionando quest'opzione ne aumenterai l'efficacia."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
-#, fuzzy
 msgid "CELLULASE_DESCRIPTION"
 msgstr ""
-"Il vacuolo è un organulo membranoso interno, utilizzato per lo stoccaggio di "
-"sostanze. È composto di diverse vesciche, cioè strutture membranose più "
-"piccole, usate comunemente nelle cellule per lo stoccaggio, che si sono fuse "
-"insieme. Il vacuolo è colmo d'acqua, usata per contenere molecole, enzimi, "
-"solidi e altre sostanze. La sua forma è fluida e può variare da cellula a "
-"cellula."
+"La cellulasi permette alla cellula di rompere le membrane in cellulosa. Ogni "
+"aggiunta ne aumenta l'efficacia."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
-#, fuzzy
 msgid "CHITINASE_DESCRIPTION"
 msgstr ""
-"Le cilia, come strutture, sono simili ai flagelli. Tuttavia, invece che "
-"fornire una spinta direzionale, aiutano le cellule a roteare meglio."
+"La chitinasi permette alla cellula di rompere le membrane in chitina. Ogni "
+"aggiunta ne aumenta l'efficacia."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
 msgid "SELECT_ENZYME"
@@ -4890,7 +4847,7 @@ msgstr "Pressione"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:842
 msgid "SPECIES_PRESENT"
-msgstr "Specie Presenti"
+msgstr "Specie presenti"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:906
 msgid "MOVE_TO_THIS_PATCH"
@@ -5704,13 +5661,13 @@ msgstr ""
 "eliminare definitivamente {0} salvataggi(o)?"
 
 #: ../src/saving/SaveManagerGUI.cs:237
-#, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Eliminare tutti i vecchi salvataggi automatici e rapidi è un'azione "
 "irreversibile. Sei sicuro di voler eliminare definitivamente i seguenti?\n"
 " - {0} Salvataggi(o) automatici/o\n"
-" - {1} Salvataggi(o) rapidi/o"
+" - {1} Salvataggi(o) rapidi/o\n"
+"- {2} Salvataggi(o) di backup"
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
@@ -6032,34 +5989,37 @@ msgid "TUTORIAL_VIEW_NOW"
 msgstr "Vedi ora"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"Sei in modalità di slegatura: clicca sui membri della tua colonia per "
-"separartene.\n"
+"La tua cellula ha una capacità limitata in riguardo a quanto materiale può "
+"fagocitare in una sola volta. Tale limite è relativo alle sue dimensioni: "
+"più è grande, più oggetti può contenere.\n"
 "\n"
-"Per abbandonarla interamente, clicca sulla tua stessa cellula, oppure premi "
-"il tasto [thrive:input]g_unbind _all[/thrive:input]."
+"Se è piena, non potrai inglobare altre cose, e dovrai aspettare che uno o "
+"più contenuti vengano digeriti completamente."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Sei in modalità di slegatura: clicca sui membri della tua colonia per "
-"separartene.\n"
+"Per fagocitare dei materiali, passaci sopra, poi attiva la modalità apposita "
+"premendo [thrive:input]g_toggle_engulf[/thrive:input].\n"
 "\n"
-"Per abbandonarla interamente, clicca sulla tua stessa cellula, oppure premi "
-"il tasto [thrive:input]g_unbind _all[/thrive:input]."
+"Non disattivarla finché questi non sono completamente catturati.\n"
+"\n"
+"Segui la linea dalla tua cellula al più vicino oggetto inglobabile."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
 msgstr ""
-"Sei in modalità di slegatura: clicca sui membri della tua colonia per "
-"separartene.\n"
+"La tua cellula è stata fagocitata. Ciò significa che inizierà a essere "
+"digerita.\n"
 "\n"
-"Per abbandonarla interamente, clicca sulla tua stessa cellula, oppure premi "
-"il tasto [thrive:input]g_unbind _all[/thrive:input]."
+"Il processo di digestione è mostrato sopra la tua barra della salute (in "
+"basso a destra) in forma di percentuale. La tua cellula sarà considerata "
+"morta una volta che raggiungerà il 100% o avrà superato un limite di tempo.\n"
+"\n"
+"Premi il pulsante di autodistruzione se desideri saltare l'attesa e "
+"rinascere. Ma ricorda: c'è sempre una possibilità che tu riesca a scappare!"
 
 #~ msgid "MOBILITY"
 #~ msgstr "Mobilità"
