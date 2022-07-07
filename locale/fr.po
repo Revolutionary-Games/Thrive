@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-07 16:33+0300\n"
+"POT-Creation-Date: 2022-07-07 16:47+0300\n"
 "PO-Revision-Date: 2022-04-15 08:28+0000\n"
 "Last-Translator: Louison Wouts <wouts.louison@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:459
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
 #, fuzzy
 msgid "CELLS"
 msgstr "Cellulose"
@@ -379,7 +379,7 @@ msgid "EASTEREGG_MESSAGE_27"
 msgstr "Fait amusant, l'un des premiers prototypes jouables a été créé par notre merveilleux programmeur, Untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:7
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:392
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:393
 msgid "MOVEMENT"
 msgstr "Mouvement"
 
@@ -1189,63 +1189,61 @@ msgid "STEM_CELL_NAME"
 msgstr "Souche"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:296
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:297
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:299
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:359
 msgid "STRUCTURE"
 msgstr "Structure"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:317
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:413
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:414
 #, fuzzy
 msgid "REPRODUCTION"
 msgstr "Production d'ATP"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:338
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:340
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
 msgstr "Comportement"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:475
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:476
 #, fuzzy
 msgid "MODIFY_TYPE"
 msgstr "Modifier"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:415
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:488
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:489
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr "Supprimer"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:495
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:496
 #, fuzzy
 msgid "DUPLICATE_TYPE"
 msgstr "joueur en double"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:537
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:538
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduction :"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:550
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
 #, fuzzy
 msgid "REPRODUCTION_BUDDING"
 msgstr "reproduit"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:628
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:641
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1105
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ANNULER L'ACTION"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:641
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:654
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:126
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
@@ -1265,13 +1263,13 @@ msgstr ""
 "Veuillez connecter toutes les organites placées avec les autres ou annulez vos changements."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:548
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:655
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
 #, fuzzy
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr "Impossible De Détruire Des Types De Cellules Déjà Utilisés"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:550
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:657
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:670
 #, fuzzy
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr "Un type de cellule actuellement utilisé dans le plan de votre corps ne peut pas être supprimé"
@@ -1287,13 +1285,13 @@ msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr "Le chimioplaste est une structure à double membrane contenant des protéines capable de convertir le sulfure d'hydrogène, l'eau et le dioxyde de carbone gazeux en glucose avec un processus nommé Chimiosynthèse de Sulfure d'Hydrogène. Le taux de glucose produit varie en fonction de la concentration en dioxyde de carbone."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:701
 #, fuzzy
 msgid "NEW_NAME_COLON"
 msgstr "Vitesse :"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:695
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:708
 #, fuzzy
 msgid "NEW_NAME"
 msgstr "Nouvelle partie"
@@ -3701,37 +3699,43 @@ msgstr "Chargement de l'Éditeur de Microbes"
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Sélectionnez un type de cellule à éditer ici depuis l'onglet de l'éditeur"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:708
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:720
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:319
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
 #, fuzzy
 msgid "INTERNALS"
 msgstr "Externe"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:370
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:371
 msgid "APPEARANCE"
 msgstr "Apparence"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:650
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
+#, fuzzy
+msgid "REPRODUCTION_ASEXUAL"
+msgstr "Production d'ATP"
+
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
 #, fuzzy
 msgid "DISCONNECTED_METABALLS"
 msgstr "Organites Déconnectés"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:652
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
 #, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 "Il y a des organites placées qui ne sont pas connectés au reste.\n"
 "Veuillez connecter toutes les organites placées avec les autres ou annulez vos changements."
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:661
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Créer une Nouvelle Sauvegarde"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:675
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
 #, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr "Le chimioplaste est une structure à double membrane contenant des protéines capable de convertir le sulfure d'hydrogène, l'eau et le dioxyde de carbone gazeux en glucose avec un processus nommé Chimiosynthèse de Sulfure d'Hydrogène. Le taux de glucose produit varie en fonction de la concentration en dioxyde de carbone."

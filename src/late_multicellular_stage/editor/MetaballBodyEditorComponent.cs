@@ -22,6 +22,9 @@ public partial class MetaballBodyEditorComponent :
     public NodePath BehaviourTabButtonPath = null!;
 
     [Export]
+    public NodePath AppearanceTabButtonPath = null!;
+
+    [Export]
     public NodePath StructureTabPath = null!;
 
     [Export]
@@ -29,6 +32,9 @@ public partial class MetaballBodyEditorComponent :
 
     [Export]
     public NodePath BehaviourTabPath = null!;
+
+    [Export]
+    public NodePath AppearanceTabPath = null!;
 
     [Export]
     public NodePath CellTypeSelectionListPath = null!;
@@ -60,9 +66,11 @@ public partial class MetaballBodyEditorComponent :
     private Button structureTabButton = null!;
     private Button reproductionTabButton = null!;
     private Button behaviourTabButton = null!;
+    private Button appearanceTabButton = null!;
 
     private PanelContainer structureTab = null!;
     private PanelContainer reproductionTab = null!;
+    private PanelContainer appearanceTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -113,6 +121,7 @@ public partial class MetaballBodyEditorComponent :
         Structure,
         Reproduction,
         Behaviour,
+        Appearance,
     }
 
     [JsonIgnore]
@@ -167,6 +176,9 @@ public partial class MetaballBodyEditorComponent :
 
         behaviourTabButton = GetNode<Button>(BehaviourTabButtonPath);
         behaviourEditor = GetNode<BehaviourEditorSubComponent>(BehaviourTabPath);
+
+        appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
+        appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
 
         cellTypeSelectionList = GetNode<CollapsibleList>(CellTypeSelectionListPath);
 
@@ -658,36 +670,34 @@ public partial class MetaballBodyEditorComponent :
                 // TODO: should this remove the existing ones?
                 continue;
             }
+
+            if (moving)
+            {
+                // If the metaball is moved to its descendant, then the move is much more complicated
+                // And currently not supported
+                if (parent != null && editedMetaballs.IsDescendantsOf(parent, metaball))
+                {
+                    GD.PrintErr("Logic for moving metaball to its descendant tree not implemented");
+                    continue;
+                }
+
+                var childMoves =
+                    MetaballMoveActionData<MulticellularMetaball>.CreateMovementActionForChildren(metaball,
+                        metaball.Position, position, editedMetaballs);
+
+                var data = new MetaballMoveActionData<MulticellularMetaball>(metaball, metaball.Position, position,
+                    metaball.Parent,
+                    parent, childMoves);
+                action = new SingleEditorAction<MetaballMoveActionData<MulticellularMetaball>>(DoMetaballMoveAction,
+                    UndoMetaballMoveAction, data);
+            }
             else
             {
-                if (moving)
-                {
-                    // If the metaball is moved to its descendant, then the move is much more complicated
-                    // And currently not supported
-                    if (parent != null && editedMetaballs.IsDescendantsOf(parent, metaball))
-                    {
-                        GD.PrintErr("Logic for moving metaball to its descendant tree not implemented");
-                        continue;
-                    }
-
-                    var childMoves =
-                        MetaballMoveActionData<MulticellularMetaball>.CreateMovementActionForChildren(metaball,
-                            metaball.Position, position, editedMetaballs);
-
-                    var data = new MetaballMoveActionData<MulticellularMetaball>(metaball, metaball.Position, position,
-                        metaball.Parent,
-                        parent, childMoves);
-                    action = new SingleEditorAction<MetaballMoveActionData<MulticellularMetaball>>(DoMetaballMoveAction,
-                        UndoMetaballMoveAction, data);
-                }
-                else
-                {
-                    action = new SingleEditorAction<MetaballPlacementActionData<MulticellularMetaball>>(
-                        DoMetaballPlaceAction,
-                        UndoMetaballPlaceAction,
-                        new MetaballPlacementActionData<MulticellularMetaball>(metaball, position, metaballSize,
-                            parent));
-                }
+                action = new SingleEditorAction<MetaballPlacementActionData<MulticellularMetaball>>(
+                    DoMetaballPlaceAction,
+                    UndoMetaballPlaceAction,
+                    new MetaballPlacementActionData<MulticellularMetaball>(metaball, position, metaballSize,
+                        parent));
             }
 
             moveActionData.Add(action);
@@ -1025,6 +1035,7 @@ public partial class MetaballBodyEditorComponent :
         structureTab.Hide();
         reproductionTab.Hide();
         behaviourEditor.Hide();
+        appearanceTab.Hide();
 
         // Show selected
         switch (selectedSelectionMenuTab)
@@ -1047,6 +1058,13 @@ public partial class MetaballBodyEditorComponent :
             {
                 behaviourEditor.Show();
                 behaviourTabButton.Pressed = true;
+                break;
+            }
+
+            case SelectionMenuTab.Appearance:
+            {
+                appearanceTab.Show();
+                appearanceTabButton.Pressed = true;
                 break;
             }
 

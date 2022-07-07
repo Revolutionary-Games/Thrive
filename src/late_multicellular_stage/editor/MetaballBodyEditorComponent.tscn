@@ -178,9 +178,11 @@ IslandErrorPath = NodePath("IslandError")
 StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/FirstTabRow/Structure")
 ReproductionTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/SecondTabRow/Reproduction")
 BehaviourTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/FirstTabRow/Behaviour")
+AppearanceTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tabs/SecondTabRow/Appearance")
 StructureTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
 ReproductionTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction")
 BehaviourTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
+AppearanceTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance")
 CellTypeSelectionListPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Cells")
 ModifyTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Modify")
 DeleteTypeButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/VBoxContainer/HBoxContainer/Delete")
@@ -363,7 +365,6 @@ custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
-disabled = true
 toggle_mode = true
 action_mode = 0
 group = SubResource( 6 )
@@ -547,8 +548,8 @@ margin_left = 251.0
 margin_right = 468.0
 margin_bottom = 25.0
 disabled = true
-text = "REPRODUCTION_BUDDING"
-items = [ "REPRODUCTION_BUDDING", null, false, 0, null ]
+text = "REPRODUCTION_ASEXUAL"
+items = [ "REPRODUCTION_ASEXUAL", null, false, 0, null ]
 selected = 0
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 9 )]
@@ -575,7 +576,8 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer"]
-margin_right = 478.0
+margin_right = 2168.0
+margin_bottom = 40.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
@@ -584,12 +586,23 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer"]
-margin_right = 468.0
+margin_right = 2158.0
+margin_bottom = 40.0
 custom_constants/separation = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_right = 468.0
 margin_bottom = 25.0
+
+[node name="MetaballsOnlyLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Appearance/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+text = "We plan to implement convolution surfaces to make the \"skin\" of the creatures. Currently this is not implemented so the metaballs are rendered with just basic spheres to give some impression of what the shape is."
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER
+This is a placeholder to not make translators do pointless work"
+}
 
 [node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource( 13 )]
 ShowNewButton = false
