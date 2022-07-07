@@ -56,36 +56,45 @@ msgid "MULTICELLULAR"
 msgstr "Sejtszervecske elhelyezése"
 
 #: ../simulation_parameters/common/gallery.json:123
+#: ../simulation_parameters/common/gallery.json:131
 msgid "MODELS"
 msgstr "Modellek"
 
 #: ../simulation_parameters/common/gallery.json:126
 #: ../simulation_parameters/common/gallery.json:276
+#: ../simulation_parameters/common/gallery.json:134
+#: ../simulation_parameters/common/gallery.json:284
 msgid "MICROBE_STAGE"
 msgstr "Sejtfázis"
 
 #: ../simulation_parameters/common/gallery.json:239
+#: ../simulation_parameters/common/gallery.json:247
 msgid "MUSIC"
 msgstr "Zene"
 
 #: ../simulation_parameters/common/gallery.json:242
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
+#: ../simulation_parameters/common/gallery.json:250
 msgid "ALL"
 msgstr "Összes"
 
 #: ../simulation_parameters/common/gallery.json:253
+#: ../simulation_parameters/common/gallery.json:261
 msgid "MENU"
 msgstr "Menü"
 
 #: ../simulation_parameters/common/gallery.json:317
+#: ../simulation_parameters/common/gallery.json:325
 msgid "MICROBE_EDITOR"
 msgstr "Sejtszerkesztő"
 
 #: ../simulation_parameters/common/gallery.json:352
+#: ../simulation_parameters/common/gallery.json:360
 msgid "MULTICELLULAR_STAGE"
 msgstr "Többsejtes fázis"
 
 #: ../simulation_parameters/common/gallery.json:375
+#: ../simulation_parameters/common/gallery.json:383
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Többsejtes szerkesztő"
 
@@ -2966,6 +2975,7 @@ msgstr "kihalt a bolygón"
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/MicrobeHUD.cs:763
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
+#: ../src/general/StageHUDBase.cs:676
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
 
