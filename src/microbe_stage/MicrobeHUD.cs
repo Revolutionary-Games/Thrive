@@ -264,10 +264,8 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         {
             return GetPlayerUsefulCompounds()!.IsSpecificallySetUseful(oxytoxy);
         }
-        else
-        {
-            return colony.ColonyMembers.Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy));
-        }
+
+        return colony.ColonyMembers.Any(c => c.Compounds.IsSpecificallySetUseful(oxytoxy));
     }
 
     protected override ICompoundStorage GetPlayerStorage()

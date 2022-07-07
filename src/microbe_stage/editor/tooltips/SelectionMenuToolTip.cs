@@ -139,7 +139,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
-    public float DisplayDelay { get; set; } = 0.0f;
+    public float DisplayDelay { get; set; }
 
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.ControlBottomRightCorner;
 

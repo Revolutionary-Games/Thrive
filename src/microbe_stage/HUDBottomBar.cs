@@ -40,10 +40,7 @@ public class HUDBottomBar : HBoxContainer
     public bool Paused
     {
         get => pauseButton.Paused;
-        set
-        {
-            pauseButton.Paused = value;
-        }
+        set => pauseButton.Paused = value;
     }
 
     public bool CompoundsPressed

@@ -454,7 +454,7 @@ public class GameWorld : ISaveLoadable
         // Do this from the root down to not need to process metaballs multiple times
         // TODO: should this logic be in OnEdited for general use?
 
-        var metaballsToPosition = new List<MulticellularMetaball>() { Capacity = metaballs.Count };
+        var metaballsToPosition = new List<MulticellularMetaball> { Capacity = metaballs.Count };
 
         // First build a good order to update the metaballs in
         foreach (var metaball in metaballs.OrderBy(m => m.Position.LengthSquared()))
@@ -463,7 +463,7 @@ public class GameWorld : ISaveLoadable
         }
 
         // Next, calculate the direction vectors to parents
-        var metaballParentVectors = new List<Vector3>() { Capacity = metaballsToPosition.Count };
+        var metaballParentVectors = new List<Vector3> { Capacity = metaballsToPosition.Count };
 
         foreach (var metaball in metaballsToPosition)
         {

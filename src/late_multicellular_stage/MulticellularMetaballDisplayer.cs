@@ -45,7 +45,7 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
 
         ApplyAlpha();
 
-        metaballSphere = new SphereMesh()
+        metaballSphere = new SphereMesh
         {
             Height = 1,
             Radius = 0.5f,
@@ -62,7 +62,7 @@ public class MulticellularMetaballDisplayer : MultiMeshInstance, IMetaballDispla
             Material = material,
         };
 
-        Multimesh = new MultiMesh()
+        Multimesh = new MultiMesh
         {
             Mesh = metaballSphere,
             InstanceCount = 0,

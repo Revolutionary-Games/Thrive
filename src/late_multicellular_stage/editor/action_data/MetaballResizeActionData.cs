@@ -56,10 +56,8 @@ public class MetaballResizeActionData<TMetaball> : EditorCombinableActionData
             {
                 return new MetaballResizeActionData<TMetaball>(ResizedMetaball, OldSize, resizeActionData.NewSize);
             }
-            else
-            {
-                return new MetaballResizeActionData<TMetaball>(ResizedMetaball, resizeActionData.OldSize, NewSize);
-            }
+
+            return new MetaballResizeActionData<TMetaball>(ResizedMetaball, resizeActionData.OldSize, NewSize);
         }
 
         throw new InvalidOperationException();

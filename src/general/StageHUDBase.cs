@@ -4,6 +4,7 @@ using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
+using Object = Godot.Object;
 
 /// <summary>
 ///   Base HUD class for stages where the player moves a creature around
@@ -11,7 +12,7 @@ using Array = Godot.Collections.Array;
 /// <typeparam name="TStage">The type of the stage this HUD is for</typeparam>
 [JsonObject(MemberSerialization.OptIn)]
 public abstract class StageHUDBase<TStage> : Control, IStageHUD
-    where TStage : Godot.Object, IStage
+    where TStage : Object, IStage
 {
     [Export]
     public NodePath AnimationPlayerPath = null!;
@@ -184,9 +185,14 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     [Export]
     public NodePath BottomLeftBarPath = null!;
 
-    protected readonly Dictionary<Species, int> hoveredSpeciesCounts = new();
+    // Inspections and cleanup disagree here
+    // ReSharper disable RedundantNameQualifier
+    protected readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts = new();
 
-    protected readonly Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls = new();
+    protected readonly System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls =
+        new();
+
+    // ReSharper restore RedundantNameQualifier
 
     protected readonly Color defaultHealthBarColour = new(0.96f, 0.27f, 0.48f);
 

@@ -86,12 +86,12 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         out Dictionary<Compound, float> totalNeededCompounds)
     {
         // TODO: reproduction process for multicellular
-        gatheredCompounds = new Dictionary<Compound, float>()
+        gatheredCompounds = new Dictionary<Compound, float>
         {
             { ammonia, 1 },
             { phosphates, 1 },
         };
-        totalNeededCompounds = new Dictionary<Compound, float>()
+        totalNeededCompounds = new Dictionary<Compound, float>
         {
             { ammonia, 1 },
             { phosphates, 1 },
