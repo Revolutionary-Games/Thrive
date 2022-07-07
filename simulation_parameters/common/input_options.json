@@ -1,7 +1,8 @@
 [
     {
         "EnvironmentId": [
-            "Game"
+            "Game",
+            "3DGame"
         ],
         "GroupName": "MOVEMENT",
         "Actions": [
@@ -29,7 +30,8 @@
     },
     {
         "EnvironmentId": [
-            "Game"
+            "Game",
+            "3DGame"
         ],
         "GroupName": "ABILITIES",
         "Actions": [
@@ -82,7 +84,8 @@
     },
     {
         "EnvironmentId": [
-            "Editor"
+            "Editor",
+            "3DEditor"
         ],
         "GroupName": "EDITOR",
         "Actions": [
@@ -146,7 +149,49 @@
     },
     {
         "EnvironmentId": [
-            "Game"
+            "3DGame",
+            "3DEditor"
+        ],
+        "GroupName": "3D_MOVEMENT",
+        "Actions": [
+            {
+                "InputName": "g_move_up",
+                "Name": "MOVE_UP_OR_JUMP"
+            },
+            {
+                "InputName": "g_move_down",
+                "Name": "MOVE_DOWN_OR_CROUCH"
+            }
+        ]
+    },
+    {
+        "EnvironmentId": [
+            "3DEditor"
+        ],
+        "GroupName": "3D_EDITOR",
+        "Actions": [
+            {
+                "InputName": "e_pan_mode",
+                "Name": "HOLD_FOR_PAN_OR_ROTATE_MODE"
+            },
+            {
+                "InputName": "e_camera_front",
+                "Name": "SWITCH_TO_FRONT_CAMERA"
+            },
+            {
+                "InputName": "e_camera_right",
+                "Name": "SWITCH_TO_RIGHT_CAMERA"
+            },
+            {
+                "InputName": "e_camera_top",
+                "Name": "SWITCH_TO_TOP_CAMERA"
+            }
+        ]
+    },
+    {
+        "EnvironmentId": [
+            "Game",
+            "3DGame"
         ],
         "GroupName": "CHEATS",
         "Actions": [
@@ -175,7 +220,9 @@
     {
         "EnvironmentId": [
             "Game",
-            "Editor"
+            "Editor",
+            "3DGame",
+            "3DEditor"
         ],
         "GroupName": "MISCELLANEOUS",
         "Actions": [

@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs" type="Script" id=5]
-[ext_resource path="res://src/early_multicellular_stage/editor/EarlyMulticellularEditorGUI.cs" type="Script" id=6]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditorPatchMap.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/microbe_stage/editor/CellEditorComponent.tscn" type="PackedScene" id=9]
@@ -29,7 +28,6 @@ NoCellTypeSelectedPath = NodePath("EarlyMulticellularEditorGUI/NoCellSelected")
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
-script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

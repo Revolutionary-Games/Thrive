@@ -1104,7 +1104,7 @@ public partial class CellEditorComponent :
             }
         }
 
-        return highestPointInMiddleRows - Constants.EDITOR_ARROW_OFFSET;
+        return highestPointInMiddleRows;
     }
 
     private void SetupPreviewMicrobe()

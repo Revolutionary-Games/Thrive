@@ -20,7 +20,7 @@ shader_param/layer1 = ExtResource( 1 )
 shader_param/layer2 = ExtResource( 2 )
 shader_param/layer3 = ExtResource( 4 )
 
-[node name="PrimaryCamera" type="Camera"]
+[node name="MicrobeCamera" type="Camera"]
 process_priority = 100
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
 current = true

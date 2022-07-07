@@ -139,7 +139,6 @@ public class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEditorRepo
 
         reportTab.UpdateReportTabPatchSelector();
 
-        // TODO: this should be saved so that the text can be accurate if this is updated
         reportTab.UpdateGlucoseReduction(CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
 
         if (fresh)
