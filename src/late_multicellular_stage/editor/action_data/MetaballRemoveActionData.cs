@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -65,6 +66,9 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
 
             Vector3 movementVector = newPosition - childMetaball.Position;
 
+            if (parentMetaball == childMetaball)
+                throw new Exception("logic error in child metaball adjustment action generation");
+
             // We pass null here as child moves because we handle adding those separately
             result.Add(new MetaballMoveActionData<TMetaball>(childMetaball, childMetaball.Position,
                 newPosition, removedMetaball, parentMetaball, null));
@@ -74,10 +78,13 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
 
             // All descendants of childMetaball also must be adjusted
             descendantList.Clear();
-            descendantData.DescendantsOf(descendantList, childMetaball);
+            descendantData.DescendantsOfAndSelf(descendantList, childMetaball);
 
             foreach (var descendant in descendantList)
             {
+                if (descendant == childMetaball)
+                    continue;
+
                 var descendantPosition = descendant.Position + movementVector;
 
                 if (descendantPosition.IsEqualApprox(descendant.Position))
@@ -87,6 +94,9 @@ public class MetaballRemoveActionData<TMetaball> : EditorCombinableActionData
 
                 if (descendantParent == removedMetaball)
                     descendantParent = parentMetaball;
+
+                if (descendantParent == descendant)
+                    throw new Exception("logic error in child metaball adjustment action generation");
 
                 result.Add(new MetaballMoveActionData<TMetaball>(descendant, descendant.Position,
                     descendantPosition, descendant.Parent, descendantParent, null));

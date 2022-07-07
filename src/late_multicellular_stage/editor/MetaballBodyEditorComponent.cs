@@ -410,20 +410,16 @@ public partial class MetaballBodyEditorComponent :
 
     protected override void PerformMove(Vector3 position, MulticellularMetaball parent)
     {
-        throw new NotImplementedException();
-        /*if (!MoveCell(MovingPlacedMetaball!, MovingPlacedMetaball!.Position, new Hex(q, r), MovingPlacedMetaball.Data!.Orientation,
-                placementRotation))
+        if (!MoveMetaball(MovingPlacedMetaball!, position, parent))
         {
             Editor.OnInvalidAction();
-        }*/
+        }
     }
 
     protected override bool IsMoveTargetValid(Vector3 position, MulticellularMetaball? parent,
-        MulticellularMetaball cell)
+        MulticellularMetaball metaball)
     {
-        throw new NotImplementedException();
-
-        // return editedMetaballs.CanPlace(cell);
+        return editedMetaballs.CanAdd(metaball);
     }
 
     protected override void OnCurrentActionCanceled()
@@ -626,16 +622,23 @@ public partial class MetaballBodyEditorComponent :
     /// <summary>
     ///   See: <see cref="CellEditorComponent.GetOccupancies"/>
     /// </summary>
-    private IEnumerable<(Hex Hex, HexWithData<CellTemplate> Cell, int Orientation, bool Occupied)> GetOccupancies(
-        List<(Hex Hex, int Orientation)> hexes, List<HexWithData<CellTemplate>> cells)
+    private IEnumerable<
+            (Vector3 Position, MulticellularMetaball Metaball, MulticellularMetaball? Parent, bool Occupied)>
+        GetOccupancies(List<(Vector3 Position, MulticellularMetaball? Parent)> metaballPositions,
+            List<MulticellularMetaball> metaballs)
     {
-        var cellPositions = new List<(Hex Hex, HexWithData<CellTemplate> Cell, int Orientation, bool Occupied)>();
-        for (var i = 0; i < hexes.Count; i++)
+        var cellPositions =
+            new List<
+                (Vector3 Position, MulticellularMetaball Metaball, MulticellularMetaball? Parent, bool Occupied)>();
+        for (var i = 0; i < metaballPositions.Count; i++)
         {
-            var (hex, orientation) = hexes[i];
-            var cell = cells[i];
-            var oldCell = cellPositions.FirstOrDefault(p => p.Hex == hex);
-            bool occupied = oldCell != default;
+            var (hex, orientation) = metaballPositions[i];
+            var cell = metaballs[i];
+
+            // TODO: find metaball that overlaps with the position too much
+            // var oldCell = cellPositions.FirstOrDefault(p => p.Hex == hex);
+            // bool occupied = oldCell != default;
+            bool occupied = false;
 
             cellPositions.Add((hex, cell, orientation, occupied));
         }
@@ -644,33 +647,47 @@ public partial class MetaballBodyEditorComponent :
     }
 
     private CombinedEditorAction GetMultiActionWithOccupancies(
-        List<(Vector3 Position, MulticellularMetaball? Parent)> hexes,
-        List<MulticellularMetaball> cells, bool moving)
+        List<(Vector3 Position, MulticellularMetaball? Parent)> metaballPositions,
+        List<MulticellularMetaball> metaballs, bool moving)
     {
-        throw new NotImplementedException();
-        /*
         var moveActionData = new List<EditorAction>();
-        foreach (var (hex, cell, orientation, occupied) in GetOccupancies(hexes, cells))
+        foreach (var (position, metaball, parent, occupied) in GetOccupancies(metaballPositions, metaballs))
         {
             EditorAction action;
             if (occupied)
             {
-                action = new SingleEditorAction<CellRemoveActionData>(DoMetaballRemoveAction,
-                    UndoMetaballRemoveAction, new CellRemoveActionData(cell));
+                // TODO: should this remove the existing ones?
+                continue;
             }
             else
             {
                 if (moving)
                 {
-                    var data = new CellMoveActionData(cell, cell.Position, hex, cell.Data!.Orientation,
-                        orientation);
-                    action = new SingleEditorAction<CellMoveActionData>(DoMetaballMoveAction,
+                    // If the metaball is moved to its descendant, then the move is much more complicated
+                    // And currently not supported
+                    if (parent != null && editedMetaballs.IsDescendantsOf(parent, metaball))
+                    {
+                        GD.PrintErr("Logic for moving metaball to its descendant tree not implemented");
+                        continue;
+                    }
+
+                    var childMoves =
+                        MetaballMoveActionData<MulticellularMetaball>.CreateMovementActionForChildren(metaball,
+                            metaball.Position, position, editedMetaballs);
+
+                    var data = new MetaballMoveActionData<MulticellularMetaball>(metaball, metaball.Position, position,
+                        metaball.Parent,
+                        parent, childMoves);
+                    action = new SingleEditorAction<MetaballMoveActionData<MulticellularMetaball>>(DoMetaballMoveAction,
                         UndoMetaballMoveAction, data);
                 }
                 else
                 {
-                    action = new SingleEditorAction<CellPlacementActionData>(DoMetaballPlaceAction,
-                        UndoMetaballPlaceAction, new CellPlacementActionData(cell, hex, orientation));
+                    action = new SingleEditorAction<MetaballPlacementActionData<MulticellularMetaball>>(
+                        DoMetaballPlaceAction,
+                        UndoMetaballPlaceAction,
+                        new MetaballPlacementActionData<MulticellularMetaball>(metaball, position, metaballSize,
+                            parent));
                 }
             }
 
@@ -678,21 +695,25 @@ public partial class MetaballBodyEditorComponent :
         }
 
         return new CombinedEditorAction(moveActionData);
-        */
     }
 
-    private bool MoveCell(HexWithData<CellTemplate> cell, Hex oldLocation, Hex newLocation, int oldRotation,
-        int newRotation)
+    private bool MoveMetaball(MulticellularMetaball metaball, Vector3 newLocation, MulticellularMetaball? newParent)
     {
-        throw new NotImplementedException();
-
-        /*// Make sure placement is valid
-        if (!IsMoveTargetValid(newLocation, newRotation, cell))
+        // Make sure placement is valid
+        if (!IsMoveTargetValid(newLocation, newParent, metaball))
             return false;
 
+        // For now moving to descendant tree is not implement as it would be pretty tricky to get working correctly
+        if (newParent != null && editedMetaballs.IsDescendantsOf(newParent, metaball))
+        {
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"),
+                3.0f);
+            return false;
+        }
+
         var multiAction = GetMultiActionWithOccupancies(
-            new List<(Hex Hex, int Orientation)> { (newLocation, newRotation) },
-            new List<HexWithData<CellTemplate>> { cell },
+            new List<(Vector3 Position, MulticellularMetaball? Parent)> { (newLocation, newParent) },
+            new List<MulticellularMetaball> { metaball },
             true);
 
         // Too low mutation points, cancel move
@@ -708,7 +729,7 @@ public partial class MetaballBodyEditorComponent :
         // It's assumed that the above enqueue can't fail, otherwise the reference to MovingPlacedMetaball may be
         // permanently lost (as the code that calls this assumes it's safe to set MovingPlacedMetaball to null
         // when we return true)
-        return true;*/
+        return true;
     }
 
     private void OnMovePressed()

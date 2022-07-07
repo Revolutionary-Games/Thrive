@@ -55,6 +55,9 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
 
     public bool CanAdd(T metaball)
     {
+        if (metaball.Parent == metaball)
+            throw new ArgumentException("Metaball can't be its own parent");
+
         // First metaball (or adding the root back) can be placed anywhere
         if (metaball.Parent == null && (Count < 1 || metaballs.All(m => m.Parent != null)))
             return true;
@@ -127,7 +130,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
         }
     }
 
-    public void DescendantsOf(ICollection<T> list, T metaball)
+    public void DescendantsOfAndSelf(ICollection<T> list, T metaball)
     {
         if (list.Contains(metaball))
             return;
@@ -136,7 +139,18 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
 
         foreach (var child in GetChildrenOf(metaball))
         {
-            DescendantsOf(list, child);
+            DescendantsOfAndSelf(list, child);
         }
+    }
+
+    public bool IsDescendantsOf(Metaball descendant, Metaball parent)
+    {
+        if (descendant.Parent == null)
+            return false;
+
+        if (descendant.Parent == parent)
+            return true;
+
+        return IsDescendantsOf(descendant.Parent, parent);
     }
 }

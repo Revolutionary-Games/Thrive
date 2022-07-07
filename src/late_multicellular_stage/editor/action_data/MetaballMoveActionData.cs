@@ -34,7 +34,7 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
         Vector3 oldPosition, Vector3 newPosition, MetaballLayout<TMetaball> descendantData)
     {
         var descendantList = new List<TMetaball>();
-        descendantData.DescendantsOf(descendantList, movedMetaball);
+        descendantData.DescendantsOfAndSelf(descendantList, movedMetaball);
 
         var movementVector = newPosition - oldPosition;
 
@@ -43,7 +43,7 @@ public class MetaballMoveActionData<TMetaball> : EditorCombinableActionData
 
         var result = new List<MetaballMoveActionData<TMetaball>>();
 
-        foreach (var descendant in descendantData)
+        foreach (var descendant in descendantList)
         {
             var descendantPosition = descendant.Position + movementVector;
 

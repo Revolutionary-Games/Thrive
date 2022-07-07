@@ -745,9 +745,9 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
     /// <param name="rotation">
     ///     The rotation to check for the hex (only makes sense when placing a group of hexes)
     /// </param>
-    /// <param name="hex">The move data to try to move to the position</param>
+    /// <param name="metaball">The move data to try to move to the position</param>
     /// <returns>True if valid</returns>
-    protected abstract bool IsMoveTargetValid(Vector3 position, MulticellularMetaball? rotation, TMetaball hex);
+    protected abstract bool IsMoveTargetValid(Vector3 position, MulticellularMetaball? rotation, TMetaball metaball);
 
     protected abstract void OnMoveActionStarted();
     protected abstract void PerformMove(Vector3 position, TMetaball parent);

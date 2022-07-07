@@ -78,17 +78,22 @@ public class MulticellularMetaball : Metaball
 
     protected bool Equals(MulticellularMetaball other)
     {
+        // This seems to cause infinite recursion, so this is not done for now and parents need to equal references
+        // and not values
+        // if (!ReferenceEquals(Parent, other.Parent))
+        // {
+        //     if (ReferenceEquals(Parent, null) && !ReferenceEquals(other.Parent, null))
+        //         return false;
+        //
+        //     if (!ReferenceEquals(Parent, null) && ReferenceEquals(other.Parent, null))
+        //         return false;
+        //
+        //     if (!Parent!.Equals(other.Parent))
+        //         return false;
+        // }
+
         if (!ReferenceEquals(Parent, other.Parent))
-        {
-            if (ReferenceEquals(Parent, null) && !ReferenceEquals(other.Parent, null))
-                return false;
-
-            if (!ReferenceEquals(Parent, null) && ReferenceEquals(other.Parent, null))
-                return false;
-
-            if (!Parent!.Equals(other.Parent))
-                return false;
-        }
+            return false;
 
         return CellType.Equals(other.CellType) && Position == other.Position;
     }

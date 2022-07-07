@@ -73,6 +73,14 @@ public partial class MetaballBodyEditorComponent
         {
             editedMetaballs.Add(data.MovedMetaball);
         }
+
+        if (data.MovedChildMetaballs != null)
+        {
+            foreach (var movementAction in data.MovedChildMetaballs)
+            {
+                DoMetaballMoveAction(movementAction);
+            }
+        }
     }
 
     [DeserializedCallbackAllowed]
@@ -82,5 +90,13 @@ public partial class MetaballBodyEditorComponent
         data.MovedMetaball.Parent = data.OldParent;
 
         metaballDisplayDataDirty = true;
+
+        if (data.MovedChildMetaballs != null)
+        {
+            foreach (var movementAction in data.MovedChildMetaballs)
+            {
+                UndoMetaballMoveAction(movementAction);
+            }
+        }
     }
 }
