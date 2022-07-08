@@ -486,6 +486,10 @@ public class PatchMapDrawer : Control
 
     private void DrawRegions()
     {
+        // Don't draw a border if there's only one region
+        if (map.Regions.Count == 1)
+            return;
+
         foreach (var entry in map.Regions)
         {
             var region = entry.Value;
