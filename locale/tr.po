@@ -50,9 +50,8 @@ msgid "GENERAL"
 msgstr "Genel"
 
 #: ../simulation_parameters/common/gallery.json:121
-#, fuzzy
 msgid "MULTICELLULAR"
-msgstr "Çok Hücreli Evresi"
+msgstr "Çok Hücreli"
 
 #: ../simulation_parameters/common/gallery.json:131
 msgid "MODELS"
@@ -109,32 +108,16 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Ayrıca senden küçük hücreleri, bakterileri ve demir parçalarını [thrive:input]g_toggle_engulf[/thrive:input] tuşuna basarak yutabilirsin. Bu fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur ve hücreni yavaşlatır. Yutmayı sona erdirmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna ikinci kez basmayı unutma."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Prokaryotik Yapılar\n"
-"\n"
-"Metabolozomlar: Glukozdan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir\n"
-"\n"
-"Kemosentez Yapan Proteinler: Bir kemoplast gibi [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürden[/thrive:compound] [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] yarısını üretir ve glikoliz yapar. 1 Altıgenlik yer kaplar\n"
-"\n"
-"Tilakoidler: Normal bir kloroplast gibi [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] 3'te 1'ini üretir ve glikoliz yapar. 1 Altıgenlik yer kaplar\n"
-"\n"
-"Rustisiyanin: [thrive:compound type=\"iron\"]Demiri[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çevirir\n"
-"\n"
-"Nitrojenaz: Atmosferdeki azotu ve [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] oksijen olmadan [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] çevirir\n"
-"\n"
-"Sitoplazma: Depo alanına sahiptir ve glikoliz yapar (Az miktarda [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir)"
+msgstr "Yutma mekanizması tamamlandığında, yutulan herhangi bir nesne sindirilmek için hücre zarı içerisinde tutulacak. Sindirilemeyen nesneler dışarı atılacak. Bu yüzden, ilk önce, bu nesneleri işlemeyi sağlayan gerekli mutasyonlara sahip olduğundan emin ol. Enzimler sindirim konusunda yardımcı olur ve Lizozom tarafından karşılanır. Sindirimi daha etkili hale getirmek için bu organeli evrimleştirmen önerilir."
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Hareket etmek için [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] tuşlarını ve fareyi kullan. Eğer toksin kofuluna sahipsen, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'yi[/thrive:compound] ateş etmek için [thrive:input]g_fire_toxin[/thrive:input] tuşuna bas. Yutma moduna geçmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas. Fare tekeriyle yakınlaştırıp uzaklaştırabilirsin."
+msgstr "Ancak, Lizozom sadece ökaryotlara özgü bir organel. Öte yandan, prokaryotlar böyle bir organele sahip değil ve onlar besini daha verimsiz bir biçimde sindirir."
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Hareket etmek için [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] tuşlarını ve fareyi kullan. Eğer toksin kofuluna sahipsen, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'yi[/thrive:compound] ateş etmek için [thrive:input]g_fire_toxin[/thrive:input] tuşuna bas. Yutma moduna geçmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas. Fare tekeriyle yakınlaştırıp uzaklaştırabilirsin."
+msgstr "Özellikle Selüloz ve Kitin hücre duvarları, onları parçalayan gerekli enzimler olmadan sindirilemez."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -185,7 +168,7 @@ msgstr "Dikkatli ol çünkü rakiplerin seninle birlikte gelişiyor. Editöre gi
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve birbiriyle üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. Başka bir hücre ile bağ kurmak için, bağlayıcı ajan organeline sahip olman ve [thrive:input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna girdikten sonra o hücreye yaklaşman gerekir. Yalnızca kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni bölemez ve editöre giremezsin (şimdilik). Editöre girmek için, ilk önce, yeterli bileşik toplamalı ve [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılmalısın. Böylece editöre girebilirsin. Büyük hücre kolonileri çok hücreliliğe doğru giden yoldur (henüz oyunda değil)."
+msgstr "Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve birbirine üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. Başka bir hücre ile bağ kurmak için, bağlayıcı ajan organeline sahip olman ve [thrive:input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna girdikten sonra o hücreye yaklaşman gerekir. Yalnızca kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni bölemez ve editöre giremezsin (şimdilik). Editöre girmek için, ilk önce, yeterli bileşik toplamalı ve [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılmalısın. Böylece editöre girebilirsin. Büyük hücre kolonileri çok hücreliliğe doğru giden yoldur (henüz oyunda değil)."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -499,38 +482,36 @@ msgid "MOVE_ORGANELLE"
 msgstr "Organeli taşı"
 
 #: ../simulation_parameters/common/input_options.json:155
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Hareket"
+msgstr "3D Hareket"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "Yukarı doğru git ya da zıpla"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "Aşağı doğru git ya da çömel"
 
 #: ../simulation_parameters/common/input_options.json:171
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Editör"
+msgstr "3D Editör"
 
 #: ../simulation_parameters/common/input_options.json:175
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "Kaydırma ve döndürme modları arasında geçiş yapmak için basılı tut"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Ön kamera görünümüne geç"
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Sağ kamera görünümüne geç"
 
 #: ../simulation_parameters/common/input_options.json:187
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Üst kamera görünümüne geç"
 
 #: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -644,9 +625,8 @@ msgstr "Demir Kemolitoototrofisi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:133
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
-#, fuzzy
 msgid "THERMOSYNTHESIS"
-msgstr "Kemosentez"
+msgstr "Termosentez"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -705,9 +685,8 @@ msgstr "Büyük Demir Parçası"
 #: ../simulation_parameters/microbe_stage/biomes.json:1774
 #: ../simulation_parameters/microbe_stage/biomes.json:1941
 #: ../simulation_parameters/microbe_stage/biomes.json:2187
-#, fuzzy
 msgid "GOOGLY_EYE_CELL"
-msgstr "Oyuncu Hücresi"
+msgstr "Pörtlek gözlü hücre"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -838,17 +817,15 @@ msgstr "Sıcaklık"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
-msgstr ""
+msgstr "Lipaz"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
-#, fuzzy
 msgid "CELLULASE"
-msgstr "Selüloz"
+msgstr "Selülaz"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:11
-#, fuzzy
 msgid "CHITINASE"
-msgstr "Kitin"
+msgstr "Kitinaz"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:58
@@ -927,9 +904,8 @@ msgstr "Azot Fiksasyon Plastidi"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:341
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:972
-#, fuzzy
 msgid "THERMOSYNTHASE"
-msgstr "Kemosentez"
+msgstr "Termosentaz"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:380
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1858
@@ -1005,9 +981,8 @@ msgstr "Sil"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:870
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
-#, fuzzy
 msgid "LYSOSOME"
-msgstr "Oksitoksizom"
+msgstr "Lizozom"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
@@ -1210,7 +1185,7 @@ msgstr "Bağlı Olmayan Hücreler"
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 "Diğerlerine bağlı olmayan, yerleştirilmiş hücreler var.\n"
-"Devam etmek için lütfen yerleştirdiğin bütün hücreleri birbiriyle bağla."
+"Devam etmek için lütfen yerleştirdiğin bütün hücreleri birbirine bağla."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:548
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:668
@@ -1228,7 +1203,7 @@ msgstr "Yeni Hücre Türü Oluştur"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
-msgstr "Mevcut hücreleri kopyalayarak ve onlara yeni bir isim vererek yeni hücre türleri oluşturabilirsin. Hücre türlerinde, farklı görevlerde özelleştirmek amacıyla değişiklik yapılabilir. Bir hücre türü değiştirildiğinde, bu türe ait yerleştirilmiş bütün hücreler güncellenir."
+msgstr "Mevcut hücreleri kopyalayarak ve onlara yeni bir isim vererek yeni hücre türleri oluşturabilirsin. Hücre türlerinde, farklı görevlerde özelleştirmek amacıyla, değişiklik yapılabilir. Bir hücre türü değiştirildiğinde, bu türe ait yerleştirilmiş bütün hücreler güncellenir."
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:701
@@ -2540,7 +2515,7 @@ msgstr "arazide nesli tükendi"
 #: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
-msgstr ""
+msgstr "{0} {1}"
 
 #: ../src/general/StageHUDBase.cs:888
 msgid "CATEGORY_AN_ABUNDANCE"
@@ -3227,14 +3202,12 @@ msgid "OXYTOXISOME_DESC"
 msgstr "OksiToksi NT toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozom."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:973
-#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretir. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] konsantrasyonu ve sıcaklık ile doğru orantılıdır."
+msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:974
-#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, Termosentez adı verilen bir işlemde, sudan glukoz ve karbondioksit gazı üretmek için çevredeki ısı farkını kullanırlar. Üretilen glukoz oranı, karbondioksit konsantrasyonu ve sıcaklıkla doğru orantılıdır."
+msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, termosentez adı verilen bir işlemde, ısıya maruz kalırken katlanmasını ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz kalırken de açılmasını ve ADP'nin ATP'ye dönüşmesini sağlar. ATP üretimi, sıcaklık ile doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1098
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -3306,11 +3279,11 @@ msgstr "Kloroplast zarsı keseler içinde birbirinin üstüne dizili, ışığa 
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretir. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] konsantrasyonu ve sıcaklık ile doğru orantılıdır."
+msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, Termosentez adı verilen bir işlemde, sudan glukoz ve karbondioksit gazı üretmek için çevredeki ısı farkını kullanırlar. Üretilen glukoz oranı, karbondioksit konsantrasyonu ve sıcaklıkla doğru orantılıdır."
+msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, termosentez adı verilen bir işlemde, sudan ATP üretmek için çevredeki ısı farkını kullanır. ATP üretimi, sıcaklıkla doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1769
 #: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:212
@@ -3365,23 +3338,20 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "Henüz Eklenmedi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2360
-#, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
+msgstr "Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye edilebilir. Aynı anda yalnızca bir enzim kullanılabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2361
-#, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. Sitoplazmada gerçekleşen oksijenli solunuma kıyasla, metabolozomlar glukozu ATP'ye çok daha yüksek hızda dönüştürebilir. Ancak metabolozomlar çalışmak için oksijen gerektirir ve ortamda bulunan düşük seviyelerdeki oksijen, onun ATP sentezleme hızını yavaşlatır. Metabolozomlar direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan glikoliz yapabilir."
+msgstr "Lizozom, çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, hücre zarına bağlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve otofaji adı verilen bir işlemle yan ürünleri temizler."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
-#, fuzzy
 msgid "DIGESTION_SPEED"
-msgstr "Kaynak Emme Hızı"
+msgstr "Sindirim Hızı"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "Sindirim Verimliliği"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2420
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -3402,7 +3372,7 @@ msgstr "İki katmanlı bir hücre zarı. Hasara karşı koruyuculuğu daha iyidi
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr "Bu hücre zarı toplam hasara, özellikle de fiziksel hasara karşı koruyuculuğu daha yüksek olan bir duvara sahip. Ayrıca formunu korumak için daha az enerji harcar. Ama kaynakları çabucak ememez ve hücre daha yavaştır."
+msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Selülaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2924
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3416
@@ -3420,11 +3390,11 @@ msgstr "Yutamaz"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2990
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3237
 msgid "INVULNERABLE_TO_ENGULFMENT"
-msgstr ""
+msgstr "Yutulmaya Karşı Dayanıklı"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3005
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr "Bu hücre zarı toplam hasara, özellikle de toksin hasarına karşı koruyuculuğu daha yüksek olan bir duvara sahip. Ayrıca formunu korumak için daha az enerji harcar. Ama kaynakları çabucak ememez ve hücre daha yavaştır."
+msgstr "Bu hücre zarı, genel hasara ve özellikle toksin hasarına karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Kitinaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3171
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3450
@@ -3472,9 +3442,8 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Geçen Zaman: {0:#,#} yıl"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
-#, fuzzy
 msgid "LOOKING_AT"
-msgstr "Editördeyken yanlışlıkları düzeltmek için geri al butonuna bas"
+msgstr "Bakılan:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:447
 #: ../src/microbe_stage/MicrobeStage.tscn:485
@@ -3526,13 +3495,12 @@ msgid "AGENTS"
 msgstr "Ajanlar"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1555
-#, fuzzy
 msgid "BECOME_AWARE"
-msgstr "Biyom: {0}"
+msgstr "Farkında Ol"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1566
 msgid "AWAKEN"
-msgstr ""
+msgstr "Uyandır"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 #: ../src/microbe_stage/MicrobeStage.tscn:1660
@@ -3540,23 +3508,20 @@ msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
-#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr "Çok Hücreli Editörünün İlk Kısmı Yükleniyor"
+msgstr "Çok Hücreli Editörü Yükleniyor"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
-#, fuzzy
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr "Burayı düzenlemek için editör sekmesinden bir hücre türü seç"
+msgstr "Burayı düzenlemek için editör sekmesinden bir doku türü seç"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "Bir damla formu, aynı soydan gelenlerin içine taşınamaz"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
-#, fuzzy
 msgid "INTERNALS"
-msgstr "Dış"
+msgstr "İç Organlar"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:371
 msgid "APPEARANCE"
@@ -3564,36 +3529,30 @@ msgstr "Görünüm"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
-#, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
-msgstr "Üreme"
+msgstr "Eşeysiz"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
-#, fuzzy
 msgid "DISCONNECTED_METABALLS"
-msgstr "Bağlı Olmayan Hücreler"
+msgstr "Bağlı Olmayan Damla Formları"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
-#, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"Diğerlerine bağlı olmayan, yerleştirilmiş hücreler var.\n"
-"Devam etmek için lütfen yerleştirdiğin bütün hücreleri birbiriyle bağla."
+"Diğerlerine bağlı olmayan, yerleştirilmiş damla formları var.\n"
+"Devam etmek için lütfen yerleştirdiğin bütün damla formlarını birbirine bağla."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr "Yeni Hücre Türü Oluştur"
+msgstr "Yeni Doku Türü Oluştur"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr "Mevcut hücreleri kopyalayarak ve onlara yeni bir isim vererek yeni hücre türleri oluşturabilirsin. Hücre türlerinde, farklı görevlerde özelleştirmek amacıyla değişiklik yapılabilir. Bir hücre türü değiştirildiğinde, bu türe ait yerleştirilmiş bütün hücreler güncellenir."
+msgstr "Mevcut dokuları kopyalayarak ve onlara yeni bir isim vererek yeni doku türleri oluşturabilirsin. Doku türlerinde, farklı görevlerde özelleştirmek amacıyla, hücre editörü aracılığıyla değişiklik yapılabilir."
 
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "Birden Fazla Hücre"
+msgstr "Birden Fazla Damla Formu"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:44
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
@@ -3695,7 +3654,7 @@ msgstr "Yollanacak Sinyal"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:198
 msgid "DEVOURED"
-msgstr ""
+msgstr "Yutuldun"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:308
 msgid "STUFF_AT"
@@ -3721,7 +3680,7 @@ msgstr "İmleç Üzerinde:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1436
 msgid "INGESTED_MATTER"
-msgstr ""
+msgstr "İçeri Alınmış Madde"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1625
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -3793,7 +3752,7 @@ msgstr "Odaklanmış"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:165
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/s"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:285
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
@@ -3826,7 +3785,9 @@ msgstr "Hücre Türü İsmi"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1160
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr "Bu geri dönüşü olmayan bir evrim olduğu için çekirdek silinemez. Ancak eğer mevcut süreçte yerleştirildiyse, geri alma ya da yinelemeye izin verilir"
+msgstr ""
+"Bu geri dönüşü olmayan bir evrim olduğu için çekirdek silinemez.\n"
+"Ancak, eğer mevcut süreçte yerleştirildiyse, geri alma ya da yinelemeye izin verilir"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1162
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -3922,14 +3883,12 @@ msgid "STORAGE_COLON"
 msgstr "Depo:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
-#, fuzzy
 msgid "DIGESTION_SPEED_COLON"
-msgstr "Hız:"
+msgstr "Sindirim Hızı:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
-#, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "Açıklama:"
+msgstr "Sindirim Verimliliği:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 msgid "GENERATION_COLON"
@@ -3988,7 +3947,7 @@ msgstr "Bağlı Olmayan Organeller"
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Diğerlerine bağlı olmayan, yerleştirilmiş organeller var.\n"
-"Lütfen yerleştirdiğin bütün organelleri birbiriyle bağla veya değişikliklerini geri al."
+"Lütfen yerleştirdiğin bütün organelleri birbirine bağla veya değişikliklerini geri al."
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1196
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
@@ -4174,24 +4133,20 @@ msgid "LINE_COLOUR"
 msgstr "Çizgi Rengi:"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
-#, fuzzy
 msgid "LIPASE_DESCRIPTION"
-msgstr "Sil tüyleri kamçıya benzer ancak, yönlü itiş kuvveti sağlamak yerine, hücrelerin dönmesi için dönme kuvveti sağlar."
+msgstr "Lipaz, hücrenin çoğu türde hücre zarını parçalamasını sağlar. Hücren zaten lizozom olmadan da bu enzimlerin bazılarını üretir. Ancak bu türü seçerek onun etkisini arttırırsın."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
-#, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr "Koful hücrede depo olarak kullanılan iç zarsı organeldir. Kofullar, hücrede geniş çapta depo olarak kullanılan daha küçük zarsı yapılar olan ve birbiriyle birleşen birkaç kesecikten oluşur. Kofulun içi; moleküller, enzimler, katılar ve diğer maddeleri içeren suyla doludur. Şekilleri değişken ve hücreler arasında değişiklik gösterir."
+msgstr "Selülaz, hücrenin selüloz hücre zarını parçalamasını sağlar. Her eklemede etkisi artar."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
-#, fuzzy
 msgid "CHITINASE_DESCRIPTION"
-msgstr "Sil tüyleri kamçıya benzer ancak, yönlü itiş kuvveti sağlamak yerine, hücrelerin dönmesi için dönme kuvveti sağlar."
+msgstr "Kitinaz, hücrenin kitin hücre zarını parçalamasını sağlar. Her eklemede etkisi artar."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
-#, fuzzy
 msgid "SELECT_ENZYME"
-msgstr "Seçilen Modlar:"
+msgstr "Enzim Seç:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 msgid "MODIFY_ORGANELLE"
@@ -5211,7 +5166,7 @@ msgstr ""
 "\n"
 "Hücren hayatta kalmak için enerji üretmeye yarayan glukoz kaynağına ihtiyaç duyar.\n"
 "\n"
-"Yakınlardaki bir glukoz kaynağına kadar uzanan bu çizgiyi takip et."
+"Yakınlardaki bir glukoz kaynağına doğru uzanan bu çizgiyi takip et."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:198
 msgid "MICROBE_STAGE_HEALTH_TEXT"
@@ -5255,28 +5210,29 @@ msgid "TUTORIAL_VIEW_NOW"
 msgstr "Şimdi İncele"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"Bağ koparma moduna girdin. Bu modda, bağını koparmak istediğin koloni üyelerine tıklayabilirsin.\n"
+"Hücren, aynı anda yutulacak madde miktarı için sınırlı bir kapasiteye sahiptir. Bu sınır hücre büyüklüğüne bağlıdır. Yani daha küçük hücreler aynı anda daha az madde yutabilir.\n"
 "\n"
-"Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya [thrive:input]g_unbind_all[/thrive:input] tuşuna basabilirsin."
+"Eğer hücren doluysa, artık daha fazla şey yutamaz. Yutmaya devam etmek için içeri alınmış bir ya da daha fazla maddenin tamamen sindirilmesini bekle."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Bağ koparma moduna girdin. Bu modda, bağını koparmak istediğin koloni üyelerine tıklayabilirsin.\n"
+"Maddelerin üzerlerine gelerek onları yut. Sonra, onları içine çekmek için [thrive:input][/thrive:input] tuşuna basarak yutma moduna geç.\n"
 "\n"
-"Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya [thrive:input]g_unbind_all[/thrive:input] tuşuna basabilirsin."
+"Madde tamamen içeri alınana kadar yutmayı sürdür.\n"
+"\n"
+"Yakınlardaki bir yutulabilir nesneye doğru uzanan bu çizgiyi takip et."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
 msgstr ""
-"Bağ koparma moduna girdin. Bu modda, bağını koparmak istediğin koloni üyelerine tıklayabilirsin.\n"
+"Hücren yutuldu. Bu, yutan hücrenin senin hücreni sindirmeye başlayacağı anlamına geliyor.\n"
 "\n"
-"Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya [thrive:input]g_unbind_all[/thrive:input] tuşuna basabilirsin."
+"Sindirim işlemi sağlık çubuğunda (sağ alt) yüzde olarak gösterilir. Hücren, bu değer %100'e ulaştığında ya da maksimum zaman sınırı aşıldığında ölü sayılacak.\n"
+"\n"
+"Bu işlemi atlamak için intihar butonuna bas ve yeniden doğ. Ama unutma, her zaman kaçmak için bir şansın var!"
 
 #~ msgid "MOBILITY"
 #~ msgstr "Hareketlilik"
@@ -5617,3 +5573,6 @@ msgstr ""
 
 #~ msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 #~ msgstr "Pangonik Batipelajik"
+
+#~ msgid "SPEED_OF_THE_CELL"
+#~ msgstr "hücrenin hızı."
