@@ -67,6 +67,7 @@ public class GameWorld : ISaveLoadable
     /// <summary>
     ///   Blank world creation, only for loading saves
     /// </summary>
+    [JsonConstructor]
     public GameWorld()
     {
         // TODO: when loading a save this shouldn't be recreated as otherwise that happens all the time

@@ -12,24 +12,9 @@ using Nito.Collections;
 [UseThriveSerializer]
 public class Patch
 {
-    [JsonProperty]
-    public readonly int ID;
-
-    public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
-
-    [JsonProperty]
-    public readonly Biome BiomeTemplate;
-
-    [JsonProperty]
-    public readonly int[] Depth = { -1, -1 };
-
-    [JsonProperty]
-    public readonly PatchRegion Region;
-
     /// <summary>
     ///   The current snapshot of this patch.
     /// </summary>
-    [JsonProperty]
     private readonly PatchSnapshot currentSnapshot;
 
     [JsonProperty]
@@ -44,8 +29,36 @@ public class Patch
         Region = region;
     }
 
+    [JsonConstructor]
+    public Patch(LocalizedString name, int id, Biome biomeTemplate)
+    {
+        Name = name;
+        ID = id;
+        BiomeTemplate = biomeTemplate;
+        currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
+    }
+
+    [JsonProperty]
+    public int ID { get; }
+
+    [JsonIgnore]
+    public ISet<Patch> Adjacent { get; } = new HashSet<Patch>();
+
+    [JsonProperty]
+    public Biome BiomeTemplate { get; }
+
     [JsonProperty]
     public LocalizedString Name { get; private set; }
+
+    /// <summary>
+    ///   The region this patch belongs to. This has nullability suppression here to solve the circular dependency with
+    ///   <see cref="PatchRegion.Patches"/>
+    /// </summary>
+    [JsonProperty]
+    public PatchRegion Region { get; private set; } = null!;
+
+    [JsonProperty]
+    public int[] Depth { get; private set; } = { -1, -1 };
 
     /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI
