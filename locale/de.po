@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-07 18:22+0100\n"
+"POT-Creation-Date: 2022-07-07 18:24+0100\n"
 "PO-Revision-Date: 2022-04-08 11:52+0000\n"
 "Last-Translator: Vyethriel <vyethriel@gmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -21,23 +21,23 @@ msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Leicht"
 
 #: ../simulation_parameters/common/difficulty_presets.json:14
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Normal"
 
 #: ../simulation_parameters/common/difficulty_presets.json:25
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Schwer"
 
 #: ../simulation_parameters/common/difficulty_presets.json:36
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Benutzerdefiniert"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Konzept Kunst"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
@@ -46,9 +46,8 @@ msgid "CELLS"
 msgstr "Zellen"
 
 #: ../simulation_parameters/common/gallery.json:61
-#, fuzzy
 msgid "GENERAL"
-msgstr "Generation:"
+msgstr "Allgemein"
 
 #: ../simulation_parameters/common/gallery.json:121
 #, fuzzy
@@ -56,9 +55,8 @@ msgid "MULTICELLULAR"
 msgstr "Gehe zur nächsten Stufe des Spiels über (Mehrzellig). Verfügbar, sobald du eine ausreichend große Zellkolonie hast."
 
 #: ../simulation_parameters/common/gallery.json:131
-#, fuzzy
 msgid "MODELS"
-msgstr "Unbesiegbar"
+msgstr "Modelle"
 
 #: ../simulation_parameters/common/gallery.json:134
 #: ../simulation_parameters/common/gallery.json:284
@@ -75,7 +73,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:247
 msgid "MUSIC"
-msgstr ""
+msgstr "Musik"
 
 #: ../simulation_parameters/common/gallery.json:250
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
@@ -5352,12 +5350,13 @@ msgstr ""
 "Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
 msgstr ""
-"Du hast den \"Bindung aufheben\"-Modus aufgerufen. In diesem Modus kannst du auf die Mitglieder deiner Kolonie klicken, um deren Verbindung zu lösen.\n"
+"Deine Zelle wurde Verschlungen. Das heißt dass, die zelle die dich verschlungen hat, dich jetzt verdauen wird.\n"
 "\n"
-"Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
+"Der Verdauungs Fortschritt wird bei deiner lebensleiste (unten rechts) als prozentsatz angezeigt. Deine Zelle wird als tot gelten sobald es 100% ereicht oder das maximale zeitlimit erreich wurde.\n"
+"\n"
+"Drücke den Selbstmord Knopf um den Prozess zu überspringen und um widergeboren zu werden. Merke dir aber das es immer die chance gibt zu fliehen!"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Pangonische Schlote"

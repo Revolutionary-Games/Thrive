@@ -21,23 +21,23 @@ msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Könnyű"
 
 #: ../simulation_parameters/common/difficulty_presets.json:14
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Közepes"
 
 #: ../simulation_parameters/common/difficulty_presets.json:25
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Nehéz"
 
 #: ../simulation_parameters/common/difficulty_presets.json:36
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Egyéni"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
-msgstr ""
+msgstr "Koncepciós rajzok"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
@@ -46,9 +46,8 @@ msgid "CELLS"
 msgstr "Sejtek"
 
 #: ../simulation_parameters/common/gallery.json:61
-#, fuzzy
 msgid "GENERAL"
-msgstr "Generáció:"
+msgstr "Alap"
 
 #: ../simulation_parameters/common/gallery.json:121
 #, fuzzy
@@ -56,52 +55,38 @@ msgid "MULTICELLULAR"
 msgstr "Sejtszervecske elhelyezése"
 
 #: ../simulation_parameters/common/gallery.json:131
-#, fuzzy
 msgid "MODELS"
-msgstr "Isten mód"
+msgstr "Modellek"
 
 #: ../simulation_parameters/common/gallery.json:134
 #: ../simulation_parameters/common/gallery.json:284
-#, fuzzy
 msgid "MICROBE_STAGE"
-msgstr ""
-"Egy távoli idegen bolygón az évmilliók óta tartó vulkanikus aktivitások és meteoresők miatt egy új csoda jött létre az univerzumban.\n"
-"\n"
-"Élet.\n"
-"\n"
-"Egyszerű baktériumok jelentek meg az óceánok lenti régióiban. A játék elején a te fajod az utolsó univerzális közös ős (más néven LUCA) ezen a planétán.\n"
-"\n"
-"Ahhoz, hogy túléld ezt a kegyetlen világot, annyi vegyületet kell gyűjtened, amennyit csak találsz, és fejlesztened kell fajodat az evolúció során, hogy versenyképesek maradjanak a többi fajjal."
+msgstr "Sejtfázis"
 
 #: ../simulation_parameters/common/gallery.json:247
 msgid "MUSIC"
-msgstr ""
+msgstr "Zene"
 
 #: ../simulation_parameters/common/gallery.json:250
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
-#, fuzzy
 msgid "ALL"
-msgstr "Alt"
+msgstr "Összes"
 
 #: ../simulation_parameters/common/gallery.json:261
-#, fuzzy
 msgid "MENU"
-msgstr "Menu"
+msgstr "Menü"
 
 #: ../simulation_parameters/common/gallery.json:325
-#, fuzzy
 msgid "MICROBE_EDITOR"
-msgstr "Sejtszerkesztő betöltése"
+msgstr "Sejtszerkesztő"
 
 #: ../simulation_parameters/common/gallery.json:360
-#, fuzzy
 msgid "MULTICELLULAR_STAGE"
-msgstr "Sejtszervecske elhelyezése"
+msgstr "Többsejtes fázis"
 
 #: ../simulation_parameters/common/gallery.json:383
-#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Sejtszerkesztő betöltése"
+msgstr "Többsejtes szerkesztő"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:97
@@ -853,12 +838,10 @@ msgid "LIPASE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
-#, fuzzy
 msgid "CELLULASE"
 msgstr "Cellulóz"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:11
-#, fuzzy
 msgid "CHITINASE"
 msgstr "Kitin"
 
@@ -1017,9 +1000,8 @@ msgstr "Csilló"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:870
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
-#, fuzzy
 msgid "LYSOSOME"
-msgstr "Oxytoxyszóma"
+msgstr "Lizoszóma"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
@@ -1198,9 +1180,8 @@ msgstr "Reprodukció:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:479
-#, fuzzy
 msgid "REPRODUCTION_BUDDING"
-msgstr "reprodukálva"
+msgstr "Bimbózás"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:641
@@ -1308,12 +1289,11 @@ msgstr "Delta: {0}"
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
 #: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
-#, fuzzy
 msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Mod műhely ID-je ismeretlen"
+msgstr "Ismeretlen a Windows-on"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
@@ -1352,7 +1332,7 @@ msgstr "FPS kijelző"
 
 #: ../src/engine/DebugOverlays.tscn:110
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "Entitások lerakása ütközési alakzatokkal"
 
 #: ../src/engine/DebugOverlays.tscn:117
 msgid "ENTITY_LABEL"
@@ -1923,91 +1903,77 @@ msgstr "Hiba történt a mod/modok betöltése közben. A hibáról több inform
 
 #: ../src/general/NewGameSettings.cs:284
 #: ../src/general/NewGameSettings.tscn:1052
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Új játék indítása"
+msgstr "Belépés a játékba ezekkel a beállításokkal"
 
 #: ../src/general/NewGameSettings.cs:291
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr "Új játék indítása"
+msgstr "Egyes beállítások érvénytelenek"
 
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Előre beállított nehézség"
 
 #: ../src/general/NewGameSettings.tscn:142
 #: ../src/general/NewGameSettings.tscn:814
 msgid "LAWK_ONLY"
-msgstr ""
+msgstr "Csak LAWK"
 
 #: ../src/general/NewGameSettings.tscn:149
 #: ../src/general/NewGameSettings.tscn:821
-#, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
-"A félénk sejtek sok esetben a menekülést választják,\n"
-"így ha ragadozó van a közelben, akkor inkább megfutamodnak.\n"
-"A bátor sejtek nem ijednek meg a ragadozó sejtektől,\n"
-"így nagy eséllyel védekezésképp vissza is támadnak."
+msgstr "(Egyes részek, és képességek nem lesznek elérhetők, csak azok, melyek a való életben is léteznek. Innen jön a LAWK [Life As We Know it] kifelyezés.)"
 
 #: ../src/general/NewGameSettings.tscn:165
 #: ../src/general/NewGameSettings.tscn:837
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "Az élet eredete"
 
 #: ../src/general/NewGameSettings.tscn:172
 #: ../src/general/NewGameSettings.tscn:844
-#, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
-"A félénk sejtek sok esetben a menekülést választják,\n"
-"így ha ragadozó van a közelben, akkor inkább megfutamodnak.\n"
-"A bátor sejtek nem ijednek meg a ragadozó sejtektől,\n"
-"így nagy eséllyel védekezésképp vissza is támadnak."
+msgstr "(kezdő helyszín)"
 
 #: ../src/general/NewGameSettings.tscn:186
 #: ../src/general/NewGameSettings.tscn:858
-#, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "Öngyilkosság"
+msgstr "Egyes beállítások lehet, hogy nem elérhetők, hogyha a LAWK engedélyezve van"
 
 #: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:860
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
+msgstr "Hidrotermális nyílások"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "Kis meleg tavacska"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "Pánspermia (véletlen)"
 
 #: ../src/general/NewGameSettings.tscn:204
 #: ../src/general/NewGameSettings.tscn:876
 msgid "PLANET_RANDOM_SEED"
-msgstr ""
+msgstr "Véletlen bolygó seed"
 
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:895
-#, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Játék szüneteltetése"
+msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "Nehézség"
 
 #: ../src/general/NewGameSettings.tscn:278
 msgid "PLANET"
-msgstr ""
+msgstr "Bolygó"
 
 #: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:181
 msgid "MISC"
@@ -2015,50 +1981,39 @@ msgstr "Egyéb"
 
 #: ../src/general/NewGameSettings.tscn:367
 msgid "MUTATION_COST_MULTIPLIER"
-msgstr ""
+msgstr "Mutációs költség szorzó"
 
 #: ../src/general/NewGameSettings.tscn:412
-#, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-"Az aktív sejtek össze-vissza bolyonganak a vizekben, ha semmi érdekes nem történik.\n"
-"A rögzült sejtek inkább egy helyben maradva várnak a környezet változásaira, mielőtt cselekednek."
+msgstr "(a szervek, membránok, és egyéb dolgok költsége a szerkesztőben)"
 
 #: ../src/general/NewGameSettings.tscn:429
-#, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr "Mutáció pont"
+msgstr "MI mutációs mértéke"
 
 #: ../src/general/NewGameSettings.tscn:474
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 #: ../src/general/NewGameSettings.tscn:491
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "Vegyületfelhők"
+msgstr "Vegyületfelhők sűrűsége"
 
 #: ../src/general/NewGameSettings.tscn:536
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
-msgstr ""
-"Az opportunista sejtek versengeni fognak riválisaikkal bizonyos nyersanyagokért,\n"
-"és más sejteket is levadásznak mérgek segítségével, ha nem tudják elnyelni őket.\n"
-"A gyanakvó sejtek nem nagyon teszik ki magukat veszélynek nyersanyagokért."
+msgstr "(a vegyületfelhők sűrűsége a környezetben)"
 
 #: ../src/general/NewGameSettings.tscn:553
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr ""
+msgstr "A játékos halála utáni populáció egyedszámának csökkenése"
 
 #: ../src/general/NewGameSettings.tscn:598
-#, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
-msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
+msgstr "(a játékos halála után a játékos fajának a populációjának az egyedszámának csökkenése)"
 
 #: ../src/general/NewGameSettings.tscn:615
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
-msgstr ""
+msgstr "Környezetben lévő glükóz mennyisége"
 
 #: ../src/general/NewGameSettings.tscn:659
 #, fuzzy
@@ -2066,96 +2021,77 @@ msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
 
 #: ../src/general/NewGameSettings.tscn:676
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Ozmoreguláció ára"
+msgstr "Ozmoreguláció költségének szorzója"
 
 #: ../src/general/NewGameSettings.tscn:721
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "Ozmoreguláció ára"
+msgstr "(a játékos fajának az ozmoregulációs költsége)"
 
 #: ../src/general/NewGameSettings.tscn:733
 msgid "FREE_GLUCOSE_CLOUD"
-msgstr ""
+msgstr "Ingyenes glükóz felhő a szerkesztő elhagyásakor"
 
 #: ../src/general/NewGameSettings.tscn:740
-#, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
-msgstr ""
-"A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
-"A reszponzív sejtek hamar új célpontokat keresnek."
+msgstr "(a szerkesztő elhagyása után egy közeli glükózfelhő mellett lesz a sejted)"
 
 #: ../src/general/NewGameSettings.tscn:776
-#, fuzzy
 msgid "PATCH_MAP_TYPE"
-msgstr "Patch térkép"
+msgstr "Patch térkép típusa"
 
 #: ../src/general/NewGameSettings.tscn:783
-#, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
-msgstr ""
-"Az aktív sejtek össze-vissza bolyonganak a vizekben, ha semmi érdekes nem történik.\n"
-"A rögzült sejtek inkább egy helyben maradva várnak a környezet változásaira, mielőtt cselekednek."
+msgstr "(procedurális patch térkép generálása, vagy a klasszikus elrendezés használata)"
 
 #: ../src/general/NewGameSettings.tscn:798
 #: ../src/general/NewGameSettings.tscn:799
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr ""
+msgstr "Procedurális"
 
 #: ../src/general/NewGameSettings.tscn:799
 msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr ""
+msgstr "Klasszikus"
 
 #: ../src/general/NewGameSettings.tscn:943
 msgid "PLANET_GENERATION_TEASER"
-msgstr ""
+msgstr "Bolygó generálás hamarosan!"
 
 #: ../src/general/NewGameSettings.tscn:975
-#, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Sejtszervecske elhelyezése"
+msgstr "Későbbi fázisok prototípusainak engedélyezése"
 
 #: ../src/general/NewGameSettings.tscn:982
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
+msgstr "(egyes opciók lehet, hogy elérhetetlenek lesznek a többi fázis elértével)"
 
 #: ../src/general/NewGameSettings.tscn:994
-#, fuzzy
 msgid "EASTER_EGGS"
-msgstr "Érdekesség: a Didinium és a Papucsállatka kapcsolata egy tankönyvi példa a ragadozó-zsákmányállat kapcsolatra, amit már évtizedek óta tanulmányoznak. És te hova tartozol? A Didiniumhoz, vagy a Papucsállatkához? A ragadozóhoz, vagy a zsákmányhoz?"
+msgstr "\"Húsvéti tojások\" engedélyezése"
 
 #: ../src/general/NewGameSettings.tscn:1001
-#, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
-msgstr ""
-"A félénk sejtek sok esetben a menekülést választják,\n"
-"így ha ragadozó van a közelben, akkor inkább megfutamodnak.\n"
-"A bátor sejtek nem ijednek meg a ragadozó sejtektől,\n"
-"így nagy eséllyel védekezésképp vissza is támadnak."
+msgstr "(random megidézett titkok a játékban)"
 
 #: ../src/general/NewGameSettings.tscn:1029
-#, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr "Nyisd meg a mentés menüt, hogy elmentsd a játékot"
+msgstr "Speciális beállítási nézet megnyitása"
 
 #: ../src/general/NewGameSettings.tscn:1031
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Speciális"
 
 #: ../src/general/NewGameSettings.tscn:1042
-#, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr "Öngyilkosság"
+msgstr "Visszatérés alap beállítási nézetbe"
 
 #: ../src/general/NewGameSettings.tscn:1043
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Alap"
 
 #: ../src/general/NewGameSettings.tscn:1053
-#, fuzzy
 msgid "CONFIRM_NORMAL"
-msgstr "ELFOGAD"
+msgstr "Elfogad"
 
 #: ../src/general/OptionsMenu.cs:629 ../src/general/OptionsMenu.tscn:292
 msgid "AUTO_RESOLUTION"
@@ -2267,7 +2203,7 @@ msgstr "Képesség sáv megjelenítése"
 
 #: ../src/general/OptionsMenu.tscn:399
 msgid "DISPLAY_BACKGROUND_PARTICLES"
-msgstr ""
+msgstr "Háttérrészecskék megjelenítése"
 
 #: ../src/general/OptionsMenu.tscn:407
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
@@ -2357,36 +2293,35 @@ msgstr "Szálak:"
 
 #: ../src/general/OptionsMenu.tscn:915
 msgid "MAX_SPAWNED_ENTITIES"
-msgstr ""
+msgstr "Entitások maximális száma:"
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
 msgid "TINY"
-msgstr ""
+msgstr "Nagyon kicsi"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "VERY_SMALL"
-msgstr ""
+msgstr "Elég kicsi"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "SMALL"
-msgstr ""
+msgstr "Kicsi"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "LARGE"
-msgstr ""
+msgstr "Nagy"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "VERY_LARGE"
-msgstr ""
+msgstr "Nagyon nagy"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "HUGE"
-msgstr ""
+msgstr "Hatalmas"
 
 #: ../src/general/OptionsMenu.tscn:931
-#, fuzzy
 msgid "EXTREME"
-msgstr "Extrák"
+msgstr "Extrém"
 
 #: ../src/general/OptionsMenu.tscn:1005
 msgid "RESET_INPUTS"
@@ -2553,9 +2488,8 @@ msgid "SAVE_GAME"
 msgstr "Játék mentése"
 
 #: ../src/general/PauseMenu.tscn:203
-#, fuzzy
 msgid "STATISTICS_BUTTON_TOOLTIP"
-msgstr "Öngyilkosság"
+msgstr "Jelenlegi statisztikák a játékról"
 
 #: ../src/general/PauseMenu.tscn:205
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:485
@@ -2603,7 +2537,7 @@ msgstr "kihalt a bolygón"
 #: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
-msgstr ""
+msgstr "{0} {1}"
 
 #: ../src/general/StageHUDBase.cs:888
 msgid "CATEGORY_AN_ABUNDANCE"
@@ -2882,7 +2816,6 @@ msgid "DEVELOPERS"
 msgstr "Fejlesztők"
 
 #: ../src/gui_common/PlaybackControls.tscn:107
-#, fuzzy
 msgid "STOP"
 msgstr "Stop"
 
@@ -2975,40 +2908,36 @@ msgstr "N/A"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:54
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
-msgstr ""
+msgstr "Dupla kattintás a teljes képernyő nézetért"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:72
-#, fuzzy
 msgid "TITLE_COLON"
-msgstr "Méret:"
+msgstr "Cím:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:99
-#, fuzzy
 msgid "DESCRIPTION_COLON"
-msgstr "A leírás túl hosszú"
+msgstr "Leírás:"
 
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.tscn:126
-#, fuzzy
 msgid "ARTIST_COLON"
-msgstr "Előző:"
+msgstr "Készítő:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:248
-#, fuzzy
 msgid "UNTITLED"
-msgstr "Biom: {0}"
+msgstr "Névtelen"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:19
 msgid "GALLERY_VIEWER"
-msgstr ""
+msgstr "Galéria nézet"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:63
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
-msgstr ""
+msgstr "Elemek szűrése kategóriák szerint:"
 
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:185
 msgid "SLIDESHOW"
-msgstr ""
+msgstr "Diavetítés"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2198
@@ -3016,9 +2945,8 @@ msgid "NO_DATA_TO_SHOW"
 msgstr "Nincs adat"
 
 #: ../src/gui_common/charts/line/LineChart.cs:652
-#, fuzzy
 msgid "INVALID_DATA_TO_PLOT"
-msgstr "Betöltöd ezt az érvénytelen mentést?"
+msgstr "Érvénytelen adatok az ábrázoláshoz"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1116
 #: ../src/gui_common/charts/line/LineChart.cs:1208
@@ -3075,7 +3003,6 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:55
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:255
-#, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -3134,9 +3061,8 @@ msgstr "Minél merevebb egy sejt membránja, annál ellenállóbb, de nehezebben
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3034
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3279
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3553
-#, fuzzy
 msgid "BASE_MOBILITY"
-msgstr "Mozgékonyság"
+msgstr "Alap mozgékonyság"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:194
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2552

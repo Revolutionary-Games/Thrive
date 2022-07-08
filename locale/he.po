@@ -50,9 +50,8 @@ msgid "GENERAL"
 msgstr "כללי"
 
 #: ../simulation_parameters/common/gallery.json:121
-#, fuzzy
 msgid "MULTICELLULAR"
-msgstr "שלב הרב-תאי"
+msgstr "רב תאים"
 
 #: ../simulation_parameters/common/gallery.json:131
 msgid "MODELS"
@@ -96,7 +95,7 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "התא שלך משתמש ב[thrive:compound type=\"atp\"][/thrive:compound] כמקור אנרגיה, כשזה אם אזל אתה תמות."
+msgstr "התא שלך משתמש ב[thrive:compound type=\"atp\"][/thrive:compound] כמקור אנרגיה, כשזה אזל אתה תמות."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:103
@@ -109,32 +108,16 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "אתה יכול גם לבלוע תאים, חיידקים, גושי ברזל וחלקי תא אשר קטנים ממך על ידי לחיצה על [thrive:input]g_toggle_engulf[/thrive:input]. מצב זה עולה additional [thrive:compound type=\"atp\"][/thrive:compound] נוסף ויאט אותך. אל תשכח ללחוץ שנית על [thrive:input]g_toggle_engulf[/thrive:input] על מנת להפסיק את מצב הבליעה."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"מבנים פרוקריוטיים\n"
-"\n"
-"מטבולוזומים: מייצר [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"חלבונים כימוסינתזיים: מפיק מחצית מהכמות ה[thrive:compound type=\"glucose\"][/thrive:compound] מ [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] שמיוצר בכימופלסט, אבל גם מבצע גליקוליזה, ולוקח משושה אחד\n"
-"\n"
-"תילקואיד: מפיק שליש מהכמות ה[thrive:compound type=\"glucose\"][/thrive:compound] שמיוצר בכלורופלסט, אבל גם מבצע גליקוליזה ותופס משושה אחד\n"
-"\n"
-"רוסטיצינין: ממיר [thrive:compound type=\"iron\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"ניטרוגנאז: ממיר חנקן אטמוספרי ו [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound] באופן אנאירובי\n"
-"\n"
-"ציטופלזמה: מבצע גליקוליזה ומשומש כשטח אחסון (מייצר כמות קטנה של [thrive:compound type=\"atp\"][/thrive:compound])"
+msgstr "ברגע שהבליעה הסתיימה, כל אובייקט שנבלע התחיל לעבור עיכול בתוך הממברנה. כל אובייקטים שלא ניתנים לעיכול תמיד יפלטו כך שאתה תזדקק למוטציות שיאפשרו לעכל אותם קודם. אנזימים יעזרו עם העיכול והם מופקים מהליזוזום, כך שהוא מומלץ לפתחו על מנת ליעל את תהליך העיכול."
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] והעכבר בשביל לנוע. [thrive:input]g_fire_toxin[/thrive:input] בשביל לירות[thrive:compound type=\"oxytoxy\"][/thrive:compound] אם יש לך חלולית רעלן. [thrive:input]g_toggle_engulf[/thrive:input] בשביל להחליף למצב בליעה. אתה יכול לעשות הגדלה והקטנה באמצעות גלגל העכבר."
+msgstr "אך, ליזוזום הוא ייחודי לאיקריוטים. מצד שני, פרוקריוטים אין אברון דומה ועל-כך עיכול הוא לא יעיל. לתאים קטן זה בסדר אך בשביל תאים גדולים, ללא הליזוזום זה מאוד רע."
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] והעכבר בשביל לנוע. [thrive:input]g_fire_toxin[/thrive:input] בשביל לירות[thrive:compound type=\"oxytoxy\"][/thrive:compound] אם יש לך חלולית רעלן. [thrive:input]g_toggle_engulf[/thrive:input] בשביל להחליף למצב בליעה. אתה יכול לעשות הגדלה והקטנה באמצעות גלגל העכבר."
+msgstr "דופן התא שעשויים מתאית וכיטין לא יכולים להתעכל ללא האנזימים המתאימים שיכולים לפרק אותם קודם."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -155,7 +138,7 @@ msgstr ""
 "צהוב - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "כתום - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
 "סגול - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"חום חלוד - [thrive:compound type=\"iron\"][/thrive:compound]\n"
+"חום חלודה - [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
 "[thrive:compound type=\"glucose\"][/thrive:compound] מייצר [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -176,12 +159,12 @@ msgstr "לעת עתה, אם כמות האוכלוסייה שלך יורדת לא
 
 #: ../simulation_parameters/common/help_texts.json:58
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "אבל אם שרדת 20 דורות עם 300 פריטים באוכלוסיה, אתה נחשב למנצח במשחק הנוכחי. לאחר שזכית, קופץ חלון משם תוכל להמשיך לשחק כרצונך."
+msgstr "אבל אם שרדת במשך 20 דורות עם 300 פריטים באוכלוסיה, אתה נחשב למנצח במשחק הנוכחי. לאחר שזכית, קופץ חלון משם תוכל להמשיך לשחק כרצונך."
 
 #: ../simulation_parameters/common/help_texts.json:62
 #: ../simulation_parameters/common/help_texts.json:124
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "שים לב שגם המתחרים שלך מתפתחים לצדך. בכל פעם שאתה נכנס לעורך, הם מתפתחים גם כן."
+msgstr "שים לב שגם היריבים שלך מתפתחים לצדך. בכל פעם שאתה נכנס לעורך, הם מתפתחים גם כן."
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
@@ -499,38 +482,36 @@ msgid "MOVE_ORGANELLE"
 msgstr "הזז אברון"
 
 #: ../simulation_parameters/common/input_options.json:155
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "תנועה"
+msgstr "תנועה תלת-מימדית"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "נוע מעלה או קפוץ"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "נוע מטה או תתכופף"
 
 #: ../simulation_parameters/common/input_options.json:171
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "עורך"
+msgstr "עורך תלת-מימדי"
 
 #: ../simulation_parameters/common/input_options.json:175
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "החזק בשביל להחליף בין מצב גלילה לסיבוב"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "החלף לתצוגת מצלמה קדמית"
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "החלף לתצוגת מצלמה ימנית"
 
 #: ../simulation_parameters/common/input_options.json:187
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "החלף לתצוגת מצלמה עליונה"
 
 #: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -644,9 +625,8 @@ msgstr "כימוליתו-אוטוטרופי מברזל"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:133
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
-#, fuzzy
 msgid "THERMOSYNTHESIS"
-msgstr "כימוסינתזה"
+msgstr "תרמוסינתזה"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -705,9 +685,8 @@ msgstr "גוש ברזל גדול"
 #: ../simulation_parameters/microbe_stage/biomes.json:1774
 #: ../simulation_parameters/microbe_stage/biomes.json:1941
 #: ../simulation_parameters/microbe_stage/biomes.json:2187
-#, fuzzy
 msgid "GOOGLY_EYE_CELL"
-msgstr "תא השחקן"
+msgstr "עיניי תא מרשרשות"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -838,17 +817,15 @@ msgstr "טמפרטורה"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
-msgstr ""
+msgstr "ליפאז"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
-#, fuzzy
 msgid "CELLULASE"
-msgstr "תאית"
+msgstr "צילוטאז"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:11
-#, fuzzy
 msgid "CHITINASE"
-msgstr "כיטין"
+msgstr "כיטינאז"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:58
@@ -927,9 +904,8 @@ msgstr "פלסטיד מקבע חנקן"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:341
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:972
-#, fuzzy
 msgid "THERMOSYNTHASE"
-msgstr "כימוסינתזה"
+msgstr "תרמוסינטאז"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:380
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1858
@@ -1005,9 +981,8 @@ msgstr "ריס"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:870
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
-#, fuzzy
 msgid "LYSOSOME"
-msgstr "אוקסיטוקסיזום"
+msgstr "ליזוזום"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
@@ -1030,9 +1005,8 @@ msgid "STARTING"
 msgstr "מתחיל"
 
 #: ../src/auto-evo/AutoEvoRun.cs:293
-#, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "אוכלוסיית {0} השתנתה ב {1} בגלל: {2}"
+msgstr "אוכלוסיית {0} השתנתה ב-{1} בתוך {2} בגלל: {3}"
 
 #: ../src/auto-evo/RunResults.cs:554
 msgid "POPULATION_COLON"
@@ -2535,14 +2509,13 @@ msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
 #: ../src/general/StageBase.cs:501
-#, fuzzy
 msgid "EXTINCT_IN_PATCH"
 msgstr "נכחד מהאזור"
 
 #: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
-msgstr ""
+msgstr "{0} {1}"
 
 #: ../src/general/StageHUDBase.cs:888
 msgid "CATEGORY_AN_ABUNDANCE"
@@ -3229,14 +3202,12 @@ msgid "OXYTOXISOME_DESC"
 msgstr "מטבולוזום שונה אחראי לייצור צורה פרימיטיבית של החומר הרעיל \"אוקסיטוקסי נ\"ט\"."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:973
-#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל הטמפרטורה."
+msgstr "מייצר [thrive:compound type=\"atp\"][/thrive:compound] בעזרת שינויים בטמפרטורה. בהתאם לריכוזם של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:974
-#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "התרמופלסט עדיין לא מיושם. התרמופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לחום הנערמים יחד בתוך שקי קרום האוקריוטי שלו. הפיגמנטים בתרמופלסט מסוגלים להשתמש באנרגיה של הבדלי חום בסביבה כדי לייצר גלוקוז ממים ופחמן דו חמצני בתהליך שנקרא תרמו-סינתזה. קצב ייצור הגלוקוז שלו משתנה עם ריכוז הפחמן הדו חמצני והטמפרטורה."
+msgstr "תרמוסינטאז הוא חלבון שמשתמש בהסעה תרמית כדי לשנות את צורתו, מאפשר לו להתקפל ולקשר לADP מתי שחשוף לחום, ולאחר מכן ומתקפל חזר וממוחזר לATP כשהוא נחשף טמפרטורה יותר נמוכה בתהליך הנקרא תרמוסינתזה. קצב יצורם של הATP משתנה בהתאם לטמפרטורה."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1098
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -3367,23 +3338,20 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "יושם בקרוב."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2360
-#, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"oxygen\"][/thrive:compound].ניתן לשחררו על ידי [thrive:input]g_fire_toxin[/thrive:input]."
+msgstr "מכיל אנזימי עיכול. ניתן לשנותם לסוגים שונים של אנזימים שהוא יכיל בו. רק סוג אחד של אנזים מסוגל להכיל בכל רגע נתון."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2361
-#, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר גלוקוז ל- ATP במהירות גבוה יותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא נשימה אירובית. יחד עם זאת, הוא דורש חמצן כדי לתפקד, ורמות חמצן נמוכות יותר בסביבה יאטו את קצב ייצור שלו. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל שמסביבם מבצעים גליקליזה ברמה מסוימת."
+msgstr "הליזוזום הוא אברון קשור ממברנה שמכיל אנזימים הידרוליזטיים מסוגלים לפרק מולקולות אורגניות שונות. ליזוזומים מאפשרים לתא לעכל חומרים שנבלע דרך אנדוציטוזה ולפלוט או לפרק מוצרי פסולת בתהליך הנקרא אוטופגיה."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
-#, fuzzy
 msgid "DIGESTION_SPEED"
-msgstr "מהירות ספיגת משאבים"
+msgstr "מהירות עיכול"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "יעילות עיכול"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2420
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -3404,7 +3372,7 @@ msgstr "קרום עם שתי שכבות, יש לו הגנה טובה יותר מ
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr "לקרום זה יש שכבה קשה, התורמת להגנה טובה יותר מפני נזק כולל ובמיוחד מפני נזק פיזי. זה גם עולה פחות אנרגיה כדי לשמור על צורתו, אך אינו יכול לספוג משאבים במהירות וגם איטי יותר."
+msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה פיזיקלית. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b] צילונאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2924
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3416
@@ -3422,11 +3390,11 @@ msgstr "לא יכול לבלוע"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2990
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3237
 msgid "INVULNERABLE_TO_ENGULFMENT"
-msgstr ""
+msgstr "בלתי ניתן לבליעה"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3005
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr "לקרום זה יש דופן קשיח, מה שאומר שיש לו הגנות טובות יותר מפני נזק כולל ובמיוחד מפני נזק מרעלים. זהו גם עולה פחות אנרגיה כדי לשמור על צורתו, יחד עם זאת, הוא איטי יותר ואינו מסוגל לספוג משאבים במהירות."
+msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה מרעלנים. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b]כיטינאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3171
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3450
@@ -3474,9 +3442,8 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "זמן שחלף: {0:#,#} שנים"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
-#, fuzzy
 msgid "LOOKING_AT"
-msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+msgstr "מסתכל על:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:447
 #: ../src/microbe_stage/MicrobeStage.tscn:485
@@ -3528,13 +3495,12 @@ msgid "AGENTS"
 msgstr "חומרים"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1555
-#, fuzzy
 msgid "BECOME_AWARE"
-msgstr "ביומה: {0}"
+msgstr "הפוך למודע"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1566
 msgid "AWAKEN"
-msgstr ""
+msgstr "מודע"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 #: ../src/microbe_stage/MicrobeStage.tscn:1660
@@ -3542,23 +3508,20 @@ msgid "POPULATION_CAPITAL"
 msgstr "אוכלוסיה:"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
-#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr "טוען עורך הקדם רב-תאי"
+msgstr "טוען עורך הרב-תאי"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
-#, fuzzy
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr "בחר סוג תא בשביל לערוך אותו בתגית העורך"
+msgstr "בחר סוג רקמה בשביל לערוך אותו כאן מהתג"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "לא ניתן להזיז כדור-בשר לתוך עץ צאצאים"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
-#, fuzzy
 msgid "INTERNALS"
-msgstr "חיצוניים"
+msgstr "פנימיות"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:371
 msgid "APPEARANCE"
@@ -3566,36 +3529,30 @@ msgstr "הופעה"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
-#, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
-msgstr "הולדה"
+msgstr "א-מינית"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
-#, fuzzy
 msgid "DISCONNECTED_METABALLS"
-msgstr "תאים מנותקים"
+msgstr "כדורי-בשר מנותקים"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
-#, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"ישנם תאים שאינם מחוברים לשאר.\n"
-"בבקשה חבר את כל התאים אחד עם השני או בטל את הפעולה."
+"ישנם כדורי-בשר מונחים, שאינם מחוברים לשאר.\n"
+"בבקשה חבר את כל כדורי-בשר אחד עם השני על מנת להמשיך."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr "יצירת סוג תא חדש"
+msgstr "יצירת סוג רקמה חדשה"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr "אתה יכול ליצור סוגי תא על ידי שיכפול קיימים ולתת להם שם חדש. ניתן לשנות סוגי תא בשביל להתמחותם לתפקידי שונים. בעת שינוי סוג התא כל אלו שממוקמים מאותו סוג גם יעודכנו."
+msgstr "אתה יכול ליצור סוגי רקמות חדשות על ידי שיכפול קיימים ולתת להם שם חדש. ניתן לשנות סוגי רקמה עם העורך התאי בשביל להתאים אותם לתפקידים שונים."
 
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "שכפל תאים"
+msgstr "שכפל כדורי-בשר"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:44
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
@@ -3697,7 +3654,7 @@ msgstr "איתות לפליטה"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:198
 msgid "DEVOURED"
-msgstr ""
+msgstr "טרף"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:308
 msgid "STUFF_AT"
@@ -3723,7 +3680,7 @@ msgstr "בסמן העכבר:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1436
 msgid "INGESTED_MATTER"
-msgstr ""
+msgstr "חומר שנבלע"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1625
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -3795,7 +3752,7 @@ msgstr "ממוקד"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:165
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0} לשנייה"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:285
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
@@ -3828,7 +3785,9 @@ msgstr "שם סוג תא"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1160
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr "לא ניתן להסיר את הגרעין שכן זהו התפתחות בלתי-הפיכה. אך אם זה הונח במצג הנוכחי, ביטול או עשה שוב עדין מותרים"
+msgstr ""
+"לא ניתן להסיר את הגרעין שכן זהו התפתחות בלתי-הפיכה.\n"
+"אך אם זה הונח במצג הנוכחי, ביטול או עשיה מחדש עדין מותרים"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1162
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -3924,14 +3883,12 @@ msgid "STORAGE_COLON"
 msgstr "אחסון:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
-#, fuzzy
 msgid "DIGESTION_SPEED_COLON"
-msgstr "מהירות:"
+msgstr "מהירות עיכול:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
-#, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "תיאור:"
+msgstr "יעילות עיכול:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 msgid "GENERATION_COLON"
@@ -4176,24 +4133,20 @@ msgid "LINE_COLOUR"
 msgstr "צבע הקו:"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
-#, fuzzy
 msgid "LIPASE_DESCRIPTION"
-msgstr "ריסונים דומים לשוטונים אבל במקום שהם מספקים דחף לכיוון מסוים הם עוזרים לתא להסתובב ולפנות."
+msgstr "ליפאז מאפשרים לתא לפרק את רוב סוגי הממברנות. התא שלך כבר מייצר את האנזים הזה ללא הליזוזום, אבל על ידי בחירה בסוג זה מאפשר לך להגביר את יעילותו."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
-#, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr "החלולית היא אברון קרום פנימי המשמש לאחסון בתא. הם מורכבים מכמה שלפוחיות, מבנים קרומים קטנים יותר שנמצאים בשימוש נרחב בתאים לאחסון, שהתמזגו יחד. היא מלאה במים המסוגלים להכיל מולקולות, אנזימים, מוצקים וחומרים אחרים. צורתם נוזלית ויכולה להשתנות בין התאים."
+msgstr "צילולאז מאפשרים לתא לפרק ממברנות העשויות מתאית. כל תוספת מגדילה את יעילותו."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
-#, fuzzy
 msgid "CHITINASE_DESCRIPTION"
-msgstr "ריסונים דומים לשוטונים אבל במקום שהם מספקים דחף לכיוון מסוים הם עוזרים לתא להסתובב ולפנות."
+msgstr "כיטינאז מאפשרים לתא לפרק ממברנות העשויות מכיטין. כל תוספת מגבירה את יעילותו."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
-#, fuzzy
 msgid "SELECT_ENZYME"
-msgstr "מודים נבחרו:"
+msgstr "בחר אנזים:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 msgid "MODIFY_ORGANELLE"
@@ -4240,14 +4193,14 @@ msgid "MOVE_TO_THIS_PATCH"
 msgstr "תעבור לאזור זה"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:75
-#, fuzzy
 msgid "PATCH_EXTINCTION_CAPITAL"
-msgstr "נכחד"
+msgstr "הכחדת אזור"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:84
-#, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr "כמו 99% מכל המינים שחיו אי פעם, אתה נכחדת. אחרים יחליפו וישגשגו במקומך. אבל אתה תישכח, ניסוי כושל של האבולוציה."
+msgstr ""
+"המין שלך נכחד מהאזור זה.\n"
+"אבל זה עדין לא נגמר, אתה יכול עדין לבחור אזור חדש ולהמשיך שחק בו!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
@@ -5257,28 +5210,29 @@ msgid "TUTORIAL_VIEW_NOW"
 msgstr "הראה עכשיו"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"אתה נכנסת ל\"מצב שחרר\". במצב זה אתה יכול ללחוץ על חברי המושבה שלך על מנת להשתחרר מהם.\n"
+"לתא שלך מוגבל עד כמה חומרים יכולים להיבלע בבת אחת. המגבלה הזו תלויה בגדול של התא כך שתא קטן יכולים לבלוע פחות חומרים בבת אחת.\n"
 "\n"
-"על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש [thrive:input]g_unbind_all[/thrive:input]."
+"אם התא שלך מלא, הוא לא מסוגל יותר לבלוע עוד. בשביל להמשיך לבלוע, תזדקק לחכות עד שיעכלו לחלוטין חומר אחד או יותר."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"אתה נכנסת ל\"מצב שחרר\". במצב זה אתה יכול ללחוץ על חברי המושבה שלך על מנת להשתחרר מהם.\n"
+"לבלוע חומרים על ידי תנועה עליהם ואז להפעיל את המצב הבליעה על ידי לחיצה על [thrive:input]g_toggle_engulf[/thrive:input] בשביל למשוך אותם פנימה.\n"
 "\n"
-"על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש [thrive:input]g_unbind_all[/thrive:input]."
+"המשך לבלוע עד שהחומר נבלע לחלוטין.\n"
+"\n"
+"עקוב אחר הקו מהתא שלך אל ליד אובייקט שניתן לעיכול."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
 msgstr ""
-"אתה נכנסת ל\"מצב שחרר\". במצב זה אתה יכול ללחוץ על חברי המושבה שלך על מנת להשתחרר מהם.\n"
+"התא שלך נבלע, וזה אומר שהתא הבולע מתחיל לעכל.\n"
 "\n"
-"על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש [thrive:input]g_unbind_all[/thrive:input]."
+"תהליך העיכול נראה במד החיים (ימין מטה) כאחוז. התא שלך יוגדר כמת ברגע שזה מגיע ל100% או כאשר שהגיע למגבלת הזמן המקסימלי.\n"
+"\n"
+"לחץ על כפתור התאבדות על מנת לעקוף את התהליך ולהיוולד מחדש, אבל תזכור שתמיד יש סיכוי שתצליח לברוח!"
 
 #~ msgid "AUTO-EVO_POPULATION_CHANGED"
 #~ msgstr "אוכלוסיית {0} השתנתה ב {1} בגלל: {2}"
