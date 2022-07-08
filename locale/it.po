@@ -51,9 +51,8 @@ msgid "GENERAL"
 msgstr "Generale"
 
 #: ../simulation_parameters/common/gallery.json:121
-#, fuzzy
 msgid "MULTICELLULAR"
-msgstr "Fase Multicellulare"
+msgstr "Multicellulare"
 
 #: ../simulation_parameters/common/gallery.json:131
 #: ../simulation_parameters/common/gallery.json:123
@@ -705,38 +704,36 @@ msgid "MOVE_ORGANELLE"
 msgstr "Sposta organulo"
 
 #: ../simulation_parameters/common/input_options.json:155
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Movimento"
+msgstr "Movimento 3D"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "Muoviti verso l'alto o salta"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "Muoviti verso il basso o accovacciati"
 
 #: ../simulation_parameters/common/input_options.json:171
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Editor"
+msgstr "Editor 3D"
 
 #: ../simulation_parameters/common/input_options.json:175
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "Tieni premuto per alternare le modalità di spostamento e rotazione"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Passa alla visione frontale"
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Passa alla visione da destra"
 
 #: ../simulation_parameters/common/input_options.json:187
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Passa alla visione dall'alto"
 
 #: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -1456,7 +1453,7 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr "Crea nuovo tipo di cellula"
+msgstr "Crea un nuovo tipo di cellula"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
@@ -2289,7 +2286,7 @@ msgstr "Ritenzione ambientale del glucosio"
 #: ../src/general/NewGameSettings.tscn:659
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
 msgstr ""
-"(proporzione di glucosio conservata nell'ambiente all'arrivo di ciascuna "
+"(proporzione di glucosio conservata nell'ambiente all'inizio di ciascuna "
 "generazione)"
 
 #: ../src/general/NewGameSettings.tscn:676
@@ -2359,10 +2356,9 @@ msgstr "(segreti che possono apparire casualmente nel gioco)"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Apri il menù di pausa per salvare il gioco"
 
-#: ../src/general/NewGameSettings.tscn:1031
 #: ../src/general/NewGameSettings.tscn:1032
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Avanzata"
 
 #: ../src/general/NewGameSettings.tscn:1042
 #: ../src/general/NewGameSettings.tscn:1043
@@ -2370,10 +2366,9 @@ msgstr ""
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Suicidio"
 
-#: ../src/general/NewGameSettings.tscn:1043
 #: ../src/general/NewGameSettings.tscn:1044
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Di base"
 
 #: ../src/general/NewGameSettings.tscn:1053
 #: ../src/general/NewGameSettings.tscn:1054
@@ -2864,7 +2859,7 @@ msgstr "una traccia"
 #: ../src/general/StageHUDBase.cs:1098 ../src/general/StageHUDBase.cs:1092
 #: ../src/microbe_stage/MicrobeHUD.cs:999
 msgid "PLAYER_CELL"
-msgstr "Cellula del Giocatore"
+msgstr "Cellula del giocatore"
 
 #: ../src/general/StageHUDBase.cs:1111 ../src/general/StageHUDBase.cs:1105
 #: ../src/microbe_stage/MicrobeHUD.cs:1016
@@ -4072,13 +4067,12 @@ msgid "AGENTS"
 msgstr "Agenti"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1555
-#, fuzzy
 msgid "BECOME_AWARE"
-msgstr "Bioma: {0}"
+msgstr "Diventa Consapevole"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1566
 msgid "AWAKEN"
-msgstr ""
+msgstr "Risvegliati"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 #: ../src/microbe_stage/MicrobeStage.tscn:1660
@@ -4087,14 +4081,12 @@ msgid "POPULATION_CAPITAL"
 msgstr "POPOLAZIONE:"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
-#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr "Caricamento dell'Editor Multicellulare Iniziale"
+msgstr "Caricamento dell'Editor Multicellulare"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
-#, fuzzy
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr "Seleziona un tipo di cellula dal pannello Editor per modificarla qui"
+msgstr "Seleziona un tipo di tessuto dal pannello Editor"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:720
@@ -4102,51 +4094,42 @@ msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
-#, fuzzy
 msgid "INTERNALS"
-msgstr "Esterno"
+msgstr "Viscere"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:371
-#, fuzzy
 msgid "APPEARANCE"
-msgstr "Prestazioni"
+msgstr "Aspetto"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
-#, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
-msgstr "Riproduzione"
+msgstr "Asessuale"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
-#, fuzzy
 msgid "DISCONNECTED_METABALLS"
-msgstr "Cellule disconnesse"
+msgstr "Metasfere disconnesse"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
-#, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"Ci sono cellule non connesse al resto dell'organismo.\n"
-"Connetti tutte le cellule l'una con l'altra per continuare."
+"Ci sono metasfere non connesse al resto dell'organismo.\n"
+"Connetti tutte le metasfere l'una con l'altra per continuare."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr "Crea nuovo tipo di cellula"
+msgstr "Crea un nuovo tipo di tessuto"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr ""
-"Puoi creare nuovi tipi di cellula duplicando e rinominando tipi esistenti. "
-"Ciascun tipo di cellula può essere modificato affinché si specializzi in un "
-"determinato ruolo. Quando modifichi un tipo di cellula, tutte le cellule di "
-"quel tipo già posizionate vengono aggiornate."
+"Puoi creare nuovi tipi di tessuto duplicando e rinominando tipi esistenti. "
+"Ciascun tipo di tessuto può essere modificato affinché si specializzi in un "
+"determinato ruolo."
 
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "Cellule multiple"
+msgstr "Metasfere multiple"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:44
 #: ../src/microbe_stage/MicrobeStage.tscn:1662
