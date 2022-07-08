@@ -15,6 +15,7 @@ public class Patch
     /// <summary>
     ///   The current snapshot of this patch.
     /// </summary>
+    [JsonProperty]
     private readonly PatchSnapshot currentSnapshot;
 
     [JsonProperty]
@@ -30,12 +31,12 @@ public class Patch
     }
 
     [JsonConstructor]
-    public Patch(LocalizedString name, int id, Biome biomeTemplate)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, PatchSnapshot currentSnapshot)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
-        currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
+        this.currentSnapshot = currentSnapshot;
     }
 
     [JsonProperty]
