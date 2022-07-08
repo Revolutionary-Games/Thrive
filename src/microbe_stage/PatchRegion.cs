@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 ///   A region is a something like a continent/ocean that contains multiple patches.
 /// </summary>
 [UseThriveSerializer]
+[JsonObject(IsReference = true)]
 public class PatchRegion
 {
     // TODO: Move these to Constants.cs
@@ -15,20 +16,6 @@ public class PatchRegion
 
     [JsonIgnore]
     public readonly float PatchMargin = 4.0f;
-
-    [JsonConstructor]
-    public PatchRegion(int id, LocalizedString name, RegionType type, Vector2 screenCoordinates,
-        float height, float width, List<Patch> patches, bool isForDrawingOnly)
-    {
-        ID = id;
-        Name = name;
-        Type = type;
-        Patches = patches;
-        ScreenCoordinates = screenCoordinates;
-        Height = height;
-        Width = width;
-        IsForDrawingOnly = isForDrawingOnly;
-    }
 
     public PatchRegion(int id, LocalizedString name, RegionType regionType, Vector2 screenCoordinates)
     {
@@ -41,6 +28,19 @@ public class PatchRegion
         ScreenCoordinates = screenCoordinates;
     }
 
+    [JsonConstructor]
+    public PatchRegion(int id, LocalizedString name, RegionType type, Vector2 screenCoordinates,
+        float height, float width, bool isForDrawingOnly)
+    {
+        ID = id;
+        Name = name;
+        Type = type;
+        ScreenCoordinates = screenCoordinates;
+        Height = height;
+        Width = width;
+        IsForDrawingOnly = isForDrawingOnly;
+    }
+
     public enum RegionType
     {
         Predefined,
@@ -50,6 +50,9 @@ public class PatchRegion
         Vent,
         Cave,
     }
+
+    [JsonProperty]
+    public RegionType Type { get; }
 
     [JsonProperty]
     public int ID { get; }
@@ -64,9 +67,6 @@ public class PatchRegion
     /// </remarks>
     [JsonIgnore]
     public ISet<PatchRegion> Adjacent { get; } = new HashSet<PatchRegion>();
-
-    [JsonProperty]
-    public RegionType Type { get; }
 
     [JsonProperty]
     public float Height { get; set; }
@@ -86,9 +86,6 @@ public class PatchRegion
     }
 
     [JsonProperty]
-    public List<Patch> Patches { get; set; }
-
-    [JsonProperty]
     public LocalizedString Name { get; private set; }
 
     /// <summary>
@@ -99,6 +96,14 @@ public class PatchRegion
 
     [JsonProperty]
     public bool IsForDrawingOnly { get; set; }
+
+    /// <summary>
+    ///   The patches in this region. This is last because other constructor params need to be loaded from JSON first
+    ///   and also this can't be a JSON constructor parameter because the patches refer to this so we couldn't
+    ///   construct anything to begin with.
+    /// </summary>
+    [JsonProperty]
+    public List<Patch> Patches { get; private set; } = null!;
 
     /// <summary>
     ///   Adds a connection to region
