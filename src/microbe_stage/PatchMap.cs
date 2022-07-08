@@ -12,14 +12,6 @@ public class PatchMap : ISaveLoadable
 {
     private Patch? currentPatch;
 
-    public PatchMap(Random seed)
-    {
-        Seed = seed;
-    }
-
-    [JsonProperty]
-    public Random Seed { get; set; }
-
     /// <summary>
     ///   The list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
     /// </summary>
@@ -27,7 +19,7 @@ public class PatchMap : ISaveLoadable
     public Dictionary<int, Patch> Patches { get; private set; } = new();
 
     /// <summary>
-    ///   The list of regions.
+    ///   The regions in this map
     /// </summary>
     [JsonProperty]
     public Dictionary<int, PatchRegion> Regions { get; private set; } = new();
@@ -36,6 +28,12 @@ public class PatchMap : ISaveLoadable
     ///   The list of regions that are actually only used for drawing.
     ///   They are actually regions in the drawing sense and the patches within belong to its adjacent region
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: this needs to be removed entirely and refactored to be sub regions within a <see cref="PatchRegion"/>
+    ///     object. This code was let through due to time constraints.
+    ///   </para>
+    /// </remarks>
     [JsonProperty]
     public Dictionary<int, PatchRegion> DrawingRegions { get; private set; } = new();
 
@@ -87,6 +85,9 @@ public class PatchMap : ISaveLoadable
     /// </summary>
     public void AddRegion(PatchRegion region)
     {
+        if (region.ID <= 0)
+            throw new ArgumentException("id must be greater than 0");
+
         if (Regions.ContainsKey(region.ID))
         {
             throw new ArgumentException(
@@ -101,6 +102,9 @@ public class PatchMap : ISaveLoadable
     /// </summary>
     public void AddSpecialRegion(PatchRegion specialRegion)
     {
+        if (specialRegion.ID >= 0)
+            throw new ArgumentException("special region needs to have negative id");
+
         if (DrawingRegions.ContainsKey(specialRegion.ID))
         {
             throw new ArgumentException($"Region {specialRegion.Name} cannot be added to this map, " +
@@ -195,6 +199,20 @@ public class PatchMap : ISaveLoadable
                 result = false;
             }
         }
+
+        // Region links are correct
+        foreach (var entry in RegionAdjacencies)
+        {
+            if (!Regions.ContainsKey(entry.Id1) || !Regions.ContainsKey(entry.Id2))
+            {
+                GD.PrintErr($"Invalid region link: from {entry.Id1} to {entry.Id2}");
+                result = false;
+            }
+        }
+
+        // TODO: check each region has a link
+        // Note: it seems that region links are two-way by default and don't have the ability to only have one way
+        // linkage
 
         return result;
     }
@@ -380,7 +398,7 @@ public class PatchMap : ISaveLoadable
     }
 
     /// <summary>
-    ///   Check if patch link `id1->id2` or `id2->id1` exists
+    ///   Check if patch link <code>id1->id2</code> or <code>id2->id1</code> exists
     /// </summary>
     /// <returns>True if at least an one-direction link exists</returns>
     public bool ContainsPatchAdjacency(int id1, int id2)
@@ -389,7 +407,7 @@ public class PatchMap : ISaveLoadable
     }
 
     /// <summary>
-    ///   Check if region link `id1->id2` or `id2->id1` exists
+    ///   Check if region link <code>id1->id2</code> or <code>id2->id1</code> exists
     /// </summary>
     /// <returns>True if at least an one-direction link exists</returns>
     public bool ContainsRegionAdjacency(int id1, int id2)
@@ -435,9 +453,9 @@ public class PatchMap : ISaveLoadable
 
         foreach (var (id1, id2) in RegionAdjacencies)
         {
-            PatchRegion region1 = id1 < Regions.Count - 1 ? Regions[id1] : DrawingRegions[id1];
+            var region1 = id1 < Regions.Count - 1 ? Regions[id1] : DrawingRegions[id1];
 
-            PatchRegion region2 = id2 < Regions.Count - 1 ? Regions[id2] : DrawingRegions[id2];
+            var region2 = id2 < Regions.Count - 1 ? Regions[id2] : DrawingRegions[id2];
 
             region1.AddNeighbour(region2);
             region2.AddNeighbour(region1);

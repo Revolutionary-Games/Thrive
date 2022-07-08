@@ -29,13 +29,13 @@ public static class PatchMapGenerator
     public static PatchMap Generate(WorldGenerationSettings settings, Species defaultSpecies, Random? random = null)
     {
         random ??= new Random(settings.Seed);
-        var map = new PatchMap(random);
+        var map = new PatchMap();
 
         if (settings.MapType == WorldGenerationSettings.PatchMapType.Classic)
         {
             // Return the classic map if settings require it, otherwise use it to draw the procedural map
             var predefinedMap =
-                PredefinedMap(new PatchMap(random), TranslationServer.Translate("PANGONIAN_REGION_NAME"));
+                PredefinedMap(new PatchMap(), TranslationServer.Translate("PANGONIAN_REGION_NAME"), random);
 
             ConfigureStartingPatch(predefinedMap, settings, defaultSpecies,
                 predefinedMap.GetPatch((int)PredefinedBiome.Vents),
@@ -161,9 +161,9 @@ public static class PatchMapGenerator
         }
 
         // After building the normal regions we build the special ones and the patches
-        BuildPatchesInRegions(map);
+        BuildPatchesInRegions(map, random);
         BuildSpecialRegions(map);
-        BuildPatchesInSpecialRegions(map);
+        BuildPatchesInSpecialRegions(map, random);
 
         if (vents == null)
             throw new InvalidOperationException("No vent patch created");
@@ -188,7 +188,7 @@ public static class PatchMapGenerator
             }
         }
 
-        ConnectPatchesBetweenRegions(map);
+        ConnectPatchesBetweenRegions(map, random);
         map.CreateAdjacenciesFromPatchData();
         return map;
     }
@@ -569,11 +569,11 @@ public static class PatchMapGenerator
         }
     }
 
-    private static void BuildPatchesInRegions(PatchMap map)
+    private static void BuildPatchesInRegions(PatchMap map, Random random)
     {
         foreach (var region in map.Regions)
         {
-            BuildPatches(region.Value, map.Seed);
+            BuildPatches(region.Value, random);
             foreach (var patch in region.Value.Patches)
             {
                 map.AddPatch(patch);
@@ -581,11 +581,11 @@ public static class PatchMapGenerator
         }
     }
 
-    private static void BuildPatchesInSpecialRegions(PatchMap map)
+    private static void BuildPatchesInSpecialRegions(PatchMap map, Random random)
     {
         foreach (var region in map.DrawingRegions)
         {
-            BuildPatches(region.Value, map.Seed);
+            BuildPatches(region.Value, random);
             foreach (var patch in region.Value.Patches)
             {
                 map.AddPatch(patch);
@@ -593,11 +593,11 @@ public static class PatchMapGenerator
         }
     }
 
-    private static void ConnectPatchesBetweenRegions(PatchMap map)
+    private static void ConnectPatchesBetweenRegions(PatchMap map, Random random)
     {
         foreach (var region in map.Regions)
         {
-            ConnectPatchesBetweenRegions(region.Value, map.Seed);
+            ConnectPatchesBetweenRegions(region.Value, random);
         }
     }
 
@@ -742,7 +742,7 @@ public static class PatchMapGenerator
         return newPatch;
     }
 
-    private static PatchMap PredefinedMap(PatchMap map, string areaName)
+    private static PatchMap PredefinedMap(PatchMap map, string areaName, Random random)
     {
         var region = new PatchRegion(0, GetPatchLocalizedName(areaName, string.Empty),
             PatchRegion.RegionType.Predefined, new Vector2(0, 0));
@@ -774,7 +774,7 @@ public static class PatchMapGenerator
         LinkPatches(coast, estuary);
 
         map.AddRegion(region);
-        BuildPatchesInRegions(map);
+        BuildPatchesInRegions(map, random);
         return map;
     }
 
