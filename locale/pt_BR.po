@@ -21,19 +21,19 @@ msgstr ""
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
 msgid "DIFFICULTY_PRESET_EASY"
-msgstr ""
+msgstr "Fácil"
 
 #: ../simulation_parameters/common/difficulty_presets.json:14
 msgid "DIFFICULTY_PRESET_NORMAL"
-msgstr ""
+msgstr "Normal"
 
 #: ../simulation_parameters/common/difficulty_presets.json:25
 msgid "DIFFICULTY_PRESET_HARD"
-msgstr ""
+msgstr "Difícil"
 
 #: ../simulation_parameters/common/difficulty_presets.json:36
 msgid "DIFFICULTY_PRESET_CUSTOM"
-msgstr ""
+msgstr "Personalizado"
 
 #: ../simulation_parameters/common/gallery.json:3
 msgid "CONCEPT_ART"
@@ -644,9 +644,8 @@ msgstr "Quimiolitoautotrofia Férrica"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:133
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
-#, fuzzy
 msgid "THERMOSYNTHESIS"
-msgstr "Quimiossíntese"
+msgstr "Termossíntese"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -838,17 +837,15 @@ msgstr "Temperatura"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
-msgstr ""
+msgstr "Lipase"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
-#, fuzzy
 msgid "CELLULASE"
-msgstr "Celulose"
+msgstr "Celulase"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:11
-#, fuzzy
 msgid "CHITINASE"
-msgstr "Quitina"
+msgstr "Quitinase"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:58
@@ -927,9 +924,8 @@ msgstr "Plastídeo de Fixação de Nitrogênio"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:341
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:972
-#, fuzzy
 msgid "THERMOSYNTHASE"
-msgstr "Quimiossíntese"
+msgstr "Termossintase"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:380
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1858
@@ -1005,9 +1001,8 @@ msgstr "Cílios"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:870
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
-#, fuzzy
 msgid "LYSOSOME"
-msgstr "Oxitoxissoma"
+msgstr "Lisossomo"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
@@ -1030,9 +1025,8 @@ msgid "STARTING"
 msgstr "Começando"
 
 #: ../src/auto-evo/AutoEvoRun.cs:293
-#, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "A população de {0} foi alterada por {1} devido a: {2}"
+msgstr "A população de {0} foi alterada por {1} em {2} devido a: {3}"
 
 #: ../src/auto-evo/RunResults.cs:554
 msgid "POPULATION_COLON"
@@ -1295,12 +1289,11 @@ msgstr "Delta: {0}"
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
 #: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
-#, fuzzy
 msgid "UNKNOWN_ON_WINDOWS"
-msgstr "ID da Oficina Desconhecido"
+msgstr "Desconhecido no Windows"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
@@ -1912,89 +1905,78 @@ msgstr "Houve erros ao carregar um ou mais mods. Os logs podem conter mais infor
 #: ../src/general/NewGameSettings.tscn:1052
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Começa um novo jogo"
+msgstr "Começar um novo jogo"
 
 #: ../src/general/NewGameSettings.cs:291
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr "Começa um novo jogo"
+msgstr "Configurações inválidas"
 
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Dificuldade predefinida"
 
 #: ../src/general/NewGameSettings.tscn:142
 #: ../src/general/NewGameSettings.tscn:814
 msgid "LAWK_ONLY"
-msgstr ""
+msgstr "Somente vida baseada na realidade"
 
 #: ../src/general/NewGameSettings.tscn:149
 #: ../src/general/NewGameSettings.tscn:821
-#, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
-"Os micróbios medrosos são mais propensos a fugir de predadores\n"
-"e percorrerão longas distâncias caso sejam intimidados.\n"
-"Os micróbios corajosos não se deixam intimidar pelos predadores próximos\n"
-"e podem contra-atacar."
+msgstr "(restringe partes e habilidades para somente as que são baseadas na vida real)"
 
 #: ../src/general/NewGameSettings.tscn:165
 #: ../src/general/NewGameSettings.tscn:837
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "Origem da vida"
 
 #: ../src/general/NewGameSettings.tscn:172
 #: ../src/general/NewGameSettings.tscn:844
-#, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
-"Os micróbios medrosos são mais propensos a fugir de predadores\n"
-"e percorrerão longas distâncias caso sejam intimidados.\n"
-"Os micróbios corajosos não se deixam intimidar pelos predadores próximos\n"
-"e podem contra-atacar."
+msgstr "(ponto de partida)"
 
 #: ../src/general/NewGameSettings.tscn:186
 #: ../src/general/NewGameSettings.tscn:858
-#, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "Suicídio"
+msgstr "Algumas opções podem estar desabilitadas caso você tenha habilitado “Somente vida baseada na realidade”"
 
 #: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:860
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
+msgstr "Fontes hidrotermais"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "Pequena poça aquecida"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "Panspermia (aleatório)"
 
 #: ../src/general/NewGameSettings.tscn:204
 #: ../src/general/NewGameSettings.tscn:876
 msgid "PLANET_RANDOM_SEED"
-msgstr ""
+msgstr "Seed aleatória do planeta"
 
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:895
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Pausar o jogo"
+msgstr "O valor usado para gerar o mundo, que deve ser um número inteiro positivo"
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "Dificuldade"
 
 #: ../src/general/NewGameSettings.tscn:278
 msgid "PLANET"
-msgstr ""
+msgstr "Planeta"
 
 #: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:181
 msgid "MISC"
@@ -2002,148 +1984,116 @@ msgstr "Diversos"
 
 #: ../src/general/NewGameSettings.tscn:367
 msgid "MUTATION_COST_MULTIPLIER"
-msgstr ""
+msgstr "Multiplicador do custo de mutação"
 
 #: ../src/general/NewGameSettings.tscn:412
-#, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-"Os micróbios ativos perambulam pelo mundo quando não há nada de interessante.\n"
-"Já os micróbios sésseis ficam parados e esperam o ambiente mudar antes de agir."
+msgstr "(custo das organelas, membranas e outros itens do editor)"
 
 #: ../src/general/NewGameSettings.tscn:429
-#, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr "Pontos de Mutação"
+msgstr "Taxa de mutação da IA"
 
 #: ../src/general/NewGameSettings.tscn:474
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "Esse painel mostra os números que a previsão da auto-evo usa. A energia total que uma espécie é capaz de possuir e o custo por indivíduo da espécie determina a população final. A auto-evo usa um modelo simplificado da realidade para calcular quão bem as espécies estão desempenhando baseado na energia que elas são capazes de obter. É mostrada quanta energia cada fonte de alimento fornece para a espécie. Além disso, é mostrada a energia total disponível dessa fonte. A fração da energia total fornecida à espécie é baseada em quão adaptada a espécie é comparada à adaptação total. A adaptação é a métrica de quão bem a espécie pode utilizar essa fonte de alimento."
+msgstr "(velocidade que a IA se muta)"
 
 #: ../src/general/NewGameSettings.tscn:491
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "Nuvens de compostos"
+msgstr "Densidade das nuvens de compostos"
 
 #: ../src/general/NewGameSettings.tscn:536
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
-msgstr ""
-"Os micróbios oportunistas vão competir com os rivais por causa de alimentos\n"
-"e tentarão caçar suas presas usando toxinas se não puderem engoli-las.\n"
-"Enquanto isso, os micróbios mais cautelosos podem não se colocar em perigo por alimentos."
+msgstr "(densidade das nuvens de compostos no ambiente)"
 
 #: ../src/general/NewGameSettings.tscn:553
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr ""
+msgstr "Penalidade na população por morte do jogador"
 
 #: ../src/general/NewGameSettings.tscn:598
-#, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
-msgstr "Esse painel mostra os números que a previsão da auto-evo usa. A energia total que uma espécie é capaz de possuir e o custo por indivíduo da espécie determina a população final. A auto-evo usa um modelo simplificado da realidade para calcular quão bem as espécies estão desempenhando baseado na energia que elas são capazes de obter. É mostrada quanta energia cada fonte de alimento fornece para a espécie. Além disso, é mostrada a energia total disponível dessa fonte. A fração da energia total fornecida à espécie é baseada em quão adaptada a espécie é comparada à adaptação total. A adaptação é a métrica de quão bem a espécie pode utilizar essa fonte de alimento."
+msgstr "(coeficiente para a redução na população da espécie do jogador para cada morte)"
 
 #: ../src/general/NewGameSettings.tscn:615
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
-msgstr ""
+msgstr "Retenção da glicose ambiental"
 
 #: ../src/general/NewGameSettings.tscn:659
-#, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
-msgstr "Esse painel mostra os números que a previsão da auto-evo usa. A energia total que uma espécie é capaz de possuir e o custo por indivíduo da espécie determina a população final. A auto-evo usa um modelo simplificado da realidade para calcular quão bem as espécies estão desempenhando baseado na energia que elas são capazes de obter. É mostrada quanta energia cada fonte de alimento fornece para a espécie. Além disso, é mostrada a energia total disponível dessa fonte. A fração da energia total fornecida à espécie é baseada em quão adaptada a espécie é comparada à adaptação total. A adaptação é a métrica de quão bem a espécie pode utilizar essa fonte de alimento."
+msgstr "(proporção da glicose conservada no ambiente a cada geração)"
 
 #: ../src/general/NewGameSettings.tscn:676
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Custo da Osmorregulação"
+msgstr "Multiplicador do custo da osmorregulação"
 
 #: ../src/general/NewGameSettings.tscn:721
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "Custo da Osmorregulação"
+msgstr "(custo da osmorregulação da espécie do jogador)"
 
 #: ../src/general/NewGameSettings.tscn:733
 msgid "FREE_GLUCOSE_CLOUD"
-msgstr ""
+msgstr "Nuvem de glicose disponível ao sair do editor"
 
 #: ../src/general/NewGameSettings.tscn:740
-#, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
-msgstr ""
-"Os micróbios focados perseguirão presas ou pedaços por distâncias mais longas\n"
-"e podem ser mais cobiçosos em relação aos pedaços.\n"
-"Micróbios mais reativos perseguirão outras presas depois de um tempo."
+msgstr "(começar com uma nuvem de glicose próxima após cada reprodução)"
 
 #: ../src/general/NewGameSettings.tscn:776
-#, fuzzy
 msgid "PATCH_MAP_TYPE"
-msgstr "Mapa de Regiões"
+msgstr "Tipo de mapa de regiões"
 
 #: ../src/general/NewGameSettings.tscn:783
-#, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
-msgstr ""
-"Os micróbios ativos perambulam pelo mundo quando não há nada de interessante.\n"
-"Já os micróbios sésseis ficam parados e esperam o ambiente mudar antes de agir."
+msgstr "(gera um mapa de regiões ou usa o layout clássico)"
 
 #: ../src/general/NewGameSettings.tscn:798
 #: ../src/general/NewGameSettings.tscn:799
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr ""
+msgstr "Gerado"
 
 #: ../src/general/NewGameSettings.tscn:799
 msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr ""
+msgstr "Clássico"
 
 #: ../src/general/NewGameSettings.tscn:943
 msgid "PLANET_GENERATION_TEASER"
-msgstr ""
+msgstr "Geração de planetas em breve!"
 
 #: ../src/general/NewGameSettings.tscn:975
-#, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr "Estágio Multicelular"
+msgstr "Incluir protótipos dos estágios seguintes"
 
 #: ../src/general/NewGameSettings.tscn:982
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
+msgstr "(alguns recursos podem não estar disponíveis quando você alcançar os próximos estágios)"
 
 #: ../src/general/NewGameSettings.tscn:994
-#, fuzzy
 msgid "EASTER_EGGS"
-msgstr "Curiosidade: o Didinium e o Paramecium são um exemplo de relação de predador-presa que foi estudado por décadas. Você é o Didinium ou o Paramecium? Predador ou Presa?"
+msgstr "Incluir easter eggs"
 
 #: ../src/general/NewGameSettings.tscn:1001
-#, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
-msgstr ""
-"Os micróbios medrosos são mais propensos a fugir de predadores\n"
-"e percorrerão longas distâncias caso sejam intimidados.\n"
-"Os micróbios corajosos não se deixam intimidar pelos predadores próximos\n"
-"e podem contra-atacar."
+msgstr "(incluir aleatoriamente segredos no jogo)"
 
 #: ../src/general/NewGameSettings.tscn:1029
-#, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr "Abre o menu de salvamentos para salvar o jogo"
+msgstr "Abrir as configurações avançadas"
 
 #: ../src/general/NewGameSettings.tscn:1031
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Avançado"
 
 #: ../src/general/NewGameSettings.tscn:1042
-#, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr "Suicídio"
+msgstr "Retornar às configurações básicas"
 
 #: ../src/general/NewGameSettings.tscn:1043
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Básico"
 
 #: ../src/general/NewGameSettings.tscn:1053
-#, fuzzy
 msgid "CONFIRM_NORMAL"
-msgstr "CONFIRMAR"
+msgstr "Confirmar"
 
 #: ../src/general/OptionsMenu.cs:629 ../src/general/OptionsMenu.tscn:292
 msgid "AUTO_RESOLUTION"
@@ -2255,7 +2205,7 @@ msgstr "Exibir barra de habilidades"
 
 #: ../src/general/OptionsMenu.tscn:399
 msgid "DISPLAY_BACKGROUND_PARTICLES"
-msgstr ""
+msgstr "Mostrar partículas de fundo"
 
 #: ../src/general/OptionsMenu.tscn:407
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
@@ -2345,36 +2295,35 @@ msgstr "Tarefas:"
 
 #: ../src/general/OptionsMenu.tscn:915
 msgid "MAX_SPAWNED_ENTITIES"
-msgstr ""
+msgstr "Número máximo de entidades:"
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
 msgid "TINY"
-msgstr ""
+msgstr "Minúsculo"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "VERY_SMALL"
-msgstr ""
+msgstr "Bem pequeno"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "SMALL"
-msgstr ""
+msgstr "Pequeno"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "LARGE"
-msgstr ""
+msgstr "Grande"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "VERY_LARGE"
-msgstr ""
+msgstr "Bem grande"
 
 #: ../src/general/OptionsMenu.tscn:931
 msgid "HUGE"
-msgstr ""
+msgstr "Enorme"
 
 #: ../src/general/OptionsMenu.tscn:931
-#, fuzzy
 msgid "EXTREME"
-msgstr "Extras"
+msgstr "Extremo"
 
 #: ../src/general/OptionsMenu.tscn:1005
 msgid "RESET_INPUTS"
@@ -2583,14 +2532,13 @@ msgid "PLAYER_DIED"
 msgstr "jogador morreu"
 
 #: ../src/general/StageBase.cs:501
-#, fuzzy
 msgid "EXTINCT_IN_PATCH"
-msgstr "Extinta da região"
+msgstr "extinta na região"
 
 #: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
-msgstr ""
+msgstr "{0} {1}"
 
 #: ../src/general/StageHUDBase.cs:888
 msgid "CATEGORY_AN_ABUNDANCE"
@@ -3277,9 +3225,8 @@ msgid "OXYTOXISOME_DESC"
 msgstr "Um metabolossomo modificado responsável pela produção de uma forma primitiva do agente tóxico Oxitoxina."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:973
-#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e temperatura."
+msgstr "Produz [thrive:compound type=\"atp\"][/thrive:compound] usando gradientes de temperatura. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e temperatura."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:974
 #, fuzzy
@@ -3425,13 +3372,12 @@ msgid "LYSOSOME_DESCRIPTION"
 msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
-#, fuzzy
 msgid "DIGESTION_SPEED"
-msgstr "Velocidade de Absorção de Nutrientes"
+msgstr "Velocidade da Digestão"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "Eficiência da Digestão"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2420
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -3745,7 +3691,7 @@ msgstr "Sinal a Emitir"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:198
 msgid "DEVOURED"
-msgstr ""
+msgstr "Devorado"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:308
 msgid "STUFF_AT"
@@ -3771,7 +3717,7 @@ msgstr "No cursor:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1436
 msgid "INGESTED_MATTER"
-msgstr ""
+msgstr "Matéria ingerida"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1625
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -3843,7 +3789,7 @@ msgstr "Focado"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:165
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/s"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:285
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
@@ -3972,14 +3918,12 @@ msgid "STORAGE_COLON"
 msgstr "Armazenamento:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
-#, fuzzy
 msgid "DIGESTION_SPEED_COLON"
-msgstr "Velocidade:"
+msgstr "Velocidade da Digestão:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
-#, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "Descrição:"
+msgstr "Eficiência da Digestão:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 msgid "GENERATION_COLON"
@@ -4239,9 +4183,8 @@ msgid "CHITINASE_DESCRIPTION"
 msgstr "Os cílios são semelhantes aos flagelos, mas ao invés de fornecerem força de impulso direcional, eles fornecem força rotacional para ajudar as células a girar."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
-#, fuzzy
 msgid "SELECT_ENZYME"
-msgstr "Mod Selecionado:"
+msgstr "Selecione a Enzima:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 msgid "MODIFY_ORGANELLE"
@@ -4288,14 +4231,14 @@ msgid "MOVE_TO_THIS_PATCH"
 msgstr "Mover para esta região"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:75
-#, fuzzy
 msgid "PATCH_EXTINCTION_CAPITAL"
-msgstr "EXTINTO"
+msgstr "EXTINTO NA REGIÃO"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:84
-#, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr "Assim como 99% de todas as espécies que já existiram, a sua foi extinta. Outras espécies irão preencher o seu nicho e prosperar, mas não vai ser você. Será esquecido, um experimento falho na evolução."
+msgstr ""
+"Sua espécie foi extinta nesta região.\n"
+"Mas não se preocupe, você pode selecionar uma nova região para jogar!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
@@ -5037,12 +4980,12 @@ msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Apagar o(s) jogo(s) salvo(s) é irreversível, você tem certeza que quer apagar {0} aquivo(s) permanentemente?"
 
 #: ../src/saving/SaveManagerGUI.cs:237
-#, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Apagar todos os salvamentos automáticos e rápidos é irreversível, você deseja apagar permanentemente os arquivos abaixo?\n"
 "- {0} Salvamento(s) automático(s)\n"
-"- {1} Salvamento(s) rápido(s)"
+"- {1} Salvamento(s) rápido(s)\n"
+"- {2} Salvamento(s) de backup"
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"

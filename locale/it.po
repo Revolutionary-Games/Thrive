@@ -50,9 +50,8 @@ msgid "GENERAL"
 msgstr "Generale"
 
 #: ../simulation_parameters/common/gallery.json:121
-#, fuzzy
 msgid "MULTICELLULAR"
-msgstr "Fase Multicellulare"
+msgstr "Multicellulare"
 
 #: ../simulation_parameters/common/gallery.json:131
 msgid "MODELS"
@@ -109,32 +108,16 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Puoi consumare cellule, batteri, blocchi di ferro e pezzi di cellule che sono più piccoli di te premendo [thrive:input]g_toggle_engulf[/thrive:input]. Tenere la modalità attiva ti costerà più [thrive:compound type=\"atp\"][/thrive:compound] e ti rallenterà. Non scordarti di premere nuovamente [thrive:input]g_toggle_engulf[/thrive:input] quando hai finito."
 
 #: ../simulation_parameters/common/help_texts.json:22
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Strutture procariotiche:\n"
-"\n"
-"- metabolosoma: produce [thrive:compound type=\"atp\"][/thrive:compound] consumando [thrive:compound type=\"glucose\"][/thrive:compound];\n"
-"\n"
-"- proteine chemiosintetizzanti: producono, a partire dall'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound], metà del [thrive:compound type=\"glucose\"][/thrive:compound] normalmente prodotto da un chemioplasto; tuttavia, fanno anche la glicolisi; occupano un esagono;\n"
-"\n"
-"- tilacoide: produce 1/3 del [thrive:compound type=\"glucose\"][/thrive:compound] normalmente prodotto da un cloroplasto; tuttavia, svolge anche la glicolisi; occupa un esagono;\n"
-"\n"
-"- rusticianina: produce [thrive:compound type=\"atp\"][/thrive:compound] consumando [thrive:compound type=\"iron\"][/thrive:compound];\n"
-"\n"
-"- nitrogenasi: converte, anaerobicamente, l'azoto atmosferico e l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound];\n"
-"\n"
-"- citoplasma: possiede spazio di stoccaggio; fa anche la glicolisi (produce quindi piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound])."
+msgstr "Terminata la fagocitazione, gli oggetti catturati vengono trattenuti all'interno della membrana, in attesa di essere digeriti. Ma se alcuni di questi dovessero rivelarsi non digeribili, essi saranno prontamente espulsi. Quindi, assicurati prima di avere le giuste mutazioni per poterli processare a dovere. Gli enzimi, contenuti nei lisosomi, aiutano la digestione e la rendono molto più efficiente."
 
 #: ../simulation_parameters/common/help_texts.json:26
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Usa [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] e il mouse per muoverti. Se possiedi un vacuolo tossina, premi [thrive:input]g_fire_toxin[/thrive:input] per rilasciare [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Premi [thrive:input]g_toggle_engulf[/thrive:input] per attivare e disattivare la modalità di fagocitosi. Puoi aumentare e diminuire lo zoom con la rotellina del mouse."
+msgstr "Tuttavia, i lisosomi sono un'esclusiva degli organismi eucarioti: i procarioti non li hanno e ciò rende la loro digestione piuttosto inefficiente. Per cellule piccole, non si tratta di un grosso problema. Ma per cellule di dimensioni maggiori, essere prive di lisosomi si rivela molto svantaggioso."
 
 #: ../simulation_parameters/common/help_texts.json:30
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Usa [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] e il mouse per muoverti. Se possiedi un vacuolo tossina, premi [thrive:input]g_fire_toxin[/thrive:input] per rilasciare [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Premi [thrive:input]g_toggle_engulf[/thrive:input] per attivare e disattivare la modalità di fagocitosi. Puoi aumentare e diminuire lo zoom con la rotellina del mouse."
+msgstr "In particolare, è del tutto impossibile digerire le cellule dotate di pareti in cellulosa o chitina senza fare uso dell'apposito enzima."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
@@ -185,7 +168,7 @@ msgstr "Sii prudente: i tuoi avversari si evolvono insieme a te. Ogni volta che 
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Legandoti ad altre cellule puoi formare una colonia. All'interno di essa, le cellule si scambiano liberamente i composti prodotti e assorbiti, ma non possono dividersi (per ora); per poterti duplicare, devi prima slegarti. Puoi legarti solo a cellule della tua stessa specie; per farlo, devi entrare in modalità di legatura (assicurati di avere l'organulo apposito). Le colonie sono il primo passo verso la multicellularità (che però non è ancora nel gioco)."
+msgstr "Legandoti ad altre cellule puoi formare una colonia. All'interno di essa, le cellule si scambiano liberamente i composti prodotti e assorbiti. Puoi legarti solo a cellule della tua stessa specie; per farlo, devi per prima cosa possedere l'organulo apposito (agenti leganti); poi, devi attivare la modalità di legatura premendo [thrive:input]g_toggle_binding[/thrive:input]; infine, devi nuotare verso di loro fino a entrare in contatto fisico. Per ora, quando sei all'interno di una colonia, non puoi dividere la tua cellula ed entrare nell'editor; per farlo, devi prima lasciarla premendo [thrive:input]g_unbind_all[/thrive:input]. Le colonie sono il primo passo verso la multicellularità (che però non è ancora nel gioco)."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -499,38 +482,36 @@ msgid "MOVE_ORGANELLE"
 msgstr "Sposta organulo"
 
 #: ../simulation_parameters/common/input_options.json:155
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Movimento"
+msgstr "Movimento 3D"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "Muoviti verso l'alto o salta"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "Muoviti verso il basso o accovacciati"
 
 #: ../simulation_parameters/common/input_options.json:171
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Editor"
+msgstr "Editor 3D"
 
 #: ../simulation_parameters/common/input_options.json:175
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "Tieni premuto per alternare le modalità di spostamento e rotazione"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Passa alla visione frontale"
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Passa alla visione da destra"
 
 #: ../simulation_parameters/common/input_options.json:187
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Passa alla visione dall'alto"
 
 #: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -644,9 +625,8 @@ msgstr "Chemiolitoautotrofia Ferrica"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:133
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
-#, fuzzy
 msgid "THERMOSYNTHESIS"
-msgstr "Chemiosintesi"
+msgstr "Termosintesi"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -705,9 +685,8 @@ msgstr "Frammento di ferro grande"
 #: ../simulation_parameters/microbe_stage/biomes.json:1774
 #: ../simulation_parameters/microbe_stage/biomes.json:1941
 #: ../simulation_parameters/microbe_stage/biomes.json:2187
-#, fuzzy
 msgid "GOOGLY_EYE_CELL"
-msgstr "Cellula del Giocatore"
+msgstr "Cellula grandocchi"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -838,17 +817,15 @@ msgstr "Temperatura"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
-msgstr ""
+msgstr "Lipasi"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
-#, fuzzy
 msgid "CELLULASE"
-msgstr "Cellulosa"
+msgstr "Cellulasi"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:11
-#, fuzzy
 msgid "CHITINASE"
-msgstr "Chitina"
+msgstr "Chitinasi"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:58
@@ -927,9 +904,8 @@ msgstr "Plastidio Azotofissante"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:341
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:972
-#, fuzzy
 msgid "THERMOSYNTHASE"
-msgstr "Chemiosintesi"
+msgstr "Termosintasi"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:380
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1858
@@ -1005,9 +981,8 @@ msgstr "Ciglia"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:870
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
-#, fuzzy
 msgid "LYSOSOME"
-msgstr "OssiTossisoma"
+msgstr "Lisosoma"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
@@ -1030,9 +1005,8 @@ msgid "STARTING"
 msgstr "Avvio"
 
 #: ../src/auto-evo/AutoEvoRun.cs:293
-#, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "La popolazione di {0} è cambiata di {1} per il seguente motivo: {2}"
+msgstr "La popolazione di {0} è cambiata di {1} in {2} per il seguente motivo: {3}"
 
 #: ../src/auto-evo/RunResults.cs:554
 msgid "POPULATION_COLON"
@@ -1088,39 +1062,39 @@ msgstr "si è estinto dal pianeta"
 
 #: ../src/auto-evo/RunResults.cs:844
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr "La specie [u]{0}[/u] si è estinta!"
+msgstr "La specie [b][u]{0}[/u][/b] si è estinta!"
 
 #: ../src/auto-evo/RunResults.cs:854 ../src/auto-evo/RunResults.cs:876
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "La popolazione di [u]{0}[/u] è salita a {1}"
+msgstr "La popolazione di [b][u]{0}[/u][/b] è salita a {1}"
 
 #: ../src/auto-evo/RunResults.cs:860 ../src/auto-evo/RunResults.cs:882
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "La popolazione di [u]{0}[/u] è scesa a {1}"
+msgstr "La popolazione di [b][u]{0}[/u][/b] è scesa a {1}"
 
 #: ../src/auto-evo/RunResults.cs:868
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr "La specie [u]{0}[/u] è scomparsa da questa zona"
+msgstr "La specie [b][u]{0}[/u][/b] è scomparsa da questa zona"
 
 #: ../src/auto-evo/RunResults.cs:892
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr "Parte della popolazione di [u]{0}[/u] è migrata in questa zona da {1}"
+msgstr "Parte della popolazione di [b][u]{0}[/u][/b] è migrata in questa zona da {1}"
 
 #: ../src/auto-evo/RunResults.cs:897
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "Parte della popolazione di [u]{0}[/u] è migrata da {1} a {2}"
+msgstr "Parte della popolazione di [b][u]{0}[/u][/b] è migrata da {1} a {2}"
 
 #: ../src/auto-evo/RunResults.cs:903
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr "Parte della popolazione di [u]{0}[/u] è migrata verso {1}"
+msgstr "Parte della popolazione di [b][u]{0}[/u][/b] è migrata verso {1}"
 
 #: ../src/auto-evo/RunResults.cs:922
 msgid "TIMELINE_NICHE_FILL"
-msgstr "Nuova specie: [u]{0}[/u] si è diramata da [u]{1}[/u] per occupare una nicchia"
+msgstr "Nuova specie: [b][u]{0}[/u][/b] si è diramata da [b][u]{1}[/u][/b] per occupare una nicchia"
 
 #: ../src/auto-evo/RunResults.cs:928
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "Nuova specie: [u]{0}[/u] si è diramata da [u]{1}[/u] a causa di pressioni selettive diverse"
+msgstr "Nuova specie: [b][u]{0}[/u][/b] si è diramata da [b][u]{1}[/u][/b] a causa di pressioni selettive diverse"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 msgid "NOT_FOUND_CHUNK"
@@ -1225,7 +1199,7 @@ msgstr "Non puoi rimuovere tipi di cellule attualmente usate nel tuo piano corpo
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr "Crea nuovo tipo di cellula"
+msgstr "Crea un nuovo tipo di cellula"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
@@ -1295,12 +1269,11 @@ msgstr "Delta: {0}"
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
 #: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
-#, fuzzy
 msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Workshop ID sconosciuto per questa mod"
+msgstr "Sconosciuto su Windows"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
@@ -1837,11 +1810,11 @@ msgstr "Carica partita"
 
 #: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr "Modifica le opzioni di gioco"
+msgstr "Modifica le impostazioni di gioco"
 
 #: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
-msgstr "Impostazioni"
+msgstr "Opzioni"
 
 #: ../src/general/MainMenu.tscn:215
 msgid "TOOLS"
@@ -1910,19 +1883,17 @@ msgstr "Si sono verificati degli errori nel caricamento di una o più mod. I log
 
 #: ../src/general/NewGameSettings.cs:284
 #: ../src/general/NewGameSettings.tscn:1052
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Avvia una nuova partita"
+msgstr "Gioca con queste impostazioni"
 
 #: ../src/general/NewGameSettings.cs:291
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr "Avvia una nuova partita"
+msgstr "Alcune impostazioni non sono valide"
 
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Preimpostazione di difficoltà"
 
 #: ../src/general/NewGameSettings.tscn:142
 #: ../src/general/NewGameSettings.tscn:814
@@ -1932,7 +1903,7 @@ msgstr "Solo VCLC"
 #: ../src/general/NewGameSettings.tscn:149
 #: ../src/general/NewGameSettings.tscn:821
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr "(esclude parti e abilità al di fuori della Vita Come La Conosciamo)"
+msgstr "(esclude parti e abilità estranee alla Vita Come La Conosciamo)"
 
 #: ../src/general/NewGameSettings.tscn:165
 #: ../src/general/NewGameSettings.tscn:837
@@ -1969,7 +1940,7 @@ msgstr "Panspermia (casuale)"
 #: ../src/general/NewGameSettings.tscn:204
 #: ../src/general/NewGameSettings.tscn:876
 msgid "PLANET_RANDOM_SEED"
-msgstr "Seed casuale del pianeta"
+msgstr "Seme casuale del pianeta"
 
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:895
@@ -2026,7 +1997,7 @@ msgstr "Ritenzione ambientale del glucosio"
 
 #: ../src/general/NewGameSettings.tscn:659
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
-msgstr "(proporzione di glucosio conservata nell'ambiente all'arrivo di ciascuna generazione)"
+msgstr "(proporzione di glucosio conservata nell'ambiente all'inizio di ciascuna generazione)"
 
 #: ../src/general/NewGameSettings.tscn:676
 msgid "OSMOREGULATION_COST_MULTIPLIER"
@@ -2041,12 +2012,8 @@ msgid "FREE_GLUCOSE_CLOUD"
 msgstr "Nuvola bonus di glucosio all'uscita dall'editor"
 
 #: ../src/general/NewGameSettings.tscn:740
-#, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
-msgstr ""
-"I microbi focalizzati inseguono prede e frammenti per lunghe distanze\n"
-"e potrebbero desiderare questi ultimi con maggire ardimento.\n"
-"I microbi reattivi cambiano più facilmente bersaglio."
+msgstr "(comincia ogni generazione vicino a una nuvola di glucosio)"
 
 #: ../src/general/NewGameSettings.tscn:776
 msgid "PATCH_MAP_TYPE"
@@ -2082,13 +2049,8 @@ msgid "EASTER_EGGS"
 msgstr "Includi easter eggs"
 
 #: ../src/general/NewGameSettings.tscn:1001
-#, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
-msgstr ""
-"I microbi pavidi scappano dai pericoli per lunghe distanze\n"
-"e sono generalmente più propensi alla fuga.\n"
-"I microbi coraggiosi non sono spaventati dai predatori vicini\n"
-"e sono più disposti a contrattaccare."
+msgstr "(segreti che possono apparire casualmente nel gioco)"
 
 #: ../src/general/NewGameSettings.tscn:1029
 #, fuzzy
@@ -2097,7 +2059,7 @@ msgstr "Apri il menù di pausa per salvare il gioco"
 
 #: ../src/general/NewGameSettings.tscn:1031
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Avanzata"
 
 #: ../src/general/NewGameSettings.tscn:1042
 #, fuzzy
@@ -2106,7 +2068,7 @@ msgstr "Suicidio"
 
 #: ../src/general/NewGameSettings.tscn:1043
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Di base"
 
 #: ../src/general/NewGameSettings.tscn:1053
 msgid "CONFIRM_NORMAL"
@@ -2440,7 +2402,7 @@ msgstr "Sei sicuro di voler ripristinare i comandi ai valori iniziali?"
 
 #: ../src/general/OptionsMenu.tscn:1298
 msgid "CLOSE_OPTIONS"
-msgstr "Chiudere le impostazioni?"
+msgstr "Chiudere le opzioni?"
 
 #: ../src/general/OptionsMenu.tscn:1318
 msgid "UNSAVED_CHANGE_WARNING"
@@ -2530,7 +2492,7 @@ msgstr "Torna al menù principale"
 #: ../src/general/PauseMenu.tscn:229
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
-msgstr "Ritorna al menù"
+msgstr "Torna al menù"
 
 #: ../src/general/PauseMenu.tscn:237
 msgid "EXIT"
@@ -2549,14 +2511,13 @@ msgid "PLAYER_DIED"
 msgstr "il giocatore è morto"
 
 #: ../src/general/StageBase.cs:501
-#, fuzzy
 msgid "EXTINCT_IN_PATCH"
-msgstr "Estinto nella zona"
+msgstr "estinto nella zona"
 
 #: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
-msgstr ""
+msgstr "{0} {1}"
 
 #: ../src/general/StageHUDBase.cs:888
 msgid "CATEGORY_AN_ABUNDANCE"
@@ -2584,7 +2545,7 @@ msgstr "una traccia"
 
 #: ../src/general/StageHUDBase.cs:1098
 msgid "PLAYER_CELL"
-msgstr "Cellula del Giocatore"
+msgstr "Cellula del giocatore"
 
 #: ../src/general/StageHUDBase.cs:1111
 msgid "SPECIES_N_TIMES"
@@ -3243,14 +3204,12 @@ msgid "OXYTOXISOME_DESC"
 msgstr "Un metabolosoma modificato. Produce una forma primitiva dell'agente tossico OssiTossi NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:973
-#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/thrive:compound] e con la temperatura."
+msgstr "Produce [thrive:compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:974
-#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Il termoplasto è una struttura a doppia membrana che contiene pigmenti termosensibili, impilati insieme in sacchetti membranosi. Si tratta di un procariota, assimilato per l'uso da parte di un eucariota. I pigmenti al suo interno sono in grado di sfruttare l'energia delle differenze di calore vicine per produrre glucosio a partire dall'acqua e dal diossido di carbonio gassoso. Tale processo è chiamato Termosintesi. Il tasso di produzione di glucosio aumenta all'aumentare della concentrazione di diossido di carbonio e della temperatura."
+msgstr "La termosintasi è una proteina in grado di cambiare forma in base alle convezioni termiche del liquido in cui è immersa. Esposta al calore, si piega, legandosi così all'ADP. Raffreddata, si apre, riciclandola in ATP. Tale processo è chiamato termosintesi. Il tasso di produzione di ATP aumenta con la temperatura circostante."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1098
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -3322,7 +3281,7 @@ msgstr "Il cloroplasto è una struttura a doppia membrana, contenente pigmenti f
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1751
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/thrive:compound] e con la temperatura."
+msgstr "Produce [thrive:compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1752
 msgid "THERMOPLAST_DESCRIPTION"
@@ -3381,23 +3340,20 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "Da implementare."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2360
-#, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
-msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]. Puoi rilasciare le tossine premendo [thrive:input]g_fire_toxin[/thrive:input]. Il danno aumenta con la quantità disponibile."
+msgstr "Contiene enzimi digestivi. Può essere modificato per cambiare il tipo di enzima contenuto. Non può contenerne più di uno."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2361
-#, fuzzy
 msgid "LYSOSOME_DESCRIPTION"
-msgstr "I metabolosomi sono ammassi di proteine avvolti in involucri proteici. Sono in grado di convertire il glucosio in ATP molto più velocemente rispetto al citoplasma. Tale processo è chiamato Respirazione Aerobica. Tuttavia, richiedono ossigeno per funzionare: livelli più bassi rallentano il loro tasso di produzione di ATP. Siccome i metabolosomi sono sospesi direttamente nel citoplasma, il fuido circostante produce piccole quantità di ATP tramite glicolisi."
+msgstr "Il lisosoma è un organulo membranoso contenente enzimi idrolitici in grado di spezzare diversi tipi di biomolecole. Essi permettono alle cellule di digerire i materiali ingeriti attraverso l'endocitosi e di pulire i propri prodotti di scarto in un processo detto autofagia."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
-#, fuzzy
 msgid "DIGESTION_SPEED"
-msgstr "Velocità di Assorbimento Risorse"
+msgstr "Velocità di digestione"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "Efficienza di digestione"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2420
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -3410,7 +3366,7 @@ msgstr "La forma più basilare di membrana. Offre poca protezione ai danni e ha 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3348
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3622
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr "Velocità di Assorbimento Risorse"
+msgstr "Velocità di assorbimento delle risorse"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2591
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
@@ -3418,7 +3374,7 @@ msgstr "Una membrana a due strati. Offre una migliore protezione ai danni e rich
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2758
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr "Questa membrana possiede una parete. Ciò le conferisce una migliore protezione ai danni, specialmente quelli fisici. Inoltre, consuma meno energia per mantenere la propria forma, ma è più lenta nei movimenti e nell'assorbire le risorse."
+msgstr "Questa membrana possiede una parete. Ciò le conferisce una migliore protezione ai danni, specialmente ai danni fisici. Inoltre, consuma meno energia per mantenere la propria forma, ma è più lenta nei movimenti e nell'assorbire le risorse. [b]La cellulasi è in grado di digerire tale parete[/b], rendendo la membrana vulnerabile alla fagocitosi da parte dei predatori."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2924
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3416
@@ -3436,11 +3392,11 @@ msgstr "Impedisce la fagocitazione"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2990
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3237
 msgid "INVULNERABLE_TO_ENGULFMENT"
-msgstr ""
+msgstr "Immune alla fagocitazione"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3005
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr "Questa membrana possiede una parete. Ciò le conferisce una migliore protezione ai danni, specialmente ai danni da tossine. Inoltre, consuma meno energia per mantenere la propria forma, ma è più lenta nei movimenti e non può assorbire le risorse rapidamente."
+msgstr "Questa membrana possiede una parete. Ciò le conferisce una migliore protezione ai danni, specialmente ai danni da tossine. Inoltre, consuma meno energia per mantenere la propria forma, ma è più lenta nei movimenti e nell'assorbire le risorse. [b]La chitinasi è in grado di digerire tale parete[/b], rendendo la membrana vulnerabile alla fagocitosi da parte dei predatori."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3171
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3450
@@ -3542,13 +3498,12 @@ msgid "AGENTS"
 msgstr "Agenti"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1555
-#, fuzzy
 msgid "BECOME_AWARE"
-msgstr "Bioma: {0}"
+msgstr "Diventa Consapevole"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1566
 msgid "AWAKEN"
-msgstr ""
+msgstr "Risvegliati"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 #: ../src/microbe_stage/MicrobeStage.tscn:1660
@@ -3556,61 +3511,51 @@ msgid "POPULATION_CAPITAL"
 msgstr "POPOLAZIONE:"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
-#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr "Caricamento dell'Editor Multicellulare Iniziale"
+msgstr "Caricamento dell'Editor Multicellulare"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
-#, fuzzy
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr "Seleziona un tipo di cellula dal pannello Editor per modificarla qui"
+msgstr "Seleziona un tipo di tessuto dal pannello Editor"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
-#, fuzzy
 msgid "INTERNALS"
-msgstr "Esterno"
+msgstr "Viscere"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:371
-#, fuzzy
 msgid "APPEARANCE"
-msgstr "Prestazioni"
+msgstr "Aspetto"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
-#, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
-msgstr "Riproduzione"
+msgstr "Asessuale"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
-#, fuzzy
 msgid "DISCONNECTED_METABALLS"
-msgstr "Cellule disconnesse"
+msgstr "Metasfere disconnesse"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
-#, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"Ci sono cellule non connesse al resto dell'organismo.\n"
-"Connetti tutte le cellule l'una con l'altra per continuare."
+"Ci sono metasfere non connesse al resto dell'organismo.\n"
+"Connetti tutte le metasfere l'una con l'altra per continuare."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr "Crea nuovo tipo di cellula"
+msgstr "Crea un nuovo tipo di tessuto"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr "Puoi creare nuovi tipi di cellula duplicando e rinominando tipi esistenti. Ciascun tipo di cellula può essere modificato affinché si specializzi in un determinato ruolo. Quando modifichi un tipo di cellula, tutte le cellule di quel tipo già posizionate vengono aggiornate."
+msgstr "Puoi creare nuovi tipi di tessuto duplicando e rinominando tipi esistenti. Ciascun tipo di tessuto può essere modificato affinché si specializzi in un determinato ruolo."
 
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "Cellule multiple"
+msgstr "Metasfere multiple"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:44
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
@@ -3634,7 +3579,7 @@ msgstr "Mostra/nascondi i processi cellulari"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:131
 msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr "Suicidio"
+msgstr "Autodistruzione"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:709
 msgid "SUCCESSFUL_SCAVENGE"
@@ -3712,7 +3657,7 @@ msgstr "Segnale da emettere"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:198
 msgid "DEVOURED"
-msgstr ""
+msgstr "Divorato"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:308
 msgid "STUFF_AT"
@@ -3738,7 +3683,7 @@ msgstr "Sotto il cursore:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1436
 msgid "INGESTED_MATTER"
-msgstr ""
+msgstr "Materia ingerita"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1625
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
@@ -3810,7 +3755,7 @@ msgstr "Focalizzato"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:165
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/s"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:285
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:290
@@ -3843,7 +3788,9 @@ msgstr "Nome del tipo di cellula"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1160
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr "Impossibile eliminare il nucleo: si tratta di un'evoluzione irreversibile. Tuttavia, se posizionato nella sessione corrente, è possibile annullare o ripristinare l'azione"
+msgstr ""
+"Impossibile eliminare il nucleo: si tratta di un'evoluzione irreversibile.\n"
+"Tuttavia, se posizionato nella sessione corrente, è possibile annullare o ripristinare l'azione che ha portato alla sua aggiunta"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:1162
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
@@ -3939,14 +3886,12 @@ msgid "STORAGE_COLON"
 msgstr "Spazio di stoccaggio:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
-#, fuzzy
 msgid "DIGESTION_SPEED_COLON"
-msgstr "Velocità:"
+msgstr "Velocità di digestione:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
-#, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "Descrizione:"
+msgstr "Efficienza di digestione:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 msgid "GENERATION_COLON"
@@ -4191,24 +4136,20 @@ msgid "LINE_COLOUR"
 msgstr "Colore linea:"
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:95
-#, fuzzy
 msgid "LIPASE_DESCRIPTION"
-msgstr "Le cilia, come strutture, sono simili ai flagelli. Tuttavia, invece che fornire una spinta direzionale, aiutano le cellule a roteare meglio."
+msgstr "La lipasi permette alla cellula di rompere la maggior parte di tipi di membrana. La tua cellula produce un po' di lipasi anche senza bisogno di un lisosoma; ma selezionando quest'opzione ne aumenterai l'efficacia."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
-#, fuzzy
 msgid "CELLULASE_DESCRIPTION"
-msgstr "Il vacuolo è un organulo membranoso interno, utilizzato per lo stoccaggio di sostanze. È composto di diverse vesciche, cioè strutture membranose più piccole, usate comunemente nelle cellule per lo stoccaggio, che si sono fuse insieme. Il vacuolo è colmo d'acqua, usata per contenere molecole, enzimi, solidi e altre sostanze. La sua forma è fluida e può variare da cellula a cellula."
+msgstr "La cellulasi permette alla cellula di rompere le membrane in cellulosa. Ogni aggiunta ne aumenta l'efficacia."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
-#, fuzzy
 msgid "CHITINASE_DESCRIPTION"
-msgstr "Le cilia, come strutture, sono simili ai flagelli. Tuttavia, invece che fornire una spinta direzionale, aiutano le cellule a roteare meglio."
+msgstr "La chitinasi permette alla cellula di rompere le membrane in chitina. Ogni aggiunta ne aumenta l'efficacia."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
-#, fuzzy
 msgid "SELECT_ENZYME"
-msgstr "Mod selezionata:"
+msgstr "Seleziona l'enzima:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 msgid "MODIFY_ORGANELLE"
@@ -4248,21 +4189,21 @@ msgstr "Pressione"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:842
 msgid "SPECIES_PRESENT"
-msgstr "Specie Presenti"
+msgstr "Specie presenti"
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:906
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Trasferisciti in questa zona"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:75
-#, fuzzy
 msgid "PATCH_EXTINCTION_CAPITAL"
-msgstr "ESTINZIONE"
+msgstr "ESTINZIONE NELLA ZONA"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:84
-#, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr "Proprio come il 99% delle specie mai esistite, la tua si è estinta. Altri andranno a occupare nicchie e prosperare, ma non tu. Sarai dimenticato. Sei un esperimento fallito dell'evoluzione."
+msgstr ""
+"La tua specie si è estinta in questa zona.\n"
+"Ma non è ancora finita: puoi selezionare una nuova zona in cui giocare!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:82
 msgid "WIN_BOX_TITLE"
@@ -5002,12 +4943,12 @@ msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr "Eliminare i file selezionati è un'azione irreversibile. Sei sicuro di voler eliminare definitivamente {0} salvataggi(o)?"
 
 #: ../src/saving/SaveManagerGUI.cs:237
-#, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
 msgstr ""
 "Eliminare tutti i vecchi salvataggi automatici e rapidi è un'azione irreversibile. Sei sicuro di voler eliminare definitivamente i seguenti?\n"
 " - {0} Salvataggi(o) automatici/o\n"
-" - {1} Salvataggi(o) rapidi/o"
+" - {1} Salvataggi(o) rapidi/o\n"
+"- {2} Salvataggi(o) di backup"
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
@@ -5272,28 +5213,29 @@ msgid "TUTORIAL_VIEW_NOW"
 msgstr "Vedi ora"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
-"Sei in modalità di slegatura: clicca sui membri della tua colonia per separartene.\n"
+"La tua cellula ha una capacità limitata in riguardo a quanto materiale può fagocitare in una sola volta. Tale limite è relativo alle sue dimensioni: più è grande, più oggetti può contenere.\n"
 "\n"
-"Per abbandonarla interamente, clicca sulla tua stessa cellula, oppure premi il tasto [thrive:input]g_unbind _all[/thrive:input]."
+"Se è piena, non potrai inglobare altre cose, e dovrai aspettare che uno o più contenuti vengano digeriti completamente."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
-"Sei in modalità di slegatura: clicca sui membri della tua colonia per separartene.\n"
+"Per fagocitare dei materiali, passaci sopra, poi attiva la modalità apposita premendo [thrive:input]g_toggle_engulf[/thrive:input].\n"
 "\n"
-"Per abbandonarla interamente, clicca sulla tua stessa cellula, oppure premi il tasto [thrive:input]g_unbind _all[/thrive:input]."
+"Non disattivarla finché questi non sono completamente catturati.\n"
+"\n"
+"Segui la linea dalla tua cellula al più vicino oggetto inglobabile."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
 msgstr ""
-"Sei in modalità di slegatura: clicca sui membri della tua colonia per separartene.\n"
+"La tua cellula è stata fagocitata. Ciò significa che inizierà a essere digerita.\n"
 "\n"
-"Per abbandonarla interamente, clicca sulla tua stessa cellula, oppure premi il tasto [thrive:input]g_unbind _all[/thrive:input]."
+"Il processo di digestione è mostrato sopra la tua barra della salute (in basso a destra) in forma di percentuale. La tua cellula sarà considerata morta una volta che raggiungerà il 100% o avrà superato un limite di tempo.\n"
+"\n"
+"Premi il pulsante di autodistruzione se desideri saltare l'attesa e rinascere. Ma ricorda: c'è sempre una possibilità che tu riesca a scappare!"
 
 #~ msgid "MOBILITY"
 #~ msgstr "Mobilità"
