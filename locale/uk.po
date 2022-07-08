@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-07 16:47+0300\n"
+"POT-Creation-Date: 2022-07-07 18:24+0100\n"
 "PO-Revision-Date: 2022-04-09 08:33+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -1213,7 +1213,7 @@ msgstr "Скасувати дію"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:654
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:126
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "ДАЛІ"
@@ -1810,7 +1810,7 @@ msgid "CLOSE"
 msgstr "Закрити"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:675
+#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:681
 #: ../src/gui_common/CompoundAmount.cs:176
 #: ../src/microbe_stage/MicrobeHUD.cs:207
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
@@ -1887,7 +1887,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Режим творчого мікробного редактор"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1013
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
 #: ../src/general/OptionsMenu.tscn:1228 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1924,7 +1924,7 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Виникла помилка коли завантажувалися кілька модифікацій. Додаткова інформація міститься у журналах."
 
 #: ../src/general/NewGameSettings.cs:284
-#: ../src/general/NewGameSettings.tscn:1053
+#: ../src/general/NewGameSettings.tscn:1052
 #, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "почати нову гру"
@@ -1940,12 +1940,12 @@ msgid "DIFFICULTY_PRESET"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:142
-#: ../src/general/NewGameSettings.tscn:815
+#: ../src/general/NewGameSettings.tscn:814
 msgid "LAWK_ONLY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:149
-#: ../src/general/NewGameSettings.tscn:822
+#: ../src/general/NewGameSettings.tscn:821
 #, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
@@ -1955,12 +1955,12 @@ msgstr ""
 "та ймовірно атакуватимуть у відповідь."
 
 #: ../src/general/NewGameSettings.tscn:165
-#: ../src/general/NewGameSettings.tscn:838
+#: ../src/general/NewGameSettings.tscn:837
 msgid "LIFE_ORIGIN"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:845
+#: ../src/general/NewGameSettings.tscn:844
 #, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
@@ -1970,35 +1970,35 @@ msgstr ""
 "та ймовірно атакуватимуть у відповідь."
 
 #: ../src/general/NewGameSettings.tscn:186
-#: ../src/general/NewGameSettings.tscn:859
+#: ../src/general/NewGameSettings.tscn:858
 #, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Суїцид"
 
 #: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:860
 #: ../src/general/NewGameSettings.tscn:861
-#: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:877
+#: ../src/general/NewGameSettings.tscn:876
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:223
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:895
 #, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Пауза"
@@ -2089,46 +2089,46 @@ msgstr ""
 "та можуть бути вимогливішими щодо брил.\n"
 "Розсіяні мікроби швидче відволікатимуться на нові цілі."
 
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:776
 #, fuzzy
 msgid "PATCH_MAP_TYPE"
 msgstr "Мапа Ділянок"
 
-#: ../src/general/NewGameSettings.tscn:784
+#: ../src/general/NewGameSettings.tscn:783
 #, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
 "Рухливі мікроби будуть більше плавати та безлаодно тинятися.\n"
 "Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
 
+#: ../src/general/NewGameSettings.tscn:798
 #: ../src/general/NewGameSettings.tscn:799
-#: ../src/general/NewGameSettings.tscn:800
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:800
+#: ../src/general/NewGameSettings.tscn:799
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/NewGameSettings.tscn:943
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:976
+#: ../src/general/NewGameSettings.tscn:975
 #, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Перейдіть до наступного сходинки гри (багатоклітиності). Доступний при достатньому розмірі колонії."
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:982
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:995
+#: ../src/general/NewGameSettings.tscn:994
 #, fuzzy
 msgid "EASTER_EGGS"
 msgstr "Цікавий факт: Інфузорії Дідініум та Туфельки книжковий приклад відносин хижака-жертви, який вичався протягом десятиліть. А ви зараз Дідініум чи Туфелька? Хижак чи Жертва?"
 
-#: ../src/general/NewGameSettings.tscn:1002
+#: ../src/general/NewGameSettings.tscn:1001
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
@@ -2137,25 +2137,25 @@ msgstr ""
 "Хоробрі мікроби не бояться близьких хижаків,\n"
 "та ймовірно атакуватимуть у відповідь."
 
-#: ../src/general/NewGameSettings.tscn:1030
+#: ../src/general/NewGameSettings.tscn:1029
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Відкрити меню збереження, щоб зберегти гру"
 
-#: ../src/general/NewGameSettings.tscn:1032
+#: ../src/general/NewGameSettings.tscn:1031
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:1042
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Суїцид"
 
-#: ../src/general/NewGameSettings.tscn:1044
+#: ../src/general/NewGameSettings.tscn:1043
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1054
+#: ../src/general/NewGameSettings.tscn:1053
 #, fuzzy
 msgid "CONFIRM_NORMAL"
 msgstr "Підтвердити"
@@ -2602,40 +2602,40 @@ msgstr "гравець помер"
 msgid "EXTINCT_IN_PATCH"
 msgstr "вимерли в ділянці"
 
-#: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:882
+#: ../src/general/StageHUDBase.cs:888
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "в достатку"
 
-#: ../src/general/StageHUDBase.cs:884
+#: ../src/general/StageHUDBase.cs:890
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "нормально"
 
-#: ../src/general/StageHUDBase.cs:886
+#: ../src/general/StageHUDBase.cs:892
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "невелика кількість"
 
-#: ../src/general/StageHUDBase.cs:888
+#: ../src/general/StageHUDBase.cs:894
 msgid "CATEGORY_SOME"
 msgstr "трішки"
 
-#: ../src/general/StageHUDBase.cs:890
+#: ../src/general/StageHUDBase.cs:896
 msgid "CATEGORY_LITTLE"
 msgstr "мало"
 
-#: ../src/general/StageHUDBase.cs:892
+#: ../src/general/StageHUDBase.cs:898
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "дуже мало"
 
-#: ../src/general/StageHUDBase.cs:1092
+#: ../src/general/StageHUDBase.cs:1098
 msgid "PLAYER_CELL"
 msgstr "Клітина гравця"
 
-#: ../src/general/StageHUDBase.cs:1105
+#: ../src/general/StageHUDBase.cs:1111
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
@@ -3011,7 +3011,7 @@ msgid "SLIDESHOW"
 msgstr "Слайдшов"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2198
 msgid "NO_DATA_TO_SHOW"
 msgstr "Немає даних для показу"
 
@@ -3536,6 +3536,11 @@ msgstr ""
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Вмикає / вимикає спливаюче вікно з попередженням про незбережений прогрес, як гравець намагається покинути гру."
 
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3993
+#, fuzzy
+msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
+msgstr "Минуло часу: {0:#,#} років"
+
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
 #, fuzzy
 msgid "LOOKING_AT"
@@ -3614,7 +3619,7 @@ msgstr "Завантаження раннього багатоклітинног
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Оберіть тип клітин для редагування у вкладці редактору"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:720
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -3697,7 +3702,7 @@ msgstr "вдале очищення"
 msgid "DEATH"
 msgstr "Смерть"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1144
+#: ../src/microbe_stage/Microbe.Contact.cs:1148
 msgid "ESCAPE_ENGULFING"
 msgstr "уникнення поглинання"
 
@@ -3763,16 +3768,16 @@ msgstr "Сигнал для виведення"
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:310
+#: ../src/microbe_stage/MicrobeHUD.cs:308
 msgid "STUFF_AT"
 msgstr "Нахилити на {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:399
+#: ../src/microbe_stage/MicrobeHUD.cs:397
 #: ../src/microbe_stage/MicrobeStage.tscn:1629
 msgid "BECOME_MULTICELLULAR"
 msgstr "Перейти до багатоклітиності ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:435
+#: ../src/microbe_stage/MicrobeHUD.cs:433
 #: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "BECOME_MACROSCOPIC"
 msgstr "Стати макроскопічним ({0}/{1})"
@@ -3797,7 +3802,11 @@ msgstr "Перейдіть до наступного сходинки гри (б
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Увійдіть до редактору та модифікуйте свої види"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:210
+#: ../src/microbe_stage/PatchMapGenerator.cs:38
+msgid "PANGONIAN_REGION_NAME"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:809
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -3899,19 +3908,19 @@ msgstr "Неможна видалити останню органелу"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергія в {0} для {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2170
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Загальна зібрана енергія становить{0} з індивідуальною вартістю {1}, врезультаті чого– некоригована популяція з {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2177
 msgid "ENERGY_SOURCES"
 msgstr "Джерела енергії:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2183
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0} енергії: {1} (пристосованість: {2}) загальної доступної енергії: {3}(загальна пристосованість:{4})"
 
@@ -4075,6 +4084,12 @@ msgstr "Завантаження мікробного редактору"
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
 msgstr "Нескінчені МО"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:147
+#, fuzzy
+msgid "FIND_CURRENT_PATCH"
+msgstr "Недійсна доріжка іконки мода"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
@@ -4293,12 +4308,12 @@ msgstr "Сучасні види"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Переміститися на цю ділянку"
 
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:68
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:75
 #, fuzzy
 msgid "PATCH_EXTINCTION_CAPITAL"
 msgstr "ВИМИРАННЯ"
 
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:84
 #, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr "Як і 99% усіх видів які коли-небудь існували, ваш вид також вимер. Інші заповнять вашу нішу процвітуть, але це будете не ви. Ви будете забуті, невдалий експеримент еволюції."

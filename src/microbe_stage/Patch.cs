@@ -15,14 +15,16 @@ public class Patch
     [JsonProperty]
     public readonly int ID;
 
-    [JsonProperty]
     public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
 
     [JsonProperty]
     public readonly Biome BiomeTemplate;
 
     [JsonProperty]
-    public readonly int[] Depth = new int[2] { -1, -1 };
+    public readonly int[] Depth = { -1, -1 };
+
+    [JsonProperty]
+    public readonly PatchRegion Region;
 
     /// <summary>
     ///   The current snapshot of this patch.
@@ -33,12 +35,13 @@ public class Patch
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
-    public Patch(LocalizedString name, int id, Biome biomeTemplate)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, PatchRegion region)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
+        Region = region;
     }
 
     [JsonProperty]

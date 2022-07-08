@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-07 16:47+0300\n"
+"POT-Creation-Date: 2022-07-07 18:22+0100\n"
 "PO-Revision-Date: 2022-07-05 12:02+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1197,7 +1197,7 @@ msgstr "ОТКАЗ"
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:654
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
-#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:126
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:734
 msgid "NEXT_CAPITAL"
 msgstr "НАПРЕД"
@@ -1793,7 +1793,7 @@ msgid "CLOSE"
 msgstr "Затваряне"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:675
+#: ../src/general/NewGameSettings.cs:567 ../src/general/StageHUDBase.cs:681
 #: ../src/gui_common/CompoundAmount.cs:176
 #: ../src/microbe_stage/MicrobeHUD.cs:207
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:171
@@ -1870,7 +1870,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробен редактор"
 
 #: ../src/general/MainMenu.tscn:340 ../src/general/MainMenu.tscn:416
-#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1013
+#: ../src/general/MainMenu.tscn:459 ../src/general/NewGameSettings.tscn:1012
 #: ../src/general/OptionsMenu.tscn:1228 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
@@ -1907,7 +1907,7 @@ msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Възникна грешка по време на зареждането на една или повече модификации. За повече информация, вижте дневниците на играта."
 
 #: ../src/general/NewGameSettings.cs:284
-#: ../src/general/NewGameSettings.tscn:1053
+#: ../src/general/NewGameSettings.tscn:1052
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Завършване на промените и започване на играта"
 
@@ -1921,54 +1921,54 @@ msgid "DIFFICULTY_PRESET"
 msgstr "Ниво на трудност"
 
 #: ../src/general/NewGameSettings.tscn:142
-#: ../src/general/NewGameSettings.tscn:815
+#: ../src/general/NewGameSettings.tscn:814
 msgid "LAWK_ONLY"
 msgstr "Земеподобен живот"
 
 #: ../src/general/NewGameSettings.tscn:149
-#: ../src/general/NewGameSettings.tscn:822
+#: ../src/general/NewGameSettings.tscn:821
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr "(еволюцията на някои органели и способности е ограничена)"
 
 #: ../src/general/NewGameSettings.tscn:165
-#: ../src/general/NewGameSettings.tscn:838
+#: ../src/general/NewGameSettings.tscn:837
 msgid "LIFE_ORIGIN"
 msgstr "Произход на живота"
 
 #: ../src/general/NewGameSettings.tscn:172
-#: ../src/general/NewGameSettings.tscn:845
+#: ../src/general/NewGameSettings.tscn:844
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr "(начално местообитание)"
 
 #: ../src/general/NewGameSettings.tscn:186
-#: ../src/general/NewGameSettings.tscn:859
+#: ../src/general/NewGameSettings.tscn:858
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr "Зависи от включването на „Земеподобен живот“"
 
 #: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
+#: ../src/general/NewGameSettings.tscn:860
 #: ../src/general/NewGameSettings.tscn:861
-#: ../src/general/NewGameSettings.tscn:862
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "Хидротермални комини"
 
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_POND"
 msgstr "Топло езерце"
 
 #: ../src/general/NewGameSettings.tscn:189
-#: ../src/general/NewGameSettings.tscn:862
+#: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr "Извънземен (произволен)"
 
 #: ../src/general/NewGameSettings.tscn:204
-#: ../src/general/NewGameSettings.tscn:877
+#: ../src/general/NewGameSettings.tscn:876
 msgid "PLANET_RANDOM_SEED"
 msgstr "Произволно създаване на планетата"
 
 #: ../src/general/NewGameSettings.tscn:223
-#: ../src/general/NewGameSettings.tscn:896
+#: ../src/general/NewGameSettings.tscn:895
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr "Тази стойност трябва да е положително цяло число"
 
@@ -2040,60 +2040,60 @@ msgstr "Създаване на облак от глюкоза при излиз
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(създава облак от глюкоза близо до Вашето създание след всяко отваряне на редактора)"
 
-#: ../src/general/NewGameSettings.tscn:777
+#: ../src/general/NewGameSettings.tscn:776
 msgid "PATCH_MAP_TYPE"
 msgstr "Карта на зоните"
 
-#: ../src/general/NewGameSettings.tscn:784
+#: ../src/general/NewGameSettings.tscn:783
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr "(произволна или класическа карта на зоните)"
 
+#: ../src/general/NewGameSettings.tscn:798
 #: ../src/general/NewGameSettings.tscn:799
-#: ../src/general/NewGameSettings.tscn:800
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
 msgstr "Произволна"
 
-#: ../src/general/NewGameSettings.tscn:800
+#: ../src/general/NewGameSettings.tscn:799
 msgid "PATCH_MAP_TYPE_CLASSIC"
 msgstr "Класическа"
 
-#: ../src/general/NewGameSettings.tscn:944
+#: ../src/general/NewGameSettings.tscn:943
 msgid "PLANET_GENERATION_TEASER"
 msgstr "Създаването на планетата е в процес на разработка!"
 
-#: ../src/general/NewGameSettings.tscn:976
+#: ../src/general/NewGameSettings.tscn:975
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Включване на следващите етапи на играта"
 
-#: ../src/general/NewGameSettings.tscn:983
+#: ../src/general/NewGameSettings.tscn:982
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(следващите етапи на играта не са завършени и може да не функционират правилно)"
 
-#: ../src/general/NewGameSettings.tscn:995
+#: ../src/general/NewGameSettings.tscn:994
 msgid "EASTER_EGGS"
 msgstr "Включване на тайните обекти на играта"
 
-#: ../src/general/NewGameSettings.tscn:1002
+#: ../src/general/NewGameSettings.tscn:1001
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(произволно създаване на тайните обекти на играта)"
 
-#: ../src/general/NewGameSettings.tscn:1030
+#: ../src/general/NewGameSettings.tscn:1029
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Отваряне на разширените настройки"
 
-#: ../src/general/NewGameSettings.tscn:1032
+#: ../src/general/NewGameSettings.tscn:1031
 msgid "ADVANCED_VIEW"
 msgstr "Разширени"
 
-#: ../src/general/NewGameSettings.tscn:1043
+#: ../src/general/NewGameSettings.tscn:1042
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr "Отваряне на основните настройки"
 
-#: ../src/general/NewGameSettings.tscn:1044
+#: ../src/general/NewGameSettings.tscn:1043
 msgid "BASIC_VIEW"
 msgstr "Основни"
 
-#: ../src/general/NewGameSettings.tscn:1054
+#: ../src/general/NewGameSettings.tscn:1053
 msgid "CONFIRM_NORMAL"
 msgstr "Готово"
 
@@ -2537,40 +2537,40 @@ msgstr "измиране"
 msgid "EXTINCT_IN_PATCH"
 msgstr "изчезнаха от зоната"
 
-#: ../src/general/StageHUDBase.cs:676 ../src/gui_common/CompoundAmount.cs:171
+#: ../src/general/StageHUDBase.cs:682 ../src/gui_common/CompoundAmount.cs:171
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:237
 msgid "VALUE_WITH_UNIT"
 msgstr ""
 
-#: ../src/general/StageHUDBase.cs:882
+#: ../src/general/StageHUDBase.cs:888
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "в изобилно количество"
 
-#: ../src/general/StageHUDBase.cs:884
+#: ../src/general/StageHUDBase.cs:890
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "в обилно количество"
 
-#: ../src/general/StageHUDBase.cs:886
+#: ../src/general/StageHUDBase.cs:892
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "в задоволително количество"
 
-#: ../src/general/StageHUDBase.cs:888
+#: ../src/general/StageHUDBase.cs:894
 msgid "CATEGORY_SOME"
 msgstr "в умерено количество"
 
-#: ../src/general/StageHUDBase.cs:890
+#: ../src/general/StageHUDBase.cs:896
 msgid "CATEGORY_LITTLE"
 msgstr "в ограничено количество"
 
-#: ../src/general/StageHUDBase.cs:892
+#: ../src/general/StageHUDBase.cs:898
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "в оскъдно количество"
 
-#: ../src/general/StageHUDBase.cs:1092
+#: ../src/general/StageHUDBase.cs:1098
 msgid "PLAYER_CELL"
 msgstr "Вашето създание"
 
-#: ../src/general/StageHUDBase.cs:1105
+#: ../src/general/StageHUDBase.cs:1111
 msgid "SPECIES_N_TIMES"
 msgstr "{0} ({1} индивида)"
 
@@ -2941,7 +2941,7 @@ msgid "SLIDESHOW"
 msgstr "Слайдшоу"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2198
 msgid "NO_DATA_TO_SHOW"
 msgstr "Няма данни"
 
@@ -3466,6 +3466,11 @@ msgstr ""
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Превключване на предупреждението при излизане от играта."
 
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3993
+#, fuzzy
+msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
+msgstr "Изминало време: {0:#,#} години"
+
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
 #, fuzzy
 msgid "LOOKING_AT"
@@ -3544,7 +3549,7 @@ msgstr "Зареждане на ранния многоклетъчен реда
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr "Изберете клетка от редактора за да промените нейните свойства"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:720
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -3626,7 +3631,7 @@ msgstr "успешно убийство"
 msgid "DEATH"
 msgstr "измиране"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:1144
+#: ../src/microbe_stage/Microbe.Contact.cs:1148
 msgid "ESCAPE_ENGULFING"
 msgstr "бягство от поглъщане"
 
@@ -3692,16 +3697,16 @@ msgstr "Сигнал за излъчване"
 msgid "DEVOURED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:310
+#: ../src/microbe_stage/MicrobeHUD.cs:308
 msgid "STUFF_AT"
 msgstr "Неща при {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:399
+#: ../src/microbe_stage/MicrobeHUD.cs:397
 #: ../src/microbe_stage/MicrobeStage.tscn:1629
 msgid "BECOME_MULTICELLULAR"
 msgstr "Превръщане в многоклетъчен организъм ({0} от {1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:435
+#: ../src/microbe_stage/MicrobeHUD.cs:433
 #: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "BECOME_MACROSCOPIC"
 msgstr "Превръщане в макроскопичен организъм ({0} от {1})"
@@ -3726,7 +3731,11 @@ msgstr "Трябва да създадете достатъчно голяма �
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Отваряне на редактора"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:210
+#: ../src/microbe_stage/PatchMapGenerator.cs:38
+msgid "PANGONIAN_REGION_NAME"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:809
 msgid "PATCH_NAME"
 msgstr "{0} — {1}"
 
@@ -3828,19 +3837,19 @@ msgstr "Последният органел не може да бъде прем
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2161
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2166
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергийни стойности в {0} на „{1}“"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2165
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2170
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Некоригираната популация на Вашите създания ({2}) се определя от общата усвоена енергийна стойност ({0}), разделена на индивидуалния разход ({1})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2172
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2177
 msgid "ENERGY_SOURCES"
 msgstr "Източници на енергия:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2178
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2183
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}: усвоена енергийна стойност {1} със стойност на усвояване {2} и обща енергийна стойност {3} с обща стойност на усвояване {4}"
 
@@ -4004,6 +4013,12 @@ msgstr "Зареждане на микробния редактор"
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
 msgstr "Неограничени МТ"
+
+#: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:147
+#, fuzzy
+msgid "FIND_CURRENT_PATCH"
+msgstr "Невалидно местоположение на иконата"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
@@ -4222,11 +4237,11 @@ msgstr "Настоящи създания"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Преселване"
 
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:68
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:75
 msgid "PATCH_EXTINCTION_CAPITAL"
 msgstr "ИЗМИРАНЕ В ЗОНАТА"
 
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:84
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
 "Вашите създания изчезнаха от тази зона.\n"
