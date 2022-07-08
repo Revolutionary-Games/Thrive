@@ -52,9 +52,8 @@ msgid "GENERAL"
 msgstr "Generalny"
 
 #: ../simulation_parameters/common/gallery.json:121
-#, fuzzy
 msgid "MULTICELLULAR"
-msgstr "Stadium Wielokomórkowca"
+msgstr "Wielokomórkowe"
 
 #: ../simulation_parameters/common/gallery.json:131
 #: ../simulation_parameters/common/gallery.json:123
@@ -232,9 +231,9 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Wiążąc się z innymi komórkami, możesz zbudować kolonię w której komórki "
 "dzielą się zasobami które wchłaniają i produkują ze sobą. Żeby móc związać "
-"się z inną komórką, musisz mieć organellę z czynnikami wiążącymi i przenieść "
-"się do nich po wejściu w tryb wiązania po przez wciśnięcie [thrive:"
-"input]g_toggle_binding[/thrive:input]. Możesz wiązać się tylko z komórkami "
+"się z inną komórką, niezbędna organella z czynnikami wiążącymi. Po "
+"wciśnięciu [thrive:input]g_toggle_binding[/thrive:input] musisz podpłynąć do "
+"komórki z którą chcesz się związać. Możesz łączyć się tylko z komórkami "
 "twojego gatunku. Będąc w kolonii, nie możesz podzielić swojej komórki i "
 "wejść do edytora (jak na razie). Żeby wejść do edytora, uzbieraj wymagane "
 "zasoby i opuść kolonię naciskając [thrive:input]g_unbind_all[/thrive:input]. "
@@ -697,38 +696,36 @@ msgid "MOVE_ORGANELLE"
 msgstr "Przemieść organellę"
 
 #: ../simulation_parameters/common/input_options.json:155
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Ruch"
+msgstr "Ruch 3D"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "Przemieść się w górę lub skocz"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "Przenieś się w dół lub kucnij"
 
 #: ../simulation_parameters/common/input_options.json:171
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Edytor"
+msgstr "Edytor 3D"
 
 #: ../simulation_parameters/common/input_options.json:175
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "Przytrzymaj by przełączyć między trybami panoramicznym i obrotu"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Przełącz do kamery przedniej"
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Przełącz do kamery prawej"
 
 #: ../simulation_parameters/common/input_options.json:187
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Przełącz do kamery z góry"
 
 #: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -3955,9 +3952,8 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Upłynęło {0:#,#} lat."
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
-#, fuzzy
 msgid "LOOKING_AT"
-msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+msgstr "Patrzysz Na:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:447
 #: ../src/microbe_stage/MicrobeStage.tscn:485
@@ -4018,13 +4014,12 @@ msgid "AGENTS"
 msgstr "Czynniki"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1555
-#, fuzzy
 msgid "BECOME_AWARE"
-msgstr "Biom: {0}"
+msgstr "Stań Się Świadomy"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1566
 msgid "AWAKEN"
-msgstr ""
+msgstr "Przebudzony"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 #: ../src/microbe_stage/MicrobeStage.tscn:1660
@@ -4033,24 +4028,20 @@ msgid "POPULATION_CAPITAL"
 msgstr "POPULACJA:"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
-#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr "Wczytywanie Wczesnego Edytora Wielokomórkowca"
+msgstr "Wczytywanie Edytora Wielokomórkowca"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
-#, fuzzy
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr "Wybierz typ komórki do edytowania"
+msgstr "Wybierz typ tkanki do edytowania"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:720
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "Niemożna przenieść metakuli to jej drzewa potomstwa"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
-#, fuzzy
 msgid "INTERNALS"
-msgstr "Zewnętrzne"
+msgstr "Wnętrzności"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:371
 msgid "APPEARANCE"
@@ -4058,40 +4049,33 @@ msgstr "Wygląd"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
-#, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
-msgstr "Rozmnażanie"
+msgstr "Aseksualne"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
-#, fuzzy
 msgid "DISCONNECTED_METABALLS"
-msgstr "Niepołączone Komórki"
+msgstr "Niepołączone Metakule"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
-#, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"Niektóre komórki nie są połączone do reszty organizmu.\n"
-"Proszę połączyć wszystkie komórki aby kontynuować."
+"Niektóre metakule nie są połączone do reszty organizmu.\n"
+"Proszę połączyć wszystkie metakule aby kontynuować."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr "Stwórz Nowy Typ Komórki"
+msgstr "Stwórz Nowy Typ Tkanki"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr ""
-"Możesz tworzyć nowe typy komórek poprzez duplikację istniejących i nadanie "
-"im nowej nazwy. Typy komórek mogą być modyfikowane by wyspecjalizować je w "
-"innych zadaniach. Gdy zmodyfikujesz typ komórki, wszystkie umieszczone "
-"komórki tego typu zostaną zaktualizowane."
+"Możesz tworzyć nowe typy tkanek poprzez duplikację istniejących i nadanie im "
+"nowej nazwy. Typy tkanek mogą być modyfikowane za pomocą edytora komórek by "
+"wyspecjalizować je w innych zadaniach."
 
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "Wiele Komórek"
+msgstr "Wiele Metakul"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:44
 #: ../src/microbe_stage/MicrobeStage.tscn:1662
@@ -4852,9 +4836,8 @@ msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 #: ../src/modding/ModLoader.cs:438
-#, fuzzy
 msgid "MOD_HARMONY_LOAD_FAILED_EXCEPTION"
-msgstr "{0}: wczytywanie tworu zawiodło z powodu wyjątku: {1}"
+msgstr ""
 
 #: ../src/modding/ModLoader.cs:461
 #, fuzzy
@@ -5004,14 +4987,12 @@ msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Istnieją niezastosowane zmiany"
 
 #: ../src/modding/ModManager.tscn:578
-#, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "Musisz zatwierdzić zmiany, by załadować lub odładować mody."
+msgstr "Musisz zatwierdzić zmiany, by załadować lub wyładować mody."
 
 #: ../src/modding/ModManager.tscn:579
-#, fuzzy
 msgid "DISCARD_CHANGES"
-msgstr "Odrzuć i kontynuuj"
+msgstr "Odrzuć Zmiany"
 
 #: ../src/modding/ModManager.tscn:586
 msgid "FULL_MOD_INFO"
@@ -5167,7 +5148,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
-msgstr "Mod do udostępnienia:"
+msgstr "Mod Do Udostępnienia:"
 
 #: ../src/modding/ModUploader.tscn:109
 msgid "UNKNOWN_WORKSHOP_ID"
@@ -5232,14 +5213,12 @@ msgid "FORGET_MOD_DETAILS"
 msgstr ""
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
-#, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
-msgstr "\"{0}\" - {1}"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:294
-#, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
-msgstr "\"{0}\" - {1}"
+msgstr ""
 
 #: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
@@ -5290,9 +5269,8 @@ msgid "OUR_WIKI"
 msgstr "Nasza strona Wiki"
 
 #: ../src/modding/NewModGUI.tscn:439
-#, fuzzy
 msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr "Samobójstwo"
+msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:441
 msgid "USE_AUTO_HARMONY"
@@ -5335,7 +5313,7 @@ msgstr "Przetwarzanie wczytanych obiektów"
 #: ../src/saving/InProgressLoad.cs:167
 #, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
-msgstr "Podczas przetwarzania obiektów nastąpił wyjątek"
+msgstr "Podczas przetwarzania załadowanych obiektów nastąpił wyjątek"
 
 #: ../src/saving/InProgressLoad.cs:173
 msgid "LOAD_FINISHED"
@@ -5350,9 +5328,8 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
 #: ../src/saving/InProgressSave.cs:203
-#, fuzzy
 msgid "SAVING_DOT_DOT_DOT"
-msgstr "Wyszukiwanie..."
+msgstr "Zapisywanie..."
 
 #: ../src/saving/InProgressSave.cs:242
 msgid "SAVE_FAILED"
@@ -5740,15 +5717,14 @@ msgstr ""
 "Spróbuj wybrać jakiś biom by kontynuować."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "To jest edytor komórki gdzie możesz ewoluować swój gatunek poprzez wydawanie "
 "punktów mutacji (MP). W każdym pokoleniu zawsze masz 100 MP, więc nie "
 "przejmuj się oszczędzaniem!\n"
 "\n"
-"Heks w centrum twojego ekranu to twoja komórka, która składa się z [DO "
-"POPRAWY].\n"
+"Heks w centrum twego ekranu to twoja komórka, która składa się z jednej "
+"części cytozolu.\n"
 "\n"
 "By kontynuować, wybież część z lewego panelu. Następnie naciśnij lewy "
 "przycisk myszy obok heksa by ją umieścić. Możesz obracać części używając "
@@ -5756,7 +5732,6 @@ msgstr ""
 "thrive:input]."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:79
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Usuwanie organelli również kosztuje PM, jako iż jest to mutacja, chyba że "
@@ -5770,20 +5745,17 @@ msgstr ""
 "Kliknij przycisk cofnij aby kontynuować."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:96
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Kiedy wybierasz organella do dodania, zwracaj uwagę na porady dotyczące tego "
-"organellum, żeby wiedzieć co ono robi oraz jakie substancje zużywa i "
-"produkuje\n"
+"Wybierając części z menu, zwracaj szczególną uwagę na podpowiedzi które "
+"wyskakują by zrozumieć co te części robią. Mogą one bardziej szkodzić niż "
+"pomagać jeśli nie przejmujesz się ich działaniem.\n"
 "\n"
-"Zwracaj również uwagę na balans ATP w prawym górnym rogu, żeby upewnić się, "
-"że twoja komórka przeżyje.\n"
+"Pasek \"Produkcja ATP\" po twojej prawej wskazuje ile energii produkujesz w "
+"stosunku do jej konsumpcji. Jeśli pasek górny jest krótszy niż dolny, nie "
+"produkujesz wystarczająco energii.\n"
 "\n"
-"Możesz obracać organella za pomocą A i D (wejście domyślne) zanim je dodasz "
-"na stałe.\n"
-"\n"
-"Naciśnij przycisk powtórz (obok cofnij) aby kontynuować."
+"Naciśnij przycisk ponów (obok przycisku cofnij) by kontynuować."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #, fuzzy
