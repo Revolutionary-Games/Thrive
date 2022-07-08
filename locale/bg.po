@@ -51,9 +51,8 @@ msgid "GENERAL"
 msgstr "Общи"
 
 #: ../simulation_parameters/common/gallery.json:121
-#, fuzzy
 msgid "MULTICELLULAR"
-msgstr "Многоклетъчен етап"
+msgstr "Многоклетъчни"
 
 #: ../simulation_parameters/common/gallery.json:131
 #: ../simulation_parameters/common/gallery.json:123
@@ -580,7 +579,7 @@ msgstr "Поглъщане"
 #: ../simulation_parameters/common/input_options.json:48
 #: ../simulation_parameters/common/input_options.json:46
 msgid "HOLD_PACK_COMMANDS_MENU"
-msgstr "Командно меню"
+msgstr "Отваряне командното меню чрез задържане"
 
 #: ../simulation_parameters/common/input_options.json:52
 #: ../src/microbe_stage/MicrobeStage.tscn:1990
@@ -655,7 +654,7 @@ msgstr "Добавяне на органел"
 #: ../simulation_parameters/common/input_options.json:114
 #: ../simulation_parameters/common/input_options.json:111
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "Контекстно меню"
+msgstr "Отваряне на контекстното меню"
 
 #: ../simulation_parameters/common/input_options.json:118
 #: ../simulation_parameters/common/input_options.json:115
@@ -699,38 +698,36 @@ msgid "MOVE_ORGANELLE"
 msgstr "Преместване на органел"
 
 #: ../simulation_parameters/common/input_options.json:155
-#, fuzzy
 msgid "3D_MOVEMENT"
-msgstr "Движение"
+msgstr "Триизмерно движение"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
-msgstr ""
+msgstr "Нагоре или скачане"
 
 #: ../simulation_parameters/common/input_options.json:163
 msgid "MOVE_DOWN_OR_CROUCH"
-msgstr ""
+msgstr "Надолу или клякане"
 
 #: ../simulation_parameters/common/input_options.json:171
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "Редактор"
+msgstr "Триизмерен редактор"
 
 #: ../simulation_parameters/common/input_options.json:175
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "Превключване между режимите преместване и завъртане чрез задържане"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Превключване на предната камера"
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Превключване на дясната камера"
 
 #: ../simulation_parameters/common/input_options.json:187
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Превключване на горната камера"
 
 #: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -4252,9 +4249,8 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr "Изминало време: {0:#,#} години"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
-#, fuzzy
 msgid "LOOKING_AT"
-msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+msgstr "В тази посока:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:447
 #: ../src/microbe_stage/MicrobeStage.tscn:485
@@ -4316,13 +4312,12 @@ msgid "AGENTS"
 msgstr "Химични агенти"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1555
-#, fuzzy
 msgid "BECOME_AWARE"
-msgstr "Биом: {0}"
+msgstr "Осъзнаване"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1566
 msgid "AWAKEN"
-msgstr ""
+msgstr "Пробуждане"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 #: ../src/microbe_stage/MicrobeStage.tscn:1660
@@ -4331,24 +4326,20 @@ msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛАЦИЯ:"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
-#, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr "Зареждане на ранния многоклетъчен редактор"
+msgstr "Зареждане на многоклетъчния редактор"
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:82
-#, fuzzy
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr "Изберете клетка от редактора за да промените нейните свойства"
+msgstr "Изберете тъкан от редактора за да промените нейните свойства"
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:720
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "Кълбото не може да бъде преместено в неговто потомствено дърво"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
-#, fuzzy
 msgid "INTERNALS"
-msgstr "Външна"
+msgstr "Вътрешности"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:371
 msgid "APPEARANCE"
@@ -4356,40 +4347,33 @@ msgstr "Външност"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:552
-#, fuzzy
 msgid "REPRODUCTION_ASEXUAL"
-msgstr "Възпроизвеждане"
+msgstr "Асексуално"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:663
-#, fuzzy
 msgid "DISCONNECTED_METABALLS"
-msgstr "Несвързани клетки"
+msgstr "Несвързани кълба"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:665
-#, fuzzy
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
-"Има клетки, които не са свързани с останалите.\n"
+"Има кълба, които не са свързани с останалите.\n"
 "Моля, свържете ги или отменете Вашите промени."
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE"
-msgstr "Създаване на нова клетка"
+msgstr "Създаване на нова тъкан"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:688
-#, fuzzy
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr ""
-"Може да създадете нови клетки с различно наименование чрез удвояване на "
-"текущите клетки. Свойствата на клетките могат да бъдат променяни, за да "
-"изпълняват различни функции. Когато дадена клетка бъде променена, всички "
-"клетки от нейния вид ще бъдат обновени."
+"Може да създадете нова тъкан с различно наименование чрез удвояване на "
+"текущите тъкани. Свойствата на тъканите могат да бъдат променяни, за да "
+"изпълняват различни функции."
 
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:58
-#, fuzzy
 msgid "MULTIPLE_METABALLS"
-msgstr "Няколко клетки"
+msgstr "Няколко кълба"
 
 #: ../src/microbe_stage/HUDBottomBar.tscn:44
 #: ../src/microbe_stage/MicrobeStage.tscn:1662
@@ -4532,7 +4516,7 @@ msgstr "Неща при {0:F1}, {1:F1}:"
 #: ../src/microbe_stage/MicrobeStage.tscn:1803
 #: ../src/microbe_stage/MicrobeHUD.cs:1373
 msgid "BECOME_MULTICELLULAR"
-msgstr "Превръщане в многоклетъчен организъм ({0} от {1})"
+msgstr "Многоклетъчен организъм ({0} от {1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:433
 #: ../src/microbe_stage/MicrobeStage.tscn:1640
@@ -4541,7 +4525,7 @@ msgstr "Превръщане в многоклетъчен организъм ({
 #: ../src/microbe_stage/MicrobeStage.tscn:1814
 #: ../src/microbe_stage/MicrobeHUD.cs:1409
 msgid "BECOME_MACROSCOPIC"
-msgstr "Превръщане в макроскопичен организъм ({0} от {1})"
+msgstr "Макроскопичен организъм ({0} от {1})"
 
 #: ../src/microbe_stage/MicrobeStage.cs:661
 #: ../src/microbe_stage/MicrobeStage.cs:845
