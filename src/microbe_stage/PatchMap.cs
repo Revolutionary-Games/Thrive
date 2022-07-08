@@ -217,6 +217,13 @@ public class PatchMap : ISaveLoadable
             }
         }
 
+        // Verify unique IDs
+        foreach (var region in Regions)
+        {
+            if (region.Key != region.Value.ID)
+                GD.Print($"Region key {region.Key} doesn't match ID in object {region.Value.ID}");
+        }
+
         // TODO: check each region has a link
         // Note: it seems that region links are two-way by default and don't have the ability to only have one way
         // linkage
