@@ -22,7 +22,7 @@ public class PatchMapNode : MarginContainer
     public NodePath MarkPanelPath = null!;
 
     /// <summary>
-    ///   For pathes adajcent to the selected one
+    ///   For patches adjacent to the selected one
     /// </summary>
     [Export]
     public NodePath AdjacentPanelPath = null!;
