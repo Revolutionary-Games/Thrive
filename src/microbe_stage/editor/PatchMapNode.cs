@@ -10,13 +10,13 @@ public class PatchMapNode : MarginContainer
     public NodePath IconPath = null!;
 
     /// <summary>
-    ///   Selected patch
+    ///   Selected patch graphics
     /// </summary>
     [Export]
     public NodePath HighlightPanelPath = null!;
 
     /// <summary>
-    ///   Player patch
+    ///   Player patch graphics
     /// </summary>
     [Export]
     public NodePath MarkPanelPath = null!;
@@ -27,20 +27,15 @@ public class PatchMapNode : MarginContainer
     [Export]
     public NodePath AdjacentPanelPath = null!;
 
-    public bool IsDirty;
-
     // TODO: Move this to Constants.cs
     private const float HalfBlinkInterval = 0.5f;
 
-    private TextureRect iconRect = null!;
-    private Panel highlightPanel = null!;
-    private Panel markPanel = null!;
-    private Panel adjacentHighlightPanel = null!;
+    private TextureRect? iconRect;
+    private Panel? highlightPanel;
+    private Panel? markPanel;
+    private Panel? adjacentHighlightPanel;
 
-    /// <summary>
-    ///   True if _Ready() has been called
-    /// </summary>
-    private bool ready;
+    private Texture? patchIcon;
 
     /// <summary>
     ///   True if mouse is hovering on this node
@@ -67,14 +62,14 @@ public class PatchMapNode : MarginContainer
     /// </summary>
     private bool adjacentToSelectedPatch;
 
-    private Texture? patchIcon;
-
     private float currentBlinkTime;
 
     /// <summary>
     ///   This object does nothing with this, this is stored here to make other code simpler
     /// </summary>
     public Patch Patch { get; set; } = null!;
+
+    public bool IsDirty { get; private set; }
 
     public ShaderMaterial? MonochromeMaterial { get; set; }
 
@@ -93,11 +88,8 @@ public class PatchMapNode : MarginContainer
 
             enabled = value;
 
-            if (ready)
-            {
-                UpdateSelectHighlightRing();
-                UpdateGreyscale();
-            }
+            UpdateSelectHighlightRing();
+            UpdateGreyscale();
         }
     }
 
@@ -111,8 +103,7 @@ public class PatchMapNode : MarginContainer
 
             patchIcon = value;
 
-            if (ready)
-                UpdateIcon();
+            UpdateIcon();
         }
     }
 
@@ -123,8 +114,7 @@ public class PatchMapNode : MarginContainer
         {
             highlighted = value;
 
-            if (ready)
-                UpdateSelectHighlightRing();
+            UpdateSelectHighlightRing();
         }
     }
 
@@ -135,8 +125,7 @@ public class PatchMapNode : MarginContainer
         {
             selected = value;
 
-            if (ready)
-                UpdateSelectHighlightRing();
+            UpdateSelectHighlightRing();
         }
     }
 
@@ -147,8 +136,7 @@ public class PatchMapNode : MarginContainer
         {
             marked = value;
 
-            if (ready)
-                UpdateMarkRing();
+            UpdateMarkRing();
         }
     }
 
@@ -172,8 +160,6 @@ public class PatchMapNode : MarginContainer
         markPanel = GetNode<Panel>(MarkPanelPath);
         adjacentHighlightPanel = GetNode<Panel>(AdjacentPanelPath);
 
-        ready = true;
-
         UpdateSelectHighlightRing();
         UpdateMarkRing();
         UpdateIcon();
@@ -186,8 +172,9 @@ public class PatchMapNode : MarginContainer
         if (currentBlinkTime > HalfBlinkInterval)
         {
             currentBlinkTime = 0;
+
             if (Marked)
-                markPanel.Visible = !markPanel.Visible;
+                markPanel!.Visible = !markPanel.Visible;
         }
     }
 
@@ -226,6 +213,9 @@ public class PatchMapNode : MarginContainer
 
     private void UpdateSelectHighlightRing()
     {
+        if (highlightPanel == null || adjacentHighlightPanel == null)
+            return;
+
         if (Enabled)
         {
             highlightPanel.Visible = Highlighted || Selected;
@@ -240,12 +230,15 @@ public class PatchMapNode : MarginContainer
 
     private void UpdateMarkRing()
     {
+        if (markPanel == null)
+            return;
+
         markPanel.Visible = Marked;
     }
 
     private void UpdateIcon()
     {
-        if (PatchIcon == null)
+        if (PatchIcon == null || iconRect == null)
             return;
 
         iconRect.Texture = PatchIcon;
@@ -253,6 +246,9 @@ public class PatchMapNode : MarginContainer
 
     private void UpdateGreyscale()
     {
+        if (iconRect == null)
+            return;
+
         iconRect.Material = Enabled ? null : MonochromeMaterial;
     }
 }
