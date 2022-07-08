@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Godot;
 
 /// <summary>
 ///   Contains logic for generating PatchMap objects
 /// </summary>
-[SuppressMessage("ReSharper", "StringLiteralTypo", Justification = "Patch names aren't proper words")]
 public static class PatchMapGenerator
 {
     // IDs for the patches in the predefined map
@@ -29,11 +27,10 @@ public static class PatchMapGenerator
     public static PatchMap Generate(WorldGenerationSettings settings, Species defaultSpecies, Random? random = null)
     {
         random ??= new Random(settings.Seed);
-        var map = new PatchMap();
 
         if (settings.MapType == WorldGenerationSettings.PatchMapType.Classic)
         {
-            // Return the classic map if settings require it, otherwise use it to draw the procedural map
+            // Return the classic map if settings ask for it it
             var predefinedMap =
                 PredefinedMap(new PatchMap(), TranslationServer.Translate("PANGONIAN_REGION_NAME"), random);
 
@@ -43,63 +40,77 @@ public static class PatchMapGenerator
             return predefinedMap;
         }
 
+        var map = new PatchMap();
+
         var nameGenerator = SimulationParameters.Instance.GetPatchMapNameGenerator();
 
-        // Initialize the graphs random parameters
-        var regionCoords = new List<Vector2>();
-        int vertexNumber = random.Next(6, 10);
-        int edgeNumber = random.Next(vertexNumber, 2 * vertexNumber - 4);
+        // Initialize the graph's random parameters
+        var regionCoordinates = new List<Vector2>();
+        int vertexCount = random.Next(6, 10);
+        int edgeCount = random.Next(vertexCount, 2 * vertexCount - 4);
         int minDistance = 180;
 
-        var currentPatchId = 0;
-        var specialRegionsId = vertexNumber;
+        int currentPatchId = 0;
+        int specialRegionId = 0;
 
         // Potential starting patches, which must be set by the end of the generating process
         Patch? vents = null;
         Patch? tidepool = null;
 
-        // Create the graphs random regions
-        for (int i = 0; i < vertexNumber; i++)
+        // Create the graph's random regions
+        for (int i = 0; i < vertexCount; ++i)
         {
-            var areaName = nameGenerator.Next(random);
+            var patchName = nameGenerator.Next(random);
             var continentName = nameGenerator.ContinentName;
-            var coord = new Vector2(0, 0);
+            var coordinates = new Vector2(0, 0);
 
             // We must create regions containing potential starting locations, so do those first
-            var regionType = vents == null ? 0 : tidepool == null ? 2 : random.Next(0, 3);
+            int regionTypeRaw;
+            if (vents == null)
+            {
+                regionTypeRaw = 0;
+            }
+            else if (tidepool == null)
+            {
+                regionTypeRaw = 2;
+            }
+            else
+            {
+                regionTypeRaw = random.Next(0, 3);
+            }
 
-            PatchRegion.RegionType regionTypeName;
-            switch (regionType)
+            PatchRegion.RegionType regionType;
+            switch (regionTypeRaw)
             {
                 case 0:
-                    regionTypeName = PatchRegion.RegionType.Sea;
+                    regionType = PatchRegion.RegionType.Sea;
                     break;
                 case 1:
-                    regionTypeName = PatchRegion.RegionType.Ocean;
+                    regionType = PatchRegion.RegionType.Ocean;
                     break;
                 default:
-                    regionTypeName = PatchRegion.RegionType.Continent;
+                    regionType = PatchRegion.RegionType.Continent;
                     break;
             }
 
-            var region = new PatchRegion(i, GetPatchLocalizedName(continentName, regionTypeName.ToString()),
-                regionTypeName, coord);
+            var region = new PatchRegion(i, GetPatchLocalizedName(continentName, regionType.ToString()),
+                regionType, coordinates);
             int numberOfPatches;
 
-            if (regionType == 2)
+            if (regionTypeRaw == 2)
             {
                 // Ensure the region is non-empty if we need a tidepool
                 numberOfPatches = random.Next(tidepool == null ? 1 : 0, 4);
 
                 // All continents must have at least one coastal patch.
-                NewPredefinedPatch(PredefinedBiome.Coastal, currentPatchId++, region, areaName);
+                NewPredefinedPatch(PredefinedBiome.Coastal, ++currentPatchId, region, patchName);
 
                 while (numberOfPatches > 0)
                 {
                     // Add at least one tidepool to the map, otherwise choose randomly
                     var patchIndex = tidepool == null ? PredefinedBiome.Tidepool : (PredefinedBiome)random.Next(0, 3);
-                    var patch = NewPredefinedPatch(patchIndex, currentPatchId++, region, areaName);
-                    numberOfPatches--;
+                    var patch = NewPredefinedPatch(patchIndex, ++currentPatchId, region, patchName);
+                    --numberOfPatches;
 
                     if (patchIndex == PredefinedBiome.Tidepool)
                         tidepool = patch;
@@ -111,26 +122,30 @@ public static class PatchMapGenerator
 
                 // All oceans/seas must have at least one epipelagic/ice patch and a seafloor
                 NewPredefinedPatch(random.Next(0, 2) == 1 ? PredefinedBiome.Epipelagic : PredefinedBiome.IceShelf,
-                    currentPatchId++, region, areaName);
+                    ++currentPatchId, region, patchName);
 
                 // Add the patches between surface and sea floor
-                for (int patchIndex = 4; numberOfPatches > 0 && patchIndex < 7; patchIndex++, numberOfPatches--)
+                for (int patchIndex = 4; numberOfPatches > 0 && patchIndex <= (int)PredefinedBiome.Abyssopelagic;
+                     ++patchIndex, --numberOfPatches)
                 {
-                    NewPredefinedPatch((PredefinedBiome)patchIndex, currentPatchId++, region, areaName);
+                    NewPredefinedPatch((PredefinedBiome)patchIndex, ++currentPatchId, region, patchName);
                 }
 
                 // Add the seafloor last
-                NewPredefinedPatch(PredefinedBiome.Seafloor, currentPatchId++, region, areaName);
+                NewPredefinedPatch(PredefinedBiome.Seafloor, ++currentPatchId, region, patchName);
 
                 // Add at least one vent to the map, otherwise chance to add a vent if this is a sea/ocean region
                 if (vents == null || random.Next(0, 2) == 1)
                 {
-                    var ventRegion = new PatchRegion(specialRegionsId++,
-                        GetPatchLocalizedName(continentName, "vents"), PatchRegion.RegionType.Vent, coord);
+                    var ventRegion = new PatchRegion(--specialRegionId,
+                        GetPatchLocalizedName(continentName, "vents"), PatchRegion.RegionType.Vent, coordinates)
+                    {
+                        IsForDrawingOnly = true,
+                    };
 
-                    vents = NewPredefinedPatch(PredefinedBiome.Vents, currentPatchId++, ventRegion, areaName);
+                    vents = NewPredefinedPatch(PredefinedBiome.Vents, ++currentPatchId, ventRegion, patchName);
 
-                    map.AddSpecialRegion(ventRegion);
+                    map.AddDrawingRegion(ventRegion);
                     LinkRegions(ventRegion, region);
                 }
             }
@@ -138,32 +153,34 @@ public static class PatchMapGenerator
             // Random chance to create a cave
             if (random.Next(0, 2) == 1)
             {
-                var caveRegion = new PatchRegion(specialRegionsId++,
-                    GetPatchLocalizedName(continentName, "UNDERWATERCAVE"), PatchRegion.RegionType.Cave, coord);
+                var caveRegion = new PatchRegion(--specialRegionId,
+                    GetPatchLocalizedName(continentName, "UNDERWATERCAVE"), PatchRegion.RegionType.Cave, coordinates)
+                {
+                    IsForDrawingOnly = true,
+                };
 
-                var cavePatch = NewPredefinedPatch(PredefinedBiome.Cave, currentPatchId++, caveRegion, areaName);
+                var cavePatch = NewPredefinedPatch(PredefinedBiome.Cave, ++currentPatchId, caveRegion, patchName);
 
-                map.AddSpecialRegion(caveRegion);
+                map.AddDrawingRegion(caveRegion);
                 LinkRegions(caveRegion, region);
 
                 // Chose one random patch from the region to be linked to the underwater cave
-                var patchIndex = random.Next(0, region.Patches.Count - 1);
-                LinkPatches(cavePatch, region.Patches[patchIndex]);
+                LinkPatches(cavePatch, region.Patches.Random(random));
             }
 
             BuildRegion(region);
-            coord = GenerateCoordinates(region, map, random, minDistance);
+            coordinates = GenerateCoordinates(region, map, random, minDistance);
 
             // We add the coordinates for the center of the region
             // since that's the point that will be connected
-            regionCoords.Add(coord + region.Size / 2.0f);
+            regionCoordinates.Add(coordinates + region.Size / 2.0f);
             map.AddRegion(region);
         }
 
         // After building the normal regions we build the special ones and the patches
         BuildPatchesInRegions(map, random);
-        BuildSpecialRegions(map);
-        BuildPatchesInSpecialRegions(map, random);
+        BuildDrawingRegions(map);
+        BuildPatchesInDrawingRegions(map, random);
 
         if (vents == null)
             throw new InvalidOperationException("No vent patch created");
@@ -171,20 +188,23 @@ public static class PatchMapGenerator
         if (tidepool == null)
             throw new InvalidOperationException("No tidepool patch created");
 
+        // This uses random so this affects the edge subtraction, but this doesn't depend on the selected start type
+        // so this makes the same map be generated anyway
         ConfigureStartingPatch(map, settings, defaultSpecies, vents, tidepool, random);
 
         // We make the graph by subtracting edges from its Delaunay Triangulation
         // as long as the graph stays connected.
-        int[,] graph = DelaunayTriangulation(new int[100, 100], regionCoords);
-        graph = SubtractEdges(graph, vertexNumber, edgeNumber, random);
+        // TODO: should the 100 be hardcoded here? Seems like if vertexCount > 100, we'll explode in the below loops
+        int[,] graph = DelaunayTriangulation(new int[100, 100], regionCoordinates);
+        graph = SubtractEdges(graph, vertexCount, edgeCount, random);
 
         // Link regions according to the graph matrix
-        for (int k = 0; k < vertexNumber; k++)
+        for (int i = 0; i < vertexCount; ++i)
         {
-            for (int l = 0; l < vertexNumber; l++)
+            for (int k = 0; k < vertexCount; ++k)
             {
-                if (graph[l, k] == 1)
-                    LinkRegions(map.Regions[k], map.Regions[l]);
+                if (graph[k, i] == 1)
+                    LinkRegions(map.Regions[i], map.Regions[k]);
             }
         }
 
@@ -220,26 +240,26 @@ public static class PatchMapGenerator
         {
             int edgeToDelete = random.Next(1, currentEdgeNumber);
             int i;
-            int j;
-            for (i = 0, j = 0; i < vertexNumber && edgeToDelete != 0; i++)
+            int k;
+            for (i = 0, k = 0; i < vertexNumber && edgeToDelete != 0; ++i)
             {
-                for (j = 0; j < vertexNumber && edgeToDelete != 0 && j <= i; j++)
+                for (k = 0; k < vertexNumber && edgeToDelete != 0 && k <= i; ++k)
                 {
-                    if (graph[i, j] == 1)
-                        edgeToDelete--;
+                    if (graph[i, k] == 1)
+                        --edgeToDelete;
                 }
             }
 
             --i;
-            --j;
+            --k;
 
             // Check if the graph stays connected after subtracting the edge
             // otherwise, leave the edge as is.
-            graph[i, j] = graph[j, i] = 0;
+            graph[i, k] = graph[k, i] = 0;
 
             if (!CheckConnectivity(graph, vertexNumber))
             {
-                graph[i, j] = graph[j, i] = 1;
+                graph[i, k] = graph[k, i] = 1;
             }
             else
             {
@@ -253,9 +273,9 @@ public static class PatchMapGenerator
     /// <summary>
     ///   Create a triangulation for a certain graph given some vertex coordinates
     /// </summary>
-    private static int[,] DelaunayTriangulation(int[,] graph, List<Vector2> vertexCoords)
+    private static int[,] DelaunayTriangulation(int[,] graph, List<Vector2> vertexCoordinates)
     {
-        var indices = Geometry.TriangulateDelaunay2d(vertexCoords.ToArray());
+        var indices = Geometry.TriangulateDelaunay2d(vertexCoordinates.ToArray());
         var triangles = indices.ToList();
         for (int i = 0; i < triangles.Count - 2; i += 3)
         {
@@ -271,52 +291,59 @@ public static class PatchMapGenerator
     ///   DFS graph traversal to get all connected nodes
     /// </summary>
     /// <param name="graph">The graph to test</param>
-    /// <param name="vertexNumber">Count of vertexes</param>
+    /// <param name="vertexCount">Count of vertexes</param>
     /// <param name="point">Current point</param>
     /// <param name="visited">Array of already visited vertexes</param>
-    private static void DeepFirstGraphTraversal(int[,] graph, int vertexNumber, int point, ref int[] visited)
+    private static void DepthFirstGraphTraversal(int[,] graph, int vertexCount, int point, ref int[] visited)
     {
         visited[point] = 1;
 
-        for (var i = 0; i < vertexNumber; i++)
+        for (var i = 0; i < vertexCount; ++i)
         {
             if (graph[point, i] == 1 && visited[i] == 0)
-                DeepFirstGraphTraversal(graph, vertexNumber, i, ref visited);
+                DepthFirstGraphTraversal(graph, vertexCount, i, ref visited);
         }
     }
 
-    // Checks the graphs connectivity
-    private static bool CheckConnectivity(int[,] graph, int vertexNumber)
+    /// <summary>
+    ///   Checks the graph's connectivity
+    /// </summary>
+    private static bool CheckConnectivity(int[,] graph, int vertexCount)
     {
-        int[] visited = new int[vertexNumber];
-        DeepFirstGraphTraversal(graph, vertexNumber, 0, ref visited);
-        return visited.Sum() == vertexNumber;
+        int[] visited = new int[vertexCount];
+        DepthFirstGraphTraversal(graph, vertexCount, 0, ref visited);
+        return visited.Sum() == vertexCount;
     }
 
-    // Current number of edges in a given graph
-    private static int CurrentEdgeNumber(int[,] graph, int vertexNumber)
+    /// <summary>
+    ///   Counts the current number of edges in a given graph
+    /// </summary>
+    private static int CurrentEdgeNumber(int[,] graph, int vertexCount)
     {
         int edgeNumber = 0;
-        for (int i = 0; i < vertexNumber; i++)
+        for (int i = 0; i < vertexCount; ++i)
         {
-            for (int j = 0; j < vertexNumber; j++)
+            for (int k = 0; k < vertexCount; ++k)
             {
-                edgeNumber += graph[i, j];
+                edgeNumber += graph[i, k];
             }
         }
 
         return edgeNumber / 2;
     }
 
-    // Checks distance between patches
+    /// <summary>
+    ///   Checks distance between regions
+    /// </summary>
+    /// <returns>Returns true if the regions are far away enough (don't overlap)</returns>
     private static bool CheckRegionDistance(PatchRegion region, PatchMap map, int minDistance)
     {
-        if (map.Regions.Count == 0)
-            return true;
-
-        for (int i = 0; i < map.Regions.Count; i++)
+        foreach (var otherRegion in map.Regions.Values)
         {
-            if (CheckIfRegionsIntersect(region, map.Regions[i], minDistance))
+            if (ReferenceEquals(region, otherRegion))
+                continue;
+
+            if (CheckIfRegionsIntersect(region, otherRegion, minDistance))
                 return false;
         }
 
@@ -335,21 +362,21 @@ public static class PatchMapGenerator
     {
         int x = random.Next(280, 1600);
         int y = random.Next(280, 1600);
-        var coord = new Vector2(x, y);
-        region.ScreenCoordinates = coord;
+        var coordinates = new Vector2(x, y);
+        region.ScreenCoordinates = coordinates;
 
-        // Check if the region doesnt overlap over other regions
+        // Make sure the region doesn't overlap over other regions
         bool check = CheckRegionDistance(region, map, minDistance);
         while (!check)
         {
             x = random.Next(280, 1600);
             y = random.Next(280, 1600);
-            coord = new Vector2(x, y);
-            region.ScreenCoordinates = coord;
+            coordinates = new Vector2(x, y);
+            region.ScreenCoordinates = coordinates;
             check = CheckRegionDistance(region, map, minDistance);
         }
 
-        return coord;
+        return coordinates;
     }
 
     private static void ConnectPatchesBetweenRegions(PatchRegion region, Random random)
@@ -360,25 +387,21 @@ public static class PatchMapGenerator
             {
                 if (adjacent.Type == PatchRegion.RegionType.Continent)
                 {
-                    var patchIndex = random.Next(0, adjacent.Patches.Count - 1);
-                    LinkPatches(region.Patches[0], adjacent.Patches[patchIndex]);
+                    LinkPatches(region.Patches[0], adjacent.Patches.Random(random));
                 }
-
-                if (adjacent.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean)
+                else if (adjacent.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean)
                 {
-                    int lowestConnectedLevel;
-                    lowestConnectedLevel = Math.Min(region.Patches.Count, adjacent.Patches.Count);
-                    lowestConnectedLevel = random.Next(0, lowestConnectedLevel - 1);
+                    var maxIndex = Math.Min(region.Patches.Count, adjacent.Patches.Count) - 1;
+                    var lowestConnectedLevel = random.Next(0, maxIndex);
 
-                    for (int i = 0; i <= lowestConnectedLevel; i++)
+                    for (int i = 0; i <= lowestConnectedLevel; ++i)
                     {
                         LinkPatches(region.Patches[i], adjacent.Patches[i]);
                     }
                 }
             }
         }
-
-        if (region.Type == PatchRegion.RegionType.Continent)
+        else if (region.Type == PatchRegion.RegionType.Continent)
         {
             foreach (var adjacent in region.Adjacent)
             {
@@ -400,7 +423,7 @@ public static class PatchMapGenerator
         if (region.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean or
             PatchRegion.RegionType.Continent)
         {
-            for (int i = 0; i < region.Patches.Count - 1; i++)
+            for (int i = 0; i < region.Patches.Count - 1; ++i)
             {
                 if (region.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean)
                 {
@@ -409,25 +432,24 @@ public static class PatchMapGenerator
 
                 if (region.Type == PatchRegion.RegionType.Continent)
                 {
-                    for (int j = 0; j < region.Patches.Count; j++)
+                    for (int k = 0; k < region.Patches.Count; ++k)
                     {
-                        if (j != i)
+                        if (k != i)
                         {
-                            LinkPatches(region.Patches[i], region.Patches[j]);
+                            LinkPatches(region.Patches[i], region.Patches[k]);
                         }
                     }
                 }
             }
         }
-
-        if (region.Type == PatchRegion.RegionType.Vent)
+        else if (region.Type == PatchRegion.RegionType.Vent)
         {
             var adjacent = region.Adjacent.First();
             LinkPatches(region.Patches[0], adjacent.Patches[adjacent.Patches.Count - 1]);
         }
 
-        // Patches position configuration
-        for (int i = 0; i < region.Patches.Count; i++)
+        // Patches' position configuration
+        for (int i = 0; i < region.Patches.Count; ++i)
         {
             if (region.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean)
             {
@@ -446,8 +468,7 @@ public static class PatchMapGenerator
                     seafloor.Depth[1] = region.Patches[i].Depth[1] + 10;
                 }
             }
-
-            if (region.Type == PatchRegion.RegionType.Continent)
+            else if (region.Type == PatchRegion.RegionType.Continent)
             {
                 if (i % 2 == 0)
                 {
@@ -479,8 +500,7 @@ public static class PatchMapGenerator
                     }
                 }
             }
-
-            if (region.Type is PatchRegion.RegionType.Vent or PatchRegion.RegionType.Cave)
+            else if (region.Type is PatchRegion.RegionType.Vent or PatchRegion.RegionType.Cave)
             {
                 region.Patches[0].ScreenCoordinates = new Vector2(region.ScreenCoordinates.x + regionMargin,
                     region.ScreenCoordinates.y + regionMargin);
@@ -506,14 +526,12 @@ public static class PatchMapGenerator
             if (region.Patches.Count > 2)
                 region.Height = 3 * region.PatchMargin + 2 * 64.0f + region.RegionLineWidth;
         }
-
-        if (region.Type is PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Sea)
+        else if (region.Type is PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Sea)
         {
             region.Height += 64.0f * region.Patches.Count + (region.Patches.Count + 1) * region.PatchMargin +
                 region.RegionLineWidth;
         }
-
-        if (region.Type == PatchRegion.RegionType.Vent)
+        else if (region.Type == PatchRegion.RegionType.Vent)
         {
             region.Height = 64.0f + 2 * region.PatchMargin + region.RegionLineWidth;
             region.Width = 64.0f + 2 * region.PatchMargin + 2 * region.RegionLineWidth;
@@ -522,8 +540,7 @@ public static class PatchMapGenerator
             region.ScreenCoordinates = adjacent.ScreenCoordinates + new Vector2(0, adjacent.Height) +
                 new Vector2(0, 20);
         }
-
-        if (region.Type == PatchRegion.RegionType.Cave)
+        else if (region.Type == PatchRegion.RegionType.Cave)
         {
             region.Height = 64.0f + 2 * region.PatchMargin + region.RegionLineWidth;
             region.Width = 64.0f + 2 * region.PatchMargin + 2 * region.RegionLineWidth;
@@ -536,8 +553,7 @@ public static class PatchMapGenerator
                     new Vector2(adjacent.Width, adjacent.Patches.IndexOf(adjacentPatch) *
                         (64.0f + region.PatchMargin)) + new Vector2(20, 0);
             }
-
-            if (adjacent.Type == PatchRegion.RegionType.Continent)
+            else if (adjacent.Type == PatchRegion.RegionType.Continent)
             {
                 var leftSide = adjacent.ScreenCoordinates - new Vector2(region.Width, 0) - new Vector2(20, 0);
                 var rightSide = adjacent.ScreenCoordinates + new Vector2(adjacent.Width, 0) + new Vector2(20, 0);
@@ -556,12 +572,20 @@ public static class PatchMapGenerator
                 region.ScreenCoordinates = new Vector2(region.ScreenCoordinates.x,
                     adjacentPatch.ScreenCoordinates.y - region.PatchMargin - region.RegionLineWidth);
             }
+            else
+            {
+                GD.PrintErr("Unhandled adjacent region for cave type region");
+            }
+        }
+        else
+        {
+            GD.PrintErr("Unknown region type to build");
         }
 
         region.Height += region.RegionLineWidth;
     }
 
-    private static void BuildSpecialRegions(PatchMap map)
+    private static void BuildDrawingRegions(PatchMap map)
     {
         foreach (var region in map.DrawingRegions)
         {
@@ -581,7 +605,7 @@ public static class PatchMapGenerator
         }
     }
 
-    private static void BuildPatchesInSpecialRegions(PatchMap map, Random random)
+    private static void BuildPatchesInDrawingRegions(PatchMap map, Random random)
     {
         foreach (var region in map.DrawingRegions)
         {
@@ -609,7 +633,7 @@ public static class PatchMapGenerator
     /// <param name="region">Region this patch belongs to</param>
     /// <param name="regionName">Name of the region</param>
     /// <returns>Predefined patch</returns>
-    /// <exception cref="InvalidOperationException">Throw if biome is not a valid value</exception>
+    /// <exception cref="InvalidOperationException">Thrown if biome is not a valid value</exception>
     private static Patch NewPredefinedPatch(PredefinedBiome biome, int id, PatchRegion region, string regionName)
     {
         var newPatch = biome switch
@@ -724,6 +748,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(300, 100),
             },
 
+            // ReSharper disable once StringLiteralTypo
             PredefinedBiome.Vents => new Patch(GetPatchLocalizedName(regionName, "VOLCANIC_VENT"),
                 id, GetBiomeTemplate("aavolcanic_vent"), region)
             {
@@ -734,10 +759,10 @@ public static class PatchMapGenerator
                 },
                 ScreenCoordinates = new Vector2(100, 400),
             },
-            _ => throw new InvalidOperationException($"{nameof(biome)} is not a valid biome enum."),
+            _ => throw new InvalidOperationException($"{nameof(biome)} is not a valid biome enum value."),
         };
 
-        // Add this patch to region
+        // Add this patch to the region
         region.Patches.Add(newPatch);
         return newPatch;
     }
@@ -781,8 +806,8 @@ public static class PatchMapGenerator
     private static void ConfigureStartingPatch(PatchMap map, WorldGenerationSettings settings, Species defaultSpecies,
         Patch vents, Patch tidepool, Random random)
     {
-        // Choose this here to ensure the same seed creates the same world regardless of starting location
-        var randomPatch = map.Patches[random.Next(0, map.Patches.Count)];
+        // Choose this here to ensure the same seed creates the same world regardless of starting location type
+        var randomPatch = map.Patches.Random(random) ?? throw new Exception("No patches to pick from");
 
         switch (settings.Origin)
         {

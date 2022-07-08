@@ -11,24 +11,18 @@ public class PatchRegion
     // TODO: Move these to Constants.cs
 
     [JsonIgnore]
-    public float PatchNodeWidth = 64.0f;
+    public readonly float RegionLineWidth = 4.0f;
 
     [JsonIgnore]
-    public float PatchNodeHeight = 64.0f;
-
-    [JsonIgnore]
-    public float RegionLineWidth = 4.0f;
-
-    [JsonIgnore]
-    public float PatchMargin = 4.0f;
+    public readonly float PatchMargin = 4.0f;
 
     [JsonConstructor]
-    public PatchRegion(int id, LocalizedString name, RegionType regionType, Vector2 screenCoordinates,
+    public PatchRegion(int id, LocalizedString name, RegionType type, Vector2 screenCoordinates,
         float height, float width, List<Patch> patches, bool isForDrawingOnly)
     {
         ID = id;
         Name = name;
-        Type = regionType;
+        Type = type;
         Patches = patches;
         ScreenCoordinates = screenCoordinates;
         Height = height;
@@ -60,11 +54,19 @@ public class PatchRegion
     [JsonProperty]
     public int ID { get; }
 
+    /// <summary>
+    ///   Regions this is next to
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: this may contain non-simulation regions (drawing only) which must be refactored out of here
+    ///   </para>
+    /// </remarks>
     [JsonIgnore]
     public ISet<PatchRegion> Adjacent { get; } = new HashSet<PatchRegion>();
 
     [JsonProperty]
-    public RegionType Type { get; set; }
+    public RegionType Type { get; }
 
     [JsonProperty]
     public float Height { get; set; }
@@ -90,7 +92,7 @@ public class PatchRegion
     public LocalizedString Name { get; private set; }
 
     /// <summary>
-    ///   Coordinates this region is to be displayed in the GUI
+    ///   Coordinates this region is to be displayed at in the GUI
     /// </summary>
     [JsonProperty]
     public Vector2 ScreenCoordinates { get; set; }
@@ -105,11 +107,5 @@ public class PatchRegion
     public bool AddNeighbour(PatchRegion region)
     {
         return Adjacent.Add(region);
-    }
-
-    private void LinkPatches(Patch patch1, Patch patch2)
-    {
-        patch1.AddNeighbour(patch2);
-        patch2.AddNeighbour(patch1);
     }
 }

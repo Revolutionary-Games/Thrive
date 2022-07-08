@@ -64,10 +64,16 @@ public class PatchMapNode : MarginContainer
 
     private float currentBlinkTime;
 
+    private Patch? patch;
+
     /// <summary>
     ///   This object does nothing with this, this is stored here to make other code simpler
     /// </summary>
-    public Patch Patch { get; set; } = null!;
+    public Patch Patch
+    {
+        get => patch ?? throw new InvalidOperationException("Patch not set yet");
+        set => patch = value;
+    }
 
     public bool IsDirty { get; private set; }
 
@@ -152,7 +158,7 @@ public class PatchMapNode : MarginContainer
 
     public override void _Ready()
     {
-        if (Patch == null!)
+        if (patch == null)
             GD.PrintErr($"{nameof(PatchMapNode)} should have {nameof(Patch)} set");
 
         iconRect = GetNode<TextureRect>(IconPath);

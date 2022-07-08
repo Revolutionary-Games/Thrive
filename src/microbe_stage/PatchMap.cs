@@ -85,8 +85,8 @@ public class PatchMap : ISaveLoadable
     /// </summary>
     public void AddRegion(PatchRegion region)
     {
-        if (region.ID <= 0)
-            throw new ArgumentException("id must be greater than 0");
+        if (region.ID < 0)
+            throw new ArgumentException("id must not be negative");
 
         if (Regions.ContainsKey(region.ID))
         {
@@ -98,22 +98,25 @@ public class PatchMap : ISaveLoadable
     }
 
     /// <summary>
-    ///   Adds a new special region to the map. Throws if can't add
+    ///   Adds a new drawing region to the map. Throws if can't add
     /// </summary>
-    public void AddSpecialRegion(PatchRegion specialRegion)
+    public void AddDrawingRegion(PatchRegion drawingRegion)
     {
-        if (specialRegion.ID >= 0)
-            throw new ArgumentException("special region needs to have negative id");
+        if (drawingRegion.ID >= 0)
+            throw new ArgumentException("drawing region id must be negative");
 
-        if (DrawingRegions.ContainsKey(specialRegion.ID))
+        if (!drawingRegion.IsForDrawingOnly)
+            throw new ArgumentException("special region needs to be marked as drawing only");
+
+        if (DrawingRegions.ContainsKey(drawingRegion.ID))
         {
-            throw new ArgumentException($"Region {specialRegion.Name} cannot be added to this map, " +
-                $"the ID is already in use: {specialRegion.ID}");
+            throw new ArgumentException($"Region {drawingRegion.Name} cannot be added to this map, " +
+                $"the ID is already in use: {drawingRegion.ID}");
         }
 
-        specialRegion.IsForDrawingOnly = true;
+        drawingRegion.IsForDrawingOnly = true;
 
-        DrawingRegions[specialRegion.ID] = specialRegion;
+        DrawingRegions[drawingRegion.ID] = drawingRegion;
     }
 
     /// <summary>
@@ -203,6 +206,10 @@ public class PatchMap : ISaveLoadable
         // Region links are correct
         foreach (var entry in RegionAdjacencies)
         {
+            // TODO: checking for special regions
+            if (entry.Id1 < 0 || entry.Id2 < 0)
+                continue;
+
             if (!Regions.ContainsKey(entry.Id1) || !Regions.ContainsKey(entry.Id2))
             {
                 GD.PrintErr($"Invalid region link: from {entry.Id1} to {entry.Id2}");

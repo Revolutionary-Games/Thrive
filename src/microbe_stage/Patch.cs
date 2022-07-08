@@ -24,7 +24,7 @@ public class Patch
     public readonly int[] Depth = { -1, -1 };
 
     [JsonProperty]
-    public PatchRegion Region;
+    public readonly PatchRegion Region;
 
     /// <summary>
     ///   The current snapshot of this patch.
