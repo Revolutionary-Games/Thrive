@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-07 18:24+0100\n"
-"PO-Revision-Date: 2022-06-27 19:21+0000\n"
+"PO-Revision-Date: 2022-07-09 08:32+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12\n"
+"X-Generator: Weblate 4.13.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/difficulty_presets.json:3
@@ -168,7 +168,7 @@ msgstr "Sii prudente: i tuoi avversari si evolvono insieme a te. Ogni volta che 
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Legandoti ad altre cellule puoi formare una colonia. All'interno di essa, le cellule si scambiano liberamente i composti prodotti e assorbiti. Puoi legarti solo a cellule della tua stessa specie; per farlo, devi per prima cosa possedere l'organulo apposito (agenti leganti); poi, devi attivare la modalità di legatura premendo [thrive:input]g_toggle_binding[/thrive:input]; infine, devi nuotare verso di loro fino a entrare in contatto fisico. Per ora, quando sei all'interno di una colonia, non puoi dividere la tua cellula ed entrare nell'editor; per farlo, devi prima lasciarla premendo [thrive:input]g_unbind_all[/thrive:input]. Le colonie sono il primo passo verso la multicellularità (che però non è ancora nel gioco)."
+msgstr "Legandoti ad altre cellule puoi formare una colonia. All'interno di essa, le cellule si scambiano liberamente i composti prodotti e assorbiti. Puoi legarti solo a cellule della tua stessa specie; per farlo, devi per prima cosa possedere l'organulo apposito (agenti leganti); poi, devi attivare la modalità di legatura premendo [thrive:input]g_toggle_binding[/thrive:input]; infine, devi nuotare verso di loro fino a entrare in contatto fisico. Per ora, quando sei all'interno di una colonia, non puoi dividere la tua cellula ed entrare nell'editor; per farlo, devi prima lasciarla premendo [thrive:input]g_unbind_all[/thrive:input]. Le colonie sono il primo passo verso la multicellularità."
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -2042,7 +2042,7 @@ msgstr "Includi stadio prototipi"
 
 #: ../src/general/NewGameSettings.tscn:982
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
+msgstr "(alcune features potrebbero non essere disponibili nelle fasi successive)"
 
 #: ../src/general/NewGameSettings.tscn:994
 msgid "EASTER_EGGS"
@@ -3978,9 +3978,8 @@ msgstr "PM infiniti"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:147
-#, fuzzy
 msgid "FIND_CURRENT_PATCH"
-msgstr "Percorso icona non valido"
+msgstr "Trova la zona corrente"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
@@ -5066,9 +5065,9 @@ msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Questa è la mappa delle zone.\n"
 "\n"
-"Ciascuna icona rappresenta un habitat che puoi abitare. Il pannello a destra ti mostra informazioni aggiuntive sulla zona attualmente selezionata.\n"
+"Ciascuna icona rappresenta un habitat in cui puoi abitare. Il pannello a destra ti mostra informazioni aggiuntive sulla zona attualmente selezionata.\n"
 "\n"
-"Se selezioni una zona adiacente a quella dove ti trovi attualmente, la quale è evidenziata da un bordino azzurro, avrai l'opzione di migrarci premendo il pulsante \"Trasferisciti in questa zona\" in basso a destra.\n"
+"Se selezioni una zona adiacente a quella dove ti trovi attualmente, evidenziata da un bordino verde lampeggiante, avrai l'opzione di migrarci premendo il pulsante \"Trasferisciti in questa zona\" in basso a destra.\n"
 "\n"
 "Prova a selezionare una zona per continuare."
 

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-07 18:24+0100\n"
-"PO-Revision-Date: 2022-07-05 12:02+0000\n"
+"PO-Revision-Date: 2022-07-09 08:32+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -109,7 +109,7 @@ msgstr "С натискане на [thrive:input]g_toggle_engulf[/thrive:input] 
 
 #: ../simulation_parameters/common/help_texts.json:22
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "След като поглъщането приключи, всички обекти, попаднали в клетката, ще бъдат съхранени в нейната мембрана, за да бъдат усвоени. Неусвоимите обекти ще бъдат изхвърлeни, затова трябва да притежавате необходимите мутации, които позволяват тяхното разграждане. Еволюцията на лизозомата е препоръчителна, защото нейните ензими подобряват храносмилателната ефективност на клетката."
+msgstr "След като поглъщането приключи, всички обекти, попаднали в клетката, ще бъдат съхранени в нейната мембрана, за да бъдат усвоени. Неусвоимите обекти ще бъдат изхвърлeни, освен ако не притежавате необходимите мутации, които позволяват тяхното разграждане. Еволюцията на лизозомата е препоръчителна, защото нейните ензими подобряват храносмилателната ефективност на клетката."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
@@ -3437,9 +3437,8 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Превключване на предупреждението при излизане от играта."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3993
-#, fuzzy
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
-msgstr "Изминало време: {0:#,#} години"
+msgstr "Използвайте мишката за да разгледате картата"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:421
 msgid "LOOKING_AT"
@@ -3692,7 +3691,7 @@ msgstr "Отваряне на редактора"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:38
 msgid "PANGONIAN_REGION_NAME"
-msgstr ""
+msgstr "Пангонски"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:809
 msgid "PATCH_NAME"
@@ -3975,9 +3974,8 @@ msgstr "Неограничени МТ"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:147
-#, fuzzy
 msgid "FIND_CURRENT_PATCH"
-msgstr "Невалидно местоположение на иконата"
+msgstr "Намиране на текущото местообитание"
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:326
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:327
@@ -5065,7 +5063,7 @@ msgstr ""
 "\n"
 "Тук може да видите полезна информация за различните зони, в които живеят микробите.\n"
 "\n"
-"Ако изберете зона, съседна на Вашето местообитание, което е подчертано, може да натиснете бутона „Преселване“ за да се придвижите в нея.\n"
+"Ако изберете зона, съседна на Вашето местообитание, което е подчертано в зелено, може да натиснете бутона „Преселване“ за да се придвижите в нея.\n"
 "\n"
 "Изберете зона за да продължите."
 
