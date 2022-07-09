@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-09 13:07+0300\n"
+"POT-Creation-Date: 2022-07-09 14:17+0300\n"
 "PO-Revision-Date: 2022-07-09 08:32+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1775,7 +1775,7 @@ msgstr "CONFIRMAR"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
 msgstr "Tancar"
 
@@ -3053,11 +3053,11 @@ msgstr ""
 "\n"
 "Si tries continuar, siusplau tingues en compte que els següents estadis només són prototips incomplerts, i siusplau no ho critiqueu injustificadament."
 
-#: ../src/gui_common/dialogs/TutorialDialog.tscn:16
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:55
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:255
+#: ../src/gui_common/dialogs/TutorialDialog.tscn:17
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -5163,7 +5163,7 @@ msgstr "Steam ha fallat en adquirir un cadenat UGC"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Hi ha hagut un error d'Steam desconegut"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:40
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Benvingut a l'Editor de Microbi.\n"
@@ -5174,7 +5174,7 @@ msgstr ""
 "\n"
 "Quan estiguis a punt, fes clic al botó \"següent\", a baix a la dreta."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:53
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:54
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Aquest és el mapa de zones.\n"
@@ -5185,7 +5185,7 @@ msgstr ""
 "\n"
 "Selecciona una zona per continuar."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Aquest és l'editor de microbi, on pots fer evolucionar la teva espècie invertint punts de mutació (MP). En cada generació disposaràs de 100 MP per invertir, de manera que no cal que n'estalviïs!\n"
@@ -5194,7 +5194,7 @@ msgstr ""
 "\n"
 "Per continuar, selecciona una part del tauler de l'esquerra. Tot seguit, fes clic-esquerra a l'hexàgon per a col·locar-la. Pots fer rotar les parts amb les tecles A i D (tecles per defecte)."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:79
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Eliminar orgànuls també costa Punts de Mutació, a menys que els hagis col·locat en la sessió actual de l'editor.\n"
@@ -5205,7 +5205,7 @@ msgstr ""
 "\n"
 "Clica el botó de desfer per tal de prosseguir."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:96
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Quan seleccionis parts del menú, estigues atent als indicadors de funció dels orgànuls, per entendre el que fan. Algunes parts poden fer més mal que bé si no s'utilitzen correctament.\n"
@@ -5214,7 +5214,7 @@ msgstr ""
 "\n"
 "Prem el botó de refer l'acció (a la vora del botó de desfer l'acció) per continuar."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Aquests són els fonaments per editar la teva espècie. També pots canviar el nom de la teva espècie clicant el requadre de sota i a l'esquerra i editant-ne el text. \n"
@@ -5225,11 +5225,11 @@ msgstr ""
 "\n"
 "Bona sort!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:152
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
 msgid "GOT_IT"
 msgstr "Ho he entès tot"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:168
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Aquest tauler mostra una predicció de la teva futura població. Aquests nombres provenen de la simulació del sistema auto-evo.\n"
@@ -5240,7 +5240,7 @@ msgstr ""
 "\n"
 "Pots veure informació més detallada de la predicció clicant a la icona del signe d'interrogació al tauler. Prem-la per continuar."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:187
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Per sobreviure, t'hauries de concentrar en especialitzar-te en explotar una o dues fonts d'energia, de manera que no necessitis molts recursos diferents per sobreviure.\n"
@@ -5249,7 +5249,7 @@ msgstr ""
 "\n"
 "Una possible estratègia consisteix en mantenir-se com un sol hexàgon de citoplasma i simplement dirigir-te als biomes de la superfície primer abans d'aconseguir orgànuls de fotosíntesi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:57
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Fa molt de temps, en un planeta molt i molt llunyà...\n"
@@ -5262,22 +5262,22 @@ msgstr ""
 "\n"
 "Per tal de sobreviure en aquest planeta hostil, hauràs d'arreplegar tots els compostos amb contingut nutritiu que puguis trobar. Al llarg de les diverses generacions del procés evolutiu, hauràs d'evolucionar per competir contra altres espècies pels nínxols de la cadena tròfica. Totes aquestes espècies hauran evolucionat a partir del darrer avantpassat universal comú."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:103
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
 msgstr "Mostrar tutorials"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:112
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
 msgstr "Començar a prosperar"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:130
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "La teva cèl·lula, el darrer avantpassat universal comú, és al centre de la pantalla. Per tal de controlar-la, fes servir les tecles que es mostren al seu costat.\n"
 "\n"
 "Prova totes les tecles durant uns instants per tal de continuar."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:187
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:189
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Recol·lecta Glucosa (núvols blancs) desplaçant-t'hi per sobre.\n"
@@ -5286,7 +5286,7 @@ msgstr ""
 "\n"
 "Segueix la línia de la pantalla, des de la teva cèl·lula fins al núvol de Glucosa més proper."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:200
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Estigues atent a la barra de salut, que hi ha al costat de la barra d'ATP (a la part inferior dreta de la pantalla).\n"
@@ -5294,13 +5294,13 @@ msgstr ""
 "Pots recuperar la teva salut (autoregeneració) si tens prou quantitat d'ATP.\n"
 "Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:212
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Per reproduïr-te, has de duplicar tots els teus orgànuls recol·lectant prou Amoníac i Fosfat.\n"
 "Estigues atent a les barres que envolten els botó de sota a la dreta per veure quant et falta. Aquestes barres es tornaran de color blanc quan s'hagin omplert."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Has recol·lectat prou recursos per què la teva cèl·lula es reprodueixi.\n"
@@ -5309,25 +5309,25 @@ msgstr ""
 "\n"
 "Per entrar a l'editor, prem el botó que parpelleja a sota i a la dreta de la pantalla."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Has entrat en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre dels membres de la teva colònia per desunir-los.\n"
 "\n"
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:256
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Si encara no acabes d'entendre les mecàniques de joc, fes una ullada al menú d'ajuda. El pots obrir amb el signe d'interrogació a baix a la dreta.\n"
 "\n"
 "Un altre consell: pots ampliar el camp de visió amb la rodeta del ratolí."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:294
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Veure ara"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -5335,7 +5335,7 @@ msgstr ""
 "\n"
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -5343,9 +5343,9 @@ msgstr ""
 "\n"
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:328
 #, fuzzy
-msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
+msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Has entrat en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre dels membres de la teva colònia per desunir-los.\n"
 "\n"

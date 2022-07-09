@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-09 13:07+0300\n"
+"POT-Creation-Date: 2022-07-09 14:17+0300\n"
 "PO-Revision-Date: 2022-05-03 17:42+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -1804,7 +1804,7 @@ msgstr "VAHVISTA"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
 msgstr "Sulje"
 
@@ -3082,11 +3082,11 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
 
-#: ../src/gui_common/dialogs/TutorialDialog.tscn:16
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:55
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:255
+#: ../src/gui_common/dialogs/TutorialDialog.tscn:17
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutoriaali"
@@ -5246,7 +5246,7 @@ msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Tuntematon Steam-virhe tapahtui"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:40
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Tervetuloa mikrobieditoriin.\n"
@@ -5257,7 +5257,7 @@ msgstr ""
 "\n"
 "Kun olet valmis jatkamaan, paina \"jatka\" painiketta alhaalla oikealla."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:53
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:54
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Tämä on ympäristökartta.\n"
@@ -5268,7 +5268,7 @@ msgstr ""
 "\n"
 "Kokeile valita uusi ympäristö jatkaaksesi."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Tämä on solueditori, jossa voit jalostaa lajiasi käyttämällä mutaatiopisteitä (MP). Jokaisella sukupolvella sinulla on 100MP:tä käytettävänä, eivätkä ne siirry seuraavalle sukupolvelle - älä siis turhaan säästä niitä!\n"
@@ -5277,7 +5277,7 @@ msgstr ""
 "\n"
 "Valitse soluelinosa vasemmasta paneelista jatkaaksesi. Sitten klikkaa vasemmalla hiiren painikkeella hexaa, johon haluat osan sijoittaa. Voit kiertää osia painamalla A tai D."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:79
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Soluelimien poistaminen kuluttaa MP:tä sillä se mutaatioaskel lajillesi - paitsi silloin kun ne on tehty nykyisessä editorin sessiossa.\n"
@@ -5288,7 +5288,7 @@ msgstr ""
 "\n"
 "Paina undo-painiketta jatkaaksesi."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:96
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Valitessasi osia valikosta, huomioi avautuvat selitteet ymmärtääksesi mitä kukin osa tekee. Joistakin osista voi olla enemmän haittaa kuin hyötyä, jos niiden soveltuvuutta ei harkitse tarkoin.\n"
@@ -5297,7 +5297,7 @@ msgstr ""
 "\n"
 "Paina redo-painiketta jatkaaksesi (undo-painikkeen vieressä)."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Olet nyt käynyt solun rakentamisen perusteet. Viimeistelläksesi voit vielä nimetä lajisi klikkaamalla lajin nimeä alhaalla vasemmalla, ja muokkaamalla nimeä.\n"
@@ -5308,11 +5308,11 @@ msgstr ""
 "\n"
 "Lykkyä tykö!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:152
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
 msgid "GOT_IT"
 msgstr "Selvä"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:168
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Tältä paneelilta näet tulevan populaatiosi ennusteen. Auto-evo simuloi nämä populaation tunnusluvut.\n"
@@ -5323,7 +5323,7 @@ msgstr ""
 "\n"
 "Voit katsoa tarkempaa tietoa ennusteesta klikkaamalla ?-merkkiä paneelista. Klikkaa sitä jatkaaksesi."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:187
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "On suositeltavaa erikoistua vain yhteen tai kahteen energianlähteeseen, jotta et tarvitse montaa yhdistettä elääksesi.\n"
@@ -5332,7 +5332,7 @@ msgstr ""
 "\n"
 "Hyvä alkustrategia voi olla pysyä yksittäisenä solulimana ja suunnata ympäristöissä pinnalle, jossa voi käyttää fotosynteesin soluelimiä."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:57
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
@@ -5343,23 +5343,23 @@ msgstr ""
 "\n"
 "Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:103
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 #, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Näytä tutoriaalit"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:112
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
 msgstr "Aloita selviytyminen"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:130
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Liikkuaksesi käytä solun ympärillä näkyviä näppäimiä yhdessä hiiren kursorin kanssa.\n"
 "\n"
 "Kokeile painella näytettyjä painikeita muutaman sekunnin jatkaaksesi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:187
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:189
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Kerää glukooria (valkeat yhdistepilvet) liikkumalla niihin.\n"
@@ -5368,7 +5368,7 @@ msgstr ""
 "\n"
 "Seuraa viivaa, joka kulkee solustasi lähimpään glukoosipilveen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:200
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Seuraa tarkoin alhaalla oikealla näkyviä palkkeja.\n"
@@ -5376,13 +5376,13 @@ msgstr ""
 "Terveyspalkkisi kasvaa silloin kun solullasi on ATP:tä.\n"
 "Pidä huolta, että keräät tarpeeksi glukoosia tuottaaksesi ATP:tä."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:212
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Lisääntyäksesi sinun on kerättävä tarpeeksi ammoniakkia ja fosfaatteja monistautumiseen.\n"
 "Seuraa alhaalla oikealla pyöreän painiketta reunustavia palkkeja tietääksesi, paljonko näitä on vielä kerättävä. Palkit muuttuvat valkoisiksi, kun ne ovat täynnä."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Olet kerännyt tarpeeksi yhdisteitä, jotta solusi voi jakaantua.\n"
@@ -5391,24 +5391,24 @@ msgstr ""
 "\n"
 "Avataksesi editorin, paina suurta vilkkuvaa painiketta alhaalla oikealla."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:256
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:294
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Katso nyt"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -5416,7 +5416,7 @@ msgstr ""
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -5424,9 +5424,9 @@ msgstr ""
 "\n"
 "Jättääksesi solukon kokonaan, klikkaa omaa soluasi ja klikkaa erota-kaikki (unbind all) painiketta."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:328
 #, fuzzy
-msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
+msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Valitsit erkaantumismoodin. Tässä moodissa voit klikata solukkosi jäseniä erottautuaksesi niistä.\n"
 "\n"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-09 13:07+0300\n"
+"POT-Creation-Date: 2022-07-09 14:17+0300\n"
 "PO-Revision-Date: 2022-03-29 16:22+0000\n"
 "Last-Translator: Jessy Amelie Nishimura Lara <jessy8nishimura@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -1807,7 +1807,7 @@ msgstr "CONFIRMAR"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
 msgstr "Cerrar"
 
@@ -3080,11 +3080,11 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr "Protanomalía (Rojo-Verde)"
 
-#: ../src/gui_common/dialogs/TutorialDialog.tscn:16
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:55
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:255
+#: ../src/gui_common/dialogs/TutorialDialog.tscn:17
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "Tutorial"
@@ -5203,7 +5203,7 @@ msgstr "Steam ha fallado en adquirir un bloqueo UGC"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Se ha producido un error desconocido de Steam"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:40
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Editor de Microbio.\n"
@@ -5214,7 +5214,7 @@ msgstr ""
 "\n"
 "Para ir a la pestaña siguiente en el editor, presiona el botón 'Siguiente' en la parte inferior derecha."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:53
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:54
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
@@ -5225,7 +5225,7 @@ msgstr ""
 "\n"
 "Para ir a la pestaña siguiente en el editor, presiona el botón 'Siguiente' en la parte inferior derecha."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
@@ -5236,7 +5236,7 @@ msgstr ""
 "\n"
 "Para ir a la pestaña siguiente en el editor, presiona el botón 'Siguiente' en la parte inferior derecha."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:79
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
@@ -5248,7 +5248,7 @@ msgstr ""
 "\n"
 "Presiona el botón de deshacer para continuar."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:96
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
@@ -5260,7 +5260,7 @@ msgstr ""
 "\n"
 "Presiona el botón de rehacer para continuar."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
@@ -5272,11 +5272,11 @@ msgstr ""
 "\n"
 "¡Buena suerte!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:152
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
 msgid "GOT_IT"
 msgstr "Entendido"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:168
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
@@ -5288,7 +5288,7 @@ msgstr ""
 "\n"
 "Puedes ver información más detallada de la predicción clicando en el icono del signo de interrogación del panel."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:187
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
@@ -5298,7 +5298,7 @@ msgstr ""
 "\n"
 "Una posible estrategia, es mantenerse como una célula de un solo hexágono citoplasmático y dirigirse a los biomas de la superficie antes de obtener orgánulos que permitan la fotosíntesis."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:57
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "En un planeta distante, eones de actividad volcánica e impactos meteóricos han llevado al desarrollo de un nuevo fenómeno en el universo.\n"
@@ -5309,30 +5309,30 @@ msgstr ""
 "\n"
 "Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y evolucionar durante generaciones para competir contra los otros microbios."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:103
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 #, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "Mostrar tutoriales"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:112
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
 msgstr "Empezar a prosperar"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:130
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Para controlar tu célula, usa las teclas mostradas cerca de tu célula en el centro de la pantalla, y el ratón para controlar la orientación.\n"
 "\n"
 "Prueba todas las teclas por unos segundos para continuar."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:187
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:189
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Consigue glucosa (nubes blancas) al moverte hacia ella.\n"
 "Tu célula necesita glucosa para producir energía, y por lo tanto, sobrevivir.\n"
 "Sigue la línea desde tu célula hacia la glucosa."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:200
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Mantén la atención en la barra de PS al lado de la barra de ATP (parte inferior derecha).\n"
@@ -5340,14 +5340,14 @@ msgstr ""
 "Mientras tengas ATP, regenerarás tus PS.\n"
 "Asegúrate de conseguir suficiente glucosa para producir ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:212
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Para que tu célula se reproduzca necesita duplicar todos sus orgánulos reuniendo la suficiente cantidad de amoníaco y fosfatos.\n"
 "Observa el indicador en la parte inferior derecha para ver cuánto más necesitas."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -5357,7 +5357,7 @@ msgstr ""
 "\n"
 "Para entrar en el editor pulsa el botón parpadeante del editor en la parte inferior derecha."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -5365,7 +5365,7 @@ msgstr ""
 "\n"
 "Para abandonar la colonia por completo, puedes hacer clic en tu propia célula o pulsar el comando asignado a desvincular todo."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:256
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
@@ -5373,12 +5373,12 @@ msgstr ""
 "\n"
 "Un consejo más: puedes alejar la vista con la rueda del ratón."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:294
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -5386,7 +5386,7 @@ msgstr ""
 "\n"
 "Para abandonar la colonia por completo, puedes hacer clic en tu propia célula o pulsar el comando asignado a desvincular todo."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -5394,9 +5394,9 @@ msgstr ""
 "\n"
 "Para abandonar la colonia por completo, puedes hacer clic en tu propia célula o pulsar el comando asignado a desvincular todo."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:328
 #, fuzzy
-msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
+msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Has entrado en el modo de desvinculación. En este modo puedes hacer clic sobre los miembros de la colonia para desvincularlos.\n"
 "\n"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-09 13:07+0300\n"
+"POT-Creation-Date: 2022-07-09 14:17+0300\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1815,7 +1815,7 @@ msgstr "確認"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1205
 #: ../src/modding/ModManager.tscn:992
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:224
 msgid "CLOSE"
 msgstr "關閉"
 
@@ -3091,11 +3091,11 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr "紅綠色盲"
 
-#: ../src/gui_common/dialogs/TutorialDialog.tscn:16
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:117
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:186
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:55
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:255
+#: ../src/gui_common/dialogs/TutorialDialog.tscn:17
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "教學"
@@ -5227,7 +5227,7 @@ msgstr "Steam未能獲得UGC lock"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "發生了未知的Steam錯誤"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:40
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "歡迎來到微生物編輯器。\n"
@@ -5238,7 +5238,7 @@ msgstr ""
 "\n"
 "要進入下一個編輯器選項卡，請按右下角的下一個按鈕。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:53
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:54
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "這是區塊地圖。\n"
@@ -5249,7 +5249,7 @@ msgstr ""
 "\n"
 "請嘗試選擇一個區塊來繼續。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "這是細胞編輯器，你可以通過花費變異點（MP）來進化你的物種。每一代你都會有100個MP可以花，所以不必費心去存錢\n"
@@ -5258,7 +5258,7 @@ msgstr ""
 "\n"
 "要繼續，從左邊的面板上選擇一個部分。然後在六邊形旁邊左鍵單擊來放置它。你可以用A和D（默認鍵）旋轉部件。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:79
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
@@ -5270,7 +5270,7 @@ msgstr ""
 "\n"
 "按撤銷按鈕以繼續。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:96
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
@@ -5282,7 +5282,7 @@ msgstr ""
 "\n"
 "按重做鍵（靠近撤銷鍵）繼續。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
@@ -5294,11 +5294,11 @@ msgstr ""
 "\n"
 "祝您好運!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:152
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
 msgid "GOT_IT"
 msgstr "明白了"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:168
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:170
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
@@ -5310,7 +5310,7 @@ msgstr ""
 "\n"
 "你可以通過按面板上的問號按鈕查看預測背後更詳細的信息。按下它可以繼續。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:187
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:189
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
@@ -5320,7 +5320,7 @@ msgstr ""
 "\n"
 "一個可能的策略是保持單一的六角形細胞質，在得到光合作用細胞器之前，先去表面的區域就可以了。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:57
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:58
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "在一個遙遠的外星星球上，漫長的火山活動和流星撞擊導致了宇宙中一種新現象的發展。\n"
@@ -5331,30 +5331,30 @@ msgstr ""
 "\n"
 "為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過多代的進化來與其他種類的微生物競爭。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:103
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 #, fuzzy
 msgid "SHOW_TUTORIALS"
 msgstr "顯示教學"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:112
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
 msgstr "開始遊戲"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:130
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "要控制細胞，請使用在細胞附近（屏幕中心）顯示的按鍵和鼠標來控制細胞的方向。\n"
 "\n"
 "請花幾秒時間嘗試所有按鍵以繼續。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:187
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:189
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "通過在葡萄糖上移動來收集葡萄糖（白雲）。\n"
 "你的細胞需要葡萄糖，以產生能量來維持生命。\n"
 "跟隨著從你的細胞到附近葡萄糖的線。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:200
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "密切關注ATP欄旁邊的生命值（右下方）。\n"
@@ -5362,14 +5362,14 @@ msgstr ""
 "當你有ATP時，你的生命值就會再生。\n"
 "請確保收集足夠的葡萄糖來產生ATP。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:212
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "為了繁殖，你需要通過收集足夠的氨和磷酸鹽來複製你所有的細胞器。\n"
 "看看右下方的指示器，看看你還需要多少。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -5379,7 +5379,7 @@ msgstr ""
 "\n"
 "要進入編輯器，請按右下方閃爍的編輯器按鈕。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:242
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -5387,7 +5387,7 @@ msgstr ""
 "\n"
 "要完全離開殖民地，你可以點擊你自己的單元格或按下解除結合的鍵。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:256
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
@@ -5395,12 +5395,12 @@ msgstr ""
 "\n"
 "還有一個提示：你可以用滾輪放大你的視野。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:294
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "教學"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:299
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -5408,7 +5408,7 @@ msgstr ""
 "\n"
 "要完全離開殖民地，你可以點擊你自己的單元格或按下解除結合的鍵。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:310
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -5416,9 +5416,9 @@ msgstr ""
 "\n"
 "要完全離開殖民地，你可以點擊你自己的單元格或按下解除結合的鍵。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:328
 #, fuzzy
-msgid "TUTORIAL_MICROBE_STAGE_ENGULED_TEXT"
+msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "你已經進入了結合解除模式。在這個模式下，你可以點擊殖民地成員來解除他們的束縛。\n"
 "\n"
