@@ -30,7 +30,7 @@ public class PatchRegion
 
     [JsonConstructor]
     public PatchRegion(int id, LocalizedString name, RegionType type, Vector2 screenCoordinates,
-        float height, float width, bool isForDrawingOnly)
+        float height, float width, bool usesSpecialLinking)
     {
         ID = id;
         Name = name;
@@ -38,7 +38,7 @@ public class PatchRegion
         ScreenCoordinates = screenCoordinates;
         Height = height;
         Width = width;
-        IsForDrawingOnly = isForDrawingOnly;
+        UsesSpecialLinking = usesSpecialLinking;
     }
 
     public enum RegionType
@@ -94,8 +94,11 @@ public class PatchRegion
     [JsonProperty]
     public Vector2 ScreenCoordinates { get; set; }
 
+    /// <summary>
+    ///   When <c>true</c> this region is marked as having special line connection and drawing logic
+    /// </summary>
     [JsonProperty]
-    public bool IsForDrawingOnly { get; set; }
+    public bool UsesSpecialLinking { get; set; }
 
     /// <summary>
     ///   The patches in this region. This is last because other constructor params need to be loaded from JSON first
