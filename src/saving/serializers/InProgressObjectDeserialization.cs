@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 /// <summary>
 ///   Handles the process of deserializing object properties from JSON
@@ -120,10 +119,9 @@ public class InProgressObjectDeserialization
 
                 GD.PrintErr("Ignoring save property at: ", reader.Path);
 
-                // Seems like reader.Skip is really hard to use so we need to deserialize some stuff here
-                // NOTE: this isn't tested well either, hence the error print above, as we should anyway avoid
-                // these situations
-                JObject.Load(reader);
+                // Seems like reader.Skip is really hard to use so we need to deserialize some stuff here which we'll
+                // ignore then
+                serializer.Deserialize(reader);
             }
             else
             {
