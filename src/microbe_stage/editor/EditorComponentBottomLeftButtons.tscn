@@ -45,7 +45,7 @@ tracks/0/keys = {
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -55.0
-margin_right = 605.0
+margin_right = 677.0
 theme = ExtResource( 21 )
 custom_constants/margin_top = 5
 custom_constants/margin_left = 195
@@ -63,9 +63,10 @@ NewHiddenAlternativeSpacerPath = NodePath("HBoxContainer/NewInvisibleSpacer")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 195.0
 margin_top = 5.0
-margin_right = 641.0
+margin_right = 677.0
 margin_bottom = 50.0
 custom_constants/separation = 5
+alignment = 2
 
 [node name="NewInvisibleSpacer" type="Control" parent="HBoxContainer"]
 visible = false
@@ -75,8 +76,9 @@ rect_min_size = Vector2( 35, 35 )
 mouse_filter = 2
 
 [node name="SymmetryButton" type="TextureButton" parent="HBoxContainer"]
+margin_left = 36.0
 margin_top = 5.0
-margin_right = 35.0
+margin_right = 71.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 35, 35 )
 mouse_filter = 1
@@ -99,9 +101,9 @@ __meta__ = {
 }
 
 [node name="UndoButton" type="TextureButton" parent="HBoxContainer"]
-margin_left = 40.0
+margin_left = 76.0
 margin_top = 5.0
-margin_right = 75.0
+margin_right = 111.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 35, 35 )
 mouse_filter = 1
@@ -117,9 +119,9 @@ __meta__ = {
 }
 
 [node name="RedoButton" type="TextureButton" parent="HBoxContainer"]
-margin_left = 80.0
+margin_left = 116.0
 margin_top = 5.0
-margin_right = 115.0
+margin_right = 151.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 35, 35 )
 mouse_filter = 1
@@ -135,9 +137,9 @@ __meta__ = {
 }
 
 [node name="NewButton" type="TextureButton" parent="HBoxContainer"]
-margin_left = 120.0
+margin_left = 156.0
 margin_top = 5.0
-margin_right = 155.0
+margin_right = 191.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 35, 35 )
 mouse_filter = 1
@@ -152,16 +154,16 @@ __meta__ = {
 }
 
 [node name="Spacer" type="Control" parent="HBoxContainer"]
-margin_left = 160.0
-margin_right = 165.0
+margin_left = 196.0
+margin_right = 201.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 5, 0 )
 mouse_filter = 1
 
 [node name="SpeciesName" type="LineEdit" parent="HBoxContainer"]
-margin_left = 170.0
+margin_left = 206.0
 margin_top = 7.0
-margin_right = 410.0
+margin_right = 446.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 240, 27 )
 focus_mode = 1
@@ -180,9 +182,9 @@ __meta__ = {
 anims/invalidSpeciesNameFlash = SubResource( 22 )
 
 [node name="RandomizeButton" type="TextureButton" parent="HBoxContainer"]
-margin_left = 415.0
+margin_left = 451.0
 margin_top = 7.0
-margin_right = 446.0
+margin_right = 482.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 31, 31 )
 size_flags_horizontal = 0
