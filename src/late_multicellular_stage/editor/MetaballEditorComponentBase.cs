@@ -418,7 +418,7 @@ public abstract class MetaballEditorComponentBase<TEditor, TCombinedAction, TAct
 
     public override void OnValidAction()
     {
-        GUICommon.Instance.PlayCustomSound(hexPlacementSound);
+        GUICommon.Instance.PlayCustomSound(hexPlacementSound, 0.7f);
     }
 
     public override void _Process(float delta)
