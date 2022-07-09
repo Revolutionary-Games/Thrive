@@ -919,6 +919,11 @@ public static class Constants
     public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
     public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
 
+    // Constants for procedural patch map
+    public const float PATCH_NODE_RECT_LENGTH = 64.0f;
+    public const float PATCH_REGION_MARGIN = 4.0f;
+    public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 2.0f;
+
     /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>

@@ -9,14 +9,6 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 public class PatchRegion
 {
-    // TODO: Move these to Constants.cs
-
-    [JsonIgnore]
-    public readonly float RegionLineWidth = 4.0f;
-
-    [JsonIgnore]
-    public readonly float PatchMargin = 4.0f;
-
     public PatchRegion(int id, LocalizedString name, RegionType regionType, Vector2 screenCoordinates)
     {
         ID = id;

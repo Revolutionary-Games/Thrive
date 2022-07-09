@@ -11,26 +11,11 @@ public class PatchMapDrawer : Control
     [Export]
     public bool DrawDefaultMapIfEmpty;
 
-    [Export]
-    public float ConnectionLineWidth = 2.0f;
-
-    [Export]
-    public float PatchNodeWidth = 64.0f;
-
-    [Export]
-    public float PatchNodeHeight = 64.0f;
-
-    [Export]
-    public float PatchMargin = 6.0f;
-
     [Export(PropertyHint.ColorNoAlpha)]
     public Color DefaultConnectionColor = Colors.ForestGreen;
 
     [Export(PropertyHint.ColorNoAlpha)]
     public Color HighlightedConnectionColor = Colors.Cyan;
-
-    [Export]
-    public float RegionLineWidth = 4.0f;
 
     [Export]
     public ShaderMaterial MonochromeMaterial = null!;
@@ -264,12 +249,13 @@ public class PatchMapDrawer : Control
 
     private Vector2 Center(Vector2 pos)
     {
-        return new Vector2(pos.x + PatchNodeWidth * 0.5f, pos.y + PatchNodeHeight * 0.5f);
+        return new Vector2(pos.x + Constants.PATCH_NODE_RECT_LENGTH * 0.5f,
+            pos.y + Constants.PATCH_NODE_RECT_LENGTH * 0.5f);
     }
 
     private void DrawNodeLink(Vector2 center1, Vector2 center2, Color connectionColor)
     {
-        DrawLine(center1, center2, connectionColor, ConnectionLineWidth, true);
+        DrawLine(center1, center2, connectionColor, Constants.PATCH_REGION_CONNECTION_LINE_WIDTH, true);
     }
 
     private PatchMapNode? GetPatchNode(Patch patch)
@@ -414,7 +400,7 @@ public class PatchMapDrawer : Control
         {
             var region = entry.Value;
             DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)),
-                new Color(0.0f, 0.7f, 0.5f, 0.7f), false, RegionLineWidth);
+                new Color(0.0f, 0.7f, 0.5f, 0.7f), false, Constants.PATCH_REGION_CONNECTION_LINE_WIDTH);
         }
     }
 
@@ -435,7 +421,7 @@ public class PatchMapDrawer : Control
             var node = (PatchMapNode)nodeScene.Instance();
             node.MarginLeft = entry.Value.ScreenCoordinates.x;
             node.MarginTop = entry.Value.ScreenCoordinates.y;
-            node.RectSize = new Vector2(PatchNodeWidth, PatchNodeHeight);
+            node.RectSize = new Vector2(Constants.PATCH_NODE_RECT_LENGTH, Constants.PATCH_NODE_RECT_LENGTH);
 
             node.Patch = entry.Value;
             node.PatchIcon = entry.Value.BiomeTemplate.LoadedIcon;
