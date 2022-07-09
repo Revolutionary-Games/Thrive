@@ -488,10 +488,11 @@ public class MicrobeStage : StageBase<Microbe>
         // Initialise the cloud system first so we can apply patch-specific brightness in OnGameStarted
         Clouds.Init(FluidSystem);
 
-        base.SetupStage();
-
+        // Initialise spawners next, since this removes existing spawners if present
         if (!IsLoadedFromSave)
             spawner.Init();
+
+        base.SetupStage();
 
         tutorialGUI.EventReceiver = TutorialState;
         HUD.SendEditorButtonToTutorial(TutorialState);
