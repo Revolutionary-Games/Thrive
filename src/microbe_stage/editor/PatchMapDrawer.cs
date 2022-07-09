@@ -152,29 +152,6 @@ public class PatchMapDrawer : Control
         DrawRegionLinks();
         DrawRegions();
 
-        // For special regions draw the connection between them and the normal region.
-        foreach (var entry in Map.DrawingRegions)
-        {
-            var region = entry.Value;
-            var patch = region.Patches.First();
-            var adjacent = patch.Adjacent.First();
-            var adjacentRegion = adjacent.Region;
-            var start = Center(patch.ScreenCoordinates);
-            var end = Center(adjacent.ScreenCoordinates);
-
-            var regionRect = new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height));
-            var adjacentRect = new Rect2(adjacentRegion.ScreenCoordinates,
-                new Vector2(adjacentRegion.Width, adjacentRegion.Height));
-
-            // We get the intersection of the connections with the 2 adjacent regions (special and normal)
-            start = ClosestSegmentRectangleIntersection(start, end, regionRect);
-            end = ClosestSegmentRectangleIntersection(start, end, adjacentRect);
-
-            DrawNodeLink(start, end, DefaultConnectionColor);
-            DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)),
-                new Color(0.0f, 0.7f, 0.5f, 0.7f), false, RegionLineWidth);
-        }
-
         // This ends up drawing duplicates but that doesn't seem problematic ATM
         foreach (var entry in Map.Patches)
         {
@@ -329,14 +306,6 @@ public class PatchMapDrawer : Control
             point.y = Math.Max(point.y, regionEnd.y);
         }
 
-        foreach (var region in map.DrawingRegions)
-        {
-            var regionEnd = region.Value.ScreenCoordinates + region.Value.Size;
-
-            point.x = Math.Max(point.x, regionEnd.x);
-            point.y = Math.Max(point.y, regionEnd.y);
-        }
-
         return point;
     }
 
@@ -355,27 +324,6 @@ public class PatchMapDrawer : Control
             var value = entry.Value;
 
             if (value != region1 && value != region2)
-            {
-                var regionRect = new Rect2(value.ScreenCoordinates, value.Size);
-                if (ClosestSegmentRectangleIntersection(start, intermediate1, regionRect) != -Vector2.Inf ||
-                    ClosestSegmentRectangleIntersection(intermediate1, end, regionRect) != -Vector2.Inf)
-                {
-                    ++firstIntermediateIntersections;
-                }
-
-                if (ClosestSegmentRectangleIntersection(start, intermediate2, regionRect) != -Vector2.Inf ||
-                    ClosestSegmentRectangleIntersection(intermediate2, end, regionRect) != -Vector2.Inf)
-                {
-                    ++secondIntermediateIntersections;
-                }
-            }
-        }
-
-        foreach (var entry in map.DrawingRegions)
-        {
-            var value = entry.Value;
-
-            if (!region2.Adjacent.Contains(value) && !region1.Adjacent.Contains(value))
             {
                 var regionRect = new Rect2(value.ScreenCoordinates, value.Size);
                 if (ClosestSegmentRectangleIntersection(start, intermediate1, regionRect) != -Vector2.Inf ||
@@ -420,34 +368,6 @@ public class PatchMapDrawer : Control
                 (start, intermediate, end) =
                     ConnectionIntersectionWithRegions(start, end, intermediate, region, adjacent);
 
-                var startRegion = region;
-                foreach (var drawingAdjacent in region.Adjacent)
-                {
-                    if (!map.DrawingRegions.ContainsKey(drawingAdjacent.ID))
-                        continue;
-
-                    Vector2 newStart;
-
-                    (newStart, intermediate, end) =
-                        ConnectionIntersectionWithRegions(start, end, intermediate, drawingAdjacent, adjacent);
-
-                    if (newStart != start)
-                    {
-                        start = newStart;
-                        startRegion = drawingAdjacent;
-                    }
-                }
-
-                foreach (var drawingAdjacent in adjacent.Adjacent)
-                {
-                    if (!map.DrawingRegions.ContainsKey(drawingAdjacent.ID))
-                        continue;
-
-                    (start, intermediate, end) =
-                        ConnectionIntersectionWithRegions(start, end, intermediate,
-                            startRegion, drawingAdjacent);
-                }
-
                 connections.Add(connectionKey, new[] { start, intermediate, end });
             }
         }
@@ -460,8 +380,8 @@ public class PatchMapDrawer : Control
         // We first draw the normal connections between regions
         foreach (var entry in connections)
         {
-            var region1 = entry.Key.x < 0 ? map.DrawingRegions[entry.Key.x] : map.Regions[entry.Key.x];
-            var region2 = entry.Key.y < 0 ? map.DrawingRegions[entry.Key.y] : map.Regions[entry.Key.y];
+            var region1 = map.Regions[entry.Key.x];
+            var region2 = map.Regions[entry.Key.y];
 
             var points = entry.Value;
             for (var i = 1; i < points.Length; i++)

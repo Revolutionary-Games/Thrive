@@ -25,19 +25,6 @@ public class PatchMap : ISaveLoadable
     public Dictionary<int, PatchRegion> Regions { get; private set; } = new();
 
     /// <summary>
-    ///   The list of regions that are actually only used for drawing.
-    ///   They are actually regions in the drawing sense and the patches within belong to its adjacent region
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: this needs to be removed entirely and refactored to be sub regions within a <see cref="PatchRegion"/>
-    ///     object. This code was let through due to time constraints.
-    ///   </para>
-    /// </remarks>
-    [JsonProperty]
-    public Dictionary<int, PatchRegion> DrawingRegions { get; private set; } = new();
-
-    /// <summary>
     ///   Currently active patch (the one player is in)
     /// </summary>
     public Patch? CurrentPatch
@@ -95,28 +82,6 @@ public class PatchMap : ISaveLoadable
         }
 
         Regions[region.ID] = region;
-    }
-
-    /// <summary>
-    ///   Adds a new drawing region to the map. Throws if can't add
-    /// </summary>
-    public void AddDrawingRegion(PatchRegion drawingRegion)
-    {
-        if (drawingRegion.ID >= 0)
-            throw new ArgumentException("drawing region id must be negative");
-
-        if (!drawingRegion.IsForDrawingOnly)
-            throw new ArgumentException("special region needs to be marked as drawing only");
-
-        if (DrawingRegions.ContainsKey(drawingRegion.ID))
-        {
-            throw new ArgumentException($"Region {drawingRegion.Name} cannot be added to this map, " +
-                $"the ID is already in use: {drawingRegion.ID}");
-        }
-
-        drawingRegion.IsForDrawingOnly = true;
-
-        DrawingRegions[drawingRegion.ID] = drawingRegion;
     }
 
     /// <summary>
@@ -467,10 +432,8 @@ public class PatchMap : ISaveLoadable
 
         foreach (var (id1, id2) in RegionAdjacencies)
         {
-            var region1 = id1 >= 0 ? Regions[id1] : DrawingRegions[id1];
-
-            var region2 = id2 >= 0 ? Regions[id2] : DrawingRegions[id2];
-
+            var region1 = Regions[id1];
+            var region2 = Regions[id2];
             region1.AddNeighbour(region2);
             region2.AddNeighbour(region1);
         }

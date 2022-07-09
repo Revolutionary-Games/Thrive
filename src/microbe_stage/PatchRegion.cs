@@ -30,7 +30,7 @@ public class PatchRegion
 
     [JsonConstructor]
     public PatchRegion(int id, LocalizedString name, RegionType type, Vector2 screenCoordinates,
-        float height, float width, bool isForDrawingOnly)
+        float height, float width)
     {
         ID = id;
         Name = name;
@@ -38,17 +38,14 @@ public class PatchRegion
         ScreenCoordinates = screenCoordinates;
         Height = height;
         Width = width;
-        IsForDrawingOnly = isForDrawingOnly;
     }
 
     public enum RegionType
     {
-        Predefined,
-        Sea,
-        Ocean,
-        Continent,
-        Vent,
-        Cave,
+        Sea = 0,
+        Ocean = 1,
+        Continent = 2,
+        Predefined = 3,
     }
 
     [JsonProperty]
@@ -60,11 +57,6 @@ public class PatchRegion
     /// <summary>
     ///   Regions this is next to
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: this may contain non-simulation regions (drawing only) which must be refactored out of here
-    ///   </para>
-    /// </remarks>
     [JsonIgnore]
     public ISet<PatchRegion> Adjacent { get; } = new HashSet<PatchRegion>();
 
@@ -93,9 +85,6 @@ public class PatchRegion
     /// </summary>
     [JsonProperty]
     public Vector2 ScreenCoordinates { get; set; }
-
-    [JsonProperty]
-    public bool IsForDrawingOnly { get; set; }
 
     /// <summary>
     ///   The patches in this region. This is last because other constructor params need to be loaded from JSON first
