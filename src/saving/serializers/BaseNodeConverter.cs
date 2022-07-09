@@ -39,6 +39,7 @@ public class BaseNodeConverter : BaseThriveConverter
             case "Scale":
             // Ignore this as this is parent relative and probably causes problems loading
             case "GlobalTransform":
+            case "RectGlobalPosition":
             // Ignore physics properties that cause deprecation warnings
             case "Friction":
             case "Bounce":

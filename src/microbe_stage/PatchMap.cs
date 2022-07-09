@@ -24,18 +24,16 @@ public class PatchMap : ISaveLoadable
     [JsonProperty]
     public Dictionary<int, PatchRegion> Regions { get; private set; } = new();
 
+    [JsonIgnore]
+    public IEnumerable<KeyValuePair<int, PatchRegion>> NormallyDrawnRegions =>
+        Regions.Where(r => !r.Value.UsesSpecialLinking);
+
     /// <summary>
-    ///   The list of regions that are actually only used for drawing.
-    ///   They are actually regions in the drawing sense and the patches within belong to its adjacent region
+    ///   These regions use special logic on how they are linked and positioned to other regions (and drawn)
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: this needs to be removed entirely and refactored to be sub regions within a <see cref="PatchRegion"/>
-    ///     object. This code was let through due to time constraints.
-    ///   </para>
-    /// </remarks>
-    [JsonProperty]
-    public Dictionary<int, PatchRegion> DrawingRegions { get; private set; } = new();
+    [JsonIgnore]
+    public IEnumerable<KeyValuePair<int, PatchRegion>> SpeciallyDrawnRegions =>
+        Regions.Where(r => r.Value.UsesSpecialLinking);
 
     /// <summary>
     ///   Currently active patch (the one player is in)
@@ -97,26 +95,12 @@ public class PatchMap : ISaveLoadable
         Regions[region.ID] = region;
     }
 
-    /// <summary>
-    ///   Adds a new drawing region to the map. Throws if can't add
-    /// </summary>
-    public void AddDrawingRegion(PatchRegion drawingRegion)
+    public bool IsSpeciallyDrawnRegion(int id)
     {
-        if (drawingRegion.ID >= 0)
-            throw new ArgumentException("drawing region id must be negative");
+        if (!Regions.TryGetValue(id, out var region))
+            return false;
 
-        if (!drawingRegion.IsForDrawingOnly)
-            throw new ArgumentException("special region needs to be marked as drawing only");
-
-        if (DrawingRegions.ContainsKey(drawingRegion.ID))
-        {
-            throw new ArgumentException($"Region {drawingRegion.Name} cannot be added to this map, " +
-                $"the ID is already in use: {drawingRegion.ID}");
-        }
-
-        drawingRegion.IsForDrawingOnly = true;
-
-        DrawingRegions[drawingRegion.ID] = drawingRegion;
+        return region.UsesSpecialLinking;
     }
 
     /// <summary>
@@ -461,15 +445,15 @@ public class PatchMap : ISaveLoadable
         {
             var patch1 = Patches[id1];
             var patch2 = Patches[id2];
+
             patch1.AddNeighbour(patch2);
             patch2.AddNeighbour(patch1);
         }
 
         foreach (var (id1, id2) in RegionAdjacencies)
         {
-            var region1 = id1 >= 0 ? Regions[id1] : DrawingRegions[id1];
-
-            var region2 = id2 >= 0 ? Regions[id2] : DrawingRegions[id2];
+            var region1 = Regions[id1];
+            var region2 = Regions[id2];
 
             region1.AddNeighbour(region2);
             region2.AddNeighbour(region1);
