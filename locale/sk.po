@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-07 18:24+0100\n"
+"POT-Creation-Date: 2022-07-09 13:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -782,7 +782,6 @@ msgid "RUSTICYANIN"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/general/OptionsMenu.tscn:931
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2419
 msgid "NORMAL"
 msgstr ""
@@ -2200,31 +2199,35 @@ msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
-msgid "TINY"
+msgid "LIMIT_TINY"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "VERY_SMALL"
+msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "SMALL"
+msgid "LIMIT_SMALL"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "LARGE"
+msgid "LIMIT_NORMAL"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "VERY_LARGE"
+msgid "LIMIT_LARGE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "HUGE"
+msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "EXTREME"
+msgid "LIMIT_HUGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:931
+msgid "LIMIT_EXTREME"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1005
@@ -3540,7 +3543,7 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:661
+#: ../src/microbe_stage/MicrobeStage.cs:662
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -3560,11 +3563,11 @@ msgstr ""
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:38
+#: ../src/microbe_stage/PatchMapGenerator.cs:35
 msgid "PANGONIAN_REGION_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:809
+#: ../src/microbe_stage/PatchMapGenerator.cs:841
 msgid "PATCH_NAME"
 msgstr ""
 
@@ -3836,7 +3839,7 @@ msgid "INFINITE_MP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:147
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 msgid "FIND_CURRENT_PATCH"
 msgstr ""
 
@@ -4053,11 +4056,11 @@ msgstr ""
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:75
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
 msgid "PATCH_EXTINCTION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:84
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:86
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
 
