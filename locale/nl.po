@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-09 14:17+0300\n"
+"POT-Creation-Date: 2022-07-09 18:43+0100\n"
 "PO-Revision-Date: 2022-04-07 14:12+0000\n"
 "Last-Translator: DannyNohuman <damianbouras@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -40,51 +40,42 @@ msgid "CONCEPT_ART"
 msgstr "Concept Art"
 
 #: ../simulation_parameters/common/gallery.json:6
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
-msgid "CELLS"
-msgstr "Cellen"
-
-#: ../simulation_parameters/common/gallery.json:61
-msgid "GENERAL"
-msgstr "Algemeen"
-
-#: ../simulation_parameters/common/gallery.json:121
-#, fuzzy
-msgid "MULTICELLULAR"
-msgstr "Meercellige Stage"
-
-#: ../simulation_parameters/common/gallery.json:131
-msgid "MODELS"
-msgstr "Modellen"
-
-#: ../simulation_parameters/common/gallery.json:134
-#: ../simulation_parameters/common/gallery.json:284
+#: ../simulation_parameters/common/gallery.json:136
+#: ../simulation_parameters/common/gallery.json:286
 msgid "MICROBE_STAGE"
 msgstr "Microbieel Stage"
 
-#: ../simulation_parameters/common/gallery.json:247
+#: ../simulation_parameters/common/gallery.json:61
+#: ../simulation_parameters/common/gallery.json:362
+msgid "MULTICELLULAR_STAGE"
+msgstr "Meercellige Stage"
+
+#: ../simulation_parameters/common/gallery.json:81
+msgid "GENERAL"
+msgstr "Algemeen"
+
+#: ../simulation_parameters/common/gallery.json:133
+msgid "MODELS"
+msgstr "Modellen"
+
+#: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
 msgstr "Muziek"
 
-#: ../simulation_parameters/common/gallery.json:250
+#: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 msgid "ALL"
 msgstr "Alles"
 
-#: ../simulation_parameters/common/gallery.json:261
+#: ../simulation_parameters/common/gallery.json:263
 msgid "MENU"
 msgstr "Menu"
 
-#: ../simulation_parameters/common/gallery.json:325
+#: ../simulation_parameters/common/gallery.json:327
 msgid "MICROBE_EDITOR"
 msgstr "Microbe Bewerker"
 
-#: ../simulation_parameters/common/gallery.json:360
-msgid "MULTICELLULAR_STAGE"
-msgstr "Meercellige Stage"
-
-#: ../simulation_parameters/common/gallery.json:383
+#: ../simulation_parameters/common/gallery.json:385
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Meercellige Bewerker"
 
@@ -1172,6 +1163,11 @@ msgstr "gereproduceerd"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
 msgstr "Gedrag"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
+msgid "CELLS"
+msgstr "Cellen"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:476
@@ -2545,7 +2541,7 @@ msgstr ""
 msgid "STATISTICS"
 msgstr "Statistieken"
 
-#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:120
+#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:122
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -3044,7 +3040,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL"
 msgstr ""
 
@@ -3652,11 +3648,11 @@ msgstr "Hervat"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:82
+#: ../src/microbe_stage/HUDBottomBar.tscn:83
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:131
+#: ../src/microbe_stage/HUDBottomBar.tscn:134
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -5268,29 +5264,33 @@ msgstr "Microbe vrij bouwen"
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Microbe vrij bouwen"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. [thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy\"][/thrive:compound] te schieten als je een vergif vacuole hebt. [thrive:input]g_toggle_engulf[/thrive:input] om de verzwelg-modus aan en uit te zetten."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:294
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:293
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr "Microbe vrij bouwen"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr "Microbe vrij bouwen"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:328
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr "Microbe vrij bouwen"
+
+#, fuzzy
+#~ msgid "MULTICELLULAR"
+#~ msgstr "Meercellige Stage"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Pangoonische Bronnen"

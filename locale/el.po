@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-09 14:17+0300\n"
+"POT-Creation-Date: 2022-07-09 18:43+0100\n"
 "PO-Revision-Date: 2022-03-31 05:02+0000\n"
 "Last-Translator: Apostolos Paschidis <tolissius@gmail.com>\n"
 "Language-Team: Greek <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/el/>\n"
@@ -40,52 +40,44 @@ msgid "CONCEPT_ART"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:6
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
-msgid "CELLS"
-msgstr ""
-
-#: ../simulation_parameters/common/gallery.json:61
-msgid "GENERAL"
-msgstr ""
-
-#: ../simulation_parameters/common/gallery.json:121
-msgid "MULTICELLULAR"
-msgstr ""
-
-#: ../simulation_parameters/common/gallery.json:131
-msgid "MODELS"
-msgstr ""
-
-#: ../simulation_parameters/common/gallery.json:134
-#: ../simulation_parameters/common/gallery.json:284
+#: ../simulation_parameters/common/gallery.json:136
+#: ../simulation_parameters/common/gallery.json:286
 #, fuzzy
 msgid "MICROBE_STAGE"
 msgstr "Χρησιμοποιήστε τα πλήκτρα [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] και το ποντίκι για να κινηθείτε. Το[thrive:input]g_fire_toxin[/thrive:input] για να απελευθερώσετε [thrive:compound type=\"oxytoxy\"][/thrive:compound] εάν έχετε κενοτόπιο τοξίνης και το [thrive:input]g_toggle_engulf[/thrive:input] για να εναλλάξετε την λειτουργία απορρόφησης. Μπορείτε να αλλάξετε την μεγέθυνση με την ροδέλα τού ποντικιού."
 
-#: ../simulation_parameters/common/gallery.json:247
+#: ../simulation_parameters/common/gallery.json:61
+#: ../simulation_parameters/common/gallery.json:362
+msgid "MULTICELLULAR_STAGE"
+msgstr ""
+
+#: ../simulation_parameters/common/gallery.json:81
+msgid "GENERAL"
+msgstr ""
+
+#: ../simulation_parameters/common/gallery.json:133
+msgid "MODELS"
+msgstr ""
+
+#: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:250
+#: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 msgid "ALL"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:261
+#: ../simulation_parameters/common/gallery.json:263
 msgid "MENU"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:325
+#: ../simulation_parameters/common/gallery.json:327
 #, fuzzy
 msgid "MICROBE_EDITOR"
 msgstr "Σε κάθε γενεά, έχετε 100 πόντους μετάλλαξης (ΠΜ) για να ξοδεύσετε και κάθε αλλαγή (ή μετάλλαξη) κοστίζει συγκεκριμένο ποσό ΠΜ. Η πρόσθεση και η αφαίρεση οργανιδίων κοστίζει ΠΜ. Ωστόσο, η αφαίρεση οργανιδίων που τοποθετήθηκαν κατά την τρέχουσα συνεδρία μετάλλαξης επιστρέφει τους ΠΜ αυτού τού οργανιδίου. Μπορείτε να περιστρέψετε τα οργανίδια ενώ τα τοποθετείτε με τα πλήκτρα [thrive:input]e_rotate_left[/thrive:input] και [thrive:input]e_rotate_right[/thrive:input]."
 
-#: ../simulation_parameters/common/gallery.json:360
-msgid "MULTICELLULAR_STAGE"
-msgstr ""
-
-#: ../simulation_parameters/common/gallery.json:383
+#: ../simulation_parameters/common/gallery.json:385
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
@@ -1098,6 +1090,11 @@ msgstr ""
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
+msgstr ""
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
+msgid "CELLS"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
@@ -2416,7 +2413,7 @@ msgstr ""
 msgid "STATISTICS"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:120
+#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:122
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -2897,7 +2894,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL"
 msgstr ""
 
@@ -3465,11 +3462,11 @@ msgstr ""
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:82
+#: ../src/microbe_stage/HUDBottomBar.tscn:83
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:131
+#: ../src/microbe_stage/HUDBottomBar.tscn:134
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -4974,22 +4971,22 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:294
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:293
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:328
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""

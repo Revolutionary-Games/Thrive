@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-09 14:17+0300\n"
+"POT-Creation-Date: 2022-07-09 18:43+0100\n"
 "PO-Revision-Date: 2022-07-09 08:32+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -40,50 +40,42 @@ msgid "CONCEPT_ART"
 msgstr "איור קונספט"
 
 #: ../simulation_parameters/common/gallery.json:6
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
-msgid "CELLS"
-msgstr "תאים"
-
-#: ../simulation_parameters/common/gallery.json:61
-msgid "GENERAL"
-msgstr "כללי"
-
-#: ../simulation_parameters/common/gallery.json:121
-msgid "MULTICELLULAR"
-msgstr "רב תאים"
-
-#: ../simulation_parameters/common/gallery.json:131
-msgid "MODELS"
-msgstr "מודלים"
-
-#: ../simulation_parameters/common/gallery.json:134
-#: ../simulation_parameters/common/gallery.json:284
+#: ../simulation_parameters/common/gallery.json:136
+#: ../simulation_parameters/common/gallery.json:286
 msgid "MICROBE_STAGE"
 msgstr "שלב המיקרובי"
 
-#: ../simulation_parameters/common/gallery.json:247
+#: ../simulation_parameters/common/gallery.json:61
+#: ../simulation_parameters/common/gallery.json:362
+msgid "MULTICELLULAR_STAGE"
+msgstr "שלב הרב-תאי"
+
+#: ../simulation_parameters/common/gallery.json:81
+msgid "GENERAL"
+msgstr "כללי"
+
+#: ../simulation_parameters/common/gallery.json:133
+msgid "MODELS"
+msgstr "מודלים"
+
+#: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
 msgstr "מוזיקה"
 
-#: ../simulation_parameters/common/gallery.json:250
+#: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 msgid "ALL"
 msgstr "הכל"
 
-#: ../simulation_parameters/common/gallery.json:261
+#: ../simulation_parameters/common/gallery.json:263
 msgid "MENU"
 msgstr "תפריט"
 
-#: ../simulation_parameters/common/gallery.json:325
+#: ../simulation_parameters/common/gallery.json:327
 msgid "MICROBE_EDITOR"
 msgstr "עורך המיקרובי"
 
-#: ../simulation_parameters/common/gallery.json:360
-msgid "MULTICELLULAR_STAGE"
-msgstr "שלב הרב-תאי"
-
-#: ../simulation_parameters/common/gallery.json:383
+#: ../simulation_parameters/common/gallery.json:385
 msgid "MULTICELLULAR_EDITOR"
 msgstr "עורך הרב-תאי"
 
@@ -1135,6 +1127,11 @@ msgstr "הולדה"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
 msgstr "התנהגות"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
+msgid "CELLS"
+msgstr "תאים"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:476
@@ -2484,7 +2481,7 @@ msgstr "עובדות מעניינות לגבי המשחק הנוכחי"
 msgid "STATISTICS"
 msgstr "סטטיסטיקה"
 
-#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:120
+#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:122
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "עזרה"
 
@@ -2987,7 +2984,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL"
 msgstr "מדריך"
 
@@ -3578,11 +3575,11 @@ msgstr "המשך את המשחק"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא סביבה ותרכובות"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:82
+#: ../src/microbe_stage/HUDBottomBar.tscn:83
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא תהליכי תא"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:131
+#: ../src/microbe_stage/HUDBottomBar.tscn:134
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "התאבדות"
 
@@ -5205,25 +5202,25 @@ msgstr ""
 "\n"
 "על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "מתקשה? אתה יכול לבדוק בתפריט העזרה. אתה יכול אותו בעזרת הכפתור שמסומן עליו סימן שאלה בתחתון שמאלה.\n"
 "\n"
 "טיפ נוסף: אתה יכול לעשות זום אאוט עם גלגלת העכבר שלך בשביל להרחיב את שדה הראיה שלך."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:294
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:293
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "הראה עכשיו"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "לתא שלך מוגבל עד כמה חומרים יכולים להיבלע בבת אחת. המגבלה הזו תלויה בגדול של התא כך שתא קטן יכולים לבלוע פחות חומרים בבת אחת.\n"
 "\n"
 "אם התא שלך מלא, הוא לא מסוגל יותר לבלוע עוד. בשביל להמשיך לבלוע, תזדקק לחכות עד שיעכלו לחלוטין חומר אחד או יותר."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "לבלוע חומרים על ידי תנועה עליהם ואז להפעיל את המצב הבליעה על ידי לחיצה על [thrive:input]g_toggle_engulf[/thrive:input] בשביל למשוך אותם פנימה.\n"
@@ -5232,7 +5229,7 @@ msgstr ""
 "\n"
 "עקוב אחר הקו מהתא שלך אל ליד אובייקט שניתן לעיכול."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:328
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
@@ -5241,6 +5238,9 @@ msgstr ""
 "תהליך העיכול נראה במד החיים (ימין מטה) כאחוז. התא שלך יוגדר כמת ברגע שזה מגיע ל100% או כאשר שהגיע למגבלת הזמן המקסימלי.\n"
 "\n"
 "לחץ על כפתור התאבדות על מנת לעקוף את התהליך ולהיוולד מחדש, אבל תזכור שתמיד יש סיכוי שתצליח לברוח!"
+
+#~ msgid "MULTICELLULAR"
+#~ msgstr "רב תאים"
 
 #~ msgid "TINY"
 #~ msgstr "זעיר"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-09 14:17+0300\n"
+"POT-Creation-Date: 2022-07-09 18:43+0100\n"
 "PO-Revision-Date: 2022-07-09 08:32+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -40,50 +40,42 @@ msgid "CONCEPT_ART"
 msgstr "Art Conceptual"
 
 #: ../simulation_parameters/common/gallery.json:6
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
-msgid "CELLS"
-msgstr "Cèl·lules"
-
-#: ../simulation_parameters/common/gallery.json:61
-msgid "GENERAL"
-msgstr "General"
-
-#: ../simulation_parameters/common/gallery.json:121
-msgid "MULTICELLULAR"
-msgstr "Multicel·lular"
-
-#: ../simulation_parameters/common/gallery.json:131
-msgid "MODELS"
-msgstr "Models"
-
-#: ../simulation_parameters/common/gallery.json:134
-#: ../simulation_parameters/common/gallery.json:284
+#: ../simulation_parameters/common/gallery.json:136
+#: ../simulation_parameters/common/gallery.json:286
 msgid "MICROBE_STAGE"
 msgstr "Estadi de Microbi"
 
-#: ../simulation_parameters/common/gallery.json:247
+#: ../simulation_parameters/common/gallery.json:61
+#: ../simulation_parameters/common/gallery.json:362
+msgid "MULTICELLULAR_STAGE"
+msgstr "Estadi Multicel·lular"
+
+#: ../simulation_parameters/common/gallery.json:81
+msgid "GENERAL"
+msgstr "General"
+
+#: ../simulation_parameters/common/gallery.json:133
+msgid "MODELS"
+msgstr "Models"
+
+#: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
 msgstr "Música"
 
-#: ../simulation_parameters/common/gallery.json:250
+#: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 msgid "ALL"
 msgstr "Tot"
 
-#: ../simulation_parameters/common/gallery.json:261
+#: ../simulation_parameters/common/gallery.json:263
 msgid "MENU"
 msgstr "Menú"
 
-#: ../simulation_parameters/common/gallery.json:325
+#: ../simulation_parameters/common/gallery.json:327
 msgid "MICROBE_EDITOR"
 msgstr "Editor de Microbi"
 
-#: ../simulation_parameters/common/gallery.json:360
-msgid "MULTICELLULAR_STAGE"
-msgstr "Estadi Multicel·lular"
-
-#: ../simulation_parameters/common/gallery.json:383
+#: ../simulation_parameters/common/gallery.json:385
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor Multicel·lular"
 
@@ -1159,6 +1151,11 @@ msgstr "Reproducció"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
 msgstr "Comportament"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
+msgid "CELLS"
+msgstr "Cèl·lules"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:476
@@ -2547,7 +2544,7 @@ msgstr "Suicidi"
 msgid "STATISTICS"
 msgstr "Estadístiques"
 
-#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:120
+#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:122
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ajuda"
 
@@ -3057,7 +3054,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -3668,11 +3665,11 @@ msgstr "Reprendre el joc"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / amagar l'entorn i els compostos"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:82
+#: ../src/microbe_stage/HUDBottomBar.tscn:83
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / amagar els procesos del microbi"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:131
+#: ../src/microbe_stage/HUDBottomBar.tscn:134
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Suicidi"
 
@@ -5316,18 +5313,18 @@ msgstr ""
 "\n"
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Si encara no acabes d'entendre les mecàniques de joc, fes una ullada al menú d'ajuda. El pots obrir amb el signe d'interrogació a baix a la dreta.\n"
 "\n"
 "Un altre consell: pots ampliar el camp de visió amb la rodeta del ratolí."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:294
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:293
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Veure ara"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -5335,7 +5332,7 @@ msgstr ""
 "\n"
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -5343,13 +5340,16 @@ msgstr ""
 "\n"
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:328
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Has entrat en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre dels membres de la teva colònia per desunir-los.\n"
 "\n"
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
+
+#~ msgid "MULTICELLULAR"
+#~ msgstr "Multicel·lular"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Fumeroles volcàniques de Pangònia"

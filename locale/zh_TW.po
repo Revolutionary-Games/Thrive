@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-09 14:17+0300\n"
+"POT-Creation-Date: 2022-07-09 18:43+0100\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -40,29 +40,8 @@ msgid "CONCEPT_ART"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:6
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
-#, fuzzy
-msgid "CELLS"
-msgstr "纖維素"
-
-#: ../simulation_parameters/common/gallery.json:61
-#, fuzzy
-msgid "GENERAL"
-msgstr "世代："
-
-#: ../simulation_parameters/common/gallery.json:121
-#, fuzzy
-msgid "MULTICELLULAR"
-msgstr "放置細胞器"
-
-#: ../simulation_parameters/common/gallery.json:131
-#, fuzzy
-msgid "MODELS"
-msgstr "上帝模式"
-
-#: ../simulation_parameters/common/gallery.json:134
-#: ../simulation_parameters/common/gallery.json:284
+#: ../simulation_parameters/common/gallery.json:136
+#: ../simulation_parameters/common/gallery.json:286
 #, fuzzy
 msgid "MICROBE_STAGE"
 msgstr ""
@@ -74,32 +53,43 @@ msgstr ""
 "\n"
 "為了在這個充滿敵意的世界中生存，你需要收集任何你能找到的化合物，並通過多代的進化來與其他種類的微生物競爭。"
 
-#: ../simulation_parameters/common/gallery.json:247
+#: ../simulation_parameters/common/gallery.json:61
+#: ../simulation_parameters/common/gallery.json:362
+#, fuzzy
+msgid "MULTICELLULAR_STAGE"
+msgstr "放置細胞器"
+
+#: ../simulation_parameters/common/gallery.json:81
+#, fuzzy
+msgid "GENERAL"
+msgstr "世代："
+
+#: ../simulation_parameters/common/gallery.json:133
+#, fuzzy
+msgid "MODELS"
+msgstr "上帝模式"
+
+#: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:250
+#: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 #, fuzzy
 msgid "ALL"
 msgstr "Alt"
 
-#: ../simulation_parameters/common/gallery.json:261
+#: ../simulation_parameters/common/gallery.json:263
 #, fuzzy
 msgid "MENU"
 msgstr "菜單"
 
-#: ../simulation_parameters/common/gallery.json:325
+#: ../simulation_parameters/common/gallery.json:327
 #, fuzzy
 msgid "MICROBE_EDITOR"
 msgstr "在加載微生物編輯器"
 
-#: ../simulation_parameters/common/gallery.json:360
-#, fuzzy
-msgid "MULTICELLULAR_STAGE"
-msgstr "放置細胞器"
-
-#: ../simulation_parameters/common/gallery.json:383
+#: ../simulation_parameters/common/gallery.json:385
 #, fuzzy
 msgid "MULTICELLULAR_EDITOR"
 msgstr "在加載微生物編輯器"
@@ -1186,6 +1176,12 @@ msgstr "ATP產出"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
 msgstr "行為"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
+#, fuzzy
+msgid "CELLS"
+msgstr "纖維素"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:476
@@ -2589,7 +2585,7 @@ msgstr "自殺"
 msgid "STATISTICS"
 msgstr "統計數據"
 
-#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:120
+#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:122
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "幫助"
 
@@ -3095,7 +3091,7 @@ msgstr "紅綠色盲"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 #, fuzzy
 msgid "TUTORIAL"
 msgstr "教學"
@@ -3709,11 +3705,11 @@ msgstr "返回遊戲"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示/隱藏環境和化合物"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:82
+#: ../src/microbe_stage/HUDBottomBar.tscn:83
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示/隱藏細胞處理"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:131
+#: ../src/microbe_stage/HUDBottomBar.tscn:134
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "自殺"
 
@@ -5387,7 +5383,7 @@ msgstr ""
 "\n"
 "要完全離開殖民地，你可以點擊你自己的單元格或按下解除結合的鍵。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
@@ -5395,12 +5391,12 @@ msgstr ""
 "\n"
 "還有一個提示：你可以用滾輪放大你的視野。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:294
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:293
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "教學"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -5408,7 +5404,7 @@ msgstr ""
 "\n"
 "要完全離開殖民地，你可以點擊你自己的單元格或按下解除結合的鍵。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -5416,13 +5412,17 @@ msgstr ""
 "\n"
 "要完全離開殖民地，你可以點擊你自己的單元格或按下解除結合的鍵。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:328
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "你已經進入了結合解除模式。在這個模式下，你可以點擊殖民地成員來解除他們的束縛。\n"
 "\n"
 "要完全離開殖民地，你可以點擊你自己的單元格或按下解除結合的鍵。"
+
+#, fuzzy
+#~ msgid "MULTICELLULAR"
+#~ msgstr "放置細胞器"
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "遠古熱泉"

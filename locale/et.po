@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-09 14:17+0300\n"
+"POT-Creation-Date: 2022-07-09 18:43+0100\n"
 "PO-Revision-Date: 2022-04-07 21:08+0000\n"
 "Last-Translator: Anelle Lisetter Viktoria Rodin <lisete.rodin@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -40,28 +40,8 @@ msgid "CONCEPT_ART"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:6
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
-msgid "CELLS"
-msgstr "Rakud"
-
-#: ../simulation_parameters/common/gallery.json:61
-#, fuzzy
-msgid "GENERAL"
-msgstr "Põlvkond:"
-
-#: ../simulation_parameters/common/gallery.json:121
-#, fuzzy
-msgid "MULTICELLULAR"
-msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
-
-#: ../simulation_parameters/common/gallery.json:131
-#, fuzzy
-msgid "MODELS"
-msgstr "Jumalarežiim"
-
-#: ../simulation_parameters/common/gallery.json:134
-#: ../simulation_parameters/common/gallery.json:284
+#: ../simulation_parameters/common/gallery.json:136
+#: ../simulation_parameters/common/gallery.json:286
 #, fuzzy
 msgid "MICROBE_STAGE"
 msgstr ""
@@ -73,32 +53,43 @@ msgstr ""
 "\n"
 "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
-#: ../simulation_parameters/common/gallery.json:247
+#: ../simulation_parameters/common/gallery.json:61
+#: ../simulation_parameters/common/gallery.json:362
+#, fuzzy
+msgid "MULTICELLULAR_STAGE"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#: ../simulation_parameters/common/gallery.json:81
+#, fuzzy
+msgid "GENERAL"
+msgstr "Põlvkond:"
+
+#: ../simulation_parameters/common/gallery.json:133
+#, fuzzy
+msgid "MODELS"
+msgstr "Jumalarežiim"
+
+#: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:250
+#: ../simulation_parameters/common/gallery.json:252
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
 #, fuzzy
 msgid "ALL"
 msgstr "ALT"
 
-#: ../simulation_parameters/common/gallery.json:261
+#: ../simulation_parameters/common/gallery.json:263
 #, fuzzy
 msgid "MENU"
 msgstr "Menüü"
 
-#: ../simulation_parameters/common/gallery.json:325
+#: ../simulation_parameters/common/gallery.json:327
 #, fuzzy
 msgid "MICROBE_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
 
-#: ../simulation_parameters/common/gallery.json:360
-#, fuzzy
-msgid "MULTICELLULAR_STAGE"
-msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
-
-#: ../simulation_parameters/common/gallery.json:383
+#: ../simulation_parameters/common/gallery.json:385
 #, fuzzy
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
@@ -1176,6 +1167,11 @@ msgstr "Paljundamine"
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
 msgid "BEHAVIOUR"
 msgstr "Käitumine"
+
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
+msgid "CELLS"
+msgstr "Rakud"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:476
@@ -2567,7 +2563,7 @@ msgstr "vabasurm"
 msgid "STATISTICS"
 msgstr "Statistika"
 
-#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:120
+#: ../src/general/PauseMenu.tscn:212 ../src/microbe_stage/HUDBottomBar.tscn:122
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Abi"
 
@@ -3077,7 +3073,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL"
 msgstr "Õpetus"
 
@@ -3689,11 +3685,11 @@ msgstr "Jätkake mängu"
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Näita/peida keskkonda ja ühendeid"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:82
+#: ../src/microbe_stage/HUDBottomBar.tscn:83
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Kuva/peida rakuprotsessid"
 
-#: ../src/microbe_stage/HUDBottomBar.tscn:131
+#: ../src/microbe_stage/HUDBottomBar.tscn:134
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "vabasurm"
 
@@ -5335,18 +5331,18 @@ msgstr ""
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:260
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Hädas? Kontrollige abimenüüd. Saate selle avada vasakus alanurgas oleva küsimärgi nupuga.\n"
 "\n"
 "Veel üks näpunäide: saate kerimisrattaga vaadet välja suumida."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:294
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:293
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Vaata nüüd"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:304
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -5354,7 +5350,7 @@ msgstr ""
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -5362,13 +5358,17 @@ msgstr ""
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:328
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Olete sisenenud sidumise tühistamise režiimi. Selles režiimis saate klõpsata koloonia liikmetel, et need lahti siduda.\n"
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
+
+#, fuzzy
+#~ msgid "MULTICELLULAR"
+#~ msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 #~ msgid "PATCH_PANGONIAN_VENTS"
 #~ msgstr "Pangoonia tuulutusavad"
