@@ -51,7 +51,9 @@ public static class PatchMapGenerator
         int minDistance = 180;
 
         int currentPatchId = 0;
-        int specialRegionId = 0;
+
+        // Regions need to start at 0 for the hardcoded triangulation algorithm below to work
+        int currentRegionId = -1;
 
         // Potential starting patches, which must be set by the end of the generating process
         Patch? vents = null;
@@ -93,7 +95,7 @@ public static class PatchMapGenerator
                     break;
             }
 
-            var region = new PatchRegion(i, GetPatchLocalizedName(continentName, regionType.ToString()),
+            var region = new PatchRegion(++currentRegionId, GetPatchLocalizedName(continentName, regionType.ToString()),
                 regionType, coordinates);
             int numberOfPatches;
 
@@ -137,15 +139,15 @@ public static class PatchMapGenerator
                 // Add at least one vent to the map, otherwise chance to add a vent if this is a sea/ocean region
                 if (vents == null || random.Next(0, 2) == 1)
                 {
-                    var ventRegion = new PatchRegion(--specialRegionId,
+                    var ventRegion = new PatchRegion(++currentRegionId,
                         GetPatchLocalizedName(continentName, "vents"), PatchRegion.RegionType.Vent, coordinates)
                     {
-                        IsForDrawingOnly = true,
+                        UsesSpecialLinking = true,
                     };
 
                     vents = NewPredefinedPatch(PredefinedBiome.Vents, ++currentPatchId, ventRegion, patchName);
 
-                    map.AddDrawingRegion(ventRegion);
+                    map.AddRegion(ventRegion);
                     LinkRegions(ventRegion, region);
                 }
             }
@@ -153,15 +155,15 @@ public static class PatchMapGenerator
             // Random chance to create a cave
             if (random.Next(0, 2) == 1)
             {
-                var caveRegion = new PatchRegion(--specialRegionId,
+                var caveRegion = new PatchRegion(++currentRegionId,
                     GetPatchLocalizedName(continentName, "UNDERWATERCAVE"), PatchRegion.RegionType.Cave, coordinates)
                 {
-                    IsForDrawingOnly = true,
+                    UsesSpecialLinking = true,
                 };
 
                 var cavePatch = NewPredefinedPatch(PredefinedBiome.Cave, ++currentPatchId, caveRegion, patchName);
 
-                map.AddDrawingRegion(caveRegion);
+                map.AddRegion(caveRegion);
                 LinkRegions(caveRegion, region);
 
                 // Chose one random patch from the region to be linked to the underwater cave
@@ -198,13 +200,15 @@ public static class PatchMapGenerator
         int[,] graph = DelaunayTriangulation(new int[100, 100], regionCoordinates);
         graph = SubtractEdges(graph, vertexCount, edgeCount, random);
 
+        var normalRegions = map.NormallyDrawnRegions.Select(t => t.Value).ToList();
+
         // Link regions according to the graph matrix
         for (int i = 0; i < vertexCount; ++i)
         {
             for (int k = 0; k < vertexCount; ++k)
             {
                 if (graph[k, i] == 1)
-                    LinkRegions(map.Regions[i], map.Regions[k]);
+                    LinkRegions(normalRegions[i], normalRegions[k]);
             }
         }
 
@@ -587,7 +591,7 @@ public static class PatchMapGenerator
 
     private static void BuildDrawingRegions(PatchMap map)
     {
-        foreach (var region in map.DrawingRegions)
+        foreach (var region in map.SpeciallyDrawnRegions)
         {
             BuildRegion(region.Value);
         }
@@ -595,7 +599,7 @@ public static class PatchMapGenerator
 
     private static void BuildPatchesInRegions(PatchMap map, Random random)
     {
-        foreach (var region in map.Regions)
+        foreach (var region in map.NormallyDrawnRegions)
         {
             BuildPatches(region.Value, random);
             foreach (var patch in region.Value.Patches)
@@ -607,7 +611,7 @@ public static class PatchMapGenerator
 
     private static void BuildPatchesInDrawingRegions(PatchMap map, Random random)
     {
-        foreach (var region in map.DrawingRegions)
+        foreach (var region in map.SpeciallyDrawnRegions)
         {
             BuildPatches(region.Value, random);
             foreach (var patch in region.Value.Patches)
@@ -619,7 +623,7 @@ public static class PatchMapGenerator
 
     private static void ConnectPatchesBetweenRegions(PatchMap map, Random random)
     {
-        foreach (var region in map.Regions)
+        foreach (var region in map.NormallyDrawnRegions)
         {
             ConnectPatchesBetweenRegions(region.Value, random);
         }
