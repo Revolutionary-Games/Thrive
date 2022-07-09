@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-07 18:24+0100\n"
+"POT-Creation-Date: 2022-07-09 13:07+0300\n"
 "PO-Revision-Date: 2022-05-02 08:23+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -852,7 +852,6 @@ msgid "RUSTICYANIN"
 msgstr "Rusticyanin"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/general/OptionsMenu.tscn:931
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2419
 msgid "NORMAL"
 msgstr "Normál"
@@ -2296,31 +2295,41 @@ msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Entitások maximális száma:"
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
-msgid "TINY"
-msgstr "Nagyon kicsi"
+msgid "LIMIT_TINY"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "VERY_SMALL"
+#, fuzzy
+msgid "LIMIT_VERY_SMALL"
 msgstr "Elég kicsi"
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "SMALL"
+#, fuzzy
+msgid "LIMIT_SMALL"
 msgstr "Kicsi"
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "LARGE"
+#, fuzzy
+msgid "LIMIT_NORMAL"
+msgstr "Elfogad"
+
+#: ../src/general/OptionsMenu.tscn:931
+#, fuzzy
+msgid "LIMIT_LARGE"
 msgstr "Nagy"
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "VERY_LARGE"
+#, fuzzy
+msgid "LIMIT_VERY_LARGE"
 msgstr "Nagyon nagy"
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "HUGE"
-msgstr "Hatalmas"
+msgid "LIMIT_HUGE"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "EXTREME"
+#, fuzzy
+msgid "LIMIT_EXTREME"
 msgstr "Extrém"
 
 #: ../src/general/OptionsMenu.tscn:1005
@@ -3710,7 +3719,7 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:661
+#: ../src/microbe_stage/MicrobeStage.cs:662
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Ellenség spawnolása"
@@ -3732,11 +3741,11 @@ msgstr ""
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Segítség"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:38
+#: ../src/microbe_stage/PatchMapGenerator.cs:35
 msgid "PANGONIAN_REGION_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:809
+#: ../src/microbe_stage/PatchMapGenerator.cs:841
 #, fuzzy
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
@@ -4018,7 +4027,7 @@ msgid "INFINITE_MP"
 msgstr "Végtelen MP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:147
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
 msgstr "Jelenlegi akció visszavonása"
@@ -4246,12 +4255,12 @@ msgstr "Jelenlévő fajok"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Átvándorlás ebbe a patch-be"
 
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:75
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
 #, fuzzy
 msgid "PATCH_EXTINCTION_CAPITAL"
 msgstr "KIHALTÁL"
 
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:84
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:86
 #, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr "Mint azon fajok 99%-a, melyek egykor léteztek, kihaltak, mint a te fajod. Pár faj ki fogja tölteni az ürességet, amit fajod veszte okozott, és túl fognak élni, de az nem te leszel. A fajod az evolúció egyik hibás kísérleteként lesz mostantól számontartva, és a feledésbe fog merülni."
@@ -5287,6 +5296,12 @@ msgstr ""
 "A sejted irányításához használd azokat a gombokat, amik a sejted közelében vannak (a képernyő közepén), plusz az egeret, hogy irányítsd a sejted irányát.\n"
 "\n"
 "Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
+
+#~ msgid "TINY"
+#~ msgstr "Nagyon kicsi"
+
+#~ msgid "HUGE"
+#~ msgstr "Hatalmas"
 
 #~ msgid "MOBILITY"
 #~ msgstr "Mozgékonyság"

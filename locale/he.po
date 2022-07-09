@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-07 18:24+0100\n"
+"POT-Creation-Date: 2022-07-09 13:07+0300\n"
 "PO-Revision-Date: 2022-07-09 08:32+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -834,7 +834,6 @@ msgid "RUSTICYANIN"
 msgstr "רוסטיצינין"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/general/OptionsMenu.tscn:931
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2419
 msgid "NORMAL"
 msgstr "רגיל"
@@ -2275,31 +2274,41 @@ msgid "MAX_SPAWNED_ENTITIES"
 msgstr "מספר מרבי של ישויות:"
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
-msgid "TINY"
-msgstr "זעיר"
+msgid "LIMIT_TINY"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "VERY_SMALL"
+#, fuzzy
+msgid "LIMIT_VERY_SMALL"
 msgstr "מאוד קטן"
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "SMALL"
+#, fuzzy
+msgid "LIMIT_SMALL"
 msgstr "קטן"
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "LARGE"
+#, fuzzy
+msgid "LIMIT_NORMAL"
+msgstr "אשר"
+
+#: ../src/general/OptionsMenu.tscn:931
+#, fuzzy
+msgid "LIMIT_LARGE"
 msgstr "גדול"
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "VERY_LARGE"
+#, fuzzy
+msgid "LIMIT_VERY_LARGE"
 msgstr "מאוד גדול"
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "HUGE"
-msgstr "ענק"
+msgid "LIMIT_HUGE"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "EXTREME"
+#, fuzzy
+msgid "LIMIT_EXTREME"
 msgstr "קיצוני"
 
 #: ../src/general/OptionsMenu.tscn:1005
@@ -3669,7 +3678,7 @@ msgstr "להפוך לרב-תאיים ({0}/{1})"
 msgid "BECOME_MACROSCOPIC"
 msgstr "להפוך למקרוסקופי ({0}/{1})"
 
-#: ../src/microbe_stage/MicrobeStage.cs:661
+#: ../src/microbe_stage/MicrobeStage.cs:662
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "אינך יכול לזמן אוייבים צ'יטים בגלל שאזור זה אינו מכיל שום מינים אויבים"
 
@@ -3689,11 +3698,11 @@ msgstr "עבור לשלב הבא של המשחק (רב תא). זמין ברגע 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "כנס לעורך ושנה את המין שלך"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:38
+#: ../src/microbe_stage/PatchMapGenerator.cs:35
 msgid "PANGONIAN_REGION_NAME"
 msgstr "פאנגוניה"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:809
+#: ../src/microbe_stage/PatchMapGenerator.cs:841
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -3973,7 +3982,7 @@ msgid "INFINITE_MP"
 msgstr "אינסוף נקמ\"ו"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:147
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 msgid "FIND_CURRENT_PATCH"
 msgstr "מצא את האזור הנוכחי"
 
@@ -4190,11 +4199,11 @@ msgstr "מינים נוכחים"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "תעבור לאזור זה"
 
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:75
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
 msgid "PATCH_EXTINCTION_CAPITAL"
 msgstr "הכחדת אזור"
 
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:84
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:86
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
 "המין שלך נכחד מהאזור זה.\n"
@@ -5231,6 +5240,12 @@ msgstr ""
 "תהליך העיכול נראה במד החיים (ימין מטה) כאחוז. התא שלך יוגדר כמת ברגע שזה מגיע ל100% או כאשר שהגיע למגבלת הזמן המקסימלי.\n"
 "\n"
 "לחץ על כפתור התאבדות על מנת לעקוף את התהליך ולהיוולד מחדש, אבל תזכור שתמיד יש סיכוי שתצליח לברוח!"
+
+#~ msgid "TINY"
+#~ msgstr "זעיר"
+
+#~ msgid "HUGE"
+#~ msgstr "ענק"
 
 #~ msgid "AUTO-EVO_POPULATION_CHANGED"
 #~ msgstr "אוכלוסיית {0} השתנתה ב {1} בגלל: {2}"

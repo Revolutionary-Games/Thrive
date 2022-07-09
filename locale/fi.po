@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-07 18:24+0100\n"
+"POT-Creation-Date: 2022-07-09 13:07+0300\n"
 "PO-Revision-Date: 2022-05-03 17:42+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -879,7 +879,6 @@ msgid "RUSTICYANIN"
 msgstr "Ruostesyaniini"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/general/OptionsMenu.tscn:931
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2419
 msgid "NORMAL"
 msgstr "Normaali"
@@ -2367,32 +2366,37 @@ msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
-msgid "TINY"
+msgid "LIMIT_TINY"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "VERY_SMALL"
+msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:931
-msgid "SMALL"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:931
-msgid "LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:931
-msgid "VERY_LARGE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:931
-msgid "HUGE"
+msgid "LIMIT_SMALL"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:931
 #, fuzzy
-msgid "EXTREME"
+msgid "LIMIT_NORMAL"
+msgstr "VAHVISTA"
+
+#: ../src/general/OptionsMenu.tscn:931
+msgid "LIMIT_LARGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:931
+msgid "LIMIT_VERY_LARGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:931
+msgid "LIMIT_HUGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:931
+#, fuzzy
+msgid "LIMIT_EXTREME"
 msgstr "Ekstrat"
 
 #: ../src/general/OptionsMenu.tscn:1005
@@ -3800,7 +3804,7 @@ msgstr ""
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:661
+#: ../src/microbe_stage/MicrobeStage.cs:662
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Luo vihollinen"
@@ -3822,11 +3826,11 @@ msgstr ""
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:38
+#: ../src/microbe_stage/PatchMapGenerator.cs:35
 msgid "PANGONIAN_REGION_NAME"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:809
+#: ../src/microbe_stage/PatchMapGenerator.cs:841
 msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
@@ -4111,7 +4115,7 @@ msgid "INFINITE_MP"
 msgstr "Loputon MP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:125
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:147
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:164
 #, fuzzy
 msgid "FIND_CURRENT_PATCH"
 msgstr "Peruuta nykyinen toimenpide"
@@ -4337,12 +4341,12 @@ msgstr "Läsnäolevat lajit"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Siirry tälle alueelle"
 
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:75
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:77
 #, fuzzy
 msgid "PATCH_EXTINCTION_CAPITAL"
 msgstr "SUKUPUUTTO"
 
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:84
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:86
 #, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr "Kuten 99% kaikista lajeista jotka ovat joskus olleet, sinun lajisi on kuollut sukupuuttoon. Muut täyttävät sinun ekologisen lokerosi and kukoistavat, mutta sinä et. Sinut tullaan unohtamaan, epäonnistunut kokeilu evoluutiossa."
