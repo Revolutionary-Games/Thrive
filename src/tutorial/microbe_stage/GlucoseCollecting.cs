@@ -20,7 +20,7 @@
             CanTrigger = false;
         }
 
-        public override string ClosedByName { get; } = "GlucoseCollecting";
+        public override string ClosedByName => "GlucoseCollecting";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
