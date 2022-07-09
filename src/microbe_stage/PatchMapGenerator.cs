@@ -368,7 +368,7 @@ public static class PatchMapGenerator
             case PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean:
             {
                 var cave = region.Patches.FirstOrDefault(p => p.BiomeType == Patch.BiomeTypes.Cave);
-                Patch? caveLinkedTo = null;
+                var caveLinkedTo = -1;
                 var vents = region.Patches.FirstOrDefault(p => p.BiomeType == Patch.BiomeTypes.Vents);
 
                 var waterPatchCount = region.Patches.Count;
@@ -388,8 +388,8 @@ public static class PatchMapGenerator
                 if (cave != null)
                 {
                     // Cave shouldn't be linked to seafloor, vent or itself
-                    caveLinkedTo = region.Patches[random.Next(0, waterPatchCount - 1)];
-                    LinkPatches(cave, caveLinkedTo);
+                    caveLinkedTo = random.Next(0, waterPatchCount - 1);
+                    LinkPatches(cave, region.Patches[caveLinkedTo]);
                 }
 
                 for (var i = 0; i < waterPatchCount; ++i)
@@ -409,23 +409,36 @@ public static class PatchMapGenerator
                 seafloor.Depth[0] = deepestSeaPatch.Depth[1];
                 seafloor.Depth[1] = deepestSeaPatch.Depth[1] + 10;
 
-                // TODO: Whether to add vent or cave to the right.
-                // var ventOrCaveToTheRight = random.Next(2) == 1;
-                var patchCoordinateOffset = new Vector2(64.0f + region.RegionLineWidth, 0);
-
-                if (vents != null)
+                // Build vents and cave
+                if (vents != null || cave != null)
                 {
-                    vents.ScreenCoordinates =
-                        region.Patches[waterPatchCount - 1].ScreenCoordinates + patchCoordinateOffset;
-                    vents.Depth[0] = region.Patches[waterPatchCount - 1].Depth[0];
-                    vents.Depth[1] = region.Patches[waterPatchCount - 1].Depth[1];
-                }
+                    var ventOrCaveToTheRight = random.Next(2) == 1;
+                    var patchCoordinateOffset = new Vector2(64.0f + region.RegionLineWidth, 0);
 
-                if (cave != null)
-                {
-                    cave.ScreenCoordinates = caveLinkedTo!.ScreenCoordinates + patchCoordinateOffset;
-                    cave.Depth[0] = caveLinkedTo.Depth[0];
-                    cave.Depth[1] = caveLinkedTo.Depth[1];
+                    // If the vents and cave is on the left we need to adjust the water patches' position
+                    if (!ventOrCaveToTheRight)
+                    {
+                        for (int i = 0; i < waterPatchCount; i++)
+                        {
+                            region.Patches[i].ScreenCoordinates += patchCoordinateOffset;
+                        }
+                    }
+
+                    if (vents != null)
+                    {
+                        vents.ScreenCoordinates = region.Patches[waterPatchCount - 1].ScreenCoordinates
+                            + (ventOrCaveToTheRight ? 1 : -1) * patchCoordinateOffset;
+                        vents.Depth[0] = region.Patches[waterPatchCount - 1].Depth[0];
+                        vents.Depth[1] = region.Patches[waterPatchCount - 1].Depth[1];
+                    }
+
+                    if (cave != null)
+                    {
+                        cave.ScreenCoordinates = region.Patches[caveLinkedTo].ScreenCoordinates
+                            + (ventOrCaveToTheRight ? 1 : -1) * patchCoordinateOffset;
+                        cave.Depth[0] = region.Patches[caveLinkedTo].Depth[0];
+                        cave.Depth[1] = region.Patches[caveLinkedTo].Depth[1];
+                    }
                 }
 
                 break;
