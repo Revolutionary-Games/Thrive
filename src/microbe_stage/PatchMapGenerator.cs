@@ -455,7 +455,7 @@ public static class PatchMapGenerator
                 if (cave != null)
                 {
                     // TODO: Enable cave to link to others
-                    caveLinkedTo = 1;
+                    caveLinkedTo = region.Patches.Count == 2 ? 0 : 1;
                     LinkPatches(cave, region.Patches[caveLinkedTo]);
                     cave.Depth[0] = region.Patches[caveLinkedTo].Depth[0];
                     cave.Depth[1] = region.Patches[caveLinkedTo].Depth[1];
@@ -484,11 +484,8 @@ public static class PatchMapGenerator
                 if (cave != null)
                 {
                     var patchCoordinateOffsetRight = new Vector2(64.0f + region.RegionLineWidth, 0);
-                    cave.ScreenCoordinates = region.Patches[caveLinkedTo].ScreenCoordinates + caveLinkedTo switch
-                    {
-                        1 => patchCoordinateOffsetRight,
-                        _ => throw new InvalidOperationException("Cave shouldn't link to this patch"),
-                    };
+                    cave.ScreenCoordinates =
+                        region.Patches[caveLinkedTo].ScreenCoordinates + patchCoordinateOffsetRight;
                 }
 
                 break;
