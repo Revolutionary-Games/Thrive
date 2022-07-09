@@ -142,7 +142,7 @@ public class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportDat
             reportTabPatchSelector.AddItem(patch.Name.ToString(), patch.ID);
         }
 
-        reportTabPatchSelector.Select(Editor.CurrentPatch.ID);
+        reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(Editor.CurrentPatch.ID));
     }
 
     public void UpdateReportTabPatchSelectorSelection(int patchID)

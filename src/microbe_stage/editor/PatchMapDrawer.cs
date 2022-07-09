@@ -48,6 +48,8 @@ public class PatchMapDrawer : Control
 
     private bool dirty = true;
 
+    private bool alreadyDrawn;
+
     private Dictionary<Patch, bool>? patchEnableStatusesToBeApplied;
 
     private Patch? selectedPatch;
@@ -111,9 +113,6 @@ public class PatchMapDrawer : Control
             GD.Print("Generating and showing a new patch map for testing in PatchMapDrawer");
             Map = new GameWorld(new WorldGenerationSettings()).Map;
         }
-
-        if (PlayerPatch != null)
-            CenterScroll();
     }
 
     public override void _Process(float delta)
@@ -140,14 +139,8 @@ public class PatchMapDrawer : Control
             return;
 
         // Create connections between regions if they dont exist.
-        // Also center the scroll to the player patch
         if (connections.Count == 0)
-        {
-            // TODO: doesn't this just cause a duplicate call with the one in _Ready?
-            CenterScroll();
-
             CreateRegionLinks();
-        }
 
         DrawRegionLinks();
         DrawRegions();
@@ -189,6 +182,13 @@ public class PatchMapDrawer : Control
                     DrawNodeLink(start, end, DefaultConnectionColor);
                 }
             }
+        }
+
+        // Scroll to player patch only when first drawn
+        if (!alreadyDrawn)
+        {
+            CenterScroll();
+            alreadyDrawn = true;
         }
     }
 
@@ -478,6 +478,10 @@ public class PatchMapDrawer : Control
 
     private void DrawRegions()
     {
+        // Don't draw a border if there's only one region
+        if (map.Regions.Count == 1)
+            return;
+
         foreach (var entry in map.Regions)
         {
             var region = entry.Value;
