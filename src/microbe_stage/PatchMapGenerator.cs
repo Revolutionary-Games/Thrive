@@ -776,6 +776,9 @@ public static class PatchMapGenerator
         var region = new PatchRegion(0, GetPatchLocalizedName(areaName, string.Empty),
             PatchRegion.RegionType.Predefined, new Vector2(0, 0));
 
+        // Hard code the region size as slightly larger than the extreme patch edges to fix scrolling
+        region.Size = new Vector2(400, 500);
+
         // Predefined patches
         var coast = NewPredefinedPatch(PredefinedBiome.Coastal, 0, region, areaName);
         var estuary = NewPredefinedPatch(PredefinedBiome.Estuary, 1, region, areaName);
