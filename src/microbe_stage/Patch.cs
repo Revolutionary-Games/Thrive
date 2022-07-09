@@ -64,9 +64,6 @@ public class Patch
     }
 
     [JsonProperty]
-    public BiomeTypes BiomeType { get; private set; }
-
-    [JsonProperty]
     public int ID { get; }
 
     [JsonIgnore]
@@ -84,6 +81,9 @@ public class Patch
     /// </summary>
     [JsonProperty]
     public PatchRegion Region { get; private set; } = null!;
+
+    [JsonProperty]
+    public BiomeTypes BiomeType { get; private set; }
 
     [JsonProperty]
     public int[] Depth { get; private set; } = { -1, -1 };
