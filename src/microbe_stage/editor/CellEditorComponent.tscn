@@ -271,7 +271,7 @@ __meta__ = {
 [node name="MainPanel" type="PanelContainer" parent="LeftPanel"]
 margin_left = 10.0
 margin_top = 5.0
-margin_right = 386.0
+margin_right = 350.0
 margin_bottom = 625.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -283,14 +283,14 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 375.0
+margin_right = 339.0
 margin_bottom = 619.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer"]
-margin_right = 374.0
+margin_right = 338.0
 margin_bottom = 35.0
 mouse_filter = 1
 custom_constants/margin_right = 10
@@ -299,18 +299,17 @@ custom_constants/margin_left = 10
 custom_constants/margin_bottom = 5
 
 [node name="MutationPointsBar" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer2" instance=ExtResource( 7 )]
-margin_right = 364.0
 
 [node name="HSeparator" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer"]
 margin_top = 39.0
-margin_right = 374.0
+margin_right = 338.0
 margin_bottom = 43.0
 mouse_filter = 1
 custom_styles/separator = SubResource( 8 )
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer"]
 margin_top = 47.0
-margin_right = 374.0
+margin_right = 338.0
 margin_bottom = 618.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -326,7 +325,7 @@ __meta__ = {
 [node name="EditingPanel" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 5.0
-margin_right = 364.0
+margin_right = 328.0
 margin_bottom = 561.0
 custom_constants/separation = 10
 __meta__ = {
@@ -334,7 +333,7 @@ __meta__ = {
 }
 
 [node name="Tab" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
-margin_right = 354.0
+margin_right = 318.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 __meta__ = {
@@ -342,7 +341,7 @@ __meta__ = {
 }
 
 [node name="Structure" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab"]
-margin_right = 115.0
+margin_right = 103.0
 margin_bottom = 30.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -363,8 +362,8 @@ __meta__ = {
 }
 
 [node name="Membrane" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab"]
-margin_left = 119.0
-margin_right = 234.0
+margin_left = 107.0
+margin_right = 210.0
 margin_bottom = 30.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -384,8 +383,8 @@ __meta__ = {
 }
 
 [node name="Behaviour" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab"]
-margin_left = 238.0
-margin_right = 354.0
+margin_left = 214.0
+margin_right = 318.0
 margin_bottom = 30.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -406,15 +405,14 @@ __meta__ = {
 
 [node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 margin_top = 40.0
-margin_right = 354.0
+margin_right = 318.0
 margin_bottom = 556.0
-rect_min_size = Vector2( 354, 0 )
 mouse_filter = 1
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 14 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure"]
-margin_right = 354.0
+margin_right = 318.0
 margin_bottom = 516.0
 mouse_filter = 1
 size_flags_vertical = 3
@@ -424,14 +422,14 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer"]
-margin_right = 354.0
+margin_right = 318.0
 margin_bottom = 126.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="PartsSelection" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer"]
-margin_right = 344.0
+margin_right = 308.0
 margin_bottom = 126.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -457,7 +455,7 @@ placeholder_text = "SEARCH_DOT_DOT_DOT"
 [node name="Structural" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 45 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 344.0
+margin_right = 308.0
 margin_bottom = 24.0
 DisplayName = "STRUCTURAL"
 Columns = 3
@@ -466,7 +464,7 @@ Columns = 3
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 34.0
-margin_right = 344.0
+margin_right = 308.0
 margin_bottom = 58.0
 DisplayName = "PROTEINS"
 Columns = 3
@@ -475,7 +473,7 @@ Columns = 3
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 68.0
-margin_right = 344.0
+margin_right = 308.0
 margin_bottom = 92.0
 DisplayName = "EXTERNAL"
 Columns = 3
@@ -484,24 +482,23 @@ Columns = 3
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 102.0
-margin_right = 344.0
+margin_right = 308.0
 margin_bottom = 126.0
 DisplayName = "ORGANELLES"
 Columns = 3
 
 [node name="Membrane" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false
-margin_top = 303.0
-margin_right = 354.0
+margin_top = 40.0
+margin_right = 332.0
 margin_bottom = 556.0
-rect_min_size = Vector2( 354, 0 )
 mouse_filter = 1
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 16 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane"]
-margin_right = 325.0
-margin_bottom = 253.0
+margin_right = 332.0
+margin_bottom = 516.0
 mouse_filter = 1
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -509,7 +506,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer"]
-margin_right = 325.0
+margin_right = 332.0
 margin_bottom = 734.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -519,26 +516,26 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer"]
-margin_right = 315.0
+margin_right = 322.0
 margin_bottom = 734.0
 custom_constants/separation = 15
 
 [node name="MembraneTypes" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 45 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 309.0
-margin_bottom = 24.0
+margin_right = 316.0
+margin_bottom = 234.0
 DisplayName = "MEMBRANE_TYPES"
 Columns = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 39.0
-margin_right = 309.0
-margin_bottom = 104.0
+margin_top = 249.0
+margin_right = 316.0
+margin_bottom = 314.0
 custom_constants/separation = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-margin_right = 309.0
+margin_right = 316.0
 margin_bottom = 20.0
 
 [node name="RigidityLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
@@ -551,7 +548,7 @@ valign = 1
 
 [node name="HSeparator2" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 141.0
-margin_right = 309.0
+margin_right = 316.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -559,7 +556,7 @@ custom_styles/separator = SubResource( 18 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 25.0
-margin_right = 309.0
+margin_right = 316.0
 margin_bottom = 45.0
 
 [node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
@@ -570,20 +567,20 @@ text = "FLUID"
 
 [node name="Spacer" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 48.0
-margin_right = 265.0
+margin_right = 272.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 
 [node name="Label2" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 269.0
-margin_right = 309.0
+margin_left = 276.0
+margin_right = 316.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 8 )
 text = "RIGID"
 
 [node name="RigiditySlider" type="HSlider" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 50.0
-margin_right = 309.0
+margin_right = 316.0
 margin_bottom = 65.0
 focus_mode = 1
 mouse_filter = 1
@@ -598,13 +595,13 @@ tick_count = 9
 ticks_on_borders = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 119.0
-margin_right = 309.0
-margin_bottom = 734.0
+margin_top = 329.0
+margin_right = 316.0
+margin_bottom = 944.0
 custom_constants/separation = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_right = 309.0
+margin_right = 316.0
 margin_bottom = 20.0
 
 [node name="ColourLabel" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
@@ -617,17 +614,17 @@ valign = 1
 
 [node name="HSeparator3" type="HSeparator" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 67.0
-margin_right = 309.0
+margin_right = 316.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 43 )]
-margin_left = 92.0
-margin_top = 117.0
-margin_right = 401.0
-margin_bottom = 707.0
+margin_left = 256.0
+margin_top = 281.0
+margin_right = 572.0
+margin_bottom = 871.0
 RawButtonEnabled = false
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource( 14 )]
@@ -1074,6 +1071,7 @@ custom_styles/separator = SubResource( 6 )
 
 [node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource( 3 )]
 margin_top = -53.0
+margin_right = 641.0
 
 [node name="BottomRight" type="MarginContainer" parent="."]
 anchor_left = 1.0
