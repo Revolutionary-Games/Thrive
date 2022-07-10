@@ -136,14 +136,14 @@ msgstr ""
 "бъдат съхранени в нейната мембрана, за да бъдат усвоени. Неусвоимите обекти "
 "ще бъдат изхвърлeни, освен ако не притежавате необходимите мутации, които "
 "позволяват тяхното разграждане. Еволюцията на лизозомата е препоръчителна, "
-"защото нейните ензими подобряват храносмилателната ефективност на клетката."
+"защото нейните ензими подобряват асимилационната ефективност на клетката."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
 msgstr ""
 "Лизозомата е еукариотна еволюция и не може да се използва от прокариотните "
-"клетки. Увеличаването на техния размер намалява храносмилателната "
-"ефективност на клетката."
+"клетки. Увеличаването на техния размер намалява асимилационната ефективност "
+"на клетката."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
@@ -712,7 +712,7 @@ msgstr "Превключване на ЧКС"
 
 #: ../simulation_parameters/common/input_options.json:243
 msgid "TOGGLE_METRICS"
-msgstr "Превключване на показателите за производителността"
+msgstr "Превключване на показателите за производителност"
 
 #: ../simulation_parameters/common/input_options.json:247
 msgid "QUICK_SAVE"
@@ -1505,7 +1505,7 @@ msgstr "{0} МиБ"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
 msgid "UNKNOWN_ON_WINDOWS"
-msgstr "Неизвестни"
+msgstr "Неизвестна"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
@@ -1532,7 +1532,7 @@ msgstr ""
 #: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
 #: ../src/engine/PerformanceMetrics.tscn:30
 msgid "METRICS"
-msgstr "Показатели за производителността"
+msgstr "Показатели за производителност"
 
 #: ../src/engine/DebugOverlays.tscn:86
 msgid "DEBUG_PANEL"
@@ -3899,8 +3899,8 @@ msgstr "В процес на разработка."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2360
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Съдържа храносмилателни ензими. Нейните свойства определят вида на ензима, "
-"който се използва за храносмилането на клетката."
+"Съдържа асимилационни ензими. Нейните свойства определят вида на ензима, "
+"който се използва за усвояването на обектите от клетката."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2361
 msgid "LYSOSOME_DESCRIPTION"
@@ -3912,11 +3912,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2375
 msgid "DIGESTION_SPEED"
-msgstr "Храносмилателна скорост"
+msgstr "Асимилационна скорост"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
 msgid "DIGESTION_EFFICIENCY"
-msgstr "Храносмилателна ефективност"
+msgstr "Асимилационна ефективност"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2420
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
@@ -4581,11 +4581,11 @@ msgstr "Съхранение:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
 msgid "DIGESTION_SPEED_COLON"
-msgstr "Храносмилателна скорост:"
+msgstr "Асимилационна скорост:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "DIGESTION_EFFICIENCY_COLON"
-msgstr "Храносмилателна ефективност:"
+msgstr "Асимилационна ефективност:"
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:774
 msgid "GENERATION_COLON"
@@ -4849,19 +4849,19 @@ msgid "LIPASE_DESCRIPTION"
 msgstr ""
 "Позволява разграждането на повечето видове мембрани. Произвеждането на този "
 "ензим е възможно и без помощта на лизозомата, но добавянето му подобрява "
-"храносмилателната ефективност на клетката."
+"асимилационната ефективност на клетката."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:98
 msgid "CELLULASE_DESCRIPTION"
 msgstr ""
 "Позволява разграждането на целулозната мембрана. Този ензим подобрява "
-"храносмилателната ефективност на клетката."
+"асимилационната ефективност на клетката."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.cs:101
 msgid "CHITINASE_DESCRIPTION"
 msgstr ""
 "Позволява разграждането на хитиновата мембрана. Този ензим подобрява "
-"храносмилателната ефективност на клетката."
+"асимилационната ефективност на клетката."
 
 #: ../src/microbe_stage/editor/upgrades/LysosomeUpgradeGUI.tscn:22
 msgid "SELECT_ENZYME"
@@ -6068,8 +6068,8 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:328
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
-"Вашата клетка е погълната. Напредъкът на храносмилането е показан в лентата "
-"на здравето. Вашата клетка ще умре, след неговото завършване или бъде "
+"Вашата клетка е погълната. Напредъкът на усвояването е показан в лентата на "
+"здравето. Вашата клетка ще умре, след неговото завършване или бъде "
 "достигнато максималното време на изчакване.\n"
 "\n"
 "Натиснете бутона за извършване на самоубийство, за да пропуснете този "
