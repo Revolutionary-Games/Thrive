@@ -446,6 +446,10 @@ public partial class Microbe
         if (Membrane.Type.CellWall)
             return false;
 
+        // Godmode grants player complete engulfment invulnerability
+        if (targetAsMicrobe != null && targetAsMicrobe.IsPlayerMicrobe && CheatManager.GodMode)
+            return false;
+
         // Needs to be big enough to engulf
         return EngulfSize > target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
     }
