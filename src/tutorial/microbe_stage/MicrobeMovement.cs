@@ -24,7 +24,7 @@
         [JsonProperty]
         private float moveBackwardsTime;
 
-        public override string ClosedByName { get; } = "MicrobeMovementExplain";
+        public override string ClosedByName => "MicrobeMovementExplain";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
