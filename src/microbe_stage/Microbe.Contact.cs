@@ -521,7 +521,7 @@ public partial class Microbe
 
     public void ClearEngulfedObjects()
     {
-        foreach (var engulfed in engulfedObjects)
+        foreach (var engulfed in engulfedObjects.ToList())
         {
             if (engulfed.Object.Value != null)
             {
@@ -1178,11 +1178,6 @@ public partial class Microbe
             if (!engulfedObject.Interpolate)
                 continue;
 
-            // Ingestion hasn't completed yet but the cell is no longer in engulfment mode, cancel ingestion.
-            // Engulfment mode must be kept until internalization is complete
-            if (State != MicrobeState.Engulf && engulfable.PhagocytosisStep == PhagocytosisPhase.Ingestion)
-                EjectEngulfable(engulfable, 1.0f);
-
             if (AnimateBulkTransport(delta, engulfedObject))
             {
                 switch (engulfable.PhagocytosisStep)
@@ -1408,7 +1403,8 @@ public partial class Microbe
             // TODO: should this also check for pilus before removing the collision?
             hitMicrobe.touchedEntities.Remove(engulfable);
 
-            hitMicrobe.attemptingToEngulf.Remove(engulfable);
+            if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
+                hitMicrobe.attemptingToEngulf.Remove(engulfable);
         }
     }
 

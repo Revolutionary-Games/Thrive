@@ -1096,12 +1096,9 @@ public partial class Microbe
         var exit = Hex.AxialToCartesian(new Hex(0, 1));
         var membraneCoords = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
 
-        // Get the distance to eject the compounds
-        var ejectionDistance = Membrane.EncompassingCircleRadius;
-
         // The membrane radius doesn't take being bacteria into account
         if (CellTypeProperties.IsBacteria)
-            ejectionDistance *= 0.5f;
+            membraneCoords *= 0.5f;
 
         float angle = 180;
 
@@ -1124,7 +1121,9 @@ public partial class Microbe
         var ejectionDirection = new Vector3(-membraneCoords.x * c + membraneCoords.z * s, 0,
             membraneCoords.x * s + membraneCoords.z * c);
 
-        return Translation + (ejectionDirection * ejectionDistance);
+        var result = Translation + ejectionDirection;
+
+        return result;
     }
 
     private void HandleChemoreceptorLines(float delta)
@@ -1193,7 +1192,6 @@ public partial class Microbe
 
             var totalAmountLeft = 0.0f;
 
-            var hasAnyUsefulCompounds = false;
             foreach (var compound in compoundTypes.Values)
             {
                 if (!compound.Digestible)
@@ -1207,17 +1205,14 @@ public partial class Microbe
                 var totalAvailable = originalAmount + additionalAmount;
                 totalAmountLeft += totalAvailable;
 
-                if ((compound != oxytoxy && !Compounds.IsUseful(compound)) || totalAvailable <= 0)
+                if (totalAvailable <= 0)
                     continue;
-
-                hasAnyUsefulCompounds = true;
 
                 var amount = MicrobeInternalCalculations.CalculateDigestionSpeed(Enzymes[usedEnzyme]);
                 amount *= delta;
 
-                // Efficiency starts from 40% up to 100%. This means at least 8 lysosomes are needed to achieve
-                // maximum efficiency
-                // TODO: Maybe set max efficiency lower to 80%?
+                // Efficiency starts from 40% up to 60%. This means at least 7 lysosomes are needed to achieve
+                // "maximum" efficiency
                 var efficiency = MicrobeInternalCalculations.CalculateDigestionEfficiency(Enzymes[usedEnzyme]);
 
                 var taken = Mathf.Min(totalAvailable, amount);
@@ -1245,7 +1240,9 @@ public partial class Microbe
                     additionalCompounds[compound] -= taken;
 
                 engulfable.Compounds.TakeCompound(compound, taken);
-                Compounds.AddCompound(compound, taken * efficiency);
+
+                float existingAmount = Compounds.GetCompoundAmount(compound);
+                Compounds.Compounds[compound] = existingAmount + (taken * efficiency);
             }
 
             if (engulfedObject.InitialTotalEngulfableCompounds.HasValue)
@@ -1261,12 +1258,6 @@ public partial class Microbe
                     UsedIngestionCapacity -= engulfable.EngulfSize;
 
                 engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
-            }
-
-            // Expel this object as it has no use
-            if (!hasAnyUsefulCompounds && engulfable.PhagocytosisStep != PhagocytosisPhase.Digested)
-            {
-                EjectEngulfable(engulfable);
             }
         }
 
