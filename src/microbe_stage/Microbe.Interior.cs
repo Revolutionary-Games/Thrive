@@ -1192,6 +1192,7 @@ public partial class Microbe
 
             var totalAmountLeft = 0.0f;
 
+            var full = false;
             foreach (var compound in compoundTypes.Values)
             {
                 if (!compound.Digestible)
@@ -1235,8 +1236,11 @@ public partial class Microbe
                 // Don't absorb this specific compound if we have just reached max capacity. And if the compound bag is
                 // entirely full then this object won't be digested and would just be stored away until it's needed
                 // again
-                if (existingAmount > Compounds.Capacity)
+                if (existingAmount >= Compounds.Capacity)
+                {
+                    full = true;
                     continue;
+                }
 
                 if (additionalCompounds?.ContainsKey(compound) == true)
                     additionalCompounds[compound] -= taken;
@@ -1244,6 +1248,9 @@ public partial class Microbe
                 engulfable.Compounds.TakeCompound(compound, taken);
                 Compounds.Compounds[compound] = existingAmount + (taken * efficiency);
             }
+
+            if (full)
+                continue;
 
             if (engulfedObject.InitialTotalEngulfableCompounds.HasValue)
             {
@@ -1253,7 +1260,7 @@ public partial class Microbe
 
             if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
             {
-                // Ignore size from foreign-ingested objects for now
+                // Ignore size from reclaimed objects for now
                 if (!engulfedObject.ReclaimedByAnotherHost)
                     UsedIngestionCapacity -= engulfable.EngulfSize;
 

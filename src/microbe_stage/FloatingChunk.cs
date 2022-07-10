@@ -91,6 +91,7 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     ///     Capacity is set to 0 so that no compounds can be added the normal way to the chunk.
     ///   </para>
     /// </remarks>
+    [JsonProperty]
     public CompoundBag Compounds { get; private set; } = new(0.0f);
 
     /// <summary>
