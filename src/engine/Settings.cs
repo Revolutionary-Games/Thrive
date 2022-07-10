@@ -103,6 +103,11 @@ public class Settings
     /// </summary>
     public SettingValue<bool> GUILightEffectsEnabled { get; set; } = new(true);
 
+    /// <summary>
+    ///   Display or hide part names in the editor, for accessibility reasons
+    /// </summary>
+    public SettingValue<bool> DisplayPartNames { get; set; } = new(false);
+
     // Sound Properties
 
     /// <summary>

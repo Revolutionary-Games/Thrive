@@ -110,6 +110,14 @@ public class MicrobePartSelection : MarginContainer
         UpdateIcon();
     }
 
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (nameLabel != null)
+            nameLabel.Visible = Settings.Instance.DisplayPartNames;
+    }
+
     private void UpdateLabels()
     {
         if (mpLabel == null || nameLabel == null)
