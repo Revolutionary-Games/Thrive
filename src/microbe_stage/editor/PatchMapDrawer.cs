@@ -400,7 +400,7 @@ public class PatchMapDrawer : Control
         {
             var region = entry.Value;
             DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)),
-                new Color(0.0f, 0.7f, 0.5f, 0.7f), false, Constants.PATCH_REGION_CONNECTION_LINE_WIDTH);
+                new Color(0.0f, 0.7f, 0.5f, 0.7f), false, Constants.PATCH_REGION_BORDER_WIDTH);
         }
     }
 
