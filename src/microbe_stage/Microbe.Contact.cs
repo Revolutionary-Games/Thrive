@@ -536,7 +536,7 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Returns true if this microbe is currently in the process of attempting to engulf something.
+    ///   Returns true if this microbe is currently in the process of ingesting engulfables.
     /// </summary>
     public bool IsPullingInEngulfables()
     {
@@ -1556,8 +1556,9 @@ public partial class Microbe
 
         target.PhagocytosisStep = PhagocytosisPhase.Exocytosis;
 
-        var nearestPointOfMembraneToTarget = Membrane.GetVectorTowardsNearestPointOfMembrane(
-            body.Translation.x, body.Translation.z);
+        // The back of the microbe
+        var exit = Hex.AxialToCartesian(new Hex(0, 1));
+        var nearestPointOfMembraneToTarget = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
 
         // The point nearest to the membrane calculation doesn't take being bacteria into account
         if (CellTypeProperties.IsBacteria)

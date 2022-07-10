@@ -1230,18 +1230,18 @@ public partial class Microbe
                     }
                 }
 
+                float existingAmount = Compounds.GetCompoundAmount(compound);
+
                 // Don't absorb this specific compound if we have just reached max capacity. And if the compound bag is
                 // entirely full then this object won't be digested and would just be stored away until it's needed
                 // again
-                if (Compounds.GetCompoundAmount(compound) > Compounds.Capacity)
+                if (existingAmount > Compounds.Capacity)
                     continue;
 
                 if (additionalCompounds?.ContainsKey(compound) == true)
                     additionalCompounds[compound] -= taken;
 
                 engulfable.Compounds.TakeCompound(compound, taken);
-
-                float existingAmount = Compounds.GetCompoundAmount(compound);
                 Compounds.Compounds[compound] = existingAmount + (taken * efficiency);
             }
 
