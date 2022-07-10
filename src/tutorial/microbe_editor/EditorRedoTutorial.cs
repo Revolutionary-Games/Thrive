@@ -9,7 +9,7 @@
     /// </summary>
     public class EditorRedoTutorial : TutorialPhase
     {
-        public override string ClosedByName { get; } = "CellEditorRedo";
+        public override string ClosedByName => "CellEditorRedo";
 
         [JsonIgnore]
         public Control? EditorRedoButtonControl { get; set; }

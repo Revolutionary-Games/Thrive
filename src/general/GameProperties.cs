@@ -16,7 +16,6 @@ public class GameProperties
     [JsonProperty]
     private bool freeBuild;
 
-    [JsonConstructor]
     private GameProperties(WorldGenerationSettings? settings = null)
     {
         settings ??= new WorldGenerationSettings();
@@ -24,11 +23,18 @@ public class GameProperties
         TutorialState = new TutorialState();
     }
 
+    [JsonConstructor]
+    private GameProperties(GameWorld gameWorld, TutorialState tutorialState)
+    {
+        GameWorld = gameWorld;
+        TutorialState = tutorialState;
+    }
+
     /// <summary>
     ///   The world this game is played in. Has all the species and map data
     /// </summary>
     [JsonProperty]
-    public GameWorld GameWorld { get; private set; }
+    public GameWorld GameWorld { get; }
 
     /// <summary>
     ///   When true the player is in freebuild mode and various things
@@ -41,7 +47,7 @@ public class GameProperties
     ///   The tutorial state for this game
     /// </summary>
     [JsonProperty]
-    public TutorialState TutorialState { get; private set; }
+    public TutorialState TutorialState { get; }
 
     // TODO: start using this to prevent saving
     /// <summary>

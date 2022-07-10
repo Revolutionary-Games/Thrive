@@ -10,7 +10,7 @@
         private readonly string patchMapTab = EditorTab.PatchMap.ToString();
         private readonly string cellEditorTab = EditorTab.CellEditor.ToString();
 
-        public override string ClosedByName { get; } = "PatchMap";
+        public override string ClosedByName => "PatchMap";
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
         {

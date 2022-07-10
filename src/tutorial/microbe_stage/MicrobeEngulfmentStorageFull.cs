@@ -4,7 +4,7 @@
 
     public class MicrobeEngulfmentStorageFull : TutorialPhase
     {
-        public override string ClosedByName { get; } = "MicrobeEngulfmentStorageFull";
+        public override string ClosedByName => "MicrobeEngulfmentStorageFull";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {

@@ -7,7 +7,7 @@
     /// </summary>
     public class MicrobeStayingAlive : TutorialPhase
     {
-        public override string ClosedByName { get; } = "MicrobeStayingAlive";
+        public override string ClosedByName => "MicrobeStayingAlive";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
