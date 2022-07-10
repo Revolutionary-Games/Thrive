@@ -522,7 +522,7 @@ public static class PatchMapGenerator
             case PatchRegion.RegionType.Continent:
             {
                 region.Width += offset;
-                region.Height = offset;
+                region.Height += offset;
 
                 var cave = region.Patches.FirstOrDefault(p => p.BiomeType == Patch.BiomeTypes.Cave);
 
