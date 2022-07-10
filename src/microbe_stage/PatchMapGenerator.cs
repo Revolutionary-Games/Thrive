@@ -118,6 +118,13 @@ public static class PatchMapGenerator
             BuildRegion(region);
             coordinates = GenerateCoordinates(region, map, random, minDistance);
 
+            // If there is no more place for the current region, abandon it.
+            if (coordinates == Vector2.Inf)
+            {
+                GD.PrintErr("Region abandoned: ", region.ID);
+                continue;
+            }
+
             // We add the coordinates for the center of the region
             // since that's the point that will be connected
             regionCoordinates.Add(coordinates + region.Size / 2.0f);
@@ -311,17 +318,21 @@ public static class PatchMapGenerator
         region.ScreenCoordinates = coordinates;
 
         // Make sure the region doesn't overlap over other regions
+        // Try no more than 100 times to avoid infinite loop.
         bool check = CheckRegionDistance(region, map, minDistance);
-        while (!check)
+        var i = 0;
+        while (!check && i < 100)
         {
             x = random.Next(280, 1600);
             y = random.Next(280, 1600);
             coordinates = new Vector2(x, y);
             region.ScreenCoordinates = coordinates;
             check = CheckRegionDistance(region, map, minDistance);
+
+            ++i;
         }
 
-        return coordinates;
+        return check ? coordinates : Vector2.Inf;
     }
 
     private static void ConnectPatchesBetweenRegions(PatchRegion region, Random random)
