@@ -364,10 +364,10 @@ public static class PatchMapGenerator
     {
         // Basic vectors to simplify later calculation
         var topLeftPatchPosition = region.ScreenCoordinates + new Vector2(
-            Constants.PATCH_REGION_MARGIN + Constants.PATCH_REGION_CONNECTION_LINE_WIDTH,
-            Constants.PATCH_REGION_MARGIN + Constants.PATCH_REGION_CONNECTION_LINE_WIDTH);
-        var perPatchOffsetHorizontal = new Vector2(Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_REGION_MARGIN, 0);
-        var perPatchOffsetVertical = new Vector2(0, Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_REGION_MARGIN);
+            Constants.PATCH_AND_REGION_MARGIN + 0.5f * Constants.PATCH_REGION_BORDER_WIDTH,
+            Constants.PATCH_AND_REGION_MARGIN + 0.5f * Constants.PATCH_REGION_BORDER_WIDTH);
+        var offsetHorizontal = new Vector2(Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_AND_REGION_MARGIN, 0);
+        var offsetVertical = new Vector2(0, Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_AND_REGION_MARGIN);
 
         // Patch linking first
         switch (region.Type)
@@ -401,7 +401,7 @@ public static class PatchMapGenerator
 
                 for (var i = 0; i < waterPatchCount; ++i)
                 {
-                    region.Patches[i].ScreenCoordinates = topLeftPatchPosition + i * perPatchOffsetVertical;
+                    region.Patches[i].ScreenCoordinates = topLeftPatchPosition + i * offsetVertical;
                 }
 
                 // Random depth for water regions
@@ -423,14 +423,14 @@ public static class PatchMapGenerator
                     {
                         for (int i = 0; i < waterPatchCount; i++)
                         {
-                            region.Patches[i].ScreenCoordinates += perPatchOffsetHorizontal;
+                            region.Patches[i].ScreenCoordinates += offsetHorizontal;
                         }
                     }
 
                     if (vents != null)
                     {
                         vents.ScreenCoordinates = region.Patches[waterPatchCount - 1].ScreenCoordinates
-                            + (ventOrCaveToTheRight ? 1 : -1) * perPatchOffsetHorizontal;
+                            + (ventOrCaveToTheRight ? 1 : -1) * offsetHorizontal;
                         vents.Depth[0] = region.Patches[waterPatchCount - 1].Depth[0];
                         vents.Depth[1] = region.Patches[waterPatchCount - 1].Depth[1];
                     }
@@ -438,7 +438,7 @@ public static class PatchMapGenerator
                     if (cave != null)
                     {
                         cave.ScreenCoordinates = region.Patches[caveLinkedTo].ScreenCoordinates
-                            + (ventOrCaveToTheRight ? 1 : -1) * perPatchOffsetHorizontal;
+                            + (ventOrCaveToTheRight ? 1 : -1) * offsetHorizontal;
                         cave.Depth[0] = region.Patches[caveLinkedTo].Depth[0];
                         cave.Depth[1] = region.Patches[caveLinkedTo].Depth[1];
                     }
@@ -481,9 +481,9 @@ public static class PatchMapGenerator
                     region.Patches[i].ScreenCoordinates = topLeftPatchPosition + i switch
                     {
                         0 => Vector2.Zero,
-                        1 => perPatchOffsetHorizontal,
-                        2 => perPatchOffsetVertical,
-                        3 => perPatchOffsetHorizontal + perPatchOffsetVertical,
+                        1 => offsetHorizontal,
+                        2 => offsetVertical,
+                        3 => offsetHorizontal + offsetVertical,
                         _ => throw new InvalidOperationException("Patch count shouldn't be greater than 4"),
                     };
                 }
@@ -495,12 +495,12 @@ public static class PatchMapGenerator
                     {
                         for (var i = 0; i < waterPatchCount; i++)
                         {
-                            region.Patches[i].ScreenCoordinates += perPatchOffsetHorizontal;
+                            region.Patches[i].ScreenCoordinates += offsetHorizontal;
                         }
                     }
 
                     cave.ScreenCoordinates = region.Patches[caveLinkedTo].ScreenCoordinates
-                        + (caveLinkedTo is 0 or 2 ? -1 : 1) * perPatchOffsetHorizontal;
+                        + (caveLinkedTo is 0 or 2 ? -1 : 1) * offsetHorizontal;
                 }
 
                 break;
@@ -510,15 +510,19 @@ public static class PatchMapGenerator
 
     private static void BuildRegion(PatchRegion region)
     {
-        const float offset = Constants.PATCH_NODE_RECT_LENGTH
-            + Constants.PATCH_REGION_MARGIN + Constants.PATCH_REGION_CONNECTION_LINE_WIDTH;
+        // Initial size with no patch in it
+        region.Width = region.Height = Constants.PATCH_REGION_BORDER_WIDTH + Constants.PATCH_AND_REGION_MARGIN;
+
+        // Per patch offset
+        const float offset = Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_AND_REGION_MARGIN;
 
         // Region size configuration
         switch (region.Type)
         {
             case PatchRegion.RegionType.Continent:
             {
-                region.Width = region.Height = Constants.PATCH_REGION_MARGIN + offset;
+                region.Width += offset;
+                region.Height = offset;
 
                 var cave = region.Patches.FirstOrDefault(p => p.BiomeType == Patch.BiomeTypes.Cave);
 
@@ -530,9 +534,11 @@ public static class PatchMapGenerator
                     region.Width += offset;
                 }
 
+                // Have 2 columns
                 if (waterPatchCount > 1)
                     region.Width += offset;
 
+                // Have 2 rows
                 if (waterPatchCount > 2)
                     region.Height += offset;
 
@@ -544,13 +550,13 @@ public static class PatchMapGenerator
                 var verticalPatchCount = region.Patches.Count(p =>
                     p.BiomeType != Patch.BiomeTypes.Cave && p.BiomeType != Patch.BiomeTypes.Vents);
 
-                region.Width = Constants.PATCH_REGION_MARGIN + offset;
+                region.Width += offset;
 
                 // If a cave or vent is present
                 if (verticalPatchCount != region.Patches.Count)
                     region.Width += offset;
 
-                region.Height = Constants.PATCH_REGION_MARGIN + verticalPatchCount * offset;
+                region.Height += verticalPatchCount * offset;
 
                 break;
             }
