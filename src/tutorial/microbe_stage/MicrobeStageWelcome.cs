@@ -14,7 +14,7 @@
             Pauses = true;
         }
 
-        public override string ClosedByName { get; } = "MicrobeStageWelcome";
+        public override string ClosedByName => "MicrobeStageWelcome";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
