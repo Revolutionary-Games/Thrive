@@ -300,12 +300,12 @@ public class PatchMapDrawer : Control
 
         var probablePaths = new List<Vector2[]>();
 
-        // Direct line
+        // Direct line, I shape
         if (Math.Abs(startCenter.x - endCenter.x) < Mathf.Epsilon ||
             Math.Abs(startCenter.y - endCenter.y) < Mathf.Epsilon)
             probablePaths.Add(new[] { startCenter, endCenter });
 
-        // 2-segment line
+        // 2-segment line, L shape
         var intermediate = new Vector2(startCenter.x, endCenter.y);
         if (!startRect.HasPoint(intermediate) && !endRect.HasPoint(intermediate))
             probablePaths.Add(new[] { startCenter, intermediate, endCenter });
@@ -314,8 +314,14 @@ public class PatchMapDrawer : Control
         if (!startRect.HasPoint(intermediate) && !endRect.HasPoint(intermediate))
             probablePaths.Add(new[] { startCenter, intermediate, endCenter });
 
-        // 3-segment line
-        var mid = startCenter / 2.0f + endCenter / 2.0f;
+        // 3-segment lines consider relative position
+        var upper = startRect.Position.y < endRect.Position.y ? startRect : endRect;
+        var lower = startRect.End.y > endRect.Position.y ? startRect : endRect;
+        var left = startRect.Position.x < endRect.Position.x ? startRect : endRect;
+        var right = startRect.End.x > endRect.End.x ? startRect : endRect;
+
+        // 3-segment line, Z shape
+        var mid = new Vector2(left.End.x + right.Position.x, upper.End.x + lower.Position.x) / 2.0f;
 
         var intermediate1 = new Vector2(startCenter.x, mid.y);
         var intermediate2 = new Vector2(endCenter.x, mid.y);
@@ -327,7 +333,24 @@ public class PatchMapDrawer : Control
         if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
             probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
 
-        return probablePaths.OrderBy(p => IntersectionCount(p, start, end)).First();
+        // 3-segment line, U shape
+        intermediate1 = new Vector2(startCenter.x, lower.End.y + 50);
+        intermediate2 = new Vector2(endCenter.x, lower.End.y + 50);
+        probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
+
+        intermediate1 = new Vector2(startCenter.x, upper.Position.y - 50);
+        intermediate2 = new Vector2(endCenter.x, upper.Position.y - 50);
+        probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
+
+        intermediate1 = new Vector2(left.Position.x - 50, startCenter.y);
+        intermediate2 = new Vector2(left.Position.x - 50, endCenter.y);
+        probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
+
+        intermediate1 = new Vector2(right.End.x + 50, startCenter.y);
+        intermediate2 = new Vector2(right.End.x + 50, endCenter.y);
+        probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
+
+        return probablePaths.OrderBy(IntersectionCount).First();
     }
 
     /// <summary>
@@ -447,7 +470,7 @@ public class PatchMapDrawer : Control
         }
     }
 
-    private int IntersectionCount(Vector2[] path, PatchRegion startRegion, PatchRegion endRegion)
+    private int IntersectionCount(Vector2[] path)
     {
         var count = 0;
 
@@ -459,16 +482,9 @@ public class PatchMapDrawer : Control
             // Calculate the number of intersecting regions for each possible line path
             foreach (var reg in map.Regions)
             {
-                var value = reg.Value;
-
-                if (value != startRegion && value != endRegion)
-                {
-                    var regionRect = new Rect2(value.ScreenCoordinates, value.Size);
-                    if (ClosestSegmentRectangleIntersection(startPoint, endPoint, regionRect) != -Vector2.Inf)
-                    {
-                        count++;
-                    }
-                }
+                var regionRect = new Rect2(reg.Value.ScreenCoordinates, reg.Value.Size);
+                if (ClosestSegmentRectangleIntersection(startPoint, endPoint, regionRect) != -Vector2.Inf)
+                    count++;
             }
         }
 
