@@ -29,7 +29,7 @@ public static class PatchMapGenerator
 
         // Initialize the graph's random parameters
         var regionCoordinates = new List<Vector2>();
-        int vertexCount = random.Next(6, 10);
+        int vertexCount = 15; // random.Next(6, 10);
         int minDistance = 180;
 
         int currentPatchId = 0;
@@ -121,7 +121,7 @@ public static class PatchMapGenerator
             if (coordinates == Vector2.Inf)
             {
                 GD.PrintErr("Region abandoned: ", region.ID);
-                vertexCount = i + 1;
+                vertexCount = i;
                 continue;
             }
 
@@ -144,7 +144,7 @@ public static class PatchMapGenerator
         // so this makes the same map be generated anyway
         ConfigureStartingPatch(map, settings, defaultSpecies, vents, tidepool, random);
 
-        int edgeCount = random.Next(vertexCount, 2 * vertexCount - 4);
+        var edgeCount = random.Next(vertexCount, 2 * vertexCount - 4);
 
         // We make the graph by subtracting edges from its Delaunay Triangulation
         // as long as the graph stays connected.
@@ -186,23 +186,24 @@ public static class PatchMapGenerator
 
     private static void SubtractEdges(ref int[,] graph, int vertexNumber, int edgeNumber, Random random)
     {
-        var currentEdgeNumber = CurrentEdgeNumber(graph, vertexNumber);
+        var currentEdgeNumber = CurrentEdgeNumber(ref graph, vertexNumber);
 
         // Subtract edges until we reach the desired edge count.
         while (currentEdgeNumber > edgeNumber)
         {
-            int edgeToDelete = random.Next(1, currentEdgeNumber);
-            int i;
-            int k;
+            var edgeToDelete = random.Next(1, currentEdgeNumber + 1);
+            int i, k;
+
             for (i = 0, k = 0; i < vertexNumber && edgeToDelete != 0; ++i)
             {
-                for (k = 0; k < vertexNumber && edgeToDelete != 0 && k <= i; ++k)
+                for (k = 0; edgeToDelete != 0 && k < i; ++k)
                 {
                     if (graph[i, k] == 1)
                         --edgeToDelete;
                 }
             }
 
+            // Compensate the ++i, ++k at the end of the loop
             --i;
             --k;
 
@@ -210,7 +211,7 @@ public static class PatchMapGenerator
             // otherwise, leave the edge as is.
             graph[i, k] = graph[k, i] = 0;
 
-            if (!CheckConnectivity(graph, vertexNumber))
+            if (!CheckConnectivity(ref graph, vertexNumber))
             {
                 graph[i, k] = graph[k, i] = 1;
             }
@@ -226,9 +227,8 @@ public static class PatchMapGenerator
     /// </summary>
     private static void DelaunayTriangulation(ref int[,] graph, List<Vector2> vertexCoordinates)
     {
-        var indices = Geometry.TriangulateDelaunay2d(vertexCoordinates.ToArray());
-        var triangles = indices.ToList();
-        for (int i = 0; i < triangles.Count - 2; i += 3)
+        var triangles = Geometry.TriangulateDelaunay2d(vertexCoordinates.ToArray());
+        for (var i = 0; i < triangles.Length; i += 3)
         {
             graph[triangles[i], triangles[i + 1]] = graph[triangles[i + 1], triangles[i]] = 1;
             graph[triangles[i + 1], triangles[i + 2]] = graph[triangles[i + 2], triangles[i + 1]] = 1;
@@ -257,7 +257,7 @@ public static class PatchMapGenerator
     /// <summary>
     ///   Checks the graph's connectivity
     /// </summary>
-    private static bool CheckConnectivity(int[,] graph, int vertexCount)
+    private static bool CheckConnectivity(ref int[,] graph, int vertexCount)
     {
         int[] visited = new int[vertexCount];
         DepthFirstGraphTraversal(graph, vertexCount, 0, ref visited);
@@ -267,12 +267,12 @@ public static class PatchMapGenerator
     /// <summary>
     ///   Counts the current number of edges in a given graph
     /// </summary>
-    private static int CurrentEdgeNumber(int[,] graph, int vertexCount)
+    private static int CurrentEdgeNumber(ref int[,] graph, int vertexCount)
     {
-        int edgeNumber = 0;
-        for (int i = 0; i < vertexCount; ++i)
+        var edgeNumber = 0;
+        for (var i = 0; i < vertexCount; ++i)
         {
-            for (int k = 0; k < vertexCount; ++k)
+            for (var k = 0; k < vertexCount; ++k)
             {
                 edgeNumber += graph[i, k];
             }
