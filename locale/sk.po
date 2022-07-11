@@ -268,7 +268,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:172
 msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
+msgstr "VRTIACE SA VECI!!"
 
 #: ../simulation_parameters/common/help_texts.json:175
 msgid "EASTEREGG_MESSAGE_11"
@@ -368,48 +368,38 @@ msgid "ABILITIES"
 msgstr "Schopnosti"
 
 #: ../simulation_parameters/common/input_options.json:40
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1903
-#: ../src/microbe_stage/MicrobeStage.tscn:1977
-#: ../src/microbe_stage/MicrobeStage.tscn:1975
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1901
 #: ../src/microbe_stage/MicrobeStage.tscn:1979
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "Ohnivý toxín"
 
 #: ../simulation_parameters/common/input_options.json:44
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1889
-#: ../src/microbe_stage/MicrobeStage.tscn:1965
-#: ../src/microbe_stage/MicrobeStage.tscn:1963
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1887
 #: ../src/microbe_stage/MicrobeStage.tscn:1967
 msgid "TOGGLE_ENGULF"
-msgstr ""
+msgstr "Prepnúť pohlcovanie"
 
 #: ../simulation_parameters/common/input_options.json:48
 msgid "HOLD_PACK_COMMANDS_MENU"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:52
-#: ../src/microbe_stage/MicrobeStage.tscn:1988
-#: ../src/microbe_stage/MicrobeStage.tscn:1986
 #: ../src/microbe_stage/MicrobeStage.tscn:1990
 msgid "TOGGLE_BINDING"
-msgstr ""
+msgstr "Prepnúť spájanie"
 
 #: ../simulation_parameters/common/input_options.json:56
 msgid "TOGGLE_UNBINDING"
-msgstr ""
+msgstr "Prepnúť rozpájanie"
 
 #: ../simulation_parameters/common/input_options.json:60
-#: ../src/microbe_stage/MicrobeStage.tscn:2000
-#: ../src/microbe_stage/MicrobeStage.tscn:1998
 #: ../src/microbe_stage/MicrobeStage.tscn:2002
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Rozpojiť všetky"
 
 #: ../simulation_parameters/common/input_options.json:64
 msgid "PERFORM_UNBINDING"
-msgstr ""
+msgstr "Vykonať rozviazanie"
 
 #: ../simulation_parameters/common/input_options.json:73
 msgid "CAMERA"
@@ -463,15 +453,15 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:126
 msgid "PAN_CAMERA_UP"
-msgstr ""
+msgstr "Posunutie nahor"
 
 #: ../simulation_parameters/common/input_options.json:130
 msgid "PAN_CAMERA_DOWN"
-msgstr ""
+msgstr "Posunutie nadol"
 
 #: ../simulation_parameters/common/input_options.json:134
 msgid "PAN_CAMERA_RESET"
-msgstr ""
+msgstr "Resetovať kameru"
 
 #: ../simulation_parameters/common/input_options.json:138
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:80
@@ -480,15 +470,15 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:142
 msgid "DELETE_ORGANELLE"
-msgstr ""
+msgstr "Vymazať organelu"
 
 #: ../simulation_parameters/common/input_options.json:146
 msgid "MOVE_ORGANELLE"
-msgstr ""
+msgstr "Premiestniť organelu"
 
 #: ../simulation_parameters/common/input_options.json:155
 msgid "3D_MOVEMENT"
-msgstr ""
+msgstr "3D Pohyb"
 
 #: ../simulation_parameters/common/input_options.json:159
 msgid "MOVE_UP_OR_JUMP"
@@ -500,7 +490,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:171
 msgid "3D_EDITOR"
-msgstr ""
+msgstr "3D Editor"
 
 #: ../simulation_parameters/common/input_options.json:175
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
@@ -529,20 +519,23 @@ msgid "ENABLE_EDITOR"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:204
+#, fuzzy
 msgid "SPAWN_GLUCOSE"
-msgstr ""
+msgstr "Spawnúť Glukózu"
 
 #: ../simulation_parameters/common/input_options.json:208
+#, fuzzy
 msgid "SPAWN_AMMONIA"
-msgstr ""
+msgstr "Spawnúť amoniak"
 
 #: ../simulation_parameters/common/input_options.json:212
+#, fuzzy
 msgid "SPAWN_PHOSPHATES"
-msgstr ""
+msgstr "Spawnúť fosfát"
 
 #: ../simulation_parameters/common/input_options.json:216
 msgid "CHEAT_MENU"
-msgstr ""
+msgstr "Cheat menu"
 
 #: ../simulation_parameters/common/input_options.json:227
 msgid "MISCELLANEOUS"
@@ -566,11 +559,12 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:247
 msgid "QUICK_SAVE"
-msgstr ""
+msgstr "Rýchle uloženie"
 
 #: ../simulation_parameters/common/input_options.json:251
+#, fuzzy
 msgid "QUICK_LOAD"
-msgstr ""
+msgstr "Rýchle načítanie"
 
 #: ../simulation_parameters/common/input_options.json:255
 msgid "TAKE_SCREENSHOT"
@@ -578,20 +572,20 @@ msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:259
 msgid "SHOW_HELP"
-msgstr ""
+msgstr "Zobraziť nápovedu"
 
 #: ../simulation_parameters/common/input_options.json:263
 msgid "TOGGLE_FULLSCREEN"
-msgstr ""
+msgstr "Prepnúť na celú obrazovku"
 
 #: ../simulation_parameters/common/input_options.json:267
 msgid "TOGGLE_HUD_HIDE"
-msgstr ""
+msgstr "Prepnúť HUD"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr ""
+msgstr "Aeróbne Dýchanie"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
@@ -599,7 +593,7 @@ msgstr "Glykolýza"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr ""
+msgstr "Cytoplazmatická Glykolýza"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:112
@@ -609,7 +603,7 @@ msgstr "Fotosyntéza"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr ""
+msgstr "Syntéza OxyToxynov"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
@@ -626,7 +620,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr ""
+msgstr "Chemolithoautotrofia železa"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:133
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
@@ -649,7 +643,7 @@ msgstr "Epipelagiál"
 #: ../simulation_parameters/microbe_stage/biomes.json:1863
 #: ../simulation_parameters/microbe_stage/biomes.json:2029
 msgid "FLOATING_HAZARD"
-msgstr ""
+msgstr "Plávajúce nebezpečenstvo"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:44
 #: ../simulation_parameters/microbe_stage/biomes.json:210
@@ -695,7 +689,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
-msgstr ""
+msgstr "Sopečný prieduch"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:246
 #: ../simulation_parameters/microbe_stage/biomes.json:683
@@ -703,7 +697,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1175
 #: ../simulation_parameters/microbe_stage/biomes.json:2107
 msgid "MARINE_SNOW"
-msgstr ""
+msgstr "Morský sneh"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:416
 msgid "TIDEPOOL"
@@ -728,7 +722,7 @@ msgstr "Pobrežné"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1488
 msgid "UNDERWATERCAVE"
-msgstr ""
+msgstr "Podvodná jaskyňa"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1654
 msgid "ICESHELF"
@@ -736,7 +730,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1731
 msgid "ICESHARD"
-msgstr ""
+msgstr "Ľadový črep"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1840
 msgid "ESTUARY"
@@ -744,7 +738,7 @@ msgstr "Ústie"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:2007
 msgid "SEA_FLOOR"
-msgstr ""
+msgstr "Morské dno"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
 msgid "ATP"
@@ -765,14 +759,11 @@ msgid "PHOSPHATE"
 msgstr "Fosfát"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:47
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1305
-#: ../src/microbe_stage/MicrobeStage.tscn:1335
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
-#: ../src/microbe_stage/MicrobeStage.tscn:1333
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1303
 #: ../src/microbe_stage/MicrobeStage.tscn:1337
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:622
 msgid "HYDROGEN_SULFIDE"
-msgstr ""
+msgstr "Sírovodík"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:62
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1147
@@ -787,8 +778,9 @@ msgstr "Glukóza"
 #: ../src/microbe_stage/MicrobeStage.tscn:1556
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1485
 #: ../src/microbe_stage/MicrobeStage.tscn:1560
+#, fuzzy
 msgid "OXYTOXY_NT"
-msgstr ""
+msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:92
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1355
@@ -805,7 +797,7 @@ msgstr "Kyslík"
 #: ../simulation_parameters/microbe_stage/compounds.json:121
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:513
 msgid "CARBON_DIOXIDE"
-msgstr ""
+msgstr "Oxid uhličitý"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:135
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:486
@@ -868,7 +860,7 @@ msgstr "Chitín"
 #: ../simulation_parameters/microbe_stage/membranes.json:77
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3251
 msgid "CALCIUM_CARBONATE"
-msgstr ""
+msgstr "Uhličitan vápenatý"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3523
@@ -878,7 +870,7 @@ msgstr "Oxid kremičitý"
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1232
 msgid "PREDATORY_PILUS"
-msgstr ""
+msgstr "Dravý Pilus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:93
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:776
@@ -892,7 +884,7 @@ msgstr "Protoplazma"
 #: ../simulation_parameters/microbe_stage/organelles.json:160
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:577
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr ""
+msgstr "Chemosyntetizujúce proteíny"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:199
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:874
@@ -911,7 +903,7 @@ msgstr "Metabolozómy"
 #: ../simulation_parameters/microbe_stage/organelles.json:306
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1943
 msgid "NITROGEN_FIXING_PLASTID"
-msgstr ""
+msgstr "Plastid fixujúci dusík"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:341
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:972
@@ -942,6 +934,8 @@ msgstr "Mitochondria"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2140
 msgid "TOXIN_VACUOLE"
 msgstr ""
+"Toxín\n"
+"Vákuola"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:547
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1399
@@ -976,7 +970,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/organelles.json:765
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2337
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Bioluminiscenčná vakuola"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:803
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1750
@@ -1003,7 +997,7 @@ msgstr "Dokončené."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "NOT_RUNNING_DOT"
-msgstr ""
+msgstr "Nebeží."
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
 msgid "AUTO-EVO_STEPS_DONE"
@@ -1046,12 +1040,13 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:636
+#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr ""
+msgstr "zmutoval"
 
 #: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
-msgstr ""
+msgstr "génový kód:"
 
 #: ../src/auto-evo/RunResults.cs:652
 msgid "SPREAD_TO_PATCHES"
@@ -1111,11 +1106,11 @@ msgstr ""
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
 msgid "CHUNK_FOOD_SOURCE"
-msgstr ""
+msgstr "{0} spotreba"
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:42
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "{0} spotreba"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:38
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
@@ -1153,12 +1148,10 @@ msgstr "Správanie"
 msgid "CELLS"
 msgstr "Bunky"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:402
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:401
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:476
 msgid "MODIFY_TYPE"
-msgstr ""
+msgstr "Upraviť typ"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:416
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:493
@@ -1169,12 +1162,10 @@ msgstr ""
 msgid "DELETE"
 msgstr "Vymazať"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:424
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:501
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:423
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:496
 msgid "DUPLICATE_TYPE"
-msgstr ""
+msgstr "Duplikovať typ"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:468
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:545
@@ -1189,13 +1180,11 @@ msgstr "Reprodukcia:"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Pučanie"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:521
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:646
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1105
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:518
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:641
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1105
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr ""
+msgstr "ZRUŠIŤ AKCIU"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:534
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:659
@@ -1208,10 +1197,9 @@ msgstr ""
 msgid "NEXT_CAPITAL"
 msgstr "ĎALEJ"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:543
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:540
 msgid "DISCONNECTED_CELLS"
-msgstr ""
+msgstr "Odpojené bunky"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:545
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:542
@@ -1242,41 +1230,29 @@ msgstr ""
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:586
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:706
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:701
 msgid "NEW_NAME_COLON"
-msgstr ""
+msgstr "Nové meno:"
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:593
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:713
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:590
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:708
 msgid "NEW_NAME"
-msgstr ""
+msgstr "Nové meno"
 
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:58
 msgid "MULTIPLE_CELLS"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:75
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:91
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:75
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:92
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:150
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:81
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:101
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:76
 #: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:93
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:76
 #: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:94
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:143
+#: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:82
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:103
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:119
 msgid "MP_COST"
-msgstr ""
+msgstr "{0} MP"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
@@ -1309,16 +1285,16 @@ msgstr ""
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:67
 #: ../src/engine/DebugOverlays.tscn:64 ../src/engine/PerformanceMetrics.tscn:59
 msgid "FPS"
-msgstr ""
+msgstr "FPS: {0}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:68
 msgid "FRAME_DURATION"
-msgstr ""
+msgstr "Delta: {0}"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
 #: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
 msgid "UNKNOWN_ON_WINDOWS"
@@ -1332,7 +1308,7 @@ msgstr ""
 #: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
 #: ../src/engine/PerformanceMetrics.tscn:30
 msgid "METRICS"
-msgstr ""
+msgstr "Výkonnostné metriky"
 
 #: ../src/engine/DebugOverlays.tscn:86
 msgid "DEBUG_PANEL"
@@ -1401,8 +1377,9 @@ msgid "KEY_HOME"
 msgstr "Domov"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
+#, fuzzy
 msgid "KEY_END"
-msgstr ""
+msgstr "End"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 msgid "KEY_LEFT"
@@ -1451,7 +1428,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "KEY_OPENURL"
-msgstr ""
+msgstr "Otvoriť adresu URL"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 #, fuzzy
@@ -1464,7 +1441,7 @@ msgstr "Obľúbené"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr ""
+msgstr "Print Screen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
@@ -1492,23 +1469,23 @@ msgstr "SysRq"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
-msgstr ""
+msgstr "Page Up"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "PAGEDOWN"
-msgstr ""
+msgstr "Page Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Caps Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
-msgstr ""
+msgstr "Num Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "Scroll Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
@@ -1536,15 +1513,15 @@ msgstr "Doprava"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
 msgid "VOLUMEDOWN"
-msgstr ""
+msgstr "Znížiť hlasitosť"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
 msgid "VOLUMEMUTE"
-msgstr ""
+msgstr "Stlmenie hlasitosti"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
 msgid "VOLUMEUP"
-msgstr ""
+msgstr "Zvýšiť hlasitosť"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
@@ -1597,111 +1574,111 @@ msgstr "Médiá"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH0"
-msgstr ""
+msgstr "Spustiť 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "LAUNCH1"
-msgstr ""
+msgstr "Spustiť 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "LAUNCH2"
-msgstr ""
+msgstr "Spustiť 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:199
 msgid "LAUNCH3"
-msgstr ""
+msgstr "Spustiť 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:200
 msgid "LAUNCH4"
-msgstr ""
+msgstr "Spustiť 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:201
 msgid "LAUNCH5"
-msgstr ""
+msgstr "Spustiť 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:202
 msgid "LAUNCH6"
-msgstr ""
+msgstr "Spustiť 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "LAUNCH7"
-msgstr ""
+msgstr "Spustiť 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCH8"
-msgstr ""
+msgstr "Spustiť 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCH9"
-msgstr ""
+msgstr "Spustiť 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "LAUNCHA"
-msgstr ""
+msgstr "Spustiť A"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "LAUNCHB"
-msgstr ""
+msgstr "Spustiť B"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "LAUNCHC"
-msgstr ""
+msgstr "Spustiť C"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "LAUNCHD"
-msgstr ""
+msgstr "Spustiť D"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "LAUNCHE"
-msgstr ""
+msgstr "Spustiť E"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "LAUNCHF"
-msgstr ""
+msgstr "Spustiť F"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KPMULTIPLY"
-msgstr ""
+msgstr "Num *"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:213
 msgid "KPDIVIDE"
-msgstr ""
+msgstr "Num /"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:214
 msgid "KPSUBTRACT"
-msgstr ""
+msgstr "Num -"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:215
 msgid "KPPERIOD"
-msgstr ""
+msgstr "Num ."
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:216
 msgid "KPADD"
-msgstr ""
+msgstr "Num +"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP0"
-msgstr ""
+msgstr "Num 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP1"
-msgstr ""
+msgstr "Num 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:219
 msgid "KP2"
-msgstr ""
+msgstr "Num 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:220
 msgid "KP3"
-msgstr ""
+msgstr "Num 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:221
 msgid "KP4"
-msgstr ""
+msgstr "Num 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:222
 msgid "KP5"
-msgstr ""
+msgstr "Num 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:223
 msgid "KP6"
@@ -2355,41 +2332,35 @@ msgstr "Vlákna:"
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:963 ../src/general/OptionsMenu.tscn:964
-#: ../src/general/OptionsMenu.tscn:938 ../src/general/OptionsMenu.tscn:939
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
 msgid "LIMIT_TINY"
-msgstr ""
+msgstr "Maličký"
 
 #: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
 #: ../src/general/OptionsMenu.tscn:931
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
 #: ../src/general/OptionsMenu.tscn:931
 msgid "LIMIT_SMALL"
-msgstr ""
+msgstr "Malý"
 
-#: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
 #: ../src/general/OptionsMenu.tscn:931
 msgid "LIMIT_NORMAL"
-msgstr ""
+msgstr "Normálny"
 
-#: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
 #: ../src/general/OptionsMenu.tscn:931
 msgid "LIMIT_LARGE"
-msgstr ""
+msgstr "Veľký"
 
 #: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
 #: ../src/general/OptionsMenu.tscn:931
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
 #: ../src/general/OptionsMenu.tscn:931
 msgid "LIMIT_HUGE"
-msgstr ""
+msgstr "Obrovský"
 
 #: ../src/general/OptionsMenu.tscn:964 ../src/general/OptionsMenu.tscn:939
 #: ../src/general/OptionsMenu.tscn:931
@@ -2610,7 +2581,7 @@ msgstr ""
 
 #: ../src/general/PauseMenu.tscn:237
 msgid "EXIT"
-msgstr ""
+msgstr "Odísť"
 
 #: ../src/general/PauseMenu.tscn:288
 msgid "CONFIRM_EXIT"
@@ -3582,8 +3553,9 @@ msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1568
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1566
+#, fuzzy
 msgid "AWAKEN"
-msgstr ""
+msgstr "Prebudiť sa"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1586
 #: ../src/microbe_stage/MicrobeStage.tscn:1660
@@ -3738,7 +3710,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:112
 msgid "SIGNAL_COMMAND_FLEE"
-msgstr ""
+msgstr "Utiecť"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:113
 msgid "SIGNAL_COMMAND_AGGRESSION"
@@ -3804,7 +3776,7 @@ msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:35
 msgid "PANGONIAN_REGION_NAME"
-msgstr ""
+msgstr "Pangónsky"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:841
 msgid "PATCH_NAME"
@@ -4914,15 +4886,15 @@ msgstr ""
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
-msgstr ""
+msgstr "Automatické uloženie"
 
 #: ../src/saving/SaveInformation.cs:28
 msgid "SAVE_QUICKSAVE"
-msgstr ""
+msgstr "Rýchle uloženie"
 
 #: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
-msgstr ""
+msgstr "Neplatné"
 
 #: ../src/saving/SaveList.cs:219
 msgid "SAVE_DELETE_WARNING"
@@ -4934,7 +4906,7 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:59 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT_DOT_DOT"
-msgstr ""
+msgstr "Načítavanie..."
 
 #: ../src/saving/SaveList.tscn:70 ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_THIS_SAVE_PROMPT"
@@ -5000,15 +4972,15 @@ msgstr ""
 #: ../src/saving/SaveListItem.tscn:177 ../src/saving/SaveListItem.tscn:200
 #: ../src/saving/SaveListItem.tscn:229 ../src/saving/SaveListItem.tscn:248
 msgid "DOT_DOT_DOT"
-msgstr ""
+msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
 msgid "TYPE_COLON"
-msgstr ""
+msgstr "Typ:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
-msgstr ""
+msgstr "Popis:"
 
 #: ../src/saving/SaveListItem.tscn:193
 msgid "VERSION_COLON"
@@ -5060,7 +5032,7 @@ msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:172
 msgid "SELECTED_COLON"
-msgstr ""
+msgstr "Vybrané:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
 msgid "DELETE_SELECTED_SAVES_PROMPT"
