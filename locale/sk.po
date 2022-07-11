@@ -614,11 +614,11 @@ msgstr "Chemosyntéza"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
+msgstr "Aeróbna Fixácia Dusíka"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr ""
+msgstr "Anaeróbna Fixácia Dusíka"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
@@ -728,7 +728,7 @@ msgstr "Podvodná jaskyňa"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1654
 msgid "ICESHELF"
-msgstr ""
+msgstr "Šelfový Ľadovec"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1731
 msgid "ICESHARD"
@@ -1223,10 +1223,9 @@ msgstr "Nemožno odstrániť použitý typ bunky"
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:557
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 msgid "CREATE_NEW_CELL_TYPE"
-msgstr ""
+msgstr "Vytvoriť nový typ bunky"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:572
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:569
@@ -1340,7 +1339,7 @@ msgstr "Načítanie"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr ""
+msgstr "Stlačte kláves..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:129
 msgid "KEY_BINDING_CHANGE_CONFLICT"
@@ -1381,7 +1380,6 @@ msgid "KEY_HOME"
 msgstr "Domov"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
-#, fuzzy
 msgid "KEY_END"
 msgstr "End"
 
@@ -1533,11 +1531,11 @@ msgstr "Bassboost"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "BASSUP"
-msgstr ""
+msgstr "Zosilniť basy"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "BASSDOWN"
-msgstr ""
+msgstr "Zoslabiť basy"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "TREBLEUP"
@@ -1805,15 +1803,15 @@ msgstr "Koncentrácia glukózy drasticky klesla!"
 
 #: ../src/general/MainMenu.cs:241
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
+msgstr "Prihlásený ako: {0}"
 
 #: ../src/general/MainMenu.tscn:175
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Začať novú hru"
 
 #: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
-msgstr ""
+msgstr "Nová hra"
 
 #: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:195
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
@@ -1822,11 +1820,11 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
-msgstr ""
+msgstr "Načítať hru"
 
 #: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:220
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Zmeniť nastavenia"
 
 #: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:221
 #, fuzzy
@@ -1839,7 +1837,7 @@ msgstr "Nástroje"
 
 #: ../src/general/MainMenu.tscn:226
 msgid "VIEW_SOURCE_CODE"
-msgstr ""
+msgstr "Zobraziť zdrojový kód"
 
 #: ../src/general/MainMenu.tscn:237
 msgid "EXTRAS"
@@ -1851,7 +1849,7 @@ msgstr "Poďakovanie"
 
 #: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:236
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Opustiť hru"
 
 #: ../src/general/MainMenu.tscn:260
 msgid "QUIT"
@@ -1910,7 +1908,7 @@ msgstr "Niektoré nastavenia sú neplatné"
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Nastavenie obtiažnosti"
 
 #: ../src/general/NewGameSettings.tscn:142
 #: ../src/general/NewGameSettings.tscn:814
@@ -2055,7 +2053,7 @@ msgstr "Klasická"
 
 #: ../src/general/NewGameSettings.tscn:943
 msgid "PLANET_GENERATION_TEASER"
-msgstr ""
+msgstr "Generovanie planéty už čoskoro!"
 
 #: ../src/general/NewGameSettings.tscn:975
 #, fuzzy
@@ -2126,10 +2124,9 @@ msgstr "Zvuk"
 msgid "PERFORMANCE"
 msgstr "Výkon"
 
-#: ../src/general/OptionsMenu.tscn:173 ../src/general/OptionsMenu.tscn:171
 #: ../src/general/OptionsMenu.tscn:170
 msgid "INPUTS"
-msgstr ""
+msgstr "Ovládanie"
 
 #: ../src/general/OptionsMenu.tscn:213
 msgid "VSYNC"
@@ -2149,11 +2146,9 @@ msgstr "Viacvzorové vyhladzovanie:"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(vyššie hodnoty zhoršujú výkon)"
 
-#: ../src/general/OptionsMenu.tscn:267 ../src/general/OptionsMenu.tscn:268
-#: ../src/general/OptionsMenu.tscn:265 ../src/general/OptionsMenu.tscn:266
-#: ../src/general/OptionsMenu.tscn:264
+#: ../src/general/OptionsMenu.tscn:264 ../src/general/OptionsMenu.tscn:265
 msgid "DISABLED"
-msgstr ""
+msgstr "Vypnuté"
 
 #: ../src/general/OptionsMenu.tscn:265
 msgid "TWO_TIMES"
@@ -2638,7 +2633,7 @@ msgstr "{0} K"
 #: ../src/gui_common/ChemicalEquation.cs:141
 #: ../src/gui_common/ChemicalEquation.cs:184
 msgid "PER_SECOND_SLASH"
-msgstr ""
+msgstr "/sekúnd"
 
 #: ../src/gui_common/ChemicalEquation.cs:308
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
