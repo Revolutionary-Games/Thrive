@@ -118,6 +118,7 @@ public class GUICommon : NodeWithInput
         if (customPopup != null)
         {
             customPopup.CustomHide();
+            popup!.EmitSignal(nameof(CustomDialog.Closed));
         }
         else
         {
