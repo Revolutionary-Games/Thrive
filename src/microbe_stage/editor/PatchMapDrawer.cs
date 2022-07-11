@@ -186,8 +186,8 @@ public class PatchMapDrawer : Control
     private static Vector2 SegmentSegmentIntersection(Vector2 segment1Start, Vector2 segment1End, Vector2 segment2Start,
         Vector2 segment2End)
     {
-        return (Vector2?)Geometry.SegmentIntersectsSegment2d(segment1Start, segment1End, segment2Start,
-            segment2End) ?? Vector2.Inf;
+        return (Vector2?)Geometry.SegmentIntersectsSegment2d(segment1Start, segment1End,
+            segment2Start, segment2End) ?? Vector2.Inf;
     }
 
     private static Vector2 ClosestSegmentRectangleIntersection(Vector2 start, Vector2 end, Rect2 rect)
@@ -316,12 +316,12 @@ public class PatchMapDrawer : Control
 
         // 3-segment lines consider relative position
         var upper = startRect.Position.y < endRect.Position.y ? startRect : endRect;
-        var lower = startRect.End.y > endRect.Position.y ? startRect : endRect;
+        var lower = startRect.End.y > endRect.End.y ? startRect : endRect;
         var left = startRect.Position.x < endRect.Position.x ? startRect : endRect;
         var right = startRect.End.x > endRect.End.x ? startRect : endRect;
 
         // 3-segment line, Z shape
-        var mid = new Vector2(left.End.x + right.Position.x, upper.End.x + lower.Position.x) / 2.0f;
+        var mid = new Vector2(left.End.x + right.Position.x, upper.End.y + lower.Position.y) / 2.0f;
 
         var intermediate1 = new Vector2(startCenter.x, mid.y);
         var intermediate2 = new Vector2(endCenter.x, mid.y);
@@ -342,12 +342,12 @@ public class PatchMapDrawer : Control
         intermediate2 = new Vector2(endCenter.x, upper.Position.y - 50);
         probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
 
-        intermediate1 = new Vector2(left.Position.x - 50, startCenter.y);
-        intermediate2 = new Vector2(left.Position.x - 50, endCenter.y);
-        probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
-
         intermediate1 = new Vector2(right.End.x + 50, startCenter.y);
         intermediate2 = new Vector2(right.End.x + 50, endCenter.y);
+        probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
+
+        intermediate1 = new Vector2(left.Position.x - 50, startCenter.y);
+        intermediate2 = new Vector2(left.Position.x - 50, endCenter.y);
         probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
 
         return probablePaths.OrderBy(IntersectionCount).First();
@@ -484,7 +484,23 @@ public class PatchMapDrawer : Control
             {
                 var regionRect = new Rect2(reg.Value.ScreenCoordinates, reg.Value.Size);
                 if (ClosestSegmentRectangleIntersection(startPoint, endPoint, regionRect) != -Vector2.Inf)
-                    count++;
+                {
+                    count += 10;
+                }
+            }
+
+            // Calculate line-line intersections, ignore lines that have the same start or end point.
+            foreach (var target in connections.Values)
+            {
+                for (var j = 1; j < target.Length; j++)
+                {
+                    var intersection = SegmentSegmentIntersection(startPoint, endPoint, target[j - 1], target[j]);
+                    if (intersection != Vector2.Inf && intersection != startPoint && intersection != endPoint &&
+                        intersection != target[j - 1] && intersection != target[j])
+                    {
+                        count++;
+                    }
+                }
             }
         }
 
