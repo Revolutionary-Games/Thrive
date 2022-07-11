@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Color = Godot.Color;
 
 /// <summary>
 ///   Draws a PatchMap inside a control
@@ -301,30 +302,8 @@ public class PatchMapDrawer : Control
         var end = RegionCenter(region2);
         var intermediate1 = new Vector2(start.x, end.y);
         var intermediate2 = new Vector2(end.x, start.y);
-        var firstIntermediateIntersections = 0;
-        var secondIntermediateIntersections = 0;
-
-        // Calculate the number of intersecting regions for each possible line path
-        foreach (var entry in map.Regions)
-        {
-            var value = entry.Value;
-
-            if (value != region1 && value != region2)
-            {
-                var regionRect = new Rect2(value.ScreenCoordinates, value.Size);
-                if (ClosestSegmentRectangleIntersection(start, intermediate1, regionRect) != -Vector2.Inf ||
-                    ClosestSegmentRectangleIntersection(intermediate1, end, regionRect) != -Vector2.Inf)
-                {
-                    ++firstIntermediateIntersections;
-                }
-
-                if (ClosestSegmentRectangleIntersection(start, intermediate2, regionRect) != -Vector2.Inf ||
-                    ClosestSegmentRectangleIntersection(intermediate2, end, regionRect) != -Vector2.Inf)
-                {
-                    ++secondIntermediateIntersections;
-                }
-            }
-        }
+        var firstIntermediateIntersections = IntersectionCount(new[] { start, intermediate1, end }, region1, region2);
+        var secondIntermediateIntersections = IntersectionCount(new[] { start, intermediate2, end }, region1, region2);
 
         return firstIntermediateIntersections > secondIntermediateIntersections ? intermediate2 : intermediate1;
     }
@@ -340,23 +319,213 @@ public class PatchMapDrawer : Control
 
             foreach (var adjacent in region.Adjacent)
             {
-                var connectionKey = new Int2(region.ID, adjacent.ID);
-                var reverseConnectionKey = new Int2(adjacent.ID, region.ID);
+                var int2 = new Int2(region.ID, adjacent.ID);
+                var complementInt2 = new Int2(adjacent.ID, region.ID);
 
-                if (connections.ContainsKey(connectionKey) || connections.ContainsKey(reverseConnectionKey))
+                if (connections.ContainsKey(int2) || connections.ContainsKey(complementInt2))
                     continue;
 
-                var start = RegionCenter(region);
-                var end = RegionCenter(adjacent);
+                // var start = RegionCenter(region);
+                // var end = RegionCenter(adjacent);
 
+                var pathToAdjacent = GetLeastIntersectionPath(region, adjacent);
+
+                /*
                 var intermediate = GetLeastIntersectionIntermediate(region, adjacent);
 
                 (start, intermediate, end) =
                     ConnectionIntersectionWithRegions(start, end, intermediate, region, adjacent);
+                var startRegion = region;
+                foreach (var special in region.Adjacent)
+                {
+                    if (map.SpecialRegions.ContainsKey(special.ID))
+                    {
+                        Vector2 newStart;
 
-                connections.Add(connectionKey, new[] { start, intermediate, end });
+                        (newStart, intermediate, end) =
+                            ConnectionIntersectionWithRegions(start, end, intermediate, special, adjacent);
+
+                        if (newStart != start)
+                        {
+                            start = newStart;
+                            startRegion = special;
+                        }
+                    }
+                }
+
+                foreach (var specialAdjacent in adjacent.Adjacent)
+                {
+                    if (map.SpecialRegions.ContainsKey(specialAdjacent.ID))
+                    {
+                        (start, intermediate, end) =
+                            ConnectionIntersectionWithRegions(start, end, intermediate,
+                                startRegion, specialAdjacent);
+                    }
+                }
+                */
+
+                connections.Add(int2, pathToAdjacent);
             }
         }
+
+        OffsetOverlappedPaths();
+        // TODO: AdjustConnectionEndpoints();
+    }
+
+    private Vector2[] GetLeastIntersectionPath(PatchRegion start, PatchRegion end)
+    {
+        var startCenter = RegionCenter(start);
+        var startRect = new Rect2(start.ScreenCoordinates, start.Size);
+        var endCenter = RegionCenter(end);
+        var endRect = new Rect2(end.ScreenCoordinates, end.Size);
+
+        var probablePaths = new List<Vector2[]>();
+
+        // Direct line
+        if (Math.Abs(startCenter.x - endCenter.x) < Mathf.Epsilon ||
+            Math.Abs(startCenter.y - endCenter.y) < Mathf.Epsilon)
+            probablePaths.Add(new[] { startCenter, endCenter });
+
+        // 2-segment line
+        var intermediate = new Vector2(startCenter.x, endCenter.y);
+        if (!startRect.HasPoint(intermediate) && !endRect.HasPoint(intermediate))
+            probablePaths.Add(new[] { startCenter, intermediate, endCenter });
+
+        intermediate = new Vector2(endCenter.x, startCenter.y);
+        if (!startRect.HasPoint(intermediate) && !endRect.HasPoint(intermediate))
+            probablePaths.Add(new[] { startCenter, intermediate, endCenter });
+
+        // 3-segment line
+        var mid = startCenter / 2.0f + endCenter / 2.0f;
+
+        var intermediate1 = new Vector2(startCenter.x, mid.y);
+        var intermediate2 = new Vector2(endCenter.x, mid.y);
+        if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
+            probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
+
+        intermediate1 = new Vector2(mid.x, startCenter.y);
+        intermediate2 = new Vector2(mid.x, endCenter.y);
+        if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
+            probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
+
+        return probablePaths.OrderBy(p => IntersectionCount(p, start, end)).First();
+    }
+
+    private void OffsetOverlappedPaths()
+    {
+        foreach (var region in Map!.Regions)
+        {
+            var regionNumber = region.Key;
+            var connectionStartHere = connections.Where(p => p.Key.x == regionNumber).ToList();
+            var connectionEndHere = connections.Where(p => p.Key.y == regionNumber).ToList();
+
+            var connTupleList = connectionStartHere.Select(c => (c.Value, 0, 1)).ToList();
+            connTupleList.AddRange(connectionEndHere.Select(c => (c.Value, c.Value.Length - 1, c.Value.Length - 2)));
+
+            OffsetOverlappedPath2(connTupleList);
+        }
+    }
+
+    private void OffsetOverlappedPath2(List<(Vector2[] Connection, int Endpoint, int Intermediate)> connectionTuple)
+    {
+        // Connection Directions: 0 -> Left, 1 -> Up, 2 -> Right, 3 -> Down
+        var connectionsToDirections = new List<(Vector2[], int, int, float)>[4];
+
+        for (var i = 0; i < 4; i++)
+            connectionsToDirections[i] = new List<(Vector2[], int, int, float)>();
+
+        foreach (var (connection, endpoint, intermediate) in connectionTuple)
+        {
+            if (Math.Abs(connection[endpoint].x - connection[intermediate].x) < Mathf.Epsilon)
+            {
+                connectionsToDirections[connection[endpoint].y > connection[intermediate].y ? 1 : 3].Add((connection,
+                    endpoint, intermediate, Mathf.Abs(connection[endpoint].y - connection[intermediate].y)));
+            }
+            else
+            {
+                connectionsToDirections[connection[endpoint].x > connection[intermediate].x ? 0 : 2].Add((connection,
+                    endpoint, intermediate, Mathf.Abs(connection[endpoint].x - connection[intermediate].x)));
+            }
+        }
+
+        var lineSeparation = 3 * 2.0f;
+
+        for (var direction = 0; direction < 4; ++direction)
+        {
+            var connectionsToDirection = connectionsToDirections[direction];
+
+            if (connectionsToDirection.Count <= 1)
+                continue;
+
+            if (direction is 1 or 3)
+            {
+                float right = (connectionsToDirection.Count - 1) / 2.0f, left = -right;
+                foreach (var (connection, endpoint, intermediate, _) in connectionsToDirection.OrderBy(t => t.Item4))
+                {
+                    if (connection.Length == 2
+                        || connection[2 * intermediate - endpoint].x > connection[intermediate].x)
+                    {
+                        connection[endpoint].x += lineSeparation * right;
+                        connection[intermediate].x += lineSeparation * right;
+                        right -= 1;
+                    }
+                    else
+                    {
+                        connection[endpoint].x += lineSeparation * left;
+                        connection[intermediate].x += lineSeparation * left;
+                        left += 1;
+                    }
+                }
+            }
+            else
+            {
+                float down = (connectionsToDirection.Count - 1) / 2.0f, up = -down;
+                foreach (var (connection, endpoint, intermediate, _) in connectionsToDirection.OrderBy(t => t.Item4))
+                {
+                    if (connection.Length == 2
+                        || connection[2 * intermediate - endpoint].y > connection[intermediate].y)
+                    {
+                        connection[endpoint].y += lineSeparation * down;
+                        connection[intermediate].y += lineSeparation * down;
+                        down -= 1;
+                    }
+                    else
+                    {
+                        connection[endpoint].y += lineSeparation * up;
+                        connection[intermediate].y += lineSeparation * up;
+                        up += 1;
+                    }
+                }
+            }
+        }
+    }
+
+    private int IntersectionCount(Vector2[] path, PatchRegion startRegion, PatchRegion endRegion)
+    {
+        var count = 0;
+
+        for (var i = 1; i < path.Length; ++i)
+        {
+            var startPoint = path[i - 1];
+            var endPoint = path[i];
+
+            // Calculate the number of intersecting regions for each possible line path
+            foreach (var reg in map.Regions)
+            {
+                var value = reg.Value;
+
+                if (value != startRegion && value != endRegion)
+                {
+                    var regionRect = new Rect2(value.ScreenCoordinates, value.Size);
+                    if (ClosestSegmentRectangleIntersection(startPoint, endPoint, regionRect) != -Vector2.Inf)
+                    {
+                        count++;
+                    }
+                }
+            }
+        }
+
+        return count;
     }
 
     private void DrawRegionLinks()
