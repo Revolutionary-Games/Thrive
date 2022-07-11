@@ -11,7 +11,6 @@ public class MicrobeColony
 
     private bool hexCountDirty = true;
     private float hexCount;
-    private float usedIngestionCapacity;
 
     [JsonConstructor]
     private MicrobeColony(Microbe master)
@@ -170,7 +169,6 @@ public class MicrobeColony
     private void UpdateHexCount()
     {
         hexCount = 0;
-        usedIngestionCapacity = 0;
 
         foreach (var member in ColonyMembers)
         {
