@@ -29,7 +29,7 @@ public static class PatchMapGenerator
 
         // Initialize the graph's random parameters
         var regionCoordinates = new List<Vector2>();
-        int vertexCount = 15; // random.Next(6, 10);
+        int vertexCount = random.Next(6, 10);
         int minDistance = 180;
 
         int currentPatchId = 0;
