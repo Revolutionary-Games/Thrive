@@ -192,7 +192,8 @@ public static class PatchMapGenerator
         while (currentEdgeNumber > edgeNumber)
         {
             var edgeToDelete = random.Next(1, currentEdgeNumber + 1);
-            int i, k;
+            int i;
+            int k;
 
             for (i = 0, k = 0; i < vertexNumber && edgeToDelete != 0; ++i)
             {
@@ -269,10 +270,10 @@ public static class PatchMapGenerator
     /// </summary>
     private static int CurrentEdgeNumber(ref int[,] graph, int vertexCount)
     {
-        var edgeNumber = 0;
-        for (var i = 0; i < vertexCount; ++i)
+        int edgeNumber = 0;
+        for (int i = 0; i < vertexCount; ++i)
         {
-            for (var k = 0; k < vertexCount; ++k)
+            for (int k = 0; k < vertexCount; ++k)
             {
                 edgeNumber += graph[i, k];
             }
@@ -458,9 +459,9 @@ public static class PatchMapGenerator
                 if (cave != null)
                     --waterPatchCount;
 
-                for (var i = 0; i < waterPatchCount; i++)
+                for (int i = 0; i < waterPatchCount; i++)
                 {
-                    for (var k = 0; k < waterPatchCount; ++k)
+                    for (int k = 0; k < waterPatchCount; ++k)
                     {
                         if (k != i)
                         {
@@ -477,7 +478,7 @@ public static class PatchMapGenerator
                     cave.Depth[1] = region.Patches[caveLinkedTo].Depth[1];
                 }
 
-                for (var i = 0; i < waterPatchCount; ++i)
+                for (int i = 0; i < waterPatchCount; ++i)
                 {
                     region.Patches[i].ScreenCoordinates = topLeftPatchPosition + i switch
                     {
@@ -494,7 +495,7 @@ public static class PatchMapGenerator
                     // Adjust water patches' position
                     if (caveLinkedTo is 0 or 2)
                     {
-                        for (var i = 0; i < waterPatchCount; i++)
+                        for (int i = 0; i < waterPatchCount; i++)
                         {
                             region.Patches[i].ScreenCoordinates += offsetHorizontal;
                         }
@@ -737,10 +738,9 @@ public static class PatchMapGenerator
         var areaName = TranslationServer.Translate("PANGONIAN_REGION_NAME");
 
         var region = new PatchRegion(0, GetPatchLocalizedName(areaName, string.Empty),
-            PatchRegion.RegionType.Predefined, new Vector2(0, 0));
+            PatchRegion.RegionType.Predefined, new Vector2(0, 0)) { Size = new Vector2(400, 500) };
 
         // Hard code the region size as slightly larger than the extreme patch edges to fix scrolling
-        region.Size = new Vector2(400, 500);
 
         // Predefined patches
         var coast = NewPredefinedPatch(Patch.BiomeTypes.Coastal, 0, region, areaName);

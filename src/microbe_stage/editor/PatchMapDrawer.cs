@@ -337,7 +337,7 @@ public class PatchMapDrawer : Control
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, 1));
 
         // 3-segment line, U shape
-        for (var i = 1; i <= 3; i++)
+        for (int i = 1; i <= 3; i++)
         {
             intermediate1 = new Vector2(startCenter.x, lower.End.y + i * 50);
             intermediate2 = new Vector2(endCenter.x, lower.End.y + i * 50);
@@ -377,7 +377,7 @@ public class PatchMapDrawer : Control
             // Separate connection by directions: 0 -> Left, 1 -> Up, 2 -> Right, 3 -> Down
             var connectionsToDirections = new List<(Vector2[], int, int, float)>[4];
 
-            for (var i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 connectionsToDirections[i] = new List<(Vector2[], int, int, float)>();
             }
@@ -489,9 +489,9 @@ public class PatchMapDrawer : Control
         var path = tuple.Path;
         var priority = tuple.Priority;
 
-        var count = 0;
+        int count = 0;
 
-        for (var i = 1; i < path.Length; ++i)
+        for (int i = 1; i < path.Length; ++i)
         {
             var startPoint = path[i - 1];
             var endPoint = path[i];
@@ -509,7 +509,7 @@ public class PatchMapDrawer : Control
             // Calculate line-line intersections
             foreach (var target in connections.Values)
             {
-                for (var j = 1; j < target.Length; j++)
+                for (int j = 1; j < target.Length; j++)
                 {
                     var intersection = SegmentSegmentIntersection(startPoint, endPoint, target[j - 1], target[j]);
                     if (intersection != Vector2.Inf && i != 1 && i != path.Length - 1)
@@ -535,7 +535,7 @@ public class PatchMapDrawer : Control
             var region2 = map.Regions[entry.Key.y];
 
             var points = entry.Value;
-            for (var i = 1; i < points.Length; i++)
+            for (int i = 1; i < points.Length; i++)
             {
                 DrawNodeLink(points[i - 1], points[i], DefaultConnectionColor);
             }
@@ -548,7 +548,7 @@ public class PatchMapDrawer : Control
         // Those connections have to be drawn over the normal connections so they're second
         foreach (var points in highlightedConnections)
         {
-            for (var i = 1; i < points.Length; i++)
+            for (int i = 1; i < points.Length; i++)
             {
                 DrawNodeLink(points[i - 1], points[i], HighlightedConnectionColor);
             }
