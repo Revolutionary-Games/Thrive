@@ -1092,36 +1092,16 @@ public partial class Microbe
     /// </summary>
     private Vector3 CalculateNearbyWorldPosition()
     {
-        // The back of the microbe
-        var exit = Hex.AxialToCartesian(new Hex(0, 1));
-        var membraneCoords = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
+        var distance = Membrane.EncompassingCircleRadius;
 
         // The membrane radius doesn't take being bacteria into account
         if (CellTypeProperties.IsBacteria)
-            membraneCoords *= 0.5f;
+            distance *= 0.5f;
 
-        float angle = 180;
+        // The back of the microbe
+        var ejectionDirection = GlobalTransform.basis.Quat().Normalized().Xform(Vector3.Back);
 
-        // Find the direction the microbe is facing
-        var yAxis = Transform.basis.y;
-        var microbeAngle = Mathf.Atan2(yAxis.x, yAxis.y);
-        if (microbeAngle < 0)
-        {
-            microbeAngle += 2 * Mathf.Pi;
-        }
-
-        microbeAngle = microbeAngle * 180 / Mathf.Pi;
-
-        // Take the microbe angle into account so we get world relative degrees
-        var finalAngle = (angle + microbeAngle) % 360;
-
-        var s = Mathf.Sin(finalAngle / 180 * Mathf.Pi);
-        var c = Mathf.Cos(finalAngle / 180 * Mathf.Pi);
-
-        var ejectionDirection = new Vector3(-membraneCoords.x * c + membraneCoords.z * s, 0,
-            membraneCoords.x * s + membraneCoords.z * c);
-
-        var result = Translation + ejectionDirection;
+        var result = GlobalTransform.origin + (ejectionDirection * distance);
 
         return result;
     }
@@ -1192,7 +1172,6 @@ public partial class Microbe
 
             var totalAmountLeft = 0.0f;
 
-            var full = false;
             foreach (var compound in compoundTypes.Values)
             {
                 if (!compound.Digestible)
@@ -1218,39 +1197,29 @@ public partial class Microbe
 
                 var taken = Mathf.Min(totalAvailable, amount);
 
+                // Toxin damage
                 if (compound == oxytoxy && taken > 0)
                 {
                     lastCheckedOxytoxyDigestionDamage += delta;
 
-                    if (lastCheckedOxytoxyDigestionDamage >=
-                        Constants.ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION)
+                    if (lastCheckedOxytoxyDigestionDamage >= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL)
                     {
-                        lastCheckedOxytoxyDigestionDamage -=
-                            Constants.ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION;
-                        Damage(MaxHitpoints * taken, "oxytoxy");
+                        lastCheckedOxytoxyDigestionDamage -= Constants.TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL;
+                        Damage(MaxHitpoints * Constants.TOXIN_DIGESTION_DAMAGE_FRACTION, "oxytoxy");
                     }
-                }
-
-                float existingAmount = Compounds.GetCompoundAmount(compound);
-
-                // Don't absorb this specific compound if we have just reached max capacity. And if the compound bag is
-                // entirely full then this object won't be digested and would just be stored away until it's needed
-                // again
-                if (existingAmount >= Compounds.Capacity)
-                {
-                    full = true;
-                    continue;
                 }
 
                 if (additionalCompounds?.ContainsKey(compound) == true)
                     additionalCompounds[compound] -= taken;
 
                 engulfable.Compounds.TakeCompound(compound, taken);
-                Compounds.Compounds[compound] = existingAmount + (taken * efficiency);
-            }
 
-            if (full)
-                continue;
+                var takenAdjusted = taken * efficiency;
+                var added = Compounds.AddCompound(compound, takenAdjusted);
+
+                // Eject excess
+                SpawnEjectedCompound(compound, takenAdjusted - added);
+            }
 
             if (engulfedObject.InitialTotalEngulfableCompounds.HasValue)
             {
