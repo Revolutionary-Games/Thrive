@@ -18,6 +18,7 @@ public class MicrobePartSelection : MarginContainer
     private Texture? partIcon;
     private string name = "Error: unset";
     private bool locked;
+    private bool alwaysShowLabel;
     private bool selected;
 
     /// <summary>
@@ -86,6 +87,20 @@ public class MicrobePartSelection : MarginContainer
         }
     }
 
+    /// <summary>
+    ///   Whether this button should always display the part name.
+    /// </summary>
+    [Export]
+    public bool AlwaysShowLabel
+    {
+        get => alwaysShowLabel;
+        set
+        {
+            alwaysShowLabel = value;
+            UpdateLabels();
+        }
+    }
+
     public bool Selected
     {
         get => selected;
@@ -115,7 +130,7 @@ public class MicrobePartSelection : MarginContainer
         base._Process(delta);
 
         if (nameLabel != null)
-            nameLabel.Visible = Settings.Instance.DisplayPartNames;
+            nameLabel.Visible = Settings.Instance.DisplayPartNames || AlwaysShowLabel;
     }
 
     private void UpdateLabels()
