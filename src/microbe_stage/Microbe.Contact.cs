@@ -1811,7 +1811,6 @@ public partial class Microbe
         engulfedObjects.Remove(engulfed);
         expelledObjects.Add(engulfed);
 
-        engulfed.ReclaimedByAnotherHost = false;
         engulfable.PhagocytosisStep = PhagocytosisPhase.None;
 
         foreach (string group in engulfed.OriginalGroups)
@@ -1903,7 +1902,6 @@ public partial class Microbe
         [JsonProperty]
         public Array OriginalGroups { get; private set; } = new();
 
-        public bool ReclaimedByAnotherHost { get; set; }
         public bool Interpolate { get; set; }
         public float LerpDuration { get; set; }
         public float AnimationTimeElapsed { get; set; }

@@ -1278,7 +1278,6 @@ public partial class Microbe
                         engulfed.HostileEngulfer.Value = hostile;
                         hostile.engulfedObjects.Add(other);
                         engulfed.EntityNode.ReParentWithTransform(hostile);
-                        other.ReclaimedByAnotherHost = true;
                     }
                 }
             }
