@@ -211,6 +211,11 @@ public class PatchMapDrawer : Control
         return intersection;
     }
 
+    private float DistanceToMapCenter(PatchRegion region)
+    {
+        return map.Center.DistanceTo(region.ScreenCoordinates);
+    }
+
     private Vector2 RegionCenter(PatchRegion region)
     {
         return new Vector2(region.ScreenCoordinates.x + region.Width * 0.5f,
@@ -270,10 +275,8 @@ public class PatchMapDrawer : Control
     /// </summary>
     private void CreateRegionLinks()
     {
-        foreach (var entry in map.Regions)
+        foreach (var region in map.Regions.Values.OrderBy(DistanceToMapCenter))
         {
-            var region = entry.Value;
-
             foreach (var adjacent in region.Adjacent)
             {
                 var int2 = new Int2(region.ID, adjacent.ID);
@@ -298,21 +301,21 @@ public class PatchMapDrawer : Control
         var endCenter = RegionCenter(end);
         var endRect = new Rect2(end.ScreenCoordinates, end.Size);
 
-        var probablePaths = new List<Vector2[]>();
+        var probablePaths = new List<(Vector2[], int)>();
 
-        // Direct line, I shape
+        // Direct line, I shape, highest priority
         if (Math.Abs(startCenter.x - endCenter.x) < Mathf.Epsilon ||
             Math.Abs(startCenter.y - endCenter.y) < Mathf.Epsilon)
-            probablePaths.Add(new[] { startCenter, endCenter });
+            probablePaths.Add((new[] { startCenter, endCenter }, 3));
 
         // 2-segment line, L shape
         var intermediate = new Vector2(startCenter.x, endCenter.y);
         if (!startRect.HasPoint(intermediate) && !endRect.HasPoint(intermediate))
-            probablePaths.Add(new[] { startCenter, intermediate, endCenter });
+            probablePaths.Add((new[] { startCenter, intermediate, endCenter }, 2));
 
         intermediate = new Vector2(endCenter.x, startCenter.y);
         if (!startRect.HasPoint(intermediate) && !endRect.HasPoint(intermediate))
-            probablePaths.Add(new[] { startCenter, intermediate, endCenter });
+            probablePaths.Add((new[] { startCenter, intermediate, endCenter }, 2));
 
         // 3-segment lines consider relative position
         var upper = startRect.Position.y < endRect.Position.y ? startRect : endRect;
@@ -326,31 +329,34 @@ public class PatchMapDrawer : Control
         var intermediate1 = new Vector2(startCenter.x, mid.y);
         var intermediate2 = new Vector2(endCenter.x, mid.y);
         if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
-            probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
+            probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, 1));
 
         intermediate1 = new Vector2(mid.x, startCenter.y);
         intermediate2 = new Vector2(mid.x, endCenter.y);
         if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
-            probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
+            probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, 1));
 
         // 3-segment line, U shape
-        intermediate1 = new Vector2(startCenter.x, lower.End.y + 50);
-        intermediate2 = new Vector2(endCenter.x, lower.End.y + 50);
-        probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
+        for (var i = 1; i <= 3; i++)
+        {
+            intermediate1 = new Vector2(startCenter.x, lower.End.y + i * 50);
+            intermediate2 = new Vector2(endCenter.x, lower.End.y + i * 50);
+            probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, -i));
 
-        intermediate1 = new Vector2(startCenter.x, upper.Position.y - 50);
-        intermediate2 = new Vector2(endCenter.x, upper.Position.y - 50);
-        probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
+            intermediate1 = new Vector2(startCenter.x, upper.Position.y - i * 50);
+            intermediate2 = new Vector2(endCenter.x, upper.Position.y - i * 50);
+            probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, -i));
 
-        intermediate1 = new Vector2(right.End.x + 50, startCenter.y);
-        intermediate2 = new Vector2(right.End.x + 50, endCenter.y);
-        probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
+            intermediate1 = new Vector2(right.End.x + i * 50, startCenter.y);
+            intermediate2 = new Vector2(right.End.x + i * 50, endCenter.y);
+            probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, -i));
 
-        intermediate1 = new Vector2(left.Position.x - 50, startCenter.y);
-        intermediate2 = new Vector2(left.Position.x - 50, endCenter.y);
-        probablePaths.Add(new[] { startCenter, intermediate1, intermediate2, endCenter });
+            intermediate1 = new Vector2(left.Position.x - i * 50, startCenter.y);
+            intermediate2 = new Vector2(left.Position.x - i * 50, endCenter.y);
+            probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, -i));
+        }
 
-        return probablePaths.OrderBy(IntersectionCount).First();
+        return probablePaths.OrderBy(IntersectionCountWithPriority).First().Item1;
     }
 
     /// <summary>
@@ -470,8 +476,19 @@ public class PatchMapDrawer : Control
         }
     }
 
-    private int IntersectionCount(Vector2[] path)
+    /// <summary>
+    ///   Get intersection count and priority for sorting.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that priority should be within (-10, 10), and the return value is relative.
+    ///   </para>
+    /// </remarks>
+    private int IntersectionCountWithPriority((Vector2[] Path, int Priority) tuple)
     {
+        var path = tuple.Path;
+        var priority = tuple.Priority;
+
         var count = 0;
 
         for (var i = 1; i < path.Length; ++i)
@@ -489,14 +506,13 @@ public class PatchMapDrawer : Control
                 }
             }
 
-            // Calculate line-line intersections, ignore lines that have the same start or end point.
+            // Calculate line-line intersections
             foreach (var target in connections.Values)
             {
                 for (var j = 1; j < target.Length; j++)
                 {
                     var intersection = SegmentSegmentIntersection(startPoint, endPoint, target[j - 1], target[j]);
-                    if (intersection != Vector2.Inf && intersection != startPoint && intersection != endPoint &&
-                        intersection != target[j - 1] && intersection != target[j])
+                    if (intersection != Vector2.Inf && i != 1 && i != path.Length - 1)
                     {
                         count++;
                     }
@@ -504,7 +520,8 @@ public class PatchMapDrawer : Control
             }
         }
 
-        return count;
+        // The highest priority has the lowest value.
+        return 10 * count - priority;
     }
 
     private void DrawRegionLinks()
