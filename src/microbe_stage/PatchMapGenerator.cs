@@ -30,7 +30,6 @@ public static class PatchMapGenerator
         // Initialize the graph's random parameters
         var regionCoordinates = new List<Vector2>();
         int vertexCount = random.Next(6, 10);
-        int edgeCount = random.Next(vertexCount, 2 * vertexCount - 4);
         int minDistance = 180;
 
         int currentPatchId = 0;
@@ -81,7 +80,7 @@ public static class PatchMapGenerator
                     --numberOfPatches;
 
                     if (patchIndex == Patch.BiomeTypes.Tidepool)
-                        tidepool = patch;
+                        tidepool ??= patch;
                 }
             }
             else
@@ -105,7 +104,7 @@ public static class PatchMapGenerator
                 // Add at least one vent to the map, otherwise chance to add a vent if this is a sea/ocean region
                 if (vents == null || random.Next(0, 2) == 1)
                 {
-                    vents = NewPredefinedPatch(Patch.BiomeTypes.Vents, ++currentPatchId, region, regionName);
+                    vents ??= NewPredefinedPatch(Patch.BiomeTypes.Vents, ++currentPatchId, region, regionName);
                 }
             }
 
@@ -122,6 +121,7 @@ public static class PatchMapGenerator
             if (coordinates == Vector2.Inf)
             {
                 GD.PrintErr("Region abandoned: ", region.ID);
+                vertexCount = i + 1;
                 continue;
             }
 
@@ -144,11 +144,13 @@ public static class PatchMapGenerator
         // so this makes the same map be generated anyway
         ConfigureStartingPatch(map, settings, defaultSpecies, vents, tidepool, random);
 
+        int edgeCount = random.Next(vertexCount, 2 * vertexCount - 4);
+
         // We make the graph by subtracting edges from its Delaunay Triangulation
         // as long as the graph stays connected.
-        // TODO: should the 100 be hardcoded here? Seems like if vertexCount > 100, we'll explode in the below loops
-        int[,] graph = DelaunayTriangulation(new int[100, 100], regionCoordinates);
-        graph = SubtractEdges(graph, vertexCount, edgeCount, random);
+        var graph = new int[vertexCount, vertexCount];
+        DelaunayTriangulation(ref graph, regionCoordinates);
+        SubtractEdges(ref graph, vertexCount, edgeCount, random);
 
         // Link regions according to the graph matrix
         for (int i = 0; i < vertexCount; ++i)
@@ -182,8 +184,7 @@ public static class PatchMapGenerator
         region2.AddNeighbour(region1);
     }
 
-    private static int[,] SubtractEdges(int[,] graph, int vertexNumber, int edgeNumber,
-        Random random)
+    private static void SubtractEdges(ref int[,] graph, int vertexNumber, int edgeNumber, Random random)
     {
         var currentEdgeNumber = CurrentEdgeNumber(graph, vertexNumber);
 
@@ -218,14 +219,12 @@ public static class PatchMapGenerator
                 currentEdgeNumber -= 1;
             }
         }
-
-        return graph;
     }
 
     /// <summary>
     ///   Create a triangulation for a certain graph given some vertex coordinates
     /// </summary>
-    private static int[,] DelaunayTriangulation(int[,] graph, List<Vector2> vertexCoordinates)
+    private static void DelaunayTriangulation(ref int[,] graph, List<Vector2> vertexCoordinates)
     {
         var indices = Geometry.TriangulateDelaunay2d(vertexCoordinates.ToArray());
         var triangles = indices.ToList();
@@ -235,8 +234,6 @@ public static class PatchMapGenerator
             graph[triangles[i + 1], triangles[i + 2]] = graph[triangles[i + 2], triangles[i + 1]] = 1;
             graph[triangles[i], triangles[i + 2]] = graph[triangles[i + 2], triangles[i]] = 1;
         }
-
-        return graph;
     }
 
     /// <summary>
@@ -312,27 +309,20 @@ public static class PatchMapGenerator
 
     private static Vector2 GenerateCoordinates(PatchRegion region, PatchMap map, Random random, int minDistance)
     {
-        int x = random.Next(280, 1600);
-        int y = random.Next(280, 1600);
-        var coordinates = new Vector2(x, y);
-        region.ScreenCoordinates = coordinates;
+        Vector2 coordinate;
+
+        var i = 0;
 
         // Make sure the region doesn't overlap over other regions
         // Try no more than 100 times to avoid infinite loop.
-        bool check = CheckRegionDistance(region, map, minDistance);
-        var i = 0;
-        while (!check && i < 100)
+        do
         {
-            x = random.Next(280, 1600);
-            y = random.Next(280, 1600);
-            coordinates = new Vector2(x, y);
-            region.ScreenCoordinates = coordinates;
-            check = CheckRegionDistance(region, map, minDistance);
-
-            ++i;
+            coordinate = new Vector2(random.Next(3, 16) * 100, random.Next(3, 16) * 100);
+            region.ScreenCoordinates = coordinate;
         }
+        while (!CheckRegionDistance(region, map, minDistance) && ++i < 100);
 
-        return check ? coordinates : Vector2.Inf;
+        return i < 100 ? coordinate : Vector2.Inf;
     }
 
     private static void ConnectPatchesBetweenRegions(PatchRegion region, Random random)

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Color = Godot.Color;
 
 /// <summary>
 ///   Draws a PatchMap inside a control
@@ -289,8 +288,7 @@ public class PatchMapDrawer : Control
             }
         }
 
-        OffsetOverlappedPaths();
-        // TODO: AdjustConnectionEndpoints();
+        AdjustPathEndpoints();
     }
 
     private Vector2[] GetLeastIntersectionPath(PatchRegion start, PatchRegion end)
@@ -332,22 +330,28 @@ public class PatchMapDrawer : Control
         return probablePaths.OrderBy(p => IntersectionCount(p, start, end)).First();
     }
 
-    private void OffsetOverlappedPaths()
+    /// <summary>
+    ///   Add a separation between each overlapped line, and adjust connection endpoint
+    /// </summary>
+    private void AdjustPathEndpoints()
     {
         foreach (var region in Map!.Regions)
         {
-            var regionNumber = region.Key;
-            var connectionStartHere = connections.Where(p => p.Key.x == regionNumber).ToList();
-            var connectionEndHere = connections.Where(p => p.Key.y == regionNumber).ToList();
+            var regionIndex = region.Key;
+            var connectionStartHere = connections.Where(p => p.Key.x == regionIndex).ToList();
+            var connectionEndHere = connections.Where(p => p.Key.y == regionIndex).ToList();
 
             var connectionTupleList = connectionStartHere.Select(c => (c.Value, 0, 1)).ToList();
-            connectionTupleList.AddRange(connectionEndHere.Select(c => (c.Value, c.Value.Length - 1, c.Value.Length - 2)));
+            connectionTupleList.AddRange(
+                connectionEndHere.Select(c => (c.Value, c.Value.Length - 1, c.Value.Length - 2)));
 
             // Separate connection by directions: 0 -> Left, 1 -> Up, 2 -> Right, 3 -> Down
             var connectionsToDirections = new List<(Vector2[], int, int, float)>[4];
 
             for (var i = 0; i < 4; i++)
+            {
                 connectionsToDirections[i] = new List<(Vector2[], int, int, float)>();
+            }
 
             foreach (var (connection, endpoint, intermediate) in connectionTupleList)
             {
@@ -365,12 +369,35 @@ public class PatchMapDrawer : Control
                 }
             }
 
-            const float lineSeparation = 3 * Constants.PATCH_REGION_CONNECTION_LINE_WIDTH;
+            // Endpoint position
+            foreach (var (connection, endpoint, _, _) in connectionsToDirections[0])
+            {
+                connection[endpoint].x -= region.Value.Width / 2;
+            }
+
+            foreach (var (connection, endpoint, _, _) in connectionsToDirections[1])
+            {
+                connection[endpoint].y -= region.Value.Height / 2;
+            }
+
+            foreach (var (connection, endpoint, _, _) in connectionsToDirections[2])
+            {
+                connection[endpoint].x += region.Value.Width / 2;
+            }
+
+            foreach (var (connection, endpoint, _, _) in connectionsToDirections[3])
+            {
+                connection[endpoint].y += region.Value.Height / 2;
+            }
+
+            // Separation
+            const float lineSeparation = 4 * Constants.PATCH_REGION_CONNECTION_LINE_WIDTH;
 
             for (var direction = 0; direction < 4; ++direction)
             {
                 var connectionsToDirection = connectionsToDirections[direction];
 
+                // Only when we have more than 1 connections do we need to offset them
                 if (connectionsToDirection.Count <= 1)
                     continue;
 
@@ -378,7 +405,7 @@ public class PatchMapDrawer : Control
                 {
                     float right = (connectionsToDirection.Count - 1) / 2.0f, left = -right;
                     foreach (var (connection, endpoint, intermediate, _) in
-                        connectionsToDirection.OrderBy(t => t.Item4))
+                             connectionsToDirection.OrderBy(t => t.Item4))
                     {
                         if (connection.Length == 2
                             || connection[2 * intermediate - endpoint].x > connection[intermediate].x)
@@ -399,7 +426,7 @@ public class PatchMapDrawer : Control
                 {
                     float down = (connectionsToDirection.Count - 1) / 2.0f, up = -down;
                     foreach (var (connection, endpoint, intermediate, _) in
-                        connectionsToDirection.OrderBy(t => t.Item4))
+                             connectionsToDirection.OrderBy(t => t.Item4))
                     {
                         if (connection.Length == 2
                             || connection[2 * intermediate - endpoint].y > connection[intermediate].y)
