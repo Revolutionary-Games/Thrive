@@ -9,6 +9,11 @@ public interface IEngulfable : IGraphicalEntity
     /// <summary>
     ///   The engulf size of this engulfable object.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This can also be made to scale with <see cref="DigestedAmount"/> for richer gameplay depth.
+    ///   </para>
+    /// </remarks>
     public float EngulfSize { get; }
 
     public float Radius { get; }

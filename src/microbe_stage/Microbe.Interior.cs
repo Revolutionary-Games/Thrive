@@ -1132,6 +1132,8 @@ public partial class Microbe
         var compoundTypes = SimulationParameters.Instance.GetAllCompounds();
         var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
+        float usedCapacity = 0.0f;
+
         // Handle logic if the objects that are being digested are the ones we have engulfed
         for (int i = engulfedObjects.Count - 1; i >= 0; --i)
         {
@@ -1229,13 +1231,15 @@ public partial class Microbe
 
             if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
             {
-                // Ignore size from reclaimed objects for now
-                if (!engulfedObject.ReclaimedByAnotherHost)
-                    UsedIngestionCapacity -= engulfable.EngulfSize;
-
                 engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
             }
+            else
+            {
+                usedCapacity += engulfable.EngulfSize;
+            }
         }
+
+        UsedIngestionCapacity = usedCapacity;
 
         // Else handle logic if the cell that's being/has been digested is us
         if (PhagocytosisStep == PhagocytosisPhase.None)

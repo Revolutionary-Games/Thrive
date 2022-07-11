@@ -216,12 +216,13 @@ public partial class Microbe
     {
         get
         {
-            if (CellTypeProperties.IsBacteria)
-            {
-                return HexCount * 0.5f;
-            }
+            // Scale with digested progress
+            var size = HexCount * (1 - DigestedAmount);
 
-            return HexCount;
+            if (CellTypeProperties.IsBacteria)
+                return size * 0.5f;
+
+            return size;
         }
     }
 
@@ -1550,14 +1551,6 @@ public partial class Microbe
         if (engulfedObject == null)
             return;
 
-        if (engulfedObject.HasBeenIngested)
-        {
-            UsedIngestionCapacity -= target.EngulfSize;
-
-            if (UsedIngestionCapacity < 0)
-                UsedIngestionCapacity = 0;
-        }
-
         target.PhagocytosisStep = PhagocytosisPhase.Exocytosis;
 
         // The back of the microbe
@@ -1804,7 +1797,6 @@ public partial class Microbe
         attemptingToEngulf.Remove(engulfable);
         touchedEntities.Remove(engulfable);
 
-        UsedIngestionCapacity += engulfable.EngulfSize;
         engulfed.HasBeenIngested = true;
 
         OnSuccessfulEngulfment?.Invoke(this, engulfable);

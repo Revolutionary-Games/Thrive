@@ -260,12 +260,12 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         return stage!.Player!.Colony?.ColonyCompounds ?? (ICompoundStorage)stage.Player.Compounds;
     }
 
-    protected override void UpdateCompoundBars()
+    protected override void UpdateCompoundBars(float delta)
     {
-        base.UpdateCompoundBars();
+        base.UpdateCompoundBars(delta);
 
         ingestedMatterBar.MaxValue = stage!.Player!.Colony?.HexCount ?? stage.Player.HexCount;
-        ingestedMatterBar.Value = GetPlayerUsedIngestionCapacity();
+        GUICommon.SmoothlyUpdateBar(ingestedMatterBar, GetPlayerUsedIngestionCapacity(), delta);
         ingestedMatterBar.GetNode<Label>("Value").Text = ingestedMatterBar.Value + " / " + ingestedMatterBar.MaxValue;
     }
 

@@ -59,6 +59,9 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     [JsonProperty]
     private int renderPriority;
 
+    [JsonProperty]
+    private float engulfSize;
+
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
@@ -81,7 +84,12 @@ public class FloatingChunk : RigidBody, ISpawned, IEngulfable
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
     /// </summary>
-    public float EngulfSize { get; set; } = -1.0f;
+    [JsonIgnore]
+    public float EngulfSize
+    {
+        get => engulfSize * (1 - DigestedAmount);
+        set => engulfSize = value;
+    }
 
     /// <summary>
     ///   Compounds this chunk contains, and vents

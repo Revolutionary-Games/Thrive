@@ -69,14 +69,23 @@ public class MicrobeColony
     /// <summary>
     ///   The accumulation of all the colony member's <see cref="Microbe.UsedIngestionCapacity"/>.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This unfortunately is not cached as <see cref="Microbe.UsedIngestionCapacity"/> can change
+    ///     every frame.
+    ///   </para>
+    /// </remarks>
     [JsonIgnore]
     public float UsedIngestionCapacity
     {
         get
         {
-            if (hexCountDirty)
-                UpdateHexCount();
-            return usedIngestionCapacity;
+            var result = 0.0f;
+
+            foreach (var microbe in ColonyMembers)
+                result += microbe.UsedIngestionCapacity;
+
+            return result;
         }
     }
 
@@ -166,7 +175,6 @@ public class MicrobeColony
         foreach (var member in ColonyMembers)
         {
             hexCount += member.EngulfSize;
-            usedIngestionCapacity += member.UsedIngestionCapacity;
         }
     }
 }
