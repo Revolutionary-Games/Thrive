@@ -41,7 +41,7 @@ public static class PatchMapGenerator
         // Create the graph's random regions
         for (int i = 0; i < vertexCount; ++i)
         {
-            var regionName = nameGenerator.Next(random);
+            var patchName = nameGenerator.Next(random);
             var continentName = nameGenerator.ContinentName;
             var coordinates = new Vector2(0, 0);
 
@@ -70,13 +70,13 @@ public static class PatchMapGenerator
                 numberOfPatches = random.Next(tidepool == null ? 1 : 0, 4);
 
                 // All continents must have at least one coastal patch.
-                NewPredefinedPatch(Patch.BiomeTypes.Coastal, ++currentPatchId, region, regionName);
+                NewPredefinedPatch(Patch.BiomeTypes.Coastal, ++currentPatchId, region, patchName);
 
                 while (numberOfPatches > 0)
                 {
                     // Add at least one tidepool to the map, otherwise choose randomly
                     var patchIndex = tidepool == null ? Patch.BiomeTypes.Tidepool : (Patch.BiomeTypes)random.Next(0, 3);
-                    var patch = NewPredefinedPatch(patchIndex, ++currentPatchId, region, regionName);
+                    var patch = NewPredefinedPatch(patchIndex, ++currentPatchId, region, patchName);
                     --numberOfPatches;
 
                     if (patchIndex == Patch.BiomeTypes.Tidepool)
@@ -89,29 +89,29 @@ public static class PatchMapGenerator
 
                 // All oceans/seas must have at least one epipelagic/ice patch and a seafloor
                 NewPredefinedPatch(random.Next(0, 2) == 1 ? Patch.BiomeTypes.Epipelagic : Patch.BiomeTypes.IceShelf,
-                    ++currentPatchId, region, regionName);
+                    ++currentPatchId, region, patchName);
 
                 // Add the patches between surface and sea floor
                 for (int patchIndex = 4; numberOfPatches > 0 && patchIndex <= (int)Patch.BiomeTypes.Abyssopelagic;
                      ++patchIndex, --numberOfPatches)
                 {
-                    NewPredefinedPatch((Patch.BiomeTypes)patchIndex, ++currentPatchId, region, regionName);
+                    NewPredefinedPatch((Patch.BiomeTypes)patchIndex, ++currentPatchId, region, patchName);
                 }
 
                 // Add the seafloor last
-                NewPredefinedPatch(Patch.BiomeTypes.Seafloor, ++currentPatchId, region, regionName);
+                NewPredefinedPatch(Patch.BiomeTypes.Seafloor, ++currentPatchId, region, patchName);
 
                 // Add at least one vent to the map, otherwise chance to add a vent if this is a sea/ocean region
                 if (vents == null || random.Next(0, 2) == 1)
                 {
-                    vents ??= NewPredefinedPatch(Patch.BiomeTypes.Vents, ++currentPatchId, region, regionName);
+                    vents ??= NewPredefinedPatch(Patch.BiomeTypes.Vents, ++currentPatchId, region, patchName);
                 }
             }
 
             // Random chance to create a cave
             if (random.Next(0, 2) == 1)
             {
-                NewPredefinedPatch(Patch.BiomeTypes.Cave, ++currentPatchId, region, regionName);
+                NewPredefinedPatch(Patch.BiomeTypes.Cave, ++currentPatchId, region, patchName);
             }
 
             BuildRegion(region);
@@ -596,14 +596,14 @@ public static class PatchMapGenerator
     /// <param name="biome">The requested biome</param>
     /// <param name="id">ID of this patch</param>
     /// <param name="region">Region this patch belongs to</param>
-    /// <param name="regionName">Name of the region</param>
+    /// <param name="patchName">Name of the region</param>
     /// <returns>Predefined patch</returns>
     /// <exception cref="InvalidOperationException">Thrown if biome is not a valid value</exception>
-    private static Patch NewPredefinedPatch(Patch.BiomeTypes biome, int id, PatchRegion region, string regionName)
+    private static Patch NewPredefinedPatch(Patch.BiomeTypes biome, int id, PatchRegion region, string patchName)
     {
         var newPatch = biome switch
         {
-            Patch.BiomeTypes.Abyssopelagic => new Patch(GetPatchLocalizedName(regionName, "ABYSSOPELAGIC"),
+            Patch.BiomeTypes.Abyssopelagic => new Patch(GetPatchLocalizedName(patchName, "ABYSSOPELAGIC"),
                 id, GetBiomeTemplate("abyssopelagic"), Patch.BiomeTypes.Abyssopelagic, region)
             {
                 Depth =
@@ -614,7 +614,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(300, 400),
             },
 
-            Patch.BiomeTypes.Bathypelagic => new Patch(GetPatchLocalizedName(regionName, "BATHYPELAGIC"),
+            Patch.BiomeTypes.Bathypelagic => new Patch(GetPatchLocalizedName(patchName, "BATHYPELAGIC"),
                 id, GetBiomeTemplate("bathypelagic"), Patch.BiomeTypes.Bathypelagic, region)
             {
                 Depth =
@@ -625,7 +625,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(200, 300),
             },
 
-            Patch.BiomeTypes.Cave => new Patch(GetPatchLocalizedName(regionName, "UNDERWATERCAVE"),
+            Patch.BiomeTypes.Cave => new Patch(GetPatchLocalizedName(patchName, "UNDERWATERCAVE"),
                 id, GetBiomeTemplate("underwater_cave"), Patch.BiomeTypes.Cave, region)
             {
                 Depth =
@@ -636,7 +636,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(300, 200),
             },
 
-            Patch.BiomeTypes.Coastal => new Patch(GetPatchLocalizedName(regionName, "COASTAL"),
+            Patch.BiomeTypes.Coastal => new Patch(GetPatchLocalizedName(patchName, "COASTAL"),
                 id, GetBiomeTemplate("coastal"), Patch.BiomeTypes.Coastal, region)
             {
                 Depth =
@@ -647,7 +647,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(100, 100),
             },
 
-            Patch.BiomeTypes.Epipelagic => new Patch(GetPatchLocalizedName(regionName, "EPIPELAGIC"),
+            Patch.BiomeTypes.Epipelagic => new Patch(GetPatchLocalizedName(patchName, "EPIPELAGIC"),
                 id, GetBiomeTemplate("default"), Patch.BiomeTypes.Epipelagic, region)
             {
                 Depth =
@@ -658,7 +658,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(200, 100),
             },
 
-            Patch.BiomeTypes.Estuary => new Patch(GetPatchLocalizedName(regionName, "ESTUARY"),
+            Patch.BiomeTypes.Estuary => new Patch(GetPatchLocalizedName(patchName, "ESTUARY"),
                 id, GetBiomeTemplate("estuary"), Patch.BiomeTypes.Estuary, region)
             {
                 Depth =
@@ -669,7 +669,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(70, 160),
             },
 
-            Patch.BiomeTypes.IceShelf => new Patch(GetPatchLocalizedName(regionName, "ICESHELF"),
+            Patch.BiomeTypes.IceShelf => new Patch(GetPatchLocalizedName(patchName, "ICESHELF"),
                 id, GetBiomeTemplate("ice_shelf"), Patch.BiomeTypes.IceShelf, region)
             {
                 Depth =
@@ -680,7 +680,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(200, 30),
             },
 
-            Patch.BiomeTypes.Mesopelagic => new Patch(GetPatchLocalizedName(regionName, "MESOPELAGIC"),
+            Patch.BiomeTypes.Mesopelagic => new Patch(GetPatchLocalizedName(patchName, "MESOPELAGIC"),
                 id, GetBiomeTemplate("mesopelagic"), Patch.BiomeTypes.Mesopelagic, region)
             {
                 Depth =
@@ -691,7 +691,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(200, 200),
             },
 
-            Patch.BiomeTypes.Seafloor => new Patch(GetPatchLocalizedName(regionName, "SEA_FLOOR"),
+            Patch.BiomeTypes.Seafloor => new Patch(GetPatchLocalizedName(patchName, "SEA_FLOOR"),
                 id, GetBiomeTemplate("seafloor"), Patch.BiomeTypes.Seafloor, region)
             {
                 Depth =
@@ -702,7 +702,7 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(200, 400),
             },
 
-            Patch.BiomeTypes.Tidepool => new Patch(GetPatchLocalizedName(regionName, "TIDEPOOL"),
+            Patch.BiomeTypes.Tidepool => new Patch(GetPatchLocalizedName(patchName, "TIDEPOOL"),
                 id, GetBiomeTemplate("tidepool"), Patch.BiomeTypes.Tidepool, region)
             {
                 Depth =
@@ -714,7 +714,7 @@ public static class PatchMapGenerator
             },
 
             // ReSharper disable once StringLiteralTypo
-            Patch.BiomeTypes.Vents => new Patch(GetPatchLocalizedName(regionName, "VOLCANIC_VENT"),
+            Patch.BiomeTypes.Vents => new Patch(GetPatchLocalizedName(patchName, "VOLCANIC_VENT"),
                 id, GetBiomeTemplate("aavolcanic_vent"), Patch.BiomeTypes.Vents, region)
             {
                 Depth =
