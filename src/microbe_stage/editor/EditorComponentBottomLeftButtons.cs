@@ -34,17 +34,12 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     [Export]
     public NodePath RandomizeNameButtonPath = null!;
 
-    [Export]
-    public NodePath NewHiddenAlternativeSpacerPath = null!;
-
     private TextureButton? newButton;
     private LineEdit speciesNameEdit = null!;
     private TextureButton? randomizeNameButton;
 
     private TextureButton symmetryButton = null!;
     private TextureRect symmetryIcon = null!;
-
-    private Control newHiddenAlternativeSpacer = null!;
 
     private Texture symmetryIconDefault = null!;
     private Texture symmetryIcon2X = null!;
@@ -119,8 +114,6 @@ public class EditorComponentBottomLeftButtons : MarginContainer
 
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
         symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
-
-        newHiddenAlternativeSpacer = GetNode<Control>(NewHiddenAlternativeSpacerPath);
 
         symmetryIconDefault = GD.Load<Texture>("res://assets/textures/gui/bevel/1xSymmetry.png");
         symmetryIcon2X = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
@@ -298,7 +291,6 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         if (newButton != null)
         {
             newButton.Visible = ShowNewButton;
-            newHiddenAlternativeSpacer.Visible = !ShowNewButton;
         }
     }
 
