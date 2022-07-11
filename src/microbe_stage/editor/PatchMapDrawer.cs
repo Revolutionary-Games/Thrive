@@ -211,11 +211,6 @@ public class PatchMapDrawer : Control
         return intersection;
     }
 
-    private float DistanceToMapCenter(PatchRegion region)
-    {
-        return map.Center.DistanceTo(region.ScreenCoordinates);
-    }
-
     private Vector2 RegionCenter(PatchRegion region)
     {
         return new Vector2(region.ScreenCoordinates.x + region.Width * 0.5f,
@@ -275,7 +270,10 @@ public class PatchMapDrawer : Control
     /// </summary>
     private void CreateRegionLinks()
     {
-        foreach (var region in map.Regions.Values.OrderBy(DistanceToMapCenter))
+        var mapCenter = map.Center;
+
+        // When ordered by distance to center, central regions will be linked first, which reduces intersections.
+        foreach (var region in map.Regions.Values.OrderBy(r => mapCenter.DistanceTo(r.ScreenCoordinates)))
         {
             foreach (var adjacent in region.Adjacent)
             {

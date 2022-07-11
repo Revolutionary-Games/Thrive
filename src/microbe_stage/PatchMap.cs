@@ -25,7 +25,9 @@ public class PatchMap : ISaveLoadable
     public Dictionary<int, PatchRegion> Regions { get; private set; } = new();
 
     [JsonIgnore]
-    public Vector2 Center { get; private set; }
+    public Vector2 Center =>
+        Regions.Values.Aggregate(Vector2.Zero, (current, region) => current + region.ScreenCoordinates)
+        / Regions.Count;
 
     /// <summary>
     ///   Currently active patch (the one player is in)
@@ -85,8 +87,6 @@ public class PatchMap : ISaveLoadable
         }
 
         Regions[region.ID] = region;
-
-        CalculateMapCenter();
     }
 
     /// <summary>
@@ -442,11 +442,5 @@ public class PatchMap : ISaveLoadable
             region1.AddNeighbour(region2);
             region2.AddNeighbour(region1);
         }
-    }
-
-    private void CalculateMapCenter()
-    {
-        Center = Regions.Values.Aggregate(Vector2.Zero, (current, region) => current + region.ScreenCoordinates)
-            / Regions.Count;
     }
 }
