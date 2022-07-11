@@ -132,11 +132,11 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
 msgstr ""
 "Terminata la fagocitazione, gli oggetti catturati vengono trattenuti "
-"all'interno della membrana, in attesa di essere digeriti. Ma se alcuni di "
-"questi dovessero rivelarsi non digeribili, essi saranno prontamente espulsi. "
-"Quindi, assicurati prima di avere le giuste mutazioni per poterli processare "
-"a dovere. Gli enzimi, contenuti nei lisosomi, aiutano la digestione e la "
-"rendono molto più efficiente."
+"all'interno della membrana in attesa di essere digeriti, se possibile; "
+"altrimenti, vengono prontamente espulsi. Assicurati perciò di avere le "
+"giuste mutazioni per poterli assimilare a dovere. Gli enzimi, contenuti nei "
+"lisosomi (organuli di cui è consigliabile l'evoluzione), aiutano la "
+"digestione e la rendono molto più efficiente."
 
 #: ../simulation_parameters/common/help_texts.json:26
 msgid "MICROBE_STAGE_HELP_MESSAGE_16"
@@ -151,15 +151,15 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
 msgstr ""
 "In particolare, è del tutto impossibile digerire le cellule dotate di pareti "
-"in cellulosa o chitina senza fare uso dell'apposito enzima."
+"in cellulosa o chitina senza fare uso degli appositi enzimi."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "L'osmoregolazione costa [thrive:compound type=\"atp\"][/thrive:compound]: "
-"più grande è la tua cellula, più Mitocondri, Metabolosomi, Rusticianina (o "
-"citoplasma, per fare la Glicolisi) servono per evitarne la perdita mentre "
+"più grande è la tua cellula, più mitocondri, metabolosomi, rusticianina (o "
+"citoplasma, per fare la glicolisi) servono per evitarne la perdita mentre "
 "sei fermo."
 
 #: ../simulation_parameters/common/help_texts.json:38
@@ -197,8 +197,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:121
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"Per riprodurti, devi sdoppiare ciascuno dei tuoi organuli. Per farlo, essi "
-"hanno bisogno di Ammoniaca e Fosfato."
+"Per riprodurti, devi sdoppiare ciascuno dei tuoi organuli. Per farlo, hai "
+"bisogno di ammoniaca e fosfato."
 
 #: ../simulation_parameters/common/help_texts.json:54
 #: ../simulation_parameters/common/help_texts.json:115
@@ -323,11 +323,11 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:90
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"Ogni volta che ti riproduci, fai ingresso nell'Editor Microbico, dove potrai "
-"fare modifiche alla tua specie (aggiungere, muovere o rimuovere organuli) "
-"per aumentarne il successo. Ogni visita all'editor nella Fase Microbica "
-"rappresenta [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:"
-"constant] milioni di anni di evoluzione."
+"Ogni volta che ti riproduci farai ingresso nell'Editor Microbico, dove "
+"potrai fare modifiche alla tua specie (aggiungere, spostare o rimuovere "
+"organuli) per aumentarne il successo. Ogni visita all'editor nella Fase "
+"Microbica rappresenta [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/"
+"thrive:constant] milioni di anni di evoluzione."
 
 #: ../simulation_parameters/common/help_texts.json:131
 #: ../simulation_parameters/common/help_texts.json:138
@@ -339,9 +339,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:145
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
-"Una curiosità: il Didinio e il Paramecio sono un esempio da manuale, "
-"studiato per decenni, di relazione predatore-preda. Ora, quale sei tu? "
-"Didinio o Paramecio? Predatore o Preda?"
+"Una curiosità: il didinio e il paramecio sono un esempio da manuale, "
+"studiato per decenni, di relazione predatore-preda. Ora, quale sei tu dei "
+"due? Didinio o paramecio? Predatore o preda?"
 
 #: ../simulation_parameters/common/help_texts.json:148
 msgid "EASTEREGG_MESSAGE_2"
@@ -362,7 +362,7 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "Una curiosità: nel mondo reale, i procarioti possiedono delle strutture "
-"chiamate Biocompartimenti; essi fungono da organuli, e sono perciò chiamati "
+"chiamate biocompartimenti; essi fungono da organuli, e sono perciò chiamati "
 "\"organuli poliedrici\"."
 
 #: ../simulation_parameters/common/help_texts.json:157
@@ -377,15 +377,14 @@ msgstr "Un suggerimento: a volte è meglio scappare dalle altre cellule."
 #: ../simulation_parameters/common/help_texts.json:163
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
-"Un suggerimento: se una cellula è grande circa la metà di te, allora sei in "
-"grado di fagocitarla."
+"Un suggerimento: se un'altra cellula è grande circa la metà di te, allora "
+"sei in grado di fagocitarla."
 
 #: ../simulation_parameters/common/help_texts.json:166
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Un suggerimento: i batteri possono essere più forti di quanto appaiono! "
-"Sembrano piccoli, ma alcuni di essi possono scavare dentro di te, e "
-"ucciderti così!"
+"Un monito: i batteri possono essere più forti di quanto appaiono! Sembrano "
+"piccoli, ma alcuni di essi possono scavare dentro di te, e ucciderti così!"
 
 #: ../simulation_parameters/common/help_texts.json:169
 msgid "EASTEREGG_MESSAGE_9"
@@ -395,7 +394,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:172
 msgid "EASTEREGG_MESSAGE_10"
-msgstr "COSI DIMENANTI!!"
+msgstr "COSE DIMENANTI!!"
 
 #: ../simulation_parameters/common/help_texts.json:175
 msgid "EASTEREGG_MESSAGE_11"
@@ -421,13 +420,13 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_15"
 msgstr ""
 "Un suggerimento: non solo nuvole! Puoi inghiottire anche frammenti di ferro "
-"e di cellule."
+"e di altre cellule."
 
 #: ../simulation_parameters/common/help_texts.json:190
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
 "Un suggerimento: preparati prima di aggiungere un nucleo. Quei cosi sono "
-"cari! In manutenzione e costi iniziali."
+"cari! Sia in manutenzione sia in costi iniziali."
 
 #: ../simulation_parameters/common/help_texts.json:193
 msgid "EASTEREGG_MESSAGE_17"
@@ -438,7 +437,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:196
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
-"Una curiosità: lo Stentor è un ciliato che può allungarsi e catturare la "
+"Una curiosità: lo stentor è un ciliato che può allungarsi e catturare la "
 "preda in una specie di bocca a forma di tromba, la quale è in grado di "
 "generare correnti d'acqua con le ciglia."
 
@@ -456,8 +455,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:205
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
-"Un suggerimento: fai attenzione alle cellule e batteri più grandi! Non è "
-"divertente essere digeriti: ti mangeranno."
+"Un suggerimento: fai attenzione alle cellule e ai batteri più grandi di te! "
+"Non è divertente essere digeriti: ti mangeranno."
 
 #: ../simulation_parameters/common/help_texts.json:208
 msgid "EASTEREGG_MESSAGE_22"
@@ -469,7 +468,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:211
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
-"Un suggerimento: se la tua cellula supera i 150 esagoni di taglia, puoi "
+"Un suggerimento: se la tua cellula supera i 150 esagoni di misura, puoi "
 "fagocitare anche i frammenti di ferro più grandi."
 
 #: ../simulation_parameters/common/help_texts.json:214
@@ -488,7 +487,9 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:220
 msgid "EASTEREGG_MESSAGE_26"
-msgstr "Una curiosità: Thrive è fatto con il motore grafico open source Godot!"
+msgstr ""
+"Una curiosità: Thrive viene sviluppato tramite il motore grafico open source "
+"Godot!"
 
 #: ../simulation_parameters/common/help_texts.json:223
 msgid "EASTEREGG_MESSAGE_27"
@@ -533,7 +534,7 @@ msgstr "Abilità"
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1901
 #: ../src/microbe_stage/MicrobeStage.tscn:1979
 msgid "FIRE_TOXIN"
-msgstr "Lancia tossina"
+msgstr "Lancia tossine"
 
 #: ../simulation_parameters/common/input_options.json:44
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1889
@@ -712,7 +713,7 @@ msgstr "Metti in pausa"
 
 #: ../simulation_parameters/common/input_options.json:235
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr "Mostra / nascondi pannello di debug"
+msgstr "Mostra/nascondi pannello di debug"
 
 #: ../simulation_parameters/common/input_options.json:239
 msgid "TOGGLE_FPS"
@@ -749,7 +750,7 @@ msgstr "Mostra/nascondi HUD"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "Respirazione Aerobica"
+msgstr "Respirazione aerobica"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
@@ -757,7 +758,7 @@ msgstr "Glicolisi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:22
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr "Glicolisi Citoplasmatica"
+msgstr "Glicolisi citoplasmatica"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:31
 #: ../simulation_parameters/microbe_stage/bio_processes.json:112
@@ -776,15 +777,15 @@ msgstr "Chemiosintesi"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:81
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr "Azotofissazione Aerobica"
+msgstr "Azotofissazione aerobica"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:92
 msgid "ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Azotofissazione Anaerobica"
+msgstr "Azotofissazione anaerobica"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr "Chemiolitoautotrofia Ferrica"
+msgstr "Chemiolitoautotrofia del ferro"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:133
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
@@ -849,7 +850,7 @@ msgstr "Frammento di ferro grande"
 #: ../simulation_parameters/microbe_stage/biomes.json:1941
 #: ../simulation_parameters/microbe_stage/biomes.json:2187
 msgid "GOOGLY_EYE_CELL"
-msgstr "Cellula grandocchi"
+msgstr "Cellula Grandocchi"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -974,7 +975,7 @@ msgstr "Ossigeno"
 #: ../simulation_parameters/microbe_stage/compounds.json:121
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:513
 msgid "CARBON_DIOXIDE"
-msgstr "Diossido di Carbonio"
+msgstr "Diossido di carbonio"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:135
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:486
@@ -986,7 +987,7 @@ msgstr "Azoto"
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:622
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:340
 msgid "SUNLIGHT"
-msgstr "Luce Solare"
+msgstr "Luce solare"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:163
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3980
@@ -3281,7 +3282,7 @@ msgstr "Filtra gli oggetti per categoria:"
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:121
 #: ../src/gui_common/art_gallery/SlideScreen.tscn:185
 msgid "SLIDESHOW"
-msgstr "Transizione automatica"
+msgstr "Riproduzione automatica"
 
 #: ../src/gui_common/charts/line/LineChart.cs:648
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2193
@@ -4178,7 +4179,7 @@ msgstr "Seleziona un tipo di tessuto dal pannello Editor"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:718
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "Impossibile spostare una metasfera nell'albero delle sue discendenti"
 
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:323
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:321
@@ -4823,7 +4824,7 @@ msgstr "N/A PM"
 
 #: ../src/microbe_stage/editor/MutationPointsBar.cs:46
 msgid "FREEBUILDING"
-msgstr "Modifica libera"
+msgstr "Modifica Libera"
 
 #: ../src/microbe_stage/editor/MutationPointsBar.tscn:150
 msgid "MUTATION_POINTS"
