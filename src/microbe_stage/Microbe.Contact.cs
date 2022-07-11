@@ -1797,8 +1797,6 @@ public partial class Microbe
         attemptingToEngulf.Remove(engulfable);
         touchedEntities.Remove(engulfable);
 
-        engulfed.HasBeenIngested = true;
-
         OnSuccessfulEngulfment?.Invoke(this, engulfable);
         engulfable.OnIngestedFromEngulfment();
     }
@@ -1905,7 +1903,6 @@ public partial class Microbe
         [JsonProperty]
         public Array OriginalGroups { get; private set; } = new();
 
-        public bool HasBeenIngested { get; set; }
         public bool ReclaimedByAnotherHost { get; set; }
         public bool Interpolate { get; set; }
         public float LerpDuration { get; set; }
