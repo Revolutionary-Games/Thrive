@@ -201,4 +201,15 @@ public abstract class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEd
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
     }
+
+    private void OnFindCurrentPatchPressed()
+    {
+        mapDrawer.CenterScroll();
+        mapDrawer.SelectedPatch = mapDrawer.PlayerPatch;
+    }
+
+    private void MoveToPatchClicked()
+    {
+        SetPlayerPatch(mapDrawer.SelectedPatch);
+    }
 }

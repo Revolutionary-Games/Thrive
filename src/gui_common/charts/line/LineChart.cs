@@ -428,7 +428,7 @@ public class LineChart : VBoxContainer
                 toolTip.Description = $"{data.Key}\n{xValueForm}\n{yValueForm}";
 
                 toolTip.DisplayDelay = 0;
-                toolTip.HideOnMousePress = false;
+                toolTip.HideOnMouseAction = false;
                 toolTip.TransitionType = ToolTipTransitioning.Immediate;
                 toolTip.Positioning = ToolTipPositioning.ControlBottomRightCorner;
 
