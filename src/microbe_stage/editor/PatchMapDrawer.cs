@@ -173,10 +173,10 @@ public class PatchMapDrawer : Control
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     True if intersect at endpoint.
+    ///     True if intersect at endpoint. And true if the two segments are collinear and has common points.
     ///   </para>
     ///   <para>
-    ///     True if the two segments are collinear and has common points.
+    ///     Doesn't use `Geometry.SegmentIntersectsSegment2d()` because it isn't handling intersection at endpoint well.
     ///   </para>
     /// </remarks>
     /// <returns>True if intersect</returns>
@@ -575,6 +575,40 @@ public class PatchMapDrawer : Control
                     if (SegmentSegmentIntersect(startPoint, endPoint, target[j - 1], target[j]))
                         ++count;
                 }
+            }
+
+            // If the endpoint is the same, it is regarded as the two lines intersects but it actually isn't.
+            if (path[0] == target[0])
+            {
+                --count;
+
+                // And if they goes the same direction, the second segment intersects but it actually isn't either.
+                if (Mathf.Abs((path[1] - path[0]).AngleTo(target[1] - target[0])) < Mathf.Epsilon)
+                    --count;
+            }
+            else if (path[0] == target[target.Length - 1])
+            {
+                --count;
+
+                if (Mathf.Abs((path[1] - path[0]).AngleTo(target[target.Length - 2] - target[target.Length - 1]))
+                    < Mathf.Epsilon)
+                    --count;
+            }
+            else if (path[path.Length - 1] == target[0])
+            {
+                --count;
+
+                if (Mathf.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[1] - target[0]))
+                    < Mathf.Epsilon)
+                    --count;
+            }
+            else if (path[path.Length - 1] == target[target.Length - 1])
+            {
+                --count;
+
+                if (Mathf.Abs((path[path.Length - 2] - path[path.Length - 1]).AngleTo(target[target.Length - 2] -
+                        target[target.Length - 1])) < Mathf.Epsilon)
+                    --count;
             }
         }
 
