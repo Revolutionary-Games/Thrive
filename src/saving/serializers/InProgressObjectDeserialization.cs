@@ -471,6 +471,12 @@ public class InProgressObjectDeserialization
     /// <exception cref="JsonException">If can't be created</exception>
     private object CreateDeserializedInstance(Type objectType)
     {
+        if (objectType.IsAbstract || objectType.IsInterface)
+        {
+            throw new JsonException($"Can't construct abstract or interface type: {objectType.Name} " +
+                "is dynamic type attribute missing?");
+        }
+
         var constructorAttribute = typeof(JsonConstructorAttribute);
 
         // Consider private constructors but ignore those that do not have the [JsonConstructor] attribute.
