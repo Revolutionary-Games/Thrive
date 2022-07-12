@@ -543,10 +543,9 @@ public class PatchMapDrawer : Control
         if (map.Regions.Count == 1)
             return;
 
-        foreach (var entry in map.Regions)
+        foreach (var region in map.Regions.Values)
         {
-            var region = entry.Value;
-            DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)),
+            DrawRect(new Rect2(region.ScreenCoordinates, region.Size),
                 new Color(0.0f, 0.7f, 0.5f, 0.7f), false, Constants.PATCH_REGION_BORDER_WIDTH);
         }
     }
@@ -554,14 +553,14 @@ public class PatchMapDrawer : Control
     private void DrawPatchLinks()
     {
         // This ends up drawing duplicates but that doesn't seem problematic ATM
-        foreach (var entry in Map!.Patches)
+        foreach (var patch in Map!.Patches.Values)
         {
-            foreach (var adjacent in entry.Value.Adjacent)
+            foreach (var adjacent in patch.Adjacent)
             {
                 // Only draw connections if patches belong to the same region
-                if (entry.Value.Region.ID == adjacent.Region.ID)
+                if (patch.Region.ID == adjacent.Region.ID)
                 {
-                    var start = PatchCenter(entry.Value.ScreenCoordinates);
+                    var start = PatchCenter(patch.ScreenCoordinates);
                     var end = PatchCenter(adjacent.ScreenCoordinates);
 
                     DrawNodeLink(start, end, DefaultConnectionColor);
@@ -625,13 +624,9 @@ public class PatchMapDrawer : Control
 
     private void CheckForDirtyNodes()
     {
-        foreach (var node in nodes.Values)
+        if (nodes.Values.Any(n => n.IsDirty))
         {
-            if (node.IsDirty)
-            {
-                dirty = true;
-                break;
-            }
+            dirty = true;
         }
     }
 }
