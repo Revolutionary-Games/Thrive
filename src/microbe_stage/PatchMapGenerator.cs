@@ -316,15 +316,15 @@ public static class PatchMapGenerator
         var i = 0;
 
         // Make sure the region doesn't overlap over other regions
-        // Try no more than 100 times to avoid infinite loop.
+        // Try no more than Constants.PATCH_GENERATION_MAX_RETRIES times to avoid infinite loop.
         do
         {
             coordinate = new Vector2(random.Next(3, 16) * 100, random.Next(3, 16) * 100);
             region.ScreenCoordinates = coordinate;
         }
-        while (!CheckRegionDistance(region, map, minDistance) && ++i < 100);
+        while (!CheckRegionDistance(region, map, minDistance) && ++i < Constants.PATCH_GENERATION_MAX_RETRIES);
 
-        return i < 100 ? coordinate : Vector2.Inf;
+        return i < Constants.PATCH_GENERATION_MAX_RETRIES ? coordinate : Vector2.Inf;
     }
 
     private static void BuildPatches(PatchRegion region, Random random)
@@ -753,10 +753,11 @@ public static class PatchMapGenerator
         var map = new PatchMap();
         var areaName = TranslationServer.Translate("PANGONIAN_REGION_NAME");
 
-        var region = new PatchRegion(0, GetPatchLocalizedName(areaName, string.Empty),
-            PatchRegion.RegionType.Predefined, new Vector2(0, 0)) { Size = new Vector2(400, 500) };
-
         // Hard code the region size as slightly larger than the extreme patch edges to fix scrolling
+        var region = new PatchRegion(0, GetPatchLocalizedName(areaName, string.Empty),
+                PatchRegion.RegionType.Predefined, new Vector2(0, 0))
+            { Size = new Vector2(400, 500) };
+
 
         // Predefined patches
         var coast = NewPredefinedPatch(Patch.BiomeTypes.Coastal, 0, region, areaName);

@@ -924,6 +924,7 @@ public static class Constants
     public const float PATCH_AND_REGION_MARGIN = 2 * 3.0f;
     public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 4.0f;
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
+    public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

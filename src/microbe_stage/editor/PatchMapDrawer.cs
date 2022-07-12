@@ -468,8 +468,7 @@ public class PatchMapDrawer : Control
     /// </remarks>
     private int IntersectionCountWithPriority((Vector2[] Path, int Priority) tuple)
     {
-        var path = tuple.Path;
-        var priority = tuple.Priority;
+        var (path, priority) = tuple;
 
         int count = 0;
 
@@ -487,23 +486,28 @@ public class PatchMapDrawer : Control
                     count += 10;
                 }
             }
+        }
 
-            // Calculate line-line intersections
-            foreach (var target in connections.Values)
+        // Calculate line-line intersections
+        foreach (var target in connections.Values)
+        {
+            for (int i = 1; i < path.Length; ++i)
             {
-                for (int j = 1; j < target.Length; j++)
+                var startPoint = path[i - 1];
+                var endPoint = path[i];
+
+                for (int j = 1; j < target.Length; ++j)
                 {
                     var intersection = SegmentSegmentIntersection(startPoint, endPoint, target[j - 1], target[j]);
-                    if (intersection != Vector2.Inf && i != 1 && i != path.Length - 1)
-                    {
-                        count++;
-                    }
+
+                    if (intersection != Vector2.Inf)
+                        ++count;
                 }
             }
         }
 
         // The highest priority has the lowest value.
-        return 10 * count - priority;
+        return 100 * count - priority;
     }
 
     private void DrawRegionLinks()
