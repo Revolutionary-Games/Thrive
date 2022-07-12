@@ -131,7 +131,7 @@ public class MicrobePartSelection : MarginContainer
     private void OnDisplayPartNamesChanged(bool displayed)
     {
         if (nameLabel != null)
-            nameLabel.Visible = Settings.Instance.DisplayPartNames || AlwaysShowLabel;
+            nameLabel.Visible = displayed || AlwaysShowLabel;
     }
 
     private void UpdateLabels()
