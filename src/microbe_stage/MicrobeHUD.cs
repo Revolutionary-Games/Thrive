@@ -425,7 +425,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
     {
         if (!Paused)
         {
-            bottomLeftBar.Paused = true;
+            PauseButtonPressed(true);
         }
         else
         {
@@ -440,7 +440,7 @@ public class MicrobeHUD : StageHUDBase<MicrobeStage>
         // The game should have been paused already but just in case
         if (Paused)
         {
-            bottomLeftBar.Paused = false;
+            PauseButtonPressed(false);
         }
     }
 
