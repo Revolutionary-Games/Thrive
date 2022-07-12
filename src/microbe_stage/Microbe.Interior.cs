@@ -1092,6 +1092,43 @@ public partial class Microbe
     /// </summary>
     private Vector3 CalculateNearbyWorldPosition()
     {
+        // OLD CODE
+        /*
+        // The back of the microbe
+        var exit = Hex.AxialToCartesian(new Hex(0, 1));
+        var membraneCoords = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
+
+        // Get the distance to eject the compounds
+        var ejectionDistance = Membrane.EncompassingCircleRadius;
+
+        // The membrane radius doesn't take being bacteria into account
+        if (CellTypeProperties.IsBacteria)
+            ejectionDistance *= 0.5f;
+
+        float angle = 180;
+
+        // Find the direction the microbe is facing
+        var yAxis = Transform.basis.y;
+        var microbeAngle = Mathf.Atan2(yAxis.x, yAxis.y);
+        if (microbeAngle < 0)
+        {
+            microbeAngle += 2 * Mathf.Pi;
+        }
+
+        microbeAngle = microbeAngle * 180 / Mathf.Pi;
+
+        // Take the microbe angle into account so we get world relative degrees
+        var finalAngle = (angle + microbeAngle) % 360;
+
+        var s = Mathf.Sin(finalAngle / 180 * Mathf.Pi);
+        var c = Mathf.Cos(finalAngle / 180 * Mathf.Pi);
+
+        var ejectionDirection = new Vector3(-membraneCoords.x * c + membraneCoords.z * s, 0,
+            membraneCoords.x * s + membraneCoords.z * c);
+
+        return Translation + (ejectionDirection * ejectionDistance);
+        */
+
         var distance = Membrane.EncompassingCircleRadius;
 
         // The membrane radius doesn't take being bacteria into account

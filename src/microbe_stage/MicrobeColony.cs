@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -75,18 +76,7 @@ public class MicrobeColony
     ///   </para>
     /// </remarks>
     [JsonIgnore]
-    public float UsedIngestionCapacity
-    {
-        get
-        {
-            var result = 0.0f;
-
-            foreach (var microbe in ColonyMembers)
-                result += microbe.UsedIngestionCapacity;
-
-            return result;
-        }
-    }
+    public float UsedIngestionCapacity => ColonyMembers.Sum(c => c.UsedIngestionCapacity);
 
     /// <summary>
     ///   Creates a colony for a microbe, with the given microbe as the master,
