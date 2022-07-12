@@ -183,7 +183,7 @@ public class PatchManager : IChildPropertiesLoadCallback
             var species = entry.Key;
             var population = entry.Value;
 
-            if (species.Population <= 0)
+            if (population <= 0)
             {
                 GD.Print(entry.Key.FormattedName, " population <= 0. Skipping Cell Spawn in patch.");
                 continue;
