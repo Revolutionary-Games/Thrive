@@ -424,7 +424,7 @@ public static class PatchMapGenerator
                 if (cave != null)
                     --waterPatchCount;
 
-                for (int i = 0; i < waterPatchCount; i++)
+                for (int i = 0; i < waterPatchCount; ++i)
                 {
                     for (int k = 0; k < waterPatchCount; ++k)
                     {
