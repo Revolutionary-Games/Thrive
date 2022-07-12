@@ -431,6 +431,7 @@ public class PatchMap : ISaveLoadable
         {
             var patch1 = Patches[id1];
             var patch2 = Patches[id2];
+
             patch1.AddNeighbour(patch2);
             patch2.AddNeighbour(patch1);
         }
@@ -439,6 +440,7 @@ public class PatchMap : ISaveLoadable
         {
             var region1 = Regions[id1];
             var region2 = Regions[id2];
+
             region1.AddNeighbour(region2);
             region2.AddNeighbour(region1);
         }

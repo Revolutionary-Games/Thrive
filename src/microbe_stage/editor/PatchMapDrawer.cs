@@ -266,7 +266,7 @@ public class PatchMapDrawer : Control
     }
 
     /// <summary>
-    ///   This function associates a connection the points the connection line has to go through
+    ///   This function create least intersected drawing links according to region adjacent
     /// </summary>
     private void CreateRegionLinks()
     {
@@ -283,7 +283,7 @@ public class PatchMapDrawer : Control
                 if (connections.ContainsKey(int2) || connections.ContainsKey(complementInt2))
                     continue;
 
-                var pathToAdjacent = GetLeastIntersectionPath(region, adjacent);
+                var pathToAdjacent = GetLeastIntersectingPath(region, adjacent);
 
                 connections.Add(int2, pathToAdjacent);
             }
@@ -292,7 +292,7 @@ public class PatchMapDrawer : Control
         AdjustPathEndpoints();
     }
 
-    private Vector2[] GetLeastIntersectionPath(PatchRegion start, PatchRegion end)
+    private Vector2[] GetLeastIntersectingPath(PatchRegion start, PatchRegion end)
     {
         var startCenter = RegionCenter(start);
         var startRect = new Rect2(start.ScreenCoordinates, start.Size);

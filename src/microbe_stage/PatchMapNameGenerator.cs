@@ -40,7 +40,7 @@ public class PatchMapNameGenerator : IRegistryType
     public string InternalName { get; set; } = null!;
 
     /// <summary>
-    ///   Generates and returns a new patch name
+    ///   Generates and returns a new region name
     /// </summary>
     public string Next(Random random)
     {
