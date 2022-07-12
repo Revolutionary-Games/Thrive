@@ -251,7 +251,7 @@ public class PatchMapDrawer : Control
     }
 
     /// <summary>
-    ///   This function create least intersected drawing links according to region adjacent
+    ///   This function creates least intersected links to adjoining regions.
     /// </summary>
     private void CreateRegionLinks()
     {
@@ -360,7 +360,7 @@ public class PatchMapDrawer : Control
             // Separate connection by directions: 0 -> Left, 1 -> Up, 2 -> Right, 3 -> Down
             var connectionsToDirections = new List<(Vector2[] Path, int Endpoint, int Intermediate, float Distance)>[4];
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; ++i)
             {
                 connectionsToDirections[i] =
                     new List<(Vector2[] Path, int Endpoint, int Intermediate, float Distance)>();
@@ -488,7 +488,7 @@ public class PatchMapDrawer : Control
             }
         }
 
-        // Calculate line-line intersections
+        // Calculate line-to-line intersections
         foreach (var target in connections.Values)
         {
             for (int i = 1; i < path.Length; ++i)
