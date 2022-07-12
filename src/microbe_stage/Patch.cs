@@ -45,7 +45,8 @@ public class Patch
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Explicitly stated values are used as patch IDs in classic map
+    ///     Explicitly stated values are used as patch IDs in classic map, and are helpful in the patch generation
+    ///     logic where (BiomeTypes)random.Next(min, max) can be used to generate specific biomes without error.
     ///   </para>
     /// </remarks>
     public enum BiomeTypes
