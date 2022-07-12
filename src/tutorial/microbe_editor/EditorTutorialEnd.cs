@@ -12,7 +12,7 @@
             CanTrigger = false;
         }
 
-        public override string ClosedByName { get; } = "CellEditorClosingWords";
+        public override string ClosedByName => "CellEditorClosingWords";
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
         {

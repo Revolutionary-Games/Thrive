@@ -9,7 +9,7 @@
     {
         private readonly string reportTab = EditorTab.Report.ToString();
 
-        public override string ClosedByName { get; } = "MicrobeEditorReport";
+        public override string ClosedByName => "MicrobeEditorReport";
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
         {

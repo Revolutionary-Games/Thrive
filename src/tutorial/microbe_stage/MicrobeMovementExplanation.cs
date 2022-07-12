@@ -7,7 +7,7 @@
     /// </summary>
     public class MicrobeMovementExplanation : TutorialPhase
     {
-        public override string ClosedByName { get; } = "MicrobeMovementExplain";
+        public override string ClosedByName => "MicrobeMovementExplain";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
