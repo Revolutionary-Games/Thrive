@@ -39,6 +39,9 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:134
 #: ../simulation_parameters/common/gallery.json:284
+#: ../simulation_parameters/common/gallery.json:6
+#: ../simulation_parameters/common/gallery.json:136
+#: ../simulation_parameters/common/gallery.json:286
 msgid "MICROBE_STAGE"
 msgstr "Mikroorganizmo būsena"
 
@@ -49,27 +52,33 @@ msgid "MULTICELLULAR_STAGE"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:61
+#: ../simulation_parameters/common/gallery.json:81
 msgid "GENERAL"
 msgstr "Bendra"
 
 #: ../simulation_parameters/common/gallery.json:131
+#: ../simulation_parameters/common/gallery.json:133
 msgid "MODELS"
 msgstr "Modeliai"
 
 #: ../simulation_parameters/common/gallery.json:247
+#: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
 msgstr "Muzika"
 
 #: ../simulation_parameters/common/gallery.json:250
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:343
+#: ../simulation_parameters/common/gallery.json:252
 msgid "ALL"
 msgstr "Visi"
 
 #: ../simulation_parameters/common/gallery.json:261
+#: ../simulation_parameters/common/gallery.json:263
 msgid "MENU"
 msgstr "Meniu"
 
 #: ../simulation_parameters/common/gallery.json:325
+#: ../simulation_parameters/common/gallery.json:327
 msgid "MICROBE_EDITOR"
 msgstr "Mikroorganizmų redaktorius"
 
@@ -1108,12 +1117,16 @@ msgstr ""
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:338
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:342
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:401
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:339
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:344
 msgid "BEHAVIOUR"
 msgstr "Elgsena"
 
 #: ../simulation_parameters/common/gallery.json:6
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:384
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:460
+#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:385
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:462
 msgid "CELLS"
 msgstr "Ląstelės"
 
@@ -1842,7 +1855,7 @@ msgstr ""
 #: ../src/general/OptionsMenu.tscn:1228 ../src/general/PauseMenu.tscn:263
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:81 ../src/saving/NewSaveMenu.tscn:110
-#: ../src/saving/SaveManagerGUI.tscn:120
+#: ../src/saving/SaveManagerGUI.tscn:120 ../src/general/OptionsMenu.tscn:1236
 msgid "BACK"
 msgstr "Atgal"
 
@@ -1953,6 +1966,7 @@ msgid "PLANET"
 msgstr "Planeta"
 
 #: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:181
+#: ../src/general/OptionsMenu.tscn:182
 msgid "MISC"
 msgstr "Įvairūs"
 
@@ -3066,6 +3080,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:188
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:56
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
 msgid "TUTORIAL"
 msgstr "Pamoka"
 
@@ -3557,11 +3572,15 @@ msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:913
 #: ../src/microbe_stage/MicrobeStage.tscn:951
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:915
+#: ../src/microbe_stage/MicrobeStage.tscn:947
 msgid "LIGHT"
 msgstr "Lengvas"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:968
 #: ../src/microbe_stage/MicrobeStage.tscn:1006
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:970
+#: ../src/microbe_stage/MicrobeStage.tscn:1002
 msgid "PRESSURE_SHORT"
 msgstr "Spaud."
 
@@ -3571,11 +3590,15 @@ msgstr "Spaud."
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:675
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:709
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:582
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1053
+#: ../src/microbe_stage/MicrobeStage.tscn:1085
 msgid "COMPOUNDS"
 msgstr "Junginiai"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1425
 #: ../src/microbe_stage/MicrobeStage.tscn:1500
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:1427
+#: ../src/microbe_stage/MicrobeStage.tscn:1496
 msgid "AGENTS"
 msgstr "Agentai"
 

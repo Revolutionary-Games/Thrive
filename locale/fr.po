@@ -73,6 +73,7 @@ msgstr ""
 "colonie de cellule est assez grande."
 
 #: ../simulation_parameters/common/gallery.json:61
+#: ../simulation_parameters/common/gallery.json:81
 msgid "GENERAL"
 msgstr "Général"
 
@@ -83,6 +84,7 @@ msgid "MODELS"
 msgstr "Mode Tout-Puissant"
 
 #: ../simulation_parameters/common/gallery.json:247
+#: ../simulation_parameters/common/gallery.json:249
 msgid "MUSIC"
 msgstr "Musique"
 
@@ -2822,19 +2824,20 @@ msgstr "Saisie manuelle du nombre de threads en arrière-plan"
 msgid "THREADS"
 msgstr "Threads :"
 
-#: ../src/general/OptionsMenu.tscn:915
+#: ../src/general/OptionsMenu.tscn:915 ../src/general/OptionsMenu.tscn:923
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Nombre maximum d'entités:"
 
 #: ../src/general/OptionsMenu.tscn:930 ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:938 ../src/general/OptionsMenu.tscn:939
 msgid "LIMIT_TINY"
 msgstr "Minuscule"
 
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:931 ../src/general/OptionsMenu.tscn:939
 msgid "LIMIT_VERY_SMALL"
 msgstr "Très petit"
 
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:931 ../src/general/OptionsMenu.tscn:939
 msgid "LIMIT_SMALL"
 msgstr "Petit"
 
@@ -2844,15 +2847,15 @@ msgstr "Petit"
 msgid "LIMIT_NORMAL"
 msgstr "ACCEPTER"
 
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:931 ../src/general/OptionsMenu.tscn:939
 msgid "LIMIT_LARGE"
 msgstr "Grand"
 
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:931 ../src/general/OptionsMenu.tscn:939
 msgid "LIMIT_VERY_LARGE"
 msgstr "Très grand"
 
-#: ../src/general/OptionsMenu.tscn:931
+#: ../src/general/OptionsMenu.tscn:931 ../src/general/OptionsMenu.tscn:939
 msgid "LIMIT_HUGE"
 msgstr "Énorme"
 
