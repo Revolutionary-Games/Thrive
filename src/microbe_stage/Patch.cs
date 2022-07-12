@@ -21,7 +21,7 @@ public class Patch
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
-    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeTypes type, PatchRegion region)
+    public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType type, PatchRegion region)
     {
         Name = name;
         ID = id;
@@ -38,30 +38,6 @@ public class Patch
         ID = id;
         BiomeTemplate = biomeTemplate;
         this.currentSnapshot = currentSnapshot;
-    }
-
-    /// <summary>
-    ///   This contains predefined biome types
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Explicitly stated values are used as patch IDs in classic map, and are helpful in the patch generation
-    ///     logic where (BiomeTypes)random.Next(min, max) can be used to generate specific biomes without error.
-    ///   </para>
-    /// </remarks>
-    public enum BiomeTypes
-    {
-        Coastal = 0,
-        Estuary = 1,
-        Tidepool = 2,
-        Epipelagic = 3,
-        Mesopelagic = 4,
-        Bathypelagic = 5,
-        Abyssopelagic = 6,
-        Seafloor = 7,
-        Cave = 8,
-        IceShelf = 9,
-        Vents = 10,
     }
 
     [JsonProperty]
@@ -84,7 +60,7 @@ public class Patch
     public PatchRegion Region { get; private set; } = null!;
 
     [JsonProperty]
-    public BiomeTypes BiomeType { get; private set; }
+    public BiomeType BiomeType { get; private set; }
 
     [JsonProperty]
     public int[] Depth { get; private set; } = { -1, -1 };
