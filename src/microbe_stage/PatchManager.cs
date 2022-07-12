@@ -181,6 +181,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         foreach (var entry in patch.SpeciesInPatch.OrderByDescending(entry => entry.Value))
         {
             var species = entry.Key;
+            var population = entry.Value;
 
             if (species.Population <= 0)
             {
@@ -194,7 +195,7 @@ public class PatchManager : IChildPropertiesLoadCallback
                 continue;
             }
 
-            var density = Mathf.Max(Mathf.Log(species.Population / 50.0f) * 0.01f, 0.0f);
+            var density = Mathf.Max(Mathf.Log(population / 25.0f) * 0.01f, 0.0f);
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
