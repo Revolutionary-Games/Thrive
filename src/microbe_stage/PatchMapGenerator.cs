@@ -148,7 +148,7 @@ public static class PatchMapGenerator
 
         // We make the graph by subtracting edges from its Delaunay Triangulation
         // as long as the graph stays connected.
-        var graph = new int[vertexCount, vertexCount];
+        var graph = new bool[vertexCount, vertexCount];
         DelaunayTriangulation(ref graph, regionCoordinates);
         SubtractEdges(ref graph, vertexCount, edgeCount, random);
 
@@ -157,7 +157,7 @@ public static class PatchMapGenerator
         {
             for (int k = 0; k < vertexCount; ++k)
             {
-                if (graph[k, i] == 1)
+                if (graph[k, i])
                     LinkRegions(map.Regions[i], map.Regions[k]);
             }
         }
@@ -184,22 +184,36 @@ public static class PatchMapGenerator
         region2.AddNeighbour(region1);
     }
 
-    private static void SubtractEdges(ref int[,] graph, int vertexNumber, int edgeNumber, Random random)
+    /// <summary>
+    ///   Create a triangulation for a certain graph given some vertex coordinates
+    /// </summary>
+    private static void DelaunayTriangulation(ref bool[,] graph, List<Vector2> vertexCoordinates)
     {
-        var currentEdgeNumber = CurrentEdgeNumber(ref graph, vertexNumber);
+        var triangles = Geometry.TriangulateDelaunay2d(vertexCoordinates.ToArray());
+        for (var i = 0; i < triangles.Length; i += 3)
+        {
+            graph[triangles[i], triangles[i + 1]] = graph[triangles[i + 1], triangles[i]] = true;
+            graph[triangles[i + 1], triangles[i + 2]] = graph[triangles[i + 2], triangles[i + 1]] = true;
+            graph[triangles[i], triangles[i + 2]] = graph[triangles[i + 2], triangles[i]] = true;
+        }
+    }
+
+    private static void SubtractEdges(ref bool[,] graph, int vertexCount, int edgeCount, Random random)
+    {
+        var currentEdgeCount = CurrentEdgeNumber(ref graph, vertexCount);
 
         // Subtract edges until we reach the desired edge count.
-        while (currentEdgeNumber > edgeNumber)
+        while (currentEdgeCount > edgeCount)
         {
-            var edgeToDelete = random.Next(1, currentEdgeNumber + 1);
+            var edgeToDelete = random.Next(1, currentEdgeCount + 1);
             int i;
             int k;
 
-            for (i = 0, k = 0; i < vertexNumber && edgeToDelete != 0; ++i)
+            for (i = 0, k = 0; i < vertexCount && edgeToDelete != 0; ++i)
             {
                 for (k = 0; edgeToDelete != 0 && k < i; ++k)
                 {
-                    if (graph[i, k] == 1)
+                    if (graph[i, k])
                         --edgeToDelete;
                 }
             }
@@ -210,30 +224,16 @@ public static class PatchMapGenerator
 
             // Check if the graph stays connected after subtracting the edge
             // otherwise, leave the edge as is.
-            graph[i, k] = graph[k, i] = 0;
+            graph[i, k] = graph[k, i] = false;
 
-            if (!CheckConnectivity(ref graph, vertexNumber))
+            if (!CheckConnectivity(ref graph, vertexCount))
             {
-                graph[i, k] = graph[k, i] = 1;
+                graph[i, k] = graph[k, i] = true;
             }
             else
             {
-                currentEdgeNumber -= 1;
+                currentEdgeCount -= 1;
             }
-        }
-    }
-
-    /// <summary>
-    ///   Create a triangulation for a certain graph given some vertex coordinates
-    /// </summary>
-    private static void DelaunayTriangulation(ref int[,] graph, List<Vector2> vertexCoordinates)
-    {
-        var triangles = Geometry.TriangulateDelaunay2d(vertexCoordinates.ToArray());
-        for (var i = 0; i < triangles.Length; i += 3)
-        {
-            graph[triangles[i], triangles[i + 1]] = graph[triangles[i + 1], triangles[i]] = 1;
-            graph[triangles[i + 1], triangles[i + 2]] = graph[triangles[i + 2], triangles[i + 1]] = 1;
-            graph[triangles[i], triangles[i + 2]] = graph[triangles[i + 2], triangles[i]] = 1;
         }
     }
 
@@ -244,42 +244,43 @@ public static class PatchMapGenerator
     /// <param name="vertexCount">Count of vertexes</param>
     /// <param name="point">Current point</param>
     /// <param name="visited">Array of already visited vertexes</param>
-    private static void DepthFirstGraphTraversal(int[,] graph, int vertexCount, int point, ref int[] visited)
+    private static void DepthFirstGraphTraversal(ref bool[,] graph, int vertexCount, int point, ref bool[] visited)
     {
-        visited[point] = 1;
+        visited[point] = true;
 
-        for (var i = 0; i < vertexCount; ++i)
+        for (int i = 0; i < vertexCount; ++i)
         {
-            if (graph[point, i] == 1 && visited[i] == 0)
-                DepthFirstGraphTraversal(graph, vertexCount, i, ref visited);
+            if (graph[point, i] && !visited[i])
+                DepthFirstGraphTraversal(ref graph, vertexCount, i, ref visited);
         }
     }
 
     /// <summary>
     ///   Checks the graph's connectivity
     /// </summary>
-    private static bool CheckConnectivity(ref int[,] graph, int vertexCount)
+    private static bool CheckConnectivity(ref bool[,] graph, int vertexCount)
     {
-        int[] visited = new int[vertexCount];
-        DepthFirstGraphTraversal(graph, vertexCount, 0, ref visited);
-        return visited.Sum() == vertexCount;
+        bool[] visited = new bool[vertexCount];
+        DepthFirstGraphTraversal(ref graph, vertexCount, 0, ref visited);
+        return visited.Count(v => v) == vertexCount;
     }
 
     /// <summary>
     ///   Counts the current number of edges in a given graph
     /// </summary>
-    private static int CurrentEdgeNumber(ref int[,] graph, int vertexCount)
+    private static int CurrentEdgeNumber(ref bool[,] graph, int vertexCount)
     {
         int edgeNumber = 0;
         for (int i = 0; i < vertexCount; ++i)
         {
-            for (int k = 0; k < vertexCount; ++k)
+            for (int k = 0; k < i; ++k)
             {
-                edgeNumber += graph[i, k];
+                if (graph[i, k])
+                    ++edgeNumber;
             }
         }
 
-        return edgeNumber / 2;
+        return edgeNumber;
     }
 
     /// <summary>
@@ -324,42 +325,6 @@ public static class PatchMapGenerator
         while (!CheckRegionDistance(region, map, minDistance) && ++i < 100);
 
         return i < 100 ? coordinate : Vector2.Inf;
-    }
-
-    private static void ConnectPatchesBetweenRegions(PatchRegion region, Random random)
-    {
-        if (region.Type is PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Sea)
-        {
-            foreach (var adjacent in region.Adjacent)
-            {
-                if (adjacent.Type == PatchRegion.RegionType.Continent)
-                {
-                    LinkPatches(region.Patches[0], adjacent.Patches.Random(random));
-                }
-                else if (adjacent.Type is PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean)
-                {
-                    var maxIndex = Math.Min(region.Patches.Count, adjacent.Patches.Count) - 1;
-                    var lowestConnectedLevel = random.Next(0, maxIndex);
-
-                    for (int i = 0; i <= lowestConnectedLevel; ++i)
-                    {
-                        LinkPatches(region.Patches[i], adjacent.Patches[i]);
-                    }
-                }
-            }
-        }
-        else if (region.Type == PatchRegion.RegionType.Continent)
-        {
-            foreach (var adjacent in region.Adjacent)
-            {
-                if (adjacent.Type == PatchRegion.RegionType.Continent)
-                {
-                    var maxIndex = Math.Min(region.Patches.Count, adjacent.Patches.Count);
-                    var patchIndex = random.Next(0, maxIndex);
-                    LinkPatches(region.Patches[patchIndex], adjacent.Patches[patchIndex]);
-                }
-            }
-        }
     }
 
     private static void BuildPatches(PatchRegion region, Random random)
@@ -582,6 +547,57 @@ public static class PatchMapGenerator
         foreach (var region in map.Regions)
         {
             ConnectPatchesBetweenRegions(region.Value, random);
+        }
+    }
+
+    private static void ConnectPatchesBetweenRegions(PatchRegion region, Random random)
+    {
+        switch (region.Type)
+        {
+            case PatchRegion.RegionType.Ocean or PatchRegion.RegionType.Sea:
+            {
+                foreach (var adjacent in region.Adjacent)
+                {
+                    switch (adjacent.Type)
+                    {
+                        case PatchRegion.RegionType.Sea or PatchRegion.RegionType.Ocean:
+                        {
+                            var maxIndex = Math.Min(region.Patches.Count, adjacent.Patches.Count) - 1;
+                            var lowestConnectedLevel = random.Next(0, maxIndex);
+
+                            for (int i = 0; i <= lowestConnectedLevel; ++i)
+                            {
+                                LinkPatches(region.Patches[i], adjacent.Patches[i]);
+                            }
+
+                            break;
+                        }
+
+                        case PatchRegion.RegionType.Continent:
+                        {
+                            LinkPatches(region.Patches[0], adjacent.Patches.Random(random));
+                            break;
+                        }
+                    }
+                }
+
+                break;
+            }
+
+            case PatchRegion.RegionType.Continent:
+            {
+                foreach (var adjacent in region.Adjacent)
+                {
+                    if (adjacent.Type == PatchRegion.RegionType.Continent)
+                    {
+                        var maxIndex = Math.Min(region.Patches.Count, adjacent.Patches.Count);
+                        var patchIndex = random.Next(0, maxIndex);
+                        LinkPatches(region.Patches[patchIndex], adjacent.Patches[patchIndex]);
+                    }
+                }
+
+                break;
+            }
         }
     }
 
