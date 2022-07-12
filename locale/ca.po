@@ -240,25 +240,37 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
-"Estructures procariòtiques\n"
+"Estructures Procariòtiques\n"
 "\n"
-"Metabolosomes: Produeixen ATP a partir de Glucosa\n"
+"Citoplasma: Proporciona espai d'emmagatzematge i duu a terme la glicòlisi "
+"(Produeix petites quantitats de [thrive:compound type=\"atp\"][/thrive:"
+"compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
 "\n"
-"Proteïnes Quimiosintetitzadores: Produeixen una petita quantitat de Glucosa, "
-"la meitat respecte a un Quimioplast, a partir d'Àcid Sulfhídric. També duu a "
-"terme el procés de Glicòlisi. A l'editor ocupa 1 Hexàgon\n"
+"Metabolosomes: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a "
+"partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Tilacoide: Produeixen una petita quantitat de Glucosa, una tercera part "
-"respecte a un Cloroplast. També duu a terme el procés de Glicòlisi. A "
-"l'editor ocupa 1 Hexàgon\n"
+"Tilacoides: Produeix 1/3 part de la quantitat de [thrive:compound type="
+"\"glucose\"][/thrive:compound] que un cloroplast normal, però també duu a "
+"terma la glicòlisi, i ocupa 1 Hexàgonbut also performs glycolysis, and takes "
+"up 1 Hex\n"
 "\n"
-"Rusticianina: Produeix ATP a partir de Ferro\n"
+"Proteïnes Quimiosintetitzadores: Produeix la meitat de [thrive:compound type="
+"\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide"
+"\"][/thrive:compound] que el Quimioplast, però també duu a terme la "
+"glicòlisi, i ocupa 1 Hexàgon\n"
 "\n"
-"Nitrogenasa: Produeix Amoníac, mitjançant un procés anaeròbic, a partir de "
-"l'ATP i del Nitrogen ambiental\n"
+"Rusticianina: Transforma [thrive:compound type=\"iron\"][/thrive:compound] "
+"en [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Citoplasma: Permet, fins a un cert límit, emmagatzemar recursos a l'interior "
-"de la cèl·lula. També duu a terme el procés de Glicòlisi"
+"Nitrogenasa: Transforma el nitrogen atmosfèric i [thrive:compound type=\"atp"
+"\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:"
+"compound] anaeròbicament\n"
+"\n"
+"Oxitoxisoma: Transforma [thrive:compound type=\"atp\"][/thrive:compound] en "
+"[thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintasa: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent "
+"servir gradients de temperatura"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -277,11 +289,10 @@ msgstr ""
 "Orgànuls adherits a la membrana\n"
 "\n"
 "Nucli: Ocupa 11 hexàgons i permet evolucionar orgànuls adherits a la "
-"membrana, i també duplica la mida de la teva cèl·lula (només es pot "
-"evolucionar una vegada)\n"
+"membrana, duplica la mida de la teva cèl·lula i redueix el mal rebut en un "
+"50% (només es pot evolucionar una vegada)\n"
 "\n"
-"Agent d'Adhesió: Permet adherir-se amb altres cèl·lules de la mateixa "
-"espècie\n"
+"Agent d'Adhesió: Permet adherir-se amb altres cèl·lules\n"
 "\n"
 "Mitocondri: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a "
 "partir de [thrive:compound type=\"glucose\"][/thrive:compound] i O2 "
@@ -289,6 +300,11 @@ msgstr ""
 "\n"
 "Cloroplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a "
 "partir de llum solar i CO2 atmosfèric\n"
+"\n"
+"Thermoplast: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent "
+"servir gradients de temperatura\n"
+"\n"
+"Lysosome: Conté enzims digestius\n"
 "\n"
 "Quimioplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a "
 "partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
@@ -300,7 +316,8 @@ msgstr ""
 "Vacúol: Emmagatzema fins a 8 unitats de compostos recol·lectats\n"
 "\n"
 "Vacúol de Toxines: Produeix toxines (anomenades [thrive:compound type="
-"\"oxytoxy\"][/thrive:compound])\n"
+"\"oxytoxy\"][/thrive:compound]) i et permet alliberar-les, tot produïnt mal "
+"en funció de la quantitat de toxines disponibles\n"
 "\n"
 "Agent de Senyalització: Permet crear productes químics als quals altres "
 "espècies hi poden reaccionar."
@@ -667,19 +684,19 @@ msgstr "Editor 3D"
 
 #: ../simulation_parameters/common/input_options.json:175
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
-msgstr ""
+msgstr "Mantenir premut per commutar entre el mode de translació i de rotació"
 
 #: ../simulation_parameters/common/input_options.json:179
 msgid "SWITCH_TO_FRONT_CAMERA"
-msgstr ""
+msgstr "Commutar a la vista de càmera frontal"
 
 #: ../simulation_parameters/common/input_options.json:183
 msgid "SWITCH_TO_RIGHT_CAMERA"
-msgstr ""
+msgstr "Commutar a la vista de càmera de cantó"
 
 #: ../simulation_parameters/common/input_options.json:187
 msgid "SWITCH_TO_TOP_CAMERA"
-msgstr ""
+msgstr "Commutar a la vista de càmera superior"
 
 #: ../simulation_parameters/common/input_options.json:196
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -716,9 +733,8 @@ msgid "TOGGLE_PAUSE"
 msgstr "Pausa"
 
 #: ../simulation_parameters/common/input_options.json:235
-#, fuzzy
 msgid "TOGGLE_DEBUG_PANEL"
-msgstr "Activar el mode d'engolir"
+msgstr "Obrir el menú de debug"
 
 #: ../simulation_parameters/common/input_options.json:239
 msgid "TOGGLE_FPS"
@@ -794,9 +810,8 @@ msgstr "Quimiolitoautotròfia basada en Ferro"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:133
 #: ../simulation_parameters/microbe_stage/bio_processes.json:142
-#, fuzzy
 msgid "THERMOSYNTHESIS"
-msgstr "Quimiosíntesi"
+msgstr "Termosíntesi"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -855,9 +870,8 @@ msgstr "Gran tros de Ferro"
 #: ../simulation_parameters/microbe_stage/biomes.json:1774
 #: ../simulation_parameters/microbe_stage/biomes.json:1941
 #: ../simulation_parameters/microbe_stage/biomes.json:2187
-#, fuzzy
 msgid "GOOGLY_EYE_CELL"
-msgstr "Cèl·lula del jugador"
+msgstr "Cèl·lula d'ulls amorosos"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:170
 msgid "VOLCANIC_VENT"
@@ -1006,17 +1020,15 @@ msgstr "Temperatura"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
-msgstr ""
+msgstr "Lipasa"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:7
-#, fuzzy
 msgid "CELLULASE"
-msgstr "Cel·lulosa"
+msgstr "Cel·lulasa"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:11
-#, fuzzy
 msgid "CHITINASE"
-msgstr "Quitina"
+msgstr "Quitinasa"
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:15
 #: ../simulation_parameters/microbe_stage/organelles.json:58
@@ -1095,9 +1107,8 @@ msgstr "Plastidi Fixador de Nitrogen"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:341
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:972
-#, fuzzy
 msgid "THERMOSYNTHASE"
-msgstr "Quimiosíntesi"
+msgstr "Termosintasa"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:380
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1858
@@ -1173,9 +1184,8 @@ msgstr "Cilis"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:870
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2359
-#, fuzzy
 msgid "LYSOSOME"
-msgstr "Oxytoxysoma"
+msgstr "Lisosoma"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED_DOT"
@@ -1200,9 +1210,7 @@ msgstr "Començant"
 #: ../src/auto-evo/AutoEvoRun.cs:293
 #, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr ""
-"Població de l'espècie {0} canviada per una quantitat {1} degut a aquest "
-"efecte: {2}"
+msgstr "Població de {0} ha variat en {1} degut a: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
 msgid "POPULATION_COLON"
@@ -1486,9 +1494,8 @@ msgid "MP_COST"
 msgstr "{0} MP"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:90
-#, fuzzy
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "S'està carregant l'Editor de Microbi"
+msgstr "Carregant l'Editor Multicel·lular Primerenc"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:228
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:254
@@ -1527,12 +1534,11 @@ msgstr "Delta: {0}"
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:77
 #: ../src/saving/SaveManagerGUI.cs:131
 msgid "MIB_VALUE"
-msgstr ""
+msgstr "{0} MiB"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:90
-#, fuzzy
 msgid "UNKNOWN_ON_WINDOWS"
-msgstr "ID del Workshop Desconegut Per Aquest Mod"
+msgstr "Desconegut a Windows"
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:85
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
