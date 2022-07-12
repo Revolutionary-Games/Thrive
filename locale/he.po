@@ -230,15 +230,19 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "מבנים פרוקריוטיים\n"
 "\n"
+"ציטופלזמה: מבצע גליקוליזה ומשומש כשטח אחסון (מייצר כמות קטנה של [thrive:"
+"compound type=\"atp\"][/thrive:compound] מ[thrive:compound type=\"glucose\"]"
+"[/thrive:compound])\n"
+"\n"
 "מטבולוזומים: מייצר [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:"
 "compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"תילקואיד: מפיק שליש מהכמות ה[thrive:compound type=\"glucose\"][/thrive:"
+"compound] שמיוצר בכלורופלסט, אבל גם מבצע גליקוליזה ותופס משושה אחד\n"
 "\n"
 "חלבונים כימוסינתזיים: מפיק מחצית מהכמות ה[thrive:compound type=\"glucose\"][/"
 "thrive:compound] מ [thrive:compound type=\"hydrogensulfide\"][/thrive:"
 "compound] שמיוצר בכימופלסט, אבל גם מבצע גליקוליזה, ולוקח משושה אחד\n"
-"\n"
-"תילקואיד: מפיק שליש מהכמות ה[thrive:compound type=\"glucose\"][/thrive:"
-"compound] שמיוצר בכלורופלסט, אבל גם מבצע גליקוליזה ותופס משושה אחד\n"
 "\n"
 "רוסטיצינין: ממיר [thrive:compound type=\"iron\"][/thrive:compound] ל[thrive:"
 "compound type=\"atp\"][/thrive:compound]\n"
@@ -247,8 +251,11 @@ msgstr ""
 "compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound] באופן "
 "אנאירובי\n"
 "\n"
-"ציטופלזמה: מבצע גליקוליזה ומשומש כשטח אחסון (מייצר כמות קטנה של [thrive:"
-"compound type=\"atp\"][/thrive:compound])"
+"אוקסיטוקסיזום: הופך [thrive:compound type=\"atp\"][/thrive:compound] "
+"ל[thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"תרמוסינטאז: מייצר [thrive:compound type=\"atp\"][/thrive:compound] בעמצאות "
+"שינוי טמפרטורה"
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
@@ -280,6 +287,11 @@ msgstr ""
 "\n"
 "כלורופלסט: מייצר [thrive:compound type=\"glucose\"][/thrive:compound] מאור "
 "שמש ופחמן דו חמצני אטמוספרי\n"
+"\n"
+"תרמופלסט: מייצר [thrive:compound type=\"atp\"][/thrive:compound] באמצעות "
+"שינוי טמפרטורה\n"
+"\n"
+"ליזוזום: מכיל אנזימי עיכול\n"
 "\n"
 "כימופלסט: מייצר [thrive:compound type=\"glucose\"][/thrive:compound] "
 "מ[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
@@ -2419,10 +2431,9 @@ msgstr "תצוגת רשימת יכולות"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "אפשר תצוגת אור בממשק משתמש"
 
-#: ../src/general/OptionsMenu.tscn:440 ../src/general/OptionsMenu.tscn:415
-#, fuzzy
+#: ../src/general/OptionsMenu.tscn:415
 msgid "DISPLAY_PART_NAMES"
-msgstr "תצוגת רשימת יכולות"
+msgstr "הצג שמות כפתורי בחירת חלקים"
 
 #: ../src/general/OptionsMenu.tscn:466 ../src/general/OptionsMenu.tscn:441
 #: ../src/general/OptionsMenu.tscn:433
@@ -4024,16 +4035,15 @@ msgstr "אוכלוסיה:"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1938
 msgid "MACROSCOPIC_PROTOTYPE_INFO"
-msgstr ""
+msgstr "מקרוסקופי אבטיפוס"
 
 #: ../src/late_multicellular_stage/MulticellularHUD.tscn:1940
-#, fuzzy
 msgid "MACROSCOPIC_PROTOYPE_WARNING"
 msgstr ""
-"השמירה שנבחרה לטעינה נעשתה באבטיפוס שבגרסת Thrive שונה.\n"
-"בגלל זה השמירה לא יכלה לטעון ששמירות אבטיפוס לא ניתנות לעדכון.\n"
-"תחזוק יכולות שמירה בשביל אבטיפוס עלול להיות נטל גדול שדברים ועבוד מחדש נעשה "
-"בתכופות מרבית ושכתוב שלהם יכולה להאט את פיתוח האבטיפוס בהרבה."
+"ברכות על הגעת לאב הטיפוס לקטע המקרוסקופי של השלב הרב-תאי!\n"
+"\n"
+"בעקבות אילוצי פיתוח, לא הצלחנו להוסיף משחקיות מקרוסקופית תלת מימדית בגרסה "
+"זו. עם זאת, אתה יכול לחזור לעורך כדי להמשיך לבנות את האורגניזם שלך."
 
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:107
 msgid "LOADING_MULTICELLULAR_EDITOR"
