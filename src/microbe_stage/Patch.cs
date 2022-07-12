@@ -45,7 +45,7 @@ public class Patch
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Explicitly stated values are used as patch ids in classic map
+    ///     Explicitly stated values are used as patch IDs in classic map
     ///   </para>
     /// </remarks>
     public enum BiomeTypes
