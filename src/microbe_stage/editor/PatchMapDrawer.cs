@@ -109,7 +109,7 @@ public class PatchMapDrawer : Control
             RebuildMapNodes();
             Update();
 
-            RectMinSize = GetRightCornerPointOnMap() + new Vector2(450, 450);
+            RectMinSize = GetRightBottomCornerPointOnMap() + new Vector2(450, 450);
 
             dirty = false;
         }
@@ -128,23 +128,8 @@ public class PatchMapDrawer : Control
             CreateRegionLinks();
 
         DrawRegionLinks();
-        DrawRegions();
-
-        // This ends up drawing duplicates but that doesn't seem problematic ATM
-        foreach (var entry in Map.Patches)
-        {
-            foreach (var adjacent in entry.Value.Adjacent)
-            {
-                // Only draw connections if patches belong to the same region
-                if (entry.Value.Region.ID == adjacent.Region.ID)
-                {
-                    var start = Center(entry.Value.ScreenCoordinates);
-                    var end = Center(adjacent.ScreenCoordinates);
-
-                    DrawNodeLink(start, end, DefaultConnectionColor);
-                }
-            }
-        }
+        DrawRegionBorders();
+        DrawPatchLinks();
 
         // Scroll to player patch only when first drawn
         if (!alreadyDrawn)
@@ -186,13 +171,13 @@ public class PatchMapDrawer : Control
     private static Vector2 SegmentSegmentIntersection(Vector2 segment1Start, Vector2 segment1End, Vector2 segment2Start,
         Vector2 segment2End)
     {
-        return (Vector2?)Geometry.SegmentIntersectsSegment2d(segment1Start, segment1End,
-            segment2Start, segment2End) ?? Vector2.Inf;
+        return (Geometry.SegmentIntersectsSegment2d(segment1Start, segment1End,
+            segment2Start, segment2End) as Vector2?) ?? Vector2.Inf;
     }
 
     private static Vector2 ClosestSegmentRectangleIntersection(Vector2 start, Vector2 end, Rect2 rect)
     {
-        var intersection = -Vector2.Inf;
+        var intersection = Vector2.Inf;
         var p0 = rect.Position;
         var p1 = rect.Position + new Vector2(0, rect.Size.y);
         var p2 = rect.Position + new Vector2(rect.Size.x, 0);
@@ -211,13 +196,13 @@ public class PatchMapDrawer : Control
         return intersection;
     }
 
-    private Vector2 RegionCenter(PatchRegion region)
+    private static Vector2 RegionCenter(PatchRegion region)
     {
         return new Vector2(region.ScreenCoordinates.x + region.Width * 0.5f,
             region.ScreenCoordinates.y + region.Height * 0.5f);
     }
 
-    private Vector2 Center(Vector2 pos)
+    private static Vector2 PatchCenter(Vector2 pos)
     {
         return new Vector2(pos.x + Constants.PATCH_NODE_RECT_LENGTH * 0.5f,
             pos.y + Constants.PATCH_NODE_RECT_LENGTH * 0.5f);
@@ -250,7 +235,7 @@ public class PatchMapDrawer : Control
             (ContainsSelected(region2) && ContainsAdjacentToSelected(region1));
     }
 
-    private Vector2 GetRightCornerPointOnMap()
+    private Vector2 GetRightBottomCornerPointOnMap()
     {
         var point = Vector2.Zero;
 
@@ -299,7 +284,7 @@ public class PatchMapDrawer : Control
         var endCenter = RegionCenter(end);
         var endRect = new Rect2(end.ScreenCoordinates, end.Size);
 
-        var probablePaths = new List<(Vector2[], int)>();
+        var probablePaths = new List<(Vector2[] Path, int Priority)>();
 
         // Direct line, I shape, highest priority
         if (Math.Abs(startCenter.x - endCenter.x) < Mathf.Epsilon ||
@@ -322,15 +307,15 @@ public class PatchMapDrawer : Control
         var right = startRect.End.x > endRect.End.x ? startRect : endRect;
 
         // 3-segment line, Z shape
-        var mid = new Vector2(left.End.x + right.Position.x, upper.End.y + lower.Position.y) / 2.0f;
+        var middlePoint = new Vector2(left.End.x + right.Position.x, upper.End.y + lower.Position.y) / 2.0f;
 
-        var intermediate1 = new Vector2(startCenter.x, mid.y);
-        var intermediate2 = new Vector2(endCenter.x, mid.y);
+        var intermediate1 = new Vector2(startCenter.x, middlePoint.y);
+        var intermediate2 = new Vector2(endCenter.x, middlePoint.y);
         if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, 1));
 
-        intermediate1 = new Vector2(mid.x, startCenter.y);
-        intermediate2 = new Vector2(mid.x, endCenter.y);
+        intermediate1 = new Vector2(middlePoint.x, startCenter.y);
+        intermediate2 = new Vector2(middlePoint.x, endCenter.y);
         if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, 1));
 
@@ -354,7 +339,7 @@ public class PatchMapDrawer : Control
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, -i));
         }
 
-        return probablePaths.OrderBy(IntersectionCountWithPriority).First().Item1;
+        return probablePaths.OrderBy(IntersectionCountWithPriority).First().Path;
     }
 
     /// <summary>
@@ -373,54 +358,55 @@ public class PatchMapDrawer : Control
                 connectionEndHere.Select(c => (c.Value, c.Value.Length - 1, c.Value.Length - 2)));
 
             // Separate connection by directions: 0 -> Left, 1 -> Up, 2 -> Right, 3 -> Down
-            var connectionsToDirections = new List<(Vector2[], int, int, float)>[4];
+            var connectionsToDirections = new List<(Vector2[] Path, int Endpoint, int Intermediate, float Distance)>[4];
 
             for (int i = 0; i < 4; i++)
             {
-                connectionsToDirections[i] = new List<(Vector2[], int, int, float)>();
+                connectionsToDirections[i] =
+                    new List<(Vector2[] Path, int Endpoint, int Intermediate, float Distance)>();
             }
 
-            foreach (var (connection, endpoint, intermediate) in connectionTupleList)
+            foreach (var (path, endpoint, intermediate) in connectionTupleList)
             {
-                if (Math.Abs(connection[endpoint].x - connection[intermediate].x) < Mathf.Epsilon)
+                if (Math.Abs(path[endpoint].x - path[intermediate].x) < Mathf.Epsilon)
                 {
-                    connectionsToDirections[connection[endpoint].y > connection[intermediate].y ? 1 : 3].Add((
-                        connection, endpoint, intermediate,
-                        Mathf.Abs(connection[endpoint].y - connection[intermediate].y)));
+                    connectionsToDirections[path[endpoint].y > path[intermediate].y ? 1 : 3].Add((
+                        path, endpoint, intermediate,
+                        Mathf.Abs(path[endpoint].y - path[intermediate].y)));
                 }
                 else
                 {
-                    connectionsToDirections[connection[endpoint].x > connection[intermediate].x ? 0 : 2].Add((
-                        connection, endpoint, intermediate,
-                        Mathf.Abs(connection[endpoint].x - connection[intermediate].x)));
+                    connectionsToDirections[path[endpoint].x > path[intermediate].x ? 0 : 2].Add((
+                        path, endpoint, intermediate,
+                        Mathf.Abs(path[endpoint].x - path[intermediate].x)));
                 }
             }
 
             // Endpoint position
-            foreach (var (connection, endpoint, _, _) in connectionsToDirections[0])
+            foreach (var (path, endpoint, _, _) in connectionsToDirections[0])
             {
-                connection[endpoint].x -= region.Value.Width / 2;
+                path[endpoint].x -= region.Value.Width / 2;
             }
 
-            foreach (var (connection, endpoint, _, _) in connectionsToDirections[1])
+            foreach (var (path, endpoint, _, _) in connectionsToDirections[1])
             {
-                connection[endpoint].y -= region.Value.Height / 2;
+                path[endpoint].y -= region.Value.Height / 2;
             }
 
-            foreach (var (connection, endpoint, _, _) in connectionsToDirections[2])
+            foreach (var (path, endpoint, _, _) in connectionsToDirections[2])
             {
-                connection[endpoint].x += region.Value.Width / 2;
+                path[endpoint].x += region.Value.Width / 2;
             }
 
-            foreach (var (connection, endpoint, _, _) in connectionsToDirections[3])
+            foreach (var (path, endpoint, _, _) in connectionsToDirections[3])
             {
-                connection[endpoint].y += region.Value.Height / 2;
+                path[endpoint].y += region.Value.Height / 2;
             }
 
             // Separation
             const float lineSeparation = 4 * Constants.PATCH_REGION_CONNECTION_LINE_WIDTH;
 
-            for (var direction = 0; direction < 4; ++direction)
+            for (int direction = 0; direction < 4; ++direction)
             {
                 var connectionsToDirection = connectionsToDirections[direction];
 
@@ -431,20 +417,19 @@ public class PatchMapDrawer : Control
                 if (direction is 1 or 3)
                 {
                     float right = (connectionsToDirection.Count - 1) / 2.0f, left = -right;
-                    foreach (var (connection, endpoint, intermediate, _) in
-                             connectionsToDirection.OrderBy(t => t.Item4))
+                    foreach (var (path, endpoint, intermediate, _) in
+                             connectionsToDirection.OrderBy(t => t.Distance))
                     {
-                        if (connection.Length == 2
-                            || connection[2 * intermediate - endpoint].x > connection[intermediate].x)
+                        if (path.Length == 2 || path[2 * intermediate - endpoint].x > path[intermediate].x)
                         {
-                            connection[endpoint].x += lineSeparation * right;
-                            connection[intermediate].x += lineSeparation * right;
+                            path[endpoint].x += lineSeparation * right;
+                            path[intermediate].x += lineSeparation * right;
                             right -= 1;
                         }
                         else
                         {
-                            connection[endpoint].x += lineSeparation * left;
-                            connection[intermediate].x += lineSeparation * left;
+                            path[endpoint].x += lineSeparation * left;
+                            path[intermediate].x += lineSeparation * left;
                             left += 1;
                         }
                     }
@@ -452,20 +437,19 @@ public class PatchMapDrawer : Control
                 else
                 {
                     float down = (connectionsToDirection.Count - 1) / 2.0f, up = -down;
-                    foreach (var (connection, endpoint, intermediate, _) in
-                             connectionsToDirection.OrderBy(t => t.Item4))
+                    foreach (var (path, endpoint, intermediate, _) in
+                             connectionsToDirection.OrderBy(t => t.Distance))
                     {
-                        if (connection.Length == 2
-                            || connection[2 * intermediate - endpoint].y > connection[intermediate].y)
+                        if (path.Length == 2 || path[2 * intermediate - endpoint].y > path[intermediate].y)
                         {
-                            connection[endpoint].y += lineSeparation * down;
-                            connection[intermediate].y += lineSeparation * down;
+                            path[endpoint].y += lineSeparation * down;
+                            path[intermediate].y += lineSeparation * down;
                             down -= 1;
                         }
                         else
                         {
-                            connection[endpoint].y += lineSeparation * up;
-                            connection[intermediate].y += lineSeparation * up;
+                            path[endpoint].y += lineSeparation * up;
+                            path[intermediate].y += lineSeparation * up;
                             up += 1;
                         }
                     }
@@ -498,7 +482,7 @@ public class PatchMapDrawer : Control
             foreach (var reg in map.Regions)
             {
                 var regionRect = new Rect2(reg.Value.ScreenCoordinates, reg.Value.Size);
-                if (ClosestSegmentRectangleIntersection(startPoint, endPoint, regionRect) != -Vector2.Inf)
+                if (ClosestSegmentRectangleIntersection(startPoint, endPoint, regionRect) != Vector2.Inf)
                 {
                     count += 10;
                 }
@@ -553,7 +537,7 @@ public class PatchMapDrawer : Control
         }
     }
 
-    private void DrawRegions()
+    private void DrawRegionBorders()
     {
         // Don't draw a border if there's only one region
         if (map.Regions.Count == 1)
@@ -564,6 +548,25 @@ public class PatchMapDrawer : Control
             var region = entry.Value;
             DrawRect(new Rect2(region.ScreenCoordinates, new Vector2(region.Width, region.Height)),
                 new Color(0.0f, 0.7f, 0.5f, 0.7f), false, Constants.PATCH_REGION_BORDER_WIDTH);
+        }
+    }
+
+    private void DrawPatchLinks()
+    {
+        // This ends up drawing duplicates but that doesn't seem problematic ATM
+        foreach (var entry in Map!.Patches)
+        {
+            foreach (var adjacent in entry.Value.Adjacent)
+            {
+                // Only draw connections if patches belong to the same region
+                if (entry.Value.Region.ID == adjacent.Region.ID)
+                {
+                    var start = PatchCenter(entry.Value.ScreenCoordinates);
+                    var end = PatchCenter(adjacent.ScreenCoordinates);
+
+                    DrawNodeLink(start, end, DefaultConnectionColor);
+                }
+            }
         }
     }
 
