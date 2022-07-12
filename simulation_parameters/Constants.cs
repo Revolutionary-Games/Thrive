@@ -384,7 +384,16 @@ public static class Constants
     /// </summary>
     public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.3f;
 
-    public const float ENGULF_TOXIC_COMPOUND_ABSORPTION_DAMAGE_FRACTION = 0.9f;
+    /// <summary>
+    ///   How often in seconds damage is checked and applied when cell digests a toxic cell
+    /// </summary>
+    public const float TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL = 0.9f;
+
+    /// <summary>
+    ///   Determines how big of a fraction of damage (of total health)
+    ///   is dealt to a microbe at a time when it digests a toxic cell.
+    /// </summary>
+    public const float TOXIN_DIGESTION_DAMAGE_FRACTION = 0.09f;
 
     /// <summary>
     ///   Each enzyme addition grants a fraction, set by this variable, increase in digestion speed.
