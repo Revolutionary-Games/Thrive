@@ -39,7 +39,7 @@ public class MulticellularHUD : StageHUDBase<MulticellularStage>
         awareButton = GetNode<Button>(AwareButtonPath);
         awakenButton = GetNode<Button>(AwakenButtonPath);
 
-        // TODO remove this once gameplay is added
+        // TODO: remove this once gameplay is added
         prototypeInfoPopup.PopupCenteredShrink();
     }
 

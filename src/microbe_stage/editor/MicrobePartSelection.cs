@@ -128,6 +128,13 @@ public class MicrobePartSelection : MarginContainer
         UpdateIcon();
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        Settings.Instance.DisplayPartNames.OnChanged -= OnDisplayPartNamesChanged;
+    }
+
     private void OnDisplayPartNamesChanged(bool displayed)
     {
         if (nameLabel != null)
