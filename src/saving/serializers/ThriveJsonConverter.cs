@@ -459,7 +459,6 @@ public abstract class BaseThriveConverter : JsonConverter
 
         bool readToEnd = false;
         string? refId = null;
-        string? setId = null;
 
         bool normalPropertiesStarted = false;
 
@@ -492,12 +491,7 @@ public abstract class BaseThriveConverter : JsonConverter
                 continue;
             }
 
-            if (name == ID_PROPERTY)
-            {
-                setId = (string?)value ?? throw new JsonException("no id in object id property");
-
-                continue;
-            }
+            // ID_PROPERTY is handled by objectLoad as it needs to be able to set this as early as possible
 
             // Detect dynamic typing
             if (name == TYPE_PROPERTY)
@@ -524,23 +518,11 @@ public abstract class BaseThriveConverter : JsonConverter
 
             // We are handling a non-special property
 
-            object instance;
-
             if (!normalPropertiesStarted)
             {
                 // Offer our initial value as a potential constructor parameter
                 objectLoad.OfferPotentiallyConstructorParameter((name, value, field, property));
-                instance = objectLoad.GetInstance();
-
-                // Ensure id is set at this point in case it is needed for child properties
-                if (setId != null)
-                {
-                    // Store the instance before loading properties to not break on recursive references
-                    // Though, we need cooperation from the JSON writer that other properties are not before
-                    // the ID field
-                    serializer.ReferenceResolver.AddReference(serializer, setId, instance);
-                    setId = null;
-                }
+                objectLoad.GetInstance();
 
                 normalPropertiesStarted = true;
 
@@ -549,7 +531,7 @@ public abstract class BaseThriveConverter : JsonConverter
                 continue;
             }
 
-            instance = objectLoad.GetInstance();
+            var instance = objectLoad.GetInstance();
 
             if (field != null)
             {
@@ -590,11 +572,6 @@ public abstract class BaseThriveConverter : JsonConverter
             return serializer.ReferenceResolver.ResolveReference(serializer, refId);
 
         var instanceAtEnd = objectLoad.GetInstance();
-
-        if (setId != null)
-        {
-            serializer.ReferenceResolver.AddReference(serializer, setId, instanceAtEnd);
-        }
 
         objectLoad.MarkStartCustomFields();
 

@@ -27,12 +27,19 @@ public class InProgressObjectDeserialization
     private readonly List<string> customFieldNames = new();
 
     private object? createdInstance;
+    private bool instanceCreationStarted;
+
+    private bool seenSpecialValues;
+    private string? setId;
 
     private List<FieldInfo>? instanceFields;
     private List<PropertyInfo>? instanceProperties;
 
     private List<(string Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)?>?
         readButNotConsumedProperties;
+
+    private Func<(string Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)>?
+        offeredConstructorParameter;
 
     private List<(string Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)?>?
         pendingCustomFields;
@@ -66,6 +73,14 @@ public class InProgressObjectDeserialization
     public (string? Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo) ReadNextProperty(
         bool ignoreNotConsumed = false)
     {
+        // If there is a pending offer to read a constructor parameter, return it
+        if (offeredConstructorParameter != null)
+        {
+            var offeredValue = offeredConstructorParameter.Invoke();
+            offeredConstructorParameter = null;
+            return offeredValue;
+        }
+
         // If there are pending reads, return those first
         if (!ignoreNotConsumed && readButNotConsumedProperties != null)
         {
@@ -109,14 +124,28 @@ public class InProgressObjectDeserialization
             var name = (string?)reader.Value ?? throw new JsonException("No name in property");
 
             if (BaseThriveConverter.IsSpecialProperty(name))
-                return (name, reader.ReadAsString(), null, null);
+            {
+                seenSpecialValues = true;
+
+                var specialValue = reader.ReadAsString();
+
+                if (name == BaseThriveConverter.ID_PROPERTY)
+                {
+                    setId = specialValue ?? throw new JsonException("no id in object id property");
+
+                    // We handled this so don't pass it to our caller
+                    continue;
+                }
+
+                return (name, specialValue, null, null);
+            }
+
+            reader.Read();
 
             // Ignore properties we don't want to read (and use for something)
             var isCustom = customFieldNames.Any(c => c.Equals(name, StringComparison.OrdinalIgnoreCase));
             if (!IsPropertyUseful(name, out var valueType, out var field, out var property) && !isCustom)
             {
-                reader.Read();
-
                 GD.PrintErr("Ignoring save property at: ", reader.Path);
 
                 // Seems like reader.Skip is really hard to use so we need to deserialize some stuff here which we'll
@@ -125,8 +154,29 @@ public class InProgressObjectDeserialization
             }
             else
             {
+                // Because the first child property may already reference the current object, we need to make sure
+                // we deserialize it immediately here (and we don't deserialize the current property unless absolutely
+                // required). But only if id or ref value has been seen, otherwise we can use normal deserialization
+                // to skip on some extra processing
+                bool read = false;
+                if (!instanceCreationStarted && seenSpecialValues)
+                {
+                    SetPriorityReadCallbackForConstructor(() =>
+                    {
+                        read = true;
+                        return (name, serializer.Deserialize(reader, valueType), field, property);
+                    });
+                    CreateInstance();
+                    ClearPriorityCallbackForConstructor();
+                }
+
+                if (read)
+                {
+                    // Skip trying to read the value if it was read already
+                    continue;
+                }
+
                 // Load this property's value
-                reader.Read();
                 var readValue = (name, serializer.Deserialize(reader, valueType), field, property);
 
                 if (isCustom && !allowCustomFieldRead)
@@ -359,12 +409,33 @@ public class InProgressObjectDeserialization
         return true;
     }
 
+    /// <summary>
+    ///   Inserts a callback that is used the next time a property is to be read
+    /// </summary>
+    private void SetPriorityReadCallbackForConstructor(Func<
+        (string Name, object? Value, FieldInfo? FieldInfo, PropertyInfo? PropertyInfo)> propertyReader)
+    {
+        if (offeredConstructorParameter != null)
+            throw new InvalidOperationException("Offering multiple constructor param values in a row is not allowed");
+
+        offeredConstructorParameter = propertyReader;
+    }
+
+    private void ClearPriorityCallbackForConstructor()
+    {
+        offeredConstructorParameter = null;
+    }
+
     private void CreateInstance()
     {
         var type = DynamicType ?? staticType;
 
         if (type == typeof(DynamicDeserializeObjectConverter))
             throw new JsonException("Dynamic dummy deserialize used object didn't specify type");
+
+        // Important to set this here so that we can skip not trying to create the instance recursively whenever we
+        // try to read the constructor parameters
+        instanceCreationStarted = true;
 
         // Detect scene loaded type
         bool sceneLoad = type.CustomAttributes.Any(
@@ -378,6 +449,19 @@ public class InProgressObjectDeserialization
             throw new JsonException("instance of deserialized object should have been created");
 
         RunPrePropertyDeserializeActions(createdInstance);
+
+        // Ensure id is set at this point in case it is needed for child properties
+        if (setId != null)
+        {
+            if (serializer.ReferenceResolver == null)
+                throw new InvalidOperationException("JsonSerializer must have reference resolver");
+
+            // Store the instance before loading properties to not break on recursive references
+            // Though, we need cooperation from the JSON writer that other properties are not before
+            // the ID field
+            serializer.ReferenceResolver.AddReference(serializer, setId, createdInstance);
+            setId = null;
+        }
     }
 
     /// <summary>
