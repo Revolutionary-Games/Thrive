@@ -168,32 +168,93 @@ public class PatchMapDrawer : Control
         return point1.DistanceSquaredTo(comparisonPoint) > point2.DistanceSquaredTo(comparisonPoint) ? point2 : point1;
     }
 
-    private static Vector2 SegmentSegmentIntersection(Vector2 segment1Start, Vector2 segment1End, Vector2 segment2Start,
-        Vector2 segment2End)
+    /// <summary>
+    ///   If two segments parallel to axis intersect each other.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     True if intersect at endpoint.
+    ///   </para>
+    ///   <para>
+    ///     True if the two segments are collinear and has common points.
+    ///   </para>
+    /// </remarks>
+    /// <returns>True if intersect</returns>
+    private static bool SegmentSegmentIntersect(Vector2 segment1Start, Vector2 segment1End,
+        Vector2 segment2Start, Vector2 segment2End)
     {
-        return (Geometry.SegmentIntersectsSegment2d(segment1Start, segment1End,
-            segment2Start, segment2End) as Vector2?) ?? Vector2.Inf;
+        if (Mathf.Abs(segment1Start.x - segment1End.x) < Mathf.Epsilon)
+        {
+            var segment1Greater = Mathf.Max(segment1Start.y, segment1End.y);
+            var segment1Smaller = Mathf.Min(segment1Start.y, segment1End.y);
+
+            if (Mathf.Abs(segment2Start.x - segment2End.x) < Mathf.Epsilon)
+            {
+                var segment2Greater = Mathf.Max(segment2Start.y, segment2End.y);
+                var segment2Smaller = Mathf.Min(segment2Start.y, segment2End.y);
+
+                return (Mathf.Abs(segment1Start.x - segment2Start.x) < Mathf.Epsilon) &&
+                    !(Mathf.Max(segment1Smaller, segment2Smaller) - Mathf.Min(segment1Greater, segment2Greater) >
+                        Mathf.Epsilon);
+            }
+            else
+            {
+                if (!(Mathf.Abs(segment2Start.y - segment2End.y) < Mathf.Epsilon))
+                    throw new InvalidOperationException("Segment2 isn't parallel to axis!");
+
+                var segment2Greater = Mathf.Max(segment2Start.x, segment2End.x);
+                var segment2Smaller = Mathf.Min(segment2Start.x, segment2End.x);
+
+                return segment1Greater - segment2Start.y > -Mathf.Epsilon &&
+                    segment2Start.y - segment1Smaller > -Mathf.Epsilon &&
+                    segment2Greater - segment1Start.x > -Mathf.Epsilon &&
+                    segment1Start.x - segment2Smaller > -Mathf.Epsilon;
+            }
+        }
+        else
+        {
+            if (!(Mathf.Abs(segment1Start.y - segment1End.y) < Mathf.Epsilon))
+                throw new InvalidOperationException("Segment1 isn't parallel to axis!");
+
+            var segment1Greater = Mathf.Max(segment1Start.x, segment1End.x);
+            var segment1Smaller = Mathf.Min(segment1Start.x, segment1End.x);
+
+            if (Mathf.Abs(segment2Start.y - segment2End.y) < Mathf.Epsilon)
+            {
+                var segment2Greater = Mathf.Max(segment2Start.x, segment2End.x);
+                var segment2Smaller = Mathf.Min(segment2Start.x, segment2End.x);
+
+                return (Mathf.Abs(segment1Start.y - segment2Start.y) < Mathf.Epsilon) &&
+                    !(Mathf.Max(segment1Smaller, segment2Smaller) - Mathf.Min(segment1Greater, segment2Greater) >
+                        Mathf.Epsilon);
+            }
+            else
+            {
+                if (!(Mathf.Abs(segment2Start.x - segment2End.x) < Mathf.Epsilon))
+                    throw new InvalidOperationException("Segment2 isn't parallel to axis!");
+
+                var segment2Greater = Mathf.Max(segment2Start.y, segment2End.y);
+                var segment2Smaller = Mathf.Min(segment2Start.y, segment2End.y);
+
+                return segment1Greater - segment2Start.x > -Mathf.Epsilon &&
+                    segment2Start.x - segment1Smaller > -Mathf.Epsilon &&
+                    segment2Greater - segment1Start.y > -Mathf.Epsilon &&
+                    segment1Start.y - segment2Smaller > -Mathf.Epsilon;
+            }
+        }
     }
 
-    private static Vector2 ClosestSegmentRectangleIntersection(Vector2 start, Vector2 end, Rect2 rect)
+    private static bool SegmentRectangleIntersect(Vector2 start, Vector2 end, Rect2 rect)
     {
-        var intersection = Vector2.Inf;
         var p0 = rect.Position;
         var p1 = rect.Position + new Vector2(0, rect.Size.y);
         var p2 = rect.Position + new Vector2(rect.Size.x, 0);
         var p3 = rect.End;
 
-        var intersection1 = SegmentSegmentIntersection(p0, p1, start, end);
-        var intersection2 = SegmentSegmentIntersection(p0, p2, start, end);
-        var intersection3 = SegmentSegmentIntersection(p1, p3, start, end);
-        var intersection4 = SegmentSegmentIntersection(p2, p3, start, end);
-
-        intersection = ClosestPoint(end, intersection, intersection1);
-        intersection = ClosestPoint(end, intersection, intersection2);
-        intersection = ClosestPoint(end, intersection, intersection3);
-        intersection = ClosestPoint(end, intersection, intersection4);
-
-        return intersection;
+        return SegmentSegmentIntersect(p0, p1, start, end) ||
+            SegmentSegmentIntersect(p0, p2, start, end) ||
+            SegmentSegmentIntersect(p1, p3, start, end) ||
+            SegmentSegmentIntersect(p2, p3, start, end);
     }
 
     private static Vector2 RegionCenter(PatchRegion region)
@@ -494,7 +555,7 @@ public class PatchMapDrawer : Control
             foreach (var region in map.Regions.Values)
             {
                 var regionRect = new Rect2(region.ScreenCoordinates, region.Size);
-                if (ClosestSegmentRectangleIntersection(startPoint, endPoint, regionRect) != Vector2.Inf)
+                if (SegmentRectangleIntersect(startPoint, endPoint, regionRect))
                 {
                     count += 10;
                 }
@@ -511,9 +572,7 @@ public class PatchMapDrawer : Control
 
                 for (int j = 1; j < target.Length; ++j)
                 {
-                    var intersection = SegmentSegmentIntersection(startPoint, endPoint, target[j - 1], target[j]);
-
-                    if (intersection != Vector2.Inf)
+                    if (SegmentSegmentIntersect(startPoint, endPoint, target[j - 1], target[j]))
                         ++count;
                 }
             }
