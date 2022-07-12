@@ -251,7 +251,7 @@ public class PatchMapDrawer : Control
     }
 
     /// <summary>
-    ///   This function create least intersected drawing links according to region adjacent
+    ///   This function creates least intersected links to adjoining regions.
     /// </summary>
     private void CreateRegionLinks()
     {
