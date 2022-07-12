@@ -606,7 +606,7 @@ public static class PatchMapGenerator
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Note that after calling this, regions and patches has already been linked together.
+    ///     Note that after calling this, regions and patches have already been linked together.
     ///   </para>
     /// </remarks>
     /// <param name="biome">The requested biome</param>
