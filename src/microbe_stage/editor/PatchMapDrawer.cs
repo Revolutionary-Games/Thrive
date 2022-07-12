@@ -488,7 +488,7 @@ public class PatchMapDrawer : Control
                 }
             }
 
-            // Calculate line-line intersections
+            // Calculate line-to-line intersections
             foreach (var target in connections.Values)
             {
                 for (int j = 1; j < target.Length; j++)
