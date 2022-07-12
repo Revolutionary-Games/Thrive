@@ -120,15 +120,16 @@ public class MicrobePartSelection : MarginContainer
         iconRect = GetNode<TextureRect>("VBoxContainer/Button/Icon");
         nameLabel = GetNode<Label>("VBoxContainer/Name");
 
+        OnDisplayPartNamesChanged(Settings.Instance.DisplayPartNames);
+        Settings.Instance.DisplayPartNames.OnChanged += OnDisplayPartNamesChanged;
+
         UpdateButton();
         UpdateLabels();
         UpdateIcon();
     }
 
-    public override void _Process(float delta)
+    private void OnDisplayPartNamesChanged(bool displayed)
     {
-        base._Process(delta);
-
         if (nameLabel != null)
             nameLabel.Visible = Settings.Instance.DisplayPartNames || AlwaysShowLabel;
     }
