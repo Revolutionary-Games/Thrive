@@ -8,8 +8,9 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [TypeConverter(typeof(ThriveTypeConverter))]
-[JSONDynamicTypeAllowed]
+[JSONAlwaysDynamicType]
 [UseThriveConverter]
+[UseThriveSerializer]
 public class EarlyMulticellularSpecies : Species
 {
     public EarlyMulticellularSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)

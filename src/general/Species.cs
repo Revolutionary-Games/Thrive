@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 [TypeConverter(typeof(ThriveTypeConverter))]
 [JSONAlwaysDynamicType]
 [UseThriveConverter]
+[UseThriveSerializer]
 public abstract class Species : ICloneable
 {
     protected Species(uint id, string genus, string epithet)
