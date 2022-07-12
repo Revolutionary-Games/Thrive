@@ -424,7 +424,7 @@ public static class PatchMapGenerator
                 if (cave != null)
                     --waterPatchCount;
 
-                for (int i = 0; i < waterPatchCount; i++)
+                for (int i = 0; i < waterPatchCount; ++i)
                 {
                     for (int k = 0; k < waterPatchCount; ++k)
                     {
@@ -439,6 +439,7 @@ public static class PatchMapGenerator
                 {
                     caveLinkedTo = random.Next(0, waterPatchCount);
                     LinkPatches(cave, region.Patches[caveLinkedTo]);
+
                     cave.Depth[0] = region.Patches[caveLinkedTo].Depth[0];
                     cave.Depth[1] = region.Patches[caveLinkedTo].Depth[1];
                 }
@@ -606,7 +607,7 @@ public static class PatchMapGenerator
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Note that after calling this, regions and patches has already been linked together.
+    ///     Note that after calling this, regions and patches have already been linked together.
     ///   </para>
     /// </remarks>
     /// <param name="biome">The requested biome</param>
@@ -757,7 +758,6 @@ public static class PatchMapGenerator
         var region = new PatchRegion(0, GetPatchLocalizedName(areaName, string.Empty),
                 PatchRegion.RegionType.Predefined, new Vector2(0, 0))
             { Size = new Vector2(400, 500) };
-
 
         // Predefined patches
         var coast = NewPredefinedPatch(Patch.BiomeTypes.Coastal, 0, region, areaName);

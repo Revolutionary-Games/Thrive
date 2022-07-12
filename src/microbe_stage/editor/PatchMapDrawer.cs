@@ -466,9 +466,9 @@ public class PatchMapDrawer : Control
     ///     Note that priority should be within (-10, 10), and the return value is relative.
     ///   </para>
     /// </remarks>
-    private int IntersectionCountWithPriority((Vector2[] Path, int Priority) tuple)
+    private int IntersectionCountWithPriority((Vector2[] Path, int Priority) pathPriorityTuple)
     {
-        var (path, priority) = tuple;
+        var (path, priority) = pathPriorityTuple;
 
         int count = 0;
 
@@ -478,9 +478,9 @@ public class PatchMapDrawer : Control
             var endPoint = path[i];
 
             // Calculate the number of intersecting regions for each possible line path
-            foreach (var reg in map.Regions)
+            foreach (var region in map.Regions.Values)
             {
-                var regionRect = new Rect2(reg.Value.ScreenCoordinates, reg.Value.Size);
+                var regionRect = new Rect2(region.ScreenCoordinates, region.Size);
                 if (ClosestSegmentRectangleIntersection(startPoint, endPoint, regionRect) != Vector2.Inf)
                 {
                     count += 10;
@@ -550,7 +550,7 @@ public class PatchMapDrawer : Control
         foreach (var region in map.Regions.Values)
         {
             DrawRect(new Rect2(region.ScreenCoordinates, region.Size),
-                new Color(0.0f, 0.7f, 0.5f, 0.7f), false, Constants.PATCH_REGION_BORDER_WIDTH);
+                Colors.DarkCyan, false, Constants.PATCH_REGION_BORDER_WIDTH);
         }
     }
 
