@@ -11,7 +11,8 @@ public interface IEngulfable : IGraphicalEntity
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This can also be made to scale with <see cref="DigestedAmount"/> for richer gameplay depth.
+    ///     Some classes may scale this with <see cref="DigestedAmount"/> for richer gameplay depth.
+    ///     For example see <see cref="Microbe.EngulfSize"/>.
     ///   </para>
     /// </remarks>
     public float EngulfSize { get; }

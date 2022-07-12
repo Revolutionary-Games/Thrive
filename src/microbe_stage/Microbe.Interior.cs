@@ -1092,7 +1092,8 @@ public partial class Microbe
     /// </summary>
     private Vector3 CalculateNearbyWorldPosition()
     {
-        // OLD CODE
+        // OLD CODE kept here in case we want a more accurate membrane position, also this code
+        // produces an incorrect world position which needs fixing if this were to be used
         /*
         // The back of the microbe
         var exit = Hex.AxialToCartesian(new Hex(0, 1));
@@ -1129,6 +1130,8 @@ public partial class Microbe
         return Translation + (ejectionDirection * ejectionDistance);
         */
 
+        // Unlike the commented block of code above, this uses cheap membrane radius to calculate
+        // distance for cheaper computations
         var distance = Membrane.EncompassingCircleRadius;
 
         // The membrane radius doesn't take being bacteria into account
