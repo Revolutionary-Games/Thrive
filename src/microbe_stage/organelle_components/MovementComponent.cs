@@ -22,6 +22,22 @@ public class MovementComponent : ExternallyPositionedComponent
         Torque = torque;
     }
 
+    /// <summary>
+    ///   Calculate the momentum of the movement organelle based on
+    ///   angle towards middle of cell
+    ///   If the flagella is placed in the microbe's center, hence delta equals 0,
+    ///   consider defaultPos as the organelle's "false" position.
+    /// </summary>
+    public static Vector3 CalculateForce(Hex pos, float momentum)
+    {
+        Vector3 organellePosition = Hex.AxialToCartesian(pos);
+        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
+        var delta = middle - organellePosition;
+        if (delta == Vector3.Zero)
+            delta = DefaultVisualPos;
+        return delta.Normalized() * momentum;
+    }
+
     public override void UpdateAsync(float delta)
     {
         // Visual positioning code
@@ -74,22 +90,6 @@ public class MovementComponent : ExternallyPositionedComponent
         Vector3 membraneCoords)
     {
         organelle!.OrganelleGraphics!.Transform = new Transform(rotation, membraneCoords);
-    }
-
-    /// <summary>
-    ///   Calculate the momentum of the movement organelle based on
-    ///   angle towards middle of cell
-    ///   If the flagella is placed in the microbe's center, hence delta equals 0,
-    ///   consider defaultPos as the organelle's "false" position.
-    /// </summary>
-    private static Vector3 CalculateForce(Hex pos, float momentum)
-    {
-        Vector3 organellePosition = Hex.AxialToCartesian(pos);
-        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
-        var delta = middle - organellePosition;
-        if (delta == Vector3.Zero)
-            delta = DefaultVisualPos;
-        return delta.Normalized() * momentum;
     }
 
     private void SetSpeedFactor(float speed)

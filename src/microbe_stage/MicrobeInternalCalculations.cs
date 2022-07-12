@@ -33,7 +33,8 @@ public static class MicrobeInternalCalculations
 
     public static Vector3 GetOrganelleDirection(OrganelleTemplate organelle)
     {
-        return MathUtils.CreateRotationForOrganelle(organelle.Orientation).Xform(Vector3.Forward).Normalized();
+        // TODO: calculate this for organelles other than flagella
+        return MovementComponent.CalculateForce(organelle.Position, organelle.Definition.Components.Movement!.Momentum);
     }
 
     public static float CalculateSpeed(IEnumerable<OrganelleTemplate> organelles, MembraneType membraneType,
