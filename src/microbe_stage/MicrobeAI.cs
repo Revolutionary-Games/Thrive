@@ -241,8 +241,7 @@ public class MicrobeAI
         if (!microbe.CellTypeProperties.MembraneType.CellWall)
         {
             var targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random);
-            if (targetChunk != null && !microbe.IsPullingInEngulfables() &&
-                targetChunk.PhagocytosisStep == PhagocytosisPhase.None)
+            if (targetChunk != null && targetChunk.PhagocytosisStep == PhagocytosisPhase.None)
             {
                 PursueAndConsumeChunks(targetChunk.Translation, random);
                 return;
@@ -251,8 +250,7 @@ public class MicrobeAI
 
         // If there are no chunks, look for living prey to hunt
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
-        if (possiblePrey != null && !microbe.IsPullingInEngulfables() &&
-            possiblePrey.PhagocytosisStep == PhagocytosisPhase.None)
+        if (possiblePrey != null && possiblePrey.PhagocytosisStep == PhagocytosisPhase.None)
         {
             bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
                 DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
@@ -261,10 +259,6 @@ public class MicrobeAI
             EngagePrey(prey.Value, random, engulfPrey);
             return;
         }
-
-        // Wait until we've completely internalized the food that we're currently engulfing
-        if (microbe.IsPullingInEngulfables())
-            return;
 
         // There is no reason to be engulfing at this stage
         microbe.State = Microbe.MicrobeState.Normal;

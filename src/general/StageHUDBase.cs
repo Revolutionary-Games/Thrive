@@ -480,7 +480,7 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
         if (stage.HasPlayer)
         {
             UpdateNeededBars();
-            UpdateCompoundBars();
+            UpdateCompoundBars(delta);
             UpdateReproductionProgress();
             UpdateAbilitiesHotBar();
         }
@@ -903,33 +903,33 @@ public abstract class StageHUDBase<TStage> : Control, IStageHUD
     /// <summary>
     ///   Updates the compound bars with the correct values.
     /// </summary>
-    protected virtual void UpdateCompoundBars()
+    protected virtual void UpdateCompoundBars(float delta)
     {
         var compounds = GetPlayerStorage();
 
         glucoseBar.MaxValue = compounds.GetCapacityForCompound(glucose);
-        glucoseBar.Value = compounds.GetCompoundAmount(glucose);
+        GUICommon.SmoothlyUpdateBar(glucoseBar, compounds.GetCompoundAmount(glucose), delta);
         glucoseBar.GetNode<Label>("Value").Text = glucoseBar.Value + " / " + glucoseBar.MaxValue;
 
         ammoniaBar.MaxValue = compounds.GetCapacityForCompound(ammonia);
-        ammoniaBar.Value = compounds.GetCompoundAmount(ammonia);
+        GUICommon.SmoothlyUpdateBar(ammoniaBar, compounds.GetCompoundAmount(ammonia), delta);
         ammoniaBar.GetNode<Label>("Value").Text = ammoniaBar.Value + " / " + ammoniaBar.MaxValue;
 
         phosphateBar.MaxValue = compounds.GetCapacityForCompound(phosphates);
-        phosphateBar.Value = compounds.GetCompoundAmount(phosphates);
+        GUICommon.SmoothlyUpdateBar(phosphateBar, compounds.GetCompoundAmount(phosphates), delta);
         phosphateBar.GetNode<Label>("Value").Text = phosphateBar.Value + " / " + phosphateBar.MaxValue;
 
         hydrogenSulfideBar.MaxValue = compounds.GetCapacityForCompound(hydrogensulfide);
-        hydrogenSulfideBar.Value = compounds.GetCompoundAmount(hydrogensulfide);
+        GUICommon.SmoothlyUpdateBar(hydrogenSulfideBar, compounds.GetCompoundAmount(hydrogensulfide), delta);
         hydrogenSulfideBar.GetNode<Label>("Value").Text = hydrogenSulfideBar.Value + " / " +
             hydrogenSulfideBar.MaxValue;
 
         ironBar.MaxValue = compounds.GetCapacityForCompound(iron);
-        ironBar.Value = compounds.GetCompoundAmount(iron);
+        GUICommon.SmoothlyUpdateBar(ironBar, compounds.GetCompoundAmount(iron), delta);
         ironBar.GetNode<Label>("Value").Text = ironBar.Value + " / " + ironBar.MaxValue;
 
         oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
-        oxytoxyBar.Value = compounds.GetCompoundAmount(oxytoxy);
+        GUICommon.SmoothlyUpdateBar(oxytoxyBar, compounds.GetCompoundAmount(oxytoxy), delta);
         oxytoxyBar.GetNode<Label>("Value").Text = oxytoxyBar.Value + " / " + oxytoxyBar.MaxValue;
     }
 
