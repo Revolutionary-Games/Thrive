@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/engine/LoadingScreen.cs" type="Script" id=1]
-[ext_resource path="res://assets/textures/gui/planet.png" type="Texture" id=2]
+[ext_resource path="res://src/gui_common/SlideableTextureRect.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/misc/icon.png" type="Texture" id=3]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=5]
@@ -32,15 +32,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 4 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 ArtworkPath = NodePath("CoolArt")
 ArtDescriptionPath = NodePath("CenterContainer/ArtDescription")
 LoadingMessagePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/LoadingMessage")
 LoadingDescriptionPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/LoadingDescription")
 TipLabelPath = NodePath("MarginContainer/HBoxContainer/TipLabel")
-RandomizeTipTimerPath = NodePath("TipTimer")
+RandomizeTimerPath = NodePath("Timer")
 SpinnerPath = NodePath("MarginContainer/HBoxContainer/Spinner/TextureRect")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -51,19 +48,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CoolArt" type="TextureRect" parent="."]
+[node name="CoolArt" parent="." instance=ExtResource( 2 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 800, 500 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource( 2 )
-expand = true
+margin_right = 0.0
+margin_bottom = 0.0
 stretch_mode = 7
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
 
 [node name="FadeGradient" type="TextureRect" parent="."]
 material = SubResource( 1 )
@@ -132,11 +122,12 @@ __meta__ = {
 
 [node name="TipLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
 margin_top = 42.0
-margin_right = 1088.0
+margin_right = 700.0
 margin_bottom = 64.0
+rect_min_size = Vector2( 700, 0 )
 rect_clip_content = false
 mouse_filter = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 size_flags_vertical = 8
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
@@ -201,7 +192,8 @@ __meta__ = {
 "_editor_description_": "This also doesn't resize"
 }
 
-[node name="TipTimer" type="Timer" parent="."]
-wait_time = 5.0
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
 
-[connection signal="timeout" from="TipTimer" to="." method="RandomizeTip"]
+[connection signal="hide" from="." to="." method="OnBecomeHidden"]
+[connection signal="timeout" from="Timer" to="." method="RandomizeContent"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/gui_common/PlaybackControls.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/general/OrbitCamera.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/art_gallery/SlideScreen.cs" type="Script" id=7]
+[ext_resource path="res://src/gui_common/SlideableTextureRect.tscn" type="PackedScene" id=8]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 1 )
@@ -46,7 +47,7 @@ script = ExtResource( 7 )
 Movable = false
 ShowCloseButton = false
 Decorate = false
-SlideTextureRectPath = NodePath("Overlay/FullRectImage")
+SlideTextureRectPath = NodePath("Overlay/SlideableTextureRect")
 SlideToolbarPath = NodePath("Overlay/Toolbar")
 SlideCloseButtonPath = NodePath("Overlay/MarginContainer/CloseButton")
 SlideShowModeButtonPath = NodePath("Overlay/Toolbar/VBoxContainer/HBoxContainer/SlideshowModeButton")
@@ -65,17 +66,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FullRectImage" type="TextureRect" parent="Overlay"]
-margin_right = 1280.0
-margin_bottom = 720.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="SlideableTextureRect" parent="Overlay" instance=ExtResource( 8 )]
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Overlay"]
 margin_right = 1280.0
@@ -205,10 +196,9 @@ __meta__ = {
 
 [node name="PopupTween" type="Tween" parent="."]
 
-[node name="SlideshowTween" type="Tween" parent="."]
-
 [node name="ToolbarTween" type="Tween" parent="."]
 
+[connection signal="Faded" from="Overlay/SlideableTextureRect" to="." method="UpdateScreen"]
 [connection signal="draw" from="Overlay/MarginContainer/CloseButton" to="." method="OnCloseButtonUpdate"]
 [connection signal="pressed" from="Overlay/MarginContainer/CloseButton" to="." method="OnCloseButtonPressed"]
 [connection signal="pressed" from="Overlay/Toolbar/VBoxContainer/HBoxContainer/PreviousButton" to="." method="OnPreviousSlideButtonPressed"]

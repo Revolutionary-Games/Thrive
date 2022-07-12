@@ -39,7 +39,7 @@ public class SlideScreen : CustomDialog
     [Export]
     public NodePath PlaybackControlsPath = null!;
 
-    private TextureRect? fullscreenTextureRect;
+    private SlideableTextureRect? slideableTextureRect;
     private Control? toolbar;
     private Button? closeButton;
     private Button? slideShowModeButton;
@@ -51,7 +51,6 @@ public class SlideScreen : CustomDialog
     private PlaybackControls? playbackControls;
 
     private Tween popupTween = null!;
-    private Tween slideshowTween = null!;
     private Tween toolbarTween = null!;
 
     private float toolbarHideTimer;
@@ -120,7 +119,7 @@ public class SlideScreen : CustomDialog
 
     public override void _Ready()
     {
-        fullscreenTextureRect = GetNode<TextureRect>(SlideTextureRectPath);
+        slideableTextureRect = GetNode<SlideableTextureRect>(SlideTextureRectPath);
         toolbar = GetNode<Control>(SlideToolbarPath);
         closeButton = GetNode<Button>(SlideCloseButtonPath);
         slideShowModeButton = GetNode<Button>(SlideShowModeButtonPath);
@@ -132,7 +131,6 @@ public class SlideScreen : CustomDialog
         playbackControls = GetNode<PlaybackControls>(PlaybackControlsPath);
 
         popupTween = GetNode<Tween>("PopupTween");
-        slideshowTween = GetNode<Tween>("SlideshowTween");
         toolbarTween = GetNode<Tween>("ToolbarTween");
 
         UpdateScreen();
@@ -291,11 +289,11 @@ public class SlideScreen : CustomDialog
             return;
         }
 
-        slideshowTween.InterpolateProperty(fullscreenTextureRect, "modulate", null, Colors.Black, 0.5f);
-        slideshowTween.Start();
+        if (items == null || slideableTextureRect == null)
+            return;
 
-        if (!slideshowTween.IsConnected("tween_completed", this, nameof(OnSlideFaded)))
-            slideshowTween.Connect("tween_completed", this, nameof(OnSlideFaded), null, (uint)ConnectFlags.Oneshot);
+        var item = items[currentSlideIndex];
+        slideableTextureRect.Image = GD.Load(item.Asset.ResourcePath) as Texture;
     }
 
     private void UpdateScreen()
@@ -307,7 +305,7 @@ public class SlideScreen : CustomDialog
 
     private void UpdateSlide()
     {
-        if (items == null || slideTitleLabel == null || fullscreenTextureRect == null || slideShowModeButton == null)
+        if (items == null || slideTitleLabel == null || slideableTextureRect == null || slideShowModeButton == null)
             return;
 
         var item = items[currentSlideIndex];
@@ -317,7 +315,7 @@ public class SlideScreen : CustomDialog
         slideShowModeButton.Visible = item.CanBeShownInASlideshow;
 
         slideTitleLabel.Text = string.IsNullOrEmpty(item.Asset.Title) ? item.Asset.FileName : item.Asset.Title;
-        fullscreenTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture;
+        slideableTextureRect.Texture = GD.Load(item.Asset.ResourcePath) as Texture;
     }
 
     private void UpdateModelViewer()
@@ -354,7 +352,7 @@ public class SlideScreen : CustomDialog
     {
         var item = items?[currentSlideIndex] as GalleryCardAudio;
 
-        if (playbackControls == null || fullscreenTextureRect == null)
+        if (playbackControls == null || slideableTextureRect == null)
             return;
 
         if (item?.Asset.Type != AssetType.AudioPlayback)
@@ -368,7 +366,7 @@ public class SlideScreen : CustomDialog
         playbackControls?.Show();
 
         // TODO: Temporary until there's a proper "album" art for audios
-        fullscreenTextureRect.Texture = item.MissingTexture;
+        slideableTextureRect.Texture = item.MissingTexture;
     }
 
     private void UpdateHandles()
@@ -378,16 +376,6 @@ public class SlideScreen : CustomDialog
 
         toolbar.Visible = slideControlsVisible;
         closeButton.Visible = slideControlsVisible;
-    }
-
-    private void OnSlideFaded(Object @object, NodePath key)
-    {
-        _ = @object;
-        _ = key;
-
-        UpdateScreen();
-        slideshowTween.InterpolateProperty(fullscreenTextureRect, "modulate", null, Colors.White, 0.5f);
-        slideshowTween.Start();
     }
 
     private void OnScaledUp(Object @object, NodePath key)
