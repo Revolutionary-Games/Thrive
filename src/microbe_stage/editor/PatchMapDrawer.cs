@@ -360,7 +360,7 @@ public class PatchMapDrawer : Control
             // Separate connection by directions: 0 -> Left, 1 -> Up, 2 -> Right, 3 -> Down
             var connectionsToDirections = new List<(Vector2[] Path, int Endpoint, int Intermediate, float Distance)>[4];
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; ++i)
             {
                 connectionsToDirections[i] =
                     new List<(Vector2[] Path, int Endpoint, int Intermediate, float Distance)>();
