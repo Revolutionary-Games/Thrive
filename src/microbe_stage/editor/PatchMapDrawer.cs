@@ -277,6 +277,17 @@ public class PatchMapDrawer : Control
         AdjustPathEndpoints();
     }
 
+    /// <summary>
+    ///   Get the least intersecting path from start region to end region. This is achieved by first calculating all
+    ///   possible paths, then figuring out which one intersects the least. If several paths are equally good, return
+    ///   the one with highest priority.
+    /// </summary>
+    /// <remarks>
+    ///  <para>
+    ///    Priority: Direct path > L-shape path > Z-shape path > U-shape path
+    /// </para>
+    /// </remarks>
+    /// <returns>Path represented in a Vector2 array</returns>
     private Vector2[] GetLeastIntersectingPath(PatchRegion start, PatchRegion end)
     {
         var startCenter = RegionCenter(start);
@@ -470,6 +481,8 @@ public class PatchMapDrawer : Control
     {
         var (path, priority) = pathPriorityTuple;
 
+        // Intersections with regions are considered worse than that with lines.
+        // So an intersect with region adds count by 10.
         int count = 0;
 
         for (int i = 1; i < path.Length; ++i)
@@ -477,7 +490,7 @@ public class PatchMapDrawer : Control
             var startPoint = path[i - 1];
             var endPoint = path[i];
 
-            // Calculate the number of intersecting regions for each possible line path
+            // Calculate the number of intersecting regions
             foreach (var region in map.Regions.Values)
             {
                 var regionRect = new Rect2(region.ScreenCoordinates, region.Size);

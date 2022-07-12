@@ -752,25 +752,25 @@ public static class PatchMapGenerator
     private static PatchMap GeneratePredefinedMap()
     {
         var map = new PatchMap();
-        var areaName = TranslationServer.Translate("PANGONIAN_REGION_NAME");
+        var regionName = TranslationServer.Translate("PANGONIAN_REGION_NAME");
 
         // Hard code the region size as slightly larger than the extreme patch edges to fix scrolling
-        var region = new PatchRegion(0, GetPatchLocalizedName(areaName, string.Empty),
+        var region = new PatchRegion(0, GetPatchLocalizedName(regionName, string.Empty),
                 PatchRegion.RegionType.Predefined, new Vector2(0, 0))
             { Size = new Vector2(400, 500) };
 
         // Predefined patches
-        var coast = NewPredefinedPatch(Patch.BiomeTypes.Coastal, 0, region, areaName);
-        var estuary = NewPredefinedPatch(Patch.BiomeTypes.Estuary, 1, region, areaName);
-        var tidepool = NewPredefinedPatch(Patch.BiomeTypes.Tidepool, 2, region, areaName);
-        var epipelagic = NewPredefinedPatch(Patch.BiomeTypes.Epipelagic, 3, region, areaName);
-        var mesopelagic = NewPredefinedPatch(Patch.BiomeTypes.Mesopelagic, 4, region, areaName);
-        var bathypelagic = NewPredefinedPatch(Patch.BiomeTypes.Bathypelagic, 5, region, areaName);
-        var abyssopelagic = NewPredefinedPatch(Patch.BiomeTypes.Abyssopelagic, 6, region, areaName);
-        var seafloor = NewPredefinedPatch(Patch.BiomeTypes.Seafloor, 7, region, areaName);
-        var cave = NewPredefinedPatch(Patch.BiomeTypes.Cave, 8, region, areaName);
-        var iceShelf = NewPredefinedPatch(Patch.BiomeTypes.IceShelf, 9, region, areaName);
-        var vents = NewPredefinedPatch(Patch.BiomeTypes.Vents, 10, region, areaName);
+        var coast = NewPredefinedPatch(Patch.BiomeTypes.Coastal, 0, region, regionName);
+        var estuary = NewPredefinedPatch(Patch.BiomeTypes.Estuary, 1, region, regionName);
+        var tidepool = NewPredefinedPatch(Patch.BiomeTypes.Tidepool, 2, region, regionName);
+        var epipelagic = NewPredefinedPatch(Patch.BiomeTypes.Epipelagic, 3, region, regionName);
+        var mesopelagic = NewPredefinedPatch(Patch.BiomeTypes.Mesopelagic, 4, region, regionName);
+        var bathypelagic = NewPredefinedPatch(Patch.BiomeTypes.Bathypelagic, 5, region, regionName);
+        var abyssopelagic = NewPredefinedPatch(Patch.BiomeTypes.Abyssopelagic, 6, region, regionName);
+        var seafloor = NewPredefinedPatch(Patch.BiomeTypes.Seafloor, 7, region, regionName);
+        var cave = NewPredefinedPatch(Patch.BiomeTypes.Cave, 8, region, regionName);
+        var iceShelf = NewPredefinedPatch(Patch.BiomeTypes.IceShelf, 9, region, regionName);
+        var vents = NewPredefinedPatch(Patch.BiomeTypes.Vents, 10, region, regionName);
 
         // Connections
         LinkPatches(vents, seafloor);
