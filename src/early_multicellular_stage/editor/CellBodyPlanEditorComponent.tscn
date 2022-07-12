@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.cs" type="Script" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://src/gui_common/CollapsibleList.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/microbe_stage/editor/MutationPointsBar.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=14]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -425,14 +426,14 @@ text = "DUPLICATE_TYPE"
 [node name="Reproduction" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false
 margin_top = 40.0
-margin_right = 478.0
+margin_right = 414.0
 margin_bottom = 556.0
 mouse_filter = 1
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 8 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction"]
-margin_right = 478.0
+margin_right = 414.0
 margin_bottom = 516.0
 mouse_filter = 1
 scroll_horizontal_enabled = false
@@ -441,8 +442,8 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer"]
-margin_right = 478.0
-margin_bottom = 25.0
+margin_right = 414.0
+margin_bottom = 19.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
@@ -451,29 +452,31 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer"]
-margin_right = 468.0
-margin_bottom = 25.0
+margin_right = 404.0
+margin_bottom = 19.0
 custom_constants/separation = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_right = 468.0
-margin_bottom = 25.0
+margin_right = 404.0
+margin_bottom = 19.0
 
 [node name="Label" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 243.0
-margin_bottom = 25.0
+margin_top = 1.0
+margin_right = 179.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 14 )
 text = "REPRODUCTION_METHOD"
 
 [node name="Control" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 247.0
-margin_right = 247.0
-margin_bottom = 25.0
+margin_left = 183.0
+margin_right = 183.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
 
 [node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 251.0
-margin_right = 468.0
-margin_bottom = 25.0
+margin_left = 187.0
+margin_right = 404.0
+margin_bottom = 19.0
 disabled = true
 text = "REPRODUCTION_BUDDING"
 items = [ "REPRODUCTION_BUDDING", null, false, 0, null ]
