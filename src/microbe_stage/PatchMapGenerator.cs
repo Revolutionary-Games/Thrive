@@ -14,7 +14,7 @@ public static class PatchMapGenerator
 
         if (settings.MapType == WorldGenerationSettings.PatchMapType.Classic)
         {
-            // Return the classic map if settings ask for it it
+            // Return the classic map if settings ask for it
             var predefinedMap = GeneratePredefinedMap();
 
             ConfigureStartingPatch(predefinedMap, settings, defaultSpecies,
