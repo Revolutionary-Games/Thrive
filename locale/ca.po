@@ -1210,7 +1210,7 @@ msgstr "Començant"
 #: ../src/auto-evo/AutoEvoRun.cs:293
 #, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr "Població de {0} ha variat en {1} degut a: {2}"
+msgstr "{0} població ha variat en {1} degut a: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
 msgid "POPULATION_COLON"
@@ -1544,35 +1544,48 @@ msgstr "Desconegut a Windows"
 #: ../src/engine/DebugOverlays.tscn:81 ../src/engine/PerformanceMetrics.tscn:76
 msgid "METRICS_CONTENT"
 msgstr ""
+"Temps de procès: {0} s\n"
+"Temps de físiques: {1} s\n"
+"Entitats: {2} Other: {3}\n"
+"Aparegudes: {4} Desaparegudes: {5}\n"
+"Nodes utilitzats: {6}\n"
+"Memòria utilitzada: {7}\n"
+"Memòria GPU: {8}\n"
+"Objectes renderitzats: {9}\n"
+"Trucades sortejades: {10} 2D: {11}\n"
+"Vèrtexs renderitzats: {12}\n"
+"Canvis de material: {13}\n"
+"Canvis de Shader: {14}\n"
+"Nodes orfes: {15}\n"
+"Latència d'Audio: {16} ms\n"
+"Fils total: {17}\n"
+"Temps de CPU Total:\n"
+"{18}"
 
 #: ../src/engine/DebugOverlays.tscn:35 ../src/engine/DebugOverlays.tscn:103
 #: ../src/engine/PerformanceMetrics.tscn:30
-#, fuzzy
 msgid "METRICS"
-msgstr "Activar monitor FPS"
+msgstr "Mètriques de rendiment"
 
 #: ../src/engine/DebugOverlays.tscn:86
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "Tauler de Depuració"
 
 #: ../src/engine/DebugOverlays.tscn:96
-#, fuzzy
 msgid "FPS_DISPLAY"
-msgstr "Iniciar Reproducció Multimèdia"
+msgstr "Visualització d'FPS"
 
 #: ../src/engine/DebugOverlays.tscn:110
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "Generar entitats amb formes de col·lisió"
 
 #: ../src/engine/DebugOverlays.tscn:117
-#, fuzzy
 msgid "ENTITY_LABEL"
-msgstr "Bioma: {0}"
+msgstr "Etiqueta d'entitat"
 
 #: ../src/engine/DebugOverlays.tscn:128
-#, fuzzy
 msgid "TRANSPARENCY"
-msgstr "Traductors"
+msgstr "Transparència"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:171
 msgid "LOADING"
@@ -2047,18 +2060,16 @@ msgid "STORE_LOGGED_IN_AS"
 msgstr "Registrat com a: {0}"
 
 #: ../src/general/MainMenu.tscn:175
-#, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Menú de pausa"
+msgstr "Començar un nou joc"
 
 #: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "Nova partida"
 
 #: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:195
-#, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
-msgstr "Menú de pausa"
+msgstr "Carregar arxius de guardat previs"
 
 #: ../src/general/MainMenu.tscn:192 ../src/general/PauseMenu.tscn:196
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
@@ -2066,9 +2077,8 @@ msgid "LOAD_GAME"
 msgstr "Carregar una partida"
 
 #: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:220
-#, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
-msgstr "Ajuda"
+msgstr "Canviar la configuració"
 
 #: ../src/general/MainMenu.tscn:204 ../src/general/PauseMenu.tscn:221
 msgid "OPTIONS"
@@ -2091,9 +2101,8 @@ msgid "CREDITS"
 msgstr "Crèdits"
 
 #: ../src/general/MainMenu.tscn:256 ../src/general/PauseMenu.tscn:236
-#, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr "Suicidi"
+msgstr "Sortir del joc"
 
 #: ../src/general/MainMenu.tscn:260
 msgid "QUIT"
@@ -2149,91 +2158,78 @@ msgstr ""
 
 #: ../src/general/NewGameSettings.cs:284
 #: ../src/general/NewGameSettings.tscn:1052
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
-msgstr "Menú de pausa"
+msgstr "Entrar al joc amb aquesta configuració"
 
 #: ../src/general/NewGameSettings.cs:291
-#, fuzzy
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
-msgstr "Menú de pausa"
+msgstr "Alguns paràmetres no són vàlids"
 
 #: ../src/general/NewGameSettings.tscn:115
 #: ../src/general/NewGameSettings.tscn:328
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "Dificultat predeterminada"
 
 #: ../src/general/NewGameSettings.tscn:142
 #: ../src/general/NewGameSettings.tscn:814
 msgid "LAWK_ONLY"
-msgstr ""
+msgstr "només LAWK"
 
 #: ../src/general/NewGameSettings.tscn:149
 #: ../src/general/NewGameSettings.tscn:821
-#, fuzzy
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
-"Els microbis temorosos fugiran a més distància\n"
-"i en general fugiran de qualsevol depredador.\n"
-"Els microbis valents no se senten intimidats per depredadors propers\n"
-"i és més probable que contraataquin si són agredits."
+msgstr "(restringeix parts i habilitats a la vida tal com la coneixem)"
 
 #: ../src/general/NewGameSettings.tscn:165
 #: ../src/general/NewGameSettings.tscn:837
 msgid "LIFE_ORIGIN"
-msgstr ""
+msgstr "Origen de la vida"
 
 #: ../src/general/NewGameSettings.tscn:172
 #: ../src/general/NewGameSettings.tscn:844
-#, fuzzy
 msgid "LIFE_ORIGIN_EXPLANATION"
-msgstr ""
-"Els microbis temorosos fugiran a més distància\n"
-"i en general fugiran de qualsevol depredador.\n"
-"Els microbis valents no se senten intimidats per depredadors propers\n"
-"i és més probable que contraataquin si són agredits."
+msgstr "(lloc de partida)"
 
 #: ../src/general/NewGameSettings.tscn:186
 #: ../src/general/NewGameSettings.tscn:858
-#, fuzzy
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr "Suicidi"
+msgstr "Algunes opcions poden ser desactivades si només LAWK està activat"
 
 #: ../src/general/NewGameSettings.tscn:188
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:860
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_VENTS"
-msgstr ""
+msgstr "Fumaroles hidrotermals"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_POND"
-msgstr ""
+msgstr "Petit, càlid toll"
 
 #: ../src/general/NewGameSettings.tscn:189
 #: ../src/general/NewGameSettings.tscn:861
 msgid "LIFE_ORIGIN_PANSPERMIA"
-msgstr ""
+msgstr "Panspèrmia (aleatori)"
 
 #: ../src/general/NewGameSettings.tscn:204
 #: ../src/general/NewGameSettings.tscn:876
 msgid "PLANET_RANDOM_SEED"
-msgstr ""
+msgstr "Llavor de planeta aleatòria"
 
 #: ../src/general/NewGameSettings.tscn:223
 #: ../src/general/NewGameSettings.tscn:895
-#, fuzzy
 msgid "RANDOM_SEED_TOOLTIP"
-msgstr "Pausar el joc"
+msgstr ""
+"El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
 
 #: ../src/general/NewGameSettings.tscn:268
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "Dificultat"
 
 #: ../src/general/NewGameSettings.tscn:278
 msgid "PLANET"
-msgstr ""
+msgstr "Planeta"
 
 #: ../src/general/NewGameSettings.tscn:288 ../src/general/OptionsMenu.tscn:184
 #: ../src/general/OptionsMenu.tscn:182 ../src/general/OptionsMenu.tscn:181
@@ -2242,147 +2238,86 @@ msgstr "Misc"
 
 #: ../src/general/NewGameSettings.tscn:367
 msgid "MUTATION_COST_MULTIPLIER"
-msgstr ""
+msgstr "Multiplicador del cost de mutació"
 
 #: ../src/general/NewGameSettings.tscn:412
-#, fuzzy
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
-"Els microbis actius es mouran continuament per trobar recursos.\n"
-"Els microbis sèssils es mantindran relativament quiets, esperant a que "
-"l'entorn canviï abans d'actuar."
+msgstr "(cost d'orgànuls, membranes i altres elements a l'editor)"
 
 #: ../src/general/NewGameSettings.tscn:429
-#, fuzzy
 msgid "AI_MUTATION_RATE"
-msgstr "Punts de Mutació"
+msgstr "Taxa de mutació de la IA"
 
 #: ../src/general/NewGameSettings.tscn:474
-#, fuzzy
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr ""
-"Aquest tauler mostra els nombres que fa servir l'algorisme auto-evo per fer "
-"la seva predicció. L'energia total que una espècie pot recol·lectar i el "
-"cost energètic per individu d'aquesta espècie, en determinen la població "
-"final. L'algorisme auto-evo fa servir un model simplificat de la realitat "
-"per a calcular el rendiment de les espècies basat en l'energia que són "
-"capaces de recol·lectar. Per cada font d'alimentació, es mostra quanta "
-"energia en guanya l'espècie. A més a més, es mostra l'energia total "
-"disponible per aquesta font. La fracció de l'energia total que guanyen les "
-"espècies es basa en la magnitud del seu 'rendiment' respecte al 'rendiment "
-"total'. El 'rendiment' és una mètrica de com de bé les espècies poden "
-"utilitzar aquesta font d'alimentació."
+msgstr "(velocitat a la qual les espècies de la IA muten)"
 
 #: ../src/general/NewGameSettings.tscn:491
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY"
-msgstr "Núvols de Compostos"
+msgstr "Densitat de núvols de Compostos"
 
 #: ../src/general/NewGameSettings.tscn:536
-#, fuzzy
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
-msgstr ""
-"Els microbis oportunístics competiran amb els rivals pels uns mateixos "
-"recursos\n"
-"e intentaran caçar preses amb toxines si no les poden engolir.\n"
-"Els microbis prudents normalment no es posaran a si mateixos en perill per "
-"uns mateixos recursos."
+msgstr "(densitat dels núvols de compostos al medi ambient)"
 
 #: ../src/general/NewGameSettings.tscn:553
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr ""
+msgstr "Penalització de la població per mort del jugador"
 
 #: ../src/general/NewGameSettings.tscn:598
-#, fuzzy
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr ""
-"Aquest tauler mostra els nombres que fa servir l'algorisme auto-evo per fer "
-"la seva predicció. L'energia total que una espècie pot recol·lectar i el "
-"cost energètic per individu d'aquesta espècie, en determinen la població "
-"final. L'algorisme auto-evo fa servir un model simplificat de la realitat "
-"per a calcular el rendiment de les espècies basat en l'energia que són "
-"capaces de recol·lectar. Per cada font d'alimentació, es mostra quanta "
-"energia en guanya l'espècie. A més a més, es mostra l'energia total "
-"disponible per aquesta font. La fracció de l'energia total que guanyen les "
-"espècies es basa en la magnitud del seu 'rendiment' respecte al 'rendiment "
-"total'. El 'rendiment' és una mètrica de com de bé les espècies poden "
-"utilitzar aquesta font d'alimentació."
+"(coeficient de reducció en la població del jugador per cada mort pròpia)"
 
 #: ../src/general/NewGameSettings.tscn:615
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
-msgstr ""
+msgstr "Retenció ambiental de glucosa"
 
 #: ../src/general/NewGameSettings.tscn:659
-#, fuzzy
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION_EXPLANATION"
-msgstr ""
-"Aquest tauler mostra els nombres que fa servir l'algorisme auto-evo per fer "
-"la seva predicció. L'energia total que una espècie pot recol·lectar i el "
-"cost energètic per individu d'aquesta espècie, en determinen la població "
-"final. L'algorisme auto-evo fa servir un model simplificat de la realitat "
-"per a calcular el rendiment de les espècies basat en l'energia que són "
-"capaces de recol·lectar. Per cada font d'alimentació, es mostra quanta "
-"energia en guanya l'espècie. A més a més, es mostra l'energia total "
-"disponible per aquesta font. La fracció de l'energia total que guanyen les "
-"espècies es basa en la magnitud del seu 'rendiment' respecte al 'rendiment "
-"total'. El 'rendiment' és una mètrica de com de bé les espècies poden "
-"utilitzar aquesta font d'alimentació."
+msgstr "Proporció de glucosa retinguda al medi ambient cada generació"
 
 #: ../src/general/NewGameSettings.tscn:676
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER"
-msgstr "Cost d'Osmoregulació"
+msgstr "Multiplicador del cost d'osmoregulació"
 
 #: ../src/general/NewGameSettings.tscn:721
-#, fuzzy
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "Cost d'Osmoregulació"
+msgstr "(cost d'osmoregulació de l'espècie del jugador)"
 
 #: ../src/general/NewGameSettings.tscn:733
 msgid "FREE_GLUCOSE_CLOUD"
-msgstr ""
+msgstr "Núvol de glucosa gratuït quan s'abandona l'editor"
 
 #: ../src/general/NewGameSettings.tscn:740
-#, fuzzy
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
-msgstr ""
-"Els microbis centrats buscaran recursos o preses més llunyans\n"
-"i és possible que siguin molt més ambiciosos respecte a uns mateixos "
-"recursos.\n"
-"Els microbis sensibles canviaran d'objectius més aviat."
+msgstr "(comença cada generació amb un núvol de glucosa gratuït proper)"
 
 #: ../src/general/NewGameSettings.tscn:776
-#, fuzzy
 msgid "PATCH_MAP_TYPE"
-msgstr "Mapa d'Indrets del món"
+msgstr "Tipus de mapa d'ecosistemes"
 
 #: ../src/general/NewGameSettings.tscn:783
-#, fuzzy
 msgid "PATCH_MAP_TYPE_EXPLANATION"
 msgstr ""
-"Els microbis actius es mouran continuament per trobar recursos.\n"
-"Els microbis sèssils es mantindran relativament quiets, esperant a que "
-"l'entorn canviï abans d'actuar."
+"(generar un mapa d'ecosistemes proceduralment o utilitzar el mapa clàssic)"
 
 #: ../src/general/NewGameSettings.tscn:798
 #: ../src/general/NewGameSettings.tscn:799
 msgid "PATCH_MAP_TYPE_PROCEDURAL"
-msgstr ""
+msgstr "Procedural"
 
 #: ../src/general/NewGameSettings.tscn:799
 msgid "PATCH_MAP_TYPE_CLASSIC"
-msgstr ""
+msgstr "Clàssic"
 
 #: ../src/general/NewGameSettings.tscn:943
 msgid "PLANET_GENERATION_TEASER"
-msgstr ""
+msgstr "Pròximament, generació planetària!"
 
 #: ../src/general/NewGameSettings.tscn:975
-#, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
-msgstr ""
-"Accedeix al següent estadi del joc (Multicel·lular). Disponible un cop "
-"comptes amb una colònia cel·lular prou gran."
+msgstr "Inclou prototips d'estadis tardans"
 
 #: ../src/general/NewGameSettings.tscn:982
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
